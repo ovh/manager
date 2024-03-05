@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { H2, P } from '@/components/typography';
+import { H2 } from '@/components/typography';
 import { useServiceData } from '../layout';
 import { database } from '@/models/database';
 import CurrentQueries from './_components/currentQueries';
