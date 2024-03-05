@@ -142,6 +142,7 @@ export const useAddUserForm = ({
       schema = groupSchema;
       defaultValues = { ...defaultValues, group: '' };
       break;
+    case database.EngineEnum.postgresql:
     case database.EngineEnum.mongodb:
       schema = roleschema;
       defaultValues = { ...defaultValues, roles: [] };

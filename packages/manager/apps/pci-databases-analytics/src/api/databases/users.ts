@@ -100,3 +100,16 @@ export const resetUserPassword = async ({
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${userId}/credentials/reset`,
     )
     .then((res) => res.data as database.service.UserWithPassword);
+
+export const getRoles = async ({
+  projectId,
+  engine,
+  serviceId,
+}: ServiceData) => {
+  let url = `/cloud/project/${projectId}/database/${engine}/${serviceId}/roles`;
+  // For mongoDB, we need to add the advanced query param
+  if (engine === database.EngineEnum.mongodb) {
+    url += '?advanced=true';
+  }
+  return apiClient.v6.get(url).then((res) => res.data as string[]);
+};
