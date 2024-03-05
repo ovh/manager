@@ -12,6 +12,7 @@ import {
   ResetUserPasswordProps,
   addUser,
   deleteUser,
+  getRoles,
   getUsers,
   resetUserPassword,
 } from '@/api/databases/users';
@@ -28,6 +29,20 @@ export function useGetUsers(
     queryFn: () => getUsers({ projectId, engine, serviceId }),
     ...options,
   }) as UseQueryResult<GenericUser[], Error>;
+}
+
+export function useGetRoles(
+  projectId: string,
+  engine: database.EngineEnum,
+  serviceId: string,
+  options: Omit<QueryObserverOptions, 'queryKey'> = {},
+) {
+  const queryKey = [projectId, 'database', engine, serviceId, 'roles'];
+  return useQuery({
+    queryKey,
+    queryFn: () => getRoles({ projectId, engine, serviceId }),
+    ...options,
+  }) as UseQueryResult<string[], Error>;
 }
 
 interface MutateUserProps {
