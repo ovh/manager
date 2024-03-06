@@ -62,6 +62,7 @@ const SubnetCreationPage: React.FC = () => {
   const { trackPage } = useOvhTracking();
   const defaultCidr = t('defaultCidr');
   const defaultServiceRange = t('defaultServiceRange');
+  const defaultSubnetName = t('defaultSubnetName');
 
   const { mutate: createSubnet, isPending, isError, error } = useMutation<
     ApiResponse<VrackServices>,
@@ -73,7 +74,8 @@ const SubnetCreationPage: React.FC = () => {
         vrackServicesId: id,
         checksum: vrackServices.data?.checksum,
         targetSpec: {
-          displayName: vrackServices.data?.currentState.displayName,
+          displayName:
+            vrackServices.data?.currentState.displayName || defaultSubnetName,
           subnets: (vrackServices.data?.currentState.subnets || []).concat({
             displayName,
             cidr: cidr || defaultCidr,
