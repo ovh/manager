@@ -91,6 +91,7 @@ const Integrations = () => {
       )}
 
       <AddIntegration
+        integrations={integrations}
         controller={addModale.controller}
         service={service}
         onSuccess={() => {

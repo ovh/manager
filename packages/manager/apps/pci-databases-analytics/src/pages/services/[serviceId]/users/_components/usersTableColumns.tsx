@@ -45,7 +45,7 @@ export const getColumns = ({
       const roles: string[] = 'roles' in user ? user.roles : [];
       return (
         <div className="flex flex-col gap-1">
-          {roles.map((role, index) => (
+          {roles.map((role) => (
             <Badge variant={'default'} key={role} className="text-xs w-fit">
               {role}
             </Badge>

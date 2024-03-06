@@ -13,6 +13,7 @@ import {
   getServiceCapabilitiesIntegrations,
   getServiceIntegrations,
 } from '@/api/databases/integrations';
+import { CdbError } from '@/api/databases';
 
 export function useGetIntegrations(
   projectId: string,
@@ -50,7 +51,7 @@ export function useGetCapabilitiesIntegrations(
 }
 
 interface MutateIntegrationProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: (database: database.service.Integration) => void;
 }
 export function useAddIntegration({
@@ -74,7 +75,7 @@ export function useAddIntegration({
 }
 
 interface UseDeleteIntegrationProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: () => void;
 }
 export function UseDeleteIntegration({
