@@ -59,47 +59,6 @@
                 ></span>
             </a>
         </oui-message>
-        <!-- IAM Banner-->
-        <oui-message
-            data-type="info"
-            data-dismissable
-            data-ng-if="$ctrl.showIamBanner"
-        >
-            <span
-                data-translate="manager_hub_dashboard_iam_banner_description"
-            ></span>
-            <a
-                class="oui-link_icon"
-                data-ng-href="{{:: $ctrl.iamBannerLink }}"
-                data-ng-click="$ctrl.trackClick($ctrl.IAM_HIT_PREFIX)"
-                target="_blank"
-                rel="noopener"
-            >
-                <span
-                    data-translate="manager_hub_dashboard_iam_banner_link"
-                ></span>
-            </a>
-        </oui-message>
-        <!-- GA IAM Banner-->
-        <oui-message
-            data-type="info"
-            data-dismissable
-            data-ng-if="$ctrl.showGAIamBanner"
-        >
-            <span
-                data-translate="manager_hub_dashboard_iam_ga_banner_description"
-            ></span>
-            <a
-                class="oui-link_icon"
-                data-ng-href="{{:: $ctrl.iamBannerLink }}"
-                target="_blank"
-                rel="noopener"
-            >
-                <span
-                    data-translate="manager_hub_dashboard_iam_banner_link"
-                ></span>
-            </a>
-        </oui-message>
         <!-- RBX1 EOL Banner-->
         <ovh-manager-rbx-eol-banner
             data-ng-if="$ctrl.displayRbx1EolBanner.rbx1Eol"
