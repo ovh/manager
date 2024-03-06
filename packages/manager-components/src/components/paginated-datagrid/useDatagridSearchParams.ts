@@ -26,7 +26,7 @@ const parsePagination = (params: URLSearchParams): PaginationState => {
     pagination.pageIndex = pageIndex;
   }
   if (params.has('pageSize')) {
-    let pageSize = parseInt(params.get('pageSize'), 10) - 1;
+    let pageSize = parseInt(params.get('pageSize'), 10);
     if (!PAGE_SIZES.includes(pageSize)) [pageSize] = PAGE_SIZES;
     pagination.pageSize = pageSize;
   }
