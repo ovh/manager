@@ -493,7 +493,7 @@
                 data-variant="light"
                 data-on-change="$ctrl.onSelectedModeChange(mode)"
                 data-required
-                data-disabled="$ctrl.disableNetwork && (mode.name === 'private_mode' || mode.name === 'public_mode')"
+                data-disabled="$ctrl.disableNetwork && (mode.name === $ctrl.PRIVATE_MODE || mode.name === $ctrl.PUBLIC_MODE)"
             >
                 <oui-select-picker-section>
                     <p data-translate="{{:: mode.description1}}"></p>
