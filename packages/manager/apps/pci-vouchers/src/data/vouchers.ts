@@ -15,6 +15,7 @@ export type VouchersOptions = {
 export const getAllVouchers = async (projectId: string): Promise<Voucher[]> => {
   const { data } = await fetchIcebergV6<Voucher>({
     route: `/cloud/project/${projectId}/credit`,
+    disableCache: true,
   });
 
   return data;
