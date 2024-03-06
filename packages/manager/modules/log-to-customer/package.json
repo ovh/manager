@@ -41,9 +41,12 @@
     "@ovh-ux/component-rollup-config": "^13.0.1"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-ng-layout-helpers": "^2.8.1",
     "@ovh-ux/ng-log-live-tail": "^1.0.0",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.0",
-    "angular-translate": "^2.18.1"
+    "angular-translate": "^2.18.1",
+    "moment": "^2.24.0"
   }
 }
