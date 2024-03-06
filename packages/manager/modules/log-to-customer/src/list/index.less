@@ -1,0 +1,26 @@
+@import '@ovh-ux/ui-kit/dist/less/tokens/_colors.less';
+
+.oui-datagrid {
+  &__cell {
+    padding: 10px 0.5rem;
+  }
+
+  &__header {
+    background-color: unset;
+    border-bottom: 1px solid @p-100;
+
+    &:not(:last-child) {
+      border-right: 1px solid @p-100;
+    }
+  }
+
+  td {
+    max-width: 15vw;
+  }
+
+  .word-break {
+    width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+}

@@ -9,5 +9,21 @@
   "log_button_create_stream": "Créer un flux de données",
   "log_button_transfer_stream": "Transférer",
   "logs_description": "En souscrivant à ce flux, vous pouvez transférer vos logs directement dans Logs Data Platform d'OVHcloud qui vous permet de faire des recherches, créer des alertes et des visualisations ou bien tout simplement les archiver.",
-  "logs_info_link": "En savoir plus"
+  "logs_info_link": "En savoir plus",
+  "log_list_tab_title": "Transfert",
+  "logs_list_go_back_button": "Retour",
+  "logs_list_add_data_stream_button": "Ajouter un  flux de données",
+  "list_column_account": "Compte LDP",
+  "list_column_stream_name": "Flux de données",
+  "list_column_stream_description": "Description",
+  "list_column_stream_indexation": "Indexation",
+  "list_column_stream_retention": "Rétention",
+  "list_column_stream_subscription": "Abonnements",
+  "list_empty": "Aucun flux de données correspondant",
+  "list_indexation_status_true": "Actif",
+  "list_indexation_status_false": "En pause",
+  "list_button_subscribe": "S'abonner",
+  "list_button_unsubscribe": "Se désabonner",
+  "streams_45_days": "45 jours",
+  "streams_disk_full": "Espace disque insuffisant"
 }
