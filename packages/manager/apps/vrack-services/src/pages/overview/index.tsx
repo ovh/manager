@@ -36,9 +36,9 @@ export const OverviewTab: React.FC = () => {
   const [associateModalVisible, setAssociateModalVisible] = React.useState<
     string | undefined
   >(undefined);
-  const { environment } = React.useContext(ShellContext);
+  const [vrackUrl, setVrackUrl] = React.useState('#');
+  const { shell } = React.useContext(ShellContext);
   const { trackClick } = useOvhTracking();
-  const urls = environment.getApplicationURLs();
   const { id } = useParams();
   const { data: vrackServices, error, isLoading } = useVrackService();
   const {
@@ -47,6 +47,16 @@ export const OverviewTab: React.FC = () => {
     hideError,
     isPending,
   } = useUpdateVrackServices({ key: id });
+
+  React.useEffect(() => {
+    shell.navigation
+      .getURL(
+        'dedicated',
+        `#/vrack/${vrackServices?.currentState?.vrackId}`,
+        {},
+      )
+      .then(setVrackUrl);
+  }, [vrackServices?.currentState?.vrackId]);
 
   if (error) {
     return <ErrorPage error={error} />;
@@ -113,7 +123,7 @@ export const OverviewTab: React.FC = () => {
                     cellData={vrackServices?.currentState?.vrackId}
                     isLoading={isPending}
                     rowData={vrackServices}
-                    href={`${urls.dedicated}vrack/${vrackServices?.currentState?.vrackId}`}
+                    href={vrackUrl}
                   />
                 </TileBlock>
                 <TileBlock label={t('createdAt')}>
