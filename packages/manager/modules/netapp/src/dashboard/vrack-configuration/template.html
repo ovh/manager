@@ -1,8 +1,8 @@
 <oui-modal
-    data-on-dismiss="$ctrl.goBack()"
+    data-on-dismiss="$ctrl.goBack('cancel')"
     data-primary-action="$ctrl.linkVrack()"
     data-primary-disabled="$ctrl.disableVrackField || !$ctrl.selectedVrack"
-    data-secondary-action="$ctrl.goBack()"
+    data-secondary-action="$ctrl.goBack('cancel')"
     data-type="info"
     data-primary-label="{{:: 'netapp_vrack_configuration_associate_button' | translate }}"
     data-secondary-label="{{:: 'netapp_vrack_configuration_cancel_button' | translate }}"
