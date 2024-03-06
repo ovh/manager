@@ -29,8 +29,8 @@ export default /* @ngInject */ ($stateProvider) => {
         atInternet.trackPage({
           name: `${TRACKING_BASE}-${tracker}`,
         }),
-      goBack: /* @ngInject */ ($state, trackClick) => (trackingAction) => {
-        trackClick(trackingAction);
+      goBack: /* @ngInject */ ($state, trackClick) => (trackLabel) => {
+        if (trackLabel) trackClick(trackLabel);
         return $state.go('^');
       },
       vracks: /* @ngInject */ (NetAppDashboardService) =>
