@@ -64,6 +64,7 @@ export default class CreatePolicyController {
       actions: { selection: [], isWildcardActive: false },
       description: '',
       name: '',
+      identities: [],
       resources: { selection: [], types: [] },
       resourceGroups: [],
     };
@@ -199,6 +200,7 @@ export default class CreatePolicyController {
       this.model.actions.isWildcardActive = this.model.isWildcardActive;
       this.model.name = this.policy.name;
       this.model.description = this.policy.description;
+      this.model.identities = this.policy.identities;
       this.model.resources.selection = this.policy.resources
         .filter(({ resource }) => Boolean(resource))
         .map(({ urn, resource }) => ({ ...resource, urn }));
@@ -397,9 +399,9 @@ export default class CreatePolicyController {
    */
   toAPI() {
     return {
-      identities: this.policy?.identities || [],
       name: this.model.name,
       description: this.model.description,
+      identities: this.model.identities,
       permissions: {
         allow: this.model.actions.isWildcardActive
           ? [{ action: WILDCARD }]

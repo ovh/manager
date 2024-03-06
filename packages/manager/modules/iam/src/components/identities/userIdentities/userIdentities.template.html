@@ -1,0 +1,56 @@
+<section>
+    <h5 data-translate="iam_identities_users_title"></h5>
+    <oui-datagrid
+        data-rows="$ctrl.users"
+        data-pagination-mode="arrows"
+        data-empty-placeholder="{{:: 'iam_identities_users_empty' | translate}}"
+    >
+        <oui-datagrid-column
+            data-title="'iam_identities_users_user' | translate"
+        >
+            <div data-ng-bind="$row.login"></div>
+            <div
+                class="oui-color-aw-500"
+                data-ng-bind="$row.message"
+                data-ng-if="$row.message"
+            ></div>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'iam_identities_users_group' | translate"
+            data-property="group"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'iam_identities_users_status' | translate"
+            data-property="status"
+        >
+            <span
+                class="label"
+                data-ng-class="{
+                     'label-success': $row.status === 'OK',
+                     'label-danger': $row.status === 'DISABLED'
+                     }"
+                data-ng-bind="'iam_identities_users_status_' + $row.status | translate"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-row-detail>
+            <dl class="oui-description">
+                <dt
+                    data-ng-if="$row.description"
+                    data-translate="iam_identities_users_description"
+                ></dt>
+                <dd
+                    data-ng-if="$row.description"
+                    data-ng-bind="$row.description"
+                ></dd>
+                <dt data-translate="iam_identities_urn"></dt>
+                <dd data-ng-bind="$row.urn"></dd>
+                <dt
+                    data-ng-if="$row.email"
+                    data-translate="iam_identities_users_email"
+                ></dt>
+                <dd data-ng-if="$row.email" data-ng-bind="$row.email"></dd>
+            </dl>
+        </oui-datagrid-row-detail>
+    </oui-datagrid>
+</section>

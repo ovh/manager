@@ -1,0 +1,35 @@
+<section>
+    <h5 data-translate="iam_identities_groups_title"></h5>
+    <oui-datagrid
+        data-rows="$ctrl.groups"
+        data-pagination-mode="arrows"
+        data-empty-placeholder="{{:: 'iam_identities_groups_empty' | translate}}"
+    >
+        <oui-datagrid-column
+            data-title="'iam_identities_groups_group' | translate"
+        >
+            <div data-ng-bind="$row.name"></div>
+            <div
+                class="oui-color-aw-500"
+                data-ng-bind="$row.message"
+                data-ng-if="$row.message"
+            ></div>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'iam_identities_groups_description' | translate"
+            data-property="description"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-row-detail>
+            <dl class="oui-description">
+                <dt data-translate="iam_identities_urn"></dt>
+                <dd data-ng-bind="$row.urn"></dd>
+                <dt
+                    data-ng-if="$row.role"
+                    data-translate="iam_identities_groups_role"
+                ></dt>
+                <dd data-ng-if="$row.role" data-ng-bind="$row.role"></dd>
+            </dl>
+        </oui-datagrid-row-detail>
+    </oui-datagrid>
+</section>

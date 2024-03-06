@@ -1,0 +1,7 @@
+{
+  "iam_identities_groups_title": "Groupes d'utilisateurs",
+  "iam_identities_groups_empty": "Aucun groupe d'utilisateur",
+  "iam_identities_groups_group": "Nom",
+  "iam_identities_groups_role": "Rôle",
+  "iam_identities_groups_description": "Description"
+}

@@ -61,7 +61,7 @@
         novalidate
     >
         <!-- <Name> -->
-        <h4 data-translate="iam_create_policy_form_name_heading"></h4>
+        <h3 data-translate="iam_create_policy_form_name_heading"></h3>
         <oui-field
             data-label="{{:: 'iam_create_policy_form_name_heading' | translate }}"
             data-error-messages="{
@@ -99,6 +99,12 @@
         </oui-field>
         <!-- </Description> -->
 
+        <!-- <Identities> -->
+        <iam-policy-identities
+            data-identities="$ctrl.model.identities"
+        ></iam-policy-identities>
+        <!-- </Identities> -->
+
         <!-- <Resource> -->
         <iam-resource-select
             data-ng-model="$ctrl.model.resources"
@@ -113,17 +119,17 @@
             data-resource-types-name="resourceTypes"
         >
             <iam-resource-select-resource-types-header>
-                <h4
+                <h3
                     data-translate="iam_create_policy_form_resource_types_heading"
-                ></h4>
+                ></h3>
                 <p
                     data-translate="iam_create_policy_form_resource_types_description"
                 ></p>
             </iam-resource-select-resource-types-header>
             <iam-resource-select-resources-header>
-                <h4
+                <h3
                     data-translate="iam_create_policy_form_resources_heading"
-                ></h4>
+                ></h3>
                 <p
                     data-translate="iam_create_policy_form_resources_description"
                 ></p>
@@ -155,7 +161,7 @@
         <!-- </Resource> -->
 
         <!-- <Actions> -->
-        <h4 data-translate="iam_create_policy_form_actions_heading"></h4>
+        <h3 data-translate="iam_create_policy_form_actions_heading"></h3>
         <p data-translate="iam_create_policy_form_actions_description"></p>
         <iam-action-select
             data-error="$ctrl.onError(error)"
@@ -171,10 +177,10 @@
         <!-- </Actions> -->
 
         <!-- <Footer> -->
-        <div class="d-flex align-items-center mb-5">
+        <div class="iam-create_policy--footer">
             <button
                 type="button"
-                class="oui-button oui-button_l oui-button_link mr-3"
+                class="oui-button oui-button_l oui-button_link"
                 data-ng-disabled="$ctrl.isSubmitting"
                 data-ng-click="$ctrl.cancelCreation()"
             >
@@ -182,7 +188,7 @@
             </button>
             <button
                 type="submit"
-                class="oui-button oui-button_l oui-button_primary mr-3"
+                class="oui-button oui-button_l oui-button_primary"
                 data-ng-disabled="!$ctrl.canSubmit"
             >
                 <span data-translate="{{ $ctrl.translations.submit }}"></span>
