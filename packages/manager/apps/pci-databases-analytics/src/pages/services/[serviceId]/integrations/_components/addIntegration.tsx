@@ -1,9 +1,5 @@
-import { useParams } from 'react-router';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import { Check, ChevronsUpDown } from 'lucide-react';
+import { useEffect, useMemo } from 'react';
 import {
   Form,
   FormControl,
@@ -24,45 +20,36 @@ import {
 } from '@/components/ui/dialog';
 import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
+import { useAddIntegration } from '@/hooks/api/integrations.api.hook';
 import {
-  useAddIntegration,
-  useGetCapabilitiesIntegrations,
-} from '@/hooks/api/integrations.api.hook';
-import { useGetServices } from '@/hooks/api/services.api.hooks';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import { cn } from '@/lib/utils';
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from '@/components/ui/command';
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Span } from '@/components/typography';
+import { Input } from '@/components/ui/input';
+import { useServiceData } from '../../layout';
+import { useAddIntegrationForm } from './addIntegration.hook';
+import { CdbError } from '@/api/databases';
+import { Alert, AlertTitle } from '@/components/ui/alert';
 
 interface AddIntegrationModalProps {
   service: database.Service;
+  integrations: database.service.Integration[];
   controller: ModalController;
   onSuccess?: (integration: database.service.Integration) => void;
-  onError?: (error: Error) => void;
+  onError?: (error: CdbError) => void;
 }
 
 const AddIntegration = ({
-  service,
   controller,
   onError,
   onSuccess,
 }: AddIntegrationModalProps) => {
-  const { projectId } = useParams();
-  const integrationsCapabilitiesQuery = useGetCapabilitiesIntegrations(
-    projectId,
-    service.engine,
-    service.id,
-  );
-  const servicesQuery = useGetServices(projectId);
+  const { service, projectId } = useServiceData();
+  const model = useAddIntegrationForm();
 
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/integrations',
@@ -73,7 +60,7 @@ const AddIntegration = ({
       toast.toast({
         title: t('addIntegrationToastErrorTitle'),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
       if (onError) {
         onError(err);
@@ -91,32 +78,46 @@ const AddIntegration = ({
       }
     },
   });
-  // define the schema for the form
-  const schema = z.object({
-    type: z.nativeEnum(database.service.integration.TypeEnum),
-    sourceServiceId: z.string(),
-    destinationServiceId: z.string(),
-    parameters: z.record(z.string()).optional(),
-  });
-  // generate a form controller
-  const form = useForm<z.infer<typeof schema>>({
-    resolver: zodResolver(schema),
-    defaultValues: {},
-  });
 
-  const onSubmit = form.handleSubmit((formValues) => {
-    addIntegration({
-      serviceId: service.id,
-      projectId,
-      engine: service.engine,
-      integration: {
-        type: formValues.type,
-        destinationServiceId: formValues.destinationServiceId,
-        sourceServiceId: formValues.sourceServiceId,
-        parameters: formValues.parameters,
-      },
-    });
-  });
+  const onSubmit = model.form.handleSubmit(
+    (formValues) => {
+      addIntegration({
+        serviceId: service.id,
+        projectId,
+        engine: service.engine,
+        integration: {
+          type: formValues.type,
+          destinationServiceId: formValues.destinationServiceId,
+          sourceServiceId: formValues.sourceServiceId,
+          parameters:
+            'parameters' in formValues
+              ? (formValues.parameters as Record<string, string>)
+              : {},
+        },
+      });
+    },
+    (errors) => {
+      toast.toast({
+        title: 'Error',
+        variant: 'destructive',
+        description: JSON.stringify(errors),
+      });
+    },
+  );
+
+  useEffect(() => {
+    if (!controller.open) model.form.reset();
+  }, [controller.open]);
+
+  const errors = useMemo(() => {
+    const messages: string[] = [];
+    const formErrors = model.form.formState.errors;
+    const formError = formErrors['' as keyof typeof formErrors];
+    if (formError?.message) {
+      messages.push(formError.message.toString());
+    }
+    return messages;
+  }, [model.form.formState.errors]);
 
   return (
     <Dialog {...controller}>
@@ -127,79 +128,184 @@ const AddIntegration = ({
             {t('addIntegrationDescription')}
           </DialogDescription>
         </DialogHeader>
+        {model.result.capability &&
+          (model.lists.sources.length === 0 ||
+            model.lists.destinations.length === 0) && (
+            <Alert variant="warning">
+              <AlertTitle>Pas de service disponible</AlertTitle>
+              <p>
+                Vous n'avez pas de service éligible pour créer cette
+                intégration. Veuillez créer un service ayant pour engine l'un de
+                ceux ci:
+              </p>
+              <ul className="list-inside list-disc">
+                {[
+                  ...new Set(
+                    [
+                      ...model.result.capability.sourceEngines,
+                      ...model.result.capability.destinationEngines,
+                    ].filter((e) => e !== service.engine),
+                  ),
+                ].map((engine) => (
+                  <li key={engine} className="list-item">
+                    <span>{engine}</span>
+                  </li>
+                ))}
+              </ul>
+            </Alert>
+          )}
 
-        <Form {...form}>
+        <Form {...model.form}>
           <form onSubmit={onSubmit} className="grid gap-4">
+            <div>
+              {errors.map((error, i) => (
+                <span
+                  key={`${error}-${i}`}
+                  className="text-sm font-medium text-destructive"
+                >
+                  {error}
+                </span>
+              ))}
+            </div>
             <FormField
-              control={form.control}
+              control={model.form.control}
               name="type"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('addIntegrationInputTypeLabel')}</FormLabel>
-                  {integrationsCapabilitiesQuery.isSuccess && (
-                    <FormControl>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant="outline"
-                              role="combobox"
-                              className={cn(
-                                'w-[200px] justify-between',
-                                !field.value && 'text-muted-foreground',
-                              )}
-                            >
-                              {field.value
-                                ? integrationsCapabilitiesQuery.data.find(
-                                    (integrationType) =>
-                                      integrationType.type === field.value,
-                                  )?.type
-                                : 'Select an integration type'}
-                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-[200px] p-0">
-                          <Command>
-                            <CommandInput placeholder="Search integration type..." />
-                            <CommandEmpty>
-                              No integration type found.
-                            </CommandEmpty>
-                            <CommandGroup>
-                              {integrationsCapabilitiesQuery.data.map(
-                                (integrationType) => (
-                                  <CommandItem
-                                    value={integrationType.type}
-                                    key={integrationType.type}
-                                    onSelect={() => {
-                                      form.setValue(
-                                        'type',
-                                        integrationType.type,
-                                      );
-                                    }}
-                                  >
-                                    <Check
-                                      className={cn(
-                                        'mr-2 h-4 w-4',
-                                        integrationType.type === field.value
-                                          ? 'opacity-100'
-                                          : 'opacity-0',
-                                      )}
-                                    />
-                                    {integrationType.type}
-                                  </CommandItem>
-                                ),
-                              )}
-                            </CommandGroup>
-                          </Command>
-                        </PopoverContent>
-                      </Popover>
-                    </FormControl>
+                  {model.queries.capabilities.isSuccess && (
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      disabled={model.lists.capabilities.length < 2}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue
+                            placeholder={t(
+                              'addIntegrationInputTypePlaceholder',
+                            )}
+                          />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {model.lists.capabilities.map((c) => (
+                          <SelectItem value={c.type} key={c.type}>
+                            <div className="flex flex-col items-start">
+                              <Span>{c.type}</Span>
+                              <Span className="text-xs">
+                                {t(`integrationTypeDescription-${c.type}`, '')}
+                              </Span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   )}
                   <FormMessage />
                 </FormItem>
               )}
             />
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={model.form.control}
+                name="sourceServiceId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('addIntegrationInputSourceLabel')}</FormLabel>
+                    {model.queries.services.isSuccess && (
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                        disabled={model.lists.sources.length < 2}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue
+                              placeholder={t(
+                                'addIntegrationInputSourcePlaceholder',
+                              )}
+                            />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {model.lists.sources.map((source) => (
+                            <SelectItem key={source.id} value={source.id}>
+                              {source.description}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={model.form.control}
+                name="destinationServiceId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t('addIntegrationInputDestinationLabel')}
+                    </FormLabel>
+                    {model.queries.services.isSuccess && (
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                        disabled={model.lists.destinations.length < 2}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue
+                              placeholder={t(
+                                'addIntegrationInputDestinationPlaceholder',
+                              )}
+                            />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {model.lists.destinations.map((destination) => (
+                            <SelectItem
+                              key={destination.id}
+                              value={destination.id}
+                            >
+                              {destination.description}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {model.result.capability?.parameters?.map((parameter) => (
+                <FormField
+                  key={parameter.name}
+                  control={model.form.control}
+                  name={`parameters.${parameter.name}`}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{parameter.name}</FormLabel>
+                      <Input
+                        {...field}
+                        type={
+                          parameter.type ===
+                          database.capabilities.integration.parameter.TypeEnum
+                            .integer
+                            ? 'number'
+                            : 'text'
+                        }
+                      />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              ))}
+            </div>
             <DialogFooter className="flex justify-end">
               <Button type="submit" disabled={isPending}>
                 {t('addIntegrationButtonAdd')}
