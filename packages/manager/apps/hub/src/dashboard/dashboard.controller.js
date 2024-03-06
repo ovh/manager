@@ -4,8 +4,6 @@ import {
   TRACKING_PREFIX_POPUP,
   KYC_TRACKING_PREFIX,
   KYC_HIT_PREFIX,
-  IAM_TRACKING_PREFIX,
-  IAM_HIT_PREFIX,
 } from './dashboard.constant';
 
 export default class DashboardController {
@@ -18,8 +16,6 @@ export default class DashboardController {
     this.SIRET_HIT_PREFIX = SIRET_HIT_PREFIX;
     this.TRACKING_PREFIX_POPUP = TRACKING_PREFIX_POPUP;
     this.KYC_HIT_PREFIX = KYC_HIT_PREFIX;
-    this.IAM_TRACKING_PREFIX = IAM_TRACKING_PREFIX;
-    this.IAM_HIT_PREFIX = IAM_HIT_PREFIX;
     this.$http = $http;
     this.myIdentitySectionLink = coreURLBuilder.buildURL(
       'dedicated',
@@ -32,8 +28,6 @@ export default class DashboardController {
     this.availableSiretBanner = false;
     this.availableSiretPopup = false;
     this.showKycBanner = false;
-    this.showIamBanner = false;
-    this.showGAIamBanner = false;
     this.displayRbx1EolBanner = {
       rbx1Eol: false,
     };
@@ -85,16 +79,6 @@ export default class DashboardController {
             type: 'navigation',
           });
         }
-        this.showIamBanner = data?.isFeatureAvailable('hub:banner-iam-invite');
-        if (this.showIamBanner) {
-          this.atInternet.trackPage({
-            name: IAM_TRACKING_PREFIX,
-            type: 'navigation',
-          });
-        }
-        this.showGAIamBanner = data?.isFeatureAvailable(
-          'hub:banner-iam-ga-availability',
-        );
         this.displayRbx1EolBanner.rbx1Eol = data?.isFeatureAvailable(
           'hub:banner-rbx1-eol',
         );
