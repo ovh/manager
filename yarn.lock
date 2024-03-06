@@ -27310,7 +27310,7 @@ vite@4.4.9:
   optionalDependencies:
     fsevents "~2.3.2"
 
-"vite@^3.0.0 || ^4.0.0", vite@^4.5.2:
+"vite@^3.0.0 || ^4.0.0", vite@^4.5.0, vite@^4.5.2:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/vite/-/vite-4.5.2.tgz#d6ea8610e099851dad8c7371599969e0f8b97e82"
   integrity sha512-tBCZBNSBbHQkaGyhGCDUGqeo2ph8Fstyp6FMSvTtsXeZSPpSMGlviAOav2hxVTqFcx8Hj/twtWKsMJXNY0xI8w==
@@ -27330,17 +27330,6 @@ vite@^3.0.2:
     postcss "^8.4.18"
     resolve "^1.22.1"
     rollup "^2.79.1"
-  optionalDependencies:
-    fsevents "~2.3.2"
-
-vite@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.npmjs.org/vite/-/vite-4.5.0.tgz#ec406295b4167ac3bc23e26f9c8ff559287cff26"
-  integrity sha512-ulr8rNLA6rkyFAlVWw2q5YJ91v098AFQ2R0PRFwPzREXOUJQPtFUG0t+/ZikhaOCDqFoDhN6/v8Sq0o4araFAw==
-  dependencies:
-    esbuild "^0.18.10"
-    postcss "^8.4.27"
-    rollup "^3.27.1"
   optionalDependencies:
     fsevents "~2.3.2"
 
