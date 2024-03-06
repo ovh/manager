@@ -1,12 +1,14 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
 import isArray from 'lodash/isArray';
+import { format, parse } from 'date-fns';
 
 export default class ExchangeLicenseHistoryCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    WucChartjsFactory,
+    ChartFactory,
+    DATEFNS_LOCALE,
     wucExchange,
     exchangeAccountTypes,
     exchangeHeaderLicence,
@@ -16,7 +18,8 @@ export default class ExchangeLicenseHistoryCtrl {
   ) {
     this.$scope = $scope;
 
-    this.WucChartjsFactory = WucChartjsFactory;
+    this.WucChartjsFactory = ChartFactory;
+    this.DATEFNS_LOCALE = DATEFNS_LOCALE;
     this.wucExchange = wucExchange;
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.exchangeHeaderLicence = exchangeHeaderLicence;
@@ -50,52 +53,59 @@ export default class ExchangeLicenseHistoryCtrl {
           options: {
             responsive: true,
             maintainAspectRatio: false,
-            legend: {
-              position: 'bottom',
-              display: true,
-            },
             elements: {
               point: {
                 radius: 0,
               },
             },
-            tooltips: {
-              mode: 'index',
-              intersect: false,
-              callbacks: {
-                title: (data) => get(head(data), 'xLabel'),
+            plugins: {
+              legend: {
+                position: 'bottom',
+                display: true,
+              },
+              tooltip: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                  title: (data) => {
+                    const date = parse(
+                      get(head(data), 'label'),
+                      'PPpp',
+                      new Date(),
+                    );
+                    return format(date, 'Pp', {
+                      locale: this.DATEFNS_LOCALE,
+                    });
+                  },
+                },
               },
             },
             scales: {
-              yAxes: [
-                {
-                  type: 'linear',
+              y: {
+                type: 'linear',
+                display: true,
+                beginAtZero: true,
+                position: 'left',
+                title: {
                   display: true,
-                  position: 'left',
-                  scaleLabel: {
-                    display: true,
-                  },
-                  gridLines: {
-                    drawBorder: true,
-                    display: true,
-                  },
-                  ticks: {
-                    beginAtZero: true,
-                    stepSize: 1,
-                    suggestedMax: licenses.maxValue + 1,
-                  },
                 },
-              ],
-              xAxes: [
-                {
-                  type: 'time',
-                  position: 'bottom',
-                  gridLines: {
-                    drawBorder: true,
-                    display: false,
-                  },
+                grid: {
+                  drawBorder: true,
+                  display: true,
                 },
-              ],
+                ticks: {
+                  stepSize: 1,
+                  suggestedMax: licenses.maxValue + 1,
+                },
+              },
+              x: {
+                type: 'time',
+                position: 'bottom',
+                grid: {
+                  drawBorder: true,
+                  display: false,
+                },
+              },
             },
           },
         });

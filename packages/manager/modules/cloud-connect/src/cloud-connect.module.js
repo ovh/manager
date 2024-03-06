@@ -1,4 +1,5 @@
 import angular from 'angular';
+import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import component from './cloud-connect.component';
@@ -17,6 +18,7 @@ angular
   .module(moduleName, [
     ListLayoutHelper.moduleName,
     'ngAtInternet',
+    ngOvhChart,
     'ngUiRouterBreadcrumb',
     'ovh-api-services',
     'oui',

@@ -1,6 +1,7 @@
 import angular from 'angular';
 import map from 'lodash/map';
 import 'moment';
+import { formatDistanceToNow } from 'date-fns';
 
 export default class MicrosoftOfficeLicenseConsumptionCtrl {
   /* @ngInject */
@@ -8,15 +9,17 @@ export default class MicrosoftOfficeLicenseConsumptionCtrl {
     $stateParams,
     $scope,
     $translate,
+    DATEFNS_LOCALE,
     MicrosoftOfficeLicenseService,
-    WucChartjsFactory,
+    ChartFactory,
     OFFICE_LICENSE_CONSUMPTION,
   ) {
     this.$stateParams = $stateParams;
     this.$scope = $scope;
+    this.DATEFNS_LOCALE = DATEFNS_LOCALE;
     this.licenseService = MicrosoftOfficeLicenseService;
     this.$translate = $translate;
-    this.WucChartjsFactory = WucChartjsFactory;
+    this.WucChartjsFactory = ChartFactory;
     this.constant = { OFFICE_LICENSE_CONSUMPTION };
 
     this.periods = [
@@ -74,9 +77,22 @@ export default class MicrosoftOfficeLicenseConsumptionCtrl {
         this.chart = new this.WucChartjsFactory(
           angular.copy(this.constant.OFFICE_LICENSE_CONSUMPTION.chart),
         );
-        this.chart.setAxisOptions('yAxes', {
-          type: 'linear',
+
+        this.chart.setAxisOptions('x', {
+          adapters: {
+            date: {
+              locale: this.DATEFNS_LOCALE,
+            },
+          },
         });
+
+        this.chart.setTooltipCallback('title', (data) => {
+          return formatDistanceToNow(new Date(data[0].parsed.x), {
+            addSuffix: true,
+            locale: this.DATEFNS_LOCALE,
+          });
+        });
+
         angular.forEach(this.stats.series, (serie) => {
           this.chart.addSerie(
             serie.name,

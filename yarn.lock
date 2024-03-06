@@ -3359,6 +3359,11 @@
   resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.4.0.tgz#08d6c5e20cf7e4cc02fd181c4b0c225cd31dbb60"
   integrity sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==
 
+"@kurkle/color@^0.3.0":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@kurkle/color/-/color-0.3.2.tgz#5acd38242e8bde4f9986e7913c8fdf49d3aa199f"
+  integrity sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw==
+
 "@leichtgewicht/ip-codec@^2.0.1":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
@@ -4682,7 +4687,7 @@
     "@ovhcloud/ods-theme-blue-jeans" "17.2.1"
     "@stencil/core" "4.12.0"
 
-"@ovhcloud/ods-common-testing@17.2.1", "@ovhcloud/ods-common-testing@^17.1.0", "@ovhcloud/ods-common-testing@^17.2.1":
+"@ovhcloud/ods-common-testing@17.2.1", "@ovhcloud/ods-common-testing@^17.1.0":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-testing/-/ods-common-testing-17.2.1.tgz#10c137a00e68b1d6d996a2537f182c051f53b702"
   integrity sha512-trhIqz6iz4fdtAfgMOQSxIub48ityzQ0eDtYQTAgK451KP8mBEUD1536kf11K6wQEuEXRSJr2brPhdDvt9+1rA==
@@ -6649,14 +6654,14 @@
   resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.28.10.tgz#33e9a42dd2199fca12f0dd2d891570ecdbfd3c7b"
   integrity sha512-5UN629fKa5/1K/2Pd26gaU7epxRrYiT1gy+V+pW5K6hnf1DeUKK3pANSb2eHKlecjIKIhTwyF7k9XdyE2gREvQ==
 
-"@tanstack/react-query-devtools@5.29.2", "@tanstack/react-query-devtools@^5.13.3", "@tanstack/react-query-devtools@^5.14.2", "@tanstack/react-query-devtools@^5.18.1", "@tanstack/react-query-devtools@^5.25.0", "@tanstack/react-query-devtools@^5.8.3":
+"@tanstack/react-query-devtools@^5.13.3", "@tanstack/react-query-devtools@^5.14.2", "@tanstack/react-query-devtools@^5.18.1", "@tanstack/react-query-devtools@^5.25.0", "@tanstack/react-query-devtools@^5.8.3":
   version "5.29.2"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-5.29.2.tgz#ff9e6a113a4828d4b62f4861e0fb2c05b79b37dc"
   integrity sha512-EmsaLNa8iFtReAW+5ftom0/TW78fIosVor517ak/+JFaoTBw8Yub3ao937JFE6AM3K/HXhteqvObetgt1ndLcw==
   dependencies:
     "@tanstack/query-devtools" "5.28.10"
 
-"@tanstack/react-query@5.29.2", "@tanstack/react-query@^5.12.2", "@tanstack/react-query@^5.14.2", "@tanstack/react-query@^5.18.1", "@tanstack/react-query@^5.25.0", "@tanstack/react-query@^5.8.3":
+"@tanstack/react-query@^5.12.2", "@tanstack/react-query@^5.14.2", "@tanstack/react-query@^5.18.1", "@tanstack/react-query@^5.25.0", "@tanstack/react-query@^5.8.3":
   version "5.29.2"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.29.2.tgz#c55ffbfaf9d8cf34212428db2b6c61ca6b545188"
   integrity sha512-nyuWILR4u7H5moLGSiifLh8kIqQDLNOHGuSz0rcp+J75fNc8aQLyr5+I2JCHU3n+nJrTTW1ssgAD8HiKD7IFBQ==
@@ -8963,14 +8968,6 @@ angular-aria@^1.6.0, angular-aria@^1.7.5, angular-aria@^1.7.8:
   resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.8.3.tgz#b387ebca9569eb557855abb283a09c2d0457e779"
   integrity sha512-qTXclmTW/KGw5JNKKQPcCKKq6hCBZ39jYINmLgMsjUHBAoxULaMRRTaRj/L2VTOjKvK5f9enkx+EUqRqzXDSFQ==
 
-angular-chart.js@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/angular-chart.js/-/angular-chart.js-1.1.1.tgz#49f0e18d081762b6d4c9791e487aff2fbb30f5ae"
-  integrity sha512-6lqkeQvoEOMqtIzHLeOC68fdeqjdgeQ4b3bUG3Lm6X1Y6IBM0m91G6VuVA3EV0puwPuIWz4VYkzjd0DPHhIcpA==
-  dependencies:
-    angular "1.x"
-    chart.js "2.3.x"
-
 angular-cookies@1.7.x:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/angular-cookies/-/angular-cookies-1.7.9.tgz#0f0cd2a9d1c81e5b8d6c6711d41f0909f9d0b8e0"
@@ -9161,7 +9158,7 @@ angular-xeditable@^0.9.0:
   dependencies:
     angular "~1.x"
 
-angular@*, angular@1.x, "angular@>=1.3.0 <2.0.0", angular@^1.4.8, angular@^1.6.10, angular@^1.7.5, angular@^1.7.8, angular@^1.8.0, angular@~1.x:
+angular@*, "angular@>=1.3.0 <2.0.0", angular@^1.4.8, angular@^1.6.10, angular@^1.7.5, angular@^1.7.8, angular@^1.8.0, angular@~1.x:
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.8.3.tgz#851ad75d5163c105a7e329555ef70c90aa706894"
   integrity sha512-5qjkWIQQVsHj4Sb5TcEs4WZWpFeVFHXwxEBHUhrny41D8UrBAd6T/6nPPAsLngJCReIOqi95W3mxdveveutpZw==
@@ -10826,58 +10823,23 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-chart.js@2.3.x:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.3.0.tgz#40460e48e2c417c05fc3325cd84f7b000dc7d7d6"
-  integrity sha512-LwJ6j1FNneojxFYewnz9QDQyjV++KN2s/Lgm0eipDUaKV3Fj5jOA3xtJg7AUGFcbhsYB4+Kn16c1bXwRxbOXow==
+chart.js@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-4.4.2.tgz#95962fa6430828ed325a480cc2d5f2b4e385ac31"
+  integrity sha512-6GD7iKwFpP5kbSD4MeRRRlTnQvxfQREy36uEtm1hzHzcOqwWx0YEHuspuoNlslu+nciLIB7fjjsHkUv/FzFcOg==
   dependencies:
-    chartjs-color "^2.0.0"
-    moment "^2.10.6"
+    "@kurkle/color" "^0.3.0"
 
-chart.js@^2.1.5, chart.js@^2.6.0, chart.js@^2.7.1, chart.js@^2.7.2, chart.js@^2.8.0:
-  version "2.9.4"
-  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.9.4.tgz#0827f9563faffb2dc5c06562f8eb10337d5b9684"
-  integrity sha512-B07aAzxcrikjAPyV+01j7BmOpxtQETxTSlQ26BEYJ+3iUkbNKaOJ/nDbT6JjyqYxseM0ON12COHYdU2cTIjC7A==
-  dependencies:
-    chartjs-color "^2.1.0"
-    moment "^2.10.2"
+chartjs-adapter-date-fns@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/chartjs-adapter-date-fns/-/chartjs-adapter-date-fns-3.0.0.tgz#c25f63c7f317c1f96f9a7c44bd45eeedb8a478e5"
+  integrity sha512-Rs3iEB3Q5pJ973J93OBTpnP7qoGwvq3nUnoMdtxO+9aoJof7UFcRbWcIDteXuYd1fgAvct/32T9qaLyLuZVwCg==
 
-chart.js@chartjs/Chart.js#^2.0:
-  version "2.9.4"
-  resolved "https://codeload.github.com/chartjs/Chart.js/tar.gz/9bd4cf82fda9f50a5fb50b72843e06ab88124278"
+chartjs-plugin-zoom@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/chartjs-plugin-zoom/-/chartjs-plugin-zoom-2.0.1.tgz#3db76f92a4741e46cb148cb966181c1b1a974abc"
+  integrity sha512-ogOmLu6e+Q7E1XWOCOz9YwybMslz9qNfGV2a+qjfmqJYpsw5ZMoRHZBUyW+NGhkpQ5PwwPA/+rikHpBZb7PZuA==
   dependencies:
-    chartjs-color "^2.1.0"
-    moment "^2.10.2"
-
-chartjs-color-string@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/chartjs-color-string/-/chartjs-color-string-0.6.0.tgz#1df096621c0e70720a64f4135ea171d051402f71"
-  integrity sha512-TIB5OKn1hPJvO7JcteW4WY/63v6KwEdt6udfnDE9iCAZgy+V4SrbSxoIbTw/xkUIapjEI4ExGtD0+6D3KyFd7A==
-  dependencies:
-    color-name "^1.0.0"
-
-chartjs-color@^2.0.0, chartjs-color@^2.1.0:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/chartjs-color/-/chartjs-color-2.4.1.tgz#6118bba202fe1ea79dd7f7c0f9da93467296c3b0"
-  integrity sha512-haqOg1+Yebys/Ts/9bLo/BqUcONQOdr/hoEr2LLTRl6C5LXctUdHxsCYfvQVg5JIxITrfCNUDr4ntqmQk9+/0w==
-  dependencies:
-    chartjs-color-string "^0.6.0"
-    color-convert "^1.9.3"
-
-chartjs-plugin-zoom@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/chartjs-plugin-zoom/-/chartjs-plugin-zoom-0.5.0.tgz#ca89e4ddd6f06e94f9297cd102bc6e2665e56546"
-  integrity sha512-PatEBpY8LjDz2ZwhsbuSO4p4XUVgHcqvmQ4CkDUtLbI/VAgG4JVM4Hh9D97tCKcsuiSmb4nvNrpwplwjlI7oKg==
-  dependencies:
-    chart.js "^2.1.5"
-    hammerjs "^2.0.8"
-
-chartjs-plugin-zoom@^0.6.6:
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/chartjs-plugin-zoom/-/chartjs-plugin-zoom-0.6.6.tgz#351c9859b8be5c61d69b290173ed68ed1b92ef32"
-  integrity sha512-qssrlK6z7iFSMIsAd7L8zLYWAYAIbsVdvzKwIYel+LDPY2bdcdCzbcmMM6Dbi8BA20RZitZ8o44iw3pqA+bjgA==
-  dependencies:
-    chart.js "^2.6.0"
     hammerjs "^2.0.8"
 
 check-error@^1.0.3:
@@ -11193,7 +11155,7 @@ collection-visit@^1.0.0:
     map-visit "^1.0.0"
     object-visit "^1.0.0"
 
-color-convert@^1.9.0, color-convert@^1.9.3:
+color-convert@^1.9.0:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
   integrity sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==
@@ -11212,7 +11174,7 @@ color-name@1.1.3:
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
   integrity sha512-72fSenhMw2HZMTVHeCA9KCmpEIbzWiQsjN+BHcBbS9vr1mtt+vJjPdksIBNUmKAW8TFUDPJK5SUU3QhE9NEXDw==
 
-color-name@^1.0.0, color-name@~1.1.4:
+color-name@~1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
@@ -20616,7 +20578,7 @@ moment-duration-format@^1.3:
   resolved "https://registry.yarnpkg.com/moment-duration-format/-/moment-duration-format-1.3.0.tgz#541771b5f87a049cc65540475d3ad966737d6908"
   integrity sha512-D6QHRSz3FOBc9grQ8atTF0mx6VYOWf5GBaWibqMAE0au3Pk++FOuvZGJ5oMfF6VuFmqJcuqujw5GCe2IsAbJsQ==
 
-moment@>=2.5.0, "moment@>=2.8.0 <3.0.0", moment@^2.10.2, moment@^2.10.6, moment@^2.19, moment@^2.24.0:
+moment@>=2.5.0, "moment@>=2.8.0 <3.0.0", moment@^2.19, moment@^2.24.0:
   version "2.30.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.30.1.tgz#f8c91c07b7a786e30c59926df530b4eac96974ae"
   integrity sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==

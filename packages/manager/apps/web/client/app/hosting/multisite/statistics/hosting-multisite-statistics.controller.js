@@ -88,59 +88,55 @@ export default class HostingMultisiteStatistisController {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        legend: {
-          position: 'bottom',
-          display: true,
-        },
         elements: {
           point: {
             radius: 0,
           },
         },
-        tooltips: {
-          mode: 'label',
-          intersect: false,
-          callbacks: {
-            title([firstData]) {
-              return moment(firstData.xLabel).fromNow();
+        plugins: {
+          legend: {
+            position: 'bottom',
+            display: true,
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+            callbacks: {
+              title([firstData]) {
+                return moment(firstData.xLabel).fromNow();
+              },
             },
           },
         },
         scales: {
-          yAxes: [
-            {
+          y: {
+            display: true,
+            position: 'left',
+            grid: {
+              drawBorder: true,
               display: true,
-              position: 'left',
-              gridLines: {
-                drawBorder: true,
-                display: true,
-              },
-              scaleLabel: {
-                display: true,
-                labelString: 'hits/min',
+            },
+            title: {
+              display: true,
+              text: 'hits/min',
+            },
+          },
+
+          x: {
+            type: 'time',
+            position: 'bottom',
+            grid: {
+              drawBorder: true,
+              display: false,
+            },
+            time: {
+              min: xMin,
+              max: xMax,
+              displayFormats: {
+                hour: 'Pp',
               },
             },
-          ],
-          xAxes: [
-            {
-              type: 'time',
-              position: 'bottom',
-              gridLines: {
-                drawBorder: true,
-                display: false,
-              },
-              time: {
-                min: xMin,
-                max: xMax,
-                displayFormats: {
-                  hour: 'YYYY/MM/DD LT',
-                  week: 'YYYY/MM/DD',
-                  month: 'YYYY/MM/DD',
-                  year: 'YYYY/MM/DD',
-                },
-              },
-            },
-          ],
+          },
         },
       },
     };

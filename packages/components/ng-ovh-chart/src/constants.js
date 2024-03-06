@@ -40,20 +40,24 @@ export const CHARTJS = {
     },
     options: {
       scales: {
-        yAxes: [],
-        xAxes: [],
+        y: {},
+        x: {},
       },
       elements: {
         point: {
           radius: 0,
         },
       },
-      legend: {
-        position: 'bottom',
-        display: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          display: true,
+        },
       },
     },
   },
 };
 
-export default { CHARTJS };
+export default {
+  CHARTJS,
+};

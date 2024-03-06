@@ -88,43 +88,50 @@ export const CHART_METRICS_OPTIONS = {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      legend: {
-        position: 'bottom',
-        display: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          display: true,
+        },
+        title: {
+          display: true,
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+        },
       },
       elements: {
+        line: {
+          tension: 0.5,
+        },
         point: {
           radius: 0,
         },
       },
-      tooltips: {
-        mode: 'label',
-        intersect: false,
-      },
       scales: {
-        yAxes: [
-          {
+        y: {
+          display: true,
+          position: 'left',
+          title: {
             display: true,
-            position: 'left',
-            scaleLabel: {
-              display: true,
-            },
-            gridLines: {
-              drawBorder: true,
-              display: false,
-            },
           },
-        ],
-        xAxes: [
-          {
-            type: 'time',
-            position: 'bottom',
-            gridLines: {
-              drawBorder: true,
-              display: false,
-            },
+          grid: {
+            drawBorder: true,
+            display: false,
           },
-        ],
+        },
+        x: {
+          type: 'time',
+          position: 'bottom',
+          displayFormats: {
+            hour: 'Pp',
+          },
+          grid: {
+            drawBorder: true,
+            display: false,
+          },
+        },
       },
     },
   },

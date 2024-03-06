@@ -61,7 +61,9 @@
             class="chart-container"
             style="height: 320px;"
             data-ng-if="!consumptionCtrl.loaders.charts && consumptionCtrl.stats.series.length"
-            data-wuc-chartjs="consumptionCtrl.chart"
+            data-chart
+            data-chartjs="consumptionCtrl.chart"
+            data-auto-reload="true"
         ></div>
     </div>
 </div>
