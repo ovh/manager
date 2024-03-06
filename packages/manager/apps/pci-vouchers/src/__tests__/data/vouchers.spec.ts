@@ -34,6 +34,7 @@ describe('vouchers data', () => {
     getAllVouchers('123');
     expect(fetchIcebergV6).toHaveBeenCalledWith({
       route: `/cloud/project/123/credit`,
+      disableCache: true,
     });
   });
   it('should paginate results', async () => {
