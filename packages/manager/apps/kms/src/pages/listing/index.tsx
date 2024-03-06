@@ -9,7 +9,6 @@ import { getListingIcebergV2 } from '@/api';
 import TableContainer from '@/components/layout-helpers/Listing/TableContainer';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 export default function Listing() {
   const { t } = useTranslation('kms/dashboard');
@@ -69,7 +68,6 @@ export default function Listing() {
 
   return (
     <>
-      <Breadcrumb />
       <h2>kms</h2>
       <div className="text-right pr-6 pb-6">
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
