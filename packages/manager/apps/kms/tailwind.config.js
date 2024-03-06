@@ -9,6 +9,6 @@ module.exports = {
     path.join(
       path.dirname(require.resolve('@ovhcloud/manager-components')),
       '**/*.{js,jsx,ts,tsx}',
-    )
-  ]
+    ),
+  ],
 };
