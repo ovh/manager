@@ -5,13 +5,13 @@ export default {
   controller,
   template,
   transclude: {
-    serviceDescription: '?serviceDescription',
+    title: '?title',
+    description: '?description',
   },
   bindings: {
-    logApiUrl: '<',
-    logKindApiUrl: '<',
-    logServiceGuideLink: '<',
     logSubscriptionUrl: '<',
-    goToListingPage: '<',
+    kind: '<',
+    title: '@',
+    description: '@',
   },
 };

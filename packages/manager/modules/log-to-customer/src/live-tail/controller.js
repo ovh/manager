@@ -36,4 +36,9 @@ export default class LogToCustomerCtrl {
         this.loading = false;
       });
   }
+
+  goToStreamListingPage() {
+    // TODO audit will be passed from button switch in next PR
+    this.goToListingPage({ kind: 'audit' });
+  }
 }

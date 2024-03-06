@@ -1,4 +1,7 @@
 {
   "kube_logs_tab_title": "Logs",
-  "kube_logs_description": "En transférant les logs d'audit de votre cluster Kubernetes dans Logs Data Platform, vous pouvez les stocker, effectuer des recherches dans vos logs, définir des alertes et construire des tableaux de bord."
+  "kube_logs_list_tab_title": "Liste",
+  "kube_logs_description": "En transférant les logs d'audit de votre cluster Kubernetes dans Logs Data Platform, vous pouvez les stocker, effectuer des recherches dans vos logs, définir des alertes et construire des tableaux de bord.",
+  "logs_list_title": "Service K8S",
+  "logs_list_description": "En transférant les audit logs de votre cluster Kubernetes dans Logs Data Platform vous pouvez les centraliser depuis d'autres sources, gérer leur rétention, effectuer des recherches, définir des alertes ainsi que des tableaux de bord pour observer facilement vos clusters."
 }
