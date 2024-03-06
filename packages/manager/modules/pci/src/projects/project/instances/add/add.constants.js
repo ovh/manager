@@ -4,8 +4,8 @@ export const PRIVATE_MODE = 'private_mode';
 export const PUBLIC_MODE = 'public_mode';
 export const LOCAL_PRIVATE_MODE = 'local_private_mode';
 export const INSTANCE_MODES_ENUM = [
-  { mode: PUBLIC_MODE },
   { mode: PRIVATE_MODE },
+  { mode: PUBLIC_MODE },
   { mode: LOCAL_PRIVATE_MODE },
 ];
 

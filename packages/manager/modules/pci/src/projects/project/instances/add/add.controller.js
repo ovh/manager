@@ -143,7 +143,7 @@ export default class PciInstancesAddController {
 
     this.selectedFloatingIP = null;
     this.loadMessages();
-    [, this.selectedMode] = this.modes;
+    [this.selectedMode] = this.modes;
     this.showAddPrivateNetworkModalForm = false;
     this.isAttachFloatingIP = false;
     this.isAttachPublicNetwork = false;

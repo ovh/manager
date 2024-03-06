@@ -42,7 +42,7 @@
                 ? 'pci_projects_project_instances_add_region_selected_title'
                 : 'pci_projects_project_instances_add_region_title') | translate: {
                     location: $ctrl.model.location
-                })
+                }
             }}"
         data-valid="$ctrl.model.datacenter && $ctrl.isRegionAvailable($ctrl.model.datacenter)"
         data-prevent-next="true"
@@ -476,10 +476,6 @@
             data-ng-if="!$ctrl.isLocalZone()"
             class="font-weight-bold"
             data-translate="pci_projects_project_instances_add_privateNetwork_sub_title"
-        ></p>
-        <p
-            data-ng-if="!$ctrl.isLocalZone()"
-            data-translate="pci_projects_project_instances_add_privateNetwork_info1"
         ></p>
         <p
             data-ng-if="$ctrl.isLocalZone()"
