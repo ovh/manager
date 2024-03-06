@@ -1,9 +1,9 @@
 import difference from 'lodash/difference';
 import find from 'lodash/find';
-import get from 'lodash/get';
-import head from 'lodash/head';
 import map from 'lodash/map';
 import remove from 'lodash/remove';
+import { formatDistanceToNow } from 'date-fns';
+
 import { STATUS_OVHCLOUD_URL } from '../../constants';
 
 angular
@@ -17,9 +17,11 @@ angular
       $q,
       HostingStatistics,
       HostingDatabase,
-      WucChartjsFactory,
+      ChartFactory,
+      DATEFNS_LOCALE,
     ) => {
       $scope.STATUS_OVHCLOUD_URL = STATUS_OVHCLOUD_URL;
+
       const HOSTING_STATISTICS = {
         type: 'line',
         data: {
@@ -28,65 +30,69 @@ angular
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          legend: {
-            position: 'bottom',
-            display: true,
-          },
           elements: {
             point: {
               radius: 0,
             },
           },
-          tooltips: {
-            mode: 'label',
-            intersect: false,
-            callbacks: {
-              title(data) {
-                return moment(get(head(data), 'xLabel')).fromNow();
+          plugins: {
+            legend: {
+              position: 'bottom',
+              display: true,
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                title(data) {
+                  return formatDistanceToNow(new Date(data[0].parsed.x), {
+                    addSuffix: true,
+                    locale: DATEFNS_LOCALE,
+                  });
+                },
               },
             },
-          },
-          pan: {
-            enabled: true,
-            mode: 'xy',
-          },
-          zoom: {
-            enabled: true,
-            mode: 'xy',
-            limits: {
-              max: 10,
-              min: 0.5,
+            zoom: {
+              zoom: {
+                wheel: { enabled: true },
+                pinch: { enabled: true },
+                mode: 'xy',
+                limits: {
+                  max: 10,
+                  min: 0.5,
+                },
+              },
             },
           },
           scales: {
-            yAxes: [
-              {
+            y: {
+              type: 'linear',
+              display: true,
+              position: 'left',
+              title: {
                 display: true,
-                position: 'left',
-                scaleLabel: {
-                  display: true,
-                },
-                gridLines: {
-                  drawBorder: true,
-                  display: true,
+              },
+              grid: {
+                drawBorder: true,
+                display: true,
+              },
+            },
+            x: {
+              type: 'time',
+              position: 'bottom',
+              adapters: {
+                date: { locale: DATEFNS_LOCALE },
+              },
+              grid: {
+                drawBorder: true,
+                display: false,
+              },
+              time: {
+                displayFormats: {
+                  hour: 'H:mm a',
                 },
               },
-            ],
-            xAxes: [
-              {
-                type: 'time',
-                position: 'bottom',
-                gridLines: {
-                  drawBorder: true,
-                  display: false,
-                },
-                time: {
-                  displayFormats: {
-                    hour: 'LT',
-                  },
-                },
-              },
-            ],
+            },
           },
         },
       };
@@ -136,13 +142,7 @@ angular
       $scope.stats = {};
 
       function refreshChart() {
-        $scope.stats.chart = new WucChartjsFactory(
-          angular.copy(HOSTING_STATISTICS),
-        );
-        $scope.stats.chart.setAxisOptions('yAxes', {
-          type: 'linear',
-        });
-
+        $scope.stats.chart = new ChartFactory(angular.copy(HOSTING_STATISTICS));
         if ($scope.model.datas && $scope.model.datas.length > 0) {
           angular.forEach($scope.model.datas, (data) => {
             if (

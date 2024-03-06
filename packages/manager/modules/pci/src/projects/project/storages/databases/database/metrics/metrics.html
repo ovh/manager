@@ -32,7 +32,8 @@
 
     <div
         data-ng-repeat="metric in $ctrl.availableMetrics track by $index"
-        data-pci-chartjs="$ctrl.metricsData[metric].chart"
+        data-chart
+        data-chartjs="$ctrl.metricsData[metric].chart"
         class="chart-container"
         data-auto-reload="false"
         data-utils="$ctrl.metricsData[metric].utils"

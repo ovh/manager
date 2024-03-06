@@ -18,6 +18,7 @@ import '@ovh-ux/manager-account-migration';
 import '@ovh-ux/ng-pagination-front';
 import 'angular-ui-bootstrap';
 import '@ovh-ux/manager-banner';
+import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 
 import '@ovh-ux/manager-cloud-styles';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
@@ -60,6 +61,7 @@ angular
     error,
     projects,
     'ui.router',
+    ngOvhChart,
     'ngOvhCloudUniverseComponents',
     'ngOvhProxyRequest',
     'ngOvhUserPref',

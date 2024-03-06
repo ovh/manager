@@ -6,55 +6,52 @@ export const TELEPHONY_ALIAS_CONSUMPTION = {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: true,
-      legend: {
-        display: true,
-        position: 'bottom',
-      },
-      element: {
-        point: {
-          radius: 0,
+      maintainAspectRatio: false,
+      elements: {
+        line: {
+          tension: 0.5,
         },
       },
-      tooltips: {
-        mode: 'label',
-        position: 'nearest',
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+        },
       },
       scales: {
-        xAxes: [
-          {
-            display: true,
-            gridLines: {
-              offsetGridLines: true,
-              display: false,
-            },
-            position: 'bottom',
-            ticks: {
-              mirror: true,
-            },
-            time: {
-              displayFormats: {
-                day: 'MMM D',
-              },
-            },
-            type: 'time',
+        x: {
+          display: true,
+          grid: {
+            offsetGridLines: true,
+            display: false,
           },
-        ],
-        yAxes: [
-          {
-            display: true,
-            position: 'left',
-            ticks: {
-              beginAtZero: true,
-            },
-            scaleLabel: {
-              display: true,
-            },
-            gridLines: {
-              display: true,
+          position: 'bottom',
+          ticks: {
+            mirror: true,
+          },
+          time: {
+            displayFormats: {
+              day: 'MMM D',
             },
           },
-        ],
+          type: 'time',
+        },
+
+        y: {
+          display: true,
+          position: 'left',
+          beginAtZero: true,
+          title: {
+            display: true,
+          },
+          grid: {
+            display: true,
+          },
+        },
       },
     },
   },

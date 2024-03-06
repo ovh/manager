@@ -5,6 +5,7 @@ import { isString, get } from 'lodash-es';
 
 import ovhManagerCda from '@ovh-ux/manager-cda';
 import { registerCoreModule } from '@ovh-ux/manager-core';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
@@ -18,6 +19,7 @@ export default (containerEl, environment) => {
       moduleName,
       [
         registerCoreModule(environment),
+        ngAtInternet,
         ngOvhCloudUniverseComponents,
         ngUiRouterBreadcrumb,
         ovhManagerCda,

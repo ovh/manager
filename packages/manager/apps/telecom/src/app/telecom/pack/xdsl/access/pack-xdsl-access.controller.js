@@ -208,13 +208,15 @@ export default class XdslAccessCtrl {
   getDiagnostic() {
     return this.OvhApiXdslDiagnostic.get({
       xdslId: this.$stateParams.serviceName,
-    }).$promise.then((accessDiagnostic) => {
-      this.accessDiagnostic = accessDiagnostic;
-      this.$rootScope.$broadcast(
-        'accessDiagnosticDetails:arrived',
-        this.accessDiagnostic,
-      );
-    });
+    })
+      .$promise.then((accessDiagnostic) => {
+        this.accessDiagnostic = accessDiagnostic;
+        this.$rootScope.$broadcast(
+          'accessDiagnosticDetails:arrived',
+          this.accessDiagnostic,
+        );
+      })
+      .catch(() => {});
   }
 
   initTemplateCaches() {

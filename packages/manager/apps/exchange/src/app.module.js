@@ -4,6 +4,8 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import { isString, get } from 'lodash-es';
 import { registerCoreModule } from '@ovh-ux/manager-core';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import Exchange from '@ovh-ux/manager-exchange';
@@ -16,6 +18,8 @@ export default (containerEl, environment) => {
       moduleName,
       [
         registerCoreModule(environment),
+        ngAtInternet,
+        ngOvhChart,
         ngUiRouterBreadcrumb,
         uiRouter,
         Exchange,

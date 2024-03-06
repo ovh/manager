@@ -94,16 +94,13 @@
                     </div>
                 </div>
             </div>
-            <canvas
-                id="mrtgStatsChart"
-                class="chart chart-line"
+            <div
                 data-ng-if="!$ctrl.serverStatsLoad.error"
-                data-chart-labels="$ctrl.labels"
-                data-chart-series="$ctrl.series"
-                data-chart-data="$ctrl.data"
-                data-chart-options="$ctrl.options"
-            >
-            </canvas>
+                data-chart
+                data-chartjs="$ctrl.mrtgChart"
+                data-auto-reload="true"
+            ></div>
+
             <div
                 class="alert alert-danger"
                 role="alert"

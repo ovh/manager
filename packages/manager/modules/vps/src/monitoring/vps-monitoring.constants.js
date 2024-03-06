@@ -1,39 +1,46 @@
 export const VPS_MONITORING_BPS_OPTIONS = {
-  legend: {
-    display: true,
+  data: {
+    datasets: [],
   },
-  scales: {
-    xAxes: [
-      {
-        gridLines: {
+  options: {
+    scales: {
+      x: {
+        grid: {
           display: false,
         },
       },
-    ],
-    yAxes: [
-      {
+      y: {
         id: 'y-axis-1',
         type: 'linear',
         display: true,
         position: 'left',
-        ticks: {
-          min: 0,
-          beginAtZero: true,
-        },
-        scaleLabel: {
+        min: 0,
+        beginAtZero: true,
+        title: {
           display: true,
-          labelString: 'BPS',
+          text: 'BPS',
         },
       },
-    ],
-  },
-  elements: {
-    line: {
-      borderColor: '#00a2bf',
-      borderWidth: 4,
     },
-    point: {
-      radius: 0,
+    elements: {
+      line: {
+        fill: true,
+        borderColor: '#00a2bf',
+        borderWidth: 4,
+        tension: 0.5,
+      },
+      point: {
+        radius: 0,
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+      tooltip: {
+        mode: 'index',
+        intersect: false,
+      },
     },
   },
 };
@@ -46,39 +53,48 @@ export const VPS_MONITORING_COLORS = [
 ];
 
 export const VPS_MONITORING_PERCENT_OPTIONS = {
-  scales: {
-    xAxes: [
-      {
-        gridLines: {
+  data: {
+    datasets: [],
+  },
+  options: {
+    scales: {
+      x: {
+        grid: {
           display: false,
         },
       },
-    ],
-    yAxes: [
-      {
+
+      y: {
         id: 'y-axe',
         type: 'linear',
-        ticks: {
-          min: 0,
-          max: 100,
-          beginAtZero: true,
-        },
-        scaleLabel: {
+        min: 0,
+        max: 100,
+        beginAtZero: true,
+        title: {
           display: true,
-          labelString: '%',
+          text: '%',
         },
       },
-    ],
-  },
-  elements: {
-    line: {
-      fill: 'bottom',
-      backgroundColor: '#59d2ef',
-      borderColor: '#00a2bf',
-      borderWidth: 4,
     },
-    point: {
-      radius: 0,
+    elements: {
+      line: {
+        fill: true,
+        backgroundColor: '#59d2ef',
+        borderColor: '#00a2bf',
+        borderWidth: 4,
+      },
+      point: {
+        radius: 0,
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        mode: 'index',
+        intersect: false,
+      },
     },
   },
 };

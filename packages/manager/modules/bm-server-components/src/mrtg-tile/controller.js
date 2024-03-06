@@ -1,15 +1,17 @@
 import head from 'lodash/head';
 import some from 'lodash/some';
-import moment from 'moment';
+import { formatRelative, fromUnixTime } from 'date-fns';
+import * as dateFnsLocales from 'date-fns/locale';
 import { detectUserLocale } from '@ovh-ux/manager-config';
 
 export default class BmServerComponentsMrtgTileController {
   /* @ngInject */
-  constructor($q, $scope, $stateParams, $translate) {
+  constructor($q, $scope, $stateParams, $translate, ChartFactory) {
     this.$q = $q;
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.ChartFactory = ChartFactory;
     this.serverStatsLoad = {
       loading: true,
       error: false,
@@ -26,7 +28,6 @@ export default class BmServerComponentsMrtgTileController {
   }
 
   $onInit() {
-    moment.locale(detectUserLocale());
     this.$scope.$on('reloadChart', () => {
       this.getStatistics();
     });
@@ -35,45 +36,69 @@ export default class BmServerComponentsMrtgTileController {
   }
 
   createChart(data) {
-    this.series = [];
-    this.data = [];
-    this.labels = data?.download.values.map((value) =>
-      moment.unix(value.timestamp).calendar(),
-    );
-    this.series.push(this.$translate.instant('server_mrtg_legend_download'));
-    this.series.push(this.$translate.instant('server_mrtg_legend_upload'));
-    this.data.push(
-      BmServerComponentsMrtgTileController.convertData(data?.download.values),
-    );
-    this.data.push(
-      BmServerComponentsMrtgTileController.convertData(data?.upload.values),
-    );
-
     const { unit } = head(data?.download.values);
     const yLabel =
       unit === 'bps' ? this.$translate.instant('server_mrtg_unit_KB') : unit;
-    this.options = {
-      scales: {
-        yAxes: [
+
+    this.mrtgChart = new this.ChartFactory({
+      data: {
+        datasets: [
           {
-            scaleLabel: {
-              display: true,
-              labelString: yLabel,
-            },
+            label: this.$translate.instant('server_mrtg_legend_download'),
+            data: BmServerComponentsMrtgTileController.convertData(
+              data?.download.values,
+            ),
+          },
+          {
+            label: this.$translate.instant('server_mrtg_legend_upload'),
+            data: BmServerComponentsMrtgTileController.convertData(
+              data?.upload.values,
+            ),
           },
         ],
-        xAxes: [
-          {
-            scaleLabel: {
-              display: true,
-              labelString: this.$translate.instant(
-                'server_mrtg_chart_xaxis_label',
-              ),
-            },
-          },
-        ],
+        labels: data?.download.values.map(({ timestamp }) =>
+          formatRelative(fromUnixTime(timestamp), new Date(), {
+            locale: BmServerComponentsMrtgTileController.getDateFnsLocale(),
+          }),
+        ),
       },
-    };
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+          },
+        },
+        responsive: true,
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: yLabel,
+            },
+          },
+          x: {
+            title: {
+              display: true,
+              text: this.$translate.instant('server_mrtg_chart_xaxis_label'),
+            },
+          },
+        },
+        elements: {
+          line: {
+            fill: true,
+            borderWidth: 2,
+            tension: 0.5,
+          },
+          point: {
+            radius: 2,
+          },
+        },
+      },
+    });
   }
 
   loadStatistics() {
@@ -194,5 +219,17 @@ export default class BmServerComponentsMrtgTileController {
     return list.map((value) =>
       value.unit === 'bps' ? (value.y / 1024).toFixed(2) : value.y,
     );
+  }
+
+  static getDateFnsLocale() {
+    const language = detectUserLocale();
+    if (language === 'en_GB') {
+      return dateFnsLocales.enGB;
+    }
+    if (language === 'fr_CA') {
+      return dateFnsLocales.frCA;
+    }
+    const [locale] = language.split('_');
+    return dateFnsLocales[locale];
   }
 }

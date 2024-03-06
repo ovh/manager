@@ -13,8 +13,9 @@ import {
 
 export default class CloudConnectStatisticsCtrl {
   /* @ngInject */
-  constructor($q, CucCloudMessage, cloudConnectService) {
+  constructor($q, ChartFactory, CucCloudMessage, cloudConnectService) {
     this.$q = $q;
+    this.ChartFactory = ChartFactory;
     this.CucCloudMessage = CucCloudMessage;
     this.cloudConnectService = cloudConnectService;
     this.LABELS = LABELS;
@@ -38,16 +39,9 @@ export default class CloudConnectStatisticsCtrl {
 
     this.displayedGraph = this.TYPE.TRAFFIC;
     this.colors = this.STATISTICS.colors;
-    this.options = {
+    this.chart = new this.ChartFactory({
       ...this.STATISTICS.options,
-    };
-    this.options.scales.yAxes[0].ticks = {
-      beginAtZero: true,
-    };
-
-    this.lightOptions = {
-      ...this.STATISTICS.options,
-    };
+    });
 
     this.isLoading = false;
     this.loadGraphs();
@@ -120,7 +114,7 @@ export default class CloudConnectStatisticsCtrl {
     this.isLoading = true;
 
     // Update options
-    this.options.scales.yAxes[0].scaleLabel.labelString = this.LABELS.error_unit;
+    this.chart.options.scales.y.title.text = this.LABELS.error_unit;
 
     this.loadInterfacesStatistics(this.TYPE.ERROR);
   }
@@ -132,7 +126,7 @@ export default class CloudConnectStatisticsCtrl {
     this.isLoading = true;
 
     // Update options
-    this.lightOptions.scales.yAxes[0].scaleLabel.labelString = this.LABELS.light_unit;
+    this.chart.options.scales.y.title.text = this.LABELS.light_unit;
 
     this.loadInterfacesStatistics(this.TYPE.LIGHT);
   }
@@ -144,7 +138,7 @@ export default class CloudConnectStatisticsCtrl {
     this.isLoading = true;
 
     // Update options
-    this.options.scales.yAxes[0].scaleLabel.labelString = this.LABELS.traffic_unit;
+    this.chart.options.scales.y.title.text = this.LABELS.traffic_unit;
 
     this.loadInterfacesStatistics(this.TYPE.TRAFFIC);
   }
@@ -172,15 +166,21 @@ export default class CloudConnectStatisticsCtrl {
         ];
         break;
     }
+    this.chart.data.labels = map(
+      get(stats, dataProperties[0]),
+      (value) => value[0],
+    );
 
-    serieLabels.forEach((label) => {
-      this.series.push(label);
-    });
-
-    this.labels = map(get(stats, dataProperties[0]), (value) => value[0]);
     dataProperties.forEach((prop) => {
       this.data.push(map(get(stats, prop), (value) => value[1].value));
     });
+
+    this.chart.data.datasets = dataProperties.map((prop, i) => ({
+      label: serieLabels[i],
+      data: map(get(stats, prop), (value) => value[1].value),
+      borderColor: this.colors[i].borderColor,
+      backgroundColor: this.colors[i].borderColor,
+    }));
   }
 
   loadStatistics(connectId, interfaceId, type, period) {

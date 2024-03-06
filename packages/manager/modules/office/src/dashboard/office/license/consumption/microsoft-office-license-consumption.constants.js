@@ -1,7 +1,3 @@
-import get from 'lodash/get';
-import head from 'lodash/head';
-import 'moment';
-
 export default {
   chart: {
     type: 'line',
@@ -11,52 +7,46 @@ export default {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      legend: {
-        position: 'bottom',
-        display: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          display: true,
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+        },
       },
       elements: {
         point: {
           radius: 0,
         },
       },
-      tooltips: {
-        mode: 'label',
-        intersect: false,
-        callbacks: {
-          title(data) {
-            return moment(get(head(data), 'xLabel')).fromNow();
+      scales: {
+        y: {
+          display: true,
+          linear: true,
+          position: 'left',
+          title: {
+            display: true,
+          },
+          grid: {
+            drawBorder: true,
+            display: true,
+          },
+          min: 0,
+          ticks: {
+            stepSize: 1,
           },
         },
-      },
-      scales: {
-        yAxes: [
-          {
-            display: true,
-            position: 'left',
-            scaleLabel: {
-              display: true,
-            },
-            gridLines: {
-              drawBorder: true,
-              display: true,
-            },
-            ticks: {
-              min: 0,
-              stepSize: 1,
-            },
+        x: {
+          type: 'time',
+          position: 'bottom',
+          grid: {
+            drawBorder: true,
+            display: false,
           },
-        ],
-        xAxes: [
-          {
-            type: 'time',
-            position: 'bottom',
-            gridLines: {
-              drawBorder: true,
-              display: false,
-            },
-          },
-        ],
+        },
       },
     },
   },

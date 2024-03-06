@@ -9,7 +9,7 @@ export default class TelecomTelephonyLineTrunkSimultaneousLines {
     $stateParams,
     $translate,
     currentLine,
-    TucChartjsFactory,
+    ChartFactory,
     tucDebounce,
     OvhApiTelephony,
     OvhApiOrderTelephony,
@@ -22,7 +22,7 @@ export default class TelecomTelephonyLineTrunkSimultaneousLines {
     this.$translate = $translate;
 
     this.currentLine = currentLine;
-    this.TucChartjsFactory = TucChartjsFactory;
+    this.TucChartjsFactory = ChartFactory;
     this.tucDebounce = tucDebounce;
     this.OvhApiTelephony = OvhApiTelephony;
     this.OvhApiOrderTelephony = OvhApiOrderTelephony;
@@ -94,6 +94,7 @@ export default class TelecomTelephonyLineTrunkSimultaneousLines {
           { count: pack.channels },
         ),
     );
+
     this.chart.data.datasets.push(
       {
         data: map(

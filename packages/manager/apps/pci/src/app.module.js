@@ -10,6 +10,7 @@ import '@ovh-ux/ui-kit';
 
 import { isString, get } from 'lodash-es';
 import { registerCoreModule } from '@ovh-ux/manager-core';
+import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
@@ -23,6 +24,7 @@ export default (containerEl, environment) => {
       moduleName,
       [
         'ovhManagerPci',
+        ngOvhChart,
         ngOvhPaymentMethod,
         ngOvhFeatureFlipping,
         registerCoreModule(environment),

@@ -5,7 +5,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 import 'angular-ui-bootstrap';
-import 'angular-chart.js';
 
 import '@ovh-ux/manager-filters';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -46,7 +45,6 @@ const moduleName = 'ovhManagerVps';
 
 angular
   .module(moduleName, [
-    'chart.js',
     ovhManagerCore,
     'pascalprecht.translate',
     'ui.router',

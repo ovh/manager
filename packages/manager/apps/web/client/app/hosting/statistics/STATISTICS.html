@@ -167,12 +167,13 @@
             >
                 <oui-spinner data-size="l"></oui-spinner>
             </div>
-
             <div
                 class="chart-container"
                 style="height: 320px;"
                 data-ng-if="selected.haveDataToDisplay"
-                data-wuc-chartjs="stats.chart"
+                data-chart
+                data-chartjs="stats.chart"
+                data-auto-reload="true"
             ></div>
 
             <div

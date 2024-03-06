@@ -53,6 +53,7 @@ import '@ovh-ux/ng-at-internet';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import ngOvhContracts from '@ovh-ux/ng-ovh-contracts';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
@@ -73,6 +74,7 @@ import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
+import * as dateFnsLocales from 'date-fns/locale';
 import emailDomain from '@ovh-ux/manager-email-domain';
 import emailpro from '@ovh-ux/manager-emailpro';
 import exchange from '@ovh-ux/manager-exchange';
@@ -117,6 +119,17 @@ const getLocale = (shellClient) => {
   return shellClient.i18n.getLocale();
 };
 
+const getDateFnsLocale = (language) => {
+  if (language === 'en_GB') {
+    return 'enGB';
+  }
+  if (language === 'fr_CA') {
+    return 'frCA';
+  }
+  const [locale] = language.split('_');
+  return locale;
+};
+
 export default async (containerEl, shellClient) => {
   const moduleName = 'App';
 
@@ -149,6 +162,7 @@ export default async (containerEl, shellClient) => {
         registerAtInternet(shellClient.tracking),
         ngAtInternetUiRouterPlugin,
         ngOvhApiWrappers,
+        ngOvhChart,
         ngOvhContracts,
         ngOvhContracts,
         ngOvhExportCsv,
@@ -568,6 +582,7 @@ export default async (containerEl, shellClient) => {
       );
     })
     .constant('UNIVERSE', 'WEB')
+    .constant('DATEFNS_LOCALE', dateFnsLocales[getDateFnsLocale(locale)])
     .run(
       /* @ngInject */ ($rootScope, $state, $transitions) => {
         $transitions.onStart({}, () => {

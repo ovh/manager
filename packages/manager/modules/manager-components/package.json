@@ -14,7 +14,6 @@
   "main": "./src/index.js",
   "dependencies": {
     "bootstrap4": "twbs/bootstrap#v4.6.2",
-    "chart.js": "^2.8.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {

@@ -3,6 +3,7 @@ import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import '@ovh-ux/ng-ui-router-breadcrumb';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import routing from './vps.routing';
 
@@ -13,6 +14,7 @@ angular
     'ngUiRouterBreadcrumb',
     'oui',
     ListLayoutHelper.moduleName,
+    ngAtInternet,
     'ui.router',
   ])
   .config(routing)

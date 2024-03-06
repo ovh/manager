@@ -177,16 +177,10 @@
                 class="mt-1 ml-2"
             ></label>
         </div>
-        <canvas
-            id="trafficChart"
-            class="chart chart-line"
-            width="100%"
-            height="30%"
-            data-chart-labels="$ctrl.labels"
-            data-chart-colors="$ctrl.colors"
-            data-chart-series="$ctrl.series"
-            data-chart-data="$ctrl.data"
-            data-chart-options="$ctrl.options"
-        ></canvas>
+        <div
+            data-chart
+            data-chartjs="$ctrl.chart"
+            data-auto-reload="true"
+        ></div>
     </div>
 </div>

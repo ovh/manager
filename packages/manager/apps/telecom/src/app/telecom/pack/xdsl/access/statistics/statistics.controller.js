@@ -10,7 +10,7 @@ export default class XdslStatisticsCtrl {
     $scope,
     $stateParams,
     $translate,
-    TucChartjsFactory,
+    ChartFactory,
     OvhApiXdsl,
     XDSL,
   ) {
@@ -19,7 +19,7 @@ export default class XdslStatisticsCtrl {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
-    this.TucChartjsFactory = TucChartjsFactory;
+    this.TucChartjsFactory = ChartFactory;
     this.OvhApiXdsl = OvhApiXdsl;
     this.PACK_XDSL_STATISTICS = PACK_XDSL_STATISTICS;
     this.XDSL = XDSL;
@@ -49,8 +49,32 @@ export default class XdslStatisticsCtrl {
       period: PREVIEW,
     };
 
+    this.synchronization.chart = new this.TucChartjsFactory(
+      angular.copy(this.PACK_XDSL_STATISTICS.chart),
+    );
+
+    this.traffic.chart = new this.TucChartjsFactory(
+      angular.copy(this.PACK_XDSL_STATISTICS.chart),
+    );
+
+    this.ping.chart = new this.TucChartjsFactory(
+      angular.copy(this.PACK_XDSL_STATISTICS.chart),
+    );
+
+    this.snr.chart = new this.TucChartjsFactory(
+      angular.copy(this.PACK_XDSL_STATISTICS.chart),
+    );
+
+    this.attenuation.chart = new this.TucChartjsFactory(
+      angular.copy(this.PACK_XDSL_STATISTICS.chart),
+    );
+
     const PingStatsPromise = this.getPingStatistics(this.ping.period).then(() =>
       this.getTrafficStatistics(this.traffic.period),
+    );
+
+    this.errors.chart = new this.TucChartjsFactory(
+      angular.copy(this.PACK_XDSL_STATISTICS.chart),
     );
 
     if (!this.$scope.access.xdsl.isFiber) {
@@ -168,6 +192,7 @@ export default class XdslStatisticsCtrl {
       })
       .$promise.then((statistics) => {
         const datas = statistics.values || [];
+
         return datas.map((data) => [data.timestamp * 1000, data.value]);
       })
       .catch(() => []);
@@ -195,10 +220,7 @@ export default class XdslStatisticsCtrl {
           stats.uploads.length && stats.downloads.length
         );
 
-        this.synchronization.chart = new this.TucChartjsFactory(
-          angular.copy(this.PACK_XDSL_STATISTICS.chart),
-        );
-        this.synchronization.chart.setAxisOptions('yAxes', {
+        this.synchronization.chart.setAxisOptions('y', {
           type: 'logarithmic',
           ticks: {
             callback: this.logarithmicAxisDisplay.bind(this),
@@ -234,11 +256,11 @@ export default class XdslStatisticsCtrl {
         );
 
         if (!stats.downloads.length && !stats.uploads.length) {
-          this.synchronization.chart.options.scales.xAxes = [];
+          this.synchronization.chart.options.scales.x = {};
         }
 
         this.synchronization.chart.setTooltipCallback('label', (item) =>
-          this.displayBitrate(item.yLabel),
+          this.displayBitrate(item.parsed.y),
         );
 
         this.synchronization.chart.setYLabel(
@@ -274,11 +296,7 @@ export default class XdslStatisticsCtrl {
           stats.uploads.length && stats.downloads.length
         );
 
-        this.traffic.chart = new this.TucChartjsFactory(
-          angular.copy(this.PACK_XDSL_STATISTICS.chart),
-        );
-
-        this.traffic.chart.setAxisOptions('yAxes', {
+        this.traffic.chart.setAxisOptions('y', {
           type: 'logarithmic',
           ticks: {
             callback: this.logarithmicAxisDisplay.bind(this),
@@ -314,11 +332,11 @@ export default class XdslStatisticsCtrl {
         );
 
         if (!stats.downloads.length && !stats.uploads.length) {
-          this.traffic.chart.options.scales.xAxes = [];
+          this.traffic.chart.options.scales.x = {};
         }
 
         this.traffic.chart.setTooltipCallback('label', (item) =>
-          this.displayBitrate(item.yLabel),
+          this.displayBitrate(item.parsed.y),
         );
 
         this.traffic.chart.setYLabel(
@@ -348,11 +366,7 @@ export default class XdslStatisticsCtrl {
       .then((statistics) => {
         this.ping.haveSeries = !!statistics.length;
 
-        this.ping.chart = new this.TucChartjsFactory(
-          angular.copy(this.PACK_XDSL_STATISTICS.chart),
-        );
-
-        this.ping.chart.setAxisOptions('yAxes', {
+        this.ping.chart.setAxisOptions('y', {
           type: 'linear',
         });
 
@@ -371,11 +385,11 @@ export default class XdslStatisticsCtrl {
         );
 
         if (!statistics.length) {
-          this.ping.chart.options.scales.xAxes = [];
+          this.ping.chart.options.scales.x = {};
         }
 
         this.ping.chart.setTooltipCallback('label', (item) =>
-          this.displayPingrate(item.yLabel),
+          this.displayPingrate(item.parsed.y),
         );
 
         this.ping.chart.setYLabel(
@@ -411,11 +425,7 @@ export default class XdslStatisticsCtrl {
           stats.uploads.length && stats.downloads.length
         );
 
-        this.snr.chart = new this.TucChartjsFactory(
-          angular.copy(this.PACK_XDSL_STATISTICS.chart),
-        );
-
-        this.snr.chart.setAxisOptions('yAxes', {
+        this.snr.chart.setAxisOptions('y', {
           type: 'linear',
         });
 
@@ -448,12 +458,12 @@ export default class XdslStatisticsCtrl {
         );
 
         if (!stats.downloads.length && !stats.uploads.length) {
-          this.snr.chart.options.scales.xAxes = [];
+          this.snr.chart.options.scales.x = {};
         }
 
         this.snr.chart.setTooltipCallback('label', (item) =>
           this.$translate.instant('xdsl_statistics_decibel', {
-            value: item.yLabel.toFixed(1),
+            value: item.parsed.y.toFixed(1),
           }),
         );
 
@@ -490,11 +500,7 @@ export default class XdslStatisticsCtrl {
           stats.uploads.length && stats.downloads.length
         );
 
-        this.attenuation.chart = new this.TucChartjsFactory(
-          angular.copy(this.PACK_XDSL_STATISTICS.chart),
-        );
-
-        this.attenuation.chart.setAxisOptions('yAxes', {
+        this.attenuation.chart.setAxisOptions('y', {
           type: 'linear',
         });
 
@@ -527,12 +533,12 @@ export default class XdslStatisticsCtrl {
         );
 
         if (!stats.downloads.length && !stats.uploads.length) {
-          this.attenuation.chart.options.scales.xAxes = [];
+          this.attenuation.chart.options.scales.x = {};
         }
 
         this.attenuation.chart.setTooltipCallback('label', (item) =>
           this.$translate.instant('xdsl_statistics_decibel', {
-            value: item.yLabel.toFixed(1),
+            value: item.parsed.y.toFixed(1),
           }),
         );
 
@@ -570,11 +576,7 @@ export default class XdslStatisticsCtrl {
           (stat) => stat.length,
         );
 
-        this.errors.chart = new this.TucChartjsFactory(
-          angular.copy(this.PACK_XDSL_STATISTICS.chart),
-        );
-
-        this.errors.chart.setAxisOptions('yAxes', {
+        this.errors.chart.setAxisOptions('y', {
           type: 'linear',
         });
 
@@ -583,12 +585,12 @@ export default class XdslStatisticsCtrl {
         this.addErrorsSeries(stats.crc, 'xdsl_statistics_crc_label');
 
         if (!stats.hec.length && !stats.fec.length && !stats.crc.length) {
-          this.errors.chart.options.scales.xAxes = [];
+          this.errors.chart.options.scales.x = {};
         }
 
         this.errors.chart.setTooltipCallback('label', (item) =>
           this.$translate.instant('xdsl_statistics_count', {
-            value: item.yLabel.toFixed(1),
+            value: item.parsed.y.toFixed(1),
           }),
         );
 

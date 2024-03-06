@@ -217,9 +217,10 @@
                         <div
                             class="form-group chart-container"
                             data-ng-if="!$ctrl.charts.loading"
-                        >
-                            <p data-tuc-chartjs="$ctrl.chart"></p>
-                        </div>
+                            data-chart
+                            data-chartjs="$ctrl.chart"
+                            data-auto-reload="true"
+                        ></div>
                     </section>
                 </div>
             </form>

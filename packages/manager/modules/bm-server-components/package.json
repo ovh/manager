@@ -25,6 +25,7 @@
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.9.1",
+    "@ovh-ux/ng-ovh-chart": "^1.0.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
     "@ovh-ux/ng-ovh-utils": "^14.0.17",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
@@ -32,6 +33,10 @@
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
+    "chart.js": "^4.4.2",
+    "chartjs-adapter-date-fns": "^3.0.0",
+    "chartjs-plugin-zoom": "^2.0.1",
+    "date-fns": "^2.24.0",
     "oclazyload": "^1.1.0"
   }
 }

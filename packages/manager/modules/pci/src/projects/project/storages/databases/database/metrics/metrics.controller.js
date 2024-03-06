@@ -1,6 +1,6 @@
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
-import moment from 'moment';
+import { format, fromUnixTime } from 'date-fns';
 import {
   METRICS_TIME_RANGES,
   CHART_METRICS_OPTIONS,
@@ -10,11 +10,18 @@ import { METRICS_CONVERTER } from './metrics.constants';
 
 export default class MetricsCtrl {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, DatabaseService, PciChartjsFactory) {
+  constructor(
+    $translate,
+    ChartFactory,
+    CucCloudMessage,
+    DatabaseService,
+    DATEFNS_LOCALE,
+  ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
-    this.PciChartjsFactory = PciChartjsFactory;
+    this.DATEFNS_LOCALE = DATEFNS_LOCALE;
+    this.PciChartjsFactory = ChartFactory;
     this.isLoading = true;
     [this.selectedTimeRange] = METRICS_TIME_RANGES;
     this.timeRanges = METRICS_TIME_RANGES;
@@ -57,18 +64,21 @@ export default class MetricsCtrl {
   }
 
   initMetrics() {
+    const locale = this.DATEFNS_LOCALE;
     this.availableMetrics.forEach((metric) => {
       const chartOptions = CHART_METRICS_OPTIONS.chart;
-      chartOptions.options.scales.xAxes[0].ticks = {
-        callback: (value, index, values) => {
-          return moment(values[index].value).format('L LT');
+      chartOptions.options.scales.x.ticks = {
+        callback: (value) => {
+          return format(value, 'Pp', { locale });
         },
       };
-      chartOptions.options.tooltips.callbacks = {
-        title(tooltipItem, data) {
-          return data.datasets[tooltipItem[0].datasetIndex].data[
-            tooltipItem[0].index
-          ].x.format('L LT');
+      chartOptions.options.plugins.tooltip.callbacks = {
+        title(tooltipItem) {
+          return format(
+            tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].x,
+            'Pp',
+            { locale },
+          );
         },
       };
       this.metricsData[metric] = {
@@ -80,7 +90,7 @@ export default class MetricsCtrl {
       );
 
       this.metricsData[metric].chart.setTooltipCallback('label', (item) =>
-        parseFloat(item.value, 10).toPrecision(3),
+        parseFloat(item.formattedValue, 10).toPrecision(3),
       );
     });
   }
@@ -115,7 +125,7 @@ export default class MetricsCtrl {
           this.metricsData[data.name].chart.updateSerie(
             metric.hostname,
             map(metric.dataPoints, (point) => ({
-              x: moment.unix(point.timestamp),
+              x: fromUnixTime(point.timestamp),
               y: point.value * (METRICS_CONVERTER[data.name] || 1),
             })),
             {

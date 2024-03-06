@@ -64,7 +64,7 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
-
+import * as dateFnsLocales from 'date-fns/locale';
 import * as d3 from 'd3';
 
 import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
@@ -78,6 +78,7 @@ import '@ovh-ux/ng-at-internet';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
+import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
@@ -146,6 +147,17 @@ export default async (containerEl, shellClient) => {
     },
   };
 
+  const getDateFnsLocale = (language) => {
+    if (language === 'en_GB') {
+      return 'enGB';
+    }
+    if (language === 'fr_CA') {
+      return 'frCA';
+    }
+    const [loc] = language.split('_');
+    return loc;
+  };
+
   angular
     .module(
       moduleName,
@@ -169,6 +181,7 @@ export default async (containerEl, shellClient) => {
         ngOvhCheckboxTable,
         ngOvhApiWrappers,
         ngOvhBrowserAlert,
+        ngOvhChart,
         ngOvhHttp,
         ngOvhMondialRelay,
         ngOvhSsoAuth,
@@ -263,6 +276,7 @@ export default async (containerEl, shellClient) => {
         ovhPaymentMethodProvider.setUserLocale(locale);
       },
     )
+    .constant('DATEFNS_LOCALE', dateFnsLocales[getDateFnsLocale(locale)])
     .run(
       /* @ngInject */ ($translate) => {
         let lang = $translate.use();

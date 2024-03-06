@@ -13,6 +13,7 @@ import '@ovh-ux/ui-kit';
 import 'script-loader!clipboard/dist/clipboard.min.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
+import * as dateFnsLocales from 'date-fns/locale';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import isString from 'lodash/isString';
@@ -61,6 +62,17 @@ export default async (containerEl, shellClient) => {
     },
   };
 
+  const getDateFnsLocale = (language) => {
+    if (language === 'en_GB') {
+      return 'enGB';
+    }
+    if (language === 'fr_CA') {
+      return 'frCA';
+    }
+    const [loc] = language.split('_');
+    return loc;
+  };
+
   angular
     .module(
       moduleName,
@@ -94,6 +106,7 @@ export default async (containerEl, shellClient) => {
         });
       },
     )
+    .constant('DATEFNS_LOCALE', dateFnsLocales[getDateFnsLocale(locale)])
     .constant('ovhShell', shellClient)
     .config(
       /* @ngInject */ (ovhFeatureFlippingProvider) => {

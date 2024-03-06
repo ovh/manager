@@ -44,7 +44,7 @@ angular
       hostingSSLCertificate,
       hostingSSLCertificateType,
       Alerter,
-      WucChartjsFactory,
+      ChartFactory,
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites' });
 
@@ -501,7 +501,7 @@ angular
       });
 
       $scope.getChartJsInstance = function getChartJsInstance(configuration) {
-        return new WucChartjsFactory(configuration);
+        return new ChartFactory(configuration);
       };
 
       $scope.getStatistics = function getStatistics(domain, period) {

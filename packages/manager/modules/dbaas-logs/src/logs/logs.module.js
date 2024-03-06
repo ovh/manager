@@ -7,7 +7,6 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
-import 'angular-chart.js';
 import 'angular-ui-bootstrap';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -27,7 +26,6 @@ const moduleName = 'ovhManagerDbaasLogsDashboard';
 
 angular
   .module(moduleName, [
-    'chart.js',
     'ngOvhCloudUniverseComponents',
     'oui',
     'ovhManagerCore',

@@ -193,8 +193,8 @@ export default {
     MAX_TICKS_LIMIT: 12,
     TOOLTIPS: {
       backgroundColor: 'rgba(256,256,256,0.8)',
-      titleFontColor: '#113f6d',
-      bodyFontColor: '#113f6d',
+      titleColor: '#113f6d',
+      bodyColor: '#113f6d',
       borderColor: '#bbbdbf',
       borderWidth: 1,
       mode: 'index',
@@ -214,6 +214,17 @@ export default {
         pointHoverBorderColor: '#fff',
       },
     ],
+    ELEMENTS: {
+      line: {
+        borderWidth: 2,
+        borderColor: '#59d2ef',
+        backgroundColor: 'rgba(89,210,239, 0.4)',
+        fill: true,
+      },
+      point: {
+        radius: 0,
+      },
+    },
   },
   inputStatus: {
     PROCESSING: 'PROCESSING',

@@ -22,15 +22,11 @@
                 ></h2>
             </div>
             <div class="cui-panel__body">
-                <canvas
-                    id="line"
-                    class="chart chart-line"
-                    data-ng-if="!$ctrl.noCpuData"
-                    data-chart-data="$ctrl.monitoring.cpu"
-                    data-chart-labels="$ctrl.monitoring.labels"
-                    data-chart-options="$ctrl.percentOption"
-                >
-                </canvas>
+                <div
+                    data-chart
+                    data-chartjs="$ctrl.cpuChart"
+                    data-auto-reload="true"
+                ></div>
                 <oui-message type="error" data-ng-if="$ctrl.noCpuData"
                     >{{$ctrl.noCpuData.message}}</oui-message
                 >
@@ -44,15 +40,12 @@
                 ></h2>
             </div>
             <div class="cui-panel__body">
-                <canvas
-                    id="line"
-                    class="chart chart-line"
-                    data-ng-if="!$ctrl.noRamData"
-                    data-chart-data="$ctrl.monitoring.ram"
-                    data-chart-labels="$ctrl.monitoring.labels"
-                    data-chart-options="$ctrl.percentOption"
-                >
-                </canvas>
+                <div
+                    data-chart
+                    data-chartjs="$ctrl.ramChart"
+                    data-auto-reload="true"
+                ></div>
+
                 <oui-message type="error" data-ng-if="$ctrl.noRamData"
                     >{{$ctrl.noRamData.message}}</oui-message
                 >
@@ -66,17 +59,12 @@
                 ></h2>
             </div>
             <div class="cui-panel__body">
-                <canvas
-                    id="line"
-                    class="chart chart-line"
-                    data-ng-if="!$ctrl.noNetData"
-                    data-chart-data="$ctrl.monitoring.net"
-                    data-chart-labels="$ctrl.monitoring.labels"
-                    data-chart-series="$ctrl.series"
-                    data-chart-options="$ctrl.bpsOption"
-                    data-chart-colors="$ctrl.colors"
-                >
-                </canvas>
+                <div
+                    data-chart
+                    data-chartjs="$ctrl.netChart"
+                    data-auto-reload="true"
+                ></div>
+
                 <oui-message type="error" data-ng-if="$ctrl.noNetData"
                     >{{$ctrl.noNetData.message}}</oui-message
                 >

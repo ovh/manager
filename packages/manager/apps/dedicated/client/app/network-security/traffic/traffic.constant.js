@@ -31,76 +31,76 @@ export const CHART = {
   options: {
     responsive: true,
     maintainAspectRatio: true,
-    legend: {
-      position: 'bottom',
-      display: true,
+    data: {
+      datasets: [],
     },
-    elements: {
-      line: {
-        fill: true,
-        tension: 0,
-        borderWidth: 2,
-      },
-      point: {
-        radius: 0,
-      },
-    },
-    interaction: {
-      intersect: false,
-      mode: 'nearest',
-      axis: 'x',
-    },
-    tooltips: {
-      mode: 'label',
-      intersect: false,
-      callbacks: {
-        title: (context) => {
-          // Retrieve user language
-          const userLanguage = navigator.language;
-
-          // Configure dateTime format to display like DD/MM/YYYY hh:mm:ss (for FR) or MM/DD/YY, hh:mm:ss (for US)
-          const dateTimeFormat = new Intl.DateTimeFormat(userLanguage, {
-            hourCycle: 'h23',
-            timeStyle: 'medium',
-            dateStyle: 'short',
-          });
-
-          // Retrieve user local time zone
-          const timeZoneOffset =
-            (new Date(context[0].label).getTimezoneOffset() / 60) * -1;
-          const sign = timeZoneOffset > 0 ? '+' : '';
-
-          // Format title like DD/MM/YYYY hh:mm:ss UTC+1 (for FR) or MM/DD/YY, hh:mm:ss UTC-2 (for US)
-          const title = `${dateTimeFormat.format(
-            new Date(context[0].label),
-          )} UTC${sign}${timeZoneOffset}`;
-          return title;
+    options: {
+      elements: {
+        line: {
+          fill: true,
+          tension: 0,
+          borderWidth: 2,
+        },
+        point: {
+          radius: 0,
         },
       },
-    },
-    scales: {
-      yAxes: [
-        {
+      plugins: {
+        legend: {
+          position: 'bottom',
+          display: true,
+        },
+        interaction: {
+          intersect: false,
+          mode: 'nearest',
+          axis: 'x',
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+            title: (context) => {
+              // Retrieve user language
+              const userLanguage = navigator.language;
+              // Configure dateTime format to display like DD/MM/YYYY hh:mm:ss (for FR) or MM/DD/YY, hh:mm:ss (for US)
+              const dateTimeFormat = new Intl.DateTimeFormat(userLanguage, {
+                hourCycle: 'h23',
+                timeStyle: 'medium',
+                dateStyle: 'short',
+              });
+
+              // Retrieve user local time zone
+              const timeZoneOffset =
+                (new Date(context[0].parsed.x).getTimezoneOffset() / 60) * -1;
+              const sign = timeZoneOffset > 0 ? '+' : '';
+
+              // Format title like DD/MM/YYYY hh:mm:ss UTC+1 (for FR) or MM/DD/YY, hh:mm:ss UTC-2 (for US)
+              const title = `${dateTimeFormat.format(
+                new Date(context[0].parsed.x),
+              )} UTC${sign}${timeZoneOffset}`;
+              return title;
+            },
+          },
+        },
+      },
+      scales: {
+        y: {
           display: true,
           type: 'linear',
           position: 'left',
-          ticks: {
-            min: 0,
-            beginAtZero: true,
-          },
-          scaleLabel: {
+          min: 0,
+          beginAtZero: true,
+          title: {
             display: true,
           },
-          gridLines: {
+          grid: {
             drawBorder: true,
             display: false,
           },
         },
-      ],
-      xAxes: [
-        {
+        x: {
           display: true,
-          gridLines: {
+          grid: {
             offsetGridLines: true,
             display: false,
           },
@@ -122,8 +122,14 @@ export const CHART = {
                 : '';
             },
           },
+          time: {
+            displayFormats: {
+              hour: 'YYYY-MM-DD HH:MM',
+            },
+          },
+          type: 'time',
         },
-      ],
+      },
     },
   },
   units: ['b', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb'],
