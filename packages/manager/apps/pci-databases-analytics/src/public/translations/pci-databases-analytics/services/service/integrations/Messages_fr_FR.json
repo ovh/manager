@@ -18,6 +18,15 @@
   "addIntegrationToastErrorTitle": "",
   "addIntegrationToastSuccessTitle": "",
   "addIntegrationToastSuccessDescription": "",
-  "addIntegrationTitle": "",
-  "addIntegrationDescription": ""
+  "addIntegrationTitle": "Ajouter une intégration",
+  "addIntegrationDescription": "",
+  "addIntegrationInputTypeLabel": "Type d'intégration",
+  "addIntegrationInputTypePlaceholder": "Selectionnez un type d'intégration",
+  "integrationTypeDescription-grafanaDashboard": "Visualiser les métriques sur un tableau de bord Grafana",
+  "integrationTypeDescription-grafanaDatasource": "Visualiser les données dans Grafana",
+  "addIntegrationInputSourceLabel": "Service source",
+  "addIntegrationInputSourcePlaceholder": "Selectionnez un service",
+  "addIntegrationInputDestinationLabel": "Service desctination",
+  "addIntegrationInputDestinationPlaceholder": "Selectionnez un service",
+  "addIntegrationButtonAdd": "Ajouter"
 }
