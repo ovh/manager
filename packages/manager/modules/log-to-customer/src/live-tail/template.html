@@ -71,7 +71,7 @@
                 <oui-button
                     data-ng-if="$ctrl.logAccountStreams.length > 0 && $ctrl.hasAtLeastOneDataStream"
                     data-variant="secondary"
-                    data-disabled="true"
+                    data-ng-click="$ctrl.goToStreamListingPage()"
                 >
                     <span data-translate="log_button_transfer_stream"></span>
                 </oui-button>

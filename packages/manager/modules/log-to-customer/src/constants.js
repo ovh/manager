@@ -36,7 +36,12 @@ export const LOG_KEYS = {
   auditID: 'message.audit_auditID',
 };
 
+export const RETENTION = {
+  FORTY_FIVE_DAYS: 'P45D',
+};
+
 export default {
   LOG_KEYS,
   DATA_PLATFORM_GUIDE,
+  RETENTION,
 };
