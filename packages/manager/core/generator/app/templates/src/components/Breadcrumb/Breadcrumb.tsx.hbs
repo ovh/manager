@@ -1,9 +1,9 @@
 import React from 'react';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/breadcrumb/react';
 import {
   useBreadcrumb,
   BreadcrumbProps,
 } from '@ovh-ux/manager-react-core-application';
+import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 
 function Breadcrumb({ rootLabel }: BreadcrumbProps): JSX.Element {
   const breadcrumbItems = useBreadcrumb({ rootLabel, appName:'{{appName}}' });

@@ -42,7 +42,7 @@ export const ErrorBanner = ({
           <OsdsText color={ODS_THEME_COLOR_INTENT.error}>
             {t('manager_error_page_default')} <br />
             {error?.data?.message && <strong>{error.data.message}</strong>}
-            {error?.headers['x-ovh-queryid'] && (
+            {error?.headers?.['x-ovh-queryid'] && (
               <p>
                 {t('manager_error_page_detail_code')}
                 {error.headers['x-ovh-queryid']}
