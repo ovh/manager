@@ -83,5 +83,6 @@
   "dedicatedCloud_datacenters_commercial_name_NSX-T-WITHOUT-NSX": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-VROPS-WITHOUT-NSX": "NSX com vROps",
   "dedicatedCloud_datacenters_migration_banner_first": "Fim de vida do componente VMware NSX-V a 15 de janeiro de 2024: consulte o e-mail enviado em julho/agosto de 2023 para conhecer as modalidades de migração. Para mais pormenores técnicos, <a href=\"{{href}}\" target=\"_blank\">consulte os nossos manuais</a>.",
-  "dedicatedCloud_datacenters_migration_banner_second": "DESATIVAÇÃO IMINENTE do componente VMware NSX-V, a 15 de janeiro de 2024. Consulte <a href=\"{{href}}\" target=\"_blank\">os nossos manuais de migração</a> para obter mais informações."
+  "dedicatedCloud_datacenters_migration_banner_second": "DESATIVAÇÃO IMINENTE do componente VMware NSX-V, a 15 de janeiro de 2024. Consulte <a href=\"{{href}}\" target=\"_blank\">os nossos manuais de migração</a> para obter mais informações.",
+  "dedicatedCloud_datacenters_migration_banner": "Descontinuação do componente VMware NSX-V: para mais informações, <a href=\"{{href}}\" target=\"_blank\">consulte os nossos guias</a> sobre migração."
 }
