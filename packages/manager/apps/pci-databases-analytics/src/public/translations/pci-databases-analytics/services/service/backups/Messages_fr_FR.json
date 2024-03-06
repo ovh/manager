@@ -6,5 +6,5 @@
   "tableHeadLocation": "Localisation",
   "tableHeadCreationDate": "Date de création",
   "tableHeadNExpiryDate": "Date d'expiration",
-  "tableHeadStatus": "Status"
+  "tableHeadStatus": "Statut"
 }

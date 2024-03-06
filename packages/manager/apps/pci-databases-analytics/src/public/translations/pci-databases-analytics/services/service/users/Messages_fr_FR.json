@@ -6,7 +6,7 @@
   "tableHeadGroup": "Groupe",
   "tableHeadRoles": "Rôles",
   "tableHeadCreationDate": "Date de création",
-  "tableHeadStatus": "Status",
+  "tableHeadStatus": "Statut",
   "tableActionsMenuEdit": "Modifier",
   "tableActionsMenuNotImplementedYet": "Cette fonctionnalité n'est pas encore implémentée",
   "tableActionsMenuResetPassword": "Regénérer le mot de passe",

@@ -34,6 +34,7 @@ const Backups = () => {
     <>
       <H2 className="mb-2">{t('title')}</H2>
       <P className="mb-2">{t('description')}</P>
+
       {backupsQuery.isSuccess ? (
         <DataTable
           columns={columns}
