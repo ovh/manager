@@ -42,7 +42,6 @@ import 'script-loader!angular-translate/dist/angular-translate-loader-partial/an
 import 'ng-slide-down';
 import 'script-loader!matchmedia-ng/matchmedia-ng.js';
 import 'angular-aria';
-import 'script-loader!chart.js/dist/Chart.min.js';
 import 'script-loader!messenger/build/js/messenger.min.js';
 import 'script-loader!filesize/lib/filesize.js';
 import 'script-loader!angular-websocket/dist/angular-websocket';
@@ -60,6 +59,7 @@ import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
+import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
@@ -87,7 +87,6 @@ import ovhManagerNetapp from '@ovh-ux/manager-netapp';
 import ovhManagerSupport from '@ovh-ux/manager-support';
 import ovhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
-import chartjs from 'angular-chart.js';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
 import ovhManagerFilters from '@ovh-ux/manager-filters';
@@ -158,7 +157,6 @@ export default async (containerEl, shellClient) => {
         registerAtInternet(shellClient.tracking),
         ovhManagerAtInternetConfiguration,
         ovhManagerBilling,
-        chartjs,
         'controllers',
         cdn,
         dedicatedCloud,
@@ -182,6 +180,7 @@ export default async (containerEl, shellClient) => {
         ngAtInternetUiRouterPlugin,
         ngOvhApiWrappers,
         ngOvhBrowserAlert,
+        ngOvhChart,
         ngOvhCloudUniverseComponents,
         ngOvhFeatureFlipping,
         ngOvhHttp,

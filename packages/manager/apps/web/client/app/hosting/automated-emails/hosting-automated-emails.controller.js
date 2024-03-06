@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
+import { formatDistanceToNow, parse } from 'date-fns';
 
 export default class HostingTabAutomatedEmailsCtrl {
   /* @ngInject */
@@ -11,11 +12,12 @@ export default class HostingTabAutomatedEmailsCtrl {
     $timeout,
     $translate,
     atInternet,
+    DATEFNS_LOCALE,
     HostingAutomatedEmails,
     Alerter,
     $filter,
     WucUser,
-    WucChartjsFactory,
+    ChartFactory,
   ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
@@ -24,9 +26,10 @@ export default class HostingTabAutomatedEmailsCtrl {
     this.atInternet = atInternet;
     this.HostingAutomatedEmails = HostingAutomatedEmails;
     this.Alerter = Alerter;
+    this.DATEFNS_LOCALE = DATEFNS_LOCALE;
     this.$filter = $filter;
     this.WucUser = WucUser;
-    this.WucChartjsFactory = WucChartjsFactory;
+    this.WucChartjsFactory = ChartFactory;
 
     this.HOSTING_AUTOMATED_EMAILS = {
       type: 'line',
@@ -36,65 +39,80 @@ export default class HostingTabAutomatedEmailsCtrl {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        legend: {
-          position: 'bottom',
-          display: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            display: true,
+          },
+          pan: {
+            enabled: true,
+            mode: 'xy',
+          },
+          zoom: {
+            zoom: {
+              enabled: true,
+              wheel: {
+                enabled: true,
+              },
+              pinch: {
+                enabled: true,
+              },
+              mode: 'xy',
+              limits: {
+                max: 10,
+                min: 0.5,
+              },
+            },
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+            callbacks: {
+              title(data) {
+                const date = parse(
+                  get(head(data), 'label'),
+                  'PPpp',
+                  new Date(),
+                );
+                return formatDistanceToNow(date, {
+                  addSuffix: true,
+                  locale: DATEFNS_LOCALE,
+                });
+              },
+            },
+          },
         },
         elements: {
           point: {
             radius: 0,
           },
         },
-        tooltips: {
-          mode: 'label',
-          intersect: false,
-          callbacks: {
-            title(data) {
-              return moment(get(head(data), 'xLabel')).fromNow();
-            },
-          },
-        },
-        pan: {
-          enabled: true,
-          mode: 'xy',
-        },
-        zoom: {
-          enabled: true,
-          mode: 'xy',
-          limits: {
-            max: 10,
-            min: 0.5,
-          },
-        },
         scales: {
-          yAxes: [
-            {
+          y: {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            title: {
               display: true,
-              position: 'left',
-              scaleLabel: {
-                display: true,
-              },
-              gridLines: {
-                drawBorder: true,
-                display: true,
+            },
+            grid: {
+              drawBorder: true,
+              display: true,
+            },
+          },
+          x: {
+            type: 'time',
+            position: 'bottom',
+            grid: {
+              drawBorder: true,
+              display: false,
+            },
+            time: {
+              displayFormats: {
+                hour: 'LT',
               },
             },
-          ],
-          xAxes: [
-            {
-              type: 'time',
-              position: 'bottom',
-              gridLines: {
-                drawBorder: true,
-                display: false,
-              },
-              time: {
-                displayFormats: {
-                  hour: 'LT',
-                },
-              },
-            },
-          ],
+          },
         },
       },
     };
@@ -178,10 +196,6 @@ export default class HostingTabAutomatedEmailsCtrl {
         this.stats.chart = new this.WucChartjsFactory(
           angular.copy(this.HOSTING_AUTOMATED_EMAILS),
         );
-        this.stats.chart.setAxisOptions('yAxes', {
-          type: 'linear',
-        });
-
         this.stats.chart.addSerie(
           this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_emails_sent'),
           data.data.reverse().map((d) => ({

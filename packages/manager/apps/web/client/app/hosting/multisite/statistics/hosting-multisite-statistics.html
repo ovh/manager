@@ -54,7 +54,9 @@
         data-ng-if="!$ctrl.isLoadingStatistics && $ctrl.chart"
         class="chart-container"
         style="height: 320px;"
-        data-wuc-chartjs="$ctrl.chart"
+        data-chart
+        data-chartjs="$ctrl.chart"
+        data-auto-reload="true"
     ></div>
     <oui-message data-ng-if="$ctrl.migration" type="info">
         <span

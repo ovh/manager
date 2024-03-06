@@ -1,15 +1,13 @@
 import assignIn from 'lodash/assignIn';
-import head from 'lodash/head';
-import isUndefined from 'lodash/isUndefined';
 import last from 'lodash/last';
 import merge from 'lodash/merge';
 import findIndex from 'lodash/findIndex';
 import uniqueId from 'lodash/uniqueId';
 import angular from 'angular';
 
-export default /* @ngInject */ (PCI_CHARTS) => {
+export default /* @ngInject */ (CHARTS) => {
   const ChartjsFactory = function ChartjsFactory(data) {
-    assignIn(this, angular.copy(PCI_CHARTS.squeleton), data);
+    assignIn(this, angular.copy(CHARTS.squeleton), data);
   };
 
   /**
@@ -27,10 +25,11 @@ export default /* @ngInject */ (PCI_CHARTS) => {
           label: name,
           data,
         },
-        PCI_CHARTS.colors[this.data.datasets.length % PCI_CHARTS.colors.length],
+        CHARTS.colors[this.data.datasets.length % CHARTS.colors.length],
         opts.dataset,
       ),
     );
+
     return last(this.data.datasets);
   };
 
@@ -58,7 +57,7 @@ export default /* @ngInject */ (PCI_CHARTS) => {
           label: name,
           data,
         },
-        PCI_CHARTS.colors[datasetIndex % PCI_CHARTS.colors.length],
+        CHARTS.colors[datasetIndex % CHARTS.colors.length],
         options.dataset,
       );
       this.data.hash = uniqueId();
@@ -76,33 +75,25 @@ export default /* @ngInject */ (PCI_CHARTS) => {
     name,
     callback,
   ) {
-    if (!this.options.tooltips) {
-      this.options.tooltips = {};
+    if (!this.options.plugins.tooltip) {
+      this.options.plugins.tooltip = {};
     }
-    if (!this.options.tooltips.callbacks) {
-      this.options.tooltips.callbacks = {};
+    if (!this.options.plugins.tooltip.callbacks) {
+      this.options.plugins.tooltip.callbacks = {};
     }
-    this.options.tooltips.callbacks[name] = callback;
+    this.options.plugins.tooltip.callbacks[name] = callback;
   };
 
   /**
    * Set axis options (http://www.chartjs.org/docs/latest/axes/)
    * @param           {String} axis    One of yAxes or xAxes
    * @param           {object} options Options to merge
-   * @param {Number|undefined} index Index of axis or all
    */
   ChartjsFactory.prototype.setAxisOptions = function setAxisOptions(
     axis,
     options,
-    index,
   ) {
-    if (isUndefined(index)) {
-      this.options.scales[axis].forEach((data) => {
-        merge(data, options);
-      });
-    } else {
-      merge(this.options.scales[index], options);
-    }
+    merge(this.options.scales[axis], options);
   };
 
   /**
@@ -110,13 +101,7 @@ export default /* @ngInject */ (PCI_CHARTS) => {
    * @param {String} label Label to set
    */
   ChartjsFactory.prototype.setYLabel = function setYLabel(label) {
-    if (
-      this.options.scales.yAxes.length &&
-      head(this.options.scales.yAxes) &&
-      head(this.options.scales.yAxes).scaleLabel
-    ) {
-      this.options.scales.yAxes[0].scaleLabel.labelString = label;
-    }
+    this.options.scales.y.title.text = label;
   };
 
   /**
@@ -124,10 +109,10 @@ export default /* @ngInject */ (PCI_CHARTS) => {
    * @param {String} label Label to set
    */
   ChartjsFactory.prototype.setTitle = function setTitle(title) {
-    if (!this.options.title) {
-      this.options.title = { display: true };
+    if (!this.options.plugins.title) {
+      this.options.plugins.title = { display: true };
     }
-    this.options.title.text = title;
+    this.options.plugins.title.text = title;
   };
 
   return ChartjsFactory;

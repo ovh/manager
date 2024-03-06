@@ -8,11 +8,13 @@ export default class IpLoadBalancerGraphCtrl {
   /* @ngInject */
   constructor(
     $stateParams,
+    ChartFactory,
     CucControllerHelper,
     IpLoadBalancerConstant,
     IpLoadBalancerMetricsService,
   ) {
     this.$stateParams = $stateParams;
+    this.ChartFactory = ChartFactory;
     this.CucControllerHelper = CucControllerHelper;
     this.IpLoadBalancerConstant = IpLoadBalancerConstant;
     this.IpLoadBalancerMetricsService = IpLoadBalancerMetricsService;
@@ -37,40 +39,50 @@ export default class IpLoadBalancerGraphCtrl {
   }
 
   initGraph() {
-    this.data = {};
+    this.data = {
+      datasets: [],
+    };
     this.metricsList = this.IpLoadBalancerConstant.graphs;
-    this.options = {
-      scales: {
-        xAxes: [
-          {
-            gridLines: {
+    const config = {
+      data: {
+        datasets: [],
+      },
+      options: {
+        scales: {
+          x: {
+            grid: {
               display: false,
             },
           },
-        ],
-        yAxes: [
-          {
+          y: {
             id: 'y-axe',
             type: 'linear',
-            ticks: {
-              min: 0,
-              beginAtZero: true,
-            },
+            min: 0,
+            beginAtZero: true,
           },
-        ],
-      },
-      elements: {
-        line: {
-          fill: 'bottom',
-          backgroundColor: '#59d2ef',
-          borderColor: '#00a2bf',
-          borderWidth: 4,
         },
-        point: {
-          radius: 0,
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        elements: {
+          line: {
+            fill: true,
+            backgroundColor: '#59d2ef',
+            borderColor: '#00a2bf',
+            borderWidth: 4,
+            tension: 0.5,
+          },
+          point: {
+            radius: 0,
+          },
         },
       },
     };
+
+    this.connChart = new this.ChartFactory(config);
+    this.reqmChart = new this.ChartFactory(config);
   }
 
   loadGraphs() {
@@ -108,12 +120,20 @@ export default class IpLoadBalancerGraphCtrl {
       downsample: `${downsample}-${downsampleAggregation}`,
     }).then((data) => {
       if (data.length && data[0].dps) {
-        return {
-          data: {
+        const labels = this.constructor.humanizeLabels(keys(data[0].dps));
+        const datasets = [
+          {
             data: values(data[0].dps),
-            labels: this.constructor.humanizeLabels(keys(data[0].dps)),
           },
-        };
+        ];
+        if (metric === 'conn') {
+          this.connChart.data.labels = labels;
+          this.connChart.data.datasets = datasets;
+        }
+        if (metric === 'reqm') {
+          this.reqmChart.data.labels = labels;
+          this.reqmChart.data.datasets = datasets;
+        }
       }
       return {};
     });

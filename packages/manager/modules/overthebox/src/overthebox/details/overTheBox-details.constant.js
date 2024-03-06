@@ -1,52 +1,44 @@
-import head from 'lodash/head';
-import get from 'lodash/get';
-import 'moment';
-
 export default {
   chart: {
+    data: { datasets: [] },
     options: {
       responsive: true,
-      legend: {
-        position: 'bottom',
-        display: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          display: true,
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+        },
       },
       elements: {
+        line: {
+          tension: 0.5,
+        },
         point: {
           radius: 0,
         },
       },
       scales: {
-        xAxes: [
-          {
-            type: 'time',
-            position: 'bottom',
-            gridLines: {
-              drawBorder: true,
-              display: false,
-            },
+        x: {
+          type: 'time',
+          position: 'bottom',
+          grid: {
+            drawBorder: true,
+            display: false,
           },
-        ],
-        yAxes: [
-          {
+        },
+        y: {
+          display: true,
+          position: 'left',
+          title: {
             display: true,
-            position: 'left',
-            scaleLabel: {
-              display: true,
-            },
-            gridLines: {
-              drawBorder: true,
-              display: false,
-            },
           },
-        ],
-      },
-      tooltips: {
-        mode: 'label',
-        intersect: false,
-        callbacks: {
-          title(data) {
-            const timestamp = moment(get(head(data), 'xLabel'));
-            return timestamp.fromNow();
+          grid: {
+            drawBorder: true,
+            display: false,
           },
         },
       },

@@ -1,3 +1,4 @@
+import { format, parse } from 'date-fns';
 import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
 import isEmpty from 'lodash/isEmpty';
@@ -24,7 +25,8 @@ export default class TelecomTelephonyAliasHomeController {
     $uibModal,
     atInternet,
     OvhApiTelephony,
-    TucChartjsFactory,
+    ChartFactory,
+    DATEFNS_LOCALE,
     TucToast,
     tucVoipService,
     tucVoipServiceAlias,
@@ -38,8 +40,9 @@ export default class TelecomTelephonyAliasHomeController {
     this.$translate = $translate;
     this.$uibModal = $uibModal;
     this.atInternet = atInternet;
+    this.DATEFNS_LOCALE = DATEFNS_LOCALE;
     this.OvhApiTelephony = OvhApiTelephony;
-    this.TucChartjsFactory = TucChartjsFactory;
+    this.TucChartjsFactory = ChartFactory;
     this.TucToast = TucToast;
     this.tucVoipService = tucVoipService;
     this.tucVoipServiceAlias = tucVoipServiceAlias;
@@ -242,7 +245,7 @@ export default class TelecomTelephonyAliasHomeController {
     }
 
     if (isEmpty(xAxisKeys)) {
-      this.consumption.chart.options.scales.xAxes = [];
+      this.consumption.chart.options.scales.x = {};
     } else {
       this.consumption.chart.addSerie(
         this.$translate.instant('telephony_alias_consumption_outgoing_calls'),
@@ -256,6 +259,13 @@ export default class TelecomTelephonyAliasHomeController {
         datasetConfiguration,
       );
     }
+
+    this.consumption.chart.setTooltipCallback('title', (item) => {
+      const date = parse(get(item[0], 'label'), 'PPpp', new Date());
+      return format(date, 'P', {
+        locale: this.DATEFNS_LOCALE,
+      });
+    });
   }
 
   deleteConfiguration() {
