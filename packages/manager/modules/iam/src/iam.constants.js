@@ -40,6 +40,13 @@ const ENTITY = {
 const ENTITY_NAME_PATTERN = /^[a-zA-Z0-9-/_+]*$/;
 const ENTITY_DESCRIPTION_PATTERN = /^[a-zA-Z0-9-/_+ ]*$/;
 
+const IDENTITY_TYPE = {
+  USER: 'user',
+  GROUP: 'group',
+  ACCOUNT: 'account',
+  SERVICE_ACCOUNT: 'credential',
+};
+
 const GUIDE = {
   IAM: {
     DEFAULT:
@@ -294,6 +301,7 @@ export {
   ENTITY,
   ENTITY_DESCRIPTION_PATTERN,
   ENTITY_NAME_PATTERN,
+  IDENTITY_TYPE,
   FEATURE,
   GUIDE,
   OVH_MANAGED_PERMISSIONS_GROUP,

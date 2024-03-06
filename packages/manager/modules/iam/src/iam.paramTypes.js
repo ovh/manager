@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash-es';
 
-import { ENTITY } from './iam.constants';
+import { ENTITY, IDENTITY_TYPE } from './iam.constants';
 
 /**
  * @description
@@ -48,6 +48,76 @@ const decodeUrn = (string) => {
     entity,
     components: splittedComponents,
     componentsString: splittedComponents.slice(1).join(':'),
+  };
+};
+
+const urnIdentityRegExp = /^urn:v([0-9]):(eu|ca|us|labeu):([a-z]+):([a-z]+):(.+?)$/;
+
+/**
+ * @typedef {Object} UrnIdentityObject
+ * @property {string} version - 1,2
+ * @property {string} region - eu, us, ca
+ * @property {string} entity - identity
+ * @property {string} type - user, account, group, credential
+ * @property {string} account - xx1111, xx11111-ovh
+ * @property {string} id - username, xx11111, usergroupname
+ * @property {string} urn - URN
+ */
+
+/**
+ * Decode a urn identity object from a string
+ * @param {string} urn
+ * @returns {UrnIdentityObject}
+ */
+const decodeIdentityUrn = (urn) => {
+  const [match, version, region, entity, type, value] =
+    urnIdentityRegExp.exec(urn) || [];
+  if (!match) {
+    return null;
+  }
+  let account;
+  let id;
+
+  switch (type) {
+    case IDENTITY_TYPE.USER:
+      {
+        const [acc, userId] = value.split('/');
+        account = acc;
+        id = userId;
+      }
+      break;
+    case IDENTITY_TYPE.GROUP:
+      {
+        const [acc, groupId] = value.split('/');
+        account = acc;
+        id = groupId;
+      }
+      break;
+    case IDENTITY_TYPE.ACCOUNT:
+      account = value;
+      id = value;
+      break;
+    case IDENTITY_TYPE.SERVICE_ACCOUNT:
+      {
+        const [acc, client] = value.split('/');
+        const index = client.indexOf('-');
+        const clientId = client.substring(index + 1);
+        account = acc;
+        id = clientId;
+      }
+      break;
+    default:
+      break;
+  }
+
+  return {
+    version: parseInt(version, 10),
+    region,
+    entity,
+    type,
+    account,
+    id,
+    urn,
   };
 };
 
@@ -106,7 +176,7 @@ const uuid = {
   type: uuidType,
 };
 
-export { decodeUrn, encodeUrn, uuidType, urnType };
+export { decodeUrn, encodeUrn, decodeIdentityUrn, uuidType, urnType };
 
 export default {
   urn,

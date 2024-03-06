@@ -1,0 +1,12 @@
+{
+  "iam_identities_users_title": "Utilisateurs locaux",
+  "iam_identities_users_empty": "Aucun utilisateur local",
+  "iam_identities_users_user": "Nom",
+  "iam_identities_users_group": "Groupe",
+  "iam_identities_users_email": "E-mail",
+  "iam_identities_users_status": "Statut",
+  "iam_identities_users_description": "Description",
+  "iam_identities_users_status_OK": "Activé",
+  "iam_identities_users_status_DISABLED": "Désactivé",
+  "iam_identities_users_status_PASSWORD_CHANGE_REQUIRED": "Changement de mot de passe requis"
+}
