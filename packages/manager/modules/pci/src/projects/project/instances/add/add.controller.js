@@ -66,6 +66,7 @@ export default class PciInstancesAddController {
       WINDOWS_PRIVATE_MODE_LICENSE_GUIDE.DEFAULT;
     this.instanceModeEnum = INSTANCE_MODES_ENUM;
     this.PUBLIC_MODE = PUBLIC_MODE;
+    this.PRIVATE_MODE = PRIVATE_MODE;
     this.currency = coreConfig.getUser().currency.symbol;
     this.PciProjectAdditionalIpService = PciProjectAdditionalIpService;
     this.FLOATING_IP_AVAILABILITY_INFO_LINK = FLOATING_IP_AVAILABILITY_INFO_LINK;
