@@ -10,7 +10,7 @@ export default {
   },
   bindings: {
     logApiUrl: '<',
-    logKindApiUrl: '<',
+    logKind: '<',
     logKeys: '<',
   },
 };

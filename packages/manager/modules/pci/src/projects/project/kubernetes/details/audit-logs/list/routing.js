@@ -11,6 +11,12 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
       kind: /* @ngInject */ ($transition$) => $transition$.params().kind,
+      goBack: /* @ngInject  */ ($state, kind) => () =>
+        $state.go(
+          'pci.projects.project.kubernetes.details.logs',
+          { kind },
+          { reload: true },
+        ),
     },
   });
 };

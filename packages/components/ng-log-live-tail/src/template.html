@@ -2,18 +2,6 @@
     <span data-ng-bind="$ctrl.errorMessage"></span>
 </oui-message>
 
-<div class="my-2" data-ng-if="$ctrl.logKinds.length > 1">
-    <button
-        data-ng-repeat="kind in $ctrl.logKinds"
-        class="oui-button mr-1"
-        data-ng-class="{'oui-button_primary' : $ctrl.selectedLogKind === kind.name,
-            'oui-button_secondary' : $ctrl.selectedLogKind !== kind.name}"
-        data-ng-click="$ctrl.switchLogKind(kind.name)"
-    >
-        <span data-ng-bind="kind.displayName"></span>
-    </button>
-</div>
-
 <div data-ng-transclude="description" class="my-2"></div>
 
 <div class="d-flex w-100 flex-wrap">

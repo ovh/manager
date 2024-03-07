@@ -26,16 +26,18 @@ export default class LogLiveTailCtrl {
 
     this.keys = Object.keys(this.logKeys);
     this.setUrlTimeout = null;
+  }
 
-    this.logKinds = [];
-    this.LogLiveTail.getLogKinds(this.logKindApiUrl)
-      .then((data) => {
-        this.logKinds = data;
-        this.selectedLogKind = data[0]?.name;
-      })
-      .then(() => this.generateTempUrlSource())
-      .then(() => !this.errorMessage && this.startLog())
-      .catch(this.setErrorMessage);
+  $onChanges(changes) {
+    if (changes.logKind) {
+      this.$timeout(() => {
+        this.clearInterval();
+        this.clearSession();
+        this.generateTempUrlSource()
+          .then(() => !this.errorMessage && this.startLog())
+          .catch(this.setErrorMessage);
+      });
+    }
   }
 
   $onDestroy() {
@@ -49,15 +51,6 @@ export default class LogLiveTailCtrl {
     if (this.setUrlTimeout) {
       this.$timeout.cancel(this.setUrlTimeout);
     }
-  }
-
-  switchLogKind(kind) {
-    this.clearInterval();
-    this.clearSession();
-    this.selectedLogKind = kind;
-    this.generateTempUrlSource().then(
-      () => !this.errorMessage && this.startLog(),
-    );
   }
 
   handleSearch() {
@@ -176,10 +169,7 @@ export default class LogLiveTailCtrl {
     this.errorMessage = null;
     this.url = null;
 
-    return this.LogLiveTail.getLogSourceUrl(
-      this.logApiUrl,
-      this.selectedLogKind,
-    )
+    return this.LogLiveTail.getLogSourceUrl(this.logApiUrl, this.logKind)
       .then((data) => {
         this.url = data.url;
         this.clearTimeout();
