@@ -10,7 +10,20 @@
         </div>
     </div>
 
-    <oui-datagrid data-rows-loader="ctrl.loadPaginated($config)">
+    <oui-datagrid
+        id="{{:: ctrl.datagridId }}"
+        data-rows-loader="ctrl.loadPaginated($config)"
+    >
+        <oui-datagrid-topbar>
+            <oui-button
+                type="button"
+                data-disabled="ctrl.isLoading"
+                class="float-right"
+                data-on-click="ctrl.refreshTable()"
+            >
+                <span class="oui-icon oui-icon-refresh"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
         <oui-datagrid-column
             data-title="'hosting_tab_TASKS_table_state' | translate"
             data-property="function"

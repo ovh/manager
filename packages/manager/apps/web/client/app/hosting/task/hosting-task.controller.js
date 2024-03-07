@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { HOSTING_TASK_TABLE_ID } from './hosting-task.constants';
 
 angular.module('App').controller(
   'HostingTabTasksCtrl',
@@ -11,6 +12,7 @@ angular.module('App').controller(
       atInternet,
       Alerter,
       Hosting,
+      ouiDatagridService,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -19,6 +21,8 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.Hosting = Hosting;
       this.$q = $q;
+      this.ouiDatagridService = ouiDatagridService;
+      this.datagridId = HOSTING_TASK_TABLE_ID;
     }
 
     $onInit() {
@@ -42,6 +46,7 @@ angular.module('App').controller(
     }
 
     loadPaginated({ pageSize, offset }) {
+      this.isLoading = true;
       return this.$q
         .all({
           hosting: this.Hosting.getHosting(this.$stateParams.productId),
@@ -68,11 +73,14 @@ angular.module('App').controller(
             this.$scope.alerts.main,
           );
           return { meta: { totalCount: 0 } };
+        })
+        .finally(() => {
+          this.isLoading = false;
         });
     }
 
     refreshTable() {
-      this.$scope.$broadcast('paginationServerSide.reload', 'tasksTable');
+      return this.ouiDatagridService.refresh(this.datagridId, true);
     }
   },
 );
