@@ -14,7 +14,7 @@ import { Table } from '@ovhcloud/manager-components';
 import { OsdsText, OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components/';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import appConfig from '@/kms.config';
+import appConfig from '@/key-management-system.config';
 
 interface TableContainer {
   readonly data: any[];
