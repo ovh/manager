@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix-app",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "private": true,
   "description": "OVHcloud Nutanix app",
   "repository": {
@@ -26,7 +26,7 @@
     "@ovh-ux/manager-error-page": "^2.4.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.0",
     "@ovh-ux/manager-nutanix": "^1.15.0",
-    "@ovh-ux/ng-at-internet": "^5.11.4",
+    "@ovh-ux/ng-at-internet": "^5.11.5",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.1",

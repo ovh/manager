@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.47.0...@ovh-ux/manager-container-app@0.47.1) (2024-03-07)
+
+
+### Reverts
+
+* Revert "feat(*): pci vouchers app in reactjs" ([b62c1a8](https://github.com/ovh/manager/commit/b62c1a8b1cfe63dbc420b660667209c324ffa9ab))
+
+
+
+
+
 # [0.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.46.2...@ovh-ux/manager-container-app@0.47.0) (2024-03-07)
 
 

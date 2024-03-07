@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.29.0...@ovh-ux/manager-pci@6.29.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* **pci:** remove call to lab ([77332cb](https://github.com/ovh/manager/commit/77332cb317c7a2c0f84204299e60623d3243f038))
+
+
+### Reverts
+
+* Revert "feat(*): pci vouchers app in reactjs" ([b62c1a8](https://github.com/ovh/manager/commit/b62c1a8b1cfe63dbc420b660667209c324ffa9ab))
+
+
+
+
+
 # [6.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.28.0...@ovh-ux/manager-pci@6.29.0) (2024-03-07)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-at-internet",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "private": true,
   "description": "ATInternet tracking library for OVHcloud.",
   "keywords": [
