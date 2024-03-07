@@ -71,7 +71,7 @@ export const CTAS = {
   ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/nutanix/',
   IN: 'https://www.ovhcloud.com/en-in/hosted-private-cloud/nutanix/',
   WS: 'https://www.ovhcloud.com/es/hosted-private-cloud/nutanix/',
-  US: 'https://us.ovhcloud.com/contact-sales/',
+  US: 'https://us.ovhcloud.com/hosted-private-cloud/nutanix/',
   DEFAULT: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
 };
 
