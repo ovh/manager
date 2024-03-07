@@ -79,31 +79,22 @@ const AddIntegration = ({
     },
   });
 
-  const onSubmit = model.form.handleSubmit(
-    (formValues) => {
-      addIntegration({
-        serviceId: service.id,
-        projectId,
-        engine: service.engine,
-        integration: {
-          type: formValues.type,
-          destinationServiceId: formValues.destinationServiceId,
-          sourceServiceId: formValues.sourceServiceId,
-          parameters:
-            'parameters' in formValues
-              ? (formValues.parameters as Record<string, string>)
-              : {},
-        },
-      });
-    },
-    (errors) => {
-      toast.toast({
-        title: 'Error',
-        variant: 'destructive',
-        description: JSON.stringify(errors),
-      });
-    },
-  );
+  const onSubmit = model.form.handleSubmit((formValues) => {
+    addIntegration({
+      serviceId: service.id,
+      projectId,
+      engine: service.engine,
+      integration: {
+        type: formValues.type,
+        destinationServiceId: formValues.destinationServiceId,
+        sourceServiceId: formValues.sourceServiceId,
+        parameters:
+          'parameters' in formValues
+            ? (formValues.parameters as Record<string, string>)
+            : {},
+      },
+    });
+  });
 
   useEffect(() => {
     if (!controller.open) model.form.reset();
@@ -132,26 +123,24 @@ const AddIntegration = ({
           (model.lists.sources.length === 0 ||
             model.lists.destinations.length === 0) && (
             <Alert variant="warning">
-              <AlertTitle>Pas de service disponible</AlertTitle>
-              <p>
-                Vous n'avez pas de service éligible pour créer cette
-                intégration. Veuillez créer un service ayant pour engine l'un de
-                ceux ci:
-              </p>
-              <ul className="list-inside list-disc">
-                {[
-                  ...new Set(
-                    [
-                      ...model.result.capability.sourceEngines,
-                      ...model.result.capability.destinationEngines,
-                    ].filter((e) => e !== service.engine),
-                  ),
-                ].map((engine) => (
-                  <li key={engine} className="list-item">
-                    <span>{engine}</span>
-                  </li>
-                ))}
-              </ul>
+              <AlertTitle>{t('addIntegrationNoServiceAlertTitle')}</AlertTitle>
+              <div className="text-xs">
+                <p>{t('addIntegrationNoServiceAlertDescription')}</p>
+                <ul className="list-inside list-disc">
+                  {[
+                    ...new Set(
+                      [
+                        ...model.result.capability.sourceEngines,
+                        ...model.result.capability.destinationEngines,
+                      ].filter((e) => e !== service.engine),
+                    ),
+                  ].map((engine) => (
+                    <li key={engine} className="list-item">
+                      <span>{engine}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </Alert>
           )}
 
