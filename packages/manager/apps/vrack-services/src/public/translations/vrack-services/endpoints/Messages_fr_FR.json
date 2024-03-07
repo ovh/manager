@@ -1,11 +1,11 @@
 {
   "onboardingTitle": "Vous n'avez pas encore crée de Service Endpoint",
   "onboardingDescription": "Exposez vos services managés OVHcloud sur le vRack avec la fonctionnalité Service Endpoint de vRack Services.",
-  "createEndpointButtonLabel": "Créer un service endpoint",
+  "createEndpointButtonLabel": "Créer un Service Endpoint",
   "createPageTitle": "Créer un Service Endpoint",
   "createPageDescription": "Le Service Endpoint vous permet d'exposer vos services managés par OVHcloud sur le vRack, via une ou plusieurs adresses IP, selon le type de service. L'adresse IP du Service Endpoint appartient à la plage d'adresses de service définie dans le sous-réseau sélectionné.",
-  "endpointCreationError": "Erreur lors de la création du service endpoint : {{error}}",
-  "emptyDataGridMessage": "Vous n'avez aucun service endpoint pour le moment",
+  "endpointCreationError": "Erreur lors de la création du Service Endpoint : {{error}}",
+  "emptyDataGridMessage": "Vous n'avez aucun Service Endpoint pour le moment",
   "serviceTypeLabel": "Type de service",
   "serviceTypePlaceholder": "Sélectionner votre type de service",
   "serviceNameLabel": "Nom du service",
@@ -18,8 +18,8 @@
   "managedServiceURN": "Nom du service",
   "serviceType": "Type de service",
   "actions": "",
-  "updateError": "Un problème est survenue lors de la mise-à-jour de votre service endpoint. Veuillez réessayer ultérieurement.",
-  "modalDeleteInputLabel": "Veuillez entrer le mot « TERMINATE » pour confirmer la suppression de votre service endpoint",
-  "modalDeleteHeadline": "Supprimer le service endpoint",
-  "modalDeleteDescription": "Si vous supprimez ce service endpoint, vous perdrez la connectivité au service associé."
+  "updateError": "Un problème est survenue lors de la mise-à-jour de votre Service Endpoint. Veuillez réessayer ultérieurement.",
+  "modalDeleteInputLabel": "Veuillez entrer le mot « TERMINATE » pour confirmer la suppression de votre Service Endpoint",
+  "modalDeleteHeadline": "Supprimer le Service Endpoint",
+  "modalDeleteDescription": "Si vous supprimez ce Service Endpoint, vous perdrez la connectivité au service associé."
 }
