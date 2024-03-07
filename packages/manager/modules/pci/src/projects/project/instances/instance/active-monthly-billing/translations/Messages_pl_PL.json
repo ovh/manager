@@ -1,9 +1,10 @@
 {
- "pci_projects_project_instances_instance_active-monthly-billing_title": "Przejdź na abonament miesięczny",
- "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Potwierdź",
- "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Anuluj",
- "pci_projects_project_instances_instance_active-monthly-billing_content": "Zmniejsz cenę o 50%, zmieniając abonament dla tej instancji na miesięczny (abonament płatny z góry).",
- "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "Otrzymasz natychmiast fakturę opiewającą na kwotę odpowiadającą liczbie dni do końca miesiąca.",
- "pci_projects_project_instances_instance_active-monthly-billing_success_message": "Zmieniłeś abonament dla instancji {{ instance }} na miesięczny.",
- "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "Wystąpił błąd podczas zmiany abonamentu na miesięczny dla instancji {{ instance }}: {{ message }}."
+  "pci_projects_project_instances_instance_active-monthly-billing_title": "Przejdź na abonament miesięczny",
+  "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Zatwierdź",
+  "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Anuluj",
+  "pci_projects_project_instances_instance_active-monthly-billing_content": "Obniż kwotę faktury, zmieniając płatność  za tę instancję na abonament na miesięczny.",
+  "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "Otrzymasz natychmiast fakturę opiewającą na kwotę odpowiadającą liczbie dni do końca miesiąca.",
+  "pci_projects_project_instances_instance_active-monthly-billing_success_message": "Zmieniłeś abonament dla instancji {{ instance }} na miesięczny.",
+  "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "Wystąpił błąd podczas zmiany abonamentu na miesięczny dla instancji {{instance}}: {{message}}.",
+  "pci_projects_project_instances_instance_active-monthly-billing_content_link": "Sprawdź ceny"
 }
