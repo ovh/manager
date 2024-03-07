@@ -55,6 +55,7 @@ export const registerPCINewState = (
           ovhShell.ux.showPreloader();
         }
       });
+      const $q = injector.get('$q');
       const translatePromise = injector.getAsync('$translate');
       const windowPromise = injector.getAsync('$window');
       const pciProjectsServicePromise = injector.getAsync('PciProjectsService');
@@ -67,7 +68,12 @@ export const registerPCINewState = (
       const trackProjectCreationErrorPromise = injector.getAsync(
         'trackProjectCreationError',
       );
-      const projectIdPromise = injector.getAsync('projectId');
+      let projectIdPromise;
+      try {
+        projectIdPromise = injector.getAsync('projectId');
+      } catch (e) {
+        projectIdPromise = $q.when('');
+      }
 
       return pciProjectsServicePromise.then((PciProjectsService) =>
         PciProjectsService.getDiscoveryProject().then((discoveryProject) => {
