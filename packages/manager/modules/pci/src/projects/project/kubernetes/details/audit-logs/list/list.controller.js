@@ -1,5 +1,10 @@
 export default class AuditLogsListCtrl {
   $onInit() {
-    this.logSubscriptionUrl = `/cloud/project/${this.projectId}/kube/${this.kubeId}/log/subscription`;
+    this.logSubscriptionApiData = {
+      url: `/cloud/project/${this.projectId}/kube/${this.kubeId}/log/subscription`,
+      params: {
+        kind: this.kind,
+      },
+    };
   }
 }

@@ -27,6 +27,8 @@ export default class LogToCustomerCtrl {
 
     this.hasAtLeastOneDataStream = false;
 
+    this.kind = this.kindInitValue;
+
     this.LogToCustomer.getDataStreams()
       .then(({ streams, streamCount }) => {
         this.logAccountStreams = streams;
@@ -38,7 +40,6 @@ export default class LogToCustomerCtrl {
   }
 
   goToStreamListingPage() {
-    // TODO audit will be passed from button switch in next PR
-    this.goToListingPage({ kind: 'audit' });
+    this.goToListingPage({ kind: this.kind });
   }
 }

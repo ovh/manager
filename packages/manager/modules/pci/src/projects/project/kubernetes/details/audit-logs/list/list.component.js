@@ -6,6 +6,7 @@ export default {
     projectId: '<',
     kubeId: '<',
     kind: '<',
+    goBack: '<',
   },
   controller,
   template,

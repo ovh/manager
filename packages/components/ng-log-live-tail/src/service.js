@@ -5,14 +5,6 @@ export default class LogLiveTailService {
     this.iceberg = iceberg;
   }
 
-  getLogKinds(url) {
-    return this.iceberg(url)
-      .query()
-      .expand('CachedObjectList-Pages')
-      .execute()
-      .$promise.then(({ data }) => data);
-  }
-
   getLogSourceUrl(source, kind) {
     return this.$http
       .post(source, {

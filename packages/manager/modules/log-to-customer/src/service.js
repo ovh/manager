@@ -18,7 +18,7 @@ export default class LogToCustomerService {
   icebergQuery(url) {
     return this.iceberg(url)
       .query()
-      .expand('CachedObjectList-Cursor')
+      .expand('CachedObjectList-Pages')
       .execute(null, true)
       .$promise.then(({ data }) => data);
   }

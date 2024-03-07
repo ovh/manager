@@ -9,8 +9,8 @@ export default {
     description: '?description',
   },
   bindings: {
-    logSubscriptionUrl: '<',
-    kind: '<',
+    logSubscriptionApiData: '<',
+    goBack: '<',
     title: '@',
     description: '@',
   },
