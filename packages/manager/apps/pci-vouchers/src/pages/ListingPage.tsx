@@ -70,7 +70,11 @@ export default function ListingPage() {
     {
       id: 'products',
       cell: (props: Voucher) => {
-        return <DataGridTextCell>{props.products || 'Tous'}</DataGridTextCell>;
+        return (
+          <DataGridTextCell>
+            {props.products || t('cpb_vouchers_products_all')}
+          </DataGridTextCell>
+        );
       },
       label: t('cpb_vouchers_products_cell'),
     },
