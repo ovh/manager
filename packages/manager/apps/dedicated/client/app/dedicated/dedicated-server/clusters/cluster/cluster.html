@@ -1,6 +1,19 @@
 <header class="oui-header" role="banner">
-    <div class="d-flex">
+    <div class="d-flex justify-content-between">
         <h1 class="oui-header__title" data-ng-bind="$ctrl.displayName"></h1>
+        <oui-guide-menu
+            class="mt-2"
+            data-text="{{:: 'dedicated_cluster_guides_title' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-href="{{:: $ctrl.guidesLink }}"
+                data-external="true"
+            >
+                <span
+                    data-translate="{{:: 'dedicated_cluster_guides_link' | translate }}"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
     </div>
     <oui-header-tabs>
         <oui-header-tabs-item
