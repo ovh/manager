@@ -1,4 +1,6 @@
 {
   "cluster_general_information": "Informations générales",
-  "cluster_nodes": "Noeuds"
+  "cluster_nodes": "Noeuds",
+  "dedicated_cluster_guides_title": "Guides",
+  "dedicated_cluster_guides_link": "3AZ Guides"
 }
