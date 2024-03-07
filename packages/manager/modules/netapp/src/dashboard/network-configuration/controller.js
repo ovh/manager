@@ -143,13 +143,11 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
           if (!data.vrackAssociationStatus?.success) {
             this.Alerter.set(
               'alert-warning',
-              this.$translate.instant(
+              `${this.$translate.instant(
                 'netapp_network_configuration_vrack_association_warning',
-                {
-                  message: data.vrackAssociationStatus.message,
-                  requestId: data.vrackAssociationStatus.requestId,
-                },
-              ),
+              )}<br> ${data.vrackAssociationStatus.message}<br> request_id: ${
+                data.vrackAssociationStatus.requestId
+              }`,
               null,
               'netapp.alerts.warning',
             );

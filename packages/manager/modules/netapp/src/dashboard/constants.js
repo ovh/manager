@@ -94,7 +94,7 @@ export const VRACK_ORDER_URLS = {
 
 export const LABELS = {
   VRACK: 'vRack',
-  VRACK_SERVICE: 'vRack Service',
+  VRACK_SERVICE: 'vRack Services',
 };
 
 export default {
