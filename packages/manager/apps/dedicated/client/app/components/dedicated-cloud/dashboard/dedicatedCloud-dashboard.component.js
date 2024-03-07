@@ -12,6 +12,7 @@ export default {
     drpGlobalStatus: '<',
     editDetails: '<',
     goToDrp: '<',
+    goToDatacenter: '<',
     goToDrpDatacenterSelection: '<',
     goToVpnConfiguration: '<',
     isDrpActionPossible: '<',

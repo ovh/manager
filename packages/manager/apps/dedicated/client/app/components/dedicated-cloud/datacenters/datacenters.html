@@ -18,7 +18,10 @@
             data-translate-values="{ href: $ctrl.migrationGuideUrl }"
         ></p>
     </oui-message>
-    <oui-datagrid data-rows-loader="$ctrl.loadDatacenters($config)">
+    <oui-datagrid
+        data-rows-loader="$ctrl.loadDatacenters($config)"
+        data-row-loader="$ctrl.loadDataCenterDetails($row.id)"
+    >
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_datacenters_title' | translate"
         >
@@ -71,6 +74,16 @@
                 data-ng-bind="$row.filerSize.value + ' ' + ('unit_size_' + $row.filerSize.unit | translate)"
             >
             </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_datacenters_cluster' | translate"
+        >
+            <span data-ng-bind="$row.clusterSize"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_datacenters_edges' | translate"
+        >
+            <span data-ng-bind="$row.edgesCount"></span>
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
