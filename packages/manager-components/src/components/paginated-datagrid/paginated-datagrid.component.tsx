@@ -109,104 +109,107 @@ export const PaginatedDatagrid = <T extends unknown>({
 
   return (
     <div>
-      <table className="w-full mb-2">
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id} className="text-center h-11">
-                  {header.isPlaceholder ? null : (
-                    <div
-                      {...{
-                        className:
-                          onSortChange && header.column.getCanSort()
-                            ? 'cursor-pointer select-none'
-                            : '',
-                        ...(onSortChange && {
-                          onClick: header.column.getToggleSortingHandler(),
-                        }),
-                      }}
-                      data-testid={`header-${header.id}`}
-                    >
-                      <OsdsText
-                        size={ODS_TEXT_SIZE._500}
-                        color={ODS_THEME_COLOR_INTENT.text}
-                        level={ODS_TEXT_LEVEL.body}
-                        hue={ODS_THEME_COLOR_HUE._500}
+      <div className={'overflow-x-auto px-[1px]'}>
+        <table className="w-full mb-2">
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th
+                    key={header.id}
+                    className="text-center h-11 whitespace-nowrap"
+                  >
+                    {header.isPlaceholder ? null : (
+                      <div
+                        {...{
+                          className:
+                            onSortChange && header.column.getCanSort()
+                              ? 'cursor-pointer select-none'
+                              : '',
+                          ...(onSortChange && {
+                            onClick: header.column.getToggleSortingHandler(),
+                          }),
+                        }}
+                        data-testid={`header-${header.id}`}
                       >
-                        <>
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
-                        </>
-                      </OsdsText>
-                      <span
-                        className={`align-middle inline-block h-4 ${
-                          (header.column.getIsSorted() as string) === 'asc'
-                            ? '-mt-5'
-                            : '-mt-9'
-                        }`}
-                      >
-                        <OsdsIcon
-                          size={ODS_ICON_SIZE.sm}
-                          color={ODS_THEME_COLOR_INTENT.primary}
-                          className={
-                            header.column.getIsSorted() ? '' : 'invisible'
-                          }
-                          name={
+                        <OsdsText
+                          size={ODS_TEXT_SIZE._500}
+                          color={ODS_THEME_COLOR_INTENT.text}
+                          level={ODS_TEXT_LEVEL.body}
+                          hue={ODS_THEME_COLOR_HUE._500}
+                        >
+                          <>
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                          </>
+                        </OsdsText>
+                        <span
+                          className={`align-middle inline-block h-4 ${
                             (header.column.getIsSorted() as string) === 'asc'
-                              ? ODS_ICON_NAME.SORT_UP
-                              : ODS_ICON_NAME.SORT_DOWN
-                          }
-                        />
-                      </span>
-                    </div>
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr
-              key={row.id}
-              className="text-center border-b-0"
-              style={{
-                border: '1px solid var(--ods-color-blue-200)',
-                height: '3.25rem',
-              }}
-            >
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  <>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </>
+                              ? '-mt-5'
+                              : '-mt-9'
+                          }`}
+                        >
+                          <OsdsIcon
+                            size={ODS_ICON_SIZE.sm}
+                            color={ODS_THEME_COLOR_INTENT.primary}
+                            className={
+                              header.column.getIsSorted() ? '' : 'invisible'
+                            }
+                            name={
+                              (header.column.getIsSorted() as string) === 'asc'
+                                ? ODS_ICON_NAME.SORT_UP
+                                : ODS_ICON_NAME.SORT_DOWN
+                            }
+                          />
+                        </span>
+                      </div>
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr
+                key={row.id}
+                className="text-center border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]"
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id}>
+                    <>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </>
+                  </td>
+                ))}
+              </tr>
+            ))}
+            {table.getRowModel().rows.length === 0 && (
+              <tr
+                className={
+                  'border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]'
+                }
+              >
+                <td className="text-center" colSpan={columns.length}>
+                  <DataGridTextCell>
+                    {t('common_pagination_no_results')}
+                  </DataGridTextCell>
                 </td>
-              ))}
-            </tr>
-          ))}
-          {table.getRowModel().rows.length === 0 && (
-            <tr
-              style={{
-                border: '1px solid var(--ods-color-blue-200)',
-                height: '3.25rem',
-              }}
-            >
-              <td className="text-center" colSpan={columns.length}>
-                <DataGridTextCell>
-                  {t('common_pagination_no_results')}
-                </DataGridTextCell>
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
       {pagination && (
         <OsdsPagination
           current={pagination.pageIndex + 1}
-          className={'flex justify-end'}
+          className={'flex xs:justify-center md:justify-end'}
           total-items={totalItems}
           total-pages={pageCount}
           default-items-per-page={pagination.pageSize}
