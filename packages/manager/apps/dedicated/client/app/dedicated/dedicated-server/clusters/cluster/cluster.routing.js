@@ -1,4 +1,4 @@
-import { STATUS } from './cluster.constant';
+import { STATUS, GUIDES_LINK } from './cluster.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-cluster.cluster', {
@@ -25,6 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
       trackingPrefix: () => 'dedicated::dedicated::cluster',
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
+      guidesLink: () => GUIDES_LINK,
       dashboardLink: /* @ngInject */ ($transition$, $state) =>
         $state.href(
           'app.dedicated-cluster.cluster.dashboard',
