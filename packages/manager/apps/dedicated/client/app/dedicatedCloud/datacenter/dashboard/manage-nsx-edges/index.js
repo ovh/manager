@@ -10,6 +10,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
     $stateProvider.state(
       'app.dedicatedCloud.details.datacenter.details.dashboard.nsx.**',
       {
+        url: '/nsx',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
           return import('./dedicatedCloud-datacenter-manage-nsx.module').then(

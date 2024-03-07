@@ -1,4 +1,6 @@
-export default /* @ngInject */ ($stateProvider, NSX_TRACKING_PREFIX) => {
+import { NSX_TRACKING_PREFIX } from './constants';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.dedicatedCloud.details.datacenter.details.dashboard.nsx',
     {
@@ -11,13 +13,12 @@ export default /* @ngInject */ ($stateProvider, NSX_TRACKING_PREFIX) => {
           $translate.instant(
             'dedicated_cloud_datacenters_datacenter_manage_nsx_edge',
           ),
-        trackingPrefix: () => NSX_TRACKING_PREFIX,
-        trackPage: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {
-          return atInternet.trackPage(`${trackingPrefix}${hit}`);
+        trackPage: /* @ngInject */ (atInternet) => (hit) => {
+          return atInternet.trackPage(`${NSX_TRACKING_PREFIX}${hit}`);
         },
-        trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {
+        trackClick: /* @ngInject */ (atInternet) => (hit) => {
           return atInternet.trackClick({
-            name: `${trackingPrefix}${hit}`,
+            name: `${NSX_TRACKING_PREFIX}${hit}`,
             type: 'action',
           });
         },

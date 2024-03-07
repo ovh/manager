@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import capitalize from 'lodash/capitalize';
 import last from 'lodash/last';
 
 import {
@@ -70,7 +69,7 @@ export default class {
     ).then((data) => {
       this.datacenter.model.edgesCount = data.length;
       this.datacenter.model.edgesLevel = data[0]?.size
-        ? capitalize(data[0].size)
+        ? data[0].size.chatAt(0).toUpperCase() + data[0].size.slice(1)
         : '';
     });
   }
