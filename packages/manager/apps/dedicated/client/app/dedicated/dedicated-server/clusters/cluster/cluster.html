@@ -3,14 +3,14 @@
         <h1 class="oui-header__title" data-ng-bind="$ctrl.displayName"></h1>
         <oui-guide-menu
             class="mt-2"
-            data-text="{{:: 'dedicated_cluster_guides_title' | translate }}"
+            data-text="{{:: 'dedicated_cluster_3az_guides_title' | translate }}"
         >
             <oui-guide-menu-item
-                data-ng-href="{{:: $ctrl.guidesLink }}"
+                data-ng-href="{{:: $ctrl.guidesLinkOf3AZ }}"
                 data-external="true"
             >
                 <span
-                    data-translate="{{:: 'dedicated_cluster_guides_link' | translate }}"
+                    data-translate="{{:: 'dedicated_cluster_3az_guides_link' | translate }}"
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
