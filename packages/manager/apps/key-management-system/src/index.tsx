@@ -46,4 +46,4 @@ const init = async (
   );
 };
 
-init('kms', { reloadOnLocaleChange: true });
+init('key-management-system', { reloadOnLocaleChange: true });

@@ -14,7 +14,7 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
   };
 };
 
-export const COMMON_PATH = '/kms';
+export const COMMON_PATH = '/key-management-system';
 
 export default [
   {
@@ -22,11 +22,11 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
-        path: 'kms',
+        path: '/',
         ...lazyRouteConfig(() => import('@/pages/listing')),
       },
       {
-        path: 'kms/:serviceName',
+        path: '/:serviceName',
         ...lazyRouteConfig(() => import('@/pages/dashboard/_layout')),
         children: [
           {
@@ -40,7 +40,7 @@ export default [
         ],
       },
       {
-        path: 'kms/onboarding',
+        path: '/onboarding',
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
       },
     ],

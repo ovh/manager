@@ -4,7 +4,7 @@ import { Card, OnboardingLayout } from '@ovhcloud/manager-components';
 import onboardingImgSrc from './onboarding-img.png';
 
 export default function Onboarding() {
-  const { t } = useTranslation('kms/onboarding');
+  const { t } = useTranslation('key-management-system/onboarding');
 
   const tileList = [
     {
