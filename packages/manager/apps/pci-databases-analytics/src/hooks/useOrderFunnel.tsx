@@ -130,10 +130,11 @@ export function useOrderFunnel(
         regionCapabilities,
         suggestions,
         catalog,
-      ).map((e) => ({
-        versions: e.versions.toSorted((a, b) => a.order - b.order),
-        ...e,
-      })),
+      ).map((e) => {
+        // order the versions in the engines
+        e.versions.sort((a, b) => a.order - b.order);
+        return e;
+      }),
     [availabilities, capabilities],
   );
   // Create the list of available plans
