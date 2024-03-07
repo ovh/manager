@@ -13,8 +13,7 @@
     "isolatedModules": true,
     "declaration": true,
     "declarationDir": "./dist/types",
-    "jsx": "react-jsx",
-    "resolveJsonModule": true
+    "jsx": "react"
   },
   "files": ["global.d.ts"],
   "include": ["src/**/*", "*.spec.tsx"],

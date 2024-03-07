@@ -67,7 +67,6 @@ export const registerPCINewState = (
       const trackProjectCreationErrorPromise = injector.getAsync(
         'trackProjectCreationError',
       );
-      const projectIdPromise = injector.getAsync('projectId');
 
       return pciProjectsServicePromise.then((PciProjectsService) =>
         PciProjectsService.getDiscoveryProject().then((discoveryProject) => {
@@ -92,7 +91,6 @@ export const registerPCINewState = (
             coreURLBuilderPromise,
             newSupportTicketLinkPromise,
             trackProjectCreationErrorPromise,
-            projectIdPromise,
           ]).then(
             ([
               $translate,
@@ -102,7 +100,6 @@ export const registerPCINewState = (
               coreURLBuilder,
               newSupportTicketLink,
               trackProjectCreationError,
-              projectId,
             ]) => {
               let redirectState = configStep
                 ? `${stateName}.config`
@@ -115,12 +112,9 @@ export const registerPCINewState = (
               let trackErrorMessage;
 
               if (eligibility.isAskIncreaseProjectsQuotaRequired()) {
-                const fromProjectId = get(
-                  transition.params('from'),
-                  'projectId',
-                );
+                const projectId = get(transition.params('from'), 'projectId');
 
-                redirectState = fromProjectId
+                redirectState = projectId
                   ? 'pci.projects.project.quota-exceed-error'
                   : 'pci.projects.quota-exceed-error';
                 redirectParams = {
@@ -130,7 +124,7 @@ export const registerPCINewState = (
                   code: ELIGIBILITY_ACTION_ENUM.ASK_INCREASE_PROJECTS_QUOTA,
                   image:
                     ELIGIBILITY_ERROR_IMAGES_SRC.ASK_INCREASE_PROJECTS_QUOTA,
-                  projectId: fromProjectId,
+                  projectId: get(transition.params('from'), 'projectId'),
                   submitLabel: $translate.instant(
                     'pci_project_new_error_contact_support',
                   ),
@@ -165,10 +159,9 @@ export const registerPCINewState = (
                     voucher: redirectParams.voucher,
                     context: redirectParams.context,
                     target: redirectParams.target,
-                    ...(projectId && { projectId }),
                   }),
                 );
-                return false;
+                return null;
               }
 
               if (trackErrorMessage) {
