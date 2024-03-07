@@ -110,6 +110,7 @@ export default class MailingListsUpdateCtrl {
               : !this.mailingList.mlModerationMsg,
           subscribeByModerator: this.mailingList.options.subscribeByModerator,
         },
+        timer: 4000,
       },
     )
       .then(() =>
