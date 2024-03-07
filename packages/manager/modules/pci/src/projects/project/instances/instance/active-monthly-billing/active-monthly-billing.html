@@ -8,10 +8,24 @@
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isLoading"
 >
-    <p
-        data-translate="pci_projects_project_instances_instance_active-monthly-billing_content"
-        data-translate-values="{ instance: $ctrl.instance.name }"
-    ></p>
+    <p class="mb-4">
+        <span
+            data-translate="pci_projects_project_instances_instance_active-monthly-billing_content"
+        ></span>
+        <a
+            data-ng-href="{{$ctrl.instancePricesLink}}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="pci_projects_project_instances_instance_active-monthly-billing_content_link"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </p>
 
     <oui-message data-type="warning">
         <span
