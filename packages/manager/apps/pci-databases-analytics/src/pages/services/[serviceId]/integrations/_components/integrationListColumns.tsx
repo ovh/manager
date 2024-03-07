@@ -14,6 +14,7 @@ import { database } from '@/models/database';
 import { useServiceData } from '../../layout';
 import UserStatusBadge from '../../users/_components/userStatusBadge';
 import { IntegrationWithServices } from '..';
+import IntegrationServiceLink from './integrationServiceLink';
 
 interface IntegrationsTableColumnsProps {
   onDeleteClick: (db: database.service.Integration) => void;
@@ -32,6 +33,9 @@ export const getColumns = ({
         <SortableHeader column={column}>{t('tableHeadSource')}</SortableHeader>
       ),
       accessorFn: (row) => row.source.description,
+      cell: ({ row }) => (
+        <IntegrationServiceLink service={row.original.source} />
+      ),
     },
     {
       id: 'destination',
@@ -41,6 +45,9 @@ export const getColumns = ({
         </SortableHeader>
       ),
       accessorFn: (row) => row.destination.description,
+      cell: ({ row }) => (
+        <IntegrationServiceLink service={row.original.destination} />
+      ),
     },
     {
       id: 'type',

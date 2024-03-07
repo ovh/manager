@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 import { useEffect, useMemo, useState } from 'react';
 import { ZodType, z } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -11,6 +12,9 @@ import {
   useGetIntegrations,
 } from '@/hooks/api/integrations.api.hook';
 
+const i18nNamespace = {
+  ns: 'pci-databases-analytics/services/service/integrations',
+};
 interface AggregatedIntegrationCapability {
   type: database.service.integration.TypeEnum;
   sourceEngines: database.EngineEnum[];
@@ -64,10 +68,23 @@ const generateSchema = (
           let zodType: ZodType;
           switch (type) {
             case 'string':
-              zodType = z.string().min(1);
+              zodType = z.string().min(1, {
+                message: i18next.t(
+                  `addIntegrationErrorStringParamRequired`,
+                  i18nNamespace,
+                ),
+              });
               break;
             case 'integer':
-              zodType = z.coerce.number().int();
+              zodType = z.coerce
+                .number()
+                .int()
+                .positive(
+                  i18next.t(
+                    `addIntegrationErrorIntegerParamRequired`,
+                    i18nNamespace,
+                  ),
+                );
               break;
             default:
               zodType = z.string();
@@ -82,14 +99,23 @@ const generateSchema = (
   return z
     .object({
       type: z.nativeEnum(database.service.integration.TypeEnum, {
-        required_error: "Veuillez selectionner un type d'integration",
+        required_error: i18next.t(
+          `addIntegrationErrorTypeRequired`,
+          i18nNamespace,
+        ),
       }),
       sourceServiceId: z
         .string()
-        .length(36, 'Veuillez selectionner un service source'),
+        .length(
+          36,
+          i18next.t(`addIntegrationErrorSourceRequired`, i18nNamespace),
+        ),
       destinationServiceId: z
         .string()
-        .length(36, 'Veuillez selectionner un service source'),
+        .length(
+          36,
+          i18next.t(`addIntegrationErrorDestinationRequired`, i18nNamespace),
+        ),
       parameters: hasParameters ? z.object(paramObjects) : z.any().optional(),
     })
     .refine(
@@ -101,7 +127,7 @@ const generateSchema = (
             e.destinationServiceId === value.destinationServiceId,
         ),
       {
-        message: 'Une intégration similaire existe déjà',
+        message: i18next.t(`addIntegrationErrorNoDuplicate`, i18nNamespace),
       },
     );
 };
@@ -140,7 +166,13 @@ export const useAddIntegrationForm = () => {
   const selectedCapability = aggregatedIntegrationCapability.find(
     (ic) => ic.type === selectedType,
   );
-  const services = servicesQuery.data || [];
+  const services =
+    servicesQuery.data?.filter((s) => {
+      if (service.networkType === database.NetworkTypeEnum.public) {
+        return s.networkType === database.NetworkTypeEnum.public;
+      }
+      return s.networkId === service.networkId;
+    }) || [];
 
   useEffect(() => {
     setSchema(
