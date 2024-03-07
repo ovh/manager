@@ -1,7 +1,19 @@
+<div class="my-2" data-ng-if="$ctrl.logKindsList.length > 1">
+    <button
+        data-ng-repeat="kind in $ctrl.logKindsList"
+        class="oui-button mr-1"
+        data-ng-class="{'oui-button_primary' : $ctrl.kind === kind.name,
+            'oui-button_secondary' : $ctrl.kind !== kind.name}"
+        data-ng-click="$ctrl.kind = kind.name"
+    >
+        <span data-ng-bind="kind.displayName"></span>
+    </button>
+</div>
+
 <log-live-tail
     data-log-keys="$ctrl.LOG_KEYS"
-    data-log-kind-api-url="$ctrl.logKindApiUrl"
     data-log-api-url="$ctrl.logApiUrl"
+    data-log-kind="$ctrl.kind"
 >
     <description>
         <span data-translate="logs_description"></span>

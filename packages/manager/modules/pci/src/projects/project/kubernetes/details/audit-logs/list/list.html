@@ -1,7 +1,7 @@
 <log-to-customer-list
-    data-log-subscription-url="$ctrl.logSubscriptionUrl"
+    data-log-subscription-api-data="$ctrl.logSubscriptionApiData"
     data-title="{{ 'logs_list_title' | translate }}"
-    data-kind="$ctrl.kind"
-    data-description="{{ 'logs_list_description' | translate }}"
+    data-description="{{ 'logs_list_description_' + $ctrl.kind | translate }}"
+    data-go-back="$ctrl.goBack"
 >
 </log-to-customer-list>
