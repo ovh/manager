@@ -1,13 +1,13 @@
 {
   "title": "vRack Services",
-  "description": "Les vRack Services vous permettent de bénéficier de services réseau sur le vRack. Le premier service réseau disponible est le Service Endpoint. Ce dernier vous permet d'exposer, via une adresse IP, un service managé par OVHcloud sur votre vRack. D'autres services seront disponibles à l'avenir.",
+  "description": "Le produit vRack Services vous permet de bénéficier de services réseau sur le vRack. Le premier service réseau disponible est le Service Endpoint. Ce dernier vous permet d'exposer, via une adresse IP, un service managé par OVHcloud sur votre vRack. D'autres services seront disponibles à l'avenir.",
   "overviewTabLabel": "Général",
   "subnetsTabLabel": "Sous-réseau",
   "endpointsTabLabel": "Service Endpoints",
   "tileTitle": "Informations",
   "displayName": "Nom",
   "productStatus": "Statut",
-  "region": "Régionalisation",
+  "region": "Région",
   "vrackId": "Private Network",
   "createdAt": "Date de création",
   "ERI": "London (ERI)",
@@ -30,7 +30,7 @@
   "DISABLED": "Inactif",
   "DRAFT": "A configurer",
   "associateVrackModal": "Associer à un vRack",
-  "vrackServicesNotReadyInfoMessage": "Votre vRack Services a une opération en cours",
+  "vrackServicesNotReadyInfoMessage": "vRack Services a une opération en cours",
   "subnetCreationOnGoing": " : Sous-réseau {{name}} en cours de création",
   "endpointCreationOnGoing": " : Service endpoint en cours de création"
 }
