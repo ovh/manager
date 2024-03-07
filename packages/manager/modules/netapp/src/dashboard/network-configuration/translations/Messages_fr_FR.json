@@ -18,5 +18,5 @@
   "netapp_network_configuration_configure_button": "Configurer",
   "netapp_network_configuration_cancel_button": "Annuler",
   "netapp_network_configuration_success_message": "Vos paramètres réseaux sont en cours de création",
-  "netapp_network_configuration_vrack_association_warning": "Un problème est survenu lors de l'association de votre vRack à vRack services : <br> {{message}}<br> request_id: {{requestId}}"
+  "netapp_network_configuration_vrack_association_warning": "Un problème est survenu lors de l'association de votre vRack à vRack services :"
 }
