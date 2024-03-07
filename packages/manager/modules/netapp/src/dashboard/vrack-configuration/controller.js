@@ -66,13 +66,12 @@ export default class OvhManagerNetappVrackConfigurationCtrl {
         this.trackPage('error');
         this.goBack().then(() => {
           this.Alerter.error(
-            this.$translate.instant(
+            `${this.$translate.instant(
               'netapp_vrack_configuration_vrack_association_warning',
-              {
-                message: error?.data?.message || error.message,
-                requestId: error.headers('X-Ovh-Queryid'),
-              },
-            ),
+            )} <br> ${error?.data?.message ||
+              error.message} <br> request_id: ${error.headers(
+              'X-Ovh-Queryid',
+            )}`,
           );
         });
       });
