@@ -16,7 +16,10 @@
     data-ng-submit="$ctrl.submit()"
     novalidate
 >
-    <oui-message type="info" data-ng-if="$ctrl.isIndianSubsidiary">
+    <oui-message
+        type="info"
+        data-ng-if="$ctrl.isIndianSubsidiary && $ctrl.isEditionDisabledByKyc"
+    >
         <span
             data-translate="signup_information_banner_for_indian_subsidiary"
         ></span>
