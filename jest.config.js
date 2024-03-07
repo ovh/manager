@@ -22,6 +22,7 @@ module.exports = {
         '^.+\\.module\\.(css|sass|scss)$',
         '<rootDir>/node_modules/(?!lodash-es|@stencil)',
       ],
+      testPathIgnorePatterns: ['/node_modules/', '/apps/pci-vouchers/'],
       moduleNameMapper: {
         '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
         '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
