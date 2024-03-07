@@ -19,6 +19,7 @@ export default {
     getTechnicalDetails: '<',
     isOldCluster: '<',
     isPackTypeAvailable: '<',
+    nodes: '<',
   },
   controller,
   template,
