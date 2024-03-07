@@ -3,8 +3,8 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '',
     component: 'nutanixAllNodes',
     resolve: {
-      nodes: /* @ngInject */ (cluster, NutanixNode) =>
-        NutanixNode.getNodeDetails(cluster.getNodes()),
+      nodes: /* @ngInject */ (cluster, NutanixService) =>
+        NutanixService.getNodeDetails(cluster.getNodes()),
       breadcrumb: /* @ngInject */ () => null,
     },
     atInternet: {
