@@ -6,7 +6,6 @@
       "outputMode": "new-only",
       "outputs": ["dist/**", "types/**"]
     },
-    "test": {},
     "dev": {
       "dependsOn": ["^dev"]
     }

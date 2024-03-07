@@ -41,7 +41,6 @@
     "start": "node -r esm scripts/start-application.js",
     "test:jest": "jest --runInBand",
     "test": "yarn lint",
-    "test:turbo": "turbo run test",
     "test:scripts": "make test",
     "test:playwright:run": "lerna run test:e2e:script --concurrency 1"
   },

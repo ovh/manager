@@ -11,7 +11,7 @@ export interface LegacyTrackingData {
   chapter1?: string;
   chapter2?: string;
   chapter3?: string;
-  level2?: string;
+  level2: string;
   page?: any;
   [key: string]: any;
 }

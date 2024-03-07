@@ -9,7 +9,6 @@ import { getHeaders } from '@ovh-ux/request-tagger';
 import ShellClient from './shell-client';
 import StandaloneShellClient from './standalone-shell-client';
 import IFrameMessageBus from '../message-bus/iframe';
-import { ShellClientApi } from './api';
 
 function fetchApplications(): Promise<Record<string, Application>> {
   return useReket(true).get('/applications', {
@@ -90,9 +89,7 @@ export function initStandaloneClientApi(
   return client.init().then(() => client.getApi());
 }
 
-export default async function init(
-  applicationId: ApplicationId,
-): Promise<ShellClientApi> {
+export default function init(applicationId: ApplicationId) {
   let initPromise;
 
   if (isTopLevelApplication()) {
@@ -103,7 +100,7 @@ export default async function init(
     initPromise = initIFrameClientApi(applicationId);
   }
 
-  return initPromise.then(async (shellApi) => {
+  return initPromise.then((shellApi) => {
     shellApi.ux.resetAccountSidebar();
     return shellApi.environment
       .setApplication(applicationId)

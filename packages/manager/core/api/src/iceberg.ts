@@ -15,7 +15,6 @@ export type IcebergFetchParamsV6 = {
   filters?: Filter[];
   sortBy?: string;
   sortReverse?: boolean;
-  disableCache?: boolean;
 } & IcebergCommonOptions;
 
 export type IcebergFetchParamsV2 = { cursor?: string } & IcebergCommonOptions;
@@ -89,7 +88,6 @@ export async function fetchIcebergV6<T>({
   filters,
   sortBy,
   sortReverse,
-  disableCache,
 }: IcebergFetchParamsV6): Promise<IcebergFetchResultV6<T>> {
   const requestHeaders: Record<string, string> = {
     'x-pagination-mode': 'CachedObjectList-Pages',
@@ -108,9 +106,6 @@ export async function fetchIcebergV6<T>({
           `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
       )
       .join('&');
-  }
-  if (disableCache) {
-    requestHeaders.Pragma = 'no-cache';
   }
   const { data, headers, status } = await apiClient.v6.get(route, {
     headers: requestHeaders,
