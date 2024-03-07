@@ -21,28 +21,6 @@
                     ></span>
                 </button>
             </div>
-
-            <div class="d-flex">
-                <h2
-                    class="oui-header__description"
-                    data-ng-bind="$ctrl.datacenter.model.description || ('dedicatedCloud_datacenter_no_description' | translate)"
-                ></h2>
-
-                <button
-                    type="button"
-                    class="btn btn-icon ml-2"
-                    data-ng-click=":: $ctrl.editDescription($ctrl.datacenter.model.description, 'dedicatedCloud_datacenter_description')"
-                >
-                    <span
-                        class="oui-icon oui-icon-pen_concept"
-                        aria-hidden="true"
-                    ></span>
-                    <span
-                        class="sr-only"
-                        data-translate="{{:: 'wizard_modify' | translate }}"
-                    ></span>
-                </button>
-            </div>
         </div>
     </div>
 
