@@ -779,5 +779,6 @@
   "ip_firewall_source_port_not_empty_tooltip": "Der Quell-Port muss leer sein, wenn „Fragmente“ ausgewählt ist.",
   "ip_firewall_destination_port_not_empty_tooltip": "Der Ziel-Port muss leer sein, wenn „Fragmente“ ausgewählt ist.",
   "ip_firewall_check_errors": "Die eingegebenen Daten enthalten Fehler. Bitte überprüfen Sie die rot markierten Felder.",
-  "ip_firewall_rule_status_inactif": "Inaktiv"
+  "ip_firewall_rule_status_inactif": "Inaktiv",
+  "ip_game_mitigation_firewall_rule_add_ports_already_used": "Der Port (oder Portbereich) steht mit einer anderen Regel in Konflikt."
 }
