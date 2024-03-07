@@ -115,6 +115,7 @@ export default class EmailProMXPlanMailingListsUpdateCtrl {
               : !this.mailingList.mlModerationMsg,
           subscribeByModerator: this.mailingList.options.subscribeByModerator,
         },
+        timer: 4000,
       },
     )
       .then(() =>
