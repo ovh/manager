@@ -25,5 +25,6 @@
   "user_account_identity_documents_verification_waiting_info": "O seu pedido foi analisado, mas necessita de documentos complementares. Consulte o seu ticket de assistência.",
   "user_account_identity_documents_selection_file_format_invalid": "Formato de ficheiro não suportado. Utilize um dos formatos possíveis: jpg, jpeg, pdf e png",
   "user_account_identity_documents_intro_ensure_correspondance": "Certifique-se de que os seus dados pessoais correspondem ao nome e endereço que constam nos seus documentos oficiais.",
-  "user_account_identity_documents_intro_kyc_reminder": "Certifique-se de que os seus dados pessoais correspondem ao nome e endereço que constam nos seus documentos oficiais."
+  "user_account_identity_documents_intro_kyc_reminder": "Certifique-se de que os seus dados pessoais correspondem ao nome e endereço que constam nos seus documentos oficiais.",
+  "user_account_identity_documents_title": "Verificação de documentos necessária"
 }
