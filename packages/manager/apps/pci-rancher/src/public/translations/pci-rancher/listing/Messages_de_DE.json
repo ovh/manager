@@ -21,7 +21,7 @@
   "rancherStatusDeleting": "Ihr Managed Rancher Service wird gerade gelöscht. Bitte gedulden Sie sich einen Augenblick.",
   "editNameModalTitle": "Den Namen Ihres Rancher ändern",
   "editNameModalInfo": "Name des Dienstes",
-  "editNameModaleHelperInput": "Der Name des Dienstes muss zwischen 3 und 63 Zeichen lang sein. Er muss mit alphanumerischen Kleinbuchstaben beginnen und enden (von a bis z und von 0 bis 9) und kann die Satzzeichen „.“ und „-“ enthalten.",
+  "editNameModaleHelperInput": "Der Name des Dienstes muss zwischen 3 und 63 Zeichen lang sein. Er muss mit alphanumerischen Kleinbuchstaben beginnen und enden (von a bis z und von 0 bis 9) und kann die Satzzeichen „_“, „.“ und „-“ enthalten.",
   "editNameRancherCta": "Ändern",
   "READY": "Fertig",
   "UPDATING": "Wird aktualisiert",

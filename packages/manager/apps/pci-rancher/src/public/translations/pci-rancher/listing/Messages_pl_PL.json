@@ -21,7 +21,7 @@
   "rancherStatusDeleting": "Trwa usuwanie usługi Managed Rancher. Może to potrwać kilka minut.",
   "editNameModalTitle": "Zmień nazwę Rancher",
   "editNameModalInfo": "Nazwa usługi",
-  "editNameModaleHelperInput": "Nazwa usługi musi zawierać od 3 do 63 znaków, musi zaczynać się i kończyć małym znakiem alfanumerycznym (od „a” do „z” i od 0 do 9) i może zawierać następujące znaki interpunkcyjne: „.” oraz „-”.",
+  "editNameModaleHelperInput": "Nazwa usługi musi zawierać od 3 do 63 znaków, musi zaczynać się i kończyć małym znakiem alfanumerycznym (od „a” do „z” i od 0 do 9) i może zawierać następujące znaki interpunkcyjne:  „_”, „.” oraz „-”.",
   "editNameRancherCta": "Zmień",
   "READY": "Ready",
   "UPDATING": "Updating",
