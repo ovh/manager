@@ -6,6 +6,8 @@ const auditLogsComponent = {
     projectId: '<',
     kubeId: '<',
     goToListingPage: '<',
+    logKindsList: '<',
+    kind: '<',
   },
   controller,
   template,

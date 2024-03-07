@@ -9,9 +9,9 @@ export default {
   },
   bindings: {
     logApiUrl: '<',
-    logKindApiUrl: '<',
     logServiceGuideLink: '<',
-    logSubscriptionUrl: '<',
     goToListingPage: '<',
+    logKindsList: '<',
+    kindInitValue: '<',
   },
 };

@@ -48,27 +48,23 @@ export default class LogToCustomerListCtrl {
       });
   }
 
-  goBack() {
-    this.$state.go('^');
-  }
-
   getSubscribedStreams() {
     this.streamSubscriptions = {};
-    return this.LogToCustomerService.icebergQuery(this.logSubscriptionUrl).then(
-      (data) => {
-        data.forEach((item) => {
-          this.streamSubscriptions[item.streamId] = { ...item };
-        });
-      },
-    );
+    return this.LogToCustomerService.icebergQuery(
+      this.logSubscriptionApiData.url,
+    ).then((data) => {
+      data.forEach((item) => {
+        this.streamSubscriptions[item.streamId] = { ...item };
+      });
+    });
   }
 
-  createLogSubscription(streamId) {
-    this.loading = streamId;
+  createLogSubscription(id) {
+    this.loading = id;
     this.resetErrorMessage();
-    this.LogToCustomerService.post(this.logSubscriptionUrl, {
-      streamId,
-      kind: this.kind,
+    this.LogToCustomerService.post(this.logSubscriptionApiData.url, {
+      ...this.logSubscriptionApiData.params,
+      streamId: id,
     })
       .then(({ data }) => {
         this.LogToCustomerService.pollOperation(
@@ -92,7 +88,7 @@ export default class LogToCustomerListCtrl {
     const { subscriptionId } = this.streamSubscriptions[streamId];
 
     this.LogToCustomerService.delete(
-      `${this.logSubscriptionUrl}/${subscriptionId}`,
+      `${this.logSubscriptionApiData.url}/${subscriptionId}`,
     )
       .then(({ data }) => {
         this.LogToCustomerService.pollOperation(
