@@ -9,7 +9,7 @@ import {
   PAYMENTS_RUPAY_MESSAGE_FEATURE,
   CHARGES,
   SEPA_DIRECT_DEBIT_PAYMENT_METHOD,
-  SUBSIDIARIES_NEEDING_SEPA_INFORMATION,
+  SEPA_INFORMATION_MODAL_FEATURE,
 } from './constants';
 
 export default class OvhPaymentMethodRegisterCtrl {
@@ -120,7 +120,7 @@ export default class OvhPaymentMethodRegisterCtrl {
     this.$q
       .all([
         this.getAllAvailablePaymentMethodTypes(),
-        this.getPaymentsRupayMessageFeature(),
+        this.getFeaturesAvailability(),
         this.getSpecificCrossBorderSentenceForCardPayment(),
       ])
       .finally(() => {
@@ -251,12 +251,18 @@ export default class OvhPaymentMethodRegisterCtrl {
       });
   }
 
-  getPaymentsRupayMessageFeature() {
+  getFeaturesAvailability() {
     return this.ovhFeatureFlipping
-      .checkFeatureAvailability(PAYMENTS_RUPAY_MESSAGE_FEATURE)
+      .checkFeatureAvailability([
+        PAYMENTS_RUPAY_MESSAGE_FEATURE,
+        SEPA_INFORMATION_MODAL_FEATURE,
+      ])
       .then((featureAvailability) => {
         this.showRupayMessage = featureAvailability.isFeatureAvailable(
           PAYMENTS_RUPAY_MESSAGE_FEATURE,
+        );
+        this.canShowSepaInformationModal = featureAvailability.isFeatureAvailable(
+          SEPA_INFORMATION_MODAL_FEATURE,
         );
       });
   }
@@ -283,7 +289,7 @@ export default class OvhPaymentMethodRegisterCtrl {
     // to make them aware that SEPA payment method require them to have a bank account in the SEPA zone
     if (
       !this.hasAlreadyShownSepaInformationModal &&
-      SUBSIDIARIES_NEEDING_SEPA_INFORMATION.includes(this.subsidiary) &&
+      this.canShowSepaInformationModal &&
       type === SEPA_DIRECT_DEBIT_PAYMENT_METHOD
     ) {
       this.isSepaInformationModalOpened = true;
