@@ -21,6 +21,7 @@ export default class Container {
     virtualHost,
     state,
     storageGateway,
+    encryption,
   }) {
     Object.assign(this, {
       name,
@@ -41,12 +42,14 @@ export default class Container {
       ...(virtualHost && { virtualHost }),
       state,
       storageGateway,
+      encryption,
     });
     this.storedObjects = this.storedObjects || this.objectsCount || 0;
     this.storedBytes = this.storedBytes || this.objectsSize;
     this.id = this.id || this.name;
     this.s3StorageType = this.s3StorageType || null;
     this.region = this.region || OPENIO_DEFAULT_REGION;
+    this.encryption = this.encryption || { sseAlgorithm: null };
   }
 
   getObjectById(objectId) {

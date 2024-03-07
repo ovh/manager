@@ -205,6 +205,19 @@
         ></pci-project-storages-create-linked-user>
     </oui-step-form>
 
+    <!-- Data encryption -->
+    <oui-step-form
+        data-ng-if="!$ctrl.archive && $ctrl.encryptionAvailable && $ctrl.isRightOffer()"
+        data-header="{{:: 'pci_projects_project_storages_containers_data_encryption_title' | translate }}"
+        data-editable="!$ctrl.isLoading"
+        name="storage_container_data_encryption"
+    >
+        <pci-project-storages-data-encryption
+            data-encryption="$ctrl.container.encryption"
+            data-encryption-algorithms="$ctrl.encryptionAlgorithms"
+        ></pci-project-storages-data-encryption>
+    </oui-step-form>
+
     <!--Container name-->
     <oui-step-form
         data-position="3"

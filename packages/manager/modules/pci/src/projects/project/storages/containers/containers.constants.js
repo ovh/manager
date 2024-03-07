@@ -158,6 +158,8 @@ export const CONTAINER_GUIDES = [
   },
 ];
 
+export const NO_ENCRYPTION_VALUE = 'plaintext';
+
 export default {
   STORAGES_CONTAINER_NAME_PATTERN,
 
@@ -198,4 +200,5 @@ export default {
   X_STORAGE_POLICY,
 
   CONTAINER_GUIDES,
+  NO_ENCRYPTION_VALUE,
 };
