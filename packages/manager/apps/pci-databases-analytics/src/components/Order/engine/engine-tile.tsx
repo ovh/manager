@@ -6,7 +6,8 @@ import { Engine, Version } from '@/models/order-funnel';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/models/database';
 import { H5, P } from '@/components/typography';
-import { Badge, BadgeProps } from '@/components/ui/badge';
+import { Badge } from '@/components/ui/badge';
+import { getTagVariant } from '@/lib/tagsHelper';
 
 export const EngineTile = ({
   engine,
@@ -27,16 +28,6 @@ export const EngineTile = ({
   useEffect(() => {
     onChange(engine, selectedVersion);
   }, [selectedVersion]);
-  const getTagVariant = (tag: string): BadgeProps['variant'] => {
-    switch (tag) {
-      case 'new':
-        return 'success';
-      case 'soonDeprecated':
-        return 'warning';
-      default:
-        return 'info';
-    }
-  };
   return (
     <RadioTile
       name="engine-select"

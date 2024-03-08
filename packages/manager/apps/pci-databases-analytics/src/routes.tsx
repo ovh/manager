@@ -51,8 +51,22 @@ export default [
           {
             path: 'backups',
             ...lazyRouteConfig(() =>
-              import('@/pages/services/[serviceId]/backups'),
+              import('@/pages/services/[serviceId]/backups/layout'),
             ),
+            children: [
+              {
+                path: '',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/services/[serviceId]/backups'),
+                ),
+              },
+              {
+                path: 'fork',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/services/[serviceId]/backups/fork'),
+                ),
+              },
+            ],
           },
           {
             path: 'databases',
