@@ -7,4 +7,5 @@ export const POLLING = {
   METRICS: 60_000,
   USERS: 30_000,
   CURRENT_QUERIES: 30_000,
+  POOLS: 30_000,
 };
