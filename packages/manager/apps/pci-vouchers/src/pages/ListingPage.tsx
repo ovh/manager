@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
+  Datagrid,
   DataGridTextCell,
-  PaginatedDatagrid,
   useDatagridSearchParams,
   Notifications,
 } from '@ovhcloud/manager-components';
@@ -215,7 +215,7 @@ export default function ListingPage() {
 
       {!isLoading && !error && (
         <div className={'mt-8'}>
-          <PaginatedDatagrid
+          <Datagrid
             columns={columns}
             items={vouchers?.rows || []}
             totalItems={vouchers?.totalRows || 0}
