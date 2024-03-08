@@ -1144,5 +1144,6 @@
   "server_configuration_installation_inputs_bad_url": "O URL introduzido é inválido",
   "server_configuration_installation_inputs_bad_uuid": "UUIDv4 inválido",
   "server_configuration_installation_custom_image_info": "Poderá instalar um SO a partir de uma imagem personalizada no próximo ecrã, escolhendo \"{{t0}}\" em \"{{t1}}\".",
-  "server_configuration_installation_custom_image_help_link": "Selecione o tipo de instalação personalizada mais adequado."
+  "server_configuration_installation_custom_image_help_link": "Selecione o tipo de instalação personalizada mais adequado.",
+  "server_datacenter_YYZ": "Toronto"
 }
