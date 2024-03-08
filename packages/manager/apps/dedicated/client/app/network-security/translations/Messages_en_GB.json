@@ -41,7 +41,7 @@
   "network_security_dashboard_legend_red": "Malicious traffic cleaned",
   "network_security_dashboard_legend_green": "Normal traffic",
   "network_security_dashboard_empty_result": "Please select an IP address to view traffic data.",
-  "network_security_dashboard_number_of_events": "Number of incidents",
+  "network_security_dashboard_number_of_events": "Suspicious activities",
   "network_security_dashboard_packets_dropped": "Packets rejected",
   "network_security_dashboard_bandwith_cleaned": "Traffic cleaned",
   "network_security_dashboard_attacks_detected": "Attacks detected",
