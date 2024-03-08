@@ -35,6 +35,7 @@ import FormattedDate from '@/components/table-date';
 interface OrderSummaryProps {
   order: {
     source: ForkSource;
+    backup?: database.Backup;
     engine: Engine;
     version: Version;
     plan: Plan;
@@ -103,8 +104,14 @@ const SourceDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
           {order.source.type === 'backup' && (
             <Span>
               {/* <FormattedDate date={order.ba} /> */}
-              {order.source.backupId ? (
-                <Span>{order.source.backupId}</Span>
+              {order.backup ? (
+                <Span>
+                  <FormattedDate
+                    date={new Date(order.backup.createdAt)}
+                    options={{ dateStyle: 'medium', timeStyle: 'medium' }}
+                  />{' '}
+                  ({formatStorage(order.backup.size)})
+                </Span>
               ) : (
                 <Span className="text-red-500">Aucun</Span>
               )}

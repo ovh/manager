@@ -10,7 +10,6 @@ import './global.css';
 
 import queryClient from './query.client';
 import Router from './Router';
-import { P } from './components/typography';
 import { useDateFnsLocale } from './hooks/useDateFnsLocale.hook';
 import { useMuiLocale } from './hooks/useMuiLocale';
 import Loading from './components/Loading/Loading';

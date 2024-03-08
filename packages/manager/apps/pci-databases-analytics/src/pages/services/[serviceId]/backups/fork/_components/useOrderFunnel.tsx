@@ -45,6 +45,7 @@ export function useOrderFunnel(
   regionCapabilities: database.RegionCapabilities[],
   suggestions: database.Suggestion[],
   catalog: order.publicOrder.Catalog,
+  backups: database.Backup[],
 ) {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   const { service } = useServiceData();
@@ -382,6 +383,7 @@ export function useOrderFunnel(
       subnets: networksData.subnetQuery,
     },
     lists: {
+      backups,
       engines: listEngines,
       plans: listPlans,
       regions: listRegions,
@@ -390,10 +392,12 @@ export function useOrderFunnel(
       subnets: networksData.subnets,
     },
     result: {
+      canUsePit: canUsePointInTime,
       availability,
       price,
       name,
       source: forkFrom,
+      backup: backups.find((b) => b.id === forkFrom.backupId),
       engine: engineObject,
       version: versionObject,
       plan: planObject,
