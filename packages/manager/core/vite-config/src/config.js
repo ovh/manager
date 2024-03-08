@@ -25,6 +25,14 @@ const getBaseConfig = (config) => {
       alias: {
         '@': resolve(join(process.cwd(), 'src')),
       },
+      dedupe: [
+        'i18next',
+        'react',
+        'react-dom',
+        'react-i18next',
+        'react-router-dom',
+        'zustand',
+      ],
     },
     define: {
       __VERSION__: process.env.VERSION ? `'${process.env.VERSION}'` : 'null',

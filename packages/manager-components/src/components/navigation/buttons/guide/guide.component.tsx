@@ -17,9 +17,9 @@ import {
   OdsHTMLAnchorElementRel,
   OdsHTMLAnchorElementTarget,
 } from '@ovhcloud/ods-common-core';
-import { ReactI18NextChild } from 'react-i18next';
-import useDynamicTranslation from '../../../../translation/useDynamicTranslation';
+import { ReactI18NextChild, useTranslation } from 'react-i18next';
 import { Links, LinkType } from '../../../typography';
+import '../translations/translation';
 
 export interface GuideItem {
   id: number;
@@ -35,7 +35,7 @@ export interface GuideButtonProps {
 }
 
 export const GuideButton: React.FC<GuideButtonProps> = ({ items }) => {
-  const { t } = useDynamicTranslation('buttons');
+  const { t } = useTranslation('buttons');
   return (
     <OsdsMenu>
       <OsdsButton
