@@ -14,12 +14,14 @@ import {
   OsdsBreadcrumb,
   OsdsButton,
   OsdsMessage,
+  OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_DIVIDER_SIZE,
   ODS_MESSAGE_TYPE,
+  ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -203,6 +205,12 @@ export default function ListingPage() {
         <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
           {tError('manager_error_page_default')}
         </OsdsMessage>
+      )}
+
+      {isLoading && !error && (
+        <div className="text-center">
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+        </div>
       )}
 
       {!isLoading && !error && (
