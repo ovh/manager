@@ -14,6 +14,7 @@ export const DC_2_ISO = {
   VIN: 'US',
   WAW: 'PL',
   YNM: 'IN',
+  YYZ: 'CA',
 };
 
 export const MONITORING_STATUSES = {
