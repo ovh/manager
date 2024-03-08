@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import {
   ColumnSort,
+  Datagrid,
   DatagridColumn,
-  PaginatedDatagrid,
   PaginationState,
-} from './paginated-datagrid.component';
+} from './datagrid.component';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
@@ -44,7 +44,7 @@ const DatagridTest = ({
   const start = pagination.pageIndex * pagination.pageSize;
   const end = start + pagination.pageSize;
   return (
-    <PaginatedDatagrid
+    <Datagrid
       columns={columns}
       items={items.slice(start, end)}
       totalItems={items.length}
@@ -89,7 +89,7 @@ describe('Paginated datagrid component', () => {
     const SortTest = () => {
       const [sorting, setSorting] = useState({ id: 'a', desc: true });
       return (
-        <PaginatedDatagrid
+        <Datagrid
           columns={[
             {
               id: 'a',

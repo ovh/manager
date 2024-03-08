@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { useSearchParams } from 'react-router-dom';
-import { PaginatedDatagrid } from './paginated-datagrid.component';
+import { Datagrid } from './datagrid.component';
 import { DataGridTextCell } from './text-cell.component';
 import { useDatagridSearchParams } from './useDatagridSearchParams';
 
@@ -40,7 +40,7 @@ function sortItems(
   return itemList;
 }
 
-const PaginatedDatagridStory = ({
+const DatagridStory = ({
   items,
   isPaginated,
   isSortable,
@@ -50,15 +50,11 @@ const PaginatedDatagridStory = ({
   isSortable: boolean;
 }) => {
   const [searchParams] = useSearchParams();
-  const {
-    pagination,
-    setPagination,
-    sorting,
-    setSorting,
-  } = useDatagridSearchParams({
-    id: 'validityTo',
-    desc: false,
-  });
+  const { pagination, setPagination, sorting, setSorting } =
+    useDatagridSearchParams({
+      id: 'validityTo',
+      desc: false,
+    });
   const start = isPaginated ? pagination.pageIndex * pagination.pageSize : 0;
   const end = isPaginated ? start + pagination.pageSize : items.length;
   const paginationAttrs = isPaginated && {
@@ -77,7 +73,7 @@ const PaginatedDatagridStory = ({
           <hr />
         </>
       )}
-      <PaginatedDatagrid
+      <Datagrid
         columns={columns}
         items={sortItems(items, sorting).slice(start, end)}
         totalItems={items.length}
@@ -126,6 +122,6 @@ export const Pagination = {
 
 export default {
   title: 'Components/Paginated datagrid',
-  component: PaginatedDatagridStory,
+  component: DatagridStory,
   decorators: [withRouter],
 };

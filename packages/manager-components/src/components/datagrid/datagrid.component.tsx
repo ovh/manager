@@ -61,7 +61,7 @@ export interface DatagridProps<T> {
   onSortChange?: (sorting: ColumnSort) => void;
 }
 
-export const PaginatedDatagrid = <T extends unknown>({
+export const Datagrid = <T extends unknown>({
   columns,
   items,
   totalItems,
@@ -70,7 +70,7 @@ export const PaginatedDatagrid = <T extends unknown>({
   onPaginationChange,
   onSortChange,
 }: DatagridProps<T>) => {
-  const { t } = useTranslation('paginated-datagrid');
+  const { t } = useTranslation('datagrid');
   const pageCount = pagination
     ? Math.ceil(totalItems / pagination.pageSize)
     : 1;
