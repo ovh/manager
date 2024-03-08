@@ -138,9 +138,6 @@ export default class PciStoragesContainersAddController {
 
   onContainerSolutionChange() {
     this.container.region = null;
-    if (!this.isRightOffer()) {
-      delete this.container.encryption.sseAlgorithm;
-    }
   }
 
   onRegionsFocus() {

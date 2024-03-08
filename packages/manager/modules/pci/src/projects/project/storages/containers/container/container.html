@@ -72,12 +72,12 @@
 
                 <!--Container without data encryption-->
                 <p
-                    data-ng-if="!$ctrl.archive && !$ctrl.container.isEncrypted()"
+                    data-ng-if="!$ctrl.archive && !$ctrl.container.isEncrypted"
                     data-translate="pci_projects_project_storages_containers_container_info_data_encryption_disabled"
                 ></p>
 
                 <!--Container with data encryption-->
-                <p data-ng-if="!$ctrl.archive && $ctrl.container.isEncrypted()">
+                <p data-ng-if="!$ctrl.archive && $ctrl.container.isEncrypted">
                     <span
                         data-translate="pci_projects_project_storages_containers_container_info_data_encryption_enabled"
                     ></span>

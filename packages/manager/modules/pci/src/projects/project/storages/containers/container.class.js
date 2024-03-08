@@ -59,7 +59,7 @@ export default class Container {
     return find(this.objects, { name: objectId });
   }
 
-  isEncrypted() {
+  get isEncrypted() {
     const { sseAlgorithm } = this.encryption;
     return sseAlgorithm && sseAlgorithm !== NO_ENCRYPTION_VALUE;
   }
