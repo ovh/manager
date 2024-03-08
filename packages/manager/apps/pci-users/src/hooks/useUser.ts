@@ -89,7 +89,15 @@ export const useRemoveUser = ({
       return removeUser(projectId, userId);
     },
     onError,
-    onSuccess,
+    onSuccess: () => {
+      queryClient.setQueryData(
+        ['project', projectId, 'users'],
+        (queryClient.getQueryData(['project', projectId, 'users']) as Array<
+          User
+        >).filter((user) => `${user.id}` !== userId),
+      );
+      return onSuccess();
+    },
   });
 
   return {
@@ -272,7 +280,7 @@ export const useCreateUser = ({
     onSuccess: async (data: User) => {
       const updatedUsers = [
         ...(queryClient.getQueryData(['project', projectId, 'users']) as Array<
-          never
+          User
         >),
         data,
       ];
