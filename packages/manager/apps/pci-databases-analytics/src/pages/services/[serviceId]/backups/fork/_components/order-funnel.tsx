@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import { useTranslation } from 'react-i18next';
 import { H4, P } from '@/components/typography';
-import { useOrderFunnel } from './useOrderFunnel';
 import { order } from '@/models/catalog';
 import { database } from '@/models/database';
 import { Button } from '@/components/ui/button';
@@ -19,6 +19,7 @@ import NodesConfig from '@/components/Order/cluster-config/nodes-config';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -30,7 +31,6 @@ import {
   useAddService,
 } from '@/hooks/api/services.api.hooks';
 import PriceUnitSwitch from '@/components/price-unit-switch';
-import EnginesSelect from '@/components/Order/engine/engine-select';
 import PlansSelect from '@/components/Order/plan/plan-select';
 import FlavorsSelect from '@/components/Order/flavor/flavor-select';
 import NetworkOptions from '@/components/Order/cluster-options/network-options';
@@ -38,6 +38,19 @@ import IpsRestrictionsForm from '@/components/Order/cluster-options/ips-restrict
 import RegionsSelect from '@/components/Order/region/region-select';
 import OrderPrice from '@/components/Order/order-price';
 import OrderSummary from './order-summary';
+import { useOrderFunnel } from './useOrderFunnel';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import FormattedDate from '@/components/table-date';
+import { formatStorage } from '@/lib/bytesHelper';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { useServiceData } from '../../../layout';
 import ErrorList from '@/components/Order/error-list';
 
 interface OrderFunnelProps {
@@ -47,6 +60,7 @@ interface OrderFunnelProps {
   regionCapabilities: database.RegionCapabilities[];
   suggestions: database.Suggestion[];
   catalog: order.publicOrder.Catalog;
+  backups: database.Backup[];
 }
 
 const OrderFunnel = ({
@@ -56,6 +70,7 @@ const OrderFunnel = ({
   regionCapabilities,
   suggestions,
   catalog,
+  backups,
 }: OrderFunnelProps) => {
   const model = useOrderFunnel(
     availabilities,
@@ -69,6 +84,7 @@ const OrderFunnel = ({
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t } = useTranslation('pci-databases-analytics/services/new');
+  const { service } = useServiceData();
   const { addService, isPending: isPendingAddService } = useAddService({
     onError: (err) => {
       toast({
@@ -77,11 +93,11 @@ const OrderFunnel = ({
         description: err.message,
       });
     },
-    onSuccess: (service) => {
+    onSuccess: (fork) => {
       toast({
         title: t('successCreatingService'),
       });
-      navigate(`../${service.id}`);
+      navigate(`../${fork.id}`);
     },
   });
 
@@ -122,7 +138,7 @@ const OrderFunnel = ({
             model.result.flavor.storage.minimum.value + data.additionalStorage,
         };
       }
-      addService(serviceInfos);
+      // addService(serviceInfos);
     },
     (error) => {
       toast({
@@ -150,33 +166,129 @@ const OrderFunnel = ({
           onSubmit={onSubmit}
         >
           <div className="col-span-1 md:col-span-3 divide-y-[1rem] divide-transparent">
-            <section id="engine">
+            <section id="source" className="divide-y-[1rem] divide-transparent">
               <FormField
                 control={model.form.control}
-                name="engineWithVersion"
+                name="forkFrom.type"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className={classNameLabel}>
-                      {t('fieldEngineLabel')}
+                      Point de restauration
                     </FormLabel>
-                    <P>{t('fieldEngineDescription')}</P>
+                    <FormDescription>
+                      Sélectionnez le point de restauration à partir duquel le
+                      service sera dupliqué.
+                    </FormDescription>
                     <FormControl>
-                      <EnginesSelect
-                        {...field}
-                        engines={model.lists.engines}
-                        value={field.value}
-                        onChange={(newEngineWithVersion) =>
-                          model.form.setValue(
-                            'engineWithVersion',
-                            newEngineWithVersion,
-                          )
-                        }
-                      />
+                      <RadioGroup
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        className="grid grid-cols-3 gap-2"
+                      >
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="now" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            Le plus récent
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="pit" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            Date spécifique
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="backup" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            Sauvegarde
+                          </FormLabel>
+                        </FormItem>
+                      </RadioGroup>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+              {model.result.source.type === 'backup' && (
+                <FormField
+                  control={model.form.control}
+                  name="forkFrom.backupId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={cn(classNameLabel, 'text-lg')}>
+                        Backup
+                      </FormLabel>
+                      <FormControl>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a backup" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              {backups.map((backup) => (
+                                <SelectItem key={backup.id} value={backup.id}>
+                                  <FormattedDate
+                                    date={new Date(backup.createdAt)}
+                                    options={{
+                                      dateStyle: 'medium',
+                                      timeStyle: 'medium',
+                                    }}
+                                  />{' '}
+                                  ({formatStorage(backup.size)}){' '}
+                                </SelectItem>
+                              ))}
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+              {model.result.source.type === 'pit' && (
+                <FormField
+                  control={model.form.control}
+                  name="forkFrom.pointInTime"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={cn(classNameLabel, 'text-lg')}>
+                        Timestamp
+                      </FormLabel>
+                      <FormControl>
+                        <MobileDateTimePicker
+                          className="block w-full"
+                          value={field.value}
+                          onChange={field.onChange}
+                          views={[
+                            'year',
+                            'month',
+                            'day',
+                            'hours',
+                            'minutes',
+                            'seconds',
+                          ]}
+                          minDateTime={new Date(service.backups.pitr)}
+                          maxDateTime={new Date()}
+                          localeText={{
+                            cancelButtonLabel: 'Annuler',
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
             </section>
             <section id="plan">
               <FormField

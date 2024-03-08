@@ -34,6 +34,12 @@ export namespace database {
       'fork' = 'fork',
       'update' = 'update',
     }
+    /** Possible target to restrict availabilities */
+    export enum TargetEnum {
+      'flavor' = 'flavor',
+      'plan' = 'plan',
+      'version' = 'version',
+    }
     /** Backups availability of databases engines on cloud projects */
     export interface Backups {
       /** Defines whether the backups are available for this offer */
@@ -87,6 +93,11 @@ export namespace database {
     }
   }
   export namespace capabilities {
+    export enum Tags {
+      'new' = 'new',
+      'current' = 'current',
+      'soonDeprecated' = 'soonDeprecated',
+    }
     export namespace advancedConfiguration {
       export namespace property {
         /** Possible type of the advanced configuration properties */
@@ -187,7 +198,7 @@ export namespace database {
       /** Flavor disk size in GB. @deprecated: use specifications.storage */
       storage: number;
       /** Display tags */
-      tags: string[];
+      tags: Tags[];
     }
     /** Integration capability between database engines */
     export interface Integration {
@@ -220,7 +231,7 @@ export namespace database {
       /** Display order */
       order: number;
       /** Display tags */
-      tags: string[];
+      tags: Tags[];
     }
   }
   export namespace kafka {
@@ -1252,7 +1263,7 @@ export namespace database {
       /** Whitelisted IP */
       ip: string;
       /** Current status of the ip restriction */
-      status: database.StatusEnum;
+      status?: database.StatusEnum;
     }
     /** A single log entry */
     export interface LogEntry {
@@ -1737,7 +1748,7 @@ export namespace database {
     order: number;
     sslModes: string[];
     storage: database.capabilities.engine.storage.StrategyEnum;
-    tags: string[];
+    tags: database.capabilities.Tags[];
     versions: {
       default: boolean;
       lifecycle: database.availability.Lifecycle;
@@ -1750,6 +1761,6 @@ export namespace database {
     lifecycle: database.availability.Lifecycle;
     name: string;
     order: number;
-    tags: string[];
+    tags: database.capabilities.Tags[];
   }
 }

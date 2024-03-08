@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronsUpDown } from 'lucide-react';
+import { Check, ChevronsUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
   Popover,
@@ -15,9 +15,11 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import { Button } from '@/components/ui/button';
-import { Badge, BadgeProps } from '@/components/ui/badge';
+import { Badge } from '@/components/ui/badge';
 import { Version } from '@/models/order-funnel';
 import { Span } from '@/components/typography';
+import { getTagVariant } from '@/lib/tagsHelper';
+import { cn } from '@/lib/utils';
 
 interface VersionSelectorProps {
   versions: Version[];
@@ -33,16 +35,6 @@ const VersionSelector = ({
 }: VersionSelectorProps) => {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation('pci-databases-analytics/components/engine');
-  const getTagVariant = (tag: string): BadgeProps['variant'] => {
-    switch (tag) {
-      case 'new':
-        return 'success';
-      case 'soonDeprecated':
-        return 'warning';
-      default:
-        return 'info';
-    }
-  };
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <div className="hidden">
@@ -92,6 +84,14 @@ const VersionSelector = ({
                     setOpen(false);
                   }}
                 >
+                  <Check
+                    className={cn(
+                      'mr-2 h-4 w-4',
+                      engineVersion.name === selectedVersion.name
+                        ? 'opacity-100'
+                        : 'opacity-0',
+                    )}
+                  />
                   <div className="flex flex-row justify-between w-full cursor-pointer overflow-hidden">
                     <Span>{engineVersion.name}</Span>
                     <div className="ml-2 flex gap-1">

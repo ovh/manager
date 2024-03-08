@@ -4,7 +4,8 @@ import RadioTile from '@/components/radio-tile';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Region } from '@/models/order-funnel';
 import { Span } from '@/components/typography';
-import { Badge, BadgeProps } from '@/components/ui/badge';
+import { Badge } from '@/components/ui/badge';
+import { getTagVariant } from '@/lib/tagsHelper';
 
 interface RegionsSelectProps {
   regions: Region[];
@@ -15,16 +16,7 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
   ({ regions, value, onChange }, ref) => {
     const [selectedContinentIndex, setSelectedContinentIndex] = useState(0);
     const { t } = useTranslation('regions');
-    const getTagVariant = (tag: string): BadgeProps['variant'] => {
-      switch (tag) {
-        case 'new':
-          return 'success';
-        case 'soonDeprecated':
-          return 'warning';
-        default:
-          return 'info';
-      }
-    };
+
     const mappedRegions = regions.map((r) => ({
       name: r.name,
       tags: r.tags,

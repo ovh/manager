@@ -8,6 +8,7 @@ import { database } from '@/models/database';
 import {
   Engine,
   Flavor,
+  ForkSource,
   NetworkOptionValue,
   Plan,
   Region,
@@ -16,7 +17,8 @@ import {
 import { order } from '@/models/catalog';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
-import { useVrack } from './useVrack';
+import { useVrack } from '@/hooks/useVrack';
+import { useServiceData } from '../../../layout';
 
 const getSuggestedItemOrDefault = (
   suggestion: database.Suggestion,
@@ -45,8 +47,48 @@ export function useOrderFunnel(
   catalog: order.publicOrder.Catalog,
 ) {
   const { t } = useTranslation('pci-databases-analytics/services/new');
+  const { service } = useServiceData();
   const { projectId } = useParams();
+
+  const canUsePointInTime = !!service.backups?.pitr;
+  const minPitrDate = canUsePointInTime ? new Date(service.backups.pitr) : null;
   const orderSchema = z.object({
+    forkFrom: z
+      .object({
+        type: z.enum(['now', 'pit', 'backup']),
+        serviceId: z.string().length(36),
+        backupId: z.string().optional(),
+        pointInTime: z.date().optional(),
+      })
+      .refine(
+        (data) => {
+          if (['now', 'pit'].includes(data.type)) return canUsePointInTime;
+          return true;
+        },
+        {
+          message: 'Point in time fork is not available for this service',
+          path: ['type'],
+        },
+      )
+      .refine(
+        (data) => {
+          if (data.type === 'pit') {
+            if (!data.pointInTime) return false;
+            if (minPitrDate && data.pointInTime < minPitrDate) return false;
+          }
+          return true;
+        },
+        { message: 'The date is invalid', path: ['pointInTime'] },
+      )
+      .refine(
+        (data) => {
+          if (data.type === 'backup') {
+            if (!data.backupId) return false;
+          }
+          return true;
+        },
+        { message: 'Please select a backup', path: ['backupId'] },
+      ),
     engineWithVersion: z.object({
       engine: z.string(),
       version: z.string(),
@@ -87,22 +129,35 @@ export function useOrderFunnel(
   const form = useForm({
     resolver: zodResolver(orderSchema),
     defaultValues: {
+      forkFrom: {
+        type: 'backup',
+        backupId: '',
+        pointInTime: new Date(),
+        serviceId: service.id,
+      } as ForkSource,
       name: generateName(),
-      engineWithVersion: { engine: '', version: '' },
-      plan: '',
-      region: '',
-      flavor: '',
-      nbNodes: 0,
+      engineWithVersion: {
+        engine: service.engine as string,
+        version: service.version,
+      },
+      plan: service.plan,
+      region: service.nodes[0].region,
+      flavor: service.flavor,
+      nbNodes: service.nodes.length,
       additionalStorage: 0,
-      ipRestrictions: [],
+      ipRestrictions: service.ipRestrictions.map((ip) => ({
+        ip: ip.ip,
+        description: ip.description,
+      })),
       network: {
-        type: database.NetworkTypeEnum.public,
-        networkId: undefined,
-        subnetId: undefined,
+        type: service.networkType,
+        networkId: service.networkId,
+        subnetId: service.subnetId,
       } as NetworkOptionValue,
     },
   });
 
+  const forkFrom = form.watch('forkFrom');
   const name = form.watch('name');
   const engineWithVersion = form.watch('engineWithVersion');
   const plan = form.watch('plan');
@@ -338,6 +393,7 @@ export function useOrderFunnel(
       availability,
       price,
       name,
+      source: forkFrom,
       engine: engineObject,
       version: versionObject,
       plan: planObject,

@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useParams } from 'react-router';
+import { Trans, useTranslation } from 'react-i18next';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
   useGetAvailabilities,
@@ -13,6 +14,7 @@ import LegalMentions from '@/pages/_components/legalMentions';
 import OrderFunnel from './_components/order-funnel';
 import { database } from '@/models/database';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
+import { H3, OvhLink, P } from '@/components/typography';
 
 export function breadcrumb() {
   return (
@@ -24,6 +26,7 @@ export function breadcrumb() {
 }
 
 const Service = () => {
+  const { t } = useTranslation('pci-databases-analytics/services/new');
   const [searchParams] = useSearchParams();
   const { projectId, category } = useParams();
   const availabilitiesQuery = useGetAvailabilities(projectId);
@@ -68,6 +71,21 @@ const Service = () => {
   }
   return (
     <>
+      <H3 className="font-bold text-3xl mb-5">{t('title')}</H3>
+      <P className="mb-2">
+        <Trans
+          t={t}
+          i18nKey={'description'}
+          components={{
+            anchor: (
+              <OvhLink
+                application="public-cloud"
+                path={`#/pci/projects/${projectId}/private-networks`}
+              ></OvhLink>
+            ),
+          }}
+        ></Trans>
+      </P>
       {loading ? (
         <Skeleton className="h-4 w-32" />
       ) : (

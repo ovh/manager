@@ -21,7 +21,7 @@ import { useTranslation } from 'react-i18next';
 import { useGetMetric } from '@/hooks/api/metrics.api.hooks';
 import { database } from '@/models/database';
 import { colors } from './colors';
-import { useDateFnsLocale } from './useDateFnsLocale.hook';
+import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { useServiceData } from '../../layout';
 
 ChartJS.register(
