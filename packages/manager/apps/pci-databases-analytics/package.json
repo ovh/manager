@@ -20,7 +20,11 @@
     "test:e2e": "tsc && npx playwright test --headed"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.4",
+    "@mui/material": "^5.15.12",
+    "@mui/x-date-pickers": "^6.19.6",
     "@ovh-ux/manager-config": "^7.2.0",
     "@ovh-ux/manager-core-api": "^0.3.0",
     "@ovh-ux/manager-react-core-application": "^0.5.2",

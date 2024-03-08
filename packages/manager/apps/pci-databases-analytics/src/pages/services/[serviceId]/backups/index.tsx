@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { add } from 'date-fns';
-import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
-import { H2, P } from '@/components/typography';
+import { H2, Link, P } from '@/components/typography';
 import { database } from '@/models/database';
 import { useServiceData } from '../layout';
 import { getColumns } from './_components/backupsTableColumns';
@@ -9,14 +8,7 @@ import { DataTable } from '@/components/ui/data-table';
 import { useGetBackups } from '@/hooks/api/backups.api.hooks';
 import { POLLING } from '@/configuration/polling';
 
-export function breadcrumb() {
-  return (
-    <BreadcrumbItem
-      translationKey="breadcrumb"
-      namespace="pci-databases-analytics/services/service/backups"
-    />
-  );
-}
+import { Button } from '@/components/ui/button';
 
 export interface BackupWithExpiricyDate extends database.Backup {
   expiricyDate: Date;
@@ -34,6 +26,12 @@ const Backups = () => {
     <>
       <H2 className="mb-2">{t('title')}</H2>
       <P className="mb-2">{t('description')}</P>
+
+      <Button variant="outline" size="sm" className="text-base mb-2" asChild>
+        <Link to="./fork" className="hover:no-underline">
+          Dupliquer (Fork)
+        </Link>
+      </Button>
 
       {backupsQuery.isSuccess ? (
         <DataTable
