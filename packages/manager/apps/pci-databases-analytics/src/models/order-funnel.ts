@@ -17,7 +17,7 @@ export interface Engine {
   description: string;
   category: database.CategoryEnum;
   order: number;
-  tags: string[];
+  tags: database.capabilities.Tags[];
   default: boolean;
   defaultVersion: string;
   storageMode: database.capabilities.engine.storage.StrategyEnum;
@@ -26,7 +26,7 @@ export interface Engine {
 
 export interface Version {
   name: string;
-  tags: string[];
+  tags: database.capabilities.Tags[];
   default: boolean;
   order: number;
   plans: Plan[];
@@ -58,14 +58,14 @@ export interface Plan {
   default: boolean;
   networks: database.NetworkTypeEnum[];
   backups: boolean;
-  tags: string[];
+  tags: database.capabilities.Tags[];
   regions: Region[];
 }
 
 export interface Region {
   name: string;
   order: number;
-  tags: string[];
+  tags: database.capabilities.Tags[];
   default: boolean;
   flavors: Flavor[];
 }
@@ -85,9 +85,21 @@ export interface Flavor {
   };
   order: number;
   default: boolean;
-  tags: string[];
+  tags: database.capabilities.Tags[];
   pricing: {
     hourly?: order.publicOrder.Pricing;
     monthly?: order.publicOrder.Pricing;
   };
+}
+
+export enum ForkSourceType {
+  'now' = 'now',
+  'pit' = 'pit',
+  'backup' = 'backup',
+}
+export interface ForkSource {
+  type: ForkSourceType;
+  backupId?: string;
+  pointInTime?: Date;
+  serviceId: string;
 }

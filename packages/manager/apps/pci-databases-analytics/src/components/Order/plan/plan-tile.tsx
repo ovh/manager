@@ -5,7 +5,8 @@ import { H5, P, Span } from '@/components/typography';
 import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import { database } from '@/models/database';
 import { Plan } from '@/models/order-funnel';
-import { Badge, BadgeProps } from '@/components/ui/badge';
+import { Badge } from '@/components/ui/badge';
+import { getTagVariant } from '@/lib/tagsHelper';
 
 export const PlanTile = ({
   plan,
@@ -24,16 +25,6 @@ export const PlanTile = ({
   const hasPrivateNetwork = plan.networks.includes(
     database.NetworkTypeEnum.private,
   );
-  const getTagVariant = (tag: string): BadgeProps['variant'] => {
-    switch (tag) {
-      case 'new':
-        return 'success';
-      case 'soonDeprecated':
-        return 'warning';
-      default:
-        return 'info';
-    }
-  };
   return (
     <RadioTile
       name="plan-select"

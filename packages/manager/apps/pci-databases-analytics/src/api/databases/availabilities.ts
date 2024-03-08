@@ -1,13 +1,24 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
+import QueryString from 'qs';
 import { database } from '@/models/database';
+import { PCIData } from '.';
 
-export const getAvailabilities = async (
-  projectId: string,
-  status: database.availability.StatusEnum[] = [
+interface GetAvailabilitiesProps extends PCIData {
+  status?: database.availability.StatusEnum[];
+  serviceId?: string;
+  action?: database.availability.ActionEnum;
+  target?: database.availability.TargetEnum;
+}
+export const getAvailabilities = async ({
+  projectId,
+  status = [
     database.availability.StatusEnum.STABLE,
     database.availability.StatusEnum.BETA,
   ],
-) => {
+  serviceId,
+  action,
+  target,
+}: GetAvailabilitiesProps) => {
   const headers: Record<string, string> = {
     'X-Pagination-Mode': 'CachedObjectList-Pages',
     'X-Pagination-Size': '50000',
@@ -18,8 +29,15 @@ export const getAvailabilities = async (
         ? `lifecycle.status:eq=${status[0]}`
         : `lifecycle.status:in=${status.join(',')}`;
   }
+  const queryParams: Record<string, string> = {};
+  if (serviceId) queryParams.clusterId = serviceId;
+  if (action) queryParams.action = action;
+  if (target) queryParams.target = target;
+  const queryString = QueryString.stringify(queryParams, {
+    addQueryPrefix: true,
+  });
   return apiClient.v6
-    .get(`/cloud/project/${projectId}/database/availability`, {
+    .get(`/cloud/project/${projectId}/database/availability${queryString}`, {
       headers,
     })
     .then((res) => res.data as database.Availability[]);
