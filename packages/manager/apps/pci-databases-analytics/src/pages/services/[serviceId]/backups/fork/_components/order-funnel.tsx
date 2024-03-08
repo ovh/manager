@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
+import { TextField } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { Calendar } from 'lucide-react';
 import { H4, P } from '@/components/typography';
 import { order } from '@/models/catalog';
 import { database } from '@/models/database';
@@ -52,6 +54,7 @@ import { formatStorage } from '@/lib/bytesHelper';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useServiceData } from '../../../layout';
 import ErrorList from '@/components/Order/error-list';
+import { ForkSourceType } from '@/models/order-funnel';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -79,12 +82,13 @@ const OrderFunnel = ({
     regionCapabilities,
     suggestions,
     catalog,
+    backups,
   );
   const [showMonthlyPrice, setShowMonthlyPrice] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t } = useTranslation('pci-databases-analytics/services/new');
-  const { service } = useServiceData();
+  const { service, projectId } = useServiceData();
   const { addService, isPending: isPendingAddService } = useAddService({
     onError: (err) => {
       toast({
@@ -97,7 +101,9 @@ const OrderFunnel = ({
       toast({
         title: t('successCreatingService'),
       });
-      navigate(`../${fork.id}`);
+      navigate(
+        `/pci/projects/${projectId}/databases-analytics/${fork.category}/services/${fork.id}`,
+      );
     },
   });
 
@@ -123,6 +129,9 @@ const OrderFunnel = ({
         plan: data.plan,
         version: data.engineWithVersion.version,
         ipRestrictions: data.ipRestrictions,
+        forkFrom: {
+          serviceId: data.forkFrom.serviceId,
+        },
       };
       if (data.network.type === database.NetworkTypeEnum.private) {
         // endpoint does not expect the network id, but the linked openstackId instead
@@ -138,7 +147,24 @@ const OrderFunnel = ({
             model.result.flavor.storage.minimum.value + data.additionalStorage,
         };
       }
-      // addService(serviceInfos);
+      switch (data.forkFrom.type) {
+        case ForkSourceType.now:
+          serviceInfos.forkFrom.pointInTime = new Date().toISOString();
+          break;
+        case ForkSourceType.pit:
+          serviceInfos.forkFrom.pointInTime = data.forkFrom.pointInTime.toISOString();
+          break;
+        case ForkSourceType.backup:
+          serviceInfos.forkFrom.backupId = data.forkFrom.backupId;
+          break;
+        default:
+          break;
+      }
+      toast({
+        title: 'submit form',
+        description: JSON.stringify(serviceInfos),
+      });
+      addService(serviceInfos);
     },
     (error) => {
       toast({
@@ -187,7 +213,10 @@ const OrderFunnel = ({
                       >
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
-                            <RadioGroupItem value="now" />
+                            <RadioGroupItem
+                              value="now"
+                              disabled={!model.result.canUsePit}
+                            />
                           </FormControl>
                           <FormLabel className="font-normal">
                             Le plus récent
@@ -195,7 +224,10 @@ const OrderFunnel = ({
                         </FormItem>
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
-                            <RadioGroupItem value="pit" />
+                            <RadioGroupItem
+                              value="pit"
+                              disabled={!model.result.canUsePit}
+                            />
                           </FormControl>
                           <FormLabel className="font-normal">
                             Date spécifique
@@ -267,6 +299,12 @@ const OrderFunnel = ({
                       <FormControl>
                         <MobileDateTimePicker
                           className="block w-full"
+                          slotProps={{
+                            textField: {
+                              InputProps: { endAdornment: <Calendar /> },
+                              size: 'small',
+                            },
+                          }}
                           value={field.value}
                           onChange={field.onChange}
                           views={[
@@ -279,9 +317,6 @@ const OrderFunnel = ({
                           ]}
                           minDateTime={new Date(service.backups.pitr)}
                           maxDateTime={new Date()}
-                          localeText={{
-                            cancelButtonLabel: 'Annuler',
-                          }}
                         />
                       </FormControl>
                       <FormMessage />
