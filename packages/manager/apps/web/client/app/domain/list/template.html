@@ -104,12 +104,12 @@
             <span
                 class="oui-icon"
                 data-ng-class="$ctrl.DOMAIN_TRANSFER_LOCK_STATE_CLASS[$row.transferLockStatus]"
-                data-oui-tooltip="{{ :: 'domains_transfer_lock_status_' + $row.transferLockStatus | translate }}"
+                data-oui-tooltip="{{ :: 'domains_transfer_lock_status_tooltip_' + $row.transferLockStatus | translate }}"
             ></span>
             <span
                 class="oui-icon oui-icon-shield_concept"
                 data-ng-class="$ctrl.DOMAIN_DNSSEC_STATE_CLASS[$row.dnssecState]"
-                data-oui-tooltip="{{ :: 'domains_dnssec_state_' + $row.dnssecState | translate }}"
+                data-oui-tooltip="{{ :: 'domains_dnssec_state_tooltip_' + $row.dnssecState | translate }}"
             ></span>
         </oui-datagrid-column>
 
