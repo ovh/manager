@@ -29,7 +29,6 @@ import installationChoice from './installation/choice';
 import installationGabarit from './installation/gabarit';
 import installationOvh from './installation/ovh';
 import installationProgress from './installation/progress';
-import install from '../install';
 
 import routing from './dashboard.routing';
 import {
@@ -64,7 +63,6 @@ angular
     installationGabarit,
     installationOvh,
     installationProgress,
-    install,
     serverDashboard,
   ])
   .config(routing)
