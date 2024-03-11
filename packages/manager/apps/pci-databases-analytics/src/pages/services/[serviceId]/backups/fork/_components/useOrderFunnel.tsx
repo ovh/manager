@@ -76,6 +76,7 @@ export function useOrderFunnel(
           if (data.type === 'pit') {
             if (!data.pointInTime) return false;
             if (minPitrDate && data.pointInTime < minPitrDate) return false;
+            if (data.pointInTime > new Date()) return false;
           }
           return true;
         },
@@ -393,6 +394,7 @@ export function useOrderFunnel(
     },
     result: {
       canUsePit: canUsePointInTime,
+      minPitrDate,
       availability,
       price,
       name,
