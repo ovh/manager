@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { Filter } from '@ovh-ux/manager-core-api';
 import { saveAs } from 'file-saver';
 import queryClient from '@/queryClient';
 import {
@@ -35,10 +36,10 @@ type RemoveUserProps = {
   onSuccess: () => void;
 };
 
-export const useAllUsers = (projectId: string) => {
+export const useAllUsers = (projectId: string, filters: Filter[] = []) => {
   return useQuery({
-    queryKey: ['project', projectId, 'users'],
-    queryFn: () => getAllUsers(projectId),
+    queryKey: ['project', projectId, 'users', filters],
+    queryFn: () => getAllUsers(projectId, filters),
     retry: false,
   });
 };
@@ -54,21 +55,17 @@ export const useUserRoles = (projectId: string, userId: string) => {
 export const useUsers = (
   projectId: string,
   { pagination, sorting }: UsersOptions,
-  searchQueries: string[],
+  filters: Filter[] = [],
 ) => {
   // retrieve All users from API
-  const { data: users, error, isLoading } = useAllUsers(projectId);
-
+  const { data: users, error, isLoading } = useAllUsers(projectId, filters);
   return useMemo(() => {
     return {
       isLoading,
       error,
-      data: paginateResults(
-        filterUsers(users || [], sorting, searchQueries),
-        pagination,
-      ),
+      data: paginateResults(filterUsers(users || [], sorting), pagination),
     };
-  }, [users, sorting, searchQueries]);
+  }, [users, sorting, filters]);
 };
 
 export const useUser = (projectId: string, userId: string) => {
