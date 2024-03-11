@@ -33,6 +33,7 @@ export default function S3StorageRegions({
       {!isLoading && currentRegion && (
         <OsdsSelect
           value={currentRegion}
+          data-testid={'currentRegionSelect'}
           onOdsValueChange={(
             event: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
           ) => {
