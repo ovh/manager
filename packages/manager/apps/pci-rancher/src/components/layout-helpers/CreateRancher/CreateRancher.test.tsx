@@ -41,6 +41,7 @@ const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
         hasRancherCreationError={false}
         isProjectDiscoveryMode={false}
         hasSomeRancher={false}
+        isCreateRancherLoading={false}
         {...props}
       />,
     ),
