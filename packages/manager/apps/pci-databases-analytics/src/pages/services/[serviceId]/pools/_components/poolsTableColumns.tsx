@@ -18,31 +18,22 @@ import {
 import { Button } from '@/components/ui/button';
 import { Span } from '@/components/typography';
 
-import { database } from '@/models/database';
-import { useServiceData } from '../../layout';
-import { GenericUser } from '@/api/databases/users';
+import { ConnectionPoolWithData } from '@/api/databases/connectionPool';
 
 interface ConnectionPoolsTableColumnsProps {
-  databases: database.service.Database[];
-  users: GenericUser[];
-  onGetInformationClick: (
-    connectionPool: database.postgresql.ConnectionPool,
-  ) => void;
-  onEditClick: (connectionPool: database.postgresql.ConnectionPool) => void;
-  onDeleteClick: (connectionPool: database.postgresql.ConnectionPool) => void;
+  onGetInformationClick: (connectionPool: ConnectionPoolWithData) => void;
+  onEditClick: (connectionPool: ConnectionPoolWithData) => void;
+  onDeleteClick: (connectionPool: ConnectionPoolWithData) => void;
 }
 export const getColumns = ({
-  databases,
-  users,
   onGetInformationClick,
   onEditClick,
   onDeleteClick,
 }: ConnectionPoolsTableColumnsProps) => {
-  const { service } = useServiceData();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/pools',
   );
-  const columns: ColumnDef<database.postgresql.ConnectionPool>[] = [
+  const columns: ColumnDef<ConnectionPoolWithData>[] = [
     {
       id: 'name',
       header: ({ column }) => (
@@ -57,8 +48,7 @@ export const getColumns = ({
           {t('tableHeadDatabase')}
         </SortableHeader>
       ),
-      accessorFn: (row) =>
-        databases.find((db) => db.id === row.databaseId).name,
+      accessorFn: (row) => row.databaseName,
     },
     {
       id: 'mode',
@@ -81,8 +71,7 @@ export const getColumns = ({
           {t('tableHeadUsername')}
         </SortableHeader>
       ),
-      accessorFn: (row) =>
-        row.userId ? users.find((user) => user.id === row.userId).username : '',
+      accessorFn: (row) => row.userName,
     },
     {
       id: 'actions',
