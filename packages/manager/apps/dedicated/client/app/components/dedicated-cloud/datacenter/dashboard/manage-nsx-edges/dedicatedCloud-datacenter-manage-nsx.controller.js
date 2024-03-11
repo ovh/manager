@@ -16,7 +16,7 @@ export default class {
 
   $onInit() {
     this.loading = false;
-    this.nsx_sizes = Object.keys(EDGES_SIZES);
+    this.nsxSizes = Object.keys(EDGES_SIZES);
     this.selectedNsxLevel = null;
     this.hasScalingCapabilities =
       this.nsxtEdgesScalingCapabilities.length ===
