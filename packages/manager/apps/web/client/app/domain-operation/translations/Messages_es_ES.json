@@ -243,5 +243,7 @@
   "domain_operations_progress_instructions_5": "Si solo uno de los dos emails ha sido validado: tras 5 días sin validación en el otro email, la transferencia pasa a la siguiente etapa.",
   "domain_operations_progress_instructions_6": "Si los dos emails han sido validados: validación y paso a la siguiente etapa en 24 horas.",
   "domain_operations_progress_instructions_7": "Puede ponerse en contacto con el proveedor actual del dominio para solicitar su consentimiento.",
-  "operation_tab_DOMAIN": "Dominio"
+  "operation_tab_DOMAIN": "Dominio",
+  "domain_operations_nicOperation_ContactControlAcknowledge": "Confirmación del contacto",
+  "domain_operations_nicOperation_ContactControlCorrect": "Corrección del contacto"
 }
