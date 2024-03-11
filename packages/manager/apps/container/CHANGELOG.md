@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.47.1...@ovh-ux/manager-container-app@0.47.2) (2024-03-11)
+
+
+### Bug Fixes
+
+* **telecom.sidebar:** set label to service name if empty ([#10973](https://github.com/ovh/manager/issues/10973)) ([8a111f5](https://github.com/ovh/manager/commit/8a111f5217646287a796e2ac011959c64655dbf6))
+
+
+
+
+
 ## [0.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.47.0...@ovh-ux/manager-container-app@0.47.1) (2024-03-07)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/request-tagger@0.1.1...@ovh-ux/request-tagger@0.2.0) (2024-03-11)
+
+
+### Features
+
+* **core:** add request tagger in client axios ([#10421](https://github.com/ovh/manager/issues/10421)) ([0e244c1](https://github.com/ovh/manager/commit/0e244c1f3bdac292ce1b0d9b125ba2d700587b12))
+
+
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/request-tagger@0.1.0...@ovh-ux/request-tagger@0.1.1) (2022-12-20)
 
 

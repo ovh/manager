@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core-api",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-core-sso": "^0.1.0",
-    "@ovh-ux/request-tagger": "*",
+    "@ovh-ux/request-tagger": "^0.2.0",
     "axios": "^1.1.2"
   },
   "devDependencies": {

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.16.2...@ovh-ux/manager-web@18.17.0) (2024-03-11)
+
+
+### Bug Fixes
+
+* **web:** fix wrong CA ASIA URL order for change domain owner ([#11091](https://github.com/ovh/manager/issues/11091)) ([cfffb27](https://github.com/ovh/manager/commit/cfffb27c8d1b8d1b8690eee140d1bcc1b2f2610b))
+
+
+### Features
+
+* **web:** add refresh btn for hosting and private ([#11052](https://github.com/ovh/manager/issues/11052)) ([ffbc7e8](https://github.com/ovh/manager/commit/ffbc7e89aedf435ed1e11e72fde226ec6de17bfc))
+
+
+
+
+
 ## [18.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.16.1...@ovh-ux/manager-web@18.16.2) (2024-03-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

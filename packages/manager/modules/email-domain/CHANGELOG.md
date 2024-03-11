@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.6.0...@ovh-ux/manager-email-domain@1.6.1) (2024-03-11)
+
+
+### Bug Fixes
+
+* **web:** fix concurrency error on mailing list update ([#11104](https://github.com/ovh/manager/issues/11104)) ([c1fa044](https://github.com/ovh/manager/commit/c1fa04471b9d52d715ab4d8517c387ef97a56528))
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.5.0...@ovh-ux/manager-email-domain@1.6.0) (2024-02-21)
 
 

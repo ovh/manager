@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.1.1...@ovh-ux/manager-octavia-load-balancer@1.2.0) (2024-03-11)
+
+
+### Features
+
+* **octavia:** batch 1 feedbacks ([#11124](https://github.com/ovh/manager/issues/11124)) ([7923397](https://github.com/ovh/manager/commit/792339781345a51448ee45b1899d72b82f15ee4d))
+
+
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.1.0...@ovh-ux/manager-octavia-load-balancer@1.1.1) (2024-02-20)
 
 

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.25.2...@ovh-ux/manager-dedicated@19.26.0) (2024-03-11)
+
+
+### Bug Fixes
+
+* **dedicated.account:** remove banner when edition possible ([#11088](https://github.com/ovh/manager/issues/11088)) ([fbb9c3a](https://github.com/ovh/manager/commit/fbb9c3a7d2e67fbcedb90b36e093347512b518d7))
+
+
+### Features
+
+* **dedicated.vmware:** fix custom nsx edges sizing ([#11147](https://github.com/ovh/manager/issues/11147)) ([690df2d](https://github.com/ovh/manager/commit/690df2dd800be950cc860f61e3d079bd0eec3821))
+* **dedicated:** add translate for Toronto ([#11051](https://github.com/ovh/manager/issues/11051)) ([5cd3931](https://github.com/ovh/manager/commit/5cd3931ef58df1a499172dc35ab557a54b3be1ed))
+
+
+
+
+
 ## [19.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.25.1...@ovh-ux/manager-dedicated@19.25.2) (2024-03-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
