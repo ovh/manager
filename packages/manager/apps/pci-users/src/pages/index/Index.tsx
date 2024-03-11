@@ -28,6 +28,7 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { Notifications } from '@ovhcloud/manager-components';
+import { FilterComparator, FilterCategories } from '@ovh-ux/manager-core-api';
 import { useUsers } from '@/hooks/useUser';
 import GuidesHeader from '@/components/guides/GuidesHeader';
 import useProject from '@/hooks/useProject';
@@ -41,6 +42,9 @@ import Status from '@/components/users/listing/Status';
 import Actions from '@/components/users/listing/Actions';
 import RolesMatrix from './components/RolesMatrix/Index';
 import { useAllRoles } from '@/hooks/useRole';
+import FilterAdd from '@/components/FilterAdd';
+import FilterList from '@/components/FilterList';
+import useColumnFilters from '@/components/useColumnFilters';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -48,8 +52,8 @@ export default function ListingPage() {
   const { projectId } = useParams();
   const [urlProject, setUrlProject] = useState('');
   const [searchField, setSearchField] = useState('');
-  const [searchQueries, setSearchQueries] = useState<string[]>([]);
   const { data: project } = useProject(projectId || '');
+  const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const { data: rolesAndServices } = useAllRoles(`${projectId}`);
 
@@ -119,7 +123,7 @@ export default function ListingPage() {
       pagination,
       sorting,
     },
-    searchQueries,
+    filters,
   );
 
   const onPaginationChange = ({
@@ -182,32 +186,36 @@ export default function ListingPage() {
           className={'w-2/12'}
           value={searchField}
           onOdsSearchSubmit={({ detail }) => {
-            const { inputValue } = detail;
+            addFilter({
+              key: 'username',
+              value: detail.inputValue,
+              comparator: FilterComparator.Includes,
+              label: t('pci_projects_project_users_username_label'),
+            });
             setSearchField('');
-            if (searchQueries.indexOf(inputValue) < 0) {
-              setSearchQueries([...searchQueries, inputValue]);
-            } else {
-              setSearchQueries([...searchQueries]);
-            }
           }}
         />
       </div>
 
-      <div className="flex mt-2">
-        {searchQueries.map((query, index) => (
-          <OsdsChip
-            key={index}
-            className="mr-2"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_CHIP_VARIANT.flat}
-            removable={true}
-            onOdsChipRemoval={() => {
-              setSearchQueries(searchQueries.filter((_, i) => i !== index));
-            }}
-          >
-            {query}
-          </OsdsChip>
-        ))}
+      {/* TODO put filters inside popover when ODS is fixed */}
+      <div className="m-4">
+        <FilterList filters={filters} onRemoveFilter={removeFilter} />
+        <FilterAdd
+          columns={[
+            {
+              id: 'username',
+              label: t('pci_projects_project_users_username_label'),
+              comparators: FilterCategories.String,
+            },
+          ]}
+          onAddFilter={(addedFilter, column) => {
+            setPagination(0, pagination.pageSize);
+            addFilter({
+              ...addedFilter,
+              label: column.label,
+            });
+          }}
+        />
       </div>
 
       {isLoading && (

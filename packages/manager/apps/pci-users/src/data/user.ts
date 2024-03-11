@@ -1,4 +1,4 @@
-import { v6 } from '@ovh-ux/manager-core-api';
+import { v6, fetchIcebergV6, Filter } from '@ovh-ux/manager-core-api';
 import { OPENRC_VERSION } from '@/download-openrc.constants';
 import { OpenStackTokenResponse, Role, User } from '@/interface';
 
@@ -17,8 +17,15 @@ export type UsersOptions = {
   sorting: SortingOptions;
 };
 
-export const getAllUsers = async (projectId: string): Promise<User[]> => {
-  const { data } = await v6.get(`/cloud/project/${projectId}/user`);
+export const getAllUsers = async (
+  projectId: string,
+  filters: Filter[] = [],
+): Promise<User[]> => {
+  const { data } = await fetchIcebergV6<User>({
+    route: `/cloud/project/${projectId}/user`,
+    filters,
+    disableCache: true,
+  });
 
   return data;
 };
