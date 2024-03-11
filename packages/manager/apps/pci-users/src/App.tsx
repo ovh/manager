@@ -16,7 +16,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router}></RouterProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* @TODO investigate errors */ false && (
+        <ReactQueryDevtools initialIsOpen={false} />
+      )}
     </QueryClientProvider>
   );
 }
