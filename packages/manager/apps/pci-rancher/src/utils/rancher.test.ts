@@ -16,6 +16,7 @@ describe('Should validate rancher name', () => {
     it('When i add invalid character in rancher name', () => {
       expect(isValidRancherName('ranche(r1xs23___4((')).toBe(false);
       expect(isValidRancherName('rancher1234-_.@')).toBe(false);
+      expect(isValidRancherName('rAncher')).toBe(false);
     });
 
     it('When length is not valid', () => {
