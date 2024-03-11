@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
-import { TextField } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Calendar } from 'lucide-react';
+import { Calendar as CalendarIcon } from 'lucide-react';
+import { format } from 'date-fns';
+import { Calendar } from '@/components/ui/calendar';
 import { H4, P } from '@/components/typography';
 import { order } from '@/models/catalog';
 import { database } from '@/models/database';
@@ -55,6 +55,14 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useServiceData } from '../../../layout';
 import ErrorList from '@/components/Order/error-list';
 import { ForkSourceType } from '@/models/order-funnel';
+import { TimePickerInput } from '@/components/ui/time-picker-input';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { TimePicker } from '@/components/ui/time-picker';
+import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -89,6 +97,7 @@ const OrderFunnel = ({
   const { toast } = useToast();
   const { t } = useTranslation('pci-databases-analytics/services/new');
   const { service, projectId } = useServiceData();
+  const dateLocale = useDateFnsLocale();
   const { addService, isPending: isPendingAddService } = useAddService({
     onError: (err) => {
       toast({
@@ -261,7 +270,7 @@ const OrderFunnel = ({
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
-                          <SelectTrigger>
+                          <SelectTrigger ref={field.ref}>
                             <SelectValue placeholder="Select a backup" />
                           </SelectTrigger>
                           <SelectContent>
@@ -297,27 +306,50 @@ const OrderFunnel = ({
                         Timestamp
                       </FormLabel>
                       <FormControl>
-                        <MobileDateTimePicker
-                          className="block w-full"
-                          slotProps={{
-                            textField: {
-                              InputProps: { endAdornment: <Calendar /> },
-                              size: 'small',
-                            },
-                          }}
-                          value={field.value}
-                          onChange={field.onChange}
-                          views={[
-                            'year',
-                            'month',
-                            'day',
-                            'hours',
-                            'minutes',
-                            'seconds',
-                          ]}
-                          minDateTime={new Date(service.backups.pitr)}
-                          maxDateTime={new Date()}
-                        />
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button
+                              ref={field.ref}
+                              variant={'ghost'}
+                              className={cn(
+                                'text-left justify-start flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+                                !field.value && 'text-muted-foreground',
+                              )}
+                            >
+                              <CalendarIcon className="mr-2 h-4 w-4" />
+                              {field.value ? (
+                                <FormattedDate
+                                  date={field.value}
+                                  options={{
+                                    dateStyle: 'medium',
+                                    timeStyle: 'medium',
+                                  }}
+                                />
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0">
+                            <Calendar
+                              mode="single"
+                              selected={field.value}
+                              onSelect={field.onChange}
+                              locale={dateLocale}
+                              disabled={(date) =>
+                                date > new Date() ||
+                                date < model.result.minPitrDate
+                              }
+                              initialFocus
+                            />
+                            <div className="p-3 border-t border-border">
+                              <TimePicker
+                                setDate={field.onChange}
+                                date={field.value}
+                              />
+                            </div>
+                          </PopoverContent>
+                        </Popover>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
