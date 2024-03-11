@@ -9,10 +9,12 @@ import { POOL_CONFIG } from './connectionPool.const';
 export interface UseConnectionPoolFormProps {
   existingConnectionPools: database.postgresql.ConnectionPool[];
   editedConnectionPool?: database.postgresql.ConnectionPool;
+  databases: database.service.Database[];
 }
 export const useConnectionPoolForm = ({
   existingConnectionPools,
   editedConnectionPool,
+  databases,
 }: UseConnectionPoolFormProps) => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/pools',
@@ -40,7 +42,11 @@ export const useConnectionPoolForm = ({
       message: t('formConnectionPoolNameErrorDuplicate'),
     });
 
-  const databaseRules = z.string();
+  const databaseRules = z.string().min(POOL_CONFIG.databaseId.min, {
+    message: t('formConnectionPoolErrorMinLength', {
+      min: POOL_CONFIG.databaseId.min,
+    }),
+  });
 
   const modeRules = z.nativeEnum(database.postgresql.connectionpool.ModeEnum);
 
@@ -71,7 +77,7 @@ export const useConnectionPoolForm = ({
 
   const defaultValues: ValidationSchema = {
     name: editedConnectionPool?.name || '',
-    databaseId: editedConnectionPool?.databaseId || '',
+    databaseId: editedConnectionPool?.databaseId || databases[0]?.id || '',
     mode:
       editedConnectionPool?.mode ||
       database.postgresql.connectionpool.ModeEnum.session,

@@ -32,6 +32,7 @@ import { useToast } from '@/components/ui/use-toast';
 
 import { useConnectionPoolForm } from './formPools/formConnectionPool.hook';
 import {
+  MutateConnectionPoolProps,
   useAddConnectionPool,
   useEditConnectionPool,
 } from '@/hooks/api/connectionPool.api.hooks';
@@ -67,6 +68,7 @@ const ConnectionPoolModal = ({
   const { form } = useConnectionPoolForm({
     editedConnectionPool,
     existingConnectionPools: connectionPools,
+    databases,
   });
 
   useEffect(() => {
@@ -76,14 +78,13 @@ const ConnectionPoolModal = ({
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/pools',
   );
+  const prefix = isEdition ? 'edit' : 'add';
   const toast = useToast();
-  const {
-    addConnectionPool,
-    isPending: isPendingAddPool,
-  } = useAddConnectionPool({
-    onError: (err) => {
+
+  const ConnectionPoolMutationProps: MutateConnectionPoolProps = {
+    onError(err) {
       toast.toast({
-        title: t('addConnectionPoolToastErrorTitle'),
+        title: t(`${prefix}ConnectionPoolToastErrorTitle`),
         variant: 'destructive',
         description: err.message,
       });
@@ -91,11 +92,11 @@ const ConnectionPoolModal = ({
         onError(err);
       }
     },
-    onSuccess: (cp) => {
+    onSuccess(cp) {
       form.reset();
       toast.toast({
         title: t('formConnectionPoolToastSuccessTitle'),
-        description: t('addConnectionPoolToastSuccessDescription', {
+        description: t(`${prefix}ConnectionPoolToastSuccessDescription`, {
           name: cp.name,
         }),
       });
@@ -103,35 +104,17 @@ const ConnectionPoolModal = ({
         onSuccess(cp);
       }
     },
-  });
+  };
+
+  const {
+    addConnectionPool,
+    isPending: isPendingAddPool,
+  } = useAddConnectionPool(ConnectionPoolMutationProps);
 
   const {
     editConnectionPool,
     isPending: isPendingEditPool,
-  } = useEditConnectionPool({
-    onError: (err) => {
-      toast.toast({
-        title: t('editConnectionPoolToastErrorTitle'),
-        variant: 'destructive',
-        description: err.message,
-      });
-      if (onError) {
-        onError(err);
-      }
-    },
-    onSuccess: (cp) => {
-      form.reset();
-      toast.toast({
-        title: t('formConnectionPoolToastSuccessTitle'),
-        description: t('editConnectionPoolToastSuccessDescription', {
-          name: cp.name,
-        }),
-      });
-      if (onSuccess) {
-        onSuccess(cp);
-      }
-    },
-  });
+  } = useEditConnectionPool(ConnectionPoolMutationProps);
 
   const onSubmit = form.handleSubmit((formValues) => {
     if (isEdition) {
@@ -170,7 +153,6 @@ const ConnectionPoolModal = ({
     }
   });
 
-  const prefix = isEdition ? 'edit' : 'add';
   return (
     <Dialog {...controller}>
       <DialogContent className="sm:max-w-xl">
@@ -277,12 +259,21 @@ const ConnectionPoolModal = ({
                 <FormItem className="flex flex-col gap-1 mt-2">
                   <FormLabel>{t('formConnectionPoolFieldUserLabel')}</FormLabel>
                   <FormControl>
-                    <Select value={field.value} onValueChange={field.onChange}>
+                    <Select
+                      value={field.value}
+                      onValueChange={(v) =>
+                        v === 'noUser'
+                          ? field.onChange(null)
+                          : field.onChange(v)
+                      }
+                    >
                       <SelectTrigger>
-                        <SelectValue />
+                        <SelectValue
+                          placeholder={t('formConnectionPoolFieldUserNoValue')}
+                        />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem key="NoUser" value={undefined}>
+                        <SelectItem value={'noUser'}>
                           {t('formConnectionPoolFieldUserNoValue')}
                         </SelectItem>
                         {users.map((option) => (
