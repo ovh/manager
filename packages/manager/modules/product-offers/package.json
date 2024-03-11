@@ -27,6 +27,7 @@
     "angular": "^1.7.9",
     "angular-translate": "^2.18.2",
     "bootstrap": "^4.3.1",
+    "jsurl": "^0.1.5",
     "moment": "^2.24.0",
     "ovh-api-services": "^14.0.6"
   }

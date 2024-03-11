@@ -68,11 +68,21 @@ export default class OrderWorkflow extends Workflow {
    *  ];
    * @param {Object} WucOrderCartService Service to handle order cart
    */
+
   /* @ngInject */
-  constructor($q, $timeout, $translate, workflowOptions, WucOrderCartService) {
+  constructor(
+    $q,
+    $timeout,
+    $translate,
+    workflowOptions,
+    WucOrderCartService,
+    $window,
+    RedirectionService,
+  ) {
     super($q, $timeout, $translate, workflowOptions);
     this.WucOrderCartService = WucOrderCartService;
-
+    this.$window = $window;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
     if (!this.catalog) {
       throw new Error('ovhProductOffers-OrderWorkflow requires a catalog');
     }
@@ -142,12 +152,7 @@ export default class OrderWorkflow extends Workflow {
     );
   }
 
-  /**
-   * Get the information for option order validation
-   * Will tell to upper scope the loading state of the workflow.
-   * @return {Promise}
-   */
-  getValidationInformation() {
+  getCheckoutInformations() {
     this.updateLoadingStatus('getOfferValidationInformation');
     const pricing = this.pricing || this.pricings[0];
 
@@ -155,7 +160,7 @@ export default class OrderWorkflow extends Workflow {
       ? this.onGetConfiguration()
       : [];
 
-    const checkoutInformations = {
+    return {
       product: {
         duration: pricing.getDurationISOFormat(),
         planCode: this.getPlanCode(),
@@ -164,7 +169,15 @@ export default class OrderWorkflow extends Workflow {
       },
       configuration,
     };
+  }
 
+  /**
+   * Get the information for option order validation
+   * Will tell to upper scope the loading state of the workflow.
+   * @return {Promise}
+   */
+  getValidationInformation() {
+    const checkoutInformations = this.getCheckoutInformations();
     const serviceName = isFunction(this.serviceNameToAddProduct)
       ? this.serviceNameToAddProduct()
       : this.serviceNameToAddProduct;
@@ -236,6 +249,21 @@ export default class OrderWorkflow extends Workflow {
           : autoPayWithPreferredPaymentMethod,
       waiveRetractationPeriod: false,
     };
+
+    if (this.expressOrder) {
+      const productId = this.productName();
+      const checkoutObject = this.getCheckoutInformations();
+      const jsUrlToSend = {
+        productId,
+        configuration: checkoutObject.configuration,
+        ...checkoutObject.product,
+      };
+      return this.$window.open(
+        `${this.expressOrderUrl}?products=${JSURL.stringify([jsUrlToSend])}`,
+        '_blank',
+        'noopener',
+      );
+    }
 
     return this.$q
       .when()
