@@ -1753,7 +1753,7 @@ export namespace database {
       default: boolean;
       lifecycle: database.availability.Lifecycle;
       name: string;
-      tags: string[];
+      tags: database.capabilities.Tags[];
     }[];
   }
   /** Regions Capabilites */
