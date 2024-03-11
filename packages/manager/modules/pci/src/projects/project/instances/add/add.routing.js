@@ -60,11 +60,19 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.privateNetwork', {
           projectId,
         }),
-      addLocalPrivateNetworksLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.privateNetwork.localZone', {
-          projectId,
-        }),
-
+      addLocalPrivateNetworksLink: /* @ngInject */ (
+        $state,
+        projectId,
+        privateNetworks,
+      ) =>
+        $state.href(
+          `pci.projects.project.privateNetwork.${
+            !privateNetworks.length ? 'add' : 'localZone'
+          }`,
+          {
+            projectId,
+          },
+        ),
       goBack: /* @ngInject */ (goToInstances) => goToInstances,
 
       prices: /* @ngInject */ (
