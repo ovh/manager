@@ -102,6 +102,7 @@ export interface CreateRancherProps {
   onCreateRancher: (payload: CreateRancherPayload) => void;
   isProjectDiscoveryMode?: boolean;
   hasSomeRancher: boolean;
+  isCreateRancherLoading: boolean;
 }
 
 const CreateRancher: React.FC<CreateRancherProps> = ({
@@ -112,6 +113,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   projectId,
   isProjectDiscoveryMode,
   hasSomeRancher,
+  isCreateRancherLoading,
 }) => {
   const [rancherName, setRancherName] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -294,11 +296,13 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             {t('cancel')}
           </OsdsButton>
           <OsdsButton
-            disabled={!isCreateRancherAllowed || undefined}
+            disabled={
+              !isCreateRancherAllowed || isCreateRancherLoading || undefined
+            }
             slot="actions"
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => {
-              if (isCreateRancherAllowed) {
+              if (isCreateRancherAllowed || isCreateRancherLoading) {
                 onCreateClick({
                   name: rancherName,
                   version: selectedVersion.name,
