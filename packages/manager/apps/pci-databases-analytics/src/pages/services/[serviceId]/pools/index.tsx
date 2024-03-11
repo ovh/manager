@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
+import { useEffect, useState } from 'react';
 
 import { Plus } from 'lucide-react';
 import { H2, P } from '@/components/typography';
@@ -12,12 +13,12 @@ import { useGetDatabases } from '@/hooks/api/databases.api.hook';
 import { useGetUsers } from '@/hooks/api/users.api.hooks';
 
 import { useServiceData } from '../layout';
-import { database } from '@/models/database';
 import { POLLING } from '@/configuration/polling';
 import { getColumns } from './_components/poolsTableColumns';
 import InfoConnectionPoolModal from './_components/infoConnectionPool';
-import AddEditConnectionPoolModal from './_components/addEditConnectionPool';
 import DeleteConnectionPool from './_components/deleteConnectionPool';
+import ConnectionPoolModal from './_components/connectionPool';
+import { ConnectionPoolWithData } from '@/api/databases/connectionPool';
 
 export function breadcrumb() {
   return 'Pools';
@@ -28,6 +29,9 @@ const Pools = () => {
     'pci-databases-analytics/services/service/pools',
   );
   const { projectId, service } = useServiceData();
+  const [connectionPoolListWithData, setConnectionPoolListWithData] = useState<
+    ConnectionPoolWithData[]
+  >([]);
   const addModale = useModale('add');
   const getInfoModale = useModale('information');
   const deleteModale = useModale('delete');
@@ -52,26 +56,45 @@ const Pools = () => {
     refetchInterval: POLLING.USERS,
   });
 
-  const columns: ColumnDef<database.postgresql.ConnectionPool>[] = getColumns({
-    databases: databasesQuery.data,
-    users: usersQuery.data,
-    onGetInformationClick: (pools: database.postgresql.ConnectionPool) =>
+  useEffect(() => {
+    if (
+      !(
+        connectionPoolsQuery.isSuccess &&
+        usersQuery.isSuccess &&
+        databasesQuery.isSuccess
+      )
+    )
+      return;
+    const cpListWithData: ConnectionPoolWithData[] = connectionPoolsQuery.data.map(
+      (cp) => ({
+        ...cp,
+        userName: cp.userId
+          ? usersQuery.data.find((user) => user.id === cp.userId).username
+          : '',
+        databaseName: databasesQuery.data.find((db) => db.id === cp.databaseId)
+          .name,
+      }),
+    );
+    setConnectionPoolListWithData(cpListWithData);
+  }, [connectionPoolsQuery.data, usersQuery.data, databasesQuery.data]);
+
+  const columns: ColumnDef<ConnectionPoolWithData>[] = getColumns({
+    onGetInformationClick: (pools: ConnectionPoolWithData) =>
       getInfoModale.open(pools.id),
-    onEditClick: (pools: database.postgresql.ConnectionPool) =>
-      editModale.open(pools.id),
-    onDeleteClick: (pools: database.postgresql.ConnectionPool) =>
+    onEditClick: (pools: ConnectionPoolWithData) => editModale.open(pools.id),
+    onDeleteClick: (pools: ConnectionPoolWithData) =>
       deleteModale.open(pools.id),
   });
 
-  const conenctionPoolToDelete = connectionPoolsQuery.data?.find(
+  const connectionPoolToDelete = connectionPoolListWithData?.find(
     (cp) => cp.id === deleteModale.value,
   );
 
-  const conenctionPoolToDisplayInfo = connectionPoolsQuery.data?.find(
+  const connectionPoolToDisplayInfo = connectionPoolListWithData?.find(
     (cp) => cp.id === getInfoModale.value,
   );
 
-  const conenctionPoolToEdit = connectionPoolsQuery.data?.find(
+  const connectionPoolToEdit = connectionPoolListWithData?.find(
     (cp) => cp.id === editModale.value,
   );
 
@@ -89,22 +112,19 @@ const Pools = () => {
         {t('addButtonLabel')}
       </Button>
 
-      {connectionPoolsQuery.isSuccess &&
-      usersQuery.isSuccess &&
-      databasesQuery.isSuccess ? (
+      {connectionPoolListWithData ? (
         <DataTable
           columns={columns}
-          data={connectionPoolsQuery.data}
+          data={connectionPoolListWithData}
           pageSize={25}
         />
       ) : (
         <DataTable.Skeleton columns={5} rows={2} width={100} height={16} />
       )}
-
       {connectionPoolsQuery.isSuccess &&
         usersQuery.isSuccess &&
         databasesQuery.isSuccess && (
-          <AddEditConnectionPoolModal
+          <ConnectionPoolModal
             isEdition={false}
             controller={addModale.controller}
             users={usersQuery.data}
@@ -119,25 +139,26 @@ const Pools = () => {
           />
         )}
 
-      {conenctionPoolToDisplayInfo &&
+      {connectionPoolToDisplayInfo &&
         connectionPoolsQuery.isSuccess &&
         databasesQuery.isSuccess && (
           <InfoConnectionPoolModal
             service={service}
             controller={getInfoModale.controller}
-            connectionPool={conenctionPoolToDisplayInfo}
+            connectionPool={connectionPoolToDisplayInfo}
             databases={databasesQuery.data}
           />
         )}
 
-      {conenctionPoolToEdit &&
+      {connectionPoolToEdit &&
         connectionPoolsQuery.isSuccess &&
         usersQuery.isSuccess &&
         databasesQuery.isSuccess && (
-          <AddEditConnectionPoolModal
+          <ConnectionPoolModal
             isEdition={true}
             controller={editModale.controller}
-            editedConnectionPool={conenctionPoolToEdit}
+            connectionPools={connectionPoolsQuery.data}
+            editedConnectionPool={connectionPoolToEdit}
             users={usersQuery.data}
             service={service}
             databases={databasesQuery.data}
@@ -149,11 +170,11 @@ const Pools = () => {
           />
         )}
 
-      {conenctionPoolToDelete && (
+      {connectionPoolToDelete && (
         <DeleteConnectionPool
           controller={deleteModale.controller}
           service={service}
-          connectionPool={conenctionPoolToDelete}
+          connectionPool={connectionPoolToDelete}
           onSuccess={() => {
             deleteModale.close();
             connectionPoolsQuery.refetch();

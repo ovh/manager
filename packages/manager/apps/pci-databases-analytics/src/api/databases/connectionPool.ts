@@ -1,7 +1,12 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { database } from '@/models/database';
 import { ServiceData } from '.';
-import { ConnectionPoolEdition } from '@/models/databaseEdition';
+
+export interface ConnectionPoolWithData
+  extends database.postgresql.ConnectionPool {
+  databaseName: string;
+  userName: string;
+}
 
 export const getConnectionPools = async ({
   projectId,
@@ -37,6 +42,13 @@ export const addConnectionPool = async ({
       connectionPool,
     )
     .then((res) => res.data as database.postgresql.ConnectionPool);
+
+export interface ConnectionPoolEdition {
+  databaseId: string;
+  mode: database.postgresql.connectionpool.ModeEnum;
+  size: number;
+  userId?: string;
+}
 
 export interface EditConnectionPoolProps extends ServiceData {
   connectionPoolId: string;

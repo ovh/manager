@@ -7,7 +7,7 @@ import { database } from '@/models/database';
 import { POOL_CONFIG } from './connectionPool.const';
 
 export interface UseConnectionPoolFormProps {
-  existingConnectionPools?: database.postgresql.ConnectionPool[];
+  existingConnectionPools: database.postgresql.ConnectionPool[];
   editedConnectionPool?: database.postgresql.ConnectionPool;
 }
 export const useConnectionPoolForm = ({
@@ -18,10 +18,9 @@ export const useConnectionPoolForm = ({
     'pci-databases-analytics/services/service/pools',
   );
 
-  const usedNames = editedConnectionPool
-    ? []
-    : existingConnectionPools.map((cp) => cp.name);
-
+  const usedNames = existingConnectionPools
+    .filter((c) => c.name !== editedConnectionPool?.name)
+    .map((cp) => cp.name);
   const nameRules = z
     .string()
     .min(POOL_CONFIG.name.min, {
@@ -45,7 +44,7 @@ export const useConnectionPoolForm = ({
 
   const modeRules = z.nativeEnum(database.postgresql.connectionpool.ModeEnum);
 
-  const sizeRules = z
+  const sizeRules = z.coerce
     .number()
     .min(POOL_CONFIG.size.min, {
       message: t('formConnectionPoolErrorMinSizeLength', {
@@ -70,21 +69,15 @@ export const useConnectionPoolForm = ({
 
   type ValidationSchema = z.infer<typeof schema>;
 
-  const defaultValues: ValidationSchema = editedConnectionPool
-    ? {
-        name: editedConnectionPool.name,
-        databaseId: editedConnectionPool.databaseId,
-        mode: editedConnectionPool.mode,
-        size: editedConnectionPool.size,
-        userId: editedConnectionPool.userId || '-',
-      }
-    : {
-        name: '',
-        databaseId: '',
-        mode: database.postgresql.connectionpool.ModeEnum.session,
-        size: 1,
-        userId: '',
-      };
+  const defaultValues: ValidationSchema = {
+    name: editedConnectionPool?.name || '',
+    databaseId: editedConnectionPool?.databaseId || '',
+    mode:
+      editedConnectionPool?.mode ||
+      database.postgresql.connectionpool.ModeEnum.session,
+    size: editedConnectionPool?.size || 1,
+    userId: editedConnectionPool?.userId || '',
+  };
 
   const form = useForm<ValidationSchema>({
     resolver: zodResolver(schema),

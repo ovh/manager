@@ -29,12 +29,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
-import SizeInput from './formPools/sizeSelect';
 
-import {
-  UseConnectionPoolFormProps,
-  useConnectionPoolForm,
-} from './formPools/formConnectionPool.hook';
+import { useConnectionPoolForm } from './formPools/formConnectionPool.hook';
 import {
   useAddConnectionPool,
   useEditConnectionPool,
@@ -43,13 +39,12 @@ import { ModalController } from '@/hooks/useModale';
 
 import { GenericUser } from '@/api/databases/users';
 import { database } from '@/models/database';
-import { POOL_CONFIG } from './formPools/connectionPool.const';
-import { ConnectionPoolEdition } from '@/models/databaseEdition';
+import { ConnectionPoolEdition } from '@/api/databases/connectionPool';
 
-interface AddEditConnectionPoolModalProps {
+interface ConnectionPoolModalProps {
   isEdition: boolean;
   editedConnectionPool?: database.postgresql.ConnectionPool;
-  connectionPools?: database.postgresql.ConnectionPool[];
+  connectionPools: database.postgresql.ConnectionPool[];
   users: GenericUser[];
   databases: database.service.Database[];
   service: database.Service;
@@ -57,7 +52,7 @@ interface AddEditConnectionPoolModalProps {
   onSuccess?: (connectionPool?: database.postgresql.ConnectionPool) => void;
   onError?: (error: Error) => void;
 }
-const AddEditConnectionPoolModal = ({
+const ConnectionPoolModal = ({
   isEdition,
   editedConnectionPool,
   connectionPools,
@@ -67,13 +62,13 @@ const AddEditConnectionPoolModal = ({
   controller,
   onSuccess,
   onError,
-}: AddEditConnectionPoolModalProps) => {
+}: ConnectionPoolModalProps) => {
   const { projectId } = useParams();
-  const formProps: UseConnectionPoolFormProps = isEdition
-    ? { editedConnectionPool }
-    : { existingConnectionPools: connectionPools };
+  const { form } = useConnectionPoolForm({
+    editedConnectionPool,
+    existingConnectionPools: connectionPools,
+  });
 
-  const { form } = useConnectionPoolForm(formProps);
   useEffect(() => {
     if (!controller.open) form.reset();
   }, [controller.open]);
@@ -145,9 +140,7 @@ const AddEditConnectionPoolModal = ({
         mode: formValues.mode,
         size: formValues.size,
       };
-      if (formValues.userId.length > 1) {
-        connectionPool.userId = formValues.userId;
-      }
+      if (formValues.userId) connectionPool.userId = formValues.userId;
       if (Object.entries(form.formState.dirtyFields).length === 0) {
         onSuccess();
         return;
@@ -166,9 +159,8 @@ const AddEditConnectionPoolModal = ({
         name: formValues.name,
         size: formValues.size,
       };
-      if (formValues.userId.length > 1) {
-        connectionPool.userId = formValues.userId;
-      }
+      if (formValues.userId) connectionPool.userId = formValues.userId;
+
       addConnectionPool({
         projectId,
         engine: service.engine,
@@ -178,15 +170,12 @@ const AddEditConnectionPoolModal = ({
     }
   });
 
+  const prefix = isEdition ? 'edit' : 'add';
   return (
     <Dialog {...controller}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle>
-            {isEdition
-              ? t('editConnectionPoolTitle')
-              : t('addConnectionPoolTitle')}
-          </DialogTitle>
+          <DialogTitle>{t(`${prefix}ConnectionPoolTitle`)}</DialogTitle>
           {!isEdition && (
             <DialogDescription>
               {t('addConnectionPoolDescription')}
@@ -255,8 +244,8 @@ const AddEditConnectionPoolModal = ({
                       <SelectContent>
                         {Object.values(
                           database.postgresql.connectionpool.ModeEnum,
-                        ).map((option, index) => (
-                          <SelectItem key={index} value={option}>
+                        ).map((option) => (
+                          <SelectItem key={option} value={option}>
                             {option}
                           </SelectItem>
                         ))}
@@ -274,12 +263,7 @@ const AddEditConnectionPoolModal = ({
                 <FormItem>
                   <FormLabel>{t('formUserFieldSizeLabel')}</FormLabel>
                   <FormControl>
-                    <SizeInput
-                      value={field.value}
-                      onChange={(newValue) => form.setValue('size', newValue)}
-                      min={POOL_CONFIG.size.min}
-                      max={POOL_CONFIG.size.max}
-                    />
+                    <Input type="number" value={field.value} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -295,15 +279,11 @@ const AddEditConnectionPoolModal = ({
                   <FormControl>
                     <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger>
-                        <SelectValue
-                          placeholder={t(
-                            'formConnectionPoolFieldUserPlaceholder',
-                          )}
-                        />
+                        <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem key={1} value="-">
-                          -
+                        <SelectItem key="NoUser" value={undefined}>
+                          {t('formConnectionPoolFieldUserNoValue')}
                         </SelectItem>
                         {users.map((option) => (
                           <SelectItem key={option.id} value={option.id}>
@@ -327,9 +307,7 @@ const AddEditConnectionPoolModal = ({
                 type="submit"
                 disabled={isPendingAddPool || isPendingEditPool}
               >
-                {isEdition
-                  ? t('editConnectionButtonConfirm')
-                  : t('addConnectionButtonConfirm')}
+                {t(`${prefix}ConnectionButtonConfirm`)}
               </Button>
             </DialogFooter>
           </form>
@@ -339,4 +317,4 @@ const AddEditConnectionPoolModal = ({
   );
 };
 
-export default AddEditConnectionPoolModal;
+export default ConnectionPoolModal;

@@ -28,7 +28,7 @@
   "formConnectionPoolFieldModeLabel": "Mode",
   "formUserFieldSizeLabel": "Taille",
   "formConnectionPoolFieldUserLabel": "Nom d'utilisateur (Optionnel)",
-  "formConnectionPoolFieldUserPlaceholder": "Nom d'utilisateur",
+  "formConnectionPoolFieldUserNoValue": "Aucun utilisateur",
   "formConnectionButtonCancel": "Annuler",
   "formConnectionPoolToastSuccessTitle": "Succès",
   "addConnectionPoolTitle": "Ajouter un pool de connexion",
