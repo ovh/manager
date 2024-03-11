@@ -30,7 +30,7 @@ export function useGetConnectionPools(
   }) as UseQueryResult<database.postgresql.ConnectionPool[], Error>;
 }
 
-interface MutateConnectionPoolProps {
+export interface MutateConnectionPoolProps {
   onError: (cause: Error) => void;
   onSuccess: (connectionPool: database.postgresql.ConnectionPool) => void;
 }
