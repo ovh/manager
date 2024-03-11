@@ -31,6 +31,7 @@ export default function StorageRegions({
       {!isLoading && currentRegion && (
         <OsdsSelect
           value={currentRegion}
+          data-testid={'currentRegionSelect'}
           onOdsValueChange={(
             event: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
           ) => {
