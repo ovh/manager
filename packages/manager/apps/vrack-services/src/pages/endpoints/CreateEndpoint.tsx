@@ -141,7 +141,7 @@ const EndpointCreationPage: React.FC = () => {
               key={service.managedServiceType}
               value={service.managedServiceType}
             >
-              {service.managedServiceType}
+              {t(service.managedServiceType)}
             </OsdsSelectOption>
           ))}
         </OsdsSelect>

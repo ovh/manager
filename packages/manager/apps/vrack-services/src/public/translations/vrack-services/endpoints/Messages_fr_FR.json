@@ -21,5 +21,6 @@
   "updateError": "Un problème est survenue lors de la mise-à-jour de votre Service Endpoint. Veuillez réessayer ultérieurement.",
   "modalDeleteInputLabel": "Veuillez entrer le mot « TERMINATE » pour confirmer la suppression de votre Service Endpoint",
   "modalDeleteHeadline": "Supprimer le Service Endpoint",
-  "modalDeleteDescription": "Si vous supprimez ce Service Endpoint, vous perdrez la connectivité au service associé."
+  "modalDeleteDescription": "Si vous supprimez ce Service Endpoint, vous perdrez la connectivité au service associé.",
+  "storageNetApp": "Enterprise File Storage"
 }
