@@ -7,7 +7,6 @@
   "subnetCreationError": "Erreur lors de la création du sous-réseau : {{error}}",
   "subnetNameLabel": "Nom du sous-réseau (facultatif)",
   "subnetNamePlaceholder": "Mon sous-réseau",
-  "defaultSubnetName": "SUB-XXXXX",
   "cidrLabel": "Plage d'adresses du sous-réseau (CIDR)",
   "cidrPlaceholder": "10.0.0.0/24",
   "defaultCidr": "10.0.0.0/24",
