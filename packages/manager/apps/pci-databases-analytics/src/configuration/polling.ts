@@ -8,4 +8,5 @@ export const POLLING = {
   USERS: 30_000,
   CURRENT_QUERIES: 30_000,
   INTEGRATIONS: 30_000,
+  POOLS: 30_000,
 };
