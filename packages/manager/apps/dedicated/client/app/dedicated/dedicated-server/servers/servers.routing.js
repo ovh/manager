@@ -125,12 +125,6 @@ export default /* @ngInject */ ($stateProvider) => {
         featureAvailability?.isFeatureAvailable(
           'billing:autorenew2016Deployment',
         ) || false,
-      displayRbx1EolBanner: /* @ngInject */ (featureAvailability) => ({
-        rbx1Eol:
-          featureAvailability?.isFeatureAvailable(
-            'dedicated-server:banner-rbx1-eol',
-          ) || false,
-      }),
     },
     redirectTo: (transition) =>
       transition

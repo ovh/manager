@@ -7,6 +7,7 @@ export default {
     currentActiveLink: '<',
     clustersLink: '<',
     allServersLink: '<',
+    displayRbx1EolBanner: '<',
   },
   template,
 };
