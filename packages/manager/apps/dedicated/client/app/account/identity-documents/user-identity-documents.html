@@ -24,55 +24,59 @@
     </oui-message>
 
     <!--My Identity document title-->
-    <p
-        class="oui-heading_3 mb-1 mt-3"
-        data-translate="user_account_identity_documents_title"
-    ></p>
-    <!--My Identity document description-->
-    <p class="oui-tile__body">
-        <span data-translate="user_account_identity_documents_intro"></span>
-        <br />
+    <upload-identity-documents-corp-requirements
+        data-ng-if="$ctrl.user_type == $ctrl.USER_TYPE.corporation"
+    ></upload-identity-documents-corp-requirements>
+    <upload-identity-documents-ind-requirements
+        data-ng-if="$ctrl.user_type == $ctrl.USER_TYPE.individual"
+    ></upload-identity-documents-ind-requirements>
+    <div
+        data-ng-if="$ctrl.user_type != $ctrl.USER_TYPE.corporation && $ctrl.user_type != $ctrl.USER_TYPE.individual"
+    >
+        <p
+            class="oui-heading_3 mb-1 mt-3"
+            data-translate="user_account_identity_documents_title"
+        ></p>
+        <!--My Identity document description-->
+        <p class="oui-tile__body">
+            <span data-translate="user_account_identity_documents_intro"></span>
+            <br />
+            <span
+                data-translate="user_account_identity_documents_intro_kyc_reminder"
+            ></span>
+        </p>
+        <!--My Identity document sub-title-->
+        <p
+            class="oui-heading_3 mb-1 mt-3"
+            data-translate="user_account_identity_documents_sub_title"
+        ></p>
+        <!--My Identity document description-->
         <span
-            data-translate="user_account_identity_documents_intro_kyc_reminder"
+            data-translate="{{'user_account_identity_documents_list_for_' + $ctrl.user_type}}"
         ></span>
-    </p>
-    <!--My Identity document sub-title-->
-    <p
-        class="oui-heading_3 mb-1 mt-3"
-        data-translate="user_account_identity_documents_sub_title"
-    ></p>
-    <!--My Identity document description-->
-    <span data-translate="user_account_identity_documents_description"></span>
-    <span
-        data-translate="{{'user_account_identity_documents_list_for_' + $ctrl.user_type}}"
-    ></span>
-    :
-    <ul class="mt-2">
-        <li>
-            <span
-                data-translate="user_account_identity_documents_list_doc1"
-            ></span>
-        </li>
-        <li>
-            <span
-                data-translate="user_account_identity_documents_list_doc2"
-            ></span>
-        </li>
-        <li data-ng-if="$ctrl.USER_TYPE.corporation === $ctrl.user_type">
-            <span
-                data-translate="user_account_identity_documents_list_doc3"
-            ></span>
-        </li>
-        <li
-            data-ng-if="$ctrl.USER_TYPE.corporation != $ctrl.user_type && $ctrl.USER_TYPE.individual != $ctrl.user_type"
-        >
-            <span
-                data-translate="user_account_identity_documents_list_doc3_optional"
-            ></span>
-        </li>
-    </ul>
+        :
+        <ul class="mt-2">
+            <li>
+                <span
+                    data-translate="user_account_identity_documents_list_doc1"
+                ></span>
+            </li>
+            <li>
+                <span
+                    data-translate="user_account_identity_documents_list_doc2"
+                ></span>
+            </li>
+            <li
+                data-ng-if="$ctrl.USER_TYPE.corporation != $ctrl.user_type && $ctrl.USER_TYPE.individual != $ctrl.user_type"
+            >
+                <span
+                    data-translate="user_account_identity_documents_list_doc3_optional"
+                ></span>
+            </li>
+        </ul>
+    </div>
+    <!--End of Header section-->
 </div>
-<!--End of Header section-->
 
 <!-- Loader -->
 <div class="text-center mt-5" data-ng-if="$ctrl.loading">
@@ -156,6 +160,10 @@
 <!--legal section-->
 <div class="mt-4">
     <small>
+        <p
+            data-translate="user_account_identity_documents_description"
+            class="mb-0"
+        ></p>
         <p
             data-translate="user_account_identity_documents_legal_info1"
             data-translate-values="{
