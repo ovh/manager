@@ -22,7 +22,11 @@ import {
   RCLONE_SERVICE_TYPE,
 } from '@/download-rclone.constants';
 import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/download-openrc.constants';
-import { OpenStackTokenResponse, User } from '@/interface';
+import {
+  GenerateOpenStackTokenReturnType,
+  OpenStackTokenResponse,
+  User,
+} from '@/interface';
 
 type RemoveUserProps = {
   projectId: string;
@@ -213,7 +217,7 @@ export const useGenerateOpenStackToken = ({
   password,
   onError,
   onSuccess,
-}: GenerateOpenStackTokenProps) => {
+}: GenerateOpenStackTokenProps): GenerateOpenStackTokenReturnType => {
   const mutation = useMutation({
     mutationFn: () => generateOpenStackToken(projectId, userId, password),
     onError,
