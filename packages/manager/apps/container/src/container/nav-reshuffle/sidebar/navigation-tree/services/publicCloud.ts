@@ -277,7 +277,7 @@ const pciNode: Node = {
           serviceType: 'CLOUD_PROJECT_DATABASE',
           routing: {
             application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/storages/databases-analytics/databases',
+            hash: '#/pci/projects/{projectId}/databases-analytics/operational/services',
           },
           features: ['databases'],
           forceVisibility: true,
