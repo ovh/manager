@@ -1,3 +1,5 @@
+import { UseMutationResult } from '@tanstack/react-query';
+
 export type Role = {
   id: string;
   name: string;
@@ -41,3 +43,7 @@ export interface OpenStackTokenResponse {
     }[];
   };
 }
+
+export type GenerateOpenStackTokenReturnType = {
+  generate: () => void;
+} & UseMutationResult<OpenStackTokenResponse, Error, void, unknown>;

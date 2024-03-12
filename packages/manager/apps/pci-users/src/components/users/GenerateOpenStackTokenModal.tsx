@@ -36,13 +36,16 @@ export default function GenerateOpenStackTokenModal({
   onClose,
   onError,
 }: GenerateOpenStackTokenModalProps) {
-  const [token, setToken] = useState<OpenStackTokenResponse>();
   const { t } = useTranslation('common');
+
+  const [token, setToken] = useState<OpenStackTokenResponse>();
+  const [password, setPassword] = useState('');
+
   const { data: user, isPending: isUserPending } = useUser(
     `${projectId}`,
     userId,
   );
-  const [password, setPassword] = useState('');
+
   const {
     generate,
     isPending: isTokenGenerationPending,
@@ -86,11 +89,18 @@ export default function GenerateOpenStackTokenModal({
                   inline={true}
                   value={password}
                   onOdsValueChange={(e) => setPassword(`${e.detail.value}`)}
+                  data-testid="open-stack-token_password"
                 ></OsdsPassword>
               </OsdsFormField>
             </>
           )}
-          {isPending && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
+          {isPending && (
+            <OsdsSpinner
+              data-testid="open-stack-modal_spinner"
+              inline
+              size={ODS_SPINNER_SIZE.md}
+            />
+          )}
 
           {token && (
             <>
