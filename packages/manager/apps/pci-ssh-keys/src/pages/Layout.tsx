@@ -7,15 +7,14 @@ import BreadCrumbs from '@/components/BreadCrumbs';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 import HidePreloader from '@/core/HidePreloader';
 import useProject, { ResponseAPIError } from '@/hooks/useProject';
+import usePageTracking from '@/hooks/usePageTracking';
 
 export default function Layout() {
   const { projectId } = useParams();
-  const { error, isSuccess } = useProject(projectId || '', { retry: false });
+  const { isSuccess } = useProject(projectId || '', { retry: false });
 
-  if (error) {
-    error.message = `Project ${projectId} doesn't exists`;
-    throw error;
-  }
+  usePageTracking();
+
   return (
     <div className="application">
       <Suspense>
@@ -52,7 +51,7 @@ export const ErrorBoundary = () => {
         onReloadPage={reloadPage}
         onRedirectHome={navigateToHomePage}
         error={{
-          data: { message: error.message },
+          data: { message: error.response?.data?.message || error.message },
           headers: error.response?.headers,
         }}
       />
