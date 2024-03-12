@@ -158,6 +158,7 @@
                 <a
                     class="oui-link_icon"
                     data-ng-href="{{:: $ctrl.linkToOwnerPage($row.contactOwner.id, $row.domain)}}"
+                    target="_top"
                 >
                     <span data-ng-bind=":: $row.contactOwner.id"></span>
                 </a>
@@ -189,7 +190,8 @@
             <a
                 class="oui-link_icon"
                 data-ng-if="$row.contactAdmin.id === $ctrl.user.auth.account"
-                data-ng-href="{{:: $ctrl.linkUserAccountBuilder($row.contactAdmin.id)}}"
+                data-ng-href="{{:: $ctrl.USER_ACCOUNT_INFOS_LINK }}"
+                target="_top"
             >
                 <span data-ng-bind=":: $row.contactAdmin.id"></span>
                 <span
@@ -213,7 +215,8 @@
             <a
                 class="oui-link_icon"
                 data-ng-if="$row.contactBilling.id === $ctrl.user.auth.account"
-                data-ng-href="{{:: $ctrl.linkUserAccountBuilder($row.contactBilling.id)}}"
+                data-ng-href="{{:: $ctrl.USER_ACCOUNT_INFOS_LINK }}"
+                target="_top"
             >
                 <span data-ng-bind=":: $row.contactBilling.id"></span>
                 <span
@@ -237,7 +240,8 @@
             <a
                 class="oui-link_icon"
                 data-ng-if="$row.contactTech.id === $ctrl.user.auth.account"
-                data-ng-href="{{:: $ctrl.linkUserAccountBuilder($row.contactTech.id)}}"
+                data-ng-href="{{:: $ctrl.USER_ACCOUNT_INFOS_LINK }}"
+                target="_top"
             >
                 <span data-ng-bind=":: $row.contactTech.id"></span>
                 <span
@@ -283,7 +287,7 @@
                 <span data-translate="domains_action_per_line_detail"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                on-click="$ctrl.goToRestoreRenew($row)"
+                data-on-click="$ctrl.goToRestoreRenew($row)"
                 aria-label="{{:: $row.state === $ctrl.DOMAIN_STATUS.RESTORABLE ? 'domains_action_per_line_restore' : 'domains_action_per_line_renew' | translate }}"
                 data-ng-if="$ctrl.constructor.isDomainRenewableOrRestorable($row)"
             >
@@ -295,6 +299,7 @@
                 data-href="{{:: $ctrl.CANCEL_LINK + $row.domain }}"
                 aria-label="{{:: 'domains_action_per_line_cancellation' | translate }}"
                 data-ng-if="$ctrl.constructor.isDomainCancellable($row)"
+                top
             >
                 <span
                     data-translate="domains_action_per_line_cancellation"
@@ -304,6 +309,7 @@
                 data-href="{{:: $ctrl.ENABLE_AUTO_RENEW_LINK + $row.serviceId }}"
                 aria-label="{{:: 'domains_action_per_line_autorenew_activate' | translate }}"
                 data-ng-if="$row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.MANUAL_RENEW"
+                top
             >
                 <span
                     data-translate="domains_action_per_line_autorenew_activate"
@@ -313,10 +319,17 @@
                 data-href="{{:: $ctrl.DISABLE_AUTO_RENEW_LINK + $row.serviceId }}"
                 aria-label="{{:: 'domains_action_per_line_autorenew_deactivate' | translate }}"
                 data-ng-if="$row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.AUTOMATIC_RENEW"
+                top
             >
                 <span
                     data-translate="domains_action_per_line_autorenew_deactivate"
                 ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToContactManagementEdit($row.domain)"
+                aria-label="{{:: 'common_manage_contacts' | translate }}"
+            >
+                <span data-translate="common_manage_contacts"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

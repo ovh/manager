@@ -20,6 +20,7 @@ import {
   MONTH_DATE_FORMAT,
   DATE_FORMAT,
   LANGUAGE_OVERRIDE,
+  PRODUCT_TYPE,
 } from './list-domain-layout.constants';
 
 export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtrl {
@@ -33,6 +34,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     Domain,
     $scope,
     $timeout,
+    $window,
   ) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
@@ -56,6 +58,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.Domain = Domain;
     this.$scope = $scope;
     this.$timeout = $timeout;
+    this.$window = $window;
   }
 
   $onInit() {
@@ -109,17 +112,22 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
 
     this.CANCEL_LINK = this.coreURLBuilder.buildURL(
       'dedicated',
-      `#/billing/autorenew/delete?serviceId=`,
+      '#/billing/autorenew/delete?serviceId=',
     );
 
     this.ENABLE_AUTO_RENEW_LINK = this.coreURLBuilder.buildURL(
       'dedicated',
-      `#/billing/autorenew/enable?selectedType=DOMAIN&services=`,
+      '#/billing/autorenew/enable?selectedType=DOMAIN&services=',
     );
 
     this.DISABLE_AUTO_RENEW_LINK = this.coreURLBuilder.buildURL(
       'dedicated',
-      `#/billing/autorenew/disable?selectedType=DOMAIN&services=`,
+      '#/billing/autorenew/disable?selectedType=DOMAIN&services=',
+    );
+
+    this.USER_ACCOUNT_INFOS_LINK = this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/useraccount/infos',
     );
 
     this.setActionMultiple = (action, data) =>
@@ -137,6 +145,19 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.$scope.$on('domain.csv.export.error', () => {
       this.loading.domainsExportCsv = false;
     });
+  }
+
+  goToContactManagementEdit(domain) {
+    this.$window.top.location.href = this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/contacts/services/edit',
+      {
+        serviceName: domain,
+        category: PRODUCT_TYPE,
+        service: domain,
+        categoryType: PRODUCT_TYPE,
+      },
+    );
   }
 
   setAction(action, baseStepPath, data) {
@@ -202,13 +223,6 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       this.contactPopover.data = contact;
       this.contactPopover.rowIndex = index;
     });
-  }
-
-  linkUserAccountBuilder(contactId) {
-    return this.coreURLBuilder.buildURL(
-      'dedicated',
-      `#/useraccount/infos/${contactId}`,
-    );
   }
 
   linkToOwnerPage(ownerId, domain) {

@@ -17,7 +17,7 @@
   "domains_column_domains_technical_contact": "Contact technique",
   "domains_column_domains_offer": "Offre",
   "domains_column_domains_name_server_type": "Type des serveurs DNS",
-  "domains_column_domains_name_server": "Serveur DNS",
+  "domains_column_domains_name_server": "Serveurs DNS",
   "domains_status": "Statut",
   "domains_tech_state": "État technique",
   "domains_create": "Enregistrement en cours",
@@ -103,8 +103,8 @@
   "domains_dashboard_csv_file_created": "Le fichier a été correctement créé. Si le téléchargement ne démarre pas, vous pouvez le <a target=\"_blank\" href=\"{{t0}}\" download>télécharger manuellement</a>.",
   "domains_action_per_line_renew": "Renouveler",
   "domains_action_per_line_restore": "Restaurer",
-  "domains_action_per_line_detail": "Détails du Domaine",
+  "domains_action_per_line_detail": "Détails du nom de domaine",
   "domains_action_per_line_cancellation": "Résilier",
-  "domains_action_per_line_autorenew_activate": "activer le renouvellement automatique",
-  "domains_action_per_line_autorenew_deactivate": "désactiver le renouvellement automatique"
+  "domains_action_per_line_autorenew_activate": "Activer le renouvellement automatique",
+  "domains_action_per_line_autorenew_deactivate": "Désactiver le renouvellement automatique"
 }
