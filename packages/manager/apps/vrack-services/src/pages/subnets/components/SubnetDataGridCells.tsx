@@ -7,6 +7,8 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   OsdsClipboard,
@@ -35,6 +37,7 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
   updateVS: UpdateVS;
   trackPage: (data: TrackingProps) => PromiseLike<void>;
   trackClick: (prop: TrackingProps) => PromiseLike<void>;
+  emptyValueLabel: string;
 }> = ({
   cellData,
   rowData,
@@ -42,6 +45,7 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
   vrackServices,
   trackPage,
   trackClick,
+  emptyValueLabel,
 }) => (
   <EditableText
     disabled={!isEditable(vrackServices)}
@@ -50,6 +54,7 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
     editDataTracking="::edit-subnet"
     confirmDataTracking="::update::confirm"
     trackClick={trackClick}
+    emptyValueLabel={emptyValueLabel}
     onEditSubmitted={async (value) => {
       await updateVS(
         {
@@ -82,8 +87,16 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
   </EditableText>
 );
 
-export const TextCell: React.FC<DataGridCellProps<string>> = ({ cellData }) => (
-  <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{cellData ?? ''}</OsdsText>
+export const TextCell: React.FC<DataGridCellProps<string> & {
+  emptyValueLabel?: string;
+}> = ({ cellData, emptyValueLabel }) => (
+  <OsdsText
+    color={ODS_THEME_COLOR_INTENT.text}
+    level={ODS_TEXT_LEVEL.body}
+    size={cellData ? ODS_TEXT_SIZE._800 : ODS_TEXT_SIZE._300}
+  >
+    {cellData ?? emptyValueLabel}
+  </OsdsText>
 );
 
 export const CidrCell: React.FC<DataGridCellProps<

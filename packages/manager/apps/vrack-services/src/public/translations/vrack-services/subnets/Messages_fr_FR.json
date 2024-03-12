@@ -29,5 +29,6 @@
   "updateError": "Erreur lors de la mise-à-jour de votre sous-réseau : {{error}}",
   "modalDeleteInputLabel": "Veuillez entrer le mot « TERMINATE » pour confirmer la suppression de votre sous-réseau.",
   "modalDeleteHeadline": "Supprimer le sous-réseau",
-  "modalDeleteDescription": "Pour être supprimé, un sous-réseau ne doit pas contenir de Service Endpoint associé."
+  "modalDeleteDescription": "Pour être supprimé, un sous-réseau ne doit pas contenir de Service Endpoint associé.",
+  "none": "Aucun"
 }
