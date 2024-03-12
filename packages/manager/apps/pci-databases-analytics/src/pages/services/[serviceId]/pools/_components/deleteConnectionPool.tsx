@@ -18,7 +18,7 @@ import { useDeleteConnectionPool } from '@/hooks/api/connectionPool.api.hooks';
 
 import { database } from '@/models/database';
 
-interface DeletePoolsModalProps {
+interface DeleteConnectionPoolModalProps {
   service: database.Service;
   controller: ModalController;
   connectionPool: database.postgresql.ConnectionPool;
@@ -32,7 +32,7 @@ const DeleteConnectionPool = ({
   controller,
   onError,
   onSuccess,
-}: DeletePoolsModalProps) => {
+}: DeleteConnectionPoolModalProps) => {
   const { projectId } = useParams();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/pools',

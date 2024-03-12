@@ -2,12 +2,6 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 import { database } from '@/models/database';
 import { ServiceData } from '.';
 
-export interface ConnectionPoolWithData
-  extends database.postgresql.ConnectionPool {
-  databaseName: string;
-  userName: string;
-}
-
 export const getConnectionPools = async ({
   projectId,
   engine,

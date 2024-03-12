@@ -25,7 +25,7 @@ interface InfoConnectionPoolModalProps {
   databases: database.service.Database[];
   controller: ModalController;
 }
-const InfoConnectionPoolModal = ({
+const InfoConnectionPool = ({
   service,
   connectionPool,
   databases,
@@ -168,4 +168,4 @@ const InfoConnectionPoolModal = ({
   );
 };
 
-export default InfoConnectionPoolModal;
+export default InfoConnectionPool;

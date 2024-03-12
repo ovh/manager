@@ -15,6 +15,7 @@ import {
   getConnectionPools,
 } from '@/api/databases/connectionPool';
 import { database } from '@/models/database';
+import { CdbError } from '@/api/databases';
 
 export function useGetConnectionPools(
   projectId: string,
@@ -31,7 +32,7 @@ export function useGetConnectionPools(
 }
 
 export interface MutateConnectionPoolProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: (connectionPool: database.postgresql.ConnectionPool) => void;
 }
 export function useAddConnectionPool({

@@ -14,14 +14,21 @@ import { useGetUsers } from '@/hooks/api/users.api.hooks';
 
 import { useServiceData } from '../layout';
 import { POLLING } from '@/configuration/polling';
+import { GenericUser } from '@/api/databases/users';
+import { database } from '@/models/database';
 import { getColumns } from './_components/poolsTableColumns';
-import InfoConnectionPoolModal from './_components/infoConnectionPool';
+import InfoConnectionPool from './_components/infoConnectionPool';
+import AddEditConnectionPool from './_components/addEditconnectionPool';
 import DeleteConnectionPool from './_components/deleteConnectionPool';
-import ConnectionPoolModal from './_components/connectionPool';
-import { ConnectionPoolWithData } from '@/api/databases/connectionPool';
 
 export function breadcrumb() {
   return 'Pools';
+}
+
+export interface ConnectionPoolWithData
+  extends database.postgresql.ConnectionPool {
+  database: database.service.Database;
+  user: GenericUser;
 }
 
 const Pools = () => {
@@ -68,11 +75,10 @@ const Pools = () => {
     const cpListWithData: ConnectionPoolWithData[] = connectionPoolsQuery.data.map(
       (cp) => ({
         ...cp,
-        userName: cp.userId
-          ? usersQuery.data.find((user) => user.id === cp.userId).username
-          : '',
-        databaseName: databasesQuery.data.find((db) => db.id === cp.databaseId)
-          .name,
+        user: cp.userId
+          ? usersQuery.data.find((user) => user.id === cp.userId)
+          : null,
+        database: databasesQuery.data.find((db) => db.id === cp.databaseId),
       }),
     );
     setConnectionPoolListWithData(cpListWithData);
@@ -124,7 +130,7 @@ const Pools = () => {
       {connectionPoolsQuery.isSuccess &&
         usersQuery.isSuccess &&
         databasesQuery.isSuccess && (
-          <ConnectionPoolModal
+          <AddEditConnectionPool
             isEdition={false}
             controller={addModale.controller}
             users={usersQuery.data}
@@ -142,7 +148,7 @@ const Pools = () => {
       {connectionPoolToDisplayInfo &&
         connectionPoolsQuery.isSuccess &&
         databasesQuery.isSuccess && (
-          <InfoConnectionPoolModal
+          <InfoConnectionPool
             service={service}
             controller={getInfoModale.controller}
             connectionPool={connectionPoolToDisplayInfo}
@@ -154,7 +160,7 @@ const Pools = () => {
         connectionPoolsQuery.isSuccess &&
         usersQuery.isSuccess &&
         databasesQuery.isSuccess && (
-          <ConnectionPoolModal
+          <AddEditConnectionPool
             isEdition={true}
             controller={editModale.controller}
             connectionPools={connectionPoolsQuery.data}

@@ -42,7 +42,7 @@ import { GenericUser } from '@/api/databases/users';
 import { database } from '@/models/database';
 import { ConnectionPoolEdition } from '@/api/databases/connectionPool';
 
-interface ConnectionPoolModalProps {
+interface AddEditConnectionPoolModalProps {
   isEdition: boolean;
   editedConnectionPool?: database.postgresql.ConnectionPool;
   connectionPools: database.postgresql.ConnectionPool[];
@@ -53,7 +53,7 @@ interface ConnectionPoolModalProps {
   onSuccess?: (connectionPool?: database.postgresql.ConnectionPool) => void;
   onError?: (error: Error) => void;
 }
-const ConnectionPoolModal = ({
+const AddEditConnectionPool = ({
   isEdition,
   editedConnectionPool,
   connectionPools,
@@ -63,7 +63,7 @@ const ConnectionPoolModal = ({
   controller,
   onSuccess,
   onError,
-}: ConnectionPoolModalProps) => {
+}: AddEditConnectionPoolModalProps) => {
   const { projectId } = useParams();
   const { form } = useConnectionPoolForm({
     editedConnectionPool,
@@ -86,7 +86,7 @@ const ConnectionPoolModal = ({
       toast.toast({
         title: t(`${prefix}ConnectionPoolToastErrorTitle`),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
       if (onError) {
         onError(err);
@@ -143,7 +143,6 @@ const ConnectionPoolModal = ({
         size: formValues.size,
       };
       if (formValues.userId) connectionPool.userId = formValues.userId;
-
       addConnectionPool({
         projectId,
         engine: service.engine,
@@ -308,4 +307,4 @@ const ConnectionPoolModal = ({
   );
 };
 
-export default ConnectionPoolModal;
+export default AddEditConnectionPool;

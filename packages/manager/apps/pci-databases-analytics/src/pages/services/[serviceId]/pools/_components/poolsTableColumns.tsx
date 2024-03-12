@@ -17,8 +17,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Span } from '@/components/typography';
-
-import { ConnectionPoolWithData } from '@/api/databases/connectionPool';
+import { ConnectionPoolWithData } from '..';
 
 interface ConnectionPoolsTableColumnsProps {
   onGetInformationClick: (connectionPool: ConnectionPoolWithData) => void;
@@ -48,7 +47,7 @@ export const getColumns = ({
           {t('tableHeadDatabase')}
         </SortableHeader>
       ),
-      accessorFn: (row) => row.databaseName,
+      accessorFn: (row) => row.database.name,
     },
     {
       id: 'mode',
@@ -71,7 +70,7 @@ export const getColumns = ({
           {t('tableHeadUsername')}
         </SortableHeader>
       ),
-      accessorFn: (row) => row.userName,
+      accessorFn: (row) => (row.user ? row.user.username : ''),
     },
     {
       id: 'actions',
