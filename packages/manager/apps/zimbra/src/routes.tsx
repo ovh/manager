@@ -22,7 +22,7 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
-        path: 'zimbra/:serviceName',
+        path: '/:serviceName',
         ...lazyRouteConfig(() => import('@/pages/dashboard/_layout')),
         children: [
           {
@@ -76,7 +76,7 @@ export default [
         ],
       },
       {
-        path: 'zimbra/onboarding',
+        path: 'onboarding',
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
       },
     ],

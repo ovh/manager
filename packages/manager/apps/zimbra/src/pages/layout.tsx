@@ -30,8 +30,8 @@ export default function Layout() {
       <Outlet />
       {isLoading && <Loading />}
       {isError && <ErrorBanner error={error} />}
-      {data?.data?.length === 0 && <Navigate to="zimbra/onboarding" />}
-      {data?.data?.length > 0 && <Navigate to={`zimbra/${data.data[0].id}`} />}
+      {data?.data?.length === 0 && <Navigate to="/onboarding" />}
+      {data?.data?.length > 0 && <Navigate to={`/${data.data[0].id}`} />}
     </>
   );
 }
