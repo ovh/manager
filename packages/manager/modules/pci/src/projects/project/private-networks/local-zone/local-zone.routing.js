@@ -4,6 +4,15 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       containersView: 'pciPrivateNetworksLocalZone',
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('localPrivateNetworks')
+        .then((localPrivateNetworks) =>
+          !localPrivateNetworks.length
+            ? { state: 'pci.projects.project.privateNetwork' }
+            : false,
+        ),
     resolve: {
       gotoDeleteSubnet: /* @ngInject */ (
         $state,
