@@ -92,7 +92,7 @@ function buildRegularRoute(module: () => Promise<Module>, key: string) {
   };
 }
 
-export function createAppRouter() {
+export function createAppRouter(): ReturnType<typeof createHashRouter> {
   const preservedRoutesBlob = import.meta.glob<Module>(
     '/pages/(_app|404).tsx',
     { eager: true },
