@@ -2,7 +2,7 @@
   "dedicated_servers_title": "Dedicated Server",
   "dedicated_servers_name": "Name",
   "dedicated_servers_status": "Status",
-  "dedicated_servers_reverse": "Reverse",
+  "dedicated_servers_reverse": "Reverse DNS",
   "dedicated_servers_localization": "Standort",
   "dedicated_servers_model": "Modell",
   "dedicated_servers_button_server_order": "Dedicated Server bestellen",
@@ -20,5 +20,10 @@
   "dedicated_servers_datacenter": "Rechenzentrum",
   "dedicated_servers_country": "Land",
   "dedicated_servers_monitoring": "Monitoringstatus",
-  "dedicated_servers_popover_details": "Details"
+  "dedicated_servers_popover_details": "Details",
+  "dedicated_servers_zone": "Zone",
+  "dedicated_servers_state_OK": "Normal",
+  "dedicated_servers_state_ERROR": "Fehler",
+  "dedicated_servers_state_HACKED": "Gehackt",
+  "dedicated_servers_state_HACKED_BLOCKED": "Gehackt und gesperrt"
 }

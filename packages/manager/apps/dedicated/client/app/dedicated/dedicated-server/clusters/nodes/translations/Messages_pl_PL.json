@@ -2,7 +2,7 @@
   "dedicated_servers_title": "Serwery dedykowane",
   "dedicated_servers_name": "Nazwisko",
   "dedicated_servers_status": "Status",
-  "dedicated_servers_reverse": "Rewers",
+  "dedicated_servers_reverse": "Rewers DNS",
   "dedicated_servers_localization": "Lokalizacja",
   "dedicated_servers_model": "Model",
   "dedicated_servers_button_server_order": "Zamów serwer dedykowany",
@@ -20,5 +20,10 @@
   "dedicated_servers_datacenter": "Centrum danych",
   "dedicated_servers_country": "Kraj",
   "dedicated_servers_monitoring": "Status Monitoring",
-  "dedicated_servers_popover_details": "Szczegóły"
+  "dedicated_servers_popover_details": "Szczegóły",
+  "dedicated_servers_zone": "Strefa",
+  "dedicated_servers_state_OK": "Normalny",
+  "dedicated_servers_state_ERROR": "Błąd",
+  "dedicated_servers_state_HACKED": "Hack",
+  "dedicated_servers_state_HACKED_BLOCKED": "Zhakowany i zablokowany"
 }
