@@ -2,10 +2,6 @@
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
 
-.userIcon {
-  font-size: 1.375rem;
-}
-
 .menuContent {
   & > div { border-radius: 0.5rem; }
   strong {
@@ -104,8 +100,15 @@
   text-overflow: ellipsis;
 }
 
+.userInfos {
+  font-size: 1rem;
+}
+
 @media (max-width: $device-breakpoint-tablet-max-width) {
   .userInfos {
     display: none;
+  }
+  .userIcon {
+    margin: 0;
   }
 }
