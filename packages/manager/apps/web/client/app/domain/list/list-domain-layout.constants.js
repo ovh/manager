@@ -119,6 +119,8 @@ export const DATE_FORMAT = {
   year: 'numeric',
 };
 
+export const PRODUCT_TYPE = 'DOMAIN';
+
 export default {
   DOMAIN_COLUMN_DNSSEC,
   DOMAIN_OBJECT_KEYS,
@@ -137,4 +139,5 @@ export default {
   LANGUAGE_OVERRIDE,
   DATE_FORMAT,
   MONTH_DATE_FORMAT,
+  PRODUCT_TYPE,
 };
