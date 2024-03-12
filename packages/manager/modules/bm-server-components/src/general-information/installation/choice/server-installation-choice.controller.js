@@ -10,8 +10,6 @@ export default class ServerInstallationChoiceCtrl {
   }
 
   $onInit() {
-    this.loading = true;
-
     this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
 
     this.choice = {
@@ -36,11 +34,6 @@ export default class ServerInstallationChoiceCtrl {
         `dedicated::dedicated::${this.serverType}::system-install::existing-template`,
       );
       this.$state.go(`${this.statePrefix}.dashboard.installation-gabarit`);
-    } else if (this.choice.value === this.choice.image) {
-      this.trackPage(
-        `dedicated::dedicated::${this.serverType}::system-install::personalized-image`,
-      );
-      this.$state.go(`${this.statePrefix}.dashboard.install.image`);
     }
   }
 

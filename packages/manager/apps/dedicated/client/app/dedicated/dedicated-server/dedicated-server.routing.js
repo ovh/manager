@@ -38,6 +38,12 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.href('app.dedicated-server.cluster', $transition$.params()),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('dedicated_servers_title'),
+        displayRbx1EolBanner: /* @ngInject */ (featureAvailability) => ({
+          rbx1Eol:
+            featureAvailability?.isFeatureAvailable(
+              'dedicated-server:banner-rbx1-eol',
+            ) || false,
+        }),
       },
     })
     .state('app.dedicated-cluster', {

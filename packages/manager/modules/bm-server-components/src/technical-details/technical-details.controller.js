@@ -40,7 +40,7 @@ export default class BmServerComponentsTechnicalDetailsController {
         this.technicalDetails.memory?.upgradable?.length &&
         !this.upgradeTask) ||
       (this.showServiceActions &&
-        this.upgradeTask.shouldScheduleUpgrade(this.UPGRADE_TYPE.RAM))
+        this.upgradeTask?.shouldScheduleUpgrade(this.UPGRADE_TYPE.RAM))
     );
   }
 
@@ -132,7 +132,7 @@ export default class BmServerComponentsTechnicalDetailsController {
         this.technicalDetails.storage?.upgradable?.length &&
         !this.upgradeTask) ||
       (this.showServiceActions &&
-        this.upgradeTask.shouldScheduleUpgrade(this.UPGRADE_TYPE.STORAGE))
+        this.upgradeTask?.shouldScheduleUpgrade(this.UPGRADE_TYPE.STORAGE))
     );
   }
 
