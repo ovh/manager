@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { Outlet, useHref, useParams } from 'react-router-dom';
+import {
+  Outlet,
+  useHref,
+  useParams,
+  useRouteLoaderData,
+} from 'react-router-dom';
 import {
   OsdsBreadcrumb,
   OsdsButton,
@@ -15,9 +20,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-
+import { useNavigation, useTracking } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_BUTTON_SIZE,
@@ -35,20 +38,22 @@ import {
 } from '@ovhcloud/manager-components';
 import { useSshKeys } from '@/hooks/useSsh';
 import GuidesHeader from '@/components/guides/GuidesHeader';
-import useProject from '@/hooks/useProject';
 import { SshKey } from '@/interface';
 import Key from '@/components/ssh-keys/listing/Key';
 import RemoveSsh from '@/components/ssh-keys/listing/RemoveSsh';
+import { PCI_LEVEL2 } from '@/tracking.constants';
+import { Project } from '@/data/project';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
   const navigation = useNavigation();
+  const { trackClick } = useTracking();
   const { projectId } = useParams();
   const [urlProject, setUrlProject] = useState('');
   const [searchField, setSearchField] = useState('');
   const searchBar = useRef(undefined);
   const [searchQueries, setSearchQueries] = useState<string[]>([]);
-  const { data: project } = useProject(projectId || '');
+  const project = useRouteLoaderData('ssh') as Project;
 
   useEffect(() => {
     navigation
@@ -145,6 +150,13 @@ export default function ListingPage() {
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           href={hrefAdd}
+          onClick={() => {
+            trackClick({
+              name: 'PCI_PROJECTS_SSH_KEYS_ADD',
+              type: 'action',
+              level2: PCI_LEVEL2,
+            });
+          }}
         >
           <OsdsIcon
             size={ODS_ICON_SIZE.xs}

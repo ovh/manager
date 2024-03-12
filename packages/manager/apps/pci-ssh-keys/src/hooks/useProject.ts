@@ -11,16 +11,23 @@ export interface ResponseAPIError {
       [key: string]: string;
       'x-ovh-queryid': string;
     };
+    data?: {
+      message?: string;
+    };
   };
 }
+
+export const getProjectQuery = (projectId: string) => ({
+  queryKey: ['project', projectId],
+  queryFn: () => getProject(projectId),
+});
 
 export const useProject = (
   projectId: string,
   opt?: QueryOptions<Project, ResponseAPIError>,
 ) =>
   useQuery({
-    queryKey: ['project', projectId],
-    queryFn: () => getProject(projectId),
+    ...getProjectQuery(projectId),
     ...opt,
   });
 
