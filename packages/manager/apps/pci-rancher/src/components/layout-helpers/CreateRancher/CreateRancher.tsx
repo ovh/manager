@@ -223,7 +223,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             color={
               hasInputError
                 ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
+                : ODS_THEME_COLOR_INTENT.primary
             }
             className="my-3 w-1/3"
             value={rancherName}
