@@ -11,7 +11,7 @@
   "cidrPlaceholder": "10.0.0.0/24",
   "defaultCidr": "10.0.0.0/24",
   "serviceRangeLabel": "Plage d'adresses de service (CIDR)",
-  "serviceRangePlaceholder": "Sélectionnez une plage d'adresses",
+  "serviceRangePlaceholder": "10.0.0.0/29",
   "defaultServiceRange": "10.0.0.0/29",
   "serviceRangeAdditionalText": "La plage d'adresses de service sera utilisée par les services du vRack Services. Par conséquent, les adresses de cette plage ne doivent pas être utilisées par d'autres nœuds connectés au vRack. La plage d'adresse de service doit être un sous-ensemble de la plage d'addresses du sous-réseau, et sa taille doit être comprise entre /27 et /29.",
   "vlanLabel": "VLAN",
