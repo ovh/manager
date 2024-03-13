@@ -330,6 +330,8 @@
   "server_configuration_installation_gabarit": "Installer un de vos gabarits",
   "server_configuration_installation_title": "Installation du serveur",
   "server_configuration_installation_info": "Vous êtes sur le point d'installer un OS sur le serveur <b>{{t0}}</b>. Choisissez le type d'installation que vous souhaitez utiliser :",
+  "server_configuration_installation_custom_image_info": "Vous pourrez installer un OS depuis une image personnalisée à l'écran suivant en choisissant \"{{t0}}\" dans \"{{t1}}\".",
+  "server_configuration_installation_custom_image_help_link": "Choisissez le type d'installation personnalisée le plus adapté.",
   "server_configuration_installation_warning": "Attention : tous les disques du serveur seront formatés lors de l’installation",
   "server_configuration_installation_32": "32 bits",
   "server_configuration_installation_64": "64 bits",
