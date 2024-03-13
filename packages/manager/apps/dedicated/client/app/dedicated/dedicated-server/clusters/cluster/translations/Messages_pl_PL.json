@@ -1,4 +1,6 @@
 {
   "cluster_general_information": "Informacje ogólne",
-  "cluster_nodes": "Węzły"
+  "cluster_nodes": "Węzły",
+  "dedicated_cluster_3az_guides_title": "Przewodniki",
+  "dedicated_cluster_3az_guides_link": "Przewodniki 3-AZ"
 }
