@@ -39,7 +39,7 @@ export const createPages = (templates, appDirectory, isApiV6) =>
           type: 'add',
           path: join(
             appDirectory,
-            `../../../apps/{{dashCase appName}}/src/pages/index.tsx`,
+            `../../../apps/{{dashCase appName}}/src/pages/listing/index.tsx`,
           ),
           force: true,
           templateFile: join(

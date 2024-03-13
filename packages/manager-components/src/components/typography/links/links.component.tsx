@@ -6,6 +6,7 @@ import {
   OdsHTMLAnchorElementRel,
   OdsHTMLAnchorElementTarget,
 } from '@ovhcloud/ods-common-core';
+import { NavigateFunction } from 'react-router-dom';
 import { ReactI18NextChild } from 'react-i18next';
 
 export enum LinkType {
@@ -21,6 +22,7 @@ export interface LinksProps {
   rel?: OdsHTMLAnchorElementRel;
   target?: OdsHTMLAnchorElementTarget;
   type?: LinkType;
+  navigate?: NavigateFunction;
   [key: string]: any;
 }
 
@@ -28,6 +30,7 @@ export const Links: React.FC<LinksProps> = ({
   download,
   label,
   href,
+  navigate,
   target,
   type,
   rel,
@@ -52,7 +55,7 @@ export const Links: React.FC<LinksProps> = ({
       <OsdsLink
         color={ODS_THEME_COLOR_INTENT.primary}
         download={download}
-        href={href}
+        onClick={() => navigate(href)}
         target={target}
         rel={rel}
         {...props}

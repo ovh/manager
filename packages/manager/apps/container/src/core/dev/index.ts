@@ -26,7 +26,7 @@ export function setupDevApplication(shell: Shell) {
     // if the application configuration doesn't exist in DEV mode
     // then it's a new application, create a default configuration to use
     if (!containerApp) {
-      const devConfig = {
+      let devConfig = {
         universe: 'hub',
         url: `https://www.ovh.com/manager/${devApp}/`,
         publicURL: `https://www.ovh.com/manager/#/${devApp}/`,
@@ -34,8 +34,13 @@ export function setupDevApplication(shell: Shell) {
           enabled: true,
           isDefault: true,
           path: devApp,
+          hash: '',
         },
       };
+      if (devApp.indexOf('pci-') > -1) {
+        devConfig.container.hash = `/pci/projects/:projectId/${devApp.split('pci-')[1]}`
+        devConfig.container.path = 'public-cloud';
+      }
       apps[devApp] = devConfig;
       containerApp = devConfig;
       console.error(
