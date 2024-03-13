@@ -13,6 +13,7 @@ export default function FilterList({
   onRemoveFilter,
 }: FilterListProps) {
   const { t } = useTranslation('filter');
+
   return (
     <>
       {filters?.map((filter, key) => (
@@ -24,6 +25,7 @@ export default function FilterList({
           onOdsChipRemoval={() => {
             onRemoveFilter(filter);
           }}
+          data-testid="filter-list_chip_item"
         >
           {filter.label}{' '}
           {t(`${'common_criteria_adder_operator_'}${filter.comparator}`)}{' '}
