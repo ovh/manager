@@ -18,15 +18,18 @@ export default function RemoveSshPage() {
         sshId={`${sshId}`}
         onClose={() => onClose()}
         onSuccess={() => {
-          addSuccess(t('pci_projects_project_sshKeys_remove_success'));
+          addSuccess(t('pci_projects_project_sshKeys_remove_success'), true);
         }}
         onError={(error: Error) => {
           addError(
-            <>
-              {t('pci_projects_project_sshKeys_remove_error', {
-                error: error && error.message,
-              })}
-            </>,
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t('pci_projects_project_sshKeys_remove_error', {
+                  error: error && error.message,
+                }),
+              }}
+            ></span>,
+            true,
           );
         }}
       />

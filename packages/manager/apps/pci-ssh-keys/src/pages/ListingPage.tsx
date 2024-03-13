@@ -43,6 +43,9 @@ import Key from '@/components/ssh-keys/listing/Key';
 import RemoveSsh from '@/components/ssh-keys/listing/RemoveSsh';
 import { PCI_LEVEL2 } from '@/tracking.constants';
 import { Project } from '@/data/project';
+import ActivateProjectBanner, {
+  isDiscoveryProject,
+} from '@/components/activate-project-banner';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -144,11 +147,17 @@ export default function ListingPage() {
       </div>
       <OsdsDivider></OsdsDivider>
       <Notifications />
+
+      {project && isDiscoveryProject(project) && (
+        <ActivateProjectBanner projectId={projectId} />
+      )}
+
       <div className={'flex items-center justify-between mt-4'}>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
+          disabled={isDiscoveryProject(project) ? true : undefined}
           href={hrefAdd}
           onClick={() => {
             trackClick({
@@ -169,31 +178,35 @@ export default function ListingPage() {
         {/* onOdsValueChange={({ detail }) => setSearchField(`${detail.value}`)} */}
         <OsdsSearchBar
           ref={searchBar}
-          className={'w-2/12'}
+          className={'w-[15rem]'}
           value={searchField}
           onOdsSearchSubmit={({ detail }) => {
             const { inputValue } = detail;
-            setSearchField('');
-            if (searchQueries.indexOf(inputValue) < 0) {
-              setSearchQueries([...searchQueries, inputValue]);
-            } else {
-              setSearchQueries([...searchQueries]);
+            if (inputValue) {
+              setSearchField('');
+              if (searchQueries.indexOf(inputValue) < 0) {
+                setSearchQueries([...searchQueries, inputValue]);
+              } else {
+                setSearchQueries([...searchQueries]);
+              }
             }
           }}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
-              setSearchField('');
-              if (searchQueries.indexOf(searchField) < 0) {
-                setSearchQueries([...searchQueries, searchField]);
-              } else {
-                setSearchQueries([...searchQueries]);
+              if (searchField) {
+                setSearchField('');
+                if (searchQueries.indexOf(searchField) < 0) {
+                  setSearchQueries([...searchQueries, searchField]);
+                } else {
+                  setSearchQueries([...searchQueries]);
+                }
               }
             }
           }}
         />
       </div>
 
-      <div className="flex mt-2">
+      <div className="flex mt-4">
         {searchQueries.map((query, index) => (
           <OsdsChip
             key={index}

@@ -17,15 +17,17 @@ export default function AddSshPage() {
         projectId={`${projectId}`}
         onClose={() => onClose()}
         onSuccess={() => {
-          addSuccess(t('pci_projects_project_sshKeys_add_success'));
+          addSuccess(t('pci_projects_project_sshKeys_add_success'), true);
         }}
         onError={(error: Error) => {
           addError(
-            <>
-              {t('pci_projects_project_sshKeys_add_error', {
-                error: error && error.message,
-              })}
-            </>,
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t('pci_projects_project_sshKeys_add_error', {
+                  error: error && error.message,
+                }),
+              }}
+            ></span>,
           );
         }}
       />
