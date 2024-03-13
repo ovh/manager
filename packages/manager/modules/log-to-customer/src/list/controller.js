@@ -52,6 +52,7 @@ export default class LogToCustomerListCtrl {
     this.streamSubscriptions = {};
     return this.LogToCustomerService.icebergQuery(
       this.logSubscriptionApiData.url,
+      this.logSubscriptionApiData.params,
     ).then((data) => {
       data.forEach((item) => {
         this.streamSubscriptions[item.streamId] = { ...item };

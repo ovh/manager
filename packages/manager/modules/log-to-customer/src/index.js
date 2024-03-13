@@ -3,6 +3,8 @@ import 'angular-translate';
 
 import ovhLogToCustomerLiveTail from './live-tail';
 import ovhLogToCustomerList from './list';
+import tiles from './tiles/component';
+
 import '@uirouter/angularjs';
 
 const moduleName = 'ovhManagerLogToCustomer';
@@ -14,6 +16,7 @@ angular
     ovhLogToCustomerLiveTail,
     ovhLogToCustomerList,
   ])
+  .component('logTile', tiles)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

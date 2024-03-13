@@ -8,6 +8,7 @@ export default class KubernetesLogsCtrl {
 
   $onInit() {
     this.logApiUrl = `/cloud/project/${this.projectId}/kube/${this.kubeId}/log/url`;
+    this.logSubscriptionUrl = `/cloud/project/${this.projectId}/kube/${this.kubeId}/log/subscription`;
     this.logServiceGuideLink =
       LOGS_INFO[this.user.ovhSubsidiary] || LOGS_INFO.DEFAULT;
   }

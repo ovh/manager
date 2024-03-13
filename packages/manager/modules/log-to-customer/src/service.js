@@ -15,8 +15,8 @@ export default class LogToCustomerService {
       .then(({ data }) => data);
   }
 
-  icebergQuery(url) {
-    return this.iceberg(url)
+  icebergQuery(url, params = {}) {
+    return this.iceberg(url, params)
       .query()
       .expand('CachedObjectList-Pages')
       .execute(null, true)
@@ -58,8 +58,23 @@ export default class LogToCustomerService {
     return this.icebergQuery(`/dbaas/logs/${id}/output/graylog/stream`);
   }
 
-  getLogAccounts() {
-    return this.$http.get('/dbaas/logs').then(({ data }) => data);
+  getLogAccount(id) {
+    return this.$http.get(`/dbaas/logs/${id}`).then(({ data }) => data);
+  }
+
+  getSream(serviceName, id) {
+    return this.$http
+      .get(`/dbaas/logs/${serviceName}/output/graylog/stream/${id}`)
+      .then(({ data }) => data);
+  }
+
+  getStreamUrl(serviceName, id) {
+    return this.$http
+      .get(`/dbaas/logs/${serviceName}/output/graylog/stream/${id}/url`)
+      .then(
+        ({ data }) =>
+          data.find(({ type }) => type === 'GRAYLOG_WEBUI')?.address,
+      );
   }
 
   getDataStreams() {

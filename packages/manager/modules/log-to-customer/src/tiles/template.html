@@ -1,0 +1,143 @@
+<div class="text-center">
+    <oui-spinner data-ng-if="$ctrl.loading"></oui-spinner>
+</div>
+
+<div data-ng-if="!$ctrl.loading">
+    <div data-ng-if="$ctrl.streamSubscriptions.length > 0" class="mx-1">
+        <h5
+            class="text-primary mb-1"
+            data-translate="log_tile_subscriptions_title"
+        ></h5>
+        <a
+            data-ng-click="$ctrl.goToStreamListingPage()"
+            target="_blank"
+            rel="noopener"
+            class="d-flex"
+        >
+            <span data-translate="log_tile_subscriptions_subscribe"></span>
+            <i
+                class="pl-1 oui-icon oui-icon-arrow-right"
+                aria-hidden="true"
+            ></i>
+        </a>
+        <oui-tile
+            data-ng-repeat="subscription in $ctrl.streamSubscriptions track by $index"
+            class="my-3"
+            data-heading="{{ 'log_title_subscriptions_title' | translate}}"
+        >
+            <div class="d-flex justify-content-between mb-1">
+                <span
+                    class="font-weight-bold"
+                    data-ng-bind="subscription.displayName"
+                ></span>
+                <span data-ng-bind="subscription.serviceName"></span>
+            </div>
+
+            <div class="d-flex justify-content-between mb-1">
+                <span
+                    class="font-weight-bold"
+                    data-translate="log_title_subscriptions_user"
+                ></span>
+                <span data-ng-bind="subscription.userName"></span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span
+                    class="font-weight-bold"
+                    data-translate="log_title_subscriptions_stream"
+                ></span>
+                <span data-ng-bind="subscription.streamName"></span>
+            </div>
+
+            <hr />
+
+            <div class="text-center">
+                <a
+                    data-ng-href="{{::subscription.streamUrl}}"
+                    target="_blank"
+                    rel="noopener"
+                    class="oui-button oui-button_secondary"
+                >
+                    <i
+                        class="oui-icon oui-icon-external-link"
+                        aria-hidden="true"
+                    ></i>
+                    <span
+                        data-translate="log_title_subscriptions_button_watch"
+                    ></span>
+                </a>
+
+                <oui-button
+                    variant="link"
+                    class="d-block mt-1"
+                    data-ng-click="$ctrl.deleteLogSubscription(subscription)"
+                >
+                    <span
+                        data-ng-if="!subscription.isLoading"
+                        data-translate="log_title_subscriptions_unsubscribe"
+                    ></span>
+                    <oui-spinner
+                        size="s"
+                        data-ng-if="subscription.isLoading"
+                    ></oui-spinner>
+                </oui-button>
+            </div>
+        </oui-tile>
+    </div>
+    <div data-ng-if="$ctrl.streamSubscriptions.length === 0">
+        <h5 class="text-primary" data-translate="log_tile_section_title"></h5>
+        <oui-tile data-heading="{{:: 'log_tile_title' | translate }}">
+            <div data-ng-transclude="serviceDescription"></div>
+
+            <span
+                data-ng-if="$ctrl.logAccountStreams.length === 0"
+                data-translate="log_tile_desc_create_account"
+            ></span>
+            <span
+                data-ng-if="$ctrl.logAccountStreams.length > 0 && !$ctrl.hasAtLeastOneDataStream"
+                data-translate="log_tile_desc_create_stream"
+            ></span>
+
+            <a
+                data-ng-href="{{ :: $ctrl.links.logPlatformGuide}}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span data-translate="log_data_platform_guide_link"></span>
+                <i
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </a>
+
+            <div class="my-2">
+                <a
+                    data-ng-if="$ctrl.logAccountStreams.length === 0"
+                    class="oui-button oui-button_secondary"
+                    data-translate="log_button_create_account"
+                    data-ng-href="{{:: $ctrl.links.createAccount }}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                </a>
+
+                <a
+                    data-ng-if="$ctrl.logAccountStreams.length > 0 && !$ctrl.hasAtLeastOneDataStream"
+                    class="oui-button oui-button_secondary"
+                    data-translate="log_button_create_stream"
+                    data-ng-href="{{:: $ctrl.links.createStream }}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                </a>
+
+                <oui-button
+                    data-ng-if="$ctrl.logAccountStreams.length > 0 && $ctrl.hasAtLeastOneDataStream"
+                    data-variant="secondary"
+                    data-ng-click="$ctrl.goToStreamListingPage()"
+                >
+                    <span data-translate="log_button_transfer_stream"></span>
+                </oui-button>
+            </div>
+        </oui-tile>
+    </div>
+</div>
