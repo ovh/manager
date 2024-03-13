@@ -28,7 +28,7 @@ export default class NutanixLicence {
    * startCase('fooBar');
    * => 'Foo Bar'
    */
-  getFormatedName() {
+  getFormattedName() {
     return startCase(this.name);
   }
 }

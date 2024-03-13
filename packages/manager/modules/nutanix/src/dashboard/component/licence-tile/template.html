@@ -1,57 +1,14 @@
-<oui-tile
-    class="h-100"
-    data-heading="{{:: 'nutanix_cluster_licence_title' | translate }}"
->
+<oui-tile class="h-100" data-heading="{{:: $ctrl.title | translate }}">
     <oui-tile-definition
         data-ng-if="$ctrl.showPackType"
-        term="{{$ctrl.packType}}"
+        data-term="{{$ctrl.packType}}"
     ></oui-tile-definition>
-    <oui-tile-definition
-        data-ng-repeat="licence in $ctrl.licences.getFeatures() | limitTo: ($ctrl.expand ? $ctrl.licences.getFeatures().length : $ctrl.defaultLicenseLength) track by licence.name"
-    >
-        <oui-tile-term
-            data-ng-bind=":: licence.getFormatedName()"
-        ></oui-tile-term>
-        <oui-tile-description>
-            <span
-                class="oui-badge oui-badge_success"
-                data-ng-if="licence.isEnabled() && licence.name !== 'lifeCycleManager'"
-                data-translate="nutanix_cluster_licence_included"
-            ></span>
-            <span
-                data-ng-if="!licence.isEnabled() && licence.name !== 'files' && licence.name !== 'objects'"
-                data-translate="nutanix_cluster_licence_not_included"
-            ></span>
-            <span
-                class="oui-badge oui-badge_success"
-                data-ng-if="!licence.isEnabled() && (licence.name === 'files' || licence.name === 'objects')"
-                data-translate="nutanix_cluster_licence_show_files_objects_size"
-                data-translate-values="{ size: licence.value }"
-            ></span>
-            <span
-                class="oui-badge oui-badge_success"
-                data-ng-if="licence.isEnabled() && licence.name === 'lifeCycleManager'"
-                data-translate="nutanix_cluster_licence_show_LCM"
-            ></span>
-        </oui-tile-description>
-    </oui-tile-definition>
-    <div class="text-right">
-        <oui-button
-            data-variant="link"
-            data-ng-if="$ctrl.licences.getFeatures().length > $ctrl.defaultLicenseLength"
-            data-ng-click="$ctrl.toggleLicenseDetails()"
-        >
-            <span
-                data-translate="{{ $ctrl.expand ? 'nutanix_cluster_licence_show_less' : 'nutanix_cluster_licence_show_more' }}"
-            ></span>
-            <span
-                class="oui-icon"
-                aria-hidden="true"
-                data-ng-class="{
-                    'oui-icon-chevron-up' : $ctrl.expand,
-                    'oui-icon-chevron-down': !$ctrl.expand
-                }"
-            ></span>
-        </oui-button>
-    </div>
+    <nutanix-licence-tile-legacy-features
+        data-ng-if="$ctrl.isLegacyPack"
+        data-licenses="$ctrl.licenses"
+    ></nutanix-licence-tile-legacy-features>
+    <nutanix-licence-tile-features
+        data-ng-if="!$ctrl.isLegacyPack"
+        data-licenses="$ctrl.licenses"
+    ></nutanix-licence-tile-features>
 </oui-tile>
