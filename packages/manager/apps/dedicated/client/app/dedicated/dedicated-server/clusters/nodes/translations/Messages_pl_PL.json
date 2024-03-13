@@ -25,5 +25,6 @@
   "dedicated_servers_state_OK": "Normalny",
   "dedicated_servers_state_ERROR": "Błąd",
   "dedicated_servers_state_HACKED": "Hack",
-  "dedicated_servers_state_HACKED_BLOCKED": "Zhakowany i zablokowany"
+  "dedicated_servers_state_HACKED_BLOCKED": "Zhakowany i zablokowany",
+  "dedicated_servers_region": "Region"
 }

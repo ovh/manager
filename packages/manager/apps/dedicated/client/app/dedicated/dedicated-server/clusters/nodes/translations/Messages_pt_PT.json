@@ -25,5 +25,6 @@
   "dedicated_servers_state_OK": "Normal",
   "dedicated_servers_state_ERROR": "Erro",
   "dedicated_servers_state_HACKED": "Pirateado",
-  "dedicated_servers_state_HACKED_BLOCKED": "Servidor em modo pirateado e bloqueado"
+  "dedicated_servers_state_HACKED_BLOCKED": "Servidor em modo pirateado e bloqueado",
+  "dedicated_servers_region": "Região"
 }
