@@ -241,12 +241,15 @@ export default /* @ngInject */ ($stateProvider) => {
             productId: serverName,
           },
         ),
-      orderPrivateBandwidthLink: /* @ngInject */ ($state, serverName) =>
+      getOrderPrivateBandwidthLink: /* @ngInject */ (
+        $state,
+        serverName,
+      ) => () =>
         $state.href(
           'app.dedicated-cluster.cluster.node.dashboard.bandwidth-private-order',
           { productId: serverName },
         ),
-      orderPublicBandwidthLink: /* @ngInject */ ($state, serverName) => () =>
+      getOrderPublicBandwidthLink: /* @ngInject */ ($state, serverName) => () =>
         $state.href(
           'app.dedicated-cluster.cluster.node.dashboard.bandwidth-public-order',
           { productId: serverName },

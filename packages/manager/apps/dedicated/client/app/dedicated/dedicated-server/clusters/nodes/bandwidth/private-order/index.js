@@ -4,12 +4,12 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 const moduleName =
-  'ovhManagerDedicatedClusterNodeBandwidthPublicOrderLazyLoading';
+  'ovhManagerDedicatedClusterNodeBandwidthPrivateOrderLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicated-cluster.cluster.node.dashboard.bandwidth-public-order.**',
+      'app.dedicated-cluster.cluster.node.dashboard.bandwidth-private-order.**',
       {
         url: '/bandwidth-public-order',
         lazyLoad: ($transition$) => {
@@ -21,7 +21,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       },
     );
     $stateProvider.state(
-      'app.dedicated-cluster.cluster.node.interfaces.bandwidth-public-order.**',
+      'app.dedicated-cluster.cluster.node.interfaces.bandwidth-private-order.**',
       {
         url: '/bandwidth-public-order',
         lazyLoad: ($transition$) => {

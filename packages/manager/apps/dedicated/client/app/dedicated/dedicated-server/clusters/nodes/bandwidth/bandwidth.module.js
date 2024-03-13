@@ -1,4 +1,4 @@
-import publicOrder from './public-order';
+import publicOrder from './public-order/public-order.module';
 import privateOrder from './private-order/private-order.module';
 
 const moduleName = 'dedicatedClusterNodeBandwidth';
