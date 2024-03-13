@@ -7,7 +7,7 @@
     <!-- information banner for open status -->
     <oui-message
         data-type="info"
-        data-ng-if="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN && !$ctrl.displayError"
+        data-ng-if="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN && !$ctrl.displayError && $ctrl.showUploadOption"
     >
         <span
             data-translate="user_account_identity_documents_verification_in_progress_info"
