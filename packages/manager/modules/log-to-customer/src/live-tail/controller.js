@@ -1,45 +1,16 @@
-import { LOG_KEYS, DATA_PLATFORM_GUIDE } from '../constants';
+import { LOG_KEYS } from '../constants';
 
 export default class LogToCustomerCtrl {
   /* @ngInject */
-  constructor($translate, LogToCustomerService, coreConfig, coreURLBuilder) {
-    this.$translate = $translate;
+  constructor() {
     this.LOG_KEYS = LOG_KEYS;
-    this.LogToCustomer = LogToCustomerService;
-    this.user = coreConfig.getUser();
-    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
-    this.loading = true;
-    this.dbaasLogsURL = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/dbaas/logs',
-    );
-    this.links = {
-      logPlatformGuide:
-        DATA_PLATFORM_GUIDE[this.user.ovhSubsidiary] ||
-        DATA_PLATFORM_GUIDE.DEFAULT,
-      logInfo: this.logServiceGuideLink,
-      createStream: this.dbaasLogsURL,
-      createAccount: `${this.dbaasLogsURL}/order`,
-    };
-
-    this.hasAtLeastOneDataStream = false;
-
     this.kind = this.kindInitValue;
-
-    this.LogToCustomer.getDataStreams()
-      .then(({ streams, streamCount }) => {
-        this.logAccountStreams = streams;
-        this.hasAtLeastOneDataStream = streamCount > 0;
-      })
-      .finally(() => {
-        this.loading = false;
-      });
   }
 
-  goToStreamListingPage() {
-    this.goToListingPage({ kind: this.kind });
+  setErrorMessage(message) {
+    this.errorMessage = message;
   }
 }
