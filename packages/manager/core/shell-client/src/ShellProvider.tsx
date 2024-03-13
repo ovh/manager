@@ -3,6 +3,9 @@ import { ReactNode } from 'react';
 import { Environment } from '@ovh-ux/manager-config';
 import { ShellContext } from './ShellContext';
 
+/**
+ * @deprecated use ShellContext directly
+ */
 export const ShellProvider = ({
   client,
   children,
@@ -21,5 +24,3 @@ export const ShellProvider = ({
     </>
   );
 };
-
-export default ShellProvider;
