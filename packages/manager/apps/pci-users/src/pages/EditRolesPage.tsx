@@ -12,7 +12,7 @@ export default function EditRolesPage() {
   const onClose = () => {
     navigate('..');
   };
-  const userId = searchParams.get('userId') as number | null;
+  const userId = parseInt(searchParams.get('userId'), 10) || null;
   return (
     <>
       <EditRolesModal
