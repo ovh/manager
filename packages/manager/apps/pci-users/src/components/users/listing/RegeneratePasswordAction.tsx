@@ -10,15 +10,18 @@ import {
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import { useRegeneratePassword } from '@/hooks/useUser';
 import { User } from '@/interface';
 import useNotifications from '@/hooks/useNotifications';
+import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';
 
 export default function RegeneratePasswordAction({ user }: { user: User }) {
   const { t } = useTranslation('common');
   const { projectId } = useParams();
   const { addError, addSuccess, addInfo } = useNotifications();
   const navigate = useNavigate();
+  const { trackClick } = useTracking();
   const { regenerate } = useRegeneratePassword({
     projectId: `${projectId}`,
     userId: `${user.id}`,
@@ -59,7 +62,14 @@ export default function RegeneratePasswordAction({ user }: { user: User }) {
       size={ODS_BUTTON_SIZE.sm}
       variant={ODS_BUTTON_VARIANT.ghost}
       color={ODS_THEME_COLOR_INTENT.primary}
-      onClick={regenerate}
+      onClick={() => {
+        trackClick({
+          name: `${PAGE_PREFIX}::users::regen-password`,
+          type: 'action',
+          level2: PCI_LEVEL2,
+        });
+        regenerate();
+      }}
       data-testid="regeneratePasswordButton"
     >
       <OsdsText
