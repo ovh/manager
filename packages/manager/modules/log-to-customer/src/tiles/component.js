@@ -8,11 +8,9 @@ export default {
     serviceDescription: '?serviceDescription',
   },
   bindings: {
-    logApiUrl: '<',
-    logServiceGuideLink: '<',
+    setErrorMessage: '<',
+    kind: '<',
     logSubscriptionUrl: '<',
     goToListingPage: '<',
-    logKindsList: '<',
-    kindInitValue: '<',
   },
 };
