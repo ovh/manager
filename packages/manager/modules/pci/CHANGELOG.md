@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.29.2...@ovh-ux/manager-pci@6.30.0) (2024-03-13)
+
+
+### Features
+
+* pci vouchers app in reactjs ([d6821ce](https://github.com/ovh/manager/commit/d6821cecd3bde7d884054d8e782e9a1e9dbfddac))
+
+
+
+
+
 ## [6.29.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.29.1...@ovh-ux/manager-pci@6.29.2) (2024-03-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci

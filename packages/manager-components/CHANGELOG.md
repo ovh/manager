@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.4.1...@ovhcloud/manager-components@1.5.0) (2024-03-13)
+
+### Features
+
+- pci vouchers app in reactjs ([d6821ce](https://github.com/ovh/manager/commit/d6821cecd3bde7d884054d8e782e9a1e9dbfddac))
+
 ## [1.4.1](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.4.0...@ovhcloud/manager-components@1.4.1) (2024-03-07)
 
 ### Reverts

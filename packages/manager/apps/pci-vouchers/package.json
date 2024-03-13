@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-vouchers-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^7.3.0",
-    "@ovh-ux/manager-core-api": "^0.5.0",
-    "@ovh-ux/manager-react-shell-client": "^0.2.2",
+    "@ovh-ux/manager-core-api": "^0.6.0",
+    "@ovh-ux/manager-react-shell-client": "^0.3.0",
     "@ovh-ux/manager-tailwind-config": "^0.1.0",
-    "@ovh-ux/shell": "^3.2.0",
-    "@ovhcloud/manager-components": "^1.1.1",
+    "@ovh-ux/shell": "^3.4.0",
+    "@ovhcloud/manager-components": "^1.5.0",
     "@ovhcloud/ods-common-core": "^17.1.0",
     "@ovhcloud/ods-common-theming": "^17.1.0",
     "@ovhcloud/ods-components": "^17.1.0",
