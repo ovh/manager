@@ -10,8 +10,8 @@ import { GenerateOpenStackTokenReturnType, User } from '@/interface';
 
 function renderModal() {
   const props = {
-    projectId: 'e42b4f068f444ea3832435304a316330',
-    userId: '337062',
+    projectId: 'temp_project_id',
+    userId: 'temp_user_id',
     onClose: vi.fn(),
     onError: vi.fn(),
   };
@@ -66,8 +66,8 @@ describe('GenerateOpenStackTokenModal tests.', () => {
 
     renderModal();
 
-    const confirmButton = screen.queryByTestId('open-stack-modal_spinner');
-    expect(confirmButton).toBeVisible();
+    const spinner = screen.queryByTestId('open-stack-modal_spinner');
+    expect(spinner).toBeVisible();
   });
 
   it('should display the spinner when the fetch of user is pending', () => {
@@ -77,7 +77,7 @@ describe('GenerateOpenStackTokenModal tests.', () => {
 
     renderModal();
 
-    const confirmButton = screen.queryByTestId('open-stack-modal_spinner');
-    expect(confirmButton).toBeVisible();
+    const spinner = screen.queryByTestId('open-stack-modal_spinner');
+    expect(spinner).toBeVisible();
   });
 });
