@@ -62,85 +62,78 @@ export default function GenerateOpenStackTokenModal({
   const isPending = isUserPending || isTokenGenerationPending;
 
   return (
-    <>
-      <OsdsModal
-        headline={t('pci_projects_project_users_openstack-token_title')}
-        onOdsModalClose={onClose}
-      >
-        <slot name="content">
-          {!isPending && !token && (
-            <>
-              <OsdsText
-                slot="label"
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t('pci_projects_project_users_openstack-token_content', {
-                  user: user?.username,
-                })}
+    <OsdsModal
+      headline={t('pci_projects_project_users_openstack-token_title')}
+      onOdsModalClose={onClose}
+    >
+      <slot name="content">
+        {!isPending && !token && (
+          <>
+            <OsdsText
+              slot="label"
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              {t('pci_projects_project_users_openstack-token_content', {
+                user: user?.username,
+              })}
+            </OsdsText>
+            <OsdsFormField>
+              <OsdsText slot="label">
+                {t('pci_projects_project_users_openstack-token_password_label')}
               </OsdsText>
-              <OsdsFormField>
-                <OsdsText slot="label">
-                  {t(
-                    'pci_projects_project_users_openstack-token_password_label',
-                  )}
-                </OsdsText>
-                <OsdsPassword
-                  inline={true}
-                  value={password}
-                  onOdsValueChange={(e) => setPassword(`${e.detail.value}`)}
-                  data-testid="open-stack-token_password"
-                ></OsdsPassword>
-              </OsdsFormField>
-            </>
-          )}
-          {isPending && (
-            <OsdsSpinner
-              data-testid="open-stack-modal_spinner"
-              inline
-              size={ODS_SPINNER_SIZE.md}
-            />
-          )}
+              <OsdsPassword
+                inline={true}
+                value={password}
+                onOdsValueChange={(e) => setPassword(`${e.detail.value}`)}
+                data-testid="open-stack-token_password"
+              ></OsdsPassword>
+            </OsdsFormField>
+          </>
+        )}
+        {isPending && (
+          <OsdsSpinner
+            data-testid="open-stack-modal_spinner"
+            inline
+            size={ODS_SPINNER_SIZE.md}
+          />
+        )}
 
-          {token && (
-            <>
-              <OsdsText>
-                {t('pci_projects_project_users_openstack-token_token_label')}
-              </OsdsText>
-              <OsdsClipboard value={token['X-Auth-Token']}></OsdsClipboard>
-              <OsdsMessage
-                className="mt-2 mb-4"
-                type={ODS_MESSAGE_TYPE.warning}
-              >
-                {t(
-                  'pci_projects_project_users_openstack-token_token_alert_message',
-                )}
-              </OsdsMessage>
-              <OpenStackTokenListing token={token} />
-            </>
-          )}
-        </slot>
+        {token && (
+          <>
+            <OsdsText>
+              {t('pci_projects_project_users_openstack-token_token_label')}
+            </OsdsText>
+            <OsdsClipboard value={token['X-Auth-Token']}></OsdsClipboard>
+            <OsdsMessage className="mt-2 mb-4" type={ODS_MESSAGE_TYPE.warning}>
+              {t(
+                'pci_projects_project_users_openstack-token_token_alert_message',
+              )}
+            </OsdsMessage>
+            <OpenStackTokenListing token={token} />
+          </>
+        )}
+      </slot>
+      <OsdsButton
+        slot="actions"
+        color={ODS_THEME_COLOR_INTENT.primary}
+        variant={ODS_BUTTON_VARIANT.ghost}
+        onClick={onClose}
+      >
+        {token && t('pci_projects_project_users_openstack-token_close_label')}
+        {!token && t('common_cancel')}
+      </OsdsButton>
+      {!token && (
         <OsdsButton
           slot="actions"
           color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={onClose}
+          onClick={generate}
+          {...((isPending || !password) && { disabled: true })}
+          data-testid="submitButton"
         >
-          {token && t('pci_projects_project_users_openstack-token_close_label')}
-          {!token && t('common_cancel')}
+          {t('common_confirm')}
         </OsdsButton>
-        {!token && (
-          <OsdsButton
-            slot="actions"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={generate}
-            {...((isPending || !password) && { disabled: true })}
-            data-testid="submitButton"
-          >
-            {t('common_confirm')}
-          </OsdsButton>
-        )}
-      </OsdsModal>
-    </>
+      )}
+    </OsdsModal>
   );
 }
