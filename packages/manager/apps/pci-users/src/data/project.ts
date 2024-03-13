@@ -4,6 +4,7 @@ export interface Project {
   access: string;
   creationDate: string;
   description: string;
+  planCode: string;
   projectName: string;
   project_id: string;
   status: string;

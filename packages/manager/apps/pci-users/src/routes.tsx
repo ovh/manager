@@ -1,3 +1,6 @@
+import queryClient from '@/queryClient';
+import { getProjectQuery } from '@/hooks/useProject';
+
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
     lazy: async () => {
@@ -17,7 +20,11 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/Layout')),
   },
   {
+    id: 'users',
     path: '/pci/projects/:projectId/users',
+    loader: async ({ params }) => {
+      return queryClient.fetchQuery(getProjectQuery(params.projectId));
+    },
     ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [
       {

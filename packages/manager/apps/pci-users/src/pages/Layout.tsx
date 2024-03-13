@@ -2,21 +2,18 @@ import { Outlet, useParams, useRouteError } from 'react-router-dom';
 
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { Suspense } from 'react';
+import { ErrorBanner } from '@ovhcloud/manager-components';
 import BreadCrumbs from '@/components/BreadCrumbs';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 import HidePreloader from '@/core/HidePreloader';
 import useProject, { ResponseAPIError } from '@/hooks/useProject';
 
-import ErrorPage from '@/components/error-page/ErrorPage';
+import usePageTracking from '@/hooks/usePageTracking';
 
 export default function Layout() {
   const { projectId } = useParams();
-  const { error, isSuccess } = useProject(projectId || '', { retry: false });
-
-  if (error) {
-    error.message = `Project ${projectId} doesn't exists`;
-    throw error;
-  }
+  const { isSuccess } = useProject(projectId || '', { retry: false });
+  usePageTracking();
   return (
     <div className="application">
       <Suspense>
@@ -34,7 +31,7 @@ export default function Layout() {
 }
 
 export const ErrorBoundary = () => {
-  const error = useRouteError();
+  const error = useRouteError() as ResponseAPIError;
   const nav = useNavigation();
 
   const redirectionApplication = 'public-cloud';
@@ -46,17 +43,15 @@ export const ErrorBoundary = () => {
   const reloadPage = () => {
     nav.reload();
   };
-
   return (
     <Suspense>
-      <ErrorPage
-        reloadPage={() => reloadPage()}
-        navigateToHomepage={() => navigateToHomePage()}
-        errorMessage={(error as ResponseAPIError)?.message || ''}
-        xOvhQueryId={
-          (error as ResponseAPIError)?.response?.headers?.['x-ovh-queryid'] ||
-          ''
-        }
+      <ErrorBanner
+        onReloadPage={reloadPage}
+        onRedirectHome={navigateToHomePage}
+        error={{
+          data: { message: error.response?.data?.message || error.message },
+          headers: error.response?.headers,
+        }}
       />
       <ShellRoutingSync />
       <HidePreloader />
