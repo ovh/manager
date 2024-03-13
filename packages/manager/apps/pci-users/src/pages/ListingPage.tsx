@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useHref, useParams } from 'react-router-dom';
+import {
+  Outlet,
+  useHref,
+  useParams,
+  useRouteLoaderData,
+} from 'react-router-dom';
 import {
   OsdsBreadcrumb,
   OsdsButton,
@@ -30,7 +35,6 @@ import {
 import { Notifications } from '@ovhcloud/manager-components';
 import { useUsers } from '@/hooks/useUser';
 import GuidesHeader from '@/components/guides/GuidesHeader';
-import useProject from '@/hooks/useProject';
 import { User } from '@/interface';
 import DataGridTextCell from '@/components/datagrid/DataGridTextCell';
 import useDataGridParams from '@/hooks/useDataGridParams';
@@ -39,6 +43,7 @@ import Roles from '@/components/users/listing/Roles';
 import CreationDate from '@/components/users/listing/CreationDate';
 import Status from '@/components/users/listing/Status';
 import Actions from '@/components/users/listing/Actions';
+import { Project } from '@/data/project';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -47,7 +52,7 @@ export default function ListingPage() {
   const [urlProject, setUrlProject] = useState('');
   const [searchField, setSearchField] = useState('');
   const [searchQueries, setSearchQueries] = useState<string[]>([]);
-  const { data: project } = useProject(projectId || '');
+  const project = useRouteLoaderData('users') as Project;
 
   useEffect(() => {
     navigation
