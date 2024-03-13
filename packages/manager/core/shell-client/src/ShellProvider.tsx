@@ -1,14 +1,11 @@
-import { initShellClient, ShellClientApi } from '@ovh-ux/shell';
+import { ShellClientApi } from '@ovh-ux/shell';
 import { ReactNode } from 'react';
 import { Environment } from '@ovh-ux/manager-config';
 import { ShellContext } from './ShellContext';
 
-export const initShellContext = async (appName: string) => {
-  const shell = await initShellClient(appName);
-  const environment = await shell.environment.getEnvironment();
-  return { shell, environment };
-};
-
+/**
+ * @deprecated use ShellContext directly
+ */
 export const ShellProvider = ({
   client,
   children,
@@ -27,5 +24,3 @@ export const ShellProvider = ({
     </>
   );
 };
-
-export default initShellContext;
