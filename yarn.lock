@@ -4419,26 +4419,12 @@
   resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-1.0.3.tgz#db9cc719191a62e7d9200f6e7bab21c5b848adca"
   integrity sha512-Aq58f5HiWdyDlFffbbSjAlv596h/cOnt2DO1w3DOC7OJ5EHs0hd/nycJfiu9RJbT6Yk6F1knnRRXNSpxoIVZ9Q==
 
-"@ovh-ux/manager-config@^5.0.0 || ^6.0.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-0.4.0.tgz#81171e361b8400870821632adddea7b46a240395"
-  integrity sha512-ZiLfkRNwCqnyQvYpN9Frx/WKXE9JEQhtkmoxIdhzDtkBjvuIHbC9uGH7rzh771xfuZcUPv8hmidwf0cjdpXCjQ==
-
 "@ovh-ux/ng-ovh-api-wrappers@^5.0.0", "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-5.1.0.tgz#b8bfef258a4e0860eabf219cb1880ca0a15da687"
   integrity sha512-xljPUGrnTPUNnuTAblmOonCMnrrh2KcoUytvO4eIKFva2Dzd2AavUcSo0qbKgmCdFX86v96DDldHO89S/eQKmA==
   dependencies:
     lodash "^4.17.21"
-
-"@ovh-ux/ovh-at-internet@^0.10.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.1.0.tgz#7da4a994a7b55249297c2d0a2b710a052cdbb4ab"
-  integrity sha512-zuTPfmFZ+MnDcMYtS7YnkpSnW0k3jGIUZGlFxS52fWEu4TlEFEshUXVAwKknPjarMXCEoJTV9RbdyagkKuwQiQ==
-  dependencies:
-    "@ovh-ux/manager-config" "^5.0.0 || ^6.0.0"
-    "@types/lodash-es" "^4.17.5"
-    lodash-es "^4.17.15"
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"
@@ -9386,6 +9372,15 @@ aws4@^1.8.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.12.0.tgz#ce1c9d143389679e253b314241ea9aa5cec980d3"
   integrity sha512-NmWvPnx0F1SfrQbYwOi7OeaNGokp9XhzNioJ/CSBs8Qa4vxug81mhJEAVZwxXuBmYB5KDRfMq/F3RR0BIU7sWg==
+
+axios@1.6.7:
+  version "1.6.7"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.7.tgz#7b48c2e27c96f9c68a2f8f31e2ab19f59b06b0a7"
+  integrity sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==
+  dependencies:
+    follow-redirects "^1.15.4"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
 
 axios@^0.21.1:
   version "0.21.4"
@@ -14669,6 +14664,11 @@ follow-redirects@^1.15.0:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
+
+follow-redirects@^1.15.4:
+  version "1.15.5"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.5.tgz#54d4d6d062c0fa7d9d17feb008461550e3ba8020"
+  integrity sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==
 
 font-awesome@4.7.0, font-awesome@^4.0.0, font-awesome@^4.5.0, font-awesome@^4.7.0, font-awesome@~4.7.0:
   version "4.7.0"
