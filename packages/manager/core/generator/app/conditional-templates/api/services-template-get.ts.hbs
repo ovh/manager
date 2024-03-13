@@ -29,14 +29,14 @@ export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalC
 {{/each}}
 {{#ifEq arg1=apiVersion arg2=mainApiPathApiVersion}}
 
-{{#if apiV6Computed}}
+{{#if this.isApiV6}}
 /**
  *  Get listing with iceberg V6
  */
-export const getListingIcebergV6 = async ({ pageSize, page }: { pageSize: number, page: number }) => {
+export const getListingIcebergV6 = async ({ {{#if this.isPCI }}projectId, {{/if}}pageSize, page }: { {{#if this.isPCI }}projectId: string, {{/if}}pageSize: number, page: number }) => {
   try {
     const List = await fetchIcebergV6({
-      route: '{{this.mainApiPath}}',
+      route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
       pageSize,
       page
     }).then(
@@ -49,15 +49,15 @@ export const getListingIcebergV6 = async ({ pageSize, page }: { pageSize: number
 };
 {{/if}}
 
-{{#if apiV2Computed}}
+{{#if this.isApiV2}}
 /**
  *  Get listing with iceberg V2
  */
 
-export const getListingIcebergV2 = async ({ pageSize, cursor }: { pageSize: number, cursor?: string }) => {
+export const getListingIcebergV2 = async ({ {{#if this.isPCI }}projectId, {{/if}}pageSize, cursor }: { {{#if this.isPCI }}projectId: string, {{/if}}pageSize: number, cursor?: string }) => {
   try {
     const List = await fetchIcebergV2({
-      route: '{{this.mainApiPath}}',
+      route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
       pageSize,
       cursor
     }).then(

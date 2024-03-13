@@ -1,15 +1,20 @@
 import React from 'react';
-import {
-  useBreadcrumb,
-  BreadcrumbProps,
-} from '@ovh-ux/manager-react-core-application';
+import { useBreadcrumb } from '@ovh-ux/manager-react-shell-client';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 
-function Breadcrumb({ rootLabel }: BreadcrumbProps): JSX.Element {
-  const breadcrumbItems = useBreadcrumb({ rootLabel, appName:'{{appName}}' });
+import appConfig from '@/{{appName}}.config';
+import ConfigInterface from '@/configInterface';
 
- return <OsdsBreadcrumb items={breadcrumbItems} />;
+export interface BreadcrumbProps {
+  customRootLabel?: string;
+  appName?: string;
 }
 
+function Breadcrumb({ customRootLabel }: BreadcrumbProps): JSX.Element {
+  const myConfig: ConfigInterface = appConfig;
+  const label = customRootLabel || myConfig.rootLabel;
+  const breadcrumbItems = useBreadcrumb({ rootLabel: label, appName: '{{appName}}' });
+  return <OsdsBreadcrumb items={breadcrumbItems} />;
+}
 
 export default Breadcrumb;
