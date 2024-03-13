@@ -1,7 +1,7 @@
 {
   "network_security_title": "Network",
   "network_security_dashboard_breadcrumb": "Network Security Dashboard",
-  "network_security_dashboard_title": "Painel de controlo Anti-DDoS (beta)",
+  "network_security_dashboard_title": "Painel de controlo Anti-DDoS",
   "network_security_dashboard_guides": "Manuais",
   "network_security_dashboard_header_content_survey": "Ao monitorizar constantemente o tráfego de rede, observamos várias atividades suspeitas. Para cada uma deles, o tráfego de rede de entrada é reencaminhado de forma transparente através dos nossos centros de limpeza para uma análise mais aprofundada e uma eventual eliminação dos atacantes, de forma a fornecer a melhor experiência sem interrupções.",
   "network_security_dashboard_header_content_note": "Tenha em conta que, nestes casos, os endereços IP de origem não são expostos, uma vez que não são fiáveis para a maioria dos ataques (ou seja, em ataques por roubo de identidade ou por reflexo).",
