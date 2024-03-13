@@ -46,43 +46,30 @@ export default class MoveMeetingCtrl {
             const title = moment(slot.startDate).format('ddd DD MMM YYYY');
             if (!prevTitle) {
               prevTitle = title;
-              slots.push({
-                id: index,
-                start: slot.startDate,
-                end: slot.endDate,
-                startTime: moment(slot.startDate).format('HH:mm'),
-                endTime: moment(slot.endDate).format('HH:mm'),
-                selected: false,
-                slotId: slot.slotId,
-              });
             } else if (prevTitle !== title) {
               this.meetings.push({
                 title: prevTitle,
                 slots,
               });
               slots = [];
-              slots.push({
-                id: index,
-                start: slot.startDate,
-                end: slot.endDate,
-                startTime: moment(slot.startDate).format('HH:mm'),
-                endTime: moment(slot.endDate).format('HH:mm'),
-                selected: false,
-                slotId: slot.slotId,
-              });
-              prevTitle = title;
-            } else {
-              slots.push({
-                id: index,
-                start: slot.startDate,
-                end: slot.endDate,
-                startTime: moment(slot.startDate).format('HH:mm'),
-                endTime: moment(slot.endDate).format('HH:mm'),
-                selected: false,
-                slotId: slot.slotId,
-              });
             }
+            slots.push({
+              id: index,
+              start: slot.startDate,
+              end: slot.endDate,
+              startTime: moment(slot.startDate).format('HH:mm'),
+              endTime: moment(slot.endDate).format('HH:mm'),
+              selected: false,
+              slotId: slot.slotId,
+            });
           });
+          if (this.meetings.length === 0 && prevTitle) {
+            // Push slots if only one date available
+            this.meetings.push({
+              title: prevTitle,
+              slots,
+            });
+          }
           this.showMeetingSlots = true;
           this.meetingSelectMessage = '';
         }
