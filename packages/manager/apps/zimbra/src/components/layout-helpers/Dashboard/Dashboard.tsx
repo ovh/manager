@@ -1,53 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Outlet, useResolvedPath } from 'react-router-dom';
+
 import {
-  OsdsTabs,
-  OsdsTabBar,
-  OsdsTabBarItem,
-} from '@ovhcloud/ods-components/react';
+  DashboardLayout,
+  DashboardLayoutProps,
+  GuideButton,
+  GuideItem,
+} from '@ovhcloud/manager-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { useTranslation } from 'react-i18next';
+import TabsPanel from './TabsPanel';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
-export type DashboardTabItemProps = {
-  name: string;
-  title: string;
-  to: string;
-};
-
-export type DashboardLayoutProps = {
-  tabs: DashboardTabItemProps[];
-};
-
-const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
-  const [panel, setActivePanel] = useState('');
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const activeTab = tabs.find((tab) => tab.to === location.pathname);
-    if (activeTab) {
-      setActivePanel(activeTab.name);
-    } else {
-      setActivePanel(tabs[0].name);
-      navigate(`${tabs[0].to}`);
-    }
-  }, [location.pathname]);
-
+export const Dashboard: React.FC<DashboardLayoutProps> = () => {
+  const { t } = useTranslation('zimbra/dashboard');
+  const guideItems: GuideItem[] = [
+    {
+      id: 1,
+      href: 'https://www.ovh.com',
+      target: OdsHTMLAnchorElementTarget._blank,
+      label: t('guides_title_1'),
+    },
+  ];
+  const tabsList = [
+    {
+      name: 'general_informations',
+      title: t('general_informations'),
+      to: useResolvedPath('').pathname,
+    },
+    {
+      name: 'organizations',
+      title: t('organization'),
+      to: useResolvedPath('organizations').pathname,
+    },
+    {
+      name: 'domains',
+      title: t('domain'),
+      to: useResolvedPath('domains').pathname,
+    },
+    {
+      name: 'email_accounts',
+      title: t('email_accounts'),
+      to: useResolvedPath('email-accounts').pathname,
+    },
+    {
+      name: 'mailing_list',
+      title: t('mailing_list'),
+      to: useResolvedPath('mailing-lists').pathname,
+    },
+    {
+      name: 'redirections',
+      title: t('redirections'),
+      to: useResolvedPath('redirections').pathname,
+    },
+  ];
   return (
-    <>
-      <OsdsTabs panel={panel}>
-        <OsdsTabBar slot="top">
-          {tabs.map((tab: DashboardTabItemProps) => (
-            <NavLink
-              key={`osds-tab-bar-item-${tab.name}`}
-              to={tab.to}
-              className="no-underline"
-            >
-              <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
-            </NavLink>
-          ))}
-        </OsdsTabBar>
-      </OsdsTabs>
-      <Outlet />
-    </>
+    <DashboardLayout
+      header={{
+        title: 'Zimbra',
+        headerButton: <GuideButton items={guideItems} />,
+      }}
+      breadcrumb={<Breadcrumb />}
+      tabs={<TabsPanel tabs={tabsList} />}
+      content={<Outlet />}
+    />
   );
 };
 
