@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavigateFunction } from 'react-router-dom';
 
 import { Headers, HeadersProps } from '../../content';
 
@@ -9,12 +10,14 @@ export interface DashboardLayoutProps {
   header?: HeadersProps;
   linkProps?: LinksProps;
   tabs?: React.ReactElement;
+  navigate?: NavigateFunction;
 }
 
 export const DashboardLayout = ({
   linkProps,
   breadcrumb,
   content,
+  navigate,
   header,
   tabs,
 }: DashboardLayoutProps) => {
@@ -30,6 +33,7 @@ export const DashboardLayout = ({
       )}
       {linkProps && (
         <Links
+          navigate={navigate}
           href={linkProps.href}
           label={linkProps.label}
           target={linkProps.target}

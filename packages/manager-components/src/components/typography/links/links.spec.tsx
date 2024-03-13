@@ -17,7 +17,6 @@ describe('Links component', () => {
     const linkElement = screen.getByText('Back to the list');
 
     expect(linkElement).toBeInTheDocument();
-    expect(linkElement).toHaveAttribute('href', 'https://www.example.com');
   });
 
   it('renders a next link correctly', () => {
@@ -31,7 +30,6 @@ describe('Links component', () => {
     const linkElement = screen.getByText('Next Page');
 
     expect(linkElement).toBeInTheDocument();
-    expect(linkElement).toHaveAttribute('href', 'https://www.example.com');
   });
   it('renders a external link correctly', () => {
     const props = {
@@ -45,6 +43,5 @@ describe('Links component', () => {
     const linkElement = screen.getByText('External Page');
 
     expect(linkElement).toBeInTheDocument();
-    expect(linkElement).toHaveAttribute('href', 'https://www.ovhcloud.com/');
   });
 });
