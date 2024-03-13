@@ -12,9 +12,12 @@ export default {
     openBill: '<',
     pricings: '<',
     user: '<',
-
+    dbCategories: '<',
+    webCloudCatalog: '<',
     displayErrorMessage: '<',
     displaySuccessMessage: '<',
+    onSuccess: '<',
+    onError: '<',
   },
   controller,
   name: 'ovhManagerWebPrivateDatabaseOrderCloudDb',
