@@ -207,11 +207,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicated-server.server.dashboard.monitoringUpdate', {
           productId: serverName,
         }),
-      orderPrivateBandwidthLink: /* @ngInject */ (
+      getOrderPrivateBandwidthLink: /* @ngInject */ (
         $state,
         isLegacy,
         serverName,
-      ) =>
+      ) => () =>
         isLegacy
           ? $state.href(
               'app.dedicated-server.server.dashboard.bandwidth-legacy-private-order',
@@ -221,11 +221,11 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicated-server.server.dashboard.bandwidth-private-order',
               { productId: serverName },
             ),
-      orderPublicBandwidthLink: /* @ngInject */ (
+      getOrderPublicBandwidthLink: /* @ngInject */ (
         $state,
         isLegacy,
         serverName,
-      ) =>
+      ) => () =>
         isLegacy
           ? $state.href(
               'app.dedicated-server.server.dashboard.bandwidth-legacy-public-order',
