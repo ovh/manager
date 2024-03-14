@@ -25,5 +25,6 @@
   "user_account_identity_documents_verification_waiting_info": "Su solicitud ha sido analizada, pero es necesaria información adicional. Consulte su tíquet de soporte.",
   "user_account_identity_documents_selection_file_format_invalid": "Formato de archivo no compatible. Por favor, utilice cualquiera de los formatos aceptados: jpg, jpeg, pdf y png.",
   "user_account_identity_documents_intro_ensure_correspondance": "Asegúrese de que sus datos personales coinciden con el nombre y la dirección que aparecen en sus documentos oficiales.",
-  "user_account_identity_documents_intro_kyc_reminder": "Asegúrese de que sus datos personales coinciden con el nombre y la dirección que aparecen en sus documentos oficiales."
+  "user_account_identity_documents_intro_kyc_reminder": "Asegúrese de que sus datos personales coinciden con el nombre y la dirección que aparecen en sus documentos oficiales.",
+  "user_account_identity_documents_title": "Es necesario verificar los documentos"
 }
