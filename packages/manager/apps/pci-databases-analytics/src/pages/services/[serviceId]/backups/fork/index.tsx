@@ -8,7 +8,7 @@ import {
 } from '@/hooks/api/availabilities.api.hooks';
 import { useServiceData } from '../../layout';
 import { database } from '@/models/database';
-import { H2, H3, P } from '@/components/typography';
+import { H2, P } from '@/components/typography';
 import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
 import { Skeleton } from '@/components/ui/skeleton';
 import ForkForm from './_components/fork-form';
@@ -41,7 +41,7 @@ const Fork = () => {
   const capabilitiesQuery = useGetFullCapabilities(projectId);
   const backupsQuery = useGetBackups(projectId, service.engine, service.id);
   const catalogQuery = useGetCatalog();
-  const [network, setNework] = useState<Network | undefined>();
+  const [network, setNetwork] = useState<Network | undefined>();
   const networkData = useVrack(projectId, service.nodes[0].region, network?.id);
   const location = useLocation();
   const [initialValue, setInitialValue] = useState<ForkInitialValue>({
@@ -69,7 +69,7 @@ const Fork = () => {
         n.regions.find((r) => r.openstackId === service.networkId),
       );
       if (networkFromId) {
-        setNework(networkFromId);
+        setNetwork(networkFromId);
         setInitialValue((prev) => ({
           ...prev,
           networkId: networkFromId.id,
