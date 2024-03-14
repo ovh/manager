@@ -59,5 +59,6 @@
   "network_security_dashboard_invalid_ip": "The value entered for the IP is incorrect.",
   "network_security_dashboard_like_this": "Like it?",
   "network_security_dashboard_like_this_tooltip": "Like this page? Send us your feedback!",
-  "network_security_dashboard_refresh": "Refresh data"
+  "network_security_dashboard_refresh": "Refresh data",
+  "network_security_dashboard_time_zone": "(Timezone: UTC{{ timeZoneOffset }})"
 }
