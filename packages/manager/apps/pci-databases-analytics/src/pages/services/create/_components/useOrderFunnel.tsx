@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { database } from '@/models/database';
 import {
@@ -17,6 +17,7 @@ import { order } from '@/models/catalog';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
 import { useVrack } from '@/hooks/useVrack';
+import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
 
 const getSuggestedItemOrDefault = (
   suggestion: database.Suggestion,
@@ -38,9 +39,7 @@ const getSuggestedItemOrDefault = (
 
 export function useOrderFunnel(
   availabilities: database.Availability[],
-  capabilities: database.Capabilities,
-  engineCapabilities: database.EngineCapabilities[],
-  regionCapabilities: database.RegionCapabilities[],
+  capabilities: FullCapabilities,
   suggestions: database.Suggestion[],
   catalog: order.publicOrder.Catalog,
 ) {
@@ -123,18 +122,13 @@ export function useOrderFunnel(
   // Create the list of available engines
   const listEngines = useMemo(
     () =>
-      createTree(
-        availabilities,
-        capabilities,
-        engineCapabilities,
-        regionCapabilities,
-        suggestions,
-        catalog,
-      ).map((e) => {
-        // order the versions in the engines
-        e.versions.sort((a, b) => a.order - b.order);
-        return e;
-      }),
+      createTree(availabilities, capabilities, suggestions, catalog).map(
+        (e) => {
+          // order the versions in the engines
+          e.versions.sort((a, b) => a.order - b.order);
+          return e;
+        },
+      ),
     [availabilities, capabilities],
   );
   // Create the list of available plans

@@ -17,6 +17,7 @@ import {
   Engine,
   Flavor,
   ForkSource,
+  ForkSourceType,
   Plan,
   Region,
   Version,
@@ -32,7 +33,7 @@ import {
 } from '@/components/ui/popover';
 import FormattedDate from '@/components/table-date';
 
-interface OrderSummaryProps {
+interface ForkSummaryProps {
   order: {
     source: ForkSource;
     backup?: database.Backup;
@@ -57,7 +58,7 @@ interface OrderSummaryProps {
   onSectionClicked?: (target: string) => void;
 }
 
-const NameDetails = ({ order }: OrderSummaryProps) => {
+const NameDetails = ({ order }: ForkSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   return (
     <div className="flex items-center gap-2">
@@ -74,8 +75,10 @@ const NameDetails = ({ order }: OrderSummaryProps) => {
     </div>
   );
 };
-const SourceDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
-  // const { t } = useTranslation('pci-databases-analytics/services/new');
+const SourceDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/backups/fork',
+  );
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
@@ -86,14 +89,16 @@ const SourceDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
           onClick={() => onSectionClicked('source')}
           className="font-bold"
         >
-          Point de restauration
+          {t('summaryFieldSourceLabel')}
         </Button>
-        {order.source && <Span>{order.source.type}</Span>}
+        {order.source && (
+          <Span>{t(`summaryFieldSourceType-${order.source.type}`)}</Span>
+        )}
       </div>
-      {order.source.type !== 'now' && (
-        <div className="flex items-start pl-4 gap-2">
-          <Clock className="size-4" />
-          {order.source.type === 'pit' && (
+      {order.source.type !== ForkSourceType.now && (
+        <div className="pl-4">
+          <Clock className="size-4 inline-block mr-2" />
+          {order.source.type === ForkSourceType.pit && (
             <Span>
               <FormattedDate
                 date={order.source.pointInTime}
@@ -103,7 +108,6 @@ const SourceDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
           )}
           {order.source.type === 'backup' && (
             <Span>
-              {/* <FormattedDate date={order.ba} /> */}
               {order.backup ? (
                 <Span>
                   <FormattedDate
@@ -113,7 +117,9 @@ const SourceDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
                   ({formatStorage(order.backup.size)})
                 </Span>
               ) : (
-                <Span className="text-red-500">Aucun</Span>
+                <Span className="text-red-500">
+                  {t('summaryFieldSourceBackupNone')}
+                </Span>
               )}
             </Span>
           )}
@@ -122,27 +128,19 @@ const SourceDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
-const EngineDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+const EngineDetails = ({ order }: ForkSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex items-center gap-2">
-        <Button
-          variant={'link'}
-          size={'link'}
-          type="button"
-          onClick={() => onSectionClicked('engine')}
-          className="font-bold"
-        >
-          {t('summaryFieldEngineLabel')}
-        </Button>
+      <div className="">
+        <b>{t('summaryFieldEngineLabel')}</b>
         {order.engine && (
           <>
             <Span>
               {humanizeEngine(order.engine.name as database.EngineEnum)}
             </Span>
             <img
-              className="block w-9 h-6"
+              className="inline-block w-9 h-6"
               src={`./assets/engines/${order.engine.name}.png`}
               alt={order.engine.name}
             />
@@ -162,7 +160,7 @@ const EngineDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
-const PlanDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+const PlanDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   return (
     <div className="flex items-center gap-2">
@@ -183,7 +181,7 @@ const PlanDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
-const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+const RegionDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   const { t: tRegions } = useTranslation('regions');
   return (
@@ -209,7 +207,7 @@ const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
-const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+const FlavorDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   return (
     <div className="flex flex-col gap-2">
@@ -254,7 +252,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
-const ClusterDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+const ClusterDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   const totalStorage = order.flavor?.storage
     ? addStorage(order.flavor.storage.minimum, {
@@ -301,7 +299,7 @@ const ClusterDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
-const NetworkrDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+const NetworkrDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   return (
     <div className="flex items-start flex-col gap-2">
@@ -346,7 +344,7 @@ const NetworkrDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
-const IpsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+const IpsDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   return (
     <div className="flex items-center gap-2">
@@ -369,7 +367,7 @@ const IpsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   );
 };
 
-const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
+const ForkSummary = ({ order, onSectionClicked }: ForkSummaryProps) => {
   return (
     <div className="grid grid-cols-1 gap-2">
       <NameDetails order={order} />
@@ -385,4 +383,4 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
   );
 };
 
-export default OrderSummary;
+export default ForkSummary;

@@ -1,6 +1,11 @@
 import * as React from 'react';
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { LinkProps, Link as RouterLink } from 'react-router-dom';
+import { useNavigation, useShell } from '@ovh-ux/manager-react-shell-client';
+import {
+  LinkProps,
+  NavLink as RouterNavLink,
+  Link as RouterLink,
+  NavLinkProps,
+} from 'react-router-dom';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -143,8 +148,10 @@ function Link({
   className,
   disabled,
   children,
+  to,
   ...props
 }: LinkProps & { disabled?: boolean }) {
+  const shell = useShell();
   const baseClassName =
     'text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline';
   const disabledClass = 'opacity-50 cursor-not-allowed hover:text-primary-500';
@@ -155,12 +162,59 @@ function Link({
   );
   return (
     <RouterLink
+      to={to}
       className={combinedClassName}
       {...props}
-      onClick={(e) => disabled && e.preventDefault()}
+      onClick={(e) => {
+        if (disabled) {
+          e.preventDefault();
+        } else {
+          shell.ux.showPreloader();
+        }
+      }}
     >
       {children}
     </RouterLink>
+  );
+}
+
+function NavLink({
+  className,
+  disabled,
+  children,
+  to,
+  end,
+  ...props
+}: NavLinkProps & { disabled?: boolean }) {
+  const shell = useShell();
+  const baseClassName =
+    'whitespace-nowrap w-fit text-primary-500 text-base font-semibold m-0 py-2 hover:text-primary-700';
+  const activeClass = 'border-b-2 border-primary-500';
+  const disabledClass = 'cursor-not-allowed opacity-50 hover:text-primary-500';
+
+  return (
+    <RouterNavLink
+      to={to}
+      end={end}
+      className={({ isActive }) =>
+        cn(
+          baseClassName,
+          isActive && activeClass,
+          className,
+          disabled && disabledClass,
+        )
+      }
+      onClick={(e) => {
+        if (disabled) {
+          e.preventDefault();
+        } else {
+          shell.ux.showPreloader();
+        }
+      }}
+      {...props}
+    >
+      {children}
+    </RouterNavLink>
   );
 }
 
@@ -196,4 +250,4 @@ function OvhLink({
     </A>
   );
 }
-export { H1, H2, H3, H4, H5, P, A, Span, Link, OvhLink };
+export { H1, H2, H3, H4, H5, P, A, Span, Link, NavLink, OvhLink };

@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { add } from 'date-fns';
+import { add, formatDistance, formatDuration } from 'date-fns';
+import * as duration from 'duration-fns';
+import { useNavigate } from 'react-router-dom';
 import { H2, Link, P } from '@/components/typography';
 import { database } from '@/models/database';
 import { useServiceData } from '../layout';
@@ -9,6 +11,7 @@ import { useGetBackups } from '@/hooks/api/backups.api.hooks';
 import { POLLING } from '@/configuration/polling';
 
 import { Button } from '@/components/ui/button';
+import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
 export interface BackupWithExpiricyDate extends database.Backup {
   expiricyDate: Date;
@@ -17,21 +20,33 @@ const Backups = () => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/backups',
   );
+  const navigate = useNavigate();
   const { projectId, service } = useServiceData();
   const backupsQuery = useGetBackups(projectId, service.engine, service.id, {
     refetchInterval: POLLING.BACKUPS,
   });
-  const columns = getColumns();
+  const columns = getColumns({
+    onRestoreClick: (backup) => {},
+    onForkClick: (backup) => {
+      navigate(`fork?backup=${backup.id}`);
+    },
+  });
+
   return (
     <>
-      <H2 className="mb-2">{t('title')}</H2>
-      <P className="mb-2">{t('description')}</P>
+      <H2>{t('title')}</H2>
+      <P>{t('description')}</P>
 
-      <Button variant="outline" size="sm" className="text-base mb-2" asChild>
-        <Link to="./fork" className="hover:no-underline">
-          Dupliquer (Fork)
-        </Link>
-      </Button>
+      <div className="flex gap-2">
+        <Button variant="outline" size="sm" className="text-base" asChild>
+          <Link to="./fork" className="hover:no-underline">
+            {t('actionFork')}
+          </Link>
+        </Button>
+        <Button variant="outline" size="sm" className="text-base">
+          {t('actionRestore')}
+        </Button>
+      </div>
 
       {backupsQuery.isSuccess ? (
         <DataTable
