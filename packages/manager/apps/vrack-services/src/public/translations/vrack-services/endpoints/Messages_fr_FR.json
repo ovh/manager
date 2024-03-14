@@ -13,7 +13,7 @@
   "subnetLabel": "Sous-réseau",
   "subnetPlaceholder": "Sélectionner un sous-réseau",
   "description": "Description",
-  "ip": "Plage d'adresses",
+  "ip": "Adresse IP",
   "subnet": "Sous-réseau",
   "managedServiceURN": "Nom du service",
   "serviceType": "Type de service",
