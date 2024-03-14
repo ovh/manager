@@ -13,5 +13,6 @@
   "sign_up_details_field_landline_phone": "Telefon stacjonarny",
   "sign_up_details_field_sms_consent": "Wyrażam zgodę na otrzymywanie wiadomości SMS dotyczących nowości i ofert handlowych OVHcloud.",
   "sign_up_details_field_gender": "Płeć",
-  "sign_up_details_field_birthday": "Data urodzenia"
+  "sign_up_details_field_birthday": "Data urodzenia",
+  "sign_up_details_field_address_help_text": "Upewnij się, że adres zgadza się z adresem podanym w Twoim dokumencie tożsamości."
 }
