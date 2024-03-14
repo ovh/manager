@@ -7,6 +7,7 @@ export default {
     server: '<',
     user: '<',
     serverType: '<',
+    statePrefix: '<',
   },
   controller,
   template,
