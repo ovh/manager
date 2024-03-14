@@ -58,23 +58,6 @@ interface ForkSummaryProps {
   onSectionClicked?: (target: string) => void;
 }
 
-const NameDetails = ({ order }: ForkSummaryProps) => {
-  const { t } = useTranslation('pci-databases-analytics/services/new');
-  return (
-    <div className="flex items-center gap-2">
-      <b>{t('summaryFieldNameLabel')}</b>
-      <Span>{order.name}</Span>
-      <Popover>
-        <PopoverTrigger>
-          <HelpCircle className="size-4" />
-        </PopoverTrigger>
-        <PopoverContent>
-          <P>{t('summaryFieldNameInfo')}</P>
-        </PopoverContent>
-      </Popover>
-    </div>
-  );
-};
 const SourceDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/backups/fork',
@@ -125,6 +108,23 @@ const SourceDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
           )}
         </div>
       )}
+    </div>
+  );
+};
+const NameDetails = ({ order }: ForkSummaryProps) => {
+  const { t } = useTranslation('pci-databases-analytics/services/new');
+  return (
+    <div className="flex items-center gap-2">
+      <b>{t('summaryFieldNameLabel')}</b>
+      <Span>{order.name}</Span>
+      <Popover>
+        <PopoverTrigger>
+          <HelpCircle className="size-4" />
+        </PopoverTrigger>
+        <PopoverContent>
+          <P>{t('summaryFieldNameInfo')}</P>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 };
