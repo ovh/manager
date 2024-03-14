@@ -92,9 +92,9 @@ const CurrentQueries = () => {
 
   return (
     <>
-      <H3 className="mb-2">{t('currentQueriesTitle')}</H3>
-      <P className="mb-2">{t('currentQueriesDescription')}</P>
-      <div className="flex gap-4 mb-2">
+      <H3>{t('currentQueriesTitle')}</H3>
+      <P>{t('currentQueriesDescription')}</P>
+      <div className="flex gap-4">
         <div className="flex items-center space-x-2 ">
           <Switch
             className="rounded-xl"

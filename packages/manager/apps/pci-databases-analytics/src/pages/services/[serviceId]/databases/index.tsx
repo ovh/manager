@@ -46,12 +46,12 @@ const Databases = () => {
   });
   return (
     <>
-      <H2 className="mb-2">{t('title')}</H2>
+      <H2>{t('title')}</H2>
 
       <Button
         variant={'outline'}
         size="sm"
-        className="text-base mb-2"
+        className="text-base"
         disabled={
           service.capabilities.databases?.create ===
           database.service.capability.StateEnum.disabled

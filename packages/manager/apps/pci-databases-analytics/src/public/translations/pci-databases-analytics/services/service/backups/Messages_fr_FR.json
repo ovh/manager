@@ -2,9 +2,16 @@
   "title": "Backups",
   "breadcrumb": "Backups",
   "description": "Vous trouverez ci-dessous la liste de vos sauvegardes. Vous pouvez restaurer ou fork chacune d'entre elles. Ces sauvegardes glissantes sont conservées pour le bon maintien opérationnel de votre service.",
+  "detailsTitle": "Sauvegardes de la base de données",
+  "detailsRetentionDays": "Durée de rétention",
+  "detailsBackupTime": "Heure de sauvegarde (UTC)",
   "tableHeadName": "Nom",
   "tableHeadLocation": "Localisation",
   "tableHeadCreationDate": "Date de création",
   "tableHeadNExpiryDate": "Date d'expiration",
-  "tableHeadStatus": "Statut"
+  "tableHeadStatus": "Statut",
+  "tableActionFork": "Dupliquer (Fork)",
+  "tableActionRestore": "Restaurer",
+  "actionFork": "Dupliquer (Fork)",
+  "actionRestore": "Restaurer"
 }
