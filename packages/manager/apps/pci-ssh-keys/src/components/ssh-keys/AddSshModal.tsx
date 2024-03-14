@@ -123,7 +123,7 @@ export default function AddSshModal({
           variant={ODS_BUTTON_VARIANT.ghost}
           onClick={onClose}
         >
-          {t('common_cancel')}
+          {t('pci_projects_project_sshKeys_add_cancel_label')}
         </OsdsButton>
         <OsdsButton
           slot="actions"
@@ -132,7 +132,7 @@ export default function AddSshModal({
           data-testid="submitButton"
           {...(isPending || !name || !publicKey ? { disabled: true } : {})}
         >
-          {t('common_confirm')}
+          {t('pci_projects_project_sshKeys_add_submit_label')}
         </OsdsButton>
       </OsdsModal>
     </>
