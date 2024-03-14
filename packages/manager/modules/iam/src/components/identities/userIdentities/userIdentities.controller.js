@@ -1,7 +1,8 @@
 export default class userIdentitiesController {
   /* @ngInject */
-  constructor(IAMService) {
+  constructor(IAMService, $q) {
     this.IAMService = IAMService;
+    this.$q = $q;
   }
 
   $onChanges() {
@@ -11,7 +12,7 @@ export default class userIdentitiesController {
   }
 
   getIdentitiesUsers() {
-    return Promise.all(
+    return this.$q.all(
       this.identities.map((identity) => this.getIdentityUser(identity)),
     );
   }
@@ -26,5 +27,9 @@ export default class userIdentitiesController {
 
       return { ...identity, message };
     }
+  }
+
+  onRemoveUser(urn) {
+    this.onRemoveIdentity({ urn });
   }
 }

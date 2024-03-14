@@ -4,6 +4,8 @@ import controller from './groupIdentities.controller';
 export default {
   bindings: {
     identities: '<',
+    onRemoveIdentity: '&',
+    readOnly: '<',
   },
   controller,
   template,

@@ -31,5 +31,13 @@
                 <dd data-ng-if="$row.role" data-ng-bind="$row.role"></dd>
             </dl>
         </oui-datagrid-row-detail>
+        <oui-action-menu data-text="Actions">
+            <oui-action-menu-item
+                data-on-click="$ctrl.onRemovegroupIdentity($row.urn)"
+                data-disabled="$ctrl.readOnly"
+            >
+                <span data-translate="iam_identities_delete"> </span>
+            </oui-action-menu-item>
+        </oui-action-menu>
     </oui-datagrid>
 </section>
