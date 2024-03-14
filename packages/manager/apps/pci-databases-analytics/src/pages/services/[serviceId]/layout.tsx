@@ -1,7 +1,6 @@
 import {
   Outlet,
   redirect,
-  useNavigate,
   useOutletContext,
   useParams,
 } from 'react-router-dom';
