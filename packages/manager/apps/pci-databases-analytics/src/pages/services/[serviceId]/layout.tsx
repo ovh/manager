@@ -68,17 +68,13 @@ export function useServiceData() {
 }
 
 export default function ServiceLayout() {
-  const { projectId, serviceId, category } = useParams();
-  const navigate = useNavigate();
+  const { projectId, serviceId } = useParams();
   const serviceQuery = useGetService(projectId, serviceId, {
     refetchInterval: POLLING.SERVICE,
   });
 
   const service = serviceQuery.data;
   if (!service) {
-    // if (serviceQuery.isError && serviceQuery.error.response.status === 404) {
-    //   navigate(`/pci/projects/${projectId}/databases-analytics/${category}/services`);
-    // }
     return (
       <>
         <ServiceHeader.Skeleton />

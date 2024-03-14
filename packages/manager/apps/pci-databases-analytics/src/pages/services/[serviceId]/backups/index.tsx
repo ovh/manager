@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { add, formatDistance, formatDuration } from 'date-fns';
-import * as duration from 'duration-fns';
+import { add } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import { H2, Link, P } from '@/components/typography';
 import { database } from '@/models/database';
@@ -11,7 +10,6 @@ import { useGetBackups } from '@/hooks/api/backups.api.hooks';
 import { POLLING } from '@/configuration/polling';
 
 import { Button } from '@/components/ui/button';
-import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
 export interface BackupWithExpiricyDate extends database.Backup {
   expiricyDate: Date;
