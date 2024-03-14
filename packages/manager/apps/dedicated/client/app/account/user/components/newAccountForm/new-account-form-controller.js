@@ -344,7 +344,7 @@ export default class NewAccountFormController {
           tracking.accountPhoneType = this.model.phoneType;
         }
         this.atInternet.trackPage(tracking);
-        if (result !== 'null') {
+        if (result !== null) {
           return this.$q.reject(result);
         }
         return result;
