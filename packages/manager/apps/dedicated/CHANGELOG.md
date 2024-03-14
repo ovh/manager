@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.26.1...@ovh-ux/manager-dedicated@19.26.2) (2024-03-14)
+
+
+### Bug Fixes
+
+* **dedicated:** mail change did not work ([#11177](https://github.com/ovh/manager/issues/11177)) ([4d213c7](https://github.com/ovh/manager/commit/4d213c79e8edd7092577b73fc7c77a56b3067a7b))
+
+
+
+
+
 ## [19.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.26.0...@ovh-ux/manager-dedicated@19.26.1) (2024-03-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
