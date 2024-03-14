@@ -25,5 +25,6 @@
   "user_account_identity_documents_verification_waiting_info": "Ihre Anfrage wurde analysiert, es werden jedoch weitere Dokumente benötigt. Bitte sehen Sie sich Ihr Support-Ticket an.",
   "user_account_identity_documents_selection_file_format_invalid": "Nicht unterstütztes Dateiformat. Bitte verwenden Sie eines der zulässigen Formate: jpg, jpeg, pdf und png",
   "user_account_identity_documents_intro_ensure_correspondance": "Vergewissern Sie sich, dass Ihre persönlichen Daten mit dem Namen und der Adresse auf Ihren offiziellen Dokumenten übereinstimmen.",
-  "user_account_identity_documents_intro_kyc_reminder": "Vergewissern Sie sich, dass Ihre persönlichen Daten mit dem Namen und der Adresse auf Ihren offiziellen Dokumenten übereinstimmen."
+  "user_account_identity_documents_intro_kyc_reminder": "Vergewissern Sie sich, dass Ihre persönlichen Daten mit dem Namen und der Adresse auf Ihren offiziellen Dokumenten übereinstimmen.",
+  "user_account_identity_documents_title": "Überprüfung der Dokumente erforderlich"
 }
