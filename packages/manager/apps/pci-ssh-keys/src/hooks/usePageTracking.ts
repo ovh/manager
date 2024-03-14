@@ -23,8 +23,9 @@ export default function usePageTracking() {
 
   useEffect(() => {
     const pageId = location.pathname.split('/').pop();
+    const pageKey = pageId === 'ssh' ? '' : `::${pageId}`;
     trackPage({
-      name: `${PAGE_PREFIX}::sshKeys${pageId === 'ssh' ? '' : `::${pageId}`}`,
+      name: `${PAGE_PREFIX}::sshKeys${pageKey}`,
       level2: PCI_LEVEL2,
     });
   }, [location]);

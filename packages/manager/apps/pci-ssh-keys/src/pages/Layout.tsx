@@ -52,7 +52,7 @@ export const ErrorBoundary = () => {
         onRedirectHome={navigateToHomePage}
         error={{
           data: { message: error.response?.data?.message || error.message },
-          headers: error.response?.headers,
+          headers: error.response?.headers || {},
         }}
       />
       <ShellRoutingSync />

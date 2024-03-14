@@ -12,27 +12,25 @@ export default function RemoveSshPage() {
     navigate('..');
   };
   return (
-    <>
-      <RemoveSshModal
-        projectId={`${projectId}`}
-        sshId={`${sshId}`}
-        onClose={() => onClose()}
-        onSuccess={() => {
-          addSuccess(t('pci_projects_project_sshKeys_remove_success'), true);
-        }}
-        onError={(error: Error) => {
-          addError(
-            <span
-              dangerouslySetInnerHTML={{
-                __html: t('pci_projects_project_sshKeys_remove_error', {
-                  error: error && error.message,
-                }),
-              }}
-            ></span>,
-            true,
-          );
-        }}
-      />
-    </>
+    <RemoveSshModal
+      projectId={`${projectId}`}
+      sshId={`${sshId}`}
+      onClose={() => onClose()}
+      onSuccess={() => {
+        addSuccess(t('pci_projects_project_sshKeys_remove_success'), true);
+      }}
+      onError={(error: Error) => {
+        addError(
+          <span
+            dangerouslySetInnerHTML={{
+              __html: t('pci_projects_project_sshKeys_remove_error', {
+                error: error?.message,
+              }),
+            }}
+          ></span>,
+          true,
+        );
+      }}
+    />
   );
 }
