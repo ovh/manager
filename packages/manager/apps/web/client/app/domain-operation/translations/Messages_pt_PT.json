@@ -243,5 +243,7 @@
   "domain_operations_progress_instructions_6": "Se os dois emails forem validados, a validação e passagem à etapa seguinte ocorre num prazo de 24 horas.",
   "domain_operations_progress_instructions_7": "Pode contactar o fornecedor atual do seu domínio para que este dê o seu consentimento.",
   "operation_tab_DOMAIN": "Domínio",
-  "operation_tab_DNS": "Dns"
+  "operation_tab_DNS": "Dns",
+  "domain_operations_nicOperation_ContactControlAcknowledge": "Confirmação do contacto",
+  "domain_operations_nicOperation_ContactControlCorrect": "Correção do contacto"
 }

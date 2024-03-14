@@ -243,5 +243,7 @@
   "domain_operations_progress_instructions_5": "Se una sola delle due email è stata confermata: senza conferma dell'altra email,  dopo 5 giorni l trasferimento passa allo step successivo.",
   "domain_operations_progress_instructions_6": "Se entrambe le email sono state confermate: conferma e passaggio allo step successivo entro 24 ore.",
   "domain_operations_progress_instructions_7": "È possibile contattare l'attuale provider del dominio per richiedere la sua autorizzazione.",
-  "operation_tab_DOMAIN": "Domini"
+  "operation_tab_DOMAIN": "Domini",
+  "domain_operations_nicOperation_ContactControlAcknowledge": "Conferma del contatto",
+  "domain_operations_nicOperation_ContactControlCorrect": "Correzione del contatto"
 }
