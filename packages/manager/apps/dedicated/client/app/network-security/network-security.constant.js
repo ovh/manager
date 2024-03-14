@@ -6,17 +6,6 @@ export const ENTITY = {
   EVENT: 'event',
 };
 
-export const ALLOWED_LANGUAGES = {
-  en: {
-    isDefault: true,
-  },
-  fr: {
-    isDefault: false,
-  },
-};
-
-export const BASE_URL_SURVEY = 'https://survey.ovh.com/index.php/558299?lang=';
-
 export const GUIDE_LINKS = {
   DE:
     'https://help.ovhcloud.com/csm/de-network-security-dashboard?id=kb_article_view&sysparm_article=KB0060677',
@@ -68,8 +57,6 @@ export default {
   API_PATH,
   PAGE_SIZE,
   ENTITY,
-  ALLOWED_LANGUAGES,
-  BASE_URL_SURVEY,
   GUIDE_LINKS,
   TRACKING_PREFIX,
 };

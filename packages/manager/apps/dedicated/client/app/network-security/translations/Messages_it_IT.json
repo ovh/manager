@@ -1,7 +1,7 @@
 {
   "network_security_title": "Network",
   "network_security_dashboard_breadcrumb": "Network Security Dashboard",
-  "network_security_dashboard_title": "Dashboard Anti-DDoS (beta)",
+  "network_security_dashboard_title": "Dashboard Anti-DDoS",
   "network_security_dashboard_guides": "Guide",
   "network_security_dashboard_header_content_survey": "Monitorando costantemente il traffico di rete, rileviamo diverse attività sospette. Per ognuna di esse, il traffico di rete in entrata viene reindirizzato in modo trasparente attraverso i nostri centri di pulizia per un'analisi più approfondita e un'eventuale operazione di rimozione delle minacce, per offrire la migliore esperienza possibile senza interruzioni.",
   "network_security_dashboard_header_content_note": "Ricordiamo che gli indirizzi IP sorgente non sono esposti qui, in quanto non sono affidabili per la maggior parte degli attacchi (ad esempio, gli attacchi per furto di identità o di riflesso).",

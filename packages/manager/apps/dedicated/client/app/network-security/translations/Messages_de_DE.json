@@ -1,7 +1,7 @@
 {
   "network_security_title": "Network",
   "network_security_dashboard_breadcrumb": "Network Security Dashboard",
-  "network_security_dashboard_title": "DDoS-Schutz-Dashboard (Beta)",
+  "network_security_dashboard_title": "DDoS-Schutz-Dashboard",
   "network_security_dashboard_guides": "Anleitungen",
   "network_security_dashboard_header_content_survey": "Durch die ständige Überwachung des Netzwerkverkehrs konnten wir eine Reihe verdächtiger Aktivitäten feststellen. Für jede dieser Aktivitäten wird der eingehende Netzwerktraffic über unsere Bereinigungscenter transparent für eine gründlichere Analyse und mögliche Bereinigung der Angreifer weitergeleitet, um ein bestmögliches Erlebnis ohne Unterbrechung zu bieten.",
   "network_security_dashboard_header_content_note": "Beachten Sie, dass die Quell-IP-Adressen hier nicht verfügbar sind, da sie für die meisten Angriffe (d. h. Identitätsdiebstahl- oder Reflektionsangriffe) nicht vertrauenswürdig sind.",
