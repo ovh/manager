@@ -3,6 +3,7 @@ import { order } from '@/models/catalog';
 import { database } from '@/models/database';
 import { Engine, Flavor, Plan, Region, Version } from '@/models/order-funnel';
 import { compareStorage } from './bytesHelper';
+import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
 
 function updatePlanStorage(
   availability: database.Availability,
@@ -92,12 +93,12 @@ function updatePlanNetworks(
 const mapEngine = (
   tree: Engine[],
   availability: database.Availability,
-  enginesCapabilities: database.EngineCapabilities[],
+  capabilities: FullCapabilities,
   engineSuggestion: database.Suggestion,
 ) => {
   let treeEngine = tree.find((a) => a.name === availability.engine);
   if (!treeEngine) {
-    const engineCapability = enginesCapabilities.find(
+    const engineCapability = capabilities.engines.find(
       (ec) => ec.name === availability.engine,
     );
     treeEngine = {
@@ -119,14 +120,14 @@ const mapEngine = (
 const mapVersion = (
   treeEngine: Engine,
   availability: database.Availability,
-  enginesCapability: database.EngineCapabilities[],
+  capabilities: FullCapabilities,
   engineSuggestion: database.Suggestion,
 ) => {
   let treeVersion = treeEngine.versions.find(
     (v) => v.name === availability.version,
   );
   if (!treeVersion) {
-    const engineCapability = enginesCapability.find(
+    const engineCapability = capabilities.engines.find(
       (ec) => ec.name === availability.engine,
     );
     const versionCapability = engineCapability.versions.find(
@@ -147,7 +148,7 @@ const mapVersion = (
 const mapPlan = (
   treeVersion: Version,
   availability: database.Availability,
-  capabilities: database.Capabilities,
+  capabilities: FullCapabilities,
   engineSuggestion: database.Suggestion,
 ) => {
   let treePlan = treeVersion.plans.find((p) => p.name === availability.plan);
@@ -185,12 +186,12 @@ const mapPlan = (
 const mapRegion = (
   treePlan: Plan,
   availability: database.Availability,
-  regionsCapabilities: database.RegionCapabilities[],
+  capabilities: FullCapabilities,
   engineSuggestion: database.Suggestion,
 ) => {
   let treeRegion = treePlan.regions.find((r) => r.name === availability.region);
   if (!treeRegion) {
-    const regionCapability = regionsCapabilities.find(
+    const regionCapability = capabilities.regions.find(
       (r) => r.name === availability.region,
     );
     treeRegion = {
@@ -208,7 +209,7 @@ const mapRegion = (
 const mapFlavor = (
   treeRegion: Region,
   availability: database.Availability,
-  capabilities: database.Capabilities,
+  capabilities: FullCapabilities,
   engineSuggestion: database.Suggestion,
 ) => {
   const flavorSpec = capabilities.flavors.find(
@@ -280,26 +281,19 @@ const setPrices = (
 
 export function createTree(
   availabilities: database.Availability[],
-  capabilities: database.Capabilities,
-  enginesCapabilities: database.EngineCapabilities[],
-  regionsCapabilities: database.RegionCapabilities[],
+  capabilities: FullCapabilities,
   suggestions: database.Suggestion[],
   catalog: order.publicOrder.Catalog,
 ) {
   return availabilities.reduce((acc, curr) => {
     const engineSuggestion = suggestions.find((s) => s.engine === curr.engine);
     // Map engine
-    const treeEngine = mapEngine(
-      acc,
-      curr,
-      enginesCapabilities,
-      engineSuggestion,
-    );
+    const treeEngine = mapEngine(acc, curr, capabilities, engineSuggestion);
     // Map version
     const treeVersion = mapVersion(
       treeEngine,
       curr,
-      enginesCapabilities,
+      capabilities,
       engineSuggestion,
     );
     // Map plan
@@ -308,7 +302,7 @@ export function createTree(
     const treeRegion = mapRegion(
       treePlan,
       curr,
-      regionsCapabilities,
+      capabilities,
       engineSuggestion,
     );
     // Map flavor
