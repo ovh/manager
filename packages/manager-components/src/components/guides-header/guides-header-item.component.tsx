@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   OsdsButton,
   OsdsText,
@@ -15,19 +16,22 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { Guide } from './interface';
 
 interface GuidesHeaderItemProps {
+  guide: Guide;
   href: string;
   label: string;
   tracking?: string;
+  onClick?: (guide: Guide) => void;
 }
-export default function GuidesHeaderItem({
+
+export function GuidesHeaderItem({
+  guide,
   href,
   label,
-  tracking,
+  onClick,
 }: GuidesHeaderItemProps) {
-  const { trackClick } = useTracking();
   return (
     <OsdsMenuItem>
       <OsdsButton
@@ -37,10 +41,9 @@ export default function GuidesHeaderItem({
         color={ODS_THEME_COLOR_INTENT.primary}
         target={OdsHTMLAnchorElementTarget._blank}
         onClick={() => {
-          trackClick({
-            name: `${tracking}`,
-            type: 'action',
-          });
+          if (onClick) {
+            onClick(guide);
+          }
         }}
       >
         <span slot={'start'}>

@@ -35,17 +35,16 @@ import {
   Notifications,
   Datagrid,
   useDatagridSearchParams,
+  isDiscoveryProject,
+  PciDiscoveryBanner,
+  PciGuidesHeader,
 } from '@ovhcloud/manager-components';
 import { useSshKeys } from '@/hooks/useSsh';
-import GuidesHeader from '@/components/guides/GuidesHeader';
 import { SshKey } from '@/interface';
 import Key from '@/components/ssh-keys/listing/Key';
 import RemoveSsh from '@/components/ssh-keys/listing/RemoveSsh';
 import { PCI_LEVEL2 } from '@/tracking.constants';
 import { Project } from '@/data/project';
-import ActivateProjectBanner, {
-  isDiscoveryProject,
-} from '@/components/activate-project-banner';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -143,13 +142,13 @@ export default function ListingPage() {
         >
           {t('pci_projects_project_sshKeys_title')}
         </OsdsText>
-        <GuidesHeader></GuidesHeader>
+        <PciGuidesHeader category="storage"></PciGuidesHeader>
       </div>
       <OsdsDivider></OsdsDivider>
       <Notifications />
 
       {project && isDiscoveryProject(project) && (
-        <ActivateProjectBanner projectId={projectId} />
+        <PciDiscoveryBanner projectId={projectId} />
       )}
 
       <div className={'flex items-center justify-between mt-4'}>
