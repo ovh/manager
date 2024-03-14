@@ -70,7 +70,7 @@ export default function RemoveSshModal({
           variant={ODS_BUTTON_VARIANT.ghost}
           onClick={onClose}
         >
-          {t('common_cancel')}
+          {t('pci_projects_project_sshKeys_remove_cancel_label')}
         </OsdsButton>
         <OsdsButton
           slot="actions"
@@ -79,7 +79,7 @@ export default function RemoveSshModal({
           {...(isPending || isPendingRemoveSsh ? { disabled: true } : {})}
           data-testid="submitButton"
         >
-          {t('common_confirm')}
+          {t('pci_projects_project_sshKeys_remove_submit_label')}
         </OsdsButton>
       </OsdsModal>
     </>
