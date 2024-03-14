@@ -12,25 +12,23 @@ export default function AddSshPage() {
     navigate('..');
   };
   return (
-    <>
-      <AddSshModal
-        projectId={`${projectId}`}
-        onClose={() => onClose()}
-        onSuccess={() => {
-          addSuccess(t('pci_projects_project_sshKeys_add_success'), true);
-        }}
-        onError={(error: Error) => {
-          addError(
-            <span
-              dangerouslySetInnerHTML={{
-                __html: t('pci_projects_project_sshKeys_add_error', {
-                  error: error && error.message,
-                }),
-              }}
-            ></span>,
-          );
-        }}
-      />
-    </>
+    <AddSshModal
+      projectId={`${projectId}`}
+      onClose={() => onClose()}
+      onSuccess={() => {
+        addSuccess(t('pci_projects_project_sshKeys_add_success'), true);
+      }}
+      onError={(error: Error) => {
+        addError(
+          <span
+            dangerouslySetInnerHTML={{
+              __html: t('pci_projects_project_sshKeys_add_error', {
+                error: error?.message,
+              }),
+            }}
+          ></span>,
+        );
+      }}
+    />
   );
 }

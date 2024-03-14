@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   OsdsButton,
   OsdsMessage,
@@ -8,29 +9,14 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 
-const DISCOVERY_PROJECT_PLANCODE = 'project.discovery';
+export interface ActionBannerProps {
+  message: string;
+  cta: string;
+  onClick: () => void;
+}
 
-export const isDiscoveryProject = ({ planCode }: { planCode: string }) => {
-  return planCode === DISCOVERY_PROJECT_PLANCODE;
-};
-
-export default function ActivateProjectBanner({
-  projectId,
-}: {
-  projectId: string;
-}) {
-  const [t] = useTranslation('activate-project-banner');
-  const { navigateTo } = useNavigation();
-  const activateDiscoveryProject = async () => {
-    await navigateTo(
-      'public-cloud',
-      `#/pci/projects/${projectId}/activate`,
-      {},
-    );
-  };
+export function ActionBanner({ message, cta, onClick }: ActionBannerProps) {
   return (
     <OsdsMessage
       type={ODS_MESSAGE_TYPE.warning}
@@ -44,16 +30,20 @@ export default function ActivateProjectBanner({
         >
           <span
             dangerouslySetInnerHTML={{
-              __html: t('pci_projects_project_activate_project_banner_message'),
+              __html: message,
             }}
           ></span>
         </OsdsText>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={activateDiscoveryProject}
+          onClick={() => {
+            if (onClick) {
+              onClick();
+            }
+          }}
         >
-          {t('pci_projects_project_activate_project_banner_cta')}
+          {cta}
         </OsdsButton>
       </div>
     </OsdsMessage>
