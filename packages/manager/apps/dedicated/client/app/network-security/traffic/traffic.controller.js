@@ -130,10 +130,10 @@ export default class TrafficController {
       case this.TRAFFIC_PERIOD_LIST.last6h:
         after.setTime(after.getTime() - 6 * 60 * 60 * 1000);
         break;
-      case this.TRAFFIC_PERIOD_LIST.lastWeek:
+      case this.TRAFFIC_PERIOD_LIST.last7d:
         after.setDate(after.getDate() - 7);
         break;
-      case this.TRAFFIC_PERIOD_LIST.last2weeks:
+      case this.TRAFFIC_PERIOD_LIST.last14d:
         after.setDate(after.getDate() - 14);
         break;
       default:
