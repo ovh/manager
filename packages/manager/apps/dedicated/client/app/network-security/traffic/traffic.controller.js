@@ -47,6 +47,16 @@ export default class TrafficController {
       ...this.CHART.options,
     };
     this.isSubnetValid = true;
+
+    // Retrieve time zone offset to initialize value of UTC
+    const timeZoneOffset = (new Date().getTimezoneOffset() / 60) * -1;
+    this.timeZoneLabel = this.$translate.instant(
+      'network_security_dashboard_time_zone',
+      {
+        timeZoneOffset:
+          timeZoneOffset > 0 ? `+${timeZoneOffset}` : timeZoneOffset,
+      },
+    );
   }
 
   selectService() {
@@ -78,7 +88,6 @@ export default class TrafficController {
 
   checkSelectedSubnet(value) {
     let isSubnetValid = true;
-    console.log('value', value);
 
     if (!value || (value.indexOf('/') === -1 && !ipaddr.isValid(value))) {
       isSubnetValid = false;
