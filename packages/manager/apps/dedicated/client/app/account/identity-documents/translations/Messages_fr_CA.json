@@ -1,5 +1,6 @@
 {
   "user_account_identity_documents": "Mes documents d'identité",
+  "user_account_identity_documents_title": "Vérification des documents nécessaire",
   "user_account_identity_documents_sub_title": "Déposez vos documents",
   "user_account_identity_documents_intro": "Vous avez créé votre compte et vous souhaitez faire une commande depuis notre site Indien. La règlementation en vigueur nécessite une vérification de votre identité avant toute commande.",
   "user_account_identity_documents_intro_kyc_reminder": "Assurez-vous que vos données personnelles correspondent au nom et à l'adresse figurant dans vos documents officiels.",
