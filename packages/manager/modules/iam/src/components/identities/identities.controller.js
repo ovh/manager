@@ -17,20 +17,40 @@ export default class IdentitiesController {
   decodeIdentities() {
     const decodedIdentities = this.identities.map(decodeIdentityUrn);
 
-    this.userIdentities = decodedIdentities.filter(
+    const newUsers = decodedIdentities.filter(
       (i) => i.type === IDENTITY_TYPE.USER,
     );
 
-    this.groupIdentities = decodedIdentities.filter(
+    const newGroups = decodedIdentities.filter(
       (i) => i.type === IDENTITY_TYPE.GROUP,
     );
 
-    this.accountIdentities = decodedIdentities.filter(
+    const newAccounts = decodedIdentities.filter(
       (i) => i.type === IDENTITY_TYPE.ACCOUNT,
     );
 
-    this.serviceAccountIdentities = decodedIdentities.filter(
+    const newServiceAccounts = decodedIdentities.filter(
       (i) => i.type === IDENTITY_TYPE.SERVICE_ACCOUNT,
     );
+
+    if (!angular.equals(newUsers, this.userIdentities)) {
+      this.userIdentities = newUsers;
+    }
+
+    if (!angular.equals(newGroups, this.groupIdentities)) {
+      this.groupIdentities = newGroups;
+    }
+
+    if (!angular.equals(newAccounts, this.accountIdentities)) {
+      this.accountIdentities = newAccounts;
+    }
+
+    if (!angular.equals(newServiceAccounts, this.serviceAccountIdentities)) {
+      this.serviceAccountIdentities = newServiceAccounts;
+    }
+  }
+
+  onRemoveIdentity(urn) {
+    this.onRemove({ urn });
   }
 }

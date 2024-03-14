@@ -1,7 +1,8 @@
 export default class groupIdentitiesController {
   /* @ngInject */
-  constructor(IAMService) {
+  constructor(IAMService, $q) {
     this.IAMService = IAMService;
+    this.$q = $q;
   }
 
   $onChanges() {
@@ -11,7 +12,7 @@ export default class groupIdentitiesController {
   }
 
   getIdentitiesGroups() {
-    return Promise.all(
+    return this.$q.all(
       this.identities.map((identity) => this.getIdentityGroup(identity)),
     );
   }
@@ -26,5 +27,9 @@ export default class groupIdentitiesController {
 
       return { ...identity, message };
     }
+  }
+
+  onRemovegroupIdentity(urn) {
+    this.onRemoveIdentity({ urn });
   }
 }

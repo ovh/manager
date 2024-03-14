@@ -333,6 +333,14 @@ export default class CreatePolicyController {
   }
 
   /**
+   * Called back when an identity is removed from a policy
+   * @param {string} urn an Identity URN
+   */
+  removeIdentity(urn) {
+    this.model.identities = this.model.identities.filter((i) => i !== urn);
+  }
+
+  /**
    * Called back when the form is submitted
    * @returns {Promise}
    */
