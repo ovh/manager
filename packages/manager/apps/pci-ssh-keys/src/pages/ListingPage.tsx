@@ -229,7 +229,7 @@ export default function ListingPage() {
         </div>
       )}
 
-      {!isLoading && !error && (
+      {!isLoading && (!error || (error && isDiscoveryProject(project))) && (
         <div>
           <Datagrid
             columns={columns}
