@@ -13,6 +13,7 @@
   "pci_projects_project_sshKeys_remove_error": "Ocorreu um erro ao eliminar a chave SSH: {{ error }}.",
   "common_confirm": "Confirmar",
   "common_cancel": "Anular",
+  "common_clipboard_copied": "Copiado",
   "pci_projects_project_sshKeys_add_title": "Adicionar chave SSH",
   "pci_projects_project_sshKeys_add_submit_label": "Adicionar",
   "pci_projects_project_sshKeys_add_cancel_label": "Anular",
