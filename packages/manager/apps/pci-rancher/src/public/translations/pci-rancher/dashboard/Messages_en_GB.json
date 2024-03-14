@@ -24,7 +24,7 @@
   "confirm": "Confirm",
   "copy": "Copied",
   "error": "Error",
-  "createRancherDiscoveryMode": "You are currently in Discovery mode. <strong>To finish creating your resource,</strong> you must activate your project.",
+  "createRancherDiscoveryMode": "You are currently in Discovery mode. <strong>To finish creating your resource, you must activate your project</strong>.",
   "createRancherDiscoveryModeActive": "Activate your project",
   "createRancherTitle": "Managed Rancher Service",
   "createRancherInfoMessage": "Although the service is free during the beta phase, you will be billed hourly based on the total number of vCPUs on each worker node in your Rancher downstream clusters, with a <strong>minimum of 20 vCPUs billed.</strong>",
