@@ -58,12 +58,12 @@ const Users = () => {
   );
   return (
     <>
-      <H2 className="mb-2">{t('title')}</H2>
+      <H2>{t('title')}</H2>
 
       <Button
         variant={'outline'}
         size="sm"
-        className="text-base mb-2"
+        className="text-base"
         disabled={
           service.capabilities.users?.create ===
           database.service.capability.StateEnum.disabled
@@ -108,6 +108,7 @@ const Users = () => {
           service={service}
           user={userToResetPassword}
           onClose={() => {
+            resetPasswordModale.close();
             serviceQuery.refetch();
           }}
         />
