@@ -1,3 +1,5 @@
+import { INDIAN_SUBSIDIARY } from '../constants';
+
 export const state = {
   name: 'sign-up.details',
   url: 'details',
@@ -15,6 +17,8 @@ export const state = {
         name: `accountcreation::${field}::${value}`,
       });
     },
+    isIndianSubsidiary: /* @ngInject */ (subsidiary) =>
+      subsidiary === INDIAN_SUBSIDIARY,
   },
   atInternet: {
     rename: 'accountcreation-step2',
