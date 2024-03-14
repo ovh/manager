@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router';
+import { Outlet } from 'react-router-dom';
 import { useServiceData } from '../layout';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 

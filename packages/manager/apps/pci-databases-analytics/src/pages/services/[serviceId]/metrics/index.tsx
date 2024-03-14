@@ -35,8 +35,8 @@ const Metrics = () => {
 
   return (
     <>
-      <H2 className="mb-2">{t('title')}</H2>
-      <P className="mb-2">{t('description')}</P>
+      <H2>{t('title')}</H2>
+      <P>{t('description')}</P>
       {metricsQuery.isSuccess ? (
         <>
           <div className="flex w-full justify-between mb-2">

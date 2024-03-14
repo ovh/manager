@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { database } from '@/models/database';
 import {
@@ -19,6 +19,8 @@ import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
 import { useVrack } from '@/hooks/useVrack';
 import { useServiceData } from '../../../layout';
+import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
+import { ForkInitialValue } from '..';
 
 const getSuggestedItemOrDefault = (
   suggestion: database.Suggestion,
@@ -38,18 +40,17 @@ const getSuggestedItemOrDefault = (
     : listItems[0].name;
 };
 
-export function useOrderFunnel(
+export function useFork(
   availabilities: database.Availability[],
-  capabilities: database.Capabilities,
-  engineCapabilities: database.EngineCapabilities[],
-  regionCapabilities: database.RegionCapabilities[],
-  suggestions: database.Suggestion[],
+  capabilities: FullCapabilities,
+  initialValue: ForkInitialValue,
   catalog: order.publicOrder.Catalog,
   backups: database.Backup[],
 ) {
-  const { t } = useTranslation('pci-databases-analytics/services/new');
-  const { service } = useServiceData();
-  const { projectId } = useParams();
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/backups/fork',
+  );
+  const { projectId, service } = useServiceData();
 
   const canUsePointInTime = !!service.backups?.pitr;
   const minPitrDate = canUsePointInTime ? new Date(service.backups.pitr) : null;
@@ -67,7 +68,7 @@ export function useOrderFunnel(
           return true;
         },
         {
-          message: 'Point in time fork is not available for this service',
+          message: t('errorSourceTypeFieldInvalid'),
           path: ['type'],
         },
       )
@@ -80,7 +81,7 @@ export function useOrderFunnel(
           }
           return true;
         },
-        { message: 'The date is invalid', path: ['pointInTime'] },
+        { message: t('errorSourcePITFieldInvalidDate'), path: ['pointInTime'] },
       )
       .refine(
         (data) => {
@@ -89,7 +90,7 @@ export function useOrderFunnel(
           }
           return true;
         },
-        { message: 'Please select a backup', path: ['backupId'] },
+        { message: t('errorSourceBackupFieldEmpty'), path: ['backupId'] },
       ),
     engineWithVersion: z.object({
       engine: z.string(),
@@ -132,11 +133,11 @@ export function useOrderFunnel(
     resolver: zodResolver(orderSchema),
     defaultValues: {
       forkFrom: {
-        type: 'backup',
-        backupId: '',
-        pointInTime: new Date(),
-        serviceId: service.id,
-      } as ForkSource,
+        type: initialValue.source.type,
+        backupId: initialValue.source.backupId,
+        serviceId: initialValue.source.serviceId,
+        pointInTime: initialValue.source.pointInTime,
+      },
       name: generateName(),
       engineWithVersion: {
         engine: service.engine as string,
@@ -153,8 +154,8 @@ export function useOrderFunnel(
       })),
       network: {
         type: service.networkType,
-        networkId: service.networkId,
-        subnetId: service.subnetId,
+        networkId: initialValue.networkId,
+        subnetId: initialValue.subnetId,
       } as NetworkOptionValue,
     },
   });
@@ -180,18 +181,13 @@ export function useOrderFunnel(
   // Create the list of available engines
   const listEngines = useMemo(
     () =>
-      createTree(
-        availabilities,
-        capabilities,
-        engineCapabilities,
-        regionCapabilities,
-        suggestions,
-        catalog,
-      ).map((e) => {
-        // order the versions in the engines
-        e.versions.sort((a, b) => a.order - b.order);
-        return e;
-      }),
+      createTree(availabilities, capabilities, [initialValue], catalog).map(
+        (e) => {
+          // order the versions in the engines
+          e.versions.sort((a, b) => a.order - b.order);
+          return e;
+        },
+      ),
     [availabilities, capabilities],
   );
   // Create the list of available plans
@@ -301,7 +297,7 @@ export function useOrderFunnel(
   // select an engine and a version when listEngines is changed
   useEffect(() => {
     const engineAndVersion = { engine: '', version: '' };
-    const suggestedEngine = suggestions.find((s) => s.default);
+    const suggestedEngine = [initialValue].find((s) => s.default);
     const defaultEngine =
       listEngines.find((e) => e.name === suggestedEngine.engine) ??
       listEngines[0];
@@ -315,12 +311,12 @@ export function useOrderFunnel(
     form.setValue(
       'plan',
       getSuggestedItemOrDefault(
-        suggestions.find((s) => s.engine === engineWithVersion.engine),
+        [initialValue].find((s) => s.engine === engineWithVersion.engine),
         'plan',
         listPlans,
       ),
     );
-  }, [listPlans, suggestions, engineWithVersion.engine]);
+  }, [listPlans, initialValue, engineWithVersion.engine]);
   // update nodes when plan changes
   useEffect(() => {
     if (!planObject) return;
@@ -331,25 +327,25 @@ export function useOrderFunnel(
     form.setValue(
       'region',
       getSuggestedItemOrDefault(
-        suggestions.find((s) => s.engine === engineWithVersion.engine),
+        [initialValue].find((s) => s.engine === engineWithVersion.engine),
         'region',
         listRegions,
         region,
       ),
     );
-  }, [listRegions, suggestions, engineWithVersion.engine, region]);
+  }, [listRegions, initialValue, engineWithVersion.engine, region]);
   // update flavor
   useEffect(() => {
     form.setValue(
       'flavor',
       getSuggestedItemOrDefault(
-        suggestions.find((s) => s.engine === engineWithVersion.engine),
+        [initialValue].find((s) => s.engine === engineWithVersion.engine),
         'flavor',
         listFlavors,
         flavor,
       ),
     );
-  }, [listFlavors, suggestions, engineWithVersion.engine, flavor]);
+  }, [listFlavors, initialValue, engineWithVersion.engine, flavor]);
   // reset storage when flavor is changed
   useEffect(() => {
     form.setValue('additionalStorage', 0);

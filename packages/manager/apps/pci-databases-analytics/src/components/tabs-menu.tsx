@@ -1,7 +1,6 @@
-import { NavLink } from 'react-router-dom';
 import { Skeleton } from './ui/skeleton';
 import { ScrollArea, ScrollBar } from './ui/scroll-area';
-import { cn } from '@/lib/utils';
+import { NavLink } from './typography';
 
 interface Tab {
   href: string;
@@ -14,23 +13,10 @@ interface TabsMenuProps {
 }
 const TabsMenu = ({ tabs }: TabsMenuProps) => {
   return (
-    <ScrollArea className="pb-4">
+    <ScrollArea className="py-2">
       <div className="flex border-b border-[#e6f5fc]">
         {tabs.map((tab, index) => (
-          <NavLink
-            onClick={(event) => tab.disabled && event.preventDefault()}
-            end={tab.end}
-            to={tab.href}
-            key={`${tab.label}-${index}`}
-            className={({ isActive }) =>
-              cn(
-                'whitespace-nowrap w-fit text-primary-500 text-base font-semibold m-0 py-2 hover:text-primary-700',
-                isActive && 'border-b-2 border-primary-500',
-                tab.disabled &&
-                  'cursor-not-allowed opacity-50 hover:text-primary-500',
-              )
-            }
-          >
+          <NavLink end={tab.end} to={tab.href} key={`${tab.label}-${index}`}>
             {({ isActive }) => (
               <span
                 className="w-full px-6 "

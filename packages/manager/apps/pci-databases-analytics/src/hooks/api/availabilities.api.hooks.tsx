@@ -11,6 +11,7 @@ import {
   getRegionsCapabilities,
   getSuggestions,
 } from '@/api/databases/availabilities';
+import { CdbError } from '@/api/databases';
 
 export function useGetAvailabilities(
   projectId: string,
@@ -85,4 +86,49 @@ export function useGetRegionsCapabilities(
     queryFn: () => getRegionsCapabilities(projectId),
     ...options,
   }) as UseQueryResult<database.RegionCapabilities[], Error>;
+}
+
+export interface FullCapabilities {
+  /** Disks available */
+  disks: string[];
+  /** Database engines available */
+  engines: database.EngineCapabilities[];
+  /** Flavors available */
+  flavors: database.capabilities.Flavor[];
+  /** Options available */
+  options: database.capabilities.Option[];
+  /** Plans available */
+  plans: database.capabilities.Plan[];
+  /** Regions available */
+  regions: database.RegionCapabilities[];
+}
+export function useGetFullCapabilities(
+  projectId: string,
+  options: Omit<QueryObserverOptions, 'queryKey'> = {},
+) {
+  const queryKey = [projectId, 'database/full-capabilities'];
+  return useQuery({
+    queryKey,
+    queryFn: async () => {
+      const [
+        capabilities,
+        engineCapabilities,
+        regionsCapabilities,
+      ] = await Promise.all([
+        getCapabilities(projectId),
+        getEnginesCapabilities(projectId),
+        getRegionsCapabilities(projectId),
+      ]);
+
+      return {
+        disks: capabilities.disks,
+        engines: engineCapabilities,
+        flavors: capabilities.flavors,
+        options: capabilities.options,
+        plans: capabilities.plans,
+        regions: regionsCapabilities,
+      };
+    },
+    ...options,
+  }) as UseQueryResult<FullCapabilities, CdbError>;
 }

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { Calendar } from '@/components/ui/calendar';
@@ -38,8 +38,8 @@ import NetworkOptions from '@/components/Order/cluster-options/network-options';
 import IpsRestrictionsForm from '@/components/Order/cluster-options/ips-restrictions-form';
 import RegionsSelect from '@/components/Order/region/region-select';
 import OrderPrice from '@/components/Order/order-price';
-import OrderSummary from './order-summary';
-import { useOrderFunnel } from './useOrderFunnel';
+import ForkSummary from './fork-summary';
+import { useFork } from './useFork';
 import {
   Select,
   SelectContent,
@@ -61,40 +61,38 @@ import {
 } from '@/components/ui/popover';
 import { TimePicker } from '@/components/ui/time-picker';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
+import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
+import { ForkInitialValue } from '..';
 
-interface OrderFunnelProps {
+interface ForkFormProps {
   availabilities: database.Availability[];
-  capabilities: database.Capabilities;
-  engineCapabilities: database.EngineCapabilities[];
-  regionCapabilities: database.RegionCapabilities[];
-  suggestions: database.Suggestion[];
+  capabilities: FullCapabilities;
+  initialValue: ForkInitialValue;
   catalog: order.publicOrder.Catalog;
   backups: database.Backup[];
 }
 
-const OrderFunnel = ({
+const ForkForm = ({
   availabilities,
   capabilities,
-  engineCapabilities,
-  regionCapabilities,
-  suggestions,
+  initialValue,
   catalog,
   backups,
-}: OrderFunnelProps) => {
-  const model = useOrderFunnel(
+}: ForkFormProps) => {
+  const model = useFork(
     availabilities,
     capabilities,
-    engineCapabilities,
-    regionCapabilities,
-    suggestions,
+    initialValue,
     catalog,
     backups,
   );
   const [showMonthlyPrice, setShowMonthlyPrice] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { t } = useTranslation('pci-databases-analytics/services/new');
-  const { service, projectId } = useServiceData();
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/backups/fork',
+  );
+  const { projectId } = useServiceData();
   const dateLocale = useDateFnsLocale();
   const { addService, isPending: isPendingAddService } = useAddService({
     onError: (err) => {
@@ -167,10 +165,6 @@ const OrderFunnel = ({
         default:
           break;
       }
-      toast({
-        title: 'submit form',
-        description: JSON.stringify(serviceInfos),
-      });
       addService(serviceInfos);
     },
     (error) => {
@@ -205,46 +199,45 @@ const OrderFunnel = ({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className={classNameLabel}>
-                    Point de restauration
+                    {t('inputSourceTypeLabel')}
                   </FormLabel>
                   <FormDescription>
-                    Sélectionnez le point de restauration à partir duquel le
-                    service sera dupliqué.
+                    {t('inputSourceTypeDescription')}
                   </FormDescription>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      value={field.value}
                       className="grid grid-cols-3 gap-2"
                     >
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
                           <RadioGroupItem
-                            value="now"
+                            value={ForkSourceType.now}
                             disabled={!model.result.canUsePit}
                           />
                         </FormControl>
                         <FormLabel className="font-normal">
-                          Le plus récent
+                          {t('inputTypeValueNow')}
                         </FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
                           <RadioGroupItem
-                            value="pit"
+                            value={ForkSourceType.pit}
                             disabled={!model.result.canUsePit}
                           />
                         </FormControl>
                         <FormLabel className="font-normal">
-                          Date spécifique
+                          {t('inputTypeValuePIT')}
                         </FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
-                          <RadioGroupItem value="backup" />
+                          <RadioGroupItem value={ForkSourceType.backup} />
                         </FormControl>
                         <FormLabel className="font-normal">
-                          Sauvegarde
+                          {t('inputTypeValueBackup')}
                         </FormLabel>
                       </FormItem>
                     </RadioGroup>
@@ -253,22 +246,24 @@ const OrderFunnel = ({
                 </FormItem>
               )}
             />
-            {model.result.source.type === 'backup' && (
+            {model.result.source.type === ForkSourceType.backup && (
               <FormField
                 control={model.form.control}
                 name="forkFrom.backupId"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                      Backup
+                      {t('inputSourceBackupLabel')}
                     </FormLabel>
                     <FormControl>
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        value={field.value}
                       >
                         <SelectTrigger ref={field.ref}>
-                          <SelectValue placeholder="Select a backup" />
+                          <SelectValue
+                            placeholder={t('inputSourceBackupPlaceholder')}
+                          />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectGroup>
@@ -281,7 +276,7 @@ const OrderFunnel = ({
                                     timeStyle: 'medium',
                                   }}
                                 />{' '}
-                                ({formatStorage(backup.size)}){' '}
+                                ({formatStorage(backup.size)})
                               </SelectItem>
                             ))}
                           </SelectGroup>
@@ -293,14 +288,14 @@ const OrderFunnel = ({
                 )}
               />
             )}
-            {model.result.source.type === 'pit' && (
+            {model.result.source.type === ForkSourceType.pit && (
               <FormField
                 control={model.form.control}
                 name="forkFrom.pointInTime"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                      Timestamp
+                      {t('inputSourcePITPlaceholder')}
                     </FormLabel>
                     <FormControl>
                       <Popover>
@@ -323,7 +318,7 @@ const OrderFunnel = ({
                                 }}
                               />
                             ) : (
-                              <span>Pick a date</span>
+                              <span>{t('inputSourcePITPlaceholder')}</span>
                             )}
                           </Button>
                         </PopoverTrigger>
@@ -551,7 +546,7 @@ const OrderFunnel = ({
             <CardTitle>{t('summaryTitle')}</CardTitle>
           </CardHeader>
           <CardContent className="grid grid-cols-1 gap-2">
-            <OrderSummary
+            <ForkSummary
               order={model.result}
               onSectionClicked={(section) => scrollToDiv(section)}
             />
@@ -575,4 +570,4 @@ const OrderFunnel = ({
   );
 };
 
-export default OrderFunnel;
+export default ForkForm;

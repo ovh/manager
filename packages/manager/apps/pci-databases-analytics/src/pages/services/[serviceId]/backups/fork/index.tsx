@@ -1,56 +1,96 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
+  FullCapabilities,
   useGetAvailabilities,
-  useGetCapabilities,
-  useGetEnginesCapabilities,
-  useGetRegionsCapabilities,
+  useGetFullCapabilities,
 } from '@/hooks/api/availabilities.api.hooks';
 import { useServiceData } from '../../layout';
 import { database } from '@/models/database';
-import { H3, P } from '@/components/typography';
+import { H2, H3, P } from '@/components/typography';
 import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
 import { Skeleton } from '@/components/ui/skeleton';
-import OrderFunnel from './_components/order-funnel';
+import ForkForm from './_components/fork-form';
 import { useGetBackups } from '@/hooks/api/backups.api.hooks';
+import { useVrack } from '@/hooks/useVrack';
+import { Network } from '@/models/network';
+import { ForkSource, ForkSourceType } from '@/models/order-funnel';
 
 export function breadcrumb() {
   return 'Fork';
 }
 
+export interface ForkInitialValue extends database.Suggestion {
+  source: ForkSource;
+  networkType?: database.NetworkTypeEnum;
+  networkId?: string;
+  subnetId?: string;
+}
+
 const Fork = () => {
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/backups/fork',
+  );
   const { projectId, service } = useServiceData();
   const availabilitiesQuery = useGetAvailabilities(
     projectId,
     service.id,
     database.availability.ActionEnum.fork,
   );
-  const capabilitiesQuery = useGetCapabilities(projectId);
-  const enginesCapabilitiesQuery = useGetEnginesCapabilities(projectId);
-  const regionsCapabilitiesQuery = useGetRegionsCapabilities(projectId);
+  const capabilitiesQuery = useGetFullCapabilities(projectId);
   const backupsQuery = useGetBackups(projectId, service.engine, service.id);
   const catalogQuery = useGetCatalog();
-
-  const suggestion: database.Suggestion[] = [
-    {
-      default: true,
-      engine: service.engine,
-      flavor: service.flavor,
-      plan: service.plan,
-      region: service.nodes[0].region,
-      version: service.version,
+  const [network, setNework] = useState<Network | undefined>();
+  const networkData = useVrack(projectId, service.nodes[0].region, network?.id);
+  const location = useLocation();
+  const [initialValue, setInitialValue] = useState<ForkInitialValue>({
+    default: true,
+    source: {
+      serviceId: service.id,
+      type: ForkSourceType.backup,
+      backupId: new URLSearchParams(location.search).get('backup') || undefined,
     },
-  ];
+    engine: service.engine,
+    flavor: service.flavor,
+    plan: service.plan,
+    region: service.nodes[0].region,
+    version: service.version,
+    networkType: service.networkType,
+    subnetId: service.subnetId,
+  });
 
+  // the 'networkid' in the service actually is the openstackId
+  // we need to wait for the network query to be done in order to find the equivalent
+  // network to update the initialValue
+  useEffect(() => {
+    if (service.networkId && networkData.networks.length > 0) {
+      const networkFromId = networkData.networks.find((n) =>
+        n.regions.find((r) => r.openstackId === service.networkId),
+      );
+      if (networkFromId) {
+        setNework(networkFromId);
+        setInitialValue((prev) => ({
+          ...prev,
+          networkId: networkFromId.id,
+        }));
+      }
+    }
+  }, [networkData.networks, service.networkId]);
+
+  // Global network loading state
+  const isNetworkLoading =
+    service.networkType === database.NetworkTypeEnum.private &&
+    !networkData.subnetQuery.isSuccess;
   const loading =
     availabilitiesQuery.isLoading ||
     capabilitiesQuery.isLoading ||
-    enginesCapabilitiesQuery.isLoading ||
-    regionsCapabilitiesQuery.isLoading ||
     backupsQuery.isLoading ||
+    isNetworkLoading ||
     catalogQuery.isLoading;
 
   // Add the current tag to selected capabilities.
-  const capabilities: database.Capabilities = useMemo(() => {
+  const capabilities: FullCapabilities = useMemo(() => {
     if (!capabilitiesQuery.data)
       return {
         flavors: [],
@@ -60,34 +100,30 @@ const Fork = () => {
         plans: [],
         regions: [],
       };
-    const c = { ...capabilitiesQuery.data };
-    c.flavors = c.flavors.map((flavor) =>
-      flavor.name === service.flavor &&
-      !flavor.tags.includes(database.capabilities.Tags.current)
-        ? {
-            ...flavor,
-            tags: [...flavor.tags, database.capabilities.Tags.current],
-          }
-        : flavor,
-    );
-    c.plans = c.plans.map((plan) =>
-      plan.name === service.plan &&
-      !plan.tags.includes(database.capabilities.Tags.current)
-        ? { ...plan, tags: [...plan.tags, database.capabilities.Tags.current] }
-        : plan,
-    );
-    return c;
+    const { flavors, plans, regions, ...rest } = capabilitiesQuery.data;
+    const updateTags = (
+      items:
+        | database.capabilities.Flavor[]
+        | database.capabilities.Plan[]
+        | database.RegionCapabilities[],
+      serviceValue: string,
+    ) =>
+      items.map((item) =>
+        item.name === serviceValue &&
+        !item.tags.includes(database.capabilities.Tags.current)
+          ? {
+              ...item,
+              tags: [...item.tags, database.capabilities.Tags.current],
+            }
+          : item,
+      );
+    return {
+      ...rest,
+      flavors: updateTags(flavors, service.flavor),
+      plans: updateTags(plans, service.plan),
+      regions: updateTags(regions, service.nodes[0].region),
+    } as FullCapabilities;
   }, [capabilitiesQuery.data, service]);
-
-  const regionsCapabilities: database.RegionCapabilities[] = useMemo(() => {
-    if (!regionsCapabilitiesQuery.data) return [];
-    return regionsCapabilitiesQuery.data.map((r) =>
-      r.name === service.nodes[0].region &&
-      !r.tags.includes(database.capabilities.Tags.current)
-        ? { ...r, tags: [...r.tags, database.capabilities.Tags.current] }
-        : r,
-    );
-  }, [regionsCapabilitiesQuery.data, service]);
 
   const backups =
     backupsQuery.data?.sort(
@@ -97,22 +133,16 @@ const Fork = () => {
 
   return (
     <>
-      <H3 className="font-bold text-3xl mb-5">
-        Dupliquer votre service de base de données (fork)
-      </H3>
-      <P className="mb-2">
-        Le fork de votre sauvegarde s'effectuera sur un nouveau cluster.
-      </P>
+      <H2>{t('title')}</H2>
+      <P>{t('description')}</P>
 
       {loading ? (
         <Skeleton className="h-4 w-32" />
       ) : (
-        <OrderFunnel
+        <ForkForm
           availabilities={availabilitiesQuery.data}
           capabilities={capabilities}
-          engineCapabilities={enginesCapabilitiesQuery.data}
-          regionCapabilities={regionsCapabilities}
-          suggestions={suggestion}
+          initialValue={initialValue}
           catalog={catalogQuery.data}
           backups={backups}
         />

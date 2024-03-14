@@ -106,12 +106,12 @@ const Pools = () => {
 
   return (
     <>
-      <H2 className="mb-2">{t('title')}</H2>
-      <P className="mb-2">{t('description')}</P>
+      <H2>{t('title')}</H2>
+      <P>{t('description')}</P>
       <Button
         variant={'outline'}
         size="sm"
-        className="text-base mb-2"
+        className="text-base"
         onClick={() => addModale.open()}
       >
         <Plus className="size-4 mr-2" />
