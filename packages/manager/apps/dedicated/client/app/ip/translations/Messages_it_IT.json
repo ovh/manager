@@ -779,5 +779,6 @@
   "ip_firewall_source_port_not_empty_tooltip": "La porta sorgente deve essere vuota quando è selezionato \"Frammenti\".",
   "ip_firewall_destination_port_not_empty_tooltip": "La porta di destinazione deve essere vuota quando è selezionato \"Frammenti\".",
   "ip_firewall_check_errors": "Sono presenti errori nei dati inseriti, controlla i campi evidenziati in rosso.",
-  "ip_firewall_rule_status_inactif": "Disattivo"
+  "ip_firewall_rule_status_inactif": "Disattivo",
+  "ip_game_mitigation_firewall_rule_add_ports_already_used": "La porta (o intervallo di porte) è in conflitto con un'altra regola."
 }

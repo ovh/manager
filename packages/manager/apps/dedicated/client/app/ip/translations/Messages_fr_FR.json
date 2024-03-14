@@ -351,6 +351,7 @@
   "ip_game_mitigation_firewall_enable_success_true": "La politique par défaut de protection DDoS du GAME va être désactivée dans quelques instants.",
   "ip_game_mitigation_firewall_enable_error_true": "Une erreur est survenue lors de la désactivation du mode restriction GAME.",
   "ip_game_mitigation_firewall_rule_add_invalid_parameters": "La saisie des ports est obligatoire.",
+  "ip_game_mitigation_firewall_rule_add_ports_already_used": "Le port (ou la plage de ports) est en conflit avec une autre règle.",
   "ip_game_mitigation_back_link_title": "Gérer les IPs",
   "ip_game_mitigation_guide": "Guides",
   "ip_game_mitigation_rule_apply": "Valider",
