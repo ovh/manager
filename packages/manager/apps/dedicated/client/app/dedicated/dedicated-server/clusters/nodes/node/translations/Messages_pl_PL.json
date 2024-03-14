@@ -1130,5 +1130,7 @@
   "server_configuration_installation_ovh_desktop_BACKUP": "Kopia zapasowa",
   "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Nawet jeśli wybrana macierz dyskowa zawiera {{t0}} dysków, wybrany system operacyjny można zainstalować na maksymalnie 2 dyskach",
   "server_configuration_installation_ovh_step3_scheme": "Schemat partycji:",
-  "server_consumption_explanation_link": "Więcej informacji"
+  "server_consumption_explanation_link": "Więcej informacji",
+  "server_configuration_installation_custom_image_info": "Na następnym ekranie będziesz mógł zainstalować system operacyjny z niestandardowego obrazu, wybierając „{{t0}}” w „{{t1}}”.",
+  "server_configuration_installation_custom_image_help_link": "Wybierz najbardziej odpowiedni typ instalacji z niestandardowymi ustawieniami."
 }

@@ -1130,5 +1130,7 @@
   "server_configuration_installation_ovh_desktop_BACKUP": "Backup",
   "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Auch wenn das ausgewählte Disk-Array {{t0}} Festplatten enthält, kann das gewählte Betriebssystem nur auf maximal 2 Festplatten installiert werden.",
   "server_configuration_installation_ovh_step3_scheme": "Partitionierungsschema:",
-  "server_consumption_explanation_link": "Mehr erfahren"
+  "server_consumption_explanation_link": "Mehr erfahren",
+  "server_configuration_installation_custom_image_info": "Auf dem nächsten Bildschirm können Sie ein Betriebssystem von einem personalisierten Image aus installieren, indem Sie in „{{t1}}“ die Option „{{t0}}“ auswählen.",
+  "server_configuration_installation_custom_image_help_link": "Wählen Sie den am besten geeigneten individuellen Installationstyp aus."
 }
