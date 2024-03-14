@@ -1,7 +1,7 @@
 {
   "network_security_title": "Network",
   "network_security_dashboard_breadcrumb": "Network Security Dashboard",
-  "network_security_dashboard_title": "Anti-DDoS dashboard (beta)",
+  "network_security_dashboard_title": "Anti-DDoS dashboard",
   "network_security_dashboard_guides": "Guides",
   "network_security_dashboard_header_content_survey": "By constantly monitoring network traffic, we can observe a number of suspicious activities. To shield against these, we transparently redirect inbound network traffic to our Scrubbing Centres for a more thorough analysis and potential attacker cleanup, ensuring a seamless, uninterrupted experience.",
   "network_security_dashboard_header_content_note": "Please note that source IP addresses are not displayed as they cannot be trusted for most attacks (i.e., IP spoofing or reflection attacks).",

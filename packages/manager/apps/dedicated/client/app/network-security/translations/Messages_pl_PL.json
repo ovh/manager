@@ -1,7 +1,7 @@
 {
   "network_security_title": "Sieć",
   "network_security_dashboard_breadcrumb": "Network Security Dashboard",
-  "network_security_dashboard_title": "Network Security Dashboard (beta)",
+  "network_security_dashboard_title": "Network Security Dashboard",
   "network_security_dashboard_guides": "Przewodniki",
   "network_security_dashboard_header_content_survey": "Poprzez stałe monitorowanie ruchu sieciowego jesteśmy w stanie wykryć różne podejrzane działania w sieci. Taki ruch jest wtedy kierowany przez najbliższe Scrubbing Center do dalszej analizy i ewentualnego zneutralizowania ataku, aby zapewnić nieprzerwane działanie Twoich usług.",
   "network_security_dashboard_header_content_note": "Na listingu poniżej źródłowe adresy IP zostały pominięte, gdyż dla większości ataków nie są one prawdziwe (np. ataków „IP spoofing” lub z tzw. „odbiciem”).",
