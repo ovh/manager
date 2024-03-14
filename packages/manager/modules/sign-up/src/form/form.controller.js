@@ -10,7 +10,6 @@ import set from 'lodash/set';
 import {
   ENUM_TRANSLATION_RULES,
   MODEL_DEBOUNCE_DELAY,
-  OVH_SUBSIDIARY_ITEM_NAME,
   READ_ONLY_PARAMS,
 } from './form.constants';
 import { WatchableModel } from '../watchableModel.class';
@@ -162,14 +161,6 @@ export default class SignUpFormCtrl {
       });
 
     return ovhSubsidiaryUrlParameter?.split('=')[1];
-  }
-
-  /**
-   * Get ovhSubsidiary value from which account must be created, from local storage
-   * @return {String} ovhSubsidiary
-   */
-  static getOvhSubsidiaryFromLocalStorage() {
-    return localStorage.getItem(OVH_SUBSIDIARY_ITEM_NAME);
   }
 
   /**
