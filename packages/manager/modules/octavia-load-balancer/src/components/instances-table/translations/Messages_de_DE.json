@@ -11,7 +11,7 @@
   "octavia_load_balancer_instances_table_health_monitor_tooltip": "Wie der Loadbalancer den Status Ihres Backend-Dienstes überprüft.",
   "octavia_load_balancer_instances_table_health_monitor_delete": "Den Health Monitor löschen",
   "octavia_load_balancer_instances_table_health_monitor_empty": "Kein Health Monitoring",
-  "octavia_load_balancer_instances_table_pools_tooltip": "Pools und zugehörige Instanzen, zu denen der Traffic umgeleitet wird",
+  "octavia_load_balancer_instances_table_pools_tooltip": "Die Pools und die zugehörigen Instanzen, zu denen der Traffic umgeleitet wird.",
   "octavia_load_balancer_instances_table_pools_search_instance": "Instanz suchen",
   "octavia_load_balancer_instances_table_instance_add": "eine Instanz hinzufügen",
   "octavia_load_balancer_instances_table_instance_delete": "Die Instanz löschen"
