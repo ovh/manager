@@ -6,6 +6,7 @@ export default {
     goBack: '<',
     server: '<',
     serverType: '<?',
+    statePrefix: '<',
   },
   controller,
   template,
