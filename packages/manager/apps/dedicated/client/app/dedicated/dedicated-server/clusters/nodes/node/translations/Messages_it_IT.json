@@ -1130,5 +1130,7 @@
   "server_configuration_installation_ovh_desktop_BACKUP": "Backup",
   "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Anche se il gruppo di dischi selezionato contiene {{t0}} dischi, il sistema operativo scelto può essere installato solo su un massimo di 2 dischi.",
   "server_configuration_installation_ovh_step3_scheme": "Schema di partizionamento:",
-  "server_consumption_explanation_link": "Più dettagli "
+  "server_consumption_explanation_link": "Più dettagli ",
+  "server_configuration_installation_custom_image_info": "Potrai installare un OS da un'immagine personalizzata nella prossima schermata, scegliendo \"{{t0}}\" in \"{{t1}}\".",
+  "server_configuration_installation_custom_image_help_link": "Scegli il tipo di installazione personalizzata più appropriato."
 }
