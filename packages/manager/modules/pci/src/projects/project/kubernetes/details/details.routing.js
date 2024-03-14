@@ -30,6 +30,12 @@ export default /* @ngInject */ ($stateProvider) => {
           kubeId,
           projectId,
         }),
+      isLogToCustomerFeatureAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('public-cloud:log-to-customer')
+          .then((feature) =>
+            feature.isFeatureAvailable('public-cloud:log-to-customer'),
+          ),
       auditLogsLink: /* @ngInject */ ($state, kubeId, projectId) =>
         $state.href('pci.projects.project.kubernetes.details.logs', {
           kubeId,

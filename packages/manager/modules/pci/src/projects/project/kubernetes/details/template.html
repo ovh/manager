@@ -20,6 +20,7 @@
                 ><span data-translate="kube_restrictions"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
+                data-ng-if=":: $ctrl.isLogToCustomerFeatureAvailable"
                 data-href="{{:: $ctrl.auditLogsLink }}"
                 data-on-click="$ctrl.trackClick($ctrl.TRACKING_TABS.LOGS)"
                 data-active="$ctrl.currentActiveLink() === $ctrl.auditLogsLink"
