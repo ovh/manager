@@ -2,7 +2,7 @@ import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
 import { HelpCircle, Network as NetworkIcon } from 'lucide-react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Network, NetworkTypeEnum, Subnet } from '@/models/network';

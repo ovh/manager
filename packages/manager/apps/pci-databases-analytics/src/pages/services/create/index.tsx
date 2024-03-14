@@ -1,12 +1,9 @@
-import { useSearchParams } from 'react-router-dom';
-import { useParams } from 'react-router';
+import { useSearchParams, useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
   useGetAvailabilities,
-  useGetCapabilities,
-  useGetEnginesCapabilities,
-  useGetRegionsCapabilities,
+  useGetFullCapabilities,
   useGetSuggestions,
 } from '@/hooks/api/availabilities.api.hooks';
 import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
@@ -14,7 +11,7 @@ import LegalMentions from '@/pages/_components/legalMentions';
 import OrderFunnel from './_components/order-funnel';
 import { database } from '@/models/database';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
-import { H3, OvhLink, P } from '@/components/typography';
+import { H2, H3, OvhLink, P } from '@/components/typography';
 
 export function breadcrumb() {
   return (
@@ -31,16 +28,12 @@ const Service = () => {
   const { projectId, category } = useParams();
   const availabilitiesQuery = useGetAvailabilities(projectId);
   const suggestionsQuery = useGetSuggestions(projectId);
-  const capabilitiesQuery = useGetCapabilities(projectId);
-  const enginesCapabilities = useGetEnginesCapabilities(projectId);
-  const regionsCapabilities = useGetRegionsCapabilities(projectId);
+  const capabilitiesQuery = useGetFullCapabilities(projectId);
   const catalogQuery = useGetCatalog();
   const loading =
     availabilitiesQuery.isLoading ||
     suggestionsQuery.isLoading ||
     capabilitiesQuery.isLoading ||
-    enginesCapabilities.isLoading ||
-    regionsCapabilities.isLoading ||
     catalogQuery.isLoading;
 
   let suggestions = suggestionsQuery.data;
@@ -71,8 +64,8 @@ const Service = () => {
   }
   return (
     <>
-      <H3 className="font-bold text-3xl mb-5">{t('title')}</H3>
-      <P className="mb-2">
+      <H2>{t('title')}</H2>
+      <P>
         <Trans
           t={t}
           i18nKey={'description'}
@@ -96,8 +89,6 @@ const Service = () => {
               : a.category === category,
           )}
           capabilities={capabilitiesQuery.data}
-          engineCapabilities={enginesCapabilities.data}
-          regionCapabilities={regionsCapabilities.data}
           suggestions={suggestions}
           catalog={catalogQuery.data}
         />

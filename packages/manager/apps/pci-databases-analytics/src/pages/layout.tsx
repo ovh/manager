@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation, redirect } from 'react-router-dom';
-import { useRouting } from '@ovh-ux/manager-react-shell-client';
+import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
 import PageLayout from '@/components/PageLayout/PageLayout';
 import Breadcrumb, {
   BreadcrumbHandleParams,
@@ -8,6 +8,8 @@ import Breadcrumb, {
 import { database } from '@/models/database';
 import { Toaster } from '@/components/ui/toaster';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
+import queryClient from '@/query.client';
+import { getProject } from '@/api';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return (
@@ -27,7 +29,8 @@ interface ServiceCategoryLayoutProps {
 }
 
 export const Loader = ({ params, request }: ServiceCategoryLayoutProps) => {
-  const { category } = params;
+  // check if we have a correct category
+  const { category, projectId } = params;
   if (
     !Object.values(database.CategoryEnum).includes(
       category as database.CategoryEnum,
@@ -36,18 +39,29 @@ export const Loader = ({ params, request }: ServiceCategoryLayoutProps) => {
     const path = request.url.replace(category, database.CategoryEnum.all);
     return redirect(path);
   }
-  return null;
+  // check if we have a correct projectId
+  return queryClient
+    .fetchQuery({
+      queryKey: ['projectId', projectId],
+      queryFn: () => getProject(projectId),
+    })
+    .then(
+      () => null,
+      () => redirect(`/pci/projects`),
+    );
 };
 
 function RoutingSynchronisation() {
   const location = useLocation();
   const routing = useRouting();
+  const shell = useShell();
   useEffect(() => {
     routing.stopListenForHashChange();
   }, []);
   useEffect(() => {
+    shell.ux.hidePreloader();
     routing.onHashChange();
-  }, [location]);
+  }, [location.pathname]);
   return <></>;
 }
 

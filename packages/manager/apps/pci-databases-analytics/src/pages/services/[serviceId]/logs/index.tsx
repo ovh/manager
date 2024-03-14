@@ -68,9 +68,9 @@ const Logs = () => {
   }, [logsQuery.isSuccess, logsQuery.data]);
   return (
     <>
-      <H2 className="mb-2">{t('title')}</H2>
-      <P className="mb-2">{t('description')}</P>
-      <div className="flex items-center space-x-2 mb-2">
+      <H2>{t('title')}</H2>
+      <P>{t('description')}</P>
+      <div className="flex items-center space-x-2">
         <Switch
           className="rounded-xl"
           id="poll-logs"
