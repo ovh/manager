@@ -12,7 +12,7 @@
   "user_account_identity_documents_list_doc3": "GST-Zertifikat",
   "user_account_identity_documents_list_doc3_optional": "GST-Zertifikat (optional)",
   "user_account_identity_documents_description": "Die Dokumente werden nach Vertragsende noch 5 Jahre aufbewahrt.",
-  "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png Maximale Größe: 10 MB",
+  "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png. Die maximale Dateigröße für jedes Dokument beträgt 10 MB.",
   "user_account_identity_documents_submit": "Meine Dokumente senden",
   "user_account_identity_documents_submit_success_message_title": "Wir haben Ihre Dokumente erhalten.",
   "user_account_identity_documents_submit_success_message_description": "Wir haben alle Ihre Dokumente erhalten. Sie werden unseren Teams zur Validierung vorgelegt. Sie werden per E-Mail über die Validierung informiert oder kontaktiert, wenn wir weitere Informationen benötigen.",
