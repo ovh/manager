@@ -779,5 +779,6 @@
   "ip_firewall_source_port_not_empty_tooltip": "A porta de origem deve estar vazia quando selecionar « Fragmentos ».",
   "ip_firewall_destination_port_not_empty_tooltip": "A porta de destino deve estar vazia quando selecionar « Fragmentos ».",
   "ip_firewall_check_errors": "Existem erros nos dados introduzidos, queira verificar os campos assinalados a vermelho.",
-  "ip_firewall_rule_status_inactif": "Inativo"
+  "ip_firewall_rule_status_inactif": "Inativo",
+  "ip_game_mitigation_firewall_rule_add_ports_already_used": "A porta (ou intervalo de portas) está em conflito com outra regra."
 }

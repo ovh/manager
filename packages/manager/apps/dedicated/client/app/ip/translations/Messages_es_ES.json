@@ -779,5 +779,6 @@
   "ip_firewall_source_port_not_empty_tooltip": "El puerto de origen debe estar vacío cuando se selecciona la opción «Fragmentos».",
   "ip_firewall_destination_port_not_empty_tooltip": "El puerto de destino debe estar vacío cuando se selecciona la opción «Fragmentos».",
   "ip_firewall_check_errors": "Hay errores en los datos introducidos. Por favor, compruebe los campos marcados en rojo.",
-  "ip_firewall_rule_status_inactif": "Inactivo"
+  "ip_firewall_rule_status_inactif": "Inactivo",
+  "ip_game_mitigation_firewall_rule_add_ports_already_used": "El puerto (o el rango de puertos) entra(n) en conflicto con otra regla."
 }
