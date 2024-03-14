@@ -243,5 +243,7 @@
   "domain_operations_progress_instructions_5": "Jeśli tylko jeden z dwóch e-maili został zatwierdzony: po 5 dniach bez zatwierdzenia drugiego e-maila, transfer przechodzi do następnego etapu.",
   "domain_operations_progress_instructions_6": "Jeśli oba e-maile zostały zatwierdzone: zatwierdzenie i przejście do następnego etapu w ciągu 24 godzin.",
   "domain_operations_progress_instructions_7": "Skontaktuj się z aktualnym operatorem domeny, aby uzyskać jego zgodę.",
-  "operation_tab_DOMAIN": "Domena"
+  "operation_tab_DOMAIN": "Domena",
+  "domain_operations_nicOperation_ContactControlAcknowledge": "Potwierdzenie kontaktu",
+  "domain_operations_nicOperation_ContactControlCorrect": "Korekta kontaktu"
 }
