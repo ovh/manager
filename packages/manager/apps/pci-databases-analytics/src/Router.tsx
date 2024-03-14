@@ -1,4 +1,3 @@
-import React from 'react';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import appRoutes from '@/routes';
 

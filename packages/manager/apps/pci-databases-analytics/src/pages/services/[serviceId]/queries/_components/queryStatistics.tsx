@@ -53,12 +53,11 @@ const QueryStatistics = () => {
   >[] = getColumns();
   return (
     <>
-      <H3 className="mb-2">{t('queryStatisticsTitle')}</H3>
-      <P className="mb-2">{t('queryStatisticsDescription')}</P>
+      <H3>{t('queryStatisticsTitle')}</H3>
+      <P>{t('queryStatisticsDescription')}</P>
       <Button
         variant="outline"
         size="sm"
-        className="mb-2"
         onClick={() => handleResetButtonClicked()}
         disabled={isPending}
       >

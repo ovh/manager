@@ -1,4 +1,4 @@
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Copy } from 'lucide-react';
@@ -123,11 +123,7 @@ const ResetUserPassword = ({
           ) : (
             <>
               <DialogClose asChild>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => onCancel()}
-                >
+                <Button type="button" variant="outline">
                   {t('resetUserPasswordButtonCancel')}
                 </Button>
               </DialogClose>

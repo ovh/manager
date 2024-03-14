@@ -13,6 +13,7 @@ import {
   getServices,
   updateService,
 } from '@/api/databases/service';
+import { CdbError } from '@/api/databases';
 
 export function useGetService(
   projectId: string,
@@ -24,7 +25,7 @@ export function useGetService(
     queryKey,
     queryFn: () => getService({ projectId, serviceId }),
     ...options,
-  }) as UseQueryResult<database.Service, Error>;
+  }) as UseQueryResult<database.Service, CdbError>;
 }
 
 export function useGetServices(

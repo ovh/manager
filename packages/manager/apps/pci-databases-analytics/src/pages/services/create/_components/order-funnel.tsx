@@ -39,12 +39,11 @@ import RegionsSelect from '@/components/Order/region/region-select';
 import OrderPrice from '@/components/Order/order-price';
 import OrderSummary from './order-summary';
 import ErrorList from '@/components/Order/error-list';
+import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
-  capabilities: database.Capabilities;
-  engineCapabilities: database.EngineCapabilities[];
-  regionCapabilities: database.RegionCapabilities[];
+  capabilities: FullCapabilities;
   suggestions: database.Suggestion[];
   catalog: order.publicOrder.Catalog;
 }
@@ -52,16 +51,12 @@ interface OrderFunnelProps {
 const OrderFunnel = ({
   availabilities,
   capabilities,
-  engineCapabilities,
-  regionCapabilities,
   suggestions,
   catalog,
 }: OrderFunnelProps) => {
   const model = useOrderFunnel(
     availabilities,
     capabilities,
-    engineCapabilities,
-    regionCapabilities,
     suggestions,
     catalog,
   );

@@ -1,4 +1,10 @@
-import { Outlet, useOutletContext, useParams } from 'react-router-dom';
+import {
+  Outlet,
+  redirect,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from 'react-router-dom';
 import { UseQueryResult } from '@tanstack/react-query';
 import { useGetService } from '@/hooks/api/services.api.hooks';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -7,15 +13,42 @@ import { database } from '@/models/database';
 import { ServiceHeader } from './_components/serviceHeader';
 import TabsMenu from '@/components/tabs-menu';
 import { POLLING } from '@/configuration/polling';
+import { getService } from '@/api/databases/service';
+import queryClient from '@/query.client';
+
+interface ServiceLayoutProps {
+  params: {
+    projectId: string;
+    serviceId: string;
+    category: string;
+  };
+  request: Request;
+}
+// try to fetch the service data, redirect to service page if it fails
+export const Loader = async ({ params }: ServiceLayoutProps) => {
+  const { projectId, serviceId, category } = params;
+  return queryClient
+    .fetchQuery({
+      queryKey: [projectId, 'database/service', serviceId],
+      queryFn: () => getService({ projectId, serviceId }),
+    })
+    .then(
+      () => null,
+      () =>
+        redirect(
+          `/pci/projects/${projectId}/databases-analytics/${category}/services`,
+        ),
+    );
+};
 
 function ServiceName() {
   const { projectId, serviceId } = useParams();
   if (!serviceId) return '';
   const serviceQuery = useGetService(projectId, serviceId);
-  return serviceQuery.isLoading ? (
-    <Skeleton className="h-4 w-20 inline-block align-middle" />
-  ) : (
+  return serviceQuery.isSuccess ? (
     serviceQuery.data.description
+  ) : (
+    <Skeleton className="h-4 w-20 inline-block align-middle" />
   );
 }
 
@@ -35,13 +68,17 @@ export function useServiceData() {
 }
 
 export default function ServiceLayout() {
-  const { projectId, serviceId } = useParams();
+  const { projectId, serviceId, category } = useParams();
+  const navigate = useNavigate();
   const serviceQuery = useGetService(projectId, serviceId, {
     refetchInterval: POLLING.SERVICE,
   });
 
   const service = serviceQuery.data;
   if (!service) {
+    // if (serviceQuery.isError && serviceQuery.error.response.status === 404) {
+    //   navigate(`/pci/projects/${projectId}/databases-analytics/${category}/services`);
+    // }
     return (
       <>
         <ServiceHeader.Skeleton />
@@ -100,7 +137,9 @@ export default function ServiceLayout() {
     <>
       <ServiceHeader service={service} />
       <TabsMenu tabs={tabs} />
-      <Outlet context={serviceLayoutContext} />
+      <div className="space-y-2">
+        <Outlet context={serviceLayoutContext} />
+      </div>
       <LegalMentions
         showRedisMessage={
           serviceQuery.data?.engine === database.EngineEnum.redis

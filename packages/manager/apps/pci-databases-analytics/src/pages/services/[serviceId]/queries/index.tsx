@@ -22,7 +22,7 @@ const Queries = () => {
   );
   return (
     <>
-      <H2 className="mb-2">{t('title')}</H2>
+      <H2>{t('title')}</H2>
       {service.capabilities.currentQueries?.read ===
         database.service.capability.StateEnum.enabled && <CurrentQueries />}
       {service.capabilities.queryStatistics?.read ===
