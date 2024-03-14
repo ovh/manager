@@ -166,4 +166,80 @@ export default /* @ngInject */ function IpGameFirewallService(
       (http) => $q.reject(http.data),
     );
   };
+
+  // Check if the new rule is not into other rules
+  // for example:
+  // newRule = {from: 4320, to: 4330},
+  // rule = {from: 4300, to: 4400}
+  this.hasNewRuleIntoRule = function hasNewRuleIntoRule(newRule, rule) {
+    return (
+      newRule.ports.from < rule.ports.from && newRule.ports.to < rule.ports.to
+    );
+  };
+
+  // Check if the new rule port to is not into other rules
+  // for example:
+  // newRule = {from: 4200, to: 4330},
+  // rule = {from: 4300, to: 4400}
+  this.hasNewRulePortToIntoRule = function hasNewRulePortToIntoRule(
+    newRule,
+    rule,
+  ) {
+    return (
+      newRule.ports.from < rule.ports.to &&
+      newRule.ports.to > rule.ports.from &&
+      newRule.ports.to < rule.ports.to
+    );
+  };
+
+  // Check if the new rule port from is not into other rules
+  // for example:
+  // newRule = {from: 4300, to: 4500},
+  // rule = {from: 4200, to: 4400}
+  this.hasNewRulePortFromIntoRule = function hasNewRulePortFromIntoRule(
+    newRule,
+    rule,
+  ) {
+    return (
+      newRule.ports.from > rule.ports.from &&
+      newRule.ports.from < rule.ports.to &&
+      newRule.ports.to > rule.ports.to
+    );
+  };
+
+  // Check if the rule is not into new rule
+  // for example:
+  // newRule = {from: 4100, to: 4500},
+  // rule = {from: 4200, to: 4300}
+  this.hasRuleIntoNewRule = function hasRuleIntoNewRule(newRule, rule) {
+    return (
+      newRule.ports.from < rule.ports.from && newRule.ports.to > rule.ports.to
+    );
+  };
+
+  // Check if other rule is not included into new rule
+  // for example:
+  // newRule = {from: 4100 , to: 4300},
+  // rule = {from: 4200 , to: 4200}
+  this.hasRuleIncludedInNewRule = function hasRuleIncludedInNewRule(
+    newRule,
+    rule,
+  ) {
+    return (
+      newRule.ports.from < newRule.ports.to &&
+      rule.ports.from > newRule.ports.from
+    );
+  };
+
+  // Check if new rule is not included into other rule
+  // newRule = {from: 4200 , to: 4200}
+  // rule = {from: 4100 , to: 4300},
+  this.hasNewRuleIncludedInRule = function hasNewRuleIncludedInRule(
+    newRule,
+    rule,
+  ) {
+    return (
+      newRule.ports.from < rule.ports.to && newRule.ports.from > rule.ports.from
+    );
+  };
 }

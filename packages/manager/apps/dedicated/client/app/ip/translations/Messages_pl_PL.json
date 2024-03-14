@@ -779,5 +779,6 @@
   "ip_firewall_source_port_not_empty_tooltip": "Dla zaznaczonej opcji fragmentacji nie podajemy adresów portów źródłowych.",
   "ip_firewall_destination_port_not_empty_tooltip": "Dla zaznaczonej opcji fragmentacji nie podajemy adresów portów docelowych.",
   "ip_firewall_check_errors": "Wprowadzone dane zawierają błędy. Sprawdź pola zaznaczone na czerwono.",
-  "ip_firewall_rule_status_inactif": "Nieaktywna"
+  "ip_firewall_rule_status_inactif": "Nieaktywna",
+  "ip_game_mitigation_firewall_rule_add_ports_already_used": "Port (lub zakres portów) jest w konflikcie z inną regułą."
 }
