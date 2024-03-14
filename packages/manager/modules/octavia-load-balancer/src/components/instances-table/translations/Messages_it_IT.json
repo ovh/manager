@@ -11,7 +11,7 @@
   "octavia_load_balancer_instances_table_health_monitor_tooltip": "Modalità di controllo dello stato del servizio back end da parte del Load Balancer.",
   "octavia_load_balancer_instances_table_health_monitor_delete": "Elimina l'health monitor",
   "octavia_load_balancer_instances_table_health_monitor_empty": "Nessun health monitoring",
-  "octavia_load_balancer_instances_table_pools_tooltip": "I pool e le istanze associate verso cui viene reindirizzato il traffico",
+  "octavia_load_balancer_instances_table_pools_tooltip": "I pool e le istanze associate verso cui viene reindirizzato il traffico.",
   "octavia_load_balancer_instances_table_pools_search_instance": "Cerca un'istanza",
   "octavia_load_balancer_instances_table_instance_add": "Aggiungi un'istanza",
   "octavia_load_balancer_instances_table_instance_delete": "Elimina l'istanza"
