@@ -53,6 +53,30 @@ export const CHART = {
     tooltips: {
       mode: 'label',
       intersect: false,
+      callbacks: {
+        title: (context) => {
+          // Retrieve user language
+          const userLanguage = navigator.language;
+
+          // Configure dateTime format to display like DD/MM/YYYY hh:mm:ss (for FR) or MM/DD/YY, hh:mm:ss (for US)
+          const dateTimeFormat = new Intl.DateTimeFormat(userLanguage, {
+            hourCycle: 'h23',
+            timeStyle: 'medium',
+            dateStyle: 'short',
+          });
+
+          // Retrieve user local time zone
+          const timeZoneOffset =
+            (new Date(context[0].label).getTimezoneOffset() / 60) * -1;
+          const sign = timeZoneOffset > 0 ? '+' : '';
+
+          // Format title like DD/MM/YYYY hh:mm:ss UTC+1 (for FR) or MM/DD/YY, hh:mm:ss UTC-2 (for US)
+          const title = `${dateTimeFormat.format(
+            new Date(context[0].label),
+          )} UTC${sign}${timeZoneOffset}`;
+          return title;
+        },
+      },
     },
     scales: {
       yAxes: [
@@ -85,13 +109,16 @@ export const CHART = {
             display: true,
             source: 'auto',
             autoSkip: true,
-          },
-          time: {
-            displayFormats: {
-              hour: 'YYYY-MM-DD HH:MM',
+            callback: (val) => {
+              const { language } = navigator;
+              const dateTimeFormat = new Intl.DateTimeFormat(language, {
+                hourCycle: 'h23',
+                timeStyle: 'medium',
+                dateStyle: 'short',
+              });
+              return dateTimeFormat.format(new Date(val));
             },
           },
-          type: 'time',
         },
       ],
     },
