@@ -32,6 +32,7 @@ export default class ServerInstallationGabaritCtrl {
   }
 
   $onInit() {
+    this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
     this.$scope.inputRules = INPUTS_RULES;
 
     this.$scope.installation = {
@@ -390,9 +391,7 @@ export default class ServerInstallationGabaritCtrl {
         (task) => {
           set(task, 'id', task.taskId);
           this.$rootScope.$broadcast('dedicated.informations.reinstall', task);
-          this.$state.go(
-            `app.dedicated-server.server.dashboard.installation-progress`,
-          );
+          this.$state.go(`${this.statePrefix}.dashboard.installation-progress`);
         },
         (data) => {
           this.$scope.errorGab.ws = this.$translate.instant(
