@@ -39,7 +39,7 @@ import Roles from '@/components/users/listing/Roles';
 import CreationDate from '@/components/users/listing/CreationDate';
 import Status from '@/components/users/listing/Status';
 import Actions from '@/components/users/listing/Actions';
-import RolesMatrix from './components/RolesMatrix';
+import RolesMatrix from './components/RolesMatrix/Index';
 import { useAllRoles } from '@/hooks/useRole';
 
 export default function ListingPage() {
