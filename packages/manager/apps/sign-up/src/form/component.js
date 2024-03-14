@@ -14,5 +14,7 @@ export default {
     isSmsConsentAvailable: '<',
     needkyc: '<',
     goToKycDocumentUploadPage: '<',
+    user: '<',
+    subsidiary: '<',
   },
 };
