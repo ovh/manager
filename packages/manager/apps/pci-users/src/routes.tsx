@@ -29,7 +29,7 @@ export default [
     children: [
       {
         path: '',
-        ...lazyRouteConfig(() => import('@/pages/ListingPage')),
+        ...lazyRouteConfig(() => import('@/pages/index/Index')),
         children: [
           {
             path: 'delete',
