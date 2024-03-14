@@ -24,22 +24,25 @@ interface ColumnFilter {
   comparators: FilterComparator[];
 }
 
-interface FilterAddProps {
+export interface FilterAddProps {
   columns: ColumnFilter[];
   onAddFilter: (filter: Filter, column: ColumnFilter) => void;
 }
 
 export default function FilterAdd({ columns, onAddFilter }: FilterAddProps) {
   const { t } = useTranslation('filter');
+
   const [selectedId, setSelectedId] = useState(columns?.[0]?.id || '');
   const [selectedComparator, setSelectedComparator] = useState(
     columns?.[0]?.comparators?.[0] || FilterComparator.IsEqual,
   );
   const [value, setValue] = useState('');
+
   const selectedColumn = useMemo(
     () => columns.find(({ id }) => selectedId === id),
     [columns, selectedId],
   );
+
   return (
     <>
       <OsdsFormField>
@@ -53,6 +56,7 @@ export default function FilterAdd({ columns, onAddFilter }: FilterAddProps) {
         </div>
         <OsdsSelect
           value={selectedId}
+          data-testid="add-filter_select_idColumn"
           onOdsValueChange={(
             event: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
           ) => {
@@ -99,10 +103,12 @@ export default function FilterAdd({ columns, onAddFilter }: FilterAddProps) {
             {t('common_criteria_adder_value_label')}
           </OsdsText>
         </div>
+
         <OsdsInput
           type={ODS_INPUT_TYPE.text}
           color={ODS_THEME_COLOR_INTENT.primary}
           value={value}
+          data-testid="filter-add_value-input"
           onOdsValueChange={(e) => setValue(e.detail.value as string)}
           className="border"
         />
@@ -123,6 +129,7 @@ export default function FilterAdd({ columns, onAddFilter }: FilterAddProps) {
           );
           setValue('');
         }}
+        data-testid="filter-add_submit"
       >
         {t('common_criteria_adder_submit_label')}
       </OsdsButton>

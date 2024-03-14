@@ -26,7 +26,7 @@ describe('FilterList tests', () => {
         {
           key: 'username',
           comparator: 'includes',
-          value: 'Hamid',
+          value: 'temp_user',
           label: "Nom d'utilisateur",
         },
       ],
@@ -49,13 +49,13 @@ describe('FilterList tests', () => {
         {
           key: 'username',
           comparator: 'includes',
-          value: 'Hamid',
+          value: 'random_user',
           label: "Nom d'utilisateur",
         },
         {
           key: 'username',
           comparator: 'includes',
-          value: 'LIDRISSI',
+          value: 'temp_user',
           label: "Nom d'utilisateur",
         },
       ],
@@ -79,7 +79,7 @@ describe('FilterList tests', () => {
         {
           key: 'username',
           comparator: 'includes',
-          value: 'Hamid',
+          value: 'temp_user',
           label: "Nom d'utilisateur",
         },
       ],
@@ -100,7 +100,7 @@ describe('FilterList tests', () => {
       comparator: 'includes',
       key: 'username',
       label: "Nom d'utilisateur",
-      value: 'Hamid',
+      value: 'temp_user',
     });
   });
 });
