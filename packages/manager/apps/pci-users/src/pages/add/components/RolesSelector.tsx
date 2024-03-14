@@ -12,6 +12,7 @@ import {
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { Role } from '@/interface';
 
@@ -26,6 +27,10 @@ export default function RolesSelector({
   onInput,
 }: Props) {
   const [selectedRoles, setSelectedRoles] = useState<Role[]>(preSelectedRoles);
+
+  useEffect(() => {
+    setSelectedRoles(preSelectedRoles);
+  }, [preSelectedRoles]);
 
   useEffect(() => {
     onInput(selectedRoles);
@@ -64,6 +69,13 @@ export default function RolesSelector({
               color={ODS_THEME_COLOR_INTENT.text}
               slot={'end'}
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+              size={
+                selectedRoles.some(
+                  (selectedRole) => selectedRole.id === role.id,
+                )
+                  ? ODS_THEME_TYPOGRAPHY_SIZE._500
+                  : ODS_THEME_TYPOGRAPHY_SIZE._400
+              }
             >
               {role.description}
             </OsdsText>
