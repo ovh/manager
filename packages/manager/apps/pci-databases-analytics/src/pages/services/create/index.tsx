@@ -11,7 +11,7 @@ import LegalMentions from '@/pages/_components/legalMentions';
 import OrderFunnel from './_components/order-funnel';
 import { database } from '@/models/database';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
-import { H2, H3, OvhLink, P } from '@/components/typography';
+import { H2, OvhLink, P } from '@/components/typography';
 
 export function breadcrumb() {
   return (
