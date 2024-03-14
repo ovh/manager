@@ -20,19 +20,6 @@
 
     <div data-ovh-alert="network_security_dashboard_alert"></div>
 
-    <div class="d-flex justify-content-end">
-        <a
-            class="btn btn-link"
-            target="_blank"
-            data-ng-href="{{ $ctrl.surveyUrl }}"
-            data-oui-tooltip="{{:: 'network_security_dashboard_like_this_tooltip' | translate }}"
-            data-oui-tooltip-placement="top"
-        >
-            <i class="oui-icon oui-icon-smiley-happy_concept mr-1"></i>
-            <span data-translate="network_security_dashboard_like_this"></span>
-        </a>
-    </div>
-
     <oui-header-tabs>
         <oui-header-tabs-item
             active="$ctrl.isScrubbingCenterActive()"

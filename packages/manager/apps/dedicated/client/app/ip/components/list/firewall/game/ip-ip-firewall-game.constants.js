@@ -10,17 +10,6 @@ export const IP_MITIGATION_RULE_PROTOCOL_PORT = {
   trackmaniaShootmania: { from: 2350, to: 2450 },
 };
 
-export const ALLOWED_LANGUAGES = {
-  en: {
-    isDefault: true,
-  },
-  fr: {
-    isDefault: false,
-  },
-};
-
-export const BASE_URL_SURVEY = 'https://survey.ovh.com/index.php/187648?lang=';
-
 export const GAME_GUIDE_LINKS = {
   DE:
     'https://help.ovhcloud.com/csm/de-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060678',
@@ -70,8 +59,6 @@ export const GAME_TRACKING_PREFIX = 'dedicated::ip::game-firewall';
 
 export default {
   IP_MITIGATION_RULE_PROTOCOL_PORT,
-  ALLOWED_LANGUAGES,
-  BASE_URL_SURVEY,
   GAME_GUIDE_LINKS,
   GAME_TRACKING_PREFIX,
 };
