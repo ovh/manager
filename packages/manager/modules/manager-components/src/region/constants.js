@@ -10,6 +10,7 @@ export const COUNTRIES = {
   SYD: 'AU',
   UK: 'GB',
   SGP: 'SG',
+  YYZ: 'CA',
 };
 
 export default { COUNTRIES };
