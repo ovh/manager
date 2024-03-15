@@ -200,5 +200,6 @@
   "telecom_pack_migration_contract_meeting": "Un rendez-vous est programmé le {{ day }} entre {{ start }} et {{ end }}.",
   "telecom_pack_migration_contract_meeting_contact": "Je serai contacté par un technicien pour convenir d'un rendez-vous.",
   "telecom_pack_migration_meeting_error": "Oups ! Une erreur est survenue lors la récupération des dates de rendez-vous disponibles.",
-  "telecom_pack_migration_pto_reference_is_not_valid": "La référence PTO saisie est invalide. Le format attendu est OO-XXXX-XXXX."
+  "telecom_pack_migration_pto_reference_is_not_valid": "La référence PTO saisie est invalide. Le format attendu est OO-XXXX-XXXX.",
+  "telecom_pack_migration_no_meeting_available": "Aucun RDV n'est disponible pour le moment, vous serez recontacté par téléphone pour la planification."
 }
