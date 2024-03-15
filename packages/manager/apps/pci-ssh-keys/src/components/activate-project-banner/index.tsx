@@ -1,6 +1,13 @@
-import { OsdsButton, OsdsMessage } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 
@@ -31,11 +38,16 @@ export default function ActivateProjectBanner({
       className={'mt-3 flex-row'}
     >
       <div className={'flex flex-row justify-between'}>
-        <span
-          dangerouslySetInnerHTML={{
-            __html: t('pci_projects_project_activate_project_banner_message'),
-          }}
-        ></span>
+        <OsdsText
+          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+          color={ODS_THEME_COLOR_INTENT.default}
+        >
+          <span
+            dangerouslySetInnerHTML={{
+              __html: t('pci_projects_project_activate_project_banner_message'),
+            }}
+          ></span>
+        </OsdsText>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}

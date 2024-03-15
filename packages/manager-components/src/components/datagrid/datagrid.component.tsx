@@ -113,7 +113,7 @@ export const Datagrid = <T extends unknown>({
   return (
     <div>
       <div className={`contents overflow-x-auto px-[1px] ${className || ''}`}>
-        <table className="w-full">
+        <table className="w-full border-collapse">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>

@@ -105,22 +105,20 @@ export default function AddSshModal({
                 </OsdsText>
                 <OsdsInput
                   type={ODS_INPUT_TYPE.text}
-                  className={'border'}
                   color={
                     formErrors.missingName
                       ? ODS_THEME_COLOR_INTENT.error
                       : ODS_THEME_COLOR_INTENT.primary
                   }
                   {...{ error: formErrors.missingName ? true : undefined }}
-                  style={
-                    formErrors.missingName
-                      ? {
-                          borderColor: 'var(--ods-color-error-200)',
-                        }
-                      : {}
-                  }
                   required={true}
                   onOdsValueChange={handleInputNameChange}
+                  onOdsInputFocus={() => {
+                    setFormErrors((errors) => ({
+                      ...errors,
+                      missingName: false,
+                    }));
+                  }}
                   onOdsInputBlur={() =>
                     setFormErrors((errors) => ({
                       ...errors,
@@ -153,11 +151,6 @@ export default function AddSshModal({
                   {t('pci_projects_project_sshKeys_add_key')}
                 </OsdsText>
                 <OsdsTextarea
-                  color={
-                    formErrors.missingKey
-                      ? ODS_THEME_COLOR_INTENT.error
-                      : ODS_THEME_COLOR_INTENT.primary
-                  }
                   {...{ error: formErrors.missingKey ? true : undefined }}
                   required={true}
                   onOdsValueChange={handleInputPublicKeyChange}
@@ -167,6 +160,12 @@ export default function AddSshModal({
                       missingKey: !publicKey,
                     }))
                   }
+                  onOdsFocus={() => {
+                    setFormErrors((errors) => ({
+                      ...errors,
+                      missingKey: false,
+                    }));
+                  }}
                   ariaLabel={t('pci_projects_project_sshKeys_add_key')}
                   data-testid="sshPublicKey"
                   rows={5}

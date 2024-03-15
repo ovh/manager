@@ -7,4 +7,7 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx}',
     '../../../manager-components/src/**/*.{js,jsx,ts,tsx}',
   ],
+  corePlugins: {
+    preflight: false,
+  },
 };
