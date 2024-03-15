@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   Outlet,
-  useHref,
+  useNavigate,
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
@@ -48,6 +48,7 @@ import { Project } from '@/data/project';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
+  const navigate = useNavigate();
   const navigation = useNavigation();
   const { trackClick } = useTracking();
   const { projectId } = useParams();
@@ -117,8 +118,6 @@ export default function ListingPage() {
     searchQueries,
   );
 
-  const hrefAdd = useHref(`./add`);
-
   return (
     <>
       {project && (
@@ -157,8 +156,8 @@ export default function ListingPage() {
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           disabled={isDiscoveryProject(project) ? true : undefined}
-          href={hrefAdd}
           onClick={() => {
+            navigate('./add');
             trackClick({
               name: 'PCI_PROJECTS_SSH_KEYS_ADD',
               type: 'action',
