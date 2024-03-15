@@ -8,6 +8,7 @@ export default {
     currentActiveLink: '<',
     dashboardLink: '<',
     nodesLink: '<',
+    guidesLinkOf3AZ: '<',
   },
   template,
 };

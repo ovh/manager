@@ -1,4 +1,6 @@
 {
   "cluster_general_information": "Informazioni generali",
-  "cluster_nodes": "Nodi"
+  "cluster_nodes": "Nodi",
+  "dedicated_cluster_3az_guides_title": "Guide",
+  "dedicated_cluster_3az_guides_link": "Guide 3-AZ"
 }
