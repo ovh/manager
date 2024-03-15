@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation, Navigate } from 'react-router-dom';
-import { useRouting } from '@ovh-ux/manager-react-shell-client';
+import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
 import { useQuery } from '@tanstack/react-query';
 import { getiamPolicyList } from '@/api';
 import Loading from '@/components/Loading/Loading';
@@ -9,6 +9,14 @@ import ErrorBanner from '@/components/Error/Error';
 function RoutingSynchronisation() {
   const location = useLocation();
   const routing = useRouting();
+
+  const shell = useShell();
+  useEffect(() => {
+    // Need to also hide the preloader here due to firefox still display it when cache is disabled
+    // Need to investigate why preloader is not hidden
+    shell.ux.hidePreloader();
+  }, []);
+
   useEffect(() => {
     routing.stopListenForHashChange();
   }, []);
