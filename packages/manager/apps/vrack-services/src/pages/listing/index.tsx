@@ -31,6 +31,7 @@ import { handleClick } from '@/utils/ods-utils';
 import { useVrackServicesList } from '@/utils/vs-utils';
 import { betaVrackServicesLimit } from './constants';
 import { urls } from '@/router/constants';
+import { OperationMessages } from '@/components/UpdateMessages';
 
 const ListingPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/listing');
@@ -77,6 +78,7 @@ const ListingPage: React.FC = () => {
       >
         {t('description')}
       </OsdsText>
+      {!isLoading && <OperationMessages />}
       {reachedBetaLimit && (
         <OsdsMessage className="my-4" type={ODS_MESSAGE_TYPE.info}>
           <OsdsText
