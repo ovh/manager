@@ -54,14 +54,14 @@ const Namespaces = () => {
 
   return (
     <>
-      <H2 className="mb-2">{t('title')}</H2>
-      <P className="mb-2">{t('description1')}</P>
-      <P className="mb-2">{t('description2')}</P>
-      <P className="mb-2">{t('description3')}</P>
+      <H2>{t('title')}</H2>
+      <P>{t('description1')}</P>
+      <P>{t('description2')}</P>
+      <P>{t('description3')}</P>
       <Button
         variant={'outline'}
         size="sm"
-        className="text-base mb-2"
+        className="text-base"
         onClick={() => addModale.open()}
       >
         <Plus className="size-4 mr-2" />

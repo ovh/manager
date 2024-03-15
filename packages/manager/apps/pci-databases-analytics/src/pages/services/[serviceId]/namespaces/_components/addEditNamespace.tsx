@@ -378,7 +378,7 @@ const AddEditNamespace = ({
                     name="writesToCommitLogEnabled"
                     render={({ field }) => (
                       <FormItem>
-                        <div className="flex items-center mt-1 justify-between">
+                        <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-2">
                             <FormLabel>writesToCommitLogEnabled</FormLabel>
                             <Popover>
@@ -410,7 +410,7 @@ const AddEditNamespace = ({
                     name="snapshotEnabled"
                     render={({ field }) => (
                       <FormItem>
-                        <div className="flex items-center mt-1 justify-between">
+                        <div className="flex items-center mt-2 justify-between">
                           <div className="flex items-center space-x-2">
                             <FormLabel>snapshotEnabled</FormLabel>
                             <Popover>
@@ -442,7 +442,7 @@ const AddEditNamespace = ({
                     name="blockSizeDuration"
                     render={({ field }) => (
                       <FormItem>
-                        <div className="flex items-center space-x-2 mt-1">
+                        <div className="flex items-center space-x-2 mt-2">
                           <FormLabel>retention.blockSizeDuration</FormLabel>
                           <Popover>
                             <PopoverTrigger>
@@ -483,7 +483,7 @@ const AddEditNamespace = ({
                     name="bufferPastDuration"
                     render={({ field }) => (
                       <FormItem>
-                        <div className="flex items-center space-x-2 mt-1">
+                        <div className="flex items-center space-x-2 mt-2">
                           <FormLabel>retention.bufferPastDuration</FormLabel>
                           <Popover>
                             <PopoverTrigger>
@@ -522,7 +522,7 @@ const AddEditNamespace = ({
                     name="bufferFutureDuration"
                     render={({ field }) => (
                       <FormItem>
-                        <div className="flex items-center space-x-2 mt-1">
+                        <div className="flex items-center space-x-2 mt-2">
                           <FormLabel>retention.bufferFutureDuration</FormLabel>
                           <Popover>
                             <PopoverTrigger>
@@ -561,7 +561,7 @@ const AddEditNamespace = ({
                     name="blockDataExpirationDuration"
                     render={({ field }) => (
                       <FormItem>
-                        <div className="flex items-center space-x-2 mt-1">
+                        <div className="flex items-center space-x-2 mt-2">
                           <FormLabel>
                             retention.blockDataExpirationDuration
                           </FormLabel>
