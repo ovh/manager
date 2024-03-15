@@ -164,6 +164,9 @@ export default class MoveResumeCtrl {
   }
 
   getMeeting() {
+    if (!this.offer.selected.meetingSlots.slot) {
+      return '';
+    }
     const day = moment(this.offer.selected.meetingSlots.slot.startDate).format(
       'DD/MM/YYYY',
     );
@@ -322,7 +325,7 @@ export default class MoveResumeCtrl {
         });
       }
 
-      if (this.offer.selected.meetingSlots) {
+      if (this.offer.selected.meetingSlots?.slot) {
         // Set meetings for copper line creation if is set
         const meeting = {
           fakeMeeting: this.offer.selected.meetingSlots.fakeMeeting,

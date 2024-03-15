@@ -182,7 +182,7 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
     });
 
     // Set meeting
-    if (migrationProcess.selectedOffer.meetingSlots) {
+    if (migrationProcess.selectedOffer.meetingSlots?.slot) {
       const meeting = {
         fakeMeeting: migrationProcess.selectedOffer.meetingSlots.fakeMeeting,
         meetingSlot: {
