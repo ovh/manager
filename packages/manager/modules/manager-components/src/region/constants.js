@@ -12,6 +12,7 @@ export const COUNTRIES = {
   VIN: 'US',
   HIL: 'US',
   SGP: 'SG',
+  YYZ: 'CA',
 };
 
 export default { COUNTRIES };
