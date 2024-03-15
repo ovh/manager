@@ -25,5 +25,7 @@
 
   "common_pagination_of": "on",
   "common_pagination_results": "results",
-  "common_pagination_no_results": "No result"
+  "common_pagination_no_results": "No result",
+
+  "common_field_error_required": "Please fill in this field."
 }

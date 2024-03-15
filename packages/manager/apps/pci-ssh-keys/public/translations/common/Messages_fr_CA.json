@@ -28,5 +28,7 @@
 
   "common_pagination_of": "sur",
   "common_pagination_results": "résultats",
-  "common_pagination_no_results": "Aucun résultat"
+  "common_pagination_no_results": "Aucun résultat",
+
+  "common_field_error_required": "Veuillez compléter ce champ."
 }
