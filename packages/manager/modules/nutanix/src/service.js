@@ -3,6 +3,7 @@ import {
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   NUTANIX_SERVICE_TYPE,
+  NODE_FIXED_PUBLIC_BANDWIDTH,
 } from './constants';
 import Cluster from './cluster.class';
 
@@ -233,7 +234,7 @@ export default class NutanixService {
   getBandwidth(productId) {
     return this.$http
       .get(`/dedicated/server/${productId}/specifications/network`)
-      .then(({ data }) => data)
+      .then(({ data }) => ({ ...data, bandwidth: NODE_FIXED_PUBLIC_BANDWIDTH }))
       .catch((err) => {
         if (err.status === 404 || err.status === 460) {
           return {};

@@ -42,10 +42,22 @@ export function getNutanixOrderUrl(subsidiary) {
   return NUTANIX_ORDER_URL[subsidiary] || NUTANIX_ORDER_URL.DEFAULT;
 }
 
+export const NODE_FIXED_PUBLIC_BANDWIDTH = {
+  InternetToOvh: {
+    value: 10000,
+    unit: 'Mbps',
+  },
+  OvhToInternet: {
+    value: 10000,
+    unit: 'Mbps',
+  },
+};
+
 export default {
   CLUSTER_STATUS,
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   NUTANIX_SERVICE_TYPE,
   FEATURES,
+  NODE_FIXED_PUBLIC_BANDWIDTH,
 };

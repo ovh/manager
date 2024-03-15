@@ -198,6 +198,27 @@
         </nutanix-licence-tile>
     </div>
 
+    <!-- Network -->
+    <div class="col-md-6 col-lg-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
+        <nutanix-network-tile
+            cluster="$ctrl.cluster"
+            on-error="$ctrl.handleError(error)"
+            go-to-upgrade-private-bandwidth="$ctrl.goToUpgradePrivateBandwidth"
+            private-bandwidth-service-id="$ctrl.privateBandwidthServiceId"
+            is-old-cluster="$ctrl.isOldCluster"
+        >
+        </nutanix-network-tile>
+    </div>
+
+    <!-- SUPPORT TICKET -->
+    <div class="col-md-6 col-lg-4 mb-3">
+        <server-support
+            service-name="{{$ctrl.serviceName}}"
+            travaux-url="{{$ctrl.TRAVAUX_LINK}}"
+            tracking-prefix="$ctrl.trackingPrefix"
+        ></server-support>
+    </div>
+
     <!-- Subscription details -->
     <div class="col-md-6 col-lg-4 mb-3">
         <billing-subscription-tile
@@ -211,27 +232,6 @@
             tracking-prefix="{{ ::$ctrl.trackingPrefix }}"
         >
         </billing-subscription-tile>
-    </div>
-
-    <!-- SUPPORT TICKET -->
-    <div class="col-md-6 col-lg-4 mb-3">
-        <server-support
-            service-name="{{$ctrl.serviceName}}"
-            travaux-url="{{$ctrl.TRAVAUX_LINK}}"
-            tracking-prefix="$ctrl.trackingPrefix"
-        ></server-support>
-    </div>
-
-    <!-- Network -->
-    <div class="col-md-6 col-lg-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
-        <nutanix-network-tile
-            cluster="$ctrl.cluster"
-            on-error="$ctrl.handleError(error)"
-            go-to-upgrade-private-bandwidth="$ctrl.goToUpgradePrivateBandwidth"
-            private-bandwidth-service-id="$ctrl.privateBandwidthServiceId"
-            is-old-cluster="$ctrl.isOldCluster"
-        >
-        </nutanix-network-tile>
     </div>
 
     <!-- TECHNICAL DETAILS -->
