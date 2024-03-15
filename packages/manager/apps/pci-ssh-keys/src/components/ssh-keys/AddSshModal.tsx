@@ -50,16 +50,28 @@ export default function AddSshModal({
   });
   const [name, setName] = useState('');
   const [publicKey, setPublicKey] = useState('');
+  const [formErrors, setFormErrors] = useState({
+    missingName: false,
+    missingKey: false,
+  });
 
   const handleInputNameChange = useCallback(
     (event: OdsInputValueChangeEvent) => {
       setName(`${event.detail.value}`);
+      setFormErrors((errors) => ({
+        ...errors,
+        missingName: !event.detail.value,
+      }));
     },
     [setName],
   );
   const handleInputPublicKeyChange = useCallback(
     (event: OsdsTextareaCustomEvent<OdsTextAreaValueChangeEvent>) => {
       setPublicKey(`${event.detail.value}`);
+      setFormErrors((errors) => ({
+        ...errors,
+        missingKey: !event.detail.value,
+      }));
     },
     [setPublicKey],
   );
@@ -73,7 +85,17 @@ export default function AddSshModal({
         <slot name="content">
           {!isPending && (
             <>
-              <OsdsFormField className={'mb-8'}>
+              <OsdsFormField
+                className={'mb-8'}
+                color={
+                  formErrors.missingName
+                    ? ODS_THEME_COLOR_INTENT.error
+                    : ODS_THEME_COLOR_INTENT.primary
+                }
+                error={
+                  formErrors.missingName ? t('common_field_error_required') : ''
+                }
+              >
                 <OsdsText
                   slot="label"
                   level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
@@ -84,13 +106,45 @@ export default function AddSshModal({
                 <OsdsInput
                   type={ODS_INPUT_TYPE.text}
                   className={'border'}
+                  color={
+                    formErrors.missingName
+                      ? ODS_THEME_COLOR_INTENT.error
+                      : ODS_THEME_COLOR_INTENT.primary
+                  }
+                  {...{ error: formErrors.missingName ? true : undefined }}
+                  style={
+                    formErrors.missingName
+                      ? {
+                          borderColor: 'var(--ods-color-error-200)',
+                        }
+                      : {}
+                  }
                   required={true}
                   onOdsValueChange={handleInputNameChange}
+                  onOdsInputBlur={() =>
+                    setFormErrors((errors) => ({
+                      ...errors,
+                      missingName: !name,
+                    }))
+                  }
                   ariaLabel={t('pci_projects_project_sshKeys_add_name')}
                   data-testid="sshKeyName"
                 />
               </OsdsFormField>
-              <OsdsFormField>
+              <OsdsFormField
+                color={
+                  formErrors.missingKey
+                    ? ODS_THEME_COLOR_INTENT.error
+                    : ODS_THEME_COLOR_INTENT.primary
+                }
+                error={
+                  formErrors.missingKey
+                    ? `${t('common_field_error_required')} ${t(
+                        'pci_projects_project_sshKeys_add_infos',
+                      )}`
+                    : ''
+                }
+              >
                 <OsdsText
                   slot="label"
                   level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
@@ -99,9 +153,20 @@ export default function AddSshModal({
                   {t('pci_projects_project_sshKeys_add_key')}
                 </OsdsText>
                 <OsdsTextarea
-                  className={'border'}
+                  color={
+                    formErrors.missingKey
+                      ? ODS_THEME_COLOR_INTENT.error
+                      : ODS_THEME_COLOR_INTENT.primary
+                  }
+                  {...{ error: formErrors.missingKey ? true : undefined }}
                   required={true}
                   onOdsValueChange={handleInputPublicKeyChange}
+                  onOdsBlur={() =>
+                    setFormErrors((errors) => ({
+                      ...errors,
+                      missingKey: !publicKey,
+                    }))
+                  }
                   ariaLabel={t('pci_projects_project_sshKeys_add_key')}
                   data-testid="sshPublicKey"
                   rows={5}

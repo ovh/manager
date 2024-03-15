@@ -25,5 +25,7 @@
 
   "common_pagination_of": "su",
   "common_pagination_results": "risultati",
-  "common_pagination_no_results": "Nessun risultato"
+  "common_pagination_no_results": "Nessun risultato",
+
+  "common_field_error_required": "Completa questo campo"
 }
