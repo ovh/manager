@@ -157,12 +157,14 @@ export default function ListingPage() {
           color={ODS_THEME_COLOR_INTENT.primary}
           disabled={isDiscoveryProject(project) ? true : undefined}
           onClick={() => {
-            navigate('./add');
-            trackClick({
-              name: 'PCI_PROJECTS_SSH_KEYS_ADD',
-              type: 'action',
-              level2: PCI_LEVEL2,
-            });
+            if (!isDiscoveryProject(project)) {
+              navigate('./add');
+              trackClick({
+                name: 'PCI_PROJECTS_SSH_KEYS_ADD',
+                type: 'action',
+                level2: PCI_LEVEL2,
+              });
+            }
           }}
         >
           <OsdsIcon
