@@ -18,6 +18,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Span } from '@/components/typography';
 import { ConnectionPoolWithData } from '..';
+import { useServiceData } from '../../layout';
+import { database } from '@/models/database';
 
 interface ConnectionPoolsTableColumnsProps {
   onGetInformationClick: (connectionPool: ConnectionPoolWithData) => void;
@@ -32,6 +34,7 @@ export const getColumns = ({
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/pools',
   );
+  const { service } = useServiceData();
   const columns: ColumnDef<ConnectionPoolWithData>[] = [
     {
       id: 'name',
@@ -97,23 +100,35 @@ export const getColumns = ({
                         {t('tableActionGetInformation')}
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem
-                        onClick={() => {
-                          onEditClick(row.original);
-                        }}
-                        className="w-full"
-                      >
-                        {t('tableActionEdit')}
-                      </DropdownMenuItem>
+                      {service.capabilities.connectionPools?.update && (
+                        <DropdownMenuItem
+                          disabled={
+                            service.capabilities.connectionPools?.update ===
+                            database.service.capability.StateEnum.disabled
+                          }
+                          onClick={() => {
+                            onEditClick(row.original);
+                          }}
+                          className="w-full"
+                        >
+                          {t('tableActionEdit')}
+                        </DropdownMenuItem>
+                      )}
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem
-                        onClick={() => {
-                          onDeleteClick(row.original);
-                        }}
-                        className="w-full"
-                      >
-                        {t('tableActionDelete')}
-                      </DropdownMenuItem>
+                      {service.capabilities.connectionPools?.delete && (
+                        <DropdownMenuItem
+                          disabled={
+                            service.capabilities.connectionPools?.delete ===
+                            database.service.capability.StateEnum.disabled
+                          }
+                          onClick={() => {
+                            onDeleteClick(row.original);
+                          }}
+                          className="w-full"
+                        >
+                          {t('tableActionDelete')}
+                        </DropdownMenuItem>
+                      )}
                     </TooltipTrigger>
                   </DropdownMenuContent>
                 </DropdownMenu>
