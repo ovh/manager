@@ -137,8 +137,13 @@
             <oui-field
                 data-ng-attr-label="{{ $ctrl.dense ? ('kubernetes_network_form_gateway_vrack_field_ip_placeholder'|translate) : null }}"
                 data-error-messages="{
-                pattern: ('kubernetes_network_form_gateway_vrack_field_ip_error_pattern' | translate)
-            }"
+                    pattern: ('kubernetes_network_form_gateway_vrack_field_ip_error_pattern' | translate)
+                }"
+                data-help-text="{{
+                    $ctrl.networkForm.gatewayIp.$valid
+                      ? ('kubernetes_network_form_gateway_private_description_help' | translate)
+                      : ''
+                }}"
             >
                 <input
                     class="oui-input"
