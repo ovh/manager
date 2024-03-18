@@ -37,15 +37,8 @@ export const addNamespace = async ({
     )
     .then((res) => res.data as database.m3db.Namespace);
 
-export interface NamespaceEdition {
-  resolution?: string;
-  retention: database.m3db.namespace.Retention;
-  snapshotEnabled?: boolean;
-  writesToCommitLogEnabled?: boolean;
-}
-
+export type NamespaceEdition = Omit<database.m3db.Namespace, 'name' | 'type'>;
 export interface EditNamespaceProps extends ServiceData {
-  namespaceId: string;
   namespace: NamespaceEdition;
 }
 
@@ -53,15 +46,16 @@ export const editNamespace = async ({
   projectId,
   engine,
   serviceId,
-  namespaceId,
   namespace,
-}: EditNamespaceProps) =>
-  apiClient.v6
+}: EditNamespaceProps) => {
+  const { id, ...body } = namespace;
+  return apiClient.v6
     .put(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/namespace/${namespaceId}`,
-      namespace,
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/namespace/${id}`,
+      body,
     )
     .then((res) => res.data as database.m3db.Namespace);
+};
 
 export interface DeleteNamespaceProps extends ServiceData {
   namespaceId: string;

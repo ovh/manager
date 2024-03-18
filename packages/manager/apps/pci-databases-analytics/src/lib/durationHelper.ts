@@ -10,8 +10,8 @@ export function durationStringToHuman(durationString: string, locale: Locale) {
 
 export function durationStringToDuration(durationString: string) {
   // Regular expression to match the duration parts
-  const pattern = /(\d+Y)?(\d+M)?(\d+D)?(\d+H)?(\d+m)?(\d+S)?/i;
-  const matches = durationString.match(pattern);
+  const pattern = /(\d+Y)?(\d+M)?(\d+D)?(\d+H)?(\d+m)?(\d+S)?/;
+  const matches = pattern.exec(durationString);
 
   // Convert matched values to numbers, defaulting to 0 if not present
   const years = matches[1] ? parseInt(matches[1], 10) : 0;
@@ -58,4 +58,9 @@ export function durationToISODurationString(durationTime: Duration) {
   // Combine all parts to form the full ISO 8601 duration string
   const isoDuration = `P${yearsPart}${monthsPart}${daysPart}${timePart}${hoursPart}${minutesPart}${secondsPart}`;
   return isoDuration;
+}
+
+export function convertDurationStringToISODuration(durationTime: string) {
+  if (!durationTime) return null;
+  return durationToISODurationString(durationStringToDuration(durationTime));
 }

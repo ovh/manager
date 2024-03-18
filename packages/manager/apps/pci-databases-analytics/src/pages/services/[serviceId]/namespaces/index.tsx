@@ -15,6 +15,7 @@ import { POLLING } from '@/configuration/polling';
 import { getColumns } from './_components/namespacesTableColumns';
 import DeleteNamespaceModal from './_components/deleteNamespace';
 import AddEditNamespace from './_components/addEditNamespace';
+import { NAMESPACES_CONFIG } from './_components/formNamespace/namespace.const';
 
 export function breadcrumb() {
   return 'Namespaces';
@@ -55,19 +56,29 @@ const Namespaces = () => {
   return (
     <>
       <H2>{t('title')}</H2>
-      <P>{t('description1')}</P>
+      <P>
+        {t('description1', {
+          max: NAMESPACES_CONFIG.maxNamespaceNumber,
+        })}
+      </P>
       <P>{t('description2')}</P>
       <P>{t('description3')}</P>
-      <Button
-        variant={'outline'}
-        size="sm"
-        className="text-base"
-        onClick={() => addModale.open()}
-      >
-        <Plus className="size-4 mr-2" />
-        {t('addButtonLabel')}
-      </Button>
-
+      {namespacesQuery.isSuccess && (
+        <Button
+          disabled={
+            service.capabilities.namespaces?.create ===
+              database.service.capability.StateEnum.disabled ||
+            namespacesQuery.data?.length >= NAMESPACES_CONFIG.maxNamespaceNumber
+          }
+          variant={'outline'}
+          size="sm"
+          className="text-base"
+          onClick={() => addModale.open()}
+        >
+          <Plus className="size-4 mr-2" />
+          {t('addButtonLabel')}
+        </Button>
+      )}
       {namespacesQuery.isSuccess ? (
         <DataTable
           columns={columns}

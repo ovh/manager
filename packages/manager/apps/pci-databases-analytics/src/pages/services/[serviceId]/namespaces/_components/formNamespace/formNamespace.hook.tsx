@@ -5,12 +5,7 @@ import { z } from 'zod';
 
 import { database } from '@/models/database';
 import { NAMESPACES_CONFIG } from './namespace.const';
-import {
-  durationISOStringToShortTime,
-  // durationStringToDuration,
-  // durationToISODurationString,
-} from '@/lib/durationHelper';
-// import { toSeconds } from 'duration-fns';
+import { durationISOStringToShortTime } from '@/lib/durationHelper';
 
 export interface UseNamespaceFormProps {
   existingNamespaces: database.m3db.Namespace[];
@@ -47,13 +42,8 @@ export const useNamespaceForm = ({
       message: t('formNamespaceNameErrorDuplicate'),
     });
 
-  const mandatoryShortTimeRules = z
+  const shortTimeRules = z
     .string()
-    .min(NAMESPACES_CONFIG.name.min, {
-      message: t('formNamespaceErrorMinLength', {
-        min: NAMESPACES_CONFIG.name.min,
-      }),
-    })
     .max(NAMESPACES_CONFIG.shortTime.max, {
       message: t('formNamespaceErrorMaxLength'),
     })
@@ -61,7 +51,15 @@ export const useNamespaceForm = ({
       message: t('formNamespaceShortTimeErrorPattern'),
     });
 
-  const optionalShortTimeRules = mandatoryShortTimeRules.optional();
+  const optionalShortTimeRules = shortTimeRules.optional();
+  const mandatoryShortTimeRules = shortTimeRules.min(
+    NAMESPACES_CONFIG.name.min,
+    {
+      message: t('formNamespaceErrorMinLength', {
+        min: NAMESPACES_CONFIG.name.min,
+      }),
+    },
+  );
 
   const typeRules = z.nativeEnum(database.m3db.namespace.TypeEnum);
 
@@ -77,59 +75,6 @@ export const useNamespaceForm = ({
     type: typeRules,
     writesToCommitLogEnabled: z.boolean().optional(),
   });
-  /*
-    .superRefine((values, context) => {
-      if (values.periodDuration && values.resolution) {
-        if (
-          toSeconds(
-            durationToISODurationString(
-              durationStringToDuration(values.periodDuration),
-            ),
-          ) <
-          toSeconds(
-            durationToISODurationString(
-              durationStringToDuration(values.resolution),
-            ),
-          )
-        ) {
-          context.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: t('formNamespaceDurationResolutionErrorPattern'),
-            path: ['periodDuration'],
-          });
-          context.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: t('formNamespaceDurationResolutionErrorPattern'),
-            path: ['resolution'],
-          });
-        }
-      }
-      if (values.periodDuration && values.blockSizeDuration) {
-        if (
-          toSeconds(
-            durationToISODurationString(
-              durationStringToDuration(values.periodDuration),
-            ),
-          ) <
-          toSeconds(
-            durationToISODurationString(
-              durationStringToDuration(values.blockSizeDuration),
-            ),
-          )
-        ) {
-          context.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: t('formNamespaceDurationBlockSizeErrorPattern'),
-            path: ['periodDuration'],
-          });
-          context.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: t('formNamespaceDurationBlockSizeErrorPattern'),
-            path: ['blockSizeDuration'],
-          });
-        }
-      }
-    }); */
 
   type ValidationSchema = z.infer<typeof schema>;
 

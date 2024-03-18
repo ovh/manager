@@ -42,10 +42,7 @@ import {
 
 import { database } from '@/models/database';
 import { NamespaceEdition } from '@/api/databases/namespaces';
-import {
-  durationStringToDuration,
-  durationToISODurationString,
-} from '@/lib/durationHelper';
+import { convertDurationStringToISODuration } from '@/lib/durationHelper';
 import { TOAST } from '@/configuration/toast';
 
 interface AddEditNamespaceModalProps {
@@ -133,40 +130,28 @@ const AddEditNamespace = ({
 
   const onSubmit = form.handleSubmit((formValues) => {
     const retentionFormValues: database.m3db.namespace.Retention = {
-      periodDuration: durationToISODurationString(
-        durationStringToDuration(formValues.periodDuration.toLocaleLowerCase()),
+      periodDuration: convertDurationStringToISODuration(
+        formValues.periodDuration,
       ),
     };
 
     if (advancedConfiguration) {
-      if (formValues.blockDataExpirationDuration)
-        retentionFormValues.blockDataExpirationDuration = durationToISODurationString(
-          durationStringToDuration(
-            formValues.blockDataExpirationDuration.toLocaleLowerCase(),
-          ),
-        );
+      retentionFormValues.blockDataExpirationDuration = convertDurationStringToISODuration(
+        formValues.blockDataExpirationDuration,
+      );
 
-      if (!isEdition && formValues.blockSizeDuration)
-        retentionFormValues.blockSizeDuration = durationToISODurationString(
-          durationStringToDuration(
-            formValues.blockSizeDuration.toLocaleLowerCase(),
-          ),
-        );
+      retentionFormValues.bufferFutureDuration = convertDurationStringToISODuration(
+        formValues.bufferFutureDuration,
+      );
 
-      if (formValues.bufferFutureDuration)
-        retentionFormValues.bufferFutureDuration = durationToISODurationString(
-          durationStringToDuration(
-            formValues.bufferFutureDuration.toLocaleLowerCase(),
-          ),
-        );
+      retentionFormValues.bufferPastDuration = convertDurationStringToISODuration(
+        formValues.bufferPastDuration,
+      );
 
-      if (formValues.bufferPastDuration) {
-        retentionFormValues.bufferPastDuration = durationToISODurationString(
-          durationStringToDuration(
-            formValues.bufferPastDuration.toLocaleLowerCase(),
-          ),
+      if (!isEdition)
+        retentionFormValues.blockSizeDuration = convertDurationStringToISODuration(
+          formValues.blockSizeDuration,
         );
-      }
     }
 
     if (isEdition) {
@@ -175,31 +160,24 @@ const AddEditNamespace = ({
         return;
       }
       const namespace: NamespaceEdition = {
+        id: editedNamespace.id,
         retention: retentionFormValues,
         snapshotEnabled: formValues.snapshotEnabled,
         writesToCommitLogEnabled: formValues.writesToCommitLogEnabled,
+        resolution: convertDurationStringToISODuration(formValues.resolution),
       };
-
-      if (formValues.resolution) {
-        namespace.resolution = durationToISODurationString(
-          durationStringToDuration(formValues.resolution),
-        );
-      }
 
       editNamespace({
         projectId,
         engine: service.engine,
         serviceId: service.id,
-        namespaceId: editedNamespace.id,
         namespace,
       });
     } else {
       const namespace: database.m3db.NamespaceCreation = {
         name: formValues.name,
         retention: retentionFormValues,
-        resolution: durationToISODurationString(
-          durationStringToDuration(formValues.resolution),
-        ),
+        resolution: convertDurationStringToISODuration(formValues.resolution),
         type: formValues.type,
         snapshotEnabled: formValues.snapshotEnabled,
         writesToCommitLogEnabled: formValues.writesToCommitLogEnabled,

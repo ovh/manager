@@ -23,6 +23,7 @@ import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { database } from '@/models/database';
 import { NAMESPACES_CONFIG } from './formNamespace/namespace.const';
 import { durationStringToHuman } from '@/lib/durationHelper';
+import { useServiceData } from '../../layout';
 
 interface NamespacesTableColumnsProps {
   onEditClick: (namespace: database.m3db.Namespace) => void;
@@ -32,6 +33,7 @@ export const getColumns = ({
   onEditClick,
   onDeleteClick,
 }: NamespacesTableColumnsProps) => {
+  const { service } = useServiceData();
   const dateLocale = useDateFnsLocale();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/namespaces',
@@ -87,6 +89,10 @@ export const getColumns = ({
                   <DropdownMenuContent align="end">
                     <TooltipTrigger className="w-full">
                       <DropdownMenuItem
+                        disabled={
+                          service.capabilities.namespaces?.update ===
+                          database.service.capability.StateEnum.disabled
+                        }
                         onClick={() => {
                           onEditClick(row.original);
                         }}
@@ -97,7 +103,9 @@ export const getColumns = ({
                       <DropdownMenuSeparator />
                       <DropdownMenuItem
                         disabled={
-                          row.original.name === NAMESPACES_CONFIG.defaultName
+                          row.original.name === NAMESPACES_CONFIG.defaultName ||
+                          service.capabilities.namespaces?.delete ===
+                            database.service.capability.StateEnum.disabled
                         }
                         onClick={() => {
                           onDeleteClick(row.original);

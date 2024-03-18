@@ -8,6 +8,7 @@ export const NAMESPACES_CONFIG = {
   shortTime: {
     min: 1,
     max: 15,
-    pattern: /^(?:(\d+d)?(\d+h)?(\d+m)?(\d+s)?)?$/i,
+    pattern: /^(?:(\d+D)?(\d+H)?(\d+m)?(\d+S)?)?$/,
   },
+  maxNamespaceNumber: 5,
 };
