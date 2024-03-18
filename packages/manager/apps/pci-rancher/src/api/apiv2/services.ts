@@ -23,10 +23,10 @@ const getByRancherIdProjectIdQueryKey = (
 export const getRancherProjectById = async (
   projectId?: string,
 ): Promise<RancherService[]> => {
-  const response = await apiClient.v2.get(
+  const { data } = await apiClient.v2.get(
     `/publicCloud/project/${projectId}/rancher`,
   );
-  return response.data;
+  return data;
 };
 
 export const getByRancherIdProjectId = async (

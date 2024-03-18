@@ -3,7 +3,7 @@ import { isValidRancherName } from './rancher';
 describe('Should validate rancher name', () => {
   it('When i add a valid rancher name', () => {
     expect(isValidRancherName('rancher1234')).toBe(true);
-    expect(isValidRancherName('rancher1234-_.')).toBe(true);
+    expect(isValidRancherName('rancher1234-_.r')).toBe(true);
     expect(isValidRancherName('rancher')).toBe(true);
     expect(
       isValidRancherName(
@@ -26,6 +26,12 @@ describe('Should validate rancher name', () => {
           '01234567890123456789012345678901234567890123456789012345678912345',
         ),
       ).toBe(false);
+    });
+    it('When i start with invalid character', () => {
+      expect(isValidRancherName('-ran')).toBe(false);
+      expect(isValidRancherName('.ran')).toBe(false);
+      expect(isValidRancherName('_ran')).toBe(false);
+      expect(isValidRancherName('ran-')).toBe(false);
     });
   });
 });
