@@ -3,9 +3,9 @@ import angular from 'angular';
 import '@ovh-ux/ui-kit';
 import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
-import ovhManagerCore from '@ovh-ux/manager-core';
 
 import component from './dashboard.component';
+import publicBandwidthTileDefinition from './public-bandwidth-tile-definition';
 
 const moduleName = 'ovhManagerBmServerBandwidthDashboardComponent';
 
@@ -14,7 +14,7 @@ angular
     'oui',
     'pascalprecht.translate',
     'ngTranslateAsyncLoader',
-    ovhManagerCore,
+    publicBandwidthTileDefinition,
   ])
   .component('serverBandwidthDashboard', component)
   .run(/* @ngTranslationsInject:json ./translations */);
