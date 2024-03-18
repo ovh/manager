@@ -1,9 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { OsdsSelect, OsdsSelectOption } from '@ovhcloud/ods-components/react';
-import {
-  OdsSelectValueChangeEventDetail,
-  OsdsSelectCustomEvent,
-} from '@ovhcloud/ods-components';
 import { useEffect, useState } from 'react';
 import { useStorageRegions } from '@/hooks/useRegion';
 import { Region } from '@/data/region';
@@ -32,9 +28,7 @@ export default function StorageRegions({
         <OsdsSelect
           value={currentRegion}
           data-testid={'currentRegionSelect'}
-          onOdsValueChange={(
-            event: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
-          ) => {
+          onOdsValueChange={(event) => {
             setCurrentRegion(`${event.detail.value}`);
             onStorageRegionChange(`${event.detail.value}`);
           }}

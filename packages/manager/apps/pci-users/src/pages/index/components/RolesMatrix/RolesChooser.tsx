@@ -12,8 +12,6 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
-  OdsSelectValueChangeEventDetail,
-  OsdsSelectCustomEvent,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Role } from '@/interface';
@@ -60,9 +58,7 @@ export default function RolesChooser({
         </div>
       ) : (
         <OsdsSelect
-          onOdsValueChange={(
-            event: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
-          ) => {
+          onOdsValueChange={(event) => {
             const found = allRoles.find(
               (role) => role.id === event.detail.value,
             );
