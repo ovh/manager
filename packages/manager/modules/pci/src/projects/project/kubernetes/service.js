@@ -281,12 +281,21 @@ export default class Kubernetes {
       );
   }
 
-  getPrivateNetworkSubnets(projectId, privateNetworkId) {
+  getPrivateNetworkSubnets(projectId, privateNetworkId, region) {
     return this.$http
       .get(
         `/cloud/project/${projectId}/network/private/${privateNetworkId}/subnet`,
       )
-      .then(({ data: subnets }) => subnets);
+      .then(({ data: subnets }) => {
+        return {
+          subnets,
+          subnetsByRegion: region
+            ? subnets.filter(({ ipPools }) =>
+                ipPools.some((ipPool) => ipPool.region === region),
+              )
+            : subnets,
+        };
+      });
   }
 
   getRegions(projectId, ovhSubsidiary) {
