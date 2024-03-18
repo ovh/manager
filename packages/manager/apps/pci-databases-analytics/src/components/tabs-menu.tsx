@@ -1,10 +1,12 @@
 import { Skeleton } from './ui/skeleton';
 import { ScrollArea, ScrollBar } from './ui/scroll-area';
 import { NavLink } from './typography';
+import { Badge } from './ui/badge';
 
 interface Tab {
   href: string;
   label: string;
+  count?: number;
   end?: boolean;
   disabled?: boolean;
 }
@@ -19,7 +21,7 @@ const TabsMenu = ({ tabs }: TabsMenuProps) => {
           <NavLink end={tab.end} to={tab.href} key={`${tab.label}-${index}`}>
             {({ isActive }) => (
               <span
-                className="w-full px-6 "
+                className="w-full px-6 flex gap-2 items-center"
                 ref={(node) => {
                   if (node && isActive)
                     node.scrollIntoView({
@@ -29,6 +31,11 @@ const TabsMenu = ({ tabs }: TabsMenuProps) => {
                 }}
               >
                 {tab.label}
+                {tab.count > 0 && (
+                  <Badge className="hidden md:block text-xs rounded-full">
+                    {tab.count}
+                  </Badge>
+                )}
               </span>
             )}
           </NavLink>

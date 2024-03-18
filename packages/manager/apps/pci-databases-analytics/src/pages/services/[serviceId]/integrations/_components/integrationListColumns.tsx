@@ -77,18 +77,20 @@ export const getColumns = ({
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem
-                  disabled={
-                    service.capabilities.integrations?.delete ===
-                    database.service.capability.StateEnum.disabled
-                  }
-                  onClick={() => {
-                    onDeleteClick(row.original);
-                  }}
-                  className="w-full"
-                >
-                  {t('tableActionDelete')}
-                </DropdownMenuItem>
+                {service.capabilities.integrations?.delete && (
+                  <DropdownMenuItem
+                    disabled={
+                      service.capabilities.integrations?.delete ===
+                      database.service.capability.StateEnum.disabled
+                    }
+                    onClick={() => {
+                      onDeleteClick(row.original);
+                    }}
+                    className="w-full"
+                  >
+                    {t('tableActionDelete')}
+                  </DropdownMenuItem>
+                )}
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

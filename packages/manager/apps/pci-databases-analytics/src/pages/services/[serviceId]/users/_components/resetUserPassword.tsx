@@ -26,7 +26,6 @@ interface ResetUserPasswordModalProps {
   user: GenericUser;
   onSuccess?: (user: GenericUser) => void;
   onError?: (error: Error) => void;
-  onCancel?: () => void;
   onClose?: () => void;
 }
 
@@ -36,7 +35,6 @@ const ResetUserPassword = ({
   controller,
   onError,
   onSuccess,
-  onCancel,
   onClose,
 }: ResetUserPasswordModalProps) => {
   // import translations

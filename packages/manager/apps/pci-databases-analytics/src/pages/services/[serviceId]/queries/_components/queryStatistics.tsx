@@ -55,6 +55,7 @@ const QueryStatistics = () => {
     <>
       <H3>{t('queryStatisticsTitle')}</H3>
       <P>{t('queryStatisticsDescription')}</P>
+      {/* TODO: get from api ? */}
       <Button
         variant="outline"
         size="sm"
