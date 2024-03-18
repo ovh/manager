@@ -90,6 +90,3 @@ export type ApiError = AxiosError<{ message: string }>;
 export type ApiResponse<T> = AxiosResponse<T>;
 
 export default apiClient;
-
-export type ApiError = AxiosError<{ message: string }>;
-export type ApiResponse<T> = AxiosResponse<T>;
