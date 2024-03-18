@@ -231,7 +231,7 @@ const RancherDetail = ({
                     <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                       {t('last_update_date', {
                         date: format(dateUsage, 'yyyy_MM_dd'),
-                        hour: format(dateUsage, 'HH:mm'),
+                        hour: format(dateUsage, 'HH:mm:ss'),
                       })}
                     </OsdsText>
                   </div>
