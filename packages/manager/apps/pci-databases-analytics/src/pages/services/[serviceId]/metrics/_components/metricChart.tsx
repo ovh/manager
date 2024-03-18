@@ -133,26 +133,26 @@ const MetricChart = ({
               mode: 'index',
               intersect: false,
             },
-            zoom: {
-              zoom: {
-                wheel: {
-                  enabled: true,
-                },
-                pinch: {
-                  enabled: true,
-                },
-                mode: 'xy',
-              },
-              pan: {
-                enabled: true,
-                mode: 'xy',
-                threshold: 0,
-              },
-              limits: {
-                x: { min: 'original', max: 'original' },
-                y: { min: 'original', max: 'original' },
-              },
-            },
+            // zoom: {
+            //   zoom: {
+            //     wheel: {
+            //       enabled: true,
+            //     },
+            //     pinch: {
+            //       enabled: true,
+            //     },
+            //     mode: 'xy',
+            //   },
+            //   pan: {
+            //     enabled: true,
+            //     mode: 'xy',
+            //     threshold: 0,
+            //   },
+            //   limits: {
+            //     x: { min: 'original', max: 'original' },
+            //     y: { min: 'original', max: 'original' },
+            //   },
+            // },
           },
         },
         data: {

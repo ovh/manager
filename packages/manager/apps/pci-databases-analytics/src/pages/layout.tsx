@@ -61,7 +61,7 @@ function RoutingSynchronisation() {
   useEffect(() => {
     shell.ux.hidePreloader();
     routing.onHashChange();
-  }, [location.pathname]);
+  }, [location]);
   return <></>;
 }
 

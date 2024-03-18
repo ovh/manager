@@ -47,20 +47,21 @@ const Databases = () => {
   return (
     <>
       <H2>{t('title')}</H2>
-
-      <Button
-        variant={'outline'}
-        size="sm"
-        className="text-base"
-        disabled={
-          service.capabilities.databases?.create ===
-          database.service.capability.StateEnum.disabled
-        }
-        onClick={() => addModale.open()}
-      >
-        <Plus className="w-4 h-4 mr-2" />
-        {t('addButtonLabel')}
-      </Button>
+      {service.capabilities.databases?.create && (
+        <Button
+          variant={'outline'}
+          size="sm"
+          className="text-base"
+          disabled={
+            service.capabilities.databases?.create ===
+            database.service.capability.StateEnum.disabled
+          }
+          onClick={() => addModale.open()}
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          {t('addButtonLabel')}
+        </Button>
+      )}
 
       {databasesQuery.isSuccess ? (
         <DataTable columns={columns} data={databasesQuery.data} pageSize={25} />
