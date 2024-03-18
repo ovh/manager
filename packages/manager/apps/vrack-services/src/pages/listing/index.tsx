@@ -31,7 +31,7 @@ import { handleClick } from '@/utils/ods-utils';
 import { useVrackServicesList } from '@/utils/vs-utils';
 import { betaVrackServicesLimit } from './constants';
 import { urls } from '@/router/constants';
-import { OperationMessages } from '@/components/UpdateMessages';
+import { OperationMessages } from '@/components/OperationMessages';
 
 const ListingPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/listing');

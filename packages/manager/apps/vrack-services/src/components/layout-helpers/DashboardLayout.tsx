@@ -16,7 +16,7 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { PageLayout } from './PageLayout';
-import { OperationMessages } from '../UpdateMessages';
+import { OperationMessages } from '../OperationMessages';
 
 export type DashboardTabItemProps = {
   name: string;
