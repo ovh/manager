@@ -11,7 +11,7 @@
   "sign_up_details_field_province": "Province",
   "sign_up_details_field_mobile_phone": "Mobile",
   "sign_up_details_field_landline_phone": "Fixe",
-  "sign_up_details_field_sms_consent": "J'accepte librement de recevoir des sms relatifs aux nouveautés et offres commerciales d'ovhcloud.",
+  "sign_up_details_field_sms_consent": "J'accepte librement de recevoir des SMS relatifs aux nouveautés et offres commerciales d'OVHcloud.",
   "sign_up_details_field_gender": "Genre",
   "sign_up_details_field_birthday": "Date de naissance"
 }
