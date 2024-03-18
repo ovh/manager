@@ -40,38 +40,44 @@ const UserActions = ({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem
-            disabled={
-              service.capabilities.users?.update ===
-              database.service.capability.StateEnum.disabled
-            }
-            onClick={() => {
-              toast.toast({
-                title: t('tableActionsMenuNotImplementedYet'),
-              });
-            }}
-          >
-            {t('tableActionsMenuEdit')}
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            disabled={
-              service.capabilities.users?.update ===
-              database.service.capability.StateEnum.disabled
-            }
-            onClick={() => onResetPasswordClicked(user)}
-          >
-            {t('tableActionsMenuResetPassword')}
-          </DropdownMenuItem>
+          {service.capabilities.users?.update && (
+            <DropdownMenuItem
+              disabled={
+                service.capabilities.users?.update ===
+                database.service.capability.StateEnum.disabled
+              }
+              onClick={() => {
+                toast.toast({
+                  title: t('tableActionsMenuNotImplementedYet'),
+                });
+              }}
+            >
+              {t('tableActionsMenuEdit')}
+            </DropdownMenuItem>
+          )}
+          {service.capabilities.users?.update && (
+            <DropdownMenuItem
+              disabled={
+                service.capabilities.users?.update ===
+                database.service.capability.StateEnum.disabled
+              }
+              onClick={() => onResetPasswordClicked(user)}
+            >
+              {t('tableActionsMenuResetPassword')}
+            </DropdownMenuItem>
+          )}
           <DropdownMenuSeparator />
-          <DropdownMenuItem
-            disabled={
-              service.capabilities.users?.delete ===
-              database.service.capability.StateEnum.disabled
-            }
-            onClick={() => onDeleteClicked(user)}
-          >
-            {t('tableActionsMenuDelete')}
-          </DropdownMenuItem>
+          {service.capabilities.users?.delete && (
+            <DropdownMenuItem
+              disabled={
+                service.capabilities.users?.delete ===
+                database.service.capability.StateEnum.disabled
+              }
+              onClick={() => onDeleteClicked(user)}
+            >
+              {t('tableActionsMenuDelete')}
+            </DropdownMenuItem>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

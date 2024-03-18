@@ -59,20 +59,21 @@ const Users = () => {
   return (
     <>
       <H2>{t('title')}</H2>
-
-      <Button
-        variant={'outline'}
-        size="sm"
-        className="text-base"
-        disabled={
-          service.capabilities.users?.create ===
-          database.service.capability.StateEnum.disabled
-        }
-        onClick={() => addModale.open()}
-      >
-        <Plus className="size-4 mr-2" />
-        {t('addButtonLabel')}
-      </Button>
+      {service.capabilities.users?.create && (
+        <Button
+          variant={'outline'}
+          size="sm"
+          className="text-base"
+          disabled={
+            service.capabilities.users?.create ===
+            database.service.capability.StateEnum.disabled
+          }
+          onClick={() => addModale.open()}
+        >
+          <Plus className="size-4 mr-2" />
+          {t('addButtonLabel')}
+        </Button>
+      )}
 
       {usersQuery.isSuccess ? (
         <DataTable columns={columns} data={usersQuery.data} pageSize={25} />
