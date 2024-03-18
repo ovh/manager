@@ -14,6 +14,7 @@ export default class NetworkFormController {
 
     this.isLoadingSubnets = false;
     this.subnets = [];
+    this.subnetsByRegion = [];
     this.subnetError = null;
   }
 
@@ -31,7 +32,9 @@ export default class NetworkFormController {
 
   get isSubnetShown() {
     return (
-      this.hasPrivateNetwork && !this.isLoadingSubnets && !!this.subnets.length
+      this.hasPrivateNetwork &&
+      !this.isLoadingSubnets &&
+      !!this.subnetsByRegion.length
     );
   }
 
@@ -90,11 +93,15 @@ export default class NetworkFormController {
     return this.Kubernetes.getPrivateNetworkSubnets(
       this.projectId,
       this.privateNetwork.id,
+      this.region.name,
     )
-      .then((subnets) => {
+      .then(({ subnets, subnetsByRegion }) => {
         this.subnets = subnets;
+        this.subnetsByRegion = subnetsByRegion;
         this.subnetError = null;
-        this.subnet = selectSubnet ? selectSubnet(this.subnets) : subnets[0];
+        this.subnet = selectSubnet
+          ? selectSubnet(this.subnetsByRegion)
+          : subnetsByRegion[0];
         this.loadBalancersSubnet = selectLoadBalancersSubnet
           ? selectLoadBalancersSubnet(this.subnets)
           : null;
