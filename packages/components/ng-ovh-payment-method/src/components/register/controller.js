@@ -284,7 +284,7 @@ export default class OvhPaymentMethodRegisterCtrl {
     this.model.setAsDefault = false;
   }
 
-  onPaymentMethodTypeChanged(type) {
+  onPaymentMethodTypeChange(type) {
     // We display an information modal (only once per access to the payment method register screen) to customer
     // to make them aware that SEPA payment method require them to have a bank account in the SEPA zone
     if (
