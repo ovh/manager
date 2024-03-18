@@ -3,7 +3,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from '@/queryClient';
 import { useDownloadOpenStackConfig } from '@/hooks/useUser';
-import OpenStackDownloadModal from '@/components/users/OpenStackDownloadModal';
+import OpenStackDownloadModal from './OpenStackDownloadModal';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   useEnvironment: () => ({

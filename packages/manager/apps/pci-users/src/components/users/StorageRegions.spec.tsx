@@ -4,7 +4,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import queryClient from '@/queryClient';
-import StorageRegions from '@/components/users/StorageRegions';
+import StorageRegions from './StorageRegions';
 import { Region } from '@/data/region';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({

@@ -4,8 +4,8 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import queryClient from '@/queryClient';
-import RemoveUserModal from '@/components/users/RemoveUserModal';
-import { useRemoveUser } from '@/hooks/useUser';
+import EditRolesModal from './EditRolesModal';
+import { useUpdateUserRoles } from '@/hooks/useRole';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   useEnvironment: () => ({
@@ -29,45 +29,45 @@ vi.mock('react-i18next', () => ({
   },
 }));
 
-vi.mock('@/hooks/useUser', () => {
-  const remove = vi.fn(() => {});
+vi.mock('@/hooks/useRole', () => {
+  const update = vi.fn(() => {});
   return {
-    useRemoveUser: () => ({
-      remove,
+    useUpdateUserRoles: () => ({
+      update,
     }),
-    useUser: () => ({}),
+    useAllRoles: () => ({}),
   };
 });
 
 function renderModal() {
   render(
     <QueryClientProvider client={queryClient}>
-      <RemoveUserModal
+      <EditRolesModal
         projectId="foo"
         onClose={() => {}}
         onError={() => {}}
         onSuccess={() => {}}
-        userId={'bar'}
-      ></RemoveUserModal>
+        userId={123456}
+      ></EditRolesModal>
       ,
     </QueryClientProvider>,
   );
 }
 
-describe('Remove User modal', () => {
-  it('should call the remove modal and delete a user', async () => {
-    const useRemove = useRemoveUser({
+describe('Edit Role modal', () => {
+  it('should call the modal and edit role', async () => {
+    const useUpdate = useUpdateUserRoles({
       projectId: 'foo',
-      userId: 'bar',
+      userId: 123456,
       onSuccess: () => {},
       onError: () => {},
     });
     renderModal();
-    const submitButton = screen.getByTestId('submitButton');
-    expect(useRemove.remove).not.toHaveBeenCalled();
+    const submitRolesEditButton = screen.getByTestId('submitRolesEditButton');
+    expect(useUpdate.update).not.toHaveBeenCalled();
     act(() => {
-      fireEvent.click(submitButton);
+      fireEvent.click(submitRolesEditButton);
     });
-    expect(useRemove.remove).toHaveBeenCalled();
+    expect(useUpdate.update).toHaveBeenCalled();
   });
 });

@@ -1,14 +1,15 @@
+import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
-import { act, fireEvent, render, screen } from '@testing-library/react';
 import { QueryClientProvider } from '@tanstack/react-query';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import queryClient from '@/queryClient';
-import RCloneDownloadModal from '@/components/users/RCloneDownloadModal';
-import { useDownloadRCloneConfig } from '@/hooks/useUser';
+import RemoveUserModal from './RemoveUserModal';
+import { useRemoveUser } from '@/hooks/useUser';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   useEnvironment: () => ({
     user: {},
-    getUser: () => ({}),
   }),
 }));
 
@@ -29,10 +30,10 @@ vi.mock('react-i18next', () => ({
 }));
 
 vi.mock('@/hooks/useUser', () => {
-  const download = vi.fn(() => {});
+  const remove = vi.fn(() => {});
   return {
-    useDownloadRCloneConfig: () => ({
-      download,
+    useRemoveUser: () => ({
+      remove,
     }),
     useUser: () => ({}),
   };
@@ -41,21 +42,21 @@ vi.mock('@/hooks/useUser', () => {
 function renderModal() {
   render(
     <QueryClientProvider client={queryClient}>
-      <RCloneDownloadModal
+      <RemoveUserModal
         projectId="foo"
         onClose={() => {}}
         onError={() => {}}
         onSuccess={() => {}}
         userId={'bar'}
-      ></RCloneDownloadModal>
+      ></RemoveUserModal>
       ,
     </QueryClientProvider>,
   );
 }
 
-describe('Rclone Download Modal', () => {
-  it('should call the download function with some parameters', async () => {
-    const useDownloadConfig = useDownloadRCloneConfig({
+describe('Remove User modal', () => {
+  it('should call the remove modal and delete a user', async () => {
+    const useRemove = useRemoveUser({
       projectId: 'foo',
       userId: 'bar',
       onSuccess: () => {},
@@ -63,13 +64,10 @@ describe('Rclone Download Modal', () => {
     });
     renderModal();
     const submitButton = screen.getByTestId('submitButton');
-    expect(useDownloadConfig.download).not.toHaveBeenCalled();
+    expect(useRemove.remove).not.toHaveBeenCalled();
     act(() => {
       fireEvent.click(submitButton);
     });
-    const downloadSpy = vi.spyOn(useDownloadConfig, 'download');
-    await useDownloadConfig.download('BHS', 'Swift');
-    expect(downloadSpy).toHaveBeenCalledWith('BHS', 'Swift');
-    expect(downloadSpy).not.toHaveBeenCalledWith('SBG', 'S3');
+    expect(useRemove.remove).toHaveBeenCalled();
   });
 });
