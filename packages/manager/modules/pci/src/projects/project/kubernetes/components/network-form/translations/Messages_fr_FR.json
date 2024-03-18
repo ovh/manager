@@ -7,6 +7,7 @@
   "kubernetes_network_form_gateway_private_description_p1": "À sélectionner si vous souhaitez utiliser une passerelle",
   "kubernetes_network_form_gateway_private_description_p2": "ou Custom tel que configuré dans votre réseau privé",
   "kubernetes_network_form_gateway_private_description_link": "OVHcloud Manager",
+  "kubernetes_network_form_gateway_private_description_help": "Adresse IP de votre passerelle (gateway) (laisser vide pour utiliser la passerelle définie par DHCP)",
   "kubernetes_network_form_gateway_vrack_field_ip_placeholder": "Saisir une adresse IP",
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Veuillez saisir une adresse IP valide",
   "kubernetes_network_form_label": "Réseau privé attaché",
