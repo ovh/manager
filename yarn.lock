@@ -4456,7 +4456,12 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.1.0.tgz#e7aa2d1d1cd65a2e063c7798109d5b944e565aa4"
   integrity sha512-Kfn8qgfWh97qGrdqWRPgde4pW/pL8qrHxHKZs2RZabgVMRbQ6K3Dkl1yKJXjo5U0SMoh8oWmO0JbnWk5k+MOvA==
 
-"@ovhcloud/ods-common-stencil@17.1.0", "@ovhcloud/ods-common-stencil@^17.1.0":
+"@ovhcloud/ods-common-core@17.2.0", "@ovhcloud/ods-common-core@^17.2.0":
+  version "17.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.2.0.tgz#8c4d8728e02751331292af3c5ac680dfd643d4ca"
+  integrity sha512-D1UIFLK7Qp8n7YYA9Wk7UMyjuGogMYVbrrFMuFKn7P+dMcu51dZytIrObQc0iIHdqvB70NMuKfdWr4xJSYRf1w==
+
+"@ovhcloud/ods-common-stencil@17.1.0":
   version "17.1.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-17.1.0.tgz#2de7a88c182cf729fc500182aa2de598354f9107"
   integrity sha512-VprvKgTUADl3dPy01h3S41utAEIoufTVaBeev10ZEYd2WUshkIJs4Hu02c4xZDYGqBaAVvblgtAOcGd1E/xebw==
@@ -4465,10 +4470,19 @@
     "@ovhcloud/ods-theme-blue-jeans" "17.1.0"
     "@stencil/core" "4.12.0"
 
+"@ovhcloud/ods-common-stencil@17.2.0", "@ovhcloud/ods-common-stencil@^17.2.0":
+  version "17.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-17.2.0.tgz#46aa173cde855776c305ec75a44a598482d5a7f0"
+  integrity sha512-IAlZ2Eu869G/Gg/vr5BdwjB/VenIUrKfXBLFh6Y8fgRg8fIMJZgCi9f1X8WRzdjA3GmXNmALZpVjwoK+ixOBUw==
+  dependencies:
+    "@ovhcloud/ods-common-core" "17.2.0"
+    "@ovhcloud/ods-theme-blue-jeans" "17.2.0"
+    "@stencil/core" "4.12.0"
+
 "@ovhcloud/ods-common-testing@^17.1.0":
-  version "17.1.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-testing/-/ods-common-testing-17.1.0.tgz#2e9cfb5799a053b87f88834185122ec35fa31ae8"
-  integrity sha512-dpdsfpFhoPGuxZeBLep7cjiXKE0dVW3KNIAi15sKhdU6JDvpGn68RzH5s/kmp2JetgWRv1Xq2SjWejOxMHVjWA==
+  version "17.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-testing/-/ods-common-testing-17.2.0.tgz#3f83f3f791cf6bb823ec08cf62bfb9147fd3e437"
+  integrity sha512-Ynw6KpayfB0+28XOMz5YddQ0OMh8qO1+wyANNSarB0dkSYB3sTqGbUXc266DFQDTIPjn++FhDE/+hM8bGSgLxQ==
   dependencies:
     "@jest/types" "27.1.1"
     "@types/jest" "27.5.2"
@@ -4487,6 +4501,11 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.1.0.tgz#300d71e085fafccf25969c2d90eb828144c36e23"
   integrity sha512-HYtaVO3LXyrSf1gOVMQihAzAW+27WfFH6UN2Jf+I0YKZfUgqvlHOXjcQJYim/bCQ4A1Ptkc3QgiEfYrspQxvDA==
 
+"@ovhcloud/ods-common-theming@17.2.0", "@ovhcloud/ods-common-theming@^17.2.0":
+  version "17.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.2.0.tgz#0f0147d300b9306f085b63c797807243727b5cd4"
+  integrity sha512-mplL2veYfkFb+nvOCwEpeZwz72T29PPMEWNIkyVBxM5bVWEbQWY+3++2v3wsdg2E9yN0I8JGB9aUE5hWxXLGJQ==
+
 "@ovhcloud/ods-components@17.1.0", "@ovhcloud/ods-components@^17.1.0":
   version "17.1.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-17.1.0.tgz#ab03d69ec5d6fd05a1afd2a7f59815bb2110d800"
@@ -4495,6 +4514,15 @@
     "@ovhcloud/ods-common-core" "17.1.0"
     "@ovhcloud/ods-common-stencil" "17.1.0"
     "@ovhcloud/ods-common-theming" "17.1.0"
+
+"@ovhcloud/ods-components@^17.2.0":
+  version "17.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-17.2.0.tgz#6b5029aee87bb55cffd5655e738f7f115539503a"
+  integrity sha512-c1Trm/Sdnz6Ehew3dVHoj1mAEI9pV4xHq6XtcHRkEH6M7L6y0FxzuFnlpE/hhIfFLQQQDpu+CLs2Po6N0xsPrg==
+  dependencies:
+    "@ovhcloud/ods-common-core" "17.2.0"
+    "@ovhcloud/ods-common-stencil" "17.2.0"
+    "@ovhcloud/ods-common-theming" "17.2.0"
 
 "@ovhcloud/ods-core@^14.0.1":
   version "14.1.1"
@@ -4524,6 +4552,13 @@
   integrity sha512-tZE/b0IGbmUY/Y/G2GXR4QLWacSKQwUSp0c3xFGqwqVnZunZZto0GloHn+EZHFtGhMI/6bwB5dYZsSDOLCqPhw==
   dependencies:
     "@ovhcloud/ods-common-theming" "17.1.0"
+
+"@ovhcloud/ods-theme-blue-jeans@17.2.0", "@ovhcloud/ods-theme-blue-jeans@^17.2.0":
+  version "17.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.0.tgz#08bce87fe26951ec8cbbfb99f996e7a639ee1c7e"
+  integrity sha512-bwI/GEa+dGV92IFfNYODvRSjAAjSInfU0FQokYQGezdsZVnBtEipdUMY5cFrCVQAOBrF1wskFC1dH4LrJ3NZxA==
+  dependencies:
+    "@ovhcloud/ods-common-theming" "17.2.0"
 
 "@ovhcloud/ods-theme-blue-jeans@^14.0.1", "@ovhcloud/ods-theme-blue-jeans@^14.1.1":
   version "14.1.1"
