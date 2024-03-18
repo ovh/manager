@@ -150,7 +150,7 @@ export default function ListingPage() {
         <PciDiscoveryBanner projectId={projectId} />
       )}
 
-      <div className={'flex items-center justify-between mt-4'}>
+      <div className={'flex flex-col sm:flex-row justify-between mt-4'}>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
@@ -176,7 +176,7 @@ export default function ListingPage() {
         {/* onOdsValueChange={({ detail }) => setSearchField(`${detail.value}`)} */}
         <OsdsSearchBar
           ref={searchBar}
-          className={'w-[15rem]'}
+          className={'sm:w-[15rem] xs:mt-4'}
           value={searchField}
           onOdsSearchSubmit={({ detail }) => {
             const { inputValue } = detail;
