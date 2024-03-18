@@ -96,5 +96,20 @@
   "pci_projects_project_users_add_cancel_label": "Anuluj",
   "pci_projects_project_users_add_description_label": "Opis użytkownika",
 
-  "pci_projects_project_users_add_description_error" : "Wypełnij to pole."
+  "pci_projects_project_users_add_description_error" : "Wypełnij to pole.",
+
+  "pci_projects_project_users_onboarding_title": "Użytkownicy & Role",
+  "pci_projects_project_users_onboarding_content1": "Nie utworzyłeś jeszcze użytkownika OpenStack.",
+  "pci_projects_project_users_onboarding_content2": "Twórz dostępy dla użytkowników i zarządzaj zasobami w chmurze.",
+  "pci_projects_project_users_onboarding_content3": "Operacje na zasobach w chmurze często wykonuje kilka osób lub aplikacji. Możesz tworzyć dostępy dla użytkowników z różnymi uprawnieniami i dotyczące różnych obszarów działania. ",
+  "pci_projects_project_users_onboarding_content4": "Pamiętaj, że jeśli używasz narzędzi, takich jak Terraform lub innych CMP, należy dla nich utworzyć dedykowany dostęp.",
+  "pci_projects_project_users_onboarding_action_label": "Utwórz użytkownika",
+  "pci_projects_project_users_onboarding_guides_create-delete-openstack-user_title": "Tworzenie i usuwanie użytkownika OpenStack",
+  "pci_projects_project_users_onboarding_guides_create-delete-openstack-user_description": "",
+  "pci_projects_project_users_onboarding_guides_configure-horizon-user-access_title": "Dostęp do interfejsu Horizon",
+  "pci_projects_project_users_onboarding_guides_configure-horizon-user-access_description": "Dowiedz się, jak zalogować się do interfejsu Horizon",
+  "pci_projects_project_users_onboarding_guides_prepare-openstack-api-env_title": "Przygotowanie środowisko do korzystania z API OpenStack",
+  "pci_projects_project_users_onboarding_guides_prepare-openstack-api-env_description": "Zainstaluj środowisko OpenStack, aby monitorować Twoje instancje za pośrednictwem API",
+
+  "onboarding_guide_title": "Tutoriale"
 }
