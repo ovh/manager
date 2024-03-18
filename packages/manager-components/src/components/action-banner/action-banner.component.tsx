@@ -23,7 +23,7 @@ export function ActionBanner({ message, cta, onClick }: ActionBannerProps) {
       color={ODS_THEME_COLOR_INTENT.warning}
       className={'mt-3 flex-row'}
     >
-      <div className={'flex flex-row justify-between'}>
+      <div className={'sm:flex sm:flex-row sm:justify-between'}>
         <OsdsText
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.default}
@@ -35,6 +35,7 @@ export function ActionBanner({ message, cta, onClick }: ActionBannerProps) {
           ></span>
         </OsdsText>
         <OsdsButton
+          className="sm:mt-0 mt-4 sm:ml-4 ml-0"
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => {
