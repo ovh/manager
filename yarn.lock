@@ -5067,10 +5067,10 @@
   dependencies:
     "@swc/helpers" "^0.5.0"
 
-"@remix-run/router@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.15.0.tgz#461a952c2872dd82c8b2e9b74c4dfaff569123e2"
-  integrity sha512-HOil5aFtme37dVQTB6M34G95kPM3MMuqSmIRVCC52eKV+Y/tGSqw9P3rWhlAx6A+mz+MoX+XxsGsNJbaI5qCgQ==
+"@remix-run/router@1.15.1":
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.15.1.tgz#221fd31a65186b9bc027b74573485fb3226dff7f"
+  integrity sha512-zcU0gM3z+3iqj8UX45AmWY810l3oUmXM7uH4dt5xtzvMhRtYVhKGOmgOd1877dOPPepfCjUv57w+syamWIYe7w==
 
 "@remix-run/router@1.15.2":
   version "1.15.2"
@@ -6480,10 +6480,10 @@
     "@babel/runtime" "^7.22.15"
     hoist-non-react-statics "^3.3.2"
 
-"@tanstack/query-core@5.14.2":
-  version "5.14.2"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.14.2.tgz#ef0c1a93e142d5cce90b0ac2d0333a88fc0fbb95"
-  integrity sha512-QmoJvC72sSWs3hgGis8JdmlDvqLfYGWUK4UG6OR9Q6t28JMN9m2FDwKPqoSJ9YVocELCSjMt/FGjEiLfk8000Q==
+"@tanstack/query-core@5.18.1":
+  version "5.18.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.18.1.tgz#b653ee354b7f4712d53565ccc5c6d8fb83ec866c"
+  integrity sha512-fYhrG7bHgSNbnkIJF2R4VUXb4lF7EBiQjKkDc5wOlB7usdQOIN4LxxHpDxyE3qjqIst1WBGvDtL48T0sHJGKCw==
 
 "@tanstack/query-core@5.20.2":
   version "5.20.2"
@@ -16388,14 +16388,7 @@ i18next-http-backend@^1.3.0:
   dependencies:
     cross-fetch "3.1.5"
 
-i18next-http-backend@^2.4.2:
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.4.3.tgz#be9a0aaff5f34542f1f9c1f7bd03eb96d8476dbd"
-  integrity sha512-jo2M03O6n1/DNb51WSQ8PsQ0xEELzLZRdYUTbf17mLw3rVwnJF9hwNgMXvEFSxxb+N8dT+o0vtigA6s5mGWyPA==
-  dependencies:
-    cross-fetch "4.0.0"
-
-i18next-http-backend@^2.4.3:
+i18next-http-backend@^2.4.2, i18next-http-backend@^2.4.3:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.4.3.tgz#be9a0aaff5f34542f1f9c1f7bd03eb96d8476dbd"
   integrity sha512-jo2M03O6n1/DNb51WSQ8PsQ0xEELzLZRdYUTbf17mLw3rVwnJF9hwNgMXvEFSxxb+N8dT+o0vtigA6s5mGWyPA==
@@ -23251,14 +23244,6 @@ react-router-dom@^6.21.0:
     react-router "6.22.2"
 
 react-router-dom@^6.22.0:
-  version "6.22.0"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.22.0.tgz#177c8bd27146decbb991eafb5df159f7a9f70035"
-  integrity sha512-z2w+M4tH5wlcLmH3BMMOMdrtrJ9T3oJJNsAlBJbwk+8Syxd5WFJ7J5dxMEW0/GEXD1BBis4uXRrNIz3mORr0ag==
-  dependencies:
-    "@remix-run/router" "1.15.0"
-    react-router "6.22.0"
-
-react-router-dom@^6.22.0:
   version "6.22.1"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.22.1.tgz#cfa109d4b6b0a4d00bac179bc0ad2a6469455282"
   integrity sha512-iwMyyyrbL7zkKY7MRjOVRy+TMnS/OPusaFVxM2P11x9dzSzGmLsebkCvYirGq0DWB9K9hOspHYYtDz33gE5Duw==
@@ -23281,17 +23266,17 @@ react-router@6.16.0:
   dependencies:
     "@remix-run/router" "1.9.0"
 
-react-router@6.22.0:
-  version "6.22.0"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.22.0.tgz#a22b44851a79dafc6b944cb418db3e80622b9be1"
-  integrity sha512-q2yemJeg6gw/YixRlRnVx6IRJWZD6fonnfZhN1JIOhV2iJCPeRNSH3V1ISwHf+JWcESzLC3BOLD1T07tmO5dmg==
-  dependencies:
-    "@remix-run/router" "1.15.0"
-
 react-router@6.22.1, react-router@^6.21.3:
   version "6.22.1"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.22.1.tgz#a5ff849bfe709438f7e139421bb28138209662c7"
   integrity sha512-0pdoRGwLtemnJqn1K0XHUbnKiX0S4X8CgvVVmHGOWmofESj31msHo/1YiqcJWK7Wxfq2a4uvvtS01KAQyWK/CQ==
+  dependencies:
+    "@remix-run/router" "1.15.1"
+
+react-router@6.22.2:
+  version "6.22.2"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.22.2.tgz#27e77e4c635a5697693b922d131d773451c98a5b"
+  integrity sha512-YD3Dzprzpcq+tBMHBS822tCjnWD3iIZbTeSXMY9LPSG541EfoBGyZ3bS25KEnaZjLcmQpw2AVLkFyfgXY8uvcw==
   dependencies:
     "@remix-run/router" "1.15.2"
 
@@ -25466,7 +25451,16 @@ string-length@^4.0.1:
     char-regex "^1.0.2"
     strip-ansi "^6.0.0"
 
-"string-width-cjs@npm:string-width@^4.2.0", "string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
+"string-width-cjs@npm:string-width@^4.2.0":
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
+  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
+  dependencies:
+    emoji-regex "^8.0.0"
+    is-fullwidth-code-point "^3.0.0"
+    strip-ansi "^6.0.1"
+
+"string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -25580,7 +25574,7 @@ stringify-entities@^3.0.0:
     character-entities-legacy "^1.0.0"
     xtend "^4.0.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -25600,6 +25594,13 @@ strip-ansi@^5.1.0, strip-ansi@^5.2.0:
   integrity sha512-DuRs1gKbBqsMKIZlrffwlug8MHkcnpjs5VPmL1PAh+mA30U0DTotfDZ0d2UUsXpPmPmMMJ6W773MaA3J+lbiWA==
   dependencies:
     ansi-regex "^4.1.0"
+
+strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
+  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
+  dependencies:
+    ansi-regex "^5.0.1"
 
 strip-ansi@^7.0.1:
   version "7.1.0"
@@ -28408,7 +28409,7 @@ worker-farm@^1.7.0:
   dependencies:
     errno "~0.1.7"
 
-"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
+"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
@@ -28429,6 +28430,15 @@ wrap-ansi@^6.0.1, wrap-ansi@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-6.2.0.tgz#e9393ba07102e6c91a3b221478f0257cd2856e53"
   integrity sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==
+  dependencies:
+    ansi-styles "^4.0.0"
+    string-width "^4.1.0"
+    strip-ansi "^6.0.0"
+
+wrap-ansi@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
+  integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
   dependencies:
     ansi-styles "^4.0.0"
     string-width "^4.1.0"
