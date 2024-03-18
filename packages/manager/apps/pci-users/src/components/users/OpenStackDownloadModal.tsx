@@ -14,8 +14,6 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
-  OdsSelectValueChangeEventDetail,
-  OsdsSelectCustomEvent,
 } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -77,112 +75,102 @@ export default function OpenStackDownloadModal({
   }, [regions]);
 
   return (
-    <>
-      <OsdsModal
-        headline={t('pci_projects_project_users_download-openrc_title')}
-        onOdsModalClose={onClose}
-      >
-        <slot name="content">
-          {!isLoading && !isLoadingDownload && (
-            <>
+    <OsdsModal
+      headline={t('pci_projects_project_users_download-openrc_title')}
+      onOdsModalClose={onClose}
+    >
+      <slot name="content">
+        {!isLoading && !isLoadingDownload && (
+          <>
+            <OsdsText
+              slot="label"
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              {t('pci_projects_project_users_download-openrc_content')}
+            </OsdsText>
+            {openStackGuideURL && (
+              <OsdsLink
+                href={openStackGuideURL}
+                className={'align-text-bottom ml-1'}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                target={OdsHTMLAnchorElementTarget._blank}
+              >
+                <span slot={'start'}>
+                  <OsdsText
+                    size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                  >
+                    {t('pci_projects_project_users_download-openrc_more_link')}
+                  </OsdsText>
+                  <OsdsIcon
+                    name={ODS_ICON_NAME.EXTERNAL_LINK}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    size={ODS_ICON_SIZE.xxs}
+                    className={'ml-1'}
+                  ></OsdsIcon>
+                </span>
+              </OsdsLink>
+            )}
+            <OsdsFormField className={'mt-2'}>
               <OsdsText
                 slot="label"
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {t('pci_projects_project_users_download-openrc_content')}
+                {t('pci_projects_project_users_download-openrc_region_label')}
               </OsdsText>
-              {openStackGuideURL && (
-                <OsdsLink
-                  href={openStackGuideURL}
-                  className={'align-text-bottom ml-1'}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  target={OdsHTMLAnchorElementTarget._blank}
-                >
-                  <span slot={'start'}>
-                    <OsdsText
-                      size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                    >
-                      {t(
-                        'pci_projects_project_users_download-openrc_more_link',
-                      )}
-                    </OsdsText>
-                    <OsdsIcon
-                      name={ODS_ICON_NAME.EXTERNAL_LINK}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                      size={ODS_ICON_SIZE.xxs}
-                      className={'ml-1'}
-                    ></OsdsIcon>
-                  </span>
-                </OsdsLink>
-              )}
-              <OsdsFormField className={'mt-2'}>
-                <OsdsText
-                  slot="label"
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
-                  {t('pci_projects_project_users_download-openrc_region_label')}
-                </OsdsText>
-                <OsdsSelect
-                  value={currentRegion}
-                  onOdsValueChange={(
-                    event: OsdsSelectCustomEvent<
-                      OdsSelectValueChangeEventDetail
-                    >,
-                  ) => {
-                    setCurrentRegion(`${event.detail.value}`);
-                  }}
-                >
-                  {regions?.map((r, index) => (
-                    <OsdsSelectOption key={index} value={r.name}>
-                      {tRegion(
-                        `manager_components_region_${getMacroRegion(
-                          r.datacenterLocation,
-                        )}_micro`,
-                        {
-                          micro: r.name,
-                        },
-                      )}
-                    </OsdsSelectOption>
-                  ))}
-                </OsdsSelect>
-                <OsdsText
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  className={'mt-4'}
-                >
-                  {t('pci_projects_project_users_download-openrc_info_global')}
-                </OsdsText>
-              </OsdsFormField>
-            </>
-          )}
-          {isLoading ||
-            (isLoadingDownload && (
-              <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-            ))}
-        </slot>
-        <OsdsButton
-          slot="actions"
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={onClose}
-        >
-          {t('pci_projects_project_users_download-openrc_cancel_label')}
-        </OsdsButton>
-        <OsdsButton
-          slot="actions"
-          color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() =>
-            downloadOpenStackConfig(currentRegion, openRCApiVersion)
-          }
-          {...(isLoading && isLoadingDownload ? { disabled: true } : {})}
-          data-testid="submitButton"
-        >
-          {t('pci_projects_project_users_download-openrc_submit_label')}
-        </OsdsButton>
-      </OsdsModal>
-    </>
+              <OsdsSelect
+                value={currentRegion}
+                onOdsValueChange={(event) => {
+                  setCurrentRegion(`${event.detail.value}`);
+                }}
+              >
+                {regions?.map((r, index) => (
+                  <OsdsSelectOption key={index} value={r.name}>
+                    {tRegion(
+                      `manager_components_region_${getMacroRegion(
+                        r.datacenterLocation,
+                      )}_micro`,
+                      {
+                        micro: r.name,
+                      },
+                    )}
+                  </OsdsSelectOption>
+                ))}
+              </OsdsSelect>
+              <OsdsText
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                color={ODS_THEME_COLOR_INTENT.text}
+                className={'mt-4'}
+              >
+                {t('pci_projects_project_users_download-openrc_info_global')}
+              </OsdsText>
+            </OsdsFormField>
+          </>
+        )}
+        {isLoading ||
+          (isLoadingDownload && (
+            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+          ))}
+      </slot>
+      <OsdsButton
+        slot="actions"
+        color={ODS_THEME_COLOR_INTENT.primary}
+        variant={ODS_BUTTON_VARIANT.ghost}
+        onClick={onClose}
+      >
+        {t('pci_projects_project_users_download-openrc_cancel_label')}
+      </OsdsButton>
+      <OsdsButton
+        slot="actions"
+        color={ODS_THEME_COLOR_INTENT.primary}
+        onClick={() => downloadOpenStackConfig(currentRegion, openRCApiVersion)}
+        {...(isLoading && isLoadingDownload ? { disabled: true } : {})}
+        data-testid="submitButton"
+      >
+        {t('pci_projects_project_users_download-openrc_submit_label')}
+      </OsdsButton>
+    </OsdsModal>
   );
 }
