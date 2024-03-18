@@ -108,16 +108,21 @@ const Pools = () => {
     <>
       <H2>{t('title')}</H2>
       <P>{t('description')}</P>
-      <Button
-        variant={'outline'}
-        size="sm"
-        className="text-base"
-        onClick={() => addModale.open()}
-      >
-        <Plus className="size-4 mr-2" />
-        {t('addButtonLabel')}
-      </Button>
-
+      {service.capabilities.connectionPools?.create && (
+        <Button
+          variant={'outline'}
+          size="sm"
+          className="text-base"
+          onClick={() => addModale.open()}
+          disabled={
+            service.capabilities.connectionPools.create ===
+            database.service.capability.StateEnum.disabled
+          }
+        >
+          <Plus className="size-4 mr-2" />
+          {t('addButtonLabel')}
+        </Button>
+      )}
       {connectionPoolListWithData ? (
         <DataTable
           columns={columns}
