@@ -1,0 +1,21 @@
+<oui-tile-definition
+    data-ng-repeat="license in $ctrl.licenses.getFeatures() track by license.name"
+>
+    <oui-tile-term
+        data-translate="{{:: 'nutanix_cluster_cloud_licence_' + license.getFormattedName() }}"
+    ></oui-tile-term>
+    <oui-tile-description>
+        <span
+            class="oui-badge oui-badge_success"
+            data-ng-bind=":: license.getValue()"
+        ></span>
+    </oui-tile-description>
+</oui-tile-definition>
+<oui-tile-definition>
+    <oui-tile-description>
+        <a data-ng-href="{{:: $ctrl.guideLink}}" target="_blank" rel="noopener">
+            <span data-translate="nutanix_cluster_cloud_licence_detail"></span>
+            <i class="oui-icon oui-icon-external-link" aria-hidden="true"></i>
+        </a>
+    </oui-tile-description>
+</oui-tile-definition>
