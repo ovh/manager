@@ -1,4 +1,4 @@
-import { FEATURES, TRACKING } from './constants';
+import { FEATURES, TRACKING, LEGACY_PACK_TYPES } from './constants';
 
 const STATUS_DONE = 'DONE';
 export default /* @ngInject */ ($stateProvider) => {
@@ -33,6 +33,10 @@ export default /* @ngInject */ ($stateProvider) => {
         });
         return promise;
       },
+      packType: /* @ngInject */ (clusterTechnicalDetails) =>
+        clusterTechnicalDetails.license.edition,
+      isLegacyPack: /* @ngInject */ (packType) =>
+        LEGACY_PACK_TYPES.includes(packType),
       clusterAddOns: /* @ngInject */ (NutanixService, serviceInfo) =>
         NutanixService.getClusterOptions(serviceInfo.serviceId),
       goToUpgradePrivateBandwidth: /* @ngInject */ ($state) => () =>
