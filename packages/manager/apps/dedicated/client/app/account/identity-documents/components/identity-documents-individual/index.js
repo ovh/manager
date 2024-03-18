@@ -6,7 +6,7 @@ const moduleName =
 
 angular
   .module(moduleName, ['pascalprecht.translate'])
-  .component('uploadIdentityDocumentsIndividualRequirements', component)
+  .component('accountUploadIdentityDocumentsIndividualRequirements', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
