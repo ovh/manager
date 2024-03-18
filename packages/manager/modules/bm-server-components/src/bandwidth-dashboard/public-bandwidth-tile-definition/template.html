@@ -1,0 +1,48 @@
+<oui-tile-definition
+    data-term="{{:: 'dedicated_' + ($ctrl.isCluster ? 'cluster' : 'server') + '_bandwidth_public' | translate }}"
+>
+    <oui-tile-description>
+        <p>
+            <small
+                class="oui-tile__extra"
+                data-ng-if="$ctrl.bandwidthOption === 'released'"
+                data-translate="dedicated_server_bandwidth_option_released"
+            >
+            </small>
+        </p>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Outgoing Bandwidth -->
+                <span class="oui-icon oui-icon-arrow-up font-inherit"></span>
+                <span
+                    data-ng-bind="$ctrl.specifications.bandwidth.OvhToInternet | serverBandwidth"
+                ></span>
+                <span
+                    data-translate="dedicated_server_bandwidth_outgoing"
+                ></span>
+                <div
+                    class="text-danger"
+                    data-ng-if="$ctrl.specifications.traffic.usage.isThrottled"
+                >
+                    -
+                    <span data-translate="server_consumption_throttled"></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{:: 'server_consumption_explanation' | translate }}"
+                    ></button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Incoming Bandwidth -->
+                <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
+                <span
+                    data-ng-bind="$ctrl.specifications.bandwidth.InternetToOvh | serverBandwidth"
+                ></span>
+                <span
+                    data-translate="dedicated_server_bandwidth_incoming"
+                ></span>
+            </div>
+        </div>
+    </oui-tile-description>
+</oui-tile-definition>
