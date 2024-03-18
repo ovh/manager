@@ -24,12 +24,12 @@
     </oui-message>
 
     <!--My Identity document title-->
-    <upload-identity-documents-corporation-requirements
+    <account-upload-identity-documents-corporation-requirements
         data-ng-if="$ctrl.user_type == $ctrl.USER_TYPE.corporation"
-    ></upload-identity-documents-corporation-requirements>
-    <upload-identity-documents-individual-requirements
+    ></account-upload-identity-documents-corporation-requirements>
+    <account-upload-identity-documents-individual-requirements
         data-ng-if="$ctrl.user_type == $ctrl.USER_TYPE.individual"
-    ></upload-identity-documents-individual-requirements>
+    ></account-upload-identity-documents-individual-requirements>
     <div
         data-ng-if="$ctrl.user_type != $ctrl.USER_TYPE.corporation && $ctrl.user_type != $ctrl.USER_TYPE.individual"
     >
