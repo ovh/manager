@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-octavia-load-balancer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "OVHCloud Octavia load balancer product",
   "repository": {

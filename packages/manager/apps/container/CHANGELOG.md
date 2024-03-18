@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.48.0...@ovh-ux/manager-container-app@0.49.0) (2024-03-18)
+
+
+### Features
+
+* **network-security:** remove beta label and survey links ([#11034](https://github.com/ovh/manager/issues/11034)) ([5e3f152](https://github.com/ovh/manager/commit/5e3f152c4ca7d752f3945860584f8e746d46b486))
+
+
+
+
+
 # [0.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.47.2...@ovh-ux/manager-container-app@0.48.0) (2024-03-13)
 
 

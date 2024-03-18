@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.17.1...@ovh-ux/manager-web@18.18.0) (2024-03-18)
+
+
+### Bug Fixes
+
+* **web.domain:** move Actions menu of operations table ([da9ac57](https://github.com/ovh/manager/commit/da9ac577305602987e3db3cefdc46a65ab8baf5a))
+
+
+### Features
+
+* **web.domain:** add translation for new domain operations ([#10972](https://github.com/ovh/manager/issues/10972)) ([97f4424](https://github.com/ovh/manager/commit/97f4424c30a924f5f00a1db8990236e03dc1d2fe))
+
+
+
+
+
 ## [18.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.17.0...@ovh-ux/manager-web@18.17.1) (2024-03-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

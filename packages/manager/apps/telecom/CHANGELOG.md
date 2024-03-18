@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.9.6...@ovh-ux/manager-telecom@15.10.0) (2024-03-18)
+
+
+### Features
+
+* **telecom:** rework on search buildings with street number ([8e40815](https://github.com/ovh/manager/commit/8e40815b799768fd7fd03b45cca37c2819b36cd4))
+
+
+
+
+
 ## [15.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.9.5...@ovh-ux/manager-telecom@15.9.6) (2024-03-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

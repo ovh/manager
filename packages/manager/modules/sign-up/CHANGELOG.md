@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.14.1...@ovh-ux/sign-up@2.15.0) (2024-03-18)
+
+
+### Features
+
+* **signup:** added helper text for address field ([#10998](https://github.com/ovh/manager/issues/10998)) ([09cefc2](https://github.com/ovh/manager/commit/09cefc2d1d54bbbde6ff74ec42ddf2924b714288))
+
+
+
+
+
 ## [2.14.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.14.0...@ovh-ux/sign-up@2.14.1) (2024-03-11)
 
 **Note:** Version bump only for package @ovh-ux/sign-up

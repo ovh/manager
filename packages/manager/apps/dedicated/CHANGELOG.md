@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.26.2...@ovh-ux/manager-dedicated@19.27.0) (2024-03-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2825] ([#11099](https://github.com/ovh/manager/issues/11099)) ([0ebd4af](https://github.com/ovh/manager/commit/0ebd4afd5e9153f2cb784f66c837ce4c314047a8))
+* **ip.firewall:** display select component completely ([4c496ac](https://github.com/ovh/manager/commit/4c496ac34941f8c32b42565bea976afbcdb4fb6c))
+* **ip.gamefirewall:** check ports are not already used ([#10922](https://github.com/ovh/manager/issues/10922)) ([1344575](https://github.com/ovh/manager/commit/1344575aeb0a6f9395d0fec731f2f542ba21b9f2))
+* **ip.gamefirewall:** use same label for protocol display ([f68c44a](https://github.com/ovh/manager/commit/f68c44a75b9a56dc37317ffbe632a6e38c785aad))
+* **network-security:** rework on periodicity labels ([#10900](https://github.com/ovh/manager/issues/10900)) ([09ca920](https://github.com/ovh/manager/commit/09ca92093ca5db85811acb1cda92cad2b5637b70))
+* **security.dashboard:** display timestamp to locale time ([#10907](https://github.com/ovh/manager/issues/10907)) ([0225a5f](https://github.com/ovh/manager/commit/0225a5fba6d0874d04199710d3d6b7eea00124b5))
+
+
+### Features
+
+* **dedicated:** change document size indication sentence ([#11089](https://github.com/ovh/manager/issues/11089)) ([e4c2d85](https://github.com/ovh/manager/commit/e4c2d853720f4e1a7f29c865036217edab68000e))
+* **dedicated:** changed identity documents inner title ([#11094](https://github.com/ovh/manager/issues/11094)) ([a6fb5b1](https://github.com/ovh/manager/commit/a6fb5b1609227079ae05f8da18a69106bcdd06dc))
+* **network-security:** display less data on x-axis ([87e0bd1](https://github.com/ovh/manager/commit/87e0bd1977b912d07f89f078069ee9d42f2d4008))
+* **network-security:** remove beta label and survey links ([#11034](https://github.com/ovh/manager/issues/11034)) ([5e3f152](https://github.com/ovh/manager/commit/5e3f152c4ca7d752f3945860584f8e746d46b486))
+
+
+
+
+
 ## [19.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.26.1...@ovh-ux/manager-dedicated@19.26.2) (2024-03-14)
 
 

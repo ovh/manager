@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.30.0...@ovh-ux/manager-pci@6.30.1) (2024-03-18)
+
+
+### Bug Fixes
+
+* **public-cloud:** local private network creation remove vlanid ([eb329e8](https://github.com/ovh/manager/commit/eb329e8f6b6939db1badd6c14aa79f99403d4ebe))
+* **public-cloud:** use add private network link if no private network ([#11151](https://github.com/ovh/manager/issues/11151)) ([dae7050](https://github.com/ovh/manager/commit/dae7050127b1e613971c5d202206809da7cf6c6d))
+
+
+
+
+
 # [6.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.29.2...@ovh-ux/manager-pci@6.30.0) (2024-03-13)
 
 
