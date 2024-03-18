@@ -6,6 +6,7 @@
   "sign_up_details_field_zip": "Code postal",
   "sign_up_details_field_city": "Ville",
   "sign_up_details_field_address": "Adresse",
+  "sign_up_details_field_address_help_text": "Assurez-vous que l'adresse correspond bien à celle figurant dans votre justificatif.",
   "sign_up_details_field_area": "Région",
   "sign_up_details_field_state": "État",
   "sign_up_details_field_province": "Province",

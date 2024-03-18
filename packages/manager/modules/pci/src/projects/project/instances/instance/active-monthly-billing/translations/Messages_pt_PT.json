@@ -1,9 +1,10 @@
 {
- "pci_projects_project_instances_instance_active-monthly-billing_title": "Passar para pagamento mensal",
- "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Confirmar",
- "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Anular",
- "pci_projects_project_instances_instance_active-monthly-billing_content": "Poupe até 50% ao passar a sua instância para um plano mensal (pagamento efetuado antecipadamente).",
- "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "Uma fatura proporcional aos dias restantes do mês será imediatamente editada.",
- "pci_projects_project_instances_instance_active-monthly-billing_success_message": "A instância {{ instance }} passou para um plano mensal.",
- "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "Ocorreu um erro ao passar a instância {{ instance }} para o plano mensal: {{ message }}."
+  "pci_projects_project_instances_instance_active-monthly-billing_title": "Passar para plano mensal",
+  "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Confirmar",
+  "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Anular",
+  "pci_projects_project_instances_instance_active-monthly-billing_content": "Reduza o montante da sua fatura passando a sua instância para o plano mensal.",
+  "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "Uma fatura proporcional aos dias restantes do mês será imediatamente editada.",
+  "pci_projects_project_instances_instance_active-monthly-billing_success_message": "A instância {{ instance }} passou para um plano mensal.",
+  "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "Ocorreu um erro ao passar a instância {{ instance }} para o plano mensal: {{ message }}.",
+  "pci_projects_project_instances_instance_active-monthly-billing_content_link": "Ver os preços"
 }

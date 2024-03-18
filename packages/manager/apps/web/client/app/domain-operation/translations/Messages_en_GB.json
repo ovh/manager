@@ -125,5 +125,6 @@
   "domain_operations_progress_instructions_6": "If both emails have been validated: validation and progress to the next stage takes place within 24 hours.",
   "domain_operations_progress_instructions_7": "You can contact your domain’s current service provider to get their approval.",
   "operation_tab_DOMAIN": "Domain",
-  "operation_tab_DNS": "DNS"
+  "domain_operations_nicOperation_ContactControlAcknowledge": "Contact confirmation",
+  "domain_operations_nicOperation_ContactControlCorrect": "Contact correction"
 }

@@ -55,6 +55,7 @@ export const registerPCINewState = (
           ovhShell.ux.showPreloader();
         }
       });
+      const $q = injector.get('$q');
       const translatePromise = injector.getAsync('$translate');
       const windowPromise = injector.getAsync('$window');
       const pciProjectsServicePromise = injector.getAsync('PciProjectsService');
@@ -67,6 +68,12 @@ export const registerPCINewState = (
       const trackProjectCreationErrorPromise = injector.getAsync(
         'trackProjectCreationError',
       );
+      let projectIdPromise;
+      try {
+        projectIdPromise = injector.getAsync('projectId');
+      } catch (e) {
+        projectIdPromise = $q.when('');
+      }
 
       return pciProjectsServicePromise.then((PciProjectsService) =>
         PciProjectsService.getDiscoveryProject().then((discoveryProject) => {
@@ -91,6 +98,7 @@ export const registerPCINewState = (
             coreURLBuilderPromise,
             newSupportTicketLinkPromise,
             trackProjectCreationErrorPromise,
+            projectIdPromise,
           ]).then(
             ([
               $translate,
@@ -100,6 +108,7 @@ export const registerPCINewState = (
               coreURLBuilder,
               newSupportTicketLink,
               trackProjectCreationError,
+              projectId,
             ]) => {
               let redirectState = configStep
                 ? `${stateName}.config`
@@ -112,9 +121,12 @@ export const registerPCINewState = (
               let trackErrorMessage;
 
               if (eligibility.isAskIncreaseProjectsQuotaRequired()) {
-                const projectId = get(transition.params('from'), 'projectId');
+                const fromProjectId = get(
+                  transition.params('from'),
+                  'projectId',
+                );
 
-                redirectState = projectId
+                redirectState = fromProjectId
                   ? 'pci.projects.project.quota-exceed-error'
                   : 'pci.projects.quota-exceed-error';
                 redirectParams = {
@@ -124,7 +136,7 @@ export const registerPCINewState = (
                   code: ELIGIBILITY_ACTION_ENUM.ASK_INCREASE_PROJECTS_QUOTA,
                   image:
                     ELIGIBILITY_ERROR_IMAGES_SRC.ASK_INCREASE_PROJECTS_QUOTA,
-                  projectId: get(transition.params('from'), 'projectId'),
+                  projectId: fromProjectId,
                   submitLabel: $translate.instant(
                     'pci_project_new_error_contact_support',
                   ),
@@ -159,9 +171,10 @@ export const registerPCINewState = (
                     voucher: redirectParams.voucher,
                     context: redirectParams.context,
                     target: redirectParams.target,
+                    ...(projectId && { projectId }),
                   }),
                 );
-                return null;
+                return false;
               }
 
               if (trackErrorMessage) {

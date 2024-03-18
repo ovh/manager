@@ -8,6 +8,7 @@ export default class {
   constructor(
     $scope,
     $translate,
+    moveEligibilityAddressService,
     OvhApiConnectivityEligibility,
     OvhApiConnectivityEligibilitySearch,
     TucToast,
@@ -15,6 +16,7 @@ export default class {
   ) {
     this.$scope = $scope;
     this.$translate = $translate;
+    this.moveEligibilityAddressService = moveEligibilityAddressService;
     this.OvhApiConnectivityEligibility = OvhApiConnectivityEligibility;
     this.OvhApiConnectivityEligibilitySearch = OvhApiConnectivityEligibilitySearch;
     this.TucToast = TucToast;
@@ -123,14 +125,47 @@ export default class {
 
   /**
    * Check that the street name match with a street object
-   * @param {String} streetName Name of the street
+   * @param {String} street Name of the street
    * @returns {boolean}
    */
   checkSelectedStreets(street) {
+    this.getStreetNumbers();
     return (
       street &&
       this.streets.some(({ streetName }) => streetName === street.streetName)
     );
+  }
+
+  /**
+   * Get street numbers from the street
+   */
+  getStreetNumbers() {
+    if (this.address.street && this.address.street.streetCode) {
+      this.searchStreetNumbers(this.address.street.streetCode);
+    }
+  }
+
+  /**
+   * Search street numbers from the selected street
+   * @param {String} streetCode street code of the selected street
+   */
+  searchStreetNumbers(streetCode) {
+    this.address.numberStreet = null;
+    this.loaders.streetNumbers = true;
+    this.loading = true;
+    this.moveEligibilityAddressService
+      .searchStreetNumber(streetCode)
+      .then((response) => {
+        if (response.status === 'pending') {
+          setTimeout(() => {
+            this.searchStreetNumbers(streetCode);
+          }, 5000);
+        } else {
+          this.streetNumbers = response.result;
+          delete this.loaders.streetNumbers;
+          this.loading = false;
+        }
+      });
   }
 
   /**
@@ -145,13 +180,13 @@ export default class {
         this.$scope,
         {
           streetCode: this.address.street.streetCode,
-          streetNumber: this.address.streetNumber,
+          streetNumber: this.address.streetNumber.number,
         },
       );
     }
     return this.OvhApiConnectivityEligibility.v6().testAddress(this.$scope, {
       streetCode: this.address.street.streetCode,
-      streetNumber: this.address.streetNumber,
+      streetNumber: this.address.streetNumber.number,
     });
   }
 
@@ -170,18 +205,63 @@ export default class {
   /**
    * Retrieve buildings for the address
    */
-  searchBuildings() {
-    return this.OvhApiConnectivityEligibilitySearch.v6()
-      .searchBuildings(this.$scope, {
-        streetCode: this.address.street.streetCode,
-        streetNumber: this.address.streetNumber,
-      })
-      .then((data) => {
-        return data.result.length > 0 ? data.result : null;
-      })
-      .catch((error) => {
-        this.loading = false;
-        this.TucToast.error(error);
+  searchBuildings(copper) {
+    this.moveEligibilityAddressService
+      .searchBuildings(
+        this.address.streetNumber.hexacle,
+        this.address.street.streetCode,
+        this.address.streetNumber.number,
+      )
+      .then((response) => {
+        if (response.status === 'pending') {
+          setTimeout(() => {
+            this.searchBuildings(copper);
+          }, 5000);
+        } else {
+          const buildings = response.result;
+          if (buildings?.length) {
+            if (buildings.length === 1) {
+              // Eligibility fiber
+              const [building] = buildings;
+              this.testFiberEligibility(building.reference).then(() => {
+                // send line offers
+                this.sendLineOffers(
+                  copper,
+                  this.fiber,
+                  'address',
+                  ELIGIBILITY_LINE_STATUS.create,
+                  building,
+                );
+                this.displayResult = true;
+                this.displaySearchResult = true;
+                this.displaySearch = false;
+                this.loading = false;
+              });
+            } else {
+              // Display buildings list
+              this.buildings = buildings;
+
+              this.copper = copper;
+              this.displayListOfBuildings = true;
+              this.loading = false;
+              this.displaySearch = false;
+              this.displayResult = true;
+              this.displaySearchResult = true;
+            }
+          } else {
+            // send line offers
+            this.sendLineOffers(
+              copper,
+              this.fiber,
+              'address',
+              ELIGIBILITY_LINE_STATUS.create,
+            );
+            this.displayResult = true;
+            this.displaySearchResult = true;
+            this.displaySearch = false;
+            this.loading = false;
+          }
+        }
       });
   }
 
@@ -265,50 +345,7 @@ export default class {
     });
 
     this.copperEligibilityByAddress().then((copper) => {
-      this.searchBuildings().then((buildings) => {
-        if (buildings) {
-          if (buildings.length === 1) {
-            // Eligibility fiber
-            const [building] = buildings;
-            this.testFiberEligibility(building.reference).then(() => {
-              // send line offers
-              this.sendLineOffers(
-                copper,
-                this.fiber,
-                'address',
-                ELIGIBILITY_LINE_STATUS.create,
-                building,
-              );
-              this.displayResult = true;
-              this.displaySearchResult = true;
-              this.displaySearch = false;
-              this.loading = false;
-            });
-          } else {
-            // Display buildings list
-            this.buildings = buildings;
-
-            this.copper = copper;
-            this.displayListOfBuildings = true;
-            this.loading = false;
-            this.displaySearch = false;
-            this.displayResult = true;
-            this.displaySearchResult = true;
-          }
-        } else {
-          // send line offers
-          this.sendLineOffers(
-            copper,
-            this.fiber,
-            'address',
-            ELIGIBILITY_LINE_STATUS.create,
-          );
-          this.displayResult = true;
-          this.displaySearchResult = true;
-          this.displaySearch = false;
-          this.loading = false;
-        }
-      });
+      this.searchBuildings(copper);
     });
   }
 

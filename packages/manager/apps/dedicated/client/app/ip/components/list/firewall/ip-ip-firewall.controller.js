@@ -1,13 +1,10 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
-import isObject from 'lodash/isObject';
 import set from 'lodash/set';
 import transform from 'lodash/transform';
 import union from 'lodash/union';
 
 import {
-  ALLOWED_LANGUAGES,
-  BASE_URL_SURVEY,
   FIREWALL_GUIDE_LINKS,
   EDGE_TRACKING_PREFIX,
 } from './firewall.constant';
@@ -71,25 +68,6 @@ export default /* @ngInject */ function IpFirewallCtrl(
     FIREWALL_GUIDE_LINKS[coreConfig.getUser().ovhSubsidiary] ||
     FIREWALL_GUIDE_LINKS.DEFAULT;
 
-  function initializeUrlSurvey() {
-    // Get default language
-    const defaultLanguage = Object.keys(ALLOWED_LANGUAGES).find(
-      (key) => ALLOWED_LANGUAGES[key].isDefault,
-    );
-    const userLanguage = coreConfig.getUserLanguage();
-
-    const languageToUse = isObject(ALLOWED_LANGUAGES[userLanguage])
-      ? userLanguage
-      : defaultLanguage;
-
-    // Get user
-    const user = coreConfig.getUser();
-
-    // Build url for survey link
-    const surveyUrl = `${BASE_URL_SURVEY}${languageToUse}&nic=${user.nichandle}`;
-    return surveyUrl;
-  }
-
   function paginate(pageSize, offset) {
     self.rulesTable = self.rules.list.results.slice(
       offset - 1,
@@ -137,8 +115,6 @@ export default /* @ngInject */ function IpFirewallCtrl(
   function init(params) {
     self.rulesLoadingError = null;
     self.rules = null;
-
-    self.surveyUrl = initializeUrlSurvey();
 
     if (params) {
       self.selectedBlock = params.ipBlock.ipBlock;

@@ -25,11 +25,13 @@ const iconComponents: IconComponents = {
   ...telecomIcons,
 };
 
+const DEFAULT_SIZE = 32;
+
 const SvgIconWrapper: React.FC<SvgIconProps> = ({
   name,
   className,
-  width,
-  height,
+  width = DEFAULT_SIZE,
+  height = DEFAULT_SIZE,
 }) => {
   const IconComponent = iconComponents[name];
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.11.0...@ovh-ux/manager-emailpro@3.11.1) (2024-03-11)
+
+
+### Bug Fixes
+
+* **web:** fix concurrency error on mailing list update ([#11104](https://github.com/ovh/manager/issues/11104)) ([c1fa044](https://github.com/ovh/manager/commit/c1fa04471b9d52d715ab4d8517c387ef97a56528))
+
+
+
+
+
 # [3.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.10.0...@ovh-ux/manager-emailpro@3.11.0) (2024-02-21)
 
 

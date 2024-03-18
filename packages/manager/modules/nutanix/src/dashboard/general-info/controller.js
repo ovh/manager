@@ -43,6 +43,10 @@ export default class NutanixGeneralInfoCtrl {
     this.TRACKING = TRACKING;
   }
 
+  getNodeRacks() {
+    return [...new Set(this.nodes.map(({ rack }) => rack))].join(' - ');
+  }
+
   loadServicesDetails() {
     this.loadingServicesDetails = true;
     return this.NutanixService.getServicesDetails(this.serviceInfo.serviceId)

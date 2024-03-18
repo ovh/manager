@@ -1,3 +1,6 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+
 .sign-up-form-details {
   .oui-field {
     margin-bottom: 0.625rem;
@@ -50,5 +53,11 @@
     .oui-input_phone {
       overflow: hidden;
     }
+  }
+
+  .help-block {
+    font-size: $mercury-font-size;
+    font-weight: $mercury-font-weight;
+    color: $p-700;
   }
 }

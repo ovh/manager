@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.5.0...@ovh-ux/manager-core-api@0.6.0) (2024-03-13)
+
+
+### Features
+
+* pci vouchers app in reactjs ([d6821ce](https://github.com/ovh/manager/commit/d6821cecd3bde7d884054d8e782e9a1e9dbfddac))
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.4.1...@ovh-ux/manager-core-api@0.5.0) (2024-03-11)
+
+
+### Features
+
+* **core:** add request tagger in client axios ([#10421](https://github.com/ovh/manager/issues/10421)) ([0e244c1](https://github.com/ovh/manager/commit/0e244c1f3bdac292ce1b0d9b125ba2d700587b12))
+
+
+
+
+
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.4.0...@ovh-ux/manager-core-api@0.4.1) (2024-03-07)
+
+
+### Reverts
+
+* Revert "feat(*): pci vouchers app in reactjs" ([b62c1a8](https://github.com/ovh/manager/commit/b62c1a8b1cfe63dbc420b660667209c324ffa9ab))
+
+
+
+
+
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.3.0...@ovh-ux/manager-core-api@0.4.0) (2024-03-07)
+
+
+### Features
+
+* pci vouchers app in reactjs ([ad08ee4](https://github.com/ovh/manager/commit/ad08ee4618d6243328eee76af7d1bd459a1a7d83))
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.2.0...@ovh-ux/manager-core-api@0.3.0) (2024-01-08)
 
 

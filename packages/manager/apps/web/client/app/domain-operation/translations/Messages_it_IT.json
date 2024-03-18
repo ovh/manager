@@ -125,5 +125,6 @@
   "domain_operations_progress_instructions_6": "Se entrambe le email sono state confermate: conferma e passaggio allo step successivo entro 24 ore.",
   "domain_operations_progress_instructions_7": "È possibile contattare l'attuale provider del dominio per richiedere la sua autorizzazione.",
   "operation_tab_DOMAIN": "Domini",
-  "operation_tab_DNS": "DNS"
+  "domain_operations_nicOperation_ContactControlAcknowledge": "Conferma del contatto",
+  "domain_operations_nicOperation_ContactControlCorrect": "Correzione del contatto"
 }

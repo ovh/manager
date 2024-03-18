@@ -1,7 +1,7 @@
 {
   "network_security_title": "Network",
   "network_security_dashboard_breadcrumb": "Network Security Dashboard",
-  "network_security_dashboard_title": "Tableau de bord Anti-DDoS (bêta)",
+  "network_security_dashboard_title": "Tableau de bord Anti-DDoS",
   "network_security_dashboard_guides": "Guides",
   "network_security_dashboard_header_content_survey": "En surveillant constamment le trafic réseau, nous observons un certain nombre d’activités suspectes. Pour chacune d’entre elles, le trafic réseau entrant est redirigé de manière transparente via nos centres de nettoyage pour une analyse plus approfondie et un éventuel nettoyage des attaquants afin de fournir la meilleure expérience sans interruption.",
   "network_security_dashboard_header_content_note": "Veuillez noter que les adresses IP sources ne sont pas exposées ici car elles ne sont pas fiables pour la plupart des attaques (c'est-à-dire les attaques par usurpation d'identité ou par réflexion).",
@@ -13,12 +13,14 @@
   "network_security_dashboard_col_end": "Heure de fin",
   "network_security_dashboard_col_ip": "IP de destination",
   "network_security_dashboard_col_vector": "Vecteurs d'attaque",
-  "network_security_dashboard_filter_last_6h": "Dernières 6h",
-  "network_security_dashboard_filter_last_24h": "Dernières 24h",
-  "network_security_dashboard_filter_last_week": "La semaine dernière",
-  "network_security_dashboard_filter_last_2_weeks": "2 semaines avant",
-  "network_security_dashboard_filter_last_month": "Le mois dernier",
-  "network_security_dashboard_filter_last_yeard": "L'année dernière",
+  "network_security_dashboard_filter_6_hours": "6 heures",
+  "network_security_dashboard_filter_24_hours": "24 heures",
+  "network_security_dashboard_filter_7_days": "7 jours",
+  "network_security_dashboard_filter_14_days": "14 jours",
+  "network_security_dashboard_filter_day": "Jour",
+  "network_security_dashboard_filter_week": "Semaine",
+  "network_security_dashboard_filter_month": "Mois",
+  "network_security_dashboard_filter_year": "Année",
   "network_security_dashboard_service_all": "Tous les services",
   "network_security_dashboard_service_CLOUD": "Public Cloud",
   "network_security_dashboard_service_HOUSING": "Housing",
@@ -59,5 +61,6 @@
   "network_security_dashboard_invalid_ip": "La valeur saisie pour l'IP est incorrecte.",
   "network_security_dashboard_like_this": "Vous aimez ?",
   "network_security_dashboard_like_this_tooltip": "Vous aimez cette page ? Faites nous part de vos remarques !",
-  "network_security_dashboard_refresh": "Raffraîchir les données"
+  "network_security_dashboard_refresh": "Raffraîchir les données",
+  "network_security_dashboard_time_zone": "(Timezone: UTC{{ timeZoneOffset }})"
 }

@@ -125,5 +125,6 @@
   "domain_operations_progress_instructions_6": "Si los dos emails han sido validados: validación y paso a la siguiente etapa en 24 horas.",
   "domain_operations_progress_instructions_7": "Puede ponerse en contacto con el proveedor actual del dominio para solicitar su consentimiento.",
   "operation_tab_DOMAIN": "Dominio",
-  "operation_tab_DNS": "DNS"
+  "domain_operations_nicOperation_ContactControlAcknowledge": "Confirmación del contacto",
+  "domain_operations_nicOperation_ContactControlCorrect": "Corrección del contacto"
 }

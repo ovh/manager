@@ -62,17 +62,17 @@ export default class ScrubbingCenterController extends AbstractCursorDatagridCon
   getAllEvents() {
     this.after = '';
     switch (this.period.name) {
-      case this.PERIOD_LIST.lastMonth:
+      case this.PERIOD_LIST.month:
         this.after = moment()
           .subtract(1, 'months')
           .toISOString();
         break;
-      case this.PERIOD_LIST.lastWeek:
+      case this.PERIOD_LIST.week:
         this.after = moment()
           .subtract(7, 'days')
           .toISOString();
         break;
-      case this.PERIOD_LIST.lastYear:
+      case this.PERIOD_LIST.year:
         this.after = moment()
           .subtract(1, 'years')
           .toISOString();

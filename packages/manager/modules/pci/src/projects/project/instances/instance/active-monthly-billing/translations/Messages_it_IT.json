@@ -1,9 +1,10 @@
 {
- "pci_projects_project_instances_instance_active-monthly-billing_title": "Passa al forfait mensile",
- "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Conferma",
- "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Annulla",
- "pci_projects_project_instances_instance_active-monthly-billing_content": "Attiva il forfait mensile con fatturazione anticipata sulla tua istanza e risparmi il 50%.",
- "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "Ti invieremo subito una fattura del pro rata corrispondente ai  giorni restanti del mese.",
- "pci_projects_project_instances_instance_active-monthly-billing_success_message": "Sull’istanza {{ instance }} è ora attivo il forfait mensile.",
- "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "Si è verificato un errore durante l’attivazione del forfait mensile sull'istanza {{ instance }}: {{ message }}."
+  "pci_projects_project_instances_instance_active-monthly-billing_title": "Passa al forfait mensile",
+  "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Confermare",
+  "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Annullare",
+  "pci_projects_project_instances_instance_active-monthly-billing_content": "Riduci l'importo della tua fattura attivando il forfait mensile sulla tua istanza.",
+  "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "Ti invieremo subito una fattura del pro rata corrispondente ai  giorni restanti del mese.",
+  "pci_projects_project_instances_instance_active-monthly-billing_success_message": "Sull’istanza {{ instance }} è ora attivo il forfait mensile.",
+  "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "Si è verificato un errore durante l’attivazione del forfait mensile sull'istanza {{ instance }}: {{ message }}.",
+  "pci_projects_project_instances_instance_active-monthly-billing_content_link": "Visualizza i prezzi"
 }

@@ -93,6 +93,12 @@ export default /* @ngInject */ ($stateProvider) => {
           optionName,
         }),
 
+      goToDatacenter: /* @ngInject */ ($state, productId) => (datacenterId) =>
+        $state.go('app.dedicatedCloud.details.datacenter.details', {
+          productId,
+          datacenterId,
+        }),
+
       disableVmwareOption: /* @ngInject */ ($state) => (option) =>
         $state.go(
           'app.dedicatedCloud.details.dashboard.vmware-option-disable',

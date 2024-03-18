@@ -81,27 +81,29 @@ export const GETTING_STARTED_LINK = {
     'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050193',
 };
 
-export const TRACKING_CHAPTER_1 = 'PublicCloud';
-
 export const TRACKING_NAME =
   'pci::projects::project::octavia-loadbalancer::add';
 
-export const TRACKING_PRODUCT_PAGE = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-product-page`;
+const TRACKING_ROOT = `PublicCloud::${TRACKING_NAME}`;
 
-export const TRACKING_REGION_AVAILABILITY = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-region-availability`;
-
-export const TRACKING_PRIVATE_NETWORK_CREATION = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::create-private-network`;
-
-export const TRACKING_INSTANCE_DOCUMENTATION = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-documentation`;
-
-export const TRACKING_LOAD_BALANCER_CREATION_CANCEL = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::cancel`;
-
-export const TRACKING_LOAD_BALANCER_CREATION_SUBMIT = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::confirm`;
-
-export const TRACKING_LOAD_BALANCER_CREATION_SUBMIT_DETAIL = `octavia-loadbalancer::confirm-creation`;
-
-export const TRACKING_LOAD_BALANCER_CREATION_SUBMIT_ERROR = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}-error`;
-export const TRACKING_LOAD_BALANCER_CREATION_SUBMIT_SUCCESS = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}-success`;
+export const LOAD_BALANCER_CREATION_TRACKING = {
+  ROOT: TRACKING_ROOT,
+  GO_TO_PRODUCT_PAGE: `${TRACKING_ROOT}::goto-product-page`,
+  GO_TO_REGION_AVAILABILITY: `${TRACKING_ROOT}::goto-region-availability`,
+  CREATE_PRIVATE_NETWORK: `${TRACKING_ROOT}::create-private-network`,
+  GO_TO_INSTANCE_DOCUMENTATION: `${TRACKING_ROOT}::goto-documentation`,
+  CANCEL: `${TRACKING_ROOT}::cancel`,
+  SUBMIT: `${TRACKING_ROOT}::confirm`,
+  CONFIRM: `octavia-loadbalancer::confirm-creation`,
+  ERROR: `${TRACKING_ROOT}-error`,
+  SUCCESS: `${TRACKING_ROOT}-success`,
+  FINISH_STEP_1: 'loadbalancer_octavia_add_size',
+  FINISH_STEP_2: 'loadbalancer_octavia_add_region',
+  FINISH_STEP_3: 'loadbalancer_octavia_add_ip',
+  FINISH_STEP_4: 'loadbalancer_octavia_add_network',
+  FINISH_STEP_5: 'loadbalancer_octavia_add_instances',
+  SKIP_STEP_5: 'loadbalancer_octavia_add_instances_skip',
+};
 
 export const AGORA_ADDON_FAMILY = 'octavia-loadbalancer';
 
@@ -129,16 +131,7 @@ export default {
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
   GETTING_STARTED_LINK,
-  TRACKING_CHAPTER_1,
-  TRACKING_PRODUCT_PAGE,
-  TRACKING_REGION_AVAILABILITY,
-  TRACKING_PRIVATE_NETWORK_CREATION,
-  TRACKING_INSTANCE_DOCUMENTATION,
-  TRACKING_LOAD_BALANCER_CREATION_CANCEL,
-  TRACKING_LOAD_BALANCER_CREATION_SUBMIT,
-  TRACKING_LOAD_BALANCER_CREATION_SUBMIT_DETAIL,
-  TRACKING_LOAD_BALANCER_CREATION_SUBMIT_ERROR,
-  TRACKING_LOAD_BALANCER_CREATION_SUBMIT_SUCCESS,
+  LOAD_BALANCER_CREATION_TRACKING,
   AGORA_ADDON_FAMILY,
   TRACKING_NAME,
   SIZE_FLAVOUR_REGEX,

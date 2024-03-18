@@ -1,9 +1,10 @@
 {
- "pci_projects_project_instances_instance_active-monthly-billing_title": "Switch to monthly subscription",
- "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Confirm",
- "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Cancel",
- "pci_projects_project_instances_instance_active-monthly-billing_content": "Switch to monthly billing for this instance and save 50% (paid in advance)",
- "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "A pro-rata bill for the remaining days of the month will automatically be generated.",
- "pci_projects_project_instances_instance_active-monthly-billing_success_message": "The {{ instance }} instance has been switched to monthly billing.",
- "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "An error has occurred switching the {{ instance }} instance to monthly billing: {{ message }}."
+  "pci_projects_project_instances_instance_active-monthly-billing_title": "Switch to monthly subscription",
+  "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Confirm",
+  "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Cancel",
+  "pci_projects_project_instances_instance_active-monthly-billing_content": "Switch to monthly billing for this instance and save more.",
+  "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "A pro-rata bill for the remaining days of the month will automatically be generated.",
+  "pci_projects_project_instances_instance_active-monthly-billing_success_message": "The {{ instance }} instance has been switched to monthly billing.",
+  "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "An error has occurred switching the {{ instance }} instance to monthly billing: {{ message }}.",
+  "pci_projects_project_instances_instance_active-monthly-billing_content_link": "View prices"
 }

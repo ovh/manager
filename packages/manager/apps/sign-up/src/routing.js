@@ -57,6 +57,7 @@ export const state = {
       ssoAuthentication
         .getSsoAuthPendingPromise()
         .then(() => ssoAuthentication.user),
+
     cancelStep: /* @ngInject */ ($location, ssoAuthentication) => () => {
       ssoAuthentication.logout($location.search().onsuccess);
     },
@@ -157,6 +158,9 @@ export const state = {
         customObject: { event: 'ACCOUNT_CREATION_VALIDATION' },
       });
     },
+
+    subsidiary: /* @ngInject */ ($location, coreConfig) =>
+      $location.search().ovhSubsidiary || coreConfig.getUser().ovhSubsidiary,
   },
   atInternet: {
     ignore: true,

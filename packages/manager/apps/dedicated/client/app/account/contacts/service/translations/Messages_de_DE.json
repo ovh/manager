@@ -37,7 +37,7 @@
   "account_contacts_service_contact_admin": "Administrator-Kontakt",
   "account_contacts_service_contact_tech": "Technischer Kontakt",
   "account_contacts_service_contact_billing": "Rechnungskontakt",
-  "account_contacts_service_infos": "Sie können die Administator-, technischen und Rechnungs-Accounts Ihrer Dienste ändern.",
+  "account_contacts_service_infos": "Sie können die Administrator-, technischen und Abrechnungs-Accounts Ihrer Dienste ändern.",
   "account_contacts_service_category_LOGS": "Logs Data Platform ",
   "account_contacts_service_category_NETAPP": "NetApp"
 }

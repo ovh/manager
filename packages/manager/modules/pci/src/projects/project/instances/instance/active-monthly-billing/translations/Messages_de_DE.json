@@ -1,9 +1,10 @@
 {
- "pci_projects_project_instances_instance_active-monthly-billing_title": "Auf monatliche Abrechnung umstellen",
- "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Bestätigen",
- "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Abbrechen",
- "pci_projects_project_instances_instance_active-monthly-billing_content": "Reduzieren Sie den Preis um 50 %, indem Sie Ihre Instanz auf monatliche Abrechnung umstellen (im Voraus abgerechnet).",
- "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "Es wird dann eine anteilige Rechnung für die verbleibenden Tage des Monats erstellt.",
- "pci_projects_project_instances_instance_active-monthly-billing_success_message": "Die Instanz {{ instance }} wurde auf monatliche Abrechnung umgestellt.",
- "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "Bei der Umstellung der Instanz {{ instance }} auf monatliche Abrechnung ist ein Fehler aufgetreten: {{ message }}."
+  "pci_projects_project_instances_instance_active-monthly-billing_title": "Auf monatliche Abrechnung umstellen",
+  "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Bestätigen",
+  "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Abbrechen",
+  "pci_projects_project_instances_instance_active-monthly-billing_content": "Verringern Sie den Rechnungsbetrag, indem Sie Ihre Instanz auf die monatliche Abrechnung umstellen.",
+  "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "Es wird dann eine anteilige Rechnung für die verbleibenden Tage des Monats erstellt.",
+  "pci_projects_project_instances_instance_active-monthly-billing_success_message": "Die Instanz {{ instance }} wurde auf monatliche Abrechnung umgestellt.",
+  "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "Bei der Umstellung der Instanz {{ instance }} auf monatliche Abrechnung ist ein Fehler aufgetreten: {{ message }}.",
+  "pci_projects_project_instances_instance_active-monthly-billing_content_link": "Preise anzeigen"
 }
