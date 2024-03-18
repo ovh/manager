@@ -48,42 +48,40 @@ export const Links: React.FC<LinksProps> = ({
   }
 
   return (
-    <div className="mb-5">
-      <OsdsLink
-        color={ODS_THEME_COLOR_INTENT.primary}
-        download={download}
-        href={href}
-        target={target}
-        rel={rel}
-        {...props}
-      >
-        <span slot="start">
-          {type === LinkType.back && (
-            <OsdsIcon
-              className={`${arrowClass}`}
-              hoverable
-              name={arrowIcon}
-              size={ODS_ICON_SIZE.xxs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            />
-          )}
-        </span>
-
-        {label}
-        {(type === LinkType.next || type === LinkType.external) && (
-          <span slot="end">
-            <OsdsIcon
-              aria-hidden="true"
-              className={`${arrowClass}`}
-              name={arrowIcon}
-              hoverable
-              size={ODS_ICON_SIZE.xxs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            />
-          </span>
+    <OsdsLink
+      color={ODS_THEME_COLOR_INTENT.primary}
+      download={download}
+      href={href}
+      target={target}
+      rel={rel}
+      {...props}
+    >
+      <span slot="start">
+        {type === LinkType.back && (
+          <OsdsIcon
+            className={`${arrowClass}`}
+            hoverable
+            name={arrowIcon}
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          />
         )}
-      </OsdsLink>
-    </div>
+      </span>
+
+      {label}
+      {(type === LinkType.next || type === LinkType.external) && (
+        <span slot="end">
+          <OsdsIcon
+            aria-hidden="true"
+            className={`${arrowClass}`}
+            name={arrowIcon}
+            hoverable
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          />
+        </span>
+      )}
+    </OsdsLink>
   );
 };
 

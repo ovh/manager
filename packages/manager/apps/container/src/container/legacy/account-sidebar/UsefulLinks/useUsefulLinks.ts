@@ -4,6 +4,10 @@ import { UsefulLink } from './Link/usefulLink';
 
 import { useShell } from '@/context/useApplicationContext';
 import useContainer from '@/core/container';
+import { ODS_ICON_NAME} from '@ovhcloud/ods-components'
+
+
+import getOdsIcon from '../getOdsIcon';
 
 interface UseUsefulLinks {
   getUsefulLinks(): UsefulLink[];
@@ -27,8 +31,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
         external: true,
         href: constants[region]?.help[user.ovhSubsidiary],
         tracking: `${trackingPrefix}::go-to-helpcenter`,
-        icon: 'oui-icon oui-icon-lifebuoy_concept',
-      },
+        icon: getOdsIcon(ODS_ICON_NAME.LIFEBUOY_CONCEPT),      },
       ...(isLivechatEnabled
         ? [
             {
@@ -37,7 +40,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
                 shell.getPlugin('ux').openLiveChat();
                 setChatbotReduced(false);
               },
-              icon: 'oui-icon oui-icon-speech-bubble_concept',
+              icon: getOdsIcon(ODS_ICON_NAME.SPEECH_BUBBLE_CONCEPT),
             },
           ]
         : []),
@@ -46,13 +49,13 @@ const useUsefulLinks = (): UseUsefulLinks => {
         external: true,
         href: constants[region]?.tasks,
         tracking: `${trackingPrefix}::go-to-ovh-status`,
-        icon: 'oui-icon oui-icon-traffic-cone_concept',
+        icon: getOdsIcon(ODS_ICON_NAME.TRAFFIC_CONE_CONCEPT),
       },
       {
         id: 'tickets',
         href: navigation.getURL('dedicated', '#/ticket'),
         tracking: `${trackingPrefix}::go-to-tickets`,
-        icon: 'oui-icon oui-icon-envelop_concept',
+        icon: getOdsIcon(ODS_ICON_NAME.ENVELOP_CONCEPT),
       },
       ...(['EU', 'CA'].includes(region)
         ? [
@@ -60,7 +63,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
               id: 'createTicket',
               href: navigation.getURL('dedicated', '#/support/tickets/new'),
               tracking: `${trackingPrefix}::go-to-create-ticket`,
-              icon: 'oui-icon oui-icon-user-support_concept',
+              icon: getOdsIcon(ODS_ICON_NAME.USER_SUPPORT_CONCEPT),
             },
           ]
         : []),

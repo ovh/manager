@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import useClickAway from 'react-use/lib/useClickAway';
 import style from './style.module.scss';
-import { OsdsIcon } from '@ovhcloud/ods-stencil/components/react';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
-import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 type OrderResponsivePopupProps = {
   button: HTMLElement;
@@ -16,7 +16,6 @@ export default function OrderResponsivePopup({
   children,
   onClose,
 }: OrderResponsivePopupProps) {
-
   const ref = useRef<HTMLDivElement | null>(null);
 
   useClickAway(ref, (e) => {
@@ -39,7 +38,12 @@ export default function OrderResponsivePopup({
       const target: HTMLElement = e.target as HTMLElement;
       if (!onClose) return;
       if (!document.body.contains(target)) return;
-      if (ref.current && 'contains' in ref.current && !button.contains(target) && ref.current.contains(target)) {
+      if (
+        ref.current &&
+        'contains' in ref.current &&
+        !button.contains(target) &&
+        ref.current.contains(target)
+      ) {
         onClose();
       }
     };
@@ -55,16 +59,21 @@ export default function OrderResponsivePopup({
 
   return (
     <>
-      <div className={style.popupOverlay}></div>
-      <div
-        className={style.popup}
-        ref={ref}
-      >
+      <div className="fixed inset-0 z-[2]"></div>
+      <div className={style.popup} ref={ref}>
         <div>
           {children}
-          <div className={style.popupCloseButton}>
-            <button type="button" onClick={() => typeof onClose === 'function' && onClose()} className={style.transparentButton}>
-              <OsdsIcon size={OdsIconSize.sm} name={OdsIconName.CLOSE} color={OdsThemeColorIntent.primary} />
+          <div className="absolute top-4 right-4 sm:hidden">
+            <button
+              type="button"
+              onClick={() => typeof onClose === 'function' && onClose()}
+              className="bg-transparent border-none p-0 m-0 cursor-pointer"
+            >
+              <OsdsIcon
+                size={ODS_ICON_SIZE.sm}
+                name={ODS_ICON_NAME.CLOSE}
+                color={ODS_THEME_COLOR_INTENT.primary}
+              />
             </button>
           </div>
         </div>
