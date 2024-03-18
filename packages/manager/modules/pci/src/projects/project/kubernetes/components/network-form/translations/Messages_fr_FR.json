@@ -17,7 +17,7 @@
   "kubernetes_network_form_subnet": "Choisissez un sous-réseau pour votre cluster",
   "kubernetes_network_form_subnet_description": "Sélectionnez le sous-réseau à utiliser pour votre cluster Managed Kubernetes Service. Veuillez vous assurer que celui-ci respecte les prérequis réseau du service managé Managed Kubernetes Service.",
   "kubernetes_network_form_subnet_link": "Lire la documentation",
-  "kubernetes_network_form_subnet_error_no_gateway_ip": "Le sous-réseau sélectionné n'a pas de gateway IP définie. Attention, cela est nécessaire si vous souhaitez utiliser des Load Balancers avec une adresse IP publique, vous pouvez créer/sélectionner un autre subnet pour votre cluster ou utiliser les paramètres avancés pour définir un subnet dédié à vos Load Balancers.",
+  "kubernetes_network_form_subnet_error_no_gateway_ip": "Le sous-réseau sélectionné n'a pas de passerelle définie. Cela est nécessaire si vous souhaitez utiliser un Load Balancer avec une adresse IP publique. Nous vous invitons à créer ou selectionner un autre sous-réseau pour votre cluster respectant les prérequis ou définir un sous-réseau dédié à vos Load Balancer dans les paramètres avancés.",
   "kubernetes_network_form_subnet_error_default": "Une erreur est survenue lors du chargement des sous-réseaux pour ce réseau privé : {{ error }}.",
   "kubernetes_network_form_load_balancers_subnet": "Choisissez un sous-réseau dédié pour vos Load Balancers",
   "kubernetes_network_form_load_balancers_subnet_description": "Il vous est possible de définir un sous-réseau spécifique pour vos Load Balancers. Cela est notamment nécessaire si le sous-réseau choisi pour votre cluster ne respecte pas les prérequis nécessaires à la création de Load Balancers managés OVHcloud.",
