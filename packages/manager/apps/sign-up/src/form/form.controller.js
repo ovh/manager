@@ -3,19 +3,15 @@ import isFunction from 'lodash/isFunction';
 import some from 'lodash/some';
 import { SUBSIDIARIES_LABEL_SUFFIX } from '../constants';
 
-const OVH_SUBSIDIARY_ITEM_NAME = 'ovhSubsidiaryCreationForm';
-
 export default class SignUpFormAppCtrl {
   /* @ngInject */
-  constructor($location, atInternet, coreConfig) {
-    this.$location = $location;
+  constructor(atInternet) {
     this.atInternet = atInternet;
     this.isActivityStepVisible = false;
     this.saveError = null;
 
     this.isValid = false;
     this.smsConsent = false;
-    this.user = coreConfig.getUser();
 
     this.loading = {
       init: true,
@@ -94,13 +90,9 @@ export default class SignUpFormAppCtrl {
     if (this.needkyc) this.goToKycDocumentUploadPage();
     // call to finishSignUp binding
     if (isFunction(this.finishSignUp)) {
-      return this.finishSignUp(this.smsConsent)
-        .then(() => {
-          localStorage.removeItem(OVH_SUBSIDIARY_ITEM_NAME);
-        })
-        .catch((error) => {
-          this.saveError = error;
-        });
+      return this.finishSignUp(this.smsConsent).catch((error) => {
+        this.saveError = error;
+      });
     }
 
     return null;
@@ -112,13 +104,8 @@ export default class SignUpFormAppCtrl {
     this.saveError = null;
     this.loading.init = true;
 
-    const { ovhSubsidiary } = this.$location.search();
-    if (ovhSubsidiary && ovhSubsidiary.match(/^[\w]{2}$/)) {
-      localStorage.setItem(OVH_SUBSIDIARY_ITEM_NAME, ovhSubsidiary);
-    }
-    const subsidiary = ovhSubsidiary || this.user.ovhSubsidiary;
     this.subsidiaryLabelSuffix =
-      SUBSIDIARIES_LABEL_SUFFIX[subsidiary] ||
+      SUBSIDIARIES_LABEL_SUFFIX[this.subsidiary] ||
       SUBSIDIARIES_LABEL_SUFFIX.DEFAULT;
 
     if (this.me.state === 'incomplete') {

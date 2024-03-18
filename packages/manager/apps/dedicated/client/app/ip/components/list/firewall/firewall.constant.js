@@ -1,14 +1,3 @@
-export const ALLOWED_LANGUAGES = {
-  en: {
-    isDefault: true,
-  },
-  fr: {
-    isDefault: false,
-  },
-};
-
-export const BASE_URL_SURVEY = 'https://survey.ovh.com/index.php/116651?lang=';
-
 export const FIREWALL_GUIDE_LINKS = {
   DE:
     'https://help.ovhcloud.com/csm/de-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0030464',
@@ -57,8 +46,6 @@ export const FIREWALL_GUIDE_LINKS = {
 export const EDGE_TRACKING_PREFIX = 'dedicated::ip::firewall';
 
 export default {
-  ALLOWED_LANGUAGES,
-  BASE_URL_SURVEY,
   FIREWALL_GUIDE_LINKS,
   EDGE_TRACKING_PREFIX,
 };

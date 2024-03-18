@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.30.0...@ovh-ux/manager-pci@6.30.1) (2024-03-18)
+
+
+### Bug Fixes
+
+* **public-cloud:** local private network creation remove vlanid ([eb329e8](https://github.com/ovh/manager/commit/eb329e8f6b6939db1badd6c14aa79f99403d4ebe))
+* **public-cloud:** use add private network link if no private network ([#11151](https://github.com/ovh/manager/issues/11151)) ([dae7050](https://github.com/ovh/manager/commit/dae7050127b1e613971c5d202206809da7cf6c6d))
+
+
+
+
+
+# [6.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.29.2...@ovh-ux/manager-pci@6.30.0) (2024-03-13)
+
+
+### Features
+
+* pci vouchers app in reactjs ([d6821ce](https://github.com/ovh/manager/commit/d6821cecd3bde7d884054d8e782e9a1e9dbfddac))
+
+
+
+
+
+## [6.29.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.29.1...@ovh-ux/manager-pci@6.29.2) (2024-03-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci
+
+
+
+
+
+## [6.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.29.0...@ovh-ux/manager-pci@6.29.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* **pci:** remove call to lab ([77332cb](https://github.com/ovh/manager/commit/77332cb317c7a2c0f84204299e60623d3243f038))
+
+
+### Reverts
+
+* Revert "feat(*): pci vouchers app in reactjs" ([b62c1a8](https://github.com/ovh/manager/commit/b62c1a8b1cfe63dbc420b660667209c324ffa9ab))
+
+
+
+
+
+# [6.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.28.0...@ovh-ux/manager-pci@6.29.0) (2024-03-07)
+
+
+### Features
+
+* pci vouchers app in reactjs ([ad08ee4](https://github.com/ovh/manager/commit/ad08ee4618d6243328eee76af7d1bd459a1a7d83))
+
+
+
+
+
 # [6.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.27.0...@ovh-ux/manager-pci@6.28.0) (2024-03-04)
 
 

@@ -2,7 +2,6 @@
   "user_account_identity_documents": "Moje dokumenty tożsamości",
   "user_account_identity_documents_sub_title": "Prześlij dokumenty",
   "user_account_identity_documents_intro": "Założyłaś/-eś konto i chcesz złożyć zamówienie na naszej hinduskiej stronie internetowej. Obowiązujące przepisy wymagają sprawdzenia Twojej tożsamości przed złożeniem zamówienia.",
-  "user_account_identity_documents_intro_kyc_reminder": "Upewnij się, że Twoje imię i nazwisko odpowiada danym osobowym podanym w Twoich oficjalnych dokumentach.",
   "user_account_identity_documents_list_for_particular": "Jesteś osobą prywatną, wymagane dokumenty to",
   "user_account_identity_documents_list_for_enterprise": "Reprezentujesz firmę, wymagane dokumenty to",
   "user_account_identity_documents_list_for_association": "Reprezentujesz stowarzyszenie, wymagane dokumenty to",
@@ -13,8 +12,7 @@
   "user_account_identity_documents_list_doc3": "Certyfikat GST",
   "user_account_identity_documents_list_doc3_optional": "Certyfikat GST (opcjonalnie)",
   "user_account_identity_documents_description": "Dokumenty będą przechowywane przez okres 5 lat od zakończenia umowy.",
-  "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png Maksymalny rozmiar: 10 MB.",
-  "user_account_identity_documents_selection_file_format_invalid": "Nieobsługiwany format pliku. Użyj jednego z akceptowanych formatów: jpg, jpeg, pdf i png",
+  "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png. Maksymalny rozmiar pliku dla każdego dokumentu to 10 MB.",
   "user_account_identity_documents_submit": "Wyślij dokumenty",
   "user_account_identity_documents_submit_success_message_title": "Dziękujemy, potwierdzamy, że otrzymaliśmy Twoje dokumenty!",
   "user_account_identity_documents_submit_success_message_description": "Otrzymaliśmy wszystkie Twoje dokumenty. Przekażemy je naszym zespołom do zatwierdzenia. Wyślemy do Ciebie e-mail z informacją o ich zatwierdzeniu lub skontaktujemy się z Tobą, jeśli będziemy potrzebować dodatkowych informacji.",
@@ -23,5 +21,9 @@
   "user_account_identity_documents_legal_info1": "Grupa OVH S.A.S jest odpowiedzialna za przetwarzanie  Twoich danych osobowych. Dane gromadzone za pomocą tego formularza są przetwarzane w celu zapewnienia zgodności z <a href=\"{{ link1 }}\" target=\"_blank\">Wytycznymi dotyczącymi cyberbezpieczeństwa z dnia 28.04.2022</a> opublikowanymi przez CERT-IN na podstawie przepisów zawartych w podsekcji 6 <a href=\"{{ link2 }}\" target=\"_blank\">art. 70B</a> ustawy o technologii informacyjnej (IT) z 2000 r.",
   "user_account_identity_documents_legal_info2": "Aby dowiedzieć się więcej o przetwarzaniu Twoich danych osobowych i przysługujących Ci prawach, zapoznaj się z naszą <a href=\"{{ link }}\" target=\"_blank\">Polityką ochrony danych osobowych.</a>",
   "user_account_identity_documents_verification_in_progress_info": "Twoje dokumenty są obecnie przetwarzane przez nasz zespół.",
-  "user_account_identity_documents_verification_waiting_info": "Twój wniosek został przeanalizowany, ale wymaga dodatkowych dokumentów. Sprawdź Twoje zgłoszenie pomocy."
+  "user_account_identity_documents_verification_waiting_info": "Twój wniosek został przeanalizowany, ale wymaga dodatkowych dokumentów. Sprawdź Twoje zgłoszenie pomocy.",
+  "user_account_identity_documents_selection_file_format_invalid": "Nieobsługiwany format pliku. Użyj jednego z akceptowanych formatów: jpg, jpeg, pdf i png",
+  "user_account_identity_documents_intro_ensure_correspondance": "Upewnij się, że Twoje imię i nazwisko odpowiada danym osobowym podanym w Twoich oficjalnych dokumentach.",
+  "user_account_identity_documents_intro_kyc_reminder": "Upewnij się, że Twoje imię i nazwisko odpowiada danym osobowym podanym w Twoich oficjalnych dokumentach.",
+  "user_account_identity_documents_title": "Niezbędna jest weryfikacja dokumentów"
 }

@@ -51,14 +51,17 @@
                 class="oui-label mr-2"
                 data-translate="network_security_dashboard_period_filter"
             ></label>
-            <oui-select
-                data-items="$ctrl.periods"
-                data-model="$ctrl.period"
-                id="periods"
-                data-inline
-                data-match="label"
-                data-on-change="$ctrl.getTraffic()"
-            ></oui-select>
+            <div>
+                <oui-select
+                    data-items="$ctrl.periods"
+                    data-model="$ctrl.period"
+                    id="periods"
+                    data-inline
+                    data-match="label"
+                    data-on-change="$ctrl.getTraffic()"
+                ></oui-select>
+                <label data-ng-bind="$ctrl.timeZoneLabel"></label>
+            </div>
         </div>
     </div>
     <div

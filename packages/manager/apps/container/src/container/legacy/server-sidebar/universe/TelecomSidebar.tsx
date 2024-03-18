@@ -97,8 +97,9 @@ export default function TelecomSidebar() {
                       const services = await loadServices(
                         `/pack/xdsl/${xdsl.serviceName}/xdslAccess/services`,
                       );
-                      return services.map((service) => ({
+                      const servicesLoaded = services.map((service) => ({
                         ...service,
+                        label: service.label || service.serviceName,
                         keywords: service.extraParams?.length
                           ? service.extraParams[0]
                           : '',
@@ -108,6 +109,7 @@ export default function TelecomSidebar() {
                           </span>
                         ),
                       }));
+                      return servicesLoaded;
                     },
                   })),
                   ...xdslStandalone.map((sdsl) => {

@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.4.6...@ovh-ux/sign-up-app@3.5.0) (2024-03-18)
+
+
+### Features
+
+* **signup:** added helper text for address field ([#10998](https://github.com/ovh/manager/issues/10998)) ([09cefc2](https://github.com/ovh/manager/commit/09cefc2d1d54bbbde6ff74ec42ddf2924b714288))
+
+
+
+
+
+## [3.4.6](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.4.5...@ovh-ux/sign-up-app@3.4.6) (2024-03-13)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.4.5](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.4.4...@ovh-ux/sign-up-app@3.4.5) (2024-03-11)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.4.4](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.4.3...@ovh-ux/sign-up-app@3.4.4) (2024-03-07)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.4.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.4.2...@ovh-ux/sign-up-app@3.4.3) (2024-03-07)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
 ## [3.4.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.4.1...@ovh-ux/sign-up-app@3.4.2) (2024-02-26)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

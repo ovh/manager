@@ -262,6 +262,14 @@ export default /* @ngInject */ ($stateProvider) => {
             datacenterId,
           },
         ),
+      goToResizeNsxEdge: /* @ngInject */ ($state) => (datacenterId) => {
+        $state.go(
+          'app.dedicatedCloud.details.datacenter.details.dashboard.nsx',
+          {
+            datacenterId,
+          },
+        );
+      },
       pccType: /* @ngInject */ (dedicatedCloud) =>
         dedicatedCloud.productReference,
       setMessage: /* @ngInject */ (Alerter) => (

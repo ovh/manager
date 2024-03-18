@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-office-app@0.9.6...@ovh-ux/manager-office-app@0.9.7) (2024-03-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-office-app
+
+
+
+
+
+## [0.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-office-app@0.9.5...@ovh-ux/manager-office-app@0.9.6) (2024-03-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-office-app
+
+
+
+
+
+## [0.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-office-app@0.9.4...@ovh-ux/manager-office-app@0.9.5) (2024-03-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-office-app
+
+
+
+
+
+## [0.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-office-app@0.9.3...@ovh-ux/manager-office-app@0.9.4) (2024-03-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-office-app
+
+
+
+
+
 ## [0.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-office-app@0.9.2...@ovh-ux/manager-office-app@0.9.3) (2024-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-office-app

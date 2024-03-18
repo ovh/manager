@@ -1,20 +1,20 @@
 export const PAGE_SIZE = 300;
 
 export const TRAFFIC_PERIODS = [
-  { key: 'last6h', value: 'network_security_dashboard_filter_last_6h' },
-  { key: 'last24h', value: 'network_security_dashboard_filter_last_24h' },
-  { key: 'lastWeek', value: 'network_security_dashboard_filter_last_week' },
+  { key: 'last6h', value: 'network_security_dashboard_filter_6_hours' },
+  { key: 'last24h', value: 'network_security_dashboard_filter_24_hours' },
+  { key: 'last7d', value: 'network_security_dashboard_filter_7_days' },
   {
-    key: 'last2weeks',
-    value: 'network_security_dashboard_filter_last_2_weeks',
+    key: 'last14d',
+    value: 'network_security_dashboard_filter_14_days',
   },
 ];
 
 export const TRAFFIC_PERIOD_LIST = {
   last6h: 'last6h',
   last24h: 'last24h',
-  lastWeek: 'lastWeek',
-  last2weeks: 'last2weeks',
+  last7d: 'last7d',
+  last14d: 'last14d',
 };
 
 export const CHART = {
@@ -53,6 +53,30 @@ export const CHART = {
     tooltips: {
       mode: 'label',
       intersect: false,
+      callbacks: {
+        title: (context) => {
+          // Retrieve user language
+          const userLanguage = navigator.language;
+
+          // Configure dateTime format to display like DD/MM/YYYY hh:mm:ss (for FR) or MM/DD/YY, hh:mm:ss (for US)
+          const dateTimeFormat = new Intl.DateTimeFormat(userLanguage, {
+            hourCycle: 'h23',
+            timeStyle: 'medium',
+            dateStyle: 'short',
+          });
+
+          // Retrieve user local time zone
+          const timeZoneOffset =
+            (new Date(context[0].label).getTimezoneOffset() / 60) * -1;
+          const sign = timeZoneOffset > 0 ? '+' : '';
+
+          // Format title like DD/MM/YYYY hh:mm:ss UTC+1 (for FR) or MM/DD/YY, hh:mm:ss UTC-2 (for US)
+          const title = `${dateTimeFormat.format(
+            new Date(context[0].label),
+          )} UTC${sign}${timeZoneOffset}`;
+          return title;
+        },
+      },
     },
     scales: {
       yAxes: [
@@ -85,13 +109,19 @@ export const CHART = {
             display: true,
             source: 'auto',
             autoSkip: true,
-          },
-          time: {
-            displayFormats: {
-              hour: 'YYYY-MM-DD HH:MM',
+            callback: (val, index) => {
+              const { language } = navigator;
+              const dateTimeFormat = new Intl.DateTimeFormat(language, {
+                hourCycle: 'h23',
+                timeStyle: 'medium',
+                dateStyle: 'short',
+              });
+              // Display one label out of 5
+              return index % 5 === 0
+                ? dateTimeFormat.format(new Date(val))
+                : '';
             },
           },
-          type: 'time',
         },
       ],
     },

@@ -1,0 +1,104 @@
+<oui-header
+    heading="{{'dedicatedCloud_manage_nsx_edge_title' | translate}}"
+    description="{{ 'dedicatedCloud_tab_datacenter_global_information' | translate}}"
+>
+    <oui-back-button data-on-click="$ctrl.goBack()"> </oui-back-button>
+</oui-header>
+
+<oui-message
+    data-ng-if="!$ctrl.hasScalingCapabilities"
+    class="d-block mb-4"
+    data-type="info"
+>
+    <span data-translate="dedicatedCloud_manage_nsx_missing_ressources"></span>
+
+    <a
+        class="oui-link oui-link_icon"
+        data-ng-href="{{:: $ctrl.datastoreOrderLink }}"
+        data-track-on="click"
+        data-track-type="action"
+        data-track-name="{{:: $ctrl.trackingPrefix + $ctrl.TRACKING_SUFFIX.ORDER_HOST}}"
+        target="_blank"
+        rel="noopener"
+    >
+        <span data-translate="dedicatedCloud_nsx_link_datastore_order"></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+
+    <a
+        class="oui-link oui-link_icon"
+        data-ng-href="{{:: $ctrl.hostOrderLink }}"
+        data-track-on="click"
+        data-track-type="action"
+        data-track-name="{{:: $ctrl.trackingPrefix + $ctrl.TRACKING_SUFFIX.ADD_HOST}}"
+        target="_blank"
+        rel="noopener"
+    >
+        <span data-translate="dedicatedCloud_nsx_link_hosts_order"></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+</oui-message>
+
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div class="row d-md-flex mt-3">
+    <div
+        class="col-lg-4"
+        data-ng-repeat="size in $ctrl.nsxSizes track by $index"
+    >
+        <oui-select-picker
+            class="h-100"
+            data-name="size"
+            data-model="$ctrl.selectedNsxLevel"
+            data-label="{{:: ('dedicatedCloud_manage_nsx_choice_title_' + size) | translate }}"
+            data-values="[size]"
+            data-variant="light"
+            data-disabled="!$ctrl.isSizeAvailable(size) || size == $ctrl.nsxEdgeCurrentLevel"
+        >
+            <oui-select-picker-section>
+                <div class="text-center">
+                    <span
+                        data-ng-if="$ctrl.nsxEdgeCurrentLevel === size"
+                        data-translate="dedicatedCloud_nsx_edge_current_level"
+                        class="oui-badge oui-badge_info"
+                    ></span>
+                    <br />
+                    <span
+                        data-translate="{{'dedicatedCloud_manage_nsx_choice_description_' + size}}"
+                    ></span>
+                </div>
+            </oui-select-picker-section>
+            <oui-select-picker-footer>
+                <div class="text-center">
+                    <strong
+                        data-translate="{{'dedicatedCloud_manage_nsx_edge_require_per_node_' + size}}"
+                    ></strong>
+                    <br />
+                    <span
+                        data-translate="dedicatedCloud_manage_nsx_choice_footer"
+                        data-translate-values="{ cpu: $ctrl.NSX_RESOURCES[size].cpu, ram: $ctrl.NSX_RESOURCES[size].ram, storage: $ctrl.NSX_RESOURCES[size].storage }"
+                    ></span>
+                </div>
+            </oui-select-picker-footer>
+        </oui-select-picker>
+    </div>
+</div>
+
+<div class="mt-4">
+    <oui-button
+        data-variant="secondary"
+        data-ng-click="$ctrl.goBack()"
+        data-disabled="$ctrl.loading"
+    >
+        <span data-translate="common_cancel"></span>
+    </oui-button>
+    <oui-button
+        data-variant="primary"
+        data-ng-click="$ctrl.changeNsxSize()"
+        data-disabled="!$ctrl.selectedNsxLevel || $ctrl.loading"
+    >
+        <span data-translate="common_confirm"></span>
+    </oui-button>
+</div>

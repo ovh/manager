@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.48.0...@ovh-ux/manager-container-app@0.49.0) (2024-03-18)
+
+
+### Features
+
+* **network-security:** remove beta label and survey links ([#11034](https://github.com/ovh/manager/issues/11034)) ([5e3f152](https://github.com/ovh/manager/commit/5e3f152c4ca7d752f3945860584f8e746d46b486))
+
+
+
+
+
+# [0.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.47.2...@ovh-ux/manager-container-app@0.48.0) (2024-03-13)
+
+
+### Features
+
+* pci vouchers app in reactjs ([d6821ce](https://github.com/ovh/manager/commit/d6821cecd3bde7d884054d8e782e9a1e9dbfddac))
+
+
+
+
+
+## [0.47.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.47.1...@ovh-ux/manager-container-app@0.47.2) (2024-03-11)
+
+
+### Bug Fixes
+
+* **telecom.sidebar:** set label to service name if empty ([#10973](https://github.com/ovh/manager/issues/10973)) ([8a111f5](https://github.com/ovh/manager/commit/8a111f5217646287a796e2ac011959c64655dbf6))
+
+
+
+
+
+## [0.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.47.0...@ovh-ux/manager-container-app@0.47.1) (2024-03-07)
+
+
+### Reverts
+
+* Revert "feat(*): pci vouchers app in reactjs" ([b62c1a8](https://github.com/ovh/manager/commit/b62c1a8b1cfe63dbc420b660667209c324ffa9ab))
+
+
+
+
+
+# [0.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.46.2...@ovh-ux/manager-container-app@0.47.0) (2024-03-07)
+
+
+### Features
+
+* pci vouchers app in reactjs ([ad08ee4](https://github.com/ovh/manager/commit/ad08ee4618d6243328eee76af7d1bd459a1a7d83))
+
+
+
+
+
 ## [0.46.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.46.1...@ovh-ux/manager-container-app@0.46.2) (2024-03-04)
 
 

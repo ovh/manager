@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.15.0...@ovh-ux/manager-nutanix@1.15.1) (2024-03-11)
+
+
+### Bug Fixes
+
+* **dedicated.nutanix:** display the list of nutanix racks ([#10780](https://github.com/ovh/manager/issues/10780)) ([67baebf](https://github.com/ovh/manager/commit/67baebf8d4f5a1d4c63d110b0a357c14650297d1))
+* **nutanix:** update Nutanix boarding url ([#10997](https://github.com/ovh/manager/issues/10997)) ([9849a2c](https://github.com/ovh/manager/commit/9849a2cbadd6c215d9b09ac8fe0ebbba184e40a1))
+
+
+
+
+
 # [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.14.0...@ovh-ux/manager-nutanix@1.15.0) (2024-03-04)
 
 

@@ -1,7 +1,7 @@
 {
   "network_security_title": "Network",
   "network_security_dashboard_breadcrumb": "Network Security Dashboard",
-  "network_security_dashboard_title": "Anti-DDoS dashboard (beta)",
+  "network_security_dashboard_title": "Anti-DDoS dashboard",
   "network_security_dashboard_guides": "Guides",
   "network_security_dashboard_header_content_survey": "By constantly monitoring network traffic, we can observe a number of suspicious activities. To shield against these, we transparently redirect inbound network traffic to our Scrubbing Centres for a more thorough analysis and potential attacker cleanup, ensuring a seamless, uninterrupted experience.",
   "network_security_dashboard_header_content_note": "Please note that source IP addresses are not displayed as they cannot be trusted for most attacks (i.e., IP spoofing or reflection attacks).",
@@ -41,7 +41,7 @@
   "network_security_dashboard_legend_red": "Malicious traffic cleaned",
   "network_security_dashboard_legend_green": "Normal traffic",
   "network_security_dashboard_empty_result": "Please select an IP address to view traffic data.",
-  "network_security_dashboard_number_of_events": "Number of incidents",
+  "network_security_dashboard_number_of_events": "Suspicious activities",
   "network_security_dashboard_packets_dropped": "Packets rejected",
   "network_security_dashboard_bandwith_cleaned": "Traffic cleaned",
   "network_security_dashboard_attacks_detected": "Attacks detected",
@@ -59,5 +59,14 @@
   "network_security_dashboard_invalid_ip": "The value entered for the IP is incorrect.",
   "network_security_dashboard_like_this": "Like it?",
   "network_security_dashboard_like_this_tooltip": "Like this page? Send us your feedback!",
-  "network_security_dashboard_refresh": "Refresh data"
+  "network_security_dashboard_refresh": "Refresh data",
+  "network_security_dashboard_time_zone": "(Timezone: UTC{{ timeZoneOffset }})",
+  "network_security_dashboard_filter_6_hours": "6 hours",
+  "network_security_dashboard_filter_24_hours": "24 hours",
+  "network_security_dashboard_filter_7_days": "7 days",
+  "network_security_dashboard_filter_14_days": "14 days",
+  "network_security_dashboard_filter_day": "Day",
+  "network_security_dashboard_filter_week": "Week",
+  "network_security_dashboard_filter_month": "Month",
+  "network_security_dashboard_filter_year": "Year"
 }

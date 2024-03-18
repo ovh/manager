@@ -1,7 +1,7 @@
 {
   "network_security_title": "Sieć",
   "network_security_dashboard_breadcrumb": "Network Security Dashboard",
-  "network_security_dashboard_title": "Network Security Dashboard (beta)",
+  "network_security_dashboard_title": "Network Security Dashboard",
   "network_security_dashboard_guides": "Przewodniki",
   "network_security_dashboard_header_content_survey": "Poprzez stałe monitorowanie ruchu sieciowego jesteśmy w stanie wykryć różne podejrzane działania w sieci. Taki ruch jest wtedy kierowany przez najbliższe Scrubbing Center do dalszej analizy i ewentualnego zneutralizowania ataku, aby zapewnić nieprzerwane działanie Twoich usług.",
   "network_security_dashboard_header_content_note": "Na listingu poniżej źródłowe adresy IP zostały pominięte, gdyż dla większości ataków nie są one prawdziwe (np. ataków „IP spoofing” lub z tzw. „odbiciem”).",
@@ -59,5 +59,14 @@
   "network_security_dashboard_invalid_ip": "Wprowadzona wartość adresu IP jest nieprawidłowa.",
   "network_security_dashboard_like_this": "Podoba Ci się?",
   "network_security_dashboard_like_this_tooltip": "Podoba Ci się ta strona? Podziel się z nami swoimi uwagami!",
-  "network_security_dashboard_refresh": "Odśwież dane"
+  "network_security_dashboard_refresh": "Odśwież dane",
+  "network_security_dashboard_time_zone": "(Strefa czasowa: UTC{{ timeZoneOffset }})",
+  "network_security_dashboard_filter_6_hours": "6 godzin",
+  "network_security_dashboard_filter_24_hours": "24 godziny",
+  "network_security_dashboard_filter_7_days": "7 dni",
+  "network_security_dashboard_filter_14_days": "14 dni",
+  "network_security_dashboard_filter_day": "Dzień",
+  "network_security_dashboard_filter_week": "Tydzień",
+  "network_security_dashboard_filter_month": "Miesiąc",
+  "network_security_dashboard_filter_year": "Rok"
 }

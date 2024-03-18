@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-catalog-app",
-  "version": "1.5.0",
+  "version": "1.7.0",
   "private": true,
   "description": "OVHcloud Catalog application",
   "repository": {
@@ -17,16 +17,16 @@
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run dev:watch --if-present",
     "pretest": "tsc -p tsconfig.e2e.json",
-    "test": "jest --coverage -u",
+    "test": "jest",
     "test:e2e": "tsc && npx playwright test --headed",
     "test:e2e:ci": "tsc && npx playwright test",
     "test:e2e:script": "tsc && node ../../../../scripts/run-playwright.js"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "^0.3.0",
-    "@ovh-ux/manager-react-core-application": "^0.5.2",
-    "@ovh-ux/shell": "^3.2.0",
-    "@ovhcloud/manager-components": "^1.3.0",
+    "@ovh-ux/manager-core-api": "^0.6.0",
+    "@ovh-ux/manager-react-core-application": "^0.7.0",
+    "@ovh-ux/shell": "^3.4.0",
+    "@ovhcloud/manager-components": "^1.5.0",
     "@ovhcloud/ods-common-theming": "16.6.0",
     "@ovhcloud/ods-components": "17.1.0",
     "@ovhcloud/ods-theme-blue-jeans": "16.6.0",

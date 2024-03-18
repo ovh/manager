@@ -11,21 +11,70 @@ import { DEDICATED_CLOUD_DATACENTER } from '../dedicatedCloud-datacenter.constan
 
 export default class {
   /* @ngInject */
-  constructor($translate, DedicatedCloud, dedicatedCloudDrp) {
+  constructor($translate, DedicatedCloud, dedicatedCloudDrp, $q) {
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
     this.dedicatedCloudDrp = dedicatedCloudDrp;
+    this.$q = $q;
     this.DRP_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_STATUS;
     this.DRP_VPN_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS;
   }
 
   $onInit() {
-    this.loading = false;
-    return this.checkForZertoOptionOrder();
+    this.loading = true;
+    this.pollNsxTaskId = null;
+    this.$q
+      .all([
+        this.getNsxDetails(),
+        this.getNsxEdgePendingTask(),
+        this.checkForZertoOptionOrder(),
+      ])
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+
+  $onDestroy() {
+    if (this.pollNsxTaskId) {
+      this.DedicatedCloud.stopResizeNsxTaskPoller(this.pollNsxTaskId);
+    }
+  }
+
+  pollNsxTask(taskId) {
+    this.pollNsxTaskId = taskId;
+    this.DedicatedCloud.datacenterResizeNsxTaskPoller(this.serviceName, taskId)
+      .then(() => {
+        this.getNsxDetails();
+      })
+      .finally(() => {
+        this.pollNsxTaskId = null;
+      });
+  }
+
+  getNsxEdgePendingTask() {
+    return this.DedicatedCloud.getDatacenterPendingResizeNsxTask(
+      this.serviceName,
+      this.datacenter.model.id,
+    ).then((data) => {
+      if (data?.length > 0) {
+        this.pollNsxTask(data[0].taskId);
+      }
+    });
+  }
+
+  getNsxDetails() {
+    return this.DedicatedCloud.getDatacenterInfoNsxt(
+      this.serviceName,
+      this.datacenter.model.id,
+    ).then((data) => {
+      this.datacenter.model.edgesCount = data.length;
+      this.datacenter.model.edgesLevel = data[0]?.size
+        ? data[0].size.chatAt(0).toUpperCase() + data[0].size.slice(1)
+        : '';
+    });
   }
 
   checkForZertoOptionOrder() {
-    this.loading = true;
     return this.dedicatedCloudDrp
       .checkForZertoOptionOrder(this.serviceName)
       .then((storedDrpInformations) => {
@@ -54,9 +103,6 @@ export default class {
             'dedicatedCloud_datacenter_drp_get_state_error',
           )} ${get(error, 'data.message', error.message)}`,
         );
-      })
-      .finally(() => {
-        this.loading = false;
       });
   }
 

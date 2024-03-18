@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.3.2...@ovh-ux/shell@3.4.0) (2024-03-13)
+
+
+### Features
+
+* pci vouchers app in reactjs ([d6821ce](https://github.com/ovh/manager/commit/d6821cecd3bde7d884054d8e782e9a1e9dbfddac))
+
+
+
+
+
+## [3.3.2](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.3.1...@ovh-ux/shell@3.3.2) (2024-03-11)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [3.3.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.3.0...@ovh-ux/shell@3.3.1) (2024-03-07)
+
+
+### Reverts
+
+* Revert "feat(*): pci vouchers app in reactjs" ([b62c1a8](https://github.com/ovh/manager/commit/b62c1a8b1cfe63dbc420b660667209c324ffa9ab))
+
+
+
+
+
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.2.0...@ovh-ux/shell@3.3.0) (2024-03-07)
+
+
+### Features
+
+* pci vouchers app in reactjs ([ad08ee4](https://github.com/ovh/manager/commit/ad08ee4618d6243328eee76af7d1bd459a1a7d83))
+
+
+
+
+
 # [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.1.0...@ovh-ux/shell@3.2.0) (2024-02-28)
 
 

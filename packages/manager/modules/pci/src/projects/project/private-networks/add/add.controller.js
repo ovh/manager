@@ -286,7 +286,7 @@ export default class PrivateNetworksAddCtrl {
         model: this.gatewaySize,
       };
     }
-    if (this.configureVlanId) {
+    if (this.configureVlanId && !this.configuration.region.isLocalZone) {
       vlanId = this.configuration.vlanId;
     }
     const subnet = {

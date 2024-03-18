@@ -125,5 +125,6 @@
   "domain_operations_progress_instructions_6": "Wenn beide E-Mails validiert wurden: Validierung und Übergang zum nächsten Schritt innerhalb von 24 Stunden.",
   "domain_operations_progress_instructions_7": "Sie können sich mit dem derzeitigen Anbieter Ihrer Domain in Verbindung setzen, um dessen Zustimmung zu erhalten.",
   "operation_tab_DOMAIN": "Domain",
-  "operation_tab_DNS": "DNS"
+  "domain_operations_nicOperation_ContactControlAcknowledge": "Bestätigung des Kontakts",
+  "domain_operations_nicOperation_ContactControlCorrect": "Korrektur des Kontakts"
 }

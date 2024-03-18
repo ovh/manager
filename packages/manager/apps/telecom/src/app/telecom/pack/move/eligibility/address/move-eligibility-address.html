@@ -59,25 +59,6 @@
             data-ng-if="$ctrl.address.city.inseeCode && addressCollectForm.zipCode.$valid"
         >
             <label
-                for="streetNumberElem"
-                data-translate="pack_move_eligibility_street_number"
-            >
-            </label>
-            <input
-                type="text"
-                class="form-control"
-                id="streetNumberElem"
-                name="streetNumber"
-                data-translate-attr="{ placeholder: 'pack_move_eligibility_street_number' }"
-                data-ng-disabled="$ctrl.method !== 'address'"
-                data-ng-model="$ctrl.address.streetNumber"
-            />
-        </div>
-        <div
-            class="form-group"
-            data-ng-if="$ctrl.address.city.inseeCode && addressCollectForm.zipCode.$valid"
-        >
-            <label
                 for="streetElem"
                 data-translate="pack_move_eligibility_street"
             >
@@ -95,6 +76,28 @@
                 data-uib-typeahead-loading="$ctrl.loaders.streets"
                 data-ng-model="$ctrl.address.street"
             />
+        </div>
+        <div
+            class="form-group"
+            data-ng-if="$ctrl.address.street.streetCode && addressCollectForm.street.$valid"
+        >
+            <label
+                for="streetNumberElem"
+                data-translate="pack_move_eligibility_street_number"
+            >
+            </label>
+            <select
+                class="form-control"
+                name="streetNumber"
+                id="streetNumberElem"
+                data-translate-attr="{ placeholder: 'pack_move_eligibility_street_number' }"
+                data-ng-model="$ctrl.address.streetNumber"
+                data-ng-disabled="$ctrl.loaders.streetNumbers || $ctrl.method !== 'address'"
+                data-ng-options="streetNumber as streetNumber.number for streetNumber in $ctrl.streetNumbers"
+                data-ng-change="$ctrl.checkSelectedNumber()"
+                required
+            >
+            </select>
         </div>
 
         <button

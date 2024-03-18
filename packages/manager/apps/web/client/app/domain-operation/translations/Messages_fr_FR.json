@@ -58,6 +58,8 @@
   "domain_operations_nicOperation_DomainResourceDelete": "Suppression définitive du nom de domaine chez OVHcloud",
   "domain_operations_nicOperation_DnsAnycastUpdate": "Mise à jour des DNS Anycast",
   "domain_operations_nicOperation_ContactControl": "Vérification du contact",
+  "domain_operations_nicOperation_ContactControlAcknowledge": "Confirmation du contact",
+  "domain_operations_nicOperation_ContactControlCorrect": "Correction du contact",
   "domain_operations_statusOperation_cancelled": "Annulée",
   "domain_operations_statusOperation_doing": "En cours",
   "domain_operations_statusOperation_done": "Terminée",

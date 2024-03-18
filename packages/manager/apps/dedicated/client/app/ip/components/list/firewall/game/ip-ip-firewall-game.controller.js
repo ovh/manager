@@ -1,12 +1,9 @@
-import isObject from 'lodash/isObject';
 import findIndex from 'lodash/findIndex';
 import remove from 'lodash/remove';
 import startCase from 'lodash/startCase';
 
 import {
   IP_MITIGATION_RULE_PROTOCOL_PORT,
-  ALLOWED_LANGUAGES,
-  BASE_URL_SURVEY,
   GAME_GUIDE_LINKS,
   GAME_TRACKING_PREFIX,
 } from './ip-ip-firewall-game.constants';
@@ -79,7 +76,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
 
   self.loading = false;
 
-  self.getProtocoleText = function getProtocoleText(protocol) {
+  self.getProtocolText = function getProtocolText(protocol) {
     return startCase(protocol);
   };
 
@@ -96,25 +93,6 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   };
 
   self.loading = false;
-
-  function initializeUrlSurvey() {
-    // Get default language
-    const defaultLanguage = Object.keys(ALLOWED_LANGUAGES).find(
-      (key) => ALLOWED_LANGUAGES[key].isDefault,
-    );
-    const userLanguage = coreConfig.getUserLanguage();
-
-    const languageToUse = isObject(ALLOWED_LANGUAGES[userLanguage])
-      ? userLanguage
-      : defaultLanguage;
-
-    // Get user
-    const user = coreConfig.getUser();
-
-    // Build url for survey link
-    const surveyUrl = `${BASE_URL_SURVEY}${languageToUse}&nic=${user.nichandle}`;
-    return surveyUrl;
-  }
 
   self.getProtocoleText = function getProtocoleText(protocol) {
     return startCase(protocol);
@@ -215,8 +193,6 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   }
 
   function init(params) {
-    self.surveyUrl = initializeUrlSurvey();
-
     self.tracking = {
       'game-firewall-add-rule': `${GAME_TRACKING_PREFIX}::add-rule`,
       'game-firewall-add-rule-confirm': `${GAME_TRACKING_PREFIX}::add-rule-confirm`,
@@ -291,6 +267,42 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
         });
       }
       return rule;
+    });
+  }
+
+  function hasPortsAlreadyUsed() {
+    return self.table.rules.some((rule) => {
+      // Check if other rule has no range
+      if (rule.ports.from === rule.ports.to) {
+        // Check if new rule has no range
+        if (self.rule.ports.from === self.rule.ports.to) {
+          // Check if new rule is not already defined
+          if (self.rule.ports.from === rule.ports.from) {
+            return true;
+          }
+        } else if (IpGameFirewall.hasRuleIncludedInNewRule(self.rule, rule)) {
+          // Check if other rule is not included into new rule
+          return true;
+        }
+      } else if (self.rule.ports.from === self.rule.ports.to) {
+        // Check if new rule has no range
+        if (IpGameFirewall.hasNewRuleIncludedInRule(self.rule, rule)) {
+          // Check if new rule is not included into other rule
+          return true;
+        }
+      } else if (
+        IpGameFirewall.hasNewRuleIntoRule(self.rule, rule) ||
+        IpGameFirewall.hasNewRulePortToIntoRule(self.rule, rule) ||
+        IpGameFirewall.hasNewRulePortFromIntoRule(self.rule, rule) ||
+        IpGameFirewall.hasRuleIntoNewRule(self.rule, rule)
+      ) {
+        // Check if the new rule is not into other rules or
+        // Check if the new rule port to is not into other rules or
+        // Check if the new rule port from is not into other rules or
+        // Check if the rule is not into new rule
+        return true;
+      }
+      return false;
     });
   }
 
@@ -415,6 +427,18 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
       Alerter.error(
         $translate.instant(
           'ip_game_mitigation_firewall_rule_add_invalid_parameters',
+        ),
+        alert,
+      );
+      self.loading = false;
+      return;
+    }
+
+    // Check if ports are not already used by other rules
+    if (hasPortsAlreadyUsed()) {
+      Alerter.error(
+        $translate.instant(
+          'ip_game_mitigation_firewall_rule_add_ports_already_used',
         ),
         alert,
       );

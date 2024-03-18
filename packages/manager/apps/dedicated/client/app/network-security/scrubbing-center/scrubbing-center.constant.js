@@ -1,15 +1,15 @@
 export const PERIODS = [
-  { key: 'last24h', value: 'network_security_dashboard_filter_last_24h' },
-  { key: 'lastWeek', value: 'network_security_dashboard_filter_last_week' },
-  { key: 'lastMonth', value: 'network_security_dashboard_filter_last_month' },
-  { key: 'lastYear', value: 'network_security_dashboard_filter_last_yeard' },
+  { key: 'day', value: 'network_security_dashboard_filter_day' },
+  { key: 'week', value: 'network_security_dashboard_filter_week' },
+  { key: 'month', value: 'network_security_dashboard_filter_month' },
+  { key: 'year', value: 'network_security_dashboard_filter_year' },
 ];
 
 export const PERIOD_LIST = {
-  last24h: 'last24h',
-  lastWeek: 'lastWeek',
-  lastMonth: 'lastMonth',
-  lastYear: 'lastYear',
+  day: 'day',
+  week: 'week',
+  month: 'month',
+  year: 'year',
 };
 
 export default { PERIODS, PERIOD_LIST };

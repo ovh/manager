@@ -820,6 +820,7 @@
   "server_datacenter_RBX_HZ": "Roubaix",
   "server_datacenter_GSW": "Clichy",
   "server_datacenter_YNM": "Mumbai",
+  "server_datacenter_YYZ": "Toronto",
   "server_usage_chart_yaxis_label": "Utilisation (en %)",
   "server_duration_upto": "Jusqu'au {{t0}}",
   "server_error_ola_activation": "Une erreur est survenue lors de l'activation de votre service : {{error}}",
