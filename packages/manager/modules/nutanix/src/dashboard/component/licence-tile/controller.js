@@ -1,30 +1,12 @@
 import NutanixLicences from './licences.class';
 
 export default class NutanixLicenceTileCtrl {
-  /* @ngInject */
-  constructor(atInternet, NutanixService) {
-    this.atInternet = atInternet;
-    this.NutanixService = NutanixService;
-  }
-
   $onInit() {
-    this.defaultLicenseLength = 12;
-    this.expand = false;
-    const { license, features } = this.hardwareInfo;
-    const licenceFeatures = Array.isArray(license.features)
-      ? license.features
-      : [];
-    this.licences = new NutanixLicences(licenceFeatures);
-    this.features = features;
-  }
-
-  toggleLicenseDetails() {
-    const licenseTogglePrefix = 'hpc::nutanix::cluster::dashboard';
-    const licenseToggleSuffix = `see-${this.expand ? 'less' : 'more'}-options`;
-    this.atInternet.trackClick({
-      name: `${licenseTogglePrefix}::${licenseToggleSuffix}`,
-      type: 'action',
-    });
-    this.expand = !this.expand;
+    const { features } = this.license;
+    const licenseFeatures = Array.isArray(features) ? features : [];
+    this.licenses = new NutanixLicences(licenseFeatures);
+    this.title = this.isLegacyPack
+      ? 'nutanix_cluster_licence_title'
+      : 'nutanix_cluster_cloud_licence_title';
   }
 }

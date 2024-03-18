@@ -21,10 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         NutanixService.getServiceInfo(serviceName),
       serviceDetails: /* @ngInject */ (NutanixService, serviceInfo) =>
         NutanixService.getServiceDetails(serviceInfo.serviceId),
-      hardwareInfo: /* ngInject */ (NutanixService, serviceInfo) =>
-        NutanixService.getHardwareInfo(serviceInfo.serviceId).then(
-          ({ nutanixCluster }) => nutanixCluster,
-        ),
+
       isOldCluster: /* @ngInject */ (NutanixService, serviceInfo) =>
         // If the plan code is nutanix-standard or nutanix-advanced or nutanix-byol its newCluster
         NutanixService.getServicesDetails(serviceInfo.serviceId).then((data) =>
@@ -39,6 +36,10 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceInfo.serviceId,
           server.serviceId,
         ),
+      clusterTechnicalDetails: /* ngInject */ (getTechnicalDetails) =>
+        getTechnicalDetails.nutanixCluster,
+      technicalDetails: /* ngInject */ (getTechnicalDetails) =>
+        getTechnicalDetails.baremetalServers,
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
   });

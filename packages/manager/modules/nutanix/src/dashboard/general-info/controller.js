@@ -34,12 +34,9 @@ export default class NutanixGeneralInfoCtrl {
 
   $onInit() {
     this.loadServicesDetails();
-    this.clusterTechnicalDetails = this.getTechnicalDetails.nutanixCluster;
-    this.technicalDetails = this.getTechnicalDetails.baremetalServers;
     this.setPrivateBandwidthServiceId();
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
     this.showRedeployWarningModal = false;
-    this.typeOfPack = this.hardwareInfo.license.edition;
     this.TRACKING = TRACKING;
   }
 
@@ -74,8 +71,7 @@ export default class NutanixGeneralInfoCtrl {
 
   redeployCluster() {
     if (
-      this.clusterTechnicalDetails.license.edition !==
-        this.NUTANIX_PERSONAL_LICENSE_EDITION &&
+      this.packType !== this.NUTANIX_PERSONAL_LICENSE_EDITION &&
       !this.showRedeployWarningModal
     ) {
       return this.goToRedeploy();
