@@ -89,6 +89,7 @@ export const getColumns = ({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
+              {/* TODO: should we get the status from the api ? */}
               <DropdownMenuItem
                 onClick={() => onCancelQueryClicked(row.original)}
               >

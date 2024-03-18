@@ -102,6 +102,7 @@ export const getColumns = ({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
+              {/* TODO: add capability in API */}
               <DropdownMenuItem
                 onClick={() => {
                   onRestoreClick(row.original);

@@ -70,19 +70,21 @@ const Integrations = () => {
     <>
       <H2>{t('title')}</H2>
 
-      <Button
-        variant={'outline'}
-        size="sm"
-        className="text-base"
-        disabled={
-          service.capabilities.integrations?.create ===
-          database.service.capability.StateEnum.disabled
-        }
-        onClick={() => addModale.open()}
-      >
-        <Plus className="w-4 h-4 mr-2" />
-        {t('addButtonLabel')}
-      </Button>
+      {service.capabilities.integrations?.create && (
+        <Button
+          variant={'outline'}
+          size="sm"
+          className="text-base"
+          disabled={
+            service.capabilities.integrations?.create ===
+            database.service.capability.StateEnum.disabled
+          }
+          onClick={() => addModale.open()}
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          {t('addButtonLabel')}
+        </Button>
+      )}
 
       {!isLoading ? (
         <DataTable columns={columns} data={integrations} pageSize={25} />
