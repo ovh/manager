@@ -42,11 +42,16 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
   useTrackingPage(TrackingPageView.GenerateAccessModal);
   const hasValidAccess = !!accessDetail?.username && !!accessDetail?.password;
 
+  const onCloseModal = () => {
+    trackAction(
+      TrackingPageView.GenerateAccessModal,
+      hasValidAccess ? TrackingEvent.close : TrackingEvent.cancel,
+    );
+    toggleModal(false);
+  };
+
   return (
-    <Modal
-      color={ODS_THEME_COLOR_INTENT.info}
-      onClose={() => toggleModal(false)}
-    >
+    <Modal color={ODS_THEME_COLOR_INTENT.info} onClose={onCloseModal}>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
@@ -60,7 +65,9 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
       {!hasValidAccess && (
         <div className="mt-3">
           <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-            {t('generateAccesModalDescription')}
+            {t('generateAccesModalDescription', {
+              rancherName: rancher.currentState.name,
+            })}
           </OsdsText>
         </div>
       )}
@@ -98,13 +105,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
         slot="actions"
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => {
-          trackAction(
-            TrackingPageView.GenerateAccessModal,
-            hasValidAccess ? TrackingEvent.close : TrackingEvent.cancel,
-          );
-          toggleModal(false);
-        }}
+        onClick={onCloseModal}
       >
         {t(hasValidAccess ? 'close' : 'cancel')}
       </OsdsButton>
