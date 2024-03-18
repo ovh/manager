@@ -97,7 +97,7 @@
   "sign_up_form_enum_country_GU": "Vereinigte Staaten - Guam",
   "sign_up_form_enum_country_GW": "Guinea-Bissau",
   "sign_up_form_enum_country_GY": "Guyana",
-  "sign_up_form_enum_country_HK": "Hong Kong",
+  "sign_up_form_enum_country_HK": "Hongkong",
   "sign_up_form_enum_country_HN": "Honduras",
   "sign_up_form_enum_country_HR": "Kroatien",
   "sign_up_form_enum_country_HT": "Haiti",
@@ -184,7 +184,7 @@
   "sign_up_form_enum_country_PM": "Frankreich - Saint-Pierre und Miquelon",
   "sign_up_form_enum_country_PN": "Vereinigtes Königreich - Pitcairninseln",
   "sign_up_form_enum_country_PR": "Vereinigte Staaten - Puerto Rico",
-  "sign_up_form_enum_country_PS": "Palästinensische Gebiete",
+  "sign_up_form_enum_country_PS": "Staat Palästina",
   "sign_up_form_enum_country_PT": "Portugal",
   "sign_up_form_enum_country_PW": "Palau",
   "sign_up_form_enum_country_PY": "Paraguay",
@@ -235,7 +235,7 @@
   "sign_up_form_enum_country_UA": "Ukraine",
   "sign_up_form_enum_country_UG": "Uganda",
   "sign_up_form_enum_country_UK": "Vereinigtes Königreich",
-  "sign_up_form_enum_country_UM": "Vereinigte Staaten - Kleinere Inselbesitzungen der Vereinigten Staaten",
+  "sign_up_form_enum_country_UM": "Vereinigte Staaten – Kleinere Inselbesitzungen der Vereinigten Staaten",
   "sign_up_form_enum_country_US": "USA",
   "sign_up_form_enum_country_UY": "Uruguay",
   "sign_up_form_enum_country_UZ": "Usbekistan",
@@ -243,7 +243,7 @@
   "sign_up_form_enum_country_VC": "St. Vincent und die Grenadinen",
   "sign_up_form_enum_country_VE": "Venezuela",
   "sign_up_form_enum_country_VG": "Vereinigtes Königreich - Britische Jungferninseln",
-  "sign_up_form_enum_country_VI": "Vereinigte Staaten – Amerikanische Jungferninseln",
+  "sign_up_form_enum_country_VI": "Vereinigte Staaten – Amerikanische Jungferninseln",
   "sign_up_form_enum_country_VN": "Vietnam",
   "sign_up_form_enum_country_VU": "Vanuatu",
   "sign_up_form_enum_country_WF": "Frankreich - Wallis und Futunа",
@@ -679,5 +679,5 @@
   "sign_up_form_enum_sex_female": "Weiblich",
   "sign_up_form_enum_sex_male": "Männlich",
   "sign_up_form_enum_country_BV": "Norwegen - Bouvetinsel",
-  "sign_up_form_enum_country_HM": "Vereinigtes Königreich - Heard und MacDonald Inseln"
+  "sign_up_form_enum_country_HM": "Vereinigtes Königreich – Heard und MacDonald-Inseln"
 }

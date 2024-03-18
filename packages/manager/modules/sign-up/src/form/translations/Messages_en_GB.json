@@ -243,7 +243,7 @@
   "sign_up_form_enum_country_VC": "Saint Vincent and the Grenadines",
   "sign_up_form_enum_country_VE": "Venezuela",
   "sign_up_form_enum_country_VG": "United Kingdom – Virgin Islands, British",
-  "sign_up_form_enum_country_VI": "United States – United States, US",
+  "sign_up_form_enum_country_VI": "United States – Virgin Islands, US",
   "sign_up_form_enum_country_VN": "Vietnam",
   "sign_up_form_enum_country_VU": "Vanuatu",
   "sign_up_form_enum_country_WF": "France – Wallis and Futuna",
@@ -679,5 +679,5 @@
   "sign_up_form_enum_sex_female": "Female",
   "sign_up_form_enum_sex_male": "Male",
   "sign_up_form_enum_country_BV": "Norway - Bouvet Island",
-  "sign_up_form_enum_country_HM": "United Kingdom - Heard and MacDonald Islands"
+  "sign_up_form_enum_country_HM": "United Kingdom – Heard and MacDonald Islands"
 }
