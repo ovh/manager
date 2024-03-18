@@ -11,8 +11,9 @@ import {
   updateSidebarItemLabel,
 } from './sidebarMenu';
 import { useLocation } from 'react-router-dom';
-import { OsdsSpinner } from '@ovhcloud/ods-stencil/components/react';
-import { OdsSpinnerMode, OdsSpinnerSize } from '@ovhcloud/ods-core';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+
+import { ODS_SPINNER_MODE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 
 export default function ServerSidebar({ menu }: { menu: SidebarMenuItem }) {
   const [items, setItems] = useState<SidebarMenuItem[]>([]);
@@ -51,8 +52,12 @@ export default function ServerSidebar({ menu }: { menu: SidebarMenuItem }) {
 
   return menu ? (
     <ServerSidebarVirtual items={items} onMenuChange={refreshMenu} />
-
   ) : (
-    <OsdsSpinner mode={OdsSpinnerMode.INDETERMINATE} size={OdsSpinnerSize.md} className={style.spinnerLoading} />
+    <OsdsSpinner
+      mode={ODS_SPINNER_MODE.indeterminate}
+      size={ODS_SPINNER_SIZE.lg}
+      inline
+      className={style.spinnerLoading}
+    />
   );
 }

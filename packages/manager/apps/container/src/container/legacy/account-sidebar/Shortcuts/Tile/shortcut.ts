@@ -1,5 +1,5 @@
 export type Shortcut = {
-  icon: string;
+  icon: JSX.Element | string;
   id: string;
   tracking: string;
   url: string;

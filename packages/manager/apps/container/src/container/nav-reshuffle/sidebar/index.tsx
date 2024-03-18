@@ -406,7 +406,7 @@ const Sidebar = (): JSX.Element => {
     <div className={style.sidebar}>
       <a
         role="img"
-        className={`d-block ${style.sidebar_logo}`}
+        className={`block ${style.sidebar_logo}`}
         aria-label="OVHcloud"
         target="_top"
         href={logoLink}
@@ -500,7 +500,7 @@ const Sidebar = (): JSX.Element => {
                 )}
                 {selectedPciProject && (
                   <span
-                    className={`d-flex px-1 ${style.sidebar_clipboard}`}
+                    className={`flex px-1 ${style.sidebar_clipboard}`}
                     title={t('sidebar_clipboard_copy')}
                     onClick={() =>
                       navigator.clipboard.writeText(

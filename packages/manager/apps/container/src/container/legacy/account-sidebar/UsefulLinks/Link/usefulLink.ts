@@ -1,7 +1,7 @@
 export type UsefulLink = {
-  action?(): void;
+  action?: () => void;
   href?: string;
-  icon: string;
+  icon: JSX.Element | string;
   id: string;
   external?: boolean;
   tracking?: string;

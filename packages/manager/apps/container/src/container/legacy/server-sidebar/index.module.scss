@@ -1,7 +1,7 @@
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
-@import '@ovhcloud/ods-theme-blue-jeans/index.css';
+@import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 @import './constants.scss';
 
 :export {
@@ -80,15 +80,6 @@
   box-sizing: border-box;
 }
 
-.menuItemIcon {
-  display: block;
-  float: left;
-  padding-left: 15px;
-  height: $menu-row-height;
-  line-height: $menu-row-height;
-  text-align: center;
-  padding-right: 8px;
-}
 
 .menuItemSelected {
   background-color: #e6f5fc;
@@ -157,52 +148,10 @@
   }
 }
 
-.link {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
 
 .orderTrigger {
   padding-left: 10px;
   padding-top: 10px;
-}
-
-.iconOds{
-  padding-left: 10px;
-}
-
-.iconContainerStyle{
-  display: flex;
-  align-items: center;
-}
-.itemLink {
-  display: flex;
-  align-items: center;
-  padding-left: 8px;
-}
-
-.linkTextSelected {
-  font-weight: bold;
-}
-
-
-
-.linkText {
-  font-weight: normal;
-}
-
-.sticky {
-  position: relative;
-  background-color: white;
-  height: 35px;
-}
-
-.noSticky {
-  position: relative;
-
 }
 
 .itemLineAlign {
@@ -212,35 +161,9 @@
 }
 
 .spinnerLoading {
-  padding-left: 130px;
+  padding-left: 95px;
 }
 
-.subItem{
-  padding-left: 10px;
 
-}
 
-.iconPadding {
-  padding-left: 4px;
-  vertical-align: middle;
-}
-.textPadding {
-  padding-left: 8px;
-}
-.spinnerLoadingItem {
-  vertical-align: middle;
-}
 
-.transparentButton {
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  width: 100%;
-  text-align: left;
-}
-
-.iconStyleColor{
-  color:#4D5592;
-}

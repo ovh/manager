@@ -7,34 +7,36 @@ import { TRANSLATE_NAMESPACE } from '../constants';
 import Link from './Link/Link';
 import useUsefulLinks from './useUsefulLinks';
 
+import { OsdsDivider } from '@ovhcloud/ods-components/react';
+import { ODS_DIVIDER_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 const UsefulLinks = (): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const links = useUsefulLinks().getUsefulLinks();
 
-  const cssClassName = 'manager-account-sidebar-links';
   const translationBase = 'user_account_menu_useful_links';
 
   return (
     links &&
     links.length && (
-      <div
-        className={`${cssClassName} mb-5`}
-        data-navi-id="account-sidebar-usefulLinks-block"
-      >
+      <div className="mb-5" data-navi-id="account-sidebar-usefulLinks-block">
         <h3>{t(`${translationBase}_title`)}</h3>
         {links.map((link, index) => (
           <Link key={`link-${index}`}>
             {(link.href || link.action) && (
-              <span
-                className={`${cssClassName}_divider`}
-                aria-hidden="true"
-              ></span>
+              <OsdsDivider
+                separator
+                className="ml-2 mt-6 mb-6"
+                color={ODS_THEME_COLOR_INTENT.primary}
+                size={ODS_DIVIDER_SIZE.six}
+              />
             )}
             {link.href && (
               <Link.Anchor link={link} translationBase={translationBase} />
             )}
             {link.action && (
-              <Link.Button link={link} translationBase={translationBase} />
+              <Link.Action link={link} translationBase={translationBase} />
             )}
           </Link>
         ))}

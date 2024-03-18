@@ -3,6 +3,15 @@ import React from 'react';
 import { capitalize, truncate } from 'lodash-es';
 import { useTranslation } from 'react-i18next';
 
+import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components/';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import { User } from '@ovh-ux/manager-config';
 import { TRANSLATE_NAMESPACE } from './constants';
 import style from './navbar.module.scss';
@@ -18,7 +27,9 @@ function NavbarAccount({ user }: Props): JSX.Element {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
-  const firstName = capitalize(user.firstname).replace(/-[a-z]/g, match => match.toUpperCase())
+  const firstName = capitalize(user.firstname).replace(/-[a-z]/g, (match) =>
+    match.toUpperCase(),
+  );
   const lastName = truncate(capitalize(user.name), {
     length: 10,
   });
@@ -47,11 +58,20 @@ function NavbarAccount({ user }: Props): JSX.Element {
       onClick={() => toggleSidebar()}
     >
       <span className="oui-navbar-link__wrapper oui-navbar-link__wrapper_border">
-        <span
-          className="oui-icon navbar-oui-icon oui-icon-user"
+        <OsdsIcon
           aria-hidden="true"
-        ></span>
-        <span className="oui-navbar-link__text">{`${firstName} ${lastName}`}</span>
+          className="mr-1"
+          name={ODS_ICON_NAME.USER}
+          size={ODS_ICON_SIZE.xxs}
+          color={ODS_THEME_COLOR_INTENT.primary}
+        ></OsdsIcon>
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.primary}
+          level={ODS_TEXT_LEVEL.button}
+          size={ODS_TEXT_SIZE._200}
+        >
+          {`${firstName} ${lastName}`}
+        </OsdsText>
       </span>
     </button>
   );

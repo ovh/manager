@@ -6,6 +6,9 @@ import Icon from './Icon';
 import usePaymentMethod, { PaymentMethodType } from './usePaymentMethod';
 
 import { useShell } from '@/context';
+import { OsdsSkeleton, OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import './index.scss';
 
@@ -53,27 +56,26 @@ const PaymentMethod = (): JSX.Element => {
     !isEnterpriseAccount() && (
       <div className={`${cssBaseClassName} mb-4`}>
         <a
-          className="d-flex flex-row align-items-center p-2"
+          className="flex flex-row items-center p-2"
           href={paymentMethodURL}
           target="_top"
           onClick={paymentMethodClickHandler}
         >
           <Icon defaultPaymentMethod={defaultPaymentMethod} />
           {isLoading ? (
-            <div className="oui-skeleton oui-skeleton_s">
-              <div className="oui-skeleton__loader"></div>
-            </div>
+            <OsdsSkeleton/>
           ) : (
             <Details
               defaultPaymentMethod={defaultPaymentMethod}
               translationBase={translationBase}
-              cssBaseClassName={cssBaseClassName}
             />
           )}
-          <span
-            className="ml-auto oui-icon oui-icon-arrow-right"
+          <OsdsIcon
             aria-hidden="true"
-          ></span>
+            name={ODS_ICON_NAME.ARROW_RIGHT}
+            className="ml-auto"
+            color={ODS_THEME_COLOR_INTENT.primary}
+          ></OsdsIcon>
         </a>
       </div>
     )

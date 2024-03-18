@@ -3,6 +3,9 @@ import { useShell } from '@/context';
 
 import { Shortcut } from './Tile/shortcut';
 
+import getOdsIcon from '../getOdsIcon';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 interface UseShortcuts {
   getShortcuts(): Shortcut[];
 }
@@ -22,7 +25,7 @@ const useShortcuts = (): UseShortcuts => {
         ? [
             {
               id: 'services',
-              icon: 'oui-icon-multi-device_concept',
+              icon: getOdsIcon(ODS_ICON_NAME.MULTI_DEVICE_CONCEPT),
               url: navigation.getURL('dedicated', '#/billing/autoRenew'),
               tracking: 'hub::sidebar::shortcuts::go-to-services',
             },
@@ -30,7 +33,7 @@ const useShortcuts = (): UseShortcuts => {
         : []),
       {
         id: 'bills',
-        icon: 'oui-icon-receipt_concept',
+        icon: getOdsIcon(ODS_ICON_NAME.RECEIPT_CONCEPT),
         url: user.enterprise
           ? 'https://billing.us.ovhcloud.com/login'
           : navigation.getURL('dedicated', '#/billing/history'),
@@ -40,7 +43,7 @@ const useShortcuts = (): UseShortcuts => {
         ? [
             {
               id: 'supportLevel',
-              icon: 'oui-icon-lifebuoy_concept',
+              icon: getOdsIcon(ODS_ICON_NAME.LIFEBUOY_CONCEPT),
               url: navigation.getURL(
                 'dedicated',
                 '#/useraccount/support/level',
@@ -54,7 +57,7 @@ const useShortcuts = (): UseShortcuts => {
         : [
             {
               id: 'products',
-              icon: 'oui-icon-book-open_concept',
+              icon: getOdsIcon(ODS_ICON_NAME.BOOK_OPEN_CONCEPT),
               tracking: 'hub::sidebar::shortcuts::go-to-catalog',
               url: navigation.getURL('catalog', '#/'),
             },
@@ -63,7 +66,7 @@ const useShortcuts = (): UseShortcuts => {
         ? [
             {
               id: 'emails',
-              icon: 'oui-icon-envelop-letter_concept',
+              icon: getOdsIcon(ODS_ICON_NAME.ENVELOP_LETTER_CONCEPT),
               url: navigation.getURL('dedicated', '#/useraccount/emails'),
               tracking: 'hub::sidebar::shortcuts::go-to-emails',
             },
@@ -73,7 +76,7 @@ const useShortcuts = (): UseShortcuts => {
         ? [
             {
               id: 'contacts',
-              icon: 'oui-icon-book-contact_concept',
+              icon: getOdsIcon(ODS_ICON_NAME.BOOK_CONTACT_CONCEPT),
               url: navigation.getURL('dedicated', '#/contacts/services'),
               tracking: 'hub::sidebar::shortcuts::go-to-contacts',
             },
