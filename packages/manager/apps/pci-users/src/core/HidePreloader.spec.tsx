@@ -1,7 +1,7 @@
 import { describe, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { useUX } from '@ovh-ux/manager-react-shell-client';
-import HidePreloader from '@/core/HidePreloader';
+import HidePreloader from './HidePreloader';
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => {
   const hidePreloader = vi.fn(() => {});

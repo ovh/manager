@@ -1,7 +1,7 @@
 import { describe, expect } from 'vitest';
 import { useEffect } from 'react';
 import { render } from '@testing-library/react';
-import { useNotifications, NotificationType } from '@/hooks/useNotifications';
+import { useNotifications, NotificationType } from './useNotifications';
 
 function AddNotification() {
   const { addNotification } = useNotifications();

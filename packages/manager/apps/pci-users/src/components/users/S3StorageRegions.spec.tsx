@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import queryClient from '@/queryClient';
 import { Region } from '@/data/region';
-import S3StorageRegions from '@/components/users/S3StorageRegions';
+import S3StorageRegions from './S3StorageRegions';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   useEnvironment: () => ({

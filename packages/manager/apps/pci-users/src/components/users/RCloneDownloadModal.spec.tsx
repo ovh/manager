@@ -1,15 +1,14 @@
-import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
-import { QueryClientProvider } from '@tanstack/react-query';
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from '@/queryClient';
-import EditRolesModal from '@/components/users/EditRolesModal';
-import { useUpdateUserRoles } from '@/hooks/useRole';
+import RCloneDownloadModal from './RCloneDownloadModal';
+import { useDownloadRCloneConfig } from '@/hooks/useUser';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   useEnvironment: () => ({
     user: {},
+    getUser: () => ({}),
   }),
 }));
 
@@ -29,45 +28,48 @@ vi.mock('react-i18next', () => ({
   },
 }));
 
-vi.mock('@/hooks/useRole', () => {
-  const update = vi.fn(() => {});
+vi.mock('@/hooks/useUser', () => {
+  const download = vi.fn(() => {});
   return {
-    useUpdateUserRoles: () => ({
-      update,
+    useDownloadRCloneConfig: () => ({
+      download,
     }),
-    useAllRoles: () => ({}),
+    useUser: () => ({}),
   };
 });
 
 function renderModal() {
   render(
     <QueryClientProvider client={queryClient}>
-      <EditRolesModal
+      <RCloneDownloadModal
         projectId="foo"
         onClose={() => {}}
         onError={() => {}}
         onSuccess={() => {}}
-        userId={123456}
-      ></EditRolesModal>
+        userId={'bar'}
+      ></RCloneDownloadModal>
       ,
     </QueryClientProvider>,
   );
 }
 
-describe('Edit Role modal', () => {
-  it('should call the modal and edit role', async () => {
-    const useUpdate = useUpdateUserRoles({
+describe('Rclone Download Modal', () => {
+  it('should call the download function with some parameters', async () => {
+    const useDownloadConfig = useDownloadRCloneConfig({
       projectId: 'foo',
-      userId: 123456,
+      userId: 'bar',
       onSuccess: () => {},
       onError: () => {},
     });
     renderModal();
-    const submitRolesEditButton = screen.getByTestId('submitRolesEditButton');
-    expect(useUpdate.update).not.toHaveBeenCalled();
+    const submitButton = screen.getByTestId('submitButton');
+    expect(useDownloadConfig.download).not.toHaveBeenCalled();
     act(() => {
-      fireEvent.click(submitRolesEditButton);
+      fireEvent.click(submitButton);
     });
-    expect(useUpdate.update).toHaveBeenCalled();
+    const downloadSpy = vi.spyOn(useDownloadConfig, 'download');
+    await useDownloadConfig.download('BHS', 'Swift');
+    expect(downloadSpy).toHaveBeenCalledWith('BHS', 'Swift');
+    expect(downloadSpy).not.toHaveBeenCalledWith('SBG', 'S3');
   });
 });

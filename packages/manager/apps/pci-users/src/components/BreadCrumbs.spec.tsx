@@ -1,6 +1,6 @@
 import { describe, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import BreadCrumbs from '@/components/BreadCrumbs';
+import BreadCrumbs from './BreadCrumbs';
 
 vi.mock('react-router-dom', async () => ({
   useMatches: () => {

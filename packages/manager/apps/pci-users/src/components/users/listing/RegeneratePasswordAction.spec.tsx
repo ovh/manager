@@ -5,12 +5,15 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import queryClient from '@/queryClient';
 import { useRegeneratePassword } from '@/hooks/useUser';
-import RegeneratePasswordAction from '@/components/users/listing/RegeneratePasswordAction';
+import RegeneratePasswordAction from './RegeneratePasswordAction';
 import { User } from '@/interface';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   useEnvironment: () => ({
     user: {},
+  }),
+  useTracking: () => ({
+    trackClick: () => null,
   }),
 }));
 
