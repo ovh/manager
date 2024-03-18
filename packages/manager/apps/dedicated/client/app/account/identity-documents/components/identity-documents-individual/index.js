@@ -2,11 +2,11 @@ import angular from 'angular';
 import component from './component';
 
 const moduleName =
-  'ovhManagerDedicatedAccountUserUploadIdentityDocumentsIndRequirements';
+  'ovhManagerDedicatedAccountUserUploadIdentityDocumentsIndividualRequirements';
 
 angular
   .module(moduleName, ['pascalprecht.translate'])
-  .component('uploadIdentityDocumentsIndRequirements', component)
+  .component('uploadIdentityDocumentsIndividualRequirements', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
