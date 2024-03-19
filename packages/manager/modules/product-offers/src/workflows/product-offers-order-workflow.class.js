@@ -251,7 +251,10 @@ export default class OrderWorkflow extends Workflow {
     };
 
     if (this.expressOrder) {
-      const productId = this.productName();
+      const productId =
+        typeof this.productName === 'function'
+          ? this.productName()
+          : this.productName;
       const checkoutObject = this.getCheckoutInformations();
       const jsUrlToSend = {
         productId,

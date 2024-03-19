@@ -65,6 +65,15 @@
         ></p>
     </oui-step-form>
 
+    <button
+        type="button"
+        class="oui-button oui-button_l oui-button_primary"
+        data-ng-click="$ctrl.workflow.validateOffer()"
+        data-ng-if="$ctrl.workflowOptions.expressOrder && $ctrl.workflow.pricings.length === 1"
+    >
+        <span data-translate="ovh_product_offers_order_express_submit"></span>
+    </button>
+
     <!-- Payment -->
     <oui-step-form
         data-ng-if="!$ctrl.workflowOptions.expressOrder"
