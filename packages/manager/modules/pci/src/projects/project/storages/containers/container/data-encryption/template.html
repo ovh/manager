@@ -1,0 +1,18 @@
+<div class="mb-3">
+    <p
+        data-translate="pci_projects_project_storages_containers_data_encryption_description"
+    ></p>
+    <oui-radio-group data-model="$ctrl.encryption.sseAlgorithm">
+        <oui-radio
+            data-ng-repeat="option in $ctrl.options track by $index"
+            data-value=":: option.value"
+            ><span data-translate="{{:: option.label}}"></span>
+            <i
+                data-ng-if="option.tooltip"
+                class="pl-1 fa fa-question-circle-o oui-color-p-500"
+                aria-hidden="true"
+                data-oui-tooltip="{{:: option.tooltip | translate }}"
+            ></i>
+        </oui-radio>
+    </oui-radio-group>
+</div>
