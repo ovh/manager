@@ -3,8 +3,6 @@ import { useMediaQuery } from 'react-responsive';
 
 import { useTranslation } from 'react-i18next';
 
-import style from './style.module.scss';
-
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 
 type Props = {
@@ -30,8 +28,8 @@ function LanguageButton({
       title={t('language_change')}
       type="button"
       className={`oui-navbar-link oui-navbar-link_dropdown ${
-        style.navbarFontSize
-      } ${isSmallDevice ? 'p-0' : ''}`}
+        isSmallDevice ? 'p-0' : ''
+      }`}
       onClick={(e) => {
         e.preventDefault();
         onClick(!show);

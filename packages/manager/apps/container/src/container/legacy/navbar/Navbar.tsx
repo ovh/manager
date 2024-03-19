@@ -65,11 +65,7 @@ function Navbar({ environment }: Props): JSX.Element {
           isDropdownOpen ? '' : modalStyle.hidden
         }`}
       ></div>
-      <div
-        className={`oui-navbar ${style.navbar}`}
-        role="navigation"
-        aria-label={t('navbar_menu_name')}
-      >
+      <div className={`oui-navbar ${style.navbar}`} role="navigation" aria-label={t('navbar_menu_name')}>
         <Hamburger universe={universe} universes={getUniverses()} />
         <Brand
           targetURL={getHubUniverse()?.url || '#'}
@@ -89,7 +85,12 @@ function Navbar({ environment }: Props): JSX.Element {
             </div>
           )}
           <div className="oui-navbar-list__item">
-            <NavReshuffleSwitchBack />
+            <NavReshuffleSwitchBack
+              onChange={(show: boolean) => {
+                setIsDropdownOpen(show);
+                setIsNotificationsSidebarVisible(false);
+              }}
+            />
           </div>
           <div className="oui-navbar-list__item">
             <LanguageMenu
