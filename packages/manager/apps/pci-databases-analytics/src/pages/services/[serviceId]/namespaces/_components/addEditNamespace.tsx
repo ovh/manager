@@ -41,7 +41,6 @@ import {
 } from '@/hooks/api/namespaces.api.hooks';
 
 import { database } from '@/models/database';
-import { NamespaceEdition } from '@/api/databases/namespaces';
 import { convertDurationStringToISODuration } from '@/lib/durationHelper';
 import { TOAST } from '@/configuration/toast';
 

@@ -14,12 +14,7 @@ import TabsMenu from '@/components/tabs-menu';
 import { POLLING } from '@/configuration/polling';
 import { getService } from '@/api/databases/service';
 import queryClient from '@/query.client';
-import { useGetUsers } from '@/hooks/api/users.api.hooks';
-import { useGetBackups } from '@/hooks/api/backups.api.hooks';
-import { useGetDatabases } from '@/hooks/api/databases.api.hook';
-import { useGetConnectionPools } from '@/hooks/api/connectionPool.api.hooks';
-import { useGetCurrentQueries } from '@/hooks/api/queries.api.hooks';
-import { useGetIntegrations } from '@/hooks/api/integrations.api.hook';
+import ServiceTabs from './_components/serviceTabs';
 
 interface ServiceLayoutProps {
   params: {
@@ -77,64 +72,7 @@ export default function ServiceLayout() {
   const serviceQuery = useGetService(projectId, serviceId, {
     refetchInterval: POLLING.SERVICE,
   });
-  const { data: users } = useGetUsers(
-    projectId,
-    serviceQuery.data?.engine,
-    serviceId,
-    {
-      refetchInterval: POLLING.SERVICE,
-      enabled: !!serviceQuery.data?.capabilities.users?.read,
-    },
-  );
-  const { data: backups } = useGetBackups(
-    projectId,
-    serviceQuery.data?.engine,
-    serviceId,
-    {
-      refetchInterval: POLLING.SERVICE,
-      enabled: !!serviceQuery.data?.capabilities.backups?.read,
-    },
-  );
-  const { data: databases } = useGetDatabases(
-    projectId,
-    serviceQuery.data?.engine,
-    serviceId,
-    {
-      refetchInterval: POLLING.SERVICE,
-      enabled: !!serviceQuery.data?.capabilities.databases?.read,
-    },
-  );
-  // const {data: namespaces} = useGetNameSpaces(projectId, serviceQuery.data?.engine, serviceId, {
-  //   refetchInterval: POLLING.SERVICE,
-  //   enabled: !!serviceQuery.data?.capabilities.databases?.read,
-  // });
-  const { data: connectionPools } = useGetConnectionPools(
-    projectId,
-    serviceQuery.data?.engine,
-    serviceId,
-    {
-      refetchInterval: POLLING.SERVICE,
-      enabled: !!serviceQuery.data?.capabilities.connectionPools?.read,
-    },
-  );
-  const { data: currentQueries } = useGetCurrentQueries(
-    projectId,
-    serviceQuery.data?.engine,
-    serviceId,
-    {
-      refetchInterval: POLLING.SERVICE,
-      enabled: !!serviceQuery.data?.capabilities.currentQueries?.read,
-    },
-  );
-  const { data: integrations } = useGetIntegrations(
-    projectId,
-    serviceQuery.data?.engine,
-    serviceId,
-    {
-      refetchInterval: POLLING.SERVICE,
-      enabled: !!serviceQuery.data?.capabilities.currentQueries?.read,
-    },
-  );
+
   const service = serviceQuery.data;
   if (!service) {
     return (
@@ -149,59 +87,11 @@ export default function ServiceLayout() {
     service,
     serviceQuery,
   };
-  const tabs = [
-    { href: '', label: 'Dashboard', end: true },
-    service.capabilities.users && {
-      href: 'users',
-      label: 'Users',
-      count: users?.length,
-      disabled: !service.capabilities.users.read,
-    },
-    service.capabilities.backups && {
-      href: 'backups',
-      label: 'Backups',
-      count: backups?.length,
-      disabled: !service.capabilities.backups.read,
-    },
-    service.capabilities.databases && {
-      href: 'databases',
-      label: 'Databases',
-      count: databases?.length,
-      disabled: !service.capabilities.databases.read,
-    },
-    service.capabilities.namespaces && {
-      href: 'namespaces',
-      label: 'Namespaces',
-      // count: nameSpaces?.length,
-      disabled: !service.capabilities.namespaces.read,
-    },
-    service.capabilities.connectionPools && {
-      href: 'pools',
-      label: 'Pools',
-      count: connectionPools?.length,
-      disabled: !service.capabilities.connectionPools.read,
-    },
-    service.capabilities.queryStatistics && {
-      href: 'queries',
-      label: 'Queries',
-      count: currentQueries?.length,
-      disabled: !service.capabilities.queryStatistics.read,
-    },
-    service.capabilities.integrations && {
-      href: 'integrations',
-      label: 'Integrations',
-      count: integrations?.length,
-      disabled: !service.capabilities.integrations.read,
-    },
-    { href: 'metrics', label: 'Metrics' },
-    { href: 'logs', label: 'Logs' },
-    { href: 'settings', label: 'Settings' },
-  ].filter((t) => t);
 
   return (
     <>
       <ServiceHeader service={service} />
-      <TabsMenu tabs={tabs} />
+      <ServiceTabs service={service} />
       <div className="space-y-2">
         <Outlet context={serviceLayoutContext} />
       </div>
