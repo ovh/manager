@@ -256,10 +256,16 @@ export default class OrderWorkflow extends Workflow {
           ? this.productName()
           : this.productName;
       const checkoutObject = this.getCheckoutInformations();
+      const { configuration } = checkoutObject;
+      const serviceName =
+        typeof this.serviceNameToAddProduct === 'function'
+          ? this.serviceNameToAddProduct()
+          : this.serviceNameToAddProduct;
       const jsUrlToSend = {
         productId,
-        configuration: checkoutObject.configuration,
+        ...(configuration.length > 0 ? { configuration } : []),
         ...checkoutObject.product,
+        ...(serviceName ? { serviceName } : []),
       };
       return this.$window.open(
         `${this.expressOrderUrl}?products=${JSURL.stringify([jsUrlToSend])}`,
