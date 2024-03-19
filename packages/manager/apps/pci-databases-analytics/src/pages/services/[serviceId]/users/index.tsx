@@ -14,7 +14,7 @@ import { useModale } from '@/hooks/useModale';
 import DeleteUser from './_components/deleteUser';
 import ResetUserPassword from './_components/resetUserPassword';
 import { POLLING } from '@/configuration/polling';
-import AddEditUserModal from './_components/addUser';
+import AddEditUserModal from './_components/addEditUser';
 
 export function breadcrumb() {
   return (

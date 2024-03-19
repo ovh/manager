@@ -70,7 +70,7 @@ export function useAddUser({ onError, onSuccess }: MutateUserProps) {
 }
 
 interface MutateUserPasswordProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: (user: database.service.UserWithPassword) => void;
 }
 export function useResetUserPassword({
@@ -94,7 +94,7 @@ export function useResetUserPassword({
 }
 
 interface UseDeleteUserProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: () => void;
 }
 export function useDeleteUser({ onError, onSuccess }: UseDeleteUserProps) {

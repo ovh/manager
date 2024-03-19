@@ -40,15 +40,17 @@ const UserActions = ({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem
-            disabled={
-              service.capabilities.users?.update ===
-              database.service.capability.StateEnum.disabled
-            }
-            onClick={() => onEditClicked(user)}
-          >
-            {t('tableActionsMenuEdit')}
-          </DropdownMenuItem>
+          {service.capabilities.users?.update && (
+            <DropdownMenuItem
+              disabled={
+                service.capabilities.users?.update ===
+                database.service.capability.StateEnum.disabled
+              }
+              onClick={() => onEditClicked(user)}
+            >
+              {t('tableActionsMenuEdit')}
+            </DropdownMenuItem>
+          )}
           <DropdownMenuItem
             disabled={
               service.capabilities.users?.update ===

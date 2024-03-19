@@ -23,7 +23,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import RolesSelect from './addUser/rolesSelect';
+
 import TagsInput from '@/components/tags-input';
 import { ModalController } from '@/hooks/useModale';
 import {
@@ -32,7 +32,8 @@ import {
   useEditUser,
 } from '@/hooks/api/users.api.hooks';
 import { useToast } from '@/components/ui/use-toast';
-import { useUserForm } from './addUser/addUser.hook';
+import { useUserForm } from './formUser/formUser.hook';
+import RolesSelect from './formUser/rolesSelect';
 
 interface AddEditUserModalProps {
   isEdition: boolean;
@@ -75,7 +76,7 @@ const AddEditUserModal = ({
       toast.toast({
         title: t(`${prefix}UserToastErrorTitle`),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
       if (onError) {
         onError(err);
