@@ -104,14 +104,6 @@ const AddEditUserModal = ({
 
   const onSubmit = form.handleSubmit((formValues) => {
     if (isEdition) {
-      if (
-        !(service.engine === database.EngineEnum.redis) &&
-        Object.entries(form.formState.dirtyFields).length === 0
-      ) {
-        onSuccess();
-        return;
-      }
-
       const userEditionValue = {
         ...(formValues as UserEdition),
         id: editedUser.id,

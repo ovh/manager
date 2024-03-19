@@ -153,45 +153,30 @@ export const useUserForm = ({
     name: defaultName,
   };
 
-  let m3dbEditedUser: database.m3db.User;
-  let pgOrMongoeditedUser: database.service.UserWithRoles;
-  let redisEditedUser: database.redis.User;
   switch (service.engine) {
     case database.EngineEnum.m3db:
-      if (editedUser) {
-        if ('group' in editedUser) {
-          m3dbEditedUser = { ...editedUser };
-        }
-      }
       schema = groupSchema;
-      defaultValues = { ...defaultValues, group: m3dbEditedUser?.group || '' };
+      defaultValues = {
+        ...defaultValues,
+        group: (editedUser as database.m3db.User)?.group || '',
+      };
       break;
     case database.EngineEnum.postgresql:
     case database.EngineEnum.mongodb:
-      if (editedUser) {
-        if ('roles' in editedUser) {
-          pgOrMongoeditedUser = { ...editedUser };
-        }
-      }
       schema = roleschema;
       defaultValues = {
         ...defaultValues,
-        roles: pgOrMongoeditedUser?.roles || [],
+        roles: (editedUser as database.service.UserWithRoles)?.roles || [],
       };
       break;
     case database.EngineEnum.redis:
-      if (editedUser) {
-        if ('channels' in editedUser) {
-          redisEditedUser = { ...editedUser };
-        }
-      }
       schema = redisSchema;
       defaultValues = {
         ...defaultValues,
-        categories: redisEditedUser?.categories || [],
-        keys: redisEditedUser?.keys || [],
-        commands: redisEditedUser?.commands || [],
-        channels: redisEditedUser?.channels || [],
+        categories: (editedUser as database.redis.User)?.categories || [],
+        keys: (editedUser as database.redis.User)?.keys || [],
+        commands: (editedUser as database.redis.User)?.commands || [],
+        channels: (editedUser as database.redis.User)?.channels || [],
       };
       break;
     default:
