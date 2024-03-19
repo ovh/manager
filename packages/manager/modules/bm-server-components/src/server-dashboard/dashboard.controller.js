@@ -36,6 +36,7 @@ export default class DedicatedServerDashboard {
   }
 
   $onInit() {
+    this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
     this.$rootScope.serverCtrl = this.dedicatedServer;
 
     this.server.iso =
