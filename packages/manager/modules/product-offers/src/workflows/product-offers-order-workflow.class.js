@@ -128,7 +128,7 @@ export default class OrderWorkflow extends Workflow {
 
     this.pricings = this.computePricing(catalogPricings);
 
-    if (this.hasUniquePricing()) {
+    if (this.hasUniquePricing() && !this.expressOrder) {
       this.$timeout(() => {
         this.currentIndex += 1;
         [this.pricing] = this.pricings;
@@ -251,12 +251,21 @@ export default class OrderWorkflow extends Workflow {
     };
 
     if (this.expressOrder) {
-      const productId = this.productName();
+      const productId =
+        typeof this.productName === 'function'
+          ? this.productName()
+          : this.productName;
       const checkoutObject = this.getCheckoutInformations();
+      const { configuration } = checkoutObject;
+      const serviceName =
+        typeof this.serviceNameToAddProduct === 'function'
+          ? this.serviceNameToAddProduct()
+          : this.serviceNameToAddProduct;
       const jsUrlToSend = {
         productId,
-        configuration: checkoutObject.configuration,
+        ...(configuration.length > 0 ? { configuration } : []),
         ...checkoutObject.product,
+        ...(serviceName ? { serviceName } : []),
       };
       return this.$window.open(
         `${this.expressOrderUrl}?products=${JSURL.stringify([jsUrlToSend])}`,

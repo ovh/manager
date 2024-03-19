@@ -46,7 +46,7 @@ export default class ServicesWorkflow extends Workflow {
     this.plancode = actionPlancode.planCode;
     this.pricings = this.computePricing(actionPlancode.prices);
 
-    if (this.hasUniquePricing()) {
+    if (this.hasUniquePricing() && !this.expressOrder) {
       this.$timeout(() => {
         this.currentIndex += 1;
         [this.pricing] = this.pricings;
