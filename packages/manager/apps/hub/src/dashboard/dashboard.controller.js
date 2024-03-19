@@ -28,6 +28,7 @@ export default class DashboardController {
     this.availableSiretBanner = false;
     this.availableSiretPopup = false;
     this.showKycBanner = false;
+    this.showKycBannerWaiting = false;
     this.displayRbx1EolBanner = {
       rbx1Eol: false,
     };
@@ -38,7 +39,9 @@ export default class DashboardController {
       .then(({ data: featureAvailability }) => {
         if (featureAvailability['identity-documents']) {
           this.$http.get(`/me/procedure/identity`).then(({ data }) => {
-            this.showKycBanner = ['required', 'open'].includes(data.status);
+            this.showKycBanner = data.status === 'required' && !data.ticketId;
+            this.showKycBannerWaiting =
+              data.status === 'required' && !!data.ticketId;
             if (this.showKycBanner)
               this.atInternet.trackPage({
                 name: KYC_TRACKING_PREFIX,
