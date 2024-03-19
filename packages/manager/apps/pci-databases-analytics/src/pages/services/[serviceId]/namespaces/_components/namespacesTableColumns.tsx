@@ -21,7 +21,6 @@ import { Span } from '@/components/typography';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
 import { database } from '@/models/database';
-import { NAMESPACES_CONFIG } from './formNamespace/namespace.const';
 import { durationStringToHuman } from '@/lib/durationHelper';
 import { useServiceData } from '../../layout';
 
@@ -88,32 +87,35 @@ export const getColumns = ({
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
                     <TooltipTrigger className="w-full">
-                      <DropdownMenuItem
-                        disabled={
-                          service.capabilities.namespaces?.update ===
-                          database.service.capability.StateEnum.disabled
-                        }
-                        onClick={() => {
-                          onEditClick(row.original);
-                        }}
-                        className="w-full"
-                      >
-                        {t('tableActionEdit')}
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem
-                        disabled={
-                          row.original.name === NAMESPACES_CONFIG.defaultName ||
-                          service.capabilities.namespaces?.delete ===
+                      {service.capabilities.namespaces?.update && (
+                        <DropdownMenuItem
+                          disabled={
+                            service.capabilities.namespaces?.update ===
                             database.service.capability.StateEnum.disabled
-                        }
-                        onClick={() => {
-                          onDeleteClick(row.original);
-                        }}
-                        className="w-full"
-                      >
-                        {t('tableActionDelete')}
-                      </DropdownMenuItem>
+                          }
+                          onClick={() => {
+                            onEditClick(row.original);
+                          }}
+                          className="w-full"
+                        >
+                          {t('tableActionEdit')}
+                        </DropdownMenuItem>
+                      )}
+                      <DropdownMenuSeparator />
+                      {service.capabilities.namespaces?.delete && (
+                        <DropdownMenuItem
+                          disabled={
+                            service.capabilities.namespaces?.delete ===
+                            database.service.capability.StateEnum.disabled
+                          }
+                          onClick={() => {
+                            onDeleteClick(row.original);
+                          }}
+                          className="w-full"
+                        >
+                          {t('tableActionDelete')}
+                        </DropdownMenuItem>
+                      )}
                     </TooltipTrigger>
                   </DropdownMenuContent>
                 </DropdownMenu>

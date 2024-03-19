@@ -12,6 +12,7 @@ interface UserListColumnsProps {
   displayRolesCol: boolean;
   onDeleteClicked: (user: GenericUser) => void;
   onResetPasswordClicked: (user: GenericUser) => void;
+  onEditClicked: (user: GenericUser) => void;
 }
 
 export const getColumns = ({
@@ -19,6 +20,7 @@ export const getColumns = ({
   displayRolesCol = false,
   onDeleteClicked,
   onResetPasswordClicked,
+  onEditClicked,
 }: UserListColumnsProps) => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/users',
@@ -84,6 +86,7 @@ export const getColumns = ({
         user={row.original}
         onDeleteClicked={onDeleteClicked}
         onResetPasswordClicked={onResetPasswordClicked}
+        onEditClicked={onEditClicked}
       />
     ),
   };
