@@ -61,6 +61,5 @@ export function durationToISODurationString(durationTime: Duration) {
 }
 
 export function convertDurationStringToISODuration(durationTime: string) {
-  if (!durationTime) return null;
   return durationToISODurationString(durationStringToDuration(durationTime));
 }

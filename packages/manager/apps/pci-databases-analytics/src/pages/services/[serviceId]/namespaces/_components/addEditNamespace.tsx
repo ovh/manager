@@ -63,15 +63,15 @@ const AddEditNamespace = ({
   onSuccess,
   onError,
 }: AddEditNamespaceModalProps) => {
-  const [advancedConfiguration, setAdvancedConfiguration] = useState(false);
-  const showAdvancedConfig =
+  const [advancedConfiguration, setAdvancedConfiguration] = useState(
     isEdition &&
-    (editedNamespace.snapshotEnabled ||
-      editedNamespace.writesToCommitLogEnabled ||
-      editedNamespace.retention.blockDataExpirationDuration ||
-      editedNamespace.retention.blockSizeDuration ||
-      editedNamespace.retention.bufferFutureDuration ||
-      editedNamespace.retention.bufferPastDuration);
+      (editedNamespace.snapshotEnabled ||
+        editedNamespace.writesToCommitLogEnabled ||
+        editedNamespace.retention.blockDataExpirationDuration ||
+        editedNamespace.retention.blockSizeDuration ||
+        editedNamespace.retention.bufferFutureDuration ||
+        editedNamespace.retention.bufferPastDuration),
+  );
 
   const { projectId } = useParams();
   const { form } = useNamespaceForm({
@@ -82,11 +82,6 @@ const AddEditNamespace = ({
   useEffect(() => {
     if (!controller.open) form.reset();
   }, [controller.open]);
-
-  useEffect(() => {
-    if (!isEdition) return;
-    if (showAdvancedConfig) setAdvancedConfiguration(true);
-  }, [showAdvancedConfig]);
 
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/namespaces',
@@ -108,6 +103,7 @@ const AddEditNamespace = ({
     },
     onSuccess(ns) {
       form.reset();
+      setAdvancedConfiguration(false);
       toast.toast({
         title: t('formNamespaceToastSuccessTitle'),
         description: t(`${prefix}NamespaceToastSuccessDescription`, {
@@ -133,61 +129,53 @@ const AddEditNamespace = ({
       periodDuration: convertDurationStringToISODuration(
         formValues.periodDuration,
       ),
+      blockDataExpirationDuration: formValues.blockDataExpirationDuration
+        ? convertDurationStringToISODuration(
+            formValues.blockDataExpirationDuration,
+          )
+        : null,
+      bufferFutureDuration: formValues.bufferFutureDuration
+        ? convertDurationStringToISODuration(formValues.bufferFutureDuration)
+        : null,
+      bufferPastDuration: formValues.bufferPastDuration
+        ? convertDurationStringToISODuration(formValues.bufferPastDuration)
+        : null,
     };
-
-    if (advancedConfiguration) {
-      retentionFormValues.blockDataExpirationDuration = convertDurationStringToISODuration(
-        formValues.blockDataExpirationDuration,
-      );
-
-      retentionFormValues.bufferFutureDuration = convertDurationStringToISODuration(
-        formValues.bufferFutureDuration,
-      );
-
-      retentionFormValues.bufferPastDuration = convertDurationStringToISODuration(
-        formValues.bufferPastDuration,
-      );
-
-      if (!isEdition)
-        retentionFormValues.blockSizeDuration = convertDurationStringToISODuration(
-          formValues.blockSizeDuration,
-        );
-    }
 
     if (isEdition) {
       if (Object.entries(form.formState.dirtyFields).length === 0) {
         onSuccess();
         return;
       }
-      const namespace: NamespaceEdition = {
-        id: editedNamespace.id,
-        retention: retentionFormValues,
-        snapshotEnabled: formValues.snapshotEnabled,
-        writesToCommitLogEnabled: formValues.writesToCommitLogEnabled,
-        resolution: convertDurationStringToISODuration(formValues.resolution),
-      };
 
       editNamespace({
         projectId,
         engine: service.engine,
         serviceId: service.id,
-        namespace,
+        namespace: {
+          id: editedNamespace.id,
+          retention: retentionFormValues,
+          snapshotEnabled: formValues.snapshotEnabled,
+          writesToCommitLogEnabled: formValues.writesToCommitLogEnabled,
+          resolution: convertDurationStringToISODuration(formValues.resolution),
+        },
       });
     } else {
-      const namespace: database.m3db.NamespaceCreation = {
-        name: formValues.name,
-        retention: retentionFormValues,
-        resolution: convertDurationStringToISODuration(formValues.resolution),
-        type: formValues.type,
-        snapshotEnabled: formValues.snapshotEnabled,
-        writesToCommitLogEnabled: formValues.writesToCommitLogEnabled,
-      };
-
+      retentionFormValues.blockSizeDuration = formValues.blockSizeDuration
+        ? convertDurationStringToISODuration(formValues.blockSizeDuration)
+        : null;
       addNamespace({
         projectId,
         engine: service.engine,
         serviceId: service.id,
-        namespace,
+        namespace: {
+          name: formValues.name,
+          retention: retentionFormValues,
+          resolution: convertDurationStringToISODuration(formValues.resolution),
+          type: formValues.type,
+          snapshotEnabled: formValues.snapshotEnabled,
+          writesToCommitLogEnabled: formValues.writesToCommitLogEnabled,
+        },
       });
     }
   });
@@ -236,7 +224,7 @@ const AddEditNamespace = ({
                   <div className="flex items-center space-x-2">
                     <FormLabel>{t('formNamespaceFieldTypeLabel')}</FormLabel>
                     <FormControl>
-                      <RadioGroup defaultValue={field.value}>
+                      <RadioGroup value={field.value} ref={field.ref}>
                         <FormItem className="flex items-center gap-2 space-y-0">
                           <FormControl>
                             <RadioGroupItem value={field.value} />
@@ -338,7 +326,7 @@ const AddEditNamespace = ({
               <Button
                 type="button"
                 variant="ghost"
-                className="flex flex-row justify-between w-full font-semibold hover:text-"
+                className="flex flex-row justify-between w-full font-semibold hover:text-primary"
                 onClick={() => setAdvancedConfiguration(!advancedConfiguration)}
               >
                 {t('formNamespaceButtonAdvancedConfiguration')}
@@ -376,6 +364,7 @@ const AddEditNamespace = ({
                             <Switch
                               checked={field.value}
                               onCheckedChange={field.onChange}
+                              ref={field.ref}
                             />
                           </FormControl>
                         </div>
@@ -408,6 +397,7 @@ const AddEditNamespace = ({
                             <Switch
                               checked={field.value}
                               onCheckedChange={field.onChange}
+                              ref={field.ref}
                             />
                           </FormControl>
                         </div>
