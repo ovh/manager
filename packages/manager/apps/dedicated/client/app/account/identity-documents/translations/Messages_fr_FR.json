@@ -16,12 +16,12 @@
   "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png Taille maximale: 10 mo.",
   "user_account_identity_documents_selection_file_format_invalid": "Format de fichier non pris en charge. Veuillez utiliser l'un des formats acceptés : jpg, jpeg, pdf et png",
   "user_account_identity_documents_submit": "Envoyer mes documents",
-  "user_account_identity_documents_submit_success_message_title": "Merci, nous avons bien reçu vos documents!",
+  "user_account_identity_documents_submit_success_message_title": "Merci, nous avons bien reçu vos documents !",
   "user_account_identity_documents_submit_success_message_description": "Ils seront soumis à validation auprès de nos équipes. Vous serez informé par email de leur validation ou vous serez contacté si nous avons besoin d'informations complémentaires.",
-  "user_account_identity_documents_submit_error_message_description": "Vos documents n’ont pas été correctement envoyés. Veuillez refaire l’upload et l’envoi de vos documents",
+  "user_account_identity_documents_submit_error_message_description": "Vos documents n'ont pas été correctement envoyés. Veuillez refaire l'upload et l'envoi de vos documents",
   "user_account_identity_documents_go_back_to_dashboard": "Voir mon tableau de bord",
-  "user_account_identity_documents_legal_info1": "OVH S.A.S est le responsable du traitement de vos données personnelles. Les données collectées via ce formulaire sont traitées afin de se conformer aux <a href=\"{{ link1 }}\" target=\"_blank\">Directives de cybersécurité du 28.04.2022</a> publiées par le CERT-IN en vertu des dispositions de la sous-section (6) de <a href=\"{{ link2 }}\" target=\"_blank\">l'article 70B</a> de l’Information Technology (IT) Act, 2000.",
-  "user_account_identity_documents_legal_info2": "Pour en savoir plus sur le traitement de vos données personnelles et connaître vos droits, vous pouvez consulter notre <a href=\"{{ link }}\" target=\"_blank\">Politique d’utilisation des données à caractère personnel.</a>",
+  "user_account_identity_documents_legal_info1": "OVH S.A.S est le responsable du traitement de vos données personnelles. Les données collectées via ce formulaire sont traitées afin de se conformer aux <a href=\"{{ link1 }}\" target=\"_blank\">Directives de cybersécurité du 28.04.2022</a> publiées par le CERT-IN en vertu des dispositions de la sous-section (6) de <a href=\"{{ link2 }}\" target=\"_blank\">l'article 70B</a> de l'Information Technology (IT) Act, 2000.",
+  "user_account_identity_documents_legal_info2": "Pour en savoir plus sur le traitement de vos données personnelles et connaître vos droits, vous pouvez consulter notre <a href=\"{{ link }}\" target=\"_blank\">Politique d'utilisation des données à caractère personnel.</a>",
   "user_account_identity_documents_verification_in_progress_info": "Le traitement de vos documents est actuellement en cours d'analyse par notre équipe.",
   "user_account_identity_documents_verification_waiting_info": "Votre demande a été analysée mais nécessite des documents complémentaires. Veuillez consulter votre ticket de support."
 }
