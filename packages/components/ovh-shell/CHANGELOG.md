@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.4.0...@ovh-ux/shell@3.5.0) (2024-03-19)
+
+
+### Features
+
+* super-components workspace and msc-tile super-component ([#9450](https://github.com/ovh/manager/issues/9450)) ([2e8a662](https://github.com/ovh/manager/commit/2e8a66285b747f8fa268bfa687bcf674a1347101))
+
+
+
+
+
 # [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.3.2...@ovh-ux/shell@3.4.0) (2024-03-13)
 
 

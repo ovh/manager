@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.31](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.30...@ovh-ux/manager-billing@0.20.0-alpha.31) (2024-03-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2557] ([fed9c2f](https://github.com/ovh/manager/commit/fed9c2f67919a918933a9f0b7325f60635310da8))
+* **i18n:** add missing translations [CDS 2639] ([b9dd275](https://github.com/ovh/manager/commit/b9dd275fcde4564d496d0ccaf59e0c79d3db7666))
+* **i18n:** add missing translations [CDS 2653] ([30fcc71](https://github.com/ovh/manager/commit/30fcc713c9ea70b933525f320a26e6f56e2e83a1))
+* **i18n:** add missing translations [CDS 2658] ([64c51f6](https://github.com/ovh/manager/commit/64c51f60d0c94029555c480a17835153206656d2))
+* **i18n:** add missing translations [CDS 2663] ([64f9e2f](https://github.com/ovh/manager/commit/64f9e2fa80ea3bb64b669b5aaf4a28098a7081e3))
+* **i18n:** add missing translations [CDS 2664] ([9030ac7](https://github.com/ovh/manager/commit/9030ac78e3f71ace8cdf940ad99673ffbb6bb4d5))
+* **i18n:** add missing translations [CDS 2667] ([adc086b](https://github.com/ovh/manager/commit/adc086b313c3b23714c7d2018feb50b4f5ff5684))
+
+
+
+
+
 # [0.20.0-alpha.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.29...@ovh-ux/manager-billing@0.20.0-alpha.30) (2024-03-04)
 
 

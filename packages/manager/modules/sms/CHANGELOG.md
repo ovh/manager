@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.16.0...@ovh-ux/manager-sms@8.16.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2750] ([c401f56](https://github.com/ovh/manager/commit/c401f566773fd0b52f4428d4b7b9c3122d68acc3))
+
+
+
+
+
 # [8.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.15.0...@ovh-ux/manager-sms@8.16.0) (2024-02-21)
 
 

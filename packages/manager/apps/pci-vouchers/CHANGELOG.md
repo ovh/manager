@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.1.0...@ovh-ux/manager-pci-vouchers-app@0.1.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2865] ([b71fd88](https://github.com/ovh/manager/commit/b71fd88e95830366f3fe589573ff163748906d79))
+
+
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.0.0...@ovh-ux/manager-pci-vouchers-app@0.1.0) (2024-03-13)
 
 

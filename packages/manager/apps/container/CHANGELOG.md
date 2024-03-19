@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.49.0...@ovh-ux/manager-container-app@0.50.0) (2024-03-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2775] ([0ce6390](https://github.com/ovh/manager/commit/0ce6390fb305fb25e67add1040d09deba1e7d359))
+* **i18n:** add missing translations [CDS 2809] ([650da78](https://github.com/ovh/manager/commit/650da787cab0c6b70675e9b062367e14024bd6aa))
+* **i18n:** add missing translations [CDS 2824] ([c1c81d0](https://github.com/ovh/manager/commit/c1c81d003e5b37234329b65dbe46b884aa7219ec))
+
+
+### Features
+
+* super-components workspace and msc-tile super-component ([#9450](https://github.com/ovh/manager/issues/9450)) ([2e8a662](https://github.com/ovh/manager/commit/2e8a66285b747f8fa268bfa687bcf674a1347101))
+
+
+
+
+
 # [0.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.48.0...@ovh-ux/manager-container-app@0.49.0) (2024-03-18)
 
 

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.5.0...@ovh-ux/manager-hub-app@5.5.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2499] ([e63e156](https://github.com/ovh/manager/commit/e63e156278fb697ad3913b28170d75fbf9ab21cb))
+* **i18n:** add missing translations [CDS 2639] ([b9dd275](https://github.com/ovh/manager/commit/b9dd275fcde4564d496d0ccaf59e0c79d3db7666))
+* **i18n:** add missing translations [CDS 2653] ([30fcc71](https://github.com/ovh/manager/commit/30fcc713c9ea70b933525f320a26e6f56e2e83a1))
+* **i18n:** add missing translations [CDS 2658] ([64c51f6](https://github.com/ovh/manager/commit/64c51f60d0c94029555c480a17835153206656d2))
+* **i18n:** add missing translations [CDS 2663] ([64f9e2f](https://github.com/ovh/manager/commit/64f9e2fa80ea3bb64b669b5aaf4a28098a7081e3))
+* **i18n:** add missing translations [CDS 2664] ([9030ac7](https://github.com/ovh/manager/commit/9030ac78e3f71ace8cdf940ad99673ffbb6bb4d5))
+* **i18n:** add missing translations [CDS 2667] ([adc086b](https://github.com/ovh/manager/commit/adc086b313c3b23714c7d2018feb50b4f5ff5684))
+* **i18n:** add missing translations [CDS 2822] ([c88eb06](https://github.com/ovh/manager/commit/c88eb06610392a44241c3eaa79c1f99c4170b678))
+* remove unused translations [CDS] ([9b2fb35](https://github.com/ovh/manager/commit/9b2fb35af1ecac6a9f4af512ac5da30e2fdcb8eb))
+
+
+
+
+
 # [5.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.4.6...@ovh-ux/manager-hub-app@5.5.0) (2024-03-18)
 
 

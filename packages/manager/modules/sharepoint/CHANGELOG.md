@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.11.0...@ovh-ux/manager-sharepoint@2.11.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([07b38b7](https://github.com/ovh/manager/commit/07b38b7b4e69a633a7c40fa8c1db3c67ce8bc052))
+
+
+
+
+
 # [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.10.0...@ovh-ux/manager-sharepoint@2.11.0) (2024-02-21)
 
 

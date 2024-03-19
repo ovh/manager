@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.14.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.14.0...@ovh-ux/ng-ovh-web-universe-components@9.14.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2374] ([3bbde12](https://github.com/ovh/manager/commit/3bbde127e7aeb57cdb7c0a47538b02c33fa40a76))
+* **i18n:** add missing translations [CDS 2398] ([5a92d78](https://github.com/ovh/manager/commit/5a92d78457046fa5d3ddf46249fa30774bfc694f))
+* **i18n:** add missing translations [CDS 2405] ([ac75285](https://github.com/ovh/manager/commit/ac75285d8d1ba834c08fdabec190f46082cb04e3))
+
+
+
+
+
 # [9.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.13.0...@ovh-ux/ng-ovh-web-universe-components@9.14.0) (2024-02-26)
 
 
