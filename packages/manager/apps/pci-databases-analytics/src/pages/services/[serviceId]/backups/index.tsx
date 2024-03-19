@@ -8,7 +8,6 @@ import { getColumns } from './_components/backupsTableColumns';
 import { DataTable } from '@/components/ui/data-table';
 import { useGetBackups } from '@/hooks/api/backups.api.hooks';
 import { POLLING } from '@/configuration/polling';
-
 import { Button } from '@/components/ui/button';
 import { useModale } from '@/hooks/useModale';
 import RestoreServiceModal from './_components/restore';
@@ -26,7 +25,6 @@ const Backups = () => {
   const backupsQuery = useGetBackups(projectId, service.engine, service.id, {
     refetchInterval: POLLING.BACKUPS,
   });
-  // const [selectedBackup, setSelectedBackup] = useState<database.Backup | undefined>();
   const columns = getColumns({
     onRestoreClick: (backup) => {
       restoreModal.open(backup.id);
