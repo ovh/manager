@@ -16,3 +16,31 @@ export const getServiceBackups = async ({
       },
     })
     .then((res) => res.data as database.Backup[]);
+
+export interface RestoreBackupProps extends ServiceData {
+  backupId?: string;
+  restore?: database.service.Restore;
+}
+export const restoreBackup = async ({
+  projectId,
+  engine,
+  serviceId,
+  backupId,
+  restore,
+}: RestoreBackupProps) => {
+  if (backupId) {
+    return apiClient.v6
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${serviceId}/backup/${backupId}/restore`,
+      )
+      .then((res) => res.data as database.Backup);
+  }
+  return apiClient.v6
+    .post(
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/restore`,
+      {
+        ...restore,
+      },
+    )
+    .then((res) => res.data as database.Backup);
+};
