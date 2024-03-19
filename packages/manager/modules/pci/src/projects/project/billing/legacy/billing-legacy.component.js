@@ -13,6 +13,7 @@ export default {
     trackClick: '<',
     pciFeatures: '<',
     projectId: '<',
+    isSubsidiaryWithPostPaidUsageBilling: '<',
   },
   controllerAs: 'BillingCtrl',
   controller,
