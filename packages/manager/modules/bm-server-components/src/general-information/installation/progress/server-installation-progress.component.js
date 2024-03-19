@@ -5,6 +5,7 @@ export default {
   bindings: {
     server: '<',
     goBack: '<',
+    statePrefix: '<',
   },
   controller,
   template,
