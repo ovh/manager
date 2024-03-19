@@ -11,6 +11,7 @@ export default {
     period: '<',
     month: '<',
     year: '<',
+    isSubsidiaryWithPostPaidUsageBilling: '<',
   },
   controller,
   template,
