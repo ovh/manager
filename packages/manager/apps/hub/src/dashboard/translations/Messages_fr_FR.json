@@ -10,5 +10,6 @@
   "manager_hub_dashboard_modal_siret_cancel": "Pas maintenant",
   "manager_hub_dashboard_modal_title": "Mise à jour de vos coordonnées",
   "manager_hub_dashboard_kyc_banner_description": "Vous souhaitez commander un produit OVHcloud : la réglementation en vigueur nécessite une vérification de votre identité. Veuillez ajouter vos documents d'identité.",
+  "manager_hub_dashboard_kyc_banner_description_waiting": "Pour la vérification de votre identité avant de réaliser une commande, veuillez prendre connaissance de l'email envoyé par notre équipe et procéder à l'action demandée.",
   "manager_hub_dashboard_kyc_banner_link": "Mes documents"
 }
