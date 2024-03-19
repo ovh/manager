@@ -9,6 +9,7 @@ import ovhManagerAdvices from '@ovh-ux/manager-advices';
 
 import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import {
+  serverDashboard,
   serverTechnicalDetails,
   serverGeneralInformation,
   serverServiceStatus,
@@ -16,7 +17,6 @@ import {
   serverNetwork,
   serverConsumptionTile,
   serverAdvancedFeatures,
-  serverProfessionalUse,
 } from '@ovh-ux/manager-bm-server-components';
 import commitment from './commitment';
 import cancelCommitment from './cancel-commitment';
@@ -30,8 +30,11 @@ import installationGabarit from './installation/gabarit';
 import installationOvh from './installation/ovh';
 import installationProgress from './installation/progress';
 
-import component from './dashboard.component';
 import routing from './dashboard.routing';
+import {
+  COMMIT_IMPRESSION_TRACKING_DATA,
+  RECOMMIT_IMPRESSION_TRACKING_DATA,
+} from './dashboard.constants';
 
 const moduleName = 'ovhManagerDedicatedServerDashboard';
 
@@ -56,14 +59,17 @@ angular
     serverNetwork,
     serverConsumptionTile,
     serverAdvancedFeatures,
-    serverProfessionalUse,
     installationChoice,
     installationGabarit,
     installationOvh,
     installationProgress,
+    serverDashboard,
   ])
-  .component('dedicatedServerDashboard', component)
   .config(routing)
+  .constant('IMPRESSION_TRACKING_DATA', {
+    COMMIT_IMPRESSION_TRACKING_DATA,
+    RECOMMIT_IMPRESSION_TRACKING_DATA,
+  })
   .run(/* @ngTranslationsInject:json ../translations */);
 
 export default moduleName;

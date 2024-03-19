@@ -9,18 +9,20 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       resolve: {
+        sgxTrackingPrefix: /* @ngInject */ (serverType) =>
+          `dedicated::dedicated::${serverType}::sgx`,
         goBack: /* @ngInject */ ($state) => (params = {}, transitionParams) =>
           $state.go(
             'app.dedicated-server.server.dashboard',
             params,
             transitionParams,
           ),
-        goToManage: /* @ngInject */ ($state, atInternet) => (
+        goToManage: /* @ngInject */ ($state, atInternet, sgxTrackingPrefix) => (
           params = {},
           transitionParams,
         ) => {
           atInternet.trackClick({
-            name: 'dedicated::dedicated::server::sgx::activate',
+            name: `${sgxTrackingPrefix}::activate`,
             type: 'action',
           });
 
@@ -37,9 +39,6 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         },
         breadcrumb: () => null,
-      },
-      atInternet: {
-        rename: 'dedicated::dedicated::server::sgx',
       },
     },
   );

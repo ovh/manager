@@ -4,7 +4,7 @@ import {
   MONITORING_STATUSES,
 } from './service-status.constants';
 
-export default class BmServerComponentsGeneralInformationController {
+export default class BmServerComponentsDashboardServiceStatusController {
   /* @ngInject */
   constructor(
     $state,
@@ -34,6 +34,14 @@ export default class BmServerComponentsGeneralInformationController {
     };
   }
 
+  canBeTerminate() {
+    return (
+      !this.server.isExpired &&
+      !this.server.engagement &&
+      this.serverType !== 'node'
+    );
+  }
+
   getVmsLink() {
     return (
       this.constants.vmsUrl[this.coreConfig.getUser().ovhSubsidiary] ||
@@ -42,7 +50,7 @@ export default class BmServerComponentsGeneralInformationController {
   }
 
   rebootServer() {
-    return this.$state.go('app.dedicated-server.server.dashboard.reboot');
+    return this.$state.go(`.reboot`);
   }
 
   removeHack() {
@@ -87,7 +95,7 @@ export default class BmServerComponentsGeneralInformationController {
 
   onMonitoringUpdateClick() {
     this.atInternet.trackClick({
-      name: 'dedicated::dedicated-server::server::dashboard::update-monitoring',
+      name: `dedicated::dedicated-server::${this.serverType}::dashboard::update-monitoring`,
       type: 'action',
     });
 

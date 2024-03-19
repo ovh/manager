@@ -10,6 +10,8 @@ export default class ServerInstallationChoiceCtrl {
   }
 
   $onInit() {
+    this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
+
     this.choice = {
       value: 1,
       ovh: 1,
@@ -24,16 +26,14 @@ export default class ServerInstallationChoiceCtrl {
   goInstall() {
     if (this.choice.value === this.choice.ovh) {
       this.trackPage(
-        'dedicated::dedicated::server::system-install::public-catalog',
+        `dedicated::dedicated::${this.serverType}::system-install::public-catalog`,
       );
-      this.$state.go(`app.dedicated-server.server.dashboard.installation-ovh`);
+      this.$state.go(`${this.statePrefix}.dashboard.installation-ovh`);
     } else if (this.choice.value === this.choice.gabarit) {
       this.trackPage(
-        'dedicated::dedicated::server::system-install::existing-template',
+        `dedicated::dedicated::${this.serverType}::system-install::existing-template`,
       );
-      this.$state.go(
-        `app.dedicated-server.server.dashboard.installation-gabarit`,
-      );
+      this.$state.go(`${this.statePrefix}.dashboard.installation-gabarit`);
     }
   }
 

@@ -18,6 +18,7 @@ export default {
     ola: '<?',
     goToUpdateReverseDns: '<?',
     goToDeleteReverseDns: '<?',
+    statePrefix: '<?',
   },
   controller,
   template,

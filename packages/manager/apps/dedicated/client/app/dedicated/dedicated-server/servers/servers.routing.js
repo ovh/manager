@@ -5,7 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
   $stateProvider.state(name, {
     url: '/server?page&pageSize&sort&sortOrder&filter',
-    component: 'dedicatedServerServers',
+    views: {
+      containersView: 'dedicatedServerServers',
+    },
     params: {
       page: {
         value: '1',
@@ -33,13 +35,6 @@ export default /* @ngInject */ ($stateProvider) => {
       orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
       orderEcoRangeUrl: /* @ngInject */ (User) =>
         User.getUrlOf('dedicatedEcoRangeOrder'),
-      featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping.checkFeatureAvailability([
-          'dedicated-server:order',
-          'dedicated-server:ecoRangeOrderSectionDedicated',
-          'billing:autorenew2016Deployment',
-          'dedicated-server:banner-rbx1-eol',
-        ]),
       isOrderAvailable: /* @ngInject */ (featureAvailability) =>
         featureAvailability?.isFeatureAvailable('dedicated-server:order') ||
         false,
@@ -130,12 +125,6 @@ export default /* @ngInject */ ($stateProvider) => {
         featureAvailability?.isFeatureAvailable(
           'billing:autorenew2016Deployment',
         ) || false,
-      displayRbx1EolBanner: /* @ngInject */ (featureAvailability) => ({
-        rbx1Eol:
-          featureAvailability?.isFeatureAvailable(
-            'dedicated-server:banner-rbx1-eol',
-          ) || false,
-      }),
     },
     redirectTo: (transition) =>
       transition

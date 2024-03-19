@@ -19,5 +19,8 @@
   "server_configuration_installation_no_public_network": "No es posible instalar o reinstalar un SO en el servidor, ya que la configuración de red seleccionada no tiene acceso a la red pública. Para desbloquear esta acción, modifique su configuración de red en la pestaña «Interfaces de red».",
   "dedicated_servers_installation_template_wizard_prefix_message": "A partir del",
   "dedicated_servers_installation_ovhcloud_template_wizard_message": ", ya no será posible reinstalar {{ osDescription }} en su servidor dedicado. No obstante, podrá seguir utilizando su servidor dedicado con el sistema operativo previamente instalado, o bien reinstalar su servidor dedicado con un sistema operativo más reciente.",
-  "dedicated_servers_installation_customer_template_wizard_message": ", ya no será posible reinstalar {{ osName }} en su servidor dedicado, por lo que la plantilla {{ customerTemplateName }} se eliminará. No obstante, podrá seguir utilizando su servidor dedicado con el sistema operativo previamente instalado, o bien reinstalar su servidor dedicado con un sistema operativo más reciente."
+  "dedicated_servers_installation_customer_template_wizard_message": ", ya no será posible reinstalar {{ osName }} en su servidor dedicado, por lo que la plantilla {{ customerTemplateName }} se eliminará. No obstante, podrá seguir utilizando su servidor dedicado con el sistema operativo previamente instalado, o bien reinstalar su servidor dedicado con un sistema operativo más reciente.",
+  "dedicated_servers_all_servers": "Todos los servidores",
+  "dedicated_servers_clusters": "Clústeres 3-AZ",
+  "dedicated_servers_region": "Región"
 }

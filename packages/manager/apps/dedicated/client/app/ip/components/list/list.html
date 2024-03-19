@@ -138,11 +138,11 @@
                     ></button>
                 </th>
                 <th scope="col">
-                    <span data-translate="ip_table_header_campus"></span>
+                    <span data-translate="ip_table_header_region"></span>
                     <button
                         type="button"
                         class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_campus_help' | translate }}"
+                        data-oui-popover="{{:: 'ip_table_header_region_help' | translate }}"
                         data-oui-popover-placement="top"
                         data-oui-popover-open="headerPopover.campus"
                         data-ng-click="headerPopover = { campus : true }"
@@ -336,11 +336,18 @@
                     </small>
                 </td>
 
-                <!-- Campus -->
-                <td
-                    class="text-center"
-                    data-ng-bind="ipBlock.campus ? ipBlock.campus : '-'"
-                ></td>
+                <!-- Region -->
+                <td class="text-center">
+                    <span
+                        class="d-block"
+                        data-ng-repeat="region in ipBlock.regions track by $index"
+                        data-ng-bind="region"
+                    ></span>
+                    <span
+                        data-ng-if="!ipBlock.regions"
+                        data-ng-bind="'-'"
+                    ></span>
+                </td>
 
                 <!-- Country -->
                 <td
@@ -471,11 +478,18 @@
                     </small>
                 </td>
 
-                <!-- Campus -->
-                <td
-                    class="text-center"
-                    data-ng-bind="ipBlock.campus ? ipBlock.campus : '-'"
-                ></td>
+                <!-- Region -->
+                <td class="text-center">
+                    <span
+                        class="d-block"
+                        data-ng-repeat="region in ipBlock.regions track by $index"
+                        data-ng-bind="region"
+                    ></span>
+                    <span
+                        data-ng-if="!ipBlock.regions"
+                        data-ng-bind="'-'"
+                    ></span>
+                </td>
 
                 <!-- Country -->
                 <td
