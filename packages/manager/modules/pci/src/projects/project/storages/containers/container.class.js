@@ -1,5 +1,8 @@
 import find from 'lodash/find';
-import { OPENIO_DEFAULT_REGION } from './containers.constants';
+import {
+  NO_ENCRYPTION_VALUE,
+  OPENIO_DEFAULT_REGION,
+} from './containers.constants';
 
 export default class Container {
   constructor({
@@ -54,5 +57,10 @@ export default class Container {
 
   getObjectById(objectId) {
     return find(this.objects, { name: objectId });
+  }
+
+  get isEncrypted() {
+    const { sseAlgorithm } = this.encryption;
+    return sseAlgorithm && sseAlgorithm !== NO_ENCRYPTION_VALUE;
   }
 }
