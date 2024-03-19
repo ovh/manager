@@ -404,7 +404,7 @@
   "ip_firewall_protocol": "Protocollo",
   "ip_firewall_source_ip": "Indirizzo IP sorgente",
   "ip_firewall_source_port": "Porta sorgente",
-  "ip_firewall_source_port_tooltip": "La porta sorgente deve essere compresa fra 0 e 65535",,
+  "ip_firewall_source_port_tooltip": "La porta sorgente deve essere compresa fra 0 e 65535",
   "ip_firewall_destination_port": "Porta di destinazione",
   "ip_firewall_destination_port_tooltip": "La porta di destinazione deve essere compresa fra 0 e 65535",
   "ip_firewall_options": "Stato TCP",
