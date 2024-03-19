@@ -1,0 +1,128 @@
+import { useTranslation } from 'react-i18next';
+import { ColumnDef } from '@tanstack/react-table';
+
+import { MoreHorizontal } from 'lucide-react';
+import { SortableHeader } from '@/components/ui/data-table';
+import {
+  Tooltip,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+import { Span } from '@/components/typography';
+
+import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
+
+import { database } from '@/models/database';
+import { NAMESPACES_CONFIG } from './formNamespace/namespace.const';
+import { durationStringToHuman } from '@/lib/durationHelper';
+import { useServiceData } from '../../layout';
+
+interface NamespacesTableColumnsProps {
+  onEditClick: (namespace: database.m3db.Namespace) => void;
+  onDeleteClick: (namespace: database.m3db.Namespace) => void;
+}
+export const getColumns = ({
+  onEditClick,
+  onDeleteClick,
+}: NamespacesTableColumnsProps) => {
+  const { service } = useServiceData();
+  const dateLocale = useDateFnsLocale();
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/namespaces',
+  );
+  const columns: ColumnDef<database.m3db.Namespace>[] = [
+    {
+      id: 'name',
+      header: ({ column }) => (
+        <SortableHeader column={column}>{t('tableHeadName')}</SortableHeader>
+      ),
+      accessorFn: (row) => row.name,
+    },
+    {
+      id: 'type',
+      header: ({ column }) => (
+        <SortableHeader column={column}>{t('tableHeadType')}</SortableHeader>
+      ),
+      accessorFn: (row) => row.type,
+    },
+    {
+      id: 'retention',
+      header: ({ column }) => (
+        <SortableHeader column={column}>
+          {t('tableHeadRetentionTime')}
+        </SortableHeader>
+      ),
+      accessorFn: (row) =>
+        durationStringToHuman(row.retention.periodDuration, dateLocale),
+    },
+    {
+      id: 'resolution',
+      header: ({ column }) => (
+        <SortableHeader column={column}>
+          {t('tableHeadResolution')}
+        </SortableHeader>
+      ),
+      accessorFn: (row) => durationStringToHuman(row.resolution, dateLocale),
+    },
+    {
+      id: 'actions',
+      cell: ({ row }) => {
+        return (
+          <div className="flex justify-end">
+            <TooltipProvider>
+              <Tooltip>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="h-8 w-8 p-0">
+                      <Span className="sr-only">Open menu</Span>
+                      <MoreHorizontal className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <TooltipTrigger className="w-full">
+                      <DropdownMenuItem
+                        disabled={
+                          service.capabilities.namespaces?.update ===
+                          database.service.capability.StateEnum.disabled
+                        }
+                        onClick={() => {
+                          onEditClick(row.original);
+                        }}
+                        className="w-full"
+                      >
+                        {t('tableActionEdit')}
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        disabled={
+                          row.original.name === NAMESPACES_CONFIG.defaultName ||
+                          service.capabilities.namespaces?.delete ===
+                            database.service.capability.StateEnum.disabled
+                        }
+                        onClick={() => {
+                          onDeleteClick(row.original);
+                        }}
+                        className="w-full"
+                      >
+                        {t('tableActionDelete')}
+                      </DropdownMenuItem>
+                    </TooltipTrigger>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+        );
+      },
+    },
+  ];
+  return columns;
+};

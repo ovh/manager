@@ -16,6 +16,9 @@ export interface CdbError extends Error {
     data: {
       class: string;
       message: string;
+      details: {
+        message: string;
+      };
     };
     status: number;
     statusText: string;
