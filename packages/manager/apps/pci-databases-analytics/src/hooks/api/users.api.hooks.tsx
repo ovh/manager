@@ -8,14 +8,17 @@ import { database } from '@/models/database';
 import {
   AddUserProps,
   DeleteUserProps,
+  EditUserProps,
   GenericUser,
   ResetUserPasswordProps,
   addUser,
   deleteUser,
+  editUser,
   getRoles,
   getUsers,
   resetUserPassword,
 } from '@/api/databases/users';
+import { CdbError } from '@/api/databases';
 
 export function useGetUsers(
   projectId: string,
@@ -45,8 +48,8 @@ export function useGetRoles(
   }) as UseQueryResult<string[], Error>;
 }
 
-interface MutateUserProps {
-  onError: (cause: Error) => void;
+export interface MutateUserProps {
+  onError: (cause: CdbError) => void;
   onSuccess: (user: GenericUser) => void;
 }
 export function useAddUser({ onError, onSuccess }: MutateUserProps) {
@@ -67,7 +70,7 @@ export function useAddUser({ onError, onSuccess }: MutateUserProps) {
 }
 
 interface MutateUserPasswordProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: (user: database.service.UserWithPassword) => void;
 }
 export function useResetUserPassword({
@@ -91,7 +94,7 @@ export function useResetUserPassword({
 }
 
 interface UseDeleteUserProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: () => void;
 }
 export function useDeleteUser({ onError, onSuccess }: UseDeleteUserProps) {
@@ -105,6 +108,23 @@ export function useDeleteUser({ onError, onSuccess }: UseDeleteUserProps) {
 
   return {
     deleteUser: (userInfo: DeleteUserProps) => {
+      return mutation.mutate(userInfo);
+    },
+    ...mutation,
+  };
+}
+
+export function useEditUser({ onError, onSuccess }: MutateUserProps) {
+  const mutation = useMutation({
+    mutationFn: (userInfo: EditUserProps) => {
+      return editUser(userInfo);
+    },
+    onError,
+    onSuccess,
+  });
+
+  return {
+    editUser: (userInfo: EditUserProps) => {
       return mutation.mutate(userInfo);
     },
     ...mutation,
