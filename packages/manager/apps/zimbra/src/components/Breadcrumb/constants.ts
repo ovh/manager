@@ -4,8 +4,6 @@ export const urls = {
   dashboard: '/:serviceName',
   overview: '/:serviceName',
   organizations: '/:serviceName/organizations',
-  domain: '/:serviceName/domains',
+  domains: '/:serviceName/domains',
   email_accounts: '/:serviceName/email_accounts',
-  mailing_list: '/:serviceName/mailing_lists',
-  redirections: '/:serviceName/redirections',
 };
