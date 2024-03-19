@@ -10,20 +10,9 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       url: '/storages',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        const objectStorageId = 'public-cloud:object-storage';
-        const promise = $transition$
-          .injector()
-          .get('ovhFeatureFlipping')
-          .checkFeatureAvailability(objectStorageId)
-          .then((newRegionFeature) =>
-            newRegionFeature.isFeatureAvailable(objectStorageId),
-          )
-          .then((status) =>
-            status
-              ? import('./storages.module')
-              : import('./legacy/storages.module'),
-          );
-        return promise.then((mod) => $ocLazyLoad.inject(mod.default || mod));
+        return import('./storages.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
       },
     });
   },
