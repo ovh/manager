@@ -1,5 +1,4 @@
 export const NAMESPACES_CONFIG = {
-  defaultName: 'default',
   name: {
     min: 1,
     max: 256,

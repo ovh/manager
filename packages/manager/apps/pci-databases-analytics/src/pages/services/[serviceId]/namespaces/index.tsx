@@ -63,7 +63,7 @@ const Namespaces = () => {
       </P>
       <P>{t('description2')}</P>
       <P>{t('description3')}</P>
-      {namespacesQuery.isSuccess && (
+      {namespacesQuery.isSuccess && service.capabilities.namespaces?.create && (
         <Button
           disabled={
             service.capabilities.namespaces?.create ===

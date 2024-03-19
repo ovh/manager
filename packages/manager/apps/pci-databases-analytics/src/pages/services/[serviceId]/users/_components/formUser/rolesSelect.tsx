@@ -149,14 +149,14 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
                     >
                       <SelectTrigger ref={roleInputRef}>
                         <SelectValue
-                          placeholder={t('addUserRoleInputPlaceholder')}
+                          placeholder={t('formUserRoleInputPlaceholder')}
                         />
                       </SelectTrigger>
                       <SelectContent>
                         {availableRoles.admin.length > 0 && (
                           <SelectGroup>
                             <SelectLabel>
-                              {t('addUserRoleInputAdminRoles')}
+                              {t('formUserRoleInputAdminRoles')}
                             </SelectLabel>
                             {availableRoles.admin.map((role) => (
                               <SelectItem
@@ -172,7 +172,7 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
                         {availableRoles.custom.length > 0 && (
                           <SelectGroup>
                             <SelectLabel>
-                              {t('addUserRoleInputCustomRoles')}
+                              {t('formUserRoleInputCustomRoles')}
                             </SelectLabel>
                             {availableRoles.custom.map((role) => (
                               <SelectItem
@@ -205,7 +205,9 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
                       <FormControl>
                         <Input
                           type="text"
-                          placeholder={t('addUserRoleDatabaseInputPlaceholder')}
+                          placeholder={t(
+                            'formUserRoleDatabaseInputPlaceholder',
+                          )}
                           {...field}
                           onKeyDown={handleKeyDown}
                           disabled={
@@ -244,7 +246,7 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
           ))}
         </div>
         <div>
-          <label>{t('addUserRoleDatabaseConfiguredRoles')}</label>
+          <label>{t('formUserRoleDatabaseConfiguredRoles')}</label>
           <ScrollArea className="h-40 rounded-md border">
             <ul ref={scrollListRef}>
               {value.map((role, index) => (

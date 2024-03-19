@@ -17,17 +17,17 @@ export const useRolesSelectForm = ({
   const schema = z
     .object({
       role: z
-        .string({ required_error: t('addUserRoleRequired') })
-        .min(1, { message: t('addUserRoleRequired') }),
+        .string({ required_error: t('formUserRoleRequired') })
+        .min(1, { message: t('formUserRoleRequired') }),
       customDB: z
         .string()
         .min(USER_CONFIG.roles.customInput.min, {
-          message: t('addUserErrorMinLength', {
+          message: t('formUserErrorMinLength', {
             min: USER_CONFIG.roles.customInput.min,
           }),
         })
         .max(USER_CONFIG.roles.customInput.max, {
-          message: t('addUserErrorMaxLength', {
+          message: t('formUserErrorMaxLength', {
             min: USER_CONFIG.roles.customInput.max,
           }),
         }),
@@ -38,7 +38,7 @@ export const useRolesSelectForm = ({
           newRole.role.replace(USER_CONFIG.roles.customTag, newRole.customDB),
         ),
       {
-        message: t('addUserRoleDuplicate'),
+        message: t('formUserRoleDuplicate'),
       },
     )
     .refine(
@@ -48,7 +48,7 @@ export const useRolesSelectForm = ({
           newRole.role.includes(USER_CONFIG.roles.customTag)
         ),
       {
-        message: t('addUserRoleNoAdminValue'),
+        message: t('formUserRoleNoAdminValue'),
       },
     );
   type ValidationSchema = z.infer<typeof schema>;

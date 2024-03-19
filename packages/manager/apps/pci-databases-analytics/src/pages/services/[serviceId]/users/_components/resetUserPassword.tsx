@@ -49,7 +49,7 @@ const ResetUserPassword = ({
       toast.toast({
         title: t('resetUserPasswordToastErrorTitle'),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
       if (onError) {
         onError(err);
