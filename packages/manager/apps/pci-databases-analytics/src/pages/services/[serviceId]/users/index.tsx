@@ -13,8 +13,8 @@ import { DataTable } from '@/components/ui/data-table';
 import { useModale } from '@/hooks/useModale';
 import DeleteUser from './_components/deleteUser';
 import ResetUserPassword from './_components/resetUserPassword';
-import AddUserModal from './_components/addUser';
 import { POLLING } from '@/configuration/polling';
+import AddEditUserModal from './_components/addUser';
 
 export function breadcrumb() {
   return (
@@ -31,6 +31,7 @@ const Users = () => {
   );
   const { projectId, service, serviceQuery } = useServiceData();
   const addModale = useModale('add');
+  const editModale = useModale('edit');
   const deleteModale = useModale('delete');
   const resetPasswordModale = useModale('reset-password');
   const usersQuery = useGetUsers(projectId, service.engine, service.id, {
@@ -48,11 +49,17 @@ const Users = () => {
     onResetPasswordClicked: (user: GenericUser) => {
       resetPasswordModale.open(user.id);
     },
+    onEditClicked: (user: GenericUser) => {
+      editModale.open(user.id);
+    },
   });
 
   const userToDelete = usersQuery.data?.find(
     (u) => u.id === deleteModale.value,
   );
+
+  const userToEdit = usersQuery.data?.find((u) => u.id === editModale.value);
+
   const userToResetPassword = usersQuery.data?.find(
     (u) => u.id === resetPasswordModale.value,
   );
@@ -81,7 +88,8 @@ const Users = () => {
         <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
       )}
 
-      <AddUserModal
+      <AddEditUserModal
+        isEdition={false}
         controller={addModale.controller}
         service={service}
         users={usersQuery.data || []}
@@ -91,6 +99,22 @@ const Users = () => {
           serviceQuery.refetch();
         }}
       />
+
+      {userToEdit && (
+        <AddEditUserModal
+          isEdition={true}
+          editedUser={userToEdit}
+          controller={editModale.controller}
+          service={service}
+          users={usersQuery.data || []}
+          onSuccess={() => {
+            editModale.close();
+            usersQuery.refetch();
+            serviceQuery.refetch();
+          }}
+        />
+      )}
+
       {userToDelete && (
         <DeleteUser
           controller={deleteModale.controller}
