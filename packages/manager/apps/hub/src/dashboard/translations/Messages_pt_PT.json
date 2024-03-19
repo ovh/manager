@@ -1,7 +1,7 @@
 {
+  "manager_hub_dashboard": "Painel de controlo",
   "manager_hub_dashboard_overview": "Visão geral da minha atividade",
   "manager_hub_dashboard_services": "Os meus produtos e serviços",
-  "manager_hub_dashboard": "Painel de controlo",
   "manager_hub_dashboard_banner_siret_link": "clique aqui para efetuar a atualização.",
   "manager_hub_dashboard_banner_siret": "Para melhorar a qualidade dos seus dados, é necessário atualizar o NIF da sua empresa. Esta atualização demorará apenas alguns segundos. Tenha consigo a sua certidão de registo comercial e ",
   "manager_hub_dashboard_modal_siret_part_1": "Para melhorar a qualidade dos seus dados, é necessário atualizar o NIF da sua empresa.",
@@ -10,8 +10,5 @@
   "manager_hub_dashboard_modal_siret_cancel": "Agora não",
   "manager_hub_dashboard_modal_title": "Atualização dos seus dados",
   "manager_hub_dashboard_kyc_banner_description": "Deseja encomendar um produto OVHcloud: a regulamentação em vigor requer uma verificação da sua identidade. Adicione os seus documentos de identificação.",
-  "manager_hub_dashboard_kyc_banner_link": "Os meus documentos",
-  "manager_hub_dashboard_iam_banner_description": "Novo! A funcionalidade de Gestão das identidades e dos acessos (IAM) está agora disponível para gerir de forma segura os seus acessos através de uma interface única para todos os seus serviços.",
-  "manager_hub_dashboard_iam_banner_link": "Saber mais",
-  "manager_hub_dashboard_iam_ga_banner_description": "Novidade! A Gestão das Identidades e dos Acessos (IAM) está agora disponível para todos. Torne seguro o acesso a todos os seus serviços a partir de uma única interface."
+  "manager_hub_dashboard_kyc_banner_link": "Os meus documentos"
 }

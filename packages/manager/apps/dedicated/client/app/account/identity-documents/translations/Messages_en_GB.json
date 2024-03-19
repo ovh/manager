@@ -1,7 +1,9 @@
 {
   "user_account_identity_documents": "My identity documents",
+  "user_account_identity_documents_title": "Verification of documents required",
   "user_account_identity_documents_sub_title": "Upload your documents",
   "user_account_identity_documents_intro": "You have created your account and you want to order from our Indian site. The regulations in force require that you verify your identity before ordering.",
+  "user_account_identity_documents_intro_kyc_reminder": "Please ensure that your personal data matches the name and address in your official documents.",
   "user_account_identity_documents_list_for_particular": "If you are an individual, the mandatory documents to provide are:",
   "user_account_identity_documents_list_for_enterprise": "If you are a company, the mandatory documents to provide are:",
   "user_account_identity_documents_list_for_association": "If you are an organisation, the mandatory documents to provide are:",
@@ -13,6 +15,7 @@
   "user_account_identity_documents_list_doc3_optional": "GST certificate (optional)",
   "user_account_identity_documents_description": "The documents will be retained for 5 years after the end of the contract.",
   "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png. The file size limit for each document is 10 MB.",
+  "user_account_identity_documents_selection_file_format_invalid": "File format not supported. Please use one of the accepted formats: jpg, jpeg, pdf and png",
   "user_account_identity_documents_submit": "Send my documents",
   "user_account_identity_documents_submit_success_message_title": "Thank you, we have received your documents!",
   "user_account_identity_documents_submit_success_message_description": "We have received all of your documents. They will be submitted to our teams for validation. You will be notified of their validation by email, or you will be contacted if we need further information.",
@@ -21,9 +24,5 @@
   "user_account_identity_documents_legal_info1": "OVH S.A.S is responsible for processing your personal data. The data collected through this form is processed in order to comply with the <a href=\"{{ link1 }}\" target=\"_blank\">Cybersecurity Guidelines of 28.04.2022</a>, published by CERT-In pursuant to the provisions of subsection (6) of <a href=\"{{ link2 }}\" target=\"_blank\">section 70B</a> of the Information Technology (IT) Act, 2000.",
   "user_account_identity_documents_legal_info2": "To find out more about how your data is processed, along with your rights, please refer to our <a href=\"{{ link }}\" target=\"_blank\">Policy on the Use of Personal Data.</a>",
   "user_account_identity_documents_verification_in_progress_info": "Your documents are currently being processed by our team.",
-  "user_account_identity_documents_verification_waiting_info": "Your request has been processed but we require additional documents. Please consult your support ticket.",
-  "user_account_identity_documents_selection_file_format_invalid": "File format not supported. Please use one of the accepted formats: jpg, jpeg, pdf and png",
-  "user_account_identity_documents_intro_ensure_correspondance": "Make sure your personal information matches the name and address provided in your official documents.",
-  "user_account_identity_documents_intro_kyc_reminder": "Please ensure that your personal data matches the name and address in your official documents.",
-  "user_account_identity_documents_title": "Verification of documents required"
+  "user_account_identity_documents_verification_waiting_info": "Your request has been processed but we require additional documents. Please consult your support ticket."
 }

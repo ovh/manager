@@ -5,6 +5,8 @@
   "dedicatedCloud_datacenters_cpu": "CPU total",
   "dedicatedCloud_datacenters_ram": "RAM total",
   "dedicatedCloud_datacenters_disk": "Espacio en disco total",
+  "dedicatedCloud_datacenters_cluster": "Tamaño del clúster",
+  "dedicatedCloud_datacenters_edges": "Número de NSX Edges",
   "dedicatedCloud_datacenters_order_host": "Añadir un host",
   "dedicatedCloud_datacenters_order_datastore": "Añadir un datastore",
   "dedicatedCloud_datacenters_loading_error": "Se ha producido un error al cargar la información de los datacenters.",
@@ -82,9 +84,5 @@
   "dedicatedCloud_datacenters_commercial_name_NSX-T-DEFAULT": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-WITHOUT-NSX": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-VROPS-WITHOUT-NSX": "NSX con vROps",
-  "dedicatedCloud_datacenters_migration_banner_first": "Final de vida útil del componente VMware NSX-V el día 15 de enero de 2024: consulte el email que le enviamos en julio/agosto de 2023 para conocer las modalidades de migración. Para más información, consulte nuestras <a href=\"{{href}}\" target=\"_blank\">guías</a>.",
-  "dedicatedCloud_datacenters_migration_banner_second": "DESACTIVACIÓN INMINENTE del componente VMware NSX-V a partir del 15 de enero de 2024. Para más información, consulte nuestras <a href=\"{{href}}\" target=\"_blank\">guías de migración</a>.",
-  "dedicatedCloud_datacenters_migration_banner": "Final de vida útil del componente VMware NSX-V: consulte nuestras <a href=\"{{href}}\" target=\"_blank\">guías de migración</a> para más información.",
-  "dedicatedCloud_datacenters_cluster": "Tamaño del clúster",
-  "dedicatedCloud_datacenters_edges": "Número de NSX Edges"
+  "dedicatedCloud_datacenters_migration_banner": "Final de vida útil del componente VMware NSX-V: consulte nuestras <a href=\"{{href}}\" target=\"_blank\">guías de migración</a> para más información."
 }

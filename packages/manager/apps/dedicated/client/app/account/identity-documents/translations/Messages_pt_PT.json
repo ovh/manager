@@ -1,7 +1,9 @@
 {
   "user_account_identity_documents": "Documentos de identificação",
+  "user_account_identity_documents_title": "Verificação de documentos necessária",
   "user_account_identity_documents_sub_title": "Apresente os seus documentos",
   "user_account_identity_documents_intro": "Criou uma conta e deseja efetuar uma encomenda a partir do nosso site indiano. A regulamentação em vigor requer uma verificação da sua identidade antes de qualquer encomenda.",
+  "user_account_identity_documents_intro_kyc_reminder": "Certifique-se de que os seus dados pessoais correspondem ao nome e endereço que constam nos seus documentos oficiais.",
   "user_account_identity_documents_list_for_particular": "É um particular. Os documentos obrigatórios a fornecer são",
   "user_account_identity_documents_list_for_enterprise": "É uma empresa. Os documentos obrigatórios a fornecer são",
   "user_account_identity_documents_list_for_association": "É uma associação. Os documentos obrigatórios a fornecer são",
@@ -13,6 +15,7 @@
   "user_account_identity_documents_list_doc3_optional": "Certificado GST (facultativo)",
   "user_account_identity_documents_description": "Os documentos serão conservados durante cinco anos após o termo do contrato.",
   "user_account_identity_documents_selection_file_format": "Formato: jpg, jpeg, pdf, png. O tamanho máximo do ficheiro para cada documento é de 10 MB.",
+  "user_account_identity_documents_selection_file_format_invalid": "Formato de ficheiro não suportado. Utilize um dos formatos possíveis: jpg, jpeg, pdf e png",
   "user_account_identity_documents_submit": "Enviar os meus documentos",
   "user_account_identity_documents_submit_success_message_title": "Obrigado. Recebemos com êxito os seus documentos!",
   "user_account_identity_documents_submit_success_message_description": "Recebemos com êxito todos os seus documentos. Serão sujeitos a validação por parte das nossas equipas. Receberá por e-mail a confirmação da validação, ou será contactado caso seja necessário fornecer mais informações.",
@@ -21,9 +24,5 @@
   "user_account_identity_documents_legal_info1": "A OVH S.A.S é a responsável pelo tratamento dos seus dados pessoais. Os dados recolhidos através deste formulário são tratados de forma a cumprir as <a href=\"{{ link1 }}\" target=\"_blank\">Diretrizes de Cibersegurança de 28/04/2022</a>, publicadas pelo CERT-IN, em conformidade com o disposto na subsecção (6) <a href=\"{{ link2 }}\" target=\"_blank\">do artigo 70B</a> do Information Technology (IT) Act de 2000.",
   "user_account_identity_documents_legal_info2": "Para saber mais sobre o tratamento dos seus dados pessoais e conhecer os seus direitos, pode consultar a nossa <a href=\"{{ link }}\" target=\"_blank\">Política de Utilização de Dados Pessoais</a>.",
   "user_account_identity_documents_verification_in_progress_info": "O tratamento dos seus documentos está a ser analisado pela nossa equipa.",
-  "user_account_identity_documents_verification_waiting_info": "O seu pedido foi analisado, mas necessita de documentos complementares. Consulte o seu ticket de assistência.",
-  "user_account_identity_documents_selection_file_format_invalid": "Formato de ficheiro não suportado. Utilize um dos formatos possíveis: jpg, jpeg, pdf e png",
-  "user_account_identity_documents_intro_ensure_correspondance": "Certifique-se de que os seus dados pessoais correspondem ao nome e endereço que constam nos seus documentos oficiais.",
-  "user_account_identity_documents_intro_kyc_reminder": "Certifique-se de que os seus dados pessoais correspondem ao nome e endereço que constam nos seus documentos oficiais.",
-  "user_account_identity_documents_title": "Verificação de documentos necessária"
+  "user_account_identity_documents_verification_waiting_info": "O seu pedido foi analisado, mas necessita de documentos complementares. Consulte o seu ticket de assistência."
 }

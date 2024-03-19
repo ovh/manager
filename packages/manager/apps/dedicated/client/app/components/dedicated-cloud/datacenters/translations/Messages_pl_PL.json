@@ -5,6 +5,8 @@
   "dedicatedCloud_datacenters_cpu": "Całkowite zasoby procesora",
   "dedicatedCloud_datacenters_ram": "Całkowita pamięć RAM",
   "dedicatedCloud_datacenters_disk": "Całkowita przestrzeń dyskowa",
+  "dedicatedCloud_datacenters_cluster": "Rozmiar klastra",
+  "dedicatedCloud_datacenters_edges": "Liczba NSX Edges",
   "dedicatedCloud_datacenters_order_host": "Zamów Hosta",
   "dedicatedCloud_datacenters_order_datastore": "Zamów Datastore",
   "dedicatedCloud_datacenters_loading_error": "Wystąpił błąd podczas pobierania informacji z centrów danych.",
@@ -82,9 +84,5 @@
   "dedicatedCloud_datacenters_commercial_name_NSX-T-DEFAULT": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-WITHOUT-NSX": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-VROPS-WITHOUT-NSX": "NSX z vROps",
-  "dedicatedCloud_datacenters_migration_banner_first": "Koniec okresu eksploatacji komponentu VMware NSX-V w dniu 15 stycznia 2024 r.: szczegółowe informacje na temat migracji znajdziesz w wiadomości e-mail wysłanej w lipcu/sierpniu 2023 r. Więcej informacji technicznych znajdziesz w <a href=\"{{href}}\" target=\"_blank\"> naszych przewodnikach</a>.",
-  "dedicatedCloud_datacenters_migration_banner_second": "Od 15 stycznia 2024 DEZAKTYWACJA komponentu VMware NSX-V. Więcej informacji znajdziesz w <a href=\"{{href}}\" target=\"_blank\">przewodnikach dotyczących migracji</a>.",
-  "dedicatedCloud_datacenters_migration_banner": "Wycofujemy komponent VMware NSX-V: więcej informacji znajdziesz w <a href=\"{{href}}\" target=\"_blank\">przewodnikach dotyczących migracji</a>.",
-  "dedicatedCloud_datacenters_cluster": "Rozmiar klastra",
-  "dedicatedCloud_datacenters_edges": "Liczba NSX Edges"
+  "dedicatedCloud_datacenters_migration_banner": "Wycofujemy komponent VMware NSX-V: więcej informacji znajdziesz w <a href=\"{{href}}\" target=\"_blank\">przewodnikach dotyczących migracji</a>."
 }
