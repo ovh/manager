@@ -12,21 +12,21 @@ import { Button } from '@/components/ui/button';
 import { GenericUser } from '@/api/databases/users';
 import { useServiceData } from '../../layout';
 import { database } from '@/models/database';
-import { useToast } from '@/components/ui/use-toast';
 
 interface UserActionsProps {
   user: GenericUser;
   onDeleteClicked: (user: GenericUser) => void;
   onResetPasswordClicked: (user: GenericUser) => void;
+  onEditClicked: (user: GenericUser) => void;
 }
 
 const UserActions = ({
   user,
   onDeleteClicked,
   onResetPasswordClicked,
+  onEditClicked,
 }: UserActionsProps) => {
   const { service } = useServiceData();
-  const toast = useToast();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/users',
   );
@@ -46,26 +46,20 @@ const UserActions = ({
                 service.capabilities.users?.update ===
                 database.service.capability.StateEnum.disabled
               }
-              onClick={() => {
-                toast.toast({
-                  title: t('tableActionsMenuNotImplementedYet'),
-                });
-              }}
+              onClick={() => onEditClicked(user)}
             >
               {t('tableActionsMenuEdit')}
             </DropdownMenuItem>
           )}
-          {service.capabilities.users?.update && (
-            <DropdownMenuItem
-              disabled={
-                service.capabilities.users?.update ===
-                database.service.capability.StateEnum.disabled
-              }
-              onClick={() => onResetPasswordClicked(user)}
-            >
-              {t('tableActionsMenuResetPassword')}
-            </DropdownMenuItem>
-          )}
+          <DropdownMenuItem
+            disabled={
+              service.capabilities.users?.update ===
+              database.service.capability.StateEnum.disabled
+            }
+            onClick={() => onResetPasswordClicked(user)}
+          >
+            {t('tableActionsMenuResetPassword')}
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
           {service.capabilities.users?.delete && (
             <DropdownMenuItem

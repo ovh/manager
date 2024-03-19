@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -12,7 +13,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { GenericUser, UserCreation } from '@/api/databases/users';
+import { GenericUser, UserCreation, UserEdition } from '@/api/databases/users';
 import { database } from '@/models/database';
 import {
   Form,
@@ -22,42 +23,60 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import RolesSelect from './addUser/rolesSelect';
-import { useAddUserForm } from './addUser/addUser.hook';
+
 import TagsInput from '@/components/tags-input';
 import { ModalController } from '@/hooks/useModale';
-import { useAddUser } from '@/hooks/api/users.api.hooks';
+import {
+  MutateUserProps,
+  useAddUser,
+  useEditUser,
+} from '@/hooks/api/users.api.hooks';
 import { useToast } from '@/components/ui/use-toast';
+import { useUserForm } from './formUser/formUser.hook';
+import RolesSelect from './formUser/rolesSelect';
 
-interface AddUserModalProps {
+interface AddEditUserModalProps {
+  isEdition: boolean;
+  editedUser?: GenericUser;
   users: GenericUser[];
   service: database.Service;
   controller: ModalController;
-  onSuccess?: (user: GenericUser) => void;
+  onSuccess?: (user?: GenericUser) => void;
   onError?: (error: Error) => void;
 }
-const AddUserModal = ({
+const AddEditUserModal = ({
+  isEdition,
+  editedUser,
   users,
   service,
   controller,
   onSuccess,
   onError,
-}: AddUserModalProps) => {
+}: AddEditUserModalProps) => {
   const { projectId } = useParams();
-  const { form, schema } = useAddUserForm({
+
+  const { form, schema } = useUserForm({
     existingUsers: users,
     service,
+    editedUser,
   });
+
+  useEffect(() => {
+    if (!controller.open) form.reset();
+  }, [controller.open]);
+
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/users',
   );
   const toast = useToast();
-  const { addUser, isPending } = useAddUser({
+  const prefix = isEdition ? 'edit' : 'add';
+
+  const UserMutationProps: MutateUserProps = {
     onError: (err) => {
       toast.toast({
-        title: t('addUserToastErrorTitle'),
+        title: t(`${prefix}UserToastErrorTitle`),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
       if (onError) {
         onError(err);
@@ -65,8 +84,8 @@ const AddUserModal = ({
     },
     onSuccess: (user) => {
       toast.toast({
-        title: t('addUserToastSuccessTitle'),
-        description: t('addUserToastSuccessDescription', {
+        title: t('formUserToastSuccessTitle'),
+        description: t(`${prefix}UserToastSuccessDescription`, {
           name: user.username,
         }),
       });
@@ -74,22 +93,49 @@ const AddUserModal = ({
         onSuccess(user);
       }
     },
-  });
+  };
+
+  const { addUser, isPending: isPendingAddUser } = useAddUser(
+    UserMutationProps,
+  );
+  const { editUser, isPending: isPendingEditUser } = useEditUser(
+    UserMutationProps,
+  );
+
   const onSubmit = form.handleSubmit((formValues) => {
-    addUser({
-      projectId,
-      engine: service.engine,
-      serviceId: service.id,
-      user: formValues as UserCreation,
-    });
+    if (isEdition) {
+      const userEditionValue = {
+        ...(formValues as UserEdition),
+        id: editedUser.id,
+      };
+      if ('name' in userEditionValue) {
+        delete userEditionValue.name;
+      }
+
+      editUser({
+        projectId,
+        engine: service.engine,
+        serviceId: service.id,
+        user: userEditionValue,
+      });
+    } else {
+      addUser({
+        projectId,
+        engine: service.engine,
+        serviceId: service.id,
+        user: formValues as UserCreation,
+      });
+    }
   });
 
   return (
     <Dialog {...controller}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle>{t('addUserTitle')}</DialogTitle>
-          <DialogDescription>{t('addUserDescription')}</DialogDescription>
+          <DialogTitle>{t(`${prefix}UserTitle`)}</DialogTitle>
+          {!isEdition && (
+            <DialogDescription>{t('addUserDescription')}</DialogDescription>
+          )}
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={onSubmit} className="flex flex-col gap-2">
@@ -99,9 +145,15 @@ const AddUserModal = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('addUserFieldNameLabel')}</FormLabel>
+                  <FormLabel>{t('formUserFieldNameLabel')}</FormLabel>
                   <FormControl>
-                    <Input placeholder="name" disabled={isPending} {...field} />
+                    <Input
+                      placeholder="name"
+                      disabled={
+                        isPendingAddUser || isPendingEditUser || isEdition
+                      }
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -114,11 +166,11 @@ const AddUserModal = ({
                 name="group"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('addUserFieldGroupLabel')}</FormLabel>
+                    <FormLabel>{t('formUserFieldGroupLabel')}</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="group"
-                        disabled={isPending}
+                        disabled={isPendingAddUser || isPendingEditUser}
                         {...field}
                       />
                     </FormControl>
@@ -133,7 +185,7 @@ const AddUserModal = ({
                 name="roles"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('addUserFieldRolesLabel')}</FormLabel>
+                    <FormLabel>{t('formUserFieldRolesLabel')}</FormLabel>
                     <FormControl>
                       <RolesSelect {...field} />
                     </FormControl>
@@ -149,7 +201,7 @@ const AddUserModal = ({
                 render={({ field }) => (
                   <FormItem className="flex flex-col items-start">
                     <FormLabel className="text-left">
-                      {t('addUserFieldKeysLabel')}
+                      {t('formUserFieldKeysLabel')}
                     </FormLabel>
                     <FormControl>
                       <TagsInput
@@ -178,7 +230,7 @@ const AddUserModal = ({
                 render={({ field }) => (
                   <FormItem className="flex flex-col items-start">
                     <FormLabel className="text-left">
-                      {t('addUserFieldCategoriesLabel')}
+                      {t('formUserFieldCategoriesLabel')}
                     </FormLabel>
                     <FormControl>
                       <TagsInput
@@ -209,7 +261,7 @@ const AddUserModal = ({
                 render={({ field }) => (
                   <FormItem className="flex flex-col items-start">
                     <FormLabel className="text-left">
-                      {t('addUserFieldCommandsLabel')}
+                      {t('formUserFieldCommandsLabel')}
                     </FormLabel>
                     <FormControl>
                       <TagsInput
@@ -240,7 +292,7 @@ const AddUserModal = ({
                 render={({ field }) => (
                   <FormItem className="flex flex-col items-start">
                     <FormLabel className="text-left">
-                      {t('addUserFieldChannelsLabel')}
+                      {t('formUserFieldChannelsLabel')}
                     </FormLabel>
                     <FormControl>
                       <TagsInput
@@ -268,11 +320,14 @@ const AddUserModal = ({
             <DialogFooter className="flex justify-end">
               <DialogClose asChild>
                 <Button type="button" variant="outline">
-                  {t('addUserButtonCancel')}
+                  {t('formUserButtonCancel')}
                 </Button>
               </DialogClose>
-              <Button type="submit" disabled={isPending}>
-                {t('addUserButtonConfirm')}
+              <Button
+                type="submit"
+                disabled={isPendingAddUser || isPendingEditUser}
+              >
+                {t(`${prefix}UserButtonConfirm`)}
               </Button>
             </DialogFooter>
           </form>
@@ -282,4 +337,4 @@ const AddUserModal = ({
   );
 };
 
-export default AddUserModal;
+export default AddEditUserModal;
