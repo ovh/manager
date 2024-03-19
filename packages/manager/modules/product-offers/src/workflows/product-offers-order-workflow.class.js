@@ -128,7 +128,7 @@ export default class OrderWorkflow extends Workflow {
 
     this.pricings = this.computePricing(catalogPricings);
 
-    if (this.hasUniquePricing()) {
+    if (this.hasUniquePricing() && !this.expressOrder) {
       this.$timeout(() => {
         this.currentIndex += 1;
         [this.pricing] = this.pricings;
