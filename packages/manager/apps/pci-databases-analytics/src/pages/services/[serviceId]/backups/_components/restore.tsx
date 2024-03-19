@@ -47,56 +47,57 @@ import { cn } from '@/lib/utils';
 import { Calendar } from '@/components/ui/calendar';
 import { TimePicker } from '@/components/ui/time-picker';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
+import { useRestoreBackup } from '@/hooks/api/backups.api.hooks';
+import { CdbError } from '@/api/databases';
 
 interface RestoreServiceModalProps {
   controller: ModalController;
   backups: database.Backup[];
   backup?: database.Backup;
-  onSuccess?: (database: database.service.Database) => void;
-  onError?: (error: Error) => void;
+  onSuccess?: () => void;
+  onError?: (error: CdbError) => void;
 }
 
 const RestoreServiceModal = ({
   controller,
   backups,
   backup,
-}: // onError,
-// onSuccess,
-RestoreServiceModalProps) => {
+  onSuccess,
+  onError,
+}: RestoreServiceModalProps) => {
   // import translations
   const dateLocale = useDateFnsLocale();
   const { projectId, service } = useServiceData();
   const { t } = useTranslation(
-    'pci-databases-analytics/services/service/backups/fork',
+    'pci-databases-analytics/services/service/backups',
   );
   const toast = useToast();
-  //   const { addDatabase, isPending } = useAddDatabase({
-  //     onError: (err) => {
-  //       toast.toast({
-  //         title: t('addDatabaseToastErrorTitle'),
-  //         variant: 'destructive',
-  //         description: err.message,
-  //       });
-  //       if (onError) {
-  //         onError(err);
-  //       }
-  //     },
-  //     onSuccess: (addedDb) => {
-  //       toast.toast({
-  //         title: t('addDatabaseToastSuccessTitle'),
-  //         description: t('addDatabaseToastSuccessDescription', {
-  //           name: addedDb.name,
-  //         }),
-  //       });
-  //       if (onSuccess) {
-  //         onSuccess(addedDb);
-  //       }
-  //     },
-  //   });
-  // define the schema for the form
+  const { restoreBackup, isPending } = useRestoreBackup({
+    onError: (err) => {
+      toast.toast({
+        title: t('restoreBackupToastErrorTitle'),
+        variant: 'destructive',
+        description: err.response.data.message,
+      });
+      if (onError) {
+        onError(err);
+      }
+    },
+    onSuccess: () => {
+      toast.toast({
+        title: t('restoreBackupToastSuccessTitle'),
+        description: t('restoreBackupToastSuccessDescription'),
+      });
+      if (onSuccess) {
+        onSuccess();
+      }
+    },
+  });
 
-  const canUsePointInTime = !!service.backups?.pitr;
+  // TODO: get from api in capababilities
+  const canUsePointInTime = service.engine === database.EngineEnum.mongodb;
   const minPitrDate = canUsePointInTime ? new Date(service.backups.pitr) : null;
+  // define the schema for the form
   const schema = z
     .object({
       type: z.enum(['now', 'pit', 'backup']),
@@ -146,12 +147,18 @@ RestoreServiceModalProps) => {
   });
 
   const onSubmit = form.handleSubmit((formValues) => {
-    // addDatabase({
-    //   serviceId: service.id,
-    //   projectId,
-    //   engine: service.engine,
-    //   name: formValues.name,
-    // });
+    restoreBackup({
+      projectId,
+      engine: service.engine,
+      serviceId: service.id,
+      backupId: formValues.backupId,
+      restore: {
+        pointInTime:
+          formValues.type === 'now'
+            ? new Date().toISOString()
+            : formValues.pointInTime.toISOString(),
+      },
+    });
   });
 
   useEffect(() => {
@@ -162,17 +169,12 @@ RestoreServiceModalProps) => {
   }, [backup]);
 
   const selectedType = form.watch('type');
-  const isPending = false;
   return (
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Restaurer votre backup</DialogTitle>
-          <DialogDescription>
-            La restauration d'une sauvegarde écrase les informations présentes
-            actuellement sur votre cluster. Cette opération peut donc provoquer
-            une perte de données.
-          </DialogDescription>
+          <DialogTitle>{t('restoreModalTitle')}</DialogTitle>
+          <DialogDescription>{t('restoreModalDescription')}</DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
@@ -184,8 +186,7 @@ RestoreServiceModalProps) => {
                 <FormItem>
                   <FormLabel>{t('inputSourceTypeLabel')}</FormLabel>
                   <FormDescription>
-                    Sélectionnez le point de restauration à partir duquel le
-                    service sera restauré.
+                    {t('inputSourceTypeDescription')}
                   </FormDescription>
                   <FormControl>
                     <RadioGroup
@@ -329,8 +330,7 @@ RestoreServiceModalProps) => {
             )}
             <DialogFooter className="flex justify-end">
               <Button type="submit" disabled={isPending}>
-                {/* {t('addDatabaseButtonAdd')} */}
-                Restaurer
+                {t('restoreButtonValidate')}
               </Button>
             </DialogFooter>
           </form>
