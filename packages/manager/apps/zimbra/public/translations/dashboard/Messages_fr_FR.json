@@ -1,10 +1,13 @@
 {
-  "title": "Zimbra",
-  "header_guides": "Guides",
-  "guides_title_1": "FAQ sur la solution Zimbra OVHcloud",
-  "error_service": "No services info",
-  "general_informations": "Informations générales",
-  "organizations": "Organisation",
-  "domains": "Domaine",
-  "email_accounts": "Comptes email"
+  "zimbra_dashboard_administrator_guide": "Guide administrateur",
+  "zimbra_dashboard_domains": "Domaine",
+  "zimbra_dashboard_email_accounts": "Comptes email",
+  "zimbra_dashboard_error_service": "No services info",
+  "zimbra_dashboard_general_informations": "Informations générales",
+  "zimbra_dashboard_header_guides": "Guides",
+  "zimbra_dashboard_organizations": "Organisation",
+  "zimbra_dashboard_title": "Zimbra",
+  "zimbra_dashboard_usefull_links": "Liens utiles",
+  "zimbra_dashboard_user_guides": "Guide d'utilisateur",
+  "zimbra_dashboard_webmail": "Webmail"
 }
