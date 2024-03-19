@@ -23,7 +23,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     (serviceName ? urls.overview.replace(':serviceName', serviceName) : '/');
 
   const activeTab = location.pathname.split('/')[2];
-  const activeTabTranslation = t(activeTab);
+  const activeTabTranslation = t(`zimbra_dashboard_${activeTab}`);
   return (
     <OsdsBreadcrumb
       className="mb-4"
