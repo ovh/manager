@@ -8,7 +8,6 @@ interface ContentURLS {
     [key in string]: string;
   };
   status: string;
-  marketplace: string;
 }
 
 type URLLinks = {
@@ -32,7 +31,6 @@ const urls: URLLinks = {
       TN: `${helpRoot}/fr-tn${homeIndex}`,
     },
     status: 'https://www.status-ovhcloud.com/',
-    marketplace: 'https://marketplace.ovhcloud.com/',
   },
   CA: {
     help: {
@@ -45,14 +43,12 @@ const urls: URLLinks = {
       WS: `${helpRoot}/es${homeIndex}`,
     },
     status: 'https://www.status-ovhcloud.com/',
-    marketplace: 'https://marketplace.ovhcloud.com/',
   },
   US: {
     help: {
       US: 'https://us.ovhcloud.com/support',
     },
     status: 'https://status.us.ovhcloud.com/',
-    marketplace: 'https://marketplace.ovhcloud.com/',
   },
 };
 

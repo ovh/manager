@@ -1,9 +1,6 @@
-import illustration from '@/assets/images/sidebar/network.png';
 export default {
   id: 'network',
   translation: 'sidebar_network',
-  shortTranslation: 'sidebar_network_short',
-  illustration,
   features: [
     'vrack:bare-metal-cloud',
     'ip',

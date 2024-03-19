@@ -106,16 +106,14 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   }, [seeAllLabel]);
 
   useEffect(() => {
-    if (projects) {
-      setOptions([
-        ...projects.map(({ project_id: projectId, description }) => ({
-          id: projectId,
-          label: description || projectId,
-        })),
-        ...(createProjectOption ? [createProjectOption] : []),
-        ...(seeAllProjectsOption ? [seeAllProjectsOption] : []),
-      ]);
-    }
+    setOptions([
+      ...projects.map(({ project_id: projectId, description }) => ({
+        id: projectId,
+        label: description || projectId,
+      })),
+      ...(createProjectOption ? [createProjectOption] : []),
+      ...(seeAllProjectsOption ? [seeAllProjectsOption] : []),
+    ]);
   }, [projects, createProjectOption]);
 
   useEffect(() => {

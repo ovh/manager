@@ -1,9 +1,6 @@
-import illustration from '@/assets/images/sidebar/hosted-private-cloud.png';
 export default {
   id: 'hosted-private-cloud',
   translation: 'sidebar_hpc',
-  shortTranslation: 'sidebar_hpc_short',
-  illustration,
   features: ['hosted-private-cloud'],
   children: [
     {

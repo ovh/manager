@@ -1,9 +1,6 @@
-import illustration from '@/assets/images/sidebar/telecom.png';
 export default {
   id: 'telecom',
   translation: 'sidebar_telecom',
-  shortTranslation: 'sidebar_telecom_short',
-  illustration,
   features: ['telecom'],
   routing: {
     application: 'telecom',

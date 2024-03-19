@@ -1,11 +1,12 @@
 import { Node, NodeTag } from '../node';
-import illustration from '@/assets/images/sidebar/public-cloud.png';
 
 const pciNode: Node = {
   id: 'pci',
   translation: 'sidebar_pci',
-  shortTranslation: 'sidebar_pci_short',
-  illustration,
+  routing: {
+    application: 'public-cloud',
+    hash: '#/pci/projects/{projectId}',
+  },
   features: ['public-cloud'],
   forceVisibility: true,
   children: [
@@ -263,8 +264,7 @@ const pciNode: Node = {
           serviceType: 'CLOUD_PROJECT_DATABASE',
           routing: {
             application: 'public-cloud',
-            hash:
-              '#/pci/projects/{projectId}/storages/databases-analytics/databases',
+            hash: '#/pci/projects/{projectId}/storages/databases-analytics/databases',
           },
           features: ['databases'],
           forceVisibility: true,
@@ -275,8 +275,7 @@ const pciNode: Node = {
           serviceType: 'CLOUD_PROJECT_DATABASE',
           routing: {
             application: 'public-cloud',
-            hash:
-              '#/pci/projects/{projectId}/storages/databases-analytics/data-streaming',
+            hash: '#/pci/projects/{projectId}/storages/databases-analytics/data-streaming',
           },
           features: ['databases'],
           forceVisibility: true,
@@ -299,8 +298,7 @@ const pciNode: Node = {
           serviceType: 'CLOUD_PROJECT_DATABASE',
           routing: {
             application: 'public-cloud',
-            hash:
-              '#/pci/projects/{projectId}/storages/databases-analytics/data-analysis',
+            hash: '#/pci/projects/{projectId}/storages/databases-analytics/data-analysis',
           },
           features: ['databases'],
           forceVisibility: true,
