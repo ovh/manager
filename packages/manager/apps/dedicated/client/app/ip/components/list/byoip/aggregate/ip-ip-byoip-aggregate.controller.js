@@ -1,7 +1,15 @@
-import { TRACKING_PREFIX_AGGREGATE } from '../constants';
+import { TRACKING_PREFIX_AGGREGATE, BYOIP_USAGE_GUIDE_URL } from '../constants';
+
 export default class IpByoipAggregateController {
   /* @ngInject */
-  constructor($scope, IpByoipService, Alerter, $translate, atInternet) {
+  constructor(
+    $scope,
+    IpByoipService,
+    Alerter,
+    $translate,
+    atInternet,
+    coreConfig,
+  ) {
     this.$scope = $scope;
     this.IpByoipService = IpByoipService;
     this.ip = $scope.currentActionData.ipBlock;
@@ -12,19 +20,31 @@ export default class IpByoipAggregateController {
     this.Alerter = Alerter;
     this.$translate = $translate;
     this.atInternet = atInternet;
+    this.byoipUsageGuideUrl =
+      BYOIP_USAGE_GUIDE_URL[coreConfig.getUser().ovhSubsidiary] ||
+      BYOIP_USAGE_GUIDE_URL.DEFAULT;
   }
 
   $onInit() {
+    this.showErrorMessage = false;
     this.atInternet.trackPage({ name: TRACKING_PREFIX_AGGREGATE });
     this.IpByoipService.getAvailableAggregationConfigurations(this.ip.ipBlock)
       .then(({ data }) => {
         this.aggregationIps = data;
         if (this.aggregationIps.length) {
           [this.selectedAggregationIp] = this.aggregationIps;
+        } else {
+          this.showErrorMessage = true;
+          this.errorMessage = this.$translate.instant(
+            'ip_byoip_aggregate_slicing_not_available_error_message',
+            {
+              url: this.byoipUsageGuideUrl,
+            },
+          );
         }
       })
-      .catch(({ data: { message } }) => {
-        this.errorMessage = message;
+      .catch((error) => {
+        this.displayErrorMessage(error);
       })
       .finally(() => {
         this.isLoaded = true;
@@ -44,6 +64,7 @@ export default class IpByoipAggregateController {
   }
 
   aggregate() {
+    this.showErrorMessage = false;
     this.trackClick('confirm');
     this.isLoaded = false;
     this.IpByoipService.postAggregateBYOIP(
@@ -56,11 +77,22 @@ export default class IpByoipAggregateController {
         );
         this.$scope.resetAction();
       })
-      .catch(({ data: { message } }) => {
-        this.errorMessage = message;
+      .catch((error) => {
+        this.displayErrorMessage(error);
       })
       .finally(() => {
         this.isLoaded = true;
       });
+  }
+
+  displayErrorMessage(error) {
+    this.showErrorMessage = true;
+    if (error.status === 404) {
+      this.errorMessage = this.$translate.instant(
+        'ip_byoip_aggregate_ip_doesnt_exist_error_message',
+      );
+    } else {
+      this.errorMessage = error.data.message;
+    }
   }
 }
