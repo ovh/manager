@@ -1,4 +1,5 @@
 {
+  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Telefone",
   "telephony_line_phone_actions_line_details_phon_offer": "Informações gerais",
   "telephony_line_phone_actions_line_codecs_management": "Codecs",
   "telephony_line_phone_actions_line_interface": "Choix de l'interface",
@@ -6,14 +7,12 @@
   "telephony_line_phone_actions_line_programmable_keys": "Touches programmables",
   "telephony_line_phone_actions_line_phone_upgrade_firmware": "Mise à jour du firmware",
   "telephony_line_phone_actions_line_phone_reboot": "Reiniciar ",
-  "telephony_line_phone_actions_line_order_accessories": "Commander des accessoires",
-  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
-  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Telefone",
   "telephony_line_phone_actions_line_phone_order_phone": "Encomendar um telefone VoIP",
   "telephony_line_phone_actions_line_phone_change_phone": "Mudar de telefone",
+  "telephony_line_phone_actions_line_order_headset": "Encomendar um capacete",
   "telephony_line_phone_actions_line_phonebook": "Diretórios de contactos",
+  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
   "telephony_group_line_phone_section_back_link_target": "gestão do telefone",
   "telephony_line_phone_actions_line_phone_order_attach": "Associar a linha a um equipamento atual",
-  "telephony_line_phone_actions_line_phone_order_detach": "Desconectar a linha de um telefone",
-  "telephony_line_phone_actions_line_order_headset": "Encomendar um capacete"
+  "telephony_line_phone_actions_line_phone_order_detach": "Desconectar a linha de um telefone"
 }

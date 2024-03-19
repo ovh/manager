@@ -8,7 +8,6 @@
   "privateDatabase_dashboard_version_mariadb": "MariaDB {{version}}",
   "privateDatabase_dashboard_version_mysql": "MySQL {{version}}",
   "privateDatabase_dashboard_version_postgresql": "PostgreSQL {{version}}",
-  "privateDatabase_dashboard_version_mongodb": "MongoDB {{version}}",
   "privateDatabase_dashboard_version_redis": "Redis {{version}}",
   "privateDatabase_dashboard_nb_cpu": "Nombre de cpu",
   "privateDatabase_dashboard_ip": "IP",

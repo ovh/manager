@@ -25,5 +25,5 @@
   "pci_projects_project_quota_autoscaling_error": "Se ha producido un error al actualizar la cuota autoscaling.",
   "pci_projects_project_quota_autoscaling_help": "La cuota se actualizará de forma automática en función de su uso y según diferentes criterios.",
   "pci_projects_project_quota_protect_contact_support": "Contactar con el soporte",
-  "pci_projects_project_quota_error_forbidden": "No tiene suficientes permisos para gestionar sus cuotas. Contacte con el propietario del servicio"
+  "pci_projects_project_quota_error_forbidden": "No tiene suficientes permisos para gestionar los límites de sus cuotas. Contacte con el propietario del servicio"
 }

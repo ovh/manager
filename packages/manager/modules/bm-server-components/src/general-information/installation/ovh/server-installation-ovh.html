@@ -1804,11 +1804,14 @@
                         </div>
 
                         <!-- nbDisk -->
-                        <div class="form-inline" data-ng-show="informations.nbDisk > 1
+                        <div
+                            class="form-inline"
+                            data-ng-show="informations.nbDisk > 1
                                                                   && !installation.customInstall
                                                                   && ( !installation.hardwareRaid.raid
                                                                      || !installation.hardwareRaid.disks
-                                                                     || !installation.hardwareRaid.arrays)">
+                                                                     || !installation.hardwareRaid.arrays)"
+                        >
                             <label
                                 for="nbDiskUse"
                                 class="control-label"

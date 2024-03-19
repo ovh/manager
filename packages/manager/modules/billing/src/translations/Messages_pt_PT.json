@@ -915,6 +915,6 @@
   "billing_guides_header_purchase_order_guides": "Conceito de Nº de encomenda ou Purchase Order (PO)",
   "billing_guides_header_managing_bills_guides": "Gerir as minhas faturas OVHcloud",
   "billing_guides_header_automatic_renewal_guides": "Gerir a renovação dos meus serviços",
-  "fidelity_creditOrder_submit_error": "Ocorreu um erro aquando do crédito dos seus pontos.",
-  "fidelity_creditOrder_submit_success": "O seu crédito de <strong> {{t0}} pontos</strong> foi gerado com êxito. Pode efetuar a sua encomenda no separador <a href=\"#/billing/orders\">Encomendas</a>"
+  "fidelity_creditOrder_submit_error": "Ocorreu um erro aquando do carregamento dos seus pontos.",
+  "fidelity_creditOrder_submit_success": "O seu crédito de <strong> {{t0}} pontos</strong> foi gerado com êxito. Pode efetuar a sua encomenda no separador <a href=\"#/billing/orders\">As Minhas Encomendas</a>"
 }

@@ -18,5 +18,5 @@
   "telephony_line_convert_link": "You can cancel in the next section.",
   "telephony_line_breacrumb": "Lines",
   "telephony_line_mgcp_banner_link": "Click here.",
-  "telephony_line_mgcp_banner_description": "The MGCP terminal used is deprecated: please replace the terminal."
+  "telephony_line_mgcp_banner_description": "The MGCP terminal used is deprecated: please replace terminal."
 }

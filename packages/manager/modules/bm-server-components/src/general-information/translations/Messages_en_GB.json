@@ -7,7 +7,6 @@
   "dedicated_server_dashboard_upgrade_badge": "New",
   "dedicated_server_dashboard_distribution": "Operating system (OS)",
   "dedicated_server_dashboard_distribution_none": "There is no operating system installed on your server",
-  "dedicated_server_dashboard_distribution_byoi": "BringYourOwnImage",
   "dedicated_server_dashboard_installation_no_public_network": "Since the network configuration applied on your server does not give access to the public network, you cannot install/reinstall an OS on it. To unblock this action, please modify your network configuration in the “network interfaces” tab",
   "dedicated_server_dashboard_reinstallation_button": "Reinstall",
   "dedicated_server_dashboard_installation_button": "Install",

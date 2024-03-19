@@ -133,10 +133,10 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     );
   }
 
-  initTag(withConsent: boolean) {
+  initTag(withConsent: boolean): Promise<void> {
     // check if the tag is not already initialized
     if (this.tag) {
-      return;
+      return Promise.resolve();
     }
     // if we don't have consent drop previous tracking attemps
     if (!withConsent) {
@@ -196,13 +196,14 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     });
   }
 
-  init(withConsent: boolean) {
+  init(withConsent: boolean): Promise<void> {
     try {
       return this.initTag(withConsent);
     } catch (err) {
       console.error('tracking initialization failed', err);
       this.tag = null;
     }
+    return Promise.resolve();
   }
 
   onConsentModalDisplay() {

@@ -304,7 +304,8 @@
                                 <div data-ng-if="element.quotaCalculating">
                                     <oui-spinner data-size="s"></oui-spinner>
                                     <span
-                                        data-translate="hosting_tab_DATABASES_configuration_check_quota_calculating"
+                                        data-ng-bind="element.quotaUsed.cappedAsText"
+                                        data-ng-if="element.server === 'local'"
                                     ></span>
                                 </div>
                             </td>

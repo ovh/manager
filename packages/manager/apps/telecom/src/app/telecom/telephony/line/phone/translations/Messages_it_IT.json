@@ -1,4 +1,5 @@
 {
+  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Telefono",
   "telephony_line_phone_actions_line_details_phon_offer": "Informazioni generali",
   "telephony_line_phone_actions_line_codecs_management": "Codecs",
   "telephony_line_phone_actions_line_interface": "Choix de l'interface",
@@ -6,14 +7,12 @@
   "telephony_line_phone_actions_line_programmable_keys": "Touches programmables",
   "telephony_line_phone_actions_line_phone_upgrade_firmware": "Mise à jour du firmware",
   "telephony_line_phone_actions_line_phone_reboot": "Riavviare",
-  "telephony_line_phone_actions_line_order_accessories": "Commander des accessoires",
-  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
-  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Telefono",
   "telephony_line_phone_actions_line_phone_order_phone": "Ordina un telefono VoIP",
   "telephony_line_phone_actions_line_phone_change_phone": "Cambia telefono",
+  "telephony_line_phone_actions_line_order_headset": "Ordinare una cuffia",
   "telephony_line_phone_actions_line_phonebook": "Rubrica di contatti",
+  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
   "telephony_group_line_phone_section_back_link_target": "gestione del telefono",
   "telephony_line_phone_actions_line_phone_order_attach": "Collegare la linea a un dispositivo attuale",
-  "telephony_line_phone_actions_line_phone_order_detach": "Scollega la linea di un telefono",
-  "telephony_line_phone_actions_line_order_headset": "Ordina una cuffia"
+  "telephony_line_phone_actions_line_phone_order_detach": "Scollega la linea di un telefono"
 }

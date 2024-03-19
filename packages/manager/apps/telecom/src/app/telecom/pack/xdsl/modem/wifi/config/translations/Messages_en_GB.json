@@ -37,10 +37,7 @@
   "xdsl_modem_wifi_config_success_single": "WiFi configuration successfully updated. You will be redirected.",
   "xdsl_modem_wifi_config_error_missing": "WiFi does not exist!",
   "xdsl_modem_wifi_None": "None",
-  "xdsl_modem_wifi_WEP": "WEP",
-  "xdsl_modem_wifi_WPA": "WPA",
   "xdsl_modem_wifi_WPA2": "WPA2",
-  "xdsl_modem_wifi_WPAandWPA2": "WPA and WPA2",
   "xdsl_modem_wifi_read_error": "Oops! We were unable to retrieve your WiFi information.",
   "xdsl_modem_wifi_write_error": "Oops! We were unable to update your WiFi.",
   "xdsl_modem_wifi_config_info": "A WiFi network configuration change is already in progress. The changes you make will be applied once this change is complete.",
@@ -51,6 +48,6 @@
   "xdsl_modem_wifi_config_modal_description": "Scan the QR code using your smartphone to connect",
   "xdsl_modem_wifi_config_modal_qrcode": "QR code to access your WiFi",
   "xdsl_modem_wifi_config_modal_ssid": "SSID:",
-  "xdsl_modem_wifi_config_modal_wifi_name": "WiFi name",
+  "xdsl_modem_wifi_config_modal_wifi_name": "WiFi name:",
   "xdsl_modem_wifi_config_modal_modem_qrcode": "The security key has not yet been modified. You can use your modem’s QR code directly."
 }

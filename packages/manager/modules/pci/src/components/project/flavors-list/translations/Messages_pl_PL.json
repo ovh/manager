@@ -4,7 +4,6 @@
   "pci_project_flavors_category_definition_cpu": "Instancje CPU idealnie nadają się do aplikacji wymagających dużej mocy obliczeniowej lub równoległego przetwarzania zadań.",
   "pci_project_flavors_category_definition_ram": "Instancje RAM są zalecane do baz danych, analiz, przetwarzania w pamięci, a także dla innych aplikacji intensywnie wykorzystujących pamięć RAM.",
   "pci_project_flavors_category_definition_accelerated": "Instancje do akcelerowanych obliczeń (GPU, FPGA) są nawet 1000 razy szybsze niż CPU w niektórych aplikacjach (renderowanie, kodowanie wideo, bioinformatyka, Big Data, głębokie uczenie, etc.)",
-  "pci_project_flavors_category_definition_vps": "Instancje Sandbox są odpowiednie do testowania i programowania. Ich wydajność może się nieznacznie zmieniać w czasie.",
   "pci_project_flavors_category_definition_iops": "Instancje IOPS gwarantują najszybsze transakcje dyskowe spośród rozwiązań Public Cloud.",
   "pci_project_flavors_category_definition_none": "Brak modelu dostępnego dla tej kategorii",
   "pci_project_flavors_disk_size": "Przestrzeń dyskowa jest mniejsza od aktualnego modelu",

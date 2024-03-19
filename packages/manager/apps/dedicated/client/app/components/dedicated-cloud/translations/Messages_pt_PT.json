@@ -233,6 +233,7 @@
   "ip_order_abonnement": "Preço mensal:",
   "ip_order_free": "OFERECIDO",
   "ip_order_bloc": "Bloco",
+  "ip_order_renew_PCC": "Os seus endereços IP serão automaticamente renovados com a sua infraestrutura Dedicated Cloud.",
   "ip_order_resume": "Resumo da nota de encomenda",
   "ip_order_price_HT": "Preço total sem IVA:",
   "ip_order_price_TTC": "Preço total com IVA:",
@@ -242,12 +243,9 @@
   "ip_order_finish_error": "Ocorreu um erro durante a encomenda de IP adicionais.",
   "ip_order_free_activation_fee": "Para os servidores cujos IPs são oferecidos, estas taxas de ativação não serão novamente faturadas quando for renovado o servidor de destino.",
   "ip_order_resume_short": "Bloco /{{ blockSize }}: {{ price }}",
-  "dedicatedCloud_survey": "Para melhorar a qualidade do serviço Hosted Private Cloud, pedimos-lhe que",
-  "dedicatedCloud_survey_link": "partilhe a sua opinião sobre esta interface",
   "ip_order_renew_EPCC": "Os seus endereços IP serão automaticamente renovados com a sua infraestrutura Dedicated Cloud.",
   "ip_order_renew_MBM": "Os seus endereços IP serão automaticamente renovados com a sua infraestrutura Managed Bare Metal.",
   "dedicatedCloud_premier_sbg_order_warning": "Não estamos em condições de fazer novas encomendas no nosso website de SBG. As nossas equipas estão plenamente mobilizadas e estamos a envidar todos os esforços para restabelecer esta possibilidade de encomenda num futuro próximo.",
-  "ip_order_renew_PCC": "Os seus endereços IP serão automaticamente renovados com a sua infraestrutura Dedicated Cloud.",
   "dedicatedCloud_banner_new_product": "Pode desde já encomendar datacenters correspondentes a packs de software VMware diferentes no mesmo ambiente Private Cloud.",
   "dedicatedCloud_banner_new_product_link": "Saber mais"
 }

@@ -77,10 +77,7 @@
                 ></span>
             </dd>
         </dl>
-        <div
-            class="oui-tile__actions"
-            data-ng-if="$ctrl.canOrderMoreTraffic()"
-        >
+        <div class="oui-tile__actions" data-ng-if="$ctrl.canOrderMoreTraffic()">
             <oui-action-menu
                 aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_consumption_current_period_label' | translate)} }}"
                 data-compact

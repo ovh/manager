@@ -6,7 +6,6 @@
   "server_configuration_description_housing": "Housing",
   "server_configuration_distribution": "Sistema operativo (SO)",
   "server_configuration_distribution_none": "No instalado",
-  "server_configuration_distribution_byoi": "BringYourOwnImage",
   "server_configuration_installation_no_public_network": "No es posible instalar o reinstalar un SO en el servidor, ya que la configuración de red seleccionada no tiene acceso a la red pública. Para desbloquear esta acción, modifique su configuración de red en la pestaña «Interfaces de red».",
   "server_configuration_installation_button": "Instalar",
   "server_configuration_boot": "Boot",

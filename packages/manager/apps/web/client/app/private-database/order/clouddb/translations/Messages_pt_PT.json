@@ -7,7 +7,6 @@
   "private_database_order_clouddb_server_version_mariadb": "MariaDB {{version}}",
   "private_database_order_clouddb_server_version_mysql": "MySQL {{version}}",
   "private_database_order_clouddb_server_version_postgresql": "PostgreSQL {{version}}",
-  "private_database_order_clouddb_server_version_mongodb": "MongoDB {{version}}",
   "private_database_order_clouddb_server_version_redis": "Redis {{version}}",
   "private_database_order_clouddb_ram_option": "RAM",
   "private_database_order_clouddb_ram_option_placeholder": "Selecione a quantidade de RAM",
@@ -25,7 +24,7 @@
   "private_database_order_clouddb_payment_get_payment_method_error": "Ocorreu um erro durante a recuperação dos métodos de pagamento.",
   "private_database_order_clouddb_payment_checkout_error": "Ocorreu um erro durante o pagamento do montante do carrinho.",
   "private_database_order_clouddb_payment_checkout_success": "O pedido para a sua base de dados Web Cloud Databases foi processado. Foi efetuado um débito de {{price}} na sua conta {{accountId}}.",
-  "private_database_order_clouddb_bill_success": "O seu {{link}} foi gerado com sucesso. A sua base de dados Web Cloud Databases será ativada após o pagamento.",
   "private_database_order_clouddb_payment_checkout_success_link": "Ver a minha fatura",
+  "private_database_order_clouddb_bill_success": "O seu {{link}} foi gerado com sucesso. A sua base de dados Web Cloud Databases será ativada após o pagamento.",
   "private_database_order_clouddb_bill_success_link": "Nota de encomenda"
 }

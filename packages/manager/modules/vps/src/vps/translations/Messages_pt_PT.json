@@ -541,5 +541,5 @@
   "vps_dashboard_snapshot_download_modal_snapshot_curl_info": "Copie o comando CURL acima e execute-o no seu terminal. Para saber mais sobre o CURL, <a href=\"{{curlDocumentationLink}}\" target=\"_blank\">clique aqui</a>.",
   "vps_dashboard_snapshot_download_modal_snapshot_button_label": "Gerar o link de download",
   "vps_configuration_download_snapshot_title_button": "Fazer download do Snapshot",
-  "vps_dashboard_snapshot_download_modal_snapshot_error_download_not_ready": "A criação da snapshot está em curso, queira tentar mais tarde, quando este processo terminar."
+  "vps_dashboard_snapshot_download_modal_snapshot_error_download_not_ready": "A criação da snapshot está em curso. Tente mais tarde, quando o processo estiver concluído."
 }

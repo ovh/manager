@@ -1,5 +1,6 @@
 import angular from 'angular';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 
 import '@ovh-ux/ng-translate-async-loader';
@@ -16,6 +17,7 @@ angular
   .module(moduleName, [
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
+    ngUiRouterBreadcrumb,
     'oui',
     'pascalprecht.translate',
     'ui.router',

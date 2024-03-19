@@ -1,7 +1,9 @@
 {
   "user_account_identity_documents": "I miei documenti d'identità",
+  "user_account_identity_documents_title": "Verifica dei documenti necessaria",
   "user_account_identity_documents_sub_title": "Inserisci i tuoi documenti",
   "user_account_identity_documents_intro": "Hai creato il tuo account e vuoi effettuare un ordine dal nostro sito indiano. La normativa vigente richiede una verifica dell'identità prima di effettuare qualsiasi ordine.",
+  "user_account_identity_documents_intro_kyc_reminder": "Assicurati che i tuoi dati personali coincidano con il nome e l’indirizzo che appaiono nei documenti ufficiali.",
   "user_account_identity_documents_list_for_particular": "Se sei un privato, i documenti obbligatori da fornire sono",
   "user_account_identity_documents_list_for_enterprise": "Se sei un'azienda, i documenti obbligatori da fornire sono",
   "user_account_identity_documents_list_for_association": "Se sei un'associazione, i documenti obbligatori da fornire sono",
@@ -13,6 +15,7 @@
   "user_account_identity_documents_list_doc3_optional": "Certificato GST (facoltativo)",
   "user_account_identity_documents_description": "I documenti saranno conservati per cinque anni dalla fine del contratto.",
   "user_account_identity_documents_selection_file_format": "Formato: jpg, jpeg, pdf, png. La dimensione massima del file per ogni documento è 10 MB.",
+  "user_account_identity_documents_selection_file_format_invalid": "Formato di file non supportato. Utilizza uno dei formati accettati: jpg, jpeg, pdf e png",
   "user_account_identity_documents_submit": "Invia i documenti",
   "user_account_identity_documents_submit_success_message_title": "Grazie, abbiamo ricevuto i tuoi documenti!",
   "user_account_identity_documents_submit_success_message_description": "Abbiamo ricevuto tutti i documenti, che verranno verificati dai nostri team. Riceverai un'email di conferma di validazione oppure verrai contattato se avremo bisogno di maggiori informazioni.",
@@ -20,11 +23,6 @@
   "user_account_identity_documents_go_back_to_dashboard": "Visualizza il pannello di controllo",
   "user_account_identity_documents_legal_info1": "OVH S.A.S è il responsabile del trattamento dei tuoi dati personali. I dati raccolti tramite questo modulo sono trattati in conformità con le <a href=\"{{ link1 }}\" target=\"_blank\">Direttive sulla cybersicurezza del 28.04.2022</a> pubblicate dal CERT-IN ai sensi delle disposizioni della sottosezione (6) dell'<a href=\"{{ link2 }}\" target=\"_blank\">articolo 70B</a> dell’Information Technology (IT) Act, 2000.",
   "user_account_identity_documents_legal_info2": "Per maggiori informazioni sul trattamento dei tuoi dati personali e per conoscere i tuoi diritti, consulta la nostra <a href=\"{{ link }}\" target=\"_blank\">Politica di utilizzo dei dati personali.</a>",
-  "user_account_identity_documents_legal_info3": "Per maggiori informazioni sul trattamento dei tuoi dati personali e per conoscere i tuoi diritti, consulta la nostra <a href=\"{{ link }}\" target=\"_blank\">Politica di utilizzo dei dati personali.</a>",
   "user_account_identity_documents_verification_in_progress_info": "Il trattamento dei documenti è attualmente in fase di analisi da parte dei nostri team.",
-  "user_account_identity_documents_verification_waiting_info": "La tua richiesta è stata analizzata ma necessita di ulteriori documenti. Consulta il ticket di supporto.",
-  "user_account_identity_documents_selection_file_format_invalid": "Formato di file non supportato. Utilizza uno dei formati accettati: jpg, jpeg, pdf e png",
-  "user_account_identity_documents_intro_ensure_correspondance": "Assicurati che i tuoi dati personali coincidano con il nome e l’indirizzo che appaiono nei documenti ufficiali.",
-  "user_account_identity_documents_intro_kyc_reminder": "Assicurati che i tuoi dati personali coincidano con il nome e l’indirizzo che appaiono nei documenti ufficiali.",
-  "user_account_identity_documents_title": "Verifica dei documenti necessaria"
+  "user_account_identity_documents_verification_waiting_info": "La tua richiesta è stata analizzata ma necessita di ulteriori documenti. Consulta il ticket di supporto."
 }

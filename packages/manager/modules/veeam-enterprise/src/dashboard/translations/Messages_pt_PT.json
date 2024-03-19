@@ -11,7 +11,6 @@
   "veeam_enterprise_configuration_label_name": "Apelido",
   "veeam_enterprise_configuration_label_source_ip": "Source IP",
   "veeam_enterprise_configuration_label_ip": "IP",
-  "veeam_enterprise_configuration_label_port": "Porta",
   "veeam_enterprise_configuration_label_username": "Nome do utilizador",
   "veeam_enterprise_configuration_label_password": "Palavra-passe",
   "veeam_enterprise_subscription_title": "Subscrição"

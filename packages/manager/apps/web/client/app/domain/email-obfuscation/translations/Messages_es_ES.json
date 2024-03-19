@@ -1,15 +1,15 @@
 {
-  "domain_email_obfuscation_back_button": "Regenerar las direcciones de correo de sustitución",
-  "domain_email_obfuscation_label": "Seleccionar los contactos para los que quiere regenerar las direcciones de correo de sustitución:",
+  "domain_email_obfuscation_back_button": "Regenerar las direcciones de correo antispam",
+  "domain_email_obfuscation_label": "Seleccione los contactos para los que quiere regenerar las direcciones de correo electrónico antispam:",
   "domain_email_obfuscation_regenerate": "Guardar los cambios",
   "domain_email_obfuscation_contact_admin": "Contacto administrador",
   "domain_email_obfuscation_contact_owner": "Contacto propietario",
   "domain_email_obfuscation_contact_tech": "Contacto técnico",
   "domain_email_obfuscation_active": "Ofuscar",
   "domain_email_obfuscation_inactive": "Mostrar en texto plano",
-  "domain_email_obfuscation_mail": "la dirección de correo personal del contacto",
-  "domain_email_obfuscation_refresh": "Regenerar la dirección de correo ofuscada",
-  "domain_email_obfuscation_refresh_success": "Se han regenerado las direcciones de correo.",
-  "domain_email_obfuscation_refresh_error": "Se ha producido un error al regenerar las direcciones de correo. {{ message }}",
-  "domain_email_obfuscation_error": "Se ha producido un error al cargar los datos."
+  "domain_email_obfuscation_mail": "la dirección de correo electrónico personal del contacto",
+  "domain_email_obfuscation_refresh": "Regenerar el email de ofuscación",
+  "domain_email_obfuscation_refresh_success": "Se han regenerado las direcciones de correo electrónico.",
+  "domain_email_obfuscation_refresh_error": "Se ha producido un error al regenerar las direcciones de correo electrónico. {{ message }}",
+  "domain_email_obfuscation_error": "Se ha producido un error al cargar la información."
 }

@@ -4,7 +4,6 @@
   "pci_project_flavors_category_definition_cpu": "Instanzen mit optimierter Rechenleistung sind ideal für parallele Rechenoperationen und Anwendungen, die eine deutlich höhere CPU-Frequenz benötigen.",
   "pci_project_flavors_category_definition_ram": "Instanzen mit optimiertem Arbeitsspeicher sind perfekt für Ihre Datenbanken, Analysen und Berechnungen im Arbeitsspeicher sowie andere RAM-intensive Anwendungen.",
   "pci_project_flavors_category_definition_accelerated": "Instanzen mit beschleunigter Rechenleistung (GPU, FPGA) sind bis zu 1000 mal schneller als herkömmliche CPU bei bestimmten Anwendungen (Rendering, Video-Transkodierung, Bioinformatik, Big Data, Deep Learning etc.).",
-  "pci_project_flavors_category_definition_vps": "Instanzen mit geteilten Ressourcen (Sandbox) sind ideal für Tests, Abnahme und Entwicklungsumgebungen. Die Performance kann im Laufe der Zeit leicht variieren.",
   "pci_project_flavors_category_definition_iops": "IOPS Instanzen liefern die schnellsten Festplattentransaktionen der Public Cloud Reihe.",
   "pci_project_flavors_category_definition_none": "Es sind keine Modelle in dieser Kategorie verfügbar.",
   "pci_project_flavors_disk_size": "Der Speicherplatz ist geringer als der des aktuellen Modells.",

@@ -7,7 +7,7 @@
   "server_order_bandwidth_ready": "Twoje zamówienie jest gotowe. Usługa powinna być dostępna wkrótce po uregulowaniu należności.",
   "server_order_bandwidth_see_order": "Wyświetl zamówienie",
   "server_order_bandwidth_vrack_load": "Trwa pobieranie informacji o usługach...",
-  "server_order_bandwidth_empty_plans": "Brak dostępnych ofert przepustowości dla serwera dedykowanego",
+  "server_order_bandwidth_empty_plans": "Brak ofert dostępnej przepustowości dla serwera dedykowanego",
   "select_bandwidth_type_label": "Wybierz ofertę",
   "select_bandwidth_vrack_type_label": "Wybierz ofertę",
   "select_bandwidth_plan_summary": "Podsumowanie zamówienia",

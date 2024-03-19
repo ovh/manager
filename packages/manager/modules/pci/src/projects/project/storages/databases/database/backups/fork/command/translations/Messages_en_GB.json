@@ -7,7 +7,7 @@
   "pci_databases_fork_command_parameters": "Settings:",
   "pci_databases_fork_command_parameters_info": "More information on the available settings:",
   "pci_databases_fork_command_parameters_info_description": "Name of your service",
-  "pci_databases_fork_command_parameters_info_forkFrom_serviceId": "Originating Service Id",
+  "pci_databases_fork_command_parameters_info_forkFrom_serviceId": "Originating Service ID",
   "pci_databases_fork_command_parameters_info_forkFrom_backupId": "Backup ID",
   "pci_databases_fork_command_parameters_info_forkFrom_pointInTime": "Restore point",
   "pci_databases_fork_command_parameters_info_networkId": "OpenStack private network ID",

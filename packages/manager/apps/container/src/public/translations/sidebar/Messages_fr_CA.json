@@ -70,7 +70,6 @@
   "sidebar_pci_ai_app": "AI Deploy",
   "sidebar_pci_ml_serving": "ML Serving",
   "sidebar_pci_data_processing": "Data Processing",
-  "sidebar_pci_data_integration": "Data Integration",
   "sidebar_pci_logs_data_platform": "Logs Data Platform",
   "sidebar_pci_horizon": "Horizon",
   "sidebar_pci_users_roles": "Users & Roles",

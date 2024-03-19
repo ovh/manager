@@ -12,17 +12,17 @@ export default /* @ngInject */ ($stateProvider) => {
         ovhFeatureFlipping
           .checkFeatureAvailability([
             'dedicated-cloud:canAddVirtualDatacenter',
-            'dedicated-cloud:migrationBanner'
+            'dedicated-cloud:migrationBanner',
           ])
           .then((result) => result),
       addVdcAvailable: /* @ngInject */ (featureAvailability) =>
         featureAvailability.isFeatureAvailable(
           'dedicated-cloud:canAddVirtualDatacenter',
         ),
-      migrationBannerAvailable: /* @ngInject */ (featureAvailability) => (
+      migrationBannerAvailable: /* @ngInject */ (featureAvailability) =>
         featureAvailability.isFeatureAvailable(
-        'dedicated-cloud:migrationBanner',
-      )),
+          'dedicated-cloud:migrationBanner',
+        ),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_cloud_datacenters'),
       trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (click) => {

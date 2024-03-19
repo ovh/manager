@@ -7,7 +7,6 @@
   "dedicated_server_dashboard_upgrade_badge": "Neu",
   "dedicated_server_dashboard_distribution": "Betriebssystem (OS)",
   "dedicated_server_dashboard_distribution_none": "Auf Ihrem Server ist kein Betriebssystem installiert.",
-  "dedicated_server_dashboard_distribution_byoi": "BringYourOwnImage",
   "dedicated_server_dashboard_installation_no_public_network": "Die auf Ihrem Server angewandte Netzwerkkonfiguration ermöglicht keinen Zugang zum öffentlichen Netzwerk. Daher kann kein Betriebssystem auf diesem Server (re)installiert werden. Um diese Aktion zu ermöglichen, ändern Sie bitte Ihre Netzwerkkonfiguration im Tab \"Netzwerk-Interfaces\".",
   "dedicated_server_dashboard_reinstallation_button": "Neu installieren",
   "dedicated_server_dashboard_installation_button": "Installieren",

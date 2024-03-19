@@ -21,10 +21,13 @@ export function navigation(environment: Environment) {
   const getPublicURL = (application: ApplicationId) => {
     if (window.location.hostname === 'localhost') {
       const publicURL = new URL(window.location.href);
-      const appPublicURL = environment.getApplications()[application]?.publicURL;
+      const appPublicURL = environment.getApplications()[application]
+        ?.publicURL;
       // if appPublicURL is not found it means were are refering an application not yet registered,
       // since we are in dev mode, simply build the publicURL from the application's id
-      publicURL.hash = appPublicURL ? new URL(appPublicURL).hash : `/${application}`;
+      publicURL.hash = appPublicURL
+        ? new URL(appPublicURL).hash
+        : `/${application}`;
       return publicURL.href;
     }
     return environment.getApplications()[application]?.publicURL;

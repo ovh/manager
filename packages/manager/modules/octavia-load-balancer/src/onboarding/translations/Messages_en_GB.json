@@ -1,7 +1,6 @@
 {
   "octavia_load_balancer_onboarding_title": "Distribute your application loads between multiple instances",
   "octavia_load_balancer_onboarding_description_1": "With the Public Cloud Load Balancer, you can boost your applications’ scalability, and make them more robust.",
-  "octavia_load_balancer_onboarding_description_2": "The Public Cloud Load Balancer is not currently managed through the Control Panel. However, you can order and manage it via the command line, the OpenStack API, or with Terraform.",
   "octavia_load_balancer_onboarding_description_3": "Below are some guides to help you create and configure your Load Balancer.",
   "octavia_load_balancer_onboarding_cta": "Create your Load Balancer",
   "octavia_load_balancer_onboarding_guide1_title": "Getting started with the Load Balancer",

@@ -18,21 +18,17 @@
   "cpb_vouchers_products_cell": "Produtos elegíveis",
   "cpb_vouchers_add_button": "Ativar um voucher",
   "cpb_vouchers_add_credit_button": "Adquirir um crédito cloud",
-  "cpb_vouchers_add_explain_bis": "A cada emissão da fatura, o montante devido é debitado do seu crédito Cloud (abaixo), e depois sucessivamente da sua conta Digital LaunchPad e depois da sua conta fidelidade. O saldo que ficar em dívida será pago através do seu método de pagamento registado (os detalhes dos três últimos métodos de pagamento estão disponíveis na secção \"Faturação\" da sua Área de Cliente).",
-
+  "cpb_vouchers_add_explain_bis": "A cada emissão da fatura, o montante devido é debitado do seu crédito Cloud (abaixo), e depois sucessivamente da sua conta Digital LaunchPad e, depois, da sua conta fidelidade. O saldo que ficar em dívida será pago através do seu método de pagamento registado (os detalhes dos três últimos métodos de pagamento estão disponíveis na secção \"Faturação\" da sua Área de Cliente).",
   "common_pagination_of": "em",
   "common_pagination_results": "resultados",
-
   "cpb_vouchers_add_success": "O voucher foi adicionado com sucesso.",
-  "cpb_vouchers_add_error": "Lamentamos, mas não foi possível adicionar este voucher. Tente novamente mais tarde.",
-
+  "cpb_vouchers_add_error": "Lamentamos, mas não foi possível adicionar este voucher. Tente novamente.",
   "cpb_vouchers_add_credit_title": "Adquirir um crédito cloud",
   "cpb_vouchers_add_credit_info": "Selecione o montante (sem IVA) que pretende creditar para este projeto. Uma vez o pagamento efetuado, o crédito será utilizado para os tarifários e consumos deste projeto para as faturas editadas durante os próximos 12 meses.",
   "cpb_vouchers_add_credit_amount": "Montante a creditar ({{ currency }} s/IVA)",
   "cpb_vouchers_add_credit_valid": "Gerar uma nota de encomenda",
   "cpb_vouchers_add_credit_success": "A nota de encomenda para o seu crédito de {{ amount }} está disponível <a href=\"{{ url }}\" target=\"_blank\">aqui</a>.",
   "cpb_vouchers_add_credit_load_err": "Lamentamos, mas ocorreu um erro ao adquirir o crédito cloud.",
-  "cpb_vouchers_bill_ref": "Fatura n° <a href=\"{{url}}\">{{billId}}</a>",
   "common_field_error_required": "Preencha o campo.",
   "common_field_error_number": "Introduza um valor numérico válido.",
   "common_field_error_min": "Introduza um valor superior ou igual a {{min}}."

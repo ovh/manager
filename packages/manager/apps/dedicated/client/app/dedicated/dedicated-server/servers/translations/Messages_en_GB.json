@@ -1,10 +1,17 @@
 {
   "dedicated_servers_title": "Dedicated servers",
+  "dedicated_servers_id": "Server ID",
   "dedicated_servers_name": "Name",
   "dedicated_servers_status": "Status",
+  "dedicated_servers_ip": "IP address",
   "dedicated_servers_reverse": "Reverse DNS",
-  "dedicated_servers_localization": "Location",
+  "dedicated_servers_city": "City",
   "dedicated_servers_model": "Model",
+  "dedicated_servers_rack": "Rack",
+  "dedicated_servers_datacenter": "Datacenter",
+  "dedicated_servers_country": "Country",
+  "dedicated_servers_monitoring": "Monitoring status",
+  "dedicated_servers_popover_details": "Details",
   "dedicated_servers_button_server_order": "Order a dedicated server",
   "dedicated_servers_button_list_order": "Order",
   "dedicated_servers_list_item_order": "Dedicated servers",
@@ -12,13 +19,5 @@
   "server_configuration_installation_no_public_network": "Since the network configuration applied on your server does not give access to the public network, you cannot install/reinstall an OS on it. To unblock this action, please modify your network configuration in the “network interfaces” tab",
   "dedicated_servers_installation_template_wizard_prefix_message": "From",
   "dedicated_servers_installation_ovhcloud_template_wizard_message": "onwards, it will no longer be possible to reinstall {{osDescription}} on your dedicated server. You can still use your dedicated server with the previously installed operating system, or reinstall your dedicated server with a more recent operating system.",
-  "dedicated_servers_installation_customer_template_wizard_message": "onwards, it will no longer be possible to reinstall {{osName}} on your dedicated server, and your {{customerTemplateName}} template will be deleted as a result. You can still use your dedicated server with the previously installed operating system, or reinstall your dedicated server with a more recent operating system.",
-  "dedicated_servers_id": "Server Id",
-  "dedicated_servers_ip": "IP address",
-  "dedicated_servers_city": "City",
-  "dedicated_servers_rack": "Rack",
-  "dedicated_servers_datacenter": "Datacenter",
-  "dedicated_servers_country": "Country",
-  "dedicated_servers_monitoring": "Monitoring status",
-  "dedicated_servers_popover_details": "Details"
+  "dedicated_servers_installation_customer_template_wizard_message": "onwards, it will no longer be possible to reinstall {{osName}} on your dedicated server, and your {{customerTemplateName}} template will be deleted as a result. You can still use your dedicated server with the previously installed operating system, or reinstall your dedicated server with a more recent operating system."
 }

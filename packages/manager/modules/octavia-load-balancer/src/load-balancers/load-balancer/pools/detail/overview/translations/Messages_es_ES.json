@@ -11,7 +11,7 @@
   "octavia_load_balancer_pools_detail_overview_info_provisioning_status_active": "activo",
   "octavia_load_balancer_pools_detail_overview_info_provisioning_status_creating": "Creando...",
   "octavia_load_balancer_pools_detail_overview_info_provisioning_status_deleted": "Eliminado",
-  "octavia_load_balancer_pools_detail_overview_info_provisioning_status_deleting": "Eliminando...",
+  "octavia_load_balancer_pools_detail_overview_info_provisioning_status_deleting": "eliminando...",
   "octavia_load_balancer_pools_detail_overview_info_provisioning_status_error": "Error",
   "octavia_load_balancer_pools_detail_overview_info_provisioning_status_updating": "Actualizando...",
   "octavia_load_balancer_pools_detail_overview_options_title": "Opciones de protocolo",

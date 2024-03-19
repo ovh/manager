@@ -64,8 +64,8 @@
   "telephony_service_contact_tva_invalid": "O NIF introduzido é inválido",
   "telephony_service_contact_sync_error": "Sincronização impossível, queira verificar as suas informações.",
   "telephony_service_contact_sync_na": "Não aplicável",
-  "telephony_service_contact_outwardcode": "Outward code",
-  "telephony_service_contact_inwardcode": "Código inward",
+  "telephony_service_contact_outwardcode": "Código de saída",
+  "telephony_service_contact_inwardcode": "Inward code",
   "telephony_service_contact_bad_outward": "O código deve ser composto por uma letra seguida de 1 a 3 caracteres alfanuméricos.",
   "telephony_service_contact_bad_inward": "O código deve ser composto por um número seguido de 2 caracteres alfabéticos."
 }

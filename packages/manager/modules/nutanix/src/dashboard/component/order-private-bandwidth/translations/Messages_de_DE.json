@@ -12,7 +12,6 @@
   "cluster_order_bandwidth_info": "Der angezeigte Betrag entspricht dem Betrag für die nächste Verlängerung Ihrer Option.",
   "cluster_order_bandwidth_warning": "Die Änderung Ihrer Bandbreite wird einige Minuten nach Aktivierung der Option angewendet.",
   "cluster_order_bandwidth_auto_pay": "Mit dem Standardzahlungsmittel bezahlen",
-  "cluster_vrack-bandwidth": "{{bandwidth}} Gbit/s unbegrenzt und garantiert - vRack-Option",
   "plan_price_per_month": "/ Monat (zzgl. MwSt.)",
   "wizard_pay": "Bezahlen",
   "wizard_close": "Schließen"

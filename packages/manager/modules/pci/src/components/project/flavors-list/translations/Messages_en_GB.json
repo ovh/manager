@@ -4,7 +4,6 @@
   "pci_project_flavors_category_definition_cpu": "Instances with optimised computing are ideally suited to applications that require high processing speeds or parallel task processing.",
   "pci_project_flavors_category_definition_ram": "Instances with optimised memory are recommended for your databases, analyses and in-memory computing, as well as other RAM-intensive applications.",
   "pci_project_flavors_category_definition_accelerated": "Instances with accelerated computing (GPU, FPGA) are up to 1,000 times faster than a CPU for certain applications (rendering, video transcoding, bioinformatics, big data, deep learning, etc.)",
-  "pci_project_flavors_category_definition_vps": "Instances with shared resources (Sandbox) are suitable for testing, verifications and development environments. Their performance may vary slightly over time.",
   "pci_project_flavors_category_definition_iops": "IOPS instances deliver the fastest disk transactions in the Public Cloud range.",
   "pci_project_flavors_category_definition_none": "No model available for this category",
   "pci_project_flavors_disk_size": "The disk space is lower than that of the current model",

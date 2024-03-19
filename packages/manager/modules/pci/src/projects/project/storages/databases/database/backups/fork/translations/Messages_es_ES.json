@@ -37,7 +37,6 @@
   "pci_databases_backups_fork_spec_region": "Datacenter:",
   "pci_databases_backups_fork_spec_region_name": "{{region}} ({{alias}})",
   "pci_databases_backups_fork_spec_flavor": "Modelo de nodo:",
-  "pci_databases_backups_fork_spec_flavor_CPU": "{{cpu}} CPU",
   "pci_databases_backups_fork_spec_flavor_RAM": "{{ram}} RAM",
   "pci_databases_backups_fork_spec_cluster": "Cluster:",
   "pci_databases_backups_fork_spec_network": "Tipo de red:",

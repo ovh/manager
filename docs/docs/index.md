@@ -13,21 +13,21 @@ hero:
       link: /guide/getting-started
     - theme: alt
       text: View on GitHub
-      link: https://github.com/ovh/manager
+      link: <https://github.com/ovh/manager>
   image:
     src: /ovhcloud-logo.webp
     alt: OVHcloud
 
 features:
-  - title: Application
-    details: Manage your services with ease by using our control panel.
-    link: https://www.ovh.com/manager/
-  - title: Website
-    details: To have more informations about our products, please visit our website.
-    link: https://www.ovhcloud.com/
-  - title: Guides
-    details: A good way to find answer to some "how to" questions about OVHcloud products.
-    link: https://help.ovhcloud.com
+- title: Application
+  details: Manage your services with ease by using our control panel.
+  link: <https://www.ovh.com/manager/>
+- title: Website
+  details: To have more informations about our products, please visit our website.
+  link: <https://www.ovhcloud.com/>
+- title: Guides
+  details: A good way to find answer to some "how to" questions about OVHcloud products.
+  link: <https://help.ovhcloud.com>
 ---
 
 <style>

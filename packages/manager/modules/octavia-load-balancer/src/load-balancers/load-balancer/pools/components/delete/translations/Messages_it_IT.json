@@ -1,5 +1,5 @@
 {
-  "octavia_load_balancer_pools_components_delete_confirm": "Eliminare",
+  "octavia_load_balancer_pools_components_delete_confirm": "Elimina",
   "octavia_load_balancer_pools_components_delete_cancel": "Annullare",
   "octavia_load_balancer_pools_components_delete_title": "Elimina un Pool",
   "octavia_load_balancer_pools_components_delete_description": "Stai per eliminare definitivamente \"{{pool}}\" con la sua configurazione.",

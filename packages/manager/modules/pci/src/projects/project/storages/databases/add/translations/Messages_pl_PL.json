@@ -48,7 +48,8 @@
   "pci_database_add_spec_region": "Centrum danych:",
   "pci_database_add_spec_region_name": "{{region}} ({{alias}})",
   "pci_database_add_spec_flavor": "Model węzła:",
-  "pci_database_add_spec_flavor_CPU": "{{cpu}}",
+  "pci_database_add_spec_flavor_CPU_one": "{{cpu}} vCore",
+  "pci_database_add_spec_flavor_CPU_many": "{{cpu}} vCores",
   "pci_database_add_spec_flavor_RAM": "{{ram}} RAM",
   "pci_database_add_spec_cluster": "Klaster:",
   "pci_database_add_spec_network": "Typ sieci:",
@@ -69,9 +70,7 @@
   "pci_database_add_storage_sizing": "Dodatkowa przestrzeń dyskowa",
   "pci_database_add_storage_sizing_offer": "Twój model węzła {{flavorName}} zawiera {{includedStorage}} przestrzeni dyskowej, do której możesz dodać do {{addableStorage}} przestrzeni w przedziałach co {{step}}.",
   "pci_database_add_spec_storage_added": "{{total}} (w tym {{included}} zawarte w cenie)",
-  "pci_database_add_price_unit_month": "/ m-c",
-  "pci_database_add_price_unit_hour": "/ godz.",
-  "pci_database_add_price_unit_switch_label": "Wyświetl ceny miesięczne",
-  "pci_database_add_spec_flavor_CPU_one": "{{cpu}} vCore",
-  "pci_database_add_spec_flavor_CPU_many": "{{cpu}} vCores"
+  "pci_database_add_price_unit_month": "/m-c",
+  "pci_database_add_price_unit_hour": "/godz.",
+  "pci_database_add_price_unit_switch_label": "Wyświetl ceny miesięczne"
 }

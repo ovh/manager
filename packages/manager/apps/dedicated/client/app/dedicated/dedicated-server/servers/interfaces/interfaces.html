@@ -69,5 +69,7 @@
     class="mb-5"
     data-ng-if="!$ctrl.server.isExpired && !['hgr', 'scale'].includes($ctrl.technicalDetails.server.range)"
 >
-    <server-mrtg-tile data-server-service="$ctrl.serverService"></server-mrtg-tile>
+    <server-mrtg-tile
+        data-server-service="$ctrl.serverService"
+    ></server-mrtg-tile>
 </div>
