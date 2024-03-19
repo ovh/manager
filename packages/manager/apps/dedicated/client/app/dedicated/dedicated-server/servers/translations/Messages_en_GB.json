@@ -19,5 +19,8 @@
   "server_configuration_installation_no_public_network": "Since the network configuration applied on your server does not give access to the public network, you cannot install/reinstall an OS on it. To unblock this action, please modify your network configuration in the “network interfaces” tab",
   "dedicated_servers_installation_template_wizard_prefix_message": "From",
   "dedicated_servers_installation_ovhcloud_template_wizard_message": "onwards, it will no longer be possible to reinstall {{osDescription}} on your dedicated server. You can still use your dedicated server with the previously installed operating system, or reinstall your dedicated server with a more recent operating system.",
-  "dedicated_servers_installation_customer_template_wizard_message": "onwards, it will no longer be possible to reinstall {{osName}} on your dedicated server, and your {{customerTemplateName}} template will be deleted as a result. You can still use your dedicated server with the previously installed operating system, or reinstall your dedicated server with a more recent operating system."
+  "dedicated_servers_installation_customer_template_wizard_message": "onwards, it will no longer be possible to reinstall {{osName}} on your dedicated server, and your {{customerTemplateName}} template will be deleted as a result. You can still use your dedicated server with the previously installed operating system, or reinstall your dedicated server with a more recent operating system.",
+  "dedicated_servers_all_servers": "All servers",
+  "dedicated_servers_clusters": "3-AZ Clusters",
+  "dedicated_servers_region": "Region"
 }

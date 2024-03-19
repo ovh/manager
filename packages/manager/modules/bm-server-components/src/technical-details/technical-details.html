@@ -33,9 +33,7 @@
                 data-translate-values="{ schedule: ($ctrl.upgradeTask.scheduledTimeSlot | date:'short') }"
             ></span>
         </oui-tile-description>
-        <oui-tile-description
-            data-ng-if="$ctrl.isRamUpgradable() || $ctrl.upgradeTask.shouldScheduleUpgrade($ctrl.UPGRADE_TYPE.RAM)"
-        >
+        <oui-tile-description data-ng-if="$ctrl.isRamUpgradable()">
             <oui-button
                 variant="link"
                 icon-right="oui-icon-arrow-right"
@@ -112,9 +110,7 @@
                 data-translate-values="{ schedule: ($ctrl.upgradeTask.scheduledTimeSlot | date:'short') }"
             ></span>
         </oui-tile-description>
-        <oui-tile-description
-            data-ng-if="$ctrl.isDisksUpgradable() || $ctrl.upgradeTask.shouldScheduleUpgrade($ctrl.UPGRADE_TYPE.STORAGE)"
-        >
+        <oui-tile-description data-ng-if="$ctrl.isDisksUpgradable()">
             <oui-button
                 variant="link"
                 icon-right="oui-icon-arrow-right"

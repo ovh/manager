@@ -1,0 +1,34 @@
+<header class="oui-header" role="banner">
+    <div class="d-flex justify-content-between">
+        <h1 class="oui-header__title" data-ng-bind="$ctrl.displayName"></h1>
+        <oui-guide-menu
+            class="mt-2"
+            data-text="{{:: 'dedicated_cluster_3az_guides_title' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-href="{{:: $ctrl.guidesLinkOf3AZ }}"
+                data-external="true"
+            >
+                <span
+                    data-translate="{{:: 'dedicated_cluster_3az_guides_link' | translate }}"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </div>
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            data-href="{{$ctrl.dashboardLink}}"
+            data-active="$ctrl.dashboardLink === $ctrl.currentActiveLink()"
+            ><span data-translate="cluster_general_information"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{$ctrl.nodesLink}}"
+            data-active="$ctrl.nodesLink === $ctrl.currentActiveLink()"
+            ><span data-translate="cluster_nodes"></span
+        ></oui-header-tabs-item>
+    </oui-header-tabs>
+</header>
+<div>
+    <div class="alert-server" data-ovh-alert="cluster_dashboard_alert"></div>
+    <div data-ui-view="tabView"></div>
+</div>

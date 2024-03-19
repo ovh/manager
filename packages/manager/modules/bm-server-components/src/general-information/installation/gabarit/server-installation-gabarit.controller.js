@@ -32,6 +32,7 @@ export default class ServerInstallationGabaritCtrl {
   }
 
   $onInit() {
+    this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
     this.$scope.inputRules = INPUTS_RULES;
 
     this.$scope.installation = {
@@ -80,8 +81,7 @@ export default class ServerInstallationGabaritCtrl {
 
     if (this.$scope.installation.deleteGabarit) {
       this.atInternet.trackPage({
-        name:
-          'dedicated::dedicated::server::system-install::existing-template::delete-template',
+        name: `dedicated::dedicated::${this.serverType}::system-install::existing-template::delete-template`,
         type: 'navigation',
       });
     }
@@ -330,8 +330,7 @@ export default class ServerInstallationGabaritCtrl {
 
   deleteGabarit() {
     this.atInternet.trackClick({
-      name:
-        'dedicated::dedicated::server::system-install::existing-template::delete-template::confirm',
+      name: `dedicated::dedicated::${this.serverType}::system-install::existing-template::delete-template::confirm`,
       type: 'action',
     });
     this.$scope.loader.loading = true;
@@ -360,8 +359,7 @@ export default class ServerInstallationGabaritCtrl {
 
   startInstall() {
     this.atInternet.trackClick({
-      name:
-        'dedicated::dedicated::server::system-install::existing-template::install',
+      name: `dedicated::dedicated::${this.serverType}::system-install::existing-template::install`,
       type: 'action',
     });
 
@@ -393,9 +391,7 @@ export default class ServerInstallationGabaritCtrl {
         (task) => {
           set(task, 'id', task.taskId);
           this.$rootScope.$broadcast('dedicated.informations.reinstall', task);
-          this.$state.go(
-            `app.dedicated-server.server.dashboard.installation-progress`,
-          );
+          this.$state.go(`${this.statePrefix}.dashboard.installation-progress`);
         },
         (data) => {
           this.$scope.errorGab.ws = this.$translate.instant(

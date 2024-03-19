@@ -16,9 +16,7 @@
             data-compact
             data-placement="end"
         >
-            <oui-action-menu-item
-                data-ui-sref="app.dedicated-server.server.dashboard.edit-display-name"
-            >
+            <oui-action-menu-item data-ui-sref=".edit-display-name">
                 <span
                     data-translate="dedicated_server_dashboard_edit_button"
                 ></span>
@@ -151,6 +149,29 @@
         </oui-action-menu>
     </oui-tile-definition>
 
+    <!-- region information -->
+    <oui-tile-definition>
+        <oui-tile-term>
+            <span data-translate="dedicated_server_dashboard_region"></span>
+        </oui-tile-term>
+        <oui-tile-description
+            ><span
+                data-translate="{{ :: 'dedicated_server_dashboard_region_' + $ctrl.server.region }}"
+            ></span
+            ><br /><span data-ng-bind=":: $ctrl.server.region"></span
+        ></oui-tile-description>
+    </oui-tile-definition>
+
+    <!-- zone information -->
+    <oui-tile-definition>
+        <oui-tile-term>
+            <span data-translate="dedicated_server_dashboard_zone"></span>
+        </oui-tile-term>
+        <oui-tile-description
+            ><span data-ng-bind=":: $ctrl.server.availabilityZone"></span
+        ></oui-tile-description>
+    </oui-tile-definition>
+
     <!-- datacenter location -->
     <oui-tile-definition>
         <oui-tile-term>
@@ -159,7 +180,7 @@
         <oui-tile-description>
             <div class="d-flex justify-content-between align-items-center">
                 <span
-                    data-ng-bind=":: $ctrl.server.datacenter.toUpperCase().split('_').join('') + ' - ' + ( 'server_datacenter_' + $ctrl.server.datacenter.toUpperCase().split('_')[0] | translate )"
+                    data-ng-bind=":: $ctrl.server.datacenter.toUpperCase().split('_').join('')"
                 >
                 </span>
                 <h2

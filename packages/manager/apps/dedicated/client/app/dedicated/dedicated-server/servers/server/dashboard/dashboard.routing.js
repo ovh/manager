@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '',
     views: {
       'tabView@app.dedicated-server.server': {
-        component: 'dedicatedServerDashboard',
+        component: 'serverDashboard',
       },
     },
     resolve: {
@@ -207,11 +207,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicated-server.server.dashboard.monitoringUpdate', {
           productId: serverName,
         }),
-      orderPrivateBandwidthLink: /* @ngInject */ (
+      getOrderPrivateBandwidthLink: /* @ngInject */ (
         $state,
         isLegacy,
         serverName,
-      ) =>
+      ) => () =>
         isLegacy
           ? $state.href(
               'app.dedicated-server.server.dashboard.bandwidth-legacy-private-order',
@@ -221,11 +221,11 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicated-server.server.dashboard.bandwidth-private-order',
               { productId: serverName },
             ),
-      orderPublicBandwidthLink: /* @ngInject */ (
+      getOrderPublicBandwidthLink: /* @ngInject */ (
         $state,
         isLegacy,
         serverName,
-      ) =>
+      ) => () =>
         isLegacy
           ? $state.href(
               'app.dedicated-server.server.dashboard.bandwidth-legacy-public-order',
@@ -271,6 +271,14 @@ export default /* @ngInject */ ($stateProvider) => {
           trafficOrderables: ServerOrderTrafficService.getOrderables(
             $stateParams.productId,
           ),
+        }),
+      goToTrafficOrder: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.traffic-order', {
+          productId: serverName,
+        }),
+      goToTrafficCancel: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.traffic-cancel', {
+          productId: serverName,
         }),
       vrackInfos: /* @ngInject */ ($stateParams, Server) =>
         Server.getVrackInfos($stateParams.productId),
