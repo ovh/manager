@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.6.0...@ovh-ux/manager-generator@0.7.0) (2024-03-19)
+
+
+### Features
+
+* **generator:** add template listing onboarding and dashboard ([#9447](https://github.com/ovh/manager/issues/9447)) ([41eabb8](https://github.com/ovh/manager/commit/41eabb8b5b4fc792958c2ae126137b8cd7e2b596))
+* **generator:** pim category breadcrumbs, dashboard, onboarding ([#9764](https://github.com/ovh/manager/issues/9764)) ([aaa6e07](https://github.com/ovh/manager/commit/aaa6e0763d19de8fedb40abf939d7555906a4ae8))
+* **generator:** serviceKey question and usage on listing page ([#9820](https://github.com/ovh/manager/issues/9820)) ([3712bc0](https://github.com/ovh/manager/commit/3712bc0b7c57458781ced54baa6e61f8b5f61c1a))
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.5.0...@ovh-ux/manager-generator@0.6.0) (2024-02-05)
 
 

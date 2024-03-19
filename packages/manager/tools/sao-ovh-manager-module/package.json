@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sao-ovh-manager-module",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "private": true,
   "description": "Scaffolding tool for standalone modules.",
   "repository": {

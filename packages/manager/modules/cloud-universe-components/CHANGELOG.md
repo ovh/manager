@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.12.0...@ovh-ux/ng-ovh-cloud-universe-components@2.12.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2861] ([b43344b](https://github.com/ovh/manager/commit/b43344b80230baa17c4bd283500b8d1f69e0f423))
+
+
+
+
+
 # [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.11.0...@ovh-ux/ng-ovh-cloud-universe-components@2.12.0) (2024-02-26)
 
 

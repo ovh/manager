@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.10.0...@ovh-ux/manager-veeam-enterprise@1.11.0) (2024-03-19)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([4632e43](https://github.com/ovh/manager/commit/4632e43b9ff2f693b0437de0b4bd13f63645e01a))
+
+
+### Features
+
+* super-components workspace and msc-tile super-component ([#9450](https://github.com/ovh/manager/issues/9450)) ([2e8a662](https://github.com/ovh/manager/commit/2e8a66285b747f8fa268bfa687bcf674a1347101))
+
+
+
+
+
 # [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.9.1...@ovh-ux/manager-veeam-enterprise@1.10.0) (2024-02-21)
 
 

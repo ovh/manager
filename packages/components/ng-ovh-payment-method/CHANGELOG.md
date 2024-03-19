@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.14.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.14.0...@ovh-ux/ng-ovh-payment-method@9.14.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2374] ([3bbde12](https://github.com/ovh/manager/commit/3bbde127e7aeb57cdb7c0a47538b02c33fa40a76))
+* **i18n:** add missing translations [CDS 2557] ([fed9c2f](https://github.com/ovh/manager/commit/fed9c2f67919a918933a9f0b7325f60635310da8))
+
+
+
+
+
 # [9.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.13.0...@ovh-ux/ng-ovh-payment-method@9.14.0) (2024-03-04)
 
 

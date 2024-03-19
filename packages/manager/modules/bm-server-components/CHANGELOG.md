@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.16.1...@ovh-ux/manager-bm-server-components@1.16.2) (2024-03-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2391] ([40f33c9](https://github.com/ovh/manager/commit/40f33c924c1843350f54056dd7c9a8beea7d951c))
+* **i18n:** add missing translations [CDS 2431] ([8805dbe](https://github.com/ovh/manager/commit/8805dbe84108eb8cc5e92724a6c4fce3c02d7f45))
+* **i18n:** add missing translations [CDS 2440] ([7075f01](https://github.com/ovh/manager/commit/7075f01a61180a0067eaab4905fe8201e443071d))
+* **i18n:** add missing translations [CDS 2557] ([fed9c2f](https://github.com/ovh/manager/commit/fed9c2f67919a918933a9f0b7325f60635310da8))
+* **i18n:** add missing translations [CDS 2562] ([6f6b9a3](https://github.com/ovh/manager/commit/6f6b9a35e52f9eca14b331d66b97bb85910d2893))
+* **i18n:** add missing translations [CDS 2775] ([0ce6390](https://github.com/ovh/manager/commit/0ce6390fb305fb25e67add1040d09deba1e7d359))
+* **i18n:** add missing translations [CDS 2788] ([05a554d](https://github.com/ovh/manager/commit/05a554dc56eb07b875e04b8582d69d947ddfcd73))
+* **i18n:** add missing translations [CDS 2801] ([b49b128](https://github.com/ovh/manager/commit/b49b1281646f270bb397269e14459230f6313919))
+* **i18n:** add missing translations [CDS 2803] ([8406d45](https://github.com/ovh/manager/commit/8406d4547ff51c8ea2923e322061f9242d27ab30))
+* **i18n:** add missing translations [CDS 2809] ([650da78](https://github.com/ovh/manager/commit/650da787cab0c6b70675e9b062367e14024bd6aa))
+* remove unused translations [CDS] ([575af0d](https://github.com/ovh/manager/commit/575af0de1dffe3b949198d516ef0e4b85f44302e))
+* remove unused translations [CDS] ([e19ca8b](https://github.com/ovh/manager/commit/e19ca8b78556da12877ffc12296fa9a6b3f00d54))
+* remove unused translations [CDS] ([07b38b7](https://github.com/ovh/manager/commit/07b38b7b4e69a633a7c40fa8c1db3c67ce8bc052))
+
+
+
+
+
 ## [1.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.16.0...@ovh-ux/manager-bm-server-components@1.16.1) (2024-03-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components

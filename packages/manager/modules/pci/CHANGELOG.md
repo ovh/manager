@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.30.1...@ovh-ux/manager-pci@6.31.0) (2024-03-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2281] ([5786172](https://github.com/ovh/manager/commit/57861724d4be9302d7923fba1f442cc2fcd24d75))
+* **i18n:** add missing translations [CDS 2296] ([dc784f2](https://github.com/ovh/manager/commit/dc784f2fc2c1225d75ddc1c1399da6b2fe867707))
+* **i18n:** add missing translations [CDS 2374] ([3bbde12](https://github.com/ovh/manager/commit/3bbde127e7aeb57cdb7c0a47538b02c33fa40a76))
+* **i18n:** add missing translations [CDS 2382] ([8450e8f](https://github.com/ovh/manager/commit/8450e8f69484e1564087c38dbee4811663f278f3))
+* **i18n:** add missing translations [CDS 2391] ([40f33c9](https://github.com/ovh/manager/commit/40f33c924c1843350f54056dd7c9a8beea7d951c))
+* **i18n:** add missing translations [CDS 2398] ([5a92d78](https://github.com/ovh/manager/commit/5a92d78457046fa5d3ddf46249fa30774bfc694f))
+* **i18n:** add missing translations [CDS 2420] ([a002450](https://github.com/ovh/manager/commit/a002450dae4a5eefbd1ccf1b0221e4f959a8f7c9))
+* **i18n:** add missing translations [CDS 2437] ([6326e9f](https://github.com/ovh/manager/commit/6326e9f16b9121462fe7b95225fee4a50450dbac))
+* **i18n:** add missing translations [CDS 2440] ([7075f01](https://github.com/ovh/manager/commit/7075f01a61180a0067eaab4905fe8201e443071d))
+* **i18n:** add missing translations [CDS 2443] ([c18ce5c](https://github.com/ovh/manager/commit/c18ce5c6ea192ed2b04f1a0dd2734cf5d8d591d1))
+* **i18n:** add missing translations [CDS 2446] ([4157599](https://github.com/ovh/manager/commit/415759996a09557c581fc274ea990dddea9f2f71))
+* **i18n:** add missing translations [CDS 2498] ([4429122](https://github.com/ovh/manager/commit/4429122f48611228fc6923271276c0adfb6b8c8d))
+* **i18n:** add missing translations [CDS 2499] ([e63e156](https://github.com/ovh/manager/commit/e63e156278fb697ad3913b28170d75fbf9ab21cb))
+* **i18n:** add missing translations [CDS 2503] ([396b79c](https://github.com/ovh/manager/commit/396b79ced315fc003bf9d18c2793a299cc520f7b))
+* **i18n:** add missing translations [CDS 2546] ([796a053](https://github.com/ovh/manager/commit/796a053b067d5a2eda2ef4d91d1fa11efaa31e52))
+* **i18n:** add missing translations [CDS 2555] ([bcb83ed](https://github.com/ovh/manager/commit/bcb83ed3afb4b47aa3e087e71f3ef9e696f32581))
+* **i18n:** add missing translations [CDS 2557] ([fed9c2f](https://github.com/ovh/manager/commit/fed9c2f67919a918933a9f0b7325f60635310da8))
+* **i18n:** add missing translations [CDS 2562] ([6f6b9a3](https://github.com/ovh/manager/commit/6f6b9a35e52f9eca14b331d66b97bb85910d2893))
+* **i18n:** add missing translations [CDS 2621] ([fcba20d](https://github.com/ovh/manager/commit/fcba20d2259c03004abd2f51059a9c7b1a3b1228))
+* **i18n:** add missing translations [CDS 2750] ([c401f56](https://github.com/ovh/manager/commit/c401f566773fd0b52f4428d4b7b9c3122d68acc3))
+* **i18n:** add missing translations [CDS 2801] ([b49b128](https://github.com/ovh/manager/commit/b49b1281646f270bb397269e14459230f6313919))
+* **i18n:** add missing translations [CDS 2826] ([c161a9d](https://github.com/ovh/manager/commit/c161a9d36527de3a76d6a859ab026729e34b926d))
+* **i18n:** add missing translations [CDS 2861] ([b43344b](https://github.com/ovh/manager/commit/b43344b80230baa17c4bd283500b8d1f69e0f423))
+* remove unused translations [CDS] ([6495abd](https://github.com/ovh/manager/commit/6495abd65346cfc7f587de7b52a6be9b5e2b9e4c))
+* remove unused translations [CDS] ([7da932b](https://github.com/ovh/manager/commit/7da932b5236ad13894435bfedb4725b94398b14d))
+* remove unused translations [CDS] ([4632e43](https://github.com/ovh/manager/commit/4632e43b9ff2f693b0437de0b4bd13f63645e01a))
+* remove unused translations [CDS] ([07b38b7](https://github.com/ovh/manager/commit/07b38b7b4e69a633a7c40fa8c1db3c67ce8bc052))
+* remove unused translations [CDS] ([6bf655e](https://github.com/ovh/manager/commit/6bf655e4719ef1d711cdadfa10faeba7ca8922b7))
+* remove unused translations [CDS] ([9336b3e](https://github.com/ovh/manager/commit/9336b3ed3ac1841f95b5c1fabff253e4058fa511))
+* remove unused translations [CDS] ([c04c10f](https://github.com/ovh/manager/commit/c04c10f08cb0cc961d5bb9d4fdb66836dc2aff42))
+* remove unused translations [CDS] ([36930b3](https://github.com/ovh/manager/commit/36930b3db68f7e93f82816a97c361da3a46faea8))
+
+
+### Features
+
+* super-components workspace and msc-tile super-component ([#9450](https://github.com/ovh/manager/issues/9450)) ([2e8a662](https://github.com/ovh/manager/commit/2e8a66285b747f8fa268bfa687bcf674a1347101))
+
+
+
+
+
 ## [6.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.30.0...@ovh-ux/manager-pci@6.30.1) (2024-03-18)
 
 

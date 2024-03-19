@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-documentation",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": true,
   "description": "Manager documentation deployed with GitHub Pages",
   "scripts": {
