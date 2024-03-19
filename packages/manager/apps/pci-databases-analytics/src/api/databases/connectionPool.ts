@@ -37,15 +37,12 @@ export const addConnectionPool = async ({
     )
     .then((res) => res.data as database.postgresql.ConnectionPool);
 
-export interface ConnectionPoolEdition {
-  databaseId: string;
-  mode: database.postgresql.connectionpool.ModeEnum;
-  size: number;
-  userId?: string;
-}
+export type ConnectionPoolEdition = Omit<
+  database.postgresql.ConnectionPool,
+  'name' | 'port' | 'uri'
+>;
 
 export interface EditConnectionPoolProps extends ServiceData {
-  connectionPoolId: string;
   connectionPool: ConnectionPoolEdition;
 }
 
@@ -53,15 +50,16 @@ export const editConnectionPool = async ({
   projectId,
   engine,
   serviceId,
-  connectionPoolId,
   connectionPool,
-}: EditConnectionPoolProps) =>
-  apiClient.v6
+}: EditConnectionPoolProps) => {
+  const { id, ...body } = connectionPool;
+  return apiClient.v6
     .put(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/connectionPool/${connectionPoolId}`,
-      connectionPool,
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/connectionPool/${id}`,
+      body,
     )
     .then((res) => res.data as database.postgresql.ConnectionPool);
+};
 
 export interface DeleteConnectionPoolProps extends ServiceData {
   connectionPoolId: string;

@@ -119,11 +119,12 @@ const AddEditConnectionPool = ({
   const onSubmit = form.handleSubmit((formValues) => {
     if (isEdition) {
       const connectionPool: ConnectionPoolEdition = {
+        id: editedConnectionPool.id,
         databaseId: formValues.databaseId,
         mode: formValues.mode,
         size: formValues.size,
+        userId: formValues.userId || null,
       };
-      if (formValues.userId) connectionPool.userId = formValues.userId;
       if (Object.entries(form.formState.dirtyFields).length === 0) {
         onSuccess();
         return;
@@ -132,7 +133,6 @@ const AddEditConnectionPool = ({
         projectId,
         engine: service.engine,
         serviceId: service.id,
-        connectionPoolId: editedConnectionPool.id,
         connectionPool,
       });
     } else {

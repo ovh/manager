@@ -535,8 +535,8 @@ export namespace database {
     }
     /** M3db Namespace creation definition */
     export interface NamespaceCreation {
-      /** Namespace ID */
-      id: string;
+      /** Namespace ID
+      id: string; */
       /** Name of the namespace */
       name: string;
       /** Resolution for an aggregated namespace */
