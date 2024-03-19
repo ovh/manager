@@ -8,7 +8,6 @@
   "tableHeadCreationDate": "Creation Date",
   "tableHeadStatus": "Status",
   "tableActionsMenuEdit": "Edit",
-  "tableActionsMenuNotImplementedYet": "This feature is not implemented yet",
   "tableActionsMenuResetPassword": "Regenerate password",
   "tableActionsMenuDelete": "Delete",
   "deleteUserTitle": "Delete a user",
