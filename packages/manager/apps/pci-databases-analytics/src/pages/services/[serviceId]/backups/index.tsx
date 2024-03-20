@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { add } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
-import { H2, Link, P } from '@/components/typography';
+import { Link } from '@/components/links';
 import { database } from '@/models/database';
 import { useServiceData } from '../layout';
 import { getColumns } from './_components/backupsTableColumns';
@@ -39,8 +39,8 @@ const Backups = () => {
   );
   return (
     <>
-      <H2>{t('title')}</H2>
-      <P>{t('description')}</P>
+      <h2>{t('title')}</h2>
+      <p>{t('description')}</p>
 
       <div className="flex gap-2">
         {/* TODO: add capability in API */}

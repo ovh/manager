@@ -11,7 +11,7 @@ import LegalMentions from '@/pages/_components/legalMentions';
 import OrderFunnel from './_components/order-funnel';
 import { database } from '@/models/database';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
-import { H2, OvhLink, P } from '@/components/typography';
+import { OvhLink } from '@/components/links';
 
 export function breadcrumb() {
   return (
@@ -64,8 +64,8 @@ const Service = () => {
   }
   return (
     <>
-      <H2>{t('title')}</H2>
-      <P>
+      <h2>{t('title')}</h2>
+      <p>
         <Trans
           t={t}
           i18nKey={'description'}
@@ -78,7 +78,7 @@ const Service = () => {
             ),
           }}
         ></Trans>
-      </P>
+      </p>
       {loading ? (
         <Skeleton className="h-4 w-32" />
       ) : (

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import FormattedDate from '@/components/table-date';
-import { H2, P } from '@/components/typography';
 import { Label } from '@/components/ui/label';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Switch } from '@/components/ui/switch';
@@ -68,8 +67,8 @@ const Logs = () => {
   }, [logsQuery.isSuccess, logsQuery.data]);
   return (
     <>
-      <H2>{t('title')}</H2>
-      <P>{t('description')}</P>
+      <h2>{t('title')}</h2>
+      <p>{t('description')}</p>
       <div className="flex items-center space-x-2">
         <Switch
           className="rounded-xl"
