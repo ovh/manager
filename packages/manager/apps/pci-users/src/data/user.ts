@@ -1,20 +1,11 @@
 import { v6, fetchIcebergV6, Filter } from '@ovh-ux/manager-core-api';
+import { ColumnSort, PaginationState } from '@ovhcloud/manager-components';
 import { OPENRC_VERSION } from '@/download-openrc.constants';
 import { OpenStackTokenResponse, Role, User } from '@/interface';
 
-export type PaginationOptions = {
-  page: number;
-  pageSize: number;
-};
-
-export type SortingOptions = {
-  id: string;
-  desc: boolean;
-}[];
-
 export type UsersOptions = {
-  pagination: PaginationOptions;
-  sorting: SortingOptions;
+  pagination: PaginationState;
+  sorting: ColumnSort;
 };
 
 export const getAllUsers = async (
@@ -50,14 +41,11 @@ export const getUserRoles = async (
   return data;
 };
 
-export const paginateResults = (
-  items: User[],
-  pagination: PaginationOptions,
-) => {
+export const paginateResults = (items: User[], pagination: PaginationState) => {
   return {
     rows: items.slice(
-      pagination.page * pagination.pageSize,
-      (pagination.page + 1) * pagination.pageSize,
+      pagination.pageIndex * pagination.pageSize,
+      (pagination.pageIndex + 1) * pagination.pageSize,
     ),
     pageCount: Math.ceil(items.length / pagination.pageSize),
     totalRows: items.length,
@@ -66,13 +54,13 @@ export const paginateResults = (
 
 export const filterUsers = (
   users: User[],
-  sorting: SortingOptions,
+  sorting: ColumnSort,
   searchQueries?: string[],
 ): User[] => {
   const data = [...users];
 
-  if (sorting?.length) {
-    const { desc } = sorting[0];
+  if (sorting) {
+    const { desc } = sorting;
 
     if (desc) {
       data.reverse();

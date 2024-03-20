@@ -1,6 +1,13 @@
+import config from '@ovh-ux/manager-tailwind-config';
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
-  theme: {},
-  plugins: [],
+  ...config,
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    '../../../manager-components/src/**/*.{js,jsx,ts,tsx}',
+  ],
+  corePlugins: {
+    preflight: false,
+  },
 };

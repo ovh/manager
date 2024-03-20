@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .application {
-  @apply px-12 pt-8;
+  @apply mx-11 mt-8;
 }
 
 code {

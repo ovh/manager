@@ -1,8 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ColumnSort } from '@tanstack/react-table';
-import DataGrid from '@/components/datagrid/DataGrid';
-import DataGridTextCell from '@/components/datagrid/DataGridTextCell';
+import {
+  Datagrid,
+  DataGridTextCell,
+  useDatagridSearchParams,
+} from '@ovhcloud/manager-components';
 import { Endpoint, OpenStackTokenResponse } from '@/interface';
 
 export function OpenStackTokenListing({
@@ -11,8 +13,14 @@ export function OpenStackTokenListing({
   token: OpenStackTokenResponse;
 }) {
   const { t } = useTranslation('common');
-  const [pagination, setPagination] = useState({ page: 0, pageSize: 10 });
-  const [sorting, setSorting] = useState<ColumnSort[]>([]);
+  // const [pagination, setPagination] = useState({ page: 0, pageSize: 10 });
+  // const [sorting, setSorting] = useState<ColumnSort[]>([]);
+  const {
+    pagination,
+    setPagination,
+    sorting,
+    setSorting,
+  } = useDatagridSearchParams();
 
   const columns = [
     {
@@ -56,7 +64,7 @@ export function OpenStackTokenListing({
   }, [token]);
 
   const paginatedItems = useMemo(() => {
-    const start = pagination.page * pagination.pageSize;
+    const start = pagination.pageIndex * pagination.pageSize;
     const end = start + pagination.pageSize;
     return (
       items
@@ -79,13 +87,12 @@ export function OpenStackTokenListing({
 
   return (
     items && (
-      <DataGrid
+      <Datagrid
         columns={columns}
         items={paginatedItems}
         totalItems={items.length}
         pagination={pagination}
         onPaginationChange={setPagination}
-        pageCount={Math.ceil(items.length / pagination.pageSize)}
         sorting={sorting}
         onSortChange={setSorting}
       />
