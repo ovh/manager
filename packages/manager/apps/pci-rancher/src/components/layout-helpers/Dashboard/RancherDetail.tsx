@@ -37,6 +37,7 @@ interface RancherDetailProps {
   editNameResponseType: ODS_MESSAGE_TYPE | null;
   editRancherName: (rancher: RancherService) => void;
   generateAccesDetail: () => void;
+  resetAccessDetail: () => void;
   accessDetail: AccessDetail;
   hasErrorAccessDetail: boolean;
 }
@@ -45,6 +46,7 @@ const RancherDetail = ({
   editNameResponseType,
   editRancherName,
   generateAccesDetail,
+  resetAccessDetail,
   accessDetail,
   hasErrorAccessDetail,
 }: RancherDetailProps) => {
@@ -104,7 +106,8 @@ const RancherDetail = ({
           <GenerateAccessModal
             rancher={rancher}
             toggleModal={toggleGenerateAccessModal}
-            onGenerateAccess={() => generateAccesDetail()}
+            onGenerateAccess={generateAccesDetail}
+            resetAccessDetail={resetAccessDetail}
             accessDetail={accessDetail}
           />
         )}
