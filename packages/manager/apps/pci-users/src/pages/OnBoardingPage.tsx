@@ -1,5 +1,10 @@
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { Card, OnboardingLayout } from '@ovhcloud/manager-components';
+import {
+  Card,
+  OnboardingLayout,
+  PciDiscoveryBanner,
+  isDiscoveryProject,
+} from '@ovhcloud/manager-components';
 import { OdsBreadcrumbAttributeItem } from '@ovhcloud/ods-components';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
@@ -93,6 +98,9 @@ export default function OnBoardingPage() {
   return (
     <>
       {project && <OsdsBreadcrumb items={breadcrumbItems} />}
+      {isDiscoveryProject(project) && (
+        <PciDiscoveryBanner projectId={projectId} />
+      )}
       <OnboardingLayout
         title={t('pci_projects_project_users_onboarding_title')}
         description={descriptionContent}
