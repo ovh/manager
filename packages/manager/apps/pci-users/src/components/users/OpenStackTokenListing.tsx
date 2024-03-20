@@ -13,8 +13,6 @@ export function OpenStackTokenListing({
   token: OpenStackTokenResponse;
 }) {
   const { t } = useTranslation('common');
-  // const [pagination, setPagination] = useState({ page: 0, pageSize: 10 });
-  // const [sorting, setSorting] = useState<ColumnSort[]>([]);
   const {
     pagination,
     setPagination,
