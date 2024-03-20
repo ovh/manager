@@ -268,7 +268,7 @@ class DedicatedCloudDatacenterDrpService {
   validateZertoOptionCart(cartId) {
     let autoPayWithPreferredPaymentMethod = false;
     return this.ovhPaymentMethod
-      .getAllPaymentMethods({
+      .getPaymentMethods({
         onlyValid: true,
         transform: true,
       })

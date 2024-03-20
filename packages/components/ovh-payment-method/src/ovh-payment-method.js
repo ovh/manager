@@ -1,6 +1,3 @@
-import { find, remove, some } from 'lodash-es';
-
-import { usePaymentMean } from './ovh-payment-mean';
 import { PaymentMethod, AvailablePaymentMethod } from './models';
 import { PAYMENT_METHOD_STATUS_ENUM } from './enums';
 import {
@@ -8,18 +5,8 @@ import {
   DEFAULT_GET_AVAILABLE_OPTIONS,
 } from './constants';
 
-export const useOvhPaymentMethod = ({ reketInstance, region }) => {
+export const useOvhPaymentMethod = ({ reketInstance }) => {
   const usedReketInstance = reketInstance;
-  const usedRegion = region;
-
-  const {
-    addPaymentMean,
-    challengePaymentMean,
-    deletePaymentMean,
-    editPaymentMean,
-    getPaymentMeans,
-    setDefaultPaymentMean,
-  } = usePaymentMean({ reketInstance, region });
 
   /*= ================================================
   =            Available Payment Methods            =
@@ -43,7 +30,7 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
   };
 
   /**
-   *  Get all the available payment method (legacy and new)
+   *  Get all the available payment method
    *  @return {Promise} That returns a list of available payment methods
    */
   const getAllAvailablePaymentMethods = (
@@ -63,10 +50,6 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
    *  Add an new payment method
    */
   const addPaymentMethod = (availablePaymentMethod, params = {}) => {
-    if (availablePaymentMethod.isLegacy()) {
-      return addPaymentMean(availablePaymentMethod.original, params);
-    }
-
     return usedReketInstance
       .post('/me/payment/method', {
         ...params,
@@ -93,11 +76,6 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
    *  @return {Promise}         That returns
    */
   const editPaymentMethod = (paymentMethod, params) => {
-    // if original attribute is present, it means that it's an payment mean
-    if (paymentMethod.isLegacy()) {
-      return editPaymentMean(paymentMethod.original, params);
-    }
-
     return usedReketInstance.put(
       `/me/payment/method/${paymentMethod.paymentMethodId}`,
       params,
@@ -111,11 +89,6 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
    *  @return {Promise}
    */
   const setDefaultPaymentMethod = (paymentMethod) => {
-    // if original attribute is present, it means that it's an legacy payment method
-    if (paymentMethod.isLegacy()) {
-      return setDefaultPaymentMean(paymentMethod.original);
-    }
-
     return editPaymentMethod(paymentMethod, {
       default: true,
     });
@@ -129,11 +102,6 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
    *  @return {Promise}
    */
   const challengePaymentMethod = (paymentMethod, challenge) => {
-    // if original attribute is present, it means that it's an legacy payment method
-    if (paymentMethod.original) {
-      return challengePaymentMean(paymentMethod.original, challenge);
-    }
-
     return usedReketInstance.post(
       `/me/payment/method/${paymentMethod.paymentMethodId}/challenge`,
       { challenge },
@@ -180,11 +148,6 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
    *  @return {Promise}
    */
   const deletePaymentMethod = (paymentMethod) => {
-    // if original attribute is present, it means that it's an legacy payment method
-    if (paymentMethod.original) {
-      return deletePaymentMean(paymentMethod.original);
-    }
-
     return usedReketInstance.delete(
       `/me/payment/method/${paymentMethod.paymentMethodId}`,
     );
@@ -232,40 +195,6 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
       .catch((error) => (error.status === 404 ? [] : Promise.reject(error)));
   };
 
-  /**
-   *  Get all payment methods, even the legacy one returned by /me/paymentMean/*
-   *  and /me/paymentMethod APIs routes.
-   *
-   *  @param  {Obejct}  options           Options to get the payment methods
-   *  @param  {Boolean} options.onlyValid Gets only valid payment methods
-   *  @param  {Boolean} options.transform Flag telling if legacy payment methods needs to be
-   *                                      transformed to new payment method object
-   *  @return {Promise}                   That returns an Array of payment methods merged
-   *                                      with legacy payment methods.
-   */
-  const getAllPaymentMethods = (options = DEFAULT_GET_OPTIONS) => {
-    const paymentMeansPromise =
-      usedRegion !== 'US' ? getPaymentMeans(options) : Promise.resolve([]);
-
-    return Promise.all([paymentMeansPromise, getPaymentMethods(options)]).then(
-      ([paymentMeans, paymentMethods]) => {
-        remove(paymentMeans, ({ paymentMethodId }) =>
-          some(paymentMethods, {
-            paymentMeanId: paymentMethodId,
-          }),
-        );
-
-        const methods = [...paymentMeans, ...paymentMethods];
-
-        if (options.onlyValid) {
-          return methods.filter((method) => method.isValid());
-        }
-
-        return methods;
-      },
-    );
-  };
-
   /*= =============================================
   =            Default payment method            =
   ============================================== */
@@ -275,15 +204,12 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
    *  @return {Promise} That returns the default payment method instance.
    */
   const getDefaultPaymentMethod = () => {
-    return getAllPaymentMethods({
+    return getPaymentMethods({
       onlyValid: true,
       transform: true,
     }).then(
       (paymentMethods) =>
-        find(
-          paymentMethods,
-          (method) => method.default || method.defaultPaymentMean,
-        ) || null,
+        paymentMethods.find((method) => method.default) || null,
     );
   };
 
@@ -309,7 +235,6 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
     getAllAvailablePaymentMethods,
     getPaymentMethod,
     getPaymentMethods,
-    getAllPaymentMethods,
     getDefaultPaymentMethod,
     hasDefaultPaymentMethod,
   };

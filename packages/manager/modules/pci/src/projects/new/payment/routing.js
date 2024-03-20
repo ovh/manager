@@ -159,7 +159,7 @@ export const registerPCINewPaymentState = (
         $transition$.params().paymentStatus,
 
       paymentMethods: /* @ngInject */ (ovhPaymentMethod) =>
-        ovhPaymentMethod.getAllPaymentMethods(),
+        ovhPaymentMethod.getPaymentMethods(),
 
       validPaymentMethods: /* @ngInject */ (
         eligibility,
