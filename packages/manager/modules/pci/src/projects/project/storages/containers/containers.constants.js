@@ -160,7 +160,22 @@ export const CONTAINER_GUIDES = [
 
 export const NO_ENCRYPTION_VALUE = 'plaintext';
 
-export const ENCRYPTION_ALGORITHMS_FALLBACK = ['AES256', NO_ENCRYPTION_VALUE];
+const encryptionAlgorithmSseS3 = 'AES256';
+export const ENCRYPTION_ALGORITHMS_FALLBACK = [
+  encryptionAlgorithmSseS3,
+  NO_ENCRYPTION_VALUE,
+];
+
+const trackingStorageEncryption =
+  'PublicCloud::storages::objects_storage_container::funnel::radio_button::add_objects_storage_container::step4::encrypt_data::';
+
+export const TRACKING = {
+  STORAGE_ENCRYPTION: {
+    [NO_ENCRYPTION_VALUE]: `${trackingStorageEncryption}no_encrypt`,
+    [encryptionAlgorithmSseS3]: `${trackingStorageEncryption}sse-s3`,
+    [`TOOLTIP_${encryptionAlgorithmSseS3}`]: `${trackingStorageEncryption}tooltip_sse-s3`,
+  },
+};
 
 export default {
   STORAGES_CONTAINER_NAME_PATTERN,
@@ -204,4 +219,5 @@ export default {
   CONTAINER_GUIDES,
   NO_ENCRYPTION_VALUE,
   ENCRYPTION_ALGORITHMS_FALLBACK,
+  TRACKING,
 };

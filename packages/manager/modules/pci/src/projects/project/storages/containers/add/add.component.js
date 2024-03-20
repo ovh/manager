@@ -20,5 +20,6 @@ export default {
     goToDiscoveryProjectActivationPage: '&',
     encryptionAvailable: '<',
     encryptionAlgorithms: '<',
+    trackEncryptionAction: '<',
   },
 };
