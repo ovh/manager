@@ -103,6 +103,14 @@ const EndpointCreationPage: React.FC = () => {
     });
   }, []);
 
+  React.useEffect(() => {
+    setServiceType(serviceListResponse?.data?.[0]?.managedServiceType);
+  }, [
+    serviceListResponse?.data
+      ?.map((service) => service.managedServiceType)
+      ?.join(','),
+  ]);
+
   if (serviceListError || iamResourcesError) {
     return <ErrorPage error={serviceListError || iamResourcesError} />;
   }
@@ -130,6 +138,7 @@ const EndpointCreationPage: React.FC = () => {
           inline
           disabled={isPending || isServiceListLoading || undefined}
           id={serviceTypeSelectName}
+          value={serviceType}
           onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
             setServiceType(e?.detail.value as string)
           }

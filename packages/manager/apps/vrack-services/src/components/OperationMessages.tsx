@@ -25,13 +25,13 @@ const shouldDisplayMessage = (vs: VrackServicesWithIAM) =>
     ResourceStatus.ERROR,
   ].includes(vs.resourceStatus);
 
-const OperationMessage: React.FC<{ vs: VrackServicesWithIAM }> = ({ vs }) => {
+const OperationMessage: React.FC<{ vs?: VrackServicesWithIAM }> = ({ vs }) => {
   const { t } = useTranslation('vrack-services/dashboard');
-  const isError = vs.resourceStatus === ResourceStatus.ERROR;
+  const isError = vs?.resourceStatus === ResourceStatus.ERROR;
   const endpointCreationMutations = useMutationState({
     filters: {
       mutationKey: updateVrackServicesQueryKey(
-        getEndpointCreationMutationKey(vs.id),
+        getEndpointCreationMutationKey(vs?.id),
       ),
       exact: true,
     },
@@ -39,13 +39,13 @@ const OperationMessage: React.FC<{ vs: VrackServicesWithIAM }> = ({ vs }) => {
   const subnetCreationMutations = useMutationState({
     filters: {
       mutationKey: updateVrackServicesQueryKey(
-        getSubnetCreationMutationKey(vs.id),
+        getSubnetCreationMutationKey(vs?.id),
       ),
       exact: true,
     },
   });
 
-  if (!shouldDisplayMessage(vs)) {
+  if (!vs || !shouldDisplayMessage(vs)) {
     return null;
   }
 
@@ -64,7 +64,7 @@ const OperationMessage: React.FC<{ vs: VrackServicesWithIAM }> = ({ vs }) => {
             ? 'vrackServicesInErrorMessage'
             : 'vrackServicesNotReadyInfoMessage',
           {
-            displayName: vs.displayName || vs.id,
+            displayName: vs?.displayName || vs?.id,
           },
         )}
         {subnetCreationMutations[0]?.status === 'success' &&
@@ -84,6 +84,10 @@ const OperationMessage: React.FC<{ vs: VrackServicesWithIAM }> = ({ vs }) => {
 
 export const OperationMessages: React.FC<{ id?: string }> = ({ id }) => {
   const vrackServicesList = useVrackServicesList();
+
+  if (vrackServicesList?.data?.data?.length === 0) {
+    return null;
+  }
 
   return id ? (
     <OperationMessage
