@@ -19,3 +19,32 @@ export interface FloatingIP {
   region: string;
   status: string;
 }
+
+export interface FailoverIP {
+  associatedEntity: Instance | null;
+  block: string;
+  continentCode: string;
+  geoloc: string;
+  id: string;
+  ip: string;
+  progress: number;
+  routedTo: string;
+  status: string;
+  subType: string;
+}
+
+export interface ResponseAPIError {
+  message: string;
+  stack: string;
+  name: string;
+  code: string;
+  response?: {
+    headers?: {
+      [key: string]: string;
+      'x-ovh-queryid': string;
+    };
+    data?: {
+      message?: string;
+    };
+  };
+}
