@@ -1,6 +1,6 @@
 {
   "title": "vRack Services",
-  "description": "Le produit vRack Services vous permet de bénéficier de services réseau sur le vRack. Le premier service réseau disponible est le Service Endpoint. Ce dernier vous permet d'exposer, via une adresse IP, un service managé par OVHcloud sur votre vRack. D'autres services seront disponibles à l’avenir.",
+  "description": "Le produit vRack Services vous permet de bénéficier de services réseau sur le vRack. Ce dernier vous permet d'exposer, via une adresse IP, un service managé par OVHcloud sur votre vRack. D'autres services managés seront disponibles à l’avenir.",
   "betaVrackServicesLimitMessage": "Vous ne pouvez créer que 20 vRack Services pour le moment.",
   "createVrackServicesButtonLabel": "Activer vRack Services",
   "emptyDataGridMessage": "Vous n'avez pas encore de vRack Services de prêt",
