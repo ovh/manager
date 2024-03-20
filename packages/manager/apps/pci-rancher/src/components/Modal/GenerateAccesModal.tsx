@@ -25,6 +25,7 @@ export interface GenerateAccessModalProps {
   rancher: RancherService;
   toggleModal: (showModal: boolean) => void;
   onGenerateAccess: () => void;
+  resetAccessDetail: () => void;
   accessDetail: AccessDetail;
 }
 
@@ -32,6 +33,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
   rancher,
   toggleModal,
   onGenerateAccess,
+  resetAccessDetail,
   accessDetail,
 }) => {
   const { t } = useTranslation('pci-rancher/dashboard');
@@ -45,6 +47,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
       hasValidAccess ? TrackingEvent.close : TrackingEvent.cancel,
     );
     toggleModal(false);
+    resetAccessDetail();
   };
 
   return (

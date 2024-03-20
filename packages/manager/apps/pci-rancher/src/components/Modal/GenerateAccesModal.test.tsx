@@ -18,6 +18,7 @@ const defaultProps: GenerateAccessModalProps = {
   toggleModal: jest.fn(),
   rancher: rancherMocked,
   onGenerateAccess: jest.fn(),
+  resetAccessDetail: jest.fn(),
   accessDetail: null,
 };
 
