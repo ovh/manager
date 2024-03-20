@@ -4627,6 +4627,14 @@
   resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-2.1.0.tgz#0acf32f470af2ceaf47f095cdecd40d68666efda"
   integrity sha512-U69T3ItWHvLwGg5eJ0n3I62nWuE6ilHlmz7zM0npLBRvPRd7e6NYmg54vvRtP5mZG7kZqZCFVdsTWo7BPtBujg==
 
+"@ovh-ux/manager-core-api@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.4.1.tgz#b820cd84af76fc7310644b8aa888a81b56a10863"
+  integrity sha512-+CeCjMx98bjAOLekaNOCf5beU3ATdtbG9pqcfRS37qDrLVscZj1JWyKc6zcv+AOxzJx36pcuez/nLv1qpo9afg==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.1.0"
+    axios "^1.1.2"
+
 "@ovh-ux/ng-ovh-api-wrappers@^5.0.0", "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-5.1.0.tgz#b8bfef258a4e0860eabf219cb1880ca0a15da687"
@@ -4673,7 +4681,7 @@
     "@ovhcloud/ods-theme-blue-jeans" "17.1.0"
     "@stencil/core" "4.12.0"
 
-"@ovhcloud/ods-common-stencil@17.2.1":
+"@ovhcloud/ods-common-stencil@17.2.1", "@ovhcloud/ods-common-stencil@^17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-17.2.1.tgz#eaaf4f2f2da5cf9039af476dc8f58611de51dc31"
   integrity sha512-0kkK0K2L6UaA5sCFiNdtepoOXgEfMHdcMmKdb/3xfcTI7gY21cGobIrQWrlnANABXxmNrqdmijJOfmnHSkdTQQ==
@@ -6666,6 +6674,11 @@
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.25.0.tgz#e08ed0a9fad34c8005d1a282e57280031ac50cdc"
   integrity sha512-vlobHP64HTuSE68lWF1mEhwSRC5Q7gaT+a/m9S+ItuN+ruSOxe1rFnR9j0ACWQ314BPhBEVKfBQ6mHL0OWfdbQ==
 
+"@tanstack/query-core@5.28.13":
+  version "5.28.13"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.28.13.tgz#15c187c23b87a393e91d0fd2ea6dfc22b8a85b75"
+  integrity sha512-C3+CCOcza+mrZ7LglQbjeYEOTEC3LV0VN0eYaIN6GvqAZ8Foegdgch7n6QYPtT4FuLae5ALy+m+ZMEKpD6tMCQ==
+
 "@tanstack/query-devtools@5.18.1":
   version "5.18.1"
   resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.18.1.tgz#f36e0257064ad9aeaff06d23112cca4795b82e96"
@@ -6675,6 +6688,11 @@
   version "5.24.0"
   resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.24.0.tgz#b9b7828d42d5034415b1973ff4a154e880b17d59"
   integrity sha512-pThim455t69zrZaQKa7IRkEIK8UBTS+gHVAdNfhO72Xh4rWpMc63ovRje5/n6iw63+d6QiJzVadsJVdPoodSeQ==
+
+"@tanstack/query-devtools@5.28.10":
+  version "5.28.10"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.28.10.tgz#33e9a42dd2199fca12f0dd2d891570ecdbfd3c7b"
+  integrity sha512-5UN629fKa5/1K/2Pd26gaU7epxRrYiT1gy+V+pW5K6hnf1DeUKK3pANSb2eHKlecjIKIhTwyF7k9XdyE2gREvQ==
 
 "@tanstack/react-query-devtools@^4.29.3", "@tanstack/react-query-devtools@^4.9.0":
   version "4.36.1"
@@ -6698,6 +6716,13 @@
   integrity sha512-bqtr1Bwvo/jspJXb2l4R1DSZ848TvIzGBk4V0b6YGS5EQ3015dhm3mPqyTgh0DquK5ZR0h1yP/4DpzhhvTnFHA==
   dependencies:
     "@tanstack/query-devtools" "5.24.0"
+
+"@tanstack/react-query-devtools@^5.25.0":
+  version "5.28.14"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-5.28.14.tgz#3d5386de4e5c61f2db90b1a12a83561840bc8b6e"
+  integrity sha512-4CrFBI1O5wibV1ZdGAnBMmTuc7SiShhxWubxRMyIloeEioxs3DQkFbouGBea5nexuwIxAkvhUB8khpPnNjhxMw==
+  dependencies:
+    "@tanstack/query-devtools" "5.28.10"
 
 "@tanstack/react-query-devtools@^5.8.3":
   version "5.24.1"
@@ -6727,6 +6752,13 @@
   integrity sha512-u+n5R7mLO7RmeiIonpaCRVXNRWtZEef/aVZ/XGWRPa7trBIvGtzlfo0Ah7ZtnTYfrKEVwnZ/tzRCBcoiqJ/tFw==
   dependencies:
     "@tanstack/query-core" "5.25.0"
+
+"@tanstack/react-query@^5.25.0":
+  version "5.28.14"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.28.14.tgz#9585b6300eb8f167ed374e2748043dc8d6476709"
+  integrity sha512-cZqt03Igb3I9tM72qNX5TAAmeYl75Z+k4Mv92VkXIXc2hCrv0fIywd7GN3JV1BBJl4mr7Cc+OOKKOPy8sNVOkA==
+  dependencies:
+    "@tanstack/query-core" "5.28.13"
 
 "@tanstack/react-query@^5.8.3":
   version "5.24.1"
@@ -7122,6 +7154,11 @@
     "@types/express-serve-static-core" "^4.17.33"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/file-saver@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@types/file-saver/-/file-saver-2.0.7.tgz#8dbb2f24bdc7486c54aa854eb414940bbd056f7d"
+  integrity sha512-dNKVfHd/jk0SkR/exKGj2ggkB45MAkzvWCaqLUUgkyjITkGNzH8H+yUwr+BLJUBjZOe9w8X3wgmXhZDRg1ED6A==
 
 "@types/find-cache-dir@^3.2.1":
   version "3.2.1"
@@ -14818,7 +14855,7 @@ file-loader@^6.2.0:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-file-saver@^2.0.1:
+file-saver@^2.0.1, file-saver@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.5.tgz#d61cfe2ce059f414d899e9dd6d4107ee25670c38"
   integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
@@ -23492,7 +23529,7 @@ react-universal-interface@^0.6.2:
   resolved "https://registry.yarnpkg.com/react-universal-interface/-/react-universal-interface-0.6.2.tgz#5e8d438a01729a4dbbcbeeceb0b86be146fe2b3b"
   integrity sha512-dg8yXdcQmvgR13RIlZbTRQOoUrDciFVoSBZILwjE2LFISxZZ8loVJKAkuzswl5js8BHda79bIb2b84ehU8IjXw==
 
-react-use@^17.4.0:
+react-use@^17.4.0, react-use@^17.5.0:
   version "17.5.0"
   resolved "https://registry.yarnpkg.com/react-use/-/react-use-17.5.0.tgz#1fae45638828a338291efa0f0c61862db7ee6442"
   integrity sha512-PbfwSPMwp/hoL847rLnm/qkjg3sTRCvn6YhUZiHaUa3FA6/aNoFX79ul5Xt70O1rK+9GxSVqkY0eTwMdsR/bWg==
