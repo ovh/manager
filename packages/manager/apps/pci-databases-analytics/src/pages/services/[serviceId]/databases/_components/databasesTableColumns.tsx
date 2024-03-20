@@ -1,7 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Span } from '@/components/typography';
 import { Button } from '@/components/ui/button';
 import { SortableHeader } from '@/components/ui/data-table';
 import {
@@ -45,7 +44,7 @@ export const getColumns = ({ onDeleteClick }: DatabasesTableColumnsProps) => {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="h-8 w-8 p-0">
-                      <Span className="sr-only">Open menu</Span>
+                      <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>

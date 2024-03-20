@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
-import { H2, P } from '@/components/typography';
 import { useServiceData } from '../layout';
 import { database } from '@/models/database';
 import { Button } from '@/components/ui/button';
@@ -35,8 +34,8 @@ const Metrics = () => {
 
   return (
     <>
-      <H2>{t('title')}</H2>
-      <P>{t('description')}</P>
+      <h2>{t('title')}</h2>
+      <p>{t('description')}</p>
       {metricsQuery.isSuccess ? (
         <>
           <div className="flex w-full justify-between mb-2">
@@ -78,7 +77,7 @@ const Metrics = () => {
           ))}
         </>
       ) : (
-        <P>Loading</P>
+        <p>Loading</p>
       )}
     </>
   );

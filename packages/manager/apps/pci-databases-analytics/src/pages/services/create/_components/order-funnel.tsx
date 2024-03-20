@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { H4, P } from '@/components/typography';
 import { useOrderFunnel } from './useOrderFunnel';
 import { order } from '@/models/catalog';
 import { database } from '@/models/database';
@@ -153,7 +152,7 @@ const OrderFunnel = ({
                   <FormLabel className={classNameLabel}>
                     {t('fieldEngineLabel')}
                   </FormLabel>
-                  <P>{t('fieldEngineDescription')}</P>
+                  <p>{t('fieldEngineDescription')}</p>
                   <FormControl>
                     <EnginesSelect
                       {...field}
@@ -231,7 +230,7 @@ const OrderFunnel = ({
                   <FormLabel className={classNameLabel}>
                     {t('fieldFlavorLabel')}
                   </FormLabel>
-                  <P>{t('fieldFlavorDescription')}</P>
+                  <p>{t('fieldFlavorDescription')}</p>
                   <FormControl>
                     <FlavorsSelect
                       {...field}
@@ -255,7 +254,7 @@ const OrderFunnel = ({
                 id="cluster"
                 className="divide-y-[1rem] divide-transparent"
               >
-                <H4>{t('sectionClusterTitle')}</H4>
+                <h4>{t('sectionClusterTitle')}</h4>
                 {hasNodeSelection && (
                   <FormField
                     control={model.form.control}
@@ -311,7 +310,7 @@ const OrderFunnel = ({
               </section>
             )}
           <section id="options" className="divide-y-[1rem] divide-transparent">
-            <H4>{t('sectionOptionsTitle')}</H4>
+            <h4>{t('sectionOptionsTitle')}</h4>
             {model.result.plan && (
               <FormField
                 control={model.form.control}

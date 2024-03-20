@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { Calendar } from '@/components/ui/calendar';
-import { H4, P } from '@/components/typography';
 import { order } from '@/models/catalog';
 import { database } from '@/models/database';
 import { Button } from '@/components/ui/button';
@@ -408,7 +407,7 @@ const ForkForm = ({
                   <FormLabel className={classNameLabel}>
                     {t('fieldFlavorLabel')}
                   </FormLabel>
-                  <P>{t('fieldFlavorDescription')}</P>
+                  <p>{t('fieldFlavorDescription')}</p>
                   <FormControl>
                     <FlavorsSelect
                       {...field}
@@ -432,7 +431,7 @@ const ForkForm = ({
                 id="cluster"
                 className="divide-y-[1rem] divide-transparent"
               >
-                <H4>{t('sectionClusterTitle')}</H4>
+                <h4>{t('sectionClusterTitle')}</h4>
                 {hasNodeSelection && (
                   <FormField
                     control={model.form.control}
@@ -488,7 +487,7 @@ const ForkForm = ({
               </section>
             )}
           <section id="options" className="divide-y-[1rem] divide-transparent">
-            <H4>{t('sectionOptionsTitle')}</H4>
+            <h4>{t('sectionOptionsTitle')}</h4>
             {model.result.plan && (
               <FormField
                 control={model.form.control}

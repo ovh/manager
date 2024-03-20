@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { P } from '@/components/typography';
 import { cn } from '@/lib/utils';
 
 interface LegalMentionsProps {
@@ -13,8 +12,8 @@ const LegalMentions = ({
   const { t } = useTranslation('pci-databases-analytics');
   return (
     <div className={cn('border border-primary-100 p-4 rounded-md', className)}>
-      <P>{t('legal-general')}</P>
-      {showRedisMessage && <P>{t('legal-redis')}</P>}
+      <p>{t('legal-general')}</p>
+      {showRedisMessage && <p>{t('legal-redis')}</p>}
     </div>
   );
 };

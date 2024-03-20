@@ -6,95 +6,7 @@ import {
   Link as RouterLink,
   NavLinkProps,
 } from 'react-router-dom';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsText } from '@ovhcloud/ods-components/react';
 import { cn } from '@/lib/utils';
-
-function H1({ className, children }: React.HTMLAttributes<HTMLHeadingElement>) {
-  const baseClassName = 'block';
-  return (
-    <OsdsText
-      color={ODS_THEME_COLOR_INTENT.text}
-      level={ODS_TEXT_LEVEL.heading}
-      size={ODS_TEXT_SIZE._800}
-      className={cn(baseClassName, className)}
-    >
-      {children}
-    </OsdsText>
-  );
-}
-
-function H2({ className, children }: React.HTMLAttributes<HTMLHeadingElement>) {
-  const baseClassName = 'block';
-  return (
-    <OsdsText
-      color={ODS_THEME_COLOR_INTENT.text}
-      level={ODS_TEXT_LEVEL.heading}
-      size={ODS_TEXT_SIZE._600}
-      className={cn(baseClassName, className)}
-    >
-      {children}
-    </OsdsText>
-  );
-}
-
-function H3({ className, children }: React.HTMLAttributes<HTMLHeadingElement>) {
-  const baseClassName = 'block';
-  return (
-    <OsdsText
-      color={ODS_THEME_COLOR_INTENT.text}
-      level={ODS_TEXT_LEVEL.heading}
-      size={ODS_TEXT_SIZE._500}
-      className={cn(baseClassName, className)}
-    >
-      {children}
-    </OsdsText>
-  );
-}
-
-function H4({ className, children }: React.HTMLAttributes<HTMLHeadingElement>) {
-  const baseClassName = 'block';
-  return (
-    <OsdsText
-      color={ODS_THEME_COLOR_INTENT.text}
-      level={ODS_TEXT_LEVEL.heading}
-      size={ODS_TEXT_SIZE._400}
-      className={cn(baseClassName, className)}
-    >
-      {children}
-    </OsdsText>
-  );
-}
-
-function H5({ className, children }: React.HTMLAttributes<HTMLHeadingElement>) {
-  const baseClassName = 'block';
-  return (
-    <OsdsText
-      color={ODS_THEME_COLOR_INTENT.text}
-      level={ODS_TEXT_LEVEL.heading}
-      size={ODS_TEXT_SIZE._200}
-      className={cn(baseClassName, className)}
-    >
-      {children}
-    </OsdsText>
-  );
-}
-function P({
-  className,
-  children,
-}: React.HTMLAttributes<HTMLParagraphElement>) {
-  const baseClassName = 'block';
-  return (
-    <OsdsText
-      color={ODS_THEME_COLOR_INTENT.text}
-      className={cn(baseClassName, className)}
-    >
-      {children}
-    </OsdsText>
-  );
-}
 
 function A({
   className,
@@ -129,18 +41,6 @@ function A({
     <a className={combinedClassName} {...props}>
       {children}
     </a>
-  );
-}
-
-function Span({ className, children }: React.HTMLAttributes<HTMLSpanElement>) {
-  const baseClassName = 'inline';
-  return (
-    <OsdsText
-      color={ODS_THEME_COLOR_INTENT.text}
-      className={cn(baseClassName, className)}
-    >
-      {children}
-    </OsdsText>
   );
 }
 
@@ -250,4 +150,4 @@ function OvhLink({
     </A>
   );
 }
-export { H1, H2, H3, H4, H5, P, A, Span, Link, NavLink, OvhLink };
+export { A, Link, NavLink, OvhLink };

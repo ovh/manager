@@ -3,7 +3,6 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useEffect, useState } from 'react';
 
 import { Plus } from 'lucide-react';
-import { H2, P } from '@/components/typography';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
 
@@ -106,8 +105,8 @@ const Pools = () => {
 
   return (
     <>
-      <H2>{t('title')}</H2>
-      <P>{t('description')}</P>
+      <h2>{t('title')}</h2>
+      <p>{t('description')}</p>
       {service.capabilities.connectionPools?.create && (
         <Button
           variant={'outline'}
