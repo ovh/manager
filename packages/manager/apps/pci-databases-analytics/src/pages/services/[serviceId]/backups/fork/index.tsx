@@ -8,7 +8,6 @@ import {
 } from '@/hooks/api/availabilities.api.hooks';
 import { useServiceData } from '../../layout';
 import { database } from '@/models/database';
-import { H2, P } from '@/components/typography';
 import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
 import { Skeleton } from '@/components/ui/skeleton';
 import ForkForm from './_components/fork-form';
@@ -133,8 +132,8 @@ const Fork = () => {
 
   return (
     <>
-      <H2>{t('title')}</H2>
-      <P>{t('description')}</P>
+      <h2>{t('title')}</h2>
+      <p>{t('description')}</p>
 
       {loading ? (
         <Skeleton className="h-4 w-32" />

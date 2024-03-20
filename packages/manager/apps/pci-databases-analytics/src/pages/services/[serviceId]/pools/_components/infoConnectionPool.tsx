@@ -8,7 +8,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { P } from '@/components/typography';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
@@ -161,7 +160,7 @@ const InfoConnectionPool = ({
             </Table>
           </div>
         ) : (
-          <P>{t('infoConnectionPoolLoading')}</P>
+          <p>{t('infoConnectionPoolLoading')}</p>
         )}
       </DialogContent>
     </Dialog>

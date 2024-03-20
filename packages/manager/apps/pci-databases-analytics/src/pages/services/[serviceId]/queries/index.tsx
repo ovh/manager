@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { H2 } from '@/components/typography';
 import { useServiceData } from '../layout';
 import { database } from '@/models/database';
 import CurrentQueries from './_components/currentQueries';
@@ -22,7 +21,7 @@ const Queries = () => {
   );
   return (
     <>
-      <H2>{t('title')}</H2>
+      <h2>{t('title')}</h2>
       {service.capabilities.currentQueries?.read ===
         database.service.capability.StateEnum.enabled && <CurrentQueries />}
       {service.capabilities.queryStatistics?.read ===

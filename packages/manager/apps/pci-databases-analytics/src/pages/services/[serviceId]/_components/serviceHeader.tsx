@@ -1,6 +1,5 @@
 import { Database } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { H2 } from '@/components/typography';
 import { database } from '@/models/database';
 import ServiceStatusBadge from '../../_components/serviceStatusBadge';
 import { Badge } from '@/components/ui/badge';
@@ -15,7 +14,7 @@ export const ServiceHeader = ({ service }: { service: database.Service }) => {
         <Database width={40} height={40} />
       </div>
       <div>
-        <H2>{service.description ?? 'Dashboard'}</H2>
+        <h2>{service.description ?? 'Dashboard'}</h2>
         <div className="flex gap-2">
           <ServiceStatusBadge status={service.status} />
           <Badge variant={'outline'}>
@@ -41,7 +40,7 @@ ServiceHeader.Skeleton = function ServiceHeaderSkeleton() {
     <div className="flex gap-2 items-center mt-4 mb-6">
       <Skeleton className="rounded-full h-14 w-14" />
       <div>
-        <H2>Dashboard</H2>
+        <h2>Dashboard</h2>
         <div className="flex gap-2">
           <Skeleton className="h-4 w-10" />
           <Skeleton className="h-4 w-10" />
