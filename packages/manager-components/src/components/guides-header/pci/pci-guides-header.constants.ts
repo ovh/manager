@@ -1,72 +1,6 @@
-interface GuideLinks {
-  [key: string]: string | undefined;
-  FR?: string;
-  GB: string;
-  DE?: string;
-  ES?: string;
-  IT?: string;
-  PL?: string;
-  PT?: string;
-  IE: string;
-  DEFAULT: string;
-  US?: string;
-  ASIA: string;
-  AU: string;
-  CA: string;
-  QC?: string;
-  SG: string;
-  WE: string;
-  WS?: string;
-  MA?: string;
-  TN?: string;
-  SN?: string;
-  IN?: string;
-}
+import { Guide } from '../interface';
 
-interface Guide {
-  key: string;
-  url: GuideLinks;
-  tracking?: string;
-}
-
-interface GuideList {
-  storage: {
-    [key: string]: Guide;
-  };
-  objectStorage: {
-    [key: string]: Guide;
-  };
-  instances: {
-    [key: string]: Guide;
-  };
-  databases: {
-    [key: string]: Guide;
-  };
-  kubernetes: {
-    [key: string]: Guide;
-  };
-  private_registry: {
-    [key: string]: Guide;
-  };
-  ai_machine_learning: {
-    [key: string]: Guide;
-  };
-  data_processing: {
-    [key: string]: Guide;
-  };
-  ai_notenooks: {
-    [key: string]: Guide;
-  };
-  ai_training: {
-    [key: string]: Guide;
-  };
-  ml_serving: {
-    [key: string]: Guide;
-  };
-  private_network: {
-    [key: string]: Guide;
-  };
-}
+type GuideLinks = Record<string, string>;
 
 export const PUBLIC_CLOUD_GUIDES: GuideLinks = {
   FR: 'https://docs.ovh.com/fr/public-cloud/',
@@ -605,7 +539,7 @@ export const DEFAULT_GUIDES = {
   },
 };
 
-export const GUIDES_LIST: GuideList = {
+export const GUIDES_LIST: Record<string, Record<string, Guide>> = {
   storage: {
     public_cloud_storage_guides: {
       url: PUBLIC_CLOUD_STORAGE_GUIDES,
@@ -810,8 +744,4 @@ export const GUIDES_LIST: GuideList = {
   private_network: {
     ...DEFAULT_GUIDES,
   },
-};
-
-export default {
-  GUIDES_LIST,
 };

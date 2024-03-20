@@ -6,6 +6,9 @@ import {
   DataGridTextCell,
   useDatagridSearchParams,
   Notifications,
+  isDiscoveryProject,
+  PciDiscoveryBanner,
+  PciGuidesHeader,
 } from '@ovhcloud/manager-components';
 
 import {
@@ -36,13 +39,9 @@ import { Voucher } from '@/interface';
 import useProject from '@/hooks/useProject';
 import { useVouchers } from '@/hooks/useVouchers';
 
-import GuidesHeader from '@/components/guides/GuidesHeader';
-
 import Credit from '@/components/vouchers/listing/Credit';
 import DisplayName from '@/components/vouchers/listing/DisplayName';
 import Validity from '@/components/vouchers/listing/Validity';
-import { isDiscoveryProject } from '@/data/project';
-import ActivateProjectBanner from '@/components/activate-project-banner/ActivateProjectBanner';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -156,7 +155,7 @@ export default function ListingPage() {
         >
           {t('cpb_project_management_credit_vouchers')}
         </OsdsText>
-        <GuidesHeader></GuidesHeader>
+        <PciGuidesHeader category="storage"></PciGuidesHeader>
       </div>
       <OsdsDivider></OsdsDivider>
       <Notifications />
@@ -175,7 +174,7 @@ export default function ListingPage() {
       </OsdsText>
 
       {isDiscoveryProject(project) && (
-        <ActivateProjectBanner projectId={projectId} />
+        <PciDiscoveryBanner projectId={projectId} />
       )}
 
       <div className={'flex mb-3 mt-6'}>

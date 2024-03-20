@@ -1,4 +1,4 @@
-import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
+import React from 'react';
 import {
   OsdsButton,
   OsdsIcon,
@@ -15,18 +15,25 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
 
-import { GUIDES_LIST } from '@/guides-header.constants';
-import GuidesHeaderItem from '@/components/guides/GuidesHeaderItem';
+import { GuidesHeaderItem } from './guides-header-item.component';
+import { Guide } from './interface';
 
-export default function GuidesHeader() {
-  const { t } = useTranslation('guides-header');
-  const guidesHeadersPci = 'pci_project_guides_header';
-  const guidesHeadersCategory = 'storage';
-  const { ovhSubsidiary } = useEnvironment().getUser();
-  const guideList = GUIDES_LIST[guidesHeadersCategory];
+interface GuidesHeaderProps {
+  label: string;
+  guides: Record<string, Guide>;
+  ovhSubsidiary: string;
+  getGuideLabel: (guide: Guide) => string;
+  onGuideClick?: (guide: Guide) => void;
+}
 
+export function GuidesHeader({
+  label,
+  guides,
+  ovhSubsidiary,
+  getGuideLabel,
+  onGuideClick,
+}: GuidesHeaderProps) {
   return (
     <OsdsMenu>
       <OsdsButton
@@ -45,18 +52,21 @@ export default function GuidesHeader() {
           size={ODS_THEME_TYPOGRAPHY_SIZE._500}
           color={ODS_THEME_COLOR_INTENT.primary}
         >
-          {t(guidesHeadersPci, { ns: 'guides-header' })}
+          {label}
         </OsdsText>
       </OsdsButton>
 
-      {Object.keys(guideList).map((guide, index) => (
+      {Object.keys(guides).map((guide) => (
         <GuidesHeaderItem
-          key={index}
-          href={`${guideList[guide].url[ovhSubsidiary]}`}
-          label={t(`${guidesHeadersPci}_${guideList[guide].key}`, {
-            ns: 'guides-header',
-          })}
-          tracking={`public-cloud_credit_and_vouchers${guideList[guide].tracking}`}
+          key={guide}
+          guide={guides[guide]}
+          href={`${guides[guide].url[ovhSubsidiary]}`}
+          label={getGuideLabel(guides[guide])}
+          onClick={(g: Guide) => {
+            if (onGuideClick) {
+              onGuideClick(g);
+            }
+          }}
         ></GuidesHeaderItem>
       ))}
     </OsdsMenu>
