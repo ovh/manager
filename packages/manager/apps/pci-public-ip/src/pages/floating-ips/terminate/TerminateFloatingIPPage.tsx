@@ -24,7 +24,6 @@ export default function TerminateFloatingIPPage() {
 
   const { terminate, isPending: isPendingTerminate } = useTerminateFloatingIP({
     projectId,
-    ipId,
     onSuccess: () => {
       addSuccess(
         t(
