@@ -1,6 +1,9 @@
+import illustration from '@/assets/images/sidebar/web-cloud.png';
 export default {
   id: 'web-cloud',
   translation: 'sidebar_web_cloud',
+  shortTranslation: 'sidebar_web_cloud_short',
+  illustration,
   routing: {
     application: 'web',
     hash: '#/',
