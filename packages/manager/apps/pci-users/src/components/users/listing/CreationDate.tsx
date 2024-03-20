@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import DataGridTextCell from '../../datagrid/DataGridTextCell';
+import { DataGridTextCell } from '@ovhcloud/manager-components';
 import getLocale from '@/data/date';
 
 export default function CreationDate({ date }: { date: string | null }) {

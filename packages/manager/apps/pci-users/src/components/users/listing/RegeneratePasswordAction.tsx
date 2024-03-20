@@ -11,9 +11,9 @@ import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovhcloud/manager-components';
 import { useRegeneratePassword } from '@/hooks/useUser';
 import { User } from '@/interface';
-import useNotifications from '@/hooks/useNotifications';
 import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';
 
 export default function RegeneratePasswordAction({ user }: { user: User }) {

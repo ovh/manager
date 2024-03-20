@@ -22,20 +22,21 @@ import { useTranslation } from 'react-i18next';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-  ODS_CHIP_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
-import { Notifications } from '@ovhcloud/manager-components';
 import { FilterComparator, FilterCategories } from '@ovh-ux/manager-core-api';
+import {
+  Notifications,
+  Datagrid,
+  PciGuidesHeader,
+  DataGridTextCell,
+  useDatagridSearchParams,
+} from '@ovhcloud/manager-components';
 import { useUsers } from '@/hooks/useUser';
-import GuidesHeader from '@/components/guides/GuidesHeader';
 import useProject from '@/hooks/useProject';
 import { User } from '@/interface';
-import DataGridTextCell from '@/components/datagrid/DataGridTextCell';
-import useDataGridParams from '@/hooks/useDataGridParams';
-import DataGrid from '@/components/datagrid/DataGrid';
 import Roles from '@/components/users/listing/Roles';
 import CreationDate from '@/components/users/listing/CreationDate';
 import Status from '@/components/users/listing/Status';
@@ -115,7 +116,7 @@ export default function ListingPage() {
     setPagination,
     sorting,
     setSorting,
-  } = useDataGridParams();
+  } = useDatagridSearchParams();
 
   const { error, data: users, isLoading } = useUsers(
     projectId || '',
@@ -125,18 +126,6 @@ export default function ListingPage() {
     },
     filters,
   );
-
-  const onPaginationChange = ({
-    page,
-    pageSize,
-  }: {
-    page: number;
-    pageSize: number;
-  }) => setPagination(page, pageSize);
-
-  const onSortChange = (sorts: { id: string; desc: boolean }[]) => {
-    setSorting(sorts[0].id, sorts[0].desc);
-  };
 
   const hrefAdd = useHref(`./new`);
 
@@ -163,7 +152,7 @@ export default function ListingPage() {
         >
           {t('pci_projects_project_users_title')}
         </OsdsText>
-        <GuidesHeader></GuidesHeader>
+        <PciGuidesHeader category="storage"></PciGuidesHeader>
       </div>
       <OsdsDivider></OsdsDivider>
       <Notifications />
@@ -209,7 +198,7 @@ export default function ListingPage() {
             },
           ]}
           onAddFilter={(addedFilter, column) => {
-            setPagination(0, pagination.pageSize);
+            setPagination({ pageIndex: 0, pageSize: pagination.pageSize });
             addFilter({
               ...addedFilter,
               label: column.label,
@@ -226,15 +215,14 @@ export default function ListingPage() {
 
       {!isLoading && !error && (
         <div>
-          <DataGrid
+          <Datagrid
             columns={columns}
             items={users?.rows || []}
             totalItems={users?.totalRows || 0}
             pagination={pagination}
-            pageCount={users?.pageCount || 0}
-            onPaginationChange={onPaginationChange}
+            onPaginationChange={setPagination}
             sorting={sorting}
-            onSortChange={onSortChange}
+            onSortChange={setSorting}
           />
         </div>
       )}

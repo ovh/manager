@@ -57,9 +57,7 @@ export default function FilterAdd({ columns, onAddFilter }: FilterAddProps) {
         <OsdsSelect
           value={selectedId}
           data-testid="add-filter_select_idColumn"
-          onOdsValueChange={(
-            event: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
-          ) => {
+          onOdsValueChange={(event) => {
             setSelectedId(event.detail.value as string);
           }}
         >
@@ -81,9 +79,7 @@ export default function FilterAdd({ columns, onAddFilter }: FilterAddProps) {
         </div>
         <OsdsSelect
           value={selectedComparator}
-          onOdsValueChange={(
-            event: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
-          ) => {
+          onOdsValueChange={(event) => {
             setSelectedComparator(event.detail.value as FilterComparator);
           }}
         >

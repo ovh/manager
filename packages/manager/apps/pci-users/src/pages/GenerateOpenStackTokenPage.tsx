@@ -1,6 +1,6 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useNotifications } from '@/hooks/useNotifications';
+import { useNotifications } from '@ovhcloud/manager-components';
 import GenerateOpenStackTokenModal from '@/components/users/GenerateOpenStackTokenModal';
 import { useUser } from '@/hooks/useUser.ts';
 

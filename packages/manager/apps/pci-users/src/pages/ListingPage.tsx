@@ -30,14 +30,16 @@ import {
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
-import { Notifications } from '@ovhcloud/manager-components';
+import {
+  Notifications,
+  Datagrid,
+  PciGuidesHeader,
+  DataGridTextCell,
+  useDatagridSearchParams,
+} from '@ovhcloud/manager-components';
 import { FilterComparator, FilterCategories } from '@ovh-ux/manager-core-api';
 import { useUsers } from '@/hooks/useUser';
-import GuidesHeader from '@/components/guides/GuidesHeader';
 import { User } from '@/interface';
-import DataGridTextCell from '@/components/datagrid/DataGridTextCell';
-import useDataGridParams from '@/hooks/useDataGridParams';
-import DataGrid from '@/components/datagrid/DataGrid';
 import Roles from '@/components/users/listing/Roles';
 import CreationDate from '@/components/users/listing/CreationDate';
 import Status from '@/components/users/listing/Status';
@@ -80,44 +82,36 @@ export default function ListingPage() {
   const columns = [
     {
       id: 'name',
-      cell: (props: User) => {
-        return <DataGridTextCell>{props.username}</DataGridTextCell>;
-      },
+      cell: (props: User) => (
+        <DataGridTextCell>{props.username}</DataGridTextCell>
+      ),
       label: t('pci_projects_project_users_username_label'),
     },
     {
       id: 'description',
-      cell: (props: User) => {
-        return <DataGridTextCell>{props.description}</DataGridTextCell>;
-      },
+      cell: (props: User) => (
+        <DataGridTextCell>{props.description}</DataGridTextCell>
+      ),
       label: t('pci_projects_project_users_description_label'),
     },
     {
       id: 'roles',
-      cell: (props: User) => {
-        return <Roles roles={props.roles || []} />;
-      },
+      cell: (props: User) => <Roles roles={props.roles || []} />,
       label: t('pci_projects_project_users_role_label'),
     },
     {
       id: 'creationDate',
-      cell: (props: User) => {
-        return <CreationDate date={props.creationDate} />;
-      },
+      cell: (props: User) => <CreationDate date={props.creationDate} />,
       label: t('pci_projects_project_users_createdAt_label'),
     },
     {
       id: 'status',
-      cell: (props: User) => {
-        return <Status status={props.status} />;
-      },
+      cell: (props: User) => <Status status={props.status} />,
       label: t('pci_projects_project_users_status_label'),
     },
     {
       id: 'actions',
-      cell: (props: User) => {
-        return <Actions user={props} />;
-      },
+      cell: (props: User) => <Actions user={props} />,
       label: t(''),
     },
   ];
@@ -127,7 +121,7 @@ export default function ListingPage() {
     setPagination,
     sorting,
     setSorting,
-  } = useDataGridParams();
+  } = useDatagridSearchParams();
 
   const { error, data: users, isLoading } = useUsers(
     projectId || '',
@@ -137,18 +131,6 @@ export default function ListingPage() {
     },
     filters,
   );
-
-  const onPaginationChange = ({
-    page,
-    pageSize,
-  }: {
-    page: number;
-    pageSize: number;
-  }) => setPagination(page, pageSize);
-
-  const onSortChange = (sorts: { id: string; desc: boolean }[]) => {
-    setSorting(sorts[0].id, sorts[0].desc);
-  };
 
   const hrefAdd = useHref(`./new`);
 
@@ -175,7 +157,7 @@ export default function ListingPage() {
         >
           {t('pci_projects_project_users_title')}
         </OsdsText>
-        <GuidesHeader></GuidesHeader>
+        <PciGuidesHeader category="storage"></PciGuidesHeader>
       </div>
       <OsdsDivider></OsdsDivider>
       <Notifications />
@@ -233,7 +215,7 @@ export default function ListingPage() {
             },
           ]}
           onAddFilter={(addedFilter, column) => {
-            setPagination(0, pagination.pageSize);
+            setPagination({ pageIndex: 0, pageSize: pagination.pageSize });
             addFilter({
               ...addedFilter,
               label: column.label,
@@ -250,15 +232,14 @@ export default function ListingPage() {
 
       {!isLoading && !error && (
         <div>
-          <DataGrid
+          <Datagrid
             columns={columns}
             items={users?.rows || []}
             totalItems={users?.totalRows || 0}
             pagination={pagination}
-            pageCount={users?.pageCount || 0}
-            onPaginationChange={onPaginationChange}
+            onPaginationChange={setPagination}
             sorting={sorting}
-            onSortChange={onSortChange}
+            onSortChange={setSorting}
           />
         </div>
       )}

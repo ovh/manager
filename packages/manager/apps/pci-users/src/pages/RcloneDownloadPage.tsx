@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_TEXT_COLOR_INTENT } from '@ovhcloud/ods-components';
-import useNotifications from '@/hooks/useNotifications';
+import { useNotifications } from '@ovhcloud/manager-components';
 import RCloneDownloadModal from '@/components/users/RCloneDownloadModal';
 import { DOWNLOAD_RCLONE_FILENAME } from '@/download-rclone.constants';
 
