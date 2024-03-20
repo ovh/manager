@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { A, OvhLink, P } from '@/components/typography';
+import { A, OvhLink } from '@/components/links';
 import {
   Popover,
   PopoverContent,
@@ -162,7 +162,7 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
     };
     const renderNetworkOptions = () => {
       if (!hasPrivateNetwork) {
-        return <P>{t('noPrivateNetworkOffer')}</P>;
+        return <p>{t('noPrivateNetworkOffer')}</p>;
       }
 
       if (value.type === database.NetworkTypeEnum.private) {
@@ -212,7 +212,7 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
                 <HelpCircle className="size-4" />
               </PopoverTrigger>
               <PopoverContent>
-                <P>{t('networkDescription-public')}</P>
+                <p>{t('networkDescription-public')}</p>
               </PopoverContent>
             </Popover>
           </div>
@@ -234,11 +234,11 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
                 <HelpCircle className="size-4" />
               </PopoverTrigger>
               <PopoverContent>
-                <P>{t('networkDescription-private')}</P>
+                <p>{t('networkDescription-private')}</p>
               </PopoverContent>
             </Popover>
           </div>
-          <P>
+          <p>
             <Trans
               t={t}
               i18nKey={'networkConfigurationLink'}
@@ -252,7 +252,7 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
                 ),
               }}
             ></Trans>
-          </P>
+          </p>
         </RadioGroup>
         {renderNetworkOptions()}
       </>

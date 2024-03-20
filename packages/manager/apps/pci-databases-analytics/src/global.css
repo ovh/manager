@@ -96,5 +96,21 @@
   body {
     @apply bg-background text-foreground;
     font-family: "Source Sans Pro",sans-serif;
+    font-size: 16px;
+  }
+  h1 {
+    @apply text-ods-heading-800 font-ods-heading-800 leading-ods-heading-800;
+  }
+  h2 {
+    @apply text-ods-heading-700 font-ods-heading-700 leading-ods-heading-700;
+  }
+  h3 {
+    @apply text-ods-heading-500 font-ods-heading-500 leading-ods-heading-500;
+  }
+  h4 {
+    @apply text-ods-heading-400 font-ods-heading-400 leading-ods-heading-400;
+  }
+  h5 {
+    @apply text-ods-heading-200 font-ods-heading-200 leading-ods-heading-200;
   }
 }

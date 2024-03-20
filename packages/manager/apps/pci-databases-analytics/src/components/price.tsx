@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { Span } from './typography';
 
 interface PriceProps {
   priceInUcents: number;
@@ -22,12 +21,12 @@ const Price = ({ priceInUcents, taxInUcents, decimals = 2 }: PriceProps) => {
   };
   return (
     <>
-      <Span className="font-bold">
+      <span className="font-bold">
         {t('pricing_ht', { price: formatPrice(price), unit })}
-      </Span>{' '}
-      <Span className="text-xs">
+      </span>{' '}
+      <span className="text-xs">
         ({t('pricing_ttc', { price: formatPrice(priceWithTax), unit })})
-      </Span>
+      </span>
     </>
   );
 };

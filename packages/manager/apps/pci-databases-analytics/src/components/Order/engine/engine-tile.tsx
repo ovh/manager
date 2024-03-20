@@ -5,7 +5,6 @@ import VersionSelector from './engine-tile-version';
 import { Engine, Version } from '@/models/order-funnel';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/models/database';
-import { H5, P } from '@/components/typography';
 import { Badge } from '@/components/ui/badge';
 import { getTagVariant } from '@/lib/tagsHelper';
 
@@ -37,11 +36,11 @@ export const EngineTile = ({
     >
       <div className="flex justify-between items-center">
         <div className="flex gap-2">
-          <H5
+          <h5
             className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
           >
             {humanizeEngine(engine.name as database.EngineEnum)}
-          </H5>
+          </h5>
           <div className="flex gap-1">
             {engine.tags.map((tag) => (
               <Badge
@@ -60,9 +59,9 @@ export const EngineTile = ({
           alt={engine.name}
         />
       </div>
-      <P className="text-sm">
+      <p className="text-sm">
         {t(`description-${engine.name}`, engine.description)}
-      </P>
+      </p>
       <RadioTile.Separator />
       <VersionSelector
         versions={engine.versions}

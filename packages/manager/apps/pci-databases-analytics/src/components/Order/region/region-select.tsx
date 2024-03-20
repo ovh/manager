@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import RadioTile from '@/components/radio-tile';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Region } from '@/models/order-funnel';
-import { Span } from '@/components/typography';
 import { Badge } from '@/components/ui/badge';
 import { getTagVariant } from '@/lib/tagsHelper';
 
@@ -62,11 +61,11 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
                   checked={region.name === value}
                 >
                   <div className="flex w-full gap-2 justify-between">
-                    <Span
+                    <span
                       className={`${region.name === value ? 'font-bold' : ''}`}
                     >
                       {region.label}
-                    </Span>
+                    </span>
                     <div className="flex gap-1">
                       {region.tags.map((tag) => (
                         <Badge

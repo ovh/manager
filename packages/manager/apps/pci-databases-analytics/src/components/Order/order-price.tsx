@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import Price from '@/components/price';
-import { Span } from '@/components/typography';
 
 interface OrderPriceProps {
   showMonthly: boolean;
@@ -22,14 +21,14 @@ const OrderPrice = ({ showMonthly, prices }: OrderPriceProps) => {
   const price = prices[unit];
   return (
     <div className="flex justify-between items-baseline gap-2">
-      <Span>{t('pricing_label')}</Span>
+      <span>{t('pricing_label')}</span>
       <div className="inline-block">
         <Price
           decimals={decimals}
           priceInUcents={price.price}
           taxInUcents={price.tax}
         />{' '}
-        <Span className="font">{t(`pricing_unit_${unit}`)}</Span>
+        <span className="font">{t(`pricing_unit_${unit}`)}</span>
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { formatStorage } from '@/lib/bytesHelper';
 import { database } from '@/models/database';
-import { P, Span } from '@/components/typography';
 
 interface StorageConfigProps {
   availability: database.Availability;
@@ -25,7 +24,7 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
     const maxAddable = maximum.value - minimum.value;
     return (
       <div>
-        <P>
+        <p>
           {t('storageFlavorDescription', {
             flavor,
             includedStorage: formatStorage(minimum),
@@ -35,17 +34,17 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
             }),
             step: formatStorage(step),
           })}
-        </P>
+        </p>
         <Label htmlFor="storage-select">{t('inputStorageLabel')}</Label>
         <div className="flex flex-col">
           <div className="flex justify-between mb-2">
-            <Span>{t('inputStorageNoneValue')}</Span>
-            <Span>
+            <span>{t('inputStorageNoneValue')}</span>
+            <span>
               {formatStorage({
                 value: maxAddable,
                 unit: DEFAULT_UNIT,
               })}
-            </Span>
+            </span>
           </div>
           <Slider
             ref={ref}
@@ -59,12 +58,12 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
             step={step?.value || 1}
           />
           <div className="flex w-full justify-center mt-2">
-            <Span className="font-bold">
+            <span className="font-bold">
               {formatStorage({
                 value,
                 unit: DEFAULT_UNIT,
               })}
-            </Span>
+            </span>
           </div>
         </div>
       </div>

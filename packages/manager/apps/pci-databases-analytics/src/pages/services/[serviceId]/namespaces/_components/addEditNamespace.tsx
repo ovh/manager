@@ -28,7 +28,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { P } from '@/components/typography';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -239,7 +238,7 @@ const AddEditNamespace = ({
                         <HelpCircle className="size-4" />
                       </PopoverTrigger>
                       <PopoverContent>
-                        <P>{t('formNamespaceFieldTypeDescription')}</P>
+                        <p>{t('formNamespaceFieldTypeDescription')}</p>
                       </PopoverContent>
                     </Popover>
                   </div>
@@ -262,10 +261,10 @@ const AddEditNamespace = ({
                         <HelpCircle className="size-4" />
                       </PopoverTrigger>
                       <PopoverContent>
-                        <P>
+                        <p>
                           {t('formNamespaceFieldPeriodDurationDescription')}
-                        </P>
-                        <P>{t('formNamespaceFieldDurationDescription')}</P>
+                        </p>
+                        <p>{t('formNamespaceFieldDurationDescription')}</p>
                       </PopoverContent>
                     </Popover>
                   </div>
@@ -299,8 +298,8 @@ const AddEditNamespace = ({
                           <HelpCircle className="size-4" />
                         </PopoverTrigger>
                         <PopoverContent>
-                          <P>{t('formNamespaceFieldResolutionDescription')}</P>
-                          <P>{t('formNamespaceFieldDurationDescription')}</P>
+                          <p>{t('formNamespaceFieldResolutionDescription')}</p>
+                          <p>{t('formNamespaceFieldDurationDescription')}</p>
                         </PopoverContent>
                       </Popover>
                     </div>
@@ -351,11 +350,11 @@ const AddEditNamespace = ({
                                 <HelpCircle className="size-4" />
                               </PopoverTrigger>
                               <PopoverContent>
-                                <P>
+                                <p>
                                   {t(
                                     'formNamespaceFieldWritesToCommitLogEnabledDescription',
                                   )}
-                                </P>
+                                </p>
                               </PopoverContent>
                             </Popover>
                           </div>
@@ -384,11 +383,11 @@ const AddEditNamespace = ({
                                 <HelpCircle className="size-4" />
                               </PopoverTrigger>
                               <PopoverContent>
-                                <P>
+                                <p>
                                   {t(
                                     'formNamespaceFieldSnapshotEnabledDescription',
                                   )}
-                                </P>
+                                </p>
                               </PopoverContent>
                             </Popover>
                           </div>
@@ -416,14 +415,14 @@ const AddEditNamespace = ({
                               <HelpCircle className="size-4" />
                             </PopoverTrigger>
                             <PopoverContent>
-                              <P>
+                              <p>
                                 {t(
                                   'formNamespaceFieldBlockSizeDurationDescription',
                                 )}
-                              </P>
-                              <P>
+                              </p>
+                              <p>
                                 {t('formNamespaceFieldDurationDescription')}
-                              </P>
+                              </p>
                             </PopoverContent>
                           </Popover>
                         </div>
@@ -457,14 +456,14 @@ const AddEditNamespace = ({
                               <HelpCircle className="size-4" />
                             </PopoverTrigger>
                             <PopoverContent>
-                              <P>
+                              <p>
                                 {t(
                                   'formNamespaceFieldBufferPastDurationDescription',
                                 )}
-                              </P>
-                              <P>
+                              </p>
+                              <p>
                                 {t('formNamespaceFieldDurationDescription')}
-                              </P>
+                              </p>
                             </PopoverContent>
                           </Popover>
                         </div>
@@ -496,14 +495,14 @@ const AddEditNamespace = ({
                               <HelpCircle className="size-4" />
                             </PopoverTrigger>
                             <PopoverContent>
-                              <P>
+                              <p>
                                 {t(
                                   'formNamespaceFieldBufferFutureDurationDescription',
                                 )}
-                              </P>
-                              <P>
+                              </p>
+                              <p>
                                 {t('formNamespaceFieldDurationDescription')}
-                              </P>
+                              </p>
                             </PopoverContent>
                           </Popover>
                         </div>
@@ -537,14 +536,14 @@ const AddEditNamespace = ({
                               <HelpCircle className="size-4" />
                             </PopoverTrigger>
                             <PopoverContent>
-                              <P>
+                              <p>
                                 {t(
                                   'formNamespaceFieldDataExpirationDurationDescription',
                                 )}
-                              </P>
-                              <P>
+                              </p>
+                              <p>
                                 {t('formNamespaceFieldDurationDescription')}
-                              </P>
+                              </p>
                             </PopoverContent>
                           </Popover>
                         </div>

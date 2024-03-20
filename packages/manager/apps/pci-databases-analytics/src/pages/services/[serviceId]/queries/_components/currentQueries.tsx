@@ -6,7 +6,6 @@ import {
   useGetCurrentQueries,
 } from '@/hooks/api/queries.api.hooks';
 import { useServiceData } from '../../layout';
-import { H3, P } from '@/components/typography';
 import { DataTable } from '@/components/ui/data-table';
 import { database } from '@/models/database';
 import { getColumns } from './currentQueriesTableColumns';
@@ -92,8 +91,8 @@ const CurrentQueries = () => {
 
   return (
     <>
-      <H3>{t('currentQueriesTitle')}</H3>
-      <P>{t('currentQueriesDescription')}</P>
+      <h3>{t('currentQueriesTitle')}</h3>
+      <p>{t('currentQueriesDescription')}</p>
       <div className="flex gap-4">
         <div className="flex items-center space-x-2 ">
           <Switch
