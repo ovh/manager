@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import Price from '@/components/price';
 import RadioTile from '@/components/radio-tile';
-import { H5, P, Span } from '@/components/typography';
 import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import { database } from '@/models/database';
 import { Plan } from '@/models/order-funnel';
@@ -35,11 +34,11 @@ export const PlanTile = ({
       <div className="flex flex-col justify-between h-full">
         <div>
           <div className="flex justify-between w-full">
-            <H5
+            <h5
               className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
             >
               {plan.name}
-            </H5>
+            </h5>
             <div>
               {plan.tags.map((tag) => (
                 <Badge
@@ -59,20 +58,20 @@ export const PlanTile = ({
           <PlanTile.Cpu cpu={plan.cpu} />
           <PlanTile.Storage storage={plan.storage} />
           <PlanTile.Nodes nodes={plan.nodes} />
-          {plan.backups && <Span>{t('backupsSpec')}</Span>}
-          {hasPrivateNetwork && <Span>{t('privateNetworkSpec')}</Span>}
+          {plan.backups && <span>{t('backupsSpec')}</span>}
+          {hasPrivateNetwork && <span>{t('privateNetworkSpec')}</span>}
         </div>
         <div>
           <RadioTile.Separator />
-          <P className="text-sm">
-            <Span>{t('priceStartingFrom')} </Span>
+          <p className="text-sm">
+            <span>{t('priceStartingFrom')} </span>
             <Price
               priceInUcents={plan.minPricing[pricingUnit].price}
               taxInUcents={plan.minPricing[pricingUnit].tax}
               decimals={showMonthlyPrice ? 2 : 3}
             />
             <b> {tPricing(`pricing_unit_${pricingUnit}`)}</b>
-          </P>
+          </p>
         </div>
       </div>
     </RadioTile>
@@ -84,46 +83,46 @@ PlanTile.Ram = function PlanTilesRam({ ram }: Partial<Plan>) {
   if (!ram || ram.maximum.value === 0) return <></>;
   if (compareStorage(ram.minimum, ram.maximum) === 0) {
     return (
-      <Span>{t('memorySpec', { memory: formatStorage(ram.minimum) })}</Span>
+      <span>{t('memorySpec', { memory: formatStorage(ram.minimum) })}</span>
     );
   }
   return (
-    <Span>
+    <span>
       {t('memorySpecRange', {
         min: formatStorage(ram.minimum),
         max: formatStorage(ram.maximum),
       })}
-    </Span>
+    </span>
   );
 };
 PlanTile.Cpu = function PlanTilesCpu({ cpu }: Partial<Plan>) {
   const { t } = useTranslation('pci-databases-analytics/components/plan');
   if (!cpu || cpu.maximum === 0) return <></>;
   if (cpu.minimum === cpu.maximum) {
-    return <Span>{t('cpuSpec', { count: cpu.minimum })}</Span>;
+    return <span>{t('cpuSpec', { count: cpu.minimum })}</span>;
   }
   return (
-    <Span>
+    <span>
       {t('cpuSpecRange', {
         min: cpu.minimum,
         max: cpu.maximum,
       })}
-    </Span>
+    </span>
   );
 };
 PlanTile.Nodes = function PlanTilesNodes({ nodes }: Partial<Plan>) {
   const { t } = useTranslation('pci-databases-analytics/components/plan');
   if (!nodes || nodes.maximum === 0) return <></>;
   if (nodes.minimum === nodes.maximum) {
-    return <Span>{t('nodeSpec', { count: nodes.minimum })}</Span>;
+    return <span>{t('nodeSpec', { count: nodes.minimum })}</span>;
   }
   return (
-    <Span>
+    <span>
       {t('nodeSpecRange', {
         min: nodes.minimum,
         max: nodes.maximum,
       })}
-    </Span>
+    </span>
   );
 };
 
@@ -135,18 +134,18 @@ PlanTile.Storage = function PlanTileStorage({ storage }: Partial<Plan>) {
     storage.minimum.unit === storage.maximum.unit
   ) {
     return (
-      <Span>
+      <span>
         {t('storageSpec', { storage: formatStorage(storage.minimum) })}
-      </Span>
+      </span>
     );
   }
   return (
-    <Span>
+    <span>
       {t('storageSpecRange', {
         min: formatStorage(storage.minimum),
         max: formatStorage(storage.maximum),
       })}
-    </Span>
+    </span>
   );
 };
 

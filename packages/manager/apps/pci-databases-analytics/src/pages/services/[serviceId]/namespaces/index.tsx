@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 
 import { Plus } from 'lucide-react';
-import { H2, P } from '@/components/typography';
 import { database } from '@/models/database';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
@@ -55,14 +54,14 @@ const Namespaces = () => {
 
   return (
     <>
-      <H2>{t('title')}</H2>
-      <P>
+      <h2>{t('title')}</h2>
+      <p>
         {t('description1', {
           max: NAMESPACES_CONFIG.maxNamespaceNumber,
         })}
-      </P>
-      <P>{t('description2')}</P>
-      <P>{t('description3')}</P>
+      </p>
+      <p>{t('description2')}</p>
+      <p>{t('description3')}</p>
       {namespacesQuery.isSuccess && service.capabilities.namespaces?.create && (
         <Button
           disabled={

@@ -8,7 +8,6 @@ import {
 import { useServiceData } from '../../layout';
 import { DataTable } from '@/components/ui/data-table';
 import { database } from '@/models/database';
-import { H3, P } from '@/components/typography';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { getColumns } from './queryStatisticsTableColumns';
@@ -53,8 +52,8 @@ const QueryStatistics = () => {
   >[] = getColumns();
   return (
     <>
-      <H3>{t('queryStatisticsTitle')}</H3>
-      <P>{t('queryStatisticsDescription')}</P>
+      <h3>{t('queryStatisticsTitle')}</h3>
+      <p>{t('queryStatisticsDescription')}</p>
       {/* TODO: get from api ? */}
       <Button
         variant="outline"

@@ -17,7 +17,6 @@ import { useToast } from '@/components/ui/use-toast';
 import { database } from '@/models/database';
 import { GenericUser } from '@/api/databases/users';
 import { useResetUserPassword } from '@/hooks/api/users.api.hooks';
-import { P } from '@/components/typography';
 import { Alert } from '@/components/ui/alert';
 
 interface ResetUserPasswordModalProps {
@@ -91,7 +90,7 @@ const ResetUserPassword = ({
           <DialogTitle>{t('resetUserPasswordTitle')}</DialogTitle>
           {newPass ? (
             <Alert variant="success">
-              <P>{t('resetUserPasswordSuccess')}</P>
+              <p>{t('resetUserPasswordSuccess')}</p>
               <div className="relative my-4">
                 <Button
                   onClick={() => handleCopyPass()}

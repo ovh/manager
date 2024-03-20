@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
-import { H2 } from '@/components/typography';
 import { database } from '@/models/database';
 import { useServiceData } from '../layout';
 import { DataTable } from '@/components/ui/data-table';
@@ -68,7 +67,7 @@ const Integrations = () => {
   });
   return (
     <>
-      <H2>{t('title')}</H2>
+      <h2>{t('title')}</h2>
 
       {service.capabilities.integrations?.create && (
         <Button
