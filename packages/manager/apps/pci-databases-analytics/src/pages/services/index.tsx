@@ -8,7 +8,7 @@ import ServicesList from './_components/serviceListTable';
 import Onboarding from './_components/onboarding';
 import LegalMentions from '../_components/legalMentions';
 import { POLLING } from '@/configuration/polling';
-import { H2, Link } from '@/components/typography';
+import { Link } from '@/components/links';
 import { Button } from '@/components/ui/button';
 
 const Services = () => {
@@ -33,7 +33,7 @@ const Services = () => {
   }
   return (
     <>
-      <H2>{t('title')}</H2>
+      <h2>{t('title')}</h2>
       <Button variant="outline" size="sm" className="text-base" asChild>
         <Link to="./new" className="hover:no-underline">
           <Plus className="w-4 h-4 mr-2" />

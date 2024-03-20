@@ -1,6 +1,6 @@
 import { Skeleton } from './ui/skeleton';
 import { ScrollArea, ScrollBar } from './ui/scroll-area';
-import { NavLink } from './typography';
+import { NavLink } from './links';
 import { Badge } from './ui/badge';
 
 interface Tab {

@@ -1,4 +1,3 @@
-import { H2 } from '@/components/typography';
 import { useServiceData } from '../layout';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import MetricChart from '../metrics/_components/metricChart';
@@ -10,7 +9,7 @@ const Dashboard = () => {
   const { service } = useServiceData();
   return (
     <>
-      <H2>dashboard</H2>
+      <h2>dashboard</h2>
 
       <div className="grid grid-cols-3 gap-2">
         <Card>

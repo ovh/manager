@@ -22,7 +22,6 @@ import {
 import { Button } from '@/components/ui/button';
 import { Skeleton } from './skeleton';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select';
-import { Span } from '../typography';
 
 interface DataTablePaginationProps<TData> {
   table: TanStackTable<TData>
@@ -53,8 +52,8 @@ export function DataTablePagination<TData>({
           </Select>
         </div>
         <div className="flex px-4 items-center justify-center text-sm font-medium">
-          <Span>Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {table.getPageCount()}</Span>
+          <span>Page {table.getState().pagination.pageIndex + 1} of{" "}
+          {table.getPageCount()}</span>
         </div>
         <div className="flex items-center space-x-2">
           <Button
@@ -63,7 +62,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
-            <Span className="sr-only">Go to first page</Span>
+            <span className="sr-only">Go to first page</span>
             <ChevronFirst className="h-4 w-4" />
           </Button>
           <Button
@@ -72,7 +71,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            <Span className="sr-only">Go to previous page</Span>
+            <span className="sr-only">Go to previous page</span>
             <ChevronLeft className="h-4 w-4" />
           </Button>
           <Button
@@ -81,7 +80,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            <Span className="sr-only">Go to next page</Span>
+            <span className="sr-only">Go to next page</span>
             <ChevronRight className="h-4 w-4" />
           </Button>
           <Button
@@ -90,7 +89,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
           >
-            <Span className="sr-only">Go to last page</Span>
+            <span className="sr-only">Go to last page</span>
             <ChevronLast className="h-4 w-4" />
           </Button>
         </div>

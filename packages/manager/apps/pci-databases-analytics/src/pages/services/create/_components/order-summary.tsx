@@ -14,7 +14,6 @@ import { database } from '@/models/database';
 import { addStorage, formatStorage } from '@/lib/bytesHelper';
 import { Engine, Flavor, Plan, Region, Version } from '@/models/order-funnel';
 import { Skeleton } from '@/components/ui/skeleton';
-import { P, Span } from '@/components/typography';
 import { Network, Subnet } from '@/models/network';
 import { Button } from '@/components/ui/button';
 import {
@@ -51,13 +50,13 @@ const NameDetails = ({ order }: OrderSummaryProps) => {
   return (
     <div className="flex items-center gap-2">
       <b>{t('summaryFieldNameLabel')}</b>
-      <Span>{order.name}</Span>
+      <span>{order.name}</span>
       <Popover>
         <PopoverTrigger>
           <HelpCircle className="size-4" />
         </PopoverTrigger>
         <PopoverContent>
-          <P>{t('summaryFieldNameInfo')}</P>
+          <p>{t('summaryFieldNameInfo')}</p>
         </PopoverContent>
       </Popover>
     </div>
@@ -79,9 +78,9 @@ const EngineDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         </Button>
         {order.engine && (
           <>
-            <Span>
+            <span>
               {humanizeEngine(order.engine.name as database.EngineEnum)}
-            </Span>
+            </span>
             <img
               className="block w-9 h-6"
               src={`./assets/engines/${order.engine.name}.png`}
@@ -93,9 +92,9 @@ const EngineDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <div className="flex items-start pl-4 gap-2">
         <Hash className="size-4" />
         {order.version?.name ? (
-          <Span>
+          <span>
             {t('summaryFieldEngineVersion', { version: order.version?.name })}
-          </Span>
+          </span>
         ) : (
           <Skeleton className="h-4 w-16" />
         )}
@@ -117,7 +116,7 @@ const PlanDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         {t('summaryFieldPlanLabel')}
       </Button>
       {order.plan ? (
-        <Span className="capitalize">{order.plan.name}</Span>
+        <span className="capitalize">{order.plan.name}</span>
       ) : (
         <Skeleton className="h-4 w-20" />
       )}
@@ -139,11 +138,11 @@ const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         {t('summaryFieldRegionLabel')}
       </Button>
       {order.region ? (
-        <Span>
+        <span>
           {tRegions(`region_${order.region.name}_micro`, {
             micro: order.region.name,
           })}
-        </Span>
+        </span>
       ) : (
         <Skeleton className="h-4 w-20" />
       )}
@@ -165,7 +164,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
           {t('summaryFieldFlavorLabel')}
         </Button>
         {order.flavor ? (
-          <Span className="capitalize">{order.flavor.name}</Span>
+          <span className="capitalize">{order.flavor.name}</span>
         ) : (
           <Skeleton className="h-4 w-20" />
         )}
@@ -175,19 +174,19 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
           {order.flavor.vcores > 0 && (
             <div className="flex items-start pl-4 gap-2">
               <Cpu className="size-4" />
-              <Span>
+              <span>
                 {t('summaryFieldFlavorCores', { count: order.flavor.vcores })}
-              </Span>
+              </span>
             </div>
           )}
           {order.flavor.ram.value > 0 && (
             <div className="flex items-start pl-4 gap-2">
               <MemoryStick className="size-4" />
-              <Span>
+              <span>
                 {t('summaryFieldFlavorMemory', {
                   memory: formatStorage(order.flavor.ram),
                 })}
-              </Span>
+              </span>
             </div>
           )}
         </div>
@@ -217,24 +216,24 @@ const ClusterDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <div>
         <div className="flex items-start pl-4 gap-2">
           <Boxes className="size-4" />
-          <Span>{t('summaryFieldClusterNodes', { count: order.nodes })}</Span>
+          <span>{t('summaryFieldClusterNodes', { count: order.nodes })}</span>
         </div>
         {order.flavor?.storage && (
           <div className="flex items-start pl-4 gap-2">
             <HardDrive className="size-4" />
             {order.additionalStorage > 0 ? (
-              <Span>
+              <span>
                 {t('summaryFieldClusterStorageExtra', {
                   storage: formatStorage(totalStorage),
                   includedStorage: formatStorage(order.flavor.storage.minimum),
                 })}
-              </Span>
+              </span>
             ) : (
-              <Span>
+              <span>
                 {t('summaryFieldClusterStorage', {
                   storage: formatStorage(order.flavor.storage.minimum),
                 })}
-              </Span>
+              </span>
             )}
           </div>
         )}
@@ -256,30 +255,30 @@ const NetworkrDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         >
           {t('summaryFieldNetworkLabel')}
         </Button>
-        <Span>{t(`summaryFieldNetwork-${order.network.type}`)}</Span>
+        <span>{t(`summaryFieldNetwork-${order.network.type}`)}</span>
       </div>
       {order.network.type === database.NetworkTypeEnum.private && (
         <div>
           <div className="flex items-start pl-4 gap-2 flex-wrap">
             <Cloud className="size-4" />
-            <Span>{t('summaryFieldNetworkNetwork')}</Span>
+            <span>{t('summaryFieldNetworkNetwork')}</span>
             {order.network.network ? (
-              <Span>{order.network.network.name}</Span>
+              <span>{order.network.network.name}</span>
             ) : (
-              <Span className="text-red-500">
+              <span className="text-red-500">
                 {t('summaryFieldNetworNone')}
-              </Span>
+              </span>
             )}
           </div>
           <div className="flex items-start pl-4 gap-2">
             <Cloudy className="size-4" />
-            <Span>{t('summaryFieldNetworSubnet')}</Span>
+            <span>{t('summaryFieldNetworSubnet')}</span>
             {order.network.subnet ? (
-              <Span>{order.network.subnet.cidr}</Span>
+              <span>{order.network.subnet.cidr}</span>
             ) : (
-              <Span className="text-red-500">
+              <span className="text-red-500">
                 {t('summaryFieldNetworNone')}
-              </Span>
+              </span>
             )}
           </div>
         </div>
@@ -300,12 +299,12 @@ const IpsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       >
         {t('summaryFieldIpsLabel')}
       </Button>
-      <Span>
+      <span>
         {t(`summaryFieldIps`, {
           count: order.ipRestrictions.length,
           context: `${order.ipRestrictions.length}`,
         })}
-      </Span>
+      </span>
     </div>
   );
 };

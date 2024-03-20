@@ -1,13 +1,10 @@
-import { H3 } from '@/components/typography';
-
-export function breadcrumb() {
-  return 'Settings';
-}
+import { Link } from '@/components/links';
 
 const Settings = () => {
   return (
     <>
-      <H3>Settings</H3>
+      <h3>Settings</h3>
+      <Link to={'update'}>Update service</Link>
       <ul className="list-disc list-inside">
         <li className="list-item">Update backup time</li>
         <li className="list-item">Update maintenance time</li>
