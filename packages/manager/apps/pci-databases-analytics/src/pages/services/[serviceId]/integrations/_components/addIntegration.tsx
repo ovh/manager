@@ -28,7 +28,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Span } from '@/components/typography';
 import { Input } from '@/components/ui/input';
 import { useServiceData } from '../../layout';
 import { useAddIntegrationForm } from './addIntegration.hook';
@@ -181,10 +180,10 @@ const AddIntegration = ({
                         {model.lists.capabilities.map((c) => (
                           <SelectItem value={c.type} key={c.type}>
                             <div className="flex flex-col items-start">
-                              <Span>{c.type}</Span>
-                              <Span className="text-xs">
+                              <span>{c.type}</span>
+                              <span className="text-xs">
                                 {t(`integrationTypeDescription-${c.type}`, '')}
-                              </Span>
+                              </span>
                             </div>
                           </SelectItem>
                         ))}

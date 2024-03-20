@@ -113,8 +113,22 @@ export default [
           {
             path: 'settings',
             ...lazyRouteConfig(() =>
-              import('@/pages/services/[serviceId]/settings'),
+              import('@/pages/services/[serviceId]/settings/layout'),
             ),
+            children: [
+              {
+                path: '',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/services/[serviceId]/settings'),
+                ),
+              },
+              {
+                path: 'update',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/services/[serviceId]/settings/update'),
+                ),
+              },
+            ],
           },
         ],
       },
