@@ -26,8 +26,13 @@ export const KVM_PLAN_CODE = 'usb-kvm-ip';
 export const KVM_ORDER_TRACKING_PREFIX =
   'dedicated::dedicated-server::server::ipmi::order-kvm';
 
+export const DATACENTER_AGORA_NAME = {
+  eri: 'lon',
+};
+
 export default {
   getIpmiGuideUrl,
   KVM_PLAN_CODE,
   KVM_TRACKING_PREFIX: KVM_ORDER_TRACKING_PREFIX,
+  DATACENTER_AGORA_NAME,
 };

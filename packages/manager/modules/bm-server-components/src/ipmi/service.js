@@ -1,4 +1,4 @@
-import { KVM_PLAN_CODE } from './constants';
+import { DATACENTER_AGORA_NAME, KVM_PLAN_CODE } from './constants';
 
 export default class BmServerComponentsIpmiService {
   /* @ngInject */
@@ -123,6 +123,9 @@ export default class BmServerComponentsIpmiService {
 
   addKvmConfigurationToCart(itemId, cartId, serviceName, datacenter) {
     return this.$q.all([
+      // TODO: It should be possible to order without the datacenter as we give the server
+      // In the case the API is updataed that way, remove this first post and also remove the
+      // getRealDCAgoraName function as well as the associated constant
       this.$http.post(`/order/cart/${cartId}/item/${itemId}/configuration`, {
         label: 'dedicated_datacenter',
         value: datacenter,
@@ -160,7 +163,12 @@ export default class BmServerComponentsIpmiService {
         return this.addKvmOptionToCart(cartId, 'P1M', 'default', 1);
       })
       .then(({ itemId }) =>
-        this.addKvmConfigurationToCart(itemId, cartId, serviceName, datacenter),
+        this.addKvmConfigurationToCart(
+          itemId,
+          cartId,
+          serviceName,
+          this.constructor.getRealDCAgoraName(datacenter),
+        ),
       )
       .then(() => this.getCart(cartId))
       .catch(() => this.$http.delete(`/order/cart/${cartId}`));
@@ -168,5 +176,9 @@ export default class BmServerComponentsIpmiService {
 
   orderKvm(cartId) {
     return this.checkoutCart(cartId);
+  }
+
+  static getRealDCAgoraName(datacenterName) {
+    return DATACENTER_AGORA_NAME[datacenterName] || datacenterName;
   }
 }
