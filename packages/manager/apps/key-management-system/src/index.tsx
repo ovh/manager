@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
+  ShellContext,
   ShellProvider,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
@@ -39,9 +40,9 @@ const init = async (
 
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-      <ShellProvider client={context}>
+      <ShellContext.Provider value={context}>
         <App />
-      </ShellProvider>
+      </ShellContext.Provider>
     </React.StrictMode>,
   );
 };

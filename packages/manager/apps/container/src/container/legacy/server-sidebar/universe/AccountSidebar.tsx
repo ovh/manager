@@ -10,6 +10,7 @@ import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import { features } from './DedicatedSidebar';
+import useServiceLoader from './useServiceLoader';
 
 export default function AccountSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
@@ -18,18 +19,15 @@ export default function AccountSidebar() {
   const reketInstance = useReket();
   const { t, i18n } = useTranslation('sidebar');
   const navigation = shell.getPlugin('navigation');
+  const { loadServices } = useServiceLoader('dedicated');
   const environment: Environment = shell
     .getPlugin('environment')
     .getEnvironment();
   const region = environment.getRegion();
   const isEnterprise = environment.getUser()?.enterprise;
 
-  const getAccountSidebar = async (availability: Record<string, string> | null) => {
-    if (!availability) {
-      return [];
-    }
-
-    const menu = [];
+  const getAccountSidebar = async (availability: Record<string, string>) => {
+    const menu: SidebarMenuItem[] = [];
 
     menu.push({
       id: 'back-to-home',
@@ -135,6 +133,33 @@ export default function AccountSidebar() {
         label: t('sidebar_account_iam'),
         href: navigation.getURL('iam', '/'),
         pathMatcher: new RegExp('^/iam'),
+      });
+    }
+
+    if (availability['key-management-system']) {
+      menu.push({
+        id: 'key-management-system',
+        label: t('sidebar_account_key-management-system'),
+        href: navigation.getURL('key-management-system', '/'),
+        pathMatcher: new RegExp('^/key-management-system'),
+        async loader() {
+          const services = await loadServices('/key-management-system');
+          return [
+            {
+              id: 'key-management-system',
+              label: t('sidebar_service_all'),
+              href: navigation.getURL('dedicated', '#/keys'),
+              ignoreSearch: true,
+            },
+            ...services.map((service) => ({
+              ...service,
+              href: navigation.getURL(
+                'dedicated',
+                `#/key-management-system/${service.serviceName}`,
+              ),
+            })),
+          ];
+        },
       });
     }
 

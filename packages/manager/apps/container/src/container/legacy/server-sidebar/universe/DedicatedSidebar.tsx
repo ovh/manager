@@ -45,6 +45,7 @@ export const features = [
   'dedicated-server:nutanixOrder',
   'carbon-calculator',
   'network-security',
+  'key-management-system'
 ];
 
 export default function DedicatedSidebar() {
