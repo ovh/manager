@@ -1,7 +1,11 @@
 import React from 'react';
 import { OsdsMessage } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
-import { Notification, NotificationType } from './useNotifications';
+import {
+  Notification,
+  NotificationType,
+  useNotifications,
+} from './useNotifications';
 
 type OdsNotificationProps = {
   notification: Notification;
@@ -23,8 +27,18 @@ const getOdsMessageColor = (type: NotificationType) => {
 };
 
 export function OdsNotification({ notification }: OdsNotificationProps) {
+  const { clearNotification } = useNotifications();
   return (
-    <OsdsMessage className="mb-2" type={getOdsMessageColor(notification.type)}>
+    <OsdsMessage
+      className="mb-2"
+      type={getOdsMessageColor(notification.type)}
+      {...(notification.dismissable
+        ? {
+            removable: true,
+            onOdsRemoveClick: () => clearNotification(notification.uid),
+          }
+        : {})}
+    >
       {notification.content}
     </OsdsMessage>
   );

@@ -82,6 +82,7 @@
     "zustand": "^4.5.0"
   },
   "optionalDependencies": {
+    "@ovh-ux/manager-react-shell-client": "^0.3.0",
     "i18next": "^20.4.0",
     "react-dom": "18.2.0",
     "react-i18next": "^11.18.1",
