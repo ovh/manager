@@ -22,9 +22,12 @@ import { useHref } from 'react-router-dom';
 type ActionProps = {
   ipId: string;
 };
-export default function Actions({ ipId }: Readonly<ActionProps>) {
+
+export default function FloatingIPActions({ ipId }: Readonly<ActionProps>) {
   const { t } = useTranslation();
+
   const hrefRemove = useHref(`./${ipId}/terminate`);
+
   return (
     <OsdsMenu>
       <OsdsButton

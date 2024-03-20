@@ -20,7 +20,7 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/Layout')),
   },
   {
-    id: 'users',
+    id: 'public-ips',
     path: '/pci/projects/:projectId/public-ips',
     loader: async ({ params }) => {
       return queryClient.fetchQuery(getProjectQuery(params.projectId));
@@ -29,10 +29,10 @@ export default [
     children: [
       {
         path: '',
+        ...lazyRouteConfig(() => import('@/pages/list')),
         children: [
           {
             path: 'floating-ips',
-            ...lazyRouteConfig(() => import('@/pages/list')),
             children: [
               {
                 path: ':ipId/terminate',
@@ -46,7 +46,6 @@ export default [
           },
           {
             path: 'additional-ips',
-            ...lazyRouteConfig(() => import('@/pages/list')),
           },
         ],
       },
