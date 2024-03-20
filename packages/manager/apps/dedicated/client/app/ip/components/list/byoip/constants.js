@@ -13,32 +13,32 @@ export const BYOIP_USAGE_GUIDE_URL = {
   IT:
     'https://help.ovhcloud.com/csm/it-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044860',
   NL:
-    'https://help.ovhcloud.com/csm/en-nl-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    'https://help.ovhcloud.com/csm/en-ie-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044851',
   PL:
-    'https://help.ovhcloud.com/csm/pl-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    ' https://help.ovhcloud.com/csm/pl-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044862',
   PT:
-    'https://help.ovhcloud.com/csm/pt-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    'https://help.ovhcloud.com/csm/pt-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044863',
   GB:
-    'https://help.ovhcloud.com/csm/en-gb-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    'https://help.ovhcloud.com/csm/en-gb-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044849',
   CA:
-    'https://help.ovhcloud.com/csm/en-ca-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    'https://help.ovhcloud.com/csm/en-ca-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044846',
   US: 'https://us.ovhcloud.com/support/',
   MA:
-    'https://help.ovhcloud.com/csm/fr-ma-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    'https://help.ovhcloud.com/csm/fr-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044867',
   SN:
-    'https://help.ovhcloud.com/csm/fr-sn-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    'https://help.ovhcloud.com/csm/fr-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044867',
   TN:
-    'https://help.ovhcloud.com/csm/fr-tn-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    'https://help.ovhcloud.com/csm/fr-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044867',
   AU:
-    'https://help.ovhcloud.com/csm/en-au-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    'https://help.ovhcloud.com/csm/en-au-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044847',
   IN:
-    'https://help.ovhcloud.com/csm/en-in-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    'https://help.ovhcloud.com/csm/asia-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044845',
   SG:
-    'https://help.ovhcloud.com/csm/en-sg-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    'https://help.ovhcloud.com/csm/en-sg-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044855',
   ASIA:
-    'https://help.ovhcloud.com/csm/asia-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    'https://help.ovhcloud.com/csm/asia-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044845',
   DEFAULT:
-    'https://help.ovhcloud.com/csm/en-gb-documentation-network?id=kb_browse_cat&kb_id=74d98129a884a950f07829d7d5c7523d',
+    'https://help.ovhcloud.com/csm/en-gb-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044849',
 };
 
 export default {
