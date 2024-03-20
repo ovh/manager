@@ -23,15 +23,15 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { FloatingIP } from '@/interface';
-import { useFLoatingIPs } from '@/api/hooks/useFloatingIP';
-import Actions from './Actions';
+import { useFloatingIPs } from '@/api/hooks/useFloatingIP';
+import FloatingIPActions from './FloatingIPActions';
 
 export default function FloatingIPComponent({ projectId, projectUrl }) {
   const { t } = useTranslation('common');
 
   const { pagination, setPagination } = useDatagridSearchParams();
 
-  const { error, data: floatingIPs, isLoading } = useFLoatingIPs(
+  const { error, data: floatingIPs, isLoading } = useFloatingIPs(
     projectId || '',
     { pagination },
   );
@@ -77,7 +77,7 @@ export default function FloatingIPComponent({ projectId, projectUrl }) {
     },
     {
       id: 'actions',
-      cell: (props: FloatingIP) => <Actions ipId={props.id} />,
+      cell: (props: FloatingIP) => <FloatingIPActions ipId={props.id} />,
       label: '',
     },
   ];

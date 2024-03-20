@@ -1,4 +1,5 @@
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+import { PciGuidesHeader } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -12,14 +13,14 @@ import {
   OsdsTabs,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { Notifications, PciGuidesHeader } from '@ovhcloud/manager-components';
 import { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Outlet, useParams } from 'react-router-dom';
-import { FloatingIPComponent } from '@/components/list';
-import { IPsTabName } from '@/constants';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import useProject from '@/api/hooks/useProject';
+import { FloatingIPComponent } from '@/components/list';
+import FailoverIPComponent from '@/components/list/FailoverIP';
+import { IPsTabName } from '@/constants';
 
 export default function ListingPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -29,13 +30,36 @@ export default function ListingPage(): JSX.Element {
   );
 
   const navigation = useNavigation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { projectId } = useParams();
   const { data: project } = useProject(projectId || '');
 
   const handlerTabChanged = (event: CustomEvent) => {
     const { panel } = event.detail;
     setActiveTab(panel as IPsTabName);
+
+    switch (panel) {
+      case IPsTabName.FLOATING_IP_TAB_NAME:
+        navigate(`./floating-ips`);
+        break;
+      case IPsTabName.ADDITIONAL_IP_TAB_NAME:
+        navigate(`./additional-ips`);
+        break;
+      default:
+        navigate(`./floating-ips`);
+    }
   };
+
+  useEffect(() => {
+    if (location.pathname.includes('floating-ips')) {
+      setActiveTab(IPsTabName.FLOATING_IP_TAB_NAME);
+    } else if (location.pathname.includes('additional-ips')) {
+      setActiveTab(IPsTabName.ADDITIONAL_IP_TAB_NAME);
+    } else {
+      navigate(`./floating-ips`);
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     navigation
@@ -86,7 +110,10 @@ export default function ListingPage(): JSX.Element {
           </OsdsText>
         </div>
       </div>
-      <OsdsTabs onOdsTabsChanged={(event) => handlerTabChanged(event)}>
+      <OsdsTabs
+        panel={activeTab}
+        onOdsTabsChanged={(event) => handlerTabChanged(event)}
+      >
         <OsdsTabBar slot="top">
           <OsdsTabBarItem
             panel={IPsTabName.FLOATING_IP_TAB_NAME}
@@ -105,7 +132,9 @@ export default function ListingPage(): JSX.Element {
         <OsdsTabPanel name={IPsTabName.FLOATING_IP_TAB_NAME}>
           <FloatingIPComponent projectId={projectId} projectUrl={projectUrl} />
         </OsdsTabPanel>
-        <OsdsTabPanel name={IPsTabName.ADDITIONAL_IP_TAB_NAME}></OsdsTabPanel>
+        <OsdsTabPanel name={IPsTabName.ADDITIONAL_IP_TAB_NAME}>
+          <FailoverIPComponent projectId={projectId} projectUrl={projectUrl} />
+        </OsdsTabPanel>
       </OsdsTabs>
       <Outlet />
     </>
