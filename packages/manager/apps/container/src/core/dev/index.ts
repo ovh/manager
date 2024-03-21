@@ -26,7 +26,7 @@ export function setupDevApplication(shell: Shell) {
     // if the application configuration doesn't exist in DEV mode
     // then it's a new application, create a default configuration to use
     if (!containerApp) {
-      let devConfig = {
+      const devConfig = {
         universe: 'hub',
         url: `https://www.ovh.com/manager/${devApp}/`,
         publicURL: `https://www.ovh.com/manager/#/${devApp}/`,

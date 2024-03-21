@@ -4,17 +4,14 @@ import {
   OsdsTile,
   OsdsText,
   OsdsIcon,
-} from '@ovhcloud/ods-stencil/components/react';
+} from '@ovhcloud/ods-components/react/';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/';
 import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
-import {
-  OdsIconName,
-  OdsIconSize,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-core';
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import clsx from 'clsx';
 import './ManagerTile.scss';
 
@@ -53,35 +50,35 @@ export const ManagerTile: React.FC<ManagerTileProps> = ({
       href={href}
       onClick={onClick}
     >
-      <OsdsTile color={OdsThemeColorIntent.primary} rounded className="tile">
+      <OsdsTile color={ODS_THEME_COLOR_INTENT.primary} rounded className="tile">
         <div>
           <OsdsText
             className="tile-type"
-            level={OdsThemeTypographyLevel.heading}
-            size={OdsThemeTypographySize._200}
-            color={OdsThemeColorIntent.primary}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+            color={ODS_THEME_COLOR_INTENT.primary}
           >
             {tileType === ManagerTileType.tutorial ? 'Tutorial' : 'Catalog'}
           </OsdsText>
 
           <OsdsText
             className="tile-title"
-            level={OdsThemeTypographyLevel.heading}
-            size={OdsThemeTypographySize._400}
-            color={OdsThemeColorIntent.text}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
           >
             {title}
           </OsdsText>
           <OsdsText
             className="tile-description"
-            level={OdsThemeTypographyLevel.body}
-            size={OdsThemeTypographySize._400}
-            color={OdsThemeColorIntent.default}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.default}
           >
             {description}
           </OsdsText>
           <OsdsLink
-            color={OdsThemeColorIntent.primary}
+            color={ODS_THEME_COLOR_INTENT.primary}
             href={href}
             target={OdsHTMLAnchorElementTarget._blank}
           >
@@ -89,9 +86,9 @@ export const ManagerTile: React.FC<ManagerTileProps> = ({
             <OsdsIcon
               slot="end"
               className="link-icon"
-              size={OdsIconSize.xxs}
-              name={OdsIconName.EXTERNAL_LINK}
-              color={OdsThemeColorIntent.primary}
+              size={ODS_ICON_SIZE.xxs}
+              name={ODS_ICON_NAME.EXTERNAL_LINK}
+              color={ODS_THEME_COLOR_INTENT.primary}
             />
           </OsdsLink>
         </div>

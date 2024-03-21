@@ -61,11 +61,11 @@ export const Routes: any = [
     children: [
       {
         id: 'listing',
-        path: '/',
+        path: '',
         ...lazyRouteConfig(() => import('@/pages/listing')),
       },
       {
-        path: '/:serviceName',
+        path: ':serviceName',
         ...lazyRouteConfig(() => import('@/pages/dashboard/_layout')),
         children: [
           {
@@ -84,7 +84,7 @@ export const Routes: any = [
       },
       {
         id: 'onboarding',
-        path: '/onboarding',
+        path: 'onboarding',
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
       },
     ],
