@@ -4,6 +4,8 @@ import {
   OsdsBreadcrumb,
   OsdsButton,
   OsdsChip,
+  OsdsPopover,
+  OsdsPopoverContent,
   OsdsDivider,
   OsdsIcon,
   OsdsSearchBar,
@@ -51,6 +53,7 @@ import useColumnFilters from '@/components/useColumnFilters';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
+  const { t: tFilter } = useTranslation('filter');
   const navigation = useNavigation();
   const { projectId } = useParams();
   const [urlProject, setUrlProject] = useState('');
@@ -176,42 +179,64 @@ export default function ListingPage() {
           />
           {t('pci_projects_project_users_add_label')}
         </OsdsButton>
-        <OsdsSearchBar
-          className={'w-2/12'}
-          value={searchField}
-          onOdsSearchSubmit={({ detail }) => {
-            addFilter({
-              key: 'username',
-              value: detail.inputValue,
-              comparator: FilterComparator.Includes,
-              label: t('pci_projects_project_users_username_label'),
-            });
-            setSearchField('');
-          }}
-        />
+        <div className="justify-between flex">
+          <OsdsSearchBar
+            className={'w-[70%]'}
+            value={searchField}
+            onOdsSearchSubmit={({ detail }) => {
+              addFilter({
+                key: 'username',
+                value: detail.inputValue,
+                comparator: FilterComparator.Includes,
+                label: t('pci_projects_project_users_username_label'),
+              });
+              setSearchField('');
+            }}
+          />
+          <OsdsPopover>
+            <OsdsButton
+              slot="popover-trigger"
+              size={ODS_BUTTON_SIZE.sm}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              variant={ODS_BUTTON_VARIANT.stroked}
+              // className="ml-5"
+              // className="ml-5"
+            >
+              <OsdsIcon
+                name={ODS_ICON_NAME.FILTER}
+                size={ODS_ICON_SIZE.xs}
+                className={'mr-2'}
+                color={ODS_THEME_COLOR_INTENT.primary}
+              />
+              {tFilter('common_criteria_adder_filter_label')}
+            </OsdsButton>
+            <OsdsPopoverContent>
+              <FilterAdd
+                columns={[
+                  {
+                    id: 'username',
+                    label: t('pci_projects_project_users_username_label'),
+                    comparators: FilterCategories.String,
+                  },
+                ]}
+                onAddFilter={(addedFilter, column) => {
+                  setPagination({
+                    pageIndex: 0,
+                    pageSize: pagination.pageSize,
+                  });
+                  addFilter({
+                    ...addedFilter,
+                    label: column.label,
+                  });
+                }}
+              />
+            </OsdsPopoverContent>
+          </OsdsPopover>
+        </div>
       </div>
-
-      {/* TODO put filters inside popover when ODS is fixed */}
-      <div className="m-4">
+      <div className="my-5">
         <FilterList filters={filters} onRemoveFilter={removeFilter} />
-        <FilterAdd
-          columns={[
-            {
-              id: 'username',
-              label: t('pci_projects_project_users_username_label'),
-              comparators: FilterCategories.String,
-            },
-          ]}
-          onAddFilter={(addedFilter, column) => {
-            setPagination({ pageIndex: 0, pageSize: pagination.pageSize });
-            addFilter({
-              ...addedFilter,
-              label: column.label,
-            });
-          }}
-        />
       </div>
-
       {isLoading && (
         <div className="text-center">
           <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
