@@ -7,7 +7,7 @@ import {
   createVrackServicesButtonLabel,
   emptyDataGridMessage,
   modalVrackAssociationDescription,
-  modalVrackCreationDescription,
+  modalVrackCreationDescriptionLine1,
   modalCreateNewVrackButtonLabel,
   associateVrackButtonLabel,
 } from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
@@ -151,7 +151,7 @@ Then('User sees a modal to create a new vRack', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
   const modalDescription = await this.page.locator('osds-modal', {
-    hasText: modalVrackCreationDescription,
+    hasText: modalVrackCreationDescriptionLine1,
   });
   await expect(modalDescription).toBeVisible();
 });

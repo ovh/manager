@@ -25,6 +25,7 @@ export type EditableTextProps = React.PropsWithChildren<{
   type?: ODS_INPUT_TYPE;
   disabled?: boolean;
   defaultValue: string;
+  emptyValueLabel?: string;
   onEditSubmitted: (newValue: string) => Promise<void>;
   dataTrackingPath?: string;
   editDataTracking?: string;
@@ -37,6 +38,7 @@ export type EditStatus = 'display' | 'editing' | 'loading';
 
 export const EditableText: React.FC<EditableTextProps> = ({
   children,
+  emptyValueLabel = '',
   defaultValue,
   disabled,
   type = ODS_INPUT_TYPE.text,
@@ -128,10 +130,10 @@ export const EditableText: React.FC<EditableTextProps> = ({
     >
       <OsdsText
         level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._800}
+        size={children ? ODS_TEXT_SIZE._800 : ODS_TEXT_SIZE._300}
         color={ODS_THEME_COLOR_INTENT.text}
       >
-        {children}
+        {children ?? emptyValueLabel}
       </OsdsText>
       <OsdsButton
         style={{ marginLeft: '4px' }}

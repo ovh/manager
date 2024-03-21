@@ -78,11 +78,6 @@ export const EndpointDatagrid: React.FC = () => {
       formatter: reactFormatter(<TextCell />),
     },
     {
-      title: t('description'),
-      field: 'description',
-      formatter: reactFormatter(<TextCell />),
-    },
-    {
       title: t('actions'),
       field: '',
       formatter: reactFormatter(

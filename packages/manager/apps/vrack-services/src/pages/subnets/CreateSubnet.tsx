@@ -36,6 +36,8 @@ import {
   vlanNumberOptionValue,
   isValidVlanNumber,
   getSubnetCreationMutationKey,
+  defaultCidr,
+  defaultServiceRange,
 } from './constants';
 import { useVrackService } from '@/utils/vs-utils';
 import { FormField } from '@/components/FormField';
@@ -60,9 +62,6 @@ const SubnetCreationPage: React.FC = () => {
   const vrackServices = useVrackService();
   const dashboardUrl = urls.subnets.replace(':id', id);
   const { trackPage } = useOvhTracking();
-  const defaultCidr = t('defaultCidr');
-  const defaultServiceRange = t('defaultServiceRange');
-  const defaultSubnetName = t('defaultSubnetName');
 
   const { mutate: createSubnet, isPending, isError, error } = useMutation<
     ApiResponse<VrackServices>,
@@ -74,8 +73,7 @@ const SubnetCreationPage: React.FC = () => {
         vrackServicesId: id,
         checksum: vrackServices.data?.checksum,
         targetSpec: {
-          displayName:
-            vrackServices.data?.currentState.displayName || defaultSubnetName,
+          displayName: vrackServices.data?.currentState.displayName,
           subnets: (vrackServices.data?.currentState.subnets || []).concat({
             displayName,
             cidr: cidr || defaultCidr,
@@ -150,7 +148,7 @@ const SubnetCreationPage: React.FC = () => {
           name={cidrInputName}
           size={ODS_INPUT_SIZE.md}
           type={ODS_INPUT_TYPE.text}
-          placeholder={t('cidrPlaceholder')}
+          placeholder={defaultCidr}
           onOdsValueChange={(e: OdsInputValueChangeEvent) =>
             setCidr(e?.detail.value)
           }
@@ -164,7 +162,7 @@ const SubnetCreationPage: React.FC = () => {
         <OsdsInput
           inline
           disabled={isPending || undefined}
-          placeholder={t('serviceRangePlaceholder')}
+          placeholder={defaultServiceRange}
           size={ODS_INPUT_SIZE.md}
           type={ODS_INPUT_TYPE.text}
           name={serviceRangeSelectName}

@@ -33,6 +33,7 @@ export const SubnetDatagrid: React.FC = () => {
   >(undefined);
   const { id } = useParams();
   const { trackPage, trackClick } = useOvhTracking();
+  const emptyValueLabel = t('none');
 
   const { data: vrackServices, isError, error } = useVrackService();
   const {
@@ -58,6 +59,7 @@ export const SubnetDatagrid: React.FC = () => {
           vrackServices={vrackServices}
           trackPage={trackPage}
           trackClick={trackClick}
+          emptyValueLabel={emptyValueLabel}
         />,
       ),
     },
@@ -74,7 +76,7 @@ export const SubnetDatagrid: React.FC = () => {
     {
       title: t('vlan'),
       field: 'vlan',
-      formatter: reactFormatter(<TextCell />),
+      formatter: reactFormatter(<TextCell emptyValueLabel={emptyValueLabel} />),
     },
     {
       title: t('actions'),

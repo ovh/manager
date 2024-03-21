@@ -57,7 +57,15 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({
         size={ODS_TEXT_SIZE._400}
         color={ODS_THEME_COLOR_INTENT.text}
       >
-        {t('modalVrackCreationDescription')}
+        {t('modalVrackCreationDescriptionLine1')}
+      </OsdsText>
+      <OsdsText
+        className="block mb-4"
+        level={ODS_TEXT_LEVEL.body}
+        size={ODS_TEXT_SIZE._400}
+        color={ODS_THEME_COLOR_INTENT.text}
+      >
+        {t('modalVrackCreationDescriptionLine2')}
       </OsdsText>
       {areVrackOrdersLoading && (
         <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />

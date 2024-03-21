@@ -22,11 +22,11 @@ export const updateVrackServices = async ({
     {
       checksum,
       targetSpec: {
-        displayName: targetSpec.displayName,
+        displayName: targetSpec.displayName || null,
         subnets:
           targetSpec.subnets?.map((subnet) => ({
             cidr: subnet.cidr,
-            displayName: subnet.displayName,
+            displayName: subnet.displayName || null,
             serviceRange: {
               cidr: subnet.serviceRange.cidr,
               // Need to remove ip configurations
@@ -36,7 +36,7 @@ export const updateVrackServices = async ({
                 // Need to remove endpoints configurations
                 managedServiceURN: endpoint.managedServiceURN,
               })) || [],
-            vlan: subnet.vlan,
+            vlan: subnet.vlan || null,
           })) || [],
       },
     },

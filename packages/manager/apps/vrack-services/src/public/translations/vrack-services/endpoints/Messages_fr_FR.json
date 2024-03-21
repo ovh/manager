@@ -6,14 +6,14 @@
   "createPageDescription": "Le Service Endpoint vous permet d'exposer vos services managés par OVHcloud sur le vRack, via une ou plusieurs adresses IP, selon le type de service. L'adresse IP du Service Endpoint appartient à la plage d'adresses de service définie dans le sous-réseau sélectionné.",
   "endpointCreationError": "Erreur lors de la création du Service Endpoint : {{error}}",
   "emptyDataGridMessage": "Vous n'avez aucun Service Endpoint pour le moment",
-  "serviceTypeLabel": "Type de service",
+  "serviceTypeLabel": "Type du service managé",
   "serviceTypePlaceholder": "Sélectionner votre type de service",
-  "serviceNameLabel": "Nom du service",
+  "serviceNameLabel": "Nom du service managé",
   "serviceNamePlaceholder": "Sélectionner un service",
   "subnetLabel": "Sous-réseau",
   "subnetPlaceholder": "Sélectionner un sous-réseau",
   "description": "Description",
-  "ip": "Plage d'adresses",
+  "ip": "Adresse IP",
   "subnet": "Sous-réseau",
   "managedServiceURN": "Nom du service",
   "serviceType": "Type de service",
@@ -21,5 +21,6 @@
   "updateError": "Un problème est survenue lors de la mise-à-jour de votre Service Endpoint. Veuillez réessayer ultérieurement.",
   "modalDeleteInputLabel": "Veuillez entrer le mot « TERMINATE » pour confirmer la suppression de votre Service Endpoint",
   "modalDeleteHeadline": "Supprimer le Service Endpoint",
-  "modalDeleteDescription": "Si vous supprimez ce Service Endpoint, vous perdrez la connectivité au service associé."
+  "modalDeleteDescription": "Si vous supprimez ce Service Endpoint, vous perdrez la connectivité au service associé.",
+  "storageNetApp": "Enterprise File Storage"
 }
