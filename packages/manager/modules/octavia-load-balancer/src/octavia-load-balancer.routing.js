@@ -52,6 +52,18 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         ]);
       },
+      displayErrorAlert: /* @ngInject */ (Alerter, $translate) => (
+        error,
+        alertSlot = 'octavia.alerts.global',
+      ) => {
+        Alerter.error(
+          $translate.instant('octavia_load_balancer_global_error', {
+            message: error.data?.message,
+            requestId: error.headers('X-Ovh-Queryid'),
+          }),
+          alertSlot,
+        );
+      },
       operatingStatusBadges: () => OPERATING_STATUS_BADGES,
       provisioningStatusBadges: () => PROVISIONING_STATUS_BADGES,
     },
