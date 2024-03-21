@@ -9,8 +9,4 @@ export default class LogToCustomerCtrl {
   $onInit() {
     this.kind = this.kindInitValue;
   }
-
-  setErrorMessage(message) {
-    this.errorMessage = message;
-  }
 }

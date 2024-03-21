@@ -8,21 +8,17 @@
             class="oui-color-p-800 mb-1"
             data-translate="log_tile_subscriptions_title"
         ></h5>
-        <a
-            data-ng-click="$ctrl.goToStreamListingPage(true)"
-            target="_blank"
-            rel="noopener"
+        <button
+            data-ng-click="$ctrl.goToStreamListingPage()"
+            type="button"
+            class="oui-button oui-button_secondary w-100"
             data-track-on="click"
             data-track-type="action"
             data-track-name="{{:: $ctrl.trackingHits.SUBSCRIBE_OTHER_ACCOUNT}}"
-            class="d-flex"
         >
+            <i class="oui-icon oui-icon-plus" aria-hidden="true"></i>
             <span data-translate="log_tile_subscriptions_subscribe"></span>
-            <i
-                class="pl-1 oui-icon oui-icon-arrow-right"
-                aria-hidden="true"
-            ></i>
-        </a>
+        </button>
         <oui-tile
             data-ng-repeat="subscription in $ctrl.streamSubscriptions track by $index"
             class="my-3"
@@ -33,7 +29,10 @@
                     class="font-weight-bold"
                     data-ng-bind="subscription.displayName"
                 ></span>
-                <span data-ng-bind="subscription.serviceName"></span>
+                <span
+                    class="w-50 text-right text-break"
+                    data-ng-bind="subscription.serviceName"
+                ></span>
             </div>
 
             <div class="d-flex justify-content-between mb-1">
@@ -41,14 +40,20 @@
                     class="font-weight-bold"
                     data-translate="log_title_subscriptions_user"
                 ></span>
-                <span data-ng-bind="subscription.userName"></span>
+                <span
+                    class="w-50 text-right text-break"
+                    data-ng-bind="subscription.userName"
+                ></span>
             </div>
             <div class="d-flex justify-content-between">
                 <span
                     class="font-weight-bold"
                     data-translate="log_title_subscriptions_stream"
                 ></span>
-                <span data-ng-bind="subscription.streamName"></span>
+                <span
+                    class="w-50 text-right text-break"
+                    data-ng-bind="subscription.streamName"
+                ></span>
             </div>
 
             <hr />
@@ -92,7 +97,7 @@
     <div data-ng-if="$ctrl.streamSubscriptions.length === 0">
         <h5 class="text-primary" data-translate="log_tile_section_title"></h5>
         <oui-tile data-heading="{{:: 'log_tile_title' | translate }}">
-            <div data-ng-transclude="serviceDescription"></div>
+            <div data-ng-transclude="tileDescription"></div>
 
             <span
                 data-ng-if="$ctrl.logAccountStreams.length === 0"

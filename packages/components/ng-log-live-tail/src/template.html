@@ -87,8 +87,11 @@
     <div
         class="log-tile"
         data-ng-class="{
-        'd-none': !$ctrl.isTileSlotFilled,
-         'ml-2': !$ctrl.fullScreen}"
+         'd-none': !$ctrl.isTileSlotFilled,
+         'overflow-auto': !$ctrl.fullScreen,
+         'ml-2': !$ctrl.fullScreen,
+         'mt-3': $ctrl.fullScreen
+         }"
         data-ng-transclude="tile"
     ></div>
 </div>

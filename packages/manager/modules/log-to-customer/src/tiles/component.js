@@ -5,10 +5,9 @@ export default {
   controller,
   template,
   transclude: {
-    serviceDescription: '?serviceDescription',
+    tileDescription: '?tileDescription',
   },
   bindings: {
-    setErrorMessage: '<',
     kind: '<',
     logSubscriptionUrl: '<',
     goToListingPage: '<',
