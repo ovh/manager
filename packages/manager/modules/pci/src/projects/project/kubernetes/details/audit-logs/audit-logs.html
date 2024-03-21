@@ -1,3 +1,5 @@
+<div data-ovh-alert></div>
+
 <log-to-customer-live-tail
     log-api-url="$ctrl.logApiUrl"
     log-service-guide-link="$ctrl.logServiceGuideLink"
@@ -8,7 +10,10 @@
     data-track-click="$ctrl.trackClick"
     data-tracking-hits="$ctrl.LOG_TRACKING_HITS"
 >
-    <service-description>
-        <span data-translate="kube_logs_description"></span>
-    </service-description>
+    <main-description>
+        <span data-translate="kube_logs_main_description"></span>
+    </main-description>
+    <tile-description>
+        <span data-translate="kube_logs_tile_description"></span>
+    </tile-description>
 </log-to-customer-live-tail>
