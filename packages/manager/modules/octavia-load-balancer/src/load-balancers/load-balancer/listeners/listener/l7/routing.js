@@ -27,6 +27,17 @@ export default /* @ngInject */ ($stateProvider) => {
         goToListenerListingPage: /* @ngInject */ ($state) => () => {
           $state.go('octavia-load-balancer.loadbalancer.listeners.list');
         },
+        getL7RuleCreationLink: /* @ngInject */ (
+          coreURLBuilder,
+          projectId,
+          region,
+          loadbalancerId,
+          listenerId,
+        ) => (policyId) =>
+          coreURLBuilder.buildURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/octavia-load-balancer/${region}/${loadbalancerId}/listeners/${listenerId}/l7/${policyId}/rules/create`,
+          ),
         trackL7Base: /* @ngInject */ (trackRoot) =>
           `${trackRoot}::${LISTENERS_TRACKING_SUFFIX}::${TRACKING_SUFFIX}`,
         trackL7Action: /* @ngInject */ (atInternet, trackL7Base) => (hit) =>
