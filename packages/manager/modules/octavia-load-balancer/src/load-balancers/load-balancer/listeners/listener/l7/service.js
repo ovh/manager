@@ -4,6 +4,35 @@ export default class OctaviaLoadBalancerListenersService {
     this.$http = $http;
   }
 
+  createL7Policy(
+    projectId,
+    region,
+    listenerId,
+    {
+      name,
+      position,
+      action,
+      redirectHttpCode,
+      redirectPoolId,
+      redirectPrefix,
+      redirectUrl,
+    },
+  ) {
+    return this.$http.post(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy`,
+      {
+        listenerId,
+        name,
+        position,
+        action,
+        redirectHttpCode,
+        redirectPoolId,
+        redirectPrefix,
+        redirectUrl,
+      },
+    );
+  }
+
   getPolicies(projectId, region, listenerId) {
     return this.$http
       .get(

@@ -1,0 +1,135 @@
+<form name="policy" novalidate>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_create_l7_policy_name' | translate }}"
+    >
+        <div class="oui-input-overlay">
+            <input
+                type="text"
+                class="oui-input"
+                name="name"
+                data-required
+                data-ng-model="$ctrl.model.name"
+            />
+        </div>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_create_l7_policy_position' | translate }}"
+    >
+        <p
+            data-translate="octavia_load_balancer_create_l7_policy_position_description"
+        ></p>
+        <div class="oui-input-overlay">
+            <oui-numeric
+                name="position"
+                data-required
+                data-model="$ctrl.model.position"
+                data-min="1"
+            ></oui-numeric>
+        </div>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_create_l7_policy_action' | translate }}"
+    >
+        <oui-select
+            name="action"
+            data-required
+            data-disabled="$ctrl.isEditing"
+            data-model="$ctrl.model.action"
+            data-items="$ctrl.actions"
+            data-value-property="value"
+            data-match="label"
+            data-on-change="$ctrl.onActionChange(modelValue)"
+            data-placeholder="{{:: 'octavia_load_balancer_create_l7_policy_action_default' | translate }}"
+        >
+        </oui-select>
+        <span
+            class="help-block"
+            ng-if="$ctrl.model.action"
+            data-translate="{{ 'octavia_load_balancer_create_l7_policy_action_' + $ctrl.model.action }}"
+        ></span>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-ng-if="$ctrl.model.action === $ctrl.ACTIONS.REDIRECT_TO_URL"
+        data-label="{{:: 'octavia_load_balancer_create_l7_policy_url' | translate }}"
+    >
+        <div class="oui-input-overlay">
+            <input
+                type="text"
+                class="oui-input"
+                name="url"
+                data-required
+                placeholder="{{:: $ctrl.URL_PLACEHOLDER}}"
+                data-ng-model="$ctrl.model.redirectUrl"
+                data-ng-pattern="$ctrl.URL_PATTERN"
+            />
+        </div>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-ng-if="$ctrl.model.action === $ctrl.ACTIONS.REDIRECT_PREFIX"
+        data-label="{{:: 'octavia_load_balancer_create_l7_policy_prefix' | translate }}"
+    >
+        <div class="oui-input-overlay">
+            <input
+                type="text"
+                class="oui-input"
+                name="prefix"
+                data-required
+                placeholder="{{:: $ctrl.URL_PLACEHOLDER}}"
+                data-ng-model="$ctrl.model.redirectPrefix"
+                data-ng-pattern="$ctrl.URL_PATTERN"
+            />
+        </div>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-ng-if="[$ctrl.ACTIONS.REDIRECT_TO_URL, $ctrl.ACTIONS.REDIRECT_PREFIX].includes($ctrl.model.action)"
+        data-label="{{:: 'octavia_load_balancer_create_l7_policy_http_code' | translate }}"
+    >
+        <oui-select
+            name="redirectCode"
+            data-required
+            data-model="$ctrl.model.redirectHttpCode"
+            data-items="$ctrl.redirectHttpCodes"
+        >
+        </oui-select>
+        <span
+            class="help-block"
+            data-translate="{{ 'octavia_load_balancer_create_l7_policy_http_code_description' }}"
+        ></span>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-ng-if="$ctrl.model.action === $ctrl.ACTIONS.REDIRECT_TO_POOL"
+        data-label="{{:: 'octavia_load_balancer_create_l7_policy_pool' | translate }}"
+    >
+        <oui-select
+            name="pool"
+            data-required
+            data-model="$ctrl.model.redirectPoolId"
+            data-value-property="id"
+            data-match="name"
+            data-items="$ctrl.pools"
+            data-placeholder="{{:: 'octavia_load_balancer_create_l7_policy_pool_default' | translate }}"
+        >
+        </oui-select>
+    </oui-field>
+    <oui-form-actions
+        data-disabled="!policy.$valid"
+        data-submit-text="{{:: 'octavia_load_balancer_create_l7_policy_submit' | translate }}"
+        data-cancel-text="{{:: 'octavia_load_balancer_create_l7_policy_cancel' | translate }}"
+        data-on-submit="$ctrl.onSubmit()"
+        data-on-cancel="$ctrl.onCancel()"
+    ></oui-form-actions>
+</form>
