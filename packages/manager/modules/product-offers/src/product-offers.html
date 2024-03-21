@@ -7,7 +7,7 @@
 
     <!-- Pricing -->
     <oui-step-form
-        data-submit-text="{{:: 'ovh_product_offers_order_express_submit' | translate }}"
+        data-submit-text="{{ :: 'ovh_product_offers_order_express_submit' | translate }}"
         data-header="{{:: 'ovh_product_offers_pricing_header' | translate }}"
         data-editable="$ctrl.workflow.pricings.length > 1 && !$ctrl.workflow.isLoading()"
         data-valid="$ctrl.workflow.pricing"
@@ -67,7 +67,7 @@
 
     <!-- Payment -->
     <oui-step-form
-        data-ng-if="!$ctrl.workflowOptions.expressOrder"
+        data-ng-if="!$ctrl.workflowOptions.expressOrder || ($ctrl.workflowOptions.expressOrder && $ctrl.workflow.isFreePricing())"
         data-header="{{:: 'ovh_product_offers_confirmation_header' | translate }}"
         data-editable="!$ctrl.workflow.loading.getOfferValidationInformation || !$ctrl.workflow.loading.validateOffer"
         data-valid="(
