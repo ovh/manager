@@ -63,21 +63,24 @@ export default function DashboardPage() {
     title: serviceName,
   };
 
-  {{#if this.isPCI}}
-  const linkPros = {
+  const linkProps = {
     label: 'Retour à la liste',
     href: '/',
     target: OdsHTMLAnchorElementTarget._blank,
     type: LinkType.back,
   };
-  {{/if}}
+
+  const onClickReturn = (href: string) => navigate(href);
 
   return (
     <div>
       <DashboardLayout
         header={header}
-        {{#if this.isPCI}}linkProps={linkPros}{{/if}}
-        navigate={navigate}
+        {{#if this.isPCI}}
+        {{else}}
+        linkProps={linkPros}
+        onClickReturn={onClickReturn}
+        {{/if}}
         tabs={
           <OsdsTabs panel={panel}>
             <OsdsTabBar slot="top">
