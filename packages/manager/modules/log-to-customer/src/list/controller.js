@@ -3,12 +3,20 @@ import { RETENTION } from '../constants';
 
 export default class LogToCustomerListCtrl {
   /* @ngInject */
-  constructor($state, coreURLBuilder, LogToCustomerService, $translate, $q) {
+  constructor(
+    $state,
+    coreURLBuilder,
+    LogToCustomerService,
+    $translate,
+    $q,
+    Alerter,
+  ) {
     this.$state = $state;
     this.coreURLBuilder = coreURLBuilder;
     this.LogToCustomerService = LogToCustomerService;
     this.$translate = $translate;
     this.$q = $q;
+    this.Alerter = Alerter;
   }
 
   $onInit() {
@@ -30,18 +38,30 @@ export default class LogToCustomerListCtrl {
 
         this.selectedAccount =
           this.accountList.length > 0 ? this.accountList[0] : null;
+        this.buildLDPHomePageLink();
         this.getStreamData();
       })
       .catch((error) => {
-        this.errorMessage = error?.data?.message;
+        this.alertError(error?.data?.message);
       });
+  }
+
+  alertError(message = '') {
+    this.Alerter.error(this.$translate.instant('error_message', { message }));
+  }
+
+  buildLDPHomePageLink() {
+    this.LDPHomePageLink = this.coreURLBuilder.buildURL(
+      'dedicated',
+      `#/dbaas/logs/${this.selectedAccount.serviceName}/home`,
+    );
   }
 
   getStreamData() {
     this.$q
       .all([this.getSubscribedStreams(), this.getLogAccountStreams()])
       .catch((error) => {
-        this.errorMessage = error?.data?.message;
+        this.alertError(error?.data?.message);
       })
       .finally(() => {
         this.loading = false;
@@ -63,7 +83,6 @@ export default class LogToCustomerListCtrl {
   createLogSubscription(id) {
     this.trackClick(this.trackingHits.SUBSCRIBE);
     this.loading = id;
-    this.resetErrorMessage();
     this.LogToCustomerService.post(this.logSubscriptionApiData.url, {
       ...this.logSubscriptionApiData.params,
       streamId: id,
@@ -72,22 +91,22 @@ export default class LogToCustomerListCtrl {
         this.LogToCustomerService.pollOperation(
           this.selectedAccount.serviceName,
           data,
-        ).then(() => this.getStreamData());
+        ).then(() => {
+          this.Alerter.success(
+            this.$translate.instant('logs_list_subscription_success'),
+          );
+          this.getStreamData();
+        });
       })
       .catch(({ data }) => {
-        this.errorMessage = data.message;
+        this.alertError(data.message);
         this.loading = false;
       });
-  }
-
-  resetErrorMessage() {
-    this.errorMessage = null;
   }
 
   deleteLogSubscription(streamId) {
     this.trackClick(this.trackingHits.UNSUBSCRIBE);
     this.loading = streamId;
-    this.resetErrorMessage();
     const { subscriptionId } = this.streamSubscriptions[streamId];
 
     this.LogToCustomerService.delete(
@@ -97,10 +116,15 @@ export default class LogToCustomerListCtrl {
         this.LogToCustomerService.pollOperation(
           this.selectedAccount.serviceName,
           data,
-        ).then(() => this.getStreamData());
+        ).then(() => {
+          this.Alerter.success(
+            this.$translate.instant('logs_list_unsubscription_success'),
+          );
+          this.getStreamData();
+        });
       })
       .catch(({ data }) => {
-        this.errorMessage = data.message;
+        this.alertError(data.message);
         this.loading = false;
       });
   }
@@ -119,11 +143,7 @@ export default class LogToCustomerListCtrl {
   onSelectedLogAccountChange() {
     this.LogToCustomerService.stopOperationPolling();
 
-    this.LDPHomePageLink = this.coreURLBuilder.buildURL(
-      'dedicated',
-      `#/dbaas/logs/${this.selectedAccount.serviceName}/home`,
-    );
-
+    this.buildLDPHomePageLink();
     this.getLogAccountStreams();
   }
 

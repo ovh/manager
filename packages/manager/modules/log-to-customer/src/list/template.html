@@ -2,7 +2,7 @@
     data-heading="{{:: $ctrl.title }}"
     data-description="{{ :: $ctrl.description }}"
 >
-    <oui-back-button data-ng-click="$ctrl.goBack()"> </oui-back-button>
+    <oui-back-button data-on-click="$ctrl.goBack()"> </oui-back-button>
 </oui-header>
 
 <oui-button
@@ -13,15 +13,6 @@
 >
     <span data-translate="logs_list_add_data_stream_button"></span>
 </oui-button>
-
-<oui-message
-    data-type="error"
-    data-ng-if="$ctrl.errorMessage"
-    data-dismissable="true"
-    data-on-dismiss="$ctrl.resetErrorMessage()"
->
-    <span data-ng-bind="$ctrl.errorMessage"></span>
-</oui-message>
 
 <oui-datagrid
     id="datagridLogAccounts"
@@ -47,7 +38,7 @@
     >
         <div data-ng-if="$ctrl.selectedAccount.displayName">
             <a
-                data-ng-href="{{ $ctrl.LDPHomePageLink}}"
+                data-ng-href="{{ $ctrl.LDPHomePageLink }}"
                 data-ng-bind="$ctrl.selectedAccount.displayName"
                 data-track-on="click"
                 data-track-type="action"

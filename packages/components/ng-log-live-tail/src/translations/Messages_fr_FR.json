@@ -1,6 +1,6 @@
 {
   "clear_session": "Effacer la session",
-  "search_placeholder": "Rechercher un élément ?",
+  "search_placeholder": "Mettre en valeur un élément",
   "list_no_logs": "En attente de logs...",
   "error_get_url": "Une erreur est survenue lors de la récupération des logs"
 }

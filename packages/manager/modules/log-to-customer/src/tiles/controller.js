@@ -2,11 +2,20 @@ import { DATA_PLATFORM_GUIDE } from '../constants';
 
 export default class LogToCustomerTileCtrl {
   /* @ngInject */
-  constructor(LogToCustomerService, coreConfig, coreURLBuilder, $q) {
+  constructor(
+    LogToCustomerService,
+    coreConfig,
+    coreURLBuilder,
+    $q,
+    $translate,
+    Alerter,
+  ) {
     this.LogToCustomerService = LogToCustomerService;
     this.user = coreConfig.getUser();
     this.coreURLBuilder = coreURLBuilder;
     this.$q = $q;
+    this.$translate = $translate;
+    this.Alerter = Alerter;
   }
 
   $onInit() {
@@ -28,18 +37,21 @@ export default class LogToCustomerTileCtrl {
   }
 
   loadStreams() {
-    this.setErrorMessage(null);
     this.loading = true;
     this.streamSubscriptions = [];
 
     this.$q
       .all([this.getDataStreams(), this.getSubscribedStreams()])
       .catch(({ data }) => {
-        this.setErrorMessage(data.message);
+        this.alertError(data.message);
       })
       .finally(() => {
         this.loading = false;
       });
+  }
+
+  alertError(message = '') {
+    this.Alerter.error(this.$translate.instant('error_message', { message }));
   }
 
   async getSubscribedStreams() {
@@ -74,7 +86,7 @@ export default class LogToCustomerTileCtrl {
 
       this.streamSubscriptions = await this.$q.all(streamPromises);
     } catch (error) {
-      this.setErrorMessage(error.message);
+      this.alertError(error.message);
     }
   }
 
@@ -90,7 +102,6 @@ export default class LogToCustomerTileCtrl {
   deleteLogSubscription(subscription) {
     this.trackClick(this.trackingHits.STOP_TRANSFER);
 
-    this.setErrorMessage(null);
     // eslint-disable-next-line no-param-reassign
     subscription.isLoading = true;
 
@@ -101,10 +112,15 @@ export default class LogToCustomerTileCtrl {
         this.LogToCustomerService.pollOperation(
           subscription.serviceName,
           data,
-        ).then(() => this.loadStreams());
+        ).then(() => {
+          this.Alerter.success(
+            this.$translate.instant('logs_list_unsubscription_success'),
+          );
+          this.loadStreams();
+        });
       })
       .catch(({ data }) => {
-        this.setErrorMessage(data.message);
+        this.alertError(data.message);
       })
       .finally(() => {
         // eslint-disable-next-line no-param-reassign

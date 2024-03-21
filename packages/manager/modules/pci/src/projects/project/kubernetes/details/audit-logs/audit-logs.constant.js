@@ -1,9 +1,8 @@
 import { TRACKING_PREFIX, TRACKING_SUFFIX } from '../constants';
 
 export const LOGS_INFO = {
-  FR: 'https://docs.ovh.com/fr/logs-data-platform/kubernetes-fluent-bit/',
   DEFAULT:
-    'https://docs.ovh.com/gb/en/logs-data-platform/kubernetes-fluent-bit/',
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-kubernetes-forwarding-audit-logs?id=kb_article_view&sysparm_article=KB0062280',
 };
 
 const TILE_TRACKING_PREFIX = `${TRACKING_PREFIX}::page::button`;

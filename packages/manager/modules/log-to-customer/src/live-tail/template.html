@@ -9,17 +9,15 @@
     </oui-radio-toggle-group>
 </div>
 
-<oui-message type="error" data-ng-if="$ctrl.errorMessage">
-    <span data-ng-bind="$ctrl.errorMessage"></span>
-</oui-message>
-
 <log-live-tail
     data-log-keys="$ctrl.LOG_KEYS"
     data-log-api-url="$ctrl.logApiUrl"
     data-log-kind="$ctrl.kind"
 >
     <description>
-        <span data-translate="logs_description"></span>
+        <main-descriptsion
+            data-ng-transclude="mainDescription"
+        ></main-descriptsion>
         <a
             data-ng-href="{{:: $ctrl.logServiceGuideLink }}"
             target="_blank"
@@ -36,13 +34,12 @@
             kind="$ctrl.kind"
             go-to-listing-page="$ctrl.goToListingPage"
             go-to-stream-listing-page="$ctrl.goToStreamListingPage"
-            set-error-message="$ctrl.setErrorMessage"
             data-track-click="$ctrl.trackClick"
             data-tracking-hits="$ctrl.trackingHits"
         >
-            <service-description
-                data-ng-transclude="serviceDescription"
-            ></service-description>
+            <tile-description
+                data-ng-transclude="tileDescription"
+            ></tile-description>
         </log-tile>
     </tile>
 </log-live-tail>

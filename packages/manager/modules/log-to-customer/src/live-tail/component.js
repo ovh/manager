@@ -5,7 +5,8 @@ export default {
   controller,
   template,
   transclude: {
-    serviceDescription: '?serviceDescription',
+    tileDescription: '?tileDescription',
+    mainDescription: '?mainDescription',
   },
   bindings: {
     logApiUrl: '<',
