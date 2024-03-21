@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useShell } from '@ovh-ux/manager-react-core-application';
 import {
@@ -27,7 +27,7 @@ const Errors: React.FC<ErrorObject> = ({ error }) => {
   const { tracking, environment } = shell;
   const env = environment.getEnvironment();
 
-  useEffect(() => {
+  React.useEffect(() => {
     env.then((response) => {
       const { applicationName } = response;
       const name = `errors::${getTrackingTypology(error)}::${applicationName}`;

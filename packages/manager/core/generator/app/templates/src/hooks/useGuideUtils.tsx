@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Region, CountryCode } from '@ovh-ux/manager-config';
-import ShellContext from '../ShellContext';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 const docUrl = 'https://docs.ovh.com/';
 
@@ -97,8 +97,7 @@ type GetGuideLinkProps = {
 function getGuideListLink({ region, subsidiary }: GetGuideLinkProps) {
   const baseUrl = `${baseUrlPrefix?.[region]?.[subsidiary]}`;
   const list: { [guideName: string]: string } = {};
-  const tmp = Object.entries(GUIDE_LIST);
-  tmp.forEach((value) => {
+  Object.entries(GUIDE_LIST).forEach((value) => {
     list[value[0]] = `${baseUrl}${value[1][subsidiary]}`;
     return value;
   });

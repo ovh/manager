@@ -10,6 +10,7 @@ type BreadcrumbItem = {
 export interface BreadcrumbProps {
   rootLabel?: string;
   appName?: string;
+  projectId?: string;
 }
 
 export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {

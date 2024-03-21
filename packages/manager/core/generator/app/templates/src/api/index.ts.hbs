@@ -4,3 +4,6 @@ export * from './{{uppercase @key}}/apiv6/services';
 {{#each apiV2Computed}}
 export * from './{{uppercase @key}}/apiv2/services';
 {{/each}}
+{{#if isPCI}}
+export * from './hooks/useProject';
+{{/if}}
