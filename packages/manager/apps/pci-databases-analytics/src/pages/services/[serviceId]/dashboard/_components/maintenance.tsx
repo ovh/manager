@@ -3,7 +3,7 @@ import { useGetMaintenances } from '@/hooks/api/maintenance.api.hooks';
 import { useServiceData } from '../../layout';
 import { POLLING } from '@/configuration/polling';
 import { database } from '@/models/database';
-import { Link } from '@/components/typography';
+import { Link } from '@/components/links';
 
 const Maintenance = () => {
   const { projectId, service } = useServiceData();
