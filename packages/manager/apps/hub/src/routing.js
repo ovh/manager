@@ -52,11 +52,11 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $http
           .get('/services', {
             headers: {
-              'X-Pagination-Mode': 'CachedObjectList-Pages',
               'X-Pagination-Size': 5,
             },
           })
-          .then((data) => data.data.length),
+          .then((data) => data.data.length)
+          .catch(() => null),
       trackingPrefix: () => 'hub::dashboard::activity::payment-status',
       refresh: /* @ngInject */ ($http) => (type) =>
         $http
