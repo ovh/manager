@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.16.2...@ovh-ux/manager-billing-components@3.17.0) (2024-03-21)
+
+
+### Features
+
+* **dedicated:** multi az feature change ([#11223](https://github.com/ovh/manager/issues/11223)) ([c751bee](https://github.com/ovh/manager/commit/c751bee0fe8d3bdc9638d063ee4a217399fa505f))
+
+
+
+
+
 ## [3.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.16.1...@ovh-ux/manager-billing-components@3.16.2) (2024-03-19)
 
 
