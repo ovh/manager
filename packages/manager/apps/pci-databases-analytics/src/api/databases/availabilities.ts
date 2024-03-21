@@ -31,7 +31,10 @@ export const getAvailabilities = async ({
   }
   const queryParams: Record<string, string> = {};
   if (serviceId) queryParams.clusterId = serviceId;
-  if (action) queryParams.action = action;
+  if (action) {
+    queryParams.action = action;
+    headers.Pragma = 'no-cache';
+  }
   if (target) queryParams.target = target;
   const queryString = QueryString.stringify(queryParams, {
     addQueryPrefix: true,
