@@ -1,5 +1,5 @@
-import queryClient from '@/queryClient';
 import { getProjectQuery } from '@/hooks/useProject';
+import queryClient from '@/queryClient';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -58,6 +58,16 @@ export default [
             ...lazyRouteConfig(() => import('@/pages/EditRolesPage')),
             children: [],
           },
+          {
+            path: 'new',
+            ...lazyRouteConfig(() => import('@/pages/add/Index')),
+          },
+        ],
+      },
+      {
+        path: 'onboarding',
+        ...lazyRouteConfig(() => import('@/pages/OnBoardingPage')),
+        children: [
           {
             path: 'new',
             ...lazyRouteConfig(() => import('@/pages/add/Index')),
