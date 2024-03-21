@@ -55,13 +55,6 @@ export default /* @ngInject */ ($stateProvider) => {
           atInternet.trackPage({
             name: `${trackL7CreatePolicyBase}-${hit}`,
           }),
-        getL7RuleCreationLink: /* @ngInject */ ($state) => (policyId) =>
-          $state.href(
-            'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.L7Rule.create',
-            {
-              policyId,
-            },
-          ),
         goBackToL7PoliciesList: /* @ngInject */ ($state) => (reload) =>
           $state.go(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.list',
