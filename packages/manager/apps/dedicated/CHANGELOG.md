@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.27.1...@ovh-ux/manager-dedicated@19.28.0) (2024-03-21)
+
+
+### Features
+
+* **dedicated:** multi az feature change ([#11223](https://github.com/ovh/manager/issues/11223)) ([c751bee](https://github.com/ovh/manager/commit/c751bee0fe8d3bdc9638d063ee4a217399fa505f))
+
+
+
+
+
 ## [19.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.27.0...@ovh-ux/manager-dedicated@19.27.1) (2024-03-19)
 
 
