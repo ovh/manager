@@ -3,13 +3,14 @@ import { useLocation } from 'react-router-dom';
 import { ShellContext } from '../ShellContext';
 
 type BreadcrumbItem = {
-  label: string | undefined;
+  label: string;
   href?: string;
 };
 
 export interface BreadcrumbProps {
   rootLabel?: string;
   appName?: string;
+  projectId?: string;
 }
 
 export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
