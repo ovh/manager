@@ -85,7 +85,7 @@
             >
                 <oui-action-menu-item
                     data-aria-label="{{'server_consumption_order_button' | translate}}"
-                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('traffic/order/dedicated-server-traffic-order', $ctrl.server.name)"
+                    data-on-click="$ctrl.trafficInformation.trafficOption.data !== 'subscribed' ? $ctrl.goToTrafficOrder() : $ctrl.goToTrafficCancel()"
                     data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
                     ><span
                         data-translate="{{ :: $ctrl.trafficInformation.trafficOption.data !== 'subscribed' ? 'server_consumption_order_button' : 'server_consumption_change_button' }}"

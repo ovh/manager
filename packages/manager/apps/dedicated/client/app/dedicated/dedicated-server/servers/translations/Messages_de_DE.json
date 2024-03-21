@@ -19,5 +19,8 @@
   "server_configuration_installation_no_public_network": "Die auf Ihrem Server angewandte Netzwerkkonfiguration ermöglicht keinen Zugang zum öffentlichen Netzwerk. Daher kann kein Betriebssystem auf diesem Server (re)installiert werden. Um diese Aktion zu ermöglichen, ändern Sie bitte Ihre Netzwerkkonfiguration im Tab \"Netzwerk-Interfaces\".",
   "dedicated_servers_installation_template_wizard_prefix_message": "Ab dem",
   "dedicated_servers_installation_ovhcloud_template_wizard_message": "ist keine Neuinstallation von {{ osDescription }} auf Ihrem Dedicated Server mehr möglich. Sie können Ihren Dedicated Server weiterhin mit dem zuvor installierten Betriebssystem verwenden. Alternativ dazu haben Sie die Möglichkeit, Ihren Dedicated Server mit einem aktuelleren Betriebssystem neu zu installieren.",
-  "dedicated_servers_installation_customer_template_wizard_message": "ist keine Neuinstallation von {{ osDescription }} auf Ihrem Dedicated Server mehr möglich. Ihr Template {{ customerTemplateName }} wird daher gelöscht. Sie können Ihren Dedicated Server weiterhin mit dem zuvor installierten Betriebssystem verwenden. Alternativ dazu haben Sie die Möglichkeit, Ihren Dedicated Server mit einem aktuelleren Betriebssystem neu zu installieren."
+  "dedicated_servers_installation_customer_template_wizard_message": "ist keine Neuinstallation von {{ osDescription }} auf Ihrem Dedicated Server mehr möglich. Ihr Template {{ customerTemplateName }} wird daher gelöscht. Sie können Ihren Dedicated Server weiterhin mit dem zuvor installierten Betriebssystem verwenden. Alternativ dazu haben Sie die Möglichkeit, Ihren Dedicated Server mit einem aktuelleren Betriebssystem neu zu installieren.",
+  "dedicated_servers_all_servers": "Alle Server",
+  "dedicated_servers_clusters": "3-AZ-Cluster",
+  "dedicated_servers_region": "Region"
 }

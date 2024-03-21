@@ -67,8 +67,9 @@ export default function DedicatedSidebar() {
         id: 'dedicated-server',
         label: t('sidebar_dedicated'),
         icon: getIcon('ovh-font ovh-font-server'),
-        routeMatcher: new RegExp('^/(configuration/)?(server|housing)'),
+        routeMatcher: new RegExp('^/(configuration/)?(server|housing|cluster)'),
         async loader() {
+          const clusters = await loadServices('/dedicated/cluster');
           const servers = await loadServices('/dedicated/server');
           const housing = await loadServices('/dedicated/housing');
           return [
@@ -81,6 +82,15 @@ export default function DedicatedSidebar() {
               ignoreSearch: true,
               title: t('sidebar_access_list'),
             },
+            ...clusters.map((service) => {
+              return {
+                ...service,
+                icon: getIcon('oui-icon oui-icon-cluster_concept'),
+                async loader() {
+                  return await loadServices(`/dedicated/cluster/${service.serviceName}`);
+                },
+              }
+            }),
             ...housing,
             ...servers,
           ];
@@ -264,21 +274,21 @@ export default function DedicatedSidebar() {
             routeMatcher: new RegExp('^/network-security'),
           },
           feature['ip-load-balancer'] &&
-            {
-              id: 'ip-loadbalancer',
-              label: t('sidebar_pci_load_balancer'),
-              icon: getIcon('ovh-font ovh-font-iplb'),
-              routeMatcher: new RegExp('^(/network)?/iplb'),
-              async loader() {
-                const iplb = await loadServices('/ipLoadbalancing');
-                return [
-                  ...iplb.map((iplbItem) => ({
-                    ...iplbItem,
-                    icon: getIcon('ovh-font ovh-font-iplb'),
-                  })),
-                ];
-              },
+          {
+            id: 'ip-loadbalancer',
+            label: t('sidebar_pci_load_balancer'),
+            icon: getIcon('ovh-font ovh-font-iplb'),
+            routeMatcher: new RegExp('^(/network)?/iplb'),
+            async loader() {
+              const iplb = await loadServices('/ipLoadbalancing');
+              return [
+                ...iplb.map((iplbItem) => ({
+                  ...iplbItem,
+                  icon: getIcon('ovh-font ovh-font-iplb'),
+                })),
+              ];
             },
+          },
           feature['vrack:bare-metal-cloud'] && {
             id: 'dedicated-vrack',
             label: t('sidebar_vrack'),

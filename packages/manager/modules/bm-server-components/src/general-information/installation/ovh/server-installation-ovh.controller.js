@@ -43,6 +43,7 @@ export default class ServerInstallationOvhCtrl {
   }
 
   $onInit() {
+    this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
     this.$scope.inputRules = INPUTS_RULES;
 
     this.$scope.LICENSE_URL = this.coreURLBuilder.buildURL(
@@ -2429,9 +2430,7 @@ export default class ServerInstallationOvhCtrl {
         set(task, 'id', task.taskId);
         this.reduceModal();
         this.$rootScope.$broadcast('dedicated.informations.reinstall', task);
-        this.$state.go(
-          `app.dedicated-server.server.dashboard.installation-progress`,
-        );
+        this.$state.go(`${this.statePrefix}.dashboard.installation-progress`);
         this.$scope.loader.loading = false;
       },
       (data) => {
@@ -2527,7 +2526,7 @@ export default class ServerInstallationOvhCtrl {
 
   install() {
     this.trackClick(
-      'dedicated::dedicated::server::system-install::public-catalog::install',
+      `dedicated::dedicated::${this.serverType}::system-install::public-catalog::install`,
     );
     if (this.$scope.installation.options.saveGabarit) {
       this.$scope.loader.loading = true;

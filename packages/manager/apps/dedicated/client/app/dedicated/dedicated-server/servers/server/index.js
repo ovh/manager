@@ -6,6 +6,8 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
+import { serverMainPage } from '@ovh-ux/manager-bm-server-components';
+
 import cpanelEolBanner from '../../../../components/cpanel-eol-banner';
 import bandwidth from '../bandwidth/bandwidth.module';
 import dashboard from './dashboard';
@@ -22,19 +24,16 @@ import interventions from '../intervention';
 import ipmi from '../ipmi';
 import orderKvm from '../kvm/order';
 import netboot from '../netboot';
-
-import bandwidthVrackOrderService from './server.bandwidth-vrack-order.service';
-import component from './server.component';
-import featureAvailability from './server.feature-availability';
+import trafficOrder from './traffic/order';
+import trafficCancel from './traffic/cancel';
+import trafficService from './traffic/traffic.service';
 import routing from './server.routing';
-import service from './server.service';
-
-import './server.less';
 
 const moduleName = 'ovhManagerDedicatedServerDetail';
 
 angular
   .module(moduleName, [
+    serverMainPage,
     bandwidth,
     cpanelEolBanner,
     dashboard,
@@ -55,22 +54,11 @@ angular
     monitoring,
     reverseDnsUpdate,
     reverseDnsDelete,
+    trafficOrder,
+    trafficCancel,
   ])
-  .component('dedicatedServer', component)
   .config(routing)
-  .service('Server', service)
-  .service('BandwidthVrackOrderService', bandwidthVrackOrderService)
-  .service('DedicatedServerFeatureAvailability', featureAvailability)
-  .constant('MITIGATION_STATUSES', {
-    ACTIVATED: 'ACTIVATED',
-    AUTO: 'AUTO',
-    FORCED: 'FORCED',
-  })
-  .constant('STATISTICS_SCALE', {
-    TENSECS: '_10_S',
-    ONEMIN: '_1_M',
-    FIVEMINS: '_5_M',
-  })
+  .service('ServerTrafficService', trafficService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -2,16 +2,3 @@ import './dedicated-server/servers/bandwidth-legacy/order-private/dedicated-serv
 import './dedicated-server/servers/bandwidth-legacy/order-private/order-private.routing';
 import './dedicated-server/servers/bandwidth-legacy/order-public/dedicated-server-bandwidth-order.controller';
 import './dedicated-server/servers/bandwidth-legacy/order-public/order-public.routing';
-import './dedicated-server/servers/ip/dedicated-server-ip-mitigation-statistics.controller';
-import './dedicated-server/servers/ip/dedicated-server-ip-mitigation.controller';
-import './dedicated-server/servers/ip/dedicated-server-ip.controller';
-import './dedicated-server/servers/ovh-tasks/dedicated-server-ovh-tasks.routes';
-import './dedicated-server/servers/pro-use/order/dedicated-server-pro-use-order.controller';
-import './dedicated-server/servers/rendezvous/dedicated-server-rendezvous.controller';
-import './dedicated-server/servers/rendezvous/dedicated-server-rendezvous.routes';
-import './dedicated-server/servers/traffic/cancel/dedicated-server-traffic-cancel.controller';
-import './dedicated-server/servers/traffic/dedicated-server-traffic.service';
-import './dedicated-server/servers/traffic/order/dedicated-server-traffic-order.controller';
-import './dedicated-server/servers/traffic/order/dedicated-server-traffic-order.service';
-import './dedicated-server/servers/usb-storage/dedicated-server-usb-storage.controller';
-import './dedicated-server/servers/usb-storage/dedicated-server-usb-storage.routes';

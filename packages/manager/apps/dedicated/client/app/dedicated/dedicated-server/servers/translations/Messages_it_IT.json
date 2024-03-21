@@ -19,5 +19,8 @@
   "server_configuration_installation_no_public_network": "Non è possibile installare/reinstallare un OS sul server perché la configurazione di rete applicata sulla macchina non consente l'accesso alla rete pubblica. Per effettuare l’operazione è necessario modificare la configurazione di rete nella scheda \"Interfacce di rete\".",
   "dedicated_servers_installation_template_wizard_prefix_message": "A partire dal",
   "dedicated_servers_installation_ovhcloud_template_wizard_message": "non sarà più possibile avviare la reinstallazione di {{ osDescription }} sul tuo server dedicato. Potrai continuare a utilizzare il server dedicato con il sistema operativo precedentemente installato oppure reinstallare il tuo server dedicato con un sistema operativo più recente.",
-  "dedicated_servers_installation_customer_template_wizard_message": "non sarà più possibile avviare la reinstallazione di {{ osName }} sul tuo server dedicato e il template {{ customerTemplateName }} verrà eliminato. Potrai continuare a utilizzare il server dedicato con il sistema operativo precedentemente installato oppure reinstallare il tuo server dedicato con un sistema operativo più recente."
+  "dedicated_servers_installation_customer_template_wizard_message": "non sarà più possibile avviare la reinstallazione di {{ osName }} sul tuo server dedicato e il template {{ customerTemplateName }} verrà eliminato. Potrai continuare a utilizzare il server dedicato con il sistema operativo precedentemente installato oppure reinstallare il tuo server dedicato con un sistema operativo più recente.",
+  "dedicated_servers_all_servers": "Tutti i server",
+  "dedicated_servers_clusters": "Cluster 3-AZ",
+  "dedicated_servers_region": "Region"
 }

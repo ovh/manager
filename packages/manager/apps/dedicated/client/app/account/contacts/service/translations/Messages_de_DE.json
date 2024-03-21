@@ -39,5 +39,6 @@
   "account_contacts_service_contact_billing": "Rechnungskontakt",
   "account_contacts_service_infos": "Sie können die Administrator-, technischen und Abrechnungs-Accounts Ihrer Dienste ändern.",
   "account_contacts_service_category_LOGS": "Logs Data Platform ",
-  "account_contacts_service_category_NETAPP": "NetApp"
+  "account_contacts_service_category_NETAPP": "NetApp",
+  "account_contacts_service_category_DEDICATED_CLUSTER": "3-AZ server"
 }

@@ -24,5 +24,7 @@ export default {
     urls: '<',
     user: '<',
     serverService: '<',
+    goToTrafficOrder: '<',
+    goToTrafficCancel: '<',
   },
 };

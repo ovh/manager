@@ -4,10 +4,11 @@ import { SERVICE_TYPE } from './server.constants';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-server.server', {
     url: '/server/:productId',
-    component: 'dedicatedServer',
+    component: 'serverMainPage',
     reloadOnSearch: false,
     redirectTo: 'app.dedicated-server.server.dashboard',
     resolve: {
+      statePrefix: /* @ngInject */ () => 'app.dedicated-server.server',
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       isLegacy: /* @ngInject */ (server) => server.newUpgradeSystem === false,
@@ -44,6 +45,14 @@ export default /* @ngInject */ ($stateProvider) => {
         Server.getSelected(serverName).then(
           (swsResponse) => new DedicatedServer(swsResponse),
         ),
+      serverType: (server) => {
+        if (server.iam.tags) {
+          return typeof server.iam.tags['ovh:cluster'] !== 'undefined'
+            ? 'node'
+            : 'server';
+        }
+        return 'server';
+      },
       serverName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
       serviceInfos: /* @ngInject */ ($stateParams, Server) =>

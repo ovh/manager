@@ -31,9 +31,9 @@ export default class ServersCtrl {
       'server_configuration_state_',
     );
 
-    this.datacenterEnumFilter = this.getEnumFilterFromCustomerData(
+    this.regionEnumFilter = this.getEnumFilterFromCustomerData(
       this.dedicatedServers.data,
-      'datacenter',
+      'region',
     );
 
     this.modelEnumFilter = this.getEnumFilterFromCustomerData(
