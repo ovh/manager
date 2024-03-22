@@ -191,7 +191,12 @@ export default function AddSshModal({
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => add({ name, publicKey })}
+        onClick={() => {
+          // @TODO remove this condition when ODS disabled button issue is fixed
+          if (publicKey) {
+            add({ name, publicKey });
+          }
+        }}
         data-testid="submitButton"
         {...(isPending || !name || !publicKey ? { disabled: true } : {})}
       >
