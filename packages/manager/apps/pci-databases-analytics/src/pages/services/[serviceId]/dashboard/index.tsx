@@ -1,11 +1,13 @@
 import {
   ArrowRight,
+  Cpu,
   Files,
   Globe2,
+  HardDrive,
+  MemoryStick,
   TrafficCone,
   UserCheck,
 } from 'lucide-react';
-import { useParams } from 'react-router';
 import { useServiceData } from '../layout';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import MetricChart from '../metrics/_components/metricChart';
@@ -17,75 +19,132 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import Maintenance from './_components/maintenance';
 import { OvhLink } from '@/components/links';
+import { useGetCapabilities } from '@/hooks/api/availabilities.api.hooks';
+import MeanMetric from './_components/meanMetric';
 
 const Dashboard = () => {
-  const { service } = useServiceData();
-  const { projectId } = useParams();
+  const { service, projectId } = useServiceData();
+  const capabilitiesQuery = useGetCapabilities(projectId, {
+    enabled: service.engine === database.EngineEnum.mongodb,
+  });
   const toast = useToast();
   return (
     <>
       <h2>dashboard</h2>
 
-      <div className="grid grid-cols-3 gap-2">
+      <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2">
         <Card>
-          <CardHeader></CardHeader>
+          <CardHeader>
+            <h5>
+              <HardDrive className="size-4 inline mr-2" />
+              <span>Storage</span>
+            </h5>
+          </CardHeader>
           <CardContent>
             <MetricChart
               metric={'disk_usage_percent'}
               period={database.service.MetricPeriodEnum.lastDay}
               poll={false}
               pollInterval={POLLING.METRICS}
+              className="aspect-auto sm:h-[200px]"
             />
+            <MeanMetric metricName={'disk_usage_percent'} />
           </CardContent>
         </Card>
         <Card>
-          <CardHeader></CardHeader>
+          <CardHeader>
+            <h5>
+              <Cpu className="size-4 inline mr-2" />
+              <span>CPU</span>
+            </h5>
+          </CardHeader>
           <CardContent>
             <MetricChart
               metric={'cpu_usage_percent'}
               period={database.service.MetricPeriodEnum.lastDay}
               poll={false}
               pollInterval={POLLING.METRICS}
+              className="aspect-auto sm:h-[200px]"
             />
+            <MeanMetric metricName={'cpu_usage_percent'} />
           </CardContent>
         </Card>
         <Card>
-          <CardHeader></CardHeader>
+          <CardHeader>
+            <h5>
+              <MemoryStick className="size-4 inline mr-2" />
+              <span>Memory</span>
+            </h5>
+          </CardHeader>
           <CardContent>
-            <MetricChart
-              metric={
-                service.engine === database.EngineEnum.mongodb
-                  ? 'mem_usage'
-                  : 'mem_usage_percent'
-              }
-              period={database.service.MetricPeriodEnum.lastDay}
-              poll={false}
-              pollInterval={POLLING.METRICS}
-            />
+            {service.engine === database.EngineEnum.mongodb ? (
+              <>
+                <MetricChart
+                  metric={'mem_usage'}
+                  period={database.service.MetricPeriodEnum.lastDay}
+                  poll={false}
+                  pollInterval={POLLING.METRICS}
+                  className="aspect-auto sm:h-[200px]"
+                />
+                {capabilitiesQuery.isSuccess && (
+                  <MeanMetric
+                    metricName={'mem_usage'}
+                    fn={(val) =>
+                      (val * 100) /
+                      (capabilitiesQuery.data?.flavors.find(
+                        (f) => f.name === service.flavor,
+                      ).specifications.memory.value *
+                        1000)
+                    }
+                  />
+                )}
+              </>
+            ) : (
+              <>
+                <MetricChart
+                  metric={'mem_usage_percent'}
+                  period={database.service.MetricPeriodEnum.lastDay}
+                  poll={false}
+                  pollInterval={POLLING.METRICS}
+                  className="aspect-auto sm:h-[200px]"
+                />
+                <MeanMetric metricName={'mem_usage_percent'} />
+              </>
+            )}
           </CardContent>
         </Card>
-      </div>
-      <div className="grid grid-cols-3 gap-3">
         {service.endpoints.length > 0 && (
-          <div className="flex flex-row items-start gap-5">
-            <Globe2 className="h-4 w-4 mt-1" />
-            <div className="flex h-full max-w-content flex-col gap-3">
-              <h5>Informations de connection</h5>
+          <Card>
+            <CardHeader>
+              <h5>
+                <Globe2 className="size-4 inline mr-2" />
+                <span>Informations de connection</span>
+              </h5>
+            </CardHeader>
+            <CardContent>
               <ConnectionDetails endpoints={service.endpoints} />
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         )}
-        <div className="flex flex-row items-start gap-5">
-          <TrafficCone className="h-4 w-4 mt-1 text-amber-600" />
-          <div className="flex h-full max-w-content flex-col gap-3">
-            <h5>Maintenance</h5>
+        <Card>
+          <CardHeader>
+            <h5>
+              <TrafficCone className="size-4 inline mr-2 text-amber-600" />
+              <span>Maintenance</span>
+            </h5>
+          </CardHeader>
+          <CardContent>
             <Maintenance />
-          </div>
-        </div>
-        <div className="flex flex-row items-start gap-5">
-          <UserCheck className="h-4 w-4 mt-1" />
-          <div className="flex h-full max-w-content flex-col gap-3">
-            <h5>Support & Billing</h5>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <h5>
+              <UserCheck className="size-4 inline mr-2" />
+              <span>Support & Billing</span>
+            </h5>
+          </CardHeader>
+          <CardContent>
             <div className="flex flex-row gap-2 text-base">
               <p className="font-semibold">Id du service</p>
               <p>{service.id}</p>
@@ -119,34 +178,34 @@ const Dashboard = () => {
               </OvhLink>
               <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader></CardHeader>
+          <CardContent>
+            <ul className="list-disc list-inside">
+              <li className="list-item">Cluster info</li>
+              <li className="list-item">Connection info</li>
+              <li className="list-item">Integrations</li>
+              <li className="list-item">Relevant metrics ?</li>
+              <li className="list-item">
+                Starting steps (service ready / add ip / add users)
+              </li>
+              <li className="list-item">Guides</li>
+              <li className="list-item">Support ?</li>
+              <li className="list-item">Billing ?</li>
+            </ul>
+          </CardContent>
+        </Card>
+        <Card className="col-span-2">
+          <CardHeader></CardHeader>
+          <CardContent>
+            <ScrollArea className="p-2 h-[500px] bg-[#122844] text-white whitespace-pre">
+              {JSON.stringify(service, null, 2)}
+            </ScrollArea>
+          </CardContent>
+        </Card>
       </div>
-      <Card>
-        <CardHeader></CardHeader>
-        <CardContent>
-          <ul className="list-disc list-inside">
-            <li className="list-item">Cluster info</li>
-            <li className="list-item">Connection info</li>
-            <li className="list-item">Integrations</li>
-            <li className="list-item">Relevant metrics ?</li>
-            <li className="list-item">
-              Starting steps (service ready / add ip / add users)
-            </li>
-            <li className="list-item">Guides</li>
-            <li className="list-item">Support ?</li>
-            <li className="list-item">Billing ?</li>
-          </ul>
-        </CardContent>
-      </Card>
-      <Card className="col-span-2">
-        <CardHeader></CardHeader>
-        <CardContent>
-          <ScrollArea className="p-2 h-[500px] bg-[#122844] text-white whitespace-pre">
-            {JSON.stringify(service, null, 2)}
-          </ScrollArea>
-        </CardContent>
-      </Card>
     </>
   );
 };

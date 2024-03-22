@@ -34,7 +34,7 @@ const UserActions = ({
     <div className="w-full text-right pr-2">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-8 w-8 p-0">
+          <Button variant="menu" size="menu">
             <span className="sr-only">Open menu</span>
             <MoreHorizontal className="h-4 w-4" />
           </Button>
@@ -42,6 +42,7 @@ const UserActions = ({
         <DropdownMenuContent align="end">
           {service.capabilities.users?.update && (
             <DropdownMenuItem
+              variant="primary"
               disabled={
                 service.capabilities.users?.update ===
                 database.service.capability.StateEnum.disabled
@@ -52,6 +53,7 @@ const UserActions = ({
             </DropdownMenuItem>
           )}
           <DropdownMenuItem
+            variant="primary"
             disabled={
               service.capabilities.users?.update ===
               database.service.capability.StateEnum.disabled
@@ -63,6 +65,7 @@ const UserActions = ({
           <DropdownMenuSeparator />
           {service.capabilities.users?.delete && (
             <DropdownMenuItem
+              variant="destructive"
               disabled={
                 service.capabilities.users?.delete ===
                 database.service.capability.StateEnum.disabled
