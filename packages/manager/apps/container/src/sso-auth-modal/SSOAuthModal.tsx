@@ -45,13 +45,7 @@ const SSOAuthModal = (): JSX.Element => {
   useEffect(() => {
     if (mode === disconnectedToConnected || mode === connectedToOther) {
       reketInstance
-        .get('/me', {
-          requestType: 'apiv6',
-          params: {
-            target: environment.getRegion(),
-            lang: environment.getUserLocale(),
-          },
-        })
+        .get('/me')
         .then((currentUser: User) => {
           setConnectedUser(currentUser);
         })
