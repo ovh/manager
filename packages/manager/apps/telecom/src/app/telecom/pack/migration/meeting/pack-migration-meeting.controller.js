@@ -82,6 +82,13 @@ export default class TelecomPackMigrationMeetingCtrl {
                     slotId: slot.slotId,
                   });
                 });
+                if (this.meetings.length === 0 && previousTitle) {
+                  // Push slots if only one date available
+                  this.meetings.push({
+                    title: previousTitle,
+                    slots,
+                  });
+                }
                 this.showMeetingSlots = true;
                 this.meetingSelectMessage = '';
               }
