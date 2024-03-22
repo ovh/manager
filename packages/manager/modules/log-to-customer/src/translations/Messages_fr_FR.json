@@ -15,7 +15,6 @@
   "log_button_create_account": "Créer un compte",
   "log_button_create_stream": "Créer un flux de données",
   "log_button_transfer_stream": "Transférer",
-  "logs_description": "En souscrivant à ce flux, vous pouvez transférer vos logs directement dans Logs Data Platform d'OVHcloud qui vous permet de faire des recherches, créer des alertes et des visualisations ou bien tout simplement les archiver.",
   "logs_info_link": "En savoir plus",
   "log_list_tab_title": "Transfert",
   "logs_list_go_back_button": "Retour",

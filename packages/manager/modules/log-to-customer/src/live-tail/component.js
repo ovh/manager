@@ -8,6 +8,7 @@ export default {
     serviceDescription: '?serviceDescription',
   },
   bindings: {
+    logsDescription: '<',
     logApiUrl: '<',
     logServiceGuideLink: '<',
     logSubscriptionUrl: '<',
