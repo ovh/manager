@@ -83,7 +83,7 @@ export const getColumns = ({
               <Tooltip>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="h-8 w-8 p-0">
+                    <Button variant="menu" size="menu">
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
@@ -91,6 +91,7 @@ export const getColumns = ({
                   <DropdownMenuContent align="end">
                     <TooltipTrigger className="w-full">
                       <DropdownMenuItem
+                        variant="primary"
                         onClick={() => {
                           onGetInformationClick(row.original);
                         }}
@@ -101,6 +102,7 @@ export const getColumns = ({
                       <DropdownMenuSeparator />
                       {service.capabilities.connectionPools?.update && (
                         <DropdownMenuItem
+                          variant="primary"
                           disabled={
                             service.capabilities.connectionPools?.update ===
                             database.service.capability.StateEnum.disabled
@@ -116,6 +118,7 @@ export const getColumns = ({
                       <DropdownMenuSeparator />
                       {service.capabilities.connectionPools?.delete && (
                         <DropdownMenuItem
+                          variant="destructive"
                           disabled={
                             service.capabilities.connectionPools?.delete ===
                             database.service.capability.StateEnum.disabled

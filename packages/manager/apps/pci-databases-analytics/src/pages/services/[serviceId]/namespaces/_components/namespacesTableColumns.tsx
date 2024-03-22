@@ -79,7 +79,7 @@ export const getColumns = ({
               <Tooltip>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="h-8 w-8 p-0">
+                    <Button variant="menu" size="menu">
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
@@ -88,6 +88,7 @@ export const getColumns = ({
                     <TooltipTrigger className="w-full">
                       {service.capabilities.namespaces?.update && (
                         <DropdownMenuItem
+                          variant="primary"
                           disabled={
                             service.capabilities.namespaces?.update ===
                             database.service.capability.StateEnum.disabled
@@ -103,6 +104,7 @@ export const getColumns = ({
                       <DropdownMenuSeparator />
                       {service.capabilities.namespaces?.delete && (
                         <DropdownMenuItem
+                          variant="destructive"
                           disabled={
                             service.capabilities.namespaces?.delete ===
                             database.service.capability.StateEnum.disabled

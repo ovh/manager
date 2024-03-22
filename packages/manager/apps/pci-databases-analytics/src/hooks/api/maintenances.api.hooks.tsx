@@ -10,8 +10,8 @@ import { CdbError } from '@/api/databases';
 import {
   ApplyMaintenanceProps,
   applyMaintenance,
-  getMaintenance,
-} from '@/api/databases/maintenance';
+  getMaintenances,
+} from '@/api/databases/maintenances';
 
 export function useGetMaintenances(
   projectId: string,
@@ -22,7 +22,7 @@ export function useGetMaintenances(
   const queryKey = [projectId, 'database', engine, serviceId, 'maintenance'];
   return useQuery({
     queryKey,
-    queryFn: () => getMaintenance({ projectId, engine, serviceId }),
+    queryFn: () => getMaintenances({ projectId, engine, serviceId }),
     ...options,
   }) as UseQueryResult<database.service.Maintenance[], Error>;
 }

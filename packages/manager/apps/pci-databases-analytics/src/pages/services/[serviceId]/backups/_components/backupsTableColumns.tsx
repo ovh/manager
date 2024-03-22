@@ -95,7 +95,7 @@ export const getColumns = ({
         <div className="flex justify-end">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
+              <Button variant="menu" size="menu">
                 <span className="sr-only">Open menu</span>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
@@ -103,6 +103,7 @@ export const getColumns = ({
             <DropdownMenuContent align="end">
               {/* TODO: add capability in API */}
               <DropdownMenuItem
+                variant="primary"
                 onClick={() => {
                   onRestoreClick(row.original);
                 }}
@@ -111,6 +112,7 @@ export const getColumns = ({
                 {t('tableActionRestore')}
               </DropdownMenuItem>
               <DropdownMenuItem
+                variant="primary"
                 onClick={() => {
                   onForkClick(row.original);
                 }}

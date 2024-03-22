@@ -3,6 +3,7 @@ import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import { Check, ChevronRight, Circle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { VariantProps, cva } from "class-variance-authority"
 
 const DropdownMenu = DropdownMenuPrimitive.Root
 
@@ -72,21 +73,39 @@ const DropdownMenuContent = React.forwardRef<
 ))
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
 
+const dropdownMenuItemVariant = cva(
+  "relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "focus:bg-accent focus:text-accent-foreground",
+        primary: "text-primary-500 focus:text-primary-500 focus:bg-primary-100 font-semibold",
+        destructive:
+          "text-red-500 focus:text-red-500 focus:bg-red-100 font-semibold",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
+export interface DropdownMenuItemProps
+  extends  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item>,
+    VariantProps<typeof dropdownMenuItemVariant> {
+      inset?: boolean;
+    }
+
 const DropdownMenuItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & {
-    inset?: boolean
-  }
->(({ className, inset, ...props }, ref) => (
-  <DropdownMenuPrimitive.Item
-    ref={ref}
-    className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      inset && "pl-8",
-      className
-    )}
-    {...props}
-  />
+  DropdownMenuItemProps
+>(({ className, variant, inset, ...props }, ref) => (
+  <div className="data-[disabled]:cursor-not-allowed" data-disabled={props.disabled}>
+    <DropdownMenuPrimitive.Item
+      ref={ref}
+      className={cn(dropdownMenuItemVariant({ variant }), className)}
+      {...props}
+    />
+  </div>
 ))
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName
 
@@ -195,4 +214,5 @@ export {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
+  dropdownMenuItemVariant,
 }

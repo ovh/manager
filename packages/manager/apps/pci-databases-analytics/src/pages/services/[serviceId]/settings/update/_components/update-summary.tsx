@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import {
   Boxes,
-  Clock,
   Cloud,
   Cloudy,
   Cpu,
@@ -13,15 +12,7 @@ import {
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/models/database';
 import { addStorage, formatStorage } from '@/lib/bytesHelper';
-import {
-  Engine,
-  Flavor,
-  ForkSource,
-  ForkSourceType,
-  Plan,
-  Region,
-  Version,
-} from '@/models/order-funnel';
+import { Engine, Flavor, Plan, Region, Version } from '@/models/order-funnel';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Network, Subnet } from '@/models/network';
 import { Button } from '@/components/ui/button';
@@ -30,7 +21,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import FormattedDate from '@/components/table-date';
 
 interface UpdateSummaryProps {
   order: {

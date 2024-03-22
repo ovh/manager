@@ -1,5 +1,5 @@
 import { ArrowRight, Construction } from 'lucide-react';
-import { useGetMaintenances } from '@/hooks/api/maintenance.api.hooks';
+import { useGetMaintenances } from '@/hooks/api/maintenances.api.hooks';
 import { useServiceData } from '../../layout';
 import { POLLING } from '@/configuration/polling';
 import { database } from '@/models/database';
@@ -33,7 +33,10 @@ const Maintenance = () => {
             </p>
             <p>est/sont prévue(es) sur votre service</p>
           </div>
-          <Link to="./settings" className="flex flex-row gap-1 mt-2">
+          <Link
+            to="./settings#maintenances"
+            className="flex flex-row gap-1 mt-2"
+          >
             Gérer et plannifier mes futures maintenances
             <ArrowRight className="w-4 h-4 mt-1 text-primary" />
           </Link>
@@ -41,7 +44,10 @@ const Maintenance = () => {
       ) : (
         <div>
           <p>Aucune maintenance n'est prévue sur votre service</p>
-          <Link to="./settings" className="flex flex-row gap-1 mt-2">
+          <Link
+            to="./settings#configuration"
+            className="flex flex-row gap-1 mt-2"
+          >
             Plannifier mes futures maintenances
             <ArrowRight className="w-4 h-4 mt-1 text-primary" />
           </Link>

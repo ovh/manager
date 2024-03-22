@@ -83,7 +83,7 @@ export const getColumns = ({
         <div className="w-full text-right pr-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
+              <Button variant="menu" size="menu">
                 <span className="sr-only">Open menu</span>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
@@ -91,6 +91,7 @@ export const getColumns = ({
             <DropdownMenuContent align="end">
               {/* TODO: should we get the status from the api ? */}
               <DropdownMenuItem
+                variant="destructive"
                 onClick={() => onCancelQueryClicked(row.original)}
               >
                 {t('tableCurrentQueriesActionsMenuTerminateQuery')}

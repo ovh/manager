@@ -33,7 +33,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
               )
             }
           >
-            <SelectTrigger className="w-1/2 h-8 mb-3">
+            <SelectTrigger className="h-8 mb-3">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
