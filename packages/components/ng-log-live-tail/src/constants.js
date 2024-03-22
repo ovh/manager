@@ -1,7 +1,7 @@
 export const DISPLAY_RULES = {
   UPPERCASE: ['verb', 'authorizationDecision'],
   HIDE: ['_id'],
-  TEXT_PRIMARY: ['requestReceivedTimestamp'],
+  TEXT_P_100: ['requestReceivedTimestamp'],
 };
 
 export default {
