@@ -1,0 +1,6 @@
+{
+  "spf_banner_info": "If you use the OVHcloud email solution, we strongly recommend checking that the SPF record for your DNS zone is correctly installed, to ensure that your emails are delivered correctly.",
+  "spf_banner_link": "Find out more",
+  "mxplan_banner_info": "A migration from Outlook Web App to Zimbra is currently in progress. You will receive further details regarding the process via email. You can visit the migration FAQ page for more information",
+  "mxplan_banner_link": "Find out more"
+}

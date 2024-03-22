@@ -173,7 +173,6 @@ export default /* @ngInject */ function EmailProCtrl(
       })
       .then((exchange) => {
         $scope.exchange = Object.assign($scope.exchange, exchange);
-
         return $scope.exchange.isMXPlan
           ? EmailPro.retrievingAssociatedDomainName($scope.exchange.domain)
           : $q.when();
