@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TFunction } from 'react-i18next';
 import { UseMutateAsyncFunction } from '@tanstack/react-query';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -21,10 +21,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu, ActionMenuItem } from '@ovhcloud/manager-components';
 import { EditableText } from '@/components/EditableText';
 import { ProductStatus, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
+import { DissociateVrackModal } from './DissociateVrackModal';
 
 export const DisplayNameCell: React.FC<DataGridCellProps<
   string | undefined,
@@ -118,14 +120,61 @@ export const VrackIdCell: React.FC<DataGridCellProps<
   openAssociationModal: (id: string) => void;
   label: string;
   href?: string;
-}> = ({ cellData, rowData, isLoading, openAssociationModal, label, href }) => {
+  showActionMenu?: boolean;
+  t: TFunction;
+}> = ({
+  cellData,
+  rowData,
+  isLoading,
+  openAssociationModal,
+  label,
+  href,
+  showActionMenu,
+  t,
+}) => {
   const editable = isEditable(rowData);
+  const [openedDissociateModal, setOpenedDissociateModal] = useState(false);
+
+  const menuItems: ActionMenuItem[] = [
+    {
+      id: 1,
+      label: t('vrackActionDissociate'),
+      onClick: () => setOpenedDissociateModal(true),
+    },
+  ];
 
   if (cellData) {
-    return href ? (
-      <OsdsLink href={href}>{cellData}</OsdsLink>
-    ) : (
-      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{cellData}</OsdsText>
+    return (
+      <>
+        <div className="flex items-center">
+          <div className="grow">
+            {href ? (
+              <OsdsLink href={href} color={ODS_THEME_COLOR_INTENT.primary}>
+                {cellData}
+              </OsdsLink>
+            ) : (
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                {cellData}
+              </OsdsText>
+            )}
+          </div>
+          {showActionMenu && (
+            <div className="flex-none">
+              <ActionMenu isCompact={true} items={menuItems}></ActionMenu>
+            </div>
+          )}
+        </div>
+        {showActionMenu && (
+          <DissociateVrackModal
+            closeModal={() => setOpenedDissociateModal(false)}
+            headline={t('modalDissociateHeadline')}
+            description={t('modalDissociateDescription')}
+            isModalOpen={openedDissociateModal}
+            vrackId={rowData.currentState.vrackId}
+            vrackServicesId={rowData.id}
+          ></DissociateVrackModal>
+        )}
+      </>
     );
   }
 

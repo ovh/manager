@@ -22,7 +22,11 @@ import {
   guide1Title,
   guide2Title,
 } from '../../src/public/translations/vrack-services/onboarding/Messages_fr_FR.json';
-import { onboardingDescription } from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
+import {
+  onboardingDescription,
+  betaSubnetLimitMessage,
+} from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
+import { vrackActionDissociate } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
 
 Then('User sees the create a vRack Services button {word}', async function(
   this: ICustomWorld<ConfigParams>,
@@ -238,5 +242,30 @@ Then('User sees the subnet {word} page', async function(
   } else {
     const listing = await this.page.locator('osds-datagrid');
     expect(listing).toBeVisible();
+  }
+});
+
+Then('User {string} the action menu with button dissociate', async function(
+  this: ICustomWorld<ConfigParams>,
+  seeActionMenu: 'see' | "doesn't see",
+) {
+  await sleep(1000);
+  const actionMenu = this.page.getByTestId('action-menu-icon');
+  if (seeActionMenu === 'see') {
+    expect(actionMenu).toBeInViewport();
+  } else {
+    expect(actionMenu).not.toBeInViewport();
+  }
+});
+
+Then('User sees button dissociate', async function(
+  this: ICustomWorld<ConfigParams>,
+) {
+  await sleep(1000);
+  const dissociateButton = this.page.getByText('vrackActionDissociate');
+  if (await this.page.getByTestId('action-menu-icon').count()) {
+    expect(dissociateButton).toBeVisible();
+  } else {
+    expect(dissociateButton).not.toBeVisible();
   }
 });

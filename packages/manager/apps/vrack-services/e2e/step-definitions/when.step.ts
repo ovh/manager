@@ -186,3 +186,19 @@ When('User navigates to the vRack Services Subnet page', async function(
     waitUntil: 'load',
   });
 });
+
+When('User click on the private network action menu button', async function(
+  this: ICustomWorld<ConfigParams>,
+) {
+  await setupNetwork(this);
+
+  const { selectedVrackServices } = this.testContext.data;
+
+  await this.page.waitForURL(getUrl('overview', selectedVrackServices.id), {
+    waitUntil: 'load',
+  });
+
+  if (await this.page.getByTestId('action-menu-icon').count()) {
+    await this.page.getByTestId('action-menu-icon').click();
+  }
+});
