@@ -1,8 +1,0 @@
-{
-  "cpb_vouchers_add_credit_title": "Zamów zasilenie konta cloud",
-  "cpb_vouchers_add_credit_info": "Wybierz kwotę (netto), jaką chcesz zasilić ten projekt. Po opłaceniu zamówienia Twoje konto zostanie zasilone. Kwotę tę będziesz mógł wykorzystać do opłacenia faktur wystawionych w ciągu kolejnych 12 miesięcy za zasoby tego projektu.",
-  "cpb_vouchers_add_credit_amount": "Kwota do zasilenia (netto {{ currency }} ):",
-  "cpb_vouchers_add_credit_valid": "Utwórz zamówienie",
-  "cpb_vouchers_add_credit_success": "Zamówienie dotyczące zasilenia na kwotę {{ amount }} jest dostępne <a href=\"{{ url }}\" target=\"_blank\">tutaj</a>.",
-  "cpb_vouchers_add_credit_load_err": "Wystąpił błąd pobierania informacji o zamówieniu zasilenia konta cloud."
-}

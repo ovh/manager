@@ -1,8 +1,0 @@
-{
-  "cpb_vouchers_add_credit_title": "Acheter du crédit cloud",
-  "cpb_vouchers_add_credit_info": "Choisissez la somme (hors taxes) à créditer sur ce projet. Une fois le bon de commande réglé, ce crédit sera utilisé pour les forfaits et consommations de ce projet pour les factures éditées au cours des 12 prochains mois.",
-  "cpb_vouchers_add_credit_amount": "Somme à créditer (HT {{ currency }})",
-  "cpb_vouchers_add_credit_valid": "Générer un bon de commande",
-  "cpb_vouchers_add_credit_success": "Le bon de commande pour votre crédit de {{ amount }} est disponible <a href=\"{{ url }}\" target=\"_blank\">ici</a>.",
-  "cpb_vouchers_add_credit_load_err": "Oups, une erreur est survenue lors du chargement de l’achat de crédit cloud."
-}
