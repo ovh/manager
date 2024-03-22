@@ -1,6 +1,6 @@
 <oui-collapsible
     class="mx-0"
-    heading="{{ ::'cpbc_hourly_instance_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.instance.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_hourly_instance_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.instance.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <instance-list
         instances="$ctrl.resources.hourlyInstances"
@@ -13,19 +13,19 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
-    heading="{{ ::'cpbc_snapshot_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.snapshot.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_snapshot_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.snapshot.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <snapshot-list snapshots="$ctrl.resources.snapshots"></snapshot-list>
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
-    heading="{{ ::'cpbc_volume_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.volume.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_volume_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.volume.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <volume-list volumes="$ctrl.resources.volumes"></volume-list>
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
-    heading="{{ ::'cpbc_object_storage_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.objectStorage.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_object_storage_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.objectStorage.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <object-storage-list
         storages="$ctrl.resources.objectStorages"
@@ -34,7 +34,7 @@
 <oui-collapsible
     class="mx-0"
     data-ng-if="!$ctrl.isTrustedZone"
-    heading="{{ ::'cpbc_archive_storage_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.archiveStorage.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_archive_storage_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.archiveStorage.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <archive-storage-list
         storages="$ctrl.resources.archiveStorages"
@@ -43,7 +43,7 @@
 <oui-collapsible
     class="mx-0"
     data-ng-if="!$ctrl.isTrustedZone"
-    heading="{{ ::'cpbc_cold_archive_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.coldArchive.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_cold_archive_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.coldArchive.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-cold-archive-list
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
@@ -52,7 +52,7 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
-    heading="{{ ::'cpbc_hourly_instance_trafic_title' | translate }} ({{ $ctrl.resources.totals.hourly.bandwidth.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_hourly_instance_trafic_title' | translate }} ({{ $ctrl.resources.totals.hourly.bandwidth.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <outgoing-trafic
         data-regions="$ctrl.resources.bandwidthByRegions"
@@ -61,7 +61,7 @@
 <oui-collapsible
     class="mx-0"
     data-ng-if="!$ctrl.isTrustedZone"
-    heading="{{ ::'cpbc_hourly_private_registry_title' | translate }} ({{ $ctrl.resources.totals.hourly.privateRegistry.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_hourly_private_registry_title' | translate }} ({{ $ctrl.resources.totals.hourly.privateRegistry.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
@@ -71,7 +71,7 @@
 <oui-collapsible
     class="mx-0"
     data-ng-if="!$ctrl.isTrustedZone"
-    heading="{{ :: $ctrl.PRODUCTS.KUBERNETES_LOAD_BALANCER }} ({{ $ctrl.resources.totals.hourly.kubernetesLoadBalancer.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ :: $ctrl.PRODUCTS.KUBERNETES_LOAD_BALANCER }} ({{ $ctrl.resources.totals.hourly.kubernetesLoadBalancer.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
@@ -81,7 +81,7 @@
 <oui-collapsible
     class="mx-0"
     data-ng-if="!$ctrl.isTrustedZone"
-    heading="{{ ::'cpbc_hourly_training_title' | translate }} ({{ $ctrl.resources.totals.hourly.training.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_hourly_training_title' | translate }} ({{ $ctrl.resources.totals.hourly.training.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
@@ -90,7 +90,7 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
-    heading="{{ ::'cpbc_hourly_notebooks_title' | translate }} ({{ $ctrl.resources.totals.hourly.notebooks.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_hourly_notebooks_title' | translate }} ({{ $ctrl.resources.totals.hourly.notebooks.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
@@ -100,7 +100,7 @@
 <oui-collapsible
     class="mx-0"
     data-ng-if="!$ctrl.isTrustedZone"
-    heading="{{ ::'cpbc_hourly_ai_deploy_title' | translate }} ({{ $ctrl.resources.totals.hourly.aiDeploy.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_hourly_ai_deploy_title' | translate }} ({{ $ctrl.resources.totals.hourly.aiDeploy.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
@@ -110,7 +110,7 @@
 <oui-collapsible
     class="mx-0"
     data-ng-if="!$ctrl.isTrustedZone"
-    heading="{{ ::'cpbc_hourly_data_processing_title' | translate }} ({{ $ctrl.resources.totals.hourly.dataProcessing.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_hourly_data_processing_title' | translate }} ({{ $ctrl.resources.totals.hourly.dataProcessing.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
@@ -120,7 +120,7 @@
 <oui-collapsible
     class="mx-0"
     data-ng-if="!$ctrl.isTrustedZone"
-    heading="{{ ::'cpbc_hourly_databases_title' | translate }} ({{ $ctrl.resources.totals.hourly.databases.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_hourly_databases_title' | translate }} ({{ $ctrl.resources.totals.hourly.databases.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
@@ -130,7 +130,7 @@
 <oui-collapsible
     class="mx-0"
     data-ng-if="!$ctrl.isTrustedZone"
-    heading="{{ ::'cpbc_hourly_floating_ip_title' | translate }} ({{ $ctrl.resources.totals.hourly.floatingIP.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_hourly_floating_ip_title' | translate }} ({{ $ctrl.resources.totals.hourly.floatingIP.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
@@ -140,7 +140,17 @@
 <oui-collapsible
     class="mx-0"
     data-ng-if="!$ctrl.isTrustedZone"
-    heading="{{ ::'cpbc_hourly_gateway_title' | translate }} ({{ $ctrl.resources.totals.hourly.gateway.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{ ::'cpbc_hourly_public_ip_title' | translate }} ({{ $ctrl.resources.totals.hourly.publicIP.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
+    <pci-billing-resource-usage
+        data-currency-symbol="$ctrl.resources.totals.currencySymbol"
+        data-resource-usage="$ctrl.resources.publicIP"
+    ></pci-billing-resource-usage>
+</oui-collapsible>
+<oui-collapsible
+    class="mx-0"
+    data-ng-if="!$ctrl.isTrustedZone"
+    data-heading="{{ ::'cpbc_hourly_gateway_title' | translate }} ({{ $ctrl.resources.totals.hourly.gateway.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
@@ -150,7 +160,7 @@
 <oui-collapsible
     class="mx-0"
     data-ng-if="!$ctrl.isTrustedZone"
-    heading="{{:: $ctrl.PRODUCTS.OCTAVIA_LOAD_BALANCER}} ({{ $ctrl.resources.totals.hourly.octaviaLoadBalancer.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+    data-heading="{{:: $ctrl.PRODUCTS.OCTAVIA_LOAD_BALANCER}} ({{ $ctrl.resources.totals.hourly.octaviaLoadBalancer.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
