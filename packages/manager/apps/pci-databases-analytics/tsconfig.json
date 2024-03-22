@@ -18,6 +18,8 @@
     "allowJs": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
+    // "strictNullChecks": true,
+    // "exactOptionalPropertyTypes": true,
     "paths": {
       "@/*": ["./src/*"],
       "@playwright-helpers/*": ["../../../../playwright-helpers/*"]

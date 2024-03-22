@@ -1,4 +1,3 @@
-import IpsRestrictionsForm from '@/components/Order/cluster-options/ips-restrictions-form';
 import { Link } from '@/components/links';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useServiceData } from '../layout';
@@ -11,9 +10,13 @@ import { Button } from '@/components/ui/button';
 import { TimePicker } from '@/components/ui/time-picker';
 import { Label } from '@/components/ui/label';
 import Maintenances from './_components/maintenances';
+import IpsRestrictionsUpdate from './_components/ipRestrictions';
+import RenameService from '../_components/renameService';
+import { useModale } from '@/hooks/useModale';
 
 const Settings = () => {
-  const { service, projectId } = useServiceData();
+  const renameModale = useModale('rename');
+  const { service, projectId, serviceQuery } = useServiceData();
   const availabilitiesVersionQuery = useGetAvailabilities(
     projectId,
     service.id,
@@ -53,7 +56,7 @@ const Settings = () => {
       <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2">
         <Card>
           <CardHeader>
-            <h4>Upgrade your service</h4>
+            <h5>Upgrade your service</h5>
           </CardHeader>
           <CardContent>
             <Table>
@@ -123,7 +126,7 @@ const Settings = () => {
                     </TableCell>
                   )}
                 </TableRow>
-                {service.storage && (
+                {service.storage?.size.value > 0 && (
                   <TableRow>
                     <TableCell className="font-semibold">Storage</TableCell>
                     <TableCell>
@@ -177,19 +180,16 @@ const Settings = () => {
 
         <Card className="col-span-2">
           <CardHeader>
-            <h4>Manage ips</h4>
+            <h5>Manage ips</h5>
           </CardHeader>
           <CardContent>
-            <IpsRestrictionsForm
-              value={service.ipRestrictions}
-              onChange={(newIps) => {}}
-            ></IpsRestrictionsForm>
+            <IpsRestrictionsUpdate initialValue={service.ipRestrictions} />
           </CardContent>
         </Card>
 
         <Card className="col-span-2" id="maintenances">
           <CardHeader>
-            <h4>Maintenances</h4>
+            <h5>Maintenances</h5>
           </CardHeader>
           <CardContent>
             <Maintenances />
@@ -198,13 +198,10 @@ const Settings = () => {
 
         <Card className="col-span-1" id="configuration">
           <CardHeader>
-            <h4>Configure your service</h4>
+            <h5>Configure your service</h5>
           </CardHeader>
           <CardContent>
             <div className="grid gap-2">
-              <Button variant="outline" className="w-full">
-                Rename my service
-              </Button>
               <div>
                 <Label>Maintenance time</Label>
                 <TimePicker
@@ -219,6 +216,13 @@ const Settings = () => {
                   setDate={() => {}}
                 />
               </div>
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={() => renameModale.open()}
+              >
+                Rename my service
+              </Button>
               <Button variant="destructive" className="w-full">
                 Delete my service
               </Button>
@@ -228,7 +232,7 @@ const Settings = () => {
 
         <Card className="col-span-3">
           <CardHeader>
-            <h4>Advanced configuration</h4>
+            <h5>Advanced configuration</h5>
           </CardHeader>
           <CardContent>
             <ul className="list-disc list-inside">
@@ -240,6 +244,15 @@ const Settings = () => {
           </CardContent>
         </Card>
       </div>
+
+      <RenameService
+        controller={renameModale.controller}
+        service={service}
+        onSuccess={() => {
+          renameModale.close();
+          serviceQuery.refetch();
+        }}
+      />
     </>
   );
 };
