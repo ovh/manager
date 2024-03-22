@@ -204,21 +204,21 @@ export function getPciProjectMenu(
           ),
         },
         {
-          id: 'load-balancer',
-          title: 'Kubernetes Load Balancer',
-          feature: 'load-balancer',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/load-balancer`,
-          ),
-        },
-        {
           id: 'private-registry',
           title: 'Managed Private Registry',
           feature: 'private-registry',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/private-registry`,
+          ),
+        },
+        {
+          id: 'load-balancer',
+          title: 'Kubernetes Load Balancer',
+          feature: 'load-balancer',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/load-balancer`,
           ),
         },
       ],
