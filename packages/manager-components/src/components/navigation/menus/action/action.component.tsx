@@ -5,6 +5,7 @@ import {
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_BUTTON_TYPE,
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
@@ -19,37 +20,46 @@ import {
 import { ReactI18NextChild, useTranslation } from 'react-i18next';
 import '../translations/translation';
 
-export interface ActionItem {
+export interface ActionMenuItem {
   id: number;
   rel?: OdsHTMLAnchorElementRel;
   download?: string;
-  href: string;
-  target: OdsHTMLAnchorElementTarget;
+  href?: string;
+  target?: OdsHTMLAnchorElementTarget;
+  onClick?: () => void;
   label: ReactI18NextChild | Iterable<ReactI18NextChild>;
 }
 
-export interface ActionButtonProps {
-  items: ActionItem[];
+export interface ActionMenuProps {
+  items: ActionMenuItem[];
+  isCompact?: boolean;
 }
 
-export const ActionButton: React.FC<ActionButtonProps> = ({ items }) => {
+export const ActionMenu: React.FC<ActionMenuProps> = ({ items, isCompact }) => {
   const { t } = useTranslation('buttons');
   return (
     <OsdsMenu>
       <OsdsButton
         slot="menu-title"
-        className="block mb-6"
+        className="mb-4"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
+        type={ODS_BUTTON_TYPE.button}
         size={ODS_BUTTON_SIZE.sm}
         inline
+        circle={isCompact || undefined}
       >
-        {t('common_actions')}
-        <span slot="end">
+        {!isCompact && t('common_actions')}
+        <span slot={!isCompact ? 'end' : undefined}>
           <OsdsIcon
-            name={ODS_ICON_NAME.ARROW_DOWN_CONCEPT}
+            name={
+              isCompact
+                ? ODS_ICON_NAME.ELLIPSIS
+                : ODS_ICON_NAME.ARROW_DOWN_CONCEPT
+            }
             color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_ICON_SIZE.xxs}
+            size={isCompact ? ODS_ICON_SIZE.xs : ODS_ICON_SIZE.xxs}
+            data-testid="action-menu-icon"
           />
         </span>
       </OsdsButton>
@@ -57,14 +67,18 @@ export const ActionButton: React.FC<ActionButtonProps> = ({ items }) => {
       {items.map((item) => (
         <OsdsMenuItem key={item.id}>
           <OsdsButton
+            size={ODS_BUTTON_SIZE.sm}
             color={ODS_THEME_COLOR_INTENT.primary}
             variant={ODS_BUTTON_VARIANT.ghost}
             href={item.href}
             rel={item.rel}
             target={item.target}
+            onClick={item.onClick}
             download={item.download}
           >
-            {item.label}
+            <span slot="start">
+              <span>{item.label}</span>
+            </span>
           </OsdsButton>
         </OsdsMenuItem>
       ))}
@@ -72,4 +86,4 @@ export const ActionButton: React.FC<ActionButtonProps> = ({ items }) => {
   );
 };
 
-export default ActionButton;
+export default ActionMenu;
