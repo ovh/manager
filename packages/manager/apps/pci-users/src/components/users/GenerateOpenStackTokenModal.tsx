@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   OsdsButton,
   OsdsClipboard,
@@ -40,6 +40,12 @@ export default function GenerateOpenStackTokenModal({
 
   const [token, setToken] = useState<OpenStackTokenResponse>();
   const [password, setPassword] = useState('');
+  const [hasError, setHasError] = useState(false);
+  const [touched, setTouched] = useState(false);
+
+  useEffect(() => {
+    setHasError(touched && password === '');
+  }, [password, touched]);
 
   const { data: user, isPending: isUserPending } = useUser(
     `${projectId}`,
@@ -78,13 +84,33 @@ export default function GenerateOpenStackTokenModal({
                 user: user?.username,
               })}
             </OsdsText>
-            <OsdsFormField>
-              <OsdsText slot="label">
+            <OsdsFormField
+              className="mt-4"
+              color={
+                !hasError
+                  ? ODS_THEME_COLOR_INTENT.primary
+                  : ODS_THEME_COLOR_INTENT.error
+              }
+              error={
+                hasError
+                  ? t('pci_projects_project_users_add_description_error')
+                  : ''
+              }
+            >
+              <OsdsText slot="label" color={ODS_THEME_COLOR_INTENT.text}>
                 {t('pci_projects_project_users_openstack-token_password_label')}
               </OsdsText>
               <OsdsPassword
                 inline={true}
                 value={password}
+                color={
+                  !hasError
+                    ? ODS_THEME_COLOR_INTENT.primary
+                    : ODS_THEME_COLOR_INTENT.error
+                }
+                onOdsBlur={() => {
+                  setTouched(true);
+                }}
                 onOdsValueChange={(e) => setPassword(`${e.detail.value}`)}
                 data-testid="open-stack-token_password"
               ></OsdsPassword>
@@ -101,7 +127,7 @@ export default function GenerateOpenStackTokenModal({
 
         {token && (
           <>
-            <OsdsText>
+            <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="my-2">
               {t('pci_projects_project_users_openstack-token_token_label')}
             </OsdsText>
             <OsdsClipboard value={token['X-Auth-Token']}></OsdsClipboard>
@@ -121,7 +147,7 @@ export default function GenerateOpenStackTokenModal({
         onClick={onClose}
       >
         {token && t('pci_projects_project_users_openstack-token_close_label')}
-        {!token && t('common_cancel')}
+        {!token && t('pci_projects_project_users_openstack-token_cancel_label')}
       </OsdsButton>
       {!token && (
         <OsdsButton
@@ -131,7 +157,7 @@ export default function GenerateOpenStackTokenModal({
           {...((isPending || !password) && { disabled: true })}
           data-testid="submitButton"
         >
-          {t('common_confirm')}
+          {t('pci_projects_project_users_openstack-token_submit_label')}
         </OsdsButton>
       )}
     </OsdsModal>

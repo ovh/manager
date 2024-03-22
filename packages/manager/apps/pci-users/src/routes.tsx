@@ -62,15 +62,15 @@ export default [
             path: 'new',
             ...lazyRouteConfig(() => import('@/pages/add/Index')),
           },
-        ],
-      },
-      {
-        path: 'onboarding',
-        ...lazyRouteConfig(() => import('@/pages/OnBoardingPage')),
-        children: [
           {
-            path: 'new',
-            ...lazyRouteConfig(() => import('@/pages/add/Index')),
+            path: 'onboarding',
+            ...lazyRouteConfig(() => import('@/pages/OnBoardingPage')),
+            children: [
+              {
+                path: 'new',
+                ...lazyRouteConfig(() => import('@/pages/add/Index')),
+              },
+            ],
           },
         ],
       },
