@@ -1,6 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
 import { database } from '@/models/database';
@@ -17,6 +16,7 @@ import {
 import { SortableHeader } from '@/components/ui/data-table';
 import FormattedDate from '@/components/table-date';
 import { humanizeEngine } from '@/lib/engineNameHelper';
+import { Link } from '@/components/links';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
@@ -209,7 +209,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
+              <Button variant="menu" size="menu">
                 <span className="sr-only">Open menu</span>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
@@ -217,6 +217,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
+                variant="primary"
                 onClick={() => {
                   navigator.clipboard.writeText(service.id);
                   toast.success('Service id saved in clipboard', {
@@ -228,6 +229,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
+                variant="primary"
                 onClick={() => {
                   onRenameClicked(row.original);
                 }}

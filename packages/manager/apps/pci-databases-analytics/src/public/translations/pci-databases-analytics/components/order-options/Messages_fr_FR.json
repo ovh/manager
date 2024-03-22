@@ -19,7 +19,7 @@
   "ipDescriptionFieldLabel": "Description",
   "invalidIpError": "Doit être une IPv4 (ex : 192.168.0.1) ou un bloc d'adresses IP (ex: 192.168.0.1/24)",
   "existingIpError": "Cette adresse IP est déjà ajoutée",
-  "numberOfConfiguredIps_0": "{{count}} IP configurées",
-  "numberOfConfiguredIps": "{{count}} IP configurée",
-  "numberOfConfiguredIps_plural": "{{count}} IP configurées"
+  "numberOfConfiguredIps_zero": "{{count}} IP configurées",
+  "numberOfConfiguredIps_one": "{{count}} IP configurée",
+  "numberOfConfiguredIps_other": "{{count}} IP configurées"
 }

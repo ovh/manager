@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Calendar as CalendarIcon } from 'lucide-react';
-import { Calendar } from '@/components/ui/calendar';
 import { order } from '@/models/catalog';
 import { database } from '@/models/database';
 import { Button } from '@/components/ui/button';
@@ -19,7 +17,6 @@ import NodesConfig from '@/components/Order/cluster-config/nodes-config';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -33,30 +30,11 @@ import {
 import PriceUnitSwitch from '@/components/price-unit-switch';
 import PlansSelect from '@/components/Order/plan/plan-select';
 import FlavorsSelect from '@/components/Order/flavor/flavor-select';
-import NetworkOptions from '@/components/Order/cluster-options/network-options';
-import IpsRestrictionsForm from '@/components/Order/cluster-options/ips-restrictions-form';
 import RegionsSelect from '@/components/Order/region/region-select';
 import OrderPrice from '@/components/Order/order-price';
 import { useUpdate } from './useUpdate';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import FormattedDate from '@/components/table-date';
-import { formatStorage } from '@/lib/bytesHelper';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useServiceData } from '../../../layout';
 import ErrorList from '@/components/Order/error-list';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import { TimePicker } from '@/components/ui/time-picker';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
 import { UpdateInitialValue } from '..';
@@ -280,7 +258,8 @@ const UpdateForm = ({
             </section>
           )}
 
-          {/* {model.result.availability &&
+          {model.lists.flavors.length > 1 &&
+            model.result.availability &&
             (hasNodeSelection || hasStorageSelection) && (
               <section
                 id="cluster"
@@ -340,7 +319,7 @@ const UpdateForm = ({
                   />
                 )}
               </section>
-            )} */}
+            )}
           {/* <section id="options" className="divide-y-[1rem] divide-transparent">
             <h4>{t('sectionOptionsTitle')}</h4>
             {model.result.plan && (
