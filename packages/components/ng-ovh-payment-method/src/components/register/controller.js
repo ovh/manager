@@ -8,6 +8,8 @@ import {
   PAYPAL_PAYMENT_METHOD,
   PAYMENTS_RUPAY_MESSAGE_FEATURE,
   CHARGES,
+  SEPA_DIRECT_DEBIT_PAYMENT_METHOD,
+  SEPA_INFORMATION_MODAL_FEATURE,
 } from './constants';
 
 export default class OvhPaymentMethodRegisterCtrl {
@@ -27,6 +29,8 @@ export default class OvhPaymentMethodRegisterCtrl {
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.coreConfig = coreConfig;
+    const user = this.coreConfig.getUser();
+    this.subsidiary = user.ovhSubsidiary;
     // other attributes used in view
     this.loading = {
       init: false,
@@ -38,9 +42,7 @@ export default class OvhPaymentMethodRegisterCtrl {
     };
     this.PAYPAL_PAYMENT_METHOD = PAYPAL_PAYMENT_METHOD;
 
-    this.registrationCharges = `${CHARGES}${
-      this.coreConfig.getUser().currency.code
-    }`;
+    this.registrationCharges = `${CHARGES}${user.currency.code}`;
 
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
 
@@ -111,12 +113,14 @@ export default class OvhPaymentMethodRegisterCtrl {
 
   $onInit() {
     this.initAndCheckDefaultBinding();
+    this.isSepaInformationModalOpened = false;
+    this.hasAlreadyShownSepaInformationModal = false;
 
     this.loading.init = true;
     this.$q
       .all([
         this.getAllAvailablePaymentMethodTypes(),
-        this.getPaymentsRupayMessageFeature(),
+        this.getFeaturesAvailability(),
         this.getSpecificCrossBorderSentenceForCardPayment(),
       ])
       .finally(() => {
@@ -247,12 +251,18 @@ export default class OvhPaymentMethodRegisterCtrl {
       });
   }
 
-  getPaymentsRupayMessageFeature() {
+  getFeaturesAvailability() {
     return this.ovhFeatureFlipping
-      .checkFeatureAvailability(PAYMENTS_RUPAY_MESSAGE_FEATURE)
+      .checkFeatureAvailability([
+        PAYMENTS_RUPAY_MESSAGE_FEATURE,
+        SEPA_INFORMATION_MODAL_FEATURE,
+      ])
       .then((featureAvailability) => {
         this.showRupayMessage = featureAvailability.isFeatureAvailable(
           PAYMENTS_RUPAY_MESSAGE_FEATURE,
+        );
+        this.canShowSepaInformationModal = featureAvailability.isFeatureAvailable(
+          SEPA_INFORMATION_MODAL_FEATURE,
         );
       });
   }
@@ -272,6 +282,24 @@ export default class OvhPaymentMethodRegisterCtrl {
 
   resetForm() {
     this.model.setAsDefault = false;
+  }
+
+  onPaymentMethodTypeChange(type) {
+    // We display an information modal (only once per access to the payment method register screen) to customer
+    // to make them aware that SEPA payment method require them to have a bank account in the SEPA zone
+    if (
+      !this.hasAlreadyShownSepaInformationModal &&
+      this.canShowSepaInformationModal &&
+      type === SEPA_DIRECT_DEBIT_PAYMENT_METHOD
+    ) {
+      this.isSepaInformationModalOpened = true;
+      this.hasAlreadyShownSepaInformationModal = true;
+    }
+    this.resetForm();
+  }
+
+  closeSepaInformationModal() {
+    this.isSepaInformationModalOpened = false;
   }
 
   filterPaymentMethod(paymentMethodType) {

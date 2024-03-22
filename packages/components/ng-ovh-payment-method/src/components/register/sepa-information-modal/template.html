@@ -1,0 +1,22 @@
+<div data-ng-if="$ctrl.isModalOpened">
+    <div class="modal d-block" role="dialog" id="modal-sepa-information">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{:: 'ovh_payment_method_register_sepa_information_modal_title' | translate }}"
+                    data-primary-action="$ctrl.closeModal()"
+                    data-primary-label="{{:: 'ovh_payment_method_register_sepa_information_modal_confirm' | translate }}"
+                    data-on-dismiss="$ctrl.closeModal()"
+                >
+                    <p
+                        data-translate="ovh_payment_method_register_sepa_information_modal_part_1"
+                    ></p>
+                    <strong
+                        data-translate="ovh_payment_method_register_sepa_information_modal_part_2"
+                    ></strong>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>

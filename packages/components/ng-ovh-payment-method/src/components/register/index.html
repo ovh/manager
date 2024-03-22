@@ -23,7 +23,7 @@
                     data-thumbnail
                     data-value="paymentMethodType"
                     data-model="$ctrl.model.selectedPaymentMethodType"
-                    data-on-change="$ctrl.resetForm()"
+                    data-on-change="$ctrl.onPaymentMethodTypeChange(modelValue.type.paymentType)"
                     data-required="$ctrl.required"
                 >
                     <div
@@ -168,4 +168,9 @@
             </oui-message>
         </div>
     </div>
+    <sepa-information-modal
+        data-is-modal-opened="$ctrl.isSepaInformationModalOpened"
+        data-close-modal="$ctrl.closeSepaInformationModal()"
+    >
+    </sepa-information-modal>
 </ng-form>
