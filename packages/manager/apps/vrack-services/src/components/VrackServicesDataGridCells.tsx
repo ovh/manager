@@ -123,7 +123,9 @@ export const VrackIdCell: React.FC<DataGridCellProps<
 
   if (cellData) {
     return href ? (
-      <OsdsLink href={href}>{cellData}</OsdsLink>
+      <OsdsLink href={href} color={ODS_THEME_COLOR_INTENT.primary}>
+        {cellData}
+      </OsdsLink>
     ) : (
       <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{cellData}</OsdsText>
     );
