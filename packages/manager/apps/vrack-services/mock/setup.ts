@@ -6,7 +6,7 @@ export const setupMocks = async () =>
   setupWorker(
     ...toMswHandlers(
       getConfig({
-        nbVs: 19,
+        nbVs: 20,
         delayedOrders: true,
         deliveringVrackServicesOrders: true,
         deliveringVrackOrders: false,

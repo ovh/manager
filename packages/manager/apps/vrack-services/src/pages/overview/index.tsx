@@ -124,6 +124,8 @@ export const OverviewTab: React.FC = () => {
                     isLoading={isPending}
                     rowData={vrackServices}
                     href={vrackUrl}
+                    showActionMenu={true}
+                    t={t}
                   />
                 </TileBlock>
                 <TileBlock label={t('createdAt')}>
