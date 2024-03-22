@@ -47,7 +47,6 @@
   "pci_projects_project_instances_add_privateNetwork_local_private_mode_description2": "Le 'Local Private Mode' prend en charge le DHCP pour fournir automatiquement un adressage IP à vos instances.",
   "pci_projects_project_instances_add_privateNetwork_title": "Configurez votre réseau",
   "pci_projects_project_instances_add_privateNetwork_sub_title": "Merci de sélectionner le type de connexion réseau de votre nouvelle Instance du Cloud Public.",
-  "pci_projects_project_instances_add_privateNetwork_info1": "Le mode Public est sélectionné par défaut : il s'agit du modèle de réseau classique. Il est possible que ce ne soit pas compatible avec tous les produits ni disponible dans toutes les régions.",
   "pci_projects_project_instances_add_privateNetwork_public_mode": "Mode Public",
   "pci_projects_project_instances_add_privateNetwork_public_mode_description1": "C'est le modèle de réseau classique des instances Public Cloud. Les instances auront un port réseau public rattaché.",
   "pci_projects_project_instances_add_privateNetwork_public_mode_description2": "Veuillez noter que ce mode n'est pas compatible pour les nouveaux services de réseau (Load Balancer ou Floating IP).",
