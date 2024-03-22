@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Skeleton } from './ui/skeleton';
 import { ScrollArea, ScrollBar } from './ui/scroll-area';
 import { NavLink } from './links';
@@ -14,8 +15,15 @@ interface TabsMenuProps {
   tabs: Tab[];
 }
 const TabsMenu = ({ tabs }: TabsMenuProps) => {
+  const s = useRef(null);
   return (
-    <ScrollArea className="py-2">
+    <ScrollArea
+      className="py-2"
+      ref={s}
+      onWheel={(e) => {
+        s.current.children[1].scrollLeft += e.deltaY;
+      }}
+    >
       <div className="flex border-b border-[#e6f5fc]">
         {tabs.map((tab, index) => (
           <NavLink end={tab.end} to={tab.href} key={`${tab.label}-${index}`}>

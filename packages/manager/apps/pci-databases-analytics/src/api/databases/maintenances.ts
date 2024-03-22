@@ -2,7 +2,7 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 import { ServiceData } from '.';
 import { database } from '@/models/database';
 
-export const getMaintenance = async ({
+export const getMaintenances = async ({
   projectId,
   engine,
   serviceId,

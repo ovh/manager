@@ -44,7 +44,7 @@ const getTarget = (type: string) => {
 };
 
 const UpdateService = () => {
-  const [type, setType] = useQueryState('target');
+  const [type] = useQueryState('target');
   const { projectId, service } = useServiceData();
   const availabilitiesQuery = useGetAvailabilities(
     projectId,
@@ -56,7 +56,6 @@ const UpdateService = () => {
   const catalogQuery = useGetCatalog();
   const [network, setNetwork] = useState<Network | undefined>();
   const networkData = useVrack(projectId, service.nodes[0].region, network?.id);
-  const location = useLocation();
   const [initialValue, setInitialValue] = useState<UpdateInitialValue>({
     default: true,
     engine: service.engine,
