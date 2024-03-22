@@ -18,7 +18,7 @@ export const getAllUsers = async (
     disableCache: true,
   });
 
-  return [];
+  return data;
 };
 
 export const getUser = async (

@@ -131,12 +131,14 @@ export default function ListingPage() {
     },
     filters,
   );
+
+  const hrefAdd = useHref(`./new`);
+
   useEffect(() => {
     if (!isLoading && !users.totalRows) {
-      navigate('../onboarding');
+      navigate(`/pci/projects/${projectId}/users/onboarding`);
     }
-  }, [users, isLoading]);
-  const hrefAdd = useHref(`./new`);
+  }, [isLoading, users, navigate]);
 
   return (
     <>
