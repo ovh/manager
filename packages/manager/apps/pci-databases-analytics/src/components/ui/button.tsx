@@ -14,6 +14,8 @@ const buttonVariants = cva(
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border text-primary border-primary border-2 bg-background font-semibold hover:bg-primary-100",
+        menu:
+          "border text-primary border-primary border-2 bg-background font-semibold hover:bg-primary-100 rounded-full",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -25,7 +27,8 @@ const buttonVariants = cva(
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
         link: "text-base",
-        table: "h-4 w-4 my-auto"
+        table: "h-4 w-4 my-auto",
+        menu: 'size-8 p-0'
       },
     },
     defaultVariants: {
