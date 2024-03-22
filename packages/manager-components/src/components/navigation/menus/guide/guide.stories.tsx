@@ -23,7 +23,7 @@ export const guideButton: GuideButtonProps = {
 };
 
 const meta: Meta<GuideButtonProps> = {
-  title: 'Navigation/Buttons',
+  title: 'Navigation/Menus',
   decorators: [(story) => <div>{story()}</div>],
   component: GuideButton,
   argTypes: {},
