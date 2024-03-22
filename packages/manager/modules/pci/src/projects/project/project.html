@@ -54,7 +54,7 @@
                             ></pci-announcement-banner>
 
                             <pci-project-billing-change-mediation-banner
-                                data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.BILLING_CHANGE_MEDIATION_BANNER)"
+                                data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.BILLING_CHANGE_MEDIATION_BANNER) && !$ctrl.isDiscoveryProject"
                             ></pci-project-billing-change-mediation-banner>
 
                             <oui-message
