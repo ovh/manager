@@ -140,10 +140,6 @@ export default class OctaviaLoadBalancerCreateCtrl {
       });
   }
 
-  onFloatingIpChange() {
-    this.getPrivateNetworks();
-  }
-
   isPrivateNetworkStepValid() {
     return (
       !this.gatewayLoading &&

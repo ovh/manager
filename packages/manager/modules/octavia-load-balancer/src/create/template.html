@@ -98,6 +98,7 @@
             data-name="{{:: stepFloatingIp.name}}"
             data-header="{{:: 'octavia_load_balancer_create_floating_ip_title' | translate }}"
             data-prevent-next="true"
+            data-on-focus="$ctrl.getPrivateNetworks()"
             data-on-submit="$ctrl.trackFinishStep('3')"
         >
             <p
@@ -121,7 +122,6 @@
                         data-title="{{:: 'octavia_load_balancer_create_floating_ip_field' | translate }}"
                         data-placeholder="{{:: 'octavia_load_balancer_create_floating_ip_field' | translate }}"
                         data-name="{{:: stepPrivateNetwork.name + '_select_floatingip'}}"
-                        on-change="$ctrl.onFloatingIpChange()"
                         searchable
                     >
                     </oui-select>
