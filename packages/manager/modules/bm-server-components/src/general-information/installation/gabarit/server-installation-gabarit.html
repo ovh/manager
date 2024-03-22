@@ -23,8 +23,9 @@
                     data-translate="server_configuration_installation_gabarit_step1_info"
                     data-translate-values="{ t0: installation.server.name }"
                 ></p>
-                <div class="mb-4">
+                <div class="mb-4 server-installation">
                     <oui-collapsible
+                        class="list-striped"
                         data-heading="{{ itemFamily + ' (' + countFilter[itemFamily] + ')' }}"
                         group="familyType"
                         data-on-toggle="installation.selectFamily = itemFamily"
@@ -58,24 +59,10 @@
                                         data-translate="server_configuration_installation_deprecated"
                                     >
                                     </span>
-                                    <button
-                                        type="button"
-                                        class="btn btn-link ml-2"
-                                        data-ng-if="installation.deleteGabarit !== gabarit"
-                                        data-ng-click="installation.deleteGabarit = gabarit"
-                                        data-translate="common_delete"
-                                    ></button>
-                                    <i
-                                        class="pl-2 fa"
-                                        aria-hidden="true"
-                                        data-ng-class="{
-                                                    'fa-warning' : $ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,true),
-                                                    'fa-info-circle' : $ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,false),
-                                                }"
-                                        data-oui-tooltip="{{ $ctrl.getEndOfLifeMessage(gabarit) }}"
-                                        data-oui-tooltip-placement="right"
-                                    >
-                                    </i>
+                                    <span
+                                        class="mx-2"
+                                        data-ng-if="$ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,true) || $ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,false)"
+                                    >|</span>
                                     <span
                                         class="text-danger"
                                         data-ng-if="$ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,true)"
@@ -88,6 +75,29 @@
                                         data-ng-bind="gabarit.endOfInstall | date:'mediumDate'"
                                     >
                                     </span>
+                                    <i
+                                        class="pl-2 fa"
+                                        aria-hidden="true"
+                                        data-ng-class="{
+                                                    'fa-warning' : $ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,true),
+                                                    'fa-info-circle' : $ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,false),
+                                                }"
+                                        data-oui-tooltip="{{ $ctrl.getEndOfLifeMessage(gabarit) }}"
+                                        data-oui-tooltip-placement="right"
+                                    >
+                                    </i>
+                                    <i
+                                        class="pl-2 fa float-right"
+                                        data-oui-tooltip="{{:: 'common_delete' | translate }}"
+                                        data-oui-tooltip-placement="left"
+                                        data-ng-if="installation.deleteGabarit !== gabarit"
+                                        data-ng-click="installation.deleteGabarit = gabarit"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-bin"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </i>
                                 </oui-radio-description>
                             </oui-radio>
                         </div>

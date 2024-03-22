@@ -387,6 +387,8 @@
   "server_configuration_installation_ovh_step1_desktop_licence_info_text": "Une licence est nécessaire pour l'installation d'un OS Windows (sauf Windows HyperV) . Vous pouvez ajouter des licences dans la section Licences de l'espace client.",
   "server_configuration_installation_ovh_step1_disk_group": "Grappe de disque cible :",
   "server_configuration_installation_ovh_step1_custom": "Personnaliser la configuration des partitions",
+  "server_configuration_installation_ovh_step1_doc_tooltip_os": "Accéder à la page de documentation officielle de la distribution {{t0}} (en anglais)",
+  "server_configuration_installation_ovh_step1_doc_tooltip_app": "Accéder à la page de documentation officielle de l'application fournie avec la distribution {{t0}} (en anglais)",
   "server_configuration_installation_ovh_step1_hardwareRaid": "Personnaliser la configuration du hardware RAID",
   "server_configuration_installation_ovh_step1_hardwareRaid_wrong_location": "Le Hardware RAID n'est disponible que sur les serveurs situés sur le continent de votre compte client.",
   "server_configuration_installation_ovh_step1_warning_exist": "Attention, vous avez commencé la configuration d'une installation sous la distribution <b>{{t0}}</b>. La modification de la distribution supprimera cette configuration.",

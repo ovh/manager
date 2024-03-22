@@ -48,8 +48,9 @@
                     >
                     </i>
                 </p>
-                <div class="mb-4">
+                <div class="mb-4 server-installation">
                     <oui-collapsible
+                        class="list-striped"
                         data-heading="{{ itemFamily + ' (' + countFilter[itemFamily] + ')' }}"
                         group="familyType"
                         data-on-toggle="installation.selectFamily = itemFamily"
@@ -84,17 +85,10 @@
                                         data-translate="server_configuration_installation_deprecated"
                                     >
                                     </span>
-                                    <i
-                                        class="pl-2 fa"
-                                        aria-hidden="true"
-                                        data-ng-class="{
-                            'fa-warning' : $ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,true),
-                            'fa-info-circle' : $ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,false),
-                        }"
-                                        data-oui-tooltip="{{ $ctrl.getEndOfLifeMessage(distribution)}}"
-                                        data-oui-tooltip-placement="right"
-                                    >
-                                    </i>
+                                    <span
+                                        class="mr-2 ml-2"
+                                        data-ng-if="$ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,true) || $ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,false)"
+                                    >|</span>
                                     <span
                                         class="text-danger"
                                         data-ng-if="$ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,true)"
@@ -107,6 +101,33 @@
                                         data-ng-bind="distribution.endOfInstall | date:'mediumDate'"
                                     >
                                     </span>
+                                    <i
+                                        class="pl-2 fa"
+                                        aria-hidden="true"
+                                        data-ng-class="{
+                                                        'fa-warning' : $ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,true),
+
+                                                        'fa-info-circle' : $ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,false),
+                                                       }"
+                                        data-oui-tooltip="{{ $ctrl.getEndOfLifeMessage(distribution)}}"
+                                        data-oui-tooltip-placement="right"
+                                    >
+                                    </i>
+                                    <i
+                                        class="pl-2 fa float-right"
+                                        aria-hidden="true"
+                                        data-oui-tooltip="{{ $ctrl.getDocumentationMessage(distribution)}}"
+                                        data-oui-tooltip-placement="left"
+                                        data-ng-if="distribution.project.usage.url || distribution.project.os.url"
+                                    >
+                                        <a
+                                            data-ng-href="{{ distribution.project.usage.url || distribution.project.os.url }}"
+                                            rel="nofollow noopener"
+                                            target="_blank"
+                                        >
+                                            <span class="oui-icon oui-icon-external-link"></span>
+                                        </a>
+                                    </i>
                                 </oui-radio-description>
                             </oui-radio>
                         </div>
