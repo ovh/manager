@@ -31,7 +31,6 @@
   "pci_projects_project_instances_add_script_add_label": "Adicionar",
   "pci_projects_project_instances_add_privateNetwork_title": "Configure a sua rede",
   "pci_projects_project_instances_add_privateNetwork_sub_title": "Escolha o tipo de ligação de rede da sua nova instância Public Cloud.",
-  "pci_projects_project_instances_add_privateNetwork_info1": "O modo Público é selecionado por predefinição: este é o modelo de rede clássico. É possível que não seja compatível com todos os produtos nem esteja disponível em todas as regiões.",
   "pci_projects_project_instances_add_privateNetwork_public_mode": "Modo Público",
   "pci_projects_project_instances_add_privateNetwork_public_mode_description1": "É o modelo de rede clássico das instâncias Public Cloud. As instâncias terão uma porta de rede pública associada.",
   "pci_projects_project_instances_add_privateNetwork_public_mode_description2": "Tenha em conta que este modo não é compatível para os novos serviços de rede (Load Balancer ou Floating IP).",
