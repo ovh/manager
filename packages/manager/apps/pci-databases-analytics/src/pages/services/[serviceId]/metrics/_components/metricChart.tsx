@@ -23,6 +23,7 @@ import { database } from '@/models/database';
 import { colors } from './colors';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { useServiceData } from '../../layout';
+import { cn } from '@/lib/utils';
 
 ChartJS.register(
   CategoryScale,
@@ -42,12 +43,14 @@ interface MetricChartProps {
   period: database.service.MetricPeriodEnum;
   pollInterval: number;
   poll: boolean;
+  className?: string;
 }
 const MetricChart = ({
   metric,
   period,
   poll = false,
   pollInterval = 0,
+  className,
 }: MetricChartProps) => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/metrics',
@@ -95,6 +98,9 @@ const MetricChart = ({
               position: 'left',
               grid: {
                 display: false,
+              },
+              ticks: {
+                precision: 2,
               },
             },
 
@@ -180,7 +186,12 @@ const MetricChart = ({
     <>
       {metricQuery.isLoading ? (
         <div style={{ position: 'relative' }}>
-          <div className="aspect-square sm:aspect-auto sm:h-[400px]">
+          <div
+            className={cn(
+              'aspect-square sm:aspect-auto sm:h-[400px]',
+              className,
+            )}
+          >
             <Line options={chart.options} data={chart.data} />
           </div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full justify-center text-white flex items-center bg-opacity-20 bg-black">
@@ -190,7 +201,12 @@ const MetricChart = ({
         </div>
       ) : (
         isInitialized && (
-          <div className="aspect-square sm:aspect-auto sm:h-[400px]">
+          <div
+            className={cn(
+              'aspect-square sm:aspect-auto sm:h-[400px]',
+              className,
+            )}
+          >
             <Line options={chart.options} data={chart.data} />
           </div>
         )
