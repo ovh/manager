@@ -112,6 +112,20 @@
                                         data-ng-bind="distribution.endOfInstall | date:'mediumDate'"
                                     >
                                     </span>
+                                    <a
+                                        data-ng-href="{{ distribution.project.usage.url || distribution.project.os.url }}"
+                                        rel="nofollow noopener"
+                                        target="_blank"
+                                        data-ng-if="distribution.project.os.url"
+                                    >
+                                        <i
+                                            class="pl-2 oui-icon oui-icon-book"
+                                            aria-hidden="true"
+                                            data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step1_doc_tooltip_' + ( distribution.project.usage.url === null ? 'os' : 'app' ) | translate:{ t0: distribution.displayName } }}"
+                                            data-oui-tooltip-placement="right"
+                                        >
+                                        </i>
+                                    </a>
                                 </oui-radio-description>
                             </oui-radio>
                         </div>

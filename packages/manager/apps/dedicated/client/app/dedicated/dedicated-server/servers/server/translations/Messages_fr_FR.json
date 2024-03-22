@@ -412,6 +412,8 @@
   "server_configuration_installation_ovh_step1_disk_group": "Grappe de disque cible :",
   "server_configuration_installation_ovh_step1_disk_group_warning": "Attention : Si la cible n'est pas celle sélectionnée par défaut ({{t0}}), il ne sera plus possible de personnaliser la configuration du hardware RAID.",
   "server_configuration_installation_ovh_step1_custom": "Personnaliser la configuration des partitions",
+  "server_configuration_installation_ovh_step1_doc_tooltip_os": "Accéder à la page de documentation officielle de la distribution \"{{t0}}\" (en anglais)",
+  "server_configuration_installation_ovh_step1_doc_tooltip_app": "Accéder à la page de documentation officielle de l'application fournie avec la distribution \"{{t0}}\" (en anglais)",
   "server_configuration_installation_ovh_step1_hardwareRaid": "Personnaliser la configuration du hardware RAID",
   "server_configuration_installation_ovh_step1_hardwareRaid_wrong_location": "Le Hardware RAID n'est disponible que sur les serveurs situés sur le continent de votre compte client.",
   "server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported_short": "Aucun Hard RAID",
