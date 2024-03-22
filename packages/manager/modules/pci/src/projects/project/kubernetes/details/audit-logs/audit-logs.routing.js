@@ -4,6 +4,15 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       kubernetesView: 'pciProjectKubernetesDetailsAuditLogs',
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('isLogToCustomerFeatureAvailable')
+        .then((isLogToCustomerFeatureAvailable) =>
+          isLogToCustomerFeatureAvailable
+            ? false
+            : { state: 'pci.projects.project.kubernetes.details' },
+        ),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('kube_logs_tab_title'),
