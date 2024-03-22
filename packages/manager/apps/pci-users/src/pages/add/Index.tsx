@@ -117,7 +117,11 @@ export default function AddUserPage(): JSX.Element {
                     : ''
                 }
               >
-                <OsdsText slot="label">
+                <OsdsText
+                  slot="label"
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  className="mt-4"
+                >
                   {tCommon('pci_projects_project_users_add_description_label')}
                 </OsdsText>
                 <OsdsInput
@@ -190,7 +194,7 @@ export default function AddUserPage(): JSX.Element {
             modalActions.confirm(state.description, state.roles);
           }}
         >
-          {tCommon('common_confirm')}
+          {tCommon('pci_projects_project_users_roles_edit')}
         </OsdsButton>
       )}
     </OsdsModal>

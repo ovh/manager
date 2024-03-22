@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useHref, useParams } from 'react-router-dom';
+import { Outlet, useHref, useParams, useNavigate } from 'react-router-dom';
 import {
   OsdsBreadcrumb,
   OsdsButton,
-  OsdsChip,
   OsdsPopover,
   OsdsPopoverContent,
   OsdsDivider,
@@ -55,6 +54,7 @@ export default function ListingPage() {
   const { t } = useTranslation('common');
   const { t: tFilter } = useTranslation('filter');
   const navigation = useNavigation();
+  const navigate = useNavigate();
   const { projectId } = useParams();
   const [urlProject, setUrlProject] = useState('');
   const [searchField, setSearchField] = useState('');
@@ -131,7 +131,11 @@ export default function ListingPage() {
     },
     filters,
   );
-
+  useEffect(() => {
+    if (!isLoading && !users.totalRows) {
+      navigate('../onboarding');
+    }
+  }, [users, isLoading]);
   const hrefAdd = useHref(`./new`);
 
   return (
@@ -199,8 +203,6 @@ export default function ListingPage() {
               size={ODS_BUTTON_SIZE.sm}
               color={ODS_THEME_COLOR_INTENT.primary}
               variant={ODS_BUTTON_VARIANT.stroked}
-              // className="ml-5"
-              // className="ml-5"
             >
               <OsdsIcon
                 name={ODS_ICON_NAME.FILTER}

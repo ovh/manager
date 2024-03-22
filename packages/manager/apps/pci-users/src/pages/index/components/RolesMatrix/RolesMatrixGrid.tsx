@@ -18,7 +18,7 @@ interface IProps {
 export default function RolesMatrixGrid({ roles, services }: IProps) {
   return (
     <div className="max-w-full overflow-x-scroll">
-      <table className="w-full mb-2">
+      <table className="w-full border-collapse mb-2">
         <thead>
           <tr>
             <th></th>
@@ -41,12 +41,12 @@ export default function RolesMatrixGrid({ roles, services }: IProps) {
             service.permissions.map((permission, indexPermission) => (
               <tr
                 key={service.name + permission.label}
-                className="border border-[var(--ods-color-blue-200)]"
+                className="border border-solid border-[var(--ods-color-blue-200)]"
               >
                 {indexPermission === 0 && (
                   <td
                     rowSpan={service.permissions.length}
-                    className="px-0 py-2 h-10"
+                    className="py-2 h-10"
                   >
                     <OsdsText
                       className="whitespace-nowrap"
