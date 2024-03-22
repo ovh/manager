@@ -1,13 +1,22 @@
 import React, { PropsWithChildren } from 'react';
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsDivider,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
+  ODS_DIVIDER_SIZE,
+  ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_HUE,
+  ODS_THEME_COLOR_INTENT,
+} from '@ovhcloud/ods-common-theming';
 import placeholderSrc from './assets/placeholder.png';
 
 export type OnboardingLayoutProps = PropsWithChildren<{
@@ -57,18 +66,22 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             color={ODS_THEME_COLOR_INTENT.primary}
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._700}
-            className="block text-center mb-3"
+            hue={ODS_THEME_COLOR_HUE._800}
+            className="block text-center"
           >
             {title}
           </OsdsText>
+          <OsdsDivider size={ODS_DIVIDER_SIZE.seven} />
           <OsdsText
             level={ODS_TEXT_LEVEL.body}
-            className="block text-center mb-2"
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_TEXT_COLOR_INTENT.text}
+            className="block text-center max-w-4xl"
           >
             {description}
           </OsdsText>
-          <div className="flex sm:py-8 xs:w-full xs:flex-col sm:items-center sm:w-fit sm:flex-row">
-            <div className="w-full xs:py-3">
+          <div className="flex sm:py-6 xs:w-full xs:flex-col sm:items-center sm:w-fit sm:flex-row">
+            <div className="w-full xs:py-3 mt-2">
               <OsdsButton
                 color={ODS_THEME_COLOR_INTENT.primary}
                 size={ODS_BUTTON_SIZE.md}
