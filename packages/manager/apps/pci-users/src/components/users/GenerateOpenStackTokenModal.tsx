@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   OsdsButton,
   OsdsClipboard,
@@ -40,12 +40,7 @@ export default function GenerateOpenStackTokenModal({
 
   const [token, setToken] = useState<OpenStackTokenResponse>();
   const [password, setPassword] = useState('');
-  const [hasError, setHasError] = useState(false);
   const [touched, setTouched] = useState(false);
-
-  useEffect(() => {
-    setHasError(touched && password === '');
-  }, [password, touched]);
 
   const { data: user, isPending: isUserPending } = useUser(
     `${projectId}`,
@@ -66,6 +61,7 @@ export default function GenerateOpenStackTokenModal({
     onSuccess: setToken,
   });
   const isPending = isUserPending || isTokenGenerationPending;
+  const hasError = touched && password === '';
 
   return (
     <OsdsModal
