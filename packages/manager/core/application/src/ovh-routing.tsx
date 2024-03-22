@@ -16,7 +16,6 @@ import {
   generateRegularRoutes,
   generatePreservedRoutes,
 } from 'generouted/core';
-import OvhTracking from './ovh-tracking';
 
 import { useShell } from '.';
 
@@ -137,7 +136,6 @@ export function createAppRouter(): ReturnType<typeof createHashRouter> {
               <OvhContainerRoutingSync routes={routes} />
               <HidePreloader />
               <Outlet />
-              <OvhTracking />
             </>
           }
         />

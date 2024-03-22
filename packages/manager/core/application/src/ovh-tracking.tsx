@@ -1,7 +1,6 @@
 import { useEffect, useLayoutEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AT_INTERNET_LEVEL2 } from '@ovh-ux/ovh-at-internet';
-import { useShell } from '.';
 
 const OSDS_COMPONENT = [
   'OSDS-ACCORDION',
@@ -34,9 +33,8 @@ const OSDS_COMPONENT = [
   'OSDS-TOGGLE',
 ];
 
-export default function OvhTracking() {
+export function OvhTracking({ shell }) {
   const location = useLocation();
-  const shell = useShell();
   const { tracking, environment } = shell;
   const env = environment.getEnvironment();
   const [locationPath, setLocationPath] = useState(location);
@@ -152,3 +150,5 @@ export default function OvhTracking() {
 
   return null;
 }
+
+export default OvhTracking;
