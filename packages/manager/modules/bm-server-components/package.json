@@ -28,7 +28,7 @@
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
     "@ovh-ux/ng-ovh-utils": "^14.0.17",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
-    "@ovh-ux/ui-kit": "^6.7.0",
+    "@ovh-ux/ui-kit": "^6.10.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",

@@ -4650,11 +4650,6 @@
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
 "@ovh-ux/ui-kit@^6.7.8":
-  version "6.7.8"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.8.tgz#ec783cab3ddd9254087127793ca856780e48731b"
-  integrity sha512-am96JNK/XOKQkr9mixc1rNt63A1CxHKvjuKxBYgAEl6WQ9Jdlesytcts+Xn8c24kL1lkec4sJfeuDMG/5lhBIw==
-
-"@ovh-ux/ui-kit@^6.9.0":
   version "6.10.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.10.0.tgz#7299819d2150da5c1946b2199d1ecadd2013df51"
   integrity sha512-ijZTINZPeeCfC/Zahpc8c7QPbmsRgLQ8VUl2TY/WVJQhFR13P+oPL1f7qeYDKHGd0XoKPs3Lkb40j2rECw85PQ==
