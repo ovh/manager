@@ -143,7 +143,9 @@ describe('getFilterParamsFromUrl', () => {
   describe('get categories from url', () => {
     it('should return the categories match in params', () => {
       const result = getFilterParamsFromUrl(
-        'categories=AI+%26+machine+learning%2CContainers+and+orchestration%2CDedicated+Servers',
+        new URLSearchParams(
+          'categories=AI+%26+machine+learning%2CContainers+and+orchestration%2CDedicated+Servers',
+        ),
       );
       expect(result?.categories).toEqual([
         'AI & machine learning',
@@ -155,7 +157,9 @@ describe('getFilterParamsFromUrl', () => {
   describe('get universes from url', () => {
     it('should return the universes match in params', () => {
       const result = getFilterParamsFromUrl(
-        'universes=Bare+Metal+Cloud%2CHosted+Private+Cloud',
+        new URLSearchParams(
+          'universes=Bare+Metal+Cloud%2CHosted+Private+Cloud',
+        ),
       );
       expect(result?.universes).toEqual([
         'Bare Metal Cloud',
@@ -166,7 +170,9 @@ describe('getFilterParamsFromUrl', () => {
   describe('get categories and universes from url', () => {
     it('should return the categories match in params', () => {
       const result = getFilterParamsFromUrl(
-        'categories=AI+%26+machine+learning%2CContainers+and+orchestration%2CDedicated+Servers',
+        new URLSearchParams(
+          'categories=AI+%26+machine+learning%2CContainers+and+orchestration%2CDedicated+Servers',
+        ),
       );
       expect(result?.categories).toEqual([
         'AI & machine learning',
@@ -178,7 +184,9 @@ describe('getFilterParamsFromUrl', () => {
   describe('get category and universe from url', () => {
     it('should return the universe and category match in params', () => {
       const result = getFilterParamsFromUrl(
-        'categories=Containers+and+orchestration&universes=Bare+Metal+Cloud',
+        new URLSearchParams(
+          'categories=Containers+and+orchestration&universes=Bare+Metal+Cloud',
+        ),
       );
       expect(result?.universes).toEqual(['Bare Metal Cloud']);
       expect(result?.categories).toEqual(['Containers and orchestration']);
@@ -198,7 +206,7 @@ describe('getSearchUrlFromFilterParams', () => {
         ],
         [],
       );
-      expect(result).toEqual(
+      expect(result.toString()).toEqual(
         'categories=AI+%26+machine+learning%2CContainers+and+orchestration%2CDedicated+Servers',
       );
     });
@@ -210,7 +218,7 @@ describe('getSearchUrlFromFilterParams', () => {
         [],
         ['Bare Metal Cloud', 'Hosted Private Cloud'],
       );
-      expect(result).toEqual(
+      expect(result.toString()).toEqual(
         'universes=Bare+Metal+Cloud%2CHosted+Private+Cloud',
       );
     });
@@ -218,7 +226,7 @@ describe('getSearchUrlFromFilterParams', () => {
   describe('get params query from url', () => {
     it('should return string with only query ', () => {
       const result = getSearchUrlFromFilterParams('cloud', [], []);
-      expect(result).toEqual('q=cloud');
+      expect(result.toString()).toEqual('q=cloud');
     });
   });
   describe('get params universes and category from url', () => {
@@ -228,7 +236,7 @@ describe('getSearchUrlFromFilterParams', () => {
         ['Containers and orchestration'],
         ['Bare Metal Cloud'],
       );
-      expect(result).toEqual(
+      expect(result.toString()).toEqual(
         'categories=Containers+and+orchestration&universes=Bare+Metal+Cloud',
       );
     });
