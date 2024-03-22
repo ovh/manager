@@ -19,5 +19,8 @@
   "dashboard_history_restore_modal_secondary_label": "Abbrechen",
   "dashboard_history_restore_modal_warning_message": "Achtung! Die aktuelle Zone wird gelöscht. Die ausgewählte neue Zone wird wiederhergestellt.",
   "dashboard_history_restore_modal_info_message": "Das Zurücksetzen in der DNS-Zone dauert einen Moment. Berücksichtigen Sie auch die Propagationszeit (maximal 24 Stunden).",
-  "modified": "Geändert"
+  "modified": "Geändert",
+  "zones_domain_name": "Domainname",
+  "zones_enabled": "Aktiviert",
+  "zones_disabled": "Deaktiviert"
 }
