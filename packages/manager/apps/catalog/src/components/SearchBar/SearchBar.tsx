@@ -27,6 +27,7 @@ interface SearchbarProps {
   setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>;
   setSelectedUniverses: React.Dispatch<React.SetStateAction<string[]>>;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  setIsRouterInitialized: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SearchBar: React.FC<SearchbarProps> = ({
@@ -36,6 +37,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
   setSelectedCategories,
   setSelectedUniverses,
   setSearchValue,
+  setIsRouterInitialized,
 }) => {
   const { t } = useTranslation('catalog/search');
 
@@ -130,6 +132,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
           setLocalSearchValue={setLocalSearchValue}
           setSelectedCategories={setSelectedCategories}
           setSelectedUniverses={setSelectedUniverses}
+          setIsRouterInitialized={setIsRouterInitialized}
           onApply={() => setShowFilters(false)}
         />
       </div>
