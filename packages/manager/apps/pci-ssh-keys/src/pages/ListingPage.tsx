@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Outlet,
   useNavigate,
@@ -54,7 +54,6 @@ export default function ListingPage() {
   const { projectId } = useParams();
   const [urlProject, setUrlProject] = useState('');
   const [searchField, setSearchField] = useState('');
-  const searchBar = useRef(undefined);
   const [searchQueries, setSearchQueries] = useState<string[]>([]);
   const project = useRouteLoaderData('ssh') as Project;
 
@@ -65,18 +64,6 @@ export default function ListingPage() {
         setUrlProject(data as string);
       });
   }, [projectId, navigation]);
-
-  useEffect(() => {
-    const onOdsValueChange = ({ detail }) => {
-      setSearchField(detail.value);
-    };
-    searchBar.current?.addEventListener('odsValueChange', onOdsValueChange);
-    return () =>
-      searchBar.current?.removeEventListener(
-        'odsValueChange',
-        onOdsValueChange,
-      );
-  }, [searchBar.current]);
 
   const columns = [
     {
@@ -157,12 +144,15 @@ export default function ListingPage() {
           color={ODS_THEME_COLOR_INTENT.primary}
           disabled={isDiscoveryProject(project) ? true : undefined}
           onClick={() => {
-            navigate('./add');
-            trackClick({
-              name: 'PCI_PROJECTS_SSH_KEYS_ADD',
-              type: 'action',
-              level2: PCI_LEVEL2,
-            });
+            // @TODO remove this condition when ODS disabled button issue is fixed
+            if (!isDiscoveryProject(project)) {
+              navigate('./add');
+              trackClick({
+                name: 'PCI_PROJECTS_SSH_KEYS_ADD',
+                type: 'action',
+                level2: PCI_LEVEL2,
+              });
+            }
           }}
         >
           <OsdsIcon
@@ -175,7 +165,6 @@ export default function ListingPage() {
         </OsdsButton>
         {/* onOdsValueChange={({ detail }) => setSearchField(`${detail.value}`)} */}
         <OsdsSearchBar
-          ref={searchBar}
           className={'sm:w-[15rem] xs:mt-4'}
           value={searchField}
           onOdsSearchSubmit={({ detail }) => {
@@ -184,20 +173,12 @@ export default function ListingPage() {
               setSearchField('');
               if (searchQueries.indexOf(inputValue) < 0) {
                 setSearchQueries([...searchQueries, inputValue]);
+                setPagination({
+                  ...pagination,
+                  pageIndex: 0,
+                });
               } else {
                 setSearchQueries([...searchQueries]);
-              }
-            }
-          }}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              if (searchField) {
-                setSearchField('');
-                if (searchQueries.indexOf(searchField) < 0) {
-                  setSearchQueries([...searchQueries, searchField]);
-                } else {
-                  setSearchQueries([...searchQueries]);
-                }
               }
             }
           }}
