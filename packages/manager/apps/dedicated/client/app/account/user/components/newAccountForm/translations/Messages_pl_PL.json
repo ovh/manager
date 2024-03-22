@@ -190,7 +190,7 @@
   "signup_enum_country_FO": "Dania — Wyspy Owcze",
   "signup_enum_country_FR": "Francja metropolitalna ",
   "signup_enum_country_GA": "Gabon",
-  "signup_enum_country_GB": "Wielka Brytania",
+  "signup_enum_country_GB": "Zjednoczone Królestwo",
   "signup_enum_country_GD": "Grenada",
   "signup_enum_country_GE": "Gruzja",
   "signup_enum_country_GF": "Francja - Gujana Francuska",
@@ -216,7 +216,7 @@
   "signup_enum_country_ID": "Indonezja",
   "signup_enum_country_IE": "Irlandia",
   "signup_enum_country_IL": "Izrael",
-  "signup_enum_country_IM": "Wielka Brytania - wyspa Man",
+  "signup_enum_country_IM": "Zjednoczone Królestwo - wyspa Man",
   "signup_enum_country_IN": "Indie",
   "signup_enum_country_IO": "Zjednoczone Królestwo - Brytyjskie Terytorium Oceanu Indyjskiego",
   "signup_enum_country_IQ": "Irak",
@@ -327,7 +327,7 @@
   "signup_enum_country_SX": "Holandia - Saint Martin",
   "signup_enum_country_SY": "Syryjska Republika Arabska",
   "signup_enum_country_SZ": "Eswatini",
-  "signup_enum_country_TC": "Wielka Brytania - Turks i Caicos",
+  "signup_enum_country_TC": "Zjednoczone Królestwo - Turks i Caicos",
   "signup_enum_country_TD": "Czad",
   "signup_enum_country_TF": "Francja - Francuskie Terytoria Południowe",
   "signup_enum_country_TG": "Togo",
@@ -769,5 +769,5 @@
   "signup_field_purposeOfPurchase": "Przyczyna zakupu",
   "new_account_content_check_validation": "Prosimy o sprawdzenie podanych informacji (numer VAT, numer telefonu, data urodzenia, etc.) w celu zatwierdzenia formularza.",
   "signup_enum_country_BV": "Norwegia - Wyspa Bouveta",
-  "signup_enum_country_HM": "Wielka Brytania - Wyspy Heard i MacDonald"
+  "signup_enum_country_HM": "Zjednoczone Królestwo - Wyspy Heard i MacDonald"
 }
