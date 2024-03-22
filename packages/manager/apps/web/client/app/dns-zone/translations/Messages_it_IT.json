@@ -19,5 +19,8 @@
   "dashboard_history_restore_modal_secondary_label": "Annullare",
   "dashboard_history_restore_modal_warning_message": "Attenzione! La zona corrente verrà eliminata. La nuova zona selezionata verrà ripristinata.",
   "dashboard_history_restore_modal_info_message": "La reinizializzazione nella zona DNS richiederà alcuni minuti, ma ti ricordiamo di considerare i tempi di propagazione (massimo 24 ore).",
-  "modified": "Modificato"
+  "modified": "Modificato",
+  "zones_domain_name": "Dominio",
+  "zones_enabled": "Attivato",
+  "zones_disabled": "Disattivato"
 }

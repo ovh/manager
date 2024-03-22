@@ -1,6 +1,9 @@
 {
   "zones_title": "Zones DNS",
   "zones_order": "Commander",
+  "zones_domain_name": "Nom du domaine",
+  "zones_enabled": "Activé",
+  "zones_disabled": "Désactivé",
   "base_dns_zone": "Zone DNS de base",
   "modified_dns_zone": "Zone DNS modifiée",
   "modified": "Modifié",
