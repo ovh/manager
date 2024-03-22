@@ -33,24 +33,26 @@ const Dashboard = () => {
       <h2>dashboard</h2>
 
       <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2">
-        <Card>
-          <CardHeader>
-            <h5>
-              <HardDrive className="size-4 inline mr-2" />
-              <span>Storage</span>
-            </h5>
-          </CardHeader>
-          <CardContent>
-            <MetricChart
-              metric={'disk_usage_percent'}
-              period={database.service.MetricPeriodEnum.lastDay}
-              poll={false}
-              pollInterval={POLLING.METRICS}
-              className="aspect-auto sm:h-[200px]"
-            />
-            <MeanMetric metricName={'disk_usage_percent'} />
-          </CardContent>
-        </Card>
+        {service.storage?.size.value > 0 && (
+          <Card>
+            <CardHeader>
+              <h5>
+                <HardDrive className="size-4 inline mr-2" />
+                <span>Storage</span>
+              </h5>
+            </CardHeader>
+            <CardContent>
+              <MetricChart
+                metric={'disk_usage_percent'}
+                period={database.service.MetricPeriodEnum.lastDay}
+                poll={false}
+                pollInterval={POLLING.METRICS}
+                className="aspect-auto sm:h-[200px]"
+              />
+              <MeanMetric metricName={'disk_usage_percent'} />
+            </CardContent>
+          </Card>
+        )}
         <Card>
           <CardHeader>
             <h5>
@@ -114,7 +116,7 @@ const Dashboard = () => {
           </CardContent>
         </Card>
         {service.endpoints.length > 0 && (
-          <Card>
+          <Card className="col-start-1">
             <CardHeader>
               <h5>
                 <Globe2 className="size-4 inline mr-2" />
@@ -180,7 +182,7 @@ const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="col-start-1">
           <CardHeader></CardHeader>
           <CardContent>
             <ul className="list-disc list-inside">

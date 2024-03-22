@@ -41,7 +41,7 @@ export function useGetServices(
 }
 
 interface MutateServiceProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: (service: database.Service) => void;
 }
 export interface ServiceCreationWithEngine extends database.ServiceCreation {
