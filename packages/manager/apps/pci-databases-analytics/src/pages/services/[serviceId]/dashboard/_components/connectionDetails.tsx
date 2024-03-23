@@ -51,7 +51,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
               <TableRow>
                 <TableCell className="font-semibold">Hote</TableCell>
                 <TableCell>
-                  <div className="flex justify-center h-6 max-w-[350px]">
+                  <div className="flex justify-center h-6 max-w-[345px]">
                     <p className="flex-1 truncate">{selectedEndpoint.domain}</p>
                     <Button
                       type="button"
@@ -93,7 +93,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
               <TableRow>
                 <TableCell className="font-semibold">URI</TableCell>
                 <TableCell>
-                  <div className="flex justify-center h-6 max-w-[350px]">
+                  <div className="flex justify-center h-6 max-w-[345px]">
                     <p className="flex-1 truncate">{selectedEndpoint.uri}</p>
                     <Button
                       type="button"

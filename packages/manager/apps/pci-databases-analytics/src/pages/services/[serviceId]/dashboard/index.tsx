@@ -120,7 +120,7 @@ const Dashboard = () => {
             <CardHeader>
               <h5>
                 <Globe2 className="size-4 inline mr-2" />
-                <span>Informations de connection</span>
+                <span>Informations de connexion</span>
               </h5>
             </CardHeader>
             <CardContent>
