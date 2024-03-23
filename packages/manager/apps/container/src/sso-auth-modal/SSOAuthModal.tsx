@@ -1,30 +1,49 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
 import { useReket } from '@ovh-ux/ovh-reket';
-import { Modal } from 'react-bootstrap';
 import { useTranslation, Trans } from 'react-i18next';
 
 import { User } from '@ovh-ux/manager-config';
 
 import {
+  OsdsButton,
+  OsdsModal,
+  OsdsText,
+  OsdsChip,
+  OsdsIcon,
+  OsdsTile,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_TEXT_COLOR_HUE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_CHIP_SIZE,
+} from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { Subtitle } from '@ovhcloud/manager-components';
+import {
   connectedToDisconnected,
   connectedToOther,
   disconnectedToConnected,
 } from './consts';
-
 import { useApplication, useShell } from '@/context';
 
-import './styles.scss';
-
+const ModalContent = ({ children }: { children: React.ReactNode }) => (
+  <OsdsText
+    level={ODS_TEXT_LEVEL.caption}
+    color={ODS_THEME_COLOR_INTENT.text}
+    size={ODS_TEXT_SIZE._300}
+    hue={ODS_TEXT_COLOR_HUE._500}
+  >
+    {children}
+  </OsdsText>
+);
 const SSOAuthModal = (): JSX.Element => {
   const [mode, setMode] = useState('');
-  const size = useMemo(
-    () =>
-      mode === disconnectedToConnected || mode === connectedToOther
-        ? 'lg'
-        : 'sm',
-    [mode],
-  );
   const shell = useShell();
   const reketInstance = useReket();
   const { t } = useTranslation('sso-auth-modal');
@@ -47,10 +66,6 @@ const SSOAuthModal = (): JSX.Element => {
       reketInstance
         .get('/me', {
           requestType: 'apiv6',
-          params: {
-            target: environment.getRegion(),
-            lang: environment.getUserLocale(),
-          },
         })
         .then((currentUser: User) => {
           setConnectedUser(currentUser);
@@ -60,128 +75,135 @@ const SSOAuthModal = (): JSX.Element => {
   }, [mode]);
 
   return (
-    <Modal size={size} show={show} backdrop="static" keyboard={false}>
-      <Modal.Body>
-        <div className="sso-auth">
-          <h2 className="oui-modal__title">{t('sso_modal_title')}</h2>
-          <div className="row">
-            {(mode === connectedToDisconnected ||
-              mode === connectedToOther) && (
-              <div
-                className={
-                  mode === connectedToDisconnected ? 'col-md-12' : 'col-md-6'
-                }
-              >
-                <p>{t('sso_modal_user_title')}</p>
+    <>
+      {show && (
+        <OsdsModal onOdsModalClose={() => setMode('')}>
+          <div>
+            <Subtitle>{t('sso_modal_title')}</Subtitle>
+            <div className="row p-3">
+              {[connectedToDisconnected, connectedToOther].includes(mode) && (
                 <div
-                  className={`panel panel-default ${
-                    mode === connectedToOther ? 'panel-disabled' : ''
-                  }`}
+                  className={
+                    mode === connectedToDisconnected ? 'md:w-full' : 'md:w-1/2'
+                  }
                 >
-                  <div className="panel-body">
-                    <div className="sso-modal-account-badge-ctnr">
-                      <div
-                        className="sso-modal-account-badge"
-                        aria-hidden="true"
-                      >
-                        <span className="oui-icon oui-icon-user"></span>
-                      </div>
-                    </div>
-
-                    <div className="sso-modal-account-infos-ctnr">
-                      <div className="sso-modal-account-infos">
-                        <strong>{`${user.firstname} ${user.name}`}</strong>
-                        <br />
-                        <span>{user.email}</span>
-                        <br />
-                        <span>{user.nichandle}</span>
-                      </div>
-                    </div>
+                  <div className="mb-2">
+                    <ModalContent>{t('sso_modal_user_title')}</ModalContent>
                   </div>
-                </div>
-              </div>
-            )}
-            {(mode === disconnectedToConnected ||
-              mode === connectedToOther) && (
-              <div
-                className={
-                  mode === disconnectedToConnected ? 'col-md-12' : 'col-md-6'
-                }
-              >
-                <p className={mode === connectedToOther ? 'bold' : ''}>
-                  {t('sso_modal_currentuser_title')}
-                </p>
-                <div className="panel panel-default">
-                  <div className="panel-body">
-                    <div className="sso-modal-account-badge-ctnr">
-                      <div
-                        className="sso-modal-account-badge"
-                        aria-hidden="true"
-                      >
-                        <span className="oui-icon oui-icon-user"></span>
-                      </div>
-                    </div>
+                  <OsdsTile>
+                    <span
+                      slot="start"
+                      className="p-4 flex flex-wrap items-start"
+                    >
+                      <OsdsChip inline size={ODS_CHIP_SIZE.md}>
+                        <OsdsIcon
+                          name={ODS_ICON_NAME.USER}
+                          size={ODS_ICON_SIZE.xs}
+                        />
+                      </OsdsChip>
 
-                    <div className="sso-modal-account-infos-ctnr">
-                      <div className="sso-modal-account-infos">
-                        <strong>
-                          {`${connectedUser?.firstname} ${connectedUser?.name}`}
-                        </strong>
-                        <br />
-                        <span>{connectedUser?.email}</span>
-                        <br />
-                        <span>{connectedUser?.nichandle}</span>
+                      <div className="inline-block ml-2">
+                        <OsdsText className="break-all">
+                          <div className="mr-2 font-bold">{`${user.firstname} ${user.name}`}</div>
+                          <span className="block">{user.email}</span>
+                          <span className="block">{user.nichandle}</span>
+                        </OsdsText>
                       </div>
-                    </div>
-                  </div>
+                    </span>
+                  </OsdsTile>
                 </div>
-              </div>
-            )}
+              )}
+              {[disconnectedToConnected, connectedToOther].includes(mode) && (
+                <div
+                  className={
+                    mode === disconnectedToConnected
+                      ? 'pl-4 md:w-full'
+                      : 'pl-4 md:w-1/2'
+                  }
+                >
+                  <div className="mb-2">
+                    <ModalContent>
+                      {t('sso_modal_currentuser_title')}
+                    </ModalContent>
+                  </div>
+                  <OsdsTile>
+                    <span
+                      slot="start"
+                      className="p-4 flex flex-wrap items-start"
+                    >
+                      <OsdsChip inline size={ODS_CHIP_SIZE.md}>
+                        <OsdsIcon
+                          name={ODS_ICON_NAME.USER}
+                          size={ODS_ICON_SIZE.xs}
+                        />
+                      </OsdsChip>
+
+                      <div className="inline-block ml-2">
+                        <OsdsText className="break-all">
+                          <div className="mr-2 font-bold">
+                            {`${connectedUser?.firstname} ${connectedUser?.name}`}
+                          </div>
+                          <span className="block">{connectedUser?.email}</span>
+                          <span className="block">
+                            {connectedUser?.nichandle}
+                          </span>
+                        </OsdsText>
+                      </div>
+                    </span>
+                  </OsdsTile>
+                </div>
+              )}
+            </div>
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              hue={ODS_TEXT_COLOR_HUE._900}
+            >
+              {mode === connectedToDisconnected && (
+                <strong>{t('sso_modal_disconnected')}</strong>
+              )}
+              {[disconnectedToConnected, connectedToOther].includes(mode) && (
+                <strong className="flex justify-end">
+                  {t('sso_modal_what')}
+                </strong>
+              )}
+            </OsdsText>
           </div>
-          {mode === connectedToDisconnected && (
-            <strong>{t('sso_modal_disconnected')}</strong>
+
+          {[
+            connectedToDisconnected,
+            disconnectedToConnected,
+            connectedToOther,
+          ].includes(mode) && (
+            <OsdsButton
+              slot="actions"
+              size={ODS_BUTTON_SIZE.sm}
+              variant={ODS_BUTTON_VARIANT.ghost}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              onClick={() => authPlugin.logout()}
+            >
+              {t('sso_modal_action_logout')}
+            </OsdsButton>
           )}
-          {(mode === disconnectedToConnected || mode === connectedToOther) && (
-            <strong>{t('sso_modal_what')}</strong>
+          {[disconnectedToConnected, connectedToOther].includes(mode) && (
+            <OsdsButton
+              slot="actions"
+              size={ODS_BUTTON_SIZE.sm}
+              variant={ODS_BUTTON_VARIANT.flat}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              onClick={() => window.location.reload()}
+            >
+              <Trans
+                t={t}
+                i18nKey="sso_modal_action_reload"
+                values={{
+                  name: `${connectedUser?.firstname} ${connectedUser?.name}`,
+                }}
+              ></Trans>
+            </OsdsButton>
           )}
-        </div>
-      </Modal.Body>
-      <Modal.Footer>
-        {mode === connectedToDisconnected && (
-          <button
-            type="button"
-            className="oui-button oui-button_primary modal-logout"
-            onClick={() => authPlugin.logout()}
-          >
-            {t('sso_modal_action_logout')}
-          </button>
-        )}
-        {(mode === disconnectedToConnected || mode === connectedToOther) && (
-          <button
-            type="button"
-            className="oui-button oui-button_secondary modal-logout"
-            onClick={() => authPlugin.logout()}
-          >
-            {t('sso_modal_action_logout')}
-          </button>
-        )}
-        {(mode === disconnectedToConnected || mode === connectedToOther) && (
-          <button
-            type="button"
-            className="oui-button oui-button_primary modal-reload"
-            onClick={() => window.location.reload()}
-          >
-            <Trans
-              t={t}
-              i18nKey="sso_modal_action_reload"
-              values={{
-                name: `${connectedUser?.firstname} ${connectedUser?.name}`,
-              }}
-            ></Trans>
-          </button>
-        )}
-      </Modal.Footer>
-    </Modal>
+        </OsdsModal>
+      )}
+    </>
   );
 };
 
