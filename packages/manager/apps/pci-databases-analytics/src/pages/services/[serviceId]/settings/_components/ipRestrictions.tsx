@@ -83,12 +83,19 @@ const IpsRestrictionsUpdate = ({
             </FormItem>
           )}
         />
-        <div className="mt-2 flex gap-2">
-          <Button variant="outline" type="button" onClick={() => form.reset()}>
-            Annuler
-          </Button>
-          <Button disabled={isPending}>Sauvegarder les modifications</Button>
-        </div>
+        {form.formState.isDirty && (
+          <div className="mt-2 flex gap-2">
+            <Button
+              variant="outline"
+              type="button"
+              disabled={isPending}
+              onClick={() => form.reset()}
+            >
+              Annuler
+            </Button>
+            <Button disabled={isPending}>Sauvegarder les modifications</Button>
+          </div>
+        )}
       </form>
     </Form>
   );
