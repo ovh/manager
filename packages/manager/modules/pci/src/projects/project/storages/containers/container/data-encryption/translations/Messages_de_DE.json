@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_storages_containers_data_encryption_title": "Datenverschlüsselung",
+  "pci_projects_project_storages_containers_data_encryption_description": "Die in diesen Container geladenen Daten werden von OVHcloud on the fly verschlüsselt.",
+  "pci_projects_project_storages_containers_data_encryption_plaintext": "Keine Verschlüsselung",
+  "pci_projects_project_storages_containers_data_encryption_aes256": "SSE-S3",
+  "pci_projects_project_storages_containers_data_encryption_aes256_tooltip": "Die Verschlüsselung erfolgt mit einem von OVHcloud verwalteten Schlüssel (OMK – OVHcloud Managed Key), der im KMS von OVHcloud gesichert ist."
+}

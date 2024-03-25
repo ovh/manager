@@ -37,5 +37,7 @@
   "pci_projects_project_storages_containers_container_documentation_title_s3-limitation": "The technical limits of S3 Object Storage",
   "pci_projects_project_storages_containers_container_documentation_description_s3-limitation": "Here, you can find the technical limits for the S3 Object Storage product",
   "pci_projects_project_storages_containers_container_back_button_label": "My containers",
-  "pci_projects_project_storages_containers_container_object_info_s3_staticUrl_help": "Publish your containers and objects on the internet by setting access rights (per object), giving them public access. They are then accessible via the virtual-hosted style address."
+  "pci_projects_project_storages_containers_container_object_info_s3_staticUrl_help": "Publish your containers and objects on the internet by setting access rights (per object), giving them public access. They are then accessible via the virtual-hosted style address.",
+  "pci_projects_project_storages_containers_container_info_data_encryption_enabled": "Encryption: <strong>SSE-S3</strong>",
+  "pci_projects_project_storages_containers_container_info_data_encryption_disabled": "Encryption: <strong>None</strong>"
 }
