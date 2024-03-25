@@ -83,7 +83,7 @@ const root: Node = {
           },
           count: false,
           features: ['carbon-calculator'],
-          region: ['EU', 'CA'],
+          region: ['EU', 'CA', 'US'],
         },
         {
           id: 'billing_services',
