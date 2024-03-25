@@ -77,9 +77,6 @@ export default class LogsStreamsArchivesService {
     return this.$http
       .post(
         `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}/archive/${archiveId}/url`,
-        {
-          expirationInSeconds: this.LogsConstants.expirationInSeconds,
-        },
       )
       .then(({ data }) => data);
   }
