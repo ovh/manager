@@ -1,0 +1,28 @@
+.container {
+  margin-left: 400px;
+  margin-top:220px;
+  max-width: 1094px;
+  table {
+    thead {
+      tr {
+        th {
+          padding: 10px;
+          &:not(.text-center) {
+            text-align: left;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 10px;
+          &:not(.text-center) {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+}

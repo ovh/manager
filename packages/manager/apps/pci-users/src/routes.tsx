@@ -20,6 +20,11 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/Layout')),
   },
   {
+    id: 'tmp',
+    path: 'tmp',
+    ...lazyRouteConfig(() => import('@/pages/tmp/TmpPage')),
+  },
+  {
     id: 'users',
     path: '/pci/projects/:projectId/users',
     loader: async ({ params }) => {
