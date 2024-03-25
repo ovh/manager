@@ -4,6 +4,7 @@
   "pci_ai_dashboard_users_tokens_users_title": "Gérer les accès avec les utilisateurs Public Cloud",
   "pci_ai_dashboard_users_tokens_users_description_1": "Lorsque vous travaillez avec nos outils, il vous faut vous authentifier au travers d'utilisateurs communs à l'ensemble de votre projet Public Cloud.",
   "pci_ai_dashboard_users_tokens_users_description_2": "Les utilisateurs Public Cloud vous permettent d'accéder à vos notebooks, jobs et applications. Afin de pouvoir expérimenter en toute liberté, il vous faut choisir à minima un rôle \"Admin\" ou \"AI\".",
+  "pci_ai_dashboard_users_tokens_users_description_3": "Si vous souhaitez utilisez des containers S3 avec vos produits AI, il vous faudra ajouter un rôle \"AI Platform operator\".",
   "pci_ai_dashboard_users_tokens_users_manage_button": "Gérer mes utilisateurs AI ({{nbUsers}})",
   "pci_ai_dashboard_users_tokens_users_create_user_button": "Créer un utilisateur AI",
   "pci_ai_dashboard_users_tokens_tokens_title": "Gérer les accès via des tokens applicatifs",

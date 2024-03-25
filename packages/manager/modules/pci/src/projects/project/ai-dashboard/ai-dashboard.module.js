@@ -16,6 +16,7 @@ import onboarding from './onboarding';
 import home from './tabs/home';
 import usersTokens from './tabs/users-tokens';
 import cli from './tabs/cli';
+import datastore from './tabs/datastore';
 
 const moduleName = 'ovhManagerPciAiDashboard';
 
@@ -26,6 +27,7 @@ angular
     usersTokens,
     cli,
     registries,
+    datastore,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ngOvhCloudUniverseComponents',

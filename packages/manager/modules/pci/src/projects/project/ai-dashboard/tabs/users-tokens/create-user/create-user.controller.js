@@ -30,7 +30,7 @@ export default class AIDashboadCreateUserCtrl {
       .catch((err) =>
         this.goBack(
           this.$translate.instant(
-            'pci_ai_dashboard_delete_token_error_message',
+            'pci_ai_dashboard_create_user_error_message',
             {
               message: err.data?.message || null,
             },

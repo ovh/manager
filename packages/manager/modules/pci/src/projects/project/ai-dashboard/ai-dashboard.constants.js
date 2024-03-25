@@ -59,6 +59,7 @@ export const AI_PRICES_URL = {
 };
 
 export const AI_ROLES_NAMES = ['ai_training_operator', 'ai_training_read'];
+export const AI_DATASTORE_OWNER = 'customer';
 
 export function countAiItems(itemsList) {
   return Object.values(itemsList).reduce(
@@ -72,5 +73,6 @@ export default {
   ITEMS_POLL_INTERVAL,
   GUIDES,
   AI_ROLES_NAMES,
+  AI_DATASTORE_OWNER,
   countAiItems,
 };

@@ -54,6 +54,13 @@
         >
             <span data-translate="pci_ai_dashboard_tab_cli"></span>
         </oui-header-tabs-item>
+
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.datastoreLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.datastoreLink"
+        >
+            <span data-translate="pci_ai_dashboard_tab_datastore"></span>
+        </oui-header-tabs-item>
     </oui-header-tabs>
 </div>
 <div class="container-fluid" data-ui-view="aiDashboardTabUiView"></div>

@@ -48,6 +48,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.ai-dashboard.registries', {
           projectId,
         }),
+      datastoreLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.ai-dashboard.datastore', {
+          projectId,
+        }),
     },
   });
 };
