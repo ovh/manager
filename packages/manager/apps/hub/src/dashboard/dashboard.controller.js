@@ -4,6 +4,7 @@ import {
   TRACKING_PREFIX_POPUP,
   KYC_TRACKING_PREFIX,
   KYC_HIT_PREFIX,
+  KYC_STATUS,
 } from './dashboard.constant';
 
 export default class DashboardController {
@@ -28,6 +29,7 @@ export default class DashboardController {
     this.availableSiretBanner = false;
     this.availableSiretPopup = false;
     this.showKycBanner = false;
+    this.showKycBannerWaiting = false;
     this.displayRbx1EolBanner = {
       rbx1Eol: false,
     };
@@ -38,7 +40,10 @@ export default class DashboardController {
       .then(({ data: featureAvailability }) => {
         if (featureAvailability['identity-documents']) {
           this.$http.get(`/me/procedure/identity`).then(({ data }) => {
-            this.showKycBanner = ['required', 'open'].includes(data.status);
+            this.showKycBanner =
+              data.status === KYC_STATUS.REQUIRED && !data.ticketId;
+            this.showKycBannerWaiting =
+              data.status === KYC_STATUS.REQUIRED && !!data.ticketId;
             if (this.showKycBanner)
               this.atInternet.trackPage({
                 name: KYC_TRACKING_PREFIX,

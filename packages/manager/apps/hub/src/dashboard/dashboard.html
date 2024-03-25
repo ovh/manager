@@ -42,15 +42,16 @@
             data-type="info"
             data-on-dismiss="$ctrl.onDismiss()"
             data-dismissable
-            data-ng-if="$ctrl.showKycBanner"
+            data-ng-if="$ctrl.showKycBanner || $ctrl.showKycBannerWaiting"
         >
             <span
-                data-translate="manager_hub_dashboard_kyc_banner_description"
+                data-translate="{{'manager_hub_dashboard_kyc_banner_description' + ($ctrl.showKycBannerWaiting ? '_waiting' : '')}}"
             ></span>
             <a
                 class="oui-link_icon"
                 data-ng-href="{{:: $ctrl.myIdentitySectionLink }}"
                 data-ng-click="$ctrl.trackClick($ctrl.KYC_HIT_PREFIX)"
+                data-ng-if="$ctrl.showKycBanner"
                 target="_blank"
                 rel="noopener"
             >
