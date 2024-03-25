@@ -332,44 +332,6 @@
                         </span>
                     </div>
 
-                    <!-- sshKeyName -->
-                    <div
-                        class="form-group"
-                        data-ng-if="installation.selectGabarit.family !== 'WINDOWS'"
-                    >
-                        <label
-                            for="sshKeyName"
-                            class="control-label"
-                            data-translate="server_configuration_installation_form_ssh"
-                        >
-                        </label>
-                        <div data-ng-if="!sshList.error">
-                            <select
-                                class="form-control"
-                                id="sshKeyName"
-                                name="sshKeyName"
-                                data-ng-options="sskkey for sskkey in sshList.model"
-                                data-ng-model="installation.options.sshKeyName"
-                            >
-                                <option
-                                    value=""
-                                    data-translate="server_configuration_installation_form_ssh_no"
-                                ></option>
-                            </select>
-                            <span
-                                class="icon-question-sign"
-                                data-oui-tooltip="{{:: 'server_configuration_installation_form_ssh_help' | translate }}"
-                                data-oui-tooltip-placement="left"
-                            >
-                            </span>
-                        </div>
-                        <div
-                            class="mt-1 text-danger"
-                            data-ng-if="sshList.error"
-                            data-translate="server_configuration_installation_form_ssh_fail"
-                        ></div>
-                    </div>
-
                     <!-- nbDisk -->
                     <p class="form-inline" data-ng-if="informations.nbDisk > 1">
                         <label

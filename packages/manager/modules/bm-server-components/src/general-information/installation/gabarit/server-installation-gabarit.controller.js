@@ -55,7 +55,6 @@ export default class ServerInstallationGabaritCtrl {
         customHostname: null,
         postInstallationScriptLink: null,
         postInstallationScriptReturn: null,
-        sshKeyName: null,
         validForm: true,
       },
     };
@@ -76,7 +75,6 @@ export default class ServerInstallationGabaritCtrl {
 
     this.$scope.loader = {
       loading: false,
-      loadingForm: false,
     };
 
     if (this.$scope.installation.deleteGabarit) {
@@ -105,24 +103,6 @@ export default class ServerInstallationGabaritCtrl {
       'dedicated.informations.reinstall.form.update',
       (e, validForm) => {
         this.$scope.installation.options.validForm = validForm;
-      },
-    );
-
-    this.$scope.sshList = {
-      model: [],
-      error: false,
-    };
-
-    this.$scope.loader.loadingForm = true;
-    this.Server.getSshKey(this.$stateParams.productId).then(
-      (data) => {
-        this.$scope.sshList.error = false;
-        this.$scope.sshList.model = data;
-        this.$scope.loader.loadingForm = false;
-      },
-      () => {
-        this.$scope.sshList.error = true;
-        this.$scope.loader.loadingForm = false;
       },
     );
 
@@ -236,7 +216,6 @@ export default class ServerInstallationGabaritCtrl {
         .postInstallationScriptLink,
       postInstallationScriptReturn: this.$scope.installation.selectGabarit
         .postInstallationScriptReturn,
-      sshKeyName: this.$scope.installation.selectGabarit.sshKeyName,
       validForm: true,
     };
 
@@ -375,7 +354,6 @@ export default class ServerInstallationGabaritCtrl {
           .postInstallationScriptLink,
         postInstallationScriptReturn: this.$scope.installation.options
           .postInstallationScriptReturn,
-        sshKeyName: this.$scope.installation.options.sshKeyName,
         softRaidDevices:
           this.$scope.informations.nbDisk > 2 &&
           this.$scope.installation.nbDiskUse > 1
@@ -422,7 +400,6 @@ export default class ServerInstallationGabaritCtrl {
             .postInstallationScriptLink,
           postInstallationScriptReturn: this.$scope.installation.options
             .postInstallationScriptReturn,
-          sshKeyName: this.$scope.installation.options.sshKeyName,
         },
       ).then(
         () => {
