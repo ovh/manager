@@ -289,7 +289,6 @@ export function getPciProjectMenu(
         {
           id: 'dashboard',
           title: 'AI Dashboard',
-          badge: 'new',
           feature: 'ai-dashboard',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai-dashboard`),
         },
@@ -308,7 +307,6 @@ export function getPciProjectMenu(
         {
           id: 'apps',
           title: 'AI Deploy',
-          badge: 'new',
           regions: ['CA', 'EU'],
           feature: 'ai-apps',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/apps`),

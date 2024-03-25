@@ -375,7 +375,6 @@ const pciNode: Node = {
           },
           features: ['ai-apps'],
           forceVisibility: true,
-          tag: NodeTag.ALPHA,
         },
       ],
     },
