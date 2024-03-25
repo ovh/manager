@@ -173,6 +173,9 @@
             >
                 <span
                     data-ng-bind=":: 'pci_projects_project_instances_status_' + $row.status | translate"
+                    data-toggle="tooltip"
+                    data-placement="left"
+                    title="{{ $ctrl.getBadgeTooltipText($row.statusGroup) }}"
                 ></span>
             </span>
         </oui-datagrid-column>
