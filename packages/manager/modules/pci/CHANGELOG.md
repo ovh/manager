@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.31.0...@ovh-ux/manager-pci@6.32.0) (2024-03-25)
+
+
+### Bug Fixes
+
+* **pci.instances:** update floating ip availability check ([#11179](https://github.com/ovh/manager/issues/11179)) ([abf4fcc](https://github.com/ovh/manager/commit/abf4fcccc1a2758b39a40f17a6b1521c6eb9ba2b))
+
+
+### Features
+
+* **pci.project:** disable display of mediationBanner in disco proj ([#11144](https://github.com/ovh/manager/issues/11144)) ([e12abb2](https://github.com/ovh/manager/commit/e12abb20b08a49fa8aafaf46df76fd57052df3de))
+* **pci.vpn:** set private network on creation by default ([#10580](https://github.com/ovh/manager/issues/10580)) ([6c44060](https://github.com/ovh/manager/commit/6c44060f3d6d1f52ecb6f1e1d6b4e28b48eee4e0))
+
+
+
+
+
 # [6.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.30.1...@ovh-ux/manager-pci@6.31.0) (2024-03-19)
 
 

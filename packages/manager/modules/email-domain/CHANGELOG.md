@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.6.1...@ovh-ux/manager-email-domain@1.7.0) (2024-03-25)
+
+
+### Features
+
+* **web.mxplan:** technical migration to zimbra ([#10848](https://github.com/ovh/manager/issues/10848)) ([03066bd](https://github.com/ovh/manager/commit/03066bdcd9c19121b06358cac268dca7beed3ec9))
+
+
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.6.0...@ovh-ux/manager-email-domain@1.6.1) (2024-03-11)
 
 

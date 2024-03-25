@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.18.1...@ovh-ux/manager-web@18.19.0) (2024-03-25)
+
+
+### Bug Fixes
+
+* **web.hosting.database:** wrong selection card some time ([#10854](https://github.com/ovh/manager/issues/10854)) ([50996f9](https://github.com/ovh/manager/commit/50996f9740c0741d7245ce8bcae2d87faf197f84))
+
+
+### Features
+
+* **web:** update dns dashboard ([#10936](https://github.com/ovh/manager/issues/10936)) ([bc88adf](https://github.com/ovh/manager/commit/bc88adf576ce1ca9ba234cbe205f4667d96f4245))
+
+
+
+
+
 ## [18.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.18.0...@ovh-ux/manager-web@18.18.1) (2024-03-19)
 
 

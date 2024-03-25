@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.2.2...@ovh-ux/manager-octavia-load-balancer@1.2.3) (2024-03-25)
+
+
+### Bug Fixes
+
+* **octavia:** add missing translations [CDS 2852] ([#11183](https://github.com/ovh/manager/issues/11183)) ([efc06bb](https://github.com/ovh/manager/commit/efc06bbeb53b39a197a9e129f6707e565306abef))
+* **octavia:** load of network if no public ip selection ([#11227](https://github.com/ovh/manager/issues/11227)) ([99821d4](https://github.com/ovh/manager/commit/99821d407a7dda1ff03b7c44a77e33fc87b8f2c9))
+
+
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.2.1...@ovh-ux/manager-octavia-load-balancer@1.2.2) (2024-03-19)
 
 

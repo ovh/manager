@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.10.1...@ovh-ux/manager-telecom@15.11.0) (2024-03-25)
+
+
+### Features
+
+* **telecom:** display meetings ([#11169](https://github.com/ovh/manager/issues/11169)) ([629a591](https://github.com/ovh/manager/commit/629a591cea66cd6daa125b766b11139f531d3405))
+
+
+
+
+
 ## [15.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.10.0...@ovh-ux/manager-telecom@15.10.1) (2024-03-19)
 
 

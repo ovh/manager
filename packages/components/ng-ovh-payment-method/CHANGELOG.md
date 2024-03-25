@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.15.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.14.1...@ovh-ux/ng-ovh-payment-method@9.15.0) (2024-03-25)
+
+
+### Features
+
+* **ng-ovh-payment-method:** added information modal for sepa method ([#11116](https://github.com/ovh/manager/issues/11116)) ([668c4ca](https://github.com/ovh/manager/commit/668c4ca6181939327cf9369b0c1794e474ceaea7))
+
+
+
+
+
 ## [9.14.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.14.0...@ovh-ux/ng-ovh-payment-method@9.14.1) (2024-03-19)
 
 

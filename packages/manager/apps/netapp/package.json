@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-netapp-app",
-  "version": "0.7.9",
+  "version": "0.7.10",
   "private": true,
   "description": "NetApp standalone application",
   "repository": {
@@ -35,7 +35,7 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.1",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
-    "@ovh-ux/ng-ovh-payment-method": "^9.14.1",
+    "@ovh-ux/ng-ovh-payment-method": "^9.15.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.2",
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",
