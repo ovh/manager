@@ -11,6 +11,7 @@ export default function useServiceLoader(appId: string) {
     async loadServices(
       path: string,
       subType?: string,
+      applicationId = appId
     ): Promise<SidebarMenuItem[]> {
       const services = await reketInstance.get('/service', {
         requestType: 'aapi',
@@ -27,7 +28,7 @@ export default function useServiceLoader(appId: string) {
           extraParams: service.extraParams,
           stateParams: service.stateParams || [],
           searchParams: service.searchParams || [],
-          href: navigation.getURL(appId, service.url || service.baseUrl || ''),
+          href: navigation.getURL(applicationId, service.url || service.baseUrl || ''),
           parentName: service.parentName,
           serviceName: service.serviceName,
         }))

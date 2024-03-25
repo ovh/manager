@@ -96,7 +96,7 @@ export const OperationMessages: React.FC<{ id?: string }> = ({ id }) => {
   ) : (
     <>
       {vrackServicesList?.data?.data.map((vs) => (
-        <OperationMessage vs={vs} />
+        <OperationMessage key={vs.id} vs={vs} />
       ))}
     </>
   );
