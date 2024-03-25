@@ -303,7 +303,6 @@ const pciNode: Node = {
           },
           features: ['data-processing'],
           forceVisibility: true,
-          tag: NodeTag.NEW,
         },
         {
           id: 'pci-analytics-data-analysis',
@@ -315,6 +314,15 @@ const pciNode: Node = {
           },
           features: ['databases'],
           forceVisibility: true,
+        },
+        {
+          id: 'pci-analytics-data-platform',
+          translation: 'sidebar_pci_analytics_data_platform',
+          count: false,
+          url: 'https://hq-fp.dataintegration.ovh.net/',
+          features: ['data-platform'],
+          tag: NodeTag.BETA,
+          isExternal: true,
         },
         {
           id: 'pci-logs-data-platform',

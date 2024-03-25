@@ -250,7 +250,6 @@ export function getPciProjectMenu(
         {
           id: 'data-processing',
           title: 'Data Processing',
-          badge: 'new',
           feature: 'data-processing',
           href: getURL(
             'public-cloud',
@@ -265,6 +264,14 @@ export function getPciProjectMenu(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/databases-analytics/data-analysis`,
           ),
+        },
+        {
+          id: 'data-platform',
+          title: 'Data Platform',
+          feature: 'data-platform',
+          badge: 'beta',
+          href: 'https://hq-fp.dataintegration.ovh.net',
+          external: true,
         },
         {
           id: 'logs-data-platform',
