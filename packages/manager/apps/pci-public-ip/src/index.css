@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/** TODO: change with mx-12 when a fix is done in the taliwind config core */
 .application {
-  @apply px-12 pt-8;
+  @apply mx-11 mt-8;
 }
 
 code {
