@@ -197,5 +197,6 @@
   "telecom_pack_migration_buildings_nro": "NRO",
   "telecom_pack_migration_buildings_type": "Typ",
   "telecom_pack_migration_buildings_actions": "Aktion",
-  "telecom_pack_migration_buildings_select_building": "Auswählen"
+  "telecom_pack_migration_buildings_select_building": "Auswählen",
+  "telecom_pack_migration_no_meeting_available": "Derzeit ist kein Termin verfügbar, Sie werden telefonisch zur Planung kontaktiert."
 }
