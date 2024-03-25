@@ -71,15 +71,6 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicated-server.server.interfaces.bandwidth-public-order',
               { productId: serverName },
             ),
-      technicalDetails: /* @ngInject */ ($http, serverName) =>
-        $http
-          .get(`/dedicated/technical-details/${serverName}`, {
-            serviceType: 'aapi',
-          })
-          .then(({ data }) =>
-            data?.baremetalServers?.storage ? data?.baremetalServers : null,
-          )
-          .catch(() => null),
       trafficInformation: /* @ngInject */ (
         $q,
         $stateParams,

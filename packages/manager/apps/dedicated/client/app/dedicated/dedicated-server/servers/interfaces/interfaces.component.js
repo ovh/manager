@@ -20,7 +20,6 @@ export default {
     resiliatePublicBandwidthLink: '<',
     resiliatePrivateBandwidthLink: '<',
     trafficInformation: '<',
-    technicalDetails: '<',
     urls: '<',
     user: '<',
     serverService: '<',
