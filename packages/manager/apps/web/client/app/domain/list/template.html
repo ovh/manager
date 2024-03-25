@@ -1,150 +1,353 @@
-<oui-header
-    data-ng-if="$ctrl.header"
-    class="mb-2"
-    data-heading="{{:: $ctrl.header }}"
-></oui-header>
-<div data-ng-bind-html="$ctrl.description"></div>
+<div class="list-domains">
+    <oui-header
+        data-ng-if="$ctrl.header"
+        class="mb-2"
+        data-heading="{{:: $ctrl.header }}"
+    ></oui-header>
+    <div data-ng-bind-html="$ctrl.description"></div>
 
-<oui-datagrid
-    id="{{ $ctrl.datagridId }}"
-    data-empty-placeholder="{{:: 'domains_empty' | translate }}"
-    data-page-size="{{ $ctrl.paginationSize }}"
-    data-rows-loader="$ctrl.loadPage()"
-    data-row-loader="$ctrl.loadResource($row)"
-    data-criteria="$ctrl.criteria"
-    data-on-page-change="$ctrl.onPageChange($pagination)"
-    data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
-    data-on-sort-change="$ctrl.onSortChange($sort)"
-    data-columns="$ctrl.columnsConfig"
-    data-on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
-    data-page="{{ $ctrl.paginationNumber }}"
-    customizable
->
-    <oui-datagrid-topbar data-ng-if="$ctrl.topbarOptions">
-        <topbar-cta data-options="$ctrl.topbarOptions"></topbar-cta>
-    </oui-datagrid-topbar>
-    <oui-datagrid-column
-        data-title="::'domains_column_domain' | translate"
-        data-property="domain"
-        data-type="string"
-        data-sortable
-        data-filterable
-        data-searchable
+    <oui-datagrid
+        id="{{ $ctrl.datagridId }}"
+        data-empty-placeholder="{{:: 'domains_empty' | translate }}"
+        data-page-size="{{ $ctrl.paginationSize }}"
+        data-rows-loader="$ctrl.loadPage()"
+        data-row-loader="$ctrl.loadResource($row)"
+        data-criteria="$ctrl.criteria"
+        data-on-page-change="$ctrl.onPageChange($pagination)"
+        data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+        data-on-sort-change="$ctrl.onSortChange($sort)"
+        data-columns="$ctrl.columnsConfig"
+        data-on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
+        data-page="{{ $ctrl.paginationNumber }}"
+        data-on-row-select="$ctrl.onRowSelect($row, $rows)"
+        data-selectable-rows
+        data-customizable
+        class="list-domains-datagrid"
     >
-        <a
-            data-ng-href="{{:: $ctrl.getServiceNameLink($row) }}"
-            data-ng-bind="$ctrl.constructor.convertToPunycode($value)"
-        ></a>
-        <button
-            data-ng-if="$ctrl.isIdn($value)"
-            type="button"
-            class="oui-popover-button"
-            data-oui-popover="{{::$ctrl.constructor.convertToPunycode($value)}}"
-            data-oui-popover-placement="right"
-        ></button>
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        data-title="::'domains_status' | translate"
-        data-property="state"
-        data-type="options"
-        data-type-options="$ctrl.domainStateColumnOptions"
-        data-filterable
-        data-sortable
-    >
-        <span
-            class="{{ 'oui-badge ' + $ctrl.DOMAINS_BADGES_STATUS[$value] }}"
-            data-translate="{{ 'domains_status_' + $value }}"
-        >
-        </span>
-        <button
-            data-ng-if="$value === $ctrl.DOMAIN_STATUS.RESTORABLE || $value === $ctrl.DOMAIN_STATUS.DISPUTE || $value === $ctrl.DOMAIN_STATUS.EXPIRED"
-            type="button"
-            class="oui-popover-button"
-            data-oui-popover="{{::'domains_status_tooltip_' + $value | translate}}"
-            data-oui-popover-placement="right"
-        ></button>
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        data-title="::'domains_column_domains_tech_state' | translate"
-        data-property="suspensionState"
-        data-type="options"
-        data-type-options="$ctrl.domainSuspensionStateColumnOptions"
-        data-filterable
-        data-sortable
-    >
-        <span
-            class="{{ 'oui-badge ' + $ctrl.DOMAINS_BADGES_SUSPENSION_STATE[$value] }}"
-            data-translate="{{ 'domains_suspension_state_' + $value }}"
-        ></span>
-        <button
-            data-ng-if="$value === $ctrl.DOMAIN_SUSPENSION_STATE.SUSPENDED"
-            type="button"
-            class="oui-popover-button"
-            data-oui-popover="{{::'domains_suspension_state_tooltip_' + $value | translate}}"
-            data-oui-popover-placement="right"
-        ></button>
-        <button
-            data-ng-if="$value === $ctrl.DOMAIN_SUSPENSION_STATE.NOT_SUSPENDED"
-            type="button"
-            class="oui-popover-button"
-            data-oui-popover="{{::'domains_suspension_state_tooltip_' + $value | translate}}"
-            data-oui-popover-placement="right"
-        ></button>
-    </oui-datagrid-column>
+        <oui-datagrid-topbar data-ng-if="$ctrl.topbarOptions">
+            <topbar-cta data-options="$ctrl.topbarOptions"></topbar-cta>
+            <div class="d-inline" data-ng-if="$ctrl.resources.data.length">
+                <oui-button
+                    data-variant="secondary"
+                    data-disabled="!$ctrl.selectedRows.length"
+                    data-ng-click="$ctrl.goToRestoreRenew($ctrl.selectedRows)"
+                >
+                    <span data-translate="domains_action_restore_renew"></span>
+                </oui-button>
 
-    <oui-datagrid-column
-        data-title="::'domains_column_domains_transfer_state' | translate"
-        data-property="transferLockStatus"
-        data-type="options"
-        data-type-options="$ctrl.domainTransfertLockStatusColumnOptions"
-        data-filterable
-        data-sortable
-    >
-        <span
-            class="{{ 'oui-badge ' + $ctrl.DOMAINS_BADGES_TRANSFERT_LOCK_STATE[$value] }}"
-            data-translate="{{ 'domains_transfert_lock_status_' + $value }}"
-        ></span>
-        <button
-            data-ng-if="$value === $ctrl.DOMAIN_TRANSFERT_LOCK_STATE.LOCKED"
-            type="button"
-            class="oui-popover-button"
-            data-oui-popover="{{::'domains_transfert_lock_status_tooltip_' + $value | translate}}"
-            data-oui-popover-placement="right"
-        ></button>
-        <button
-            data-ng-if="$value === $ctrl.DOMAIN_TRANSFERT_LOCK_STATE.UNLOCKED"
-            type="button"
-            class="oui-popover-button"
-            data-oui-popover="{{::'domains_transfert_lock_status_tooltip_' + $value | translate}}"
-            data-oui-popover-placement="right"
-        ></button>
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        data-title="::'domains_column_domains_whois_owner' | translate"
-        data-property="whoisOwner"
-        data-type="string"
-        data-searchable
-        data-sortable
-    >
-        <a
-            class="oui-link_icon"
-            data-ng-href="{{::$ctrl.linkContactBuilder($row)}}"
+                <oui-button
+                    data-variant="secondary"
+                    data-ng-click="$ctrl.setActionMultiple('export-csv/domains-export-to-csv')"
+                    data-ng-disabled="$ctrl.loading.domainsExportCsv"
+                >
+                    <span
+                        data-translate="domains_dashboard_button_export"
+                        data-ng-if="!$ctrl.loading.domainsExportCsv"
+                    ></span>
+                    <span
+                        data-translate="domains_dashboard_tooltip_export_csv_creation_doing"
+                        data-ng-if="$ctrl.loading.domainsExportCsv"
+                    ></span>
+                </oui-button>
+            </div>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title="::'domains_column_domain' | translate"
+            data-property="domain"
+            data-type="string"
+            data-sortable
+            data-filterable
+            data-searchable
         >
-            <span data-ng-bind=":: $value"></span>
+            <a
+                data-ng-href="{{:: $ctrl.getServiceNameLink($row) }}"
+                data-ng-bind="$ctrl.constructor.convertToPunycode($value)"
+            ></a>
+            <button
+                data-ng-if="$ctrl.isIdn($value)"
+                type="button"
+                class="oui-popover-button"
+                data-oui-popover="{{::$ctrl.constructor.convertToPunycode($value)}}"
+                data-oui-popover-placement="right"
+            ></button>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'domains_status' | translate"
+            data-property="state"
+            data-type="options"
+            data-type-options="$ctrl.domainStateColumnOptions"
+            data-filterable
+            data-sortable
+        >
             <span
-                class="oui-icon oui-icon-external-link"
-                aria-hidden="true"
-            ></span
-        ></a>
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        data-title="::'domains_column_domains_name_server_type' | translate"
-        data-property="nameServerType"
-        data-type="options"
-        data-type-options="$ctrl.domainNameServerTypeColumnOptions"
-        data-filterable
-        data-sortable
+                class="{{:: 'oui-badge ' + $ctrl.DOMAINS_BADGES_STATUS[$value] }}"
+                data-translate="{{:: 'domains_status_' + $value }}"
+            >
+            </span>
+            <button
+                data-ng-if="[$ctrl.DOMAIN_STATUS.RESTORABLE, $ctrl.DOMAIN_STATUS.PENDING_INCOMING_TRANSFER , $ctrl.DOMAIN_STATUS.DISPUTE, $ctrl.DOMAIN_STATUS.EXPIRED].includes($value)"
+                type="button"
+                class="oui-popover-button"
+                data-oui-popover="{{::'domains_status_tooltip_' + $value | translate}}"
+                data-oui-popover-placement="right"
+            ></button>
+        </oui-datagrid-column>
+
+        <oui-datagrid-column
+            data-title="::'domains_column_domains_tech_state' | translate"
+        >
+            <span
+                class="oui-icon oui-icon-success-circle"
+                data-ng-class="$ctrl.DOMAIN_SUSPENSION_STATE_CLASS[$row.suspensionState]"
+                data-oui-tooltip="{{ :: 'domains_suspension_state_' + $row.suspensionState | translate }}"
+            ></span>
+            <span
+                class="oui-icon"
+                data-ng-class="$ctrl.DOMAIN_TRANSFER_LOCK_STATE_CLASS[$row.transferLockStatus]"
+                data-oui-tooltip="{{ :: 'domains_transfer_lock_status_tooltip_' + $row.transferLockStatus | translate }}"
+            ></span>
+            <span
+                class="oui-icon oui-icon-shield_concept"
+                data-ng-class="$ctrl.DOMAIN_DNSSEC_STATE_CLASS[$row.dnssecState]"
+                data-oui-tooltip="{{ :: 'domains_dnssec_state_tooltip_' + $row.dnssecState | translate }}"
+            ></span>
+        </oui-datagrid-column>
+
+        <oui-datagrid-column
+            data-title="::'domains_column_domains_renewal_mode' | translate"
+            data-type-options="$ctrl.domainRenewalModeColumnOptions"
+            data-property="renewalState"
+            data-type="options"
+            data-filterable
+            data-sortable
+        >
+            <span
+                class="{{:: 'oui-badge ' + $ctrl.DOMAINS_BADGES_RENEWAL_MODE[$value] }}"
+                data-translate=" {{:: 'domains_renewal_mode_' + $value }}"
+                data-oui-tooltip="{{ :: $value === $ctrl.DOMAIN_RENEWAL_MODE.AUTOMATIC_RENEW ? $ctrl.getDate($row, $ctrl.DOMAIN_OBJECT_KEYS.RENEWAL_DATE) : '' }}"
+            ></span>
+            <button
+                data-ng-if="$value === $ctrl.DOMAIN_RENEWAL_MODE.UNPAID"
+                type="button"
+                class="oui-popover-button"
+                data-oui-popover="{{::'domains_renewal_state_tooltip_' + $value | translate}}"
+                data-oui-popover-placement="right"
+            ></button>
+        </oui-datagrid-column>
+
+        <oui-datagrid-column
+            data-title="::'domains_column_domains_expiration_date' | translate"
+            data-property="expirationDate"
+            data-type="date"
+            data-filterable
+            data-sortable
+        >
+            <span
+                data-ng-bind=":: $ctrl.getDate($row, $ctrl.DOMAIN_OBJECT_KEYS.EXPIRATION_DATE)"
+            ></span>
+        </oui-datagrid-column>
+
+        <oui-datagrid-column
+            data-title="::'domains_column_domains_contact_owner' | translate"
+            data-property="contactOwner.id"
+            data-type="string"
+            data-filterable
+            data-sortable
+        >
+            <div class="position-relative">
+                <a
+                    class="oui-link_icon"
+                    data-ng-href="{{:: $ctrl.linkToOwnerPage($row.contactOwner.id, $row.domain)}}"
+                    target="_top"
+                >
+                    <span data-ng-bind=":: $row.contactOwner.id"></span>
+                </a>
+                <button
+                    type="button"
+                    class="oui-popover-button"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="contactDetails.html"
+                    data-oui-popover-open="$rowIndex === $ctrl.contactPopover.rowIndex"
+                    data-ng-click="$ctrl.getContactDetails($row.contactOwner.id, $rowIndex)"
+                ></button>
+                <script type="text/ng-template" id="contactDetails.html">
+                    <span data-ng-bind="$ctrl.contactPopover.data.firstName + ' ' + $ctrl.contactPopover.data.lastName">
+                    </span>
+                    <br />
+                    <span data-ng-bind="$ctrl.contactPopover.data.organisationName">
+                    </span>
+                </script>
+            </div>
+        </oui-datagrid-column>
+
+        <oui-datagrid-column
+            data-title="::'domains_column_domains_admin_contact' | translate"
+            data-property="contactAdmin.id"
+            data-filterable
+            data-sortable
+        >
+            <a
+                class="oui-link_icon"
+                data-ng-if="$row.contactAdmin.id === $ctrl.user.auth.account"
+                data-ng-href="{{:: $ctrl.USER_ACCOUNT_INFOS_LINK }}"
+                target="_top"
+            >
+                <span data-ng-bind=":: $row.contactAdmin.id"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+            <span
+                data-ng-if="$row.contactAdmin.id !== $ctrl.user.auth.account"
+                data-ng-bind=":: $row.contactAdmin.id"
+            >
+            </span>
+        </oui-datagrid-column>
+
+        <oui-datagrid-column
+            data-title="::'domains_column_domains_billing_contact' | translate"
+            data-property="contactBilling.id"
+            data-filterable
+            data-sortable
+        >
+            <a
+                class="oui-link_icon"
+                data-ng-if="$row.contactBilling.id === $ctrl.user.auth.account"
+                data-ng-href="{{:: $ctrl.USER_ACCOUNT_INFOS_LINK }}"
+                target="_top"
+            >
+                <span data-ng-bind=":: $row.contactBilling.id"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+            <span
+                data-ng-if="$row.contactBilling.id !== $ctrl.user.auth.account"
+                data-ng-bind=":: $row.contactBilling.id"
+            >
+            </span>
+        </oui-datagrid-column>
+
+        <oui-datagrid-column
+            data-title="::'domains_column_domains_technical_contact' | translate"
+            data-property="contactTech.id"
+            data-filterable
+            data-sortable
+        >
+            <a
+                class="oui-link_icon"
+                data-ng-if="$row.contactTech.id === $ctrl.user.auth.account"
+                data-ng-href="{{:: $ctrl.USER_ACCOUNT_INFOS_LINK }}"
+                target="_top"
+            >
+                <span data-ng-bind=":: $row.contactTech.id"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+            <span
+                data-ng-if="$row.contactTech.id !== $ctrl.user.auth.account"
+                data-ng-bind=":: $row.contactTech.id"
+            >
+            </span>
+        </oui-datagrid-column>
+
+        <oui-datagrid-column
+            data-title="::'domains_column_domains_name_server' | translate"
+            data-property="nameServers"
+        >
+            <text-accordion
+                class="domains-nameserver-column"
+                value="$ctrl.constructor.getDNSServers($value)"
+            >
+            </text-accordion>
+        </oui-datagrid-column>
+
+        <oui-datagrid-column
+            data-title="::'domains_column_domains_name_server_type' | translate"
+            data-property="nameServerType"
+            data-type="options"
+            data-type-options="$ctrl.domainNameServerTypeColumnOptions"
+            data-filterable
+            data-sortable
+        >
+            <span data-translate="{{ 'domains_dns_type_' + $value }}"></span>
+        </oui-datagrid-column>
+
+        <oui-action-menu text="Actions" compact>
+            <oui-action-menu-item
+                data-href="{{:: $ctrl.getServiceNameLink($row)}}"
+                aria-label="{{:: 'domains_action_per_line_detail' | translate }}"
+                data-ng-if="![$ctrl.DOMAIN_STATUS.PENDING_INCOMING_TRANSFER, $ctrl.DOMAIN_STATUS.PENDING_CREATE].includes($row.state)"
+            >
+                <span data-translate="domains_action_per_line_detail"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToRestoreRenew($row)"
+                aria-label="{{:: $row.state === $ctrl.DOMAIN_STATUS.RESTORABLE ? 'domains_action_per_line_restore' : 'domains_action_per_line_renew' | translate }}"
+                data-ng-if="$ctrl.constructor.isDomainRenewableOrRestorable($row)"
+            >
+                <span
+                    data-translate="{{ $row.state === $ctrl.DOMAIN_STATUS.RESTORABLE ? 'domains_action_per_line_restore' : 'domains_action_per_line_renew' }}"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-href="{{:: $ctrl.CANCEL_LINK + $row.domain }}"
+                aria-label="{{:: 'domains_action_per_line_cancellation' | translate }}"
+                data-ng-if="$ctrl.constructor.isDomainCancellable($row)"
+                top
+            >
+                <span
+                    data-translate="domains_action_per_line_cancellation"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-href="{{:: $ctrl.ENABLE_AUTO_RENEW_LINK + $row.serviceId }}"
+                aria-label="{{:: 'domains_action_per_line_autorenew_activate' | translate }}"
+                data-ng-if="$row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.MANUAL_RENEW"
+                top
+            >
+                <span
+                    data-translate="domains_action_per_line_autorenew_activate"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-href="{{:: $ctrl.DISABLE_AUTO_RENEW_LINK + $row.serviceId }}"
+                aria-label="{{:: 'domains_action_per_line_autorenew_deactivate' | translate }}"
+                data-ng-if="$row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.AUTOMATIC_RENEW"
+                top
+            >
+                <span
+                    data-translate="domains_action_per_line_autorenew_deactivate"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToContactManagementEdit($row.domain)"
+                aria-label="{{:: 'common_manage_contacts' | translate }}"
+            >
+                <span data-translate="common_manage_contacts"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+
+    <div
+        id="currentAction"
+        class="modal fade currentAction"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
     >
-        <span data-translate="{{ 'domains_dns_type_' + $value }}"></span>
-    </oui-datagrid-column>
-</oui-datagrid>
+        <div class="modal-dialog">
+            <div
+                id="modal-container"
+                class="modal-content"
+                data-ng-include="$ctrl.stepPath"
+            ></div>
+            <div id="modal-help" class="help4wizards"></div>
+        </div>
+    </div>
+</div>

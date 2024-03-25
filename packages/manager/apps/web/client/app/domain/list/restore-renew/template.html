@@ -1,0 +1,35 @@
+<oui-modal
+    data-type="info"
+    data-heading="{{:: $ctrl.title }}"
+    data-primary-action="$ctrl.redirectToRenew()"
+    data-primary-label="{{:: 'domains_restore_renew_modal_confirm' | translate }}"
+    data-primary-disabled="!$ctrl.domains.length"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'domains_restore_renew_modal_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <div data-ng-if="$ctrl.domains.length">
+        <p
+            data-ng-bind-html="'domains_restore_renew_modal_question' | translate"
+        ></p>
+        <p class="mb-5">
+            <strong
+                data-translate="domains_restore_renew_modal_confirmation"
+            ></strong
+            ><br />
+            <span
+                data-translate="domains_restore_renew_modal_information"
+            ></span>
+        </p>
+        <div
+            class="alert alert-info"
+            role="alert"
+            data-translate="domains_restore_renew_modal_alert"
+        ></div>
+    </div>
+
+    <p
+        data-ng-if="!$ctrl.domains.length"
+        data-translate="domains_restore_renew_modal_no_selected_domains"
+    ></p>
+</oui-modal>

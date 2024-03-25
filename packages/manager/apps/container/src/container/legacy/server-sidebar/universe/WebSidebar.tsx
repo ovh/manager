@@ -66,10 +66,10 @@ export default function WebSidebar() {
 
           return [
             {
-              id: 'domain_bulk',
-              label: t('sidebar_domain_batch'),
-              href: navigation.getURL('web', '#/domain/bulk'),
-              icon: getIcon('ovh-font ovh-font-network'),
+              id: 'domain_list',
+              label: t('sidebar_domain_list'),
+              href: navigation.getURL('web', '#/domain'),
+              icon: getIcon('oui-icon oui-icon-list'),
               ignoreSearch: true,
             },
             {

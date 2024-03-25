@@ -91,6 +91,12 @@ angular.module('services').service(
       });
     }
 
+    getContactInfo(contactId) {
+      return this.$http
+        .get(`/me/contact/${contactId}`)
+        .then(({ data }) => data);
+    }
+
     /**
      * Get order service
      * @param {string} serviceName
