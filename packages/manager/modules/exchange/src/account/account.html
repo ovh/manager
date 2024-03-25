@@ -170,6 +170,7 @@
             <oui-action-menu-item
                 data-on-click="$ctrl.displayDialog('exchange/account/export-as-pst/account-export-as-pst', $row)"
                 data-disabled="!$ctrl.exchangeStates.constructor.isOk($row) || $ctrl.exchangeAccount.isPlaceholder($row)"
+                data-ng-if="!$ctrl.exchangeServiceInfrastructure.isDedicated()"
             >
                 <span
                     data-translate="exchange_tab_ACCOUNTS_menu_exportToPST"
