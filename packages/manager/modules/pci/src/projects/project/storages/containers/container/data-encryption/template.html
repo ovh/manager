@@ -2,17 +2,21 @@
     <p
         data-translate="pci_projects_project_storages_containers_data_encryption_description"
     ></p>
-    <oui-radio-group data-model="$ctrl.encryption.sseAlgorithm">
+    <oui-radio-group
+        data-model="$ctrl.encryption.sseAlgorithm"
+        data-on-change="$ctrl.trackEncryptionAction(modelValue)"
+    >
         <oui-radio
             data-ng-repeat="option in $ctrl.options track by $index"
             data-value=":: option.value"
             ><span data-translate="{{:: option.label}}"></span>
-            <i
+            <button
                 data-ng-if="option.tooltip"
-                class="pl-1 fa fa-question-circle-o oui-color-p-500"
-                aria-hidden="true"
-                data-oui-tooltip="{{:: option.tooltip | translate }}"
-            ></i>
+                type="button"
+                class="pl-1 oui-color-p-500 oui-popover-button"
+                data-oui-popover="{{:: 'pci_projects_project_storages_containers_data_encryption_aes256_tooltip' | translate }}"
+                data-ng-click="$ctrl.trackClickOnTooltip($event,'TOOLTIP_' + option.value)"
+            ></button>
         </oui-radio>
     </oui-radio-group>
 </div>

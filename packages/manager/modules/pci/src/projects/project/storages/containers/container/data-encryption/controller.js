@@ -8,16 +8,23 @@ export default class PciProjectStorageDataEncryptionController {
   }
 
   setEncryptionOptions() {
-    // reverse the list to get the default value (no encryption -> plaintext)
-    this.options = this.encryptionAlgorithms.reverse().map((value) => {
-      const label = 'pci_projects_project_storages_containers_data_encryption_';
-      const key = value.toLowerCase();
+    // sort the list to get the default value in first position (no encryption -> plaintext)
+    const encryptionValues = this.encryptionAlgorithms.filter(
+      (value) => value !== NO_ENCRYPTION_VALUE,
+    );
+    encryptionValues.unshift(NO_ENCRYPTION_VALUE);
+    this.options = encryptionValues.map((value) => {
+      const label = `pci_projects_project_storages_containers_data_encryption_${value.toLowerCase()}`;
       return {
         value,
-        label: `${label}${key}`,
-        tooltip:
-          value !== NO_ENCRYPTION_VALUE ? `${label}${key}_tooltip` : null,
+        label,
+        tooltip: value !== NO_ENCRYPTION_VALUE ? `${label}_tooltip` : null,
       };
     });
+  }
+
+  trackClickOnTooltip(event, value) {
+    this.trackEncryptionAction(value);
+    event.stopPropagation();
   }
 }
