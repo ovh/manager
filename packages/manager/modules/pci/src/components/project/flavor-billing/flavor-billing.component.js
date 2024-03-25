@@ -9,7 +9,6 @@ export default {
     number: '<?',
     monthlyBilling: '=?',
     disabled: '<?',
-    offer: '<?',
     addons: '<?',
     isLocalZone: '<',
     hourlyPriceInformation: '<',

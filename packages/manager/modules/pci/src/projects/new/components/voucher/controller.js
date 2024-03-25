@@ -34,15 +34,6 @@ export default class PciProjectNewVoucherCtrl {
     }
   }
 
-  isOnOffer() {
-    return (
-      this.deals.active &&
-      this.deals.pattern.test(this.model.voucher.value) &&
-      this.model.voucher.valid &&
-      this.deals.display.includes('project-creation-voucher')
-    );
-  }
-
   getStepTrackingCode() {
     const step = this.steps?.find(({ active }) => active);
     if (!step) {

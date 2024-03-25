@@ -4,7 +4,6 @@ import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import offerBadge from '../offer/badge';
 import component from './flavor-billing.component';
 
 const moduleName = 'ovhManagerPciFlavorBilling';
@@ -15,7 +14,6 @@ angular
     'ngOvhCloudUniverseComponents',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-    offerBadge,
   ])
   .component('pciProjectFlavorBilling', component)
   .run(/* @ngTranslationsInject:json ./translations */);
