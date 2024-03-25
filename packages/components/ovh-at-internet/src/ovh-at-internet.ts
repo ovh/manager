@@ -15,6 +15,8 @@ import {
 import { loadManagerTMS } from './manager-tms';
 import { debug } from './utils';
 
+import initMixCommander from './mix-commander';
+
 function getPageTrackingData(
   page: LegacyTrackingData,
 ): Partial<PageTrackingData> {
@@ -198,6 +200,10 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
 
   init(withConsent: boolean): Promise<void> {
     try {
+      // Init mix commander
+      if (withConsent) {
+        initMixCommander(this.getGenericTrackingData({ name: '', level2: '' }));
+      }
       return this.initTag(withConsent);
     } catch (err) {
       console.error('tracking initialization failed', err);
