@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { FloatingIPComponent } from '@/components/list';
 import { IPsTabName } from '@/constants';
-import useProject from '@/hooks/useProject';
+import useProject from '@/api/hooks/useProject';
 
 export default function ListingPage(): JSX.Element {
   const { t } = useTranslation('common');

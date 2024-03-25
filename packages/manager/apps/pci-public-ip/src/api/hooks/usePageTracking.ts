@@ -3,7 +3,7 @@ import { useLocation, useRouteLoaderData } from 'react-router-dom';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';
-import { Project } from '@/data/project';
+import { Project } from '@/api/data/project';
 
 const DISCOVERY_PLANCODE = 'project.discovery';
 

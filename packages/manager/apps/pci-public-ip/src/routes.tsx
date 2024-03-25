@@ -1,5 +1,5 @@
 import queryClient from '@/queryClient';
-import { getProjectQuery } from '@/hooks/useProject';
+import { getProjectQuery } from '@/api/hooks/useProject';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { PaginationState } from '@ovhcloud/manager-components';
-import { getAllFloatingIP, paginateResults } from '@/data/floating-ip';
+import { getAllFloatingIP, paginateResults } from '@/api/data/floating-ip';
 
 export interface ResponseAPIError {
   message: string;

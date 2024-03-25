@@ -21,7 +21,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { FloatingIP } from '@/interface';
-import { useFLoatingIPs } from '@/hooks/useFloatingIP';
+import { useFLoatingIPs } from '@/api/hooks/useFloatingIP';
 import Actions from './Actions';
 
 export default function FloatingIPComponent({ projectId, projectUrl }) {

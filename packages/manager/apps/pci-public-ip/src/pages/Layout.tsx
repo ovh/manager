@@ -6,9 +6,9 @@ import { ErrorBanner } from '@ovhcloud/manager-components';
 import BreadCrumbs from '@/components/BreadCrumbs';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 import HidePreloader from '@/core/HidePreloader';
-import useProject, { ResponseAPIError } from '@/hooks/useProject';
+import useProject, { ResponseAPIError } from '@/api/hooks/useProject';
 
-import usePageTracking from '@/hooks/usePageTracking';
+import usePageTracking from '@/api/hooks/usePageTracking';
 
 export default function Layout() {
   const { projectId } = useParams();
