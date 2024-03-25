@@ -8,7 +8,7 @@ import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 
 import routing from './ipv6.routes';
-import controller from './ipv6.controller';
+import component from './ipv6.component';
 
 import service from '../ip-ip-agoraOrder.service';
 
@@ -26,7 +26,7 @@ angular
     'ovhManagerCatalogPrice'
   ])
   .config(routing)
-  .controller('AgoraIpV6OrderController', controller)
+  .component('agoraIpV6Order', component)
   .service('IpAgoraOrder', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 

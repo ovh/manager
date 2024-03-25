@@ -1,74 +1,87 @@
-import JSURL from 'jsurl';
-import filter from 'lodash/filter';
 import find from 'lodash/find';
-import flattenDeep from 'lodash/flattenDeep';
-import get from 'lodash/get';
-import head from 'lodash/head';
-import intersection from 'lodash/intersection';
-import last from 'lodash/last';
-import map from 'lodash/map';
-import range from 'lodash/range';
-import uniq from 'lodash/uniq';
 
-import {
-  IP_LOCATION_GROUPS,
-  PRODUCT_TYPES,
-  TRACKING_PREFIX,
-  VPS_MAX_QUANTITY,
-  IP_AGORA,
-  ADDITIONAL_IP,
-  BLOCK_ADDITIONAL_IP,
-  ALERT_ID,
-} from '../ip-ip-agoraOrder.constant';
+import { PRODUCT_TYPES, ALERT_ID } from '../ip-ip-agoraOrder.constant';
 
 export default class AgoraIpV6OrderController {
   /* @ngInject */
   constructor(
     $q,
-    $rootScope,
-    $scope,
     $state,
     $translate,
     $window,
     Alerter,
     IpAgoraOrder,
-    IpOrganisation,
     User,
-    atInternet,
     coreConfig,
   ) {
     this.$q = $q;
-    this.$rootScope = $rootScope;
-    this.$scope = $scope;
     this.$state = $state;
     this.$translate = $translate;
     this.$window = $window;
     this.Alerter = Alerter;
     this.IpAgoraOrder = IpAgoraOrder;
-    this.IpOrganisation = IpOrganisation;
     this.User = User;
-    this.atInternet = atInternet;
-    this.IP_AGORA = IP_AGORA;
-    this.ADDITIONAL_IP = ADDITIONAL_IP;
-    this.BLOCK_ADDITIONAL_IP = BLOCK_ADDITIONAL_IP;
     this.ALERT_ID = ALERT_ID;
     this.region = coreConfig.getRegion();
     this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
+    this.loading = {};
   }
-
 
   $onInit() {
     this.model = {
       params: {},
       selectedService: null,
     };
-    this.loading = {};
     this.user = this.$state.params.user;
     this.catalogName = this.$state.params.catalogName;
-    this.loadOptions();
+    console.log(this.region);
   }
 
-  loadOptions() {
+  loadServices() {
+    this.loading.services = true;
 
+    return this.$q
+      .all({
+        user: this.User.getUser(),
+        services: this.IpAgoraOrder.getVrackService(),
+      })
+      .then((results) => {
+        this.user = results.user;
+        this.services = results.services;
+        if (this.$state.params.service) {
+          this.model.selectedService = find(this.services, {
+            serviceName: this.$state.params.service.serviceName,
+          });
+        }
+      })
+      .catch((err) => {
+        this.Alerter.error(
+          this.$translate.instant('ip_order_loading_error', this.ALERT_ID),
+        );
+        return this.$state.go('^').then(() => this.$q.reject(err));
+      })
+      .finally(() => {
+        this.loading.services = false;
+      });
+  }
+
+  loadRegions() {
+    const ipCountryAvailablePromise = this.IpAgoraOrder.getIpCountryAvailablePromise(
+      this.model.selectedService.serviceName,
+      PRODUCT_TYPES.vrack.typeName,
+    );
+
+    return ipCountryAvailablePromise
+      .then((data) => {
+        // let countries = data;
+        console.log(data);
+        // if (data.length === 0) {
+        //   const REGION = AgoraIpV4OrderController.getRegionFromServiceName(
+        //     this.model.selectedService.serviceName,
+        //   );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }

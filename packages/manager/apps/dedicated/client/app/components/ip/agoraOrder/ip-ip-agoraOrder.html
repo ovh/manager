@@ -19,12 +19,12 @@
             class="text-center d-flex col-sm-12 col-md-6 col-xl-3 my-3"
             data-model="$ctrl.ipType"
             data-variant="light"
-            data-on-change="$ctrl.$state.go('app.ip.agora-order.ipv4')"
+            data-on-change="$ctrl.goToIpv4Order()"
             data-values="['ipv4']"
         >
             <oui-select-picker-description class="h-75">
                 <h4>
-                    <strong class="text-center">ipv4</strong>
+                    <strong class="text-center" data-ng-bind=":: $ctrl.IP_TYPE.IPv4"></strong>
                 </h4>
                 <p class="text-left">
                     {{ 'ip_agora_ipv4_description' | translate }}
@@ -49,12 +49,12 @@
             name="ip-version"
             class="text-center d-flex col-sm-12 col-md-6 col-xl-3 my-3"
             data-model="$ctrl.ipType"
-            data-on-change="$ctrl.$state.go('app.ip.agora-order.ipv6')"
+            data-on-change="$ctrl.goToIpv6Order()"
             data-values="['ipv6']"
         >
             <oui-select-picker-description class="h-75">
                 <h4>
-                    <strong class="text-center">ipv6</strong>
+                    <strong class="text-center" data-ng-bind=":: $ctrl.IP_TYPE.IPv6"></strong>
                 </h4>
                 <p class="text-left">
                     {{ 'ip_agora_ipv6_description' | translate }}

@@ -40,6 +40,23 @@ export default class IpAgoraOrder {
     });
   }
 
+  getVrackService() {
+    return this.OvhHttp.get('/products', {
+      rootPath: '2api',
+      params: {
+        product: PRODUCT_TYPES.vrack.apiTypeName,
+      },
+    }).then((vrack) => {
+      const availableVrack = this.handleErrorOrServices(vrack);
+      return [
+        ...availableVrack.map((vrackService) => ({
+          ...vrackService,
+          type: PRODUCT_TYPES.vrack.apiTypeName,
+        })),
+      ];
+    });
+  }
+
   getServices() {
     return this.$q
       .all([
@@ -233,6 +250,8 @@ export default class IpAgoraOrder {
         return `/dedicatedCloud/${serviceName}/orderableIpCountries`;
       case PRODUCT_TYPES.vps.typeName:
         return `/vps/${serviceName}/ipCountryAvailable`;
+      case PRODUCT_TYPES.vrack.typeName:
+        return `/vrack/${serviceName}/ipCountryAvailable`;
       default:
         return null;
     }

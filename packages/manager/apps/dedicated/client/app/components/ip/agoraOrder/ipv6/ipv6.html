@@ -1,0 +1,117 @@
+<div>
+    <oui-stepper
+        data-current-index="$ctrl.currentStep"
+        data-on-finish="$ctrl.redirectToPaymentPage()"
+    >
+        <oui-step-form
+            data-id="options"
+            data-name="options_selection"
+            data-header="{{ 'ip_agora_ipv6_option_step_question' | translate }}"
+            data-on-submit="$ctrl.loadServices()"
+        >
+            <oui-header
+                description="{{ 'ip_agora_ipv6_option_header' | translate }}"
+            >
+            </oui-header>
+            <oui-select-picker
+                name="ip-version"
+                class="text-center d-flex col-sm-12 col-md-12 col-xl-3"
+                data-variant="light"
+            >
+                <oui-select-picker-description class="h-100">
+                    <h4>
+                        <strong
+                            class="text-center"
+                            data-translate="ip_agora_ipv6_option_tile_title"
+                        ></strong>
+                    </h4>
+                    <p
+                        class="text-left"
+                        data-translate="ip_agora_ipv6_option_tile_description"
+                    ></p>
+                </oui-select-picker-description>
+
+                <oui-select-picker-section>
+                    <span data-translate="free_price"></span>
+                </oui-select-picker-section>
+            </oui-select-picker>
+        </oui-step-form>
+
+        <oui-step-form
+            data-id="service"
+            data-name="service_selection"
+            data-header="{{:: ('ip_order_step1_question' | translate) + $ctrl.ADDITIONAL_IP}}"
+            data-valid="$ctrl.model.selectedService"
+            data-editable="!$ctrl.isLoading"
+            data-navigation="$ctrl.model.selectedService"
+            data-on-submit="$ctrl.loadRegions()"
+        >
+            <div data-ng-show="$ctrl.loading.services" class="text-center">
+                <oui-spinner></oui-spinner>
+            </div>
+            <div
+                data-ng-show="!$ctrl.loading.services && $ctrl.services.length"
+            >
+                <oui-field
+                    data-label="{{:: 'ip_table_header_service' | translate }}"
+                    data-size="xl"
+                >
+                    <label class="oui-select">
+                    <oui-select
+                        items="$ctrl.services"
+                        match="displayName"
+                        model="$ctrl.model.selectedService"
+                        name="service"
+                        placeholder="Select a service..."
+                        searchable>
+                    </oui-select>
+                    </label>
+                </oui-field>
+            </div>
+            <div
+                data-ng-show="!$ctrl.loading.services && !$ctrl.services.length"
+                data-translate="ip_order_noservices"
+            ></div>
+        </oui-step-form>
+
+        <oui-step-form
+            data-id="options"
+            data-name="options_selection"
+            data-header="{{ 'ip_agora_ip_localisation_title' | translate }}"
+        >
+            <div class="row">
+                <oui-radio-toggle-group
+                    direction="{{$ctrl.direction}}"
+                    model="$ctrl.model"
+                    on-change="$ctrl.onChange(modelValue)"
+                >
+                    <oui-radio disabled="$ctrl.disabled" value="$ctrl.value1">
+                        Value A
+                    </oui-radio>
+
+                    <oui-radio disabled="$ctrl.disabled" value="$ctrl.value2">
+                        Value B
+                    </oui-radio>
+
+                    <oui-radio disabled="$ctrl.disabled" value="$ctrl.value3">
+                        Value C
+                    </oui-radio>
+                </oui-radio-toggle-group>
+            </div>
+
+            <div class="row">
+                <oui-select-picker
+                    class="d-inline-block col-md-6 col-xl-3 my-3"
+                    data-name="country"
+                    data-ng-repeat="country in $ctrl.model.params.selectedOffer.countries track by country.code"
+                    data-label="{{ country.description }}"
+                    data-variant="light"
+                    data-picture="{{ ::country.icon }}"
+                    data-model="$ctrl.model.params.selectedCountry"
+                    data-values="[country]"
+                >
+                </oui-select-picker>
+            </div>
+        </oui-step-form>
+    </oui-stepper>
+</div>

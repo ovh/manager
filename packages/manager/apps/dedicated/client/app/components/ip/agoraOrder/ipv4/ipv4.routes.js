@@ -1,16 +1,7 @@
-import template from './ipv4.html';
-import controller from './ipv4.controller';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip.agora-order.ipv4', {
     url: '/ipv4',
-    views: {
-      '': {
-        template,
-        controller,
-        controllerAs: '$ctrl',
-      },
-    },
+    component: 'agoraIpV4Order',
     params: {
       service: null,
       user: {},

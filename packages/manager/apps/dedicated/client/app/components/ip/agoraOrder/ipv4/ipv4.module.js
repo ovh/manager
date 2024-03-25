@@ -9,7 +9,7 @@ import '@uirouter/angularjs';
 import service from '../ip-ip-agoraOrder.service';
 
 import routing from './ipv4.routes';
-import controller from './ipv4.controller';
+import component from './ipv4.component';
 
 const moduleName = 'ovhManagerDedicatedAgoraOrderIpv4';
 
@@ -25,7 +25,7 @@ angular
     'ovhManagerCatalogPrice'
   ])
   .config(routing)
-  .controller('AgoraIpV4OrderController', controller)
+  .component('agoraIpV4Order', component)
   .service('IpAgoraOrder', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
