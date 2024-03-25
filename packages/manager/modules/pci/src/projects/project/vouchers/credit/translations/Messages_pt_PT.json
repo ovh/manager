@@ -1,8 +1,0 @@
-{
-  "cpb_vouchers_add_credit_title": "Adquirir um crédito cloud",
-  "cpb_vouchers_add_credit_info": "Selecione o montante (sem IVA) que pretende creditar para este projeto. Uma vez o pagamento efetuado, o crédito será utilizado para os tarifários e consumos deste projeto para as faturas editadas durante os próximos 12 meses.",
-  "cpb_vouchers_add_credit_amount": "Montante a creditar ({{ currency }} s/IVA)",
-  "cpb_vouchers_add_credit_valid": "Gerar uma nota de encomenda",
-  "cpb_vouchers_add_credit_success": "A nota de encomenda para o seu crédito de {{ amount }} está disponível <a href=\"{{ url }}\" target=\"_blank\">aqui</a>.",
-  "cpb_vouchers_add_credit_load_err": "Lamentamos, mas ocorreu um erro ao adquirir o crédito cloud."
-}
