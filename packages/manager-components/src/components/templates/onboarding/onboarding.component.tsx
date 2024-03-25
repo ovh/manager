@@ -1,8 +1,14 @@
 import React, { PropsWithChildren } from 'react';
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsDivider,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
+  ODS_DIVIDER_SIZE,
+  ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -54,14 +60,16 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.primary}
             level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._700}
-            className="block text-center mb-3"
+            size={ODS_TEXT_SIZE._800}
+            className="block text-center"
           >
             {title}
           </OsdsText>
+          <OsdsDivider size={ODS_DIVIDER_SIZE.seven} />
           <OsdsText
             level={ODS_TEXT_LEVEL.body}
-            className="block text-center mb-2"
+            color={ODS_TEXT_COLOR_INTENT.text}
+            className="block text-center mb-2 max-w-4xl"
           >
             {description}
           </OsdsText>
