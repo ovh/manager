@@ -5,6 +5,7 @@ export default {
   bindings: {
     isTrustedZone: '<',
     validParams: '<',
+    isSubsidiaryWithPostPaidUsageBilling: '<',
   },
   controller,
   template,

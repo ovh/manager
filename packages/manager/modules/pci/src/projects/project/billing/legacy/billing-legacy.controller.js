@@ -70,4 +70,16 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
       instanceId,
     });
   }
+
+  get hourlyBillingTitle() {
+    return this.isSubsidiaryWithPostPaidUsageBilling
+      ? this.$translate.instant('cpbc_hourly_header_post_paid')
+      : this.$translate.instant('cpbc_hourly_header');
+  }
+
+  get monthlyBillingTitle() {
+    return this.isSubsidiaryWithPostPaidUsageBilling
+      ? this.$translate.instant('cpbc_monthly_header_post_paid')
+      : this.$translate.instant('cpbc_monthly_header');
+  }
 }
