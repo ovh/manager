@@ -170,12 +170,13 @@ export default function ListingPage() {
       {isDiscoveryProject(project) && (
         <PciDiscoveryBanner projectId={projectId} />
       )}
-      <div className={'flex items-center justify-between mt-4'}>
+      <div className={'sm:flex items-center justify-between mt-4'}>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           href={hrefAdd}
+          className="xs:mb-0.5 sm:mb-0"
         >
           <OsdsIcon
             size={ODS_ICON_SIZE.xs}
