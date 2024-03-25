@@ -156,8 +156,15 @@ export default class PciInstancesAddController {
     this.floatingIps = null;
     this.addons = [];
     this.getSmallestGatewayInfo();
-    this.defaultFloatingIp = this.getProductCatalog;
+    this.defaultFloatingIp = this.getProductCatalog.defaultFloatingIp;
+    this.publicIpProducts = this.getProductCatalog.publicIpProducts;
     this.isIpLoading = false;
+  }
+
+  getPublicIpPriceInformation() {
+    return this.publicIpProducts
+      .find((product) => product.planCode.endsWith(this.model.datacenter.name))
+      ?.pricings?.find(({ type }) => type === 'consumption')?.price;
   }
 
   getSmallestGatewayInfo() {
@@ -810,7 +817,7 @@ export default class PciInstancesAddController {
       this.addons = [
         ...this.addons,
         { gateway: this.defaultGateway },
-        { floatingIp: this.getProductCatalog },
+        { floatingIp: this.getProductCatalog.defaultFloatingIp },
       ];
     } else if (
       this.isAttachFloatingIP &&
