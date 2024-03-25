@@ -119,5 +119,6 @@
   "user_users_group": "Grupa",
   "user_need_rights_message": "Nie masz uprawnień do wykonania tej operacji. Poproś administratorów o następujące uprawnienia: ",
   "user_users_users_section_title": "Użytkownicy",
-  "user_users_sso_modal_group_local_users_to_enable": "Zachowaj status „aktywny” dla użytkowników OVHcloud"
+  "user_users_sso_modal_group_local_users_to_enable": "Zachowaj status „aktywny” dla użytkowników OVHcloud",
+  "user_users_sso_modal_user_attribute_name": "Nazwa atrybutu użytkownika (userAttributeName, zwykle określana jako „UPN”)"
 }

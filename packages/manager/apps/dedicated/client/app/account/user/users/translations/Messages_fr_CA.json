@@ -65,6 +65,7 @@
   "user_users_sso_update_modal_title": "Modifier le SSO",
   "user_users_sso_update_modal_info": "Afin d'autoriser vos utilisateurs à utiliser votre propre identity provider, nous avons besoin de ses informations afin de configurer votre compte.",
   "user_users_sso_update_modal_step1_question": "Veuillez renseigner les détails du SSO",
+  "user_users_sso_modal_user_attribute_name": "Nom d'attribut d'utilisateur (userAttributeName, généralement designé par 'UPN')",
   "user_users_sso_update_modal_group_attribute_name": "Nom d'attribut de groupe (groupAttributeName)",
   "user_users_sso_update_success_message": "La connexion SSO a été modifiée avec succès.",
   "user_users_sso_update_error_message": "Une erreur est survenue lors de la mise à jour de la connexion SSO :",

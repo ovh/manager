@@ -11,6 +11,7 @@ export default class UserAccountUsersSsoAddCtrl {
     this.loader = false;
     this.identityProvider = {
       metadata: null,
+      userAttributeName: null,
       groupAttributeName: null,
       disableUsers: false,
     };

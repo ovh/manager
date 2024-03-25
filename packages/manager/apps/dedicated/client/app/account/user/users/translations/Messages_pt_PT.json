@@ -119,5 +119,6 @@
   "user_users_group": "Grupo",
   "user_need_rights_message": "Não está autorizado a efetuar esta operação. Peça aos seus administradores os seguintes direitos: ",
   "user_users_users_section_title": "Utilizadores",
-  "user_users_sso_modal_group_local_users_to_enable": "Manter os utilizadores da OVHcloud ativos"
+  "user_users_sso_modal_group_local_users_to_enable": "Manter os utilizadores da OVHcloud ativos",
+  "user_users_sso_modal_user_attribute_name": "Nome de atributo de utilizador (userAttributeName, geralmente designado por 'UPN')"
 }

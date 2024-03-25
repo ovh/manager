@@ -42,6 +42,21 @@
                 <div class="form-group">
                     <label
                         class="control-label"
+                        for="userAttributeName"
+                        data-translate="user_users_sso_modal_user_attribute_name"
+                    >
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="userAttributeName"
+                        name="userAttributeName"
+                        data-ng-model="$ctrl.identityProvider.userAttributeName"
+                    />
+                </div>
+                <div class="form-group">
+                    <label
+                        class="control-label"
                         for="groupAttributeName"
                         data-translate="user_users_sso_add_modal_group_attribute_name"
                     >
