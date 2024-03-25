@@ -18,5 +18,8 @@ export default {
     trackPage: '<',
     isDiscoveryProject: '<',
     goToDiscoveryProjectActivationPage: '&',
+    encryptionAvailable: '<',
+    encryptionAlgorithms: '<',
+    trackEncryptionAction: '<',
   },
 };

@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_message": "Le informazioni di identificazione S3 per l'utente {{username}} sono state generate.",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_fail_message": "Le informazioni di identificazione S3 non sono state generate.",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_credential_fail_message": "La creazione dell'utente {{username}} non è andata a buon fine.",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label": "Il tuo nome utente S3",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label": "La tua chiave di accesso:",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label": "La tua chiave segreta:"
-}

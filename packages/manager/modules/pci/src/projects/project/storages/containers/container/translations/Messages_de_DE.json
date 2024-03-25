@@ -37,5 +37,7 @@
   "pci_projects_project_storages_containers_container_documentation_title_s3-limitation": "Die technischen Grenzen des S3 Object Storage",
   "pci_projects_project_storages_containers_container_documentation_description_s3-limitation": "Hier erklären wir die technisch bedingten Grenzen der Lösung S3 Object Storage.",
   "pci_projects_project_storages_containers_container_back_button_label": "Meine Container",
-  "pci_projects_project_storages_containers_container_object_info_s3_staticUrl_help": "Stellen Sie Ihre Container und Objekte im Web bereit, indem Sie die Zugriffsrechte für jedes Objekt konfigurieren und so einen öffentlichen Zugang ermöglichen. Sie sind dann über die Virtual Hosted Style-Adresse verfügbar."
+  "pci_projects_project_storages_containers_container_object_info_s3_staticUrl_help": "Stellen Sie Ihre Container und Objekte im Web bereit, indem Sie die Zugriffsrechte für jedes Objekt konfigurieren und so einen öffentlichen Zugang ermöglichen. Sie sind dann über die Virtual Hosted Style-Adresse verfügbar.",
+  "pci_projects_project_storages_containers_container_info_data_encryption_enabled": "Verschlüsselung: <strong>SSE-S3</strong>",
+  "pci_projects_project_storages_containers_container_info_data_encryption_disabled": "Verschlüsselung: <strong>Keine</strong>"
 }

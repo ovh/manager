@@ -3,7 +3,10 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import some from 'lodash/some';
 
-import { OBJECT_CONTAINER_OFFERS } from '../../../containers/containers.constants';
+import {
+  ENCRYPTION_ALGORITHMS_FALLBACK,
+  OBJECT_CONTAINER_OFFERS,
+} from '../../../containers/containers.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.object-storage.add', {
@@ -36,6 +39,24 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         }),
       goBack: /* @ngInject */ (goToStorageContainers) => goToStorageContainers,
+      encryptionAlgorithms: /* @ngInject */ ($http, encryptionAvailable) =>
+        encryptionAvailable
+          ? $http
+              .get('/cloud.json')
+              .then(
+                ({ data: { models } }) =>
+                  models['cloud.storage.EncryptionAlgorithmEnum'].enum,
+              )
+              .catch(() => ENCRYPTION_ALGORITHMS_FALLBACK) // To remove when encryption could be set post creation
+          : [],
+      encryptionAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('public-cloud:object-storage:encryption')
+          .then((feature) =>
+            feature.isFeatureAvailable(
+              'public-cloud:object-storage:encryption',
+            ),
+          ),
       cancelCreate: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.storages.object-storage', {
           projectId,

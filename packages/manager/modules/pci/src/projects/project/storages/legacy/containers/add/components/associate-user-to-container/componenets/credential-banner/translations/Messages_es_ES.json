@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_message": "Se han generado las claves de conexión S3 del usuario {{username}}.",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_fail_message": "No se han generado las claves de conexión S3.",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_credential_fail_message": "No se ha podido crear el usuario {{username}}.",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label": "Su nombre de usuario S3",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label": "Su clave de acceso:",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label": "Su clave secreta:"
-}
