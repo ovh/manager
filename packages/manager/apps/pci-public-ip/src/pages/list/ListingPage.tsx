@@ -12,6 +12,7 @@ import {
   OsdsTabs,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { PciGuidesHeader } from '@ovhcloud/manager-components';
 import { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
@@ -66,13 +67,16 @@ export default function ListingPage(): JSX.Element {
         />
       )}
       <div className="header mb-10 mt-8">
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        >
-          {t('pci_additional_ips_title')}
-        </OsdsText>
+        <div className="flex items-center justify-between">
+          <OsdsText
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._600}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          >
+            {t('pci_additional_ips_title')}
+          </OsdsText>
+          <PciGuidesHeader category="storage"></PciGuidesHeader>
+        </div>
         <div className="mt-4">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
