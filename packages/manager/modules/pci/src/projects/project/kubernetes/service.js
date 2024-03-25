@@ -130,8 +130,11 @@ export default class Kubernetes {
     region,
     version,
     privateNetworkId,
+    nodesSubnetId,
+    loadBalancersSubnetId,
     gatewayConfig,
     nodepool,
+    proxy,
   ) {
     if (nodepool.antiAffinity) {
       set(nodepool, 'maxNodes', ANTI_AFFINITY_MAX_NODES);
@@ -143,10 +146,20 @@ export default class Kubernetes {
       version,
       nodepool,
       ...(privateNetworkId && { privateNetworkId }),
+      ...(nodesSubnetId && { nodesSubnetId }),
+      ...(loadBalancersSubnetId && { loadBalancersSubnetId }),
       ...(gatewayConfig.enabled && {
         privateNetworkConfiguration: {
-          defaultVrackGateway: gatewayConfig.ip,
+          defaultVrackGateway: gatewayConfig.ip ?? '',
           privateNetworkRoutingAsDefault: gatewayConfig.enabled,
+        },
+      }),
+      ...(proxy && {
+        kubeProxyMode: proxy.mode,
+        customization: {
+          kubeProxy: {
+            [proxy.mode]: proxy.values,
+          },
         },
       }),
     });
@@ -277,6 +290,14 @@ export default class Kubernetes {
       );
   }
 
+  getPrivateNetworkSubnets(projectId, privateNetworkId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/network/private/${privateNetworkId}/subnet`,
+      )
+      .then(({ data: subnets }) => subnets);
+  }
+
   getRegions(projectId, ovhSubsidiary) {
     const product = KUBE_PRODUCT_ID;
     return this.$http
@@ -346,6 +367,14 @@ export default class Kubernetes {
   removeOidcProvider(serviceName, kubeId) {
     return this.$http
       .delete(`/cloud/project/${serviceName}/kube/${kubeId}/openIdConnect`)
+      .then(({ data }) => data);
+  }
+
+  updateProxy(serviceName, kubeId, mode, values) {
+    return this.$http
+      .put(`/cloud/project/${serviceName}/kube/${kubeId}/customization`, {
+        kubeProxy: { [mode]: values },
+      })
       .then(({ data }) => data);
   }
 }

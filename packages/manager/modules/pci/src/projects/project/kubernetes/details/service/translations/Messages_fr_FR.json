@@ -74,5 +74,7 @@
   "kube_service_cluster_network_attached": "Réseau attaché",
   "kube_service_cluster_network_ovh_gateway": "Passerelle Internet OVHcloud",
   "kube_service_cluster_network_vrack_default_gateway": "Passerelle par défaut du vRACK (DHCP)",
-  "kube_service_cluster_network_vrack_customer_gateway": "Passerelle : {{ vRackGatewayIp }}"
+  "kube_service_cluster_network_vrack_customer_gateway": "Passerelle : {{ vRackGatewayIp }}",
+  "kube_service_cluster_proxy": "Kubeproxy",
+  "kube_service_cluster_proxy_edit": "Modifier les paramètres"
 }
