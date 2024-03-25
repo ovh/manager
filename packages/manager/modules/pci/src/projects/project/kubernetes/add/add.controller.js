@@ -5,7 +5,10 @@ import some from 'lodash/some';
 import Datacenter from '../../../../components/project/regions-list/datacenter.class';
 import { NAME_INPUT_CONSTRAINTS } from '../kubernetes.constants';
 import { TAGS_BLOB } from '../../../../constants';
-import { KUBE_CONTAINER_MESSAGES } from './add.constants';
+import {
+  KUBE_CONTAINER_MESSAGES,
+  KUBE_DEFAULT_UPDATE_POLICY,
+} from './add.constants';
 
 export default class {
   /* @ngInject */
@@ -51,6 +54,7 @@ export default class {
         monthlyBilling: false,
         autoscaling: this.autoscaling,
       },
+      updatePolicy: KUBE_DEFAULT_UPDATE_POLICY,
     };
 
     this.loadMessages();
@@ -99,6 +103,7 @@ export default class {
       this.cluster.network.private.clusterRegion?.openstackId,
       this.cluster.network.gateway,
       options,
+      this.cluster.updatePolicy,
     )
       .then(() =>
         this.goBack(this.$translate.instant('kubernetes_add_success')),

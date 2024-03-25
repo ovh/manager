@@ -6,6 +6,7 @@ import {
   ANTI_AFFINITY_MAX_NODES,
   SCALE_DEFAULT_VALUES,
   VERSION_ENUM_KEY,
+  UPDATE_POLICY_KEY,
 } from './kubernetes.constants';
 import { PCI_FEATURES } from '../../projects.constant';
 
@@ -112,11 +113,13 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       }),
 
-      /* @ngInject */
-      versions: (OvhApiCloud) =>
-        OvhApiCloud.v6()
-          .schema()
-          .$promise.then((schema) => get(schema, VERSION_ENUM_KEY)),
+      schema: /* @ngInject */ (OvhApiCloud) =>
+        OvhApiCloud.v6().schema().$promise,
+
+      versions: /* @ngInject */ (schema) => get(schema, VERSION_ENUM_KEY),
+
+      updatePolicies: /* @ngInject */ (schema) =>
+        get(schema, UPDATE_POLICY_KEY),
 
       /* @ngInject */
       highestVersion: (versions) =>

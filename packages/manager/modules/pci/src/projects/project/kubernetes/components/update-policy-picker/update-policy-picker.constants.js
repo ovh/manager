@@ -1,0 +1,50 @@
+export const DOCUMENTATION_LINK = {
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0049649',
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0049640',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0049641',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0049644',
+  DE:
+    'https://help.ovhcloud.com/csm/de-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0054909',
+  ES:
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0054906',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0054907',
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0049655',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0049651',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0049640',
+  IT:
+    'https://help.ovhcloud.com/csm/it-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0054910',
+  MA:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0054907',
+  NL:
+    'https://help.ovhcloud.com/csm/en-nl-documentation-public-cloud?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938',
+  PL:
+    'https://help.ovhcloud.com/csm/pl-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0054905',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0054912',
+  QB:
+    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0054903',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0037177',
+  SN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0054907',
+  TN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0054907',
+  WE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0049651',
+  WS:
+    'https://help.ovhcloud.com/csm/es-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0054908',
+  WW:
+    'https://help.ovhcloud.com/csm/en-public-cloud-kubernetes-change-security-update?id=kb_article_view&sysparm_article=KB0049649',
+};
+
+export default {
+  DOCUMENTATION_LINK,
+};
