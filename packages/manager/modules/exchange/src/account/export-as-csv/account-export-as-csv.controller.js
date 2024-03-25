@@ -76,7 +76,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
 
   exportAccounts() {
     const exportOpts = {
-      count: 1000,
+      count: 10000,
       total: this.totalAccounts,
       search: this.search,
       filter: this.filterType === 'ALL' ? null : this.filterType,
