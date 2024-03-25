@@ -1,0 +1,54 @@
+@import 'bootstrap4/scss/_functions.scss';
+@import 'bootstrap4/scss/_variables.scss';
+
+.kubernetes-proxy-form {
+  .kubernetes-proxy-form-field {
+    display: table;
+    & > div {
+      display: table-row;
+      & > div {
+        vertical-align: top;
+        display: table-cell;
+        padding-bottom: 0.5rem;
+        &:first-child {
+          padding-top: 0.2rem;
+          padding-right: 0.5rem;
+          white-space: nowrap;
+        }
+      }
+    }
+    .oui-field {
+      margin-bottom: 0 !important;
+    }
+    .ui-select-dropdown {
+      min-width: 30rem;
+    }
+  }
+
+  .kubernetes-proxy-form-toggler {
+    font-size: 1.5rem;
+  }
+
+  .oui-field__label {
+    .kubernetes-proxy-form-toggler {
+      font-size: 1rem;
+    }
+  }
+
+  .kubernetes-proxy-form-radio-field {
+    .oui-field {
+      margin-bottom: 1rem !important;
+    }
+  }
+}
+
+@media screen and (max-width: map-get($grid-breakpoints, 'md')) {
+  .kubernetes-proxy-form {
+    .kubernetes-proxy-form-field {
+      .ui-select-dropdown {
+        min-width: 70vw;
+        translate: -30%;
+      }
+    }
+  }
+}

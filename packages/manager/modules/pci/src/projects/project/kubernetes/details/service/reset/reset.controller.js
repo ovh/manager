@@ -43,6 +43,12 @@ export default class kubernetesResetCtrl {
         },
       },
     };
+
+    const { kubeProxyMode: mode, customization } = this.cluster;
+    const values = customization?.kubeProxy?.[mode] || {};
+
+    this.model.proxy =
+      mode && Object.values(values).length ? { mode, values } : null;
   }
 
   /**
@@ -62,6 +68,14 @@ export default class kubernetesResetCtrl {
         privateNetworkConfiguration: {
           defaultVrackGateway: this.model.network.gateway.ip,
           privateNetworkRoutingAsDefault: true,
+        },
+      }),
+      ...(this.model.proxy && {
+        kubeProxyMode: this.model.proxy.mode,
+        customization: {
+          kubeProxy: {
+            [this.model.proxy.mode]: this.model.proxy.values,
+          },
         },
       }),
     };

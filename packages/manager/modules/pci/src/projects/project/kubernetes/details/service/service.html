@@ -140,6 +140,29 @@
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
+                data-term="{{:: 'kube_service_cluster_proxy' | translate }}"
+            >
+                <oui-tile-description>
+                    <div
+                        data-ng-if="$ctrl.cluster.kubeProxyMode === $ctrl.PROXY_MODE.iptables.value"
+                        data-ng-bind="$ctrl.PROXY_MODE.iptables.readableValue"
+                    ></div>
+                    <div
+                        data-ng-if="$ctrl.cluster.kubeProxyMode === $ctrl.PROXY_MODE.ipvs.value"
+                        data-ng-bind="$ctrl.PROXY_MODE.ipvs.readableValue"
+                    ></div>
+                    <oui-button
+                        data-variant="link"
+                        data-on-click="$ctrl.updateProxy()"
+                        data-disabled="$ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status)"
+                    >
+                        <span
+                            data-translate="kube_service_cluster_proxy_edit"
+                        ></span>
+                    </oui-button>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition
                 data-term="{{:: 'kube_service_cluster_version' | translate }}"
             >
                 <oui-tile-description>

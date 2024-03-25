@@ -8,6 +8,7 @@ import {
   VERSIONS_GUIDE_URL,
 } from './service.constants';
 import { STATUS } from '../constants';
+import { MODE } from '../../components/proxy-form/proxy-form.constants';
 
 export default class KubernetesServiceCtrl {
   /* @ngInject */
@@ -25,6 +26,7 @@ export default class KubernetesServiceCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.Kubernetes = Kubernetes;
+    this.PROXY_MODE = MODE;
   }
 
   $onInit() {

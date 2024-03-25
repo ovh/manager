@@ -132,6 +132,7 @@ export default class Kubernetes {
     privateNetworkId,
     gatewayConfig,
     nodepool,
+    proxy,
   ) {
     if (nodepool.antiAffinity) {
       set(nodepool, 'maxNodes', ANTI_AFFINITY_MAX_NODES);
@@ -147,6 +148,14 @@ export default class Kubernetes {
         privateNetworkConfiguration: {
           defaultVrackGateway: gatewayConfig.ip,
           privateNetworkRoutingAsDefault: gatewayConfig.enabled,
+        },
+      }),
+      ...(proxy && {
+        kubeProxyMode: proxy.mode,
+        customization: {
+          kubeProxy: {
+            [proxy.mode]: proxy.values,
+          },
         },
       }),
     });
@@ -346,6 +355,14 @@ export default class Kubernetes {
   removeOidcProvider(serviceName, kubeId) {
     return this.$http
       .delete(`/cloud/project/${serviceName}/kube/${kubeId}/openIdConnect`)
+      .then(({ data }) => data);
+  }
+
+  updateProxy(serviceName, kubeId, mode, values) {
+    return this.$http
+      .put(`/cloud/project/${serviceName}/kube/${kubeId}/customization`, {
+        kubeProxy: { [mode]: values },
+      })
       .then(({ data }) => data);
   }
 }

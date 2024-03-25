@@ -73,5 +73,11 @@
             data-ng-if="$ctrl.model.network.private.id"
             data-network="$ctrl.model.network"
         ></gateway-management-component>
+        
+        <kube-proxy-form
+            data-ng-model="$ctrl.model.proxy"
+            data-dense="true"
+            data-collapsible="true"
+        />
     </oui-modal>
 </form>

@@ -1,0 +1,16 @@
+<form data-ng-submit="$ctrl.submit()" name="$ctrl.form">
+    <oui-modal
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-label="{{:: 'pci_projects_project_kubernetes_details_service_update_proxy_submit' | translate}}"
+        data-primary-disabled="!$ctrl.canSubmit"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'pci_projects_project_kubernetes_details_service_update_proxy_cancel' | translate}}"
+        data-loading="$ctrl.isSubmitting"
+        data-heading="{{:: 'pci_projects_project_kubernetes_details_service_update_proxy' | translate}}"
+    >
+        <kube-proxy-form
+            data-ng-model="$ctrl.model"
+            data-values-only="true"
+        ></kube-proxy-form>
+    </oui-modal>
+</form>
