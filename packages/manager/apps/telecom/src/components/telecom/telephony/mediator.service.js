@@ -1,8 +1,5 @@
-import get from 'lodash/get';
-
 export default /* @ngInject */ function TelephonyMediator(
   $q,
-  $stateParams,
   $http,
   iceberg,
   OvhApiTelephony,
@@ -10,8 +7,6 @@ export default /* @ngInject */ function TelephonyMediator(
   TelephonyGroupFax,
   TelephonyGroupLine,
   TelephonyGroupNumber,
-  URLS,
-  REDIRECT_V4_HASH,
 ) {
   const self = this;
   let currentGroup = null;
@@ -53,23 +48,6 @@ export default /* @ngInject */ function TelephonyMediator(
     }
     return $q.when(self.apiScheme);
   };
-
-  /*= ===========================================
-    =            V6 to V4 redirection            =
-    ============================================ */
-
-  self.getV6ToV4RedirectionUrl = function getV6ToV4RedirectionUrl(
-    constantPath,
-  ) {
-    let url = URLS.telephonyV4 + get(REDIRECT_V4_HASH, constantPath);
-
-    if ($stateParams.serviceName) {
-      url = url.replace('{lineNumber}', $stateParams.serviceName);
-    }
-    return url.replace('{billingAccount}', $stateParams.billingAccount);
-  };
-
-  /* -----  End of V6 to V4 redirection  ------*/
 
   /* ------ Awesome code from perl -----------*/
   self.IsValidNumber = function IsValidNumber(number) {

@@ -41,7 +41,6 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   self.servicesLink = servicesLink;
 
   self.group = null;
-  self.links = null;
   self.terminationTask = null;
 
   /*= ==============================
@@ -117,18 +116,6 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
       TelephonyMediator.getGroup($stateParams.billingAccount).then(
         (group) => {
           self.group = group;
-
-          self.links = {
-            contactList: TelephonyMediator.getV6ToV4RedirectionUrl(
-              'group.group_manage_phonebook',
-            ),
-            shortNumbers: TelephonyMediator.getV6ToV4RedirectionUrl(
-              'group.group_abreviated_numbers',
-            ),
-            contactManagement: TelephonyMediator.getV6ToV4RedirectionUrl(
-              'group.group_nics_management',
-            ),
-          };
           return fetchGroupTerminationTask(group);
         },
         (error) => {

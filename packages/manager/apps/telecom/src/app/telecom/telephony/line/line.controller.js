@@ -30,7 +30,6 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
 
   self.line = null;
   self.fax = null;
-  self.links = null;
   self.displayMgcpBanner = false;
 
   self.lineLink = lineLink;
@@ -110,12 +109,6 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
               self.line.phone.protocol === PHONE_PROTOCOL.MGCP;
           }),
         );
-
-        self.links = {
-          contactDetails: TelephonyMediator.getV6ToV4RedirectionUrl(
-            'line.line_manage_directory',
-          ),
-        };
 
         // check if has fax option
         self.disableFaxOptionTab =

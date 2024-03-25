@@ -33,7 +33,6 @@ export default class TelecomTelephonyAliasCtrl {
 
   $onInit() {
     this.alias = null;
-    this.links = null;
     this.terminationTask = null;
 
     this.fetchService();
@@ -44,17 +43,6 @@ export default class TelecomTelephonyAliasCtrl {
     this.tucVoipService
       .fetchSingleService(this.billingAccount, this.serviceName)
       .then((alias) => {
-        this.links = {
-          order: this.TelephonyMediator.getV6ToV4RedirectionUrl(
-            'alias.number_order_new',
-          ),
-          bank: this.TelephonyMediator.getV6ToV4RedirectionUrl(
-            'alias.number_bannMaker',
-          ),
-          numberDirectory: this.TelephonyMediator.getV6ToV4RedirectionUrl(
-            'alias.number_manage_directory',
-          ),
-        };
         if (alias) {
           this.alias = alias;
           return this.$q
