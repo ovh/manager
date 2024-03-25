@@ -7,6 +7,7 @@ export default {
     projectId: '<',
     isDiscoveryProject: '<',
     goToDiscoveryProjectActivationPage: '&',
+    goToAddSshkey: '&',
   },
   controller,
   template,

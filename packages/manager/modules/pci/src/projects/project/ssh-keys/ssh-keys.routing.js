@@ -10,6 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_sshKeys_title'),
+
+      goToAddSshkey: /* @ngInject */ ($state) => () =>
+        $state.go('pci.projects.project.sshKeys.add'),
     },
   });
 };

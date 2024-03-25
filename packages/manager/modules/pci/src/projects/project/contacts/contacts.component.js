@@ -5,6 +5,7 @@ export default {
   bindings: {
     guideUrl: '<',
     isDiscoveryProject: '<',
+    goToAddContact: '&',
     goToDiscoveryProjectActivationPage: '&',
   },
   controller,
