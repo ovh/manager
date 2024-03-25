@@ -7,6 +7,7 @@ export default class {
     $q,
     $http,
     $translate,
+    PciProject,
     OvhApiCloudProject,
     OvhApiCloudProjectNetworkPrivate,
     OvhApiCloudProjectNetworkPrivateSubnet,
@@ -14,6 +15,7 @@ export default class {
     this.$q = $q;
     this.$http = $http;
     this.$translate = $translate;
+    this.PciProject = PciProject;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectNetworkPrivate = OvhApiCloudProjectNetworkPrivate;
     this.OvhApiCloudProjectNetworkPrivateSubnet = OvhApiCloudProjectNetworkPrivateSubnet;
@@ -24,13 +26,11 @@ export default class {
       .get(`/cloud/project/${serviceName}/aggregated/network`)
       .then(({ data }) => {
         const privateNetworks = {};
-        const localZones =
-          customerRegions?.filter(({ type }) => type.includes('localzone')) ||
-          [];
+        const localZones = this.PciProject.getLocalZones(customerRegions);
         data.resources.forEach((network) => {
           if (
             network.visibility === 'private' &&
-            !localZones?.some((region) => region.name === network.region)
+            !this.PciProject.checkIsLocalZone(localZones, network.region)
           ) {
             if (!privateNetworks[network.vlanId]) {
               const { id, region, ...rest } = network;
@@ -56,13 +56,12 @@ export default class {
     return this.$http
       .get(`/cloud/project/${serviceName}/aggregated/network`)
       .then(({ data }) => {
-        const localZones = customerRegions.filter(({ type }) =>
-          type.includes('localzone'),
-        );
+        const localZones = this.PciProject.getLocalZones(customerRegions);
+
         const localZoneNetworks = data.resources.filter((network) => {
           return (
             network.visibility === 'private' &&
-            localZones.some((region) => region.name === network.region)
+            this.PciProject.checkIsLocalZone(localZones, network.region)
           );
         });
 

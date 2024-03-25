@@ -9,7 +9,13 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectStorageBlockService,
         projectId,
         storageId,
-      ) => PciProjectStorageBlockService.get(projectId, storageId),
+        customerRegions,
+      ) =>
+        PciProjectStorageBlockService.get(
+          projectId,
+          storageId,
+          customerRegions,
+        ),
       breadcrumb: /* @ngInject */ (storage) => storage.name,
     },
   });

@@ -21,7 +21,6 @@ import {
   FLAVORS_WITHOUT_SUSPEND,
   FLAVORS_WITHOUT_VNC,
   FLAVORS_WITHOUT_ADDITIONAL_IPS,
-  LOCAL_ZONE_REGION,
 } from './instances.constants';
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getBaseApiRoute"] }] */
@@ -44,6 +43,7 @@ export default class PciProjectInstanceService {
     OvhApiIp,
     OvhApiOrderCatalogPublic,
     PciProjectRegions,
+    PciProject,
   ) {
     this.$http = $http;
     this.$q = $q;
@@ -61,11 +61,11 @@ export default class PciProjectInstanceService {
     this.OvhApiIp = OvhApiIp;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
     this.PciProjectRegions = PciProjectRegions;
+    this.PciProject = PciProject;
     this.FLAVORS_WITHOUT_SOFT_REBOOT = FLAVORS_WITHOUT_SOFT_REBOOT;
     this.FLAVORS_WITHOUT_SUSPEND = FLAVORS_WITHOUT_SUSPEND;
     this.FLAVORS_WITHOUT_VNC = FLAVORS_WITHOUT_VNC;
     this.FLAVORS_WITHOUT_ADDITIONAL_IPS = FLAVORS_WITHOUT_ADDITIONAL_IPS;
-    this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
   }
 
   getBaseApiRoute(projectId) {
@@ -76,10 +76,11 @@ export default class PciProjectInstanceService {
     return this.$http
       .get(`/cloud/project/${projectId}/instance`)
       .then(({ data }) => {
-        const localZones = this.getLocalZones(customerRegions);
+        const localZones = this.PciProject.getLocalZones(customerRegions);
         return data.map((instance) => {
-          const isLocalZone = localZones.some(
-            (region) => region.name === instance.region,
+          const isLocalZone = this.PciProject.checkIsLocalZone(
+            localZones,
+            instance.region,
           );
           return new Instance({ ...instance, isLocalZone });
         });
@@ -145,15 +146,16 @@ export default class PciProjectInstanceService {
 
   get(projectId, instanceId, customerRegions) {
     let isLocalZone;
-    const localZones = this.getLocalZones(customerRegions);
+    const localZones = this.PciProject.getLocalZones(customerRegions);
     return this.OvhApiCloudProjectInstance.v6()
       .get({
         serviceName: projectId,
         instanceId,
       })
       .$promise.then((instance) => {
-        isLocalZone = localZones?.some(
-          (region) => region.name === instance.region,
+        isLocalZone = this.PciProject.checkIsLocalZone(
+          localZones,
+          instance.region,
         );
         return this.$q.all({
           instance,
@@ -474,7 +476,7 @@ export default class PciProjectInstanceService {
   getCompatiblesLocalPrivateNetworks(projectId, instance, customerRegions) {
     return this.getAllAvailablePrivateNetworks(projectId, instance.region).then(
       (networks) => {
-        const localZones = this.getLocalZones(customerRegions);
+        const localZones = this.PciProject.getLocalZones(customerRegions);
         return networks.filter(
           (network) =>
             !instance.privateNetworks
@@ -502,12 +504,6 @@ export default class PciProjectInstanceService {
         });
         return privateNetworks;
       });
-  }
-
-  getLocalZones(customerRegions = []) {
-    return customerRegions?.filter(({ type }) =>
-      type.includes(this.LOCAL_ZONE_REGION),
-    );
   }
 
   getInstanceQuota(projectId, region) {

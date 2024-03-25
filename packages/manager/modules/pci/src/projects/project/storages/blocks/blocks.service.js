@@ -22,11 +22,14 @@ import {
   VOLUME_UNLIMITED_QUOTA,
 } from './block.constants';
 
+import { LOCAL_ZONE_REGION } from '../../project.constants';
+
 export default class PciProjectStorageBlockService {
   /* @ngInject */
   constructor(
     $http,
     $q,
+    PciProject,
     CucPriceHelper,
     OvhApiCloudProject,
     OvhApiCloudProjectQuota,
@@ -34,10 +37,12 @@ export default class PciProjectStorageBlockService {
   ) {
     this.$http = $http;
     this.$q = $q;
+    this.PciProject = PciProject;
     this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
     this.OvhApiCloudProjectVolumeSnapshot = OvhApiCloudProjectVolumeSnapshot;
+    this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
   }
 
   getAll(projectId) {
@@ -93,7 +98,7 @@ export default class PciProjectStorageBlockService {
       );
   }
 
-  get(projectId, storageId) {
+  get(projectId, storageId, customerRegions) {
     return this.OvhApiCloudProject.Volume()
       .v6()
       .get({
@@ -126,14 +131,18 @@ export default class PciProjectStorageBlockService {
           snapshots: this.getVolumeSnapshots(projectId, volume),
         }),
       )
-      .then(
-        ({ attachedTo, volume, snapshots }) =>
-          new BlockStorage({
-            ...volume,
-            attachedTo,
-            snapshots,
-          }),
-      );
+      .then(({ attachedTo, volume, snapshots }) => {
+        const localZones = this.PciProject.getLocalZones(customerRegions);
+        return new BlockStorage({
+          ...volume,
+          attachedTo,
+          snapshots,
+          isLocalZone: this.PciProject.checkIsLocalZone(
+            localZones,
+            volume.region,
+          ),
+        });
+      });
   }
 
   attachTo(projectId, storage, instance) {
@@ -406,15 +415,15 @@ export default class PciProjectStorageBlockService {
         }),
       )
       .then(({ quotas, regions }) => {
-        const supportedRegions = filter(regions, (region) =>
+        const supportedRegions = regions.filter((region) =>
           some(get(region, 'services', []), { name: 'volume', status: 'UP' }),
         );
-        return map(
-          supportedRegions,
+        return supportedRegions.map(
           (region) =>
             new Region({
               ...region,
               quota: find(quotas, { region: region.name }),
+              isLocalZone: region.type === this.LOCAL_ZONE_REGION,
             }),
         );
       });
@@ -438,7 +447,7 @@ export default class PciProjectStorageBlockService {
     const consumptionVolumeAddons = catalog.addons.filter(
       (addon) =>
         volumeAddonsIds.includes(addon.planCode) &&
-        addon.planCode.endsWith('consumption'),
+        addon.planCode.includes('consumption'),
     );
 
     return this.$q.when(consumptionVolumeAddons);
