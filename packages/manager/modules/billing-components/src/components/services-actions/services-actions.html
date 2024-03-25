@@ -139,7 +139,7 @@
         data-ng-if="$ctrl.service.serviceType !== $ctrl.SERVICE_TYPE.PACK_XDSL && (!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt() && !$ctrl.service.hasPendingResiliation()"
     >
         <oui-action-menu-item
-            ng-if="$ctrl.resiliateLink && $ctrl.service.hasAdminRights($ctrl.user.auth.account)"
+            ng-if="$ctrl.resiliateLink && ($ctrl.service.hasAdminRights($ctrl.user.auth.account) || $ctrl.service.hasAdminRights($ctrl.user.nichandle))"
             href="{{:: $ctrl.resiliateLink }}"
             on-click="$ctrl.trackAction('go-to-resiliate')"
             data-navi-id="go-to-resiliate"
