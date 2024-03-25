@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.3.1...@ovh-ux/manager-exchange@4.4.0) (2024-03-25)
+
+
+### Features
+
+* **web.mxplan:** technical migration to zimbra ([#10848](https://github.com/ovh/manager/issues/10848)) ([03066bd](https://github.com/ovh/manager/commit/03066bdcd9c19121b06358cac268dca7beed3ec9))
+
+
+
+
+
 ## [4.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.3.0...@ovh-ux/manager-exchange@4.3.1) (2024-03-19)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.7.2...@ovh-ux/manager-catalog-app@1.8.0) (2024-03-25)
+
+
+### Bug Fixes
+
+* **catalog:** avoid router redirection on catalog init ([#10966](https://github.com/ovh/manager/issues/10966)) ([e974c39](https://github.com/ovh/manager/commit/e974c39860ac8f4cbb3d639f7529810e4f62773b))
+
+
+### Features
+
+* refacto translations for manager-components ([#10970](https://github.com/ovh/manager/issues/10970)) ([deba91f](https://github.com/ovh/manager/commit/deba91f208c27283930f9b7e3ed27a98cb8a4821))
+
+
+
+
+
 ## [1.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.7.1...@ovh-ux/manager-catalog-app@1.7.2) (2024-03-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.15.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.14.1...@ovh-ux/ng-ovh-web-universe-components@9.15.0) (2024-03-25)
+
+
+### Features
+
+* **web.mxplan:** technical migration to zimbra ([#10848](https://github.com/ovh/manager/issues/10848)) ([03066bd](https://github.com/ovh/manager/commit/03066bdcd9c19121b06358cac268dca7beed3ec9))
+
+
+
+
+
 ## [9.14.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.14.0...@ovh-ux/ng-ovh-web-universe-components@9.14.1) (2024-03-19)
 
 

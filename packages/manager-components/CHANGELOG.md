@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.6.0...@ovhcloud/manager-components@1.7.0) (2024-03-25)
+
+### Features
+
+- refacto translations for manager-components ([#10970](https://github.com/ovh/manager/issues/10970)) ([deba91f](https://github.com/ovh/manager/commit/deba91f208c27283930f9b7e3ed27a98cb8a4821))
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.5.1...@ovhcloud/manager-components@1.6.0) (2024-03-20)
 
 ### Features
