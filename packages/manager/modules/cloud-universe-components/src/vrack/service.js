@@ -2,7 +2,7 @@ import includes from 'lodash/includes';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-import { WEBSITE_ORDER_URL } from './constants';
+import { GROUPED_SERVICES_TYPES, WEBSITE_ORDER_URL } from './constants';
 
 import selectController from './select/controller';
 import selectTemplate from './select/template.html';
@@ -25,13 +25,7 @@ export default class CucVrackService {
   }
 
   static getGroupedServiceTypes() {
-    return [
-      'dedicatedCloudDatacenter',
-      'managedBareMetalDatacenter',
-      'dedicatedCloud',
-      'managedBareMetal',
-      'dedicatedServerInterface',
-    ];
+    return GROUPED_SERVICES_TYPES;
   }
 
   isGroupedServiceType(serviceType) {

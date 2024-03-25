@@ -50,7 +50,14 @@ export const WEBSITE_ORDER_URL = {
   US:
     "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
 };
-
+export const GROUPED_SERVICES_TYPES = [
+  'dedicatedCloudDatacenter',
+  'managedBareMetalDatacenter',
+  'dedicatedCloud',
+  'managedBareMetal',
+  'dedicatedServerInterface',
+];
 export default {
   WEBSITE_ORDER_URL,
+  GROUPED_SERVICES_TYPES,
 };
