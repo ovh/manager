@@ -19,7 +19,7 @@ const useGenerateAccessDetail = ({
   const [accessDetail, setAccessDetail] = useState<AccessDetail>(null);
   const [hasErrorAccessDetail, setErrorAccesDetail] = useState<boolean>(false);
 
-  const { mutate: generateAccesDetail } = useMutation({
+  const { mutate: generateAccesDetail, reset } = useMutation({
     mutationFn: () => {
       setErrorAccesDetail(false);
       return generateAccessRancherService({
@@ -35,7 +35,18 @@ const useGenerateAccessDetail = ({
     mutationKey: postRancherServiceQueryKey(rancherId),
   });
 
-  return { generateAccesDetail, accessDetail, hasErrorAccessDetail };
+  const onReset = () => {
+    reset();
+    setAccessDetail(null);
+  };
+
+  return {
+    generateAccesDetail,
+    accessDetail,
+    hasErrorAccessDetail,
+    setAccessDetail,
+    onReset,
+  };
 };
 
 export default useGenerateAccessDetail;

@@ -60,6 +60,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({
     generateAccesDetail,
     accessDetail,
     hasErrorAccessDetail,
+    onReset,
   } = useGenerateAccessDetail({
     projectId: projectId as string,
     rancherId: rancher.id,
@@ -89,6 +90,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({
         editNameResponseType={editNameResponseType}
         editRancherName={editRancherName}
         generateAccesDetail={generateAccesDetail}
+        resetAccessDetail={onReset}
         accessDetail={accessDetail}
         hasErrorAccessDetail={hasErrorAccessDetail}
       />
