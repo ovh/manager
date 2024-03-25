@@ -94,6 +94,9 @@
         <oui-message class="my-1" data-type="error">
             <span
                 data-translate="user_account_identity_documents_selection_file_format_invalid"
+                data-translate-values="{
+                  values: $ctrl.badFileExtensionsFormatedList
+                }"
             ></span>
         </oui-message>
     </div>
@@ -114,7 +117,7 @@
 
         <oui-form-actions
             class="mt-5"
-            data-disabled="$ctrl.form.$invalid || !$ctrl.files || $ctrl.files.length === 0 || $ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
+            data-disabled="$ctrl.form.$invalid || !$ctrl.files || $ctrl.files.length === 0 || $ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN || !$ctrl.fileExtensionsValid"
             data-on-submit="$ctrl.handleUploadConfirmModal(true)"
             data-submit-text="{{:: 'user_account_identity_documents_submit' | translate}}"
         ></oui-form-actions>
