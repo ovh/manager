@@ -16,7 +16,6 @@ export default class PciTrainingJobsSubmitController {
   /* @ngInject */
   constructor(
     $translate,
-    PciProjectTrainingService,
     PciProjectTrainingJobService,
     PciProjectStorageContainersService,
     atInternet,
@@ -26,7 +25,6 @@ export default class PciTrainingJobsSubmitController {
     this.PRIVACY_SETTINGS = PRIVACY_SETTINGS;
     this.coreConfig = coreConfig;
     this.$translate = $translate;
-    this.PciProjectTrainingService = PciProjectTrainingService;
     this.PciProjectTrainingJobService = PciProjectTrainingJobService;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
     this.atInternet = atInternet;
@@ -164,7 +162,7 @@ export default class PciTrainingJobsSubmitController {
 
   cliCommand() {
     this.loading = true;
-    this.PciProjectTrainingService.getJobCliCommand(
+    this.PciProjectTrainingJobService.getJobCliCommand(
       this.projectId,
       this.computeJobSpec(),
     )
@@ -212,18 +210,19 @@ export default class PciTrainingJobsSubmitController {
 
   onChangeRegion(region) {
     // Update Resource
-    this.PciProjectTrainingService.getFlavors(this.projectId, region.id).then(
-      ({ data }) => {
-        this.flavors = map(data, (flavor) => {
-          const catalog = this.getCatalogEntryF(flavor.id);
-          const enrichedFlavor = flavor;
-          enrichedFlavor.catalog = catalog;
-          return enrichedFlavor;
-        });
-        this.flavorsType = uniq(map(data, (x) => x.type));
-        this.onResourceTypeChange();
-      },
-    );
+    this.PciProjectTrainingJobService.getFlavors(
+      this.projectId,
+      region.id,
+    ).then(({ data }) => {
+      this.flavors = map(data, (flavor) => {
+        const catalog = this.getCatalogEntryF(flavor.id);
+        const enrichedFlavor = flavor;
+        enrichedFlavor.catalog = catalog;
+        return enrichedFlavor;
+      });
+      this.flavorsType = uniq(map(data, (x) => x.type));
+      this.onResourceTypeChange();
+    });
   }
 
   generateName() {
@@ -391,13 +390,13 @@ export default class PciTrainingJobsSubmitController {
   }
 
   populateSavedSshKeys() {
-    return this.PciProjectTrainingService.getSavedSshKeys(this.projectId).then(
-      ({ data: keys }) => {
-        this.savedKeys = keys;
-        this.allKeyNames = [this.JOB_SSH_KEYS_CONSTANTS.CUSTOM_SELECT].concat(
-          this.savedKeys.map((x) => x.name),
-        );
-      },
-    );
+    return this.PciProjectTrainingJobService.getSavedSshKeys(
+      this.projectId,
+    ).then(({ data: keys }) => {
+      this.savedKeys = keys;
+      this.allKeyNames = [this.JOB_SSH_KEYS_CONSTANTS.CUSTOM_SELECT].concat(
+        this.savedKeys.map((x) => x.name),
+      );
+    });
   }
 }

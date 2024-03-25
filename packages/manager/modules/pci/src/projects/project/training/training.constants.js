@@ -1,4 +1,3 @@
-export const GUIDE_URL = 'https://docs.ovh.com/gb/en/publiccloud/ai/';
 export const DISCORD_URL = 'https://discord.com/invite/vXVurFfwe9';
 export const DOC_DOCKER_BUILD_URL =
   'https://docs.ovh.com/gb/en/publiccloud/ai/training/build-use-custom-image/';
@@ -15,11 +14,13 @@ export const PRIVACY_SETTINGS = {
 
 export const NUMBER_OF_MINUTES_IN_ONE_HOUR = 60;
 
+export const JOB_MULTIPLY_SIGN = ' × ';
+
 export default {
-  GUIDE_URL,
   DISCORD_URL,
   DOC_DOCKER_BUILD_URL,
   JOB_SSH_KEYS,
   PRIVACY_SETTINGS,
   NUMBER_OF_MINUTES_IN_ONE_HOUR,
+  JOB_MULTIPLY_SIGN,
 };

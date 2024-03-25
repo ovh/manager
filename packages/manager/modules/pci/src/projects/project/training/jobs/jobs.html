@@ -1,6 +1,39 @@
-<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+<div data-ui-view>
+    <oui-header
+        class="mb-3"
+        data-heading="{{:: 'pci_projects_project_training_title' | translate }}"
+    >
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.guideUrl.ai_training track by $index"
+                data-href="{{:: guide.url }}"
+                data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.ai_training + guide.tracking)"
+                data-external
+            >
+                <span
+                    data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+    <oui-message data-type="info" dismissable>
+        <span
+            data-translate="pci_projects_project_training_jobs_user_and_roles_info"
+        ></span>
+        <p class="m-0">
+            <a
+                rel="noopener"
+                data-translate="pci_projects_project_training_jobs_user_and_roles_info_link"
+                data-ng-click="$ctrl.goToUsersAndTokens()"
+            ></a>
+        </p>
+    </oui-message>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
 
-<div class="container-fluid" data-ui-view>
     <p>
         {{:: 'pci_projects_project_training_jobs_list_message_1' | translate }}
         <code

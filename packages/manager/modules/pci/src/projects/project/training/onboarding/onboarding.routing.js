@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
           (hasBeenAuthorized) => {
             if (hasBeenAuthorized) {
               $state.go(
-                'pci.projects.project.training.dashboard',
+                'pci.projects.project.training.jobs.submit',
                 {
                   projectId,
                 },

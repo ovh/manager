@@ -21,5 +21,10 @@ export default {
     jobId: '<',
     onListParamChange: '<',
     deleteJob: '<',
+    goToUsersAndTokens: '<',
+    guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
+    goToJob: '<',
   },
 };

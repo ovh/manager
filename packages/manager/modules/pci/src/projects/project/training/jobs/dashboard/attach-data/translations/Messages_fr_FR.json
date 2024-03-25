@@ -1,0 +1,20 @@
+{
+  "pci_jobs_tab_attach_data_title": "Associer des données",
+  "pci_jobs_tab_attach_data_page_title": "Attacher des conteneurs de données",
+  "pci_jobs_tab_attach_data_page_title_git": "Attacher des dépôts Git public",
+  "pci_jobs_tab_attach_data_page_description": "Si nécessaire, vous pouvez attacher des conteneurs Object Storage OVHcloud à votre job. Une fois attachés, ceux-ci seront temporairement chargés et mis en cache près de votre instance afin de réduire la latence et d’améliorer les performances. La bonne pratique est d’attacher un conteneur avec vos données entrantes et un autre avec vos données sortantes.",
+  "pci_jobs_tab_attach_data_page_description_link": "En savoir plus sur le stockage de données.",
+  "pci_jobs_tab_attach_data_page_volumes_column_name": "Nom",
+  "pci_jobs_tab_attach_data_page_volumes_column_type": "Type",
+  "pci_jobs_tab_attach_data_page_volumes_column_region": "Localisation",
+  "pci_jobs_tab_attach_data_page_volumes_column_type_git": "Repository",
+  "pci_jobs_tab_attach_data_page_volumes_column_type_swift": "Conteneur de données",
+  "pci_jobs_tab_attach_data_page_volumes_column_mount_path": "Répertoire de montage",
+  "pci_jobs_tab_attach_data_page_volumes_column_git_url": "URL du dépôt Git",
+  "pci_jobs_tab_attach_data_page_volumes_git_none": "Pas de dépôt Git associé",
+  "pci_jobs_tab_attach_data_page_volumes_column_prefix": "Préfixe",
+  "pci_jobs_data_permission": "Permission",
+  "pci_jobs_permission_RO": "Lecture seule",
+  "pci_jobs_permission_RW": "Lecture - écriture",
+  "pci_jobs_data_cache": "Cache"
+}
