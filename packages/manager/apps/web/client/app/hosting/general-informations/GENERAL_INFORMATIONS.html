@@ -136,41 +136,6 @@
                         </oui-tile-description>
                     </oui-tile-definition>
                     <oui-tile-definition
-                        data-term="{{ ::'hosting_dashboard_service_boost' | translate }}"
-                        data-ng-if="!hosting.isCloudWeb"
-                    >
-                        <oui-tile-description>
-                            <div data-ng-if="hostingProxy.boostOffer">
-                                <span
-                                    class="fa fa-check text-success"
-                                    aria-hidden="true"
-                                ></span>
-                                <span
-                                    data-ng-bind="::'(' + hostingProxy.boostOffer + ')'"
-                                ></span>
-                            </div>
-                            <div data-ng-if="!hostingProxy.boostOffer">
-                                <span
-                                    data-translate="hosting_dashboard_service_boostOffer_disabled"
-                                    data-ng-if="hosting.availableBoostOffer && hosting.availableBoostOffer.length > 0"
-                                ></span>
-                                <span
-                                    data-translate="hosting_dashboard_service_boostOffer_unavailable"
-                                    data-ng-if="!hosting.availableBoostOffer || hosting.availableBoostOffer.length === 0"
-                                ></span>
-                            </div>
-                        </oui-tile-description>
-                        <oui-action-menu
-                            data-compact
-                            data-ng-if="!hosting.boostOffer && hosting.availableBoostOffer && hosting.availableBoostOffer.length > 0"
-                            data-placement="end"
-                        >
-                            <oui-action-menu-item href="{{ $ctrl.boostLink }}">
-                                <span data-translate="hosting_tab_BOOST"></span>
-                            </oui-action-menu-item>
-                        </oui-action-menu>
-                    </oui-tile-definition>
-                    <oui-tile-definition
                         data-term="{{ ::'hosting_dashboard_service_datacenter' | translate }}"
                     >
                         <oui-tile-description>
@@ -180,7 +145,14 @@
                             ></span>
                         </oui-tile-description>
                     </oui-tile-definition>
-
+                    <oui-tile-definition
+                        data-term="{{ ::'hosting_dashboard_service_filer' | translate }}"
+                        data-ng-if="!hosting.isCloudWeb"
+                    >
+                        <oui-tile-description>
+                            <span data-ng-bind="::hosting.filer"></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
                     <oui-tile-definition
                         data-term="{{:: 'hosting_dashboard_service_web' | translate }}"
                     >
@@ -588,14 +560,6 @@
                         </oui-action-menu>
                     </oui-tile-definition>
                     <oui-tile-definition
-                        data-term="{{ ::'hosting_dashboard_service_filer' | translate }}"
-                        data-ng-if="!hosting.isCloudWeb"
-                    >
-                        <oui-tile-description>
-                            <span data-ng-bind="::hosting.filer"></span>
-                        </oui-tile-description>
-                    </oui-tile-definition>
-                    <oui-tile-definition
                         data-term="{{ ::'hosting_dashboard_service_default_runtime' | translate }}"
                         data-ng-if="hosting.isCloudWeb"
                     >
@@ -665,6 +629,41 @@
                         data-service-infos="hosting.serviceInfos"
                     >
                     </wuc-service-status-action>
+                    <oui-tile-definition
+                        data-term="{{ ::'hosting_dashboard_service_boost' | translate }}"
+                        data-ng-if="!hosting.isCloudWeb"
+                    >
+                        <oui-tile-description>
+                            <div data-ng-if="hostingProxy.boostOffer">
+                                <span
+                                    class="fa fa-check text-success"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-ng-bind="::'(' + hostingProxy.boostOffer + ')'"
+                                ></span>
+                            </div>
+                            <div data-ng-if="!hostingProxy.boostOffer">
+                                <span
+                                    data-translate="hosting_dashboard_service_boostOffer_disabled"
+                                    data-ng-if="hosting.availableBoostOffer && hosting.availableBoostOffer.length > 0"
+                                ></span>
+                                <span
+                                    data-translate="hosting_dashboard_service_boostOffer_unavailable"
+                                    data-ng-if="!hosting.availableBoostOffer || hosting.availableBoostOffer.length === 0"
+                                ></span>
+                            </div>
+                        </oui-tile-description>
+                        <oui-action-menu
+                            data-compact
+                            data-ng-if="!hosting.boostOffer && hosting.availableBoostOffer && hosting.availableBoostOffer.length > 0"
+                            data-placement="end"
+                        >
+                            <oui-action-menu-item href="{{ $ctrl.boostLink }}">
+                                <span data-translate="hosting_tab_BOOST"></span>
+                            </oui-action-menu-item>
+                        </oui-action-menu>
+                    </oui-tile-definition>
                     <oui-tile-definition
                         data-term="{{ ::'contacts_management' | translate }}"
                     >
