@@ -282,5 +282,6 @@
   "pack_move_building_details_error": "Ocorreu um erro aquando da recuperação das informações sobre o seu edifício",
   "pack_move_promotion_description": "Promoção disponível até {{ endDate }}",
   "pack_move_promotion_subscription_months_offered": "{{ duration }} meses oferecidos",
-  "pack_move_pto_reference_is_not_valid": "A referência PTO introduzida é inválida. O formato esperado é OO-XXXX-XXXX."
+  "pack_move_pto_reference_is_not_valid": "A referência PTO introduzida é inválida. O formato esperado é OO-XXXX-XXXX.",
+  "pack_move_no_meeting_available": "Nenhum RDV está disponível no momento, você será contatado por telefone para o planejamento."
 }

@@ -200,5 +200,6 @@
   "telecom_pack_migration_contract_meeting": "A time slot is scheduled on {{ day }} between {{ start }} and {{ end }}.",
   "telecom_pack_migration_contract_meeting_contact": "I will be contacted by a technician to agree on a time slot.",
   "telecom_pack_migration_meeting_error": "Oops! An error occurred while retrieving the available time slots.",
-  "telecom_pack_migration_pto_reference_is_not_valid": "The PTO reference entered is invalid. The expected format is OO-XXXX-XXXX."
+  "telecom_pack_migration_pto_reference_is_not_valid": "The PTO reference entered is invalid. The expected format is OO-XXXX-XXXX.",
+  "telecom_pack_migration_no_meeting_available": "No appointment is available at the moment, you will be contacted by phone for planning."
 }

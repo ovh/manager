@@ -200,5 +200,6 @@
   "telecom_pack_migration_buildings_type": "Tipo",
   "telecom_pack_migration_buildings_actions": "Azione",
   "telecom_pack_migration_buildings_select_building": "Seleziona",
-  "telecom_pack_migration_pto_reference_is_not_valid": "Il riferimento PTO immesso non è valido. Il formato previsto è OO-XXXX-XXXX."
+  "telecom_pack_migration_pto_reference_is_not_valid": "Il riferimento PTO immesso non è valido. Il formato previsto è OO-XXXX-XXXX.",
+  "telecom_pack_migration_no_meeting_available": "Nessun appuntamento disponibile al momento. Verrai ricontattato telefonicamente per la pianificazione."
 }
