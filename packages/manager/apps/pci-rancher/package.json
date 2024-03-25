@@ -20,6 +20,7 @@
     "test:e2e": "tsc && npx playwright test --headed"
   },
   "dependencies": {
+    "@ovh-ux/request-tagger": "^0.2.0",
     "@ovh-ux/manager-config": "^7.3.1",
     "@ovh-ux/manager-core-api": "^0.7.1",
     "@ovh-ux/manager-react-core-application": "^0.8.3",
