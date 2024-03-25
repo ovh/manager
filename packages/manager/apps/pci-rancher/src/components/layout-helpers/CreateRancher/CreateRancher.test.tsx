@@ -3,7 +3,7 @@ import React from 'react';
 import { rancherPlan, rancherVersion } from '@/_mock_/rancher-resource';
 import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
 import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
-import { render, waitFor } from '../../../utils/test/test.provider';
+import { fireEvent, render, waitFor } from '../../../utils/test/test.provider';
 import CreateRancher, { CreateRancherProps } from './CreateRancher';
 import { getOnboardingUrl, getRanchersUrl } from '@/utils/route';
 
@@ -64,7 +64,8 @@ describe('CreateRancher', () => {
     const input = screen.getByLabelText('rancher-name-input');
     const button = screen.getByText(dashboardTranslation.createRancherCTA);
 
-    await userEvent.type(input, '12()34343:::');
+    fireEvent.change(input, { target: { value: '12()34343:::' } });
+
     await userEvent.click(button);
 
     expect(input).toHaveAttribute('color', 'error');
@@ -79,7 +80,8 @@ describe('CreateRancher', () => {
       dashboardTranslation.createRancherCTA,
     );
 
-    await userEvent.type(input, 'myrancher');
+    fireEvent.change(input, { target: { value: 'MyRancher' } });
+
     await userEvent.click(confirmButton);
 
     expect(onCreateRancher).toHaveBeenCalledWith({
@@ -155,7 +157,7 @@ describe('CreateRancher', () => {
         dashboardTranslation.createRancherCTA,
       );
 
-      await userEvent.type(input, 'MyRancher');
+      fireEvent.change(input, { target: { value: 'MyRancher' } });
       await userEvent.click(confirmButton);
 
       expect(onCreateRancher).not.toHaveBeenCalled();

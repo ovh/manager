@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import DeleteModal, { TERMINATE_TEXT } from './DeleteModal';
-import { render, waitFor } from '../../utils/test/test.provider';
+import { fireEvent, render, waitFor } from '../../utils/test/test.provider';
 import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 import { rancherMocked } from '../../_mock_/rancher';
 
@@ -49,6 +49,8 @@ describe('Delete Modal', () => {
 
       const input = screen.getByLabelText('delete-input');
       const button = screen.getByText(listingTranslation.deleteRancher);
+
+      fireEvent.change(input, { target: { value: TERMINATE_TEXT } });
 
       await userEvent.type(input, TERMINATE_TEXT);
       await userEvent.click(button);
