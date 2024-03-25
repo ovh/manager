@@ -58,18 +58,29 @@ export default class CucControllerHelper {
    * @return {any} error if copy failed, empty string otherwise
    */
   static copyToClipboard(messageToCopy) {
-    try {
-      const dummy = document.createElement('input');
-      document.body.appendChild(dummy);
-      dummy.setAttribute('id', 'dummy_id');
-      dummy.setAttribute('value', messageToCopy);
-      dummy.select();
-      document.execCommand('copy');
-      document.body.removeChild(dummy);
-    } catch (err) {
-      return err;
+    // check if navigator API is available on browser
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        navigator.clipboard.writeText(messageToCopy);
+        return '';
+      } catch (error) {
+        return error;
+      }
+    } else {
+      // if not, use the old copy way
+      try {
+        const dummy = document.createElement('input');
+        document.body.appendChild(dummy);
+        dummy.setAttribute('id', 'dummy_id');
+        dummy.setAttribute('value', messageToCopy);
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+      } catch (err) {
+        return err;
+      }
+      return '';
     }
-    return '';
   }
 
   static htmlDecode(html) {

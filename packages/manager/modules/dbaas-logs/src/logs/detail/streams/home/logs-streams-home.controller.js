@@ -249,4 +249,9 @@ export default class LogsStreamsHomeCtrl {
       },
     );
   }
+
+  copyStreamId(stream) {
+    this.LogsStreamsService.copyStreamId(stream);
+    this.CucControllerHelper.scrollPageToTop();
+  }
 }
