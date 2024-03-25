@@ -1,4 +1,4 @@
-import { ADDITIONAL_IP } from '../ip-ip-block.constant';
+import { ADDITIONAL_IP, DELETE_TRACKING_PREFIX } from '../ip-ip-block.constant';
 
 export default /* @ngInject */ (
   $scope,
@@ -10,14 +10,15 @@ export default /* @ngInject */ (
 ) => {
   $scope.data = $scope.currentActionData;
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
+
   atInternet.trackPage({
-    name: $scope.data?.tracking,
+    name: DELETE_TRACKING_PREFIX,
   });
   $scope.loading = false;
 
   $scope.deleteIpBlock = function deleteIpBlock() {
     atInternet.trackClick({
-      name: `${$scope.data?.tracking}::confirm`,
+      name: `${DELETE_TRACKING_PREFIX}::confirm`,
       type: 'action',
     });
     $scope.loading = true;
@@ -44,7 +45,7 @@ export default /* @ngInject */ (
   };
   $scope.cancelAction = function cancelAction() {
     atInternet.trackClick({
-      name: `${$scope.data?.tracking}::cancel`,
+      name: `${DELETE_TRACKING_PREFIX}::cancel`,
       type: 'action',
     });
     $scope.resetAction();

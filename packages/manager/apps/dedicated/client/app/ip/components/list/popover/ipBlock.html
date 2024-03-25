@@ -112,5 +112,26 @@
                 data-ng-bind=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
             ></button>
         </li>
+
+        <!-- BYOIP Slice -->
+        <li data-ng-if="ipBlock.bringYourOwnIp && !ipBlock.ipBlock.endsWith('/32')">
+            <button
+                type="button"
+                class="btn btn-link"
+                data-ng-click="setAction('ip/byoip/slice/ip-ip-byoip-slice', { ipBlock: ipBlock })"
+                data-translate="ip_table_manage_byoip_slice"
+            ></button>
+        </li>
+
+        <!-- BYOIP Aggregate -->
+        <li data-ng-if="ipBlock.bringYourOwnIp && !ipBlock.ipBlock.endsWith('/24')">
+            <button
+                type="button"
+                class="btn btn-link"
+                data-ng-click="setAction('ip/byoip/aggregate/ip-ip-byoip-aggregate', { ipBlock: ipBlock })"
+                data-translate="ip_table_manage_byoip_aggregate"
+            ></button>
+        </li>
+
     </ul>
 </div>
