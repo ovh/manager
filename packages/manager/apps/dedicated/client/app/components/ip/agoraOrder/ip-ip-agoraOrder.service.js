@@ -93,6 +93,24 @@ export default class IpAgoraOrder {
     );
   }
 
+  getDedicatedServerRegion(serviceName) {
+    return this.$http
+      .get(`/dedicated/server/${serviceName}`)
+      .then(({ data }) => data.region);
+  }
+
+  getDedicatedCloudServerRegion(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}`)
+      .then(({ data }) => data.location);
+  }
+
+  getVpsServerRegion(serviceName) {
+    return this.$http
+      .get(`/sws/vps/${serviceName}/info`, { serviceType: 'aapi' })
+      .then(({ data }) => data.location?.datacentre);
+  }
+
   checkIpDedicatedServerIsOrderable(serviceName) {
     return this.$http
       .get(`/dedicated/server/${serviceName}/orderable/ip`)
