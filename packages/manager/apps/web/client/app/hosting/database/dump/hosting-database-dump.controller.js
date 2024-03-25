@@ -3,30 +3,28 @@ import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 
-import { SNAPSHOT_DUMP_FREQUENCY } from '../hosting-database.constants';
-
 export default class DatabaseDumpsCtrl {
   /* @ngInject */
   constructor(
-    $scope,
+    Alerter,
+    coreConfig,
+    databaseLink,
+    HostingDatabase,
     $q,
+    $scope,
     $stateParams,
     $translate,
     $window,
-    Alerter,
-    HostingDatabase,
-    databaseLink,
-    coreConfig,
   ) {
-    this.$scope = $scope;
+    this.alerter = Alerter;
+    this.coreConfig = coreConfig;
+    this.databaseLink = databaseLink;
+    this.hostingDatabase = HostingDatabase;
     this.$q = $q;
+    this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.$window = $window;
-    this.alerter = Alerter;
-    this.hostingDatabase = HostingDatabase;
-    this.databaseLink = databaseLink;
-    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -52,12 +50,9 @@ export default class DatabaseDumpsCtrl {
     this.hostingDatabase
       .getDumps(this.$stateParams.productId, this.$scope.bdd.name)
       .then((data) => {
-        this.databaseDumps = data
-          .map((item) => ({
-            ...item,
-            snapshotDate: this.constructor.getSnapshotDateOfDump(item),
-          }))
-          .sort((a, b) => new Date(a.snapshotDate) < new Date(b.snapshotDate));
+        this.databaseDumps = data.sort(
+          (a, b) => new Date(a.creationDate) < new Date(b.creationDate),
+        );
       })
       .catch((err) =>
         this.alerter.alertFromSWS(
@@ -70,36 +65,6 @@ export default class DatabaseDumpsCtrl {
 
   goTo(page, target) {
     this.$window.open(page, target);
-  }
-
-  getDate(date) {
-    const dateFormatter = new Intl.DateTimeFormat(
-      this.coreConfig.getUserLocale().replace('_', '-'),
-      {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-      },
-    );
-
-    return dateFormatter.format(date);
-  }
-
-  static getSnapshotDateOfDump(dump) {
-    const { creationDate, type } = dump;
-
-    if (!creationDate) {
-      return undefined;
-    }
-
-    const snapshotDate = new Date(creationDate);
-    if (type === SNAPSHOT_DUMP_FREQUENCY.DAILY) {
-      snapshotDate.setDate(snapshotDate.getDate() - 1);
-    } else if (type === SNAPSHOT_DUMP_FREQUENCY.WEEKLY) {
-      snapshotDate.setDate(snapshotDate.getDate() - 7);
-    }
-
-    return snapshotDate;
   }
 
   onDataBaseDumpDeletestart(evt, task, dump) {

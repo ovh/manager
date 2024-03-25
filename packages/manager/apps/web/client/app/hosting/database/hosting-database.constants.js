@@ -5,11 +5,6 @@ export const FREE_HOSTING_OFFER = ['HOSTING_FREE_100_M', 'START_10_M'];
 
 export const STARTER_OFFERS = ['HOSTING_STARTER', 'HOSTING_STARTER_OVH'];
 
-export const SNAPSHOT_DUMP_FREQUENCY = {
-  DAILY: 'daily.1',
-  WEEKLY: 'weekly.1',
-};
-
 export const BANNER_GUIDE_LINK = {
   DE:
     'https://help.ovhcloud.com/csm/de-web-hosting-database-overquota?id=kb_article_view&sysparm_article=KB0056167',
@@ -56,7 +51,6 @@ export const BANNER_GUIDE_LINK = {
 };
 
 export default {
-  SNAPSHOT_DUMP_FREQUENCY,
   FREE_HOSTING_OFFER,
   PRIVATE_SQL_PLAN_CODE,
   WEBHOSTING_PRODUCT_NAME,
