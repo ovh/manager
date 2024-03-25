@@ -31,6 +31,7 @@
   "pci_projects_project_instances_add_script_add_label": "Aggiungi",
   "pci_projects_project_instances_add_privateNetwork_title": "Configura la tua rete",
   "pci_projects_project_instances_add_privateNetwork_sub_title": "Seleziona il tipo di connessione di rete della nuova istanza Public Cloud.",
+  "pci_projects_project_instances_add_privateNetwork_info1": "La modalità “Public” è selezionata di default e corrisponde al modello di rete classico. Potrebbe non essere compatibile con tutti i servizi e non essere disponibile in tutte le Region.",
   "pci_projects_project_instances_add_privateNetwork_public_mode": "Modalità Public",
   "pci_projects_project_instances_add_privateNetwork_public_mode_description1": "È il modello di rete classico delle istanze Public Cloud. Le istanze avranno una porta di rete pubblica collegata.",
   "pci_projects_project_instances_add_privateNetwork_public_mode_description2": "Ricordiamo che questa modalità non è compatibile con i nuovi servizi di rete (Load Balancer o Floating IP).",

@@ -478,6 +478,10 @@
             data-translate="pci_projects_project_instances_add_privateNetwork_sub_title"
         ></p>
         <p
+            data-ng-if="!$ctrl.isLocalZone()"
+            data-translate="pci_projects_project_instances_add_privateNetwork_info1"
+        ></p>
+        <p
             data-ng-if="$ctrl.isLocalZone()"
             data-translate="pci_projects_project_instances_add_localPrivateNetwork_sub_title"
         ></p>
@@ -493,7 +497,7 @@
                 data-variant="light"
                 data-on-change="$ctrl.onSelectedModeChange(mode)"
                 data-required
-                data-disabled="$ctrl.disableNetwork && (mode.name === $ctrl.PRIVATE_MODE || mode.name === $ctrl.PUBLIC_MODE)"
+                data-disabled="$ctrl.disableNetwork && (mode.name === 'private_mode' || mode.name === 'public_mode')"
             >
                 <oui-select-picker-section>
                     <p data-translate="{{:: mode.description1}}"></p>
@@ -560,7 +564,7 @@
 
         <oui-message
             data-type="warning"
-            data-ng-if="$ctrl.subnetGateways.length > 0 && !$ctrl.isGatewayLoading && $ctrl.selectedMode.name !== $ctrl.PRIVATE_MODE"
+            data-ng-if="$ctrl.subnetGateways.length > 0 && !$ctrl.isGatewayLoading && $ctrl.selectedMode.name !== $ctrl.instanceModeEnum[1].mode"
         >
             <p
                 data-translate="pci_projects_project_instances_add_privateNetwork_gateway_detectected_banner_info1"
