@@ -1,1 +1,15 @@
-{}
+{
+  "pci_additional_ips_title": "IP públicas",
+  "pci_additional_ips_failover_ip_title": "Additional IP",
+  "pci_additional_ips_floating_ip_title": "Floating IP",
+  "pci_additional_ips_additional_ips_description": "Gestione las IP públicas asociadas a sus servicios",
+  "pci_additional_ips_add_additional_ip": "Añadir una nueva dirección IP",
+  "pci_additional_ips_floating_ip_grid_ip": "Dirección IP",
+  "pci_additional_ips_floating_ip_grid_region": "Región",
+  "pci_additional_ips_floating_ip_grid_associated_service": "Instancia asociada",
+  "pci_additional_ips_floating_ip_grid_assocated_endpoint": "«Endpoint» asociado",
+  "pci_additional_ips_floating_ip_grid_modify_associated_instance": "Modificar la instancia asociada",
+  "pci_additional_ips_floating_ip_grid_manage_network_security": "Configurar la seguridad de la red",
+  "pci_additional_ips_floating_ip_grid_delete": "Eliminar",
+  "manager_error_page_default": "Se ha producido un error al cargar la página."
+}
