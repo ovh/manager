@@ -12,9 +12,13 @@ export default class ProductOffersController {
     coreConfig,
     ovhManagerProductOffersActionService,
     WucOrderCartService,
+    RedirectionService,
+    $window,
   ) {
     this.$q = $q;
     this.$timeout = $timeout;
+    this.$window = $window;
+    this.RedirectionService = RedirectionService;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.actionService = ovhManagerProductOffersActionService;
@@ -40,6 +44,8 @@ export default class ProductOffersController {
           this.$translate,
           this.workflowOptions,
           this.WucOrderCartService,
+          this.$window,
+          this.RedirectionService,
         );
         break;
       case WORKFLOW_TYPES.SERVICES:
@@ -49,6 +55,8 @@ export default class ProductOffersController {
           this.$translate,
           this.workflowOptions,
           this.actionService,
+          this.$window,
+          this.RedirectionService,
         );
         break;
       default:

@@ -1,93 +1,95 @@
 import get from 'lodash/get';
-import orderBy from 'lodash/orderBy';
-
-import { PRODUCT_NAME } from './private-database-order-clouddb.constants';
+import {
+  pricingConstants,
+  workflowConstants,
+} from '@ovh-ux/manager-product-offers';
+import {
+  PRESELECTED_DB_CATEGORY,
+  PRODUCT_NAME,
+} from './private-database-order-clouddb.constants';
+import {
+  DATACENTER_CONFIGURATION_KEY,
+  DB_OFFERS,
+  ENGINE_CONFIGURATION_KEY,
+} from '../../../hosting/database/order/public/hosting-database-order-public.constants';
+import { DATABASES_TRACKING } from '../../../hosting/hosting.constants';
 
 export default class PrivateDatabaseOrderCloudDbCtrl {
   /* @ngInject */
-  constructor($filter, $translate, PrivateDatabaseOrderCloudDb) {
-    this.$filter = $filter;
+  constructor($translate, PrivateDatabaseOrderCloudDb, atInternet) {
+    this.atInternet = atInternet;
     this.$translate = $translate;
     this.PrivateDatabaseOrderCloudDb = PrivateDatabaseOrderCloudDb;
   }
 
   $onInit() {
+    this.preselectDbCategory = PRESELECTED_DB_CATEGORY;
     this.currentIndex = 0;
     this.defaultModelType = PRODUCT_NAME;
-    this.model = {};
+    const { catalog, catalogItemTypeName } = this.getRightCatalogConfig(true);
+    this.productOffers = {
+      pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
+      workflowOptions: {
+        expressOrder: true,
+        catalog,
+        catalogItemTypeName,
+        productName: this.getProductName.bind(this),
+        getPlanCode: this.getPlanCode.bind(this),
+        getRightCatalogConfig: this.getRightCatalogConfig.bind(this),
+        onGetConfiguration: this.getConfiguration.bind(this),
+      },
+      workflowType: workflowConstants.WORKFLOW_TYPES.ORDER,
+    };
+    this.model = {
+      dbCategory: {},
+    };
   }
 
-  selectTypeOption() {
-    this.model.type = this.defaultModelType;
-    this.currentIndex += 1;
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      name: hit,
+      type: 'action',
+    });
   }
 
-  initializeCustomizationOptions() {
-    this.model.engine = undefined;
-    this.model.ramSize = undefined;
+  getConfiguration() {
+    const { productName } = this.model.dbCategory;
+    if (productName === DB_OFFERS.PRIVATE.PRODUCT_NAME) {
+      const { db } = this.model.dbCategory.selectEngine.selectEngineVersion;
+      const [
+        datacenterValue,
+      ] = this.model.dbCategory.selectVersion.configurations.find(
+        (item) => item.name === DATACENTER_CONFIGURATION_KEY,
+      )?.values;
 
-    this.engineList = orderBy(
-      this.engines.map((engine) => {
-        const [engineLabel, engineVersion] = engine.split('_');
+      return [
+        {
+          label: ENGINE_CONFIGURATION_KEY,
+          value: db,
+        },
+        {
+          label: DATACENTER_CONFIGURATION_KEY,
+          value: datacenterValue,
+        },
+      ];
+    }
+    return [];
+  }
 
-        return {
-          engineLabel,
-          engineVersion: parseFloat(engineVersion),
-          label: this.$translate.instant(
-            `private_database_order_clouddb_server_version_${engineLabel}`,
-            {
-              version: engineVersion,
-            },
-          ),
-          value: engine,
-        };
-      }),
-      ['engineLabel', 'engineVersion'],
-      ['asc', 'desc'],
+  getPlanCode() {
+    const { selectVersion, selectEngine } = this.model.dbCategory;
+    return (
+      selectEngine?.selectEngineVersion?.planCode || selectVersion?.planCode
     );
   }
 
-  canGoToDurationStep() {
-    if (this.model.engine && this.model.ramSize) {
-      this.currentIndex += 1;
-    }
+  getProductName() {
+    return this.model.dbCategory.productName;
   }
 
-  getDurationsAndPricings() {
-    this.model.duration = undefined;
-    this.loadingDurations = true;
-    const ramSizeRegExp = new RegExp(this.model.ramSize.value);
-    return this.PrivateDatabaseOrderCloudDb.getDurationsFromRamOption(
-      this.cartId,
-      this.model.ramSize.value,
-    )
-      .then((durations) => {
-        const catalogPrices = this.catalog.plans.find(({ planCode }) =>
-          ramSizeRegExp.test(planCode),
-        ).pricings;
-
-        this.durations = durations
-          .map((duration) => {
-            const pricing = catalogPrices.find(
-              ({ interval }) => interval === duration.interval,
-            );
-
-            return {
-              ...duration,
-              ...pricing,
-            };
-          })
-          .filter(({ capacities }) => capacities.includes('renew'));
-      })
-      .finally(() => {
-        this.loadingDurations = false;
-      });
-  }
-
-  goToPaymentStep() {
-    if (this.model.duration) {
-      this.currentIndex += 1;
-    }
+  isValidDbConfig() {
+    const { selectEngine } = this.model.dbCategory;
+    return selectEngine?.selectEngineVersion;
   }
 
   prepareCheckout() {
@@ -120,62 +122,34 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
       });
   }
 
-  validateCheckout() {
-    this.loadingCheckout = true;
-    return this.PrivateDatabaseOrderCloudDb.validateCheckout(this.cartId, {
-      autoPayWithPreferredPaymentMethod: !!this.defaultPaymentMethod,
-      waiveRetractionPeriod: false,
-    })
-      .then(({ prices, url }) => {
-        this.hasValidatedCheckout = true;
-        if (!this.autoPayWithPreferredPaymentMethod) {
-          const link = `<a target="_blank" href="${url}" rel="noopener">${this.$translate.instant(
-            'private_database_order_clouddb_bill_success_link',
-          )}</a>`;
+  getRightCatalogConfig() {
+    const { PLAN } = workflowConstants.CATALOG_ITEM_TYPE_NAMES;
 
-          this.openBill(url);
-          this.displaySuccessMessage(
-            `${this.$translate.instant(
-              'private_database_order_clouddb_bill_success',
-              { link },
-            )}`,
-          );
-        } else {
-          const successMessage = `${this.$translate.instant(
-            'private_database_order_clouddb_payment_checkout_success',
-            {
-              accountId: this.defaultPaymentMean.label,
-              price: prices.withTax.text,
-              billUrl: url,
-            },
-          )}`;
-
-          const linkMessage = `${this.$translate.instant(
-            'private_database_order_clouddb_payment_checkout_success_link',
-          )}`;
-
-          this.displaySuccessMessage(
-            `${successMessage} <a class="d-block" target="_blank" href="${url}" rel="noopener">${linkMessage}</a>`,
-          );
-        }
-      })
-      .catch(() => {
-        this.displayErrorMessage(
-          `${this.$translate.instant(
-            'private_database_order_clouddb_payment_checkout_error',
-          )}`,
-        );
-      })
-      .finally(() => {
-        this.loadingCheckout = false;
-      });
+    return {
+      catalog: this.webCloudCatalog,
+      catalogItemTypeName: PLAN,
+    };
   }
 
-  displayErrorGetPaymentMethod() {
-    this.displayErrorMessage(
-      this.$translate.instant(
-        'private_database_order_clouddb_payment_get_payment_method_error',
-      ),
+  onDbCategoryClick(dbCategory) {
+    this.model.dbCategory = { ...this.model.dbCategory, ...dbCategory };
+
+    this.trackClick(
+      `${DATABASES_TRACKING.STEP_1.SELECT_DB_CATEGORY}_${dbCategory.tracking}`,
     );
+  }
+
+  onDbCategoryEngineClick(db) {
+    this.model.dbCategory.selectEngine = {
+      dbGroup: db.dbName,
+      selectEngineVersion: db,
+    };
+    this.trackClick(
+      `${DATABASES_TRACKING.STEP_2.SELECT_DB_ENGINE}_${db.dbName}`,
+    );
+  }
+
+  onGoToNextStepClick() {
+    this.trackClick(DATABASES_TRACKING.STEP_2.GO_TO_NEXT_STEP);
   }
 }

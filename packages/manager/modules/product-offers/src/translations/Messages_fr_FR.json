@@ -22,5 +22,6 @@
   "ovh_product_offers_total_price_with_tax": "Prix TTC :",
   "ovh_product_offers_duration": "Durée :",
   "ovh_product_offers_duration_prorata_up_to": "Prorata jusqu'au:",
-  "ovh_product_offers_detach_termination": "L'option {{option}} expirera en {{date}}"
+  "ovh_product_offers_detach_termination": "L'option {{option}} expirera en {{date}}",
+  "ovh_product_offers_order_express_submit": "Suivant"
 }

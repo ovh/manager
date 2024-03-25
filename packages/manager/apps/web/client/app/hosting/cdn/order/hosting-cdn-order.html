@@ -15,18 +15,18 @@
 ></p>
 
 <ovh-manager-product-offers
-    workflow-type=":: $ctrl.workflowType"
-    workflow-options=":: $ctrl.workflowOptions"
-    pricing-type=":: $ctrl.pricingType"
-    on-error=":: $ctrl.onError(error)"
-    on-success=":: $ctrl.onSuccess($ctrl.workflowOptions.serviceId ? result : checkout)"
-    send-current-state="$ctrl.getOrderState(state)"
+    data-workflow-type=":: $ctrl.workflowType"
+    data-workflow-options=":: $ctrl.workflowOptions"
+    data-pricing-type=":: $ctrl.pricingType"
+    data-on-error=":: $ctrl.onError(error)"
+    data-on-success=":: $ctrl.onSuccess($ctrl.workflowOptions.serviceId ? result : checkout)"
+    data-send-current-state="$ctrl.getOrderState(state)"
 >
     <oui-step-form
-        header="{{:: 'hosting_cdn_order_choose_plan' | translate }}"
-        prevent-next="true"
-        valid="$ctrl.cdnPlanCode"
-        editable="!$ctrl.isStepperLoading"
+        data-header="{{:: 'hosting_cdn_order_choose_plan' | translate }}"
+        data-editable="!$ctrl.isStepperLoading"
+        data-prevent-next="true"
+        data-valid="$ctrl.cdnPlanCode"
     >
         <div class="row w-100 d-md-flex">
             <div
