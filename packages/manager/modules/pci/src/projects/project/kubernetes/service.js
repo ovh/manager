@@ -130,6 +130,8 @@ export default class Kubernetes {
     region,
     version,
     privateNetworkId,
+    nodesSubnetId,
+    loadBalancersSubnetId,
     gatewayConfig,
     nodepool,
   ) {
@@ -143,9 +145,11 @@ export default class Kubernetes {
       version,
       nodepool,
       ...(privateNetworkId && { privateNetworkId }),
+      ...(nodesSubnetId && { nodesSubnetId }),
+      ...(loadBalancersSubnetId && { loadBalancersSubnetId }),
       ...(gatewayConfig.enabled && {
         privateNetworkConfiguration: {
-          defaultVrackGateway: gatewayConfig.ip,
+          defaultVrackGateway: gatewayConfig.ip ?? '',
           privateNetworkRoutingAsDefault: gatewayConfig.enabled,
         },
       }),
@@ -275,6 +279,23 @@ export default class Kubernetes {
           type: 'private',
         }),
       );
+  }
+
+  getPrivateNetworkSubnets(projectId, privateNetworkId, region) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/network/private/${privateNetworkId}/subnet`,
+      )
+      .then(({ data: subnets }) => {
+        return {
+          subnets,
+          subnetsByRegion: region
+            ? subnets.filter(({ ipPools }) =>
+                ipPools.some((ipPool) => ipPool.region === region),
+              )
+            : subnets,
+        };
+      });
   }
 
   getRegions(projectId, ovhSubsidiary) {

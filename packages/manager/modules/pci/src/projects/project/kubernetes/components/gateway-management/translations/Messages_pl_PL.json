@@ -1,8 +1,0 @@
-{
-  "kubernetes_add_private_network_gateway_management_label": "Brama sieciowa",
-  "kubernetes_add_private_network_gateway_management_description": "Możesz określić bramę (\"gateway\"), przez którą będzie kierowany ruch z Twoich węzłów roboczych (np. odzyskiwanie obrazów Docker z rejestru).",
-  "kubernetes_add_private_network_gateway_management_gateway_false": "Brama Internetowa OVHcloud",
-  "kubernetes_add_private_network_gateway_management_gateway_true": "Brama wdrożona w usłudze vRack",
-  "kubernetes_add_private_network_gateway_management_gateway_vrack_description": "Adres IP bramy (gateway) (pozostaw pusty, aby korzystać z bramy zdefiniowanej przez DHCP)",
-  "kubernetes_add_private_network_gateway_management_gateway_vrack_field_ip_placeholder": "Wpisz adres IP"
-}

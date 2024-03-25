@@ -63,42 +63,24 @@
         <oui-step-form
             name="kubernetes_add_private_network"
             data-header="{{:: 'kubernetes_add_private_network' | translate }}"
-            data-on-focus="$ctrl.displaySelectedPrivateNetwork = true"
-            data-on-submit="$ctrl.displaySelectedPrivateNetwork = false"
+            data-on-focus="$ctrl.canEditNetwork = true"
+            data-on-submit="$ctrl.canEditNetwork = false"
             data-editable="!$ctrl.isAdding"
             data-valid="$ctrl.isValidNetworkConfig(kubeAddClusterForm['kubernetes_add_private_network'])"
             data-prevent-next="true"
         >
-            <!--Select Public/Private network-->
-            <oui-field
-                data-label="{{ :: 'kubernetes_add_private_network_label' | translate }}"
-            >
-                <oui-select
-                    data-name="privateNetwork"
-                    data-model="$ctrl.cluster.network.private"
-                    data-items="$ctrl.availablePrivateNetworks"
-                    data-match="name"
-                    data-searchable
-                >
-                </oui-select>
-                <p>
-                    <span
-                        data-translate="kubernetes_add_private_network_description"
-                    ></span>
-                    <a
-                        data-ng-if="$ctrl.displaySelectedPrivateNetwork"
-                        data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
-                        data-translate="kubernetes_add_private_network_add"
-                        target="_top"
-                    ></a>
-                </p>
-            </oui-field>
-
-            <!--Chose OVHcloud or vRack gateway-->
-            <gateway-management-component
-                data-ng-if="$ctrl.cluster.network.private.id"
-                data-network="$ctrl.cluster.network"
-            ></gateway-management-component>
+            <kube-network-form
+                data-ng-if="$ctrl.cluster.region"
+                data-region="$ctrl.cluster.region"
+                data-project-id="$ctrl.projectId"
+                data-private-networks="$ctrl.privateNetworks"
+                data-private-network="$ctrl.cluster.network.private"
+                data-subnet="$ctrl.cluster.network.subnet"
+                data-load-balancers-subnet="$ctrl.cluster.network.loadBalancersSubnet"
+                data-gateway="$ctrl.cluster.network.gateway"
+                data-dense="!$ctrl.canEditNetwork"
+                data-frozen="!$ctrl.canEditNetwork"
+            />
         </oui-step-form>
 
         <!--Select node pool configuration -->
