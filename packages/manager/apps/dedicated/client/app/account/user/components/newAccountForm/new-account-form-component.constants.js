@@ -390,10 +390,6 @@ export const FEATURES = {
 
 export const IN_SUBSIDIARY = 'IN';
 export const USER_TYPE_ENTERPRISE = 'corporation';
-export const NEW_SUPPORT_TICKET_PARAMS = {
-  categoryName: 'account',
-  preFetchData: true,
-};
 
 export default {
   ENUM_TRANSLATION_RULES,
@@ -411,5 +407,4 @@ export default {
   FEATURES,
   IN_SUBSIDIARY,
   USER_TYPE_ENTERPRISE,
-  NEW_SUPPORT_TICKET_PARAMS,
 };

@@ -14,6 +14,7 @@ import {
   ELIGIBILITY_ACTION_ENUM,
   ELIGIBILITY_ERROR_IMAGES_SRC,
   PCI_PROJECT_STEPS,
+  SUPPORT_URL,
 } from './constants';
 
 export const PCI_NEW_STATE_NAME = 'pci.projects.new';
@@ -62,9 +63,7 @@ export const registerPCINewState = (
       const coreURLBuilderPromise = injector.getAsync('coreURLBuilder');
       const cartPromise = injector.getAsync('cart');
       const eligibilityPromise = injector.getAsync('eligibility');
-      const newSupportTicketLinkPromise = injector.getAsync(
-        'newSupportTicketLink',
-      );
+      const coreConfigPromise = injector.getAsync('coreConfig');
       const trackProjectCreationErrorPromise = injector.getAsync(
         'trackProjectCreationError',
       );
@@ -96,7 +95,7 @@ export const registerPCINewState = (
             cartPromise,
             eligibilityPromise,
             coreURLBuilderPromise,
-            newSupportTicketLinkPromise,
+            coreConfigPromise,
             trackProjectCreationErrorPromise,
             projectIdPromise,
           ]).then(
@@ -106,7 +105,7 @@ export const registerPCINewState = (
               cart,
               eligibility,
               coreURLBuilder,
-              newSupportTicketLink,
+              coreConfig,
               trackProjectCreationError,
               projectId,
             ]) => {
@@ -140,7 +139,9 @@ export const registerPCINewState = (
                   submitLabel: $translate.instant(
                     'pci_project_new_error_contact_support',
                   ),
-                  submitLink: newSupportTicketLink,
+                  submitLink: coreConfig.isRegion(['EU', 'CA'])
+                    ? SUPPORT_URL
+                    : '',
                   cancelLabel: $translate.instant(
                     'pci_project_new_error_cancel',
                   ),
@@ -203,11 +204,6 @@ export const registerPCINewState = (
     },
     resolve: {
       breadcrumb: () => null,
-
-      newSupportTicketLink: /* @ngInject */ (coreConfig, coreURLBuilder) =>
-        coreConfig.isRegion(['EU', 'CA'])
-          ? coreURLBuilder.buildURL('dedicated', '#/support/tickets/new')
-          : '',
 
       cart: /* @ngInject */ ($transition$, me, pciProjectNew) => {
         const hasCartId = has($transition$.params(), 'cartId');

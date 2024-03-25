@@ -1,8 +1,8 @@
 export default /* @ngInject */ function TelecomTelephonyServiceAssistSupportCtrl(
   $stateParams,
-  coreURLBuilder,
   TelephonyMediator,
   URLS,
+  SUPPORT_URL,
 ) {
   const self = this;
 
@@ -12,7 +12,7 @@ export default /* @ngInject */ function TelecomTelephonyServiceAssistSupportCtrl
 
   self.service = null;
   self.guideUrl = URLS.guides.telephony;
-  self.supportUrl = coreURLBuilder.buildURL('dedicated', '#/support');
+  self.supportUrl = SUPPORT_URL;
 
   /*= =====================================
     =            INITIALIZATION            =

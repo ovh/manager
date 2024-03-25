@@ -1,6 +1,9 @@
 export const AGREEMENT_GENERIC_MORE_INFORMATIONS_URL =
   'https://www.ovh.com/world/support/contracts';
 
+export const SUPPORT_URL =
+  'https://help.ovhcloud.com/csm?id=csm_cases_requests';
+
 export const GDPR_AGREEMENTS_INFOS = [
   {
     agreementId: 1800,
@@ -78,5 +81,6 @@ export const GDPR_AGREEMENTS_INFOS = [
 
 export default {
   AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
+  SUPPORT_URL,
   GDPR_AGREEMENTS_INFOS,
 };

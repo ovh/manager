@@ -36,7 +36,7 @@ export default function ServerSidebarVirtual({
       } else {
         item.isOpen = !item.isOpen;
       }
-      if (item.href) {
+      if (item.href && !item.isExternal) {
         window.location.href = item.href;
       }
       onMenuChange();
