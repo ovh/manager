@@ -42,12 +42,12 @@ export default /* @ngInject */ (
       switch ($scope.entry.fileType) {
         case 'EXTENSION':
           isFileTypeValid = $scope.entry.fileMatch.match(
-            /^([*]*)+\.\w{2,4}(\?[\w\W]*)?$/,
+            /^([*]*)+\.\w{2,5}(\?[\w\W]*)?$/,
           );
           break;
         case 'FILE':
           isFileTypeValid = $scope.entry.fileMatch.match(
-            /^([/])[-\w\d:/._]+\.\w{2,4}([\w\W]*)?$/,
+            /^([/])[-\w\d:/._]+\.\w{2,5}([\w\W]*)?$/,
           );
           break;
         case 'FOLDER':

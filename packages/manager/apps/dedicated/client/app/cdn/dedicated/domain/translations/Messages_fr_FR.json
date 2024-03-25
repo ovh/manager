@@ -90,7 +90,7 @@
   "cdn_domain_configuration_cacherule_create_title": "Créer une nouvelle règle",
   "cdn_domain_configuration_cacherule_create_step1_question": "Vous souhaitez créer une règle de cache ?",
   "cdn_domain_configuration_cacherule_create_step1_information_FILE": "La règle doit être préfixée d'un '/' et contenir une extension d'au moins 2 caractères.",
-  "cdn_domain_configuration_cacherule_create_step1_information_EXTENSION": "La règle doit être préfixée d'un '.' et être composée d'au moins 2 caractères et d'au plus 4.",
+  "cdn_domain_configuration_cacherule_create_step1_information_EXTENSION": "La règle doit être préfixée d'un '.' et être composée d'au moins 2 caractères et d'au plus 5.",
   "cdn_domain_configuration_cacherule_create_step1_information_FOLDER": "La règle doit au minimum être préfixée d'un '/'.",
   "cdn_domain_configuration_cacherule_create_cachetype": "Mise en cache :",
   "cdn_domain_configuration_cacherule_create_cachetype_NO_CACHE": "Jamais",
