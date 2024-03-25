@@ -260,7 +260,7 @@ export default class SignUpDetailsCtrl {
 
   onFieldBlur(field) {
     if (field.$invalid) {
-      this.onFieldError(startCase(field.$name));
+      this.onFieldError(startCase(field.$name).replaceAll(' ', ''));
     }
   }
 
