@@ -7,6 +7,11 @@ import { TRANSLATE_NAMESPACE } from '../constants';
 
 import useUserInfos from './useUserInfos';
 
+import {OsdsText} from '@ovhcloud/ods-components/react'
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_COLOR_HUE } from '@ovhcloud/ods-common-theming';
+
+
 type Props = {
   cssBaseClassName?: string;
   translationBase?: string;
@@ -26,13 +31,17 @@ const UserSupportLevel = ({
 
   return (
     <p className="oui-chip mb-1">
-      <span className={`${cssBaseClassName}_text-small`}>
-        {t(
-          `${translationBase}_support_level_${level}${
-            isTrustedUser() ? '_trusted' : ''
-          }`,
-        )}
-      </span>
+       <OsdsText color={ODS_THEME_COLOR_INTENT.primary}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            hue={ODS_THEME_COLOR_HUE._700}
+            className='m-1'
+            >{t(
+              `${translationBase}_support_level_${level}${
+                isTrustedUser() ? '_trusted' : ''
+              }`,
+            )}</OsdsText>
+
     </p>
   );
 };

@@ -23,7 +23,7 @@ const UserRole = ({
 
   return (
     <div
-      className={`${cssBaseClassName}_user-name mb-2`}
+      className={`${cssBaseClassName}_user-name`}
       data-navi-id="account-sidebar-block"
     >
       {role && (

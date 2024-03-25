@@ -1,5 +1,11 @@
-import { OdsIconWrapper, TELEPHONY_SVG, OFFICE365_SVG, TELECOMETHERNET_SVG, HEADSET_SVG } from '@ovh-ux/ovh-product-icons/index';
-import { OdsIconName } from '@ovhcloud/ods-core';
+import {
+  OdsIconWrapper,
+  TELEPHONY_SVG,
+  OFFICE365_SVG,
+  TELECOMETHERNET_SVG,
+  HEADSET_SVG,
+} from '@ovh-ux/ovh-product-icons/index';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ShopItem } from '../OrderPopupContent';
 import { getOrderURL } from './order.constants';
 
@@ -43,7 +49,7 @@ const telephony = (
 
 const email = (region: string, sub: string): ShopItem => ({
   label: 'order_item_email',
-  icon: OdsIconWrapper({ name: OdsIconName.ENVELOP_CONCEPT }),
+  icon: OdsIconWrapper({ name: ODS_ICON_NAME.ENVELOP_CONCEPT }),
   subMenu: [
     {
       label: 'order_item_email_exchange',
@@ -88,7 +94,7 @@ const sms = (
   features.sms
     ? {
         label: 'item_sms',
-        icon: OdsIconWrapper({ name: OdsIconName.SMS_CONCEPT }),
+        icon: OdsIconWrapper({ name: ODS_ICON_NAME.SMS_CONCEPT }),
         subMenu: [
           features['sms:order']
             ? {
@@ -118,14 +124,14 @@ const telecomShopConfig = (
   features.telephony
     ? {
         label: 'order_item_number',
-        icon: OdsIconWrapper({ name: OdsIconName.HASHTAG_CONCEPT }),
+        icon: OdsIconWrapper({ name: ODS_ICON_NAME.HASHTAG_CONCEPT }),
         url: navigation.getURL('telecom', '#/orders/orders/alias'),
         tracking: 'telecom::orders::number::order',
       }
     : null,
   {
     label: 'order_item_domain',
-    icon: OdsIconWrapper({ name: OdsIconName.WORLD_CONCEPT }),
+    icon: OdsIconWrapper({ name: ODS_ICON_NAME.WORLD_CONCEPT }),
     external: true,
     url: getOrderURL('domain', region, sub),
     tracking: 'telecom::orders::domain-name::order',
@@ -175,7 +181,7 @@ const telecomShopConfig = (
   features.fax
     ? {
         label: 'item_fax',
-        icon: OdsIconWrapper({ name: OdsIconName.PRINTER_CONCEPT }),
+        icon: OdsIconWrapper({ name: ODS_ICON_NAME.PRINTER_CONCEPT }),
         external: true,
         url: getOrderURL('faxOrder', region, sub),
         tracking: 'telecom::orders::freefax::order',

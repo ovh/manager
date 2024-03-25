@@ -6,31 +6,53 @@ import { TRANSLATE_NAMESPACE } from '../constants';
 
 import { PaymentMethodType } from './usePaymentMethod';
 
+import { OsdsChip, OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
+
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_COLOR_HUE,
+} from '@ovhcloud/ods-common-theming';
+
 type Props = {
-  cssBaseClassName?: string;
   defaultPaymentMethod?: PaymentMethodType;
   translationBase?: string;
 };
 
 const Details = ({
-  cssBaseClassName = '',
   defaultPaymentMethod = null,
   translationBase = '',
 }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
-
   return (
-    <div className="m-auto p-1 minw-0 w-100">
-      <h3>{t(`${translationBase}_title`)}</h3>
+    <div className="mx-auto p-1 min-w-0 w-full">
+      <OsdsText
+        className="m-0 p-0"
+        level={ODS_TEXT_LEVEL.subheading}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        hue={ODS_THEME_COLOR_HUE._800}
+      >
+        {t(`${translationBase}_title`)}
+      </OsdsText>
+
       {defaultPaymentMethod ? (
-        <div className={`${cssBaseClassName}_label`}>
-          <p className="m-0 text-truncate">{defaultPaymentMethod.label}</p>
-          <span
-            className={`${cssBaseClassName}_status oui-badge oui-badge_${defaultPaymentMethod.getStatusCategory()}`}
+        <>
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            color={ODS_THEME_COLOR_INTENT.text}
+          ></OsdsText>
+          <p className="m-0 truncate">{defaultPaymentMethod.label}</p>
+          <OsdsChip
+            inline
+            color={
+              ODS_THEME_COLOR_INTENT[
+                defaultPaymentMethod.getStatusCategory() as keyof typeof ODS_THEME_COLOR_INTENT
+              ]
+            }
           >
             {t(`${translationBase}_status_${defaultPaymentMethod.status}`)}
-          </span>
-        </div>
+          </OsdsChip>
+        </>
       ) : (
         <p>{t(`${translationBase}_none`)}</p>
       )}

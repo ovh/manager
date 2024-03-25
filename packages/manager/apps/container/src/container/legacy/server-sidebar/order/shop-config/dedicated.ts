@@ -13,8 +13,7 @@ import {
   LINECOMMUNICATING_SVG,
   SERVER_SVG,
 } from '@ovh-ux/ovh-product-icons/index';
-import { OdsIconName } from '@ovhcloud/ods-core';
-
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 const dedicatedShopConfig = (
   navigation: any,
@@ -51,7 +50,7 @@ const dedicatedShopConfig = (
   features.license
     ? {
         label: 'order_item_licence',
-        icon: OdsIconWrapper({ name: OdsIconName.PAGE_CERTIFICATE_CONCEPT }),
+        icon: OdsIconWrapper({ name: ODS_ICON_NAME.PAGE_CERTIFICATE_CONCEPT }),
         url: navigation.getURL('dedicated', '#/configuration/license/order'),
         tracking: 'dedicated::orders::licences::order',
       }
@@ -59,7 +58,7 @@ const dedicatedShopConfig = (
   features.kubernetes && ORDER_URLS[region].publicCloudKubernetes
     ? {
         label: 'order_item_kube',
-        icon: OdsIconWrapper({ name: OdsIconName.APPLICATION_CONCEPT }),
+        icon: OdsIconWrapper({ name: ODS_ICON_NAME.APPLICATION_CONCEPT }),
         url: getOrderURL('publicCloudKubernetes', region, sub),
         external: true,
         tracking: 'dedicated::orders::managed-kubernetes::order',
@@ -77,7 +76,7 @@ const dedicatedShopConfig = (
   features['managed-bare-metal'] && ORDER_URLS[region].managed_bare_metal
     ? {
         label: 'item_managedBaremetal',
-        icon: OdsIconWrapper({ name: OdsIconName.SERVER_MANAGED_CONCEPT }),
+        icon: OdsIconWrapper({ name: ODS_ICON_NAME.SERVER_MANAGED_CONCEPT }),
         url: getOrderURL('managed_bare_metal', region, sub),
         external: true,
         tracking: 'dedicated::orders::mbm::order',
@@ -95,7 +94,7 @@ const dedicatedShopConfig = (
   features['cloud-disk-array'] && ORDER_URLS[region].cloud_disk_array
     ? {
         label: 'order_item_paas_cda',
-        icon: OdsIconWrapper({ name: OdsIconName.CLOUD_SERVER_CONCEPT }),
+        icon: OdsIconWrapper({ name: ODS_ICON_NAME.CLOUD_SERVER_CONCEPT }),
         url: getOrderURL('cloud_disk_array', region, sub),
         external: true,
         tracking: 'dedicated::orders::cloud-disk-array::order',
@@ -148,7 +147,7 @@ const dedicatedShopConfig = (
   features['logs-data-platform']
     ? {
         label: 'item_logs',
-        icon: OdsIconWrapper({ name: OdsIconName.GRAPH_CONCEPT }),
+        icon: OdsIconWrapper({ name: ODS_ICON_NAME.GRAPH_CONCEPT }),
         url: navigation.getURL('dedicated', '#/dbaas/logs/order'),
         tracking: 'dedicated::orders::logs::order',
       }
@@ -166,7 +165,7 @@ const dedicatedShopConfig = (
   ORDER_URLS[region].dedicatedEcoRangeOrder
     ? {
         label: 'order_item_dedicated_server_eco',
-        icon: OdsIconWrapper({ name: OdsIconName.SERVER_CONCEPT }),
+        icon: OdsIconWrapper({ name: ODS_ICON_NAME.SERVER_CONCEPT }),
         url: getOrderURL('dedicatedEcoRangeOrder', region, sub),
         external: true,
         tracking: 'dedicated::orders::dedicated-servers-eco::order',

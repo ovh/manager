@@ -15,9 +15,11 @@
     "start": "plop"
   },
   "dependencies": {
-    "@ovhcloud/ods-core": "^14.0.1",
-    "@ovhcloud/ods-stencil": "^14.0.1",
-    "@ovhcloud/ods-theming": "^14.0.1",
+    "@ovhcloud/ods-common-core": "^17.1.0",
+    "@ovhcloud/ods-common-testing": "^17.1.0",
+    "@ovhcloud/ods-common-theming": "^17.1.0",
+    "@ovhcloud/ods-components": "^17.1.0",
+    "@ovhcloud/ods-theme-blue-jeans": "^17.1.0",
     "react": "^18.2.0"
   },
   "preferGlobal": true

@@ -5,13 +5,15 @@ import { useShell } from '@/context';
 
 import { TRANSLATE_NAMESPACE } from '../constants';
 
+import {OsdsLink} from '@ovhcloud/ods-components/react'
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
+
 type Props = {
-  cssBaseClassName?: string;
   translationBase?: string;
 };
 
 const UserInfosFooter = ({
-  cssBaseClassName = '',
   translationBase = '',
 }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
@@ -26,17 +28,13 @@ const UserInfosFooter = ({
   };
 
   return (
-    <div className={`text-left ${cssBaseClassName}_links`}>
-      <hr className="my-1" />
-      <button
-        type="button"
-        role="button"
-        className="btn btn-link"
-        data-navi-id="logout"
+    <div>
+      <hr className="my-1"/>
+      <OsdsLink
         onClick={logoutHandler}
-      >
-        {t(`${translationBase}_logout`)}
-      </button>
+        color={ODS_THEME_COLOR_INTENT.primary}
+        className="flex font-bold m-3"
+      > {t(`${translationBase}_logout`)}</OsdsLink>
     </div>
   );
 };
