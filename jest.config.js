@@ -1,3 +1,12 @@
+/**
+ * Deprecated.
+ *
+ * This configuration should not be used for unit testing.
+ * It will be removed when the following packages will be updated :
+ *  - @ovh-ux/shell
+ *  - @ovh-ux/manager-container-app
+ *  - @ovh-ux/url-builder
+ */
 module.exports = {
   projects: [
     {
@@ -8,8 +17,9 @@ module.exports = {
         '!packages/**/*.d.ts',
       ],
       testMatch: [
-        '<rootDir>/packages/**/__tests__/**/*.{spec,test}.{js,jsx,ts,tsx}',
-        '<rootDir>/packages/**/*.{spec,test}.{js,jsx,ts,tsx}',
+        '<rootDir>/packages/components/ovh-shell/**/*.{spec,test}.{js,jsx,ts,tsx}',
+        '<rootDir>/packages/manager/apps/container/**/*.{spec,test}.{js,jsx,ts,tsx}',
+        '<rootDir>/packages/core/url-builder/**/*.{spec,test}.{js,jsx,ts,tsx}',
       ],
       testEnvironment: 'jest-environment-jsdom',
       transform: {
@@ -22,11 +32,7 @@ module.exports = {
         '^.+\\.module\\.(css|sass|scss)$',
         '<rootDir>/node_modules/(?!lodash-es|@stencil)',
       ],
-      testPathIgnorePatterns: [
-        '/node_modules/',
-        '/apps/pci-vouchers/',
-        '/apps/pci-ssh-keys/',
-      ],
+      testPathIgnorePatterns: ['/node_modules/'],
       moduleNameMapper: {
         '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
         '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
@@ -56,7 +62,5 @@ module.exports = {
         'packages/manager-components/*',
       ],
     },
-    'packages/manager/apps/pci-rancher',
-    'packages/manager-components/',
   ],
 };
