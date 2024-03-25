@@ -34,6 +34,22 @@ export default /* @ngInject */ ($stateProvider) => {
             poolId,
           },
         ),
+      healthMonitorPoolsDetailLink: /* @ngInject */ (
+        $state,
+        projectId,
+        region,
+        loadbalancerId,
+        poolId,
+      ) =>
+        $state.href(
+          'octavia-load-balancer.loadbalancer.pools.detail.health-monitor',
+          {
+            projectId,
+            region,
+            loadbalancerId,
+            poolId,
+          },
+        ),
       membersPoolsDetailLink: /* @ngInject */ (
         $state,
         projectId,

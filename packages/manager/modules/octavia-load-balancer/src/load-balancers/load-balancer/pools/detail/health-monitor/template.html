@@ -1,0 +1,157 @@
+<div id="octavia-load-balancer-pools-detail-health-monitor">
+    <div data-ovh-alert="octavia.alerts.healthmonitor"></div>
+    <div ui-view>
+        <div class="row d-md-flex">
+            <div class="col-md-4">
+                <oui-tile
+                    data-heading="{{ 'octavia_load_balancer_health_monitor_overview_management_title' | translate }}"
+                >
+                    <oui-tile-button
+                        data-on-click="$ctrl.goToHealthMonitorEdition()"
+                    >
+                        <span
+                            data-translate="octavia_load_balancer_health_monitor_overview_management_edit"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        data-on-click="$ctrl.goToHealthMonitorDeletion()"
+                    >
+                        <span
+                            data-translate="octavia_load_balancer_health_monitor_overview_management_delete"
+                        ></span>
+                    </oui-tile-button>
+                </oui-tile>
+            </div>
+            <div class="col-md-4">
+                <oui-tile
+                    heading="{{:: 'octavia_load_balancer_health_monitor_overview_info_title' | translate }}"
+                    class="h-100"
+                >
+                    <!-- NAME -->
+                    <oui-tile-definition
+                        data-term="{{ :: 'octavia_load_balancer_health_monitor_detail_overview_info_name' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <div class="d-flex align-items-center">
+                                <span
+                                    data-ng-bind="$ctrl.healthMonitor.name"
+                                ></span>
+                                <button
+                                    class="oui-button oui-button_ghost"
+                                    data-ng-click="$ctrl.goToEditName()"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-pen"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </div>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <!-- TYPE -->
+                    <oui-tile-definition
+                        data-term="{{ :: 'octavia_load_balancer_health_monitor_detail_overview_info_type' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                class="text-uppercase"
+                                data-ng-bind=":: $ctrl.healthMonitor.monitorType"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <!-- URL PATH -->
+                    <oui-tile-definition
+                        data-ng-if="[
+                            $ctrl.HEALTH_MONITOR_TYPE.HTTP,
+                            $ctrl.HEALTH_MONITOR_TYPE.HTTPS
+                        ].includes($ctrl.healthMonitor.monitorType)"
+                        data-term="{{ :: $ctrl.LABELS.URLPATH }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                data-ng-bind=":: $ctrl.healthMonitor.httpConfiguration.urlPath"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <!-- EXPECTED CODE -->
+                    <oui-tile-definition
+                        data-ng-if="[
+                            $ctrl.HEALTH_MONITOR_TYPE.HTTP,
+                            $ctrl.HEALTH_MONITOR_TYPE.HTTPS
+                        ].includes($ctrl.healthMonitor.monitorType)"
+                        data-term="{{ :: 'octavia_load_balancer_health_monitor_detail_overview_info_expected_code' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                data-ng-bind=":: $ctrl.healthMonitor.httpConfiguration.expectedCodes"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <!-- MAX RETRIES DOWN -->
+                    <oui-tile-definition
+                        data-term="{{ :: $ctrl.LABELS.MAX_RETRIES_DOWN }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                data-ng-bind=":: $ctrl.healthMonitor.maxRetriesDown"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <!-- PERIODICITY -->
+                    <oui-tile-definition
+                        data-term="{{ :: $ctrl.LABELS.DELAY }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                data-ng-bind=":: $ctrl.healthMonitor.delay"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <!-- MAX RETRIES -->
+                    <oui-tile-definition
+                        data-term="{{ :: $ctrl.LABELS.MAX_RETRIES }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                data-ng-bind=":: $ctrl.healthMonitor.maxRetries"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <!-- TIMEOUT -->
+                    <oui-tile-definition
+                        data-term="{{ :: $ctrl.LABELS.TIMEOUT }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                data-ng-bind=":: $ctrl.healthMonitor.timeout"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <!-- STATUS -->
+                    <oui-tile-definition
+                        data-term="{{ :: 'octavia_load_balancer_provisioning_status' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                class="oui-badge"
+                                data-ng-class="$ctrl.provisioningStatusBadges[$ctrl.healthMonitor.provisioningStatus]"
+                                data-ng-bind=":: 'octavia_load_balancer_provisioning_status_' + $ctrl.healthMonitor.provisioningStatus | translate"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <oui-tile-definition
+                        data-term="{{ :: 'octavia_load_balancer_operating_status' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                class="oui-badge"
+                                data-ng-class="$ctrl.operatingStatusBadges[$ctrl.healthMonitor.operatingStatus]"
+                                data-ng-bind=":: 'octavia_load_balancer_operating_status_' + $ctrl.healthMonitor.operatingStatus | translate"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                </oui-tile>
+            </div>
+        </div>
+    </div>
+</div>
