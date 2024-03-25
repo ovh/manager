@@ -229,6 +229,17 @@ const pciNode: Node = {
           forceVisibility: true,
         },
         {
+          id: 'pci-private-registry',
+          translation: 'sidebar_pci_private_registry',
+          serviceType: 'CLOUD_PROJECT_CONTAINER_REGISTRY',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/private-registry',
+          },
+          features: ['private-registry'],
+          forceVisibility: true,
+        },
+        {
           id: 'pci-kubernetes-load-balancer',
           translation: 'sidebar_pci_kubernetes_load_balancer',
           serviceType: 'CLOUD_PROJECT_LOADBALANCER',
@@ -250,17 +261,6 @@ const pciNode: Node = {
           },
           region: ['US'],
           features: ['load-balancer'],
-          forceVisibility: true,
-        },
-        {
-          id: 'pci-private-registry',
-          translation: 'sidebar_pci_private_registry',
-          serviceType: 'CLOUD_PROJECT_CONTAINER_REGISTRY',
-          routing: {
-            application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/private-registry',
-          },
-          features: ['private-registry'],
           forceVisibility: true,
         },
       ],

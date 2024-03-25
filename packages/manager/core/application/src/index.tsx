@@ -23,6 +23,8 @@ export type OvhContextShellType = OvhContextShellT;
 export { queryClient } from './query-client';
 export * from './hooks';
 
+export * from './ovh-tracking';
+
 export function useShell(): OvhContextShellType {
   const { shell } = useContext(OvhContext);
   return shell;

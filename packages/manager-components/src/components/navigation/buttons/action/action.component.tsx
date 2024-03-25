@@ -16,8 +16,8 @@ import {
   OdsHTMLAnchorElementTarget,
   OdsHTMLAnchorElementRel,
 } from '@ovhcloud/ods-common-core';
-import { ReactI18NextChild } from 'react-i18next';
-import useDynamicTranslation from '../../../../translation/useDynamicTranslation';
+import { ReactI18NextChild, useTranslation } from 'react-i18next';
+import '../translations/translation';
 
 export interface ActionItem {
   id: number;
@@ -33,7 +33,7 @@ export interface ActionButtonProps {
 }
 
 export const ActionButton: React.FC<ActionButtonProps> = ({ items }) => {
-  const { t } = useDynamicTranslation('buttons');
+  const { t } = useTranslation('buttons');
   return (
     <OsdsMenu>
       <OsdsButton

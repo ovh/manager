@@ -7,6 +7,8 @@ import '@ovh-ux/ui-kit';
 import component from './component';
 import templates from './templates';
 
+import sepaInformationModal from './sepa-information-modal/index.js';
+
 const moduleName = 'ngOvhPaymentMethodRegister';
 
 angular
@@ -14,6 +16,7 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'oui',
+    sepaInformationModal,
   ])
   .run(
     /* @ngInject */ ($templateCache) => {

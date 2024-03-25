@@ -11,11 +11,11 @@ import {
   ODS_TEXT_SIZE,
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
-
-import useDynamicTranslation from '../../../translation/useDynamicTranslation';
+import './translations/translations';
 import OOPS from './assets/error-banner-oops.png';
 
 import { ErrorBannerProps } from './error.types';
+import { useTranslation } from 'react-i18next';
 
 export const ErrorBanner = ({
   error,
@@ -23,7 +23,7 @@ export const ErrorBanner = ({
   onReloadPage,
   labelTracking,
 }: ErrorBannerProps) => {
-  const { t } = useDynamicTranslation('error');
+  const { t } = useTranslation('error');
 
   return (
     <div className="mx-auto  w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5">

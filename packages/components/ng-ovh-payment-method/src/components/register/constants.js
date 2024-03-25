@@ -27,6 +27,9 @@ export const FALLBACK_IMAGES = {
 
 export const PAYMENTS_RUPAY_MESSAGE_FEATURE = 'payments:rupay-message';
 
+export const SEPA_INFORMATION_MODAL_FEATURE =
+  'payments:sepa-information-message';
+
 export const CHARGES = 2;
 
 export default {
@@ -36,4 +39,5 @@ export default {
   FALLBACK_IMAGES,
   PAYMENTS_RUPAY_MESSAGE_FEATURE,
   CHARGES,
+  SEPA_INFORMATION_MODAL_FEATURE,
 };

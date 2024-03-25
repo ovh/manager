@@ -11,7 +11,7 @@
   "scripts": {
     "start": "storybook dev -p 6006",
     "dev": "tsc",
-    "build": "echo manager-components",
+    "build": "storybook build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "jest --coverage -u",
     "test:cov": "vitest run --coverage",

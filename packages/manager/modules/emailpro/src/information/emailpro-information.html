@@ -1,5 +1,5 @@
 <div data-ng-controller="EmailProTabInformationCtrl as $ctrl">
-    <wuc-spf-banner></wuc-spf-banner>
+    <wuc-mxplan-banner data-ng-if="exchange.isMXPlan"></wuc-mxplan-banner>
     <div class="row">
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>

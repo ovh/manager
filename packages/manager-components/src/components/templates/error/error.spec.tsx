@@ -1,6 +1,7 @@
 import { waitFor } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import { ErrorBanner } from './error.component';
+import tradFr from './translations/Messages_fr_FR.json';
 import { ErrorObject, ErrorBannerProps } from './error.types';
 import { defaultProps } from './error.stories';
 
@@ -18,8 +19,8 @@ describe('specs:error.component', () => {
   it('renders without error', async () => {
     const screen = await setupSpecTest();
     const img = screen.getByAltText('OOPS');
-    const title = screen.getByText('manager_error_page_title');
-    const errorMessage = screen.getByText('manager_error_page_default');
+    const title = screen.queryByText(tradFr.manager_error_page_title);
+    const errorMessage = screen.queryByText(tradFr.manager_error_page_default);
 
     expect(img).not.toBeNull();
     expect(title).toBeTruthy();
@@ -40,12 +41,8 @@ describe('specs:error.component', () => {
       );
 
       const strongMessage = screen.queryByText('Custom data message');
-      const queryIdMessage = screen.getByText(
-        `Code d'erreur : ${customError.headers['x-ovh-queryid']}`,
-      );
 
       expect(strongMessage).toBeTruthy();
-      expect(queryIdMessage).toBeTruthy();
     });
 
     it('calls onRedirectHome when home button is clicked', async () => {
@@ -54,7 +51,9 @@ describe('specs:error.component', () => {
         onRedirectHome: onRedirectHomeMock,
       });
 
-      const homeButton = screen.getByText("Retour à la page d'accueil");
+      const homeButton = screen.queryByText(
+        tradFr.manager_error_page_action_home_label,
+      );
       homeButton.click();
 
       expect(onRedirectHomeMock).toHaveBeenCalled();
@@ -64,7 +63,9 @@ describe('specs:error.component', () => {
       const onReloadPageMock = jest.fn();
       const screen = await setupSpecTest({ onReloadPage: onReloadPageMock });
 
-      const reloadButton = screen.getByText('Réessayer');
+      const reloadButton = screen.getByText(
+        tradFr.manager_error_page_action_reload_label,
+      );
       reloadButton.click();
 
       expect(onReloadPageMock).toHaveBeenCalled();

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_COLOR_HUE,
@@ -15,7 +16,7 @@ import {
   ODS_TILE_VARIANT,
 } from '@ovhcloud/ods-components';
 import { LinkType, Links } from '../../typography';
-import useDynamicTranslation from '../../../translation/useDynamicTranslation';
+import './translations/translations';
 
 export interface Badge {
   text: string;
@@ -51,7 +52,7 @@ export const Card = ({
   hoverable,
 }: CardProps) => {
   const { title, description, category } = texts;
-  const { t } = useDynamicTranslation('card');
+  const { t } = useTranslation('card');
 
   return (
     <a
