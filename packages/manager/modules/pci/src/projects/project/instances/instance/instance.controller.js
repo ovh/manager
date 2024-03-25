@@ -1,3 +1,5 @@
+import { Pricing } from '@ovh-ux/manager-models';
+
 export default class PciInstanceController {
   /* @ngInject */
   constructor(
@@ -27,6 +29,20 @@ export default class PciInstanceController {
       !this.instance.isMonthlyBillingActivated() &&
       this.instance.flavor.planCodes.monthly
     );
+  }
+
+  formatPrice() {
+    const { getUser, getUserLocale } = this.coreConfig;
+    return new Pricing(
+      {
+        price: {
+          value: this.instancePrice?.price.value,
+          currencyCode: getUser().currency.code,
+          maximumFractionDigits: 3,
+        },
+      },
+      getUserLocale(),
+    ).getPriceAsText();
   }
 
   loadMessages() {
