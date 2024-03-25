@@ -68,6 +68,7 @@ export default class AgoraIpV4OrderController {
   }
 
   loadServices() {
+    console.log(this.$state.params);
     this.atInternet.trackClick({
       name: `dedicated::ip::dashboard::order`,
       type: 'action',
