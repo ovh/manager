@@ -3,12 +3,16 @@ import { GenericTrackingData } from './track';
 const getMixCommanderScript = (clientId: string, region: string) => `
 window.tC = window.tC || {};
 
+/*
+ * Save Rewrite referrer on the Manager.
+ * To execute in the MixCommander script, before the Click and Site tracking script is trigerred.
+ */
 if(sessionStorage["prev_ref"] !== undefined){
-    var temp = new URLSearchParams(document.location.search);
-    Object.defineProperty(document, "referrer", {get : function(){
-        return temp.get('prev_ref');
-    }});
-    sessionStorage["prev_ref"] = undefined;
+  var temp = sessionStorage["prev_ref"];
+  Object.defineProperty(document, "referrer", {get : function(){
+    return temp;
+  }});
+  sessionStorage["prev_ref"] = undefined;
 }
 
 tC.getParamURL = tC.getParamURL || function(t, e) {
