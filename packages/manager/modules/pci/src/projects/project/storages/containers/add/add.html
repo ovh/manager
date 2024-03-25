@@ -207,6 +207,7 @@
 
     <!-- Data encryption -->
     <oui-step-form
+        data-position="3"
         data-ng-if="!$ctrl.archive && $ctrl.encryptionAvailable && $ctrl.isRightOffer()"
         data-header="{{:: 'pci_projects_project_storages_containers_data_encryption_title' | translate }}"
         data-editable="!$ctrl.isLoading"
@@ -215,6 +216,7 @@
         <pci-project-storages-data-encryption
             data-encryption="$ctrl.container.encryption"
             data-encryption-algorithms="$ctrl.encryptionAlgorithms"
+            data-track-encryption-action="$ctrl.trackEncryptionAction"
         ></pci-project-storages-data-encryption>
     </oui-step-form>
 
