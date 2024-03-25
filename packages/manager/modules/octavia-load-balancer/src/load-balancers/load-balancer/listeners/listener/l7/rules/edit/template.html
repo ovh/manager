@@ -1,0 +1,12 @@
+<div class="octavia-load-balancer-l7-policy-edition">
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <octavia-load-balancer-l7-rule-form
+        data-ng-if="!$ctrl.loading"
+        data-model="$ctrl.model"
+        data-on-submit="$ctrl.submit()"
+        data-on-cancel="$ctrl.cancel()"
+    ></octavia-load-balancer-l7-rule-form>
+</div>

@@ -36,7 +36,7 @@ angular
     loadBalancers,
   ])
   .config(routing)
-  .service('OctaviaLoadBalanderService', service)
+  .service('OctaviaLoadBalancerService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
