@@ -96,6 +96,16 @@ const root: Node = {
           count: false,
           region: ['US'],
         },
+        {
+          id: 'key_management_system',
+          translation: 'key_management_system',
+          routing: {
+            application: 'key-management-system',
+            hash: '#/',
+          },
+          count: false,
+          features: ['key-management-system'],
+        },
       ],
     },
     {

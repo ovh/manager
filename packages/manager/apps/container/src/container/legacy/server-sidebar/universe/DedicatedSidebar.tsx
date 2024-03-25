@@ -45,6 +45,7 @@ export const features = [
   'dedicated-server:nutanixOrder',
   'carbon-calculator',
   'network-security',
+  'key-management-system'
 ];
 
 export default function DedicatedSidebar() {
@@ -382,10 +383,10 @@ export default function DedicatedSidebar() {
       requestType: 'aapi',
     });
 
-  const { data: availability } = useQuery(
-    ['sidebar-dedicated-availability'],
-    getFeatures,
-  );
+  const { data: availability } = useQuery({
+    queryKey: ['sidebar-dedicated-availability'],
+    queryFn: getFeatures,
+  });
 
   useEffect(() => {
     if (availability) {

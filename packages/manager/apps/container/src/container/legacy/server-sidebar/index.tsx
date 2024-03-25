@@ -36,6 +36,7 @@ export default function ServerSidebarIndex() {
     ],
     iam: '*',
     'carbon-calculator': '*',
+    'key-management-system': '*'
   }
 
   useEffect(() => {
