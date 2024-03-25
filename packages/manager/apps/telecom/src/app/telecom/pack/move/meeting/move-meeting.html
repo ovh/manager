@@ -116,6 +116,12 @@
         </div>
     </div>
 </div>
+
+<p
+    data-ng-if="$ctrl.noMeetingAvailable && !$ctrl.loading.init"
+    data-translate="pack_move_no_meeting_available"
+></p>
+
 <div class="mt-5" data-ng-if="!$ctrl.loading.init">
     <a
         class="btn btn-default"

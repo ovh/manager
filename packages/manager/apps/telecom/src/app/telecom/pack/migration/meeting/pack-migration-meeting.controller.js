@@ -28,6 +28,7 @@ export default class TelecomPackMigrationMeetingCtrl {
     this.contactName = null;
     this.showMeetingSlots = false;
     this.meetingSlots = {};
+    this.noAvailableMeeting = false;
 
     this.process = this.tucPackMigrationProcess.getMigrationProcess();
     this.buildingReference = this.process.selectedOffer.buildingReference;
@@ -91,6 +92,8 @@ export default class TelecomPackMigrationMeetingCtrl {
                 }
                 this.showMeetingSlots = true;
                 this.meetingSelectMessage = '';
+              } else {
+                this.noAvailableMeeting = true;
               }
             });
         }
@@ -111,7 +114,7 @@ export default class TelecomPackMigrationMeetingCtrl {
   checkConfirm() {
     const checkContact = !!this.contactName;
     const checkSlot = this.selectedMeeting.meetingSlots.slot !== null;
-    return !(checkContact && checkSlot);
+    return !(checkContact && checkSlot) && !this.noAvailableMeeting;
   }
 
   selectSlot(slotId) {

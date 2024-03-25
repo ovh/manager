@@ -28,6 +28,8 @@ export default class MoveMeetingCtrl {
     this.showMeetingSlots = false;
     this.meetingSlots = {};
 
+    this.noMeetingAvailable = false;
+
     this.loading = true;
     this.meetings = [];
     return this.OvhApiConnectivityEligibilitySearch.v6()
@@ -72,6 +74,8 @@ export default class MoveMeetingCtrl {
           }
           this.showMeetingSlots = true;
           this.meetingSelectMessage = '';
+        } else {
+          this.noMeetingAvailable = true;
         }
       })
       .catch((error) => {
@@ -91,7 +95,7 @@ export default class MoveMeetingCtrl {
   checkConfirm() {
     const checkContact = !!this.contactName;
     const checkSlot = this.offer.meetingSlots.slot !== null;
-    return !(checkContact && checkSlot);
+    return !(checkContact && checkSlot) && !this.noMeetingAvailable;
   }
 
   selectSlot(slotId) {
