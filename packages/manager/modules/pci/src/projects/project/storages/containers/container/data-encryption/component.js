@@ -5,6 +5,7 @@ const component = {
   bindings: {
     encryption: '=',
     encryptionAlgorithms: '<',
+    trackEncryptionAction: '<',
   },
   template,
   controller,

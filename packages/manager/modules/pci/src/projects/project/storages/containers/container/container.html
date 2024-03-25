@@ -81,11 +81,12 @@
                     <span
                         data-translate="pci_projects_project_storages_containers_container_info_data_encryption_enabled"
                     ></span>
-                    <i
-                        class="pl-1 fa fa-question-circle-o oui-color-p-500"
-                        aria-hidden="true"
-                        data-oui-tooltip="{{:: 'pci_projects_project_storages_containers_data_encryption_aes256_tooltip' | translate }}"
-                    ></i>
+                    <button
+                        type="button"
+                        class="pl-1 oui-color-p-500 oui-popover-button"
+                        data-oui-popover="{{:: 'pci_projects_project_storages_containers_data_encryption_aes256_tooltip' | translate }}"
+                        data-ng-click="$ctrl.trackEncryptionAction('TOOLTIP_AES256')"
+                    ></button>
                 </p>
             </div>
 
