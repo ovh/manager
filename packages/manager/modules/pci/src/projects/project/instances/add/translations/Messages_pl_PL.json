@@ -31,6 +31,7 @@
   "pci_projects_project_instances_add_script_add_label": "Dodaj",
   "pci_projects_project_instances_add_privateNetwork_title": "Skonfiguruj sieć",
   "pci_projects_project_instances_add_privateNetwork_sub_title": "Wybierz rodzaj połączenia sieciowego dla Twojej nowej instancji Public Cloud.",
+  "pci_projects_project_instances_add_privateNetwork_info1": "Tryb publiczny jest ustawiony domyślnie: jest to klasyczny model sieci. Możliwe, że nie jest kompatybilny ze wszystkimi produktami lub dostępny we wszystkich regionach.",
   "pci_projects_project_instances_add_privateNetwork_public_mode": "Tryb publiczny",
   "pci_projects_project_instances_add_privateNetwork_public_mode_description1": "To klasyczny model sieci instancji Public Cloud. Instancje będą miały przypisany publiczny port sieciowy.",
   "pci_projects_project_instances_add_privateNetwork_public_mode_description2": "Tryb ten nie jest kompatybilny z nowymi usługami sieciowymi (Load Balancer lub Floating IP).",

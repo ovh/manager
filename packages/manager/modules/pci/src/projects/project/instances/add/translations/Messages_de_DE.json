@@ -31,6 +31,7 @@
   "pci_projects_project_instances_add_script_add_label": "Hinzufügen",
   "pci_projects_project_instances_add_privateNetwork_title": "Konfigurieren Sie Ihr Netzwerk",
   "pci_projects_project_instances_add_privateNetwork_sub_title": "Bitte wählen Sie den Typ der Netzwerkverbindung Ihrer neuen Public Cloud-Instanz aus.",
+  "pci_projects_project_instances_add_privateNetwork_info1": "Der öffentliche Modus wird standardmäßig ausgewählt: Dies ist das klassische Netzwerkmodell. Möglicherweise ist es nicht mit allen Produkten kompatibel oder in allen Regionen verfügbar.",
   "pci_projects_project_instances_add_privateNetwork_public_mode": "Öffentlicher Modus",
   "pci_projects_project_instances_add_privateNetwork_public_mode_description1": "Dies ist das klassische Netzwerkmodell von Public Cloud-Instanzen. Die Instanzen bekommen einen öffentlichen Netzwerk-Port zugewiesen.",
   "pci_projects_project_instances_add_privateNetwork_public_mode_description2": "Bitte beachten Sie, dass dieser Modus mit neuen Netzwerkdiensten wie Loadbalancer oder Floating IPs nicht kompatibel ist.",

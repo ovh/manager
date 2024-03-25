@@ -31,6 +31,7 @@
   "pci_projects_project_instances_add_script_add_label": "Add",
   "pci_projects_project_instances_add_privateNetwork_title": "Configure your network",
   "pci_projects_project_instances_add_privateNetwork_sub_title": "Please select the network connection type for your new Public Cloud instance.",
+  "pci_projects_project_instances_add_privateNetwork_info1": "Public mode is selected by default: this is the standard network model. This may not be compatible with all products, or available in all regions.",
   "pci_projects_project_instances_add_privateNetwork_public_mode": "Public mode",
   "pci_projects_project_instances_add_privateNetwork_public_mode_description1": "This is the standard network model for Public Cloud instances. Instances will have a public network port attached.",
   "pci_projects_project_instances_add_privateNetwork_public_mode_description2": "Please note that this mode is not compatible for new network services (Load Balancer or Floating IPs).",
