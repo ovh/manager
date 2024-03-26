@@ -1,6 +1,7 @@
 import axios, {
   AxiosError,
   AxiosInstance,
+  AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios';
 import {
@@ -84,5 +85,8 @@ Object.keys(apiClient).forEach((api) => {
   apiClient[api]?.interceptors?.response.use(null, handleAuthenticationError);
   return api;
 });
+
+export type ApiError = AxiosError<{ message: string }>;
+export type ApiResponse<T> = AxiosResponse<T>;
 
 export default apiClient;

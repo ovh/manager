@@ -37,11 +37,14 @@ export default function Onboarding() {
 
   const title: string = t("title");
   const description: string = t("description");
+  const imgSrc = {
+    src: onboardingImgSrc
+  }
 
   return (
     <OnboardingLayout
       title={title}
-      imageSrc={onboardingImgSrc}
+      img={imgSrc}
       description={description}
       orderButtonLabel={t("orderButtonLabel")}
       orderHref={t("orderButtonLink")}
