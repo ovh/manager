@@ -20,6 +20,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        input: "border border-input bg-background",
       },
       size: {
         default: "h-10 px-4 py-2 text-base",
@@ -28,7 +29,8 @@ const buttonVariants = cva(
         icon: "h-10 w-10",
         link: "text-base",
         table: "h-4 w-4 my-auto",
-        menu: 'size-8 p-0'
+        menu: 'size-8 p-0',
+        input: "h-10 w-full rounded-md px-3 py-2 text-sm"
       },
     },
     defaultVariants: {

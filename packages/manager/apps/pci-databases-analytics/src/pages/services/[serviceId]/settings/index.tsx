@@ -1,3 +1,4 @@
+import { AccordionItem } from '@radix-ui/react-accordion';
 import { Link } from '@/components/links';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useServiceData } from '../layout';
@@ -13,6 +14,12 @@ import Maintenances from './_components/maintenances';
 import IpsRestrictionsUpdate from './_components/ipRestrictions';
 import RenameService from '../_components/renameService';
 import { useModale } from '@/hooks/useModale';
+import AdvancedConfigurationUpdate from './_components/advancedConfiguration';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 const Settings = () => {
   const renameModale = useModale('rename');
@@ -67,7 +74,7 @@ const Settings = () => {
                     {humanizeEngine(service.engine)} {service.version}
                   </TableCell>
                   {availabilitiesVersionQuery.data?.length > 1 && (
-                    <TableCell>
+                    <TableCell className="text-right">
                       <Button
                         variant="outline"
                         size="sm"
@@ -88,7 +95,7 @@ const Settings = () => {
                   <TableCell className="font-semibold">Plan</TableCell>
                   <TableCell>{service.plan}</TableCell>
                   {availabilitiesPlanQuery.data?.length > 1 && (
-                    <TableCell>
+                    <TableCell className="text-right">
                       <Button
                         variant="outline"
                         size="sm"
@@ -109,7 +116,7 @@ const Settings = () => {
                   <TableCell className="font-semibold">Flavor</TableCell>
                   <TableCell>{service.flavor}</TableCell>
                   {availabilitiesFlavorQuery.data?.length > 1 && (
-                    <TableCell>
+                    <TableCell className="text-right">
                       <Button
                         variant="outline"
                         size="sm"
@@ -134,7 +141,7 @@ const Settings = () => {
                       {service.storage.type}
                     </TableCell>
                     {availabilitiesFlavorQuery.data?.length > 1 && (
-                      <TableCell>
+                      <TableCell className="text-right">
                         <Button
                           variant="outline"
                           size="sm"
@@ -156,7 +163,7 @@ const Settings = () => {
                   <TableCell className="font-semibold">Nodes</TableCell>
                   <TableCell>{service.nodes.length}</TableCell>
                   {availabilitiesFlavorQuery.data?.length > 1 && (
-                    <TableCell>
+                    <TableCell className="text-right">
                       <Button
                         variant="outline"
                         size="sm"
@@ -229,20 +236,24 @@ const Settings = () => {
             </div>
           </CardContent>
         </Card>
-
-        <Card className="col-span-3">
-          <CardHeader>
-            <h5>Advanced configuration</h5>
-          </CardHeader>
-          <CardContent>
-            <ul className="list-disc list-inside">
-              <li className="list-item">
-                display current advanced configuration
-              </li>
-              <li className="list-item">update advanced configuration</li>
-            </ul>
-          </CardContent>
-        </Card>
+        {service.capabilities.advancedConfiguration && (
+          <Card className="col-span-3">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="advancedConfiguration">
+                <CardHeader>
+                  <AccordionTrigger>
+                    <h5>Advanced configuration</h5>
+                  </AccordionTrigger>
+                </CardHeader>
+                <CardContent>
+                  <AccordionContent>
+                    <AdvancedConfigurationUpdate />
+                  </AccordionContent>
+                </CardContent>
+              </AccordionItem>
+            </Accordion>
+          </Card>
+        )}
       </div>
 
       <RenameService
