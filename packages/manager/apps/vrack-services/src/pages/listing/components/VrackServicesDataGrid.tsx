@@ -84,6 +84,7 @@ export const VrackServicesDatagrid: React.FC = () => {
           label={t('associateVrackButtonLabel')}
           isLoading={isPending}
           openAssociationModal={setAssociateModalVisible}
+          t={t}
         />,
       ),
     },

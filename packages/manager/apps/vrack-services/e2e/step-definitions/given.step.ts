@@ -120,3 +120,19 @@ Given('User has a vRack Services that {string} a subnet', function(
   this.testContext.data.selectedVrackServices = vrackServicesList[index];
   this.testContext.data.vsIndex = index;
 });
+
+Given('User {string} a vRack associated to a vRack Services', function(
+  this: ICustomWorld<ConfigParams>,
+  hasVrack: 'has' | "doesn't have",
+) {
+  this.testContext.initialUrl = getUrl('listing');
+  this.handlersConfig.nbVs = 20;
+
+  const vsIndex = vrackServicesList.findIndex(
+    (v) =>
+      (hasVrack === 'has' && v.currentState.vrackId) ||
+      (hasVrack === "doesn't have" && !v.currentState.vrackId),
+  );
+  this.testContext.data.vsIndex = vsIndex;
+  this.testContext.data.selectedVrackServices = vrackServicesList[vsIndex];
+});

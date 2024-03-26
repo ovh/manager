@@ -12,5 +12,6 @@
   "orderStatus-unknown": "Inconnu",
   "genericApiError": "L'erreur suivante est survenue : {{error}}.",
   "modalCancelButton": "Annuler",
-  "modalDeleteButton": "Supprimer"
+  "modalDeleteButton": "Supprimer",
+  "modalConfirmButton": "Confirmer"
 }
