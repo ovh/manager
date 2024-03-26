@@ -26,6 +26,7 @@ module.exports = {
         '/node_modules/',
         '/apps/pci-vouchers/',
         '/apps/pci-ssh-keys/',
+        '/apps/pci-users/',
       ],
       moduleNameMapper: {
         '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
