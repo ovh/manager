@@ -5,6 +5,7 @@ export default {
   bindings: {
     identities: '<',
     onRemove: '&',
+    onAdd: '&',
     readOnly: '<',
   },
   controller,

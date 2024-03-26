@@ -3,11 +3,13 @@
 <iam-user-identities
     data-identities="$ctrl.userIdentities"
     data-on-remove-identity="$ctrl.onRemoveIdentity(urn)"
+    data-on-add-identities="$ctrl.onAddIdentities(urns)"
     data-read-only="$ctrl.readOnly"
 ></iam-user-identities>
 <iam-group-identities
     data-identities="$ctrl.groupIdentities"
     data-on-remove-identity="$ctrl.onRemoveIdentity(urn)"
+    data-on-add-identities="$ctrl.onAddIdentities(urns)"
     data-read-only="$ctrl.readOnly"
 ></iam-group-identities>
 <iam-service-account-identities
