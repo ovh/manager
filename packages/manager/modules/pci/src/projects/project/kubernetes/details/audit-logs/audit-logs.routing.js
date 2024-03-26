@@ -1,8 +1,13 @@
+import { TRACKING_PREFIX } from '../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.kubernetes.details.logs', {
     url: '/logs',
     views: {
       kubernetesView: 'pciProjectKubernetesDetailsAuditLogs',
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::managed_kubernetes_cluster::dashboard::audit_logs::controller_manager::kubernetes`,
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>

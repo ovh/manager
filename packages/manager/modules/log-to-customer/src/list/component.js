@@ -13,5 +13,7 @@ export default {
     goBack: '<',
     title: '@',
     description: '@',
+    trackingHits: '<',
+    trackClick: '<',
   },
 };

@@ -61,6 +61,7 @@ export default class LogToCustomerListCtrl {
   }
 
   createLogSubscription(id) {
+    this.trackClick(this.trackingHits.SUBSCRIBE);
     this.loading = id;
     this.resetErrorMessage();
     this.LogToCustomerService.post(this.logSubscriptionApiData.url, {
@@ -84,6 +85,7 @@ export default class LogToCustomerListCtrl {
   }
 
   deleteLogSubscription(streamId) {
+    this.trackClick(this.trackingHits.UNSUBSCRIBE);
     this.loading = streamId;
     this.resetErrorMessage();
     const { subscriptionId } = this.streamSubscriptions[streamId];
@@ -153,6 +155,8 @@ export default class LogToCustomerListCtrl {
   }
 
   goToAddDataStream() {
+    this.trackClick(this.trackingHits.ADD_DATA_STREAM);
+
     window.open(
       this.coreURLBuilder.buildURL(
         'dedicated',
