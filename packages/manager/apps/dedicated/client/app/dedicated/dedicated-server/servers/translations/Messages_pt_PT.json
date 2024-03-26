@@ -1,15 +1,16 @@
 {
+  "dedicated_servers_clusters": "Clusters 3-AZ",
   "dedicated_servers_title": "Servidores dedicados",
   "dedicated_servers_id": "ID do servidor",
   "dedicated_servers_name": "Nome",
   "dedicated_servers_status": "Estado",
   "dedicated_servers_ip": "Endereço IP",
   "dedicated_servers_reverse": "Reverse",
-  "dedicated_servers_city": "Cidade",
   "dedicated_servers_model": "Modelo",
   "dedicated_servers_rack": "Rack",
   "dedicated_servers_datacenter": "Datacenter",
   "dedicated_servers_country": "País",
+  "dedicated_servers_region": "Região",
   "dedicated_servers_monitoring": "Estado de monitorização",
   "dedicated_servers_popover_details": "Detalhes",
   "dedicated_servers_button_server_order": "Encomendar um servidor dedicado",
@@ -19,7 +20,5 @@
   "server_configuration_installation_no_public_network": "Uma vez que a configuração de rede aplicada no seu servidor não permite o acesso à rede pública, é impossível instalar/reinstalar um SO no seu servidor. Para desbloquear esta ação, altere a sua configuração de rede no separador \"Interfaces de rede\".",
   "dedicated_servers_installation_template_wizard_prefix_message": "A partir de",
   "dedicated_servers_installation_ovhcloud_template_wizard_message": "já não será possível iniciar uma reinstalação de {{ osDescription }} no seu servidor dedicado. Poderá continuar a utilizar o seu servidor dedicado com o sistema operativo anteriormente instalado, ou então reinstalar o servidor dedicado com um sistema operativo mais recente.",
-  "dedicated_servers_installation_customer_template_wizard_message": "já não será possível iniciar uma reinstalação de {{ osName }} no seu servidor dedicado, pelo que o seu template {{ customerTemplateName }} será eliminado. Poderá continuar a utilizar o seu servidor dedicado com o sistema operativo anteriormente instalado, ou então reinstalar o servidor dedicado com um sistema operativo mais recente.",
-  "dedicated_servers_clusters": "Clusters 3-AZ",
-  "dedicated_servers_region": "Região"
+  "dedicated_servers_installation_customer_template_wizard_message": "já não será possível iniciar uma reinstalação de {{ osName }} no seu servidor dedicado, pelo que o seu template {{ customerTemplateName }} será eliminado. Poderá continuar a utilizar o seu servidor dedicado com o sistema operativo anteriormente instalado, ou então reinstalar o servidor dedicado com um sistema operativo mais recente."
 }
