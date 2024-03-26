@@ -19,7 +19,7 @@ export type OnboardingLayoutProps = PropsWithChildren<{
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
   onOrderButtonClick?: () => void;
-  img: {
+  img?: {
     src: string;
     width?: number;
     height?: number;
@@ -45,10 +45,10 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           <div className="flex justify-center py-3 max-h-28">
             <img
               className="max-h-150px"
-              src={img.src ?? placeholderSrc}
+              src={img?.src ?? placeholderSrc}
               alt=""
-              width={img.width}
-              height={img.height}
+              width={img?.width}
+              height={img?.height}
             />
           </div>
           <OsdsText
