@@ -67,10 +67,7 @@ export default class NewAccountFormController {
 
     // Indian subsidiary flag
     this.isIndianSubsidiary = this.user.ovhSubsidiary === IN_SUBSIDIARY;
-    this.isEditionDisabledByKyc =
-      this.user.kycValidated ||
-      (this.kycStatus.status === KYC_STATUS.OPEN &&
-        Boolean(this.kycStatus.ticketId));
+    this.determineIsEditionDisabledByKyc(this.kycStatus);
     this.newSupportTicketUrl = this.coreURLBuilder.buildURL(
       'dedicated',
       '#/support/tickets/new',
@@ -348,6 +345,14 @@ export default class NewAccountFormController {
           return this.$q.reject(result);
         }
         return result;
+      })
+      .catch((error) => {
+        // If an error occurred we try to fetch an update for KYC request (if kyc feature is available)
+        // in order to disable the fields if the edition is blocked by the KYC request
+        this.getKycStatus().then((status) => {
+          this.determineIsEditionDisabledByKyc(status);
+        });
+        return this.$q.reject(error);
       });
 
     if (this.originalModel.email !== this.model.email) {
@@ -541,5 +546,11 @@ export default class NewAccountFormController {
       this.$anchorScroll(this.fieldToFocus);
     }
     return isSiretEnterprise;
+  }
+
+  determineIsEditionDisabledByKyc(kycRequest) {
+    this.isEditionDisabledByKyc =
+      this.user.kycValidated ||
+      [KYC_STATUS.OPEN, KYC_STATUS.OK].includes(kycRequest.status);
   }
 }

@@ -178,6 +178,17 @@ export default class NewAccountFormFieldController {
     };
   }
 
+  $onChanges({ isEditionDisabledByKyc }) {
+    if (
+      isEditionDisabledByKyc &&
+      typeof isEditionDisabledByKyc.currentValue !== 'undefined'
+    ) {
+      // Indian subsidiary changes
+      this.disableInputField = this.canInputFieldDisabled();
+      this.disableDropDownSelection = this.canDropDownDisabled();
+    }
+  }
+
   // if rule has a default value, use it
   setDefaultValue() {
     if (this.rule.defaultValue && !this.rule.initialValue) {
@@ -463,8 +474,9 @@ export default class NewAccountFormFieldController {
       this.isIndianSubsidiary &&
       this.isEditionDisabledByKyc &&
       !(
-        this.rule.fieldName === this.FIELD_NAME_LIST.vat &&
-        this.user.legalform !== USER_TYPE_ENTERPRISE
+        (this.rule.fieldName === this.FIELD_NAME_LIST.vat &&
+          this.user.legalform !== USER_TYPE_ENTERPRISE) ||
+        this.rule.fieldName === this.FIELD_NAME_LIST.purposeOfPurchase
       )
     );
   }

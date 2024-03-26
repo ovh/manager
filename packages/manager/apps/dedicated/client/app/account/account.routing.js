@@ -14,12 +14,17 @@ export default /* @ngInject */ ($stateProvider) => {
                 featureAvailability['identity-documents'],
             );
         },
-        kycStatus: /* @ngInject */ ($http, isKycFeatureAvailable) => {
+        getKycStatus: /* @ngInject */ (
+          $http,
+          $q,
+          isKycFeatureAvailable,
+        ) => () => {
           if (isKycFeatureAvailable) {
             return $http.get(`/me/procedure/identity`).then(({ data }) => data);
           }
-          return false;
+          return $q.resolve(false);
         },
+        kycStatus: /* @ngInject */ (getKycStatus) => getKycStatus(),
       },
     },
     {

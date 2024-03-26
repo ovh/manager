@@ -5,6 +5,7 @@ export default {
   bindings: {
     fieldToFocus: '<',
     kycStatus: '<',
+    getKycStatus: '<',
   },
   template,
   controller,

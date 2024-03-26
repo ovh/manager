@@ -35,6 +35,7 @@ export const TRACKING_TASK_TAG = {
 export const KYC_STATUS = {
   OPEN: 'open',
   REQUIRED: 'required',
+  OK: 'ok',
 };
 
 export const KYC_ALLOWED_FILE_EXTENSIONS = ['jpg', 'jpeg', 'pdf', 'png'];

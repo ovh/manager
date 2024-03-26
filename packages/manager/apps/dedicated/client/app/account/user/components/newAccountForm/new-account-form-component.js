@@ -10,6 +10,7 @@ export default {
     userAccountServiceInfos: '<',
     fieldToFocus: '<',
     kycStatus: '<',
+    getKycStatus: '<',
   },
   template,
   controller,
