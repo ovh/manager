@@ -8,7 +8,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from '@/components/ui/form';
 import { useToast } from '@/components/ui/use-toast';
@@ -22,23 +21,8 @@ interface IpsRestrictionsUpdateProps {
 const IpsRestrictionsUpdate = ({
   initialValue,
 }: IpsRestrictionsUpdateProps) => {
-  const { projectId, service } = useServiceData();
+  const { projectId, service, serviceQuery } = useServiceData();
   const toast = useToast();
-  const { updateService, isPending } = useUpdateService({
-    onError: (err) => {
-      toast.toast({
-        title: 'Une erreur est survenue lors de la mise à jour de vos ips',
-        variant: 'destructive',
-        description: err.response.data.message,
-      });
-    },
-    onSuccess: () => {
-      toast.toast({
-        title: 'Succès',
-        description: 'La mise à jour de vos ips a été effectuée avec succès',
-      });
-    },
-  });
   const schema = z.object({
     ipRestrictions: z.array(
       z.object({
@@ -52,6 +36,25 @@ const IpsRestrictionsUpdate = ({
     resolver: zodResolver(schema),
     defaultValues: {
       ipRestrictions: initialValue,
+    },
+  });
+  const { updateService, isPending } = useUpdateService({
+    onError: (err) => {
+      toast.toast({
+        title: 'Une erreur est survenue lors de la mise à jour de vos ips',
+        variant: 'destructive',
+        description: err.response.data.message,
+      });
+    },
+    onSuccess: (updatedService) => {
+      toast.toast({
+        title: 'Succès',
+        description: 'La mise à jour de vos ips a été effectuée avec succès',
+      });
+      serviceQuery.refetch();
+      form.reset({
+        ipRestrictions: updatedService.ipRestrictions,
+      });
     },
   });
   const onSubmit = form.handleSubmit((formValues) => {
