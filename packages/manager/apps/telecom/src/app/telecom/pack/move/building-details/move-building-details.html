@@ -114,7 +114,15 @@
                     id="referencePto"
                     class="oui-input oui-input_inline"
                     data-ng-model="$ctrl.model.ptoReference"
+                    data-ng-change="$ctrl.isPtoRegexValid()"
                 />
+                <span
+                    class="help-block oui-color-ae-500"
+                    role="alert"
+                    data-ng-if="!$ctrl.ptoReferenceValid"
+                    data-translate="pack_move_pto_reference_is_not_valid"
+                >
+                </span>
             </div>
         </div>
         <div class="form-inline" data-ng-if="$ctrl.model.pto === 'yes'">

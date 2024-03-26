@@ -281,5 +281,6 @@
   "pack_move_resume_phone_form_error": "Die angegebene Nummer muss gültig sein.",
   "pack_move_building_details_error": "Beim Abruf der Informationen zu Ihrem Gebäude ist ein Fehler aufgetreten",
   "pack_move_promotion_description": "Angebot verfügbar bis zum {{ endDate }}",
-  "pack_move_promotion_subscription_months_offered": "{{ duration }} Monate kostenlos"
+  "pack_move_promotion_subscription_months_offered": "{{ duration }} Monate kostenlos",
+  "pack_move_pto_reference_is_not_valid": "Die eingegebene PTO-Referenz ist ungültig. Das erwartete Format ist OO-XXXX-XXXX."
 }
