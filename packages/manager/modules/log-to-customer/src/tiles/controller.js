@@ -88,6 +88,8 @@ export default class LogToCustomerTileCtrl {
   }
 
   deleteLogSubscription(subscription) {
+    this.trackClick(this.trackingHits.STOP_TRANSFER);
+
     this.setErrorMessage(null);
     // eslint-disable-next-line no-param-reassign
     subscription.isLoading = true;
@@ -110,7 +112,10 @@ export default class LogToCustomerTileCtrl {
       });
   }
 
-  goToStreamListingPage() {
+  goToStreamListingPage(preventTracking = false) {
+    if (!preventTracking) {
+      this.trackClick(this.trackingHits.TRANSFER);
+    }
     this.goToListingPage({ kind: this.kind });
   }
 }

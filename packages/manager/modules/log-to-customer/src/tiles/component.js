@@ -12,5 +12,7 @@ export default {
     kind: '<',
     logSubscriptionUrl: '<',
     goToListingPage: '<',
+    trackClick: '<',
+    trackingHits: '<',
   },
 };

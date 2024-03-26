@@ -8,6 +8,7 @@ const auditLogsComponent = {
     goToListingPage: '<',
     logKindsList: '<',
     kind: '<',
+    trackClick: '<',
   },
   controller,
   template,
