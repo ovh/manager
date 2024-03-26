@@ -6,7 +6,6 @@ import React, {
   useState,
 } from 'react';
 
-// @ts-ignore
 import { IFrameMessageBus } from '@ovh-ux/shell';
 import { IFrameAppRouter } from '@/core/routing';
 import ApplicationContext from '@/context';

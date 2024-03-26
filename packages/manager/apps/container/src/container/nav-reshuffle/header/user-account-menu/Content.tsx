@@ -7,8 +7,8 @@ import { links } from './constants';
 
 import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
-import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+//import { OsdsChip } from '@ovhcloud/ods-stencil/components/react';
+//import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';*/
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -63,11 +63,7 @@ const UserAccountMenu = ({
 
   const getUrl = (key: string, hash: string) =>
     shell.getPlugin('navigation').getURL(key, hash);
-
   const myAccountLink = getUrl('dedicated', '#/useraccount/dashboard');
-  const myInvoicesLink = getUrl('dedicated', '#/billing/history');
-  const myCommunicationsLink = getUrl('dedicated', '#/useraccount/emails');
-  const myContractsLink = getUrl('dedicated', '#/billing/autorenew');
 
   return (
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>

@@ -9,7 +9,6 @@ import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import { shouldHideElement } from '@/container/nav-reshuffle/sidebar/utils';
 import { Location, useLocation } from 'react-router-dom';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTreeSection';
-// @ts-ignore
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 

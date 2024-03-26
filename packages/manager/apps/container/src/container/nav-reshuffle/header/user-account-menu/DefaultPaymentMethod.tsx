@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import style from './style.module.scss';
 import { PaymentMethodType } from '@/container/legacy/account-sidebar/PaymentMethod/usePaymentMethod';
-import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
+import { OsdsChip } from '@ovhcloud/ods-stencil/components/react';
 import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
 
 type Props = {
