@@ -1,6 +1,10 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
-import { PACK_XDSL_STATISTICS, PREVIEW } from './statistics.constant';
+import {
+  PACK_XDSL_STATISTICS,
+  PREVIEW,
+  PERIOD_LIST,
+} from './statistics.constant';
 
 export default class XdslStatisticsCtrl {
   /* @ngInject */
@@ -252,6 +256,61 @@ export default class XdslStatisticsCtrl {
       });
   }
 
+  static getConfigTime(period) {
+    let result = {};
+    switch (period) {
+      case PERIOD_LIST.daily:
+        result = {
+          time: {
+            displayFormats: {
+              hour: 'hh',
+            },
+          },
+        };
+        break;
+      case PERIOD_LIST.monthly:
+        result = {
+          time: {
+            unit: 'day',
+            displayFormats: {
+              day: 'DD MMM',
+            },
+          },
+        };
+        break;
+      case PERIOD_LIST.weekly:
+        result = {
+          time: {
+            unit: 'hour',
+            displayFormats: {
+              hour: 'DD MMM hh:mm',
+            },
+          },
+        };
+        break;
+      case PERIOD_LIST.yearly:
+        result = {
+          time: {
+            unit: 'month',
+            displayFormats: {
+              month: 'MMM',
+            },
+          },
+        };
+        break;
+      default:
+        result = {
+          time: {
+            displayFormats: {
+              hour: 'LT',
+            },
+          },
+        };
+    }
+
+    return result;
+  }
+
   /**
    * Get traffic statistic for the line
    * @param {String} period Period to request :
@@ -284,6 +343,9 @@ export default class XdslStatisticsCtrl {
             callback: this.logarithmicAxisDisplay.bind(this),
           },
         });
+
+        const trafficConfig = this.constructor.getConfigTime(period);
+        this.traffic.chart.setAxisOptions('xAxes', trafficConfig);
 
         this.traffic.chart.addSerie(
           this.$translate.instant('xdsl_statistics_download_label'),
@@ -356,6 +418,9 @@ export default class XdslStatisticsCtrl {
           type: 'linear',
         });
 
+        const pingConfig = this.constructor.getConfigTime(period);
+        this.ping.chart.setAxisOptions('xAxes', pingConfig);
+
         this.ping.chart.addSerie(
           this.$translate.instant('xdsl_statistics_ping_title'),
           map(statistics, (point) => ({
@@ -418,6 +483,9 @@ export default class XdslStatisticsCtrl {
         this.snr.chart.setAxisOptions('yAxes', {
           type: 'linear',
         });
+
+        const snrConfig = this.constructor.getConfigTime(period);
+        this.snr.chart.setAxisOptions('xAxes', snrConfig);
 
         this.snr.chart.addSerie(
           this.$translate.instant('xdsl_statistics_download_label'),

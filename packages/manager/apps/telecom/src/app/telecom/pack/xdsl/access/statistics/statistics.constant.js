@@ -49,7 +49,7 @@ export const PACK_XDSL_STATISTICS = {
             position: 'bottom',
             gridLines: {
               drawBorder: true,
-              display: false,
+              display: true,
             },
           },
         ],
@@ -60,7 +60,16 @@ export const PACK_XDSL_STATISTICS = {
 
 export const PREVIEW = 'preview';
 
+export const PERIOD_LIST = {
+  preview: 'preview',
+  daily: 'daily',
+  monthly: 'monthly',
+  weekly: 'weekly',
+  yearly: 'yearly',
+};
+
 export default {
   PACK_XDSL_STATISTICS,
   PREVIEW,
+  PERIOD_LIST,
 };
