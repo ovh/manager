@@ -46,11 +46,6 @@ export default class ServerInstallationOvhCtrl {
     this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
     this.$scope.inputRules = INPUTS_RULES;
 
-    this.$scope.LICENSE_URL = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/configuration/license',
-    );
-
     this.$scope.units = {
       model: [
         {
@@ -2435,10 +2430,6 @@ export default class ServerInstallationOvhCtrl {
       !this.$scope.informations.hardwareRaid.error.wrongLocation &&
       !this.$scope.informations.hardwareRaid.error.notAvailable
     );
-  }
-
-  hasVirtualDesktop() {
-    return !this.$scope.installation.selectDistribution?.id?.includes('hyperv');
   }
 
   hasLicencedOs() {
