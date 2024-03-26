@@ -78,11 +78,11 @@ export default class SignUpDetailsCtrl {
     SignUpDetailsCtrl.setElementFocus(fieldName);
   }
 
-  preselectLanguage() {
+  preselectLanguage(isOnChange) {
     if (get(this.signUpFormCtrl, 'rules.language.in.length', 0) === 1) {
       const [uniqueLanguage] = this.signUpFormCtrl.rules.language.in;
       this.signUpFormCtrl.model.language = uniqueLanguage.value;
-    } else {
+    } else if (isOnChange) {
       this.signUpFormCtrl.model.language = null;
     }
   }
@@ -116,7 +116,7 @@ export default class SignUpDetailsCtrl {
         this.signUpFormCtrl.model.phoneCountry = this.signUpFormCtrl.model.country;
       }
 
-      this.preselectLanguage();
+      this.preselectLanguage(true);
       this.refocusOnField('zip');
     });
   }
@@ -250,7 +250,7 @@ export default class SignUpDetailsCtrl {
       );
     }
 
-    this.preselectLanguage();
+    this.preselectLanguage(false);
   }
 
   static setElementFocus(elementName) {
