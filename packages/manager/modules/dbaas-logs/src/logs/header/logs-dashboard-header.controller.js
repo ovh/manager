@@ -1,9 +1,12 @@
+import { TRACKING_HITS } from './header.constants';
+
 export default class LogsDashboardHeaderCtrl {
   /* @ngInject */
   constructor(LogsDetailService, LogsHelperService) {
     this.LogsDetailService = LogsDetailService;
     this.disableTabs = true;
     this.LogsHelperService = LogsHelperService;
+    this.TRACKING_HITS = TRACKING_HITS;
   }
 
   $onInit() {
