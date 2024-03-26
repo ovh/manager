@@ -1,6 +1,6 @@
 {
   "error_page_title": "Ops!",
-  "error_page_button_cancel": "Annulla",
+  "error_page_button_cancel": "Annullare",
   "error_page_detail_code": "Codice di errore: {{code}}",
   "error_page_action_reload_label": "Riprova",
   "error_page_action_home_label": "Torna alla home page",

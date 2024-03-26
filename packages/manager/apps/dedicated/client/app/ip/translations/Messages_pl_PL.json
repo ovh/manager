@@ -129,8 +129,6 @@
   "ip_table_header_ip_address_invalid": "Wprowadź prawidłowy adres URL",
   "ip_table_header_country": "Kraj",
   "ip_table_header_country_help": "Kraj pochodzenia adresu IP. Dostępne tylko dla geolokalizowanych adresów IP (Additional IP).",
-  "ip_table_header_campus": "Kampus",
-  "ip_table_header_campus_help": "Kampus określa lokalizację adresu IP, do którego przypisana jest usługa. W przypadku adresów Additional IP kampus określa również lokalizację usług, do których adres IP może zostać przeniesiony.",
   "ip_table_header_reverse": "Rewers DNS",
   "ip_table_header_reverse_help": "Rekord DNS umożliwiający odwrotną translację adresów (adres IP na nazwę hosta).",
   "ip_table_header_reverse_invalid": "Wprowadź prawidłowy rewers",

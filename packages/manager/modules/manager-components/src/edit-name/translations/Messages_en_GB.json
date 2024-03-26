@@ -1,10 +1,9 @@
 {
   "server_name_edit_title": "Change the name",
   "server_name_edit_displayname_label": "Name",
-  "server_name_edit_common_save": "Save",
+  "server_name_edit_common_submit": "Edit",
   "server_name_edit_common_cancel": "Cancel",
   "server_name_edit_edit_label": "Edit",
   "server_name_edit_success": "Name successfully updated",
-  "server_name_edit_error": "Unable to update the name: {{message}}",
-  "server_name_edit_common_submit": "Edit"
+  "server_name_edit_error": "Unable to update the name: {{message}}"
 }

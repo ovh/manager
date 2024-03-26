@@ -1,6 +1,4 @@
 {
-  "spf_banner_info": "Wenn Sie das E-Mail-Angebot von OVHcloud nutzen, empfehlen wir Ihnen dringend, zu überprüfen, ob das SPF Ihrer DNS-Zone korrekt installiert ist, um sicherzustellen, dass Ihre E-Mails ordnungsgemäß zugestellt werden.",
-  "spf_banner_link": "Mehr erfahren",
   "mxplan_banner_info": "Es wird eine Migration zwischen OWA und Zimbra durchgeführt. Sie werden per E-Mail über den Vorgang informiert. Sie können sich die FAQ zu dieser Migration ansehen.",
   "mxplan_banner_link": "Mehr erfahren"
 }

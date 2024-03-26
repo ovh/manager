@@ -1,10 +1,9 @@
 {
   "server_name_edit_title": "Cambiar el nombre",
   "server_name_edit_displayname_label": "Nombre",
-  "server_name_edit_common_save": "Guardar",
+  "server_name_edit_common_submit": "Editar",
   "server_name_edit_common_cancel": "Cancelar",
   "server_name_edit_edit_label": "Editar",
   "server_name_edit_success": "El nombre se ha actualizado correctamente.",
-  "server_name_edit_error": "No es posible actualizar el nombre: {{ message }}.",
-  "server_name_edit_common_submit": "Editar"
+  "server_name_edit_error": "No es posible actualizar el nombre: {{ message }}."
 }
