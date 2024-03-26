@@ -62,7 +62,6 @@ const UpdateForm = ({
     'pci-databases-analytics/services/service/backups/fork',
   );
   const { projectId } = useServiceData();
-  const dateLocale = useDateFnsLocale();
   const { addService, isPending: isPendingAddService } = useAddService({
     onError: (err) => {
       toast({
