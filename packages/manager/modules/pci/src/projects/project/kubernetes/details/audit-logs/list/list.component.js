@@ -7,6 +7,7 @@ export default {
     kubeId: '<',
     kind: '<',
     goBack: '<',
+    trackClick: '<',
   },
   controller,
   template,

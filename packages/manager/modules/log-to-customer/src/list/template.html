@@ -49,6 +49,9 @@
             <a
                 data-ng-href="{{ $ctrl.LDPHomePageLink}}"
                 data-ng-bind="$ctrl.selectedAccount.displayName"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="{{:: $ctrl.trackingHits.LDP_DETAIL}}"
                 target="_blank"
                 rel="noopener"
             >
@@ -63,6 +66,9 @@
             data-ng-if="!$ctrl.selectedAccount.displayName"
             data-ng-href="{{ $ctrl.LDPHomePageLink}}"
             data-ng-bind="$ctrl.selectedAccount.serviceName"
+            data-track-on="click"
+            data-track-type="action"
+            data-track-name="{{:: $ctrl.trackingHits.LDP_DETAIL}}"
             target="_blank"
             rel="noopener"
         >
