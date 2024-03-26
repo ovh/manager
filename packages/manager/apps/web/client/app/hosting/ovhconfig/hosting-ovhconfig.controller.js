@@ -1,6 +1,5 @@
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
-import indexOf from 'lodash/indexOf';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
@@ -102,6 +101,7 @@ angular.module('App').controller(
           .getCapabilities(this.$stateParams.productId)
           .then((capabilities) => {
             this.capabilities = capabilities;
+            this.phpVersion = this.capabilities.map(({ version }) => version);
             this.envExecutions = uniq(
               flatten(
                 this.capabilities.map(({ containerImage }) => containerImage),
@@ -127,10 +127,13 @@ angular.module('App').controller(
         });
     }
 
-    getEngineVersions(envExecution) {
-      return this.capabilities
-        .filter(({ containerImage }) => containerImage.includes(envExecution))
-        .map(({ version }) => version);
+    updateEnvExecutionsAvailable() {
+      this.envExecutions = this.capabilities.find(({ version }) =>
+        version.includes(this.model.engineVersion),
+      ).containerImage;
+      if (this.envExecutions.length === 1) {
+        this.model = { ...this.model, container: this.envExecutions[0] };
+      }
     }
 
     setProcess() {
@@ -161,6 +164,7 @@ angular.module('App').controller(
 
     updateSelectedConfig() {
       this.clearDisplayedError();
+      this.updateEnvExecutionsAvailable();
       this.toggle.isConfigIsEdited = true;
       this.checkCohesion();
     }
@@ -169,12 +173,12 @@ angular.module('App').controller(
       if (this.toggle.isRollbackProcess) {
         this.toggle.isConfigCanBeSaved = true;
       } else if (
-        indexOf(
-          this.apiStruct.models[
-            'hosting.web.ovhConfig.AvailableEngineVersionEnum'
-          ].enum,
-          this.model.engineVersion,
-        ) !== -1
+        this.apiStruct.models[
+          'hosting.web.ovhConfig.AvailableEngineVersionEnum'
+        ].enum.includes(this.model.engineVersion) &&
+        this.capabilities
+          .find(({ version }) => version.includes(this.model.engineVersion))
+          .containerImage.includes(this.model.container)
       ) {
         this.toggle.isPhpVersionAvailable = true;
         this.toggle.isConfigCanBeSaved = this.toggle.isConfigIsEdited;
