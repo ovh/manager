@@ -114,6 +114,8 @@ export default /* @ngInject */ ($stateProvider) => {
             option,
           },
         ),
+      goToVcdOrder: /* @ngInject */ ($state) => () =>
+        $state.go('app.managedBaremetal.details.dashboard.vcd-order'),
 
       goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
       breadcrumb: () => null,

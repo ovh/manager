@@ -1,0 +1,41 @@
+<oui-modal
+    data-heading="{{:: 'dedicatedCloud_vmware_cloud_director_order_title' | translate }}"
+    data-primary-action="$ctrl.order()"
+    data-primary-label="{{ 'dedicatedCloud_vmware_cloud_director_order_' + ($ctrl.ordered ? 'terminate' : 'confirm') | translate }}"
+    data-secondary-label="{{:: 'dedicatedCloud_vmware_cloud_director_order_cancel' | translate }}"
+    data-secondary-action="$ctrl.close()"
+    data-secondary-disabled="$ctrl.ordered"
+    data-on-dismiss="$ctrl.close()"
+    data-loading="$ctrl.loading"
+    data-type="info"
+>
+    <p
+        data-translate="dedicatedCloud_vmware_cloud_director_order_hosts_list"
+        data-translate-values="{'pcc': $ctrl.productId}"
+    ></p>
+    <ul>
+        <li data-ng-repeat="host in $ctrl.hosts track by $index">
+            <span
+                data-translate="dedicatedCloud_vmware_cloud_director_order_host"
+                data-translate-values="{'host': $index + 1}"
+            ></span>
+            <span data-ng-bind="host.profile"></span>
+        </li>
+    </ul>
+    <p>
+        <a data-ng-href="{{:: $ctrl.guideLink}}" target="_blank" rel="nooponer">
+            <span
+                data-translate="dedicatedCloud_vmware_cloud_director_order_costs"
+            ></span>
+            <i
+                class="pl-1 oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></i>
+        </a>
+    </p>
+    <p
+        data-ng-if="$ctrl.ordered"
+        data-translate="dedicatedCloud_vmware_cloud_director_order_success"
+        data-translate-values="{'url': $ctrl.orderLink}"
+    ></p>
+</oui-modal>
