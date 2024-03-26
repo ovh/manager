@@ -110,6 +110,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
   getStatusTooltipText(status) {
     const openStackStatusWithTooltip = [
       OPENSTACK_INSTANCE_STATUS.PAUSED,
+      OPENSTACK_INSTANCE_STATUS.SHUTOFF,
       OPENSTACK_INSTANCE_STATUS.SHELVED,
       OPENSTACK_INSTANCE_STATUS.SHELVED_OFFLOADED,
       OPENSTACK_INSTANCE_STATUS.SUSPENDED,
