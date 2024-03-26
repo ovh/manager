@@ -79,13 +79,11 @@ export default class SignUpDetailsCtrl {
   }
 
   preselectLanguage(isOnChange) {
-    if (isOnChange) {
-      if (get(this.signUpFormCtrl, 'rules.language.in.length', 0) === 1) {
-        const [uniqueLanguage] = this.signUpFormCtrl.rules.language.in;
-        this.signUpFormCtrl.model.language = uniqueLanguage.value;
-      } else {
-        this.signUpFormCtrl.model.language = null;
-      }
+    if (get(this.signUpFormCtrl, 'rules.language.in.length', 0) === 1) {
+      const [uniqueLanguage] = this.signUpFormCtrl.rules.language.in;
+      this.signUpFormCtrl.model.language = uniqueLanguage.value;
+    } else if (isOnChange) {
+      this.signUpFormCtrl.model.language = null;
     }
   }
 
