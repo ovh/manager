@@ -116,6 +116,18 @@ export default class IAMService {
   // Users
 
   /**
+   * Get user list
+   * @returns {Promise<object[]>}
+   */
+  getUserList() {
+    return this.$http
+      .get(URL.IDENTITY_USER)
+      .then(({ data }) =>
+        this.$q.all(data.map((userId) => this.getUser(userId))),
+      );
+  }
+
+  /**
    * Get one User
    * @returns {Promise<Object>}
    */
@@ -127,6 +139,18 @@ export default class IAMService {
 
   // **********************************************************************************************
   // User Groups
+
+  /**
+   * Get user group list
+   * @returns {Promise<object[]>}
+   */
+  getGroupList() {
+    return this.$http
+      .get(URL.IDENTITY_GROUP)
+      .then(({ data }) =>
+        this.$q.all(data.map((groupId) => this.getGroup(groupId))),
+      );
+  }
 
   /**
    * Get one User Group

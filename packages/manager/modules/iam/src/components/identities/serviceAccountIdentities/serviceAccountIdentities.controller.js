@@ -19,21 +19,15 @@ export default class serviceAccountIdentitiesController {
     );
   }
 
-  async getIdentityServiceAccount(identity) {
-    try {
-      const serviceAccount = await this.IAMService.getServiceAccount(
-        identity.id,
-      );
-      return serviceAccount;
-    } catch (error) {
+  getIdentityServiceAccount(identity) {
+    return this.IAMService.getServiceAccount(identity.id).catch((error) => {
       const { message } = error.data ?? {};
-
       return {
         clientId: identity.id,
         identity: identity.urn,
         message,
       };
-    }
+    });
   }
 
   onRemoveServiceAccount(urn) {

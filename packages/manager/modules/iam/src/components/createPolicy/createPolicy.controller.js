@@ -333,6 +333,14 @@ export default class CreatePolicyController {
   }
 
   /**
+   * Called back when identities are added to a policy
+   * @param {string[]} urns an array of Identity URN
+   */
+  addIdentities(urns) {
+    this.model.identities = [...this.model.identities, ...urns];
+  }
+
+  /**
    * Called back when an identity is removed from a policy
    * @param {string} urn an Identity URN
    */
