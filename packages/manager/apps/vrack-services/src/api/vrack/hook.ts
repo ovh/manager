@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { UseQueryOptions, useQueries, useQuery } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   getVrackList,
@@ -23,31 +23,37 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
   } = useQuery<ApiResponse<string[]>, ApiError>({
     queryKey: getVrackListQueryKey,
     queryFn: getVrackList,
+    enabled: !!vrackServicesId,
   });
 
   const result = useQueries({
     queries:
       isFetched && vrackListResponse?.data && vrackListResponse.data.length > 0
-        ? vrackListResponse?.data.map((vrack) => ({
-            queryKey: getVrackAllowedServicesQueryKey({
-              vrack,
-              serviceFamily,
-            }),
-            queryFn: () =>
-              getVrackAllowedServices({
+        ? vrackListResponse?.data.map(
+            (vrack): UseQueryOptions => ({
+              queryKey: getVrackAllowedServicesQueryKey({
                 vrack,
                 serviceFamily,
               }),
-          }))
+              queryFn: () =>
+                getVrackAllowedServices({
+                  vrack,
+                  serviceFamily,
+                }),
+            }),
+          )
         : [],
   });
 
   const resultStatus = {
     isLoading: isVrackListLoading || result.some(({ isLoading }) => isLoading),
-    isError: isVrackListError || result.some(({ isError }) => isError),
-    error:
-      vrackListError ||
-      ((result.find(({ error }) => error) as unknown) as ApiError),
+    isError: isVrackListError,
+    error: vrackListError,
+    vrackListInError: result
+      .map(({ isError }, index) =>
+        isError ? vrackListResponse?.data?.[index] : null,
+      )
+      .filter(Boolean),
   };
 
   return {

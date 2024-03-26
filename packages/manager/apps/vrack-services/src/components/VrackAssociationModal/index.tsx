@@ -33,9 +33,13 @@ export const VrackAssociationModal: React.FC<VrackAssociationModalProps> = ({
   closeModal,
 }) => {
   const { t } = useTranslation('vrack-services/listing');
-  const { allowedVrackList, isError, isLoading, error } = useAllowedVrackList(
-    vrackServicesId,
-  );
+  const {
+    allowedVrackList,
+    isError,
+    isLoading,
+    error,
+    vrackListInError,
+  } = useAllowedVrackList(vrackServicesId);
   const close = () => {
     closeModal();
   };
@@ -59,6 +63,17 @@ export const VrackAssociationModal: React.FC<VrackAssociationModalProps> = ({
             color={ODS_THEME_COLOR_INTENT.text}
           >
             {t('genericApiError', { error: error?.response?.data.message })}
+          </OsdsText>
+        </OsdsMessage>
+      )}
+      {vrackListInError.length > 0 && (
+        <OsdsMessage className="mb-4" type={ODS_MESSAGE_TYPE.warning}>
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('vrackListInError', { list: vrackListInError.join(', ') })}
           </OsdsText>
         </OsdsMessage>
       )}

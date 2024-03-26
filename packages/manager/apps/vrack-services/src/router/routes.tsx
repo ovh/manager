@@ -38,7 +38,7 @@ export const getRoutes = ({
   return [
     {
       path: urls.root,
-      element: <RootWrapper />,
+      Component: RootWrapper,
       children: [
         routeConfig({
           pageImport: () => import('@/pages/listing'),
@@ -54,7 +54,7 @@ export const getRoutes = ({
         }),
         {
           path: urls.dashboard,
-          element: <DashboardWrapper />,
+          Component: DashboardWrapper,
           children: [
             routeConfig({
               pageImport: () => import('@/pages/overview'),

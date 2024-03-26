@@ -24,6 +24,7 @@
   "modalVrackCreationDescriptionLine1": "Pour que vRack Services fonctionne, vous devez l'associer à l'un de vos vRack existants. Actuellement, vous n'avez pas de vRack éligible.",
   "modalVrackCreationDescriptionLine2": "Vous pouvez associer 1 seul vRack Services par région pour un vRack donné.",
   "genericApiError": "L'erreur suivante est survenue : {{error}}.",
+  "vrackListInError": "Les vRack suivants ne peuvent être associés : {{list}}.",
   "modalCancelVrackAssociationButtonLabel": "Annuler",
   "modalCreateNewVrackButtonLabel": "Créer un vRack",
   "vrackSelectPlaceholder": "Sélectionner un vRack",
