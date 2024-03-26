@@ -14,5 +14,7 @@ export default {
     goToListingPage: '<',
     logKindsList: '<',
     kindInitValue: '<',
+    trackClick: '<',
+    trackingHits: '<',
   },
 };

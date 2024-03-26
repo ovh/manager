@@ -9,9 +9,12 @@
             data-translate="log_tile_subscriptions_title"
         ></h5>
         <a
-            data-ng-click="$ctrl.goToStreamListingPage()"
+            data-ng-click="$ctrl.goToStreamListingPage(true)"
             target="_blank"
             rel="noopener"
+            data-track-on="click"
+            data-track-type="action"
+            data-track-name="{{:: $ctrl.trackingHits.SUBSCRIBE_OTHER_ACCOUNT}}"
             class="d-flex"
         >
             <span data-translate="log_tile_subscriptions_subscribe"></span>
@@ -53,6 +56,9 @@
             <div class="text-center">
                 <a
                     data-ng-href="{{::subscription.streamUrl}}"
+                    data-track-on="click"
+                    data-track-type="action"
+                    data-track-name="{{:: $ctrl.trackingHits.GRAYLOG_WATCH}}"
                     target="_blank"
                     rel="noopener"
                     class="oui-button oui-button_secondary"
@@ -96,7 +102,6 @@
                 data-ng-if="$ctrl.logAccountStreams.length > 0 && !$ctrl.hasAtLeastOneDataStream"
                 data-translate="log_tile_desc_create_stream"
             ></span>
-
             <a
                 data-ng-href="{{ :: $ctrl.links.logPlatformGuide}}"
                 target="_blank"
@@ -113,21 +118,27 @@
                 <a
                     data-ng-if="$ctrl.logAccountStreams.length === 0"
                     class="oui-button oui-button_secondary"
-                    data-translate="log_button_create_account"
                     data-ng-href="{{:: $ctrl.links.createAccount }}"
+                    data-track-on="click"
+                    data-track-type="action"
+                    data-track-name="{{:: $ctrl.trackingHits.CREATE_ACCOUNT}}"
                     target="_blank"
                     rel="noopener"
                 >
+                    <span data-translate="log_button_create_account"></span>
                 </a>
 
                 <a
                     data-ng-if="$ctrl.logAccountStreams.length > 0 && !$ctrl.hasAtLeastOneDataStream"
                     class="oui-button oui-button_secondary"
-                    data-translate="log_button_create_stream"
                     data-ng-href="{{:: $ctrl.links.createStream }}"
+                    data-track-on="click"
+                    data-track-type="action"
+                    data-track-name="{{:: $ctrl.trackingHits.CREATE_DATA_STREAM}}"
                     target="_blank"
                     rel="noopener"
                 >
+                    <span data-translate="log_button_create_stream"></span>
                 </a>
 
                 <oui-button

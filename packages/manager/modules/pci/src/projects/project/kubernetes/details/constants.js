@@ -1,4 +1,16 @@
 export const DOC_URL = 'https://labs.ovh.com/kubernetes-k8s/documentation';
+export const TRACKING_PREFIX =
+  'PublicCloud::projects::managed_kubernetes_cluster';
+export const TRACKING_SUFFIX = '_managed_kubernetes_cluster::kubernetes';
+
+const TRACKING_TAB_PREFIX = '::go-to-tab';
+
+export const TRACKING_TABS = {
+  SERVICE: `${TRACKING_PREFIX}${TRACKING_TAB_PREFIX}::service${TRACKING_SUFFIX}`,
+  NODE_POOL: `${TRACKING_PREFIX}${TRACKING_TAB_PREFIX}::node_pool${TRACKING_SUFFIX}`,
+  LOGS: `${TRACKING_PREFIX}${TRACKING_TAB_PREFIX}::logs_access${TRACKING_SUFFIX}`,
+  API_SERVER: `${TRACKING_PREFIX}${TRACKING_TAB_PREFIX}::APIserver_access${TRACKING_SUFFIX}`,
+};
 
 export const CONFIG_FILENAME = 'kubeconfig';
 
@@ -41,4 +53,7 @@ export default {
   ERROR_STATUS,
   PROCESSING_STATUS,
   STATUS,
+  TRACKING_PREFIX,
+  TRACKING_SUFFIX,
+  TRACKING_TABS,
 };

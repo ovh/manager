@@ -3,21 +3,25 @@
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.serviceLink }}"
+                data-on-click="$ctrl.trackClick($ctrl.TRACKING_TABS.SERVICE)"
                 data-active="$ctrl.currentActiveLink() === $ctrl.serviceLink"
                 ><span data-translate="kube_service"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.nodePoolsLink }}"
+                data-on-click="$ctrl.trackClick($ctrl.TRACKING_TABS.NODE_POOL)"
                 data-active="$ctrl.currentActiveLink().startsWith($ctrl.nodePoolsLink)"
                 ><span data-translate="kube_node_pools"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.restrictionsLink }}"
+                data-on-click="$ctrl.trackClick($ctrl.TRACKING_TABS.API_SERVER)"
                 data-active="$ctrl.currentActiveLink() === $ctrl.restrictionsLink"
                 ><span data-translate="kube_restrictions"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.auditLogsLink }}"
+                data-on-click="$ctrl.trackClick($ctrl.TRACKING_TABS.LOGS)"
                 data-active="$ctrl.currentActiveLink() === $ctrl.auditLogsLink"
                 ><span data-translate="kube_logs_tab_title"></span>
             </oui-header-tabs-item>
