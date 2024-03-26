@@ -19,13 +19,13 @@ $ yarn
 3. Start local development environment
 
 ```sh
-$ yarn workspace @ovh-ux/manager-documentation run dev
+$ yarn workspace @ovh-ux/manager-documentation run docs:dev
 ```
 
 ## Deploying
 
 ```sh
-$ yarn workspace @ovh-ux/manager-documentation run deploy
+$ yarn workspace @ovh-ux/manager-documentation run docs:deploy
 ```
 
-[VuePress]: https://vuepress.vuejs.org/
+[vuepress]: https://vuepress.vuejs.org/

@@ -1,2 +1,5 @@
 docs/.vuepress/.temp/
 docs/.vuepress/.cache/
+docs/.vuepress/public/super-components
+docs/guide/manager-components
+docs/public/storybook-static/

@@ -9,6 +9,8 @@ export default defineConfig({
 
   srcDir: './docs',
   base: '/manager/',
+  ignoreDeadLinks: true,
+
 
   themeConfig: {
     nav: [
@@ -101,6 +103,10 @@ export default defineConfig({
           {
             text: 'Testing' ,
             link: 'testing'
+          },
+          {
+            text: 'Manager Components',
+            link: 'manager-components'
           }
         ]
       }
