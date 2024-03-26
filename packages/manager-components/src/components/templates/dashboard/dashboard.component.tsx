@@ -9,12 +9,14 @@ export interface DashboardLayoutProps {
   header?: HeadersProps;
   linkProps?: LinksProps;
   tabs?: React.ReactElement;
+  onClickReturn?: () => void;
 }
 
 export const DashboardLayout = ({
   linkProps,
   breadcrumb,
   content,
+  onClickReturn,
   header,
   tabs,
 }: DashboardLayoutProps) => {
@@ -30,6 +32,7 @@ export const DashboardLayout = ({
       )}
       {linkProps && (
         <Links
+          onClickReturn={onClickReturn}
           href={linkProps.href}
           label={linkProps.label}
           target={linkProps.target}

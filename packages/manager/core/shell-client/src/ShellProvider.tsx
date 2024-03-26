@@ -24,3 +24,5 @@ export const ShellProvider = ({
     </>
   );
 };
+
+export default ShellProvider;
