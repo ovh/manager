@@ -1,4 +1,3 @@
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
@@ -22,7 +21,7 @@ export const useCatalog = ({
   const [products, setProducts] = useState<Product[]>([]); // full list of products
   const [results, setResults] = useState<Product[]>([]); // the filtered list of products
 
-  const service = useQuery<ApiResponse<Product[]>, ApiError>({
+  const service = useQuery({
     queryKey: getManagerCatalogListQueryKey,
     queryFn: () => getManagerCatalogList(),
     staleTime: Infinity,
