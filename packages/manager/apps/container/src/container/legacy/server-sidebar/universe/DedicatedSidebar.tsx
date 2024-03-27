@@ -26,6 +26,7 @@ export const features = [
   'vrack:bare-metal-cloud',
   'vrack:hosted-private-cloud',
   'cloud-connect',
+  'vrack-services',
   'netapp',
   'exchange:dedicated-dashboard',
   'license',
@@ -257,7 +258,7 @@ export default function DedicatedSidebar() {
         label: t('sidebar_network'),
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
-        routeMatcher: new RegExp('^(/ip(/|$)|/network-security|/vrack|/cloud-connect|(/network)?/iplb)'),
+        routeMatcher: new RegExp('^(/ip(/|$)|/network-security|/vrack|/cloud-connect|/vrack-services|(/network)?/iplb)'),
         subItems: [
           feature.ip && {
             id: 'dedicated-ip',
@@ -296,6 +297,27 @@ export default function DedicatedSidebar() {
             routeMatcher: new RegExp('^/vrack'),
             async loader() {
               return loadServices('/vrack');
+            },
+          },
+          feature['vrack-services'] && {
+            id: 'dedicated-vrackservices',
+            badge: 'beta',
+            label: t('sidebar_vrack_services'),
+            icon: getIcon('oui-icon oui-icon-vRack-services_concept'),
+            routeMatcher: new RegExp('^/vrack-services'),
+            async loader() {
+              const appId = 'vrack-services';
+              const items = await loadServices('/vrackServices/resource', undefined, appId);
+
+              return [
+                {
+                  id: 'vrack_services-all',
+                  label: t('sidebar_all_vrack_services'),
+                  href: navigation.getURL(appId, '#/'),
+                  ignoreSearch: true,
+                },
+                ...items
+              ];
             },
           },
           feature['cloud-connect'] && {
@@ -382,10 +404,10 @@ export default function DedicatedSidebar() {
       requestType: 'aapi',
     });
 
-  const { data: availability } = useQuery(
-    ['sidebar-dedicated-availability'],
-    getFeatures,
-  );
+  const { data: availability } = useQuery({
+    queryKey: ['sidebar-dedicated-availability'],
+    queryFn: getFeatures,
+  });
 
   useEffect(() => {
     if (availability) {
