@@ -42,7 +42,7 @@ export default function Onboarding() {
   return (
     <OnboardingLayout
       title={title}
-      imageSrc={onboardingImgSrc}
+      img={{ src: onboardingImgSrc, width: 450, height: 250 }}
       description={description}
       orderButtonLabel={t('orderButtonLabel')}
       orderHref={t('orderButtonLink')}
