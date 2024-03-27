@@ -180,7 +180,6 @@ export default function AddUserPage(): JSX.Element {
           slot="actions"
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => setState({ ...state, isNextStepReached: true })}
-          {...(state.description === '' && { disabled: true })}
         >
           {tCommon('pci_projects_project_users_add_submit_label')}
         </OsdsButton>
