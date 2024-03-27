@@ -15,10 +15,12 @@ const vrackDetails = {
 
 export type GetVrackMocksParams = {
   nbVrack?: number;
+  dissociateKo?: boolean;
 };
 
 export const getVracMocks = ({
   nbVrack = 5,
+  dissociateKo = false,
 }: GetVrackMocksParams): Handler[] => [
   {
     url: '/vrack',
@@ -29,5 +31,12 @@ export const getVracMocks = ({
     url: '/vrack/:id',
     response: vrackDetails,
     api: 'v6',
+  },
+  {
+    url: '/vrack/:id/vrackServices/:vsId',
+    response: dissociateKo ? { message: 'Update error' } : {},
+    status: dissociateKo ? 500 : 200,
+    api: 'v6',
+    method: 'delete',
   },
 ];
