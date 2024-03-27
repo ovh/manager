@@ -15,6 +15,7 @@ export default defineConfig({
   resolve: {
     ...baseConfig.resolve,
     dedupe: [
+      '@ovh-ux/manager-core-api',
       '@ovh-ux/manager-react-shell-client',
       'i18next',
       'react',

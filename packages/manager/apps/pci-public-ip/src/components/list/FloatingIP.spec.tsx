@@ -12,6 +12,22 @@ import * as useFloatingIPsModule from '@/api/hooks/useFloatingIP';
 import FloatingIPComponent, {
   FloatingIPComponentProps,
 } from './FloatingIP.component';
+import { AssociatedEntity } from '@/interface';
+
+type TData = {
+  rows: {
+    associatedEntity: AssociatedEntity;
+    id: string;
+    ip: string;
+    networkId: string;
+    region: string;
+    status: string;
+    associatedEntityId: string;
+    associatedEntityName: string;
+  }[];
+  pageCount: number;
+  totalRows: number;
+};
 
 vi.mock('@ovhcloud/manager-components', () => ({
   DataGridTextCell: vi.fn().mockReturnValue(null),
@@ -109,7 +125,7 @@ describe('FloatingIP component tests', () => {
   it('should display Error message when error is defined', () => {
     vi.spyOn(useFloatingIPsModule, 'useFloatingIPs').mockReturnValue({
       error: 'there is an error',
-    } as UseQueryResult<any>);
+    } as UseQueryResult<TData>);
 
     const props = {
       projectId: 'project-id-123456',
@@ -126,7 +142,7 @@ describe('FloatingIP component tests', () => {
     vi.spyOn(useFloatingIPsModule, 'useFloatingIPs').mockReturnValue({
       error: undefined,
       isLoading: true,
-    } as UseQueryResult<any>);
+    } as UseQueryResult<TData>);
 
     const props = {
       projectId: 'project-id-123456',
@@ -148,7 +164,7 @@ describe('FloatingIP component tests', () => {
       },
       error: undefined,
       isLoading: false,
-    } as UseQueryResult<any>);
+    } as UseQueryResult<TData>);
 
     const props = {
       projectId: 'project-id-123456',
