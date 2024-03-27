@@ -3,6 +3,7 @@
   "user_account_identity_documents_title": "Vérification des documents nécessaire",
   "user_account_identity_documents_sub_title": "Déposez vos documents",
   "user_account_identity_documents_intro": "Vous avez créé votre compte et vous souhaitez faire une commande depuis notre site Indien. La règlementation en vigueur nécessite une vérification de votre identité avant toute commande.",
+  "user_account_identity_documents_intro_alternative": "Vous avez créé un compte. Pour réaliser une commande sur notre site internet, des vérifications sont nécessaires en conformité avec la législation indienne. Téléchargez vos documents",
   "user_account_identity_documents_intro_kyc_reminder": "Assurez-vous que vos données personnelles correspondent au nom et à l'adresse figurant dans vos documents officiels.",
   "user_account_identity_documents_list_for_association": "Vous êtes une association, les documents obligatoires à fournir sont",
   "user_account_identity_documents_list_for_institution": "Vous êtes une administration, les documents obligatoires à fournir sont",
