@@ -65,6 +65,25 @@
     </div>
 
     <div class="d-grid gap-1 col-md-6 offset-xs-1 offset-md-3 mb-4 text-center">
+        <!-- Indian Account under verification banner -->
+        <oui-message
+            class="text-left"
+            data-type="info"
+            data-ng-if="$ctrl.isKycValidationUnderVerification()"
+        >
+            <span
+                data-translate="pci_projects_onboarding_banner_kyc_validation_under_verification_description"
+            ></span>
+            <a
+                data-ng-href="{{:: $ctrl.myIdentitySectionLink }}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="pci_projects_onboarding_banner_kyc_validation_under_verification_link"
+                ></span>
+            </a>
+        </oui-message>
         <img class="w-100" data-ng-src="{{ $ctrl.illustration }}" alt="" />
         <div>
             <h1 data-translate="pci_projects_onboarding_title"></h1>
@@ -77,6 +96,7 @@
                 data-items="$ctrl.summary.contracts"
                 data-model="$ctrl.model.agreements"
                 data-name="agreements"
+                data-disabled="$ctrl.isKycValidationUnderVerification()"
                 data-tracking-prefix="'PublicCloud::pci::projects::onboarding'"
             >
             </ovh-contracts-summary>
@@ -86,7 +106,7 @@
                 variant="primary"
                 data-ng-if="!$ctrl.isTrustedZone"
                 data-on-click="$ctrl.onCreateDiscoveryProjectClick()"
-                disabled="!$ctrl.model.agreements || $ctrl.isLoading"
+                data-disabled="!$ctrl.model.agreements || $ctrl.isLoading"
             >
                 <span
                     data-translate="pci_projects_onboarding_create_project"
