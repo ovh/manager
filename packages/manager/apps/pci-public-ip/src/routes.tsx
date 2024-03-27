@@ -30,6 +30,7 @@ export const ROUTE_PATHS = {
   additionalIPEdit: ':ipId/edit',
   imports: 'imports',
   import: ':ip',
+  order: 'order',
 };
 
 export default [
@@ -112,6 +113,18 @@ export default [
           {
             path: ROUTE_PATHS.import,
             ...lazyRouteConfig(() => import('@/pages/imports/MoveIP.page')),
+          },
+        ],
+      },
+      {
+        path: ROUTE_PATHS.order,
+        children: [
+          {
+            path: '',
+            ...lazyRouteConfig(() => import('@/pages/order/Order.page')),
+            handle: {
+              tracking: 'edit',
+            },
           },
         ],
       },
