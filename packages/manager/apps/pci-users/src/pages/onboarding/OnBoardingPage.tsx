@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Outlet,
-  useHref,
+  useNavigate,
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
@@ -23,7 +23,7 @@ export default function OnBoardingPage() {
   const navigation = useNavigation();
   const project = useRouteLoaderData('users') as Project;
   const [urlProject, setUrlProject] = useState('');
-  const hrefAddUser = useHref('./new');
+  const navigate = useNavigate();
 
   useEffect(() => {
     navigation
@@ -110,7 +110,10 @@ export default function OnBoardingPage() {
         orderButtonLabel={t(
           'pci_projects_project_users_onboarding_action_label',
         )}
-        orderHref={hrefAddUser}
+        onOrderButtonClick={() => {
+          if (!isDiscoveryProject(project)) navigate('./new');
+        }}
+        isActionDisabled={isDiscoveryProject(project)}
       >
         <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
           {tileItems.map((tile) => (
