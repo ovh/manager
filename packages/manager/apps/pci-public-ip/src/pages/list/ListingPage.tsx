@@ -12,11 +12,11 @@ import {
   OsdsTabs,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { PciGuidesHeader } from '@ovhcloud/manager-components';
+import { Notifications, PciGuidesHeader } from '@ovhcloud/manager-components';
 import { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { FloatingIPComponent } from '@/components/list';
 import { IPsTabName } from '@/constants';
 import useProject from '@/api/hooks/useProject';
@@ -107,6 +107,7 @@ export default function ListingPage(): JSX.Element {
         </OsdsTabPanel>
         <OsdsTabPanel name={IPsTabName.ADDITIONAL_IP_TAB_NAME}></OsdsTabPanel>
       </OsdsTabs>
+      <Outlet />
     </>
   );
 }
