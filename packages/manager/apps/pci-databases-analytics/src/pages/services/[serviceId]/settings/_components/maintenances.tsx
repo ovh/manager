@@ -24,7 +24,7 @@ const Maintenances = () => {
       toast.toast({
         title: 'Erreur',
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
     },
     onSuccess: () => {

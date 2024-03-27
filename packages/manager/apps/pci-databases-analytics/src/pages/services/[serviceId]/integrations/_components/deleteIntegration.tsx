@@ -41,7 +41,7 @@ const DeleteIntegration = ({
       toast.toast({
         title: t('deleteIntegrationToastErrorTitle'),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
       if (onError) {
         onError(err);
