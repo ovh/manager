@@ -49,7 +49,6 @@ export default function OnBoardingPage() {
   }, [projectId, navigation]);
 
   useEffect(() => {
-    // if there are users redirect to user listing page
     if (!isLoading && floatingIPs.length > 0) {
       navigate(`/pci/projects/${projectId}/public-ips`);
     }
@@ -106,6 +105,10 @@ export default function OnBoardingPage() {
       href: GUIDES.configure_floating_ip[ovhSubsidiary],
     },
   ];
+
+  const createPublicIP = () => {
+    if (!isDiscoveryProject(project)) navigate('./new');
+  };
 
   return (
     <>
@@ -183,9 +186,7 @@ export default function OnBoardingPage() {
         orderButtonLabel={tOnBoarding(
           'pci_additional_ips_onboarding_action_buy',
         )}
-        onOrderButtonClick={() => {
-          if (!isDiscoveryProject(project)) navigate('./new');
-        }}
+        onOrderButtonClick={createPublicIP}
         isActionDisabled={isDiscoveryProject(project)}
       >
         <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
