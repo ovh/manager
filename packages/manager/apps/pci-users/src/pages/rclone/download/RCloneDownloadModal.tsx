@@ -192,13 +192,6 @@ export default function RCloneDownloadModal({
                   onStorageRegionChange={setRegion}
                 />
               )}
-              <OsdsText
-                slot="helper"
-                color={ODS_THEME_COLOR_INTENT.text}
-                className={'mt-1'}
-              >
-                {t('pci_projects_project_users_download-rclone_region_help')}
-              </OsdsText>
             </OsdsFormField>
           </>
         )}
