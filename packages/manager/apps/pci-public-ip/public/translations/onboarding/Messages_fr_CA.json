@@ -1,0 +1,16 @@
+{
+  "pci_additional_ips_onboarding_content1": "Attribuez et déplacez vos IP publiques d'un service à un autre.",
+  "pci_additional_ips_onboarding_content2": "Les IPs publiques permettent de relier une adresse IP publique à une instance ou à une fonction réseau (comme LBaaS par exemple). Ces IP sont agnostiques du service et peuvent donc être facilement transférées vers une autre instance de votre projet instantanément. Ce service est particulièrement utile pour les opérations de maintenance ou de mise à jour.",
+  "pci_additional_ips_onboarding_content3": "Nous proposons deux types d'IP publique :",
+  "pci_additional_ips_onboarding_content4_heading": "Additional IP OVHcloud :",
+  "pci_additional_ips_onboarding_content4_description": "convient le mieux aux opérations de basculement inter-produits d'OVHcloud, tout en ayant besoin d'une configuration système manuelle aux points de terminaison.",
+  "pci_additional_ips_onboarding_content5_heading": "Floating IP du Public Cloud :",
+  "pci_additional_ips_onboarding_content5_description": "convient le mieux aux cas d’usage Public Cloud, à l’automatisation du cloud (Terraform) ou aux réseaux privés régionalisés. La configuration du système de endpoint est automatique.",
+  "pci_additional_ips_onboarding_action_buy": "Créer une IP publique",
+  "pci_additional_ips_onboarding_guides_additional_public_ips_title": "IP publiques chez OVHcloud",
+  "pci_additional_ips_onboarding_guides_additional_public_ips_description": "Choisissez celles qui vous conviennent le mieux : Additional IP vs Floating IP",
+  "pci_additional_ips_onboarding_guides_configure_additional_ip_title": "Configuration Additional IP",
+  "pci_additional_ips_onboarding_guides_configure_additional_ip_description": "Apprenez à configurer des adresses IP supplémentaires pour vos services.",
+  "pci_additional_ips_onboarding_guides_configure_floating_ip_title": "Configurer une Floating IP",
+  "pci_additional_ips_onboarding_guides_configure_floating_ip_description": "Découvrez comment exposer vos services publiquement de manière cloud native."
+}
