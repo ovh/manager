@@ -38,5 +38,11 @@
   "server_configuration_netboot_save_in_progress": "Aggiornamento...",
   "server_configuration_netboot_invalid": "Non valido",
   "server_configuration_netboot_rescue_help": "La modalità Rescue può essere utile per diagnosticare malfunzionamenti hardware su un server dedicato.",
-  "server_configuration_netboot_rescue_help_link": "Accedi alla guida di diagnostica hardware."
+  "server_configuration_netboot_rescue_help_link": "Accedi alla guida di diagnostica hardware.",
+  "server_configuration_netboot_rescue_mail_none": "Nessuno",
+  "server_configuration_netboot_auth_method": "Metodo di autenticazione:",
+  "server_configuration_netboot_auth_method_sshkey": "Autenticazione tramite chiave SSH",
+  "server_configuration_netboot_auth_method_password": "Autenticazione tramite password",
+  "server_configuration_netboot_sshkey_input": "La tua chiave SSH pubblica:",
+  "server_configuration_netboot_sshkey_input_placeholder": "Inserire un valore di tipo sshPubKey. Esempio: {{t0}}"
 }
