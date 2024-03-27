@@ -28,7 +28,7 @@ const QueryStatistics = () => {
       toast.toast({
         title: t('queryStatistcsResetToastErrorTitle'),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
     },
     onSuccess: () => {
