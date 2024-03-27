@@ -31,10 +31,11 @@ export default function FloatingIPComponent({ projectId, projectUrl }) {
 
   const { pagination, setPagination } = useDatagridSearchParams();
 
-  const { error, data: floatingIPs, isLoading } = useFloatingIPs(
-    projectId || '',
-    { pagination },
-  );
+  const {
+    error,
+    data: floatingIPs,
+    isLoading,
+  } = useFloatingIPs(projectId || '', { pagination });
 
   const goToInstanceHref = (id: string) => `${projectUrl}/instances/${id}`;
 
@@ -77,7 +78,9 @@ export default function FloatingIPComponent({ projectId, projectUrl }) {
     },
     {
       id: 'actions',
-      cell: (props: FloatingIP) => <FloatingIPActions ipId={props.id} />,
+      cell: (props: FloatingIP) => (
+        <FloatingIPActions projectId={projectId} ipId={props.id} />
+      ),
       label: '',
     },
   ];
