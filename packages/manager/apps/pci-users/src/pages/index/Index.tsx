@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Outlet, useHref, useParams, useNavigate } from 'react-router-dom';
 import {
   OsdsBreadcrumb,
@@ -60,6 +60,7 @@ export default function ListingPage() {
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject(projectId || '');
   const { filters, addFilter, removeFilter } = useColumnFilters();
+  const filterPopoverRef = useRef(undefined);
 
   const { data: rolesAndServices } = useAllRoles(`${projectId}`);
 
@@ -205,7 +206,7 @@ export default function ListingPage() {
               setSearchField('');
             }}
           />
-          <OsdsPopover>
+          <OsdsPopover ref={filterPopoverRef}>
             <OsdsButton
               slot="popover-trigger"
               size={ODS_BUTTON_SIZE.sm}
@@ -238,6 +239,7 @@ export default function ListingPage() {
                     ...addedFilter,
                     label: column.label,
                   });
+                  filterPopoverRef.current?.closeSurface();
                 }}
               />
             </OsdsPopoverContent>
