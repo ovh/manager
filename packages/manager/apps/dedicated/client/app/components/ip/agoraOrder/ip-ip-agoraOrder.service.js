@@ -233,6 +233,8 @@ export default class IpAgoraOrder {
         return `/dedicatedCloud/${serviceName}/orderableIpCountries`;
       case PRODUCT_TYPES.vps.typeName:
         return `/vps/${serviceName}/ipCountryAvailable`;
+      case PRODUCT_TYPES.vrack.typeName:
+        return ``;
       default:
         return null;
     }

@@ -13,6 +13,10 @@ export const PRODUCT_TYPES = {
     apiTypeName: 'VPS',
     typeName: 'VPS',
   },
+  vrack: {
+    apiTypeName: 'VRACK',
+    typeName: 'VRACK',
+  },
 };
 
 export const IP_AGORA = {
@@ -26,6 +30,16 @@ export const IP_AGORA = {
     maxQty: 1,
     minQty: 1,
   },
+  IPv6Block: {
+    typeName: 'IPv6Block',
+    maxQty: 1,
+    minQty: 1,
+  },
+};
+
+export const IP_TYPE = {
+  IPv4: 'ipv4',
+  IPv6: 'ipv6',
 };
 
 export const TRACKING_PREFIX = 'dedicated::ip::dashboard::order::';
