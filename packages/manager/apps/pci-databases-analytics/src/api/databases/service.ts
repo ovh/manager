@@ -38,8 +38,6 @@ export interface UpdateServiceProps extends ServiceData {
   data: Partial<
     Pick<
       database.Service,
-      | 'backupTime'
-      | 'backups'
       | 'description'
       | 'flavor'
       | 'ipRestrictions'
@@ -48,7 +46,9 @@ export interface UpdateServiceProps extends ServiceData {
       | 'region'
       | 'storage'
       | 'version'
-    >
+    > & {
+      backups?: Pick<database.service.Backup, 'time'>;
+    }
   >;
 }
 
