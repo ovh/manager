@@ -54,7 +54,20 @@ export const GIT_STATUS_WITH_TOOLTIP = {
   },
 };
 
+export const DIAGNOSTIC_STATE = {
+  ERROR: 'error',
+  INFO: 'info',
+  SUCCESS: 'success',
+};
+
+export const HOSTING_TAB_DOMAINS = {
+  A_RECORD: 'A',
+  AAAA_RECORD: 'AAAA',
+};
+
 export default {
+  DIAGNOSTIC_STATE,
+  HOSTING_TAB_DOMAINS,
   HOSTING_OFFER,
   CDN_STATUS,
   CDN_VERSION,

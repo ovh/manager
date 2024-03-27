@@ -1,0 +1,58 @@
+<div data-ng-controller="MultisiteDiagnosticCtrl as ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-hide-confirm-button="false"
+        data-wizard-hide-cancel-button="false"
+        data-wizard-cancel-button-text="'hosting_multisite_dialog_close' | translate"
+        data-wizard-title="'hosting_multisite_dialog_title' | translate"
+    >
+        <div data-wizard-step>
+            <div
+                data-ng-if="ctrl.diagnosticState === ctrl.DIAGNOSTIC_STATE.INFO"
+            >
+                <p
+                    data-ng-if="!ctrl.isDnsExternal && !ctrl.isDnsAttachedToNic"
+                    data-ng-bind="'hosting_multisite_dialog_modify_a_record'  | translate : {ip: ctrl.ip ,  domain:  ctrl.domain , dns: ctrl.dns , nic:  ctrl.nic}"
+                ></p>
+
+                <a
+                    data-ng-if="!ctrl.isDnsExternal && ctrl.isDnsAttachedToNic"
+                    data-ng-href="{{ctrl.linkToARecordModification}}"
+                >
+                    <span
+                        data-translate="hosting_multisite_dialog_modify_a_record_same_nic"
+                    ></span>
+                </a>
+
+                <p
+                    data-ng-if="ctrl.isDnsExternal"
+                    data-ng-bind="'hosting_multisite_dialog_modify_a_record_external_nic' | translate : {ip: ctrl.ip ,  domain:  ctrl.domain , dns: ctrl.dns , nic:  ctrl.nic}"
+                ></p>
+            </div>
+
+            <div
+                data-ng-if="ctrl.diagnosticState === ctrl.DIAGNOSTIC_STATE.ERROR"
+            >
+                <p
+                    data-ng-if="!ctrl.isDnsExternal"
+                    data-ng-bind="'hosting_multisite_dialog_modify_a_record_error'  | translate : {ip: ctrl.ip ,  domain:  ctrl.domain , dns: ctrl.dns , nic:  ctrl.nic}"
+                ></p>
+
+                <a
+                    data-ng-if="!ctrl.isDnsExternal && ctrl.isDnsAttachedToNic"
+                    data-ng-href="{{ ctrl.linkToARecordModification }}"
+                >
+                    <span
+                        data-translate="hosting_multisite_dialog_modify_a_record_same_nic_error"
+                    ></span>
+                </a>
+
+                <p
+                    data-ng-if="ctrl.isDnsExternal && !ctrl.isDnsAttachedToNic"
+                    data-ng-bind="'hosting_multisite_dialog_modify_a_record_external_nic_error' | translate : {ip: ctrl.ip ,  domain:  ctrl.domain , dns: ctrl.dns , nic:  ctrl.nic}"
+                ></p>
+            </div>
+        </div>
+    </div>
+</div>
