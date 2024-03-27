@@ -1,6 +1,6 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { OsdsLink } from '@ovhcloud/ods-components/react';
+import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_TEXT_COLOR_INTENT } from '@ovhcloud/ods-components';
 import { useNotifications } from '@ovhcloud/manager-components';
@@ -25,11 +25,11 @@ export default function OpenStackDownloadPage() {
         onClose={() => onClose()}
         onSuccess={(content: string) => {
           addSuccess(
-            <>
+            <OsdsText>
               {t('pci_projects_project_users_download-openrc_success_message')}
               <OsdsLink
                 href={content}
-                className={'ml-1'}
+                className="ml-3"
                 color={ODS_TEXT_COLOR_INTENT.primary}
                 download={DOWNLOAD_FILENAME}
                 target={OdsHTMLAnchorElementTarget._top}
@@ -38,7 +38,7 @@ export default function OpenStackDownloadPage() {
                   'pci_projects_project_users_download-openrc_success_message_link',
                 )}
               </OsdsLink>
-            </>,
+            </OsdsText>,
             true,
           );
         }}
