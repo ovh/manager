@@ -4,13 +4,16 @@ import 'oclazyload';
 import 'ovh-api-services';
 import managerCore from '@ovh-ux/manager-core';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
+import { region } from '@ovh-ux/manager-components';
+
 import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 
 import routing from './ipv6.routes';
 import component from './ipv6.component';
+import service from './ipv6.service';
 
-import service from '../ip-ip-agoraOrder.service';
+import ipAgoraOrderService from '../ip-ip-agoraOrder.service';
 
 const moduleName = 'ovhManagerDedicatedAgoraOrderIpv6';
 
@@ -18,16 +21,18 @@ angular
   .module(moduleName, [
     managerCore,
     ngOvhUtils,
+    region,
     'oc.lazyLoad',
     'oui',
     'ovh-api-services',
     'pascalprecht.translate',
     'ui.router',
-    'ovhManagerCatalogPrice'
+    'ovhManagerCatalogPrice',
   ])
   .config(routing)
   .component('agoraIpV6Order', component)
-  .service('IpAgoraOrder', service)
+  .service('IpAgoraOrder', ipAgoraOrderService)
+  .service('IpAgoraV6Order', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

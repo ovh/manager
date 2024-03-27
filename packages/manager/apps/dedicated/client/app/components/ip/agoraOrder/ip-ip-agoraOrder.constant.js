@@ -38,9 +38,9 @@ export const IP_AGORA = {
 };
 
 export const IP_TYPE = {
-  IPv4: "ipv4",
-  IPv6: "ipv6"
-}
+  IPv4: 'ipv4',
+  IPv6: 'ipv6',
+};
 
 export const TRACKING_PREFIX = 'dedicated::ip::dashboard::order::';
 

@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 
-import { PRODUCT_TYPES, ALERT_ID } from '../ip-ip-agoraOrder.constant';
+import { ALERT_ID } from '../ip-ip-agoraOrder.constant';
 
 export default class AgoraIpV6OrderController {
   /* @ngInject */
@@ -11,6 +11,8 @@ export default class AgoraIpV6OrderController {
     $window,
     Alerter,
     IpAgoraOrder,
+    IpAgoraV6Order,
+    ovhManagerRegionService,
     User,
     coreConfig,
   ) {
@@ -20,6 +22,8 @@ export default class AgoraIpV6OrderController {
     this.$window = $window;
     this.Alerter = Alerter;
     this.IpAgoraOrder = IpAgoraOrder;
+    this.IpAgoraV6Order = IpAgoraV6Order;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.User = User;
     this.ALERT_ID = ALERT_ID;
     this.region = coreConfig.getRegion();
@@ -34,20 +38,20 @@ export default class AgoraIpV6OrderController {
     };
     this.user = this.$state.params.user;
     this.catalogName = this.$state.params.catalogName;
-    console.log(this.region);
   }
 
   loadServices() {
     this.loading.services = true;
-
     return this.$q
       .all({
         user: this.User.getUser(),
-        services: this.IpAgoraOrder.getVrackService(),
+        services: this.IpAgoraV6Order.getVrackService(),
+        ipv6Catalog: this.IpAgoraV6Order.getIpv6Catalog(this.ovhSubsidiary),
       })
       .then((results) => {
         this.user = results.user;
         this.services = results.services;
+        this.ipv6Catalog = results.ipv6Catalog;
         if (this.$state.params.service) {
           this.model.selectedService = find(this.services, {
             serviceName: this.$state.params.service.serviceName,
@@ -66,22 +70,25 @@ export default class AgoraIpV6OrderController {
   }
 
   loadRegions() {
-    const ipCountryAvailablePromise = this.IpAgoraOrder.getIpCountryAvailablePromise(
-      this.model.selectedService.serviceName,
-      PRODUCT_TYPES.vrack.typeName,
-    );
-
-    return ipCountryAvailablePromise
-      .then((data) => {
-        // let countries = data;
-        console.log(data);
-        // if (data.length === 0) {
-        //   const REGION = AgoraIpV4OrderController.getRegionFromServiceName(
-        //     this.model.selectedService.serviceName,
-        //   );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.catalogByLocation = this.ipv6Catalog.map((plan) => {
+      const {
+        details: {
+          product: { configurations },
+        },
+      } = plan;
+      const regionConfig = configurations.find(
+        (config) => config.name === 'ip_region',
+      );
+      const regionId = regionConfig.values[0] || '';
+      const countryCode = this.ovhManagerRegionService.getMacroRegionLowercase(
+        regionId,
+      );
+      return {
+        regionId,
+        planCode: plan.planCode,
+        location: this.$translate.instant(`ip_agora_ipv6_location_${regionId}`),
+        icon: `oui-flag oui-flag_${countryCode}`,
+      };
+    });
   }
 }
