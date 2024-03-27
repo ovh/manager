@@ -37,7 +37,6 @@
   "server_configuration_impi_sessions_success": "Les sessions du module IPMI ont bien été supprimées.",
   "server_configuration_impi_disable": "Les fonctionnalités du module IPMI sont temporairement désactivées car une tâche est en cours. Elles seront réactivées une fois la tâche terminée.",
   "server_configuration_impi_monitoring_warning": "Pensez à désactiver le monitoring de vos services avant d'installer un système d'exploitation depuis IPMI.",
-  "server_configuration_impi_SOL_help": "La session SOL nécessite une configuration de votre part.",
   "server_configuration_impi_SOL_help_link": "Accéder au guide de configuration.",
   "server_configuration_ipmi_title": "IPMI",
   "server_configuration_kvm_title": "KVM",

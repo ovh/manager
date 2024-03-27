@@ -73,7 +73,139 @@
                 class="row d-md-flex mb-5"
                 data-ng-if="$ctrl.ipmi.isActivated() && !$ctrl.disable.otherTask && !$ctrl.disable.localTask"
             >
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <oui-tile
+                        class="h-100"
+                        data-heading="{{::'server_configuration_tile_ipmi_heading' | translate}}"
+                        data-description="{{::'server_configuration_tile_ipmi_description' | translate}}"
+                    >
+                        <oui-tile-definition>
+                            <oui-tile-description>
+                                <button
+                                    type="button"
+                                    class="btn btn-default btn-block"
+                                    data-ng-click="$ctrl.onShowIpmiRestartConf()"
+                                    data-ng-disabled="$ctrl.disable.restartIpmi || $ctrl.disable.localTask || $ctrl.disable.otherTask"
+                                >
+                                    <span>
+                                        <span
+                                            data-translate="server_configuration_impi_reset_interfaces"
+                                        ></span>
+                                        <span
+                                            class="label label-defaut"
+                                            data-ng-if="$ctrl.disable.restartIpmi"
+                                            data-translate="server_configuration_doing"
+                                        ></span>
+                                    </span>
+                                </button>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition>
+                            <oui-tile-description>
+                                <button
+                                    type="button"
+                                    class="btn btn-default btn-block"
+                                    data-ng-click="$ctrl.startIpmiTest()"
+                                    data-ng-disabled="$ctrl.disable.testIpmi || $ctrl.disable.otherTask || $ctrl.disable.localTask"
+                                >
+                                    <span>
+                                        <span
+                                            data-translate="server_configuration_impi_test"
+                                        ></span>
+                                        <span
+                                            class="label label-defaut"
+                                            data-ng-if="$ctrl.disable.testIpmi"
+                                            data-translate="server_configuration_doing"
+                                        >
+                                        </span>
+                                    </span>
+                                </button>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+
+                        <oui-tile-definition data-ng-if="$ctrl.ipmi.isActivated() && $ctrl.disable.testActive">
+                            <oui-tile-description>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <oui-spinner
+                                            data-ng-if="$ctrl.httpState.isLoading()"
+                                            data-size="s"
+                                        ></oui-spinner>
+                                        <span
+                                            class="oui-icon oui-icon-error text-danger"
+                                            data-ng-if="$ctrl.httpState.isError()"
+                                            aria-hidden="true"
+                                        >
+                                        </span>
+                                        <span
+                                            class="oui-icon oui-icon-success text-success"
+                                            data-ng-if="$ctrl.httpState.isDone()"
+                                            aria-hidden="true"
+                                        >
+                                        </span>
+                                        <span
+                                            class="ml-2"
+                                            data-ng-class="{ 'font-weight-bold': $ctrl.httpState.isLoading() }"
+                                            data-translate="server_configuration_impi_http"
+                                        >
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <oui-spinner
+                                            data-ng-if="$ctrl.passwordState.isLoading()"
+                                            data-size="s"
+                                        >
+                                        </oui-spinner>
+                                        <span
+                                            class="oui-icon oui-icon-error text-danger"
+                                            data-ng-if="$ctrl.passwordState.isError()"
+                                            aria-hidden="true"
+                                        >
+                                        </span>
+                                        <span
+                                            class="oui-icon oui-icon-success text-success"
+                                            data-ng-if="$ctrl.passwordState.isDone()"
+                                            aria-hidden="true"
+                                        >
+                                        </span>
+                                        <span
+                                            class="ml-2"
+                                            data-ng-class="{ 'font-weight-bold': $ctrl.passwordState.isLoading() }"
+                                            data-translate="server_configuration_impi_password"
+                                        >
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <oui-spinner
+                                            data-ng-if="$ctrl.pingState.isLoading()"
+                                            data-size="s"
+                                        >
+                                        </oui-spinner>
+                                        <span
+                                            class="oui-icon oui-icon-error text-danger"
+                                            data-ng-if="$ctrl.pingState.isError()"
+                                            aria-hidden="true"
+                                        >
+                                        </span>
+                                        <span
+                                            class="oui-icon oui-icon-success text-success"
+                                            data-ng-if="$ctrl.pingState.isDone()"
+                                            aria-hidden="true"
+                                        >
+                                        </span>
+                                        <span
+                                            class="ml-2"
+                                            data-ng-class="{ 'font-weight-bold': $ctrl.pingState.isLoading() }"
+                                            data-translate="server_configuration_impi_ping"
+                                        >
+                                        </span>
+                                    </li>
+                                </ul>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                    </oui-tile>
+                </div>
+                <div class="col-md-3">
                     <oui-tile
                         class="h-100"
                         data-heading="{{::'server_configuration_tile_kvm_heading' | translate}}"
@@ -139,9 +271,37 @@
                                 ></button>
                             </oui-tile-description>
                         </oui-tile-definition>
+                        <oui-tile-definition
+                            data-ng-if="$ctrl.ipmi.isActivated() && !$ctrl.disable.otherTask && !$ctrl.disable.localTask"
+                        >
+                            <oui-tile-description>
+                                <p
+                                    data-translate="server_configuration_impi_monitoring_warning"
+                                ></p>
+                                <p data-ng-if="$ctrl.ipmiHelpUrl && $ctrl.hasSOL()">
+                                    <a
+                                        data-ng-href="{{::$ctrl.ipmiHelpUrl}}"
+                                        target="_blank"
+                                        rel="noopener"
+                                        data-track-on="click"
+                                        data-track-type="action"
+                                        data-track-name="hpc::nutanix::cluster::node::ipmi::guide-configure-ipmi"
+                                    >
+                                        <span
+                                            data-translate="server_configuration_impi_SOL_help_link"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-external-link"
+                                            aria-hidden="true"
+                                        >
+                                        </span>
+                                    </a>
+                                </p>
+                            </oui-tile-description>
+                        </oui-tile-definition>
                     </oui-tile>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <oui-tile
                         class="h-100"
                         data-heading="{{::'server_configuration_tile_sol_heading' | translate}}"
@@ -203,153 +363,8 @@
                         </oui-tile-definition>
                     </oui-tile>
                 </div>
-                <div class="col-md-4">
-                    <button
-                        type="button"
-                        class="btn btn-default btn-block"
-                        data-ng-click="$ctrl.onShowIpmiRestartConf()"
-                        data-ng-disabled="$ctrl.disable.restartIpmi || $ctrl.disable.localTask || $ctrl.disable.otherTask"
-                    >
-                        <span>
-                            <span
-                                data-translate="server_configuration_impi_reset_interfaces"
-                            ></span>
-                            <span
-                                class="label label-defaut"
-                                data-ng-if="$ctrl.disable.restartIpmi"
-                                data-translate="server_configuration_doing"
-                            ></span>
-                        </span>
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-default btn-block"
-                        data-ng-click="$ctrl.startIpmiTest()"
-                        data-ng-disabled="$ctrl.disable.testIpmi || $ctrl.disable.otherTask || $ctrl.disable.localTask"
-                    >
-                        <span>
-                            <span
-                                data-translate="server_configuration_impi_test"
-                            ></span>
-                            <span
-                                class="label label-defaut"
-                                data-ng-if="$ctrl.disable.testIpmi"
-                                data-translate="server_configuration_doing"
-                            >
-                            </span>
-                        </span>
-                    </button>
-                </div>
-            </div>
-            <div
-                data-ng-if="$ctrl.ipmi.isActivated() && !$ctrl.disable.otherTask && !$ctrl.disable.localTask"
-            >
-                <p
-                    data-translate="server_configuration_impi_monitoring_warning"
-                ></p>
-                <p data-ng-if="$ctrl.ipmiHelpUrl && $ctrl.hasSOL()">
-                    <span
-                        data-translate="server_configuration_impi_SOL_help"
-                    ></span>
-                    <a
-                        data-ng-href="{{::$ctrl.ipmiHelpUrl}}"
-                        target="_blank"
-                        rel="noopener"
-                        data-track-on="click"
-                        data-track-type="action"
-                        data-track-name="hpc::nutanix::cluster::node::ipmi::guide-configure-ipmi"
-                    >
-                        <span
-                            data-translate="server_configuration_impi_SOL_help_link"
-                        ></span>
-                        <span
-                            class="oui-icon oui-icon-external-link"
-                            aria-hidden="true"
-                        >
-                        </span>
-                    </a>
-                </p>
             </div>
         </div>
-    </div>
-
-    <div data-ng-if="$ctrl.ipmi.isActivated() && $ctrl.disable.testActive">
-        <ul class="list-unstyled">
-            <li>
-                <oui-spinner
-                    data-ng-if="$ctrl.httpState.isLoading()"
-                    data-size="s"
-                ></oui-spinner>
-                <span
-                    class="oui-icon oui-icon-error text-danger"
-                    data-ng-if="$ctrl.httpState.isError()"
-                    aria-hidden="true"
-                >
-                </span>
-                <span
-                    class="oui-icon oui-icon-success text-success"
-                    data-ng-if="$ctrl.httpState.isDone()"
-                    aria-hidden="true"
-                >
-                </span>
-                <span
-                    class="ml-2"
-                    data-ng-class="{ 'font-weight-bold': $ctrl.httpState.isLoading() }"
-                    data-translate="server_configuration_impi_http"
-                >
-                </span>
-            </li>
-            <li>
-                <oui-spinner
-                    data-ng-if="$ctrl.passwordState.isLoading()"
-                    data-size="s"
-                >
-                </oui-spinner>
-                <span
-                    class="oui-icon oui-icon-error text-danger"
-                    data-ng-if="$ctrl.passwordState.isError()"
-                    aria-hidden="true"
-                >
-                </span>
-                <span
-                    class="oui-icon oui-icon-success text-success"
-                    data-ng-if="$ctrl.passwordState.isDone()"
-                    aria-hidden="true"
-                >
-                </span>
-                <span
-                    class="ml-2"
-                    data-ng-class="{ 'font-weight-bold': $ctrl.passwordState.isLoading() }"
-                    data-translate="server_configuration_impi_password"
-                >
-                </span>
-            </li>
-            <li>
-                <oui-spinner
-                    data-ng-if="$ctrl.pingState.isLoading()"
-                    data-size="s"
-                >
-                </oui-spinner>
-                <span
-                    class="oui-icon oui-icon-error text-danger"
-                    data-ng-if="$ctrl.pingState.isError()"
-                    aria-hidden="true"
-                >
-                </span>
-                <span
-                    class="oui-icon oui-icon-success text-success"
-                    data-ng-if="$ctrl.pingState.isDone()"
-                    aria-hidden="true"
-                >
-                </span>
-                <span
-                    class="ml-2"
-                    data-ng-class="{ 'font-weight-bold': $ctrl.pingState.isLoading() }"
-                    data-translate="server_configuration_impi_ping"
-                >
-                </span>
-            </li>
-        </ul>
     </div>
 </div>
 <div data-ng-if="$ctrl.showIpmiRestartConf">
