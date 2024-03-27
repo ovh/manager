@@ -8,6 +8,7 @@ import initI18n from './i18n';
 import App from './App';
 
 import '@/vite-hmr.ts';
+import { LoadingIndicatorProvider } from './contexts/loadingIndicatorContext';
 
 const init = async (
   appName: string,
@@ -40,7 +41,9 @@ const init = async (
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <ShellProvider client={context}>
-        <App />
+        <LoadingIndicatorProvider>
+          <App />
+        </LoadingIndicatorProvider>
       </ShellProvider>
     </React.StrictMode>,
   );

@@ -1,4 +1,6 @@
 import { AccordionItem } from '@radix-ui/react-accordion';
+import { Pen, X } from 'lucide-react';
+import { useState } from 'react';
 import { Link } from '@/components/links';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useServiceData } from '../layout';
@@ -20,9 +22,12 @@ import {
   AccordionContent,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import FormattedDate from '@/components/table-date';
 
 const Settings = () => {
   const renameModale = useModale('rename');
+  const [updateMaintenanceTime, setUpdateMaintenanceTime] = useState(false);
+  const [updateBackupTime, setUpdateBackupTime] = useState(false);
   const { service, projectId, serviceQuery } = useServiceData();
   const availabilitiesVersionQuery = useGetAvailabilities(
     projectId,
@@ -76,13 +81,13 @@ const Settings = () => {
                   {availabilitiesVersionQuery.data?.length > 1 && (
                     <TableCell className="text-right">
                       <Button
-                        variant="outline"
-                        size="sm"
+                        variant="default"
+                        size="default"
                         className="py-0 h-auto"
                         asChild
                       >
                         <Link
-                          className="hover:no-underline text-sm font-normal"
+                          className="hover:no-underline hover:text-white text-sm font-semibold"
                           to={'update?target=version'}
                         >
                           Update
@@ -97,13 +102,13 @@ const Settings = () => {
                   {availabilitiesPlanQuery.data?.length > 1 && (
                     <TableCell className="text-right">
                       <Button
-                        variant="outline"
-                        size="sm"
+                        variant="default"
+                        size="default"
                         className="py-0 h-auto"
                         asChild
                       >
                         <Link
-                          className="hover:no-underline text-sm font-normal"
+                          className="hover:no-underline hover:text-white text-sm font-semibold"
                           to={'update?target=plan'}
                         >
                           Update
@@ -118,13 +123,13 @@ const Settings = () => {
                   {availabilitiesFlavorQuery.data?.length > 1 && (
                     <TableCell className="text-right">
                       <Button
-                        variant="outline"
-                        size="sm"
+                        variant="default"
+                        size="default"
                         className="py-0 h-auto"
                         asChild
                       >
                         <Link
-                          className="hover:no-underline text-sm font-normal"
+                          className="hover:no-underline hover:text-white text-sm font-semibold"
                           to={'update?target=flavor'}
                         >
                           Update
@@ -143,13 +148,13 @@ const Settings = () => {
                     {availabilitiesFlavorQuery.data?.length > 1 && (
                       <TableCell className="text-right">
                         <Button
-                          variant="outline"
-                          size="sm"
+                          variant="default"
+                          size="default"
                           className="py-0 h-auto"
                           asChild
                         >
                           <Link
-                            className="hover:no-underline text-sm font-normal"
+                            className="hover:no-underline hover:text-white text-sm font-semibold"
                             to={'update?target=flavor'}
                           >
                             Update
@@ -165,13 +170,13 @@ const Settings = () => {
                   {availabilitiesFlavorQuery.data?.length > 1 && (
                     <TableCell className="text-right">
                       <Button
-                        variant="outline"
-                        size="sm"
+                        variant="default"
+                        size="default"
                         className="py-0 h-auto"
                         asChild
                       >
                         <Link
-                          className="hover:no-underline text-sm font-normal"
+                          className="hover:no-underline hover:text-white text-sm font-semibold"
                           to={'update?target=flavor'}
                         >
                           Update
@@ -207,33 +212,87 @@ const Settings = () => {
           <CardHeader>
             <h5>Configure your service</h5>
           </CardHeader>
-          <CardContent>
-            <div className="grid gap-2">
-              <div>
-                <Label>Maintenance time</Label>
-                <TimePicker
-                  date={convertTimeToDateTime(service.maintenanceTime)}
-                  setDate={() => {}}
-                />
-              </div>
-              <div>
-                <Label>Backup time</Label>
-                <TimePicker
-                  date={convertTimeToDateTime(service.backups?.time)}
-                  setDate={() => {}}
-                />
-              </div>
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() => renameModale.open()}
-              >
-                Rename my service
-              </Button>
-              <Button variant="destructive" className="w-full">
-                Delete my service
-              </Button>
-            </div>
+          <CardContent className="flex flex-col gap-2">
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell className="font-semibold">Name</TableCell>
+                  <TableCell>{service.description}</TableCell>
+                  <TableCell className="text-right">
+                    <Button
+                      variant="ghost"
+                      size="table"
+                      className="py-0 h-auto"
+                      onClick={() => renameModale.open()}
+                    >
+                      <Pen />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-semibold">
+                    Maintenance time
+                  </TableCell>
+                  <TableCell>
+                    {updateMaintenanceTime ? (
+                      <TimePicker
+                        date={convertTimeToDateTime(service.maintenanceTime)}
+                        setDate={() => {}}
+                      />
+                    ) : (
+                      <FormattedDate
+                        date={convertTimeToDateTime(service.maintenanceTime)}
+                        options={{ timeStyle: 'medium' }}
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Button
+                      variant="ghost"
+                      size="table"
+                      className="py-0 h-auto"
+                      onClick={() => setUpdateMaintenanceTime((prev) => !prev)}
+                    >
+                      {updateMaintenanceTime ? <X /> : <Pen />}
+                    </Button>
+                  </TableCell>
+                </TableRow>
+                {service.backups?.time && (
+                  <TableRow>
+                    <TableCell className="font-semibold">Backup time</TableCell>
+                    <TableCell>
+                      {updateBackupTime ? (
+                        <TimePicker
+                          date={convertTimeToDateTime(service.backups.time)}
+                          setDate={() => {}}
+                        />
+                      ) : (
+                        <FormattedDate
+                          date={convertTimeToDateTime(service.backups.time)}
+                          options={{ timeStyle: 'medium' }}
+                        />
+                      )}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button
+                        variant="ghost"
+                        size="table"
+                        className="py-0 h-auto"
+                        onClick={() => setUpdateBackupTime((prev) => !prev)}
+                      >
+                        {updateBackupTime ? <X /> : <Pen />}
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+            <Button
+              variant="destructive"
+              className="w-full bg-background border-2 hover:bg-destructive/10 font-semibold border-destructive text-destructive"
+            >
+              Delete my service
+            </Button>
           </CardContent>
         </Card>
         {service.capabilities.advancedConfiguration && (
