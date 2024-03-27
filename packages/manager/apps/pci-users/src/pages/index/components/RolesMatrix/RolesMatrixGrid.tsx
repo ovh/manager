@@ -24,7 +24,7 @@ export default function RolesMatrixGrid({ roles, services }: IProps) {
             <th></th>
             <th></th>
             {roles?.map((role) => (
-              <th key={role.id} className="text-center text-h11 px-1 py-2 h-10">
+              <th key={role.id} className="text-center text-h11 pr-8 py-2 h-10">
                 <OsdsText
                   size={ODS_THEME_TYPOGRAPHY_SIZE._500}
                   hue={ODS_TEXT_COLOR_HUE._600}
@@ -49,7 +49,7 @@ export default function RolesMatrixGrid({ roles, services }: IProps) {
                     className="py-2 h-10"
                   >
                     <OsdsText
-                      className="whitespace-nowrap"
+                      className="whitespace-nowrap px-4"
                       level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                       color={ODS_THEME_COLOR_INTENT.text}
                       size={ODS_THEME_TYPOGRAPHY_SIZE._400}
