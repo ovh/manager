@@ -9,15 +9,19 @@ import {
 } from '@ovhcloud/manager-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
+import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 import TabsPanel from './TabsPanel';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import { GUIDES_LIST } from '@/guides.constants';
 
 export const Dashboard: React.FC<DashboardLayoutProps> = () => {
   const { t } = useTranslation('zimbra/dashboard');
+  const { ovhSubsidiary } = useEnvironment().getUser();
   const guideItems: GuideItem[] = [
     {
       id: 1,
-      href: 'https://www.ovh.com',
+      href: `${GUIDES_LIST.user_guide.url[ovhSubsidiary] ||
+        GUIDES_LIST.user_guide.url.DEFAULT}`,
       target: OdsHTMLAnchorElementTarget._blank,
       label: t('guides_title_1'),
     },
