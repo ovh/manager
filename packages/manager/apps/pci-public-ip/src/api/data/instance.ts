@@ -4,8 +4,8 @@ import { Instance } from '@/interface';
 export const getAllInstance = async (
   projectId: string,
 ): Promise<Instance[]> => {
-  const instances = await v6.get(`/cloud/project/${projectId}/instance`);
-  return instances.data;
+  const { data } = await v6.get(`/cloud/project/${projectId}/instance`);
+  return data;
 };
 
 export default { getAllInstance };
