@@ -12,6 +12,7 @@ import {
   deleteDatabase,
   getServiceDatabases,
 } from '@/api/databases/databases';
+import { CdbError } from '@/api/databases';
 
 export function useGetDatabases(
   projectId: string,
@@ -28,7 +29,7 @@ export function useGetDatabases(
 }
 
 interface MutateDatabaseProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: (database: database.service.Database) => void;
 }
 export function useAddDatabase({ onError, onSuccess }: MutateDatabaseProps) {
@@ -49,7 +50,7 @@ export function useAddDatabase({ onError, onSuccess }: MutateDatabaseProps) {
 }
 
 interface UseDeleteDatabaseProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: () => void;
 }
 export function useDeleteDatabase({
