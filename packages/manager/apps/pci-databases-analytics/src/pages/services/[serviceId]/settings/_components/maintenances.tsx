@@ -40,7 +40,11 @@ const Maintenances = () => {
     return <Skeleton className="w-full h20" />;
   }
   if (maintenanceQuery.data.length === 0) {
-    return <p>Aucune maintenance n'est prévue.</p>;
+    return (
+      <Alert variant="info">
+        <AlertDescription>Aucune maintenance n'est prévue.</AlertDescription>
+      </Alert>
+    );
   }
   const canApply = (maintenance: database.service.Maintenance) => {
     return [

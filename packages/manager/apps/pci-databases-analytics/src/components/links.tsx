@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigation, useShell } from '@ovh-ux/manager-react-shell-client';
+import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import {
   LinkProps,
   NavLink as RouterNavLink,
@@ -7,6 +7,7 @@ import {
   NavLinkProps,
 } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { useLoadingIndicatorContext } from '@/contexts/loadingIndicatorContext';
 
 function A({
   className,
@@ -51,7 +52,7 @@ function Link({
   to,
   ...props
 }: LinkProps & { disabled?: boolean }) {
-  const shell = useShell();
+  const { setLoading } = useLoadingIndicatorContext();
   const baseClassName =
     'text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline';
   const disabledClass = 'opacity-50 cursor-not-allowed hover:text-primary-500';
@@ -69,7 +70,7 @@ function Link({
         if (disabled) {
           e.preventDefault();
         } else {
-          shell.ux.showPreloader();
+          setLoading(true);
         }
       }}
     >
@@ -86,7 +87,7 @@ function NavLink({
   end,
   ...props
 }: NavLinkProps & { disabled?: boolean }) {
-  const shell = useShell();
+  const { setLoading } = useLoadingIndicatorContext();
   const baseClassName =
     'whitespace-nowrap w-fit text-primary-500 text-base font-semibold m-0 py-2 hover:text-primary-700';
   const activeClass = 'border-b-2 border-primary-500';
@@ -108,7 +109,7 @@ function NavLink({
         if (disabled) {
           e.preventDefault();
         } else {
-          shell.ux.showPreloader();
+          setLoading(true);
         }
       }}
       {...props}
