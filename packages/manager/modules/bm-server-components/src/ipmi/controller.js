@@ -6,7 +6,7 @@ import Ipmi from './ipmi.class';
 import Kvm from './kvm.class';
 import { State, STATE_ENUM } from './state.class';
 
-import { getIpmiGuideUrl } from './constants';
+import { getIpmiGuideUrl, SSH_KEY } from './constants';
 
 export default class BmServerComponentsIpmiController {
   /* @ngInject */
@@ -66,9 +66,8 @@ export default class BmServerComponentsIpmiController {
     };
 
     this.ssh = {
-      list: [],
-      error: false,
-      selectedKey: '',
+      publicKey: '',
+      inputRules: SSH_KEY,
     };
 
     this.ipmiHelpUrl = getIpmiGuideUrl(this.user.ovhSubsidiary);
@@ -78,10 +77,6 @@ export default class BmServerComponentsIpmiController {
     this.$q
       .all({
         ipmiFeatures: this.loadIpmiFeatures().then(() => {
-          if (this.ipmi.isSerialOverLanSshKeySupported()) {
-            this.loadSshKey();
-          }
-
           // load kvm features if IPMI is not activated
           if (!this.ipmi.isActivated()) {
             return this.IpmiService.getKvmFeatures(this.serviceName)
@@ -123,17 +118,6 @@ export default class BmServerComponentsIpmiController {
         return this.ipmi;
       },
     );
-  }
-
-  loadSshKey() {
-    return this.IpmiService.getSshKey()
-      .then((keys) => {
-        this.ssh.error = false;
-        this.ssh.list = keys;
-      })
-      .catch(() => {
-        this.ssh.error = true;
-      });
   }
 
   getIpmiNavigation() {
@@ -667,7 +651,7 @@ export default class BmServerComponentsIpmiController {
   }
 
   // ---------ACTION SSH SOL------------
-  onSelectSshKey() {
+  startSolSshSession() {
     this.trackClick('access-sol-ssh');
     this.loader.buttonStart = true;
     this.loader.solSshKeyLoading = true;
@@ -675,7 +659,7 @@ export default class BmServerComponentsIpmiController {
       serviceName: this.serviceName,
       type: 'serialOverLanSshKey',
       ttl: this.ttl,
-      sshKey: this.ssh.selectedKey,
+      sshKey: this.ssh.publicKey,
       ipToAllow: this.ipmi.model.clientIp,
     })
       .then(({ taskId }) => {

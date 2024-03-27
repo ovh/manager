@@ -301,13 +301,16 @@
                         </oui-tile-definition>
                     </oui-tile>
                 </div>
-                <div class="col-md-6">
+                <div
+                    class="col-md-6"
+                    data-ng-if="$ctrl.hasSOL() && ($ctrl.ipmi.isSerialOverLanUrlSupported() || $ctrl.ipmi.isSerialOverLanUrlSupported())"
+                >
                     <oui-tile
                         class="h-100"
                         data-heading="{{::'server_configuration_tile_sol_heading' | translate}}"
                         data-description="{{::'server_configuration_tile_sol_description' | translate}}"
                     >
-                        <oui-tile-definition data-ng-if="$ctrl.hasSOL()">
+                        <oui-tile-definition data-ng-if="$ctrl.hasSOL() && $ctrl.ipmi.isSerialOverLanUrlSupported()">
                             <oui-tile-description>
                                 <button
                                     type="button"
@@ -337,25 +340,62 @@
                             </oui-tile-description>
                         </oui-tile-definition>
                         <oui-tile-definition
+                            data-ng-if="$ctrl.hasSOL() && $ctrl.ipmi.isSerialOverLanSshKeySupported()"
                             data-term="{{::'server_configuration_ssh_sol_definition' | translate}}"
                         >
                             <oui-tile-description>
-                                <oui-select
-                                    data-placeholder="{{::'server_configuration_ssh_select' | translate}}"
-                                    data-items="$ctrl.ssh.list"
-                                    data-model="$ctrl.ssh.selectedKey"
-                                    data-on-change="$ctrl.onSelectSshKey()"
-                                    data-disabled="$ctrl.loader.solSshKeyLoading || $ctrl.loader.buttonStart || $ctrl.disable.otherTask || $ctrl.disable.localTask"
+                                <form
+                                    id="solSshSession"
+                                    name="solSshSession"
+                                    data-ng-submit="$ctrl.startSolSshSession()"
+                                    novalidate
                                 >
-                                    <span ng-bind="$item"></span>
-                                </oui-select>
-                                <oui-spinner
-                                    class="ml-2"
-                                    data-ng-if="$ctrl.loader.solSshKeyLoading"
-                                    data-size="s"
-                                >
-                                </oui-spinner>
+                                    <oui-field
+                                        data-ng-class="{'oui-field_error': $ctrl.solSshSession.solSshKey.$invalid}"
+                                    >
+                                        <div
+                                            class="mt-3 float-right sshkey-switch"
+                                            data-ng-model="model.keyIsValid"
+                                            data-sshkey-switch
+                                            data-sshkey-switch-key="{{$ctrl.ssh.publicKey}}"
+                                        ></div>
+
+                                        <textarea
+                                            class="mb-3 oui-input form-control"
+                                            name="solSshKey"
+                                            id="solSshKey"
+                                            placeholder="{{:: 'server_configuration_ssh_sol_input_placeholder' | translate:{t0: $ctrl.ssh.inputRules.placeholder} }}"
+                                            data-ng-disabled="$ctrl.loader.solSshKeyLoading || $ctrl.loader.buttonStart || $ctrl.disable.otherTask || $ctrl.disable.localTask"
+                                            data-ng-model="$ctrl.ssh.publicKey"
+                                            data-ng-required="true"
+                                            data-ng-pattern="$ctrl.ssh.inputRules.pattern"
+                                            data-ng-trim="true"
+                                            spellcheck="false"
+                                            autocomplete="off"
+                                            autocapitalize="off"
+                                            autocorrect="off"
+                                            rows="{{ $ctrl.ssh.inputRules.rows }}"
+                                        >
+                                        </textarea>
+                                    </oui-field>
+                                    <button
+                                        type="submit"
+                                        class="btn btn-default btn-block"
+                                        data-ng-disabled="solSshSession.$invalid"
+                                    >
+                                        <span
+                                            data-translate="server_configuration_ssh_sol_start"
+                                        ></span>
+                                        <oui-spinner
+                                            class="ml-2"
+                                            data-ng-if="$ctrl.loader.solSshKeyLoading"
+                                            data-size="s"
+                                        >
+                                        </oui-spinner>
+                                    </button>
+                                </form>
                                 <oui-clipboard
+                                    class="mt-3"
                                     data-model="'ssh ' + $ctrl.ssh.solSshUrl"
                                     data-ng-if="$ctrl.ssh.solSshUrl"
                                 ></oui-clipboard>

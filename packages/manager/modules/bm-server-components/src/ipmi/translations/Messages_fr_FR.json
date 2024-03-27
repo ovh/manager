@@ -60,8 +60,11 @@
   "server_configuration_tile_kvm_description": "Accès au clavier, à la souris et à l'affichage de votre serveur à distance",
   "server_configuration_tile_sol_heading": "Série sur LAN (SOL)",
   "server_configuration_tile_sol_description": "Accès à la console série de votre machine via une connexion sécurisée",
-  "server_configuration_ssh_sol_definition": "SSH SOL (via votre clé ssh)",
-  "server_configuration_ssh_select": "Sélectionnez une clé SSH",
+  "server_configuration_ssh_sol_definition": "SSH SOL (authentification avec la clé SSH)",
+  "server_configuration_ssh_sol_input_placeholder": "Insérez une clé SSH publique. \n\nExemple :\n{{t0}}",
+  "server_configuration_ssh_sol_start": "Lancer la session SOL via SSH",
+  "server_configuration_tile_ipmi_heading": "IPMI",
+  "server_configuration_tile_ipmi_description": "Gérer l'interface de gestion intelligente de matériel (IPMI)",
   "server_configuration_doing": "[En cours]",
   "server_common_confirm": "Confirmer",
   "server_common_cancel": "Annuler"
