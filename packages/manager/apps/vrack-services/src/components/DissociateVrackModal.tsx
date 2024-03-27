@@ -31,7 +31,6 @@ export type DissociateVrackModalProps = {
   description?: string;
   isModalOpen?: boolean;
   closeModal: () => void;
-  isLoading?: boolean;
   dataTrackingPath?: string;
   dataTrackingConfirmValue?: string;
   dataTrackingCancelValue?: string;
@@ -44,7 +43,6 @@ export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
   description,
   isModalOpen,
   closeModal,
-  isLoading,
   dataTrackingPath,
   dataTrackingConfirmValue,
   dataTrackingCancelValue,
@@ -54,7 +52,7 @@ export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
   const { t } = useTranslation('vrack-services');
   const { trackPage, trackClick } = useOvhTracking();
 
-  const { mutate: dissociateVs, isPending, isError, error } = useMutation<
+  const { mutate: dissociateVs, isPending, error } = useMutation<
     ApiResponse<Task>,
     ApiError
   >({
@@ -110,9 +108,9 @@ export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
       >
         {description}
       </OsdsText>
-      {isLoading && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
+      {isPending && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
       <OsdsButton
-        disabled={isLoading || undefined}
+        disabled={isPending || undefined}
         slot="actions"
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.ghost}
@@ -122,7 +120,7 @@ export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
         {t('modalCancelButton')}
       </OsdsButton>
       <OsdsButton
-        disabled={isLoading || undefined}
+        disabled={isPending || undefined}
         slot="actions"
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.flat}

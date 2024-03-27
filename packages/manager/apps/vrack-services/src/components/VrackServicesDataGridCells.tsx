@@ -172,7 +172,7 @@ export const VrackIdCell: React.FC<DataGridCellProps<
             isModalOpen={openedDissociateModal}
             vrackId={rowData.currentState.vrackId}
             vrackServicesId={rowData.id}
-          ></DissociateVrackModal>
+          />
         )}
       </>
     );
