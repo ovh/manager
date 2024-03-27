@@ -50,7 +50,7 @@ const AddDatabase = ({
       toast.toast({
         title: t('addDatabaseToastErrorTitle'),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
       if (onError) {
         onError(err);
