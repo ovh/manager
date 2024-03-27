@@ -127,9 +127,6 @@ export default function AddUserPage(): JSX.Element {
                   onOdsInputBlur={() => {
                     setState({ ...state, touched: true });
                   }}
-                  onOdsInputFocus={() => {
-                    setState({ ...state, touched: true });
-                  }}
                   onOdsValueChange={(e) =>
                     setState({
                       ...state,
