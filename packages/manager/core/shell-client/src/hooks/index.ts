@@ -8,3 +8,4 @@ export * from './useNavigation';
 export * from './useUX';
 export * from './useShell';
 export * from './useEnvironment';
+export * from './useBreadcrumb';
