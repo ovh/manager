@@ -183,10 +183,18 @@ export default class PciInstancesAddController {
 
     return this.PciProjectsProjectInstanceService.getProductAvailability(
       this.projectId,
-      planCode,
       this.coreConfig.getUser().ovhSubsidiary,
-    ).then((productCapability) => {
-      const productRegionsAllowed = productCapability?.plans[0]?.regions;
+    ).then((productCapabilities) => {
+      // New plancodes has been introduced for localzones which will have region names after plan codes names like ***.consumption.EU-WEST-LZ-BRU-A
+      // So we need to consider all the plancodes which starts with "**flavorName**.consumption"
+      const productCapability = productCapabilities.plans?.filter((plan) =>
+        plan.code?.startsWith(planCode),
+      );
+      // After fetching all the productCapabilities we need to combine all the regions of possible plans
+      // of "b38.consumption" "b38.consumption.EU-WEST-LZ-BRU-A" "b38.consumption.EU-SOUTH-LZ-MAD-A" into regionsAllowed
+      const productRegionsAllowed = productCapability?.flatMap(
+        ({ regions }) => regions,
+      );
       Object.entries(this.regions).forEach(([continent, locationsMap]) => {
         // Create datacenters continent groups
         this.availableRegions[continent] = {};
