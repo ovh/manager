@@ -27,8 +27,6 @@ import {
 } from '@/api/vrack/delete';
 
 export type DissociateVrackModalProps = {
-  headline: string;
-  description?: string;
   isModalOpen?: boolean;
   closeModal: () => void;
   dataTrackingPath?: string;
@@ -39,8 +37,6 @@ export type DissociateVrackModalProps = {
 };
 
 export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
-  headline,
-  description,
   isModalOpen,
   closeModal,
   dataTrackingPath,
@@ -61,14 +57,16 @@ export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
         vrack: vrackId,
         vrackServices: vrackServicesId,
       }),
-    mutationKey: dissociateVrackServicesQueryKey(vrackId),
+    mutationKey: dissociateVrackServicesQueryKey(vrackId, vrackServicesId),
     onSuccess: () => {
       closeModal();
     },
   });
 
   const close = () => {
-    trackClick({ path: dataTrackingPath, value: dataTrackingCancelValue });
+    if (dataTrackingPath && dataTrackingCancelValue) {
+      trackClick({ path: dataTrackingPath, value: dataTrackingCancelValue });
+    }
     closeModal();
   };
 
@@ -85,7 +83,7 @@ export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
     <OsdsModal
       dismissible
       color={ODS_THEME_COLOR_INTENT.error}
-      headline={headline}
+      headline={t('modalDissociateHeadline')}
       masked={!isModalOpen || undefined}
       onOdsModalClose={close}
     >
@@ -106,7 +104,7 @@ export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
         level={ODS_TEXT_LEVEL.body}
         className="block mb-3"
       >
-        {description}
+        {t('modalDissociateDescription')}
       </OsdsText>
       {isPending && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
       <OsdsButton
@@ -127,10 +125,12 @@ export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
         color={ODS_THEME_COLOR_INTENT.error}
         {...handleClick(() => {
           dissociateVs();
-          trackClick({
-            path: dataTrackingPath,
-            value: dataTrackingConfirmValue,
-          });
+          if (dataTrackingPath && dataTrackingConfirmValue) {
+            trackClick({
+              path: dataTrackingPath,
+              value: dataTrackingConfirmValue,
+            });
+          }
         })}
       >
         {t('modalConfirmButton')}

@@ -136,3 +136,24 @@ Given('User {string} a vRack associated to a vRack Services', function(
   this.testContext.data.vsIndex = vsIndex;
   this.testContext.data.selectedVrackServices = vrackServicesList[vsIndex];
 });
+
+Given('User is on Overview page', function(this: ICustomWorld<ConfigParams>) {
+  this.testContext.initialUrl = getUrl(
+    'overview',
+    this.testContext.data.selectedVrackServices.id,
+  );
+});
+
+Given('the webservice to dissociate a vRack is {word}', function(
+  this: ICustomWorld<ConfigParams>,
+  okOrKo: 'ok' | 'ko',
+) {
+  this.testContext.initialUrl = getUrl('listing');
+  this.handlersConfig.nbVs = 20;
+  this.handlersConfig.dissociateKo = okOrKo === 'ko';
+
+  const vsIndex = vrackServicesList.findIndex((v) => v.currentState.vrackId);
+
+  this.testContext.data.vsIndex = vsIndex;
+  this.testContext.data.selectedVrackServices = vrackServicesList[vsIndex];
+});
