@@ -178,6 +178,19 @@
                 <span data-ng-bind="$value | date:'medium'"></span>
             </oui-datagrid-column>
             <oui-datagrid-column
+                data-title=":: 'pci_projects_project_storages_containers_container_storage_class_label' | translate"
+                data-property="storageClass"
+                data-type="string"
+                data-searchable
+                data-sortable="asc"
+                data-filterable
+            >
+                <span
+                    data-translate="{{'pci_projects_project_storages_containers_container_storage_class_'+$value }}"
+                    class="text-truncate"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_container_size_label' | translate"
                 data-property="size"
                 data-type="number"
