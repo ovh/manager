@@ -23,9 +23,11 @@ export const getVracMocks = ({
   dissociateKo = false,
 }: GetVrackMocksParams): Handler[] => [
   {
-    url: '/vrack',
-    response: vrackList.slice(0, nbVrack),
+    url: '/vrack/:id/vrackServices/:vsId',
+    response: dissociateKo ? { message: 'Update error' } : {},
+    status: dissociateKo ? 500 : 200,
     api: 'v6',
+    method: 'delete',
   },
   {
     url: '/vrack/:id',
@@ -33,10 +35,9 @@ export const getVracMocks = ({
     api: 'v6',
   },
   {
-    url: '/vrack/:id/vrackServices/:vsId',
-    response: dissociateKo ? { message: 'Update error' } : {},
-    status: dissociateKo ? 500 : 200,
+    url: '/vrack',
+    response: vrackList.slice(0, nbVrack),
     api: 'v6',
-    method: 'delete',
   },
 ];
+// http://localhost:9001/engine/apiv6/vrack/pn-00001/vrackServices/vrs-ahz-9t0-7lb-b5r

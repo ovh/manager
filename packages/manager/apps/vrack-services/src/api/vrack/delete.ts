@@ -8,9 +8,10 @@ export type DissociateVrackServicesParams = {
   vrackServices: string;
 };
 
-export const dissociateVrackServicesQueryKey = (vrackServicesId: string) => [
-  `dissociateVrackServices-${vrackServicesId}`,
-];
+export const dissociateVrackServicesQueryKey = (
+  vrackId: string,
+  vrackServicesId: string,
+) => [`dissociateVrackServices-${vrackId}-${vrackServicesId}`];
 
 /**
  * Dissociate vRack Services from a vRack

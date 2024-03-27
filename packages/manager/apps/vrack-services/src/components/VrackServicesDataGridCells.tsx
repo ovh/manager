@@ -26,7 +26,7 @@ import { EditableText } from '@/components/EditableText';
 import { ProductStatus, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
-import { DissociateVrackModal } from './DissociateVrackModal';
+import { DissociateVrackModal } from '@/components/DissociateVrackModal';
 
 export const DisplayNameCell: React.FC<DataGridCellProps<
   string | undefined,
@@ -167,8 +167,6 @@ export const VrackIdCell: React.FC<DataGridCellProps<
         {showActionMenu && (
           <DissociateVrackModal
             closeModal={() => setOpenedDissociateModal(false)}
-            headline={t('modalDissociateHeadline')}
-            description={t('modalDissociateDescription')}
             isModalOpen={openedDissociateModal}
             vrackId={rowData.currentState.vrackId}
             vrackServicesId={rowData.id}
