@@ -1,0 +1,66 @@
+{
+  "name": "@ovh-ux/manager-vrack-services-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "OVHcloud VrackServices app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/vrack-services"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "tsc && vite",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-vrack-services-app' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-vrack-services-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-vrack-services-app' --include-dependencies -- npm run dev:watch --if-present",
+    "test": "jest --coverage -u",
+    "test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
+    "test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-config": "^7.3.0",
+    "@ovh-ux/manager-core-api": "^0.6.0",
+    "@ovh-ux/manager-module-order": "^0.1.0",
+    "@ovh-ux/manager-react-shell-client": "^0.3.0",
+    "@ovh-ux/manager-tailwind-config": "*",
+    "@ovh-ux/shell": "^3.5.0",
+    "@ovhcloud/manager-components": "^1.1.0",
+    "@ovhcloud/ods-common-core": "^17.1.0",
+    "@ovhcloud/ods-common-theming": "^17.1.0",
+    "@ovhcloud/ods-components": "^17.1.0",
+    "@ovhcloud/ods-theme-blue-jeans": "^17.1.0",
+    "@tanstack/react-query": "^5.12.2",
+    "@tanstack/react-query-devtools": "^5.13.3",
+    "i18next": "^20.4.0",
+    "i18next-http-backend": "^2.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^11.18.1",
+    "react-router-dom": "^6.3.0",
+    "tailwindcss": "^3.3.3"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.3.1",
+    "@ovh-ux/manager-vite-config": "*",
+    "@playwright/test": "^1.41.2",
+    "@types/jest": "27.x",
+    "jest": "27.x",
+    "msw": "2.1.7",
+    "ts-jest": "27.x",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.0",
+    "vite": "^3.0.2"
+  },
+  "msw": {
+    "workerDirectory": "src/public"
+  },
+  "regions": [
+    "CA",
+    "EU",
+    "US"
+  ]
+}

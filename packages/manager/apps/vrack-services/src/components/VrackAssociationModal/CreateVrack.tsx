@@ -1,0 +1,123 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_TYPE,
+  ODS_BUTTON_VARIANT,
+  ODS_SPINNER_SIZE,
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import {
+  OsdsText,
+  OsdsSpinner,
+  OsdsButton,
+  OsdsMessage,
+} from '@ovhcloud/ods-components/react';
+import {
+  OrderDescription,
+  useOrderPollingStatus,
+  useOrderURL,
+} from '@ovh-ux/manager-module-order';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { getVrackListQueryKey } from '@/api';
+import { DeliveringMessages } from '../DeliveringMessages';
+import { handleClick } from '@/utils/ods-utils';
+
+export type CreateVrackProps = {
+  dataTrackingPath?: string;
+  closeModal: () => void;
+};
+
+export const CreateVrack: React.FC<CreateVrackProps> = ({
+  closeModal,
+  dataTrackingPath,
+}) => {
+  const { t } = useTranslation('vrack-services/listing');
+  const vrackOrderUrl = useOrderURL('vrack');
+  const { trackClick } = useOvhTracking();
+
+  const {
+    data: vrackDeliveringOrders,
+    isLoading: areVrackOrdersLoading,
+    isError: isVrackOrdersError,
+    error: vrackOrdersError,
+  } = useOrderPollingStatus({
+    pollingKey: OrderDescription.vrack,
+    queryToInvalidateOnDelivered: getVrackListQueryKey,
+  });
+
+  return (
+    <>
+      <OsdsText
+        className="block mb-4"
+        level={ODS_TEXT_LEVEL.body}
+        size={ODS_TEXT_SIZE._400}
+        color={ODS_THEME_COLOR_INTENT.text}
+      >
+        {t('modalVrackCreationDescriptionLine1')}
+      </OsdsText>
+      <OsdsText
+        className="block mb-4"
+        level={ODS_TEXT_LEVEL.body}
+        size={ODS_TEXT_SIZE._400}
+        color={ODS_THEME_COLOR_INTENT.text}
+      >
+        {t('modalVrackCreationDescriptionLine2')}
+      </OsdsText>
+      {areVrackOrdersLoading && (
+        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+      )}
+      <DeliveringMessages
+        messageKey="deliveringVrackMessage"
+        orders={vrackDeliveringOrders}
+      />
+      {isVrackOrdersError && (
+        <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('genericApiError', { error: vrackOrdersError })}
+          </OsdsText>
+        </OsdsMessage>
+      )}
+      <OsdsButton
+        slot="actions"
+        type={ODS_BUTTON_TYPE.button}
+        variant={ODS_BUTTON_VARIANT.ghost}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        {...handleClick(closeModal)}
+      >
+        {t('modalCancelVrackAssociationButtonLabel')}
+      </OsdsButton>
+      <OsdsButton
+        slot="actions"
+        type={ODS_BUTTON_TYPE.button}
+        variant={ODS_BUTTON_VARIANT.flat}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        disabled={
+          areVrackOrdersLoading ||
+          vrackDeliveringOrders.length > 0 ||
+          isVrackOrdersError ||
+          undefined
+        }
+        target={OdsHTMLAnchorElementTarget._blank}
+        href={vrackOrderUrl}
+        {...handleClick(() => {
+          trackClick({
+            path: dataTrackingPath,
+            value: '::create-vrack',
+            type: 'action',
+          });
+          closeModal();
+        })}
+      >
+        {t('modalCreateNewVrackButtonLabel')}
+      </OsdsButton>
+    </>
+  );
+};
