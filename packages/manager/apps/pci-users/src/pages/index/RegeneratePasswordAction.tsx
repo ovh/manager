@@ -33,6 +33,7 @@ export default function RegeneratePasswordAction({ user }: { user: User }) {
             message: err?.message,
           })}
         </>,
+        true,
       );
     },
     onSuccess: (updatedUser: User) => {
@@ -46,6 +47,7 @@ export default function RegeneratePasswordAction({ user }: { user: User }) {
             }),
           }}
         ></span>,
+        true,
       );
       addSuccess(
         <>
@@ -53,6 +55,7 @@ export default function RegeneratePasswordAction({ user }: { user: User }) {
             user: updatedUser.username,
           })}
         </>,
+        true,
       );
       navigate('.');
     },
