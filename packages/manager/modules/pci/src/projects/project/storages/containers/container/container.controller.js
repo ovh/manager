@@ -51,6 +51,10 @@ export default class PciStoragesContainersContainerController {
         name: 'contentType',
         hidden: this.container.s3StorageType,
       },
+      {
+        name: 'storageClass',
+        hidden: !this.container.s3StorageType,
+      },
     ];
     this.displayEncryptionData =
       this.encryptionAvailable &&
