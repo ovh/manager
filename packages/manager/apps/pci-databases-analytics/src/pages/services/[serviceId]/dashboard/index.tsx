@@ -25,7 +25,6 @@ import { useGetCapabilities } from '@/hooks/api/availabilities.api.hooks';
 import MeanMetric from './_components/meanMetric';
 import { useGetVrack } from '@/hooks/api/vrack.api.hooks';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-// import { ScrollArea } from '@/components/ui/scroll-area';
 
 const Dashboard = () => {
   const { service, projectId } = useServiceData();
@@ -235,29 +234,6 @@ const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
-
-        {/* 
-        <Card className="col-start-1">
-          <CardHeader></CardHeader>
-          <CardContent>
-            <ul className="list-disc list-inside">
-              <li className="list-item">
-                Starting steps (service ready / add ip / add users)
-              </li>
-              <li>Certificate CA</li>
-              <li className="list-item">Guides</li>
-            </ul>
-          </CardContent>
-        </Card>
-        <Card className="col-span-2">
-          <CardHeader></CardHeader>
-          <CardContent>
-            <ScrollArea className="p-2 h-[500px] bg-[#122844] text-white whitespace-pre">
-              {JSON.stringify(service, null, 2)}
-            </ScrollArea>
-          </CardContent>
-        </Card>
-*/}
       </div>
     </>
   );

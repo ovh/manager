@@ -26,113 +26,111 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
   );
   const toast = useToast();
   return (
-    <>
-      <div>
-        {endpoints.length > 1 && (
-          <Select
-            value={selectedEndpoint.component}
-            onValueChange={(v) =>
-              setSelectedEndpoint(
-                endpoints.find((endpoint) => endpoint.component === v),
-              )
-            }
-          >
-            <SelectTrigger className="h-8 mb-3">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {endpoints.map((ep) => (
-                <SelectItem key={ep.component} value={ep.component}>
-                  {ep.component}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        )}
-        <Table>
-          <TableBody>
-            {selectedEndpoint?.domain && (
-              <TableRow>
-                <TableCell className="font-semibold">
-                  {t('connectionDetailsTableHeaderHost')}
-                </TableCell>
-                <TableCell>
-                  <p className="flex-1 truncate h-6 max-w-[300px] m-0">
-                    {selectedEndpoint.domain}
-                  </p>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    type="button"
-                    size="table"
-                    variant="table"
-                    onClick={() => {
-                      navigator.clipboard.writeText(selectedEndpoint.domain);
-                      toast.toast({
-                        title: t('connectionDetailsHostCopyToast'),
-                      });
-                    }}
-                  >
-                    <Files className="w-4 h-4" />
-                  </Button>
-                </TableCell>
-              </TableRow>
-            )}
-            {selectedEndpoint?.port && (
-              <TableRow>
-                <TableCell className="font-semibold">
-                  {t('connectionDetailsTableHeaderPort')}
-                </TableCell>
-                <TableCell>{selectedEndpoint.port}</TableCell>
-              </TableRow>
-            )}
-            {selectedEndpoint?.scheme && (
-              <TableRow>
-                <TableCell className="font-semibold">
-                  {t('connectionDetailsTableHeaderScheme')}
-                </TableCell>
-                <TableCell>{selectedEndpoint.scheme}</TableCell>
-              </TableRow>
-            )}
-            {selectedEndpoint?.sslMode && (
-              <TableRow>
-                <TableCell className="font-semibold">
-                  {t('connectionDetailsTableHeaderSSLMode')}
-                </TableCell>
-                <TableCell>{t('connectionDetailsTableSSLMode')}</TableCell>
-              </TableRow>
-            )}
-            {selectedEndpoint?.uri && (
-              <TableRow>
-                <TableCell className="font-semibold">
-                  {t('connectionDetailsTableHeaderURI')}
-                </TableCell>
-                <TableCell>
-                  <p className="flex-1 truncate h-6 max-w-[300px]">
-                    {selectedEndpoint.uri}
-                  </p>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    type="button"
-                    size="table"
-                    variant="table"
-                    onClick={() => {
-                      navigator.clipboard.writeText(selectedEndpoint.uri);
-                      toast.toast({
-                        title: t('connectionDetailsURICopyToast'),
-                      });
-                    }}
-                  >
-                    <Files className="w-4 h-4" />
-                  </Button>
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
-    </>
+    <div>
+      {endpoints.length > 1 && (
+        <Select
+          value={selectedEndpoint.component}
+          onValueChange={(v) =>
+            setSelectedEndpoint(
+              endpoints.find((endpoint) => endpoint.component === v),
+            )
+          }
+        >
+          <SelectTrigger className="h-8 mb-3">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {endpoints.map((ep) => (
+              <SelectItem key={ep.component} value={ep.component}>
+                {ep.component}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      )}
+      <Table>
+        <TableBody>
+          {selectedEndpoint?.domain && (
+            <TableRow>
+              <TableCell className="font-semibold">
+                {t('connectionDetailsTableHeaderHost')}
+              </TableCell>
+              <TableCell>
+                <p className="flex-1 truncate h-6 max-w-[300px] m-0">
+                  {selectedEndpoint.domain}
+                </p>
+              </TableCell>
+              <TableCell>
+                <Button
+                  type="button"
+                  size="table"
+                  variant="table"
+                  onClick={() => {
+                    navigator.clipboard.writeText(selectedEndpoint.domain);
+                    toast.toast({
+                      title: t('connectionDetailsHostCopyToast'),
+                    });
+                  }}
+                >
+                  <Files className="w-4 h-4" />
+                </Button>
+              </TableCell>
+            </TableRow>
+          )}
+          {selectedEndpoint?.port && (
+            <TableRow>
+              <TableCell className="font-semibold">
+                {t('connectionDetailsTableHeaderPort')}
+              </TableCell>
+              <TableCell>{selectedEndpoint.port}</TableCell>
+            </TableRow>
+          )}
+          {selectedEndpoint?.scheme && (
+            <TableRow>
+              <TableCell className="font-semibold">
+                {t('connectionDetailsTableHeaderScheme')}
+              </TableCell>
+              <TableCell>{selectedEndpoint.scheme}</TableCell>
+            </TableRow>
+          )}
+          {selectedEndpoint?.sslMode && (
+            <TableRow>
+              <TableCell className="font-semibold">
+                {t('connectionDetailsTableHeaderSSLMode')}
+              </TableCell>
+              <TableCell>{t('connectionDetailsTableSSLMode')}</TableCell>
+            </TableRow>
+          )}
+          {selectedEndpoint?.uri && (
+            <TableRow>
+              <TableCell className="font-semibold">
+                {t('connectionDetailsTableHeaderURI')}
+              </TableCell>
+              <TableCell>
+                <p className="flex-1 truncate h-6 max-w-[300px]">
+                  {selectedEndpoint.uri}
+                </p>
+              </TableCell>
+              <TableCell>
+                <Button
+                  type="button"
+                  size="table"
+                  variant="table"
+                  onClick={() => {
+                    navigator.clipboard.writeText(selectedEndpoint.uri);
+                    toast.toast({
+                      title: t('connectionDetailsURICopyToast'),
+                    });
+                  }}
+                >
+                  <Files className="w-4 h-4" />
+                </Button>
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 
