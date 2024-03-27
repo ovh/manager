@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import {
+  OsdsText,
   OsdsTabs,
   OsdsTabBar,
   OsdsTabBarItem,
-} from '@ovhcloud/ods-components/tabs/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+} from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export type DashboardTabItemProps = {

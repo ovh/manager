@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Params, useMatches } from 'react-router-dom';
-import { useShell } from '..';
+import { useShell, useNavigation } from '@ovh-ux/manager-react-shell-client';
 
 type BreadcrumbItem = {
   label: string | undefined;
@@ -30,6 +30,7 @@ const isMatchHandle = (obj: any): obj is MatchHandle => {
 export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
   const matches = useMatches();
   const shell = useShell();
+  const navigation = useNavigation();
 
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [matchCrumbs, setMatchCrumbs] = useState<BreadcrumbItem[]>([]);
@@ -37,7 +38,7 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
   useEffect(() => {
     const fetchRoot = async () => {
       try {
-        const response = await shell.navigation.getURL(appName, '#/', {});
+        const response = await navigation.getURL(appName, '#/', {});
 
         const rootItem = {
           label: rootLabel,
@@ -50,7 +51,7 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
     };
 
     fetchRoot();
-  }, [rootLabel, appName, shell.navigation]);
+  }, [rootLabel, appName, navigation]);
 
   useEffect(() => {
     const fetchMatchCrumbs = async () => {
