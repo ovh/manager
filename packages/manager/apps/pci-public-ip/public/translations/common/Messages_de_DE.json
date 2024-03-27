@@ -11,5 +11,10 @@
   "pci_additional_ips_floating_ip_grid_modify_associated_instance": "Verbundene Instanz bearbeiten",
   "pci_additional_ips_floating_ip_grid_manage_network_security": "Netzwerksicherheit konfigurieren",
   "pci_additional_ips_floating_ip_grid_delete": "Löschen",
-  "manager_error_page_default": "Beim Laden der Seite ist ein Fehler aufgetreten."
+  "manager_error_page_default": "Beim Laden der Seite ist ein Fehler aufgetreten.",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_title": "Möchten Sie wirklich die Floating IP {{ ip }} löschen?",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_confirm": "Bestätigen",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_cancel": "Abbrechen",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_success_info": "Die IP {{ ip }} wurde gelöscht.",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_failure_info": "Beim Löschen der IP {{ ip }} ist ein Fehler aufgetreten: {{ error }}"
 }
