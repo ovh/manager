@@ -39,6 +39,7 @@ export default function OpenStackDownloadPage() {
                 )}
               </OsdsLink>
             </>,
+            true,
           );
         }}
         onError={(error: Error) => {
@@ -48,6 +49,7 @@ export default function OpenStackDownloadPage() {
                 message: error?.message,
               })}
             </>,
+            true,
           );
         }}
       />
