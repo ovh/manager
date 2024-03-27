@@ -1,7 +1,11 @@
 import forEach from 'lodash/forEach';
 import isFunction from 'lodash/isFunction';
 
-import { getNetbootGuideUrl } from './constants';
+import {
+  getNetbootGuideUrl,
+  UNSUPPORTED_SSH_KEY_RESCUES,
+  SSH_KEY,
+} from './constants';
 
 export default class BmServerComponentsNetbootCtrl {
   /* @ngInject */
@@ -30,6 +34,8 @@ export default class BmServerComponentsNetbootCtrl {
     this.HARDDISK = 'harddisk';
     this.RESCUE = 'rescue';
     this.NETWORK = 'network';
+    this.SSHKEY = 'sshkey';
+    this.PASSWORD = 'password';
 
     this.DEFAULT_RESCUE = 'rescue-customer';
 
@@ -43,8 +49,12 @@ export default class BmServerComponentsNetbootCtrl {
     };
 
     this.netboots = null; // all available netboot
+    this.rescueAuthMethods = ['password', 'sshkey']; // rescue auth methods
+    this.currentAuthMethod = null;
     this.networkNetboot = null; // network available netboot
     this.currentNetboot = {}; // current netboot option
+    this.rescueSshKey = null; // current rescue ssh key
+    this.sshKeyInputRules = SSH_KEY;
     this.rootDevice = {
       root: null,
     };
@@ -93,7 +103,8 @@ export default class BmServerComponentsNetbootCtrl {
         this.isValid.rescueMail) ||
       (this.currentNetboot.type === this.NETWORK &&
         this.currentNetboot.network !== '' &&
-        this.isValid.root)
+        this.isValid.root &&
+        this.sshKeyValidation())
     );
   }
 
@@ -101,6 +112,20 @@ export default class BmServerComponentsNetbootCtrl {
     if (this.configurationForm) {
       const rootDeviceEle = this.configurationForm.rootdevice;
       rootDeviceEle.$setValidity('path', true);
+    }
+  }
+
+  onRescueKernelChange() {
+    const selectedKernel = this.currentNetboot.rescue.kernel;
+    if (UNSUPPORTED_SSH_KEY_RESCUES.some((v) => selectedKernel.includes(v))) {
+      this.rescueAuthMethods = this.rescueAuthMethods.filter(
+        (v) => v !== this.SSHKEY,
+      );
+      this.currentAuthMethod = this.PASSWORD;
+      this.rescueSshKey = null;
+    } else {
+      this.rescueAuthMethods.push(this.SSHKEY);
+      this.loadRescueSshKey();
     }
   }
 
@@ -118,6 +143,16 @@ export default class BmServerComponentsNetbootCtrl {
   rootDeviceValidation() {
     const regRootDevice = new RegExp(/(\b.*[a-zA-Z]+.*\b)/g);
     return regRootDevice.test(this.rootDevice.root);
+  }
+
+  sshKeyValidation(prmKey) {
+    if (this.currentAuthMethod === this.SSHKEY) {
+      const regSshKey = new RegExp(
+        /^(ssh-rsa|ecdsa-sha\d+-nistp\d+|ssh-ed\d+)\s+(AAAA[a-zA-Z0-9/=+]+)(\s+(\S{1,128}))*$/g,
+      );
+      return regSshKey.test(prmKey);
+    }
+    return false;
   }
 
   static getActiveOptions(networkOption) {
@@ -144,11 +179,13 @@ export default class BmServerComponentsNetbootCtrl {
       ),
     ];
     if (this.currentNetboot.type === this.RESCUE) {
+      if (this.currentAuthMethod === this.PASSWORD) this.rescueSshKey = null;
       promiseList.push(
-        this.netbootService.updateRescueMail(
+        this.netbootService.updateRescueInfos(
           this.serviceName,
           netbootId,
           this.currentNetboot.rescueMail,
+          this.rescueSshKey,
         ),
       );
     }
@@ -176,9 +213,28 @@ export default class BmServerComponentsNetbootCtrl {
 
   loadRescueMail() {
     this.netbootService
-      .getRescueMail(this.serviceName)
+      .getServerInfos(this.serviceName)
       .then((server) => {
         this.currentNetboot.rescueMail = server.rescueMail;
+      })
+      .catch((error) =>
+        this.handleError(
+          error,
+          this.$translate.instant(
+            'server_configuration_netboot_loading_error',
+            { t0: this.server.name },
+          ),
+        ),
+      );
+  }
+
+  loadRescueSshKey() {
+    this.netbootService
+      .getServerInfos(this.serviceName)
+      .then((server) => {
+        this.rescueSshKey = server.rescueSshKey;
+        if (this.rescueSshKey !== null || this.rescueSshKey !== '')
+          this.currentAuthMethod = this.SSHKEY;
       })
       .catch((error) =>
         this.handleError(
@@ -205,6 +261,7 @@ export default class BmServerComponentsNetbootCtrl {
         }
         this.getCurrent();
         this.loadRescueMail();
+        this.loadRescueSshKey();
       })
       .catch((error) =>
         this.handleError(

@@ -19,6 +19,7 @@
   "server_configuration_netboot_rescue_help_link": "Accéder au guide de diagnostic matériel.",
   "server_configuration_netboot_rescue_choice": "Rescue disponible :",
   "server_configuration_netboot_rescue_mail": "Recevoir les identifiants du mode sur l'adresse e-mail :",
+  "server_configuration_netboot_rescue_mail_none": "Aucune",
   "server_configuration_netboot_rescue_mail_invalid": "Invalide",
   "server_configuration_netboot_kernel_choice": "Kernel disponible :",
   "server_configuration_netboot_kernel_option": "Options prise en charges par ce kernel :",
@@ -38,5 +39,10 @@
   "server_configuration_netboot_confirm": "Valider",
   "server_configuration_netboot_review": "Résumé",
   "server_configuration_netboot_save_in_progress": "Mise à jour...",
-  "server_configuration_netboot_invalid": "Invalide"
+  "server_configuration_netboot_invalid": "Invalide",
+  "server_configuration_netboot_auth_method": "Méthode d'authentification :",
+  "server_configuration_netboot_auth_method_sshkey": "Authentification par clé SSH",
+  "server_configuration_netboot_auth_method_password": "Authentification par mot de passe",
+  "server_configuration_netboot_sshkey_input": "Votre clé SSH Publique :",
+  "server_configuration_netboot_sshkey_input_placeholder": "Insérez une valeur de type sshPubKey. Exemple : {{t0}}"
 }
