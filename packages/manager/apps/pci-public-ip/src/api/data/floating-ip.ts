@@ -51,4 +51,15 @@ export const getAllFloatingIP = async (
   return aggregatedData;
 };
 
+export const terminateFloatingIP = async (
+  projectId: string,
+  region: string,
+  ipId: string,
+) => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/region/${region}/floatingip/${ipId}`,
+  );
+  return data;
+};
+
 export default { getAllFloatingIP };

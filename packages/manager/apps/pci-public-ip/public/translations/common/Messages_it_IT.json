@@ -11,5 +11,10 @@
   "pci_additional_ips_floating_ip_grid_modify_associated_instance": "Modifica l’istanza associata",
   "pci_additional_ips_floating_ip_grid_manage_network_security": "Configurare la sicurezza di rete",
   "pci_additional_ips_floating_ip_grid_delete": "Eliminare",
-  "manager_error_page_default": "Si è verificato un errore durante il caricamento della pagina."
+  "manager_error_page_default": "Si è verificato un errore durante il caricamento della pagina.",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_title": "Vuoi davvero eliminare questo Floating IP {{ ip }}?",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_confirm": "Confermare",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_cancel": "Annullare",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_success_info": "L'IP {{ ip }} è stato eliminato correttamente.",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_failure_info": "Si è verificato un errore durante l'eliminazione dell'IP {{ ip }}: {{ error }}"
 }

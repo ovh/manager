@@ -11,5 +11,10 @@
   "pci_additional_ips_floating_ip_grid_modify_associated_instance": "Update attached instance ",
   "pci_additional_ips_floating_ip_grid_manage_network_security": "Configure network security",
   "pci_additional_ips_floating_ip_grid_delete": "Delete",
-  "manager_error_page_default": "An error has occurred loading the page."
+  "manager_error_page_default": "An error has occurred loading the page.",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_title": "Are you sure you want to delete the {{ip}} Floating IP?",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_confirm": "Confirm",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_cancel": "Exit",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_success_info": "The IP {{ip}} has been deleted.",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_failure_info": "An error has occurred deleting the IP {{ip}}: {{error}}"
 }
