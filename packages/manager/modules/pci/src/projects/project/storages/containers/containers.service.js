@@ -307,10 +307,7 @@ export default class PciStoragesContainersService {
         return this.addSwiftStandardObjectContainer(projectId, container);
 
       case OBJECT_CONTAINER_OFFER_STORAGE_STANDARD:
-        return this.addS3StandardObjectContainer(projectId, container);
-
-      case OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE:
-        return this.addS3HighPerfStandardContainer(projectId, container);
+        return this.addS3ObjectContainer(projectId, container);
 
       default:
         return this.$q.reject({
@@ -340,25 +337,19 @@ export default class PciStoragesContainersService {
   }
 
   /**
-   * Create a S3 Standard Storage Object
-   * Nota: used temporary time to have a full support from
-   * /cloud/project/{projectId}/region/{region}/storage
+   * Create a S3 Storage Object
    * @param projectId {String}: project id (serviceName)
    * @param container {Object}: container model
    * @returns {Promise}: $http request promise
    */
-  addS3StandardObjectContainer(projectId, container) {
-    const { region, name, ownerId, encryption } = container;
+  addS3ObjectContainer(projectId, container) {
+    const { region, name, ownerId } = container;
 
     return this.$http
-      .post(
-        `/cloud/project/${projectId}/region/${region.name}/storageStandard`,
-        {
-          name,
-          ownerId,
-          encryption,
-        },
-      )
+      .post(`/cloud/project/${projectId}/region/${region.name}/storage`, {
+        name,
+        ownerId,
+      })
       .then(({ data }) => data);
   }
 
@@ -375,25 +366,6 @@ export default class PciStoragesContainersService {
         containerType: container.state ? 'private' : 'public',
       },
     );
-  }
-
-  /**
-   * Create a S3 High Perf Standard Object
-   * Nota: later it will be used also to create S3 Standard Storage Object
-   * @param projectId {String}: project id (serviceName)
-   * @param container {Object}: container model
-   * @returns {Promise}: $http request promise
-   */
-  addS3HighPerfStandardContainer(projectId, container) {
-    const { region, name, ownerId, encryption } = container;
-
-    return this.$http
-      .post(`/cloud/project/${projectId}/region/${region.name}/storage`, {
-        name,
-        ownerId,
-        encryption,
-      })
-      .then(({ data }) => data);
   }
 
   addContainer(projectId, containerModel) {
