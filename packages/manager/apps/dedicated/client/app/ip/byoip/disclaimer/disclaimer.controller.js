@@ -19,11 +19,9 @@ export default class IpByoipConfigurationDisclaimer {
       }_${this.byoip.campus}_${this.byoip.asRir ? 'OWN' : 'OVH'}`,
       type: 'action',
     });
-    return this.ByoipService.getExpressOrder(this.plan, this.getPayload()).then(
-      (val) => {
-        this.goToExpressOrder(val);
-      },
-    );
+    return this.ByoipService.getExpressOrder(this.getPayload()).then((val) => {
+      this.goToExpressOrder(val);
+    });
   }
 
   cancel() {

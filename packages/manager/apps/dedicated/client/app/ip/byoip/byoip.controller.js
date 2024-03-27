@@ -61,15 +61,15 @@ export default class IpByoipConfiguration {
       .then((token) => {
         this.token = token;
       })
-      .catch((err) =>
-        this.Alerter.error(
+      .catch((err) => {
+        return this.Alerter.error(
           `${this.$translate.instant('ip_byoip_token_fetch_error')} ${get(
-            err,
+            err.data,
             'message',
           ) || err}`,
           'ip_byoip_configuration',
-        ),
-      );
+        );
+      });
   }
 
   onAsSelect(value) {
