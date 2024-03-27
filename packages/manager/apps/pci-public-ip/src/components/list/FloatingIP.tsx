@@ -2,6 +2,7 @@ import {
   DataGridTextCell,
   Datagrid,
   useDatagridSearchParams,
+  Notifications,
 } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -14,6 +15,7 @@ import {
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
+  OsdsDivider,
   OsdsIcon,
   OsdsLink,
   OsdsMessage,
@@ -75,13 +77,15 @@ export default function FloatingIPComponent({ projectId, projectUrl }) {
     },
     {
       id: 'actions',
-      cell: () => <Actions />,
+      cell: (props: FloatingIP) => <Actions ipId={props.id} />,
       label: '',
     },
   ];
 
   return (
     <>
+      <Notifications />
+      <OsdsDivider />
       <div className="flex">
         <OsdsButton
           className="mr-1"
