@@ -7,7 +7,7 @@
         <oui-spinner></oui-spinner>
     </div>
     <div data-ng-if="!$ctrl.loader.loading && !$ctrl.loader.error">
-        <p class="text-danger" data-ng-if="$ctrl.isServerHacked()">
+        <div class="alert alert-warning" data-ng-if="$ctrl.isServerHacked()">
             <span
                 data-translate="server_configuration_impi_disabled"
                 data-translate-values="{
@@ -15,7 +15,7 @@
                 }"
             >
             </span>
-        </p>
+        </div>
         <div data-ng-if="!$ctrl.isServerHacked()">
             <div data-ng-if="!$ctrl.ipmi.isActivated()">
                 <div data-ng-if="!$ctrl.kvm.featuresAvailable()">
@@ -65,20 +65,40 @@
                 </div>
             </div>
             <div
-                class="text-danger"
+                class="alert alert-warning"
                 data-ng-if="$ctrl.ipmi.isActivated() && ($ctrl.disable.otherTask || $ctrl.disable.localTask)"
-                data-translate="server_configuration_impi_disable"
-            ></div>
+            >
+                <span data-translate="server_configuration_impi_disable"></span>
+            </div>
             <div
                 class="row d-md-flex mb-5"
                 data-ng-if="$ctrl.ipmi.isActivated() && !$ctrl.disable.otherTask && !$ctrl.disable.localTask"
             >
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <oui-tile
                         class="h-100"
                         data-heading="{{::'server_configuration_tile_ipmi_heading' | translate}}"
                         data-description="{{::'server_configuration_tile_ipmi_description' | translate}}"
                     >
+                        <p data-ng-if="$ctrl.ipmiHelpUrl && $ctrl.hasSOL()">
+                            <a
+                                data-ng-href="{{::$ctrl.ipmiHelpUrl}}"
+                                target="_blank"
+                                rel="noopener"
+                                data-track-on="click"
+                                data-track-type="action"
+                                data-track-name="hpc::nutanix::cluster::node::ipmi::guide-configure-ipmi"
+                            >
+                                <span
+                                    data-translate="server_configuration_impi_SOL_help_link"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-external-link"
+                                    aria-hidden="true"
+                                >
+                                </span>
+                            </a>
+                        </p>
                         <oui-tile-definition>
                             <oui-tile-description>
                                 <button
@@ -123,7 +143,9 @@
                             </oui-tile-description>
                         </oui-tile-definition>
 
-                        <oui-tile-definition data-ng-if="$ctrl.ipmi.isActivated() && $ctrl.disable.testActive">
+                        <oui-tile-definition
+                            data-ng-if="$ctrl.ipmi.isActivated() && $ctrl.disable.testActive"
+                        >
                             <oui-tile-description>
                                 <ul class="list-unstyled">
                                     <li>
@@ -205,7 +227,7 @@
                         </oui-tile-definition>
                     </oui-tile>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <oui-tile
                         class="h-100"
                         data-heading="{{::'server_configuration_tile_kvm_heading' | translate}}"
@@ -278,36 +300,22 @@
                                 <p
                                     data-translate="server_configuration_impi_monitoring_warning"
                                 ></p>
-                                <p data-ng-if="$ctrl.ipmiHelpUrl && $ctrl.hasSOL()">
-                                    <a
-                                        data-ng-href="{{::$ctrl.ipmiHelpUrl}}"
-                                        target="_blank"
-                                        rel="noopener"
-                                        data-track-on="click"
-                                        data-track-type="action"
-                                        data-track-name="hpc::nutanix::cluster::node::ipmi::guide-configure-ipmi"
-                                    >
-                                        <span
-                                            data-translate="server_configuration_impi_SOL_help_link"
-                                        ></span>
-                                        <span
-                                            class="oui-icon oui-icon-external-link"
-                                            aria-hidden="true"
-                                        >
-                                        </span>
-                                    </a>
-                                </p>
                             </oui-tile-description>
                         </oui-tile-definition>
                     </oui-tile>
                 </div>
-                <div class="col-md-6">
+                <div
+                    class="col-md-4"
+                    data-ng-if="$ctrl.hasSOL() && ($ctrl.ipmi.isSerialOverLanUrlSupported() || $ctrl.ipmi.isSerialOverLanUrlSupported())"
+                >
                     <oui-tile
                         class="h-100"
                         data-heading="{{::'server_configuration_tile_sol_heading' | translate}}"
                         data-description="{{::'server_configuration_tile_sol_description' | translate}}"
                     >
-                        <oui-tile-definition data-ng-if="$ctrl.hasSOL()">
+                        <oui-tile-definition
+                            data-ng-if="$ctrl.hasSOL() && $ctrl.ipmi.isSerialOverLanUrlSupported()"
+                        >
                             <oui-tile-description>
                                 <button
                                     type="button"
@@ -337,24 +345,18 @@
                             </oui-tile-description>
                         </oui-tile-definition>
                         <oui-tile-definition
+                            data-ng-if="$ctrl.hasSOL() && $ctrl.ipmi.isSerialOverLanSshKeySupported()"
                             data-term="{{::'server_configuration_ssh_sol_definition' | translate}}"
                         >
                             <oui-tile-description>
-                                <oui-select
-                                    data-placeholder="{{::'server_configuration_ssh_select' | translate}}"
-                                    data-items="$ctrl.ssh.list"
-                                    data-model="$ctrl.ssh.selectedKey"
-                                    data-on-change="$ctrl.onSelectSshKey()"
-                                    data-disabled="$ctrl.loader.solSshKeyLoading || $ctrl.loader.buttonStart || $ctrl.disable.otherTask || $ctrl.disable.localTask"
+                                <button
+                                    class="btn btn-default btn-block my-2"
+                                    data-ng-click="setAction('sol/add/sol-add-ssh', '', true)"
                                 >
-                                    <span ng-bind="$item"></span>
-                                </oui-select>
-                                <oui-spinner
-                                    class="ml-2"
-                                    data-ng-if="$ctrl.loader.solSshKeyLoading"
-                                    data-size="s"
-                                >
-                                </oui-spinner>
+                                    <span
+                                        data-translate="server_configuration_ssh_sol_add_key"
+                                    ></span>
+                                </button>
                                 <oui-clipboard
                                     data-model="'ssh ' + $ctrl.ssh.solSshUrl"
                                     data-ng-if="$ctrl.ssh.solSshUrl"
@@ -394,4 +396,14 @@
         </div>
     </div>
     <div class="oui-modal-backdrop"></div>
+</div>
+<div id="sshAction" class="modal fade currentAction" role="dialog">
+    <div class="modal-dialog">
+        <div
+            id="modal-container"
+            class="modal-content"
+            data-ng-include="stepPath"
+        ></div>
+        <div id="modal-help" class="help4wizards"></div>
+    </div>
 </div>

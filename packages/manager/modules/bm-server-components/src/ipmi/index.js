@@ -5,6 +5,7 @@ import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-at-internet';
 import ovhManagerCore from '@ovh-ux/manager-core';
+import IpmiSolAddSsh from './sol/add/sol-add-ssh.module';
 
 import component from './component';
 import service from './service';
@@ -19,6 +20,7 @@ angular
     'ngTranslateAsyncLoader',
     'ngAtInternet',
     ovhManagerCore,
+    IpmiSolAddSsh,
   ])
   .component('serverIpmi', component)
   .service('IpmiService', service)

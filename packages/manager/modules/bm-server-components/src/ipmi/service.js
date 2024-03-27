@@ -83,10 +83,6 @@ export default class BmServerComponentsIpmiService {
     return this.$http.post('/me/geolocation').then(({ data }) => data);
   }
 
-  getSshKey() {
-    return this.$http.get('/me/sshKey').then(({ data }) => data);
-  }
-
   getTaskInProgress(serviceName, type) {
     return this.$http
       .get(`/sws/dedicated/server/${serviceName}/tasks/uncompleted`, {
