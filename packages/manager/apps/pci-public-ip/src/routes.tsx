@@ -70,7 +70,7 @@ export default [
       },
       {
         path: 'onboarding',
-        ...lazyRouteConfig(() => import('@/pages/onboarding/OnBoardingPage')),
+        ...lazyRouteConfig(() => import('@/pages/onboarding/OnBoarding.page')),
         children: [],
       },
     ],

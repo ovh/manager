@@ -24,6 +24,7 @@ export type OnboardingLayoutProps = PropsWithChildren<{
     width?: number;
     height?: number;
   };
+  isActionDisabled?: boolean;
 }>;
 
 export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
@@ -37,6 +38,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   children,
   onOrderButtonClick,
   img,
+  isActionDisabled,
 }) => {
   return (
     <div className="flex flex-col mx-auto px-3">
@@ -72,6 +74,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
                 size={ODS_BUTTON_SIZE.md}
                 href={orderHref}
                 onClick={onOrderButtonClick}
+                {...(isActionDisabled && { disabled: true })}
               >
                 {orderButtonLabel}
               </OsdsButton>
