@@ -26,6 +26,7 @@ import { cn } from '@/lib/utils';
 import {
   ServiceCreationWithEngine,
   useAddService,
+  useUpdateService,
 } from '@/hooks/api/services.api.hooks';
 import PriceUnitSwitch from '@/components/price-unit-switch';
 import PlansSelect from '@/components/Order/plan/plan-select';
@@ -61,21 +62,22 @@ const UpdateForm = ({
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/backups/fork',
   );
-  const { projectId } = useServiceData();
-  const { addService, isPending: isPendingAddService } = useAddService({
+  const { projectId, service, serviceQuery } = useServiceData();
+  const { updateService, isPending: isPendingAddService } = useUpdateService({
     onError: (err) => {
       toast({
         title: t('errorCreatingService'),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
     },
-    onSuccess: (fork) => {
+    onSuccess: (updatedService) => {
       toast({
         title: t('successCreatingService'),
       });
+      serviceQuery.refetch();
       navigate(
-        `/pci/projects/${projectId}/databases-analytics/${fork.category}/services/${fork.id}`,
+        `/pci/projects/${projectId}/databases-analytics/${updatedService.category}/services/${updatedService.id}/settings`,
       );
     },
   });
@@ -90,34 +92,16 @@ const UpdateForm = ({
 
   const onSubmit = model.form.handleSubmit(
     (data) => {
-      // data has been validated, create payload and submit post request
-      const serviceInfos: ServiceCreationWithEngine = {
-        description: data.name,
-        engine: data.engineWithVersion.engine as database.EngineEnum,
-        nodesPattern: {
+      updateService({
+        projectId,
+        engine: service.engine,
+        serviceId: service.id,
+        data: {
+          version: data.engineWithVersion.version,
+          plan: data.plan,
           flavor: data.flavor,
-          number: data.nbNodes,
-          region: data.region,
         },
-        plan: data.plan,
-        version: data.engineWithVersion.version,
-        ipRestrictions: data.ipRestrictions,
-      };
-      if (data.network.type === database.NetworkTypeEnum.private) {
-        // endpoint does not expect the network id, but the linked openstackId instead
-        const networkOpenstackId = model.result.network.network.regions.find(
-          (r) => r.region.includes(data.region),
-        ).openstackId;
-        serviceInfos.networkId = networkOpenstackId;
-        serviceInfos.subnetId = data.network.subnetId;
-      }
-      if (model.result.flavor.storage) {
-        serviceInfos.disk = {
-          size:
-            model.result.flavor.storage.minimum.value + data.additionalStorage,
-        };
-      }
-      addService(serviceInfos);
+      });
     },
     (error) => {
       toast({

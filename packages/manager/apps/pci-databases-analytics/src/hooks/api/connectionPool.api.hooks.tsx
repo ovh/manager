@@ -76,7 +76,7 @@ export function useEditConnectionPool({
 }
 
 interface UseDeleteConnectionPoolProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: () => void;
 }
 

@@ -68,7 +68,7 @@ const OrderFunnel = ({
       toast({
         title: t('errorCreatingService'),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
     },
     onSuccess: (service) => {

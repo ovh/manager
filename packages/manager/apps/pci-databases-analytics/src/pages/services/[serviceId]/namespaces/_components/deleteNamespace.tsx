@@ -43,7 +43,7 @@ const DeleteNamespaceModal = ({
       toast.toast({
         title: t('deleteNamespaceToastErrorTitle'),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
       if (onError) {
         onError(err);

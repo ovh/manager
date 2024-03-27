@@ -98,7 +98,7 @@ const ForkForm = ({
       toast({
         title: t('errorCreatingService'),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
     },
     onSuccess: (fork) => {

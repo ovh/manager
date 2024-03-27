@@ -36,7 +36,7 @@ const CurrentQueries = () => {
       toast.toast({
         title: t('currentQueryTerminateToastErrorTitle'),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
     },
     onSuccess: (result) => {

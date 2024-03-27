@@ -41,7 +41,7 @@ const DeleteDatabase = ({
       toast.toast({
         title: t('deleteDatabaseToastErrorTitle'),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
       if (onError) {
         onError(err);
