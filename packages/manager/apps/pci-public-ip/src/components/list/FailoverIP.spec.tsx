@@ -12,6 +12,23 @@ import FailoverIPComponent, {
   FailoverIPComponentProps,
 } from './FailoverIP.component';
 
+type TData = {
+  rows: {
+    associatedEntityName: string;
+    block: string;
+    continentCode: string;
+    geoloc: string;
+    id: string;
+    ip: string;
+    progress: number;
+    routedTo: string;
+    status: string;
+    subType: string;
+  }[];
+  pageCount: number;
+  totalRows: number;
+};
+
 vi.mock('@ovhcloud/manager-components', () => ({
   DataGridTextCell: vi.fn().mockReturnValue(null),
   Datagrid: vi.fn().mockReturnValue(<div>Datagrid</div>),
@@ -108,7 +125,7 @@ describe('FailoverIP component tests', () => {
   it('should display Error message when error is defined', () => {
     vi.spyOn(useFailoverModule, 'useFailoverIPs').mockReturnValue({
       error: 'there is an error',
-    } as UseQueryResult<any>);
+    } as UseQueryResult<TData>);
 
     const props = {
       projectId: 'project-id-123456',
@@ -125,7 +142,7 @@ describe('FailoverIP component tests', () => {
     vi.spyOn(useFailoverModule, 'useFailoverIPs').mockReturnValue({
       error: undefined,
       isLoading: true,
-    } as UseQueryResult<any>);
+    } as UseQueryResult<TData>);
 
     const props = {
       projectId: 'project-id-123456',
@@ -147,7 +164,7 @@ describe('FailoverIP component tests', () => {
       },
       error: undefined,
       isLoading: false,
-    } as UseQueryResult<any>);
+    } as UseQueryResult<TData>);
 
     const props = {
       projectId: 'project-id-123456',
