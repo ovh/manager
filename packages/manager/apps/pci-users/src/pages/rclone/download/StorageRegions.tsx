@@ -1,5 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import { OsdsSelect, OsdsSelectOption } from '@ovhcloud/ods-components/react';
+import {
+  OsdsSelect,
+  OsdsSelectOption,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect, useState } from 'react';
 import { useStorageRegions } from '@/api/hooks/useRegion';
 import { Region } from '@/api/data/region';
@@ -14,6 +19,7 @@ export default function StorageRegions({
   onStorageRegionChange,
 }: S3StorageRegionsProps) {
   const { t } = useTranslation('region');
+  const { t: tCommon } = useTranslation('common');
   const { data: storageRegions, isLoading } = useStorageRegions(`${projectId}`);
   const [currentRegion, setCurrentRegion] = useState('');
   useEffect(() => {
@@ -25,23 +31,32 @@ export default function StorageRegions({
   return (
     <>
       {!isLoading && currentRegion && (
-        <OsdsSelect
-          value={currentRegion}
-          data-testid={'currentRegionSelect'}
-          onOdsValueChange={(event) => {
-            const { value } = event.detail;
-            setCurrentRegion(`${value}`);
-            onStorageRegionChange(`${value}`);
-          }}
-        >
-          {storageRegions?.map((region: Region, index: number) => (
-            <OsdsSelectOption key={index} value={region.name}>
-              {t(`manager_components_region_${region.name}_micro`, {
-                micro: region.name,
-              })}
-            </OsdsSelectOption>
-          ))}
-        </OsdsSelect>
+        <>
+          <OsdsSelect
+            value={currentRegion}
+            data-testid={'currentRegionSelect'}
+            onOdsValueChange={(event) => {
+              const { value } = event.detail;
+              setCurrentRegion(`${value}`);
+              onStorageRegionChange(`${value}`);
+            }}
+          >
+            {storageRegions?.map((region: Region, index: number) => (
+              <OsdsSelectOption key={index} value={region.name}>
+                {t(`manager_components_region_${region.name}_micro`, {
+                  micro: region.name,
+                })}
+              </OsdsSelectOption>
+            ))}
+          </OsdsSelect>
+          <OsdsText
+            slot="helper"
+            color={ODS_THEME_COLOR_INTENT.text}
+            className={'mt-1'}
+          >
+            {tCommon('pci_projects_project_users_download-rclone_region_help')}
+          </OsdsText>
+        </>
       )}
     </>
   );
