@@ -25,6 +25,7 @@ export default function RemoveSshPage() {
           t('pci_projects_project_users_delete_success_message', {
             user: user?.username,
           }),
+          true,
         );
       }}
       onError={(error: Error) => {
@@ -35,6 +36,7 @@ export default function RemoveSshPage() {
               user: user?.username,
             })}
           </>,
+          true,
         );
       }}
     />

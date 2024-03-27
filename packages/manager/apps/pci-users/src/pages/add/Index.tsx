@@ -48,6 +48,7 @@ export default function AddUserPage(): JSX.Element {
             }),
           }}
         />,
+        true,
       );
     },
     onError: (error) => {
@@ -59,6 +60,7 @@ export default function AddUserPage(): JSX.Element {
             }),
           }}
         />,
+        true,
       );
     },
   });
