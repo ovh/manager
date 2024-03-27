@@ -135,13 +135,17 @@ export const generateOpenStackToken = async (
   userId: string,
   password: string,
 ): Promise<OpenStackTokenResponse> => {
-  const { data } = await v6.post(
-    `/cloud/project/${projectId}/user/${userId}/token`,
-    {
-      password,
-    },
-  );
-  return data;
+  try {
+    const { data } = await v6.post(
+      `/cloud/project/${projectId}/user/${userId}/token`,
+      {
+        password,
+      },
+    );
+    return data;
+  } catch (e) {
+    throw new Error(e.response?.data?.message || e.message);
+  }
 };
 
 export const createUser = async (
