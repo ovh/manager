@@ -33,6 +33,16 @@ export default [
           {
             path: 'floating-ips',
             ...lazyRouteConfig(() => import('@/pages/list')),
+            children: [
+              {
+                path: ':ipId/terminate',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/floating-ips/terminate/TerminateFloatingIPPage'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'additional-ips',
