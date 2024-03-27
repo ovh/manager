@@ -41,6 +41,18 @@ export default function FilterAdd({ columns, onAddFilter }: FilterAddProps) {
     [columns, selectedId],
   );
 
+  const submitAddFilter = () => {
+    onAddFilter(
+      {
+        key: selectedId,
+        comparator: selectedComparator,
+        value,
+      },
+      selectedColumn,
+    );
+    setValue('');
+  };
+
   return (
     <>
       <OsdsFormField>
@@ -99,12 +111,17 @@ export default function FilterAdd({ columns, onAddFilter }: FilterAddProps) {
         </div>
 
         <OsdsInput
+          className="border"
           type={ODS_INPUT_TYPE.text}
           color={ODS_THEME_COLOR_INTENT.primary}
           value={value}
           data-testid="filter-add_value-input"
           onOdsValueChange={(e) => setValue(`${e.detail.value}`)}
-          className="border"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              submitAddFilter();
+            }
+          }}
         />
       </OsdsFormField>
       <OsdsButton
@@ -112,17 +129,7 @@ export default function FilterAdd({ columns, onAddFilter }: FilterAddProps) {
         color={ODS_THEME_COLOR_INTENT.primary}
         size={ODS_BUTTON_SIZE.sm}
         disabled={value ? undefined : true}
-        onClick={() => {
-          onAddFilter(
-            {
-              key: selectedId,
-              comparator: selectedComparator,
-              value,
-            },
-            selectedColumn,
-          );
-          setValue('');
-        }}
+        onClick={submitAddFilter}
         data-testid="filter-add_submit"
       >
         {t('common_criteria_adder_submit_label')}
