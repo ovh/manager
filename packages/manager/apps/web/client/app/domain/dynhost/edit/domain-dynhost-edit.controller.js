@@ -21,7 +21,8 @@ angular.module('App').controller(
     ipTargetCheck(input) {
       input.$setValidity(
         'iptarget',
-        this.WucValidator.isValidIpv4(this.dynHost.ip),
+        this.WucValidator.isValidIpv4(this.dynHost.ip) ||
+          this.WucValidator.isValidIpv6(this.dynHost.ip),
       );
     }
 
