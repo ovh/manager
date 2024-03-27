@@ -169,7 +169,7 @@ export default function AddUserPage(): JSX.Element {
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
+        variant={ODS_BUTTON_VARIANT.ghost}
         onClick={modalActions.close}
       >
         {tCommon('pci_projects_project_users_add_cancel_label')}
