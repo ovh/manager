@@ -18,7 +18,20 @@ export const CDN_TYPE = {
   ADVANCED: 'cdn-advanced',
 };
 
+export const DIAGNOSTIC_STATE = {
+  ERROR: 'error',
+  INFO: 'info',
+  SUCCESS: 'success',
+};
+
+export const HOSTING_TAB_DOMAINS = {
+  A_RECORD: 'A',
+  AAAA_RECORD: 'AAAA',
+};
+
 export default {
+  DIAGNOSTIC_STATE,
+  HOSTING_TAB_DOMAINS,
   HOSTING_OFFER,
   CDN_STATUS,
   CDN_VERSION,
