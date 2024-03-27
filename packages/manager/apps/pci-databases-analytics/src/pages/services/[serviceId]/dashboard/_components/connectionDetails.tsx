@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Files } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -20,6 +21,9 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
   const [selectedEndpoint, setSelectedEndpoint] = useState<
     database.service.Endpoint
   >(endpoints[0]);
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/dashboard',
+  );
   const toast = useToast();
   return (
     <>
@@ -49,67 +53,79 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
           <TableBody>
             {selectedEndpoint?.domain && (
               <TableRow>
-                <TableCell className="font-semibold">Hote</TableCell>
+                <TableCell className="font-semibold">
+                  {t('connectionDetailsTableHeaderHost')}
+                </TableCell>
                 <TableCell>
-                  <div className="flex justify-center h-6 max-w-[345px]">
-                    <p className="flex-1 truncate">{selectedEndpoint.domain}</p>
-                    <Button
-                      type="button"
-                      size="table"
-                      variant="ghost"
-                      className="ml-2 hover:bg-primary-100 hover:text-primary-700 hover:font-semibold"
-                      onClick={() => {
-                        navigator.clipboard.writeText(selectedEndpoint.domain);
-                        toast.toast({
-                          title: 'copied',
-                        });
-                      }}
-                    >
-                      <Files className="w-4 h-4" />
-                    </Button>
-                  </div>
+                  <p className="flex-1 truncate h-6 max-w-[300px] m-0">
+                    {selectedEndpoint.domain}
+                  </p>
+                </TableCell>
+                <TableCell>
+                  <Button
+                    type="button"
+                    size="table"
+                    variant="table"
+                    onClick={() => {
+                      navigator.clipboard.writeText(selectedEndpoint.domain);
+                      toast.toast({
+                        title: t('connectionDetailsHostCopyToast'),
+                      });
+                    }}
+                  >
+                    <Files className="w-4 h-4" />
+                  </Button>
                 </TableCell>
               </TableRow>
             )}
             {selectedEndpoint?.port && (
               <TableRow>
-                <TableCell className="font-semibold">Port</TableCell>
+                <TableCell className="font-semibold">
+                  {t('connectionDetailsTableHeaderPort')}
+                </TableCell>
                 <TableCell>{selectedEndpoint.port}</TableCell>
               </TableRow>
             )}
             {selectedEndpoint?.scheme && (
               <TableRow>
-                <TableCell className="font-semibold">Protocole</TableCell>
+                <TableCell className="font-semibold">
+                  {t('connectionDetailsTableHeaderScheme')}
+                </TableCell>
                 <TableCell>{selectedEndpoint.scheme}</TableCell>
               </TableRow>
             )}
             {selectedEndpoint?.sslMode && (
               <TableRow>
-                <TableCell className="font-semibold">SSL Mode</TableCell>
-                <TableCell>Required</TableCell>
+                <TableCell className="font-semibold">
+                  {t('connectionDetailsTableHeaderSSLMode')}
+                </TableCell>
+                <TableCell>{t('connectionDetailsTableSSLMode')}</TableCell>
               </TableRow>
             )}
             {selectedEndpoint?.uri && (
               <TableRow>
-                <TableCell className="font-semibold">URI</TableCell>
+                <TableCell className="font-semibold">
+                  {t('connectionDetailsTableHeaderURI')}
+                </TableCell>
                 <TableCell>
-                  <div className="flex justify-center h-6 max-w-[345px]">
-                    <p className="flex-1 truncate">{selectedEndpoint.uri}</p>
-                    <Button
-                      type="button"
-                      size="table"
-                      variant="ghost"
-                      className="ml-2 hover:bg-primary-100 hover:text-primary-700 hover:font-semibold"
-                      onClick={() => {
-                        navigator.clipboard.writeText(selectedEndpoint.uri);
-                        toast.toast({
-                          title: 'copied',
-                        });
-                      }}
-                    >
-                      <Files className="w-4 h-4" />
-                    </Button>
-                  </div>
+                  <p className="flex-1 truncate h-6 max-w-[300px]">
+                    {selectedEndpoint.uri}
+                  </p>
+                </TableCell>
+                <TableCell>
+                  <Button
+                    type="button"
+                    size="table"
+                    variant="table"
+                    onClick={() => {
+                      navigator.clipboard.writeText(selectedEndpoint.uri);
+                      toast.toast({
+                        title: t('connectionDetailsURICopyToast'),
+                      });
+                    }}
+                  >
+                    <Files className="w-4 h-4" />
+                  </Button>
                 </TableCell>
               </TableRow>
             )}
