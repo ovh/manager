@@ -39,6 +39,7 @@ export default function RcloneDownloadPage() {
                 )}
               </OsdsLink>
             </>,
+            true,
           );
         }}
         onError={(error: Error) => {
@@ -48,6 +49,7 @@ export default function RcloneDownloadPage() {
                 message: error?.message,
               })}
             </>,
+            true,
           );
         }}
       />

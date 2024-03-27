@@ -19,7 +19,7 @@ export default function EditRolesPage() {
       userId={userId || 0}
       onClose={() => onClose()}
       onSuccess={() => {
-        addSuccess(t('pci_projects_project_users_roles_edit_success'));
+        addSuccess(t('pci_projects_project_users_roles_edit_success'), true);
       }}
       onError={(error: Error) => {
         addError(
@@ -28,6 +28,7 @@ export default function EditRolesPage() {
               message: error?.message,
             })}
           </>,
+          true,
         );
       }}
     />
