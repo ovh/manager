@@ -26,6 +26,7 @@ export default function GenerateOpenStackTokenPage() {
                 user: user?.username,
               })}
             </>,
+            true,
           );
         }}
       />
