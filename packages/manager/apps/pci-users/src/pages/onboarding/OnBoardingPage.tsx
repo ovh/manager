@@ -88,22 +88,28 @@ export default function OnBoardingPage() {
     },
   ];
 
-  const descriptionContent = [
-    t('pci_projects_project_users_onboarding_content1'),
-    t('pci_projects_project_users_onboarding_content2'),
-    t('pci_projects_project_users_onboarding_content3'),
-    t('pci_projects_project_users_onboarding_content4'),
-  ].join(' ');
-
   return (
     <>
       {project && <OsdsBreadcrumb items={breadcrumbItems} />}
       {isDiscoveryProject(project) && (
-        <PciDiscoveryBanner projectId={projectId} />
+        <div className="mb-8">
+          <PciDiscoveryBanner projectId={projectId} />
+        </div>
       )}
       <OnboardingLayout
         title={t('pci_projects_project_users_onboarding_title')}
-        description={descriptionContent}
+        description={
+          <>
+            <span>{t('pci_projects_project_users_onboarding_content1')}</span>
+            <span className="font-bold block mt-4">
+              {t('pci_projects_project_users_onboarding_content2')}
+            </span>
+            <span>{t('pci_projects_project_users_onboarding_content3')}</span>
+            <span className="block mt-4">
+              {t('pci_projects_project_users_onboarding_content4')}
+            </span>
+          </>
+        }
         /**
          * TODO: Should rename those props to make them generic because the component must be reused in other context different that order
          */
