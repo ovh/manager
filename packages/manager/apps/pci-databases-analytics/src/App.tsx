@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { odsSetup } from '@ovhcloud/ods-common-core';
 import { useShell } from '@ovh-ux/manager-react-shell-client';
@@ -9,10 +9,13 @@ import './global.css';
 import queryClient from './query.client';
 import Router from './Router';
 import Loading from './components/Loading/Loading';
+import { useLoadingIndicatorContext } from './contexts/loadingIndicatorContext';
+import ProgressLoader from './components/Loading/ProgressLoader';
 
 odsSetup();
 
 function App() {
+  const { loading } = useLoadingIndicatorContext();
   const shell = useShell();
   useEffect(() => {
     shell.ux.hidePreloader();
@@ -20,7 +23,8 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <React.Suspense fallback={<Loading />}>
+      {loading && <ProgressLoader />}
+      <React.Suspense fallback={null}>
         <Router />
       </React.Suspense>
     </QueryClientProvider>

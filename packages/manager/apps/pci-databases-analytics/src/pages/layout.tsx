@@ -10,6 +10,7 @@ import { Toaster } from '@/components/ui/toaster';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 import queryClient from '@/query.client';
 import { getProject } from '@/api';
+import { useLoadingIndicatorContext } from '@/contexts/loadingIndicatorContext';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return (
@@ -52,6 +53,7 @@ export const Loader = ({ params, request }: ServiceCategoryLayoutProps) => {
 };
 
 function RoutingSynchronisation() {
+  const { setLoading } = useLoadingIndicatorContext();
   const location = useLocation();
   const routing = useRouting();
   const shell = useShell();
@@ -60,6 +62,7 @@ function RoutingSynchronisation() {
   }, []);
   useEffect(() => {
     shell.ux.hidePreloader();
+    setLoading(false);
     routing.onHashChange();
   }, [location]);
   return <></>;
