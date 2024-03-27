@@ -117,6 +117,11 @@
                                 data-translate="hosting_tab_DOMAINS_table_header_domain"
                             ></th>
                             <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_diagnostic"
+                            ></th>
+                            <th
                                 scope="col"
                                 data-translate="hosting_tab_DOMAINS_table_header_home"
                             ></th>
@@ -209,6 +214,26 @@
                                     data-size="s"
                                     data-ng-if="domain.status === HOSTING_STATUS.UPDATING"
                                 ></oui-spinner>
+                            </td>
+                            <td class="text-center">
+                                <span
+                                    class="oui-badge"
+                                    data-ng-click="openDiagnosticModal(domain)"
+                                    data-oui-tooltip="{{getTooltipForDomain(domain.name)}}"
+                                    data-oui-tooltip-placement="bottom"
+                                    data-ng-class="'oui-badge_' + getDiagnosticSuffix(domain.name)"
+                                    data-ng-bind="HOSTING_TAB_DOMAINS.A_RECORD | translate"
+                                >
+                                </span>
+                                <span
+                                    class="oui-badge"
+                                    data-ng-click="openDiagnosticModal(domain)"
+                                    data-oui-tooltip="{{getTooltipForDomain(domain.name)}}"
+                                    data-oui-tooltip-placement="bottom"
+                                    data-ng-class="'oui-badge_' + getDiagnosticSuffix(domain.name)"
+                                    data-ng-bind="HOSTING_TAB_DOMAINS.AAAA_RECORD | translate"
+                                >
+                                </span>
                             </td>
                             <td data-ng-bind="domain.path"></td>
                             <td
