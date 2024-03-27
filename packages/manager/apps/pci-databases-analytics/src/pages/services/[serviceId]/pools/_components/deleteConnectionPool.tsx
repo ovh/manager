@@ -43,7 +43,7 @@ const DeleteConnectionPool = ({
       toast.toast({
         title: t('deleteConnectionPoolToastErrorTitle'),
         variant: 'destructive',
-        description: err.message,
+        description: err.response.data.message,
       });
       if (onError) {
         onError(err);

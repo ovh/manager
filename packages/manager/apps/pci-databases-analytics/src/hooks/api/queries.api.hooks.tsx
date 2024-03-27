@@ -13,7 +13,7 @@ import {
   getQueryStatistics,
   resetQueryStatistics,
 } from '@/api/databases/queries';
-import { ServiceData } from '@/api/databases';
+import { CdbError, ServiceData } from '@/api/databases';
 
 export function useGetCurrentQueries(
   projectId: string,
@@ -30,7 +30,7 @@ export function useGetCurrentQueries(
 }
 
 interface MutateCurrentQueryProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: (
     database: database.service.currentqueries.query.CancelResponse,
   ) => void;
@@ -76,7 +76,7 @@ export function useGetQueryStatistics(
 }
 
 interface MutateQuerStatisticsyProps {
-  onError: (cause: Error) => void;
+  onError: (cause: CdbError) => void;
   onSuccess: () => void;
 }
 export function useResetQueryStatistics({
