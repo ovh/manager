@@ -11,5 +11,10 @@
   "pci_additional_ips_floating_ip_grid_modify_associated_instance": "Zmień przypisaną instancję",
   "pci_additional_ips_floating_ip_grid_manage_network_security": "Skonfiguruj bezpieczeństwo sieci",
   "pci_additional_ips_floating_ip_grid_delete": "Usuń",
-  "manager_error_page_default": "Wystąpił błąd podczas ładowania strony."
+  "manager_error_page_default": "Wystąpił błąd podczas ładowania strony.",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_title": "Czy na pewno chcesz usunąć ten adres Floating IP {{ip}}?",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_confirm": "Zatwierdź",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_cancel": "Anuluj",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_success_info": "Adres IP {{ip}} został usunięty.",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_failure_info": "Wystąpił błąd podczas usuwania adresu IP {{ip}}: {{error}}"
 }
