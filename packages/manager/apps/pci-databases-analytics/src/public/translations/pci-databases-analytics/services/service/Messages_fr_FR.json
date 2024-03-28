@@ -9,7 +9,7 @@
   "IntegrationsTab": "Intégrations",
   "MetricsTab": "Métriques",
   "LogsTab": "Logs",
-  "SettingsTab": "Configurations",
+  "SettingsTab": "Configuration",
   "renameServiceToastErrorTitle": "Erreur lors du changement de nom de votre service",
   "renameServiceToastSuccessTitle": "Service renommé",
   "renameServiceToastSuccessDescription": "Le nom de votre service a été mis à jour.",
