@@ -81,15 +81,16 @@ const InfoConnectionPool = ({
                     {t('infoConnectionPoolCertificateLabel')}
                   </TableCell>
                   <TableCell>
-                    <div className="flex justify-center h-6 max-w-[350px]">
-                      <p className="flex-1 truncate">
-                        {certificateQuery.data.ca}
-                      </p>
+                    <p className="flex-1 truncate h-6 max-w-[320px]">
+                      {certificateQuery.data.ca}
+                    </p>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex flex-row gap-1">
                       <Button
                         type="button"
                         size="table"
-                        variant="ghost"
-                        className="ml-2 hover:bg-primary-100 hover:text-primary-700 hover:font-semibold"
+                        variant="table"
                         onClick={() => {
                           navigator.clipboard.writeText(
                             certificateQuery.data.ca,
@@ -104,8 +105,7 @@ const InfoConnectionPool = ({
                       <Button
                         type="button"
                         size="table"
-                        variant="ghost"
-                        className="ml-2 hover:bg-primary-100 hover:text-primary-700 hover:font-semibold"
+                        variant="table"
                         onClick={() => {
                           download(certificateQuery.data.ca, 'ca.pem');
                           toast.toast({
@@ -125,13 +125,16 @@ const InfoConnectionPool = ({
                     {t('infoConnectionPoolUriLabel')}
                   </TableCell>
                   <TableCell>
-                    <div className="flex justify-center h-6 max-w-[350px]">
-                      <p className="flex-1 truncate">{connectionPool.uri}</p>
+                    <p className="flex-1 truncate h-6 max-w-[320px]">
+                      {connectionPool.uri}
+                    </p>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex justify-center">
                       <Button
                         type="button"
                         size="table"
-                        variant="ghost"
-                        className="ml-2 hover:bg-primary-100 hover:text-primary-700 hover:font-semibold"
+                        variant="table"
                         onClick={() => {
                           navigator.clipboard.writeText(connectionPool.uri);
                           toast.toast({

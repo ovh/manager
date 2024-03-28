@@ -1,4 +1,5 @@
 import { ArrowRight, Construction } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useGetMaintenances } from '@/hooks/api/maintenances.api.hooks';
 import { useServiceData } from '../../layout';
 import { POLLING } from '@/configuration/polling';
@@ -7,6 +8,9 @@ import { Link } from '@/components/links';
 
 const Maintenance = () => {
   const { projectId, service } = useServiceData();
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/dashboard',
+  );
   const maintenanceQuery = useGetMaintenances(
     projectId,
     service.engine,
@@ -24,33 +28,51 @@ const Maintenance = () => {
     ).length || 0;
   return (
     <>
-      {plannedMaintenance > 0 ? (
+      {maintenanceQuery.isSuccess && (
         <div>
-          <div className="flex flex-row gap-2">
-            <Construction className="h-4 w-4 mt-1 text-red-600" />
-            <p className="font-semibold text-red-600">
-              {plannedMaintenance} maintenance(s)
-            </p>
-            <p>est/sont prévue(es) sur votre service</p>
+          {plannedMaintenance === 0 && (
+            <div>
+              <p>{t('noMaintenanceDescription')}</p>
+              <Link
+                to="./settings#configuration"
+                className="flex flex-row gap-1 mt-2"
+              >
+                {t('noMaintenanceLink')}
+                <ArrowRight className="w-4 h-4 mt-1 text-primary" />
+              </Link>
+            </div>
+          )}
+          <div>
+            {plannedMaintenance === 1 && (
+              <>
+                <Construction className="h-4 w-4 mr-1 text-red-600 inline" />
+                <span className="font-semibold text-red-600 mr-1">
+                  {t('oneMaintenanceDescription1', {
+                    number: plannedMaintenance,
+                  })}
+                </span>
+                <span>{t('oneMaintenanceDescription2')}</span>
+              </>
+            )}
+            {plannedMaintenance > 1 && (
+              <>
+                <Construction className="h-4 w-4 mr-1 text-red-600 inline" />
+                <span className="font-semibold text-red-600 mr-1">
+                  {t('manyMaintenanceDescription1', {
+                    number: plannedMaintenance,
+                  })}
+                </span>
+                <span>{t('manyMaintenanceDescription2')}</span>
+              </>
+            )}
+            <Link
+              to="./settings#maintenances"
+              className="flex flex-row gap-1 mt-2"
+            >
+              {t('maintenanceLink')}
+              <ArrowRight className="w-4 h-4 mt-1 text-primary" />
+            </Link>
           </div>
-          <Link
-            to="./settings#maintenances"
-            className="flex flex-row gap-1 mt-2"
-          >
-            Gérer et plannifier mes futures maintenances
-            <ArrowRight className="w-4 h-4 mt-1 text-primary" />
-          </Link>
-        </div>
-      ) : (
-        <div>
-          <p>Aucune maintenance n'est prévue sur votre service</p>
-          <Link
-            to="./settings#configuration"
-            className="flex flex-row gap-1 mt-2"
-          >
-            Plannifier mes futures maintenances
-            <ArrowRight className="w-4 h-4 mt-1 text-primary" />
-          </Link>
         </div>
       )}
     </>

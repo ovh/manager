@@ -9,11 +9,12 @@ import { database } from '@/models/database';
 import {
   UpdateServiceProps,
   addService,
+  deleteService,
   getService,
   getServices,
   updateService,
 } from '@/api/databases/service';
-import { CdbError } from '@/api/databases';
+import { CdbError, ServiceData } from '@/api/databases';
 
 export function useGetService(
   projectId: string,
@@ -77,6 +78,31 @@ export function useUpdateService({ onError, onSuccess }: MutateServiceProps) {
   return {
     updateService: (serviceAndEngine: UpdateServiceProps) => {
       return mutation.mutate(serviceAndEngine);
+    },
+    ...mutation,
+  };
+}
+
+interface UseDeleteServiceProps {
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}
+
+export function useDeleteService({
+  onError,
+  onSuccess,
+}: UseDeleteServiceProps) {
+  const mutation = useMutation({
+    mutationFn: (serviceInfo: ServiceData) => {
+      return deleteService(serviceInfo);
+    },
+    onError,
+    onSuccess,
+  });
+
+  return {
+    deleteService: (serviceInfo: ServiceData) => {
+      return mutation.mutate(serviceInfo);
     },
     ...mutation,
   };

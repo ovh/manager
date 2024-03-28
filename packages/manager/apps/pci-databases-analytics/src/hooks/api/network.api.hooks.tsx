@@ -3,8 +3,8 @@ import {
   UseQueryResult,
   useQuery,
 } from '@tanstack/react-query';
-import { networkApi } from '@/api/network';
-import { Network, Subnet } from '@/models/network';
+import { getVrack, networkApi } from '@/api/network';
+import { Network, Subnet, Vrack } from '@/models/network';
 
 export function useGetNetwork(
   projectId: string,
@@ -29,4 +29,16 @@ export function useGetSubnet(
     queryFn: () => networkApi.getSubnets(projectId, networkId),
     ...options,
   }) as UseQueryResult<Subnet[], Error>;
+}
+
+export function useGetVrack(
+  projectId: string,
+  options: Omit<QueryObserverOptions, 'queryKey'> = {},
+) {
+  const queryKey = [projectId, 'vrack'];
+  return useQuery({
+    queryKey,
+    queryFn: () => getVrack(projectId),
+    ...options,
+  }) as UseQueryResult<Vrack, Error>;
 }

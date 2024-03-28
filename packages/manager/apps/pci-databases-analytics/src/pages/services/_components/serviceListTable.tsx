@@ -6,6 +6,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { getColumns } from './serviceListColumns';
 import { useModale } from '@/hooks/useModale';
 import RenameService from '../[serviceId]/_components/renameService';
+import DeleteService from '../[serviceId]/_components/deleteService';
 
 interface ServicesListProps {
   services: database.Service[];
@@ -17,14 +18,22 @@ export default function ServicesList({
   refetchFn,
 }: ServicesListProps) {
   const renameModale = useModale('rename');
+  const deleteModale = useModale('delete');
   const editingService = useMemo(
     () => services.find((s) => s.id === renameModale.value),
     [renameModale.value, services],
+  );
+  const deletingService = useMemo(
+    () => services.find((s) => s.id === deleteModale.value),
+    [deleteModale.value, services],
   );
 
   const columns: ColumnDef<database.Service>[] = getColumns({
     onRenameClicked: (service: database.Service) => {
       renameModale.open(service.id);
+    },
+    onDeleteClicked: (service: database.Service) => {
+      deleteModale.open(service.id);
     },
   });
 
@@ -37,6 +46,16 @@ export default function ServicesList({
           service={editingService}
           onSuccess={() => {
             renameModale.close();
+            refetchFn();
+          }}
+        />
+      )}
+      {deletingService && (
+        <DeleteService
+          controller={deleteModale.controller}
+          service={deletingService}
+          onSuccess={() => {
+            deleteModale.close();
             refetchFn();
           }}
         />
