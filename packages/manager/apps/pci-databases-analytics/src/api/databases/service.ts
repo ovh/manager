@@ -61,3 +61,12 @@ export const updateService = async ({
   apiClient.v6
     .put(`/cloud/project/${projectId}/database/${engine}/${serviceId}`, data)
     .then((res) => res.data as database.Service);
+
+export const deleteService = async ({
+  projectId,
+  engine,
+  serviceId,
+}: ServiceData) =>
+  apiClient.v6.delete(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}`,
+  );

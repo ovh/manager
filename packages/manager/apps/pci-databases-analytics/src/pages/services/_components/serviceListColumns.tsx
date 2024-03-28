@@ -20,17 +20,19 @@ import { Link } from '@/components/links';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
+  onDeleteClicked: (service: database.Service) => void;
 }
-export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
+export const getColumns = ({
+  onRenameClicked,
+  onDeleteClicked,
+}: ServiceListColumnsProps) => {
   const { t } = useTranslation('pci-databases-analytics/services');
   const { t: tRegions } = useTranslation('regions');
   const columns: ColumnDef<database.Service>[] = [
     {
       id: 'description/id',
       header: ({ column }) => (
-        <SortableHeader column={column}>
-          {t('table-header-name')}
-        </SortableHeader>
+        <SortableHeader column={column}>{t('tableHeaderName')}</SortableHeader>
       ),
       accessorFn: (row) => row.description,
       cell: ({ row }) => {
@@ -54,7 +56,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
       accessorFn: (row) => row.engine,
       header: ({ column }) => (
         <SortableHeader column={column}>
-          {t('table-header-engine')}
+          {t('tableHeaderEngine')}
         </SortableHeader>
       ),
       cell: ({ row }) => {
@@ -74,9 +76,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
       id: 'Plan',
       accessorFn: (row) => row.plan,
       header: ({ column }) => (
-        <SortableHeader column={column}>
-          {t('table-header-plan')}
-        </SortableHeader>
+        <SortableHeader column={column}>{t('tableHeaderPlan')}</SortableHeader>
       ),
       cell: ({ row }) => {
         const { plan } = row.original;
@@ -88,7 +88,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
       accessorFn: (row) => row.flavor,
       header: ({ column }) => (
         <SortableHeader column={column}>
-          {t('table-header-flavor')}
+          {t('tableHeaderFlavor')}
         </SortableHeader>
       ),
       cell: ({ row }) => {
@@ -101,7 +101,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
       accessorFn: (row) => row.storage?.size.value ?? 0,
       header: ({ column }) => (
         <SortableHeader column={column}>
-          {t('table-header-storage')}
+          {t('tableHeaderStorage')}
         </SortableHeader>
       ),
       cell: ({ row }) => {
@@ -120,7 +120,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
       accessorFn: (row) => row.nodes[0].region,
       header: ({ column }) => (
         <SortableHeader column={column}>
-          {t('table-header-location')}
+          {t('tableHeaderLocation')}
         </SortableHeader>
       ),
       cell: ({ row }) => (
@@ -131,9 +131,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
       id: 'Nodes',
       accessorFn: (row) => row.nodes.length,
       header: ({ column }) => (
-        <SortableHeader column={column}>
-          {t('table-header-nodes')}
-        </SortableHeader>
+        <SortableHeader column={column}>{t('tableHeaderNodes')}</SortableHeader>
       ),
       cell: ({ row }) => {
         const service = row.original;
@@ -180,7 +178,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
       accessorFn: (row) => row.createdAt,
       header: ({ column }) => (
         <SortableHeader column={column}>
-          {t('table-header-creation-date')}
+          {t('tableHeaderCreationDate')}
         </SortableHeader>
       ),
       cell: ({ row }) => (
@@ -194,7 +192,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
       accessorFn: (row) => row.status,
       header: ({ column }) => (
         <SortableHeader column={column}>
-          {t('table-header-status')}
+          {t('tableHeaderStatus')}
         </SortableHeader>
       ),
       cell: ({ row }) => {
@@ -225,7 +223,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
                   });
                 }}
               >
-                Copy ID
+                {t('tableActionCopy')}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
@@ -234,7 +232,16 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
                   onRenameClicked(row.original);
                 }}
               >
-                Edit name
+                {t('tableActionEditName')}
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                variant="destructive"
+                onClick={() => {
+                  onDeleteClicked(row.original);
+                }}
+              >
+                {t('tableActionDelete')}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

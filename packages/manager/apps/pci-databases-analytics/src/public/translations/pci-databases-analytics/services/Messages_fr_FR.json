@@ -1,13 +1,16 @@
 {
   "title": "Services",
-  "create-new-service": "Créer un service",
-  "table-header-name": "Nom / ID",
-  "table-header-engine": "Engine",
-  "table-header-plan": "Plan",
-  "table-header-flavor": "Flavor",
-  "table-header-storage": "Stockage utile",
-  "table-header-location": "Localisation",
-  "table-header-nodes": "Nœuds",
-  "table-header-creation-date": "Date de création",
-  "table-header-status": "Statut"
+  "createNewService": "Créer un service",
+  "tableHeaderName": "Nom / ID",
+  "tableHeaderEngine": "Engine",
+  "tableHeaderPlan": "Plan",
+  "tableHeaderFlavor": "Flavor",
+  "tableHeaderStorage": "Stockage utile",
+  "tableHeaderLocation": "Localisation",
+  "tableHeaderNodes": "Nœuds",
+  "tableHeaderCreationDate": "Date de création",
+  "tableHeaderStatus": "Statut",
+  "tableActionCopy": "Copier ID",
+  "tableActionEditName": "Renommer",
+  "tableActionDelete": "Supprimer"
 }
