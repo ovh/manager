@@ -37,7 +37,7 @@ const Services = () => {
       <Button variant="outline" size="sm" className="text-base" asChild>
         <Link to="./new" className="hover:no-underline">
           <Plus className="w-4 h-4 mr-2" />
-          {t('create-new-service')}
+          {t('createNewService')}
         </Link>
       </Button>
       <ServicesList
