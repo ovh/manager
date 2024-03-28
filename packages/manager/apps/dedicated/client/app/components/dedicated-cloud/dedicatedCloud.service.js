@@ -16,6 +16,8 @@ import {
   DEDICATED_CLOUD_CONSTANTS,
   UNAVAILABLE_PCC_CODE,
   TASK_STATUS,
+  VCD_GUIDE_LINKS,
+  VCD_SERVICE_PACK_PRICING_MODE,
 } from './dedicatedCloud.constant';
 
 import { VM_ENCRYPTION_KMS } from './security/dedicatedCloud-security.constants';
@@ -34,6 +36,7 @@ class DedicatedCloudService {
     OvhHttp,
     Poll,
     Poller,
+    coreConfig,
   ) {
     this.ListLayoutHelper = ListLayoutHelper;
     this.$http = $http;
@@ -44,6 +47,7 @@ class DedicatedCloudService {
     this.OvhHttp = OvhHttp;
     this.Poll = Poll;
     this.Poller = Poller;
+    this.coreConfig = coreConfig;
 
     this.dedicatedCloudCache = {
       all: 'UNIVERS_DEDICATED_CLOUD',
@@ -1790,6 +1794,28 @@ class DedicatedCloudService {
 
   stopAllPolling(opts) {
     this.Poller.kill({ namespace: opts.namespace });
+  }
+
+  getVCDGuideLink() {
+    const { ovhSubsidiary } = this.coreConfig.getUser();
+    return VCD_GUIDE_LINKS[ovhSubsidiary] || VCD_GUIDE_LINKS.DEFAULT;
+  }
+
+  getVCDPricingMode(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/servicePack`)
+      .then(
+        ({ data: { name } }) =>
+          VCD_SERVICE_PACK_PRICING_MODE[name] ?? `pcc-servicepack-${name}`,
+      );
+  }
+
+  hasSubscribedVCDOffer(serviceName) {
+    return this.$http
+      .get('/services', {
+        params: { resourceName: `${serviceName}/option/tovcdmigration` },
+      })
+      .then(({ data }) => data?.length > 0);
   }
 }
 
