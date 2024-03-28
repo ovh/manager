@@ -29,10 +29,12 @@
   "manager_components_region_GS": "GS",
   "manager_components_region_MAD": "Madrid",
   "manager_components_region_BRU": "Bruxelles",
+  "manager_components_region_DAL": "Dallas",
   "manager_components_region_SHA_micro": "Gravelines (SHADOW-EU-1)",
   "manager_components_region_GS_micro": "Gridscale ({{ micro }})",
   "manager_components_region_MAD_micro": "Madrid ({{ micro }})",
   "manager_components_region_BRU_micro": "Bruxelles ({{ micro }})",
+  "manager_components_region_DAL_micro": "Dallas ({{ micro }})",
   "manager_components_region_localize": "Localiser",
   "manager_components_region_location_SBG": "Europe centrale (France)",
   "manager_components_region_location_WAW": "Europe centrale (Pologne)",
@@ -49,6 +51,7 @@
   "manager_components_region_location_SGP": "Asie du Sud-Est (Singapour)",
   "manager_components_region_location_SYD": "Océanie (Australie)",
   "manager_components_region_location_US": "États-Unis",
+  "manager_components_region_location_DAL": "États-Unis",
   "manager_components_region_continent_SBG": "Europe centrale",
   "manager_components_region_continent_WAW": "Europe centrale",
   "manager_components_region_continent_BHS": "Amérique du Nord",
@@ -62,5 +65,6 @@
   "manager_components_region_continent_SGP": "Asie du Sud-Est",
   "manager_components_region_continent_SYD": "Océanie",
   "manager_components_region_continent_US": "États-Unis",
+  "manager_components_region_continent_DAL": "États-Unis",
   "manager_components_region_continent_SHA": "Europe de l'Ouest"
 }
