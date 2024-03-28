@@ -1,0 +1,12 @@
+{
+  "dedicatedCloud_vmware_cloud_director_title": "Migrating to VCD",
+  "dedicatedCloud_vmware_cloud_director_offer_detail": "VCD solution description",
+  "dedicatedCloud_vmware_cloud_director_new": "New",
+  "dedicatedCloud_vmware_cloud_director_subscription": "Subscription",
+  "dedicatedCloud_vmware_cloud_director_announcement_message": "Announcement message",
+  "dedicatedCloud_vmware_cloud_director_useful_links": "Useful links",
+  "dedicatedCloud_vmware_cloud_director_subscribed_status": "Subscribed",
+  "dedicatedCloud_vmware_cloud_director_subscribed": "You have signed up for migration to the <a href=\"{{link}}\" target=\"_blank\" rel=\"noopener\">VMware Cloud Director (VCD)</a> solution.",
+  "dedicatedCloud_vmware_cloud_director_not_subscribed": "Subscription to the <a href=\"{{link}}\" target=\"_blank\" rel=\"noopener\">VMware Cloud Director (VCD)</a> solution before 30 April 2024 included.",
+  "dedicatedCloud_vmware_cloud_director_order": "Subscribe to the VCD offer"
+}

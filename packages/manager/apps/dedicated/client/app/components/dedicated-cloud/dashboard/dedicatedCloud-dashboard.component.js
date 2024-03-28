@@ -12,6 +12,7 @@ export default {
     drpGlobalStatus: '<',
     editDetails: '<',
     goToDrp: '<',
+    goToVcdOrder: '<',
     goToDatacenter: '<',
     goToDrpDatacenterSelection: '<',
     goToVpnConfiguration: '<',
@@ -32,6 +33,7 @@ export default {
     productId: '<',
     setMessage: '<',
     trackingPrefix: '<',
+    dedicatedCloudDescription: '<',
   },
   template,
 };

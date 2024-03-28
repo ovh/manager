@@ -77,6 +77,11 @@
                 data-on-ml-subscribe="$ctrl.onMlSubscribe()"
                 data-on-terminate="$ctrl.onTerminate()"
             ></ovh-manager-pcc-dashboard-service-management>
+            <ovh-manager-pcc-dashboard-vmware-cloud-director
+                data-ng-if="$ctrl.dedicatedCloudDescription.canMigrateToVCD"
+                data-go-to-vcd-order="$ctrl.goToVcdOrder"
+                data-product-id="$ctrl.productId"
+            ></ovh-manager-pcc-dashboard-vmware-cloud-director>
         </div>
     </div>
 </div>

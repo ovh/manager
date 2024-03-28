@@ -209,8 +209,14 @@ export default /* @ngInject */ ($stateProvider) => {
       goBackToDashboard: /* @ngInject */ (goBackToState) => (
         message = false,
         type = 'success',
+        reload,
       ) =>
-        goBackToState('app.managedBaremetal.details.dashboard', message, type),
+        goBackToState(
+          'app.managedBaremetal.details.dashboard',
+          message,
+          type,
+          reload,
+        ),
       operationsUrl: /* @ngInject */ ($state, currentService) =>
         $state.href('app.managedBaremetal.details.operation', {
           productId: currentService.serviceName,

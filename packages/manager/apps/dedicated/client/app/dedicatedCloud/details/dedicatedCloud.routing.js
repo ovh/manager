@@ -210,7 +210,14 @@ export default /* @ngInject */ ($stateProvider) => {
       goBackToDashboard: /* @ngInject */ (goBackToState) => (
         message = false,
         type = 'success',
-      ) => goBackToState('app.dedicatedCloud.details.dashboard', message, type),
+        reload,
+      ) =>
+        goBackToState(
+          'app.dedicatedCloud.details.dashboard',
+          message,
+          type,
+          reload,
+        ),
       operationsUrl: /* @ngInject */ ($state, currentService) =>
         $state.href('app.dedicatedCloud.details.operation', {
           productId: currentService.serviceName,
