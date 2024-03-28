@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import StorageConfig from '@/components/Order/cluster-config/storage-config';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -20,9 +22,11 @@ interface UpdateStorageProps {
 
 const UpdateStorage = ({
   controller,
+  availabilities,
   onSuccess,
   onError,
 }: UpdateStorageProps) => {
+  const [additionalStorage, setAdditionalStorage] = useState(0);
   return (
     <Dialog {...controller}>
       <DialogContent>
@@ -30,6 +34,11 @@ const UpdateStorage = ({
           <DialogTitle>Update storage</DialogTitle>
           <DialogDescription>Add a description here</DialogDescription>
         </DialogHeader>
+        <StorageConfig
+          availability={availabilities[0]}
+          value={additionalStorage}
+          onChange={setAdditionalStorage}
+        />
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
             <Button type="button" variant="outline">
