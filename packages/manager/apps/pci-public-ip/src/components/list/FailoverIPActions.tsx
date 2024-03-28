@@ -10,6 +10,7 @@ import {
   OsdsMenu,
   OsdsMenuItem,
 } from '@ovhcloud/ods-components/react';
+import { AdditionalIPServiceAction } from './AdditionalIPServiceAction';
 
 export default function FailoverIPActions() {
   return (
@@ -26,7 +27,9 @@ export default function FailoverIPActions() {
           size={ODS_ICON_SIZE.xxs}
         ></OsdsIcon>
       </OsdsButton>
-      <OsdsMenuItem></OsdsMenuItem>
+      <OsdsMenuItem>
+        <AdditionalIPServiceAction />
+      </OsdsMenuItem>
     </OsdsMenu>
   );
 }
