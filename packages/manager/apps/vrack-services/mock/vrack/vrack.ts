@@ -40,4 +40,3 @@ export const getVracMocks = ({
     api: 'v6',
   },
 ];
-// http://localhost:9001/engine/apiv6/vrack/pn-00001/vrackServices/vrs-ahz-9t0-7lb-b5r
