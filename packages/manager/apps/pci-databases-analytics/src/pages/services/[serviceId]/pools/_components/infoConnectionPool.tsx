@@ -81,7 +81,10 @@ const InfoConnectionPool = ({
                     {t('infoConnectionPoolCertificateLabel')}
                   </TableCell>
                   <TableCell>
-                    <p className="flex-1 truncate h-6 max-w-[320px]">
+                    <p
+                      className="flex-1 truncate h-6 max-w-[320px]"
+                      title={certificateQuery.data.ca}
+                    >
                       {certificateQuery.data.ca}
                     </p>
                   </TableCell>
@@ -125,7 +128,10 @@ const InfoConnectionPool = ({
                     {t('infoConnectionPoolUriLabel')}
                   </TableCell>
                   <TableCell>
-                    <p className="flex-1 truncate h-6 max-w-[320px]">
+                    <p
+                      className="flex-1 truncate h-6 max-w-[320px]"
+                      title={connectionPool.uri}
+                    >
                       {connectionPool.uri}
                     </p>
                   </TableCell>
