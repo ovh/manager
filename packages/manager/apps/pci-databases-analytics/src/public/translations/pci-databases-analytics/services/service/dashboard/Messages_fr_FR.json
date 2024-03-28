@@ -1,6 +1,6 @@
 {
   "title": "Dashboard",
-  "upgradeAlertDescription": "Votre service est sousdimensionné par rapport à votre utilisation.",
+  "upgradeAlertDescription": "Optimisez les performances de votre service en sélectionnant des ressources adéquates.",
   "upgradeButton": "Améliorer votre offre",
   "downgradeAlertDescription": "Votre service semble surdimensionné par rapport à votre utilisation.",
   "downgradeButton": "Diminuer votre offre",
