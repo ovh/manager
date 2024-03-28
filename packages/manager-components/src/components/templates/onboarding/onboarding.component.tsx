@@ -15,15 +15,16 @@ export type OnboardingLayoutProps = PropsWithChildren<{
   title: string;
   orderButtonLabel: string;
   orderHref?: string;
-  description?: string;
+  description?: React.ReactNode;
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
   onOrderButtonClick?: () => void;
-  img: {
+  img?: {
     src: string;
     width?: number;
     height?: number;
   };
+  isActionDisabled?: boolean;
 }>;
 
 export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
@@ -37,6 +38,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   children,
   onOrderButtonClick,
   img,
+  isActionDisabled,
 }) => {
   return (
     <div className="flex flex-col mx-auto px-3">
@@ -45,10 +47,10 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           <div className="flex justify-center py-3 max-h-28">
             <img
               className="max-h-150px"
-              src={img.src ?? placeholderSrc}
+              src={img?.src ?? placeholderSrc}
               alt=""
-              width={img.width}
-              height={img.height}
+              width={img?.width}
+              height={img?.height}
             />
           </div>
           <OsdsText
@@ -72,6 +74,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
                 size={ODS_BUTTON_SIZE.md}
                 href={orderHref}
                 onClick={onOrderButtonClick}
+                {...(isActionDisabled && { disabled: true })}
               >
                 {orderButtonLabel}
               </OsdsButton>

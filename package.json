@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build": "yarn run build:turbo",
-    "build:turbo": "turbo run build",
+    "build:turbo": "turbo run build --concurrency=75%",
     "dev": "turbo run dev",
     "clean": "lerna clean -y && yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist\"",
