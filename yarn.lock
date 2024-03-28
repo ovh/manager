@@ -23444,7 +23444,7 @@ react-responsive@^9.0.0-beta.6:
     prop-types "^15.6.1"
     shallow-equal "^1.2.1"
 
-react-router-dom@6.22.0, react-router-dom@^6.21.0, react-router-dom@^6.22.0, react-router-dom@^6.3.0:
+react-router-dom@^6.21.0, react-router-dom@^6.22.0, react-router-dom@^6.3.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.22.0.tgz#177c8bd27146decbb991eafb5df159f7a9f70035"
   integrity sha512-z2w+M4tH5wlcLmH3BMMOMdrtrJ9T3oJJNsAlBJbwk+8Syxd5WFJ7J5dxMEW0/GEXD1BBis4uXRrNIz3mORr0ag==
