@@ -1,0 +1,77 @@
+<div class="row text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner data-size="s"></oui-spinner>
+</div>
+<div class="oui-tile mt-3" data-ng-if="!$ctrl.loading">
+    <h4 class="oui-tile__title oui-heading_4">
+        <span
+            data-translate="dedicatedCloud_vmware_cloud_director_title"
+        ></span>
+        <span
+            class="oui-badge oui-badge_new"
+            data-translate="dedicatedCloud_vmware_cloud_director_new"
+        >
+        </span>
+    </h4>
+
+    <oui-tile-definition
+        data-term="{{:: 'dedicatedCloud_vmware_cloud_director_subscription' | translate }}"
+    >
+        <oui-tile-description>
+            <p data-ng-bind-html=":: $ctrl.subscriptionLabel"></p>
+            <span
+                data-ng-if="$ctrl.isSubscribed"
+                class="oui-badge oui-badge_success"
+                data-translate="dedicatedCloud_vmware_cloud_director_subscribed_status"
+            >
+            </span>
+        </oui-tile-description>
+
+        <oui-action-menu
+            data-compact
+            data-placement="end"
+            data-ng-if=":: !$ctrl.isSubscribed"
+        >
+            <oui-action-menu-item data-on-click="$ctrl.goToVcdOrder()">
+                <span
+                    data-translate="dedicatedCloud_vmware_cloud_director_order"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
+
+    <oui-tile-definition
+        data-term="{{:: 'dedicatedCloud_vmware_cloud_director_useful_links' | translate }}"
+    >
+        <oui-tile-description>
+            <a
+                data-ng-href="{{ :: $ctrl.messageLink}}"
+                target="_blank"
+                rel="nooponer"
+            >
+                <span
+                    data-translate="dedicatedCloud_vmware_cloud_director_announcement_message"
+                >
+                </span>
+                <i
+                    class="pl-1 oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </a>
+            <br />
+            <a
+                data-ng-href="{{ :: $ctrl.guideLink}}"
+                target="_blank"
+                rel="nooponer"
+            >
+                <span
+                    data-translate="dedicatedCloud_vmware_cloud_director_offer_detail"
+                >
+                </span>
+                <i
+                    class="pl-1 oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </a>
+        </oui-tile-description>
+    </oui-tile-definition>
+</div>
