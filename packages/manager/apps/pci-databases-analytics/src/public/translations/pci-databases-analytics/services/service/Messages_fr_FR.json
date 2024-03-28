@@ -1,7 +1,7 @@
 {
-  "DashboardTab": "Informations générales",
+  "DashboardTab": "Dashboard",
   "UsersTab": "Utilisateurs",
-  "BackupsTab": "Sauvegardes",
+  "BackupsTab": "Backups",
   "DatabasesTab": "Bases de données",
   "NamespacesTab": "Namespaces",
   "PoolsTab": "Pools",

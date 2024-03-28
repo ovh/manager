@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -53,26 +53,21 @@ const DeleteService = ({
   const serivcesQuery = useGetServices(projectId, {
     enabled: integrationsQuery.isSuccess && integrationsQuery.data?.length > 0,
   });
-  const [integratedServices, setIntegratedServices] = useState<
-    database.Service[]
-  >([]);
 
-  useEffect(() => {
+  const integratedServices = useMemo(() => {
     if (
       !integrationsQuery.isSuccess ||
       !serivcesQuery.isSuccess ||
       integrationsQuery.data.length === 0
     )
-      return;
-    setIntegratedServices(
-      serivcesQuery.data.filter((serv) =>
-        integrationsQuery.data.find(
-          (integration) =>
-            (integration.destinationServiceId === serv.id &&
-              integration.destinationServiceId !== service.id) ||
-            (integration.sourceServiceId === serv.id &&
-              integration.sourceServiceId !== service.id),
-        ),
+      return [];
+    return serivcesQuery.data.filter((serv) =>
+      integrationsQuery.data.find(
+        (integration) =>
+          (integration.destinationServiceId === serv.id &&
+            integration.destinationServiceId !== service.id) ||
+          (integration.sourceServiceId === serv.id &&
+            integration.sourceServiceId !== service.id),
       ),
     );
   }, [integrationsQuery.data, serivcesQuery.data]);

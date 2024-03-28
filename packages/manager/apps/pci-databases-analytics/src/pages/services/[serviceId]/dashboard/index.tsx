@@ -23,8 +23,8 @@ import Maintenance from './_components/maintenance';
 import { Link, OvhLink } from '@/components/links';
 import { useGetCapabilities } from '@/hooks/api/availabilities.api.hooks';
 import MeanMetric from './_components/meanMetric';
-import { useGetVrack } from '@/hooks/api/vrack.api.hooks';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useGetVrack } from '@/hooks/api/network.api.hooks';
 
 const Dashboard = () => {
   const { service, projectId } = useServiceData();
