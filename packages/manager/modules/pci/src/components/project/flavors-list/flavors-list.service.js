@@ -112,8 +112,8 @@ export default class FlavorsList {
               'legacy',
             ),
             locationCompatibility: this.getlocationCompatibility(
-              productAvailability.plans.find(
-                (plan) => plan.code === resource.planCodes.hourly,
+              productAvailability.plans?.filter((plan) =>
+                plan.code?.startsWith(resource.planCodes.hourly),
               ),
             ),
           });
@@ -122,11 +122,18 @@ export default class FlavorsList {
   }
 
   getlocationCompatibility(productAvailability) {
+    // New plancodes has been introduced for localzones which will have region names after plan codes names like ***.consumption.EU-WEST-LZ-BRU-A
+    // So we need to consider all the plancodes which starts with "**flavorName**.consumption"
+    // After fetching all the productCapabilities we need to combine all the regions of possible plans
+    // of "b38.consumption" "b38.consumption.EU-WEST-LZ-BRU-A" "b38.consumption.EU-SOUTH-LZ-MAD-A" into regionsAllowed
+    const regionsAllowed = productAvailability?.flatMap(
+      ({ regions }) => regions,
+    );
     return {
-      isLocalZone: productAvailability?.regions.some(
+      isLocalZone: regionsAllowed?.some(
         (region) => region.type === this.LOCAL_ZONE,
       ),
-      isGlobalZone: productAvailability?.regions.some(
+      isGlobalZone: regionsAllowed?.some(
         (region) => region.type !== this.LOCAL_ZONE,
       ),
     };
