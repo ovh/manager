@@ -154,6 +154,7 @@
                     <span data-translate="emailpro_tab_REDIRECTION"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
+                    data-ng-if="!exchange.isMXPlan"
                     data-href="{{:: externalContactLink }}"
                     data-active="externalContactLink === currentActiveLink()"
                 >
