@@ -28,7 +28,11 @@ export default class {
   }
 
   buildPrice() {
-    const price = new Price(this.price);
-    return UpscaleService.buildPriceToDisplay(price, this.language);
+    try {
+      const price = new Price(this.price);
+      return UpscaleService.buildPriceToDisplay(price, this.language);
+    } catch (err) {
+      return null;
+    }
   }
 }
