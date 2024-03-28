@@ -146,6 +146,11 @@
                                 scope="col"
                                 data-translate="hosting_tab_DOMAINS_table_header_ssl"
                             ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_diagnostic"
+                            ></th>
                             <th scope="col" class="min-width text-right">
                                 <button
                                     class="btn btn-icon"
@@ -248,6 +253,26 @@
                                     data-ng-bind="(('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate) == 'hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl)? domain.ssl: ('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate)"
                                     data-ng-class="{'oui-badge_success': domain.ssl === 2, 'oui-badge_error': domain.ssl === 0, 'oui-badge_warning': domain.ssl === 1}"
                                     data-oui-tooltip="{{ domain.ssl === 1 ? ('hosting_tab_DOMAINS_table_ssl_state_1_tooltip' | translate) : '' }}"
+                                >
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span
+                                    class="oui-badge"
+                                    data-ng-click="getDiagnosticSuffix(domain.name)!=='success'?setAction('multisite/diagnostic/dialog', {options: optionsForModal[domain.name]}):null"
+                                    data-oui-tooltip="{{getTooltipForDomain(domain.name)}}"
+                                    data-oui-tooltip-placement="bottom"
+                                    data-ng-class="'oui-badge_' + getDiagnosticSuffix(domain.name)"
+                                    data-ng-bind="HOSTING_TAB_DOMAINS.A_RECORD | translate"
+                                >
+                                </span>
+                                <span
+                                    class="oui-badge"
+                                    data-ng-click="getDiagnosticSuffix(domain.name)!=='success'?setAction('multisite/diagnostic/dialog', {options: optionsForModal[domain.name]}):null"
+                                    data-oui-tooltip="{{getTooltipForDomain(domain.name)}}"
+                                    data-oui-tooltip-placement="bottom"
+                                    data-ng-class="'oui-badge_' + getDiagnosticSuffix(domain.name)"
+                                    data-ng-bind="HOSTING_TAB_DOMAINS.AAAA_RECORD | translate"
                                 >
                                 </span>
                             </td>

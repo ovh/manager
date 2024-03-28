@@ -12,7 +12,9 @@ import union from 'lodash/union';
 import {
   CDN_STATUS,
   CDN_VERSION,
+  DIAGNOSTIC_STATE,
   HOSTING_OFFER,
+  HOSTING_TAB_DOMAINS,
 } from './hosting-multisite.constants';
 
 const CDN_STATISTICS_PERIOD = {
@@ -45,6 +47,7 @@ angular
       hostingSSLCertificateType,
       Alerter,
       WucChartjsFactory,
+      WucUser,
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites' });
 
@@ -57,6 +60,9 @@ angular
       };
 
       $scope.domains = null;
+      $scope.HOSTING_TAB_DOMAINS = HOSTING_TAB_DOMAINS;
+      $scope.diagnosticSuffix = {};
+      $scope.optionsForModal = {};
       $scope.sslLinked = [];
       $scope.HOSTING = HOSTING;
       $scope.HOSTING_STATUS = HOSTING_STATUS;
@@ -128,6 +134,77 @@ angular
                 );
               }
             });
+          })
+          .then(async () => {
+            $scope.user = await WucUser.getUser();
+          })
+          .then(() => {
+            const getNichandleAttached = async (
+              diagnosticSuffix,
+              domain,
+              nichandle,
+            ) => {
+              const serviceInfos = await HostingDomain.getServiceInfosForZone(
+                domain.name,
+              );
+              const { contactTech, contactAdmin } = serviceInfos;
+
+              const isDnsAttachedToNic =
+                nichandle === contactAdmin || nichandle === contactTech;
+              return {
+                diagnosticState: diagnosticSuffix[domain.name],
+                isDnsAttachedToNic,
+              };
+            };
+
+            const promises = $scope.domains.list.results.map(async (domain) => {
+              const digStatus = await HostingDomain.getDigStatus(
+                $stateParams.productId,
+                domain.name,
+              );
+              const zoneLinked = await HostingDomain.getZoneLinked(domain.name);
+
+              $scope.optionsForModal[domain.name] = {
+                ip: $scope.hosting.clusterIp,
+                domain: domain.name,
+                dns: $scope.hosting.serviceName,
+                nic: $scope.user.nichandle,
+                isDnsExternal: !zoneLinked,
+              };
+
+              if (Object.keys(digStatus.records).length === 0) {
+                $scope.diagnosticSuffix[domain.name] = DIAGNOSTIC_STATE.ERROR;
+                const nicProperties = await getNichandleAttached(
+                  $scope.diagnosticSuffix,
+                  domain,
+                  $scope.user.nichandle,
+                );
+                $scope.optionsForModal[domain.name] = {
+                  ...$scope.optionsForModal[domain.name],
+                  zone: zoneLinked.zone,
+                  diagnosticState: nicProperties.diagnosticState,
+                  isDnsAttachedToNic: nicProperties.isDnsAttachedToNic,
+                };
+                return;
+              }
+              if (!digStatus.records[$scope.hosting.clusterIp]) {
+                $scope.diagnosticSuffix[domain.name] = DIAGNOSTIC_STATE.INFO;
+                const nicProperties = await getNichandleAttached(
+                  $scope.diagnosticSuffix,
+                  domain,
+                  $scope.user.nichandle,
+                );
+                $scope.optionsForModal[domain.name] = {
+                  ...$scope.optionsForModal[domain.name],
+                  zone: zoneLinked.zone,
+                  diagnosticState: nicProperties.diagnosticState,
+                  isDnsAttachedToNic: nicProperties.isDnsAttachedToNic,
+                };
+                return;
+              }
+              $scope.diagnosticSuffix[domain.name] = DIAGNOSTIC_STATE.SUCCESS;
+            });
+            return $q.all(promises);
           })
           .then(() =>
             hostingSSLCertificate.retrievingLinkedDomains(
@@ -500,8 +577,29 @@ angular
         HostingDomain.killAllPolling();
       });
 
+      $scope.getTooltipForDomain = function getTooltipForDomain(domainName) {
+        return $translate.instant(
+          `hosting_tab_DOMAINS_tooltip_${$scope.getDiagnosticSuffix(
+            domainName,
+          )}`,
+          {
+            domainName,
+            hosting: $scope.hosting.serviceName,
+            ip: $scope.hosting.clusterIp,
+          },
+        );
+      };
+
+      $scope.getDiagnosticSuffix = function getDiagnosticSuffix(domainName) {
+        return $scope.diagnosticSuffix[domainName] || 'error';
+      };
+
       $scope.getChartJsInstance = function getChartJsInstance(configuration) {
         return new WucChartjsFactory(configuration);
+      };
+
+      $scope.resetAction = function resetAction() {
+        $scope.services.navigation.resetAction();
       };
 
       $scope.getStatistics = function getStatistics(domain, period) {
