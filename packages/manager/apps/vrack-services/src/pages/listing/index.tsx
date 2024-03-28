@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, Outlet } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import {
@@ -62,64 +62,67 @@ const ListingPage: React.FC = () => {
   }
 
   return (
-    <PageLayout noBreacrumb>
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.heading}
-        size={ODS_TEXT_SIZE._600}
-        className="block mt-7 mb-5"
-      >
-        {t('title')}
-      </OsdsText>
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.body}
-        className="block mb-8"
-      >
-        {t('description')}
-      </OsdsText>
-      {!isLoading && <OperationMessages />}
-      {reachedBetaLimit && (
-        <OsdsMessage className="my-4" type={ODS_MESSAGE_TYPE.info}>
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('betaVrackServicesLimitMessage')}
-          </OsdsText>
-        </OsdsMessage>
-      )}
-      <OsdsButton
-        className="mb-8"
-        inline
-        disabled={reachedBetaLimit || undefined}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        size={ODS_BUTTON_SIZE.sm}
-        {...handleClick(() => navigate(urls.createVrackServices))}
-      >
-        <OsdsIcon
-          className="mr-4"
-          name={ODS_ICON_NAME.ADD}
-          size={ODS_ICON_SIZE.xs}
+    <>
+      <PageLayout noBreacrumb>
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          level={ODS_TEXT_LEVEL.heading}
+          size={ODS_TEXT_SIZE._600}
+          className="block mt-7 mb-5"
+        >
+          {t('title')}
+        </OsdsText>
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          level={ODS_TEXT_LEVEL.body}
+          className="block mb-8"
+        >
+          {t('description')}
+        </OsdsText>
+        {!isLoading && <OperationMessages />}
+        {reachedBetaLimit && (
+          <OsdsMessage className="my-4" type={ODS_MESSAGE_TYPE.info}>
+            <OsdsText
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_TEXT_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              {t('betaVrackServicesLimitMessage')}
+            </OsdsText>
+          </OsdsMessage>
+        )}
+        <OsdsButton
+          className="mb-8"
+          inline
+          disabled={reachedBetaLimit || undefined}
           color={ODS_THEME_COLOR_INTENT.primary}
-        />
-        {t('createVrackServicesButtonLabel')}
-      </OsdsButton>
+          variant={ODS_BUTTON_VARIANT.stroked}
+          size={ODS_BUTTON_SIZE.sm}
+          {...handleClick(() => navigate(urls.createVrackServices))}
+        >
+          <OsdsIcon
+            className="mr-4"
+            name={ODS_ICON_NAME.ADD}
+            size={ODS_ICON_SIZE.xs}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          />
+          {t('createVrackServicesButtonLabel')}
+        </OsdsButton>
 
-      <DeliveringMessages
-        messageKey="deliveringVrackServicesMessage"
-        orders={vrackServicesDeliveringOrders}
-      />
-      {isLoading || areOrdersLoading ? (
-        <div>
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.lg} />
-        </div>
-      ) : (
-        <VrackServicesDatagrid />
-      )}
-    </PageLayout>
+        <DeliveringMessages
+          messageKey="deliveringVrackServicesMessage"
+          orders={vrackServicesDeliveringOrders}
+        />
+        {isLoading || areOrdersLoading ? (
+          <div>
+            <OsdsSpinner inline size={ODS_SPINNER_SIZE.lg} />
+          </div>
+        ) : (
+          <VrackServicesDatagrid />
+        )}
+      </PageLayout>
+      <Outlet />
+    </>
   );
 };
 

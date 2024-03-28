@@ -16,8 +16,8 @@ export type TrackingParams = {
   name: string;
   page: { name: string } & Record<string, string>;
   page_category: string;
-  complete_page_name: string;
   level2: string;
+  site_level2?: string;
   type?: string;
   page_theme: string;
 };
@@ -42,18 +42,19 @@ export const getTrackingParams = ({
   type,
   pageParams = {},
 }: GetTrackingParamsProps): TrackingParams => {
-  const page = [applicationName, path].join('::');
+  const page = [universe, applicationName, path].join('::');
   const name = value ? `${page}${value}` : page;
 
   const params = {
     name,
     page: { name: page, ...pageParams },
-    page_category: path || 'homepage',
-    complete_page_name: page,
+    page_category: path?.replaceAll('::', '_'),
     level2: getLevel2TrackingParam(universe),
+    site_level2: `manager-${universe.replaceAll(' ', '_')}`,
     type,
     page_theme: applicationName,
   };
+
   if (window.location.hostname === 'localhost') {
     console.log('Tracking sent', params);
   }

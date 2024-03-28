@@ -30,6 +30,7 @@ import {
 } from '@/components/VrackServicesDataGridCells';
 import { useUpdateVrackServices, useVrackServicesList } from '@/utils/vs-utils';
 import { DeleteModal } from '@/components/DeleteModal';
+import { urls } from '@/router/constants';
 
 export const VrackServicesDatagrid: React.FC = () => {
   const [associateModalVisible, setAssociateModalVisible] = React.useState<
@@ -83,7 +84,9 @@ export const VrackServicesDatagrid: React.FC = () => {
         <VrackIdCell
           label={t('associateVrackButtonLabel')}
           isLoading={isPending}
-          openAssociationModal={setAssociateModalVisible}
+          openAssociationModal={(id) => {
+            navigate(urls.associate.replace(':id', id));
+          }}
         />,
       ),
     },

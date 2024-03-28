@@ -1,6 +1,7 @@
 export const urls = {
   root: '/',
   listing: '/',
+  associate: '/:id/associate',
   onboarding: '/onboarding',
   createVrackServices: '/create',
   dashboard: '/:id',
@@ -12,8 +13,9 @@ export const urls = {
 };
 
 export const pageTrackingLabels = {
+  [urls.associate]: 'pop-up::associate',
   [urls.listing]: 'listing',
-  [urls.overview]: 'dashboard',
+  [urls.overview]: 'general_informations',
   [urls.subnets]: 'subnets',
   [urls.endpoints]: 'endpoints',
   [urls.createEndpoint]: 'endpoints::add',

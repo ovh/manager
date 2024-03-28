@@ -12,19 +12,15 @@ export const getRoutes = ({
   const routeConfig = ({
     pageImport,
     path,
+    ...props
   }: {
     pageImport: CallableFunction;
     path: string;
-  }) => {
+  } & any) => {
     return {
+      ...props,
       path,
-      loader: (): unknown => {
-        const pageTracking = pageTrackingLabels[path];
-        if (pageTracking) {
-          trackPage({ path: pageTracking });
-        }
-        return null;
-      },
+      id: pageTrackingLabels[path],
       lazy: async () => {
         const { default: moduleDefault, ...moduleExports } = await pageImport();
         return {
@@ -37,12 +33,19 @@ export const getRoutes = ({
 
   return [
     {
+      id: 'vrack-services',
       path: urls.root,
       Component: RootWrapper,
       children: [
         routeConfig({
           pageImport: () => import('@/pages/listing'),
           path: urls.listing,
+          children: [
+            routeConfig({
+              pageImport: () => import('@/pages/associate'),
+              path: urls.associate,
+            }),
+          ],
         }),
         routeConfig({
           pageImport: () => import('@/pages/onboarding'),
@@ -53,6 +56,7 @@ export const getRoutes = ({
           path: urls.createVrackServices,
         }),
         {
+          id: 'dashboard',
           path: urls.dashboard,
           Component: DashboardWrapper,
           children: [
