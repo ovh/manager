@@ -66,3 +66,13 @@ export interface IPPool {
   /** First IP for this region (eg: 192.168.1.12) */
   start: string;
 }
+
+/* Vrack */
+export interface Vrack {
+  /** Description of your vRack */
+  description: string;
+  /** Name of your vRack */
+  id: string;
+  /** Vrack ID */
+  name: string;
+}

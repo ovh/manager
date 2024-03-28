@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { add } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
+import { Pen } from 'lucide-react';
 import { Link } from '@/components/links';
 import { database } from '@/models/database';
 import { useServiceData } from '../layout';
@@ -11,6 +12,7 @@ import { POLLING } from '@/configuration/polling';
 import { Button } from '@/components/ui/button';
 import { useModale } from '@/hooks/useModale';
 import RestoreServiceModal from './_components/restore';
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 
 export interface BackupWithExpiricyDate extends database.Backup {
   expiricyDate: Date;
@@ -41,7 +43,36 @@ const Backups = () => {
     <>
       <h2>{t('title')}</h2>
       <p>{t('description')}</p>
-
+      <div className="inline-block">
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableCell className="font-semibold">
+                {t('detailsRetentionDays')}
+              </TableCell>
+              <TableCell>
+                {t('detailsRetentionDaysUnit', {
+                  number: service.backups?.retentionDays,
+                })}
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="font-semibold">
+                {t('detailsBackupTime')}
+              </TableCell>
+              <TableCell>{service.backups?.time}</TableCell>
+              <TableCell>
+                <Button type="button" size="table" variant="table">
+                  <Link to="./../settings">
+                    <Pen className="w-4 h-4" />
+                  </Link>
+                </Button>
+              </TableCell>
+            </TableRow>
+            <TableRow />
+          </TableBody>
+        </Table>
+      </div>
       <div className="flex gap-2">
         {/* TODO: add capability in API */}
         <Button variant="outline" size="sm" className="text-base" asChild>
