@@ -19,6 +19,12 @@ export const updateTags = (
   items:
     | database.capabilities.Flavor[]
     | database.capabilities.Plan[]
+    | {
+        default: boolean;
+        lifecycle: database.availability.Lifecycle;
+        name: string;
+        tags: database.capabilities.Tags[];
+      }[]
     | database.RegionCapabilities[],
   serviceValue: string,
 ) =>
