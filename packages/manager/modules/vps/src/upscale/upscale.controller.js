@@ -22,7 +22,6 @@ export default class UpscaleController {
   }
 
   $onInit() {
-    this.currentIndex = 0;
     this.errorMessage = null;
     this.resetRangeConfiguration();
     this.getCurrentRangeInformation();
@@ -42,9 +41,7 @@ export default class UpscaleController {
       this.upscaleOptions,
       this.vps.model.name,
     );
-    upscaleRanges = upscaleRanges
-      .filter(({ formattedName }) => formattedName !== RANGES.STARTER)
-      .map((range) => this.formatRange(range));
+    upscaleRanges = upscaleRanges.map((range) => this.formatRange(range));
 
     this.upscaleRanges = sortBy(upscaleRanges, 'indicativePricing.price');
 
@@ -170,22 +167,27 @@ export default class UpscaleController {
     };
   }
 
-  static isRangeEliteConfigurationComplete({
-    bandwidth,
-    cores,
-    memory,
-    storage,
-  }) {
+  static isRangeConfigurationComplete({ bandwidth, cores, memory, storage }) {
     return (
       bandwidth != null && cores != null && memory != null && storage != null
     );
   }
 
-  getRangeEliteConfigurationPricing() {
+  isStorageSelectionDisabled(storage) {
+    const { cores, memory } = this.rangeConfiguration;
+    const rangeName = this.range.formattedName.toLowerCase();
+    const plans = this.catalog.plans.map((plan) => plan.planCode);
+
+    const vpsUpgradeRange = LE_RANGES.includes(rangeName)
+      ? `vps-${rangeName}-${memory}-${storage}`
+      : `vps-${rangeName}-${cores}-${memory}-${storage}`;
+
+    return !plans.includes(vpsUpgradeRange) || storage < this.vps.model.disk;
+  }
+
+  getRangeConfigurationPricing() {
     if (
-      UpscaleController.isRangeEliteConfigurationComplete(
-        this.rangeConfiguration,
-      )
+      UpscaleController.isRangeConfigurationComplete(this.rangeConfiguration)
     ) {
       this.planCode = UpscaleController.getPlanCodeFromSelectedRangeAndConfiguration(
         this.rangeConfiguration,
@@ -194,25 +196,33 @@ export default class UpscaleController {
 
       this.isNewPlanCodeDifferent = this.planCode !== this.vps.model.name;
 
-      const pricings = this.catalog.plans
-        .find(({ planCode }) => planCode === this.planCode)
-        .pricings.map((pricing) =>
-          UpscaleController.convertFromCatalog(pricing),
-        );
+      try {
+        if (this.isNewPlanCodeDifferent) {
+          this.fetchUpscaleInformation();
+        }
+        const pricings = this.catalog.plans
+          .find(({ planCode }) => planCode === this.planCode)
+          .pricings.map((pricing) =>
+            UpscaleController.convertFromCatalog(pricing),
+          );
 
-      const renewPricing = this.getIndicativePricing(pricings);
+        const renewPricing = this.getIndicativePricing(pricings);
 
-      this.rangeConfiguration.pricing = {
-        ...renewPricing,
-        currency: this.connectedUser.currency.code,
-        pricingMode: UpscaleService.convertPricingMode(
-          renewPricing.pricingMode,
-          this.pricingRenewPeriod,
-        ),
-        unit: Price.UNITS.MICROCENTS,
-        totalPrice: renewPricing.priceInUcents,
-        value: renewPricing.price.value,
-      };
+        this.rangeConfiguration.pricing = {
+          ...renewPricing,
+          currency: this.connectedUser.currency.code,
+          pricingMode: UpscaleService.convertPricingMode(
+            renewPricing.pricingMode,
+            this.pricingRenewPeriod,
+          ),
+          unit: Price.UNITS.MICROCENTS,
+          totalPrice: renewPricing.priceInUcents,
+          value: renewPricing.price.value,
+        };
+        this.formatNewRangeInformation();
+      } catch (error) {
+        this.rangeConfiguration.pricing = null;
+      }
     }
   }
 
@@ -364,12 +374,10 @@ export default class UpscaleController {
     return [parseInt(cores, 10), parseInt(memory, 10), parseInt(storage, 10)];
   }
 
-  setValueIfUniqueChoice(values, path) {
-    if (values.length === 1) {
-      [this.rangeConfiguration[path]] = values;
-    }
+  initRangeConfiguration(values, path) {
+    [this.rangeConfiguration[path]] = values;
 
-    this.getRangeEliteConfigurationPricing();
+    this.getRangeConfigurationPricing();
   }
 
   getAvailableValuesForParameter(technicals, path) {
@@ -407,14 +415,10 @@ export default class UpscaleController {
 
   fetchUpscaleInformation() {
     this.loading.getUpscaleInformation = true;
-    const plan =
-      this.isEliteUpgrade ||
-      UpscaleController.isRangeElite(this.range?.formattedName)
-        ? this.getPlanFromSelectedRangeAndConfiguration(
-            this.rangeConfiguration,
-            this.range.formattedName.toLowerCase(),
-          )
-        : this.range;
+    const plan = this.getPlanFromSelectedRangeAndConfiguration(
+      this.rangeConfiguration,
+      this.range.formattedName.toLowerCase(),
+    );
     const currentPlanCode = this.upscaleRanges.find((e) => e.isCurrentRange)
       ?.planCode;
     return this.getUpscaleInformation(plan)
@@ -452,9 +456,7 @@ export default class UpscaleController {
     this.newRangeInformation = null;
     let newRangeInformation;
     if (
-      !UpscaleController.isRangeEliteConfigurationComplete(
-        this.rangeConfiguration,
-      )
+      !UpscaleController.isRangeConfigurationComplete(this.rangeConfiguration)
     ) {
       newRangeInformation = UpscaleController.parseRangeConfiguration(
         this.range.planCode,
@@ -465,6 +467,7 @@ export default class UpscaleController {
         currency: this.order.prices.withoutTax.currencyCode,
         paymentType: UpscaleService.convertPricingMode(
           this.range.indicativePricing.pricingMode,
+          this.pricingRenewPeriod,
         ),
         unit: Price.UNITS.MICROCENTS,
         value: this.range.indicativePricing.priceInUcents,
@@ -500,14 +503,10 @@ export default class UpscaleController {
     });
 
     this.loading.performUpscale = true;
-    const plan =
-      this.isEliteUpgrade ||
-      UpscaleController.isRangeElite(this.range?.formattedName)
-        ? this.getPlanFromSelectedRangeAndConfiguration(
-            this.rangeConfiguration,
-            this.range.formattedName.toLowerCase(),
-          )
-        : this.range;
+    const plan = this.getPlanFromSelectedRangeAndConfiguration(
+      this.rangeConfiguration,
+      this.range.formattedName.toLowerCase(),
+    );
     const currentPlanCode = this.upscaleRanges.find((e) => e.isCurrentRange)
       ?.planCode;
     return this.performUpscale(plan)

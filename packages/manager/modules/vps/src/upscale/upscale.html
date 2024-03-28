@@ -28,7 +28,6 @@
             prevent-next="true"
             valid="$ctrl.range"
             on-focus="$ctrl.resetRangeConfiguration()"
-            on-submit="$ctrl.goToNextStep($ctrl.range.formattedName)"
         >
             <div class="row d-md-flex flex-wrap">
                 <div
@@ -42,7 +41,6 @@
                         label="{{:: range.formattedName }}"
                         values="[range]"
                         variant="light"
-                        disabled="range.isCurrentRange"
                     >
                         <oui-select-picker-picture
                             data-ng-if="range.isCurrentRange"
@@ -126,12 +124,11 @@
             </div>
         </oui-step-form>
         <oui-step-form
-            data-ng-show="$ctrl.isEliteUpgrade || ($ctrl.range && $ctrl.constructor.isRangeElite($ctrl.range.formattedName))"
             header="{{:: 'vps_upscale_choice_configuration' | translate }}"
             editable="!$ctrl.loading.getUpscaleInformation || $ctrl.loading.performUpscale"
-            description="{{:: $ctrl.isEliteUpgrade ? ('vps_upscale_change_configuration_details' | translate ) : '' }}"
+            description="{{:: 'vps_upscale_change_configuration_details' | translate }}"
             prevent-next="true"
-            valid="$ctrl.constructor.isRangeEliteConfigurationComplete($ctrl.rangeConfiguration) && $ctrl.isNewPlanCodeDifferent"
+            valid="$ctrl.isNewPlanCodeDifferent && $ctrl.rangeConfiguration.pricing"
         >
             <p data-translate="vps_upscale_change_configuration_indication"></p>
             <table class="table pr-5">
@@ -165,9 +162,9 @@
                             <oui-radio
                                 class="mt-2"
                                 model="$ctrl.rangeConfiguration.cores"
-                                data-ng-init="$ctrl.setValueIfUniqueChoice($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'cpu.cores'), 'cores')"
+                                data-ng-init="$ctrl.initRangeConfiguration($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'cpu.cores'), 'cores')"
                                 data-ng-repeat="core in $ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'cpu.cores') track by core"
-                                on-change="$ctrl.getRangeEliteConfigurationPricing()"
+                                on-change="$ctrl.getRangeConfigurationPricing()"
                                 value="core"
                             >
                                 <span
@@ -181,13 +178,13 @@
                         <td class="align-top">
                             <oui-select-picker
                                 class="mt-2"
-                                data-ng-init="$ctrl.setValueIfUniqueChoice($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'memory.size'), 'memory')"
+                                data-ng-init="$ctrl.initRangeConfiguration($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'memory.size'), 'memory')"
                                 data-ng-repeat="memory in $ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'memory.size') track by memory"
                                 model="$ctrl.rangeConfiguration.memory"
                                 name="{{:: memory }}"
                                 label="{{:: 'vps_upscale_choice_configuration_quantity' | translate:{ unit: memory } }}"
                                 data-values="[memory]"
-                                on-change="$ctrl.getRangeEliteConfigurationPricing()"
+                                on-change="$ctrl.getRangeConfigurationPricing()"
                                 variant="light"
                             >
                             </oui-select-picker>
@@ -195,34 +192,35 @@
                         <td class="align-top">
                             <oui-select-picker
                                 class="mt-2"
-                                data-ng-init="$ctrl.setValueIfUniqueChoice($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'storage.disks[0].capacity'), 'storage')"
+                                data-ng-init="$ctrl.initRangeConfiguration($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'storage.disks[0].capacity'), 'storage')"
                                 data-ng-repeat="storage in $ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'storage.disks[0].capacity') track by storage"
                                 model="$ctrl.rangeConfiguration.storage"
                                 name="{{:: storage }}"
                                 label="{{:: 'vps_upscale_choice_configuration_quantity' | translate:{ unit: storage } }}"
                                 data-values="[storage]"
-                                on-change="$ctrl.getRangeEliteConfigurationPricing()"
+                                on-change="$ctrl.getRangeConfigurationPricing()"
                                 variant="light"
+                                data-disabled="$ctrl.isStorageSelectionDisabled(storage)"
                             >
                             </oui-select-picker>
                         </td>
                         <td class="align-top">
                             <oui-select-picker
                                 class="mt-2"
-                                data-ng-init="$ctrl.setValueIfUniqueChoice($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'bandwidth.level'), 'bandwidth')"
+                                data-ng-init="$ctrl.initRangeConfiguration($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'bandwidth.level'), 'bandwidth')"
                                 data-ng-repeat="bandwidth in $ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'bandwidth.level') track by bandwidth"
                                 model="$ctrl.rangeConfiguration.bandwidth"
                                 name="{{:: bandwidth }}"
                                 label="{{:: bandwidth | bandwidth:'M':'bit' }}"
                                 data-values="[bandwidth]"
-                                on-change="$ctrl.getRangeEliteConfigurationPricing()"
+                                on-change="$ctrl.getRangeConfigurationPricing()"
                                 variant="light"
                             >
                             </oui-select-picker>
                         </td>
                         <td class="align-top">
                             <vps-upscale-configuration-price
-                                data-ng-if="$ctrl.rangeConfiguration.pricing"
+                                data-ng-if="$ctrl.rangeConfiguration.pricing && $ctrl.isNewPlanCodeDifferent"
                                 language="$ctrl.connectedUser.language"
                                 price="$ctrl.rangeConfiguration.pricing"
                             ></vps-upscale-configuration-price>
