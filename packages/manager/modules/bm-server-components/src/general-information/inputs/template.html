@@ -117,6 +117,7 @@
                 on-remove="$ctrl.keyValueRemove(form, input.name)"
                 tooltip-add="{{:: 'server_configuration_installation_inputs_item_keyValue_add_tooltip' | translate }}"
                 tooltip-delete="{{:: 'server_configuration_installation_inputs_item_keyValue_remove_tooltip' | translate }}"
+                rows-limit="{{$ctrl.inputRules.keyValue.limit}}"
             >
                 <oui-inline-adder-row>
                     <oui-inline-adder-field>
