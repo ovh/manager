@@ -14,6 +14,7 @@ import {
 import {
   deliveringVrackMessage,
   deliveringVrackServicesMessage,
+  modalDissociateDescription,
 } from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
 import { getUrl } from '../utils';
 import { ConfigParams } from '../../mock/handlers';
@@ -26,6 +27,7 @@ import {
   onboardingDescription,
   betaSubnetLimitMessage,
 } from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
+import { vrackActionDissociate } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
 
 Then('User sees the create a vRack Services button {word}', async function(
   this: ICustomWorld<ConfigParams>,
@@ -261,7 +263,7 @@ Then('User sees button dissociate', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
   await sleep(1000);
-  const dissociateButton = this.page.getByText('vrackActionDissociate', {
+  const dissociateButton = this.page.getByText(vrackActionDissociate, {
     exact: true,
   });
   if (await this.page.getByTestId('action-menu-icon').count()) {
@@ -277,7 +279,7 @@ Then(
     await sleep(1000);
 
     const modalDescription = await this.page.locator('osds-modal', {
-      hasText: 'modalDissociateDescription',
+      hasText: modalDissociateDescription,
     });
     await expect(modalDescription).toBeVisible();
   },
@@ -292,7 +294,7 @@ Then(
     await sleep(1000);
 
     const modalDescription = await this.page.locator('osds-modal', {
-      hasText: 'modalDissociateDescription',
+      hasText: modalDissociateDescription,
     });
     if (returnOverview === 'returns') {
       expect(modalDescription).not.toBeVisible();

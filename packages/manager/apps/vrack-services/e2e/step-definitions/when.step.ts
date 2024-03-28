@@ -16,7 +16,10 @@ import {
   modalNoVrackButtonLabel,
 } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
 import { displayNameInputName } from '../../src/pages/create/constants';
-import { subnetsTabLabel } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
+import {
+  subnetsTabLabel,
+  vrackActionDissociate,
+} from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
 import {
   modalConfirmButton,
   modalCancelButton,
@@ -213,7 +216,7 @@ When(
     await setupNetwork(this);
     await sleep(1000);
 
-    await this.page.getByText('vrackActionDissociate').click();
+    await this.page.getByText(vrackActionDissociate, { exact: true }).click();
   },
 );
 
@@ -225,8 +228,8 @@ When('User {word} modal', async function(
 
   await sleep(1000);
   const labelToButton = {
-    accept: 'modalConfirmButton',
-    cancel: 'modalCancelButton',
+    accept: modalConfirmButton,
+    cancel: modalCancelButton,
   };
   const buttonLabel = labelToButton[acceptOrCancel];
   const button = await this.page.getByText(buttonLabel, { exact: true });
