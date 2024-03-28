@@ -122,13 +122,22 @@ export default function ServerSidebarItemRenderer({
                 {item.label}
               </OsdsText>
             ) : (
-              <OsdsText
-                level={OdsTextLevel.button}
-                color={OdsThemeColorIntent.text}
-                size={OdsTextSize._300}
-              >
-                {item.label}
-              </OsdsText>
+              <>
+                <OsdsText
+                  level={OdsTextLevel.button}
+                  color={OdsThemeColorIntent.text}
+                  size={OdsTextSize._300}
+                >
+                  {item.label}
+                </OsdsText>
+                {item?.badge && (
+                  <span
+                    className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </>
             )}</span>
           </span>
         </span>

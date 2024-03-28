@@ -2,8 +2,8 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import Headers, { HeadersProps } from './headers.component';
-import ActionButton from '../../navigation/buttons/action/action.component';
-import GuideButton from '../../navigation/buttons/guide/guide.component';
+import ActionMenu from '../../navigation/menus/action/action.component';
+import GuideButton from '../../navigation/menus/guide/guide.component';
 
 const Heading: HeadersProps = {
   title: 'Example for header',
@@ -47,7 +47,7 @@ const guideItems = [
 const HeadingWithActionButton: HeadersProps = {
   title: 'Example for header with actions ',
   description: 'description for header',
-  headerButton: <ActionButton items={actionItems} />,
+  headerButton: <ActionMenu items={actionItems} />,
 };
 const HeadingWithGuideButton: HeadersProps = {
   title: 'Example for header with guides',

@@ -23,7 +23,7 @@ module.exports = {
     'prettier/prettier': 'warn',
     'import/extensions': 'off',
     'import/no-cycle': 'off',
-    'import/prefer-default-export': 'off'
+    'import/prefer-default-export': 'off',
   },
   ignorePatterns: [
     '**/vendor/**',
@@ -101,11 +101,14 @@ module.exports = {
       },
     },
     {
-      files: ['*.test.ts'],
+      files: ['*.test.ts', '*.step.ts', '*.spec.ts'],
       extends: [
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
       ],
+      rules: {
+        'func-names': 'off',
+      },
       env: {
         mocha: true,
         node: true,

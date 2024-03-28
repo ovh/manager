@@ -63,10 +63,6 @@ const meta: Meta<typeof Card> = {
       description:
         'Display examples of badges in the story (in the actual code there is a badge slot)',
     },
-    trackingLabel: {
-      control: 'text',
-      description: 'Tracking label when use click on card',
-    },
   },
   args: defaultProps,
 };
