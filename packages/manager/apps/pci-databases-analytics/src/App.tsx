@@ -24,7 +24,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       {loading && <ProgressLoader />}
-      <React.Suspense fallback={null}>
+      <React.Suspense fallback={<Loading />}>
         <Router />
       </React.Suspense>
     </QueryClientProvider>

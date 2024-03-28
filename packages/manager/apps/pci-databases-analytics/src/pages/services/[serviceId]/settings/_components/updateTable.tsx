@@ -1,9 +1,11 @@
 import { MinusCircle, PlusCircle } from 'lucide-react';
+import { useMemo } from 'react';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/models/database';
 import { useServiceData } from '../../layout';
 import {
+  FullCapabilities,
   useGetAvailabilities,
   useGetFullCapabilities,
 } from '@/hooks/api/availabilities.api.hooks';
@@ -18,11 +20,12 @@ import AddNode from '../update/_components/modals/addNode';
 import DeleteNode from '../update/_components/modals/removeNode';
 import UpdateStorage from '../update/_components/modals/updateStorage';
 import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
+import { updateTags } from '@/lib/tagsHelper';
 
 const UpdateTable = () => {
   const { service, projectId } = useServiceData();
-  const catalog = useGetCatalog();
-  const capabilities = useGetFullCapabilities(projectId);
+  const catalogQuery = useGetCatalog();
+  const capabilitiesQuery = useGetFullCapabilities(projectId);
   const availabilitiesVersionQuery = useGetAvailabilities(
     projectId,
     service.id,
@@ -47,6 +50,26 @@ const UpdateTable = () => {
   const updateStorageModal = useModale('update-storage');
   const addNode = useModale('add-node');
   const deleteNode = useModale('delete-node');
+
+  const capabilities: FullCapabilities = useMemo(() => {
+    if (!capabilitiesQuery.data)
+      return {
+        flavors: [],
+        disks: [],
+        engines: [],
+        options: [],
+        plans: [],
+        regions: [],
+      };
+    const { flavors, plans, regions, ...rest } = capabilitiesQuery.data;
+
+    return {
+      ...rest,
+      flavors: updateTags(flavors, service.flavor),
+      plans: updateTags(plans, service.plan),
+      regions: updateTags(regions, service.nodes[0].region),
+    } as FullCapabilities;
+  }, [capabilitiesQuery.data, service]);
 
   return (
     <>
@@ -149,40 +172,52 @@ const UpdateTable = () => {
         </TableBody>
       </Table>
       {/* Modals */}
-      {availabilitiesVersionQuery.isSuccess && (
-        <UpdateVersion
-          availabilities={availabilitiesVersionQuery.data}
-          controller={updateVersionModal.controller}
-          onError={() => {}}
-          onSuccess={() => {}}
-        />
+      {catalogQuery.isSuccess && capabilitiesQuery.isSuccess && (
+        <>
+          {availabilitiesVersionQuery.isSuccess && (
+            <UpdateVersion
+              availabilities={availabilitiesVersionQuery.data}
+              controller={updateVersionModal.controller}
+              capabilities={capabilities}
+              catalog={catalogQuery.data}
+              onError={() => {}}
+              onSuccess={() => {}}
+            />
+          )}
+          {availabilitiesPlanQuery.isSuccess && (
+            <UpdatePlan
+              availabilities={availabilitiesPlanQuery.data}
+              controller={updatePlanModal.controller}
+              capabilities={capabilities}
+              catalog={catalogQuery.data}
+              onError={() => {}}
+              onSuccess={() => {}}
+            />
+          )}
+          {availabilitiesFlavorQuery.isSuccess && (
+            <>
+              <UpdateFlavor
+                availabilities={availabilitiesFlavorQuery.data}
+                controller={updateFlavorModal.controller}
+                capabilities={capabilities}
+                catalog={catalogQuery.data}
+                onError={() => {}}
+                onSuccess={() => {}}
+              />
+              <UpdateStorage
+                availabilities={[
+                  availabilitiesFlavorQuery.data.find(
+                    (f) => f.specifications.flavor === service.flavor,
+                  ),
+                ]}
+                controller={updateStorageModal.controller}
+                onError={() => {}}
+                onSuccess={() => {}}
+              />
+            </>
+          )}
+        </>
       )}
-      {availabilitiesPlanQuery.isSuccess &&
-        catalog.isSuccess &&
-        capabilities.isSuccess && (
-          <UpdatePlan
-            availabilities={availabilitiesPlanQuery.data}
-            controller={updatePlanModal.controller}
-            capabilities={capabilities.data}
-            catalog={catalog.data}
-            onError={() => {}}
-            onSuccess={() => {}}
-          />
-        )}
-      {availabilitiesFlavorQuery.isSuccess && (
-        <UpdateFlavor
-          availabilities={availabilitiesFlavorQuery.data}
-          controller={updateFlavorModal.controller}
-          onError={() => {}}
-          onSuccess={() => {}}
-        />
-      )}
-      <UpdateStorage
-        availabilities={[]}
-        controller={updateStorageModal.controller}
-        onError={() => {}}
-        onSuccess={() => {}}
-      />
       <AddNode
         controller={addNode.controller}
         onError={() => {}}

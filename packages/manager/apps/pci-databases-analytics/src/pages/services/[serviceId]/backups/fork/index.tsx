@@ -15,6 +15,7 @@ import { useGetBackups } from '@/hooks/api/backups.api.hooks';
 import { useVrack } from '@/hooks/useVrack';
 import { Network } from '@/models/network';
 import { ForkSource, ForkSourceType } from '@/models/order-funnel';
+import { updateTags } from '@/lib/tagsHelper';
 
 export function breadcrumb() {
   return 'Fork';
@@ -100,22 +101,7 @@ const Fork = () => {
         regions: [],
       };
     const { flavors, plans, regions, ...rest } = capabilitiesQuery.data;
-    const updateTags = (
-      items:
-        | database.capabilities.Flavor[]
-        | database.capabilities.Plan[]
-        | database.RegionCapabilities[],
-      serviceValue: string,
-    ) =>
-      items.map((item) =>
-        item.name === serviceValue &&
-        !item.tags.includes(database.capabilities.Tags.current)
-          ? {
-              ...item,
-              tags: [...item.tags, database.capabilities.Tags.current],
-            }
-          : item,
-      );
+
     return {
       ...rest,
       flavors: updateTags(flavors, service.flavor),

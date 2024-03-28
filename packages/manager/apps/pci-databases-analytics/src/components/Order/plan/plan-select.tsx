@@ -1,20 +1,25 @@
 import React from 'react';
 import { Plan } from '@/models/order-funnel';
 import PlanTile from './plan-tile';
+import { cn } from '@/lib/utils';
 
 interface PlansSelectProps {
   plans: Plan[];
   value: string;
   onChange: (newPlan: string) => void;
   showMonthlyPrice?: boolean;
+  className?: string;
 }
 
 const PlansSelect = React.forwardRef<HTMLInputElement, PlansSelectProps>(
-  ({ plans, value, onChange, showMonthlyPrice = false }, ref) => {
+  ({ plans, value, onChange, showMonthlyPrice = false, className }, ref) => {
     return (
       <div
         ref={ref}
-        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2"
+        className={cn(
+          'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2',
+          className,
+        )}
       >
         {plans.map((plan) => (
           <PlanTile
