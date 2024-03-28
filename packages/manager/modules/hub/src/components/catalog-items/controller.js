@@ -1,22 +1,26 @@
 export default class {
+  /* @ngInject */
+  constructor(hubCatalogItemsService, $translate) {
+    this.$translate = $translate;
+    this.hubCatalogItemsService = hubCatalogItemsService;
+  }
+
   $onInit() {
     this.fetchItems();
   }
 
   fetchItems() {
-    if (this.items && this.items.length) return;
+    this.loading = true;
 
-    if (this.itemsPromise) {
-      this.loading = true;
-
-      this.itemsPromise
-        .then((products) => {
-          this.items = products;
-        })
-        .finally(() => {
-          this.loading = false;
-        });
-    }
+    this.hubCatalogItemsService
+      .getCatalogItems()
+      .then((products) => {
+        this.items = Object.keys(products).length > 0 ? products : null;
+      })
+      .catch(() => null)
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   formatTracker(universe, product) {
