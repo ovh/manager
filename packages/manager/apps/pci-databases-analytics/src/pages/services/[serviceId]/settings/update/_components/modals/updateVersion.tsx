@@ -8,12 +8,16 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
 import { ModalController } from '@/hooks/useModale';
+import { order } from '@/models/catalog';
 import { database } from '@/models/database';
 
 interface UpdateVersionProps {
   controller: ModalController;
   availabilities: database.Availability[];
+  capabilities: FullCapabilities;
+  catalog: order.publicOrder.Catalog;
   onSuccess?: (service: database.Service) => void;
   onError?: (error: Error) => void;
 }
