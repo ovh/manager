@@ -5,12 +5,14 @@ import {
   Files,
   Globe2,
   HardDrive,
+  LucideIcon,
   MemoryStick,
   ShieldCheck,
   TrafficCone,
   UserCheck,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useMemo } from 'react';
 import { useServiceData } from '../layout';
 import MetricChart from '../metrics/_components/metricChart';
 import { database } from '@/models/database';
@@ -25,129 +27,125 @@ import { useGetCapabilities } from '@/hooks/api/availabilities.api.hooks';
 import MeanMetric from './_components/meanMetric';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useGetVrack } from '@/hooks/api/network.api.hooks';
+import { useGetMetrics } from '@/hooks/api/metrics.api.hooks';
+import { Skeleton } from '@/components/ui/skeleton';
 
+interface MetricTile {
+  name: string;
+  icon: JSX.Element;
+  title: string;
+}
 const Dashboard = () => {
   const { service, projectId } = useServiceData();
   const vrackQuery = useGetVrack(projectId);
-  const capabilitiesQuery = useGetCapabilities(projectId, {
-    enabled: service.engine === database.EngineEnum.mongodb,
-  });
+  const metricsQuery = useGetMetrics(projectId, service.engine, service.id);
   const toast = useToast();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/dashboard',
+  );
+
+  const metricsToDispplay: MetricTile[] = useMemo(
+    () =>
+      metricsQuery.isSuccess
+        ? [
+            ...(service.storage?.size.value > 0 &&
+            metricsQuery.data.includes('disk_usage_percent')
+              ? [
+                  {
+                    name: 'disk_usage_percent',
+                    icon: <HardDrive className="size-4 inline mr-2" />,
+                    title: 'storageChartTitle',
+                  },
+                ]
+              : []),
+            ...(metricsQuery.data.includes('cpu_usage_percent')
+              ? [
+                  {
+                    name: 'cpu_usage_percent',
+                    icon: <Cpu className="size-4 inline mr-2" />,
+                    title: 'cpuChartTitle',
+                  },
+                ]
+              : []),
+            ...(metricsQuery.data.includes('mem_usage_percent')
+              ? [
+                  {
+                    name: 'mem_usage_percent',
+                    icon: <MemoryStick className="size-4 inline mr-2" />,
+                    title: 'ramChartTitle',
+                  },
+                ]
+              : []),
+            ...(metricsQuery.data.includes('cpu_usage')
+              ? [
+                  {
+                    name: 'mem_usage',
+                    icon: <MemoryStick className="size-4 inline mr-2" />,
+                    title: 'ramChartTitle',
+                  },
+                ]
+              : []),
+          ]
+        : [],
+    [metricsQuery.data],
   );
 
   return (
     <>
       <h2>{t('title')}</h2>
 
-      {service.engine === database.EngineEnum.postgresql && (
-        <Alert variant="warning">
-          <AlertDescription className="text-base">
-            <div className="flex flex-row items-center justify-between mr-8">
-              <div className="flex flex-row gap-5 items-center">
-                <AlertCircle className="h-6 w-6" />
-                <p>{t('upgradeAlertDescription')}</p>
-              </div>
-              <Button variant="default" type="button" asChild>
-                <Link
-                  className="hover:no-underline hover:text-primary-foreground"
-                  to={'settings#update'}
-                >
-                  {t('upgradeButton')}
-                  <ArrowRight className="w-4 h-4 ml-2 mt-1" />
-                </Link>
-              </Button>
+      <Alert variant="info">
+        <AlertDescription className="text-base">
+          <div className="flex flex-row items-center justify-between mr-8">
+            <div className="flex flex-row gap-5 items-center">
+              <AlertCircle className="h-6 w-6" />
+              <p>{t('upgradeAlertDescription')}</p>
             </div>
-          </AlertDescription>
-        </Alert>
-      )}
+            <Button variant="default" type="button" asChild>
+              <Link
+                className="hover:no-underline hover:text-primary-foreground"
+                to={'settings#update'}
+              >
+                {t('upgradeButton')}
+                <ArrowRight className="w-4 h-4 ml-2 mt-1" />
+              </Link>
+            </Button>
+          </div>
+        </AlertDescription>
+      </Alert>
 
-      <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2">
-        {service.storage?.size.value > 0 && (
-          <Card>
-            <CardHeader>
-              <h5>
-                <HardDrive className="size-4 inline mr-2" />
-                <span>{t('storageChartTitle')}</span>
-              </h5>
-            </CardHeader>
-            <CardContent>
-              <MetricChart
-                metric={'disk_usage_percent'}
-                period={database.service.MetricPeriodEnum.lastDay}
-                poll={false}
-                pollInterval={POLLING.METRICS}
-                className="aspect-auto sm:h-[200px]"
-              />
-              <MeanMetric metricName={'disk_usage_percent'} />
-            </CardContent>
-          </Card>
+      <div className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2">
+        {metricsQuery.isSuccess ? (
+          metricsToDispplay.map((metric) => (
+            <Card>
+              <CardHeader>
+                <h5>
+                  {metric.icon}
+                  <span>{t(metric.title)}</span>
+                </h5>
+              </CardHeader>
+              <CardContent>
+                <MetricChart
+                  metric={metric.name}
+                  period={database.service.MetricPeriodEnum.lastDay}
+                  poll={false}
+                  pollInterval={POLLING.METRICS}
+                  className="aspect-auto sm:h-[200px]"
+                />
+              </CardContent>
+            </Card>
+          ))
+        ) : (
+          <>
+            <Skeleton className="w-full h-[200px]" />
+            <Skeleton className="w-full h-[200px]" />
+            <Skeleton className="w-full h-[200px]" />
+          </>
         )}
-        <Card>
-          <CardHeader>
-            <h5>
-              <Cpu className="size-4 inline mr-2" />
-              <span>{t('cpuChartTitle')}</span>
-            </h5>
-          </CardHeader>
-          <CardContent>
-            <MetricChart
-              metric={'cpu_usage_percent'}
-              period={database.service.MetricPeriodEnum.lastDay}
-              poll={false}
-              pollInterval={POLLING.METRICS}
-              className="aspect-auto sm:h-[200px]"
-            />
-            <MeanMetric metricName={'cpu_usage_percent'} />
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <h5>
-              <MemoryStick className="size-4 inline mr-2" />
-              <span>{t('ramChartTitle')}</span>
-            </h5>
-          </CardHeader>
-          <CardContent>
-            {service.engine === database.EngineEnum.mongodb ? (
-              <>
-                <MetricChart
-                  metric={'mem_usage'}
-                  period={database.service.MetricPeriodEnum.lastDay}
-                  poll={false}
-                  pollInterval={POLLING.METRICS}
-                  className="aspect-auto sm:h-[200px]"
-                />
-                {capabilitiesQuery.isSuccess && (
-                  <MeanMetric
-                    metricName={'mem_usage'}
-                    fn={(val) =>
-                      (val * 100) /
-                      (capabilitiesQuery.data?.flavors.find(
-                        (f) => f.name === service.flavor,
-                      ).specifications.memory.value *
-                        1000)
-                    }
-                  />
-                )}
-              </>
-            ) : (
-              <>
-                <MetricChart
-                  metric={'mem_usage_percent'}
-                  period={database.service.MetricPeriodEnum.lastDay}
-                  poll={false}
-                  pollInterval={POLLING.METRICS}
-                  className="aspect-auto sm:h-[200px]"
-                />
-                <MeanMetric metricName={'mem_usage_percent'} />
-              </>
-            )}
-          </CardContent>
-        </Card>
+      </div>
+      <div className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2">
         {service.endpoints.length > 0 && (
-          <Card className="col-start-1">
+          <Card>
             <CardHeader>
               <h5>
                 <Globe2 className="size-4 inline mr-2" />

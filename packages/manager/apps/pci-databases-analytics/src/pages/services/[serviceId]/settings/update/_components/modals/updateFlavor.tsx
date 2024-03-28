@@ -5,7 +5,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -71,21 +70,20 @@ const UpdateFlavor = ({
   const [selectedFlavor, setSelectedFlavor] = useState(service.flavor);
   return (
     <Dialog {...controller}>
-      <DialogContent>
+      <DialogContent className="max-w-2xl">
         <DialogHeader>
           <DialogTitle>Update service flavor</DialogTitle>
         </DialogHeader>
         <ScrollArea>
-          <div className="w-max">
-            <FlavorsSelect
-              flavors={listFlavors}
-              value={selectedFlavor}
-              onChange={(newFlavor) => setSelectedFlavor(newFlavor)}
-            />
-          </div>
+          <FlavorsSelect
+            className="mb-1"
+            flavors={listFlavors}
+            value={selectedFlavor}
+            onChange={(newFlavor) => setSelectedFlavor(newFlavor)}
+          />
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
-        <DialogFooter className="flex justify-end px-6">
+        <DialogFooter className="flex justify-end">
           <DialogClose asChild>
             <Button type="button" variant="outline">
               Cancel
