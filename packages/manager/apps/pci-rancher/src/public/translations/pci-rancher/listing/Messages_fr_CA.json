@@ -3,7 +3,7 @@
   "name": "Nom",
   "serviceLevel": "Offre",
   "rancherVersion": "Version du Rancher",
-  "numberOfCpu": "Nombre de CPU",
+  "numberOfCpu": "Nombre de vCPUs",
   "status": "Statut",
   "actions": "Actions",
   "cancel": "Annuler",
@@ -21,7 +21,7 @@
   "rancherStatusDeleting": "Votre Managed Rancher Service est en cours de suppression. Merci de patienter, cela peut prendre quelques minutes.",
   "editNameModalTitle": "Modifier le nom de votre Rancher",
   "editNameModalInfo": "Nom du service",
-  "editNameModaleHelperInput": "Le nom du service doit comporter entre 3 et 63 caractères , doit commencer et se terminer par des caractères alphanumériques minuscules (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants : '.' et '-'.",
+  "editNameModaleHelperInput": "Le nom du service doit comporter entre 3 et 63 caractères , doit commencer et se terminer par des caractères alphanumériques minuscules (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants :  '_', '.' et '-'.",
   "editNameRancherCta": "Modifier",
 
   "READY": "Ready",

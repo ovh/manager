@@ -24,7 +24,7 @@
   "confirm": "Zatwierdź",
   "copy": "Skopiowano",
   "error": "Błąd",
-  "createRancherDiscoveryMode": "Aktualnie jesteś w trybie Discovery. <strong>Aby dokończyć tworzenie zasobu</strong>, aktywuj projekt.",
+  "createRancherDiscoveryMode": "Aktualnie jesteś w trybie „Discovery”. <strong>Aby dokończyć tworzenie zasobu</strong>, aktywuj projekt.",
   "createRancherDiscoveryModeActive": "Uruchom projekt",
   "createRancherTitle": "Managed Rancher",
   "createRancherInfoMessage": "Usługa jest bezpłatna w fazie beta. Później zużycie będzie fakturowane za godzinęw, w oparciu o całkowitą liczbę vCPU w każdym z węzłów roboczych w „downstream clusters” Rancher, przy <strong>minimalnej liczbie 20 vCPU</strong>. ",

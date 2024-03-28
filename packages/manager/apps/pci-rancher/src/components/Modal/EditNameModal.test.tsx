@@ -30,13 +30,16 @@ describe('Edit Name Modal', () => {
     const confirmButton = screen.getByText(
       listingTranslation.editNameRancherCta,
     );
-    const allowedChar = screen.getByText(
-      listingTranslation.editNameModaleHelperInput,
+
+    // Text is broken on multiline, so we need to use getAllByText
+    const allowedChar = screen.getAllByText(
+      (_, element) =>
+        element.textContent === listingTranslation.editNameModaleHelperInput,
     );
+    expect(allowedChar[0]).not.toBeNull();
 
     expect(title).not.toBeNull();
     expect(confirmButton).not.toBeNull();
-    expect(allowedChar).not.toBeNull();
   });
 
   it("Given that the name doesn't change, the CTA should be disabled", async () => {

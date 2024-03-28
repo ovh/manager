@@ -3,7 +3,7 @@
   "name": "Name",
   "serviceLevel": "Service plan",
   "rancherVersion": "Rancher version",
-  "numberOfCpu": "Number of CPUs",
+  "numberOfCpu": "Number of vCPUs",
   "status": "Status",
   "actions": "Actions",
   "cancel": "Cancel",

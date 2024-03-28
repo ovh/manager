@@ -41,6 +41,7 @@ const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
         hasRancherCreationError={false}
         isProjectDiscoveryMode={false}
         hasSomeRancher={false}
+        isCreateRancherLoading={false}
         {...props}
       />,
     ),
@@ -78,11 +79,11 @@ describe('CreateRancher', () => {
       dashboardTranslation.createRancherCTA,
     );
 
-    await userEvent.type(input, 'MyRancher');
+    await userEvent.type(input, 'myrancher');
     await userEvent.click(confirmButton);
 
     expect(onCreateRancher).toHaveBeenCalledWith({
-      name: 'MyRancher',
+      name: 'myrancher',
       plan: 'STANDARD',
       version: 'v2.7.6',
     });

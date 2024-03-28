@@ -3,7 +3,7 @@
   "name": "Nome",
   "serviceLevel": "Piano",
   "rancherVersion": "Versione di Rancher",
-  "numberOfCpu": "Numero di CPU",
+  "numberOfCpu": "Numero di vCPU",
   "status": "Stato",
   "actions": "Azioni",
   "cancel": "Annullare",

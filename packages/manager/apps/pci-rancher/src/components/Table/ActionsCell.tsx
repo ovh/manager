@@ -32,7 +32,13 @@ export default function ActionsCell({
     openModal();
   };
 
-  return (
+  const NOT_EDITABLE_STATUS: RessourceStatus[] = [
+    RessourceStatus.CREATING,
+    RessourceStatus.DELETING,
+    RessourceStatus.UPDATING,
+  ];
+
+  return NOT_EDITABLE_STATUS.includes(row.original.resourceStatus) ? null : (
     <div>
       <OsdsMenu className="absolute  mt-[-15px]">
         <OsdsButton

@@ -58,7 +58,6 @@ const RancherDetail = ({
   const dateUsage = rancher.currentState.usage
     ? new Date(rancher.currentState.usage?.datetime)
     : null;
-  const vCpus = rancher.currentState.usage?.orchestratedVcpus;
 
   useEffect(() => {
     if (hasErrorAccessDetail) {
@@ -124,6 +123,7 @@ const RancherDetail = ({
               <TileBlock label={t('description')}>
                 <div className="flex">
                   <OsdsText
+                    className="overflow-hidden text-ellipsis max-w-[300px]"
                     level={ODS_TEXT_LEVEL.heading}
                     color={ODS_THEME_COLOR_INTENT.primary}
                     size={ODS_TEXT_SIZE._200}
@@ -222,23 +222,21 @@ const RancherDetail = ({
                   {tListing(plan)}
                 </OsdsText>
               </TileBlock>
-              {!!vCpus && (
-                <TileBlock label={t('count_cpu_orchestrated')}>
-                  <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                    {rancher.currentState.usage?.orchestratedVcpus}
-                  </OsdsText>
-                  {dateUsage && (
-                    <div className="mt-3">
-                      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                        {t('last_update_date', {
-                          date: format(dateUsage, 'yyyy_MM_dd'),
-                          hour: format(dateUsage, 'HH:mm'),
-                        })}
-                      </OsdsText>
-                    </div>
-                  )}
-                </TileBlock>
-              )}
+              <TileBlock label={t('count_cpu_orchestrated')}>
+                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                  {rancher.currentState.usage?.orchestratedVcpus || '-'}
+                </OsdsText>
+                {dateUsage && (
+                  <div className="mt-3">
+                    <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                      {t('last_update_date', {
+                        date: format(dateUsage, 'yyyy_MM_dd'),
+                        hour: format(dateUsage, 'HH:mm'),
+                      })}
+                    </OsdsText>
+                  </div>
+                )}
+              </TileBlock>
             </div>
           </OsdsTile>
         </div>

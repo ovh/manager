@@ -11,10 +11,12 @@ export const useRancher = () => {
   });
 };
 
+export const ranchersQueryKey = (projectId: string) => ['project', projectId];
+
 export const useRanchers = () => {
   const { projectId } = useParams();
-  return useQuery<{ data: RancherService[] }, ErrorResponse>({
-    queryKey: ['project', projectId],
+  return useQuery<RancherService[], ErrorResponse>({
+    queryKey: ranchersQueryKey(projectId),
     queryFn: () => getRancherProjectById(projectId),
     refetchInterval: 5000,
   });
