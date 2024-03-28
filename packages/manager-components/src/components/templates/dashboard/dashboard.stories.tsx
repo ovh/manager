@@ -17,7 +17,7 @@ import { DashboardLayout, DashboardLayoutProps } from './dashboard.component';
 import { LinkType } from '../../typography/links/links.component';
 import GuideButton, {
   GuideItem,
-} from '../../navigation/buttons/guide/guide.component';
+} from '../../navigation/menus/guide/guide.component';
 
 const guideItems: GuideItem[] = [
   {
