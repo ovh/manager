@@ -56,7 +56,10 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
                 {t('connectionDetailsTableHeaderHost')}
               </TableCell>
               <TableCell>
-                <p className="flex-1 truncate h-6 max-w-[300px] m-0">
+                <p
+                  className="flex-1 truncate h-6 max-w-[300px] m-0"
+                  title={selectedEndpoint.domain}
+                >
                   {selectedEndpoint.domain}
                 </p>
               </TableCell>
@@ -107,7 +110,10 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
                 {t('connectionDetailsTableHeaderURI')}
               </TableCell>
               <TableCell>
-                <p className="flex-1 truncate h-6 max-w-[300px]">
+                <p
+                  className="flex-1 truncate h-6 max-w-[300px]"
+                  title={selectedEndpoint.uri}
+                >
                   {selectedEndpoint.uri}
                 </p>
               </TableCell>

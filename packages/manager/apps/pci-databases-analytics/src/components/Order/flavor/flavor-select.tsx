@@ -13,16 +13,18 @@ import { formatStorage } from '@/lib/bytesHelper';
 import { Flavor } from '@/models/order-funnel';
 import { Badge } from '@/components/ui/badge';
 import { getTagVariant } from '@/lib/tagsHelper';
+import { cn } from '@/lib/utils';
 
 interface FlavorsSelectProps {
   flavors: Flavor[];
   value: string;
   onChange: (newFlavor: string) => void;
   showMonthlyPrice?: boolean;
+  className?: string;
 }
 
-const FlavorsSelect = React.forwardRef<HTMLInputElement, FlavorsSelectProps>(
-  ({ flavors, value, onChange, showMonthlyPrice = false }, ref) => {
+const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
+  ({ flavors, value, onChange, showMonthlyPrice = false, className }, ref) => {
     const { t } = useTranslation('pci-databases-analytics/components/flavor');
     const priceUnit = showMonthlyPrice ? 'monthly' : 'hourly';
     const decimals = showMonthlyPrice ? 2 : 3;
@@ -58,86 +60,84 @@ const FlavorsSelect = React.forwardRef<HTMLInputElement, FlavorsSelectProps>(
       }
     };
     return (
-      <div ref={ref}>
-        <Table>
-          <TableHeader>
-            <TableRow className="bg-primary-100 hover:bg-primary-10">
-              <TableHead className="font-bold text-base text-[#4d5592]">
-                {t('tableHeadType')}
-              </TableHead>
-              <TableHead className="font-bold text-base text-[#4d5592]">
-                {t('tableHeadCores')}
-              </TableHead>
-              <TableHead className="font-bold text-base text-[#4d5592]">
-                {t('tableHeadMemory')}
-              </TableHead>
-              <TableHead className="font-bold text-base text-[#4d5592]">
-                {t('tableHeadStorage')}
-              </TableHead>
-              <TableHead className="font-bold text-base text-[#4d5592]">
-                {t(`tableHeadPrice-${priceUnit}`)}
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {flavors.map((flavor) => (
-              <TableRow
-                tabIndex={0}
-                onClick={() => clickInput(flavor.name)}
-                onKeyDown={(e) => handleKeyDown(e, flavor.name)}
-                key={flavor.name}
-                className={`border border-primary-100 hover:bg-primary-50 cursor-pointer text-[#4d5592] ${
-                  value === flavor.name ? 'bg-[#DEF8FF] font-bold' : ''
-                }`}
-              >
-                <td className="hidden">
-                  <input
-                    type="radio"
-                    name="flavor-select"
-                    onChange={(e) => onChange(e.target.value)}
-                    className="hidden"
-                    id={`flavor-${flavor.name}`}
-                    value={flavor.name}
-                    checked={value === flavor.name}
-                  />
-                </td>
-                <TableCell className="text-[#4d5592] border border-primary-100 capitalize">
-                  <div className="flex gap-2 w-full justify-between items-center flex-nowrap">
-                    <span>{flavor.name}</span>
-                    <div className="hidden md:flex gap-1">
-                      {flavor.tags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant={getTagVariant(tag)}
-                          className="text-xs h-4"
-                        >
-                          {t(`flavorTag-${tag}`, tag)}
-                        </Badge>
-                      ))}
-                    </div>
+      <Table ref={ref} className={cn('min-w-max w-full', className)}>
+        <TableHeader>
+          <TableRow className="bg-primary-100 hover:bg-primary-10">
+            <TableHead className="font-bold text-base text-[#4d5592]">
+              {t('tableHeadType')}
+            </TableHead>
+            <TableHead className="font-bold text-base text-[#4d5592]">
+              {t('tableHeadCores')}
+            </TableHead>
+            <TableHead className="font-bold text-base text-[#4d5592]">
+              {t('tableHeadMemory')}
+            </TableHead>
+            <TableHead className="font-bold text-base text-[#4d5592]">
+              {t('tableHeadStorage')}
+            </TableHead>
+            <TableHead className="font-bold text-base text-[#4d5592]">
+              {t(`tableHeadPrice-${priceUnit}`)}
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {flavors.map((flavor) => (
+            <TableRow
+              tabIndex={0}
+              onClick={() => clickInput(flavor.name)}
+              onKeyDown={(e) => handleKeyDown(e, flavor.name)}
+              key={flavor.name}
+              className={`border border-primary-100 hover:bg-primary-50 cursor-pointer text-[#4d5592] ${
+                value === flavor.name ? 'bg-[#DEF8FF] font-bold' : ''
+              }`}
+            >
+              <td className="hidden">
+                <input
+                  type="radio"
+                  name="flavor-select"
+                  onChange={(e) => onChange(e.target.value)}
+                  className="hidden"
+                  id={`flavor-${flavor.name}`}
+                  value={flavor.name}
+                  checked={value === flavor.name}
+                />
+              </td>
+              <TableCell className="text-[#4d5592] border border-primary-100 capitalize">
+                <div className="flex gap-2 w-full justify-between items-center flex-nowrap">
+                  <span>{flavor.name}</span>
+                  <div className="hidden md:flex gap-1">
+                    {flavor.tags.map((tag) => (
+                      <Badge
+                        key={tag}
+                        variant={getTagVariant(tag)}
+                        className="text-xs h-4"
+                      >
+                        {t(`flavorTag-${tag}`, tag)}
+                      </Badge>
+                    ))}
                   </div>
-                </TableCell>
-                <TableCell className="text-[#4d5592] border border-primary-100">
-                  {flavor.vcores ?? '-'}
-                </TableCell>
-                <TableCell className="text-[#4d5592] border border-primary-100">
-                  {flavor.ram ? `${formatStorage(flavor.ram)}` : '-'}
-                </TableCell>
-                <TableCell className="text-[#4d5592] border border-primary-100">
-                  <Storage flavor={flavor} />
-                </TableCell>
-                <TableCell className="text-[#4d5592] border border-primary-100">
-                  <Price
-                    priceInUcents={flavor.pricing[priceUnit].price}
-                    taxInUcents={flavor.pricing[priceUnit].tax}
-                    decimals={decimals}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+                </div>
+              </TableCell>
+              <TableCell className="text-[#4d5592] border border-primary-100">
+                {flavor.vcores ?? '-'}
+              </TableCell>
+              <TableCell className="text-[#4d5592] border border-primary-100">
+                {flavor.ram ? `${formatStorage(flavor.ram)}` : '-'}
+              </TableCell>
+              <TableCell className="text-[#4d5592] border border-primary-100">
+                <Storage flavor={flavor} />
+              </TableCell>
+              <TableCell className="text-[#4d5592] border border-primary-100">
+                <Price
+                  priceInUcents={flavor.pricing[priceUnit].price}
+                  taxInUcents={flavor.pricing[priceUnit].tax}
+                  decimals={decimals}
+                />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     );
   },
 );
