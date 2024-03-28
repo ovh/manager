@@ -18,7 +18,7 @@ const Settings = () => {
   return (
     <>
       <h3>Settings</h3>
-      <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2">
+      <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2" id="update">
         <Card>
           <CardHeader>
             <h5>Upgrade your service</h5>

@@ -43,7 +43,7 @@ const Dashboard = () => {
 
       {service.engine === database.EngineEnum.postgresql && (
         <Alert variant="warning">
-          <AlertDescription className="mt-2 text-base">
+          <AlertDescription className="text-base">
             <div className="flex flex-row items-center justify-between mr-8">
               <div className="flex flex-row gap-5 items-center">
                 <AlertCircle className="h-6 w-6" />
@@ -52,7 +52,7 @@ const Dashboard = () => {
               <Button variant="default" type="button" asChild>
                 <Link
                   className="hover:no-underline hover:text-primary-foreground"
-                  to={'settings/update?target=flavor'}
+                  to={'settings#update'}
                 >
                   {t('upgradeButton')}
                   <ArrowRight className="w-4 h-4 ml-2 mt-1" />

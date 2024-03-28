@@ -1,16 +1,26 @@
 import { Pen } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { useServiceData } from '../../layout';
 import { Button } from '@/components/ui/button';
 import { useModale } from '@/hooks/useModale';
 import RenameService from '../../_components/renameService';
-import { useUpdateService } from '@/hooks/api/services.api.hooks';
+import {
+  useGetServices,
+  useUpdateService,
+} from '@/hooks/api/services.api.hooks';
 import { useToast } from '@/components/ui/use-toast';
 import TimeUpdate from './serviceConfiguration/timeUpdate';
+import DeleteService from '../../_components/deleteService';
 
 const ServiceConfiguration = () => {
+  const navigate = useNavigate();
   const renameModale = useModale('rename');
+  const deleteModale = useModale('delete');
   const { service, projectId, serviceQuery } = useServiceData();
+  const getServicesQuery = useGetServices(projectId, {
+    enabled: false,
+  });
   const toast = useToast();
   const { updateService } = useUpdateService({
     onError: (err) => {
@@ -107,6 +117,7 @@ const ServiceConfiguration = () => {
       <Button
         variant="destructive"
         className="w-full bg-background border-2 hover:bg-destructive/10 font-semibold border-destructive text-destructive"
+        onClick={() => deleteModale.open()}
       >
         Delete my service
       </Button>
@@ -116,6 +127,16 @@ const ServiceConfiguration = () => {
         onSuccess={() => {
           renameModale.close();
           serviceQuery.refetch();
+        }}
+      />
+      <DeleteService
+        controller={deleteModale.controller}
+        service={service}
+        onSuccess={() => {
+          deleteModale.close();
+          serviceQuery.refetch();
+          getServicesQuery.refetch();
+          navigate(`../../`);
         }}
       />
     </>
