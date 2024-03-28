@@ -50,6 +50,10 @@ export default class IdentitiesController {
     }
   }
 
+  onAddIdentities(urns) {
+    this.onAdd({ urns });
+  }
+
   onRemoveIdentity(urn) {
     this.onRemove({ urn });
   }

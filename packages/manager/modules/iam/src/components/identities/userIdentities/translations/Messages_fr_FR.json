@@ -8,5 +8,10 @@
   "iam_identities_users_description": "Description",
   "iam_identities_users_status_OK": "Activé",
   "iam_identities_users_status_DISABLED": "Désactivé",
-  "iam_identities_users_status_PASSWORD_CHANGE_REQUIRED": "Changement de mot de passe requis"
+  "iam_identities_users_status_PASSWORD_CHANGE_REQUIRED": "Changement de mot de passe requis",
+  "iam_identities_users_add": "Ajouter des utilisateurs",
+  "iam_identities_users_modal_title": "Ajouter des utilisateurs locaux",
+  "iam_identities_users_modal_empty_state": "Aucun utilisateur local à ajouter",
+  "iam_identities_users_modal_search_placeholder": "Rechercher par nom ou email",
+  "iam_identities_users_load_error": "Une erreur est survenue lors de la récupération de vos utilisateurs locaux : {{ message }}"
 }
