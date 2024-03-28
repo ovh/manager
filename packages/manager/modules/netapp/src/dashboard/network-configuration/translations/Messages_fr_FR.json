@@ -1,0 +1,15 @@
+{
+  "netapp_network_configuration_title": "Configurer les paramètres réseaux",
+  "netapp_network_configuration_previous_link": "Retour à la page précédente",
+  "netapp_network_configuration_description": "Le service Enterprise File Storage est un service de stockage managé et exposé via une adresse IP sur le vRack. L'attribution de l'IP de votre système de stockage se fait après la selection ou la création d'un \"vRack services\" et d'un subnet",
+  "netapp_network_configuration_vrack_service_field_placeholder": "Sélectionnez votre service",
+  "netapp_network_configuration_subnet_field_placeholder": "Sélectionnez votre subnet",
+  "netapp_network_configuration_no_vrack_service_field": "Vous n'avez pas de vRack Services",
+  "netapp_network_configuration_create_vrack_service_text": "Souhaitez-vous créer un nouveau vRack Services ?",
+  "netapp_network_configuration_no_subnet_field": "Vous n'avez pas de subnet",
+  "netapp_network_configuration_no_subnet_text": "Souhaitez-vous créer un nouveau subnet ?",
+  "netapp_network_configuration_create_button": "Créer",
+  "netapp_network_configuration_configure_button": "Configurer",
+  "netapp_network_configuration_cancel_button": "Annuler",
+  "netapp_network_configuration_success_message": "Vos paramètres réseaux ont bien été crée"
+}
