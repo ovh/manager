@@ -16,7 +16,14 @@ import {
   modalNoVrackButtonLabel,
 } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
 import { displayNameInputName } from '../../src/pages/create/constants';
-import { subnetsTabLabel } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
+import {
+  subnetsTabLabel,
+  vrackActionDissociate,
+} from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
+import {
+  modalConfirmButton,
+  modalCancelButton,
+} from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
 
 When('User navigates to vRack Services Listing page', async function(
   this: ICustomWorld<ConfigParams>,
@@ -185,4 +192,46 @@ When('User navigates to the vRack Services Subnet page', async function(
   await this.page.waitForURL(getUrl('subnets', selectedVrackServices.id), {
     waitUntil: 'load',
   });
+});
+
+When('User click on the private network action menu button', async function(
+  this: ICustomWorld<ConfigParams>,
+) {
+  await setupNetwork(this);
+
+  const { selectedVrackServices } = this.testContext.data;
+
+  await this.page.waitForURL(getUrl('overview', selectedVrackServices.id), {
+    waitUntil: 'load',
+  });
+
+  if (await this.page.getByTestId('action-menu-icon').count()) {
+    await this.page.getByTestId('action-menu-icon').click();
+  }
+});
+
+When(
+  'User click on dissociate in action menu of private network',
+  async function(this: ICustomWorld<ConfigParams>) {
+    await setupNetwork(this);
+    await sleep(1000);
+
+    await this.page.getByText(vrackActionDissociate, { exact: true }).click();
+  },
+);
+
+When('User {word} modal', async function(
+  this: ICustomWorld<ConfigParams>,
+  acceptOrCancel: 'accept' | 'cancel',
+) {
+  await setupNetwork(this);
+
+  await sleep(1000);
+  const labelToButton = {
+    accept: modalConfirmButton,
+    cancel: modalCancelButton,
+  };
+  const buttonLabel = labelToButton[acceptOrCancel];
+  const button = await this.page.getByText(buttonLabel, { exact: true });
+  await button.click();
 });

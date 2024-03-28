@@ -33,5 +33,6 @@
   "vrackServicesNotReadyInfoMessage": "vRack Services {{displayName}} a une opération en cours",
   "vrackServicesInErrorMessage": "vRack Services {{displayName}} est en erreur",
   "subnetCreationOnGoing": " : Sous-réseau {{name}} en cours de création",
-  "endpointCreationOnGoing": " : Service endpoint en cours de création"
+  "endpointCreationOnGoing": " : Service endpoint en cours de création",
+  "vrackActionDissociate": "Dissocier"
 }
