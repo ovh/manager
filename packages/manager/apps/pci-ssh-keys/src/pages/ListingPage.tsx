@@ -128,7 +128,7 @@ export default function ListingPage() {
         >
           {t('pci_projects_project_sshKeys_title')}
         </OsdsText>
-        <PciGuidesHeader category="storage"></PciGuidesHeader>
+        <PciGuidesHeader category="instances"></PciGuidesHeader>
       </div>
       <OsdsDivider></OsdsDivider>
       <Notifications />
