@@ -1,9 +1,10 @@
 {
-  "title": "Backups",
-  "breadcrumb": "Backups",
+  "title": "Sauvegardes",
+  "breadcrumb": "Sauvegardes",
   "description": "Vous trouverez ci-dessous la liste de vos sauvegardes. Vous pouvez restaurer ou fork chacune d'entre elles. Ces sauvegardes glissantes sont conservées pour le bon maintien opérationnel de votre service.",
   "detailsTitle": "Sauvegardes de la base de données",
   "detailsRetentionDays": "Durée de rétention",
+  "detailsRetentionDaysUnit": "{{number}} jours",
   "detailsBackupTime": "Heure de sauvegarde (UTC)",
   "tableHeadName": "Nom",
   "tableHeadLocation": "Localisation",
