@@ -61,10 +61,20 @@ const UpdateTable = () => {
         plans: [],
         regions: [],
       };
-    const { flavors, plans, regions, ...rest } = capabilitiesQuery.data;
+    const {
+      flavors,
+      plans,
+      regions,
+      engines,
+      ...rest
+    } = capabilitiesQuery.data;
 
     return {
       ...rest,
+      engines: engines.map((e) => ({
+        ...e,
+        versions: updateTags(e.versions, service.version),
+      })),
       flavors: updateTags(flavors, service.flavor),
       plans: updateTags(plans, service.plan),
       regions: updateTags(regions, service.nodes[0].region),
