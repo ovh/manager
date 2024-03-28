@@ -102,8 +102,8 @@ const FlavorsSelect = React.forwardRef<HTMLInputElement, FlavorsSelectProps>(
                   />
                 </td>
                 <TableCell className="text-[#4d5592] border border-primary-100 capitalize">
-                  <div className="flex gap-2 w-full justify-between items-center">
-                    {flavor.name}
+                  <div className="flex gap-2 w-full justify-between items-center flex-nowrap">
+                    <span>{flavor.name}</span>
                     <div className="hidden md:flex gap-1">
                       {flavor.tags.map((tag) => (
                         <Badge

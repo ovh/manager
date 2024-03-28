@@ -14,3 +14,20 @@ export const getTagVariant = (
       return 'info';
   }
 };
+
+export const updateTags = (
+  items:
+    | database.capabilities.Flavor[]
+    | database.capabilities.Plan[]
+    | database.RegionCapabilities[],
+  serviceValue: string,
+) =>
+  items.map((item) =>
+    item.name === serviceValue &&
+    !item.tags.includes(database.capabilities.Tags.current)
+      ? {
+          ...item,
+          tags: [...item.tags, database.capabilities.Tags.current],
+        }
+      : item,
+  );
