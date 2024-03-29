@@ -24,11 +24,7 @@ export default function Home() {
   }
 
   if (isLoading) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
@@ -37,7 +33,7 @@ export default function Home() {
         <div className="mb-3">
           <Breadcrumb />
         </div>
-        {data?.data && <Listing data={data?.data} refetchRanchers={refetch} />}
+        {data && <Listing data={data} refetchRanchers={refetch} />}
       </Suspense>
     </PageLayout>
   );

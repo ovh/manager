@@ -1,3 +1,3 @@
 // eslint-disable-next-line import/prefer-default-export
 export const isValidRancherName = (name: string) =>
-  /^[a-z0-9.-_]{3,64}$/i.test(name);
+  /^[a-z0-9][-_.a-z0-9]{1,61}[a-z0-9]$/.test(name);

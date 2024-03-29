@@ -1,5 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
-import { CreateRancherPayload } from '@/api/api.type';
+import {
+  CreateRancherPayload,
+  ErrorResponse,
+  RancherService,
+} from '@/api/api.type';
 import {
   createRancherService,
   createRancherServiceQueryKey,
@@ -17,11 +21,11 @@ const useCreateRancher = ({
   onMutate,
 }: {
   projectId: string;
-  onSuccess: () => void;
+  onSuccess: (data: { data: RancherService }) => void;
   onError: () => void;
   onMutate: () => void;
-}) => {
-  const { mutate: createRancher, reset } = useMutation({
+}) =>
+  useMutation<{ data: RancherService }, ErrorResponse, CreateRancherPayload>({
     mutationFn: (data: CreateRancherPayload) =>
       createRancherService({
         projectId,
@@ -32,11 +36,5 @@ const useCreateRancher = ({
     onMutate,
     mutationKey: createRancherServiceQueryKey(),
   });
-
-  return {
-    createRancher,
-    reset,
-  };
-};
 
 export default useCreateRancher;
