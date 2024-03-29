@@ -2,7 +2,6 @@ import has from 'lodash/has';
 
 import { SupportLevel } from '@ovh-ux/manager-models';
 
-import Offer from '../components/project/offer/offer.class';
 import { PCI_FEATURES, PCI_FEATURES_STATES } from './projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -61,12 +60,6 @@ export default /* @ngInject */ ($stateProvider) => {
           isDiscoveryProject: false,
           projectId: '',
         }),
-
-      deals: /* @ngInject */ ($q, OvhApiCloud) =>
-        OvhApiCloud.Aapi()
-          .getDeals()
-          .$promise.then((deals) => new Offer(deals))
-          .catch(() => $q.when({ active: false })),
 
       defaultProject: /* @ngInject */ (PciProjectsService) =>
         PciProjectsService.getDefaultProject(),

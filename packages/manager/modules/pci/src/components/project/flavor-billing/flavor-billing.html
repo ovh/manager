@@ -9,14 +9,6 @@
         data-on-change="$ctrl.selectBilling(modelValue)"
         data-disabled="$ctrl.disabled && $ctrl.monthly"
     >
-        <oui-select-picker-picture>
-            <pci-project-offer-badge
-                data-ng-if="$ctrl.offer"
-                data-title="{{:: $ctrl.offer.name.content }}"
-                data-color="{{:: $ctrl.offer.name.color }}"
-                data-background="{{:: $ctrl.offer.name.background }}"
-            ></pci-project-offer-badge>
-        </oui-select-picker-picture>
         <oui-select-picker-section data-ng-if="$ctrl.prices">
             <p>
                 <strong
@@ -27,14 +19,6 @@
                     data-translate-values="{ price: $ctrl.formatPrice($ctrl.prices.hourly) }"
                 >
                 </span>
-                <strong
-                    class="ml-2"
-                    data-ng-if="$ctrl.offer"
-                    data-ng-bind="$ctrl.offer.value"
-                    data-ng-style="{
-                    'color': $ctrl.offer.highlight.color
-                }"
-                ></strong>
             </p>
             <div data-ng-if="$ctrl.addons.length > 0">
                 <p data-ng-if="$ctrl.defaultGateway">
@@ -81,14 +65,6 @@
                     data-translate-values="{ price: $ctrl.formatPrice($ctrl.hourlyPriceInformation) }"
                 >
                 </span>
-                <strong
-                    class="ml-2"
-                    data-ng-if="$ctrl.offer"
-                    data-ng-bind="$ctrl.offer.value"
-                    data-ng-style="{
-                    'color': $ctrl.offer.highlight.color
-                }"
-                ></strong>
             </p>
         </oui-select-picker-section>
     </oui-select-picker>
