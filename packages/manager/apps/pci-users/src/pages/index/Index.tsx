@@ -33,12 +33,12 @@ import {
   Datagrid,
   PciGuidesHeader,
   DataGridTextCell,
-  useDatagridSearchParams,
   isDiscoveryProject,
   PciDiscoveryBanner,
   useColumnFilters,
   FilterList,
   FilterAdd,
+  useDataGrid,
 } from '@ovhcloud/manager-components';
 import { useUsers } from '@/api/hooks/useUser';
 import useProject from '@/api/hooks/useProject';
@@ -74,7 +74,7 @@ export default function ListingPage() {
 
   const columns = [
     {
-      id: 'name',
+      id: 'username',
       cell: (props: User) => {
         return <DataGridTextCell>{props.username}</DataGridTextCell>;
       },
@@ -117,12 +117,7 @@ export default function ListingPage() {
     },
   ];
 
-  const {
-    pagination,
-    setPagination,
-    sorting,
-    setSorting,
-  } = useDatagridSearchParams();
+  const { pagination, setPagination, sorting, setSorting } = useDataGrid();
 
   const { error, data: users, isLoading } = useUsers(
     projectId || '',
@@ -227,6 +222,11 @@ export default function ListingPage() {
                   {
                     id: 'username',
                     label: t('pci_projects_project_users_username_label'),
+                    comparators: FilterCategories.String,
+                  },
+                  {
+                    id: 'description',
+                    label: t('pci_projects_project_users_description_label'),
                     comparators: FilterCategories.String,
                   },
                 ]}

@@ -57,7 +57,30 @@ export const filterUsers = (
   sorting: ColumnSort,
   searchQueries?: string[],
 ): User[] => {
-  const data = [...users];
+  let data = [...users];
+
+  switch (sorting?.id) {
+    case 'username':
+    case 'description':
+    case 'status':
+    case 'creationDate':
+      data = [...users].sort((a, b) =>
+        a[sorting.id]?.localeCompare(b[sorting.id]),
+      );
+      break;
+    case 'roles':
+      data = [...users].sort((a, b) =>
+        a.roles
+          ?.map((role) => role.description || role.name)
+          .join(' ')
+          .localeCompare(
+            b.roles?.map((role) => role.description || role.name).join(' '),
+          ),
+      );
+      break;
+    default:
+      break;
+  }
 
   if (sorting) {
     const { desc } = sorting;

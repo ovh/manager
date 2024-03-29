@@ -209,7 +209,7 @@ export const Datagrid = <T extends unknown>({
           </tbody>
         </table>
       </div>
-      {pagination && (
+      {items?.length > 0 && pagination ? (
         <OsdsPagination
           defaultCurrentPage={pagination.pageIndex + 1}
           className={'flex xs:justify-center md:justify-end'}
@@ -241,6 +241,8 @@ export const Datagrid = <T extends unknown>({
             {t('common_pagination_results')}
           </span>
         </OsdsPagination>
+      ) : (
+        <div className="mb-6" aria-hidden="true"></div>
       )}
     </div>
   );
