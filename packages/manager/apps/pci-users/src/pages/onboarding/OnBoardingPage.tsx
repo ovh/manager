@@ -16,6 +16,7 @@ import {
   useRouteLoaderData,
 } from 'react-router-dom';
 import { Project } from '@/api/data/project';
+import { useAllUsers } from '@/api/hooks/useUser';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation('common');
@@ -24,6 +25,7 @@ export default function OnBoardingPage() {
   const project = useRouteLoaderData('users') as Project;
   const [urlProject, setUrlProject] = useState('');
   const navigate = useNavigate();
+  const { data: users, isLoading } = useAllUsers(projectId);
 
   useEffect(() => {
     navigation
@@ -32,6 +34,13 @@ export default function OnBoardingPage() {
         setUrlProject(data as string);
       });
   }, [projectId, navigation]);
+
+  useEffect(() => {
+    // if there are users redirect to user listing page
+    if (!isLoading && users.length > 0) {
+      navigate(`/pci/projects/${projectId}/users`);
+    }
+  }, [isLoading, users, navigate]);
 
   const breadcrumbItems: OdsBreadcrumbAttributeItem[] = [
     {
