@@ -65,7 +65,7 @@ export const useUsers = (
       error,
       data: paginateResults(filterUsers(users || [], sorting), pagination),
     };
-  }, [users, sorting, filters]);
+  }, [isLoading, error, users, pagination, sorting, filters]);
 };
 
 export const useUser = (projectId: string, userId: string) => {
