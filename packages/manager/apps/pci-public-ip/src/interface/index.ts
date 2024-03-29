@@ -48,3 +48,14 @@ export interface ResponseAPIError {
     };
   };
 }
+
+export interface ActionProps {
+  ipId: string;
+  projectId: string;
+}
+
+export interface TerminateIPProps {
+  projectId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}
