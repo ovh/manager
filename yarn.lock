@@ -4654,24 +4654,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.8.tgz#ec783cab3ddd9254087127793ca856780e48731b"
   integrity sha512-am96JNK/XOKQkr9mixc1rNt63A1CxHKvjuKxBYgAEl6WQ9Jdlesytcts+Xn8c24kL1lkec4sJfeuDMG/5lhBIw==
 
-"@ovhcloud/ods-common-core@17.1.0", "@ovhcloud/ods-common-core@^17.1.0":
-  version "17.1.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.1.0.tgz#e7aa2d1d1cd65a2e063c7798109d5b944e565aa4"
-  integrity sha512-Kfn8qgfWh97qGrdqWRPgde4pW/pL8qrHxHKZs2RZabgVMRbQ6K3Dkl1yKJXjo5U0SMoh8oWmO0JbnWk5k+MOvA==
-
-"@ovhcloud/ods-common-core@17.2.1", "@ovhcloud/ods-common-core@^17.2.1":
+"@ovhcloud/ods-common-core@17.2.1", "@ovhcloud/ods-common-core@^17.1.0", "@ovhcloud/ods-common-core@^17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.2.1.tgz#c5cc5ec6dede4ddf7b8e45a52bbc3eeab5bd6812"
   integrity sha512-gJspFlE4UZpiYcwKxuvOSMuQndPMU1TPOlTnyzsaswOu5nooF5lCHmN2+gTq5Co0mkh4P5y94W/KORBMp9Vnzw==
-
-"@ovhcloud/ods-common-stencil@17.1.0":
-  version "17.1.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-17.1.0.tgz#2de7a88c182cf729fc500182aa2de598354f9107"
-  integrity sha512-VprvKgTUADl3dPy01h3S41utAEIoufTVaBeev10ZEYd2WUshkIJs4Hu02c4xZDYGqBaAVvblgtAOcGd1E/xebw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "17.1.0"
-    "@ovhcloud/ods-theme-blue-jeans" "17.1.0"
-    "@stencil/core" "4.12.0"
 
 "@ovhcloud/ods-common-stencil@17.2.1":
   version "17.2.1"
@@ -4682,7 +4668,7 @@
     "@ovhcloud/ods-theme-blue-jeans" "17.2.1"
     "@stencil/core" "4.12.0"
 
-"@ovhcloud/ods-common-testing@^17.1.0", "@ovhcloud/ods-common-testing@^17.2.1":
+"@ovhcloud/ods-common-testing@17.2.1", "@ovhcloud/ods-common-testing@^17.1.0", "@ovhcloud/ods-common-testing@^17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-testing/-/ods-common-testing-17.2.1.tgz#10c137a00e68b1d6d996a2537f182c051f53b702"
   integrity sha512-trhIqz6iz4fdtAfgMOQSxIub48ityzQ0eDtYQTAgK451KP8mBEUD1536kf11K6wQEuEXRSJr2brPhdDvt9+1rA==
@@ -4694,31 +4680,12 @@
     puppeteer "10.4.0"
     ts-jest "27.1.5"
 
-"@ovhcloud/ods-common-theming@16.6.0":
-  version "16.6.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-16.6.0.tgz#4a004cacceaf6adc2c8dbf81fccaa646fab7640d"
-  integrity sha512-uPyvfFH/u4e2+3DChdAJ7Eg2l8x4HofF4XIaZhOcLCjewJF+ZSghIvYillQWVNehPwP9uPhKDvfVGKYyp//mAw==
-
-"@ovhcloud/ods-common-theming@17.1.0", "@ovhcloud/ods-common-theming@^17.1.0":
-  version "17.1.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.1.0.tgz#300d71e085fafccf25969c2d90eb828144c36e23"
-  integrity sha512-HYtaVO3LXyrSf1gOVMQihAzAW+27WfFH6UN2Jf+I0YKZfUgqvlHOXjcQJYim/bCQ4A1Ptkc3QgiEfYrspQxvDA==
-
-"@ovhcloud/ods-common-theming@17.2.1", "@ovhcloud/ods-common-theming@^17.2.1":
+"@ovhcloud/ods-common-theming@17.2.1", "@ovhcloud/ods-common-theming@^17.1.0", "@ovhcloud/ods-common-theming@^17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.2.1.tgz#681c355499c35029536a56973dcf3ab634cb94d9"
   integrity sha512-yzAmWzUJlud0xBd6qL9O3+jJvYpaduZ1N22wZsqSBstpTZH7U5tFxcckfweggc6tfIcL88FTZil8LQvx0hb8DA==
 
-"@ovhcloud/ods-components@17.1.0", "@ovhcloud/ods-components@^17.1.0":
-  version "17.1.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-17.1.0.tgz#ab03d69ec5d6fd05a1afd2a7f59815bb2110d800"
-  integrity sha512-DQqEmHKOCFiV6BHklKuiwQ7tct+YwaKP5S3N+Nu2K6F2T+LxgJ3B8ck28RiBFkxEHiLRi2m0etroIOvF1s5LIw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "17.1.0"
-    "@ovhcloud/ods-common-stencil" "17.1.0"
-    "@ovhcloud/ods-common-theming" "17.1.0"
-
-"@ovhcloud/ods-components@^17.2.1":
+"@ovhcloud/ods-components@17.2.1", "@ovhcloud/ods-components@^17.1.0", "@ovhcloud/ods-components@^17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-17.2.1.tgz#a4d64fdaafae54f95efca891d77633f43751ea45"
   integrity sha512-YqdkxRpCGMfa8lS0kL+XmTIElaceML7c4krMHpKiUx6xPD+qfDiG6Fl0fRfRhR93z8l5IheNyN68pjTI3U/mhg==
@@ -4727,21 +4694,7 @@
     "@ovhcloud/ods-common-stencil" "17.2.1"
     "@ovhcloud/ods-common-theming" "17.2.1"
 
-"@ovhcloud/ods-theme-blue-jeans@16.6.0":
-  version "16.6.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-16.6.0.tgz#2f5865857a36adf993771962a823dc6df54b99b9"
-  integrity sha512-lgjDPQ58wJcIZocA9XRbRXXJM/Mp7p7uzl4A7Nam49NW4SC3ktJsjf+z8TtBAF19p5sqcjQwayukT0NPIlT4YQ==
-  dependencies:
-    "@ovhcloud/ods-common-theming" "16.6.0"
-
-"@ovhcloud/ods-theme-blue-jeans@17.1.0", "@ovhcloud/ods-theme-blue-jeans@^17.1.0":
-  version "17.1.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.1.0.tgz#5f887ea7dc9589ad75fdc25482c2603e6c4b220d"
-  integrity sha512-tZE/b0IGbmUY/Y/G2GXR4QLWacSKQwUSp0c3xFGqwqVnZunZZto0GloHn+EZHFtGhMI/6bwB5dYZsSDOLCqPhw==
-  dependencies:
-    "@ovhcloud/ods-common-theming" "17.1.0"
-
-"@ovhcloud/ods-theme-blue-jeans@17.2.1", "@ovhcloud/ods-theme-blue-jeans@^17.2.1":
+"@ovhcloud/ods-theme-blue-jeans@17.2.1", "@ovhcloud/ods-theme-blue-jeans@^17.1.0", "@ovhcloud/ods-theme-blue-jeans@^17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.1.tgz#6495afedce96505481f38ea072177d5be8ff4446"
   integrity sha512-RfDWcw1SESylSsnsy4umwMyuIzXn0FHo8/LHLOCLtxmBSIq326Kp2GoLPIQUs+56E+cBlA4f+mkaDdwPgHcIJA==
@@ -5290,7 +5243,7 @@
 
 "@rollup/plugin-commonjs@11.0.2", "@rollup/plugin-commonjs@^11.0.2":
   version "11.0.2"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-11.0.2.tgz#837cc6950752327cb90177b608f0928a4e60b582"
+  resolved "https://registry.npmjs.org/@rollup/plugin-commonjs/-/plugin-commonjs-11.0.2.tgz#837cc6950752327cb90177b608f0928a4e60b582"
   integrity sha512-MPYGZr0qdbV5zZj8/2AuomVpnRVXRU5XKXb3HVniwRoRCreGlf5kOE081isNWeiLIi6IYkwTX9zE0/c7V8g81g==
   dependencies:
     "@rollup/pluginutils" "^3.0.0"
@@ -15086,7 +15039,7 @@ flat@^5.0.2:
 
 flatpickr@4.6.9, flatpickr@^4.6.3, flatpickr@~4.5.2, flatpickr@~4.6.3:
   version "4.6.9"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
+  resolved "https://registry.npmjs.org/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
   integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
 
 flatted@^2.0.0:
@@ -19721,7 +19674,7 @@ locate-path@^7.1.0:
 
 lodash-es@4.17.21, lodash-es@^4.17.11, lodash-es@^4.17.15, lodash-es@^4.17.21:
   version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  resolved "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash.camelcase@^4.3.0:
@@ -19811,7 +19764,7 @@ lodash.upperfirst@^4.3.1:
 
 lodash@4.17.21, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.7.0, lodash@~4.17.15:
   version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 log-symbols@^2.2.0:
@@ -24494,7 +24447,7 @@ rollup-plugin-peer-deps-external@^2.2.2:
 
 rollup-plugin-sass@1.12.16, rollup-plugin-sass@^1.12.16:
   version "1.12.16"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-sass/-/rollup-plugin-sass-1.12.16.tgz#46fe4c1f73bc08289e3fb4b418fa49525888ba1b"
+  resolved "https://registry.npmjs.org/rollup-plugin-sass/-/rollup-plugin-sass-1.12.16.tgz#46fe4c1f73bc08289e3fb4b418fa49525888ba1b"
   integrity sha512-hCX9v9/rkUQ+59ztH8BECSgPGcVSgI31TbsIaJtHdCtcUFoLxSXJDSNQhQnwJwX9FVXL3Uc15Zeti/K25Rwzjg==
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
