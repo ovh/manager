@@ -212,7 +212,7 @@ export const Datagrid = <T extends unknown>({
       {items?.length > 0 && pagination ? (
         <OsdsPagination
           current={pagination.pageIndex + 1}
-          className={'flex xs:justify-center md:justify-end'}
+          className={'flex xs:justify-start md:justify-end'}
           total-items={totalItems}
           total-pages={pageCount}
           default-items-per-page={pagination.pageSize}
