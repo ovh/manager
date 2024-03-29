@@ -7,255 +7,46 @@
     <!--return to dashboard-->
     <oui-back-button data-on-click="$ctrl.resumeOrder()"> </oui-back-button>
     <div data-ovh-alert="{{:: $ctrl.ALERT_ID}}"></div>
-    <oui-stepper
-        data-current-index="$ctrl.currentStep"
-        data-on-finish="$ctrl.redirectToPaymentPage()"
+    <oui-header
+        heading="{{ 'ip_agora_title' | translate }}"
+        description="{{ 'ip_agora_description' | translate }}"
     >
-        <oui-step-form
-            data-id="service"
-            data-name="service_selection"
-            data-header="{{:: ('ip_order_step1_question' | translate) + $ctrl.ADDITIONAL_IP}}"
-            data-valid="$ctrl.model.selectedService"
-            data-editable="!$ctrl.isLoading"
-            data-navigation="$ctrl.model.selectedService"
-            data-on-focus="$ctrl.onFlavorFocus()"
-            data-on-submit="$ctrl.manageLoadIpOffers()"
+    </oui-header>
+
+    <div class="container-fluid d-flex flex-wrap">
+        <oui-select-picker
+            name="ip-version"
+            class="text-center d-flex col-sm-12 col-md-6 col-xl-3 my-3"
+            data-model="$ctrl.ipType"
+            data-variant="light"
+            data-on-change="$ctrl.goToIpv4Order()"
+            data-values="[$ctrl.IP_TYPE.IPv4]"
         >
-            <div data-ng-show="$ctrl.loading.services" class="text-center">
-                <oui-spinner></oui-spinner>
-            </div>
-            <div
-                data-ng-show="!$ctrl.loading.services && $ctrl.services.length"
-            >
-                <oui-field
-                    data-label="{{:: 'ip_table_header_service' | translate }}"
-                    data-size="xl"
-                >
-                    <label class="oui-select">
-                        <select
-                            id="service"
-                            name="service"
-                            class="oui-select__input"
-                            data-ng-model="$ctrl.model.selectedService"
-                            data-ng-options="service as service.displayName group by $ctrl.getServiceTypeLabel(service.type) for service in $ctrl.services | orderBy:'displayName' track by service.serviceName"
-                        >
-                            <option
-                                data-ng-disabled="true"
-                                data-translate="global_select"
-                            >
-                            </option>
-                        </select>
-                        <span
-                            class="oui-icon oui-icon-chevron-down"
-                            aria-hidden="true"
-                        ></span>
-                    </label>
-                </oui-field>
-            </div>
-            <div
-                data-ng-show="!$ctrl.loading.services && !$ctrl.services.length"
-                data-translate="ip_order_noservices"
-            ></div>
-        </oui-step-form>
-        <oui-step-form
-            data-id="offer"
-            data-name="offer_selection"
-            data-header="{{:: 'ip_agora_table_header_offer' | translate }}"
-            data-navigation="$ctrl.model.params.selectedOffer"
-            data-on-cancel="$ctrl.resumeOrder()"
-            data-editable="!$ctrl.isLoading"
-            data-valid="$ctrl.model.params.selectedCountry"
-            data-submit-text="{{:: 'ip_agora_table_submit_text' | translate }}"
-            data-cancel-text="{{:: 'ip_agora_table_cancel_text' | translate}}"
-            data-prevent-next
-        >
-            <div data-ng-show="$ctrl.loading.ipOffers" class="text-center">
-                <oui-spinner></oui-spinner>
-            </div>
-            <div class="row px-2 mb-2">
-                <div
-                    class="col-4 px-1"
-                    data-ng-show="$ctrl.isFailoverShowable()"
-                >
-                    <oui-select-picker
-                        class="text-center h-100"
-                        data-ng-if="!$ctrl.loading.ipOffers"
-                        data-ng-disabled="!$ctrl.failoverIpOffers.length"
-                        data-name="productName"
-                        data-match="productDisplayName"
-                        data-placeholder="{{:: 'ipv4_select_placeholder' | translate }}"
-                        data-model="$ctrl.model.params.selectedOffer"
-                        data-values="$ctrl.failoverIpOffers"
-                        data-on-change="$ctrl.onSelectedOfferChange('IPv4Failover')"
-                        data-variant="secondary"
-                        data-required
-                    >
-                        <oui-select-picker-description>
-                            <h4>
-                                <strong
-                                    class="text-center"
-                                    data-ng-bind=":: $ctrl.ADDITIONAL_IP"
-                                ></strong>
-                            </h4>
-                            <ovh-manager-catalog-price
-                                data-ng-if="$ctrl.ipFailoverPrice"
-                                data-price="$ctrl.ipFailoverPrice.priceInUcents"
-                                data-interval-unit="{{ $ctrl.ipFailoverPrice.intervalUnit }}"
-                            ></ovh-manager-catalog-price>
-                        </oui-select-picker-description>
-                    </oui-select-picker>
-                </div>
-                <div
-                    class="col-4 px-1"
-                    data-ng-show="$ctrl.canShowBlockSelection()"
-                >
-                    <oui-select-picker
-                        class="text-center h-100"
-                        data-ng-if="!$ctrl.loading.ipOffers"
-                        data-name="productName"
-                        data-match="productDisplayName"
-                        data-placeholder="{{:: 'ipv4_select_placeholder' | translate }}"
-                        data-model="$ctrl.model.params.selectedOffer"
-                        data-values="$ctrl.blockIpOffers"
-                        data-on-change="$ctrl.onSelectedOfferChange('IPv4Block')"
-                        data-variant="secondary"
-                        data-required
-                    >
-                        <oui-select-picker-description>
-                            <h4 class="text-center">
-                                <strong
-                                    data-ng-bind=":: $ctrl.BLOCK_ADDITIONAL_IP"
-                                ></strong>
-                            </h4>
-                            <p
-                                data-ng-if="$ctrl.ipFailoverPrice"
-                                class="text-center"
-                            >
-                                <ovh-manager-catalog-price
-                                    data-price="$ctrl.ipFailoverPrice.priceInUcents"
-                                    data-interval-unit="{{ $ctrl.ipFailoverPrice.intervalUnit }}"
-                                ></ovh-manager-catalog-price>
-                                <strong
-                                    data-translate="ipv4Block_price_per_ip"
-                                ></strong>
-                            </p>
-                            <p
-                                class="text-center"
-                                data-translate="ipv4Block_description"
-                            ></p>
-                        </oui-select-picker-description>
-                    </oui-select-picker>
-                </div>
-            </div>
+            <oui-select-picker-description class="h-75">
+                <h4>
+                    <strong
+                        class="text-center"
+                        data-ng-bind=":: $ctrl.IP_TYPE.IPv4"
+                    ></strong>
+                </h4>
+                <p class="text-left">
+                    {{ 'ip_agora_ipv4_description' | translate }}
+                </p>
+            </oui-select-picker-description>
 
-            <div
-                data-ng-show="$ctrl.model.params.selectedOffer"
-                data-ng-if="!$ctrl.loading.ipOffers"
-            >
-                <div
-                    data-ng-show="!$ctrl.model.params.selectedOffer.isIpBlockOffer"
-                >
-                    <div class="row">
-                        <p>
-                            <strong
-                                data-translate="{{ 'ip_agora_select_quantity_title' | translate }}"
-                            ></strong>
-                        </p>
-                    </div>
-                    <div class="row oui-box h-12 w-50 mb-2">
-                        <div class="col-6">
-                            <p>
-                                <strong
-                                    data-ng-bind=":: $ctrl.ADDITIONAL_IP"
-                                ></strong>
-                            </p>
-                        </div>
-                        <div class="col-6">
-                            <oui-field>
-                                <oui-numeric
-                                    class="w-auto mr-2"
-                                    name="selectedQuantity"
-                                    model="$ctrl.model.params.selectedQuantity"
-                                    on-change="$ctrl.onCustomSizeChange(modelValue)"
-                                    min="$ctrl.minSize"
-                                    max="$ctrl.maxSize"
-                                >
-                                </oui-numeric>
-                                <ovh-manager-catalog-price
-                                    data-price="$ctrl.ipFailoverPrice.priceInUcents * $ctrl.model.params.selectedQuantity"
-                                    data-interval-unit="{{ $ctrl.ipFailoverPrice.intervalUnit }}"
-                                    data-show-zero-price="true"
-                                ></ovh-manager-catalog-price>
-                            </oui-field>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    data-ng-show="$ctrl.model.params.selectedOffer.countries.length > 1"
-                >
-                    <div class="row">
-                        <p>
-                            <strong
-                                data-translate="{{ 'ip_agora_ip_localisation_title' | translate }}"
-                            ></strong>
-                        </p>
-                    </div>
-                    <div class="row">
-                        <oui-select-picker
-                            class="d-inline-block col-md-6 col-xl-3 my-3"
-                            data-name="country"
-                            data-ng-repeat="country in $ctrl.model.params.selectedOffer.countries track by country.code"
-                            data-label="{{ country.description }}"
-                            data-variant="light"
-                            data-picture="{{ ::country.icon }}"
-                            data-model="$ctrl.model.params.selectedCountry"
-                            data-values="[country]"
-                        >
-                        </oui-select-picker>
-                    </div>
-                </div>
-                <div
-                    class="row"
-                    data-ng-show="$ctrl.model.params.selectedOffer.isIpBlockOffer"
-                    data-ng-if="!$ctrl.isPrivateCloudOffer"
-                >
-                    <p>
-                        <strong
-                            data-translate="{{ 'ip_agora_table_header_organisation' | translate }}"
-                        ></strong>
-                    </p>
-                    <span
-                        data-translate="ipv4Block_organization_description1"
-                    ></span>
-                    <span
-                        data-translate="ipv4Block_organization_description3"
-                    ></span>
-                    <oui-message data-type="info">
-                        <span
-                            data-translate="ipv4Block_organization_info_banner"
-                        ></span>
-                    </oui-message>
-
-                    <select
-                        id="organisation"
-                        class="form-control mt-2"
-                        data-ng-model="$ctrl.model.params.selectedOrganisation"
-                        data-ng-options="organisation.organisationId for organisation in $ctrl.organisations | orderBy:'organisationId' track by organisation.organisationId"
+            <oui-select-picker-section>
+                <div class="text-center">
+                    <strong
+                        data-translate="{{ 'ip_agora_ip_v4_starting_from' | translate }}"
+                    ></strong>
+                    <ovh-manager-catalog-price
+                        data-price="150000000"
+                        data-interval-unit="month_by_ip"
                     >
-                        <option
-                            data-ng-disabled="true"
-                            data-translate="global_select"
-                        >
-                        </option>
-                    </select>
-                    <a
-                        class="oui-link mb-4"
-                        data-ui-sref="app.ip.organisation"
-                        data-translate="ip_order_no_organisation_2"
-                    ></a>
+                    </ovh-manager-catalog-price>
                 </div>
-            </div>
-        </oui-step-form>
-    </oui-stepper>
+            </oui-select-picker-section>
+        </oui-select-picker>
+    </div>
+    <div data-ui-view></div>
 </div>
