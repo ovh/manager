@@ -1,5 +1,5 @@
 import { MinusCircle, PlusCircle } from 'lucide-react';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/models/database';
@@ -10,7 +10,6 @@ import {
   useGetFullCapabilities,
 } from '@/hooks/api/availabilities.api.hooks';
 import { Button } from '@/components/ui/button';
-import { Link } from '@/components/links';
 import { formatStorage } from '@/lib/bytesHelper';
 import { useModale } from '@/hooks/useModale';
 import UpdateVersion from '../update/_components/modals/updateVersion';
@@ -18,12 +17,11 @@ import UpdatePlan from '../update/_components/modals/updatePlan';
 import UpdateFlavor from '../update/_components/modals/updateFlavor';
 import AddNode from '../update/_components/modals/addNode';
 import DeleteNode from '../update/_components/modals/removeNode';
-import UpdateStorage from '../update/_components/modals/updateStorage';
 import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
 import { updateTags } from '@/lib/tagsHelper';
 
 const UpdateTable = () => {
-  const { service, projectId } = useServiceData();
+  const { service, projectId, serviceQuery } = useServiceData();
   const catalogQuery = useGetCatalog();
   const capabilitiesQuery = useGetFullCapabilities(projectId);
   const availabilitiesVersionQuery = useGetAvailabilities(
@@ -47,7 +45,6 @@ const UpdateTable = () => {
   const updateVersionModal = useModale('update-version');
   const updatePlanModal = useModale('update-plan');
   const updateFlavorModal = useModale('update-flavor');
-  const updateStorageModal = useModale('update-storage');
   const addNode = useModale('add-node');
   const deleteNode = useModale('delete-node');
 
@@ -80,6 +77,23 @@ const UpdateTable = () => {
       regions: updateTags(regions, service.nodes[0].region),
     } as FullCapabilities;
   }, [capabilitiesQuery.data, service]);
+
+  const suggestions: database.Suggestion[] = [
+    {
+      default: true,
+      engine: service.engine,
+      flavor: service.flavor,
+      plan: service.plan,
+      region: service.region,
+      version: service.version,
+    },
+  ];
+  // refetch availabilities when service status changes
+  useEffect(() => {
+    availabilitiesVersionQuery.refetch();
+    availabilitiesFlavorQuery.refetch();
+    availabilitiesPlanQuery.refetch();
+  }, [service.status]);
 
   return (
     <>
@@ -147,7 +161,7 @@ const UpdateTable = () => {
                     variant="default"
                     size="default"
                     className="py-0 h-auto"
-                    onClick={() => updateStorageModal.open()}
+                    onClick={() => updateFlavorModal.open()}
                   >
                     Update
                   </Button>
@@ -186,58 +200,61 @@ const UpdateTable = () => {
         <>
           {availabilitiesVersionQuery.isSuccess && (
             <UpdateVersion
+              suggestions={suggestions}
               availabilities={availabilitiesVersionQuery.data}
               controller={updateVersionModal.controller}
               capabilities={capabilities}
               catalog={catalogQuery.data}
-              onError={() => {}}
-              onSuccess={() => {}}
+              onSuccess={() => {
+                updateVersionModal.close();
+                serviceQuery.refetch();
+              }}
             />
           )}
           {availabilitiesPlanQuery.isSuccess && (
             <UpdatePlan
+              suggestions={suggestions}
               availabilities={availabilitiesPlanQuery.data}
               controller={updatePlanModal.controller}
               capabilities={capabilities}
               catalog={catalogQuery.data}
-              onError={() => {}}
-              onSuccess={() => {}}
+              onSuccess={() => {
+                updatePlanModal.close();
+                serviceQuery.refetch();
+              }}
             />
           )}
           {availabilitiesFlavorQuery.isSuccess && (
-            <>
-              <UpdateFlavor
-                availabilities={availabilitiesFlavorQuery.data}
-                controller={updateFlavorModal.controller}
-                capabilities={capabilities}
-                catalog={catalogQuery.data}
-                onError={() => {}}
-                onSuccess={() => {}}
-              />
-              <UpdateStorage
-                availabilities={[
-                  availabilitiesFlavorQuery.data.find(
-                    (f) => f.specifications.flavor === service.flavor,
-                  ),
-                ]}
-                controller={updateStorageModal.controller}
-                onError={() => {}}
-                onSuccess={() => {}}
-              />
-            </>
+            <UpdateFlavor
+              suggestions={suggestions}
+              availabilities={availabilitiesFlavorQuery.data}
+              controller={updateFlavorModal.controller}
+              capabilities={capabilities}
+              catalog={catalogQuery.data}
+              onSuccess={() => {
+                updateFlavorModal.close();
+                serviceQuery.refetch();
+              }}
+            />
           )}
+          <AddNode
+            controller={addNode.controller}
+            catalog={catalogQuery.data}
+            onSuccess={() => {
+              addNode.close();
+              serviceQuery.refetch();
+            }}
+          />
+          <DeleteNode
+            controller={deleteNode.controller}
+            catalog={catalogQuery.data}
+            onSuccess={() => {
+              deleteNode.close();
+              serviceQuery.refetch();
+            }}
+          />
         </>
       )}
-      <AddNode
-        controller={addNode.controller}
-        onError={() => {}}
-        onSuccess={() => {}}
-      />
-      <DeleteNode
-        controller={deleteNode.controller}
-        onError={() => {}}
-        onSuccess={() => {}}
-      />
     </>
   );
 };
