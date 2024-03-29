@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.28.1...@ovh-ux/manager-dedicated@19.29.0) (2024-03-29)
+
+
+### Features
+
+* **dedicated.pcc:** add consent VCD offer ([#11294](https://github.com/ovh/manager/issues/11294)) ([65c23dc](https://github.com/ovh/manager/commit/65c23dcdcba8d66b00d7e7554f98a5b6a2be000f))
+
+
+
+
+
 ## [19.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.28.0...@ovh-ux/manager-dedicated@19.28.1) (2024-03-25)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
