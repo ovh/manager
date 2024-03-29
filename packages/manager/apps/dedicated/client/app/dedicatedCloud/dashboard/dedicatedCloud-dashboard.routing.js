@@ -98,7 +98,8 @@ export default /* @ngInject */ ($stateProvider) => {
           productId,
           datacenterId,
         }),
-
+      goToVcdOrder: /* @ngInject */ ($state) => () =>
+        $state.go('app.dedicatedCloud.details.dashboard.vcd-order'),
       disableVmwareOption: /* @ngInject */ ($state) => (option) =>
         $state.go(
           'app.dedicatedCloud.details.dashboard.vmware-option-disable',
