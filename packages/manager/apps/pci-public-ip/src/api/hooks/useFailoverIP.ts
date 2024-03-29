@@ -1,10 +1,11 @@
 import { PaginationState } from '@ovhcloud/manager-components';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { FailoverIP, Instance } from '@/interface';
-import { getAllFailoverIP } from '@/api/data/failover-ip';
+import { FailoverIP, Instance, TerminateIPProps } from '@/interface';
+import { getAllFailoverIP, terminateFailoverIP } from '@/api/data/failover-ip';
 import { useAllInstance } from './useInstance';
 import { paginateResults } from '@/api/utils/pagination';
+import queryClient from '@/queryClient';
 
 export type FailoverOptions = {
   pagination: PaginationState;
@@ -32,9 +33,15 @@ const aggregateFailoverIPs = (
   return aggregatedData;
 };
 
+const getQueryKeyFailoverIPs = (projectId: string) => [
+  'project',
+  projectId,
+  'failover',
+];
+
 export const useAllFailoverIPs = (projectId: string) => {
   return useQuery({
-    queryKey: ['project', projectId, 'failover'],
+    queryKey: getQueryKeyFailoverIPs(projectId),
     queryFn: () => getAllFailoverIP(projectId),
   });
 };
@@ -76,4 +83,30 @@ export const useFailoverIPs = (
     instanceLoading,
     pagination,
   ]);
+};
+
+export const useTerminateFailoverIP = ({
+  projectId,
+  onError,
+  onSuccess,
+}: TerminateIPProps) => {
+  const mutation = useMutation({
+    mutationFn: (failoverIP: FailoverIP) => {
+      return terminateFailoverIP(failoverIP.ip);
+    },
+    onError,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: getQueryKeyFailoverIPs(projectId),
+      });
+      return onSuccess();
+    },
+  });
+
+  return {
+    terminate: (failoverIP: FailoverIP) => {
+      return mutation.mutate(failoverIP);
+    },
+    ...mutation,
+  };
 };

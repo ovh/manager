@@ -2,29 +2,29 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
 import {
-  useAllFloatingIP,
-  useTerminateFloatingIP,
-} from '@/api/hooks/useFloatingIP';
+  useAllFailoverIPs,
+  useTerminateFailoverIP,
+} from '@/api/hooks/useFailoverIP';
 import TerminateModal from '@/components/terminate/TerminateModal';
-import { ResponseAPIError } from '@/interface';
+import { ResponseAPIError } from '@/api/hooks/useProject';
 
-export default function TerminateFloatingIPPage() {
+export default function TerminateAdditionalIPPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { projectId, ipId } = useParams();
-  const { data: floatingIPs, isPending } = useAllFloatingIP(projectId);
-  const floatingIP = floatingIPs?.find((row) => row.id === ipId) || undefined;
+  const { data: failoverIPs, isPending } = useAllFailoverIPs(projectId);
+  const failoverIP = failoverIPs?.find((row) => row.id === ipId) || undefined;
   const onClose = () => navigate('..');
 
-  const { terminate, isPending: isPendingTerminate } = useTerminateFloatingIP({
+  const { terminate, isPending: isPendingTerminate } = useTerminateFailoverIP({
     projectId,
     onSuccess: () => {
       addSuccess(
         t(
           'pci_additional_ips_floating_ips_floating_ip_terminate_success_info',
           {
-            ip: floatingIP.ip,
+            ip: failoverIP.ip,
           },
         ),
       );
@@ -36,18 +36,18 @@ export default function TerminateFloatingIPPage() {
         t(
           'pci_additional_ips_floating_ips_floating_ip_terminate_failure_info',
           {
-            ip: floatingIP.ip,
+            ip: failoverIP.ip,
             error: (error as ResponseAPIError)?.response?.data?.message,
           },
         ),
       );
     },
   });
-  const onConfirm = () => terminate(floatingIP);
+  const onConfirm = () => terminate(failoverIP);
 
   return (
     <TerminateModal
-      ip={floatingIP?.ip}
+      ip={failoverIP?.ip}
       isPending={isPending}
       isPendingTerminate={isPendingTerminate}
       onClose={onClose}
