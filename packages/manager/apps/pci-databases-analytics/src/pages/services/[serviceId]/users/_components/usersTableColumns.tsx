@@ -71,6 +71,19 @@ export const getColumns = ({
       <SortableHeader column={column}>{t('tableHeadKeys')}</SortableHeader>
     ),
     accessorFn: (row) => ('keys' in row ? row.keys.length : ''),
+    cell: ({ row }) => (
+      <div className="flex gap-2">
+        {'keys' in row.original &&
+          row.original.keys.map((key) => (
+            <div
+              key={`${key}`}
+              className="border rounded-sm px-2.5 py-0.5 text-xs flex gap-2 items-center"
+            >
+              <span>{key}</span>
+            </div>
+          ))}
+      </div>
+    ),
   };
   const categoriesColumn: ColumnDef<GenericUser> = {
     id: 'categories',
@@ -80,6 +93,19 @@ export const getColumns = ({
       </SortableHeader>
     ),
     accessorFn: (row) => ('categories' in row ? row.categories.length : ''),
+    cell: ({ row }) => (
+      <div className="flex gap-2">
+        {'categories' in row.original &&
+          row.original.categories.map((category) => (
+            <div
+              key={`${category}`}
+              className="border rounded-sm px-2.5 py-0.5 text-xs flex gap-2 items-center"
+            >
+              <span>{category}</span>
+            </div>
+          ))}
+      </div>
+    ),
   };
   const commandsColumn: ColumnDef<GenericUser> = {
     id: 'commands',
@@ -87,6 +113,19 @@ export const getColumns = ({
       <SortableHeader column={column}>{t('tableHeadCommands')}</SortableHeader>
     ),
     accessorFn: (row) => ('commands' in row ? row.commands.length : ''),
+    cell: ({ row }) => (
+      <div className="flex gap-2">
+        {'commands' in row.original &&
+          row.original.commands.map((command) => (
+            <div
+              key={`${command}`}
+              className="border rounded-sm px-2.5 py-0.5 text-xs flex gap-2 items-center"
+            >
+              <span>{command}</span>
+            </div>
+          ))}
+      </div>
+    ),
   };
   const channelsColumn: ColumnDef<GenericUser> = {
     id: 'channels',
@@ -94,6 +133,19 @@ export const getColumns = ({
       <SortableHeader column={column}>{t('tableHeadChannels')}</SortableHeader>
     ),
     accessorFn: (row) => ('channels' in row ? row.channels.length : ''),
+    cell: ({ row }) => (
+      <div className="flex gap-2">
+        {'channels' in row.original &&
+          row.original.channels.map((channel) => (
+            <div
+              key={`${channel}`}
+              className="border rounded-sm px-2.5 py-0.5 text-xs flex gap-2 items-center"
+            >
+              <span>{channel}</span>
+            </div>
+          ))}
+      </div>
+    ),
   };
   const creationDateColumn: ColumnDef<GenericUser> = {
     id: 'Creation date',

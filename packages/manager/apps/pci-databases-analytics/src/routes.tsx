@@ -122,12 +122,6 @@ export default [
                   import('@/pages/services/[serviceId]/settings'),
                 ),
               },
-              {
-                path: 'update',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/services/[serviceId]/settings/update'),
-                ),
-              },
             ],
           },
         ],
