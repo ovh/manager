@@ -107,12 +107,12 @@ export default class BmServerComponentsMrtgTileController {
           return {
             id: mac,
             linkType,
-            displayName: this.$translate.instant(
-              `server_mrtg_network_${linkType}`,
-              {
-                t0: mac,
-              },
-            ),
+            displayName:
+              linkType === 'no_vrack'
+                ? this.$translate.instant(`server_mrtg_network_${linkType}`, {
+                    t0: mac,
+                  })
+                : mac,
             disabled,
           };
         });

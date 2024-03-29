@@ -69,7 +69,7 @@
 <!-- MRTG -->
 <div
     class="mb-5"
-    data-ng-if="!$ctrl.server.isExpired && !['hgr', 'scale'].includes($ctrl.technicalDetails.server.range)"
+    data-ng-if="!$ctrl.server.isExpired"
 >
     <server-mrtg-tile
         data-server-service="$ctrl.serverService"
