@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -9,16 +9,32 @@ import {
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 
-export const NetworkSecurityAction = ({ projectId }: { projectId: string }) => {
+type NetworkSecurityActionProps = {
+  projectId: string;
+  isFloatingIP?: boolean;
+};
+
+export const NetworkSecurityAction = ({
+  projectId,
+  isFloatingIP = true,
+}: Readonly<NetworkSecurityActionProps>) => {
   const { t } = useTranslation();
   const [url, setUrl] = useState('');
   const nav = useNavigation();
 
   useEffect(() => {
-    nav.getURL('dedicated', `#/ip?serviceName=${projectId}`, {}).then(setUrl);
+    nav
+      .getURL(
+        'dedicated',
+        isFloatingIP
+          ? `#/ip?serviceName=${projectId}`
+          : `#/ip?serviceName=_FAILOVER`,
+        {},
+      )
+      .then(setUrl);
   }, []);
 
   return (
@@ -34,7 +50,9 @@ export const NetworkSecurityAction = ({ projectId }: { projectId: string }) => {
         color={ODS_THEME_COLOR_INTENT.primary}
         slot={'start'}
       >
-        {t('pci_additional_ips_floating_ip_grid_manage_network_security')}
+        {isFloatingIP
+          ? t('pci_additional_ips_floating_ip_grid_manage_network_security')
+          : t('pci_additional_ips_manage_network_security')}
       </OsdsText>
     </OsdsButton>
   );
