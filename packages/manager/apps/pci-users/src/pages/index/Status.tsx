@@ -8,6 +8,7 @@ export default function Status({ status }: { status: string }) {
   return (
     <OsdsChip
       inline
+      className="whitespace-nowrap"
       color={
         userIsActive(status)
           ? ODS_TEXT_COLOR_INTENT.success
