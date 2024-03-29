@@ -83,7 +83,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
   return (
     <ul className="mt-auto">
       <li className="assistance_header" onClick={() => onToggle(!isOpen)}>
-        <h2 className="d-flex justify-content-between">
+        <h2 className="flex justify-between">
           <span>{t('sidebar_assistance_title')}</span>
           <span
             className={`oui-icon oui-icon-chevron-${isOpen ? 'up' : 'down'}`}

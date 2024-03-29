@@ -1,18 +1,18 @@
 import React from 'react';
-import { OsdsIcon } from '@ovhcloud/ods-stencil/components/react/';
-import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 type OdsIconWrapperType = {
-  name: OdsIconName;
+  name: ODS_ICON_NAME;
 };
 
 const OdsIconWrapper = ({ name }: OdsIconWrapperType) => (
   <OsdsIcon
     hoverable
     name={name}
-    size={OdsIconSize.lg}
-    color={OdsThemeColorIntent.primary}
+    size={ODS_ICON_SIZE.lg}
+    color={ODS_THEME_COLOR_INTENT.primary}
   />
 );
 
