@@ -8,6 +8,7 @@ export * from './table/table.component';
 
 export * from './datagrid/datagrid.component';
 export * from './datagrid/text-cell.component';
+export * from './datagrid/useDatagrid';
 export * from './datagrid/useDatagridSearchParams';
 
 export * from './guides-header';
