@@ -5,7 +5,6 @@ import {
   Files,
   Globe2,
   HardDrive,
-  LucideIcon,
   MemoryStick,
   ShieldCheck,
   TrafficCone,
@@ -23,8 +22,6 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import Maintenance from './_components/maintenance';
 import { Link, OvhLink } from '@/components/links';
-import { useGetCapabilities } from '@/hooks/api/availabilities.api.hooks';
-import MeanMetric from './_components/meanMetric';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useGetVrack } from '@/hooks/api/network.api.hooks';
 import { useGetMetrics } from '@/hooks/api/metrics.api.hooks';
@@ -117,7 +114,7 @@ const Dashboard = () => {
       <div className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2">
         {metricsQuery.isSuccess ? (
           metricsToDispplay.map((metric) => (
-            <Card>
+            <Card key={metric.name}>
               <CardHeader>
                 <h5>
                   {metric.icon}

@@ -65,9 +65,13 @@ export const EngineTile = ({
       <RadioTile.Separator />
       <VersionSelector
         versions={engine.versions}
-        selectedVersion={selectedVersion}
+        selectedVersion={selectedVersion.name}
         isEngineSelected={selected}
-        onChange={setSelectedVersion}
+        onChange={(versionName) =>
+          setSelectedVersion(
+            engine.versions.find((v) => v.name === versionName),
+          )
+        }
       />
     </RadioTile>
   );
