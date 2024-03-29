@@ -22,9 +22,9 @@ import { cn } from '@/lib/utils';
 
 interface VersionSelectorProps {
   versions: Version[];
-  selectedVersion: Version;
+  selectedVersion: string;
   isEngineSelected: boolean;
-  onChange: (version: Version) => void;
+  onChange: (version: string) => void;
 }
 const VersionSelector = ({
   versions,
@@ -44,9 +44,7 @@ const VersionSelector = ({
             value={engineVersion.name}
             key={engineVersion.name}
             readOnly
-            checked={
-              isEngineSelected && engineVersion.name === selectedVersion.name
-            }
+            checked={isEngineSelected && engineVersion.name === selectedVersion}
           />
         ))}
       </div>
@@ -59,7 +57,7 @@ const VersionSelector = ({
         >
           {selectedVersion && (
             <div className="flex flex-row w-full justify-between overflow-hidden">
-              {selectedVersion.name}
+              {selectedVersion}
             </div>
           )}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -76,17 +74,14 @@ const VersionSelector = ({
                   key={engineVersion.name}
                   value={engineVersion.name}
                   onSelect={(value) => {
-                    const versionFromName = versions.find(
-                      (v) => v.name === value,
-                    );
-                    onChange(versionFromName);
+                    onChange(value);
                     setOpen(false);
                   }}
                 >
                   <Check
                     className={cn(
                       'mr-2 h-4 w-4',
-                      engineVersion.name === selectedVersion.name
+                      engineVersion.name === selectedVersion
                         ? 'opacity-100'
                         : 'opacity-0',
                     )}
