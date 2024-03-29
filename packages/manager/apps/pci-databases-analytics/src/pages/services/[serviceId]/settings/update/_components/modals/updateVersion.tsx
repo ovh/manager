@@ -1,11 +1,14 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslation } from 'react-i18next';
 import VersionSelector from '@/components/Order/engine/engine-tile-version';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -17,9 +20,20 @@ import { order } from '@/models/catalog';
 import { database } from '@/models/database';
 import { Engine } from '@/models/order-funnel';
 import { useServiceData } from '@/pages/services/[serviceId]/layout';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { useUpdateService } from '@/hooks/api/services.api.hooks';
+import { useToast } from '@/components/ui/use-toast';
 
 interface UpdateVersionProps {
   controller: ModalController;
+  suggestions: database.Suggestion[];
   availabilities: database.Availability[];
   capabilities: FullCapabilities;
   catalog: order.publicOrder.Catalog;
@@ -29,6 +43,7 @@ interface UpdateVersionProps {
 
 const UpdateVersion = ({
   controller,
+  suggestions,
   availabilities,
   capabilities,
   catalog,
@@ -36,57 +51,106 @@ const UpdateVersion = ({
   onError,
 }: UpdateVersionProps) => {
   const { service, projectId } = useServiceData();
-  const suggestions: database.Suggestion[] = [
-    {
-      default: true,
-      engine: service.engine,
-      flavor: service.flavor,
-      plan: service.plan,
-      region: service.region,
-      version: service.version,
+  const toast = useToast();
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/settings/update',
+  );
+  const { updateService, isPending } = useUpdateService({
+    onError: (err) => {
+      toast.toast({
+        title: t('updateVersionToastErrorTitle'),
+        variant: 'destructive',
+        description: err.response.data.message,
+      });
+      if (onError) {
+        onError(err);
+      }
     },
-  ];
-  const listEngines = useMemo(
+    onSuccess: (updatedService) => {
+      toast.toast({
+        title: t('updateVersionToastSuccessTitle'),
+        description: t('updateVersionToastSuccessDescription', {
+          newVersion: updatedService.version,
+        }),
+      });
+      if (onSuccess) {
+        onSuccess(updatedService);
+      }
+    },
+  });
+  const listVersions = useMemo(
     () =>
-      createTree(availabilities, capabilities, suggestions, catalog).map(
-        (e) => {
+      createTree(availabilities, capabilities, suggestions, catalog)
+        .map((e) => {
           // order the versions in the engines
           e.versions.sort((a, b) => a.order - b.order);
           return e;
-        },
-      ),
-    [availabilities, capabilities],
+        })
+        ?.find((e: Engine) => e.name === service.engine)?.versions || [],
+    [availabilities, capabilities, service],
   );
-  const listVersions = useMemo(
-    () =>
-      listEngines?.find((e: Engine) => e.name === service.engine)?.versions ||
-      [],
-    [listEngines, service],
-  );
-  const [selectedVersion, setSelectedVersion] = useState(
-    listVersions.find((v) => v.name === service.version),
-  );
+  const schema = z.object({
+    version: z
+      .string()
+      .min(1)
+      .refine((newVersion) => newVersion !== service.version, {
+        message: t('updateVersionErrorSimilar'),
+      }),
+  });
+  const form = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      version: service.version,
+    },
+  });
+  const onSubmit = form.handleSubmit((formValues) => {
+    updateService({
+      serviceId: service.id,
+      projectId,
+      engine: service.engine,
+      data: {
+        version: formValues.version,
+      },
+    });
+  });
   return (
     <Dialog {...controller}>
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Update service version</DialogTitle>
-          <DialogDescription>Add a description here</DialogDescription>
-        </DialogHeader>
-        <VersionSelector
-          isEngineSelected
-          versions={listVersions}
-          selectedVersion={selectedVersion}
-          onChange={setSelectedVersion}
-        />
-        <DialogFooter className="flex justify-end">
-          <DialogClose asChild>
-            <Button type="button" variant="outline">
-              Cancel
-            </Button>
-          </DialogClose>
-          <Button type="button">Update</Button>
-        </DialogFooter>
+        <Form {...form}>
+          <form onSubmit={onSubmit}>
+            <DialogHeader>
+              <DialogTitle>{t('updateVersionTitle')}</DialogTitle>
+            </DialogHeader>
+            <FormField
+              control={form.control}
+              name="version"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t('updateVersionInputLabel')}</FormLabel>
+                  <FormControl>
+                    <VersionSelector
+                      isEngineSelected
+                      versions={listVersions}
+                      selectedVersion={field.value}
+                      onChange={field.onChange}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <DialogFooter className="flex justify-end mt-2">
+              <DialogClose asChild>
+                <Button type="button" variant="outline">
+                  {t('updateVersionCancelButton')}
+                </Button>
+              </DialogClose>
+              <Button disabled={isPending}>
+                {t('updateVersionSubmitButton')}
+              </Button>
+            </DialogFooter>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );
