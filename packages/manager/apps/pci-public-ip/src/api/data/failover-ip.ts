@@ -9,4 +9,9 @@ export const getAllFailoverIP = async (
   return failoverIPs.data;
 };
 
+export const terminateFailoverIP = async (ip: string) => {
+  const { data } = await v6.post(`/ip/service/ip-${ip}/terminate`);
+  return data;
+};
+
 export default { getAllFailoverIP };
