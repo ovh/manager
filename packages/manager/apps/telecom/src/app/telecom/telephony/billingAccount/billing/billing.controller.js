@@ -44,8 +44,6 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingCtr
       },
       {
         name: 'group_call_list_summary',
-
-        // url: TelephonyMediator.getV6ToV4RedirectionUrl("group.group_call_list_summary"),
         sref: 'telecom.telephony.billingAccount.billing.summary',
         text: $translate.instant(
           'telephony_group_billing_actions_group_call_list_summary',
