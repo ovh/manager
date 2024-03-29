@@ -18,12 +18,8 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
+import { ActionProps } from '@/interface';
 import { NetworkSecurityAction } from './NetworkSecurityAction';
-
-type ActionProps = {
-  ipId: string;
-  projectId: string;
-};
 
 export default function FloatingIPActions({
   ipId,
@@ -31,7 +27,7 @@ export default function FloatingIPActions({
 }: Readonly<ActionProps>) {
   const { t } = useTranslation();
 
-  const hrefRemove = useHref(`./${ipId}/terminate`);
+  const hrefRemove = useHref(`./floating-ips/${ipId}/terminate`);
 
   return (
     <OsdsMenu>

@@ -1,7 +1,7 @@
 import { PaginationState } from '@ovhcloud/manager-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { FloatingIP, Instance } from '@/interface';
+import { FloatingIP, Instance, TerminateIPProps } from '@/interface';
 import { getAllFloatingIP, terminateFloatingIP } from '@/api/data/floating-ip';
 import { useAllInstance } from './useInstance';
 import queryClient from '@/queryClient';
@@ -91,17 +91,11 @@ export const useFloatingIPs = (
   ]);
 };
 
-type TerminateFloatingIPProps = {
-  projectId: string;
-  onError: (cause: Error) => void;
-  onSuccess: () => void;
-};
-
 export const useTerminateFloatingIP = ({
   projectId,
   onError,
   onSuccess,
-}: TerminateFloatingIPProps) => {
+}: TerminateIPProps) => {
   const mutation = useMutation({
     mutationFn: (floatingIp: FloatingIP) => {
       return terminateFloatingIP(projectId, floatingIp.region, floatingIp.id);
