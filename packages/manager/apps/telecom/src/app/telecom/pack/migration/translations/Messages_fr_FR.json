@@ -183,7 +183,6 @@
   "telecom_pack_migration_modem_no": "Je ne souhaite pas de modem",
   "telecom_pack_migration_modem_keep": "Je souhaite conserver mon modem ({{ price }} HT/mois)",
   "telecom_pack_migration_modem_required": "La sélection d'un type de modem est obligatoire",
-  "telecom_pack_migration_confirm_modem_rental": "Location modem",
   "telecom_pack_migration_offers_debit_mention_1": "(1) Jusqu'à 92 Mb/s descendant en VDSL et 22 Mb/s en ADSL, selon éligibilité.",
   "telecom_pack_migration_offers_debit_mention_2": "(2) Jusqu'à 36 Mb/s montant en VDSL et 1 Mb/s en ADSL, selon éligibilité.",
   "telecom_pack_migration_meeting_slots": "Prise de rendez-vous",
@@ -200,5 +199,6 @@
   "telecom_pack_migration_contract_action_create": "Une nouvelle ligne va être créée à l'adresse :",
   "telecom_pack_migration_contract_meeting": "Un rendez-vous est programmé le {{ day }} entre {{ start }} et {{ end }}.",
   "telecom_pack_migration_contract_meeting_contact": "Je serai contacté par un technicien pour convenir d'un rendez-vous.",
-  "telecom_pack_migration_meeting_error": "Oups ! Une erreur est survenue lors la récupération des dates de rendez-vous disponibles."
+  "telecom_pack_migration_meeting_error": "Oups ! Une erreur est survenue lors la récupération des dates de rendez-vous disponibles.",
+  "telecom_pack_migration_pto_reference_is_not_valid": "La référence PTO saisie est invalide. Le format attendu est OO-XXXX-XXXX."
 }

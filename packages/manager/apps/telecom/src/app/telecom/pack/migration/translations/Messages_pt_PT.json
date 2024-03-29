@@ -199,5 +199,6 @@
   "telecom_pack_migration_buildings_nro": "NRO",
   "telecom_pack_migration_buildings_type": "Tipo",
   "telecom_pack_migration_buildings_actions": "Ação",
-  "telecom_pack_migration_buildings_select_building": "Selecionar"
+  "telecom_pack_migration_buildings_select_building": "Selecionar",
+  "telecom_pack_migration_pto_reference_is_not_valid": "A referência PTO introduzida é inválida. O formato esperado é OO-XXXX-XXXX."
 }

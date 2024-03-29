@@ -197,5 +197,6 @@
   "telecom_pack_migration_contract_action_create": "Se va a crear una nueva línea en la dirección:",
   "telecom_pack_migration_contract_meeting": "Se ha programado una cita el {{ day }} entre {{ start }} y {{ end }}.",
   "telecom_pack_migration_contract_meeting_contact": "Un técnico se pondrá en contacto conmigo para acordar una cita.",
-  "telecom_pack_migration_meeting_error": "¡Vaya! Se ha producido un error al cargar las fechas disponibles."
+  "telecom_pack_migration_meeting_error": "¡Vaya! Se ha producido un error al cargar las fechas disponibles.",
+  "telecom_pack_migration_pto_reference_is_not_valid": "La referencia PTO introducida no es válida. El formato esperado es OO-XXXX-XXXX."
 }
