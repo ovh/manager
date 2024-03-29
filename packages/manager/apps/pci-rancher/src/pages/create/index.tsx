@@ -13,7 +13,7 @@ import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import { getRanchersUrl } from '@/utils/route';
 import usePciProject from '@/hooks/usePciProject';
 import { PciProjectPlanCode, RancherService } from '@/api/api.type';
-import { ranchersQueryKey, useRanchers } from '@/hooks/useRancher';
+import { ranchersQueryKey } from '@/hooks/useRancher';
 import {
   useSimpleTrackingPage,
   useTrackingPage,
@@ -36,7 +36,6 @@ export default function Create() {
 
   const { data: project } = usePciProject();
 
-  const { data: ranchers } = useRanchers({ disablePolling: true });
   const ranchersQueryKeyValue = ranchersQueryKey(projectId);
 
   const { mutate: createRancher, isPending } = useCreateRancher({
@@ -71,7 +70,6 @@ export default function Create() {
       <Breadcrumb />
       <CreateRancher
         isCreateRancherLoading={isPending}
-        hasSomeRancher={ranchers?.length > 0}
         projectId={projectId}
         hasRancherCreationError={hasRancherCreationError}
         onCreateRancher={createRancher}

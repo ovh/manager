@@ -101,7 +101,6 @@ export interface CreateRancherProps {
   hasRancherCreationError: boolean;
   onCreateRancher: (payload: CreateRancherPayload) => void;
   isProjectDiscoveryMode?: boolean;
-  hasSomeRancher: boolean;
   isCreateRancherLoading: boolean;
 }
 
@@ -112,7 +111,6 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   hasRancherCreationError,
   projectId,
   isProjectDiscoveryMode,
-  hasSomeRancher,
   isCreateRancherLoading,
 }) => {
   const [rancherName, setRancherName] = useState(null);
@@ -152,9 +150,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
 
   const onCancelClick = () => {
     trackAction(TrackingPageView.CreateRancher, TrackingEvent.cancel);
-    navigate(
-      hasSomeRancher ? getRanchersUrl(projectId) : getOnboardingUrl(projectId),
-    );
+    navigate(getRanchersUrl(projectId));
   };
 
   return (
