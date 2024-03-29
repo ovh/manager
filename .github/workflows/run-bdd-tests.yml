@@ -23,5 +23,7 @@ jobs:
           yarn exec turbo -- run build --filter="./packages/manager/core/*"
           yarn exec turbo -- run build --filter="./packages/manager/manager-components/*"
           yarn workspace @ovh-ux/manager-container-app start
-      - name: Run tests
+      - name: Run tests old (jest)
         run: yarn test:jest
+      - name: Run tests new (turbo)
+        run: yarn test:turbo
