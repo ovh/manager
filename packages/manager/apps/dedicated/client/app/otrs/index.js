@@ -18,8 +18,12 @@ angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
       });
       $urlRouterProvider.rule(($injector, $location) => {
         const path = $location.path();
+        // In US Manager, screen to creat new ticket is embeded in the tickets listing page.
         if (path === '/support') {
           return '/ticket';
+        }
+        if (path === '/support/tickets/new') {
+          return `/ticket?create=1`;
         }
         if (/^\/support\/tickets/.test(path)) {
           return path.replace(/^\/support\/tickets/, '/ticket');
