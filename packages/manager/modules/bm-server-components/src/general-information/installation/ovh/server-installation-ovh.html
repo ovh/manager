@@ -1765,44 +1765,6 @@
                             />
                         </div>
 
-                        <!-- sshKeyName -->
-                        <div
-                            class="form-group"
-                            data-ng-hide="installation.selectDistribution.family == constants.warningWindows"
-                        >
-                            <label for="sshKeyName" class="control-label">
-                                <span
-                                    data-translate="server_configuration_installation_form_ssh"
-                                ></span
-                                >&nbsp;
-                                <span
-                                    class="fa fa-question-circle"
-                                    data-oui-tooltip="{{:: 'server_configuration_installation_form_ssh_help' | translate }}"
-                                    data-oui-tooltip-placement="right"
-                                >
-                                </span>
-                            </label>
-                            <select
-                                class="form-control"
-                                id="sshKeyName"
-                                name="sshKeyName"
-                                data-ng-if="!sshList.error"
-                                data-ng-options="sskkey for sskkey in sshList.model"
-                                data-ng-model="installation.options.sshKeyName"
-                            >
-                                <option
-                                    value
-                                    data-translate="server_configuration_installation_form_ssh_no"
-                                >
-                                </option>
-                            </select>
-                            <p
-                                class="form-control-static text-danger"
-                                data-ng-if="sshList.error"
-                                data-translate="server_configuration_installation_form_ssh_fail"
-                            ></p>
-                        </div>
-
                         <!-- nbDisk -->
                         <div
                             class="form-inline"
