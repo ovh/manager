@@ -282,5 +282,6 @@
   "pack_move_building_details_error": "Si è verificato un errore durante il recupero delle informazioni sul tuo edificio",
   "pack_move_promotion_description": "Promozione disponibile fino al {{ endDate }}",
   "pack_move_promotion_subscription_months_offered": "{{ duration }} mesi inclusi",
-  "pack_move_pto_reference_is_not_valid": "Il riferimento PTO immesso non è valido. Il formato previsto è OO-XXXX-XXXX."
+  "pack_move_pto_reference_is_not_valid": "Il riferimento PTO immesso non è valido. Il formato previsto è OO-XXXX-XXXX.",
+  "pack_move_no_meeting_available": "Nessun appuntamento disponibile al momento. Verrai ricontattato telefonicamente per la pianificazione."
 }

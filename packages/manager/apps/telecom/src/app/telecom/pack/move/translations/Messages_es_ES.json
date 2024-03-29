@@ -282,5 +282,6 @@
   "pack_move_no_gtr": "Sin GTR",
   "pack_move_promotion_description": "Promoción disponible hasta el {{ endDate }}",
   "pack_move_promotion_subscription_months_offered": "{{ duration }} meses gratis",
-  "pack_move_pto_reference_is_not_valid": "La referencia PTO introducida no es válida. El formato esperado es OO-XXXX-XXXX."
+  "pack_move_pto_reference_is_not_valid": "La referencia PTO introducida no es válida. El formato esperado es OO-XXXX-XXXX.",
+  "pack_move_no_meeting_available": "No hay ninguna cita disponible en este momento, se contactará por teléfono para la planificación."
 }

@@ -284,5 +284,6 @@
   "pack_move_confirm_modem_rental": "Dzierżawa modemu",
   "pack_move_offers_debit_mention_1": "(1) Prędkość pobierania do 92 Mbps w VDSL i 22 Mbps w ADSL, pod warunkiem dostępności.",
   "pack_move_offers_debit_mention_2": "(2) Prędkość pobierania do 36 Mbps w VDSL i 1 Mbps w ADSL, pod warunkiem dostępności.",
-  "pack_move_pto_reference_is_not_valid": "Wprowadzone odwołanie PTO jest nieprawidłowe. Oczekiwany format to OO-XXXX-XXXX."
+  "pack_move_pto_reference_is_not_valid": "Wprowadzone odwołanie PTO jest nieprawidłowe. Oczekiwany format to OO-XXXX-XXXX.",
+  "pack_move_no_meeting_available": "W tej chwili nie ma żadnych dostępnych spotkań, więc skontaktujemy się z Tobą telefonicznie w celu planowania."
 }
