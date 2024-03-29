@@ -1,11 +1,11 @@
 {
-  "dedicatedCloud_vmware_cloud_director_order_title": "VCD pre-order subscription",
-  "dedicatedCloud_vmware_cloud_director_order_costs": "See VCD prices for hosts.",
+  "dedicatedCloud_vmware_cloud_director_order_title": "Sottoscrizione con pre-ordine alla soluzione VCD",
+  "dedicatedCloud_vmware_cloud_director_order_costs": "Visualizza le tariffe VCD corrispondenti agli host",
   "dedicatedCloud_vmware_cloud_director_order_host": "Host {{host}}: ",
-  "dedicatedCloud_vmware_cloud_director_order_hosts_list": "List of Hosts - {{pcc}}:",
-  "dedicatedCloud_vmware_cloud_director_order_success": "To finish your order, please follow the instructions described in the new tab that has appeared. If no new tab has appeared, please click on <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">the link</a>.",
-  "dedicatedCloud_vmware_cloud_director_order_error": "An error occurred when pre-ordering the VCD offer.",
-  "dedicatedCloud_vmware_cloud_director_order_cancel": "Cancel",
-  "dedicatedCloud_vmware_cloud_director_order_confirm": "Next",
-  "dedicatedCloud_vmware_cloud_director_order_terminate": "Close"
+  "dedicatedCloud_vmware_cloud_director_order_hosts_list": "Ecco la lista degli host di {{pcc}}:",
+  "dedicatedCloud_vmware_cloud_director_order_success": "Per finalizzare l’ordine, segui le istruzioni descritte nella nuova scheda che si è aperta. Se non si è aperta nessuna nuova scheda, clicca su <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">questo link</a>.",
+  "dedicatedCloud_vmware_cloud_director_order_error": "Si è verificato un errore durante il pre-ordine della soluzione VCD",
+  "dedicatedCloud_vmware_cloud_director_order_cancel": "Annullare",
+  "dedicatedCloud_vmware_cloud_director_order_confirm": "Continua",
+  "dedicatedCloud_vmware_cloud_director_order_terminate": "Chiudere"
 }
