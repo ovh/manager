@@ -46,6 +46,16 @@ export default [
           },
           {
             path: 'additional-ips',
+            children: [
+              {
+                path: ':ipId/terminate',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/additional-ips/terminate/TerminateAdditionalIPPage'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },
