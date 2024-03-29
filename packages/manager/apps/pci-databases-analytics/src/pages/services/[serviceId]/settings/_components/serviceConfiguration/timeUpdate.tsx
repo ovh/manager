@@ -6,7 +6,7 @@ import { z } from 'zod';
 import FormattedDate from '@/components/table-date';
 import { Button } from '@/components/ui/button';
 import { Form, FormField } from '@/components/ui/form';
-import { TableCell, TableRow } from '@/components/ui/table';
+import { TableCell } from '@/components/ui/table';
 import { TimePicker } from '@/components/ui/time-picker';
 
 interface TimeUpdateProps {

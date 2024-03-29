@@ -18,6 +18,7 @@ import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
 import { useVrack } from '@/hooks/useVrack';
 import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
+import { computeServicePrice } from '@/lib/pricingHelper';
 
 const getSuggestedItemOrDefault = (
   suggestion: database.Suggestion,
@@ -204,35 +205,15 @@ export function useOrderFunnel(
   // compute pricing when availability, nbNodes and additionalStorage changes
   useEffect(() => {
     if (!availability) return;
-    const offerPricing = flavorObject.pricing;
-    const newPrice = {
-      hourly: {
-        price: offerPricing.hourly.price * nbNodes,
-        tax: offerPricing.hourly.tax * nbNodes,
-      },
-      monthly: {
-        price: offerPricing.monthly.price * nbNodes,
-        tax: offerPricing.monthly.tax * nbNodes,
-      },
-    };
-    if (flavorObject.storage?.pricing) {
-      const storageFactor =
-        engineObject.storageMode ===
-        database.capabilities.engine.storage.StrategyEnum.distributed
-          ? 1
-          : nbNodes;
-      const { pricing: storagePrices } = flavorObject.storage;
-      newPrice.hourly.price +=
-        additionalStorage * storagePrices.hourly.price * storageFactor;
-      newPrice.hourly.tax +=
-        additionalStorage * storagePrices.hourly.tax * storageFactor;
-      newPrice.monthly.price +=
-        additionalStorage * storagePrices.monthly.price * storageFactor;
-      newPrice.monthly.tax +=
-        additionalStorage * storagePrices.monthly.tax * storageFactor;
-    }
-
-    setPrice(newPrice);
+    setPrice(
+      computeServicePrice({
+        offerPricing: flavorObject.pricing,
+        nbNodes,
+        storagePricing: flavorObject.storage?.pricing,
+        additionalStorage,
+        storageMode: engineObject.storageMode,
+      }),
+    );
   }, [availability, nbNodes, additionalStorage, engineObject]);
 
   // select an engine and a version when listEngines is changed

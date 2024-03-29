@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { odsSetup } from '@ovhcloud/ods-common-core';
 import { useShell } from '@ovh-ux/manager-react-shell-client';
