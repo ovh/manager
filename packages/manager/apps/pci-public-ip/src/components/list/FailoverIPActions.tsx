@@ -11,8 +11,13 @@ import {
   OsdsMenuItem,
 } from '@ovhcloud/ods-components/react';
 import { AdditionalIPServiceAction } from './AdditionalIPServiceAction';
+import { NetworkSecurityAction } from './NetworkSecurityAction';
 
-export default function FailoverIPActions() {
+export default function FailoverIPActions({
+  projectId,
+}: {
+  projectId: string;
+}) {
   return (
     <OsdsMenu>
       <OsdsButton
@@ -27,6 +32,9 @@ export default function FailoverIPActions() {
           size={ODS_ICON_SIZE.xxs}
         ></OsdsIcon>
       </OsdsButton>
+      <OsdsMenuItem>
+        <NetworkSecurityAction projectId={projectId} isFloatingIP={false} />
+      </OsdsMenuItem>
       <OsdsMenuItem>
         <AdditionalIPServiceAction />
       </OsdsMenuItem>

@@ -79,7 +79,7 @@ export default function FailoverIPComponent({ projectId, projectUrl }) {
     },
     {
       id: 'actions',
-      cell: () => <FailoverIPActions />,
+      cell: () => <FailoverIPActions projectId={projectId} />,
       label: '',
     },
   ];
