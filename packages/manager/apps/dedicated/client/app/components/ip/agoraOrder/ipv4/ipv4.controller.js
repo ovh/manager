@@ -18,6 +18,7 @@ import {
   IP_AGORA,
   ADDITIONAL_IP,
   BLOCK_ADDITIONAL_IP,
+  IP_FAILOVER_PLANCODE,
   ALERT_ID,
 } from './ipv4.constant';
 
@@ -55,7 +56,6 @@ export default class AgoraIpV4OrderController {
     this.BLOCK_ADDITIONAL_IP = BLOCK_ADDITIONAL_IP;
     this.ALERT_ID = ALERT_ID;
     this.region = coreConfig.getRegion();
-    this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
   }
 
   $onInit() {
@@ -69,6 +69,20 @@ export default class AgoraIpV4OrderController {
     this.loadServices();
   }
 
+  getIpFailoverPrice() {
+    const ipFailoverRIPEPlan = this.ipCatalog.find(
+      ({ planCode }) => planCode === IP_FAILOVER_PLANCODE[this.region],
+    );
+    if (!ipFailoverRIPEPlan) {
+      return null;
+    }
+    return ipFailoverRIPEPlan.details.pricings.default.find((price) =>
+      ['renew', 'installation'].every((capacity) =>
+        price.capacities.includes(capacity),
+      ),
+    );
+  }
+
   loadServices() {
     this.atInternet.trackClick({
       name: `dedicated::ip::dashboard::order`,
@@ -80,15 +94,11 @@ export default class AgoraIpV4OrderController {
       .all({
         user: this.User.getUser(),
         services: this.Ipv4AgoraOrder.getServices(),
-        ipFailoverPrice: this.Ipv4AgoraOrder.getIpFailoverPrice(
-          this.ovhSubsidiary,
-          this.region,
-        ),
       })
       .then((results) => {
         this.user = results.user;
         this.services = results.services;
-        this.ipFailoverPrice = results.ipFailoverPrice;
+        this.ipFailoverPrice = this.getIpFailoverPrice();
 
         if (this.$state.params.service) {
           this.model.selectedService = find(this.services, {
@@ -97,6 +107,7 @@ export default class AgoraIpV4OrderController {
         }
       })
       .catch((err) => {
+        console.log(err);
         this.Alerter.error(
           this.$translate.instant('ip_order_loading_error', this.ALERT_ID),
         );

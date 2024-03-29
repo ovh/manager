@@ -2,6 +2,7 @@ import {
   TRACKING_PREFIX,
   ALERT_ID,
   ADDITIONAL_IP,
+  IP_FAILOVER_PLANCODE,
 } from '../ip-ip-agoraOrder.constant';
 
 export const FETCH_PRICE_MAX_TRIES = 5;
@@ -64,13 +65,7 @@ export const IP_LOCATION_GROUPS = [
 export const VPS_MAX_QUANTITY = 16;
 export const BLOCK_ADDITIONAL_IP = 'Block Additional IP';
 
-export const IP_FAILOVER_PLANCODE = {
-  EU: 'ip-failover-ripe',
-  CA: 'ip-failover-arin',
-  US: 'ip-failover-arin',
-};
-
-export { TRACKING_PREFIX, ADDITIONAL_IP, ALERT_ID };
+export { TRACKING_PREFIX, ADDITIONAL_IP, ALERT_ID, IP_FAILOVER_PLANCODE };
 
 export default {
   FETCH_PRICE_MAX_TRIES,
@@ -79,6 +74,7 @@ export default {
   TRACKING_PREFIX,
   VPS_MAX_QUANTITY,
   IP_AGORA,
+  IP_FAILOVER_PLANCODE,
   BLOCK_ADDITIONAL_IP,
   ALERT_ID,
 };

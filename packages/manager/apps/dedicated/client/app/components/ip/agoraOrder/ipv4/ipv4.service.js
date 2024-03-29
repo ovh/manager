@@ -3,11 +3,7 @@ import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 
-import {
-  FETCH_PRICE_MAX_TRIES,
-  PRODUCT_TYPES,
-  IP_FAILOVER_PLANCODE,
-} from './ipv4.constant';
+import { FETCH_PRICE_MAX_TRIES, PRODUCT_TYPES } from './ipv4.constant';
 
 export default class Ipv4AgoraOrder {
   /* @ngInject */
@@ -98,25 +94,6 @@ export default class Ipv4AgoraOrder {
       .get(`/dedicated/server/${serviceName}/orderable/ip`)
       .then(({ data: orderable }) => orderable.ipv4?.length > 0)
       .catch(() => false);
-  }
-
-  getIpFailoverPrice(ovhSubsidiary = 'FR', region = 'EU') {
-    return this.$http
-      .get(`/order/catalog/formatted/ip?ovhSubsidiary=${ovhSubsidiary}`)
-      .then(({ data: { plans } }) => {
-        const ipFailoverRIPEPlan = plans.find(
-          ({ planCode }) => planCode === IP_FAILOVER_PLANCODE[region],
-        );
-        if (!ipFailoverRIPEPlan) {
-          return null;
-        }
-        return ipFailoverRIPEPlan.details.pricings.default.find((price) =>
-          ['renew', 'installation'].every((capacity) =>
-            price.capacities.includes(capacity),
-          ),
-        );
-      })
-      .catch(() => null);
   }
 
   fetchPrices(serviceName, blockSize) {

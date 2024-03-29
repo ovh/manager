@@ -8,6 +8,15 @@ export default class IpAgoraOrder {
     this.fetchPricesTries = 0;
   }
 
+  getIpCatalog(ovhSubsidiary = 'FR') {
+    return this.$http
+      .get(`/order/catalog/formatted/ip?ovhSubsidiary=${ovhSubsidiary}`)
+      .then(({ data: { plans } }) => {
+        return plans;
+      })
+      .catch(() => null);
+  }
+
   static createProductToOrder({
     configuration = [],
     country,
