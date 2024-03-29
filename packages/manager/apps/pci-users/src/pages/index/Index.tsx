@@ -111,7 +111,11 @@ export default function ListingPage() {
     {
       id: 'actions',
       cell: (props: User) => {
-        return <Actions user={props} />;
+        return (
+          <div className="min-w-16">
+            <Actions user={props} />
+          </div>
+        );
       },
       label: t(''),
     },
