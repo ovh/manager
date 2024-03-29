@@ -1,0 +1,16 @@
+{
+  "listingCrumb": "Usługi vRack",
+  "deliveringVrackServicesMessage": "W dniu {{date}} - {{time}} przesłano zlecenie aktywacji usług vRack. Status zamówienia: {{status}}",
+  "deliveringVrackMessage": "Zlecenie utworzenia sieci vRack zostało zarejestrowane w dniu {{date}} - {{time}}. Status zamówienia: {{status}}",
+  "orderStatus-cancelled": "Anulowane",
+  "orderStatus-cancelling": "Anulowanie w trakcie",
+  "orderStatus-checking": "W trakcie weryfikacji",
+  "orderStatus-delivered": "Zakończone",
+  "orderStatus-delivering": "W trakcie",
+  "orderStatus-documentsRequested": "Wymagany dokument",
+  "orderStatus-notPaid": "Wymagana płatność",
+  "orderStatus-unknown": "Nieznany",
+  "genericApiError": "Wystąpił następujący błąd: {{error}}.",
+  "modalCancelButton": "Anuluj",
+  "modalDeleteButton": "Usuń"
+}

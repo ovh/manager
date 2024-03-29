@@ -1,0 +1,17 @@
+{
+  "introTitle": "vRack Services",
+  "intro": "Mit dem Produkt vRack Services verfügen Sie über Netzwerkdienste im vRack. Indem Sie einen Endpoint-Dienst erstellen, können Sie einen von OVHcloud verwalteten Dienst mit einer privaten IP-Adresse in Ihrem vRack verfügbar machen.",
+  "title": "Sie haben vRack Services noch nicht aktiviert",
+  "description": "Um die Dienste nutzen zu können, müssen Sie vRack Services aktivieren und konfigurieren.",
+  "orderButtonLabel": "vRack Services aktivieren",
+  "moreInfoButtonLabel": "vRack Services entdecken",
+  "moreInfoButtonLink": "/#/dedicated/vrack-services/info",
+  "guideCategory": "Anleitung",
+  "guide1Title": "Endpoint-Dienst mit Netapp erstellen",
+  "guide1Description": "Hier erfahren Sie, wie Sie vRack Services konfigurieren, um Ihren NetApp-Dienst in Ihrem vRack verfügbar zu machen",
+  "guide1Link": "https://help.ovhcloud.com/csm/de-public-cloud-storage-nas-get-started?id=kb_article_view&amp;sysparm_article=KB0046704",
+  "guide2Title": "vRack Services Einleitung",
+  "guide2Description": "Entdecken Sie das Produkt vRack Services und die dazugehörigen Dienstleistungen",
+  "guide2Link": "https://help.ovhcloud.com/csm/de-public-cloud-storage-nas-nfs?id=kb_article_view&amp;sysparm_article=KB0046742",
+  "newBadgeText": "Neu"
+}
