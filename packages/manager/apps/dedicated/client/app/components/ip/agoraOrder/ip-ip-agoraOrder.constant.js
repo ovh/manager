@@ -12,7 +12,7 @@ export const IP_TYPE_TITLE = {
 
 export const ADDITIONAL_IP = 'Additional IP';
 export const ALERT_ID = 'ip.agora-order';
-
+export const DASHBOARD = 'app.ip.dashboard';
 export const IP_FAILOVER_PLANCODE = {
   EU: 'ip-failover-ripe',
   CA: 'ip-failover-arin',
@@ -24,6 +24,7 @@ export default {
   TRACKING_PREFIX,
   IP_FAILOVER_PLANCODE,
   IP_TYPE_TITLE,
+  DASHBOARD,
   IP_TYPE,
   ALERT_ID,
 };

@@ -47,6 +47,30 @@
                 </div>
             </oui-select-picker-section>
         </oui-select-picker>
+
+        <oui-select-picker
+            name="ip-version"
+            class="text-center d-flex col-sm-12 col-md-6 col-xl-3 my-3"
+            data-model="$ctrl.ipType"
+            data-on-change="$ctrl.goToIpv6Order()"
+            data-values="[$ctrl.IP_TYPE.IPv6]"
+        >
+            <oui-select-picker-description class="h-75">
+                <h4>
+                    <strong
+                        class="text-center"
+                        data-ng-bind=":: $ctrl.IP_TYPE_TITLE.IPv6"
+                    ></strong>
+                </h4>
+                <p class="text-left">
+                    {{ 'ip_agora_ipv6_description' | translate }}
+                </p>
+            </oui-select-picker-description>
+
+            <oui-select-picker-section>
+                <strong data-translate="free_price"></strong>
+            </oui-select-picker-section>
+        </oui-select-picker>
     </div>
     <div data-ui-view></div>
 </div>
