@@ -19,6 +19,7 @@ import {
   ADDITIONAL_IP,
   BLOCK_ADDITIONAL_IP,
   IP_FAILOVER_PLANCODE,
+  DASHBOARD,
   ALERT_ID,
 } from './ipv4.constant';
 
@@ -465,11 +466,9 @@ export default class AgoraIpV4OrderController {
           this.$translate.instant('ip_order_finish_error'),
           this.ALERT_ID,
         );
-        return this.$state
-          .go('app.ip.dashboard')
-          .then(() => this.$q.reject(err));
+        return this.$state.go(DASHBOARD).then(() => this.$q.reject(err));
       })
-      .finally(() => this.$state.go('app.ip.dashboard'));
+      .finally(() => this.$state.go(DASHBOARD));
   }
 
   getOfferDetails = (offerDetails, ipOffersByRegion, countryList) => {
@@ -536,6 +535,6 @@ export default class AgoraIpV4OrderController {
       name: `${TRACKING_PREFIX}cancel`,
       type: 'action',
     });
-    return this.$state.go('app.ip.dashboard');
+    return this.$state.go(DASHBOARD);
   }
 }

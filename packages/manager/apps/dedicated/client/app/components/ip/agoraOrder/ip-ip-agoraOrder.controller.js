@@ -1,5 +1,7 @@
 import {
   ADDITIONAL_IP,
+  TRACKING_PREFIX,
+  DASHBOARD,
   ALERT_ID,
   IP_TYPE,
   IP_TYPE_TITLE,
@@ -8,11 +10,12 @@ import {
 
 export default class AgoraIpOrderCtrl {
   /* @ngInject */
-  constructor($q, $rootScope, $scope, $state, ipCatalog) {
+  constructor($q, $rootScope, $scope, $state, atInternet, ipCatalog) {
     this.$q = $q;
     this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$state = $state;
+    this.atInternet = atInternet;
     this.ADDITIONAL_IP = ADDITIONAL_IP;
     this.ALERT_ID = ALERT_ID;
     this.IP_TYPE = IP_TYPE;
@@ -51,5 +54,17 @@ export default class AgoraIpOrderCtrl {
 
   goToIpv4Order() {
     this.$state.go('app.ip.agora-order.ipv4');
+  }
+
+  goToIpv6Order() {
+    this.$state.go('app.ip.agora-order.ipv6');
+  }
+
+  resumeOrder() {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}cancel`,
+      type: 'action',
+    });
+    return this.$state.go(DASHBOARD);
   }
 }

@@ -6,11 +6,12 @@ import controller from './ip-ip-agoraOrder.controller';
 import service from './ip-ip-agoraOrder.service';
 import template from './ip-ip-agoraOrder.html';
 import ipv4 from './ipv4/ipv4.module';
+import ipv6 from './ipv6/ipv6.module';
 
 const moduleName = 'ovhManagerIpDashboardOrder';
 
 angular
-  .module(moduleName, [ngUiRouterLayout, ipv4, 'ovhManagerCatalogPrice'])
+  .module(moduleName, [ngUiRouterLayout, ipv4, ipv6, 'ovhManagerCatalogPrice'])
   .config(routing)
   .controller('agoraIpOrderCtrl', controller)
   .service('IpAgoraOrder', service)
