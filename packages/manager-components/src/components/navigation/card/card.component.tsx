@@ -38,19 +38,21 @@ export interface CardProps {
     category: string;
   };
   badges?: Badge[];
-  trackingLabel?: string;
   hoverable?: boolean;
+  onClick?: (event: React.MouseEvent) => void;
+  [attribute: string]: any;
 }
 
-export const Card = ({
+export const Card: React.FC<CardProps> = ({
   href,
   isExternalHref,
   img,
   badges,
   texts,
-  trackingLabel,
   hoverable,
-}: CardProps) => {
+  onClick,
+  ...props
+}) => {
   const { title, description, category } = texts;
   const { t } = useTranslation('card');
 
@@ -59,6 +61,8 @@ export const Card = ({
       target={OdsHTMLAnchorElementTarget._blank}
       href={href}
       className="no-underline"
+      onClick={onClick}
+      {...props}
     >
       <OsdsTile
         className="w-full h-full"
@@ -66,7 +70,6 @@ export const Card = ({
         rounded
         inline
         variant={ODS_TILE_VARIANT.stroked}
-        data-tracking={trackingLabel}
         hoverable={hoverable}
       >
         <div className="flex flex-col ">
@@ -85,13 +88,14 @@ export const Card = ({
             hue={ODS_THEME_COLOR_HUE._500}
           >
             {category}
-            <span className="inline-flex ml-3">
+            <span style={{ marginLeft: 'var(--ods-size-03)' }}>
               {badges?.map((b) => (
                 <OsdsChip
                   className="mr-1"
                   key={b.text}
                   color={b.color}
                   size={ODS_CHIP_SIZE.sm}
+                  inline
                 >
                   {b.text}
                 </OsdsChip>

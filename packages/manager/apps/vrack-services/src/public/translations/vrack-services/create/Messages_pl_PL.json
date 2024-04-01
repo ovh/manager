@@ -1,0 +1,17 @@
+{
+  "crumb": "Usługi vRack",
+  "title": "Włącz usługi vRack",
+  "displayNameLabel": "Nazwa (opcjonalnie)",
+  "displayNamePlaceholder": "Moje usługi vRack",
+  "regionLabel": "Region",
+  "regionDescription": "vRack Services to usługa regionalna. Wybierz region, w którym chcesz go używać. Aby korzystać z Usługi Endpoint, wybierz region odpowiadający Twojej usłudze zarządzanej OVHcloud.",
+  "createButtonLabel": "Włącz usługi vRack",
+  "creationServiceError": "Wystąpił błąd podczas aktywacji usług vRack: {{error}}",
+  "modalHeadline": "Utwórz vRack",
+  "modalDescriptionLine1": "Aby włączyć vRack Services, utwórz vRack.",
+  "modalDescriptionLine2": "Chcesz zamówić usługę vRack równolegle z aktywacją usług vRack?",
+  "modalDescriptionLine3": "Cena usługi vRack: 0€",
+  "modalCancelButtonLabel": "Anuluj",
+  "modalConfirmVrackButtonLabel": "Zamów usługę vRack",
+  "modalNoVrackButtonLabel": "Nie, dziękuję. Mam już vRack"
+}
