@@ -106,7 +106,7 @@
                         data-name="plan"
                         data-ng-repeat="plan in $ctrl.catalogByLocation track by plan.regionId"
                         data-label="{{ plan.location }}"
-                        data-description="{{ plan.planCode }}"
+                        data-description="{{ plan.regionId }}"
                         data-variant="light"
                         data-picture="{{ ::plan.icon }}"
                         data-model="$ctrl.model.selectedPlan"
