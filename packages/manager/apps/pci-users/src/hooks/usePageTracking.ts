@@ -9,7 +9,11 @@ import {
   DISCOVERY_PLANCODE,
 } from '@/tracking.constants';
 
-export default function usePageTracking() {
+interface PageTrackingProps {
+  mapping?: Record<string, string>;
+}
+
+export default function usePageTracking(opts: PageTrackingProps) {
   const location = useLocation();
   const project = useRouteLoaderData('ssh') as Project;
   const { setPciProjectMode, trackPage } = useTracking();
@@ -24,7 +28,10 @@ export default function usePageTracking() {
   }, [project]);
 
   useEffect(() => {
-    const pageId = location.pathname.split('/').pop();
+    let pageId = location.pathname.split('/').pop();
+    if (opts.mapping && pageId in opts.mapping) {
+      pageId = opts.mapping[pageId];
+    }
     trackPage({
       name: `${PAGE_PREFIX}::users${pageId === 'users' ? '' : `::${pageId}`}`,
       level2: PCI_LEVEL2,
