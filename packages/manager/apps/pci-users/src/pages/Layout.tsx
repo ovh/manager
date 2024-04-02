@@ -13,7 +13,13 @@ import usePageTracking from '@/hooks/usePageTracking';
 export default function Layout() {
   const { projectId } = useParams();
   const { isSuccess } = useProject(projectId || '', { retry: false });
-  usePageTracking();
+  usePageTracking({
+    mapping: {
+      'download-openrc': 'download',
+      'download-rclone': 'download',
+      'openstack-token': 'generate',
+    },
+  });
   return (
     <div className="application">
       <Suspense>
