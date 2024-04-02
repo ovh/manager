@@ -37,6 +37,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { useNavigate } from 'react-router-dom';
 import { FailoverIP } from '@/interface';
 import { useFailoverIPs } from '@/api/hooks/useFailoverIP';
 import FailoverIPActions from './FailoverIPActions';
@@ -46,6 +47,7 @@ export default function FailoverIPComponent({ projectId, projectUrl }) {
 
   const { pagination, setPagination } = useDatagridSearchParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
+  const navigate = useNavigate();
 
   const { error, data: failoverIPs, isLoading } = useFailoverIPs(
     projectId || '',
@@ -146,6 +148,7 @@ export default function FailoverIPComponent({ projectId, projectUrl }) {
               size={ODS_BUTTON_SIZE.sm}
               variant={ODS_BUTTON_VARIANT.ghost}
               color={ODS_THEME_COLOR_INTENT.primary}
+              onClick={() => navigate('../imports')}
             >
               <OsdsText
                 size={ODS_THEME_TYPOGRAPHY_SIZE._500}
