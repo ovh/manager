@@ -196,6 +196,10 @@ export default function ListingPage() {
             className={'w-[70%]'}
             value={searchField}
             onOdsSearchSubmit={({ detail }) => {
+              setPagination({
+                pageIndex: 0,
+                pageSize: pagination.pageSize,
+              });
               addFilter({
                 key: 'username',
                 value: detail.inputValue,
