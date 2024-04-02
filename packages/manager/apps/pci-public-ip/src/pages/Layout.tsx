@@ -1,18 +1,19 @@
 import { Outlet, useParams, useRouteError } from 'react-router-dom';
 
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { Suspense } from 'react';
 import { ErrorBanner } from '@ovhcloud/manager-components';
-import BreadCrumbs from '@/components/BreadCrumbs';
-import ShellRoutingSync from '@/core/ShellRoutingSync';
-import HidePreloader from '@/core/HidePreloader';
+import { Suspense } from 'react';
 import useProject, { ResponseAPIError } from '@/api/hooks/useProject';
+import BreadCrumbs from '@/components/BreadCrumbs';
+import HidePreloader from '@/core/HidePreloader';
+import ShellRoutingSync from '@/core/ShellRoutingSync';
 
 import usePageTracking from '@/api/hooks/usePageTracking';
 
 export default function Layout() {
   const { projectId } = useParams();
   const { isSuccess } = useProject(projectId || '', { retry: false });
+
   usePageTracking();
   return (
     <div className="application">

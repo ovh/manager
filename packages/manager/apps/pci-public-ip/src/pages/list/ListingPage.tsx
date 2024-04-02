@@ -39,16 +39,11 @@ export default function ListingPage(): JSX.Element {
     const { panel } = event.detail;
     setActiveTab(panel as IPsTabName);
 
-    switch (panel) {
-      case IPsTabName.FLOATING_IP_TAB_NAME:
-        navigate(`./floating-ips`);
-        break;
-      case IPsTabName.ADDITIONAL_IP_TAB_NAME:
-        navigate(`./additional-ips`);
-        break;
-      default:
-        navigate(`./floating-ips`);
+    if (panel === IPsTabName.FLOATING_IP_TAB_NAME) {
+      navigate(`../floating-ips`);
+      return;
     }
+    navigate(`../additional-ips`);
   };
 
   useEffect(() => {
@@ -56,8 +51,6 @@ export default function ListingPage(): JSX.Element {
       setActiveTab(IPsTabName.FLOATING_IP_TAB_NAME);
     } else if (location.pathname.includes('additional-ips')) {
       setActiveTab(IPsTabName.ADDITIONAL_IP_TAB_NAME);
-    } else {
-      navigate(`./floating-ips`);
     }
   }, [location.pathname]);
 
