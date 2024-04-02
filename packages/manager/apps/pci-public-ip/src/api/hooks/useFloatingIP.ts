@@ -1,6 +1,7 @@
 import { PaginationState } from '@ovhcloud/manager-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
 import { FloatingIP, Instance, TerminateIPProps } from '@/interface';
 import { getAllFloatingIP, terminateFloatingIP } from '@/api/data/floating-ip';
 import { useAllInstance } from './useInstance';
@@ -27,6 +28,9 @@ const aggregateFloatingIPs = (
 
       floatingIPResult.associatedEntity.name = instance ? instance.name : '';
     }
+    floatingIPResult.associatedEntityId = floatingIP.associatedEntity?.id;
+    floatingIPResult.associatedEntityName =
+      floatingIPResult.associatedEntity?.name;
 
     return { ...floatingIPResult };
   });
@@ -55,6 +59,7 @@ export const useFloatingIP = (projectId: string, ipId: string): FloatingIP => {
 export const useFloatingIPs = (
   projectId: string,
   { pagination }: FloatingIPOptions,
+  filters: Filter[] = [],
 ) => {
   const {
     data: floatingIPData,
@@ -76,7 +81,10 @@ export const useFloatingIPs = (
       isLoading,
       error,
       data: paginateResults(
-        aggregateFloatingIPs(floatingIPData || [], instanceData || []),
+        applyFilters(
+          aggregateFloatingIPs(floatingIPData || [], instanceData || []),
+          filters,
+        ),
         pagination,
       ),
     };
@@ -88,6 +96,7 @@ export const useFloatingIPs = (
     instanceError,
     instanceLoading,
     pagination,
+    filters,
   ]);
 };
 
