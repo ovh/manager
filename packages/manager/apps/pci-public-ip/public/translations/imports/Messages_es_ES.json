@@ -1,0 +1,13 @@
+{
+  "pci_additional_ips_failoverip_imports_title": "Importar una Additional IP",
+  "pci_additional_ips_failoverip_imports_block": "Additional IP",
+  "pci_additional_ips_failoverip_imports_geoloc": "País",
+  "pci_additional_ips_failoverip_imports_id": "Servicio asociado",
+  "pci_additional_ips_failoverip_imports_importIp": "Importar esta Additional IP",
+  "pci_additional_ips_failoverip_imports_import_title": "Confirmación",
+  "pci_additional_ips_failoverip_imports_import_submit_label": "Importar",
+  "pci_additional_ips_failoverip_imports_import_cancel_label": "Cancelar",
+  "pci_additional_ips_failoverip_imports_import_description": "¿Seguro que quiere importar esta Additional IP?",
+  "pci_additional_ips_imports_import_success": "La Additional IP {{ ip }} va a importarse a su proyecto.",
+  "pci_additional_ips_imports_import_error": "Se ha producido un error al importar la IP {{ ip }} ({{ error }})."
+}

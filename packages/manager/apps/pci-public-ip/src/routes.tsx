@@ -1,5 +1,6 @@
-import queryClient from '@/queryClient';
+import { Navigate } from 'react-router-dom';
 import { getProjectQuery } from '@/api/hooks/useProject';
+import queryClient from '@/queryClient';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -29,33 +30,41 @@ export default [
     children: [
       {
         path: '',
-        ...lazyRouteConfig(() => import('@/pages/list')),
+        element: <Navigate to="floating-ips" replace />,
+      },
+      {
+        path: 'floating-ips',
+        ...lazyRouteConfig(() => import('@/pages/list/ListingPage')),
         children: [
           {
-            path: 'floating-ips',
-            children: [
-              {
-                path: ':ipId/terminate',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/floating-ips/terminate/TerminateFloatingIPPage'
-                  ),
-                ),
-              },
-            ],
+            path: ':ipId/terminate',
+            ...lazyRouteConfig(() =>
+              import('@/pages/floating-ips/terminate/TerminateFloatingIPPage'),
+            ),
           },
+        ],
+      },
+      {
+        path: 'additional-ips',
+        ...lazyRouteConfig(() => import('@/pages/list/ListingPage')),
+        children: [
           {
-            path: 'additional-ips',
-            children: [
-              {
-                path: ':ipId/terminate',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/additional-ips/terminate/TerminateAdditionalIPPage'
-                  ),
-                ),
-              },
-            ],
+            path: ':ipId/terminate',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/additional-ips/terminate/TerminateAdditionalIPPage'
+              ),
+            ),
+          },
+        ],
+      },
+      {
+        path: 'imports',
+        ...lazyRouteConfig(() => import('@/pages/imports/ImportsPage')),
+        children: [
+          {
+            path: ':ip',
+            ...lazyRouteConfig(() => import('@/pages/imports/MoveIPPage')),
           },
         ],
       },
