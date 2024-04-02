@@ -1,5 +1,6 @@
 {
   "common_actions": "Aktionen",
+  "common_criteria_adder_filter_label": "Filtern",
   "pci_additional_ips_title": "Öffentliche IPs",
   "pci_additional_ips_failover_ip_title": "Additional IP",
   "pci_additional_ips_floating_ip_title": "Floating IP",
