@@ -58,6 +58,7 @@ export default function RolesChooser({
         </div>
       ) : (
         <OsdsSelect
+          defaultValue={allRoles?.[0]?.id}
           onOdsValueChange={(event) => {
             const found = allRoles.find(
               (role) => role.id === event.detail.value,
