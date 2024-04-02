@@ -1,3 +1,9 @@
+import { useEffect, useState } from 'react';
+import { Outlet, useHref, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
+import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+
 import {
   Datagrid,
   DataGridTextCell,
@@ -8,8 +14,6 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { ODS_MESSAGE_TYPE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   OsdsBreadcrumb,
@@ -17,9 +21,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useParams, Outlet, useHref } from 'react-router-dom';
+
 import { ImportsIP } from '@/interface';
 import { ImportIPAction } from '@/components/imports/ImportIPAction';
 import useProject from '@/api/hooks/useProject';
@@ -63,7 +65,7 @@ export default function ImportsPage(): JSX.Element {
     {
       id: 'country',
       cell: (props: ImportsIP) => (
-        <DataGridTextCell>{props.country.toUpperCase()}</DataGridTextCell>
+        <DataGridTextCell>{props.country?.toUpperCase()}</DataGridTextCell>
       ),
       label: t('pci_additional_ips_failoverip_imports_geoloc'),
     },
