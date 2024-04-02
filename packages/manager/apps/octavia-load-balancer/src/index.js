@@ -8,6 +8,8 @@ import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 
 import { initShellClient } from '@ovh-ux/shell';
 
+// Change to remove
+
 defineApplicationVersion(__VERSION__);
 
 initShellClient('octavia-load-balancer').then((shellClient) => {

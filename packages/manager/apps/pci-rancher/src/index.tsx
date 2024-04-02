@@ -11,6 +11,8 @@ import './global.css';
 
 import '@/vite-hmr';
 
+// Change to remove
+
 const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },

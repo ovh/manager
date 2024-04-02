@@ -6,6 +6,8 @@ import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 
 import { getShellClient, setShellClient } from './shell';
 
+// Change to remove
+
 defineApplicationVersion(__VERSION__);
 
 initShellClient('dedicated')

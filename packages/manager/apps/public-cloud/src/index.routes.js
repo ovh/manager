@@ -1,6 +1,11 @@
-import { DEFAULT_PROJECT_KEY } from './index.constants';
+import { DEFAULT_PROJECT_KEY, LINKS } from './index.constants';
+import { getRedirectPath, useDeepLinks } from './index.links';
 
-export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+export default /* @ngInject */ (
+  $stateProvider,
+  $urlRouterProvider,
+  ovhShell,
+) => {
   $stateProvider.state('app', {
     url: '/',
     redirectTo: 'app.redirect',
@@ -8,6 +13,106 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       rootState: () => 'app',
     },
   });
+
+  /* --------------------------- Deep linking set up -------------------------- */
+
+  const registerLinks = useDeepLinks({ $stateProvider, ovhShell });
+
+  /**
+   * @type {import('./index.links').LinkParams}
+   */
+  const linkParams = {
+    project: /* @ngInject */ ($q, publicCloud) => {
+      return $q
+        .all([
+          publicCloud.getDiscoveryProject(),
+          publicCloud.getDefaultProject(),
+          publicCloud.getUnpaidProjects(),
+        ])
+        .then(([discoveryProject, defaultProject, unPaidProjects]) => {
+          if (
+            unPaidProjects.length > 0 ||
+            (!discoveryProject && !defaultProject)
+          ) {
+            throw new Error();
+          }
+          return discoveryProject || defaultProject;
+        });
+    },
+  };
+
+  registerLinks({
+    links: LINKS,
+    otherwise: 'app.redirect',
+    params: linkParams,
+  });
+
+  /* -------------------------------------------------------------------------- */
+  /*                                DEV / QA ONLY                               */
+  /* -------------------------------------------------------------------------- */
+
+  $stateProvider.state('link-test', {
+    url: '/link-test',
+    controller: class {
+      /* @ngInject */
+      constructor($scope, $transition$) {
+        $scope.LINKS = LINKS;
+        $scope.publicURL = [];
+        $scope.redirectUrl = [];
+        LINKS.forEach((link, i) => {
+          ovhShell.navigation
+            .getURL(link.public.application, link.public.path)
+            .then((url) => {
+              $scope.publicURL[i] = url;
+            });
+          $scope.publicURL[i] = getRedirectPath({
+            transition: $transition$,
+            link,
+            params: linkParams,
+          }).then((path) => {
+            ovhShell.navigation
+              .getURL(link.redirect.application, path)
+              .then((url) => {
+                $scope.redirectUrl[i] = url;
+              })
+              .catch(() => {
+                $scope.redirectUrl[i] = 'N/A';
+              });
+          });
+        });
+      }
+    },
+    template: `
+      <div class="h-100" style="overflow: scroll;">
+        <table class="oui-table oui-table-responsive">
+          <thead>
+            <tr>
+              <th class="oui-table__header p-3 sticky-top">Deep Links</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="oui-table__row" ng-repeat="(index, link) in LINKS">
+              <td class="oui-table__cell p-3">
+                {{ link.public.path.split('-').slice(1).join(' ') }} public URL
+                <br />
+                <oui-spinner ng-if="!publicURL[index]" size="s" />
+                <a ng-if="publicURL[index]" ng-href="{{ publicURL[index] }}">{{ publicURL[index] }}</a>
+                <br /> 
+                {{ link.public.path.split('-').slice(1).join(' ') }} resulting URL
+                <br />
+                <oui-spinner ng-if="!redirectUrl[index]" size="s" />
+                <a ng-if="redirectUrl[index]" ng-href="{{ redirectUrl[index] }}">{{ redirectUrl[index] }}</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `,
+  });
+
+  /* -------------------------------------------------------------------------- */
+  /*                                DEV / QA ONLY                               */
+  /* -------------------------------------------------------------------------- */
 
   /**
    * Using redirectTo and using future states, this triggers the lazy loading mechanism which will,
