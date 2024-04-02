@@ -18,6 +18,8 @@ export interface FloatingIP {
   networkId: string;
   region: string;
   status: string;
+  associatedEntityId: string;
+  associatedEntityName: string;
 }
 
 export interface FailoverIP {
