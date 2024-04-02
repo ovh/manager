@@ -1,3 +1,5 @@
+import { PaginationState } from '@ovhcloud/manager-components';
+
 export interface Instance {
   id: string;
   name: string;
@@ -35,6 +37,12 @@ export interface FailoverIP {
   associatedEntityName: string;
 }
 
+export interface ImportsIP {
+  ip: string;
+  country: string;
+  routedTo: { serviceName: string };
+}
+
 export interface ResponseAPIError {
   message: string;
   stack: string;
@@ -61,3 +69,7 @@ export interface TerminateIPProps {
   onError: (cause: Error) => void;
   onSuccess: () => void;
 }
+
+export type ImportsOptions = {
+  pagination: PaginationState;
+};
