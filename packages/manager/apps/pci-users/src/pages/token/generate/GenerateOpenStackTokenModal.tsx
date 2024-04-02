@@ -129,7 +129,9 @@ export default function GenerateOpenStackTokenModal({
                 'pci_projects_project_users_openstack-token_token_alert_message',
               )}
             </OsdsMessage>
-            <OpenStackTokenListing token={token} />
+            <div className="w-100 overflow-x-scroll">
+              <OpenStackTokenListing token={token} />
+            </div>
           </>
         )}
       </slot>
