@@ -28,7 +28,7 @@ export default function FailoverIPActions({
 }: Readonly<ActionProps>) {
   const { t } = useTranslation();
 
-  const hrefRemove = useHref(`./additional-ips/${ipId}/terminate`);
+  const hrefRemove = useHref(`./${ipId}/terminate`);
   return (
     <OsdsMenu>
       <OsdsButton

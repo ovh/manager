@@ -18,21 +18,18 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
-import { ActionProps } from '@/interface';
-import { NetworkSecurityAction } from './NetworkSecurityAction';
 
-export default function FloatingIPActions({
-  ipId,
-  projectId,
-}: Readonly<ActionProps>) {
-  const { t } = useTranslation();
+export const ImportIPAction = ({ ip }: { ip: string }) => {
+  const { t } = useTranslation('imports');
 
-  const hrefRemove = useHref(`./${ipId}/terminate`);
+  const ipEncoded = encodeURIComponent(ip).replace('%2F', '~2F');
+
+  const hrefMoveIP = useHref(`./${ipEncoded}`);
 
   return (
     <OsdsMenu>
       <OsdsButton
-        slot={'menu-title'}
+        slot="menu-title"
         circle
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
@@ -44,25 +41,22 @@ export default function FloatingIPActions({
         ></OsdsIcon>
       </OsdsButton>
       <OsdsMenuItem>
-        <NetworkSecurityAction projectId={projectId} />
-      </OsdsMenuItem>
-      <OsdsMenuItem>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.ghost}
           color={ODS_THEME_COLOR_INTENT.primary}
-          href={hrefRemove}
+          href={hrefMoveIP}
         >
           <OsdsText
             size={ODS_THEME_TYPOGRAPHY_SIZE._500}
             level={ODS_TEXT_LEVEL.button}
             color={ODS_THEME_COLOR_INTENT.primary}
-            slot={'start'}
+            slot="start"
           >
-            {t('pci_additional_ips_floating_ip_grid_delete')}
+            {t('pci_additional_ips_failoverip_imports_importIp')}
           </OsdsText>
         </OsdsButton>
       </OsdsMenuItem>
     </OsdsMenu>
   );
-}
+};
