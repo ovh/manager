@@ -6,6 +6,7 @@
     "punycode": true,
     "URI": true,
     "validator": true,
+    "JSURL": true,
     "WEBPACK_ENV": true,
     "__NG_APP_INJECTIONS__": true
   }

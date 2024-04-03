@@ -2,12 +2,10 @@
     data-submit-text="{{ :: 'ovh_product_offers_order_express_submit' | translate }}"
     data-header="{{:: 'ovh_product_offers_pricing_header' | translate }}"
     data-on-focus="$ctrl.getAvailableDurations()"
-    data-on-submit="$ctrl.goToPromocodeFunnel()"
     data-prevent-next="true"
     data-valid="$ctrl.duration"
     data-position="{{::$ctrl.stepperPosition}}"
 >
-
     <oui-select-picker
         class="col-md-3 mb-3 align-self-baseline"
         name="duration"
