@@ -23,7 +23,6 @@ export interface FloatingIP {
 }
 
 export interface FailoverIP {
-  associatedEntity: Instance | null;
   block: string;
   continentCode: string;
   geoloc: string;
@@ -33,6 +32,7 @@ export interface FailoverIP {
   routedTo: string;
   status: string;
   subType: string;
+  associatedEntityName: string;
 }
 
 export interface ResponseAPIError {
