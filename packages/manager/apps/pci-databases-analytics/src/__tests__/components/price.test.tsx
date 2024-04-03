@@ -4,13 +4,13 @@ import { vi } from 'vitest';
 import '@testing-library/jest-dom/vitest';
 import Price from '../../components/price';
 
-vi.mock('react-i18next', (): any => ({
-  useTranslation: (): any => ({
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
     t: (key: string, options: Record<string, string | number>): string => {
       return `${key} ${options.price} ${options.unit}`;
     },
   }),
-  Trans: ({ children }: { children: any }) => children,
+  Trans: ({ children }: { children: React.ReactNode }) => children,
 }));
 
 describe('PriceComponentRenders', () => {

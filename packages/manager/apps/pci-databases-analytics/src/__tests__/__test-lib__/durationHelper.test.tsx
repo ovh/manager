@@ -1,4 +1,4 @@
-import { assert, expect, test } from 'vitest';
+import { expect, test } from 'vitest';
 import { fr, enGB, es } from 'date-fns/locale';
 import {
   durationStringToDuration,

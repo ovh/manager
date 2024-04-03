@@ -58,6 +58,7 @@ const TagsInput = React.forwardRef<HTMLInputElement, TagsInputProps>(
       })
       .refine((newTag) => !value.includes(newTag.tag), {
         message: 'No duplicate value',
+        path: ['tag'],
       });
     type ValidationSchema = z.infer<typeof schema>;
     const form = useForm<ValidationSchema>({

@@ -1,8 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { vi } from 'vitest';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import * as React from 'react';
-import { A, Link, NavLink, OvhLink } from '../../components/links';
+import { vi } from 'vitest';
+import { A } from '../../components/links';
 
 // Mock du contexte useLoadingIndicatorContext
 vi.mock('./../../contexts/loadingIndicatorContext', () => ({
