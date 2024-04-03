@@ -1,5 +1,7 @@
 {
   "common_pagination_of": "sur",
   "common_pagination_results": "résultats",
-  "common_pagination_no_results": "Aucun résultat"
+  "common_pagination_no_results": "Aucun résultat",
+  "common_clipboard_success_label": "Copié",
+  "common_clipboard_error_label": "Erreur"
 }

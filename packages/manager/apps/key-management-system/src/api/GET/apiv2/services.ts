@@ -4,6 +4,9 @@ import {
   fetchIcebergV6,
   apiClient,
 } from '@ovh-ux/manager-core-api';
+import { ColumnSort, PaginationState } from '@ovhcloud/manager-components';
+import { OKMS } from '@/interface';
+import { defaultCompareFunction } from '@/api/utils';
 
 type PermissionsGroup = unknown;
 type Response = unknown;
@@ -92,4 +95,50 @@ export const getListingIcebergV2 = async ({
   } catch (error) {
     return null;
   }
+};
+
+export type OKMSOptions = {
+  pagination: PaginationState;
+  sorting: ColumnSort;
+};
+
+/**
+ *  Get okms listing with iceberg V2
+ */
+
+export const getListingIceberg = async () => {
+  try {
+    const List = await fetchIcebergV2({
+      route: '/okms/resource',
+    }).then(({ data, status }) => ({ data, status }));
+    return List.data as OKMS[];
+  } catch (error) {
+    return null;
+  }
+};
+
+export const paginateResults = (items: OKMS[], pagination: PaginationState) => {
+  return {
+    rows: items.slice(
+      pagination.pageIndex * pagination.pageSize,
+      (pagination.pageIndex + 1) * pagination.pageSize,
+    ),
+    pageCount: Math.ceil(items.length / pagination.pageSize),
+    totalRows: items.length,
+  };
+};
+
+export const filterOKMS = (okms: OKMS[], sorting: ColumnSort): OKMS[] => {
+  const data = [...okms];
+
+  if (sorting) {
+    const { id: sortKey, desc } = sorting;
+
+    data.sort(defaultCompareFunction(sortKey as keyof OKMS));
+    if (desc) {
+      data.reverse();
+    }
+  }
+
+  return data;
 };
