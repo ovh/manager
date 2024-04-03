@@ -21,7 +21,7 @@ const Shortcuts = (): JSX.Element => {
         }`}
       >
         {shortcuts.map((shortcut) => (
-          <div key={shortcut.id} className="max-w-1/3 flex-1">
+          <div key={shortcut.id} className="max-w-[33%] flex-1">
             <Tile shortcut={shortcut} />
           </div>
         ))}
