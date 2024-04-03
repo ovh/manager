@@ -201,7 +201,7 @@ const UpdateFlavor = ({
             <DialogHeader className="mb-2">
               <DialogTitle>{t('updateFlavorTitle')}</DialogTitle>
             </DialogHeader>
-            <Label>Affichage des prix</Label>
+            <Label>{t('priceUnitSwitchLabel')}</Label>
             <PriceUnitSwitch
               showMonthly={showMonthly}
               onChange={setShowMonthly}
@@ -232,7 +232,7 @@ const UpdateFlavor = ({
                   name="storage"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Stockage additionnel</FormLabel>
+                      <FormLabel>{t('updateStorageInputLabel')}</FormLabel>
                       <FormControl>
                         <StorageConfig
                           availability={availability}
@@ -241,7 +241,7 @@ const UpdateFlavor = ({
                         />
                       </FormControl>
                       <FormMessage />
-                      <b>Total: </b>
+                      <b>{t('updateStorageTotal')}</b>
                       <span>
                         {formatStorage({
                           unit: 'GB',

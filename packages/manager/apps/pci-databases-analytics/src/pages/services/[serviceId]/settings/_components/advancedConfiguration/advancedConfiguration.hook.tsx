@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useTranslation } from 'react-i18next';
 import { database } from '@/models/database';
 
 export interface UseAdvancedConfigurationFormProps {
@@ -18,6 +19,9 @@ export const useAdvancedConfigurationForm = ({
   initialValue,
   capabilities,
 }: UseAdvancedConfigurationFormProps) => {
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/settings',
+  );
   // sanitize the property name to avoid mismatch with errors handlers
   const sanitizePropertyName = (name: string) => name.replaceAll('.', ':');
   const getInitialProperties = () => {
@@ -72,17 +76,23 @@ export const useAdvancedConfigurationForm = ({
       case database.capabilities.advancedConfiguration.property.TypeEnum.long: {
         let numericSchema = z.coerce.number();
         if (property.minimum !== undefined && property.minimum !== null) {
-          numericSchema = numericSchema.min(property.minimum);
+          numericSchema = numericSchema.min(
+            property.minimum,
+            t('advancedConfigurationErrorMin', { min: property.minimum }),
+          );
         }
         if (property.maximum !== undefined && property.maximum !== null) {
-          numericSchema = numericSchema.max(property.maximum);
+          numericSchema = numericSchema.max(
+            property.maximum,
+            t('advancedConfigurationErrorMax', { max: property.maximum }),
+          );
         }
         return numericSchema;
       }
       case database.capabilities.advancedConfiguration.property.TypeEnum.string:
         return property.values
           ? z.enum(property.values as [string, ...string[]])
-          : z.string().min(1, 'Ce champ est requis');
+          : z.string().min(1, t('advancedConfigurationErrorRequired'));
       default:
         return z.string();
     }

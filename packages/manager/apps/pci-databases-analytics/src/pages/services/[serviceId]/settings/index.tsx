@@ -1,4 +1,5 @@
 import { AccordionItem } from '@radix-ui/react-accordion';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useServiceData } from '../layout';
 import Maintenances from './_components/maintenances';
@@ -14,14 +15,17 @@ import ServiceConfiguration from './_components/serviceConfiguration';
 
 const Settings = () => {
   const { service } = useServiceData();
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/settings/update',
+  );
 
   return (
     <>
-      <h3>Settings</h3>
+      <h3>{t('title')}</h3>
       <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2" id="update">
         <Card>
           <CardHeader>
-            <h5>Upgrade your service</h5>
+            <h5>{t('updateTitle')}</h5>
           </CardHeader>
           <CardContent>
             <UpdateTable />
@@ -30,7 +34,7 @@ const Settings = () => {
 
         <Card className="col-span-2">
           <CardHeader>
-            <h5>Manage ips</h5>
+            <h5>{t('ipsTitle')}</h5>
           </CardHeader>
           <CardContent>
             <IpsRestrictionsUpdate initialValue={service.ipRestrictions} />
@@ -39,7 +43,7 @@ const Settings = () => {
 
         <Card className="col-span-2" id="maintenances">
           <CardHeader>
-            <h5>Maintenances</h5>
+            <h5>{t('maintenancesTitle')}</h5>
           </CardHeader>
           <CardContent>
             <Maintenances />
@@ -48,7 +52,7 @@ const Settings = () => {
 
         <Card className="col-span-1" id="configuration">
           <CardHeader>
-            <h5>Configure your service</h5>
+            <h5>{t('serviceConfigurationTitle')}</h5>
           </CardHeader>
           <CardContent className="flex flex-col gap-2">
             <ServiceConfiguration />
@@ -60,7 +64,7 @@ const Settings = () => {
               <AccordionItem value="advancedConfiguration">
                 <CardHeader>
                   <AccordionTrigger>
-                    <h5>Advanced configuration</h5>
+                    <h5>{t('advancedConfigurationTitle')}</h5>
                   </AccordionTrigger>
                 </CardHeader>
                 <CardContent>

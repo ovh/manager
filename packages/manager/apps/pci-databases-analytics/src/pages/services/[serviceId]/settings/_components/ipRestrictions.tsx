@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useTranslation } from 'react-i18next';
 import IpsRestrictionsForm from '@/components/Order/cluster-options/ips-restrictions-form';
 import { Button } from '@/components/ui/button';
 import {
@@ -21,6 +22,9 @@ interface IpsRestrictionsUpdateProps {
 const IpsRestrictionsUpdate = ({
   initialValue,
 }: IpsRestrictionsUpdateProps) => {
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/settings',
+  );
   const { projectId, service, serviceQuery } = useServiceData();
   const toast = useToast();
   const schema = z.object({
@@ -41,15 +45,15 @@ const IpsRestrictionsUpdate = ({
   const { updateService, isPending } = useUpdateService({
     onError: (err) => {
       toast.toast({
-        title: 'Une erreur est survenue lors de la mise à jour de vos ips',
+        title: t('ipsUpdateErrorTitle'),
         variant: 'destructive',
         description: err.response.data.message,
       });
     },
     onSuccess: (updatedService) => {
       toast.toast({
-        title: 'Succès',
-        description: 'La mise à jour de vos ips a été effectuée avec succès',
+        title: t('ipsUpdateSuccessTitle'),
+        description: t('ipsUpdateSuccessDescription'),
       });
       serviceQuery.refetch();
       form.reset({
@@ -94,9 +98,9 @@ const IpsRestrictionsUpdate = ({
               disabled={isPending}
               onClick={() => form.reset()}
             >
-              Annuler
+              {t('ipsUpdateCancelButton')}
             </Button>
-            <Button disabled={isPending}>Sauvegarder les modifications</Button>
+            <Button disabled={isPending}>{t('ipsUpdateSubmitButton')}</Button>
           </div>
         )}
       </form>
