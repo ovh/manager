@@ -6,14 +6,14 @@ import {
   waitFor,
   act,
 } from '@testing-library/react';
-import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
+import '@testing-library/jest-dom';
 import TagsInput from '../../components/tags-input';
 
 describe('TagsInput component', () => {
   it('should render correctly with initial tags', () => {
     const handleChange = vi.fn();
-    const { getByPlaceholderText, getByText } = render(
+    render(
       <TagsInput
         value={['tag1', 'tag2']}
         onChange={handleChange}
@@ -21,13 +21,13 @@ describe('TagsInput component', () => {
       />,
     );
 
-    const inputElement = getByPlaceholderText('Enter tag');
+    const inputElement = screen.getByPlaceholderText('Enter tag');
     expect(inputElement).toBeInTheDocument();
 
-    const tag1Element = getByText('tag1');
+    const tag1Element = screen.getByText('tag1');
     expect(tag1Element).toBeInTheDocument();
 
-    const tag2Element = getByText('tag2');
+    const tag2Element = screen.getByText('tag2');
     expect(tag2Element).toBeInTheDocument();
   });
 

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import * as React from 'react';
 import { vi } from 'vitest';
-import '@testing-library/jest-dom/vitest';
+import '@testing-library/jest-dom';
 import Price from '../../components/price';
 
 vi.mock('react-i18next', () => ({

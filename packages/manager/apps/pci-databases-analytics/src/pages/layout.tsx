@@ -9,7 +9,7 @@ import { database } from '@/models/database';
 import { Toaster } from '@/components/ui/toaster';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 import queryClient from '@/query.client';
-import { getProject } from '@/api';
+import { getProject } from '@/api/projects';
 import { useLoadingIndicatorContext } from '@/contexts/loadingIndicatorContext';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
