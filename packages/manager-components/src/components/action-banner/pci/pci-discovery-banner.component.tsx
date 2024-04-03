@@ -10,7 +10,7 @@ export const isDiscoveryProject = ({ planCode }: { planCode: string }) => {
   return planCode === DISCOVERY_PROJECT_PLANCODE;
 };
 
-interface PciDiscoveryBannerProps {
+export interface PciDiscoveryBannerProps {
   projectId: string;
 }
 

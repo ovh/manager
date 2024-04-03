@@ -35,14 +35,11 @@ export function ActionBanner({ message, cta, onClick }: ActionBannerProps) {
           ></span>
         </OsdsText>
         <OsdsButton
+          data-testid="cta"
           className="sm:mt-0 mt-4 sm:ml-4 ml-0"
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => {
-            if (onClick) {
-              onClick();
-            }
-          }}
+          onClick={onClick}
         >
           {cta}
         </OsdsButton>
