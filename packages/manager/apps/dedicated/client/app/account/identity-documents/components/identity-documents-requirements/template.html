@@ -1,0 +1,114 @@
+<p>
+    <span
+        class="font-weight-bold"
+        data-translate="user_account_identity_documents_requirements_identity"
+    ></span>
+    <span
+        ng-if="$ctrl.userType !== $ctrl.USER_TYPE.individual"
+        data-translate="user_account_identity_documents_requirements_identity_list"
+    ></span>
+    <span
+        ng-if="$ctrl.userType === $ctrl.USER_TYPE.individual"
+        data-translate="user_account_identity_documents_requirements_identity_list_alternative"
+    ></span>
+</p>
+<p
+    data-translate="user_account_identity_documents_requirements_acceptance_criteria"
+></p>
+<ul>
+    <li
+        data-translate="user_account_identity_documents_requirements_identity_acceptance_criteria_individual"
+    ></li>
+    <li
+        data-translate="user_account_identity_documents_requirements_identity_acceptance_criteria_1"
+    ></li>
+    <li
+        data-translate="user_account_identity_documents_requirements_identity_acceptance_criteria_2"
+    ></li>
+    <li
+        data-translate="user_account_identity_documents_requirements_identity_acceptance_criteria_3"
+    ></li>
+    <li
+        data-translate="user_account_identity_documents_requirements_identity_acceptance_criteria_4"
+    ></li>
+</ul>
+<div ng-if="$ctrl.userType !== $ctrl.USER_TYPE.individual">
+    <p>
+        <span
+            class="font-weight-bold"
+            data-translate="user_account_identity_documents_requirements_sworn_statement"
+        ></span>
+        <span
+            data-translate="user_account_identity_documents_requirements_sworn_statement_list"
+        ></span>
+    </p>
+    <p
+        data-translate="user_account_identity_documents_requirements_acceptance_criteria"
+    ></p>
+    <ul>
+        <li
+            data-translate="user_account_identity_documents_requirements_sworn_statement_acceptance_criteria_1"
+        ></li>
+    </ul>
+</div>
+<p>
+    <span
+        class="font-weight-bold"
+        data-translate="user_account_identity_documents_requirements_address"
+    ></span>
+    <span
+        ng-if="$ctrl.userType !== $ctrl.USER_TYPE.individual"
+        data-translate="user_account_identity_documents_requirements_address_list"
+    ></span>
+    <span
+        ng-if="$ctrl.userType === $ctrl.USER_TYPE.individual"
+        data-translate="user_account_identity_documents_requirements_address_list_alternative"
+    ></span>
+</p>
+<p
+    data-translate="user_account_identity_documents_requirements_acceptance_criteria"
+></p>
+<ul ng-if="$ctrl.userType !== $ctrl.USER_TYPE.individual">
+    <li
+        data-translate="user_account_identity_documents_requirements_address_acceptance_criteria_1"
+    ></li>
+    <li
+        data-translate="user_account_identity_documents_requirements_address_acceptance_criteria_2"
+    ></li>
+    <li
+        data-translate="user_account_identity_documents_requirements_address_acceptance_criteria_3"
+    ></li>
+</ul>
+<ul ng-if="$ctrl.userType === $ctrl.USER_TYPE.individual">
+    <li
+        data-translate="user_account_identity_documents_requirements_address_acceptance_criteria_1"
+    ></li>
+    <li
+        data-translate="user_account_identity_documents_requirements_address_acceptance_criteria_2"
+    ></li>
+</ul>
+<div ng-if="$ctrl.userType !== $ctrl.USER_TYPE.individual">
+    <p>
+        <span
+            class="font-weight-bold"
+            data-translate="user_account_identity_documents_requirements_tva"
+        ></span>
+        <span
+            data-translate="user_account_identity_documents_requirements_tva_list"
+        ></span>
+    </p>
+    <p
+        data-translate="user_account_identity_documents_requirements_acceptance_criteria"
+    ></p>
+    <ul>
+        <li
+            data-translate="user_account_identity_documents_requirements_tva_acceptance_criteria_1"
+        ></li>
+        <li
+            data-translate="user_account_identity_documents_requirements_tva_acceptance_criteria_2"
+        ></li>
+        <li
+            data-translate="user_account_identity_documents_requirements_tva_acceptance_criteria_3"
+        ></li>
+    </ul>
+</div>

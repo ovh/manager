@@ -33,39 +33,15 @@
         <span
             data-translate="{{ 'user_account_identity_documents_intro' + ($ctrl.user_type == $ctrl.USER_TYPE.corporation || $ctrl.user_type == $ctrl.USER_TYPE.individual ? '_alternative' : '') }}"
         ></span>
-    </p>
-    <account-upload-identity-documents-corporation-requirements
-        data-ng-if="$ctrl.user_type == $ctrl.USER_TYPE.corporation"
-    ></account-upload-identity-documents-corporation-requirements>
-    <account-upload-identity-documents-individual-requirements
-        data-ng-if="$ctrl.user_type == $ctrl.USER_TYPE.individual"
-    ></account-upload-identity-documents-individual-requirements>
-    <div
-        data-ng-if="$ctrl.user_type != $ctrl.USER_TYPE.corporation && $ctrl.user_type != $ctrl.USER_TYPE.individual"
-    >
-        <p>
-            <span
-                data-translate="user_account_identity_documents_intro_kyc_reminder"
-            ></span>
-        </p>
-        <!--My Identity document sub-title-->
-        <p
-            class="oui-heading_3 mb-1 mt-3"
-            data-translate="user_account_identity_documents_sub_title"
-        ></p>
-        <!--My Identity document description-->
+        <br />
+        <span data-translate="user_account_identity_documents_upload"></span>
+        <br />
         <span
-            data-translate="{{'user_account_identity_documents_list_for_' + $ctrl.user_type}}"
+            ng-if="$ctrl.user_type === $ctrl.USER_TYPE.default"
+            data-translate="user_account_identity_documents_intro_for_others"
         ></span>
-        :
-        <ul class="mt-2">
-            <li data-translate="user_account_identity_documents_list_doc1"></li>
-            <li data-translate="user_account_identity_documents_list_doc2"></li>
-            <li
-                data-translate="user_account_identity_documents_list_doc3_optional"
-            ></li>
-        </ul>
-    </div>
+    </p>
+    <account-upload-identity-documents-requirements></account-upload-identity-documents-requirements>
     <!--End of Header section-->
 </div>
 
