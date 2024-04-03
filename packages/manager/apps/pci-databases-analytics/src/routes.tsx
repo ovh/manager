@@ -1,5 +1,6 @@
 import React from 'react';
 import NotFound from './pages/404';
+import ErrorBoundary from './components/errorBoundary';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -8,6 +9,7 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
       return {
         Component: moduleDefault,
         loader: moduleExports?.Loader,
+        ErrorBoundary,
         handle: {
           breadcrumb: moduleExports.breadcrumb,
         },
