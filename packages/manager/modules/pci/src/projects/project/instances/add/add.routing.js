@@ -1,8 +1,11 @@
 import { FLAVORS_FEATURES_FLIPPING_MAP } from '../instances.constants';
+import { URL_MODEL } from './add.constants';
+import { useURLModel } from './add.utils';
 
 export default /* @ngInject */ ($stateProvider) => {
+  const { query } = useURLModel(URL_MODEL);
   $stateProvider.state('pci.projects.project.instances.add', {
-    url: '/new',
+    url: `/new?${query}`,
     component: 'ovhManagerPciInstancesAdd',
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>

@@ -42,6 +42,10 @@
             <!-- Step 1 -->
             <h2 id="engine" data-translate="pci_database_add_step1_title"></h2>
             <p data-translate="pci_database_add_step1_description"></p>
+            <pre>
+$ctrl.model.engine = {{ $ctrl.model.engine.name | json }}
+</pre
+            >
             <database-engines-list
                 data-engines="$ctrl.availableEngines"
                 data-selected-engine="$ctrl.model.engine"

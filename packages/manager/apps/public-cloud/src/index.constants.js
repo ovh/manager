@@ -1,184 +1,259 @@
 export const DEFAULT_PROJECT_KEY = 'PUBLIC_CLOUD_DEFAULT_PROJECT';
 
+const application = 'public-cloud';
 const redirectBasePath = '/pci/projects/{project}';
 
 /**
  * @type {import('./index.links').Link[]}
  */
 export const LINKS = [
+  /* --------------------------------- COMPUTE -------------------------------- */
+
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-instance',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/instances/new`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
+      path: '/create-compute-optimized-instance',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/instances/new?c=cpu`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-memory-optimized-instance',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/instances/new?c=ram`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-gpu-instance',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/instances/new?c=accelerated`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-discovery-instance',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/instances/new?c=discovery`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-storage-optimized-instance',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/instances/new?c=iops`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-bare-metal-instance',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/instances/new?c=baremetal`,
+    },
+  },
+
+  /* --------------------------------- STORAGE -------------------------------- */
+
+  {
+    public: {
+      application,
       path: '/create-block-storage',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/storages/blocks/new`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-object-storage',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/storages/objects/new`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-cold-archive',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/storages/cold-archive/new`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-volume-snapshot',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/storages/blocks/new?help=snapshot`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-volume-backup',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/storages/volume-backup/create`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-instance-backup',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/instances/new?help=backup`,
     },
   },
+
+  /* --------------------------------- NETWORK -------------------------------- */
+
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-private-network',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/private-networks/new`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-load-balancer',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/octavia-load-balancer/create`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-floating-ip',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/public-ips/order`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
-      path: '/create-load-gateway',
+      application,
+      path: '/create-gateway',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/gateway/new`,
     },
   },
+
+  /* ------------------------------- CONTAINERS ------------------------------- */
+
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-rancher',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/rancher/new`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-managed-private-registry',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/private-registry/create`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-managed-kubernetes-service',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/kubernetes/new`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-managed-kubernetes-load-balancer',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/load-balancer/onboarding`,
     },
   },
+
+  /* -------------------------------- DATABASES ------------------------------- */
+
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-database',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/storages/databases-analytics/databases/new`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-data-analysis',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/storages/databases-analytics/data-analysis/new`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-logs-data-platform',
     },
     redirect: {
@@ -186,33 +261,36 @@ export const LINKS = [
       path: '/dbaas/logs/order',
     },
   },
+
+  /* ----------------------------------- AI ----------------------------------- */
+
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-ai-notebook',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/notebooks/new`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-ai-training',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/training/jobs/submit`,
     },
   },
   {
     public: {
-      application: 'public-cloud',
+      application,
       path: '/create-ai-app',
     },
     redirect: {
-      application: 'public-cloud',
+      application,
       path: `${redirectBasePath}/ai/apps/new`,
     },
   },
@@ -220,4 +298,5 @@ export const LINKS = [
 
 export default {
   DEFAULT_PROJECT_KEY,
+  LINKS,
 };
