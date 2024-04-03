@@ -3,6 +3,9 @@ import {
   Datagrid,
   useDatagridSearchParams,
   Notifications,
+  FilterList,
+  useColumnFilters,
+  FilterAdd,
 } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -27,8 +30,13 @@ import {
   OsdsText,
   OsdsIcon,
   OsdsDivider,
+  OsdsPopover,
+  OsdsPopoverContent,
+  OsdsSearchBar,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { useRef, useState } from 'react';
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { FailoverIP } from '@/interface';
 import { useFailoverIPs } from '@/api/hooks/useFailoverIP';
 import FailoverIPActions from './FailoverIPActions';
@@ -37,15 +45,19 @@ export default function FailoverIPComponent({ projectId, projectUrl }) {
   const { t } = useTranslation('common');
 
   const { pagination, setPagination } = useDatagridSearchParams();
+  const { filters, addFilter, removeFilter } = useColumnFilters();
 
-  const { error, data: floatingIPs, isLoading } = useFailoverIPs(
+  const { error, data: failoverIPs, isLoading } = useFailoverIPs(
     projectId || '',
     {
       pagination,
     },
+    filters,
   );
 
   const goToInstanceHref = (id: string) => `${projectUrl}/instances/${id}`;
+  const [searchField, setSearchField] = useState('');
+  const filterPopoverRef = useRef(undefined);
 
   const columns = [
     {
@@ -87,7 +99,7 @@ export default function FailoverIPComponent({ projectId, projectUrl }) {
             color={ODS_THEME_COLOR_INTENT.primary}
             href={goToInstanceHref(props.routedTo)}
           >
-            {props.associatedEntity?.name}
+            {props.associatedEntityName}
           </OsdsLink>
         </DataGridTextCell>
       ),
@@ -106,67 +118,139 @@ export default function FailoverIPComponent({ projectId, projectUrl }) {
     <>
       <Notifications />
       <OsdsDivider />
-      <OsdsMenu>
-        <OsdsButton
-          slot={'menu-title'}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
-          className={'flex'}
-        >
-          <OsdsText
-            size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            className={'align-middle'}
-          >
-            {t('common_actions')}
-          </OsdsText>
-          <OsdsIcon
-            name={ODS_ICON_NAME.CHEVRON_DOWN}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_ICON_SIZE.sm}
-            className={'ml-4 align-middle'}
-          ></OsdsIcon>
-        </OsdsButton>
-        <OsdsMenuItem>
+      <div className="sm:flex items-center justify-between">
+        <OsdsMenu>
           <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.ghost}
+            slot={'menu-title'}
             color={ODS_THEME_COLOR_INTENT.primary}
+            size={ODS_BUTTON_SIZE.sm}
+            variant={ODS_BUTTON_VARIANT.stroked}
+            className={'flex'}
           >
             <OsdsText
               size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-              level={ODS_TEXT_LEVEL.button}
               color={ODS_THEME_COLOR_INTENT.primary}
-              slot={'start'}
+              className={'align-middle'}
             >
-              {t('pci_additional_ips_import_failover_ip')}
+              {t('common_actions')}
             </OsdsText>
-          </OsdsButton>
-        </OsdsMenuItem>
-        <OsdsMenuItem>
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          >
-            <OsdsText
-              size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-              level={ODS_TEXT_LEVEL.button}
+            <OsdsIcon
+              name={ODS_ICON_NAME.CHEVRON_DOWN}
               color={ODS_THEME_COLOR_INTENT.primary}
-              slot={'start'}
-            >
-              {t('pci_additional_ips_order')}
-            </OsdsText>
+              size={ODS_ICON_SIZE.sm}
+              className={'ml-4 align-middle'}
+            ></OsdsIcon>
           </OsdsButton>
-        </OsdsMenuItem>
-      </OsdsMenu>
+          <OsdsMenuItem>
+            <OsdsButton
+              size={ODS_BUTTON_SIZE.sm}
+              variant={ODS_BUTTON_VARIANT.ghost}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            >
+              <OsdsText
+                size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+                level={ODS_TEXT_LEVEL.button}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                slot={'start'}
+              >
+                {t('pci_additional_ips_import_failover_ip')}
+              </OsdsText>
+            </OsdsButton>
+          </OsdsMenuItem>
+          <OsdsMenuItem>
+            <OsdsButton
+              size={ODS_BUTTON_SIZE.sm}
+              variant={ODS_BUTTON_VARIANT.ghost}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            >
+              <OsdsText
+                size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+                level={ODS_TEXT_LEVEL.button}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                slot={'start'}
+              >
+                {t('pci_additional_ips_order')}
+              </OsdsText>
+            </OsdsButton>
+          </OsdsMenuItem>
+        </OsdsMenu>
+        <div className="justify-between flex">
+          <OsdsSearchBar
+            className={'w-[70%]'}
+            value={searchField}
+            onOdsSearchSubmit={({ detail }) => {
+              setPagination({
+                pageIndex: 0,
+                pageSize: pagination.pageSize,
+              });
+              addFilter({
+                key: 'ip',
+                value: detail.inputValue,
+                comparator: FilterComparator.Includes,
+                label: t('pci_additional_ips_floating_ip_grid_ip'),
+              });
+              setSearchField('');
+            }}
+          />
+          <OsdsPopover ref={filterPopoverRef}>
+            <OsdsButton
+              slot="popover-trigger"
+              size={ODS_BUTTON_SIZE.sm}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              variant={ODS_BUTTON_VARIANT.stroked}
+            >
+              <OsdsIcon
+                name={ODS_ICON_NAME.FILTER}
+                size={ODS_ICON_SIZE.xs}
+                className={'mr-2'}
+                color={ODS_THEME_COLOR_INTENT.primary}
+              />
+              {t('common_criteria_adder_filter_label')}
+            </OsdsButton>
+            <OsdsPopoverContent>
+              <FilterAdd
+                columns={[
+                  {
+                    id: 'ip',
+                    label: t('pci_additional_ips_failover_ip_title'),
+                    comparators: FilterCategories.String,
+                  },
+                  {
+                    id: 'block',
+                    label: t('pci_additional_ips_ip_block'),
+                    comparators: FilterCategories.String,
+                  },
+                  {
+                    id: 'associatedEntityName',
+                    label: t('pci_additional_ips_routedTo'),
+                    comparators: FilterCategories.String,
+                  },
+                ]}
+                onAddFilter={(addedFilter, column) => {
+                  setPagination({
+                    pageIndex: 0,
+                    pageSize: pagination.pageSize,
+                  });
+                  addFilter({
+                    ...addedFilter,
+                    label: column.label,
+                  });
+                  filterPopoverRef.current?.closeSurface();
+                }}
+              />
+            </OsdsPopoverContent>
+          </OsdsPopover>
+        </div>
+      </div>
 
       {error && (
         <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
           {t('manager_error_page_default')}
         </OsdsMessage>
       )}
+      <div className="my-5">
+        <FilterList filters={filters} onRemoveFilter={removeFilter} />
+      </div>
 
       {isLoading && !error && (
         <div className="text-center">
@@ -178,8 +262,8 @@ export default function FailoverIPComponent({ projectId, projectUrl }) {
         <div className="mt-8">
           <Datagrid
             columns={columns}
-            items={floatingIPs.rows || []}
-            totalItems={floatingIPs.totalRows || 0}
+            items={failoverIPs.rows || []}
+            totalItems={failoverIPs.totalRows || 0}
             pagination={pagination}
             onPaginationChange={setPagination}
           />

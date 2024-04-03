@@ -1,4 +1,4 @@
-import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
+import { v6 } from '@ovh-ux/manager-core-api';
 import { FloatingIP } from '@/interface';
 
 export const getAllFloatingIP = async (
