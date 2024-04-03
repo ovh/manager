@@ -98,6 +98,7 @@ const TagsInput = React.forwardRef<HTMLInputElement, TagsInputProps>(
                   <FormItem ref={ref} className="flex-grow">
                     <FormControl>
                       <Input
+                        data-testid="input_tag"
                         type="text"
                         placeholder={placeholder}
                         onKeyDown={handleKeyDown}
@@ -107,6 +108,7 @@ const TagsInput = React.forwardRef<HTMLInputElement, TagsInputProps>(
                     </FormControl>
                   </FormItem>
                   <Button
+                    data-testid="add_tag_button"
                     ref={addTagBtnRef}
                     variant={'ghost'}
                     type="button"
@@ -129,6 +131,7 @@ const TagsInput = React.forwardRef<HTMLInputElement, TagsInputProps>(
                 >
                   <span>{tag}</span>
                   <Button
+                    data-testid={`remove_tag_button_${index}`}
                     type="button"
                     onClick={() => handleRemoveTag(index)}
                     variant={'ghost'}

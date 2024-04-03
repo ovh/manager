@@ -1,8 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import * as React from 'react';
-import PriceUnitSwitch from './../../components/price-unit-switch';
-import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
+import '@testing-library/jest-dom/vitest';
+import PriceUnitSwitch from '../../components/price-unit-switch';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -13,7 +13,6 @@ vi.mock('react-i18next', () => ({
 describe('PriceUnitSwitch', () => {
   it('renders hourly button', () => {
     render(<PriceUnitSwitch showMonthly={false} onChange={() => {}} />);
-    screen.debug();
     const hourlyButton = screen.getByTestId('pricing_button_hourly');
     expect(hourlyButton).toBeInTheDocument();
     expect(hourlyButton).toHaveTextContent('pricing_button_hourly');
@@ -26,15 +25,12 @@ describe('PriceUnitSwitch', () => {
     expect(monthlyButton).toHaveTextContent('pricing_button_monthly');
   });
 
-  
   it('calls onChange with correct value when hourly button clicked', () => {
-    screen.debug();
     const mockOnChange = vi.fn();
     render(<PriceUnitSwitch showMonthly={true} onChange={mockOnChange} />);
     const hourlyButton = screen.getByTestId('pricing_button_hourly');
     fireEvent.click(hourlyButton);
     expect(mockOnChange).toHaveBeenCalledWith(false);
-    screen.debug();
   });
 
   it('calls onChange with correct value when monthly button clicked', () => {

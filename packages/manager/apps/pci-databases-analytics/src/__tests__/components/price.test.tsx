@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import * as React from 'react';
-import Price from './../../components/price';
-import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
+import '@testing-library/jest-dom/vitest';
+import Price from '../../components/price';
 
 vi.mock('react-i18next', (): any => ({
   useTranslation: (): any => ({
