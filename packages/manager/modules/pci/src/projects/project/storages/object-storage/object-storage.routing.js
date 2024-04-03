@@ -157,6 +157,14 @@ export default /* @ngInject */ ($stateProvider) => {
           });
         }
       },
+      encryptionAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('public-cloud:object-storage:encryption')
+          .then((feature) =>
+            feature.isFeatureAvailable(
+              'public-cloud:object-storage:encryption',
+            ),
+          ),
 
       breadcrumb: () => null,
     },
