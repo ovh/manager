@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   useGetAdvancedConfiguration,
   useGetAdvancedConfigurationCapabilities,
@@ -8,6 +9,9 @@ import AdvancedConfigurationForm from './advancedConfiguration/advancedConfigura
 import { Skeleton } from '@/components/ui/skeleton';
 
 const AdvancedConfigurationUpdate = () => {
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/settings',
+  );
   const { projectId, service } = useServiceData();
   const advancedConfigurationQuery = useGetAdvancedConfiguration(
     projectId,
@@ -24,8 +28,7 @@ const AdvancedConfigurationUpdate = () => {
     <>
       <Alert variant="info">
         <AlertDescription>
-          La modification de la configuration avancée peut entraîner un
-          redémarrage du service.
+          {t('advancedConfigurationAlertMessage')}
         </AlertDescription>
       </Alert>
       {advancedConfigurationQuery.isSuccess &&
