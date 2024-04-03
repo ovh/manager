@@ -19,7 +19,7 @@ import {
 import { GuidesHeaderItem } from './guides-header-item.component';
 import { Guide } from './interface';
 
-interface GuidesHeaderProps {
+export interface GuidesHeaderProps {
   label: string;
   guides: Record<string, Guide>;
   ovhSubsidiary: string;
