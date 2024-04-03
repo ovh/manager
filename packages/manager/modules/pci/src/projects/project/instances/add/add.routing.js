@@ -1,6 +1,6 @@
 import { FLAVORS_FEATURES_FLIPPING_MAP } from '../instances.constants';
 import { URL_MODEL } from './add.constants';
-import { useURLModel } from './add.utils';
+import { useURLModel } from '../../project.utils';
 
 export default /* @ngInject */ ($stateProvider) => {
   const { query } = useURLModel(URL_MODEL);

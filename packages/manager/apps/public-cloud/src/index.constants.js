@@ -244,6 +244,76 @@ export const LINKS = [
   {
     public: {
       application,
+      path: '/create-mongodb-database',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/storages/databases-analytics/databases/new?e=mongodb`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-mysql-database',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/storages/databases-analytics/databases/new?e=mysql`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-postgresql-database',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/storages/databases-analytics/databases/new?e=postgresql`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-redis-database',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/storages/databases-analytics/databases/new?e=redis`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-cassandra-database',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/storages/databases-analytics/databases/new?e=cassandra`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-m3db-database',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/storages/databases-analytics/databases/new?e=m3db`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-m3aggregator-database',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/storages/databases-analytics/databases/new?e=m3aggregator`,
+    },
+  },
+  {
+    public: {
+      application,
       path: '/create-data-analysis',
     },
     redirect: {

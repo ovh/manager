@@ -31,7 +31,7 @@ import {
 } from './add.constants';
 
 import { INSTANCE_PRICING_LINKS } from '../instances.constants';
-import { useURLModel } from './add.utils';
+import { useURLModel } from '../../project.utils';
 
 export default class PciInstancesAddController {
   /* @ngInject */
