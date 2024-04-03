@@ -1,7 +1,9 @@
 export default class {
   /* @ngInject */
-  constructor($timeout) {
+  constructor($timeout, $window, RedirectionService) {
     this.$timeout = $timeout;
+    this.$window = $window;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
   }
 
   getAvailableDurations() {
@@ -18,13 +20,22 @@ export default class {
     return this.availablePricings.length > 1;
   }
 
+  goToPromocodeFunnel() {
+    const productId = this.productName();
+    // const checkoutObject = this.getCheckoutInformations();
+    const jsUrlToSend = {
+      productId,
+      // configuration: checkoutObject.configuration,
+      // ...checkoutObject.product,
+    };
+    return this.$window.open(
+      `${this.expressOrderUrl}?products=${JSURL.stringify([jsUrlToSend])}`,
+      '_blank',
+      'noopener',
+    );
+  }
+
   updateDuration() {
     this.stepper.cartOption.offer.pricing.duration = this.duration;
-
-    // Necessary as the update of stepper.currentIndex
-    // has to be made after $digest cycle is finished
-    this.$timeout(() => {
-      this.stepper.currentIndex += 1;
-    });
   }
 }
