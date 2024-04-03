@@ -1,105 +1,135 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { getListingIcebergV2 } from '@/api';
-
-import TableContainer from '@/components/layout-helpers/Listing/TableContainer';
-import Loading from '@/components/Loading/Loading';
-import ErrorBanner from '@/components/Error/Error';
+import {
+  ODS_SPINNER_SIZE,
+  ODS_MESSAGE_TYPE,
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsText,
+  OsdsDivider,
+  OsdsBreadcrumb,
+  OsdsButton,
+  OsdsMessage,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+} from '@ovhcloud/ods-common-theming';
+import {
+  DataGridClipboardCell,
+  DataGridRegionCell,
+  DataGridTextCell,
+  Datagrid,
+  Notifications,
+  PciGuidesHeader,
+  useDatagridSearchParams,
+} from '@ovhcloud/manager-components';
+import { useOKMS } from '@/hooks/useOKMS';
+import { OKMS } from '@/interface';
 
 export default function Listing() {
-  const { t } = useTranslation('key-management-system/dashboard');
-  const [pageSize] = useState(10);
-  const {
-    data,
-    fetchNextPage,
-    isError,
-    hasNextPage,
-    isLoading,
-    error,
-    isFetching,
-  }: any = useInfiniteQuery({
-    initialPageParam: null,
-    queryKey: [`servicesListingIceberg`],
-    queryFn: ({ pageParam }) =>
-      getListingIcebergV2({ pageSize, cursor: pageParam }),
-    staleTime: Infinity,
-    getNextPageParam: (lastPage) => lastPage.cursorNext as any,
-  });
+  const { t } = useTranslation('key-management-system/listing');
+  const { t: tError } = useTranslation('error');
 
-  const tableContainerRef: React.MutableRefObject<HTMLDivElement> = React.useRef<
-    HTMLDivElement
-  >(null);
-
-  const flattenData = React.useMemo(
-    () => data?.pages?.flatMap((page: any) => page.data) ?? [],
-    [data],
-  );
-  const totalFetched = flattenData.length;
-
-  const fetchMoreOnBottomReached = React.useCallback(
-    (containerRefElement?: HTMLDivElement | null) => {
-      if (containerRefElement) {
-        const { scrollHeight, scrollTop, clientHeight } = containerRefElement;
-        if (scrollHeight - scrollTop - clientHeight < 500 && !isFetching) {
-          fetchNextPage();
-        }
-      }
+  const columns = [
+    {
+      id: 'name',
+      cell: (props: OKMS) => {
+        return <DataGridTextCell>{props.iam.displayName}</DataGridTextCell>;
+      },
+      label: t('key_management_service_name_cell'),
     },
-    [fetchNextPage, isFetching, totalFetched],
-  );
+    {
+      id: 'id',
+      cell: (props: OKMS) => {
+        return <DataGridClipboardCell text={props.id} />;
+      },
+      label: t('key_management_service_id_cell'),
+    },
+    {
+      id: 'region',
+      cell: (props: OKMS) => {
+        return <DataGridRegionCell region={props.region} />;
+      },
+      label: t('key_management_service_region_cell'),
+    },
+  ];
 
-  if (isError) {
-    return <ErrorBanner error={error} />;
-  }
+  const {
+    pagination,
+    setPagination,
+    sorting,
+    setSorting,
+  } = useDatagridSearchParams();
 
-  if (isLoading) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  }
-
-  if (data?.length === 0) return <Navigate to="onboarding" />;
+  const { error, data: okms, isLoading } = useOKMS({
+    pagination,
+    sorting,
+  });
 
   return (
     <>
-      <h2>key-management-system</h2>
-      <div className="text-right pr-6 pb-6">
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-          ({flattenData.length} {t('results')})
+      <OsdsBreadcrumb
+        items={[
+          {
+            href: '/key-management-system/',
+            label: t('key_management_service_title'),
+          },
+        ]}
+      ></OsdsBreadcrumb>
+      <div className={'flex items-center justify-between mt-4'}>
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
+          color={ODS_THEME_COLOR_INTENT.primary}
+        >
+          {t('key_management_service_title')}
         </OsdsText>
+        <PciGuidesHeader category="storage"></PciGuidesHeader>
       </div>
-      <div>
-        {flattenData.length && (
-          <div
-            onScroll={(e) => {
-              if (hasNextPage) {
-                fetchMoreOnBottomReached(e.target as HTMLDivElement);
-              }
-            }}
-            ref={tableContainerRef}
-            className={
-              hasNextPage || flattenData.length > 10
-                ? `container overflow-auto relative h-[400px]`
-                : ``
-            }
-          >
-            <TableContainer data={flattenData} hasNextPage={hasNextPage} />
-          </div>
-        )}
-        {isFetching && (
-          <div className="text-center pt-3">
-            <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-              {t('loading')}
-            </OsdsText>
-          </div>
-        )}
+      <OsdsDivider></OsdsDivider>
+      <Notifications />
+      <div className={'flex mb-3 mt-6'}>
+        <OsdsButton
+          className="mr-1"
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.stroked}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          href={''}
+        >
+          {t('key_management_service_add_kms_button')}
+        </OsdsButton>
       </div>
+      {error && (
+        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
+          {tError('manager_error_page_default')}
+        </OsdsMessage>
+      )}
+
+      {isLoading && !error && (
+        <div className="text-center">
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+        </div>
+      )}
+      {!isLoading && !error && (
+        <div className={'mt-8'}>
+          <Datagrid
+            columns={columns}
+            items={okms?.rows || []}
+            totalItems={okms?.totalRows || 0}
+            pagination={pagination}
+            onPaginationChange={setPagination}
+            sorting={sorting}
+            onSortChange={setSorting}
+            contentAlignLeft
+          />
+        </div>
+      )}
     </>
   );
 }

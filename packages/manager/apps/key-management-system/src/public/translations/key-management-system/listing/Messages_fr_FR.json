@@ -1,0 +1,11 @@
+{
+  "title": "Listing page",
+  "listing_resultats": "résultats",
+  "key_management_service_name_cell": "Nom",
+  "key_management_service_id_cell": "ID",
+  "key_management_service_region_cell": "Region",
+  "key_management_service_clipboard_success_label": "Copié",
+  "key_management_service_clipboard_error_label": "Erreur",
+  "key_management_service_add_kms_button": "Créer un KMS",
+  "key_management_service_title": "Mes KMS"
+}

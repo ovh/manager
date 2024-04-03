@@ -61,6 +61,8 @@ export interface DatagridProps<T> {
   onSortChange?: (sorting: ColumnSort) => void;
   /** option to add custom CSS class */
   className?: string;
+  /** option to adjust content on the left */
+  contentAlignLeft?: boolean;
 }
 
 export const Datagrid = <T extends unknown>({
@@ -72,6 +74,7 @@ export const Datagrid = <T extends unknown>({
   className,
   onPaginationChange,
   onSortChange,
+  contentAlignLeft,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
@@ -120,7 +123,9 @@ export const Datagrid = <T extends unknown>({
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="text-center h-11 whitespace-nowrap"
+                    className={`${
+                      contentAlignLeft ? 'text-left pl-4' : 'text-center'
+                    } h-11 whitespace-nowrap `}
                   >
                     {header.isPlaceholder ? null : (
                       <div
@@ -179,10 +184,13 @@ export const Datagrid = <T extends unknown>({
             {table.getRowModel().rows.map((row) => (
               <tr
                 key={row.id}
-                className="text-center border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]"
+                className={`border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]`}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>
+                  <td
+                    key={cell.id}
+                    className={`${contentAlignLeft ? 'pl-4' : 'text-center'}`}
+                  >
                     <>
                       {flexRender(
                         cell.column.columnDef.cell,
