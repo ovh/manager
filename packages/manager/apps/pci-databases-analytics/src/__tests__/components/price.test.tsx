@@ -57,4 +57,14 @@ describe('PriceComponentValue', () => {
       '(pricing_ttc 12.000 €)',
     );
   });
+
+  it('should display 0.00 when given 0', () => {
+    render(<Price priceInUcents={0} taxInUcents={0} decimals={2} />);
+    expect(screen.getByTestId('pricing-ht')).toHaveTextContent(
+      'pricing_ht 0.00 €',
+    );
+    expect(screen.getByTestId('pricing-ttc')).toHaveTextContent(
+      '(pricing_ttc 0.00 €)',
+    );
+  });
 });

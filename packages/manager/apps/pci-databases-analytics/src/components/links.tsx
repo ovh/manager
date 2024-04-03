@@ -70,6 +70,7 @@ function Link({
         if (disabled) {
           e.preventDefault();
         } else {
+          console.log('clicked');
           setLoading(true);
         }
       }}
