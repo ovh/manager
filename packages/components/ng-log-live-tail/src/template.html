@@ -24,9 +24,9 @@
                 class="mx-2"
             >
                 <span
-                    class="oui-icon oui-icon-pause_concept"
-                    data-ng-class="{'oui-icon-pause_concept' : $ctrl.interval,
-                 'oui-icon-play_concept' : !$ctrl.interval}"
+                    class="oui-icon oui-icon-pause"
+                    data-ng-class="{'oui-icon-pause' : $ctrl.interval,
+                 'oui-icon-play' : !$ctrl.interval}"
                 ></span>
             </oui-button>
 
@@ -43,7 +43,14 @@
                 data-ng-if="$ctrl.isTileSlotFilled"
                 data-ng-click="$ctrl.fullScreen = !$ctrl.fullScreen"
             >
-                <span class="oui-icon oui-icon-expansion-arrows_concept"></span>
+                <span
+                    data-ng-if="!$ctrl.fullScreen"
+                    class="oui-icon oui-icon-arrow-up-right-arrow-down-left-from-center"
+                ></span>
+                <span
+                    data-ng-if="$ctrl.fullScreen"
+                    class="oui-icon oui-icon-arrow-down-left-arrow-up-right-to-center"
+                ></span>
             </oui-button>
         </div>
         <div class="logs" data-scroll-glue="$ctrl.glued">
@@ -59,7 +66,7 @@
                             data-ng-if="$ctrl.DISPLAY_RULES.HIDE.indexOf(key) === -1"
                             class="text-break mr-2"
                             data-ng-class="{
-                             'oui-color-p-100' : $ctrl.DISPLAY_RULES.TEXT_P_100.indexOf(key) > -1,
+                             'text-primary' : $ctrl.DISPLAY_RULES.TEXT_PRIMARY.indexOf(key) > -1,
                              'text-uppercase' : $ctrl.DISPLAY_RULES.UPPERCASE.indexOf(key) > -1
                              }"
                             data-ng-bind-html="log[key + '_highlighted']"
