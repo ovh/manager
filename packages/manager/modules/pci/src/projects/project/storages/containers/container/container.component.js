@@ -24,5 +24,6 @@ export default {
     containersRegions: '<',
     trackingPrefix: '<',
     trackEncryptionAction: '<',
+    encryptionAvailable: '<',
   },
 };

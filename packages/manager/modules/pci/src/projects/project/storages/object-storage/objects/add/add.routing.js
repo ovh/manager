@@ -49,14 +49,6 @@ export default /* @ngInject */ ($stateProvider) => {
               )
               .catch(() => ENCRYPTION_ALGORITHMS_FALLBACK) // To remove when encryption could be set post creation
           : [],
-      encryptionAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability('public-cloud:object-storage:encryption')
-          .then((feature) =>
-            feature.isFeatureAvailable(
-              'public-cloud:object-storage:encryption',
-            ),
-          ),
       cancelCreate: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.storages.object-storage', {
           projectId,
