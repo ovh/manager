@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_vmware_cloud_director_order_title": "Subscrição com pré-encomenda da oferta VCD",
+  "dedicatedCloud_vmware_cloud_director_order_costs": "Ver os preços VCD correspondentes aos hosts",
+  "dedicatedCloud_vmware_cloud_director_order_host": "Host {{host}}: ",
+  "dedicatedCloud_vmware_cloud_director_order_hosts_list": "Lista dos hosts do {{pcc}}:",
+  "dedicatedCloud_vmware_cloud_director_order_success": "Para finalizar a sua encomenda, siga as instruções descritas no novo separador que abriu. Se nenhum separador novo tiver sido aberto, clique <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">nesta ligação</a>.",
+  "dedicatedCloud_vmware_cloud_director_order_error": "Ocorreu um erro aquando da pré-encomenda da oferta VCD",
+  "dedicatedCloud_vmware_cloud_director_order_cancel": "Anular",
+  "dedicatedCloud_vmware_cloud_director_order_confirm": "Seguinte",
+  "dedicatedCloud_vmware_cloud_director_order_terminate": "Fechar"
+}

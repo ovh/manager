@@ -1,0 +1,12 @@
+{
+  "dedicatedCloud_vmware_cloud_director_title": "Migracja do oferty VCD",
+  "dedicatedCloud_vmware_cloud_director_offer_detail": "Opis oferty VCD",
+  "dedicatedCloud_vmware_cloud_director_new": "Nowość",
+  "dedicatedCloud_vmware_cloud_director_subscription": "Zamówienie",
+  "dedicatedCloud_vmware_cloud_director_announcement_message": "Ogłoszenie",
+  "dedicatedCloud_vmware_cloud_director_useful_links": "Przydatne linki",
+  "dedicatedCloud_vmware_cloud_director_subscribed_status": "Zamówiono",
+  "dedicatedCloud_vmware_cloud_director_subscribed": "Zamówiłeś ofertę <a href=\"{{link}}\" target=\"_blank\" rel=\"noopener\">VMware Cloud Director (VCD)</a>",
+  "dedicatedCloud_vmware_cloud_director_not_subscribed": "Zamówienie migracji do oferty <a href=\"{{link}}\" target=\"_blank\" rel=\"noopener\">VMware Cloud Director (VCD)</a> do 30 kwietnia 2024 włącznie.",
+  "dedicatedCloud_vmware_cloud_director_order": "Zamów ofertę VCD"
+}
