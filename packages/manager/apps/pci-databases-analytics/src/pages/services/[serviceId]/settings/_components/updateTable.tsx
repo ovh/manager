@@ -1,5 +1,6 @@
 import { MinusCircle, PlusCircle } from 'lucide-react';
 import { useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/models/database';
@@ -21,6 +22,9 @@ import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
 import { updateTags } from '@/lib/tagsHelper';
 
 const UpdateTable = () => {
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/settings/update',
+  );
   const { service, projectId, serviceQuery } = useServiceData();
   const catalogQuery = useGetCatalog();
   const capabilitiesQuery = useGetFullCapabilities(projectId);
@@ -100,7 +104,7 @@ const UpdateTable = () => {
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell className="font-semibold">Version</TableCell>
+            <TableCell className="font-semibold">{t('tableVersion')}</TableCell>
             <TableCell>
               {humanizeEngine(service.engine)} {service.version}
             </TableCell>
@@ -112,13 +116,13 @@ const UpdateTable = () => {
                   className="py-0 h-auto"
                   onClick={() => updateVersionModal.open()}
                 >
-                  Update
+                  {t('tableUpdateButton')}
                 </Button>
               </TableCell>
             )}
           </TableRow>
           <TableRow>
-            <TableCell className="font-semibold">Plan</TableCell>
+            <TableCell className="font-semibold">{t('tablePlan')}</TableCell>
             <TableCell>{service.plan}</TableCell>
             {availabilitiesPlanQuery.data?.length > 1 && (
               <TableCell className="text-right">
@@ -128,13 +132,13 @@ const UpdateTable = () => {
                   className="py-0 h-auto"
                   onClick={() => updatePlanModal.open()}
                 >
-                  Update
+                  {t('tableUpdateButton')}
                 </Button>
               </TableCell>
             )}
           </TableRow>
           <TableRow>
-            <TableCell className="font-semibold">Flavor</TableCell>
+            <TableCell className="font-semibold">{t('tableFlavor')}</TableCell>
             <TableCell>{service.flavor}</TableCell>
             {availabilitiesFlavorQuery.data?.length > 1 && (
               <TableCell className="text-right">
@@ -144,14 +148,16 @@ const UpdateTable = () => {
                   className="py-0 h-auto"
                   onClick={() => updateFlavorModal.open()}
                 >
-                  Update
+                  {t('tableUpdateButton')}
                 </Button>
               </TableCell>
             )}
           </TableRow>
           {service.storage?.size.value > 0 && (
             <TableRow>
-              <TableCell className="font-semibold">Storage</TableCell>
+              <TableCell className="font-semibold">
+                {t('tableStorage')}
+              </TableCell>
               <TableCell>
                 {formatStorage(service.storage.size)} {service.storage.type}
               </TableCell>
@@ -163,14 +169,14 @@ const UpdateTable = () => {
                     className="py-0 h-auto"
                     onClick={() => updateFlavorModal.open()}
                   >
-                    Update
+                    {t('tableUpdateButton')}
                   </Button>
                 </TableCell>
               )}
             </TableRow>
           )}
           <TableRow>
-            <TableCell className="font-semibold">Nodes</TableCell>
+            <TableCell className="font-semibold">{t('tableNodes')}</TableCell>
             <TableCell>{service.nodes.length}</TableCell>
             {availabilitiesFlavorQuery.data?.length > 1 && (
               <TableCell className="flex gap-2 justify-end">

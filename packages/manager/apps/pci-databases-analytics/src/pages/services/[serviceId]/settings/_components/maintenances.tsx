@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   useApplyMaintenance,
   useGetMaintenances,
@@ -12,6 +13,9 @@ import { database } from '@/models/database';
 import { useToast } from '@/components/ui/use-toast';
 
 const Maintenances = () => {
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/settings',
+  );
   const { service, projectId, serviceQuery } = useServiceData();
   const toast = useToast();
   const maintenanceQuery = useGetMaintenances(
@@ -22,15 +26,15 @@ const Maintenances = () => {
   const { applyMaintenance, isPending } = useApplyMaintenance({
     onError: (err) => {
       toast.toast({
-        title: 'Erreur',
+        title: t('maintenanceApplyToastErrorTitle'),
         variant: 'destructive',
         description: err.response.data.message,
       });
     },
     onSuccess: () => {
       toast.toast({
-        title: 'Succès',
-        description: 'La maintenance a été appliquée avec succès',
+        title: t('maintenanceApplyToastSuccessTitle'),
+        description: t('maintenanceApplyToastSuccessDescription'),
       });
       serviceQuery.refetch();
       maintenanceQuery.refetch();
@@ -42,7 +46,9 @@ const Maintenances = () => {
   if (maintenanceQuery.data.length === 0) {
     return (
       <Alert variant="info">
-        <AlertDescription>Aucune maintenance n'est prévue.</AlertDescription>
+        <AlertDescription>
+          {t('maintenancesNoPlannedMaintenance')}
+        </AlertDescription>
       </Alert>
     );
   }
@@ -76,7 +82,7 @@ const Maintenances = () => {
             <div className="flex content-between gap-2">
               <div className="flex flex-col items-start w-full">
                 <div className="flex gap-2">
-                  <b>Statut:</b>
+                  <b>{t('maintenancesStatus')}</b>
                   <Badge
                     className="text-xs"
                     variant={getMaintenanceVariant(maintenance.status)}
@@ -85,7 +91,7 @@ const Maintenances = () => {
                   </Badge>
                   {maintenance.scheduledAt && (
                     <>
-                      <b>Date planifiée: </b>
+                      <b>{t('maintenancesScheduledDate')}</b>
                       <FormattedDate
                         date={new Date(maintenance.scheduledAt)}
                         options={{
@@ -97,7 +103,7 @@ const Maintenances = () => {
                   )}
                   {maintenance.appliedAt && (
                     <>
-                      <b>Date d'application: </b>
+                      <b>{t('maintenancesAppliedAtDate')}</b>
                       <FormattedDate
                         date={new Date(maintenance.appliedAt)}
                         options={{
@@ -123,7 +129,7 @@ const Maintenances = () => {
                     })
                   }
                 >
-                  Appliquer
+                  <b>{t('maintenancesApply')}</b>
                 </Button>
               )}
             </div>
