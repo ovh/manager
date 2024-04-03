@@ -1,6 +1,7 @@
 import { PaginationState } from '@ovhcloud/manager-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
 import { FailoverIP, Instance, TerminateIPProps } from '@/interface';
 import { getAllFailoverIP, terminateFailoverIP } from '@/api/data/failover-ip';
 import { useAllInstance } from './useInstance';
@@ -24,9 +25,7 @@ const aggregateFailoverIPs = (
 
     return {
       ...failover,
-      associatedEntity: {
-        name: instance ? instance.name : '',
-      },
+      associatedEntityName: instance ? instance.name : '',
     };
   });
 
@@ -49,6 +48,7 @@ export const useAllFailoverIPs = (projectId: string) => {
 export const useFailoverIPs = (
   projectId: string,
   { pagination }: FailoverOptions,
+  filters: Filter[] = [],
 ) => {
   const {
     data: failoverIPData,
@@ -70,7 +70,10 @@ export const useFailoverIPs = (
       isLoading,
       error,
       data: paginateResults(
-        aggregateFailoverIPs(failoverIPData || [], instanceData || []),
+        applyFilters(
+          aggregateFailoverIPs(failoverIPData || [], instanceData || []),
+          filters,
+        ),
         pagination,
       ),
     };
