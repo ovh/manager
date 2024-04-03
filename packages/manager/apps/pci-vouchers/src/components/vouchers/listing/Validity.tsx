@@ -3,7 +3,7 @@ import * as dateFnsLocales from 'date-fns/locale';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DataGridTextCell } from '@ovhcloud/manager-components';
-import getLocale from '@/data/date';
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 
 export default function Validity({ date }: { date: string | null }) {
   const { i18n } = useTranslation('common');
@@ -13,7 +13,7 @@ export default function Validity({ date }: { date: string | null }) {
   let displayDate = '';
 
   if (date) {
-    const userLocale = getLocale(i18n.language);
+    const userLocale = getDateFnsLocale(i18n.language);
 
     if (userLocale in locales) {
       const localeId = userLocale as keyof typeof locales;
