@@ -1,6 +1,7 @@
 import { ControllerRenderProps, FieldValues } from 'react-hook-form';
 import { Check, ChevronsUpDown, PlusCircle, Trash2 } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { database } from '@/models/database';
 import {
   AdvancedConfigurationProperty,
@@ -46,6 +47,9 @@ const AdvancedConfigurationForm = ({
   capabilities,
   onSucces,
 }: AdvancedConfigurationFormProps) => {
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/settings',
+  );
   const [value, setValue] = useState('');
   const [open, setOpen] = useState(false);
   const { projectId, service, serviceQuery } = useServiceData();
@@ -57,14 +61,14 @@ const AdvancedConfigurationForm = ({
     onError: (error) => {
       toast.toast({
         variant: 'destructive',
-        title: 'error',
+        title: t('advancedConfigurationUpdateErrorTitle'),
         description: error.response.data.message,
       });
     },
     onSuccess: () => {
       toast.toast({
-        title: 'succes',
-        description: 'advacned configuration updated',
+        title: t('advancedConfigurationUpdateSuccessTitle'),
+        description: t('advancedConfigurationUpdateSuccessDescription'),
       });
       onSucces();
       serviceQuery.refetch();
@@ -209,7 +213,7 @@ const AdvancedConfigurationForm = ({
                   ? model.lists.availableProperties.find(
                       (property) => property.name === value,
                     )?.name
-                  : 'Select a property to add'}
+                  : t('advancedConfigurationAddPropertyPlaceholder')}
                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
             </PopoverTrigger>
@@ -217,7 +221,9 @@ const AdvancedConfigurationForm = ({
               <Command>
                 <CommandInput placeholder="Search property..." />
                 <ScrollArea className="max-h-64 overflow-auto">
-                  <CommandEmpty>No property found.</CommandEmpty>
+                  <CommandEmpty>
+                    {t('advancedConfigurationAddPropertyNotFound')}
+                  </CommandEmpty>
                   <CommandGroup>
                     {model.lists.availableProperties.map((property) => (
                       <CommandItem
@@ -270,10 +276,10 @@ const AdvancedConfigurationForm = ({
               role="button"
               onClick={() => model.methods.reset()}
             >
-              cancel
+              {t('advancedConfigurationCancelButton')}
             </Button>
             <Button form="advancedConfigurationForm" disabled={isPending}>
-              Submit
+              {t('advancedConfigurationSubmitButton')}
             </Button>
           </div>
         )}

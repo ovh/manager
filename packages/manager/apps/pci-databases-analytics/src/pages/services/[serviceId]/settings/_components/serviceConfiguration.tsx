@@ -1,5 +1,6 @@
 import { Pen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { useServiceData } from '../../layout';
 import { Button } from '@/components/ui/button';
@@ -14,6 +15,9 @@ import TimeUpdate from './serviceConfiguration/timeUpdate';
 import DeleteService from '../../_components/deleteService';
 
 const ServiceConfiguration = () => {
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/settings',
+  );
   const navigate = useNavigate();
   const renameModale = useModale('rename');
   const deleteModale = useModale('delete');
@@ -25,16 +29,15 @@ const ServiceConfiguration = () => {
   const { updateService } = useUpdateService({
     onError: (err) => {
       toast.toast({
-        title:
-          'Une erreur est survenue lors de la mise à jour de votre service',
+        title: t('serviceConfigurationUpdateToastErrorTitle'),
         variant: 'destructive',
         description: err.response.data.message,
       });
     },
     onSuccess: () => {
       toast.toast({
-        title: 'Succès',
-        description: 'La configuration de votre service a été mis à jour',
+        title: t('serviceConfigurationUpdateToastSuccessTitle'),
+        description: t('serviceConfigurationUpdateToastSuccessDescription'),
       });
       serviceQuery.refetch();
     },
@@ -83,7 +86,9 @@ const ServiceConfiguration = () => {
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell className="font-semibold">Name</TableCell>
+            <TableCell className="font-semibold">
+              {t('serviceConfigurationServiceName')}
+            </TableCell>
             <TableCell>{service.description}</TableCell>
             <TableCell className="text-right">
               <Button
@@ -97,7 +102,9 @@ const ServiceConfiguration = () => {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell className="font-semibold">Maintenance time</TableCell>
+            <TableCell className="font-semibold">
+              {t('serviceConfigurationServiceMaintenanceTime')}
+            </TableCell>
             <TimeUpdate
               initialValue={convertTimeToDateTime(service.maintenanceTime)}
               onSubmit={onMaintenanceTimeSubmit}
@@ -105,7 +112,9 @@ const ServiceConfiguration = () => {
           </TableRow>
           {service.backups?.time && (
             <TableRow>
-              <TableCell className="font-semibold">Backup time</TableCell>
+              <TableCell className="font-semibold">
+                {t('serviceConfigurationServiceBackupTime')}
+              </TableCell>
               <TimeUpdate
                 initialValue={convertTimeToDateTime(service.backups.time)}
                 onSubmit={onBackupTimeSubmit}
@@ -119,7 +128,7 @@ const ServiceConfiguration = () => {
         className="w-full bg-background border-2 hover:bg-destructive/10 font-semibold border-destructive text-destructive"
         onClick={() => deleteModale.open()}
       >
-        Delete my service
+        {t('serviceConfigurationDeleteService')}
       </Button>
       <RenameService
         controller={renameModale.controller}

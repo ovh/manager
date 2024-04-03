@@ -1,5 +1,11 @@
 {
   "breadcrumb": "Update",
+  "tableVersion": "Version",
+  "tablePlan": "Plan",
+  "tableFlavor": "Flavor",
+  "tableStorage": "Stockage",
+  "tableNodes": "Nœuds",
+  "tableUpdateButton": "Modifier",
   "priceUnitSwitchLabel": "Affichage des prix",
   "updatePlanTitle": "Modifier le plan",
   "updatePlanInputLabel": "Choisissez un nouveau plan",
@@ -19,6 +25,8 @@
   "updateVersionToastSuccessDescription": "Votre service a été mis à jour avec la version {{newVersion}}",
   "updateFlavorTitle": "Modifier la flavor",
   "updateFlavorInputLabel": "Choisissez une nouvelle flavor",
+  "updateStorageInputLabel": "Stockage additionnel",
+  "updateStorageTotal": "Stockage additionnel",
   "updateFlavorCancelButton": "Annuler",
   "updateFlavorSubmitButton": "Modifier",
   "updateFlavorErrorSimilar": "Veuillez choisir une flavor différente de celle actuelle",
@@ -35,7 +43,6 @@
   "addNodeToastErrorTitle": "Une erreur est survenue lors de l'ajout d'un nœud",
   "addNodeCancelButton": "Annuler",
   "addNodeSubmitButton": "Valider",
-
   "deleteNodeTitle": "Supprimer un nœud",
   "deleteNodeDescription": "Vous disposez actuellement de {{nbNodes}} nœud(s). Voulez-vous vraiment en supprimer un ? Vous résuirez votre facture de <price/> par {{unit}}.",
   "deleteNodeDescriptionUnitHour": "heure",

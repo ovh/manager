@@ -181,7 +181,7 @@ const UpdatePlan = ({
               <DialogHeader className="mb-2">
                 <DialogTitle>{t('updatePlanTitle')}</DialogTitle>
               </DialogHeader>
-              <Label>Affichage des prix</Label>
+              <Label>{t('priceUnitSwitchLabel')}</Label>
               <PriceUnitSwitch
                 showMonthly={showMonthly}
                 onChange={setShowMonthly}
