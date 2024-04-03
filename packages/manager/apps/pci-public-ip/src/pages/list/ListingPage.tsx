@@ -99,7 +99,7 @@ export default function ListingPage(): JSX.Element {
           >
             {t('pci_additional_ips_title')}
           </OsdsText>
-          <PciGuidesHeader category="storage"></PciGuidesHeader>
+          <PciGuidesHeader category="instances"></PciGuidesHeader>
         </div>
         <div className="mt-4">
           <OsdsText
