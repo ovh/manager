@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { useLocation, useRouteLoaderData } from 'react-router-dom';
+import { useLocation, useMatches, useRouteLoaderData } from 'react-router-dom';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import { Project } from '@/api/data/project';
+import { RouteHandle } from '@/routes';
 
 import {
   PAGE_PREFIX,
@@ -9,14 +10,11 @@ import {
   DISCOVERY_PLANCODE,
 } from '@/tracking.constants';
 
-interface PageTrackingProps {
-  mapping?: Record<string, string>;
-}
-
-export default function usePageTracking(opts: PageTrackingProps) {
+export default function usePageTracking() {
   const location = useLocation();
   const project = useRouteLoaderData('ssh') as Project;
   const { setPciProjectMode, trackPage } = useTracking();
+  const handle = [...useMatches()].pop()?.handle as RouteHandle;
 
   useEffect(() => {
     if (project) {
@@ -28,10 +26,7 @@ export default function usePageTracking(opts: PageTrackingProps) {
   }, [project]);
 
   useEffect(() => {
-    let pageId = location.pathname.split('/').pop();
-    if (opts.mapping && pageId in opts.mapping) {
-      pageId = opts.mapping[pageId];
-    }
+    const pageId = handle?.tracking || location.pathname.split('/').pop();
     trackPage({
       name: `${PAGE_PREFIX}::users${pageId === 'users' ? '' : `::${pageId}`}`,
       level2: PCI_LEVEL2,
