@@ -14,6 +14,10 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
   };
 };
 
+export interface RouteHandle {
+  tracking?: string;
+}
+
 export default [
   {
     path: '/',
@@ -42,6 +46,9 @@ export default [
               import('@/pages/openrc/download/OpenStackDownloadPage'),
             ),
             children: [],
+            handle: {
+              tracking: 'download-openrc',
+            },
           },
           {
             path: 'rclone/download',
@@ -49,6 +56,9 @@ export default [
               import('@/pages/rclone/download/RcloneDownloadPage'),
             ),
             children: [],
+            handle: {
+              tracking: 'download-rclone',
+            },
           },
           {
             path: 'token/generate',
@@ -56,6 +66,9 @@ export default [
               import('@/pages/token/generate/GenerateOpenStackTokenPage'),
             ),
             children: [],
+            handle: {
+              tracking: 'openstack-token',
+            },
           },
           {
             path: 'edit',
