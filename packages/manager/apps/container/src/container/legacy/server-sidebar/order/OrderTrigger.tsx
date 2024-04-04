@@ -1,7 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-stencil/components/react/';
-import { OdsIconName, OdsIconSize, OdsButtonVariant, OdsButtonType } from '@ovhcloud/ods-core';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
+import {
+  ODS_ICON_SIZE,
+  ODS_ICON_NAME,
+  ODS_BUTTON_TYPE,
+  ODS_BUTTON_VARIANT,
+} from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import OrderPopupContent, { ShopItem } from './OrderPopupContent';
 import OrderResponsivePopup from './OrderResponsivePopup';
@@ -14,27 +19,22 @@ const OrderTrigger = ({ items }: { items: ShopItem[] }) => {
 
   const handleButtonClick = () => {
     setIsButtonClicked((prevValue) => !prevValue);
-
   };
 
   return (
     <>
       <div ref={buttonRef}>
-
         <OsdsButton
-          color={OdsThemeColorIntent.primary}
-          type={OdsButtonType.button}
-          variant={
-            OdsButtonVariant.flat
-          }
+          color={ODS_THEME_COLOR_INTENT.primary}
+          type={ODS_BUTTON_TYPE.button}
+          variant={ODS_BUTTON_VARIANT.flat}
           onClick={handleButtonClick}
           className={style.orderTrigger}
-          flex
         >
           <span slot="start">
             <OsdsIcon
-              name={OdsIconName.CART}
-              size={OdsIconSize.xs}
+              name={ODS_ICON_NAME.CART}
+              size={ODS_ICON_SIZE.xs}
               contrasted
             />
 
@@ -43,10 +43,13 @@ const OrderTrigger = ({ items }: { items: ShopItem[] }) => {
             </span>
           </span>
           <span slot="end" aria-hidden="true">
-
             <OsdsIcon
-              name={isButtonClicked ? OdsIconName.CHEVRON_UP : OdsIconName.CHEVRON_DOWN}
-              size={OdsIconSize.xs}
+              name={
+                isButtonClicked
+                  ? ODS_ICON_NAME.CHEVRON_UP
+                  : ODS_ICON_NAME.CHEVRON_DOWN
+              }
+              size={ODS_ICON_SIZE.xs}
               contrasted
             />
           </span>

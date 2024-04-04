@@ -7,6 +7,13 @@ import { TRANSLATE_NAMESPACE } from '../../constants';
 
 import { UsefulLink } from './usefulLink';
 
+import { OsdsLink } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
+import {
+  OdsHTMLAnchorElementRel,
+  OdsHTMLAnchorElementTarget,
+} from '@ovhcloud/ods-common-core';
 type Props = {
   link?: UsefulLink;
   translationBase?: string;
@@ -27,17 +34,31 @@ const Anchor = ({
     }
   };
 
+  const handleClick = () => {
+    handleLinkClick(link);
+    if (link.action) {
+      link.action();
+    }
+  };
+
   return (
-    <a
-      className="d-flex"
-      target={link.external ? '_blank' : '_self'}
-      rel={link.external ? 'noreferrer' : ''}
+    <OsdsLink
       href={link.href}
-      onClick={() => handleLinkClick(link)}
+      onClick={handleClick}
+      target={
+        link.external
+          ? OdsHTMLAnchorElementTarget._blank
+          : OdsHTMLAnchorElementTarget._self
+      }
+      rel={link.external ? OdsHTMLAnchorElementRel.noreferrer : undefined}
+      color={ODS_THEME_COLOR_INTENT.primary}
+      className="flex font-bold"
     >
-      {link.icon && <span className={link.icon} aria-hidden="true"></span>}
-      <span>{t(`${translationBase}_${link.id}`)}</span>
-    </a>
+      <span className="mr-2" slot="start">
+        {link.icon && <span>{link.icon}</span>}
+      </span>
+      {t(`${translationBase}_${link.id}`)}
+    </OsdsLink>
   );
 };
 

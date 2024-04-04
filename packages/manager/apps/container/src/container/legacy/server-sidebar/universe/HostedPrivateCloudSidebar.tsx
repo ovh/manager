@@ -33,6 +33,7 @@ const features = [
   'veeam-enterprise:order',
   'vrack:bare-metal-cloud',
   'vrack:order',
+  'vrack-services',
   'ip-load-balancer',
   'logs-data-platform',
   'dedicated-server:ecoRangeOrder',
@@ -143,7 +144,7 @@ export default function HostedPrivateCloudSidebar() {
         label: t('sidebar_network'),
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
-        routeMatcher: new RegExp('^(/ip(/|$)|/network-security|(/network)?/iplb|/vrack|/cloud-connect)'),
+        routeMatcher: new RegExp('^(/ip(/|$)|/network-security|(/network)?/iplb|/vrack|/cloud-connect|/vrack-services)'),
         subItems: [
           feature.ip && {
             id: 'hpc-ip',
@@ -184,6 +185,27 @@ export default function HostedPrivateCloudSidebar() {
               return loadServices('/vrack');
             },
           },
+          feature['vrack-services'] && {
+            id: 'dedicated-vrackservices',
+            badge: 'beta',
+            label: t('sidebar_vrack_services'),
+            icon: getIcon('oui-icon oui-icon-vRack-services_concept'),
+            routeMatcher: new RegExp('^/vrack-services'),
+            async loader() {
+              const appId = 'vrack-services';
+              const items = await loadServices('/vrackServices/resource', undefined, appId);
+
+              return [
+                {
+                  id: 'vrack_services-all',
+                  label: t('sidebar_all_vrack_services'),
+                  href: navigation.getURL(appId, '#/'),
+                  ignoreSearch: true,
+                },
+                ...items
+              ];
+            },
+          },
           feature['cloud-connect'] && {
             id: 'hpc-ovhcloudconnect',
             label: t('sidebar_cloud_connect'),
@@ -220,10 +242,10 @@ export default function HostedPrivateCloudSidebar() {
       requestType: 'aapi',
     });
 
-  const { data: availability } = useQuery(
-    ['sidebar-hpc-availability'],
-    getFeatures,
-  );
+  const { data: availability } = useQuery({
+    queryKey: ['sidebar-hpc-availability'],
+    queryFn: getFeatures,
+  });
 
   useEffect(() => {
     if (availability) {

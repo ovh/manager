@@ -12,7 +12,6 @@ export default {
     excludeCategories: '<?',
     goBack: '<',
     includeCategories: '<?',
-    offer: '<',
     projectId: '@',
     privateNetworks: '<',
     publicNetwork: '<',

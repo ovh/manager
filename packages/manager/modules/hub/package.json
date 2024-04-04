@@ -15,7 +15,7 @@
     "@ovh-ux/manager-models": "^1.14.11"
   },
   "devDependencies": {
-    "@ovh-ux/ui-kit": "^6.7.7",
+    "@ovh-ux/ui-kit": "^6.7.8",
     "bootstrap": "^4.4.1",
     "lodash-es": "^4.17.15"
   },

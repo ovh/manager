@@ -7,7 +7,7 @@ Keep it as simple as possible
 
 ## Add new component
 
-1. Create a new components foler in `src/components`
+1. Create a new components folder in `src/components`
 2. Add your `stories.tsx` file
 3. Add your e2e test
 

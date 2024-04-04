@@ -37,6 +37,8 @@ export default class MoveBuildingDetailsCtrl {
       ptoReferenceNotKnown: false,
     };
 
+    this.ptoReferenceValid = true;
+
     // check if the building name is empty to set a name to display in the select component
     this.building.name =
       this.building.name === '' ? this.building.reference : this.building.name;
@@ -75,6 +77,13 @@ export default class MoveBuildingDetailsCtrl {
     this.$scope.$emit('updateBuildingDetails', this.selectedOffer);
   }
 
+  /* Check PTO reference value is valid */
+  isPtoRegexValid() {
+    this.ptoReferenceValid = this.model.ptoReference.match(
+      /^[A-Z]{2}-[A-Z\d]{4}-[A-Z\d]{4}$/,
+    );
+  }
+
   isValidSelection() {
     if (
       this.model.selectedBuilding != null &&
@@ -85,7 +94,8 @@ export default class MoveBuildingDetailsCtrl {
       return (
         (this.model.pto === FIBER_PTO.FIBER_PTO_YES &&
           this.model.ptoReference != null &&
-          this.model.ptoReference !== '') ||
+          this.model.ptoReference !== '' &&
+          this.ptoReferenceValid) ||
         [
           FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN,
           FIBER_PTO.FIBER_PTO_NO,

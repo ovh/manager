@@ -67,7 +67,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({
 
   return (
     <>
-      <div className="py-4">
+      <div className="py-4 overflow-hidden text-ellipsis">
         <Title>{rancher.currentState.name}</Title>
       </div>
       <OsdsLink

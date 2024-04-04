@@ -58,21 +58,13 @@ export default function TelecomSidebar() {
       }
     });
 
-  const { data: isBeta, isLoading: betaPreferenceLoading } = useQuery(
-    ['sidebar-telecom-beta'],
-    getBetaPreference,
-  );
+  const { data: isBeta, isLoading: betaPreferenceLoading } = useQuery({
+    queryKey: ['sidebar-telecom-beta'],
+    queryFn: getBetaPreference
+  });
 
   const getTelecomMenu = (feature: Record<string, string>) => {
     const menu = [];
-
-    menu.push({
-      id: 'telecom-v4',
-      icon: getIcon('ovh-font ovh-font-backToV4'),
-      label: t('sidebar_telecom_v4'),
-      href: 'https://www.ovh.com/managerv3/telephony2-main.pl',
-      isExternal: true,
-    });
 
     if (feature.pack) {
       menu.push({
@@ -273,10 +265,10 @@ export default function TelecomSidebar() {
       requestType: 'aapi',
     });
 
-  const { data: availability } = useQuery(
-    ['sidebar-telecom-availability'],
-    getFeatures,
-  );
+  const { data: availability } = useQuery({
+    queryKey: ['sidebar-telecom-availability'],
+    queryFn: getFeatures,
+  });
 
   useEffect(() => {
     if (availability && !betaPreferenceLoading) {

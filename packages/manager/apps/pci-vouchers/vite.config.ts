@@ -16,6 +16,11 @@ export default defineConfig({
     ...baseConfig.resolve,
     dedupe: [
       '@ovh-ux/manager-react-shell-client',
+      '@ovhcloud/ods-common-core',
+      '@ovhcloud/ods-common-testing',
+      '@ovhcloud/ods-common-theming',
+      '@ovhcloud/ods-components',
+      '@ovhcloud/ods-theme-blue-jeans',
       'i18next',
       'react',
       'react-dom',

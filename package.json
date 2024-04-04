@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build": "yarn run build:turbo",
-    "build:turbo": "turbo run build",
+    "build:turbo": "turbo run build --concurrency=75%",
     "dev": "turbo run dev",
     "clean": "lerna clean -y && yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist\"",
@@ -48,6 +48,7 @@
   "resolutions": {
     "@babel/runtime": "7.22.15",
     "@rollup/plugin-commonjs": "11.0.2",
+    "@types/react": "18.2.55",
     "@uirouter/angularjs": "1.0.23",
     "flatpickr": "4.6.9",
     "graphql": "16.6.0",
@@ -60,6 +61,7 @@
     "@babel/helper-string-parser": "^7.18.10",
     "@commitlint/cli": "^v18.4.4",
     "@commitlint/config-angular": "^v18.4.4",
+    "@cucumber/cucumber": "^10.0.1",
     "@ovh-ux/codename-generator": "^1.0.0",
     "@playwright/test": "^1.34.3",
     "@testing-library/jest-dom": "^6.2.1",
@@ -95,6 +97,7 @@
     "lerna": "^5.5.0",
     "lint-staged": "^13.0.3",
     "lodash": "^4.17.11",
+    "msw": "2.1.7",
     "npm-run-all": "^4.1.5",
     "ora": "^3.4.0",
     "p-series": "^2.1.0",
@@ -111,6 +114,7 @@
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.18.0",
     "turbo": "^1.4.3",
+    "vite": "^4.5.2",
     "whatwg-fetch": "^3.6.2"
   },
   "engines": {

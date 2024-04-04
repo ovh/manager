@@ -129,8 +129,6 @@
   "ip_table_header_ip_address_invalid": "Bitte geben Sie eine gültige IPv6 ein",
   "ip_table_header_country": "Land",
   "ip_table_header_country_help": "Ursprungsland der IP-Adresse. Nur für geolokalisierte IP-Adressen (Additional IP) verfügbar.",
-  "ip_table_header_campus": "Campus",
-  "ip_table_header_campus_help": "Der Campus legt den Standort der IP-Adresse fest, mit der der Dienst verbunden wird. Im Fall von Additional IPs bestimmt der Campus außerdem den Standort der Dienste, auf die die IP-Adresse übertragen werden kann.",
   "ip_table_header_reverse": "Reverse DNS",
   "ip_table_header_reverse_help": "DNS-Eintrag für Reverse-Auflösung (von IP-Adresse zu Hostname).",
   "ip_table_header_reverse_invalid": "Bitte geben Sie einen gültigen Reverse ein",

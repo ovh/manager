@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Anchor from './Anchor';
-import Button from './Button';
+import Action from './Action';
 
 type Props = {
   children?: JSX.Element | JSX.Element[];
@@ -12,6 +12,6 @@ const Link = ({ children = null }: Props): JSX.Element => {
 };
 
 Link.Anchor = Anchor;
-Link.Button = Button;
+Link.Action = Action;
 
 export default Link;

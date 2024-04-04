@@ -6,20 +6,18 @@ import {
   OsdsIcon,
   OsdsText,
   OsdsLink,
-} from '@ovhcloud/ods-stencil/components/react/';
-import {
-  OdsIconName,
-  OdsIconSize,
-  OdsButtonVariant,
-  OdsHTMLAnchorElementTarget,
-  OdsTextSize,
-  OdsTextLevel,
-} from '@ovhcloud/ods-core';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+} from '@ovhcloud/ods-components/react';
 
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_SIZE,
+  ODS_ICON_NAME,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import './OrderPopupContent.scss';
-import '@ovhcloud/ods-theme-blue-jeans/index.css';
-import style from './style.module.scss';
 
 export interface ShopSubItem {
   label: string;
@@ -60,7 +58,8 @@ const OpenLayoutContent = ({ item, tabIndex }: any) => {
     <>
       <OsdsButton
         circle
-        color={OdsThemeColorIntent.primary}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        variant={ODS_BUTTON_VARIANT.ghost}
         tabIndex={tabIndex}
       >
         <div className="order-popup-content-icon" aria-hidden="true">
@@ -69,9 +68,9 @@ const OpenLayoutContent = ({ item, tabIndex }: any) => {
       </OsdsButton>
       <div className="order-popup-content-label">
         <OsdsText
-          size={OdsTextSize._300}
-          color={OdsThemeColorIntent.primary}
-          level={OdsTextLevel.subheading}
+          size={ODS_TEXT_SIZE._300}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          level={ODS_TEXT_LEVEL.subheading}
         >
           {t(`server_sidebar_${item.label}_title`)}
         </OsdsText>
@@ -79,17 +78,15 @@ const OpenLayoutContent = ({ item, tabIndex }: any) => {
       {item.external && (
         <span className="order-popup-content-external-link">
           <OsdsIcon
-            name={OdsIconName.EXTERNAL_LINK}
-            size={OdsIconSize.xxs}
-            color={OdsThemeColorIntent.primary}
+            name={ODS_ICON_NAME.EXTERNAL_LINK}
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.primary}
           />
         </span>
       )}
     </>
   );
 };
-
-
 
 const OrderPopupContent = ({
   shopItems,
@@ -120,16 +117,17 @@ const OrderPopupContent = ({
   return showListMenu ? (
     <>
       <OsdsButton
-        flex
-        variant={OdsButtonVariant.ghost}
-        color={OdsThemeColorIntent.primary}
-        className={style.buttonMenu}
+        variant={ODS_BUTTON_VARIANT.ghost}
+        color={ODS_THEME_COLOR_INTENT.primary}
         onClick={hideMenu}
+        text-align="start"
       >
         <span slot="start">
-          <OsdsIcon name={OdsIconName.CHEVRON_LEFT}
-            size={OdsIconSize.xs}
-            color={OdsThemeColorIntent.primary}></OsdsIcon>
+          <OsdsIcon
+            name={ODS_ICON_NAME.CHEVRON_LEFT}
+            size={ODS_ICON_SIZE.xs}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          ></OsdsIcon>
           {t('sidebar_order_menu_back')}
         </span>
       </OsdsButton>
@@ -137,14 +135,13 @@ const OrderPopupContent = ({
       {currentMenu.map(
         (item) =>
           item && (
-            <div key={`current-menu-${item.label}`} className={style.toto}>
+            <div key={`current-menu-${item.label}`}>
               <OsdsButton
-                flex
                 key={item.label}
                 href={item.url}
-                variant={OdsButtonVariant.ghost}
-                color={OdsThemeColorIntent.primary}
-                className={style.buttonMenu}
+                variant={ODS_BUTTON_VARIANT.ghost}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                text-align="start"
                 onClick={() => onItemSelect(item)}
                 target={
                   item.external
@@ -152,7 +149,7 @@ const OrderPopupContent = ({
                     : OdsHTMLAnchorElementTarget['_top']
                 }
               >
-                <OsdsLink color={OdsThemeColorIntent.primary}>
+                <OsdsLink color={ODS_THEME_COLOR_INTENT.primary}>
                   {t(`server_sidebar_${item.label}_title`)}
                 </OsdsLink>
               </OsdsButton>
@@ -182,7 +179,13 @@ const OrderPopupContent = ({
                   onClick: onItemSelect(item),
                   tabIndex: index + 1,
                 };
-          return <OpenLayout item={item} key={`open-layout-${item.label}`} {...props} />;
+          return (
+            <OpenLayout
+              item={item}
+              key={`open-layout-${item.label}`}
+              {...props}
+            />
+          );
         })}
     </div>
   );

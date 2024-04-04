@@ -1,2 +1,2 @@
 export * from './card/card.component';
-export * from './buttons';
+export * from './menus';

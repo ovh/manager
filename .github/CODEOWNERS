@@ -13,6 +13,7 @@
 # React Stack
 *.jsx @ovh/team-manager-transfo @ovh/su-digital-tools-core-stack
 *.tsx @ovh/team-manager-transfo @ovh/su-digital-tools-core-stack
+/playwright-helpers/ @ovh/team-manager-transfo
 
 # Continuous Integration and scripts
 .github/workflows @ovh/su-digital-tools-core-service-delivery
@@ -20,3 +21,5 @@
 /scripts/ @ovh/su-digital-tools-core-service-delivery
 /scripts/start-application.js @ovh/team-manager-dev
 /scripts/run-playwright.js @ovh/team-manager-transfo
+/scripts/run-playwright-bdd.js @ovh/team-manager-transfo
+/scripts/.env.development @ovh/team-manager-transfo

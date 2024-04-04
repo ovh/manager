@@ -1,5 +1,5 @@
 {
-  "title": "Managed Rancher",
+  "title": "Managed Rancher Service",
   "description": " El servicio Managed Rancher le permite centralizar la gestión de todos sus clústeres Kubernetes. El servicio Managed Rancher, diseñado en colaboración con SUSE Rancher, permite crear y gestionar el ciclo de vida de sus clústeres administrados o autoadministrados en la infraestructura que usted elija, tanto con OVHcloud como externamente.",
   "orderButtonLabel": "Crear un servicio Managed Rancher",
   "orderButtonLink": "/#/dedicated/pci-rancher/order",

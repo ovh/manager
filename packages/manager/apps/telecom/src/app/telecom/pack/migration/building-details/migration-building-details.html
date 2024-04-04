@@ -123,7 +123,15 @@
                         id="referencePto"
                         class="oui-input oui-input_inline"
                         data-ng-model="$ctrl.model.ptoReference"
+                        data-ng-change="$ctrl.isOtpRegexValid()"
                     />
+                    <span
+                        class="help-block oui-color-ae-500"
+                        role="alert"
+                        data-ng-if="!$ctrl.otpReferenceValid"
+                        data-translate="telecom_pack_migration_pto_reference_is_not_valid"
+                    >
+                    </span>
                 </div>
             </div>
             <div class="form-inline" data-ng-if="$ctrl.isPto()">

@@ -15,8 +15,7 @@
                         data-ng-model="$ctrl.signUpFormCtrl.model.legalform"
                         data-ng-required="$ctrl.signUpFormCtrl.rules.legalform.mandatory"
                         data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.legalform)"
-                    >
-                    </select>
+                    ></select>
                     <span
                         class="oui-icon oui-icon-chevron-down bg-transparent"
                         aria-hidden="true"
@@ -34,23 +33,18 @@
                 data-label="{{ 'sign_up_details_field_country' | translate }}"
             >
                 <label class="oui-select">
-                    <select
-                        id="country"
+                    <oui-select
+                        data-disabled="$ctrl.signUpFormCtrl.rules.country.in.length === 1"
+                        data-items="$ctrl.signUpFormCtrl.rules.country.in"
+                        data-match="label"
+                        data-model="$ctrl.signUpFormCtrl.model.country"
+                        data-required="$ctrl.signUpFormCtrl.rules.country.mandatory"
                         name="country"
-                        class="oui-select__input"
-                        data-ng-options="country.value as country.label for country in $ctrl.signUpFormCtrl.rules.country.in"
-                        data-ng-model="$ctrl.signUpFormCtrl.model.country"
-                        data-ng-required="$ctrl.signUpFormCtrl.rules.country.mandatory"
-                        data-ng-disabled="$ctrl.signUpFormCtrl.rules.country.in.length === 1"
-                        data-ng-change="$ctrl.onCountryChange()"
-                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.country)"
+                        data-value-property="value"
+                        data-on-change="$ctrl.onCountryChange()"
+                        data-searchable
                     >
-                    </select>
-                    <span
-                        class="oui-icon oui-icon-chevron-down bg-transparent"
-                        aria-hidden="true"
-                    >
-                    </span>
+                    </oui-select>
                 </label>
             </oui-field>
             <!-- /select[name="country"] -->
@@ -73,8 +67,7 @@
                         data-ng-required="$ctrl.signUpFormCtrl.rules.language.mandatory"
                         data-ng-disabled="$ctrl.signUpFormCtrl.rules.language.in.length === 0"
                         data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.language)"
-                    >
-                    </select>
+                    ></select>
                     <span
                         class="oui-icon oui-icon-chevron-down bg-transparent"
                         aria-hidden="true"
@@ -214,8 +207,7 @@
                         data-ng-required="$ctrl.signUpFormCtrl.rules.area.mandatory"
                         data-ng-change="$ctrl.onAreaChange()"
                         data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.area)"
-                    >
-                    </select>
+                    ></select>
                     <span
                         class="oui-icon oui-icon-chevron-down bg-transparent"
                         aria-hidden="true"
@@ -297,8 +289,7 @@
                         data-ng-model="$ctrl.signUpFormCtrl.model.sex"
                         data-ng-required="$ctrl.signUpFormCtrl.rules.sex.mandatory"
                         data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.sex)"
-                    >
-                    </select>
+                    ></select>
                     <span
                         class="oui-icon oui-icon-chevron-down bg-transparent"
                         aria-hidden="true"

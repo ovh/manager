@@ -283,5 +283,7 @@
   "pack_move_modem_required": "La sélection d'un type de modem est obligatoire",
   "pack_move_confirm_modem_rental": "Location modem",
   "pack_move_offers_debit_mention_1": "(1) Jusqu'à 92 Mb/s descendant en VDSL et 22 Mb/s en ADSL, selon éligibilité.",
-  "pack_move_offers_debit_mention_2": "(2) Jusqu'à 36 Mb/s montant en VDSL et 1 Mb/s en ADSL, selon éligibilité."
+  "pack_move_offers_debit_mention_2": "(2) Jusqu'à 36 Mb/s montant en VDSL et 1 Mb/s en ADSL, selon éligibilité.",
+  "pack_move_pto_reference_is_not_valid": "La référence PTO saisie est invalide. Le format attendu est OO-XXXX-XXXX.",
+  "pack_move_no_meeting_available": "Aucun RDV n'est disponible pour le moment, vous serez recontacté par téléphone pour la planification."
 }

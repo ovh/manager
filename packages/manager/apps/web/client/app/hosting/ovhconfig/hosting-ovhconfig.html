@@ -132,31 +132,6 @@
                 <div class="form-group">
                     <label
                         class="control-label col-md-4"
-                        for="container"
-                        data-translate="hosting_action_config_edit_container_version"
-                    ></label>
-                    <div class="col-md-6">
-                        <div class="oui-select mb-0">
-                            <select
-                                class="oui-select__input"
-                                id="container"
-                                name="container"
-                                data-ng-change="ctrl.updateSelectedConfig()"
-                                data-ng-model="ctrl.model.container"
-                                data-ng-options="envExecution as envExecution for envExecution in ctrl.envExecutions track by envExecution"
-                            >
-                            </select>
-                            <span
-                                class="oui-icon oui-icon-chevron-down"
-                                aria-hidden="true"
-                            ></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label
-                        class="control-label col-md-4"
                         for="engineVersion"
                         data-translate="hosting_action_config_edit_engine_version"
                     ></label>
@@ -171,7 +146,7 @@
                                 name="engineVersion"
                                 data-ng-change="ctrl.updateSelectedConfig()"
                                 data-ng-model="ctrl.model.engineVersion"
-                                data-ng-options="engineVersion for engineVersion in ctrl.getEngineVersions(ctrl.model.container) track by engineVersion"
+                                data-ng-options="version for version in ctrl.phpVersion track by version"
                             >
                             </select>
                             <span
@@ -192,6 +167,31 @@
                                 disabled
                                 data-ng-model="ctrl.model.engineVersion"
                                 data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.EngineVersionEnum'].enum track by name"
+                            >
+                            </select>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label
+                        class="control-label col-md-4"
+                        for="container"
+                        data-translate="hosting_action_config_edit_container_version"
+                    ></label>
+                    <div class="col-md-6">
+                        <div class="oui-select mb-0">
+                            <select
+                                class="oui-select__input"
+                                id="container"
+                                name="container"
+                                data-ng-change="ctrl.updateSelectedConfig()"
+                                data-ng-model="ctrl.model.container"
+                                data-ng-options="envExecution as envExecution for envExecution in ctrl.envExecutions track by envExecution"
                             >
                             </select>
                             <span

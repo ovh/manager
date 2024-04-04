@@ -99,6 +99,13 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
     }
   }
 
+  /* Check OTP reference value is valid */
+  isOtpRegexValid() {
+    this.otpReferenceValid = this.model.ptoReference?.match(
+      /^[A-Z]{2}-[A-Z\d]{4}-[A-Z\d]{4}$/,
+    );
+  }
+
   isValidSelection() {
     if (
       this.model.selectedBuilding != null &&
@@ -108,8 +115,7 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
     ) {
       return (
         (this.model.pto === FIBER_PTO.FIBER_PTO_YES &&
-          this.model.ptoReference != null &&
-          this.model.ptoReference !== '') ||
+          this.otpReferenceValid) ||
         [
           FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN,
           FIBER_PTO.FIBER_PTO_NO,

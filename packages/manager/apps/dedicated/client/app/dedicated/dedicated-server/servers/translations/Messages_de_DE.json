@@ -1,15 +1,17 @@
 {
+  "dedicated_servers_all_servers": "Alle Server",
+  "dedicated_servers_clusters": "3-AZ-Cluster",
   "dedicated_servers_title": "Dedicated Server",
   "dedicated_servers_id": "Server-ID",
   "dedicated_servers_name": "Name",
   "dedicated_servers_status": "Status",
   "dedicated_servers_ip": "IP-Adresse",
   "dedicated_servers_reverse": "Reverse",
-  "dedicated_servers_city": "Stadt",
   "dedicated_servers_model": "Modell",
   "dedicated_servers_rack": "Rack",
   "dedicated_servers_datacenter": "Rechenzentrum",
   "dedicated_servers_country": "Land",
+  "dedicated_servers_region": "Region",
   "dedicated_servers_monitoring": "Monitoringstatus",
   "dedicated_servers_popover_details": "Details",
   "dedicated_servers_button_server_order": "Dedicated Server bestellen",
@@ -19,8 +21,5 @@
   "server_configuration_installation_no_public_network": "Die auf Ihrem Server angewandte Netzwerkkonfiguration ermöglicht keinen Zugang zum öffentlichen Netzwerk. Daher kann kein Betriebssystem auf diesem Server (re)installiert werden. Um diese Aktion zu ermöglichen, ändern Sie bitte Ihre Netzwerkkonfiguration im Tab \"Netzwerk-Interfaces\".",
   "dedicated_servers_installation_template_wizard_prefix_message": "Ab dem",
   "dedicated_servers_installation_ovhcloud_template_wizard_message": "ist keine Neuinstallation von {{ osDescription }} auf Ihrem Dedicated Server mehr möglich. Sie können Ihren Dedicated Server weiterhin mit dem zuvor installierten Betriebssystem verwenden. Alternativ dazu haben Sie die Möglichkeit, Ihren Dedicated Server mit einem aktuelleren Betriebssystem neu zu installieren.",
-  "dedicated_servers_installation_customer_template_wizard_message": "ist keine Neuinstallation von {{ osDescription }} auf Ihrem Dedicated Server mehr möglich. Ihr Template {{ customerTemplateName }} wird daher gelöscht. Sie können Ihren Dedicated Server weiterhin mit dem zuvor installierten Betriebssystem verwenden. Alternativ dazu haben Sie die Möglichkeit, Ihren Dedicated Server mit einem aktuelleren Betriebssystem neu zu installieren.",
-  "dedicated_servers_all_servers": "Alle Server",
-  "dedicated_servers_clusters": "3-AZ-Cluster",
-  "dedicated_servers_region": "Region"
+  "dedicated_servers_installation_customer_template_wizard_message": "ist keine Neuinstallation von {{ osDescription }} auf Ihrem Dedicated Server mehr möglich. Ihr Template {{ customerTemplateName }} wird daher gelöscht. Sie können Ihren Dedicated Server weiterhin mit dem zuvor installierten Betriebssystem verwenden. Alternativ dazu haben Sie die Möglichkeit, Ihren Dedicated Server mit einem aktuelleren Betriebssystem neu zu installieren."
 }
