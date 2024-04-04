@@ -7,7 +7,7 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect, useState } from 'react';
 import { useStorageRegions } from '@/api/hooks/useRegion';
-import { Region } from '@/api/data/region';
+import { getMacroRegion, Region } from '@/api/data/region';
 
 interface S3StorageRegionsProps {
   projectId: string;
@@ -43,9 +43,14 @@ export default function StorageRegions({
           >
             {storageRegions?.map((region: Region, index: number) => (
               <OsdsSelectOption key={index} value={region.name}>
-                {t(`manager_components_region_${region.name}_micro`, {
-                  micro: region.name,
-                })}
+                {t(
+                  `manager_components_region_${getMacroRegion(
+                    region.name,
+                  )}_micro`,
+                  {
+                    micro: region.name,
+                  },
+                )}
               </OsdsSelectOption>
             ))}
           </OsdsSelect>
