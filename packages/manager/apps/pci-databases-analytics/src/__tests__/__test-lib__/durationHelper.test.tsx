@@ -6,7 +6,7 @@ import {
   durationToISODurationString,
   convertDurationStringToISODuration,
   durationStringToHuman,
-} from '../../lib/durationHelper';
+} from '@/lib/durationHelper';
 
 test('durationStringToDuration', () => {
   expect(durationStringToDuration('2Y')).toStrictEqual({

@@ -4379,7 +4379,7 @@
     "@ovhcloud/ods-common-stencil" "17.1.0"
     "@ovhcloud/ods-common-theming" "17.1.0"
 
-"@ovhcloud/ods-components@^17.1.0", "@ovhcloud/ods-components@^17.2.1":
+"@ovhcloud/ods-components@17.2.1", "@ovhcloud/ods-components@^17.1.0", "@ovhcloud/ods-components@^17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-17.2.1.tgz#a4d64fdaafae54f95efca891d77633f43751ea45"
   integrity sha512-YqdkxRpCGMfa8lS0kL+XmTIElaceML7c4krMHpKiUx6xPD+qfDiG6Fl0fRfRhR93z8l5IheNyN68pjTI3U/mhg==
@@ -6697,11 +6697,6 @@
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.28.13.tgz#15c187c23b87a393e91d0fd2ea6dfc22b8a85b75"
   integrity sha512-C3+CCOcza+mrZ7LglQbjeYEOTEC3LV0VN0eYaIN6GvqAZ8Foegdgch7n6QYPtT4FuLae5ALy+m+ZMEKpD6tMCQ==
 
-"@tanstack/query-core@5.28.9":
-  version "5.28.9"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.28.9.tgz#170a7a8794ab73aeffbaf711ac62126479a5d026"
-  integrity sha512-hNlfCiqZevr3GRVPXS3MhaGW5hjcxvCsIQ4q6ff7EPlvFwYZaS+0d9EIIgofnegDaU2BbCDlyURoYfRl5rmzow==
-
 "@tanstack/query-devtools@5.28.10":
   version "5.28.10"
   resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.28.10.tgz#33e9a42dd2199fca12f0dd2d891570ecdbfd3c7b"
@@ -6716,7 +6711,7 @@
     superjson "^1.10.0"
     use-sync-external-store "^1.2.0"
 
-"@tanstack/react-query-devtools@^5.14.2", "@tanstack/react-query-devtools@^5.18.1", "@tanstack/react-query-devtools@^5.8.3":
+"@tanstack/react-query-devtools@^5.13.3", "@tanstack/react-query-devtools@^5.14.2", "@tanstack/react-query-devtools@^5.18.1", "@tanstack/react-query-devtools@^5.8.3":
   version "5.28.14"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-5.28.14.tgz#3d5386de4e5c61f2db90b1a12a83561840bc8b6e"
   integrity sha512-4CrFBI1O5wibV1ZdGAnBMmTuc7SiShhxWubxRMyIloeEioxs3DQkFbouGBea5nexuwIxAkvhUB8khpPnNjhxMw==
@@ -6731,7 +6726,7 @@
     "@tanstack/query-core" "4.36.1"
     use-sync-external-store "^1.2.0"
 
-"@tanstack/react-query@^5.14.2", "@tanstack/react-query@^5.18.1", "@tanstack/react-query@^5.8.3":
+"@tanstack/react-query@^5.12.2", "@tanstack/react-query@^5.14.2", "@tanstack/react-query@^5.18.1", "@tanstack/react-query@^5.8.3":
   version "5.28.14"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.28.14.tgz#9585b6300eb8f167ed374e2748043dc8d6476709"
   integrity sha512-cZqt03Igb3I9tM72qNX5TAAmeYl75Z+k4Mv92VkXIXc2hCrv0fIywd7GN3JV1BBJl4mr7Cc+OOKKOPy8sNVOkA==
@@ -26438,6 +26433,11 @@ toposort@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
   integrity sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==
+
+totalist@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/totalist/-/totalist-3.0.1.tgz#ba3a3d600c915b1a97872348f79c127475f6acf8"
+  integrity sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==
 
 tough-cookie@^4.0.0, tough-cookie@^4.1.2:
   version "4.1.3"

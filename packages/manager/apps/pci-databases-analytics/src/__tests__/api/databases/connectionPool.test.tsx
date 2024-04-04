@@ -5,7 +5,8 @@ import {
   addConnectionPool,
   editConnectionPool,
   deleteConnectionPool,
-} from '../../../api/databases/connectionPool';
+} from '@/api/databases/connectionPool';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -41,11 +42,11 @@ describe('connection pool service functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getConnectionPools({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/connectionPool',
+      '/cloud/project/projectId/database/mongodb/serviceId/connectionPool',
       {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
@@ -60,17 +61,23 @@ describe('connection pool service functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await addConnectionPool({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       connectionPool: {
         name: 'newPool',
+        databaseId: '123',
+        mode: database.postgresql.connectionpool.ModeEnum.session,
+        size: 0,
       },
     });
-    expect(
-      apiClient.v6.post,
-    ).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/connectionPool',
-      { name: 'newPool' },
+    expect(apiClient.v6.post).toHaveBeenCalledWith(
+      '/cloud/project/projectId/database/mongodb/serviceId/connectionPool',
+      {
+        name: 'newPool',
+        databaseId: '123',
+        mode: database.postgresql.connectionpool.ModeEnum.session,
+        size: 0,
+      },
     );
   });
 
@@ -78,18 +85,22 @@ describe('connection pool service functions', () => {
     expect(apiClient.v6.put).not.toHaveBeenCalled();
     await editConnectionPool({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       connectionPool: {
         id: 'connectionPoolId',
-        name: 'newPoolName',
+        databaseId: '123',
+        mode: database.postgresql.connectionpool.ModeEnum.session,
+        size: 0,
       },
     });
-    expect(
-      apiClient.v6.put,
-    ).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/connectionPool/connectionPoolId',
-      { name: 'newPoolName' },
+    expect(apiClient.v6.put).toHaveBeenCalledWith(
+      '/cloud/project/projectId/database/mongodb/serviceId/connectionPool/connectionPoolId',
+      {
+        databaseId: '123',
+        mode: database.postgresql.connectionpool.ModeEnum.session,
+        size: 0,
+      },
     );
   });
 
@@ -97,12 +108,12 @@ describe('connection pool service functions', () => {
     expect(apiClient.v6.delete).not.toHaveBeenCalled();
     await deleteConnectionPool({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       connectionPoolId: 'connectionPoolId',
     });
     expect(apiClient.v6.delete).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/connectionPool/connectionPoolId',
+      '/cloud/project/projectId/database/mongodb/serviceId/connectionPool/connectionPoolId',
     );
   });
 });

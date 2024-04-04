@@ -5,9 +5,9 @@ import {
   useGetAdvancedConfiguration,
   useGetAdvancedConfigurationCapabilities,
   useUpdateAdvancedConfiguration,
-} from '../../../hooks/api/advancedConfiguration.api.hook';
-import * as databaseAPI from '../../../api/databases/advancedConfiguration';
-import { database } from '../../../models/database';
+} from '@/hooks/api/advancedConfiguration.api.hook';
+import * as databaseAPI from '@/api/databases/advancedConfiguration';
+import { database } from '@/models/database';
 // Mock the API functions
 vi.mock('@/api/databases/advancedConfiguration', () => ({
   getAdvancedConfiguration: vi.fn(),
@@ -15,18 +15,19 @@ vi.mock('@/api/databases/advancedConfiguration', () => ({
   updateAdvancedConfiguration: vi.fn(),
 }));
 
+const queryClient = new QueryClient();
+const wrapper = ({ children }: { children: React.ReactNode }) => (
+  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+);
+
 describe('useGetAdvancedConfiguration', () => {
   it('should return advanced configuration data', async () => {
     const projectId = 'projectId';
     const engine = database.EngineEnum.mysql;
     const serviceId = 'serviceId';
     const mockData = { key: 'value' };
-    databaseAPI.getAdvancedConfiguration.mockResolvedValue(mockData);
 
-    const queryClient = new QueryClient();
-    const wrapper = ({ children }) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    );
+    vi.mocked(databaseAPI.getAdvancedConfiguration).mockResolvedValue(mockData);
 
     const { result } = renderHook(
       () => useGetAdvancedConfiguration(projectId, engine, serviceId),
@@ -50,15 +51,18 @@ describe('useGetAdvancedConfigurationCapabilities', () => {
     const projectId = 'projectId';
     const engine = database.EngineEnum.mysql;
     const serviceId = 'serviceId';
-    const mockCapabilities = [{ name: 'capability' }];
-    databaseAPI.getAdvancedConfigurationCapabilities.mockResolvedValue(
-      mockCapabilities,
-    );
+    const mockCapabilities: database.capabilities.advancedConfiguration.Property[] = [
+      {
+        name: 'capability',
+        type:
+          database.capabilities.advancedConfiguration.property.TypeEnum.string,
+        description: '',
+      },
+    ];
 
-    const queryClient = new QueryClient();
-    const wrapper = ({ children }) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    );
+    vi.mocked(
+      databaseAPI.getAdvancedConfigurationCapabilities,
+    ).mockResolvedValue(mockCapabilities);
 
     const { result } = renderHook(
       () =>
@@ -87,41 +91,30 @@ describe('useUpdateAdvancedConfiguration', () => {
     const mockAdvancedConfiguration = { key: 'value' };
     const onSuccess = vi.fn();
     const onError = vi.fn();
-    const mockMutationResponse = { updated: true };
-    databaseAPI.updateAdvancedConfiguration.mockResolvedValue(
-      mockMutationResponse,
-    );
-    const queryClient = new QueryClient();
-    const wrapper = ({ children }) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+
+    vi.mocked(databaseAPI.updateAdvancedConfiguration).mockResolvedValue(
+      mockAdvancedConfiguration,
     );
     const { result } = renderHook(
       () => useUpdateAdvancedConfiguration({ onError, onSuccess }),
       { wrapper },
     );
 
-    result.current.updateAdvancedConfiguration({
+    const updateProps = {
       projectId,
       engine,
       serviceId,
-      data: mockAdvancedConfiguration,
-    });
+      advancedConfiguration: mockAdvancedConfiguration,
+    };
+    result.current.updateAdvancedConfiguration(updateProps);
 
     await waitFor(() => {
-      expect(databaseAPI.updateAdvancedConfiguration).toHaveBeenCalledWith({
-        projectId,
-        engine,
-        serviceId,
-        data: mockAdvancedConfiguration,
-      });
+      expect(databaseAPI.updateAdvancedConfiguration).toHaveBeenCalledWith(
+        updateProps,
+      );
       expect(onSuccess).toHaveBeenCalledWith(
-        mockMutationResponse,
-        {
-          data: mockAdvancedConfiguration,
-          engine,
-          projectId,
-          serviceId,
-        },
+        mockAdvancedConfiguration,
+        updateProps,
         undefined,
       );
     });

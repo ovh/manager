@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   render,
   screen,
@@ -8,7 +7,7 @@ import {
 } from '@testing-library/react';
 import { vi } from 'vitest';
 import '@testing-library/jest-dom';
-import TagsInput from '../../components/tags-input';
+import TagsInput from '@/components/tags-input';
 
 describe('TagsInput component', () => {
   it('should render correctly with initial tags', () => {

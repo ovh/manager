@@ -5,7 +5,8 @@ import {
   cancelCurrentQuery,
   getQueryStatistics,
   resetQueryStatistics,
-} from '../../../api/databases/queries';
+} from '@/api/databases/queries';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -33,11 +34,11 @@ describe('query service functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getCurrentQueries({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/currentQueries',
+      '/cloud/project/projectId/database/mongodb/serviceId/currentQueries',
     );
   });
 
@@ -45,7 +46,7 @@ describe('query service functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await cancelCurrentQuery({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       pid: 123,
       terminate: true,
@@ -53,7 +54,7 @@ describe('query service functions', () => {
     expect(
       apiClient.v6.post,
     ).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/currentQueries/cancel',
+      '/cloud/project/projectId/database/mongodb/serviceId/currentQueries/cancel',
       { pid: 123, terminate: true },
     );
   });
@@ -62,11 +63,11 @@ describe('query service functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getQueryStatistics({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/queryStatistics',
+      '/cloud/project/projectId/database/mongodb/serviceId/queryStatistics',
     );
   });
 
@@ -74,11 +75,11 @@ describe('query service functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await resetQueryStatistics({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/queryStatistics/reset',
+      '/cloud/project/projectId/database/mongodb/serviceId/queryStatistics/reset',
     );
   });
 });

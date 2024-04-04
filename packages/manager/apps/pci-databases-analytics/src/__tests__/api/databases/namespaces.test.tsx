@@ -5,7 +5,8 @@ import {
   addNamespace,
   editNamespace,
   deleteNamespace,
-} from '../../../api/databases/namespaces';
+} from '@/api/databases/namespaces';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -41,11 +42,11 @@ describe('namespace service functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getNamespaces({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/namespace',
+      '/cloud/project/projectId/database/mongodb/serviceId/namespace',
       {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
@@ -60,17 +61,31 @@ describe('namespace service functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await addNamespace({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.m3db,
       serviceId: 'serviceId',
       namespace: {
         name: 'myNamespace',
+        resolution: '1h',
+        retention: {
+          periodDuration: '1D',
+        },
+        snapshotEnabled: false,
+        type: database.m3db.namespace.TypeEnum.unaggregated,
+        writesToCommitLogEnabled: false,
       },
     });
-    expect(
-      apiClient.v6.post,
-    ).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/namespace',
-      { name: 'myNamespace' },
+    expect(apiClient.v6.post).toHaveBeenCalledWith(
+      '/cloud/project/projectId/database/m3db/serviceId/namespace',
+      {
+        name: 'myNamespace',
+        resolution: '1h',
+        retention: {
+          periodDuration: '1D',
+        },
+        snapshotEnabled: false,
+        type: database.m3db.namespace.TypeEnum.unaggregated,
+        writesToCommitLogEnabled: false,
+      },
     );
   });
 
@@ -78,18 +93,28 @@ describe('namespace service functions', () => {
     expect(apiClient.v6.put).not.toHaveBeenCalled();
     await editNamespace({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       namespace: {
         id: 'namespaceId',
-        name: 'myNewNamespace',
+        resolution: '2D',
+        retention: {
+          periodDuration: '1D',
+        },
+        snapshotEnabled: false,
+        writesToCommitLogEnabled: false,
       },
     });
-    expect(
-      apiClient.v6.put,
-    ).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/namespace/namespaceId',
-      { name: 'myNewNamespace' },
+    expect(apiClient.v6.put).toHaveBeenCalledWith(
+      '/cloud/project/projectId/database/mongodb/serviceId/namespace/namespaceId',
+      {
+        resolution: '2D',
+        retention: {
+          periodDuration: '1D',
+        },
+        snapshotEnabled: false,
+        writesToCommitLogEnabled: false,
+      },
     );
   });
 
@@ -97,12 +122,12 @@ describe('namespace service functions', () => {
     expect(apiClient.v6.delete).not.toHaveBeenCalled();
     await deleteNamespace({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       namespaceId: 'namespaceId',
     });
     expect(apiClient.v6.delete).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/namespace/namespaceId',
+      '/cloud/project/projectId/database/mongodb/serviceId/namespace/namespaceId',
     );
   });
 });

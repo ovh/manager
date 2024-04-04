@@ -1,6 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
-import { getCertificate } from '../../../api/databases/certificates';
+import { getCertificate } from '@/api/databases/certificates';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -24,11 +25,11 @@ describe('certificate service function', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getCertificate({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/certificates',
+      '/cloud/project/projectId/database/mongodb/serviceId/certificates',
     );
   });
 });

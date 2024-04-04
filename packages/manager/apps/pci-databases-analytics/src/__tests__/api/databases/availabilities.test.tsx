@@ -6,7 +6,8 @@ import {
   getCapabilities,
   getEnginesCapabilities,
   getRegionsCapabilities,
-} from '../../../api/databases/availabilities';
+} from '@/api/databases/availabilities';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -55,7 +56,10 @@ describe('database api functions', () => {
   });
   it('should call getAvailabilities with one status', async () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
-    await getAvailabilities({ projectId: 'projectId', status: ['STABLE'] });
+    await getAvailabilities({
+      projectId: 'projectId',
+      status: [database.availability.StatusEnum.STABLE],
+    });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/database/availability',
       {
@@ -72,8 +76,8 @@ describe('database api functions', () => {
     await getAvailabilities({
       projectId: 'projectId',
       serviceId: '1234',
-      action: 'update',
-      target: 'plan',
+      action: database.availability.ActionEnum.update,
+      target: database.availability.TargetEnum.plan,
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/database/availability?clusterId=1234&action=update&target=plan',

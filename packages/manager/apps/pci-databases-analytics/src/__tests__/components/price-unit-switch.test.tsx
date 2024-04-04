@@ -1,12 +1,11 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import * as React from 'react';
 import { vi } from 'vitest';
 import '@testing-library/jest-dom/vitest';
-import PriceUnitSwitch from '../../components/price-unit-switch';
+import PriceUnitSwitch from '@/components/price-unit-switch';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (key) => key,
+    t: (key: string) => key,
   }),
 }));
 

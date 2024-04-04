@@ -114,10 +114,7 @@ export const getRoles = async ({
   return apiClient.v6.get(url).then((res) => res.data as string[]);
 };
 
-export type UserEdition = Omit<
-  GenericUser,
-  'createdAt' | 'status' | 'username'
->;
+export type UserEdition = Omit<GenericUser, 'createdAt' | 'status'>;
 
 export interface EditUserProps extends ServiceData {
   user: UserEdition;

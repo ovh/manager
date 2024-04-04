@@ -1,6 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
-import { getMetrics, getMetric } from '../../../api/databases/metrics';
+import { getMetrics, getMetric } from '@/api/databases/metrics';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -24,11 +25,11 @@ describe('metrics service functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getMetrics({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/metric?extended=false',
+      '/cloud/project/projectId/database/mongodb/serviceId/metric?extended=false',
     );
   });
 
@@ -36,13 +37,13 @@ describe('metrics service functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getMetric({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       metric: 'metricName',
-      period: 'hour', // provide a valid period value
+      period: database.service.MetricPeriodEnum.lastHour,
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/metric/metricName?period=hour',
+      '/cloud/project/projectId/database/mongodb/serviceId/metric/metricName?period=lastHour',
     );
   });
 });

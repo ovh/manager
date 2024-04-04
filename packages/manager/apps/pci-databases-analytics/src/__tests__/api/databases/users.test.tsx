@@ -7,7 +7,8 @@ import {
   resetUserPassword,
   getRoles,
   editUser,
-} from '../../../api/databases/users';
+} from '@/api/databases/users';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -48,7 +49,7 @@ describe('user management functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getUsers({
       projectId: 'projectId',
-      engine: 'mongodb',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
@@ -67,11 +68,11 @@ describe('user management functions', () => {
     await expect(async () =>
       getUsers({
         projectId: 'projectId',
-        engine: 'engine',
+        engine: database.EngineEnum.grafana,
         serviceId: 'serviceId',
       }),
     ).rejects.toThrowError(
-      'The engine engine does not implement the resource /cloud/project/projectId/database/engine/serviceId/user',
+      'The engine grafana does not implement the resource /cloud/project/projectId/database/grafana/serviceId/user',
     );
   });
 
@@ -79,14 +80,14 @@ describe('user management functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await addUser({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       user: {
         name: 'newUser',
       },
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/user',
+      '/cloud/project/projectId/database/mongodb/serviceId/user',
       {
         name: 'newUser',
       },
@@ -97,12 +98,12 @@ describe('user management functions', () => {
     expect(apiClient.v6.delete).not.toHaveBeenCalled();
     await deleteUser({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       userId: 'userId',
     });
     expect(apiClient.v6.delete).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/user/userId',
+      '/cloud/project/projectId/database/mongodb/serviceId/user/userId',
     );
   });
 
@@ -110,12 +111,12 @@ describe('user management functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await resetUserPassword({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       userId: 'userId',
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/user/userId/credentials/reset',
+      '/cloud/project/projectId/database/mongodb/serviceId/user/userId/credentials/reset',
     );
   });
 
@@ -123,11 +124,11 @@ describe('user management functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getRoles({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.postgresql,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/roles',
+      '/cloud/project/projectId/database/postgresql/serviceId/roles',
     );
   });
 
@@ -135,7 +136,7 @@ describe('user management functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getRoles({
       projectId: 'projectId',
-      engine: 'mongodb',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
@@ -150,27 +151,27 @@ describe('user management functions', () => {
     ];
     const usersMysql = await getUsers({
       projectId: 'projectId',
-      engine: 'mysql',
+      engine: database.EngineEnum.mysql,
       serviceId: 'serviceId',
     });
     const usersMongodb = await getUsers({
       projectId: 'projectId',
-      engine: 'mongodb',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     const usersRedis = await getUsers({
       projectId: 'projectId',
-      engine: 'redis',
+      engine: database.EngineEnum.redis,
       serviceId: 'serviceId',
     });
     const usersOpenSearch = await getUsers({
       projectId: 'projectId',
-      engine: 'opensearch',
+      engine: database.EngineEnum.opensearch,
       serviceId: 'serviceId',
     });
     const usersM3 = await getUsers({
       projectId: 'projectId',
-      engine: 'm3db',
+      engine: database.EngineEnum.m3db,
       serviceId: 'serviceId',
     });
 
@@ -185,17 +186,17 @@ describe('user management functions', () => {
     expect(apiClient.v6.put).not.toHaveBeenCalled();
     await editUser({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       user: {
         id: 'userId',
-        name: 'newName',
+        username: 'newName',
       },
     });
     expect(apiClient.v6.put).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/user/userId',
+      '/cloud/project/projectId/database/mongodb/serviceId/user/userId',
       {
-        name: 'newName',
+        username: 'newName',
       },
     );
   });

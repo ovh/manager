@@ -1,6 +1,6 @@
 import { describe, expect, vi } from 'vitest';
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { networkApi } from '../../api/network';
+import { networkApi } from '@/api/network';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {

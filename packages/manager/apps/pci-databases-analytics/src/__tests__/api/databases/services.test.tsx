@@ -6,7 +6,8 @@ import {
   addService,
   updateService,
   deleteService,
-} from '../../../api/databases/service';
+} from '@/api/databases/service';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -68,15 +69,21 @@ describe('database service functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await addService({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceInfo: {
         description: 'newService',
+        ipRestrictions: [],
+        plan: 'business',
+        version: '1.0',
       },
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine',
+      '/cloud/project/projectId/database/mongodb',
       {
         description: 'newService',
+        ipRestrictions: [],
+        plan: 'business',
+        version: '1.0',
       },
     );
   });
@@ -85,14 +92,14 @@ describe('database service functions', () => {
     expect(apiClient.v6.put).not.toHaveBeenCalled();
     await updateService({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       data: {
         description: 'newServiceName',
       },
     });
     expect(apiClient.v6.put).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId',
+      '/cloud/project/projectId/database/mongodb/serviceId',
       {
         description: 'newServiceName',
       },
@@ -103,11 +110,11 @@ describe('database service functions', () => {
     expect(apiClient.v6.delete).not.toHaveBeenCalled();
     await deleteService({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.delete).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId',
+      '/cloud/project/projectId/database/mongodb/serviceId',
     );
   });
 });

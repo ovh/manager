@@ -1,9 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
-import {
-  getServiceBackups,
-  restoreBackup,
-} from '../../../api/databases/backups';
+import { getServiceBackups, restoreBackup } from '@/api/databases/backups';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -31,11 +29,11 @@ describe('backup service functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getServiceBackups({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/backup',
+      '/cloud/project/projectId/database/mongodb/serviceId/backup',
       {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
@@ -50,12 +48,12 @@ describe('backup service functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await restoreBackup({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       backupId: 'backupId',
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/backup/backupId/restore',
+      '/cloud/project/projectId/database/mongodb/serviceId/backup/backupId/restore',
     );
   });
 
@@ -63,15 +61,15 @@ describe('backup service functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await restoreBackup({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
-      restore: { someData: 'someValue' },
+      restore: { pointInTime: '123' },
     });
     expect(
       apiClient.v6.post,
     ).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/restore',
-      { someData: 'someValue' },
+      '/cloud/project/projectId/database/mongodb/serviceId/restore',
+      { pointInTime: '123' },
     );
   });
 });

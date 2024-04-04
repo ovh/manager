@@ -4,7 +4,8 @@ import {
   getAdvancedConfiguration,
   getAdvancedConfigurationCapabilities,
   updateAdvancedConfiguration,
-} from '../../../api/databases/advancedConfiguration';
+} from '@/api/databases/advancedConfiguration';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -25,7 +26,7 @@ vi.mock('@ovh-ux/manager-core-api', () => {
 
 const data = {
   projectId: 'projectId',
-  engine: 'engine',
+  engine: database.EngineEnum.mongodb,
   serviceId: 'serviceId',
 };
 

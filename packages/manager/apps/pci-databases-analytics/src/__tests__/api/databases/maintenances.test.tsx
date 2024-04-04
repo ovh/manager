@@ -3,7 +3,8 @@ import { describe, expect, vi } from 'vitest';
 import {
   getMaintenances,
   applyMaintenance,
-} from '../../../api/databases/maintenances';
+} from '@/api/databases/maintenances';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -31,11 +32,11 @@ describe('maintenance service functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getMaintenances({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/maintenance',
+      '/cloud/project/projectId/database/mongodb/serviceId/maintenance',
       {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
@@ -50,12 +51,12 @@ describe('maintenance service functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await applyMaintenance({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       maintenanceId: 'maintenanceId',
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/maintenance/maintenanceId/apply',
+      '/cloud/project/projectId/database/mongodb/serviceId/maintenance/maintenanceId/apply',
     );
   });
 });

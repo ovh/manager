@@ -6,11 +6,10 @@ import {
   waitFor,
 } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
-import * as React from 'react';
 import { vi } from 'vitest';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { A, Link, OvhLink, NavLink } from '../../components/links';
-import * as useLoadingIndicator from '../../contexts/loadingIndicatorContext';
+import { A, Link, OvhLink, NavLink } from '@/components/links';
+import * as useLoadingIndicator from '@/contexts/loadingIndicatorContext';
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   useNavigation: () => ({

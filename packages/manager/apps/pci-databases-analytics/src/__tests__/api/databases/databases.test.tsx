@@ -4,7 +4,8 @@ import {
   getServiceDatabases,
   addDatabase,
   deleteDatabase,
-} from '../../../api/databases/databases';
+} from '@/api/databases/databases';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -36,11 +37,11 @@ describe('database service functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getServiceDatabases({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/database',
+      '/cloud/project/projectId/database/mongodb/serviceId/database',
       {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
@@ -55,12 +56,12 @@ describe('database service functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await addDatabase({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       name: 'newDatabaseName',
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/database',
+      '/cloud/project/projectId/database/mongodb/serviceId/database',
       {
         name: 'newDatabaseName',
       },
@@ -71,12 +72,12 @@ describe('database service functions', () => {
     expect(apiClient.v6.delete).not.toHaveBeenCalled();
     await deleteDatabase({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       databaseId: 'databaseId',
     });
     expect(apiClient.v6.delete).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/database/databaseId',
+      '/cloud/project/projectId/database/mongodb/serviceId/database/databaseId',
     );
   });
 });

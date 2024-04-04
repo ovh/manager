@@ -5,7 +5,8 @@ import {
   getServiceCapabilitiesIntegrations,
   addIntegration,
   deleteIntegration,
-} from '../../../api/databases/integrations';
+} from '@/api/databases/integrations';
+import { database } from '@/models/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -37,11 +38,11 @@ describe('integration service functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getServiceIntegrations({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/integration',
+      '/cloud/project/projectId/database/mongodb/serviceId/integration',
       {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
@@ -56,11 +57,11 @@ describe('integration service functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getServiceCapabilitiesIntegrations({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/capabilities/integration',
+      '/cloud/project/projectId/database/mongodb/serviceId/capabilities/integration',
       {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
@@ -75,17 +76,21 @@ describe('integration service functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await addIntegration({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       integration: {
-        type: 'mockIntegration',
+        type: database.service.integration.TypeEnum.kafkaConnect,
+        destinationServiceId: '123',
+        sourceServiceId: '456',
       },
     });
-    expect(
-      apiClient.v6.post,
-    ).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/integration',
-      { type: 'mockIntegration' },
+    expect(apiClient.v6.post).toHaveBeenCalledWith(
+      '/cloud/project/projectId/database/mongodb/serviceId/integration',
+      {
+        type: database.service.integration.TypeEnum.kafkaConnect,
+        destinationServiceId: '123',
+        sourceServiceId: '456',
+      },
     );
   });
 
@@ -93,12 +98,12 @@ describe('integration service functions', () => {
     expect(apiClient.v6.delete).not.toHaveBeenCalled();
     await deleteIntegration({
       projectId: 'projectId',
-      engine: 'engine',
+      engine: database.EngineEnum.mongodb,
       serviceId: 'serviceId',
       integrationId: 'integrationId',
     });
     expect(apiClient.v6.delete).toHaveBeenCalledWith(
-      '/cloud/project/projectId/database/engine/serviceId/integration/integrationId',
+      '/cloud/project/projectId/database/mongodb/serviceId/integration/integrationId',
     );
   });
 });
