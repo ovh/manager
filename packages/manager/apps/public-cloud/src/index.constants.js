@@ -324,6 +324,56 @@ export const LINKS = [
   {
     public: {
       application,
+      path: '/create-opensearch-data-analysis',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/storages/databases-analytics/data-analysis/new?e=opensearch`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-grafana-data-analysis',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/storages/databases-analytics/data-analysis/new?e=grafana`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-kafka-data-analysis',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/storages/databases-analytics/data-analysis/new?e=kafka`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-kafka-connect-data-analysis',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/storages/databases-analytics/data-analysis/new?e=kafkaConnect`,
+    },
+  },
+  {
+    public: {
+      application,
+      path: '/create-kafka-mirror-maker-data-analysis',
+    },
+    redirect: {
+      application,
+      path: `${redirectBasePath}/storages/databases-analytics/data-analysis/new?e=kafkaMirrorMaker`,
+    },
+  },
+  {
+    public: {
+      application,
       path: '/create-logs-data-platform',
     },
     redirect: {

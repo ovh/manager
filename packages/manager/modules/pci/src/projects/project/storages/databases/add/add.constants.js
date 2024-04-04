@@ -40,13 +40,18 @@ export const PRIVATE_NETWORK_GUIDE = {
 };
 
 export const DATABASE_ENGINES = [
+  'cassandra',
+  'grafana',
+  'kafka',
+  'kafkaConnect',
+  'kafkaMirrorMaker',
+  'm3aggregator',
+  'm3db',
   'mongodb',
   'mysql',
+  'opensearch',
   'postgresql',
   'redis',
-  'cassandra',
-  'm3db',
-  'm3aggregator',
 ];
 
 export const URL_MODEL = {
