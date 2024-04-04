@@ -9,7 +9,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Translation } from 'react-i18next';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovhcloud/manager-components';
 import { useRegeneratePassword } from '@/api/hooks/useUser';
@@ -27,34 +27,45 @@ export default function RegeneratePasswordAction({ user }: { user: User }) {
     userId: `${user.id}`,
     onError: (err: Error) => {
       addError(
-        <>
-          {t('pci_projects_project_users_password_message_error', {
-            user: user.username,
-            message: err?.message,
-          })}
-        </>,
+        <Translation ns="common">
+          {(tr) =>
+            tr('pci_projects_project_users_password_message_error', {
+              user: user.username,
+              message: err?.message,
+            })
+          }
+        </Translation>,
         true,
       );
     },
     onSuccess: (updatedUser: User) => {
       addInfo(
-        <span
-          dangerouslySetInnerHTML={{
-            __html: t('pci_projects_project_users_password_message_infos', {
-              user: updatedUser.username,
-              password: updatedUser.password,
-              interpolation: { escapeValue: false },
-            }),
-          }}
-        ></span>,
+        <Translation ns="common">
+          {(tr) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: tr(
+                  'pci_projects_project_users_password_message_infos',
+                  {
+                    user: updatedUser.username,
+                    password: updatedUser.password,
+                    interpolation: { escapeValue: false },
+                  },
+                ),
+              }}
+            ></span>
+          )}
+        </Translation>,
         true,
       );
       addSuccess(
-        <>
-          {t('pci_projects_project_users_password_message_success', {
-            user: updatedUser.username,
-          })}
-        </>,
+        <Translation ns="common">
+          {(tr) =>
+            tr('pci_projects_project_users_password_message_success', {
+              user: updatedUser.username,
+            })
+          }
+        </Translation>,
         true,
       );
       navigate('.');
