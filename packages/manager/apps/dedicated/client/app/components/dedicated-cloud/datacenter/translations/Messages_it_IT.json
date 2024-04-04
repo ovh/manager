@@ -8,6 +8,5 @@
   "dedicatedCloud_tab_drp": "Disaster Recovery Plan (DRP)",
   "dedicatedCloud_datacenter_EOL_title": "Data di fine del ciclo di vita del Dedicated Cloud: 30 settembre 2022",
   "dedicatedCloud_datacenter_EOL_part_1": "Nell'ottobre 2021 abbiamo annunciato che la nostra soluzione Dedicated Cloud è ormai giunta alla fine del proprio ciclo di vita e sarà definitivamente disattivata il 30 settembre 2022. Questo è uno step importante per le piattaforme VMware e consentirà di migliorare la qualità del servizio, le performance e la sicurezza dei cluster. L’hardware utilizzato per le soluzioni \"Dedicated Cloud\", infatti, è anteriore al 2018 e non ci permette più di garantire il miglior livello di servizio e l'integrazione con le nuove architetture di VMware.",
-  "dedicatedCloud_datacenter_EOL_part_2": "In seguito alle nostre comunicazioni molti utenti hanno iniziato a pianificare la migrazione. Ti consigliamo di programmare l’operazione con anticipo ed evitare così la data limite del 30 settembre 2022.",
-  "dedicatedCloud_datacenter_resize": "Ridimensionare"
+  "dedicatedCloud_datacenter_EOL_part_2": "In seguito alle nostre comunicazioni molti utenti hanno iniziato a pianificare la migrazione. Ti consigliamo di programmare l’operazione con anticipo ed evitare così la data limite del 30 settembre 2022."
 }

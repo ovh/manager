@@ -20,7 +20,6 @@ export default {
     productId: '<',
     serviceName: '<',
     setMessage: '<',
-    goToResizeNsxEdge: '<',
   },
   controller,
   template,
