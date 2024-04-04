@@ -4,7 +4,8 @@
   "private": true,
   "description": "Manager documentation deployed with GitHub Pages",
   "scripts": {
-    "docs:build": "node cli/prebuild.js && vitepress build --base /manager/",
+    "docs:build": "yarn docs:build:manager-components && node cli/prebuild.js &&  vitepress build --base /manager/",
+    "docs:build:manager-components": "cd ../packages/manager-components && yarn build && rm -rf ../../docs/docs/public/storybook-static && mkdir -p ../../docs/docs/public/storybook-static && cp -r ./storybook-static/* ../../docs/docs/public/storybook-static",
     "docs:deploy": "yarn run docs:build && gh-pages -d .vitepress/dist -m \"docs: update documentation [skip ci]\"",
     "docs:dev": "node cli/prebuild.js && vitepress dev",
     "docs:preview": "vitepress preview"

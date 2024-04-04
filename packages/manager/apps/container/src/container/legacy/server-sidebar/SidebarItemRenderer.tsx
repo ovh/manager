@@ -8,18 +8,20 @@ import {
   OsdsLink,
   OsdsText,
   OsdsIcon,
-} from '@ovhcloud/ods-stencil/components/react';
+} from '@ovhcloud/ods-components/react';
+
 import {
-  OdsSpinnerSize,
-  OdsIconName,
+  ODS_ICON_SIZE,
+  ODS_ICON_NAME,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
+import {
   OdsHTMLAnchorElementTarget,
   OdsHTMLAnchorElementRel,
-  OdsTextLevel,
-  OdsIconSize,
-  OdsTextSize,
-} from '@ovhcloud/ods-core';
-
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+} from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 function ServerSidebarSearchField({
   item,
@@ -65,10 +67,7 @@ export default function ServerSidebarItemRenderer({
   const [isClicked, setIsClicked] = useState(false);
   let itemRender = null;
 
-  let linkColor = OdsThemeColorIntent.text;
-  if (item.isSelected) {
-    linkColor = OdsThemeColorIntent.primary;
-  }
+  let linkColor = item.isSelected ? ODS_THEME_COLOR_INTENT.primary : ODS_THEME_COLOR_INTENT.text
 
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -81,54 +80,66 @@ export default function ServerSidebarItemRenderer({
   } else if (item.isNoResultField) {
     itemRender = <div>{t('sidebar_no_result')}</div>;
   } else if (hasToggle) {
-
-    const chevron = item.isOpen ? OdsIconName.CHEVRON_DOWN : OdsIconName.CHEVRON_RIGHT;
+    const chevron = item.isOpen
+      ? ODS_ICON_NAME.CHEVRON_DOWN
+      : ODS_ICON_NAME.CHEVRON_RIGHT;
     let iconOrSpinner;
 
     if (item.loadingError) {
       iconOrSpinner = (
         <OsdsIcon
-          name={OdsIconName.ERROR_CIRCLE}
-          size={OdsIconSize.sm}
-          color={OdsThemeColorIntent.text}
+          name={ODS_ICON_NAME.ERROR_CIRCLE}
+          size={ODS_ICON_SIZE.sm}
+          color={ODS_THEME_COLOR_INTENT.text}
         />
-
       );
     } else if (item.isLoading) {
-      iconOrSpinner = <OsdsSpinner size={OdsSpinnerSize.sm} />;
+      iconOrSpinner = <OsdsSpinner size={ODS_SPINNER_SIZE.sm} inline />;
     } else {
       iconOrSpinner = (
         <OsdsIcon
           name={chevron}
-          size={OdsIconSize.xs}
-          color={OdsThemeColorIntent.text}
-          className={style.spinnerLoadingItem}
+          size={ODS_ICON_SIZE.xs}
+          color={ODS_THEME_COLOR_INTENT.text}
+          className="align-middle"
         />
       );
     }
 
     itemRender = (
-      <button className={style.transparentButton} onClick={handleClick}>
+      <button
+        className={`bg-transparent border-none p-0 m-0 cursor-pointer w-full text-left`}
+        onClick={handleClick}
+      >
         <span className={style.itemLineAlign}>
           {iconOrSpinner}
-          <span className={style.iconPadding} aria-hidden="true">
+          <span className="pl-2 align-middle" aria-hidden="true">
             {item.icon}
-            <span className={style.textPadding}>{item.depth === 0 ? (
+            <span className="pl-2">{item.depth === 0 ? (
               <OsdsText
-                level={OdsTextLevel.heading}
-                color={OdsThemeColorIntent.text}
-                size={OdsTextSize._200}
+                level={ODS_TEXT_LEVEL.heading}
+                color={ODS_THEME_COLOR_INTENT.text}
+                size={ODS_TEXT_SIZE._200}
               >
                 {item.label}
               </OsdsText>
             ) : (
-              <OsdsText
-                level={OdsTextLevel.button}
-                color={OdsThemeColorIntent.text}
-                size={OdsTextSize._300}
-              >
-                {item.label}
-              </OsdsText>
+              <>
+                <OsdsText
+                  level={ODS_TEXT_LEVEL.button}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  size={ODS_TEXT_SIZE._300}
+                >
+                  {item.label}
+                </OsdsText>
+                {item?.badge && (
+                  <span
+                    className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </>
             )}</span>
           </span>
         </span>
@@ -137,14 +148,16 @@ export default function ServerSidebarItemRenderer({
   } else {
     const additionalLinkProps = item.isExternal
       ? {
-        target: OdsHTMLAnchorElementTarget._blank,
-        rel: OdsHTMLAnchorElementRel.noopener,
-      }
+          target: OdsHTMLAnchorElementTarget._blank,
+          rel: OdsHTMLAnchorElementRel.noopener,
+        }
       : {};
     itemRender = (
-
-      <span className={style.itemLink}>
-        <span className={style.menuItemIcon} aria-hidden="true">
+      <span className="flex items-center pl-8">
+        <span
+          className=" pl-1 block float-left pl-15 h-menu-row-height leading-menu-row-height text-center pr-2"
+          aria-hidden="true"
+        >
           {item.icon}
         </span>
         <OsdsLink
@@ -156,34 +169,46 @@ export default function ServerSidebarItemRenderer({
             setIsResponsiveSidebarMenuOpen(false);
             handleClick();
           }}
-          className={style.link}
+          className="flex items-center whitespace-nowrap"
         >
-          {item.depth === 0 ? <OsdsText
-            level={OdsTextLevel.heading}
-            color={OdsThemeColorIntent.text}
-            size={OdsTextSize._200}
-          >
-            <span>{item.label}</span>
-          </OsdsText> : <span className={item.isSelected ? style.linkTextSelected : style.linkText}>{item.label}</span>}
-          {item?.badge && (
-            <span
-              className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+          {item.depth === 0 ? (
+            <OsdsText
+              level={ODS_TEXT_LEVEL.heading}
+              color={ODS_THEME_COLOR_INTENT.text}
+              size={ODS_TEXT_SIZE._200}
             >
+              <span>{item.label}</span>
+            </OsdsText>
+          ) : (
+            <span className={item.isSelected ? 'font-bold' : 'font-normal'}>
+              {item.label}
+            </span>
+          )}
+          {item?.badge && (
+            <span className={`oui-badge oui-badge_s oui-badge_${item.badge}`}>
               {item.badge}
             </span>
           )}
         </OsdsLink>
-
       </span>
     );
   }
   return (
-    <div className={`${style.menuItem} ${item.depth > 0 ? 'pl-2' : ''} ${item.isOpen ? style.sticky : style.noSticky}`}>
-      <div className={item.depth > 0 ? style.menuItemBorder : ''}>
+    <div
+      className={`leading-menu-row-height ${item.depth > 0 ? 'pl-2' : ''} ${
+        item.isOpen ? 'h-menu-row-height bg-white relative' : 'relative'
+      }`}
+    >
+      <div
+        className={
+          item.depth > 0 ? 'border-l-3 border-blue-600 box-border' : ''
+        }
+      >
         <div
           className={item.isSelected ? style.menuItemSelected : ''}
           style={{
-            paddingLeft: `${item.depth * 1.5 - (item.depth === 1 ? 0.5 : 0)}rem`,
+            paddingLeft: `${item.depth * 1.5 -
+              (item.depth === 1 ? 0.5 : 0)}rem`,
           }}
         >
           {itemRender}

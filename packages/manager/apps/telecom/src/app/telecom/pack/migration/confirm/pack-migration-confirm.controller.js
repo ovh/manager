@@ -182,6 +182,9 @@ export default class TelecomPackMigrationConfirmCtrl {
   }
 
   getMeeting() {
+    if (!this.process.selectedOffer.meetingSlots?.slot) {
+      return '';
+    }
     const { startDate, endDate } = this.process.selectedOffer.meetingSlots.slot;
     const day = moment(startDate).format('DD/MM/YYYY');
     const start = moment(startDate).format('HH:mm');

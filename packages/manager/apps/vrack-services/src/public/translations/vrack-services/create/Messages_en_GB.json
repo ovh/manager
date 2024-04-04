@@ -1,0 +1,17 @@
+{
+  "crumb": "vRack Services",
+  "title": "Enable vRack Services",
+  "displayNameLabel": "Name (optional)",
+  "displayNamePlaceholder": "My vRack Services",
+  "regionLabel": "Region",
+  "regionDescription": "vRack Services is a regional service. You must therefore choose in which region you intend to use it. To benefit from the Endpoint Service, you must select the region corresponding to your OVHcloud managed service.",
+  "createButtonLabel": "Enable vRack Services",
+  "creationServiceError": "An error has occurred enabling vRack Services: {{error}}",
+  "modalHeadline": "Create a vRack",
+  "modalDescriptionLine1": "To enable vRack Services, you need to create a vRack.",
+  "modalDescriptionLine2": "Do you want to order a vRack when you enable vRack Services?",
+  "modalDescriptionLine3": "vRack price: €0",
+  "modalCancelButtonLabel": "Cancel",
+  "modalConfirmVrackButtonLabel": "Order my vRack",
+  "modalNoVrackButtonLabel": "No thanks, I already have a vRack"
+}

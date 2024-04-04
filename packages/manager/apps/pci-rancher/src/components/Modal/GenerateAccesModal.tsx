@@ -1,11 +1,14 @@
 import {
   ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsClipboard,
+  OsdsIcon,
   OsdsPassword,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
@@ -72,11 +75,23 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
             <span slot="success-message">{t('copy')}</span>
             <span slot="error-message">{t('error')}</span>
           </OsdsClipboard>
-          <OsdsPassword
-            aria-label="password"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            value={accessDetail.password}
-          />
+          <div className="flex items-center justify-center">
+            <OsdsPassword
+              className="w-full"
+              aria-label="password"
+              color={ODS_THEME_COLOR_INTENT.primary}
+              value={accessDetail.password}
+            />
+            <OsdsIcon
+              className="cursor-pointer"
+              onClick={() =>
+                navigator.clipboard.writeText(accessDetail.password)
+              }
+              size={ODS_ICON_SIZE.sm}
+              name={ODS_ICON_NAME.COPY}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            />
+          </div>
         </div>
       )}
       <OsdsButton
