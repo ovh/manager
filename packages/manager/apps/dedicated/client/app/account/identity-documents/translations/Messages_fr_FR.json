@@ -2,11 +2,9 @@
   "user_account_identity_documents": "Mes documents d'identité",
   "user_account_identity_documents_title": "Vérification des documents nécessaire",
   "user_account_identity_documents_sub_title": "Déposez vos documents",
-  "user_account_identity_documents_intro": "Vous avez créé votre compte et vous souhaitez faire une commande depuis notre site Indien. La règlementation en vigueur nécessite une vérification de votre identité avant toute commande.",
-  "user_account_identity_documents_intro_alternative": "Vous avez créé un compte. Pour réaliser une commande sur notre site internet, des vérifications sont nécessaires en conformité avec la législation indienne.",
+  "user_account_identity_documents_intro": "Vous avez créé un compte. Pour réaliser une commande sur notre site internet, des vérifications sont nécessaires en conformité avec la législation indienne.",
   "user_account_identity_documents_upload": "Téléchargez vos documents",
-  "user_account_identity_documents_intro_for_others": "Si vous êtes particulier, les preuves d'identité et d'adresse ci-dessous sont suffisants. Dans ce cas, il n'est pas nécessaire de fournir l'attestation sur l'honneur ni la preuve de TVA.",
-  "user_account_identity_documents_description": "Les documents seront conservés durant 5 ans après la fin du contrat.",
+  "user_account_identity_documents_intro_others": "Si vous êtes particulier, les preuves d'identité et d'adresse ci-dessous sont suffisants. Dans ce cas, il n'est pas nécessaire de fournir l'attestation sur l'honneur ni la preuve de TVA.",
   "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png. La taille maximale du fichier pour chaque document est de 10 Mo.",
   "user_account_identity_documents_selection_file_format_invalid": "Format de fichier non pris en charge. Veuillez utiliser l'un des formats acceptés : jpg, jpeg, pdf et png",
   "user_account_identity_documents_submit": "Envoyer mes documents",
@@ -16,6 +14,7 @@
   "user_account_identity_documents_go_back_to_dashboard": "Voir mon tableau de bord",
   "user_account_identity_documents_legal_info1": "OVH S.A.S est le responsable du traitement de vos données personnelles. Les données collectées via ce formulaire sont traitées afin de se conformer aux <a href=\"{{ link1 }}\" target=\"_blank\">Directives de cybersécurité du 28.04.2022</a> publiées par le CERT-IN en vertu des dispositions de la sous-section (6) de <a href=\"{{ link2 }}\" target=\"_blank\">l'article 70B</a> de l’Information Technology (IT) Act, 2000.",
   "user_account_identity_documents_legal_info2": "Pour en savoir plus sur le traitement de vos données personnelles et connaître vos droits, vous pouvez consulter notre <a href=\"{{ link }}\" target=\"_blank\">Politique d’utilisation des données à caractère personnel.</a>",
+  "user_account_identity_documents_legal_info3": "Les documents seront conservés durant 5 ans après la fin du contrat.",
   "user_account_identity_documents_verification_in_progress_info": "Le traitement de vos documents est actuellement en cours d'analyse par notre équipe.",
   "user_account_identity_documents_verification_waiting_info": "Votre demande a été analysée mais nécessite des documents complémentaires. Veuillez consulter votre ticket de support."
 }
