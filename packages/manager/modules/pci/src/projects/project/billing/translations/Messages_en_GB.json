@@ -45,5 +45,6 @@
   "cpbc_billing_control_consumption_family_octavia-loadbalancer": "Load Balancer",
   "cpbc_billing_control_consumption_error_forbidden": "You do not have enough permissions to view this billing data. Please contact the service owner.",
   "cpbc_billing_control_consumption_unit_price_h/node": "{{price}}/node/hour",
-  "cpbc_billing_control_consumption_quantity_h/node": "x {{quantity}} hour(s)"
+  "cpbc_billing_control_consumption_quantity_h/node": "x {{quantity}} hour(s)",
+  "cpbc_billing_control_consumption_family_publicip": "Public IP"
 }
