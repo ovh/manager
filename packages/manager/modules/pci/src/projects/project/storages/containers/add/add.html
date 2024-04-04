@@ -211,7 +211,7 @@
         data-ng-if="!$ctrl.archive && $ctrl.encryptionAvailable && $ctrl.isRightOffer()"
         data-header="{{:: 'pci_projects_project_storages_containers_data_encryption_title' | translate }}"
         data-editable="!$ctrl.isLoading"
-        name="storage_container_data_encryption"
+        data-name="storage_container_data_encryption"
     >
         <pci-project-storages-data-encryption
             data-encryption="$ctrl.container.encryption"

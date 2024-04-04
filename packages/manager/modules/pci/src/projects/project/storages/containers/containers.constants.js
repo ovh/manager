@@ -173,7 +173,8 @@ export const TRACKING = {
   STORAGE_ENCRYPTION: {
     [NO_ENCRYPTION_VALUE]: `${trackingStorageEncryption}no_encrypt`,
     [encryptionAlgorithmSseS3]: `${trackingStorageEncryption}sse-s3`,
-    [`TOOLTIP_${encryptionAlgorithmSseS3}`]: `${trackingStorageEncryption}tooltip_sse-s3`,
+    [`TOOLTIP_FUNNEL_${encryptionAlgorithmSseS3}`]: `${trackingStorageEncryption}tooltip_sse-s3`,
+    [`TOOLTIP_${encryptionAlgorithmSseS3}`]: 'PublicCloud::storages::objects_storage_container::page::tooltip_encrypted_omk_sse-s3',
   },
 };
 
