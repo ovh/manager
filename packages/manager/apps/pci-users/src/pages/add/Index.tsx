@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Translation } from 'react-i18next';
 import { useNotifications } from '@ovhcloud/manager-components';
 import { useEffect, useState } from 'react';
 import {
@@ -33,33 +33,40 @@ export default function AddUserPage(): JSX.Element {
   const { projectId } = useParams();
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
-  const { t: tNotifs } = useTranslation('notifications');
   const { t: tCommon } = useTranslation('common');
   const { create } = useCreateUser({
     projectId,
     onSuccess: (user: User) => {
       addSuccess(
-        <span
-          dangerouslySetInnerHTML={{
-            __html: tNotifs('pci_projects_project_users_add_success_message', {
-              username: user.username,
-              password: user.password,
-              escapeInterpolation: true,
-            }),
-          }}
-        />,
+        <Translation ns="notifications">
+          {(t) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t('pci_projects_project_users_add_success_message', {
+                  username: user.username,
+                  password: user.password,
+                  escapeInterpolation: true,
+                }),
+              }}
+            />
+          )}
+        </Translation>,
         true,
       );
     },
     onError: (error) => {
       addError(
-        <span
-          dangerouslySetInnerHTML={{
-            __html: tNotifs('pci_projects_project_users_add_error_save', {
-              message: error?.message,
-            }),
-          }}
-        />,
+        <Translation ns="notifications">
+          {(t) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t('pci_projects_project_users_add_error_save', {
+                  message: error?.message,
+                }),
+              }}
+            />
+          )}
+        </Translation>,
         true,
       );
     },
