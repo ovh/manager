@@ -31,6 +31,7 @@ import {
   X_CONTAINER_HEADERS_REGEX,
   X_CONTAINER_READ,
   X_CONTAINER_READ_PUBLIC_VALUE,
+  X_AMZ_STORAGE_CLASS,
 } from './containers.constants';
 
 export default class PciStoragesContainersService {
@@ -502,6 +503,7 @@ export default class PciStoragesContainersService {
     prefix,
     files,
     s3StorageType,
+    storageClass,
   ) {
     return this.$q.all(
       map(files, (file) =>
@@ -512,6 +514,7 @@ export default class PciStoragesContainersService {
           prefix,
           file,
           s3StorageType,
+          storageClass,
         ),
       ),
     );
@@ -524,10 +527,12 @@ export default class PciStoragesContainersService {
     prefix,
     file,
     s3StorageType,
+    storageClass,
   ) {
     const config = {
       headers: {
         'Content-Type': file.type,
+        [X_AMZ_STORAGE_CLASS]: storageClass,
       },
       data: file,
     };
@@ -538,6 +543,7 @@ export default class PciStoragesContainersService {
           expire: OPENIO_PRESIGN_EXPIRE,
           method: 'PUT',
           object: PciStoragesContainersService.getFilePath(prefix, file),
+          storageClass,
         },
       )
       .then((res) => res.data)
