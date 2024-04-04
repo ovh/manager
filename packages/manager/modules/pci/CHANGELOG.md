@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.32.0...@ovh-ux/manager-pci@6.32.1) (2024-04-04)
+
+
+### Bug Fixes
+
+* **pci:** resolve public ip listing issue ([#11064](https://github.com/ovh/manager/issues/11064)) ([ba39c8e](https://github.com/ovh/manager/commit/ba39c8eed5f36676d885eb14d35df860608f7024))
+
+
+
+
+
 # [6.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.31.0...@ovh-ux/manager-pci@6.32.0) (2024-03-25)
 
 

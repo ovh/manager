@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.8.0...@ovh-ux/manager-catalog-app@1.9.0) (2024-04-04)
+
+
+### Features
+
+* **vrack-services:** bump ods ([94684c8](https://github.com/ovh/manager/commit/94684c84775861c26ad30434a6e75aea0cd96a70))
+
+
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.7.2...@ovh-ux/manager-catalog-app@1.8.0) (2024-03-25)
 
 

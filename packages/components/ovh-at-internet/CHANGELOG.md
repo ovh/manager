@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.12.1...@ovh-ux/ovh-at-internet@0.13.0) (2024-04-04)
+
+
+### Features
+
+* add mix commander tracking script ([#10439](https://github.com/ovh/manager/issues/10439)) ([46ff61e](https://github.com/ovh/manager/commit/46ff61efad2262a35276c759b06016e42c257722))
+
+
+
+
+
 ## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.12.0...@ovh-ux/ovh-at-internet@0.12.1) (2024-03-19)
 
 **Note:** Version bump only for package @ovh-ux/ovh-at-internet

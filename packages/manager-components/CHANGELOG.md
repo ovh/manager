@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.7.0...@ovhcloud/manager-components@1.8.0) (2024-04-04)
+
+### Features
+
+- add manager-components storybook on documentation ([#10700](https://github.com/ovh/manager/issues/10700)) ([b586610](https://github.com/ovh/manager/commit/b586610b9772a6383d9857894a5d06dc0b805930))
+- **container:** add latest ods version and replace boostrap on legacy ([#10991](https://github.com/ovh/manager/issues/10991)) ([8262c05](https://github.com/ovh/manager/commit/8262c0543168b9a58ca0581f053bdcf07d8fbbc9))
+- **dedicated:** vrack services microapp ([#10924](https://github.com/ovh/manager/issues/10924)) ([0316238](https://github.com/ovh/manager/commit/0316238dbaa0729c9c925efa902b4d657351e329))
+- **vrack-services:** bump ods ([94684c8](https://github.com/ovh/manager/commit/94684c84775861c26ad30434a6e75aea0cd96a70))
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.6.0...@ovhcloud/manager-components@1.7.0) (2024-03-25)
 
 ### Features

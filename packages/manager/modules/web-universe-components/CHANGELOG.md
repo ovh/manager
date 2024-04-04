@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.16.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.15.0...@ovh-ux/ng-ovh-web-universe-components@9.16.0) (2024-04-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2878] ([0e0520e](https://github.com/ovh/manager/commit/0e0520e26a522a4bbbe0e3375e54dabeb8fcb6bd))
+* remove unused translations [CDS] ([207a909](https://github.com/ovh/manager/commit/207a9099ecfd8007ece368ced6d4c1d68aa8bc6b))
+
+
+### Features
+
+* **signup:** add searchable country list and update labels ([#10625](https://github.com/ovh/manager/issues/10625)) ([a263199](https://github.com/ovh/manager/commit/a263199b06a47298eb7bf0a99814b38da3b544c2))
+
+
+
+
+
 # [9.15.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.14.1...@ovh-ux/ng-ovh-web-universe-components@9.15.0) (2024-03-25)
 
 

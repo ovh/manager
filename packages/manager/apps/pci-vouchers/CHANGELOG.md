@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.2.1...@ovh-ux/manager-pci-vouchers-app@0.3.0) (2024-04-04)
+
+
+### Bug Fixes
+
+* **pci-voucher:** upgrade version of ods ([#11364](https://github.com/ovh/manager/issues/11364)) ([cc066fb](https://github.com/ovh/manager/commit/cc066fb93d621b06bffc33957c71a4658c9d62be))
+* **rancher:** revert ods version ([#11349](https://github.com/ovh/manager/issues/11349)) ([3dff469](https://github.com/ovh/manager/commit/3dff469113b4df3b7b59b6028e52f52eafdfde3a))
+
+
+### Features
+
+* **vrack-services:** bump ods ([94684c8](https://github.com/ovh/manager/commit/94684c84775861c26ad30434a6e75aea0cd96a70))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.2.0...@ovh-ux/manager-pci-vouchers-app@0.2.1) (2024-03-25)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app

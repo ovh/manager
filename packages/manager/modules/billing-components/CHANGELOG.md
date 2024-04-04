@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.17.0...@ovh-ux/manager-billing-components@3.17.1) (2024-04-04)
+
+
+### Bug Fixes
+
+* **dedicated:** commitment cancellation link display for us ([#11128](https://github.com/ovh/manager/issues/11128)) ([ec14e09](https://github.com/ovh/manager/commit/ec14e09031fe0c6d10094676b1fb76583f1bec35))
+
+
+
+
+
 # [3.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.16.2...@ovh-ux/manager-billing-components@3.17.0) (2024-03-21)
 
 

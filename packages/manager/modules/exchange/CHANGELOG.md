@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.4.0...@ovh-ux/manager-exchange@4.4.1) (2024-04-04)
+
+
+### Bug Fixes
+
+* **web.exchange:** increases the limit of account for csv export ([#11252](https://github.com/ovh/manager/issues/11252)) ([418d4b2](https://github.com/ovh/manager/commit/418d4b2279a625623ac2a15e0b60636fb6e251ff))
+
+
+
+
+
 # [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.3.1...@ovh-ux/manager-exchange@4.4.0) (2024-03-25)
 
 
