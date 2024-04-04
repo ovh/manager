@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { OsdsSelect, OsdsSelectOption } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 import { useS3StorageRegions } from '@/api/hooks/useRegion';
-import { Region } from '@/api/data/region';
+import { getMacroRegion, Region } from '@/api/data/region';
 
 interface S3StorageRegionsProps {
   projectId: string;
@@ -37,9 +37,14 @@ export default function S3StorageRegions({
         >
           {s3StorageRegions?.map((region: Region, index: number) => (
             <OsdsSelectOption key={index} value={region.name}>
-              {t(`manager_components_region_${region.name}_micro`, {
-                micro: region.name,
-              })}
+              {t(
+                `manager_components_region_${getMacroRegion(
+                  region.name,
+                )}_micro`,
+                {
+                  micro: region.name,
+                },
+              )}
             </OsdsSelectOption>
           ))}
         </OsdsSelect>
