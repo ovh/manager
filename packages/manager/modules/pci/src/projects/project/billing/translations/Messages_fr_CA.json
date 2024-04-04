@@ -30,6 +30,7 @@
   "cpbc_billing_control_consumption_family_floatingip": "Floating IP",
   "cpbc_billing_control_consumption_family_gateway": "Gateway",
   "cpbc_billing_control_consumption_family_octavia-loadbalancer": "Load Balancer",
+  "cpbc_billing_control_consumption_family_publicip": "Public IP",
   "cpbc_billing_control_consumption_quantity_hour": "x {{ quantity }} heure(s)",
   "cpbc_billing_control_consumption_quantity_month": "x {{ quantity }} mois",
   "cpbc_billing_control_consumption_quantity_h": "x {{ quantity }} heure(s)",
