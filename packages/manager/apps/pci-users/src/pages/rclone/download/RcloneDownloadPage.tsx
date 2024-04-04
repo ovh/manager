@@ -1,6 +1,6 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Translation } from 'react-i18next';
-import { OsdsLink } from '@ovhcloud/ods-components/react';
+import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_TEXT_COLOR_INTENT } from '@ovhcloud/ods-components';
 import { useNotifications } from '@ovhcloud/manager-components';
@@ -26,13 +26,13 @@ export default function RcloneDownloadPage() {
           addSuccess(
             <Translation ns="common">
               {(t) => (
-                <>
+                <OsdsText>
                   {t(
                     'pci_projects_project_users_download-rclone_success_message',
                   )}
                   <OsdsLink
                     href={content}
-                    className={'ml-1'}
+                    className={'ml-3'}
                     color={ODS_TEXT_COLOR_INTENT.primary}
                     download={DOWNLOAD_RCLONE_FILENAME}
                     target={OdsHTMLAnchorElementTarget._top}
@@ -41,7 +41,7 @@ export default function RcloneDownloadPage() {
                       'pci_projects_project_users_download-rclone_success_message_link',
                     )}
                   </OsdsLink>
-                </>
+                </OsdsText>
               )}
             </Translation>,
             true,
