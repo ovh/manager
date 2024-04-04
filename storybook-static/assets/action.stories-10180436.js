@@ -1,0 +1,5 @@
+import{O as a}from"./ods-html-anchor-element-target-36ff34f6.js";import{A as i}from"./action.component-058728f1.js";import"./jsx-runtime-ffb262ed.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./ods-theme-typography-size-a5dafb29.js";import"./index-da03a860.js";import"./index-66fe5829.js";import"./translation-e18a3ed5.js";import"./i18next-3c403098.js";import"./setPrototypeOf-24bea416.js";import"./useTranslation-553b9ced.js";const n=[{id:1,href:"https://ovhcloud.com",target:a._blank,label:"Action 1"},{id:2,onClick:()=>window.open("https://ovhcloud.com","_blank","noopener"),label:"Action 2"}],o={items:n,isCompact:!1},b={title:"Navigation/Menus",component:i,args:o};var t,e,r;o.parameters={...o.parameters,docs:{...(t=o.parameters)==null?void 0:t.docs,source:{originalSource:`{
+  items: actionItems,
+  isCompact: false
+}`,...(r=(e=o.parameters)==null?void 0:e.docs)==null?void 0:r.source}}};const _=["actionMenu"];export{_ as __namedExportsOrder,o as actionMenu,b as default};
+//# sourceMappingURL=action.stories-10180436.js.map

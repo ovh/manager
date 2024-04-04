@@ -1,0 +1,2 @@
+function s(t){if(t===void 0)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return t}function n(t){return n=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(e){return e.__proto__||Object.getPrototypeOf(e)},n(t)}function i(t,o){return i=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(r,f){return r.__proto__=f,r},i(t,o)}export{s as _,i as a,n as b};
+//# sourceMappingURL=setPrototypeOf-24bea416.js.map
