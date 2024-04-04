@@ -3,7 +3,6 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 import {
   getAdvancedConfiguration,
   getAdvancedConfigurationCapabilities,
-  UpdateAdvancedConfigurationProps,
   updateAdvancedConfiguration,
 } from '../../../api/databases/advancedConfiguration';
 

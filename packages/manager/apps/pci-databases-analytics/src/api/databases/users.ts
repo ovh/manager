@@ -45,7 +45,7 @@ export const getUsers = async ({
       break;
     default:
       throw new Error(
-        `The resource engine ${engine} does not implement the resource ${resource}`,
+        `The engine ${engine} does not implement the resource ${resource}`,
       );
   }
   return userReturnType;
