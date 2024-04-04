@@ -30,7 +30,6 @@ import quotaExceedError from './quota-exceed-error';
 import privateRegistry from './private-registry';
 import storages from './storages';
 import users from './users';
-import vouchers from './vouchers';
 import regions from './regions';
 import routing from './project.routing';
 import training from './training';
@@ -79,7 +78,6 @@ angular
     sshKeys,
     storages,
     users,
-    vouchers,
     workflow,
     training,
     pciAnnouncementBanner,
