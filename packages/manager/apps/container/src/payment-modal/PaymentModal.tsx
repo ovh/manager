@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import {
+  OsdsButton,
+  OsdsModal,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 import { PAYMENT_ALERTS } from './constants';
 import './styles.scss';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
 interface IPaymentMethod {
   icon?: any;
@@ -69,39 +78,45 @@ const PaymentModal = (): JSX.Element => {
         setShowPaymentModal(true);
       }
     }
-
   }, [paymentResponse]);
 
-  return (
-    <Modal size="lg" centered show={showPaymentModal} backdrop="static" keyboard={false} onHide={closeHandler}>
-      <Modal.Header closeButton>
-        <Modal.Title>{t('payment_modal_title')}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <div className="p-4">
-          <p>{t(`payment_modal_description_${alert}`)}</p>
-          <p>{t('payment_modal_description_sub')}</p>
-        </div>
-      </Modal.Body>
-      <Modal.Footer>
-        <button
-          type="button"
-          className="oui-button oui-button_secondary"
-          onClick={closeHandler}
-        >
-          {t('payment_modal_action_cancel')}
-        </button>
-        <button
-          type="button"
-          className="oui-button oui-button_primary"
-          onClick={() => window.location.href = paymentMethodURL}
-        >
-          {t('payment_modal_action_validate')}
-        </button>
-      </Modal.Footer>
-    </Modal>
+  return !showPaymentModal ? (
+    <></>
+  ) : (
+    <OsdsModal
+      onOdsModalClose={closeHandler}
+      headline={t('payment_modal_title')}
+      color={ODS_THEME_COLOR_INTENT.info}
+    >
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+      >
+        <p>{t(`payment_modal_description_${alert}`)}</p>
+        <p>{t('payment_modal_description_sub')}</p>
+      </OsdsText>
+
+      <OsdsButton
+        onClick={closeHandler}
+        slot="actions"
+        color={ODS_THEME_COLOR_INTENT.primary}
+        variant={ODS_BUTTON_VARIANT.stroked}
+        size={ODS_BUTTON_SIZE.sm}
+      >
+        {t('payment_modal_action_cancel')}
+      </OsdsButton>
+
+      <OsdsButton
+        onClick={() => (window.location.href = paymentMethodURL)}
+        slot="actions"
+        color={ODS_THEME_COLOR_INTENT.primary}
+        variant={ODS_BUTTON_VARIANT.flat}
+        size={ODS_BUTTON_SIZE.sm}
+      >
+        {t('payment_modal_action_validate')}
+      </OsdsButton>
+    </OsdsModal>
   );
 };
 
 export default PaymentModal;
-
