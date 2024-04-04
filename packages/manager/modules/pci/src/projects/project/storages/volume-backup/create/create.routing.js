@@ -54,8 +54,12 @@ export default /* @ngInject */ ($stateProvider) => {
         volumeRelatedInstance: null,
       }),
 
-      volumes: /* @ngInject */ (projectId, VolumeBackupService) => {
-        return VolumeBackupService.getVolumes(projectId);
+      volumes: /* @ngInject */ (
+        projectId,
+        VolumeBackupService,
+        customerRegions,
+      ) => {
+        return VolumeBackupService.getVolumes(projectId, customerRegions);
       },
 
       volumesAddons: /* @ngInject */ (catalog) => {
