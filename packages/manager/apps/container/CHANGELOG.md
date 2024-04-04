@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.52.0...@ovh-ux/manager-container-app@0.53.0) (2024-04-04)
+
+
+### Bug Fixes
+
+* **container:** update max width shortcut tile ([#11354](https://github.com/ovh/manager/issues/11354)) ([ac8cf64](https://github.com/ovh/manager/commit/ac8cf64f06f7301bd50c491684e3040fe73ccec8))
+* **telecom:** remove the link to manager v4 ([#11257](https://github.com/ovh/manager/issues/11257)) ([f822b6f](https://github.com/ovh/manager/commit/f822b6fca4d54879af61f8a01c384094b8cf46a8))
+
+
+### Features
+
+* **container:** add latest ods version and replace boostrap on legacy ([#10991](https://github.com/ovh/manager/issues/10991)) ([8262c05](https://github.com/ovh/manager/commit/8262c0543168b9a58ca0581f053bdcf07d8fbbc9))
+* **dedicated:** vrack services microapp ([#10924](https://github.com/ovh/manager/issues/10924)) ([0316238](https://github.com/ovh/manager/commit/0316238dbaa0729c9c925efa902b4d657351e329))
+* **signup:** add searchable country list and update labels ([#10625](https://github.com/ovh/manager/issues/10625)) ([a263199](https://github.com/ovh/manager/commit/a263199b06a47298eb7bf0a99814b38da3b544c2))
+
+
+
+
+
 # [0.52.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.51.0...@ovh-ux/manager-container-app@0.52.0) (2024-03-25)
 
 

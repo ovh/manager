@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.29.0...@ovh-ux/manager-dedicated@19.30.0) (2024-04-04)
+
+
+### Bug Fixes
+
+* **dedicated:** add navigation rule to support page ([#10969](https://github.com/ovh/manager/issues/10969)) ([4fb02d8](https://github.com/ovh/manager/commit/4fb02d88e9418c360414f336a63d7da6c9b9a59a))
+* **dedicated:** display mrtg graph for scale and hgr ([#11261](https://github.com/ovh/manager/issues/11261)) ([8f36d03](https://github.com/ovh/manager/commit/8f36d037234d65b6f8424d6648080e85d7e449ae))
+* **i18n:** add missing translations [CDS 2878] ([0e0520e](https://github.com/ovh/manager/commit/0e0520e26a522a4bbbe0e3375e54dabeb8fcb6bd))
+* **i18n:** add missing translations [CDS 2883] ([94b6deb](https://github.com/ovh/manager/commit/94b6debe5c19454c456f9cbed7738cf0450fc935))
+* remove unused translations [CDS] ([207a909](https://github.com/ovh/manager/commit/207a9099ecfd8007ece368ced6d4c1d68aa8bc6b))
+
+
+### Features
+
+* **dedicated:** remove SSHKey dropdown in installation wizard ([#11097](https://github.com/ovh/manager/issues/11097)) ([8a2917d](https://github.com/ovh/manager/commit/8a2917da30cf8948074c92d93e9afe10be0aa74a))
+* **dedicated:** update account modification countries list ([#10634](https://github.com/ovh/manager/issues/10634)) ([6c157bb](https://github.com/ovh/manager/commit/6c157bbd2ec3876ab2cb096af9b3aef0eb3c36df))
+* **signup:** add searchable country list and update labels ([#10625](https://github.com/ovh/manager/issues/10625)) ([a263199](https://github.com/ovh/manager/commit/a263199b06a47298eb7bf0a99814b38da3b544c2))
+
+
+
+
+
 # [19.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.28.1...@ovh-ux/manager-dedicated@19.29.0) (2024-03-29)
 
 

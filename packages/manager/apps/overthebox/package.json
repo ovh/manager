@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox-app",
-  "version": "6.1.4",
+  "version": "6.2.0",
   "private": true,
   "description": "OverTheBox standalone application.",
   "repository": {
@@ -23,7 +23,7 @@
     "@ovh-ux/manager-core": "^12.16.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.0",
     "@ovh-ux/manager-overthebox": "^6.12.1",
-    "@ovh-ux/manager-telecom-styles": "^4.7.0",
+    "@ovh-ux/manager-telecom-styles": "^4.8.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.1.1",
     "@ovh-ux/ng-ovh-contracts": "^4.5.0",
@@ -31,7 +31,7 @@
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.2",
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^7.24.0",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^7.25.0",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.1.1",
     "@ovh-ux/ng-tail-logs": "^2.1.1",
     "@ovh-ux/ng-translate-async-loader": "^2.2.1",

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.1.7...@ovh-ux/manager-pci-rancher-app@1.2.0) (2024-04-04)
+
+
+### Bug Fixes
+
+* **rancher:** allow uppercase in middle of name ([#11336](https://github.com/ovh/manager/issues/11336)) ([fb5c98d](https://github.com/ovh/manager/commit/fb5c98d1453484dd4f22ce2f2ad6296a9e334bcd))
+* **rancher:** bug fixes on rancher app ([#11188](https://github.com/ovh/manager/issues/11188)) ([d4ca261](https://github.com/ovh/manager/commit/d4ca261ba2745a519d7d684a8628a4698c28ef59))
+* **rancher:** revert ods version ([#11349](https://github.com/ovh/manager/issues/11349)) ([3dff469](https://github.com/ovh/manager/commit/3dff469113b4df3b7b59b6028e52f52eafdfde3a))
+
+
+### Features
+
+* **vrack-services:** bump ods ([94684c8](https://github.com/ovh/manager/commit/94684c84775861c26ad30434a6e75aea0cd96a70))
+
+
+
+
+
 ## [1.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.1.6...@ovh-ux/manager-pci-rancher-app@1.1.7) (2024-03-25)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.17.0...@ovh-ux/manager-bm-server-components@1.18.0) (2024-04-04)
+
+
+### Bug Fixes
+
+* **dedicated:** display mrtg graph for scale and hgr ([#11261](https://github.com/ovh/manager/issues/11261)) ([8f36d03](https://github.com/ovh/manager/commit/8f36d037234d65b6f8424d6648080e85d7e449ae))
+* **dedicated:** prevent os installation on diskgroup (cache controller) ([#11009](https://github.com/ovh/manager/issues/11009)) ([4965f52](https://github.com/ovh/manager/commit/4965f521640d97be2d618b3ca70d6600d862b5a7))
+
+
+### Features
+
+* **dedicated:** remove SSHKey dropdown in installation wizard ([#11097](https://github.com/ovh/manager/issues/11097)) ([8a2917d](https://github.com/ovh/manager/commit/8a2917da30cf8948074c92d93e9afe10be0aa74a))
+
+
+
+
+
 # [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.16.2...@ovh-ux/manager-bm-server-components@1.17.0) (2024-03-21)
 
 

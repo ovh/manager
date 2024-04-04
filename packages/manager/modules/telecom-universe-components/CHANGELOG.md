@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.25.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.24.0...@ovh-ux/ng-ovh-telecom-universe-components@7.25.0) (2024-04-04)
+
+
+### Features
+
+* **signup:** add searchable country list and update labels ([#10625](https://github.com/ovh/manager/issues/10625)) ([a263199](https://github.com/ovh/manager/commit/a263199b06a47298eb7bf0a99814b38da3b544c2))
+* **telecom:** add no meetings message and enable next step ([#11203](https://github.com/ovh/manager/issues/11203)) ([e2b556e](https://github.com/ovh/manager/commit/e2b556e45b4b3571bdc7329b308a39586f785a97))
+
+
+
+
+
 # [7.24.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.23.0...@ovh-ux/ng-ovh-telecom-universe-components@7.24.0) (2024-02-21)
 
 

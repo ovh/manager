@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.11.0...@ovh-ux/manager-telecom@15.12.0) (2024-04-04)
+
+
+### Bug Fixes
+
+* **telecom:** add trunk type for CCS alias configuration ([#11262](https://github.com/ovh/manager/issues/11262)) ([ecc7465](https://github.com/ovh/manager/commit/ecc746533c73da78a387efd810ba6e27bf70d057))
+* **telecom:** remove the link to manager v4 ([#11257](https://github.com/ovh/manager/issues/11257)) ([f822b6f](https://github.com/ovh/manager/commit/f822b6fca4d54879af61f8a01c384094b8cf46a8))
+
+
+### Features
+
+* **signup:** add searchable country list and update labels ([#10625](https://github.com/ovh/manager/issues/10625)) ([a263199](https://github.com/ovh/manager/commit/a263199b06a47298eb7bf0a99814b38da3b544c2))
+* **telecom:** add no meetings message and enable next step ([#11203](https://github.com/ovh/manager/issues/11203)) ([e2b556e](https://github.com/ovh/manager/commit/e2b556e45b4b3571bdc7329b308a39586f785a97))
+* **telecom:** check otp reference is valid ([#11199](https://github.com/ovh/manager/issues/11199)) ([9137d89](https://github.com/ovh/manager/commit/9137d898cecfe2751e68e3c64c2d6e75a547f18f))
+
+
+
+
+
 # [15.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.10.1...@ovh-ux/manager-telecom@15.11.0) (2024-03-25)
 
 

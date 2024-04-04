@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.2.1...@ovh-ux/ovh-product-icons@0.3.0) (2024-04-04)
+
+
+### Features
+
+* **container:** add latest ods version and replace boostrap on legacy ([#10991](https://github.com/ovh/manager/issues/10991)) ([8262c05](https://github.com/ovh/manager/commit/8262c0543168b9a58ca0581f053bdcf07d8fbbc9))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.2.0...@ovh-ux/ovh-product-icons@0.2.1) (2024-03-18)
 
 

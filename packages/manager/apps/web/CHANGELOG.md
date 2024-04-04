@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.19.0...@ovh-ux/manager-web@18.20.0) (2024-04-04)
+
+
+### Bug Fixes
+
+* **web.hosting:** invert php version and container env field ([#11291](https://github.com/ovh/manager/issues/11291)) ([0588b89](https://github.com/ovh/manager/commit/0588b89604f29fa8888f3294d2c9ff6a35f620e3))
+* **web.hosting:** move filer and boost tile definition ([#11263](https://github.com/ovh/manager/issues/11263)) ([80efc16](https://github.com/ovh/manager/commit/80efc16ac6d942ce9037bc273042a9110afb92ca))
+
+
+### Features
+
+* **signup:** add searchable country list and update labels ([#10625](https://github.com/ovh/manager/issues/10625)) ([a263199](https://github.com/ovh/manager/commit/a263199b06a47298eb7bf0a99814b38da3b544c2))
+
+
+
+
+
 # [18.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.18.1...@ovh-ux/manager-web@18.19.0) (2024-03-25)
 
 
