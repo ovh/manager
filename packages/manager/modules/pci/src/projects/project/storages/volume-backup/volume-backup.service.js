@@ -2,9 +2,10 @@ import VolumeBackup from './volume-backup.class';
 
 export default class VolumeBackupService {
   /* @ngInject */
-  constructor($http, Poller) {
+  constructor($http, Poller, PciProject) {
     this.$http = $http;
     this.poller = Poller;
+    this.PciProject = PciProject;
   }
 
   /**
@@ -118,10 +119,19 @@ export default class VolumeBackupService {
    * @param serviceName {string}: project id
    * @returns {Promise}: block storage volumes list Promise
    */
-  getVolumes(serviceName) {
+  getVolumes(serviceName, customerRegions) {
     return this.$http
       .get(`/cloud/project/${serviceName}/volume`)
-      .then(({ data }) => data);
+      .then(({ data }) => {
+        const localZones = this.PciProject.getLocalZones(customerRegions);
+        return data.map((volume) => {
+          const isLocalZone = this.PciProject.checkIsLocalZone(
+            localZones,
+            volume.region,
+          );
+          return { ...volume, isLocalZone };
+        });
+      });
   }
 
   /**

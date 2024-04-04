@@ -24,6 +24,7 @@ export default class VolumeBackupCreateController {
 
   $onInit() {
     this.VOLUMES_OPTIONS = VOLUMES_OPTIONS;
+    this.VOLUME_OPTION_BACKUP = VOLUME_OPTION_BACKUP;
 
     this.isCreating = false;
     this.loadMessages();
