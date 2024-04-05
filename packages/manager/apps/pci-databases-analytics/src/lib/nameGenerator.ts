@@ -341,7 +341,7 @@ const names = [
   'mirzakhani',
   'uhlenbeck',
 ];
-function getRandomElementFromArray<T>(arr: T[]): T | undefined {
+export function getRandomElementFromArray<T>(arr: T[]): T | undefined {
   if (arr.length === 0) {
     return undefined; // Return undefined if the array is empty
   }
