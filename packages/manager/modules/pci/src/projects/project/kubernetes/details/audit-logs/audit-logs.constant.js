@@ -17,7 +17,7 @@ export const LOG_TRACKING_HITS = {
 };
 
 export const LOG_LIST_TRACKING_HITS = {
-  LISTING_PAGE: `${TRACKING_PREFIX}::managed_kubernetes_cluster::listing::audit_logs::logs_subscriptions::kubernetes`,
+  LISTING_PAGE: `projects::managed_kubernetes_cluster::managed_kubernetes_cluster::listing::audit_logs::logs_subscriptions::kubernetes`,
   ADD_DATA_STREAM: `${TRACKING_PREFIX}::page::button::add_data_flow${TRACKING_SUFFIX}`,
   GO_BACK: `${TRACKING_PREFIX}::page::link::go_back${TRACKING_SUFFIX}`,
   LDP_DETAIL: `${TRACKING_PREFIX}::datagrid::button::go-to-detail${TRACKING_SUFFIX}`,
