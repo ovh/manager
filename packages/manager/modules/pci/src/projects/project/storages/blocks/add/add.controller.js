@@ -57,15 +57,15 @@ export default class PciBlockStorageAddController {
           regions: this.PciProjectStorageBlockService.getAvailablesRegions(
             this.projectId,
           ),
-          consumptionVolumeAddons: this.PciProjectStorageBlockService.getConsumptionVolumesAddons(
+          totalConsumptionVolumeAddons: this.PciProjectStorageBlockService.getConsumptionVolumesAddons(
             this.catalog,
           ),
         }),
       )
-      .then(({ regions, consumptionVolumeAddons }) => {
+      .then(({ regions, totalConsumptionVolumeAddons }) => {
         this.regions = regions;
-        this.consumptionVolumeAddons = consumptionVolumeAddons;
-        this.types = consumptionVolumeAddons.map(
+        this.totalConsumptionVolumeAddons = totalConsumptionVolumeAddons;
+        this.types = totalConsumptionVolumeAddons.map(
           (addon) => addon.blobs.technical.name,
         );
 
@@ -177,8 +177,15 @@ export default class PciBlockStorageAddController {
   }
 
   onRegionChange() {
+    const { region } = this.storage;
     this.displaySelectedRegion = true;
     this.selectedVolumeAddon = null;
+    const volumeAddonsIds = this.volumesAvailability.plans?.filter(
+      ({ regions }) => regions.some(({ name }) => name === region.name),
+    );
+    this.consumptionVolumeAddons = this.totalConsumptionVolumeAddons.filter(
+      ({ planCode }) => volumeAddonsIds?.some(({ code }) => code === planCode),
+    );
   }
 
   onTypesFocus() {

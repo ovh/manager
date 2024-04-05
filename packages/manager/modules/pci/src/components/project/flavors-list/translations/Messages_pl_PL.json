@@ -23,8 +23,8 @@
   "pci_project_flavors_category_definition_localzone": "Instancje Local Zones",
   "pci_project_flavors_zone_compatible": "Kompatybilny z",
   "pci_project_flavors_zone_localzone": "Local Zones",
-  "pci_project_flavors_zone_global_region": "Global Regions",
+  "pci_project_flavors_zone_global_region": "Regiony",
   "pci_project_flavors_zone_localzone_tooltip": "Local Zones to nowy rodzaj lokalizacji, obsługujących część naszego portfolio produktów Public Cloud. W ciągu najbliższych kilku lat będziemy stopniowo zwiększać liczbę Local Zones na świecie.",
-  "pci_project_flavors_zone_globalregions_tooltip": "Global Regions są obsługiwane przez jedno lub kilka centrów danych zarządzanych przez OVHCloud. Każdy region obejmuje jedną lub kilka Availability Zones, wraz z pełnym portfolio usług OVHCloud.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Regiony są obsługiwane przez jedno lub kilka centrów danych zarządzanych przez OVHcloud. Każdy region obejmuje jedną lub kilka Availability Zones, wraz z pełnym portfolio usług OVHCloud.",
   "pci_project_flavors_zone_tooltip_link": "Dowiedz się więcej"
 }

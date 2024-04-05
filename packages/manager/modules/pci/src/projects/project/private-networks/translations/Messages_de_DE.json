@@ -12,7 +12,7 @@
   "pci_projects_project_network_private_assign_gateway": "Eine Gateway-Instanz zuweisen",
   "pci_projects_project_network_private_delete": "Löschen",
   "pci_projects_project_network_private_no_data": "Es sind keine Daten verfügbar.",
-  "pci_projects_project_network_private_global_regions_tab_label": "Globale Regionen (vRack)",
+  "pci_projects_project_network_private_global_regions_tab_label": "Regionen (vRack)",
   "pci_projects_project_network_private_local_zones_tab_label": "Local Zones",
   "pci_projects_project_network_private_delete_label": "Das private Netzwerk löschen",
   "pci_projects_project_network_private_delete_confirm": "Bestätigen",

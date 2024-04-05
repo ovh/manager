@@ -45,5 +45,6 @@
   "cpbc_billing_control_consumption_family_octavia-loadbalancer": "Load Balancer",
   "cpbc_billing_control_consumption_error_forbidden": "Não tem permissões suficientes para visualizar os seus dados de faturação. Contacte o proprietário do serviço",
   "cpbc_billing_control_consumption_unit_price_h/node": "{{price}}/nó/hora",
-  "cpbc_billing_control_consumption_quantity_h/node": "x {{ quantity }} hora(s)"
+  "cpbc_billing_control_consumption_quantity_h/node": "x {{ quantity }} hora(s)",
+  "cpbc_billing_control_consumption_family_publicip": "IP público"
 }

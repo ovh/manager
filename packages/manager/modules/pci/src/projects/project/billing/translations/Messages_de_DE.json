@@ -45,5 +45,6 @@
   "cpbc_billing_control_consumption_family_octavia-loadbalancer": "Loadbalancer",
   "cpbc_billing_control_consumption_error_forbidden": "Sie haben nicht die nötigen Rechte, um Ihre Abrechnungsdaten anzuzeigen. Bitte wenden Sie sich an den Inhaber des Dienstes",
   "cpbc_billing_control_consumption_unit_price_h/node": "{{price}}/Node/Stunde",
-  "cpbc_billing_control_consumption_quantity_h/node": "x {{ quantity }} Stunde(n)"
+  "cpbc_billing_control_consumption_quantity_h/node": "x {{ quantity }} Stunde(n)",
+  "cpbc_billing_control_consumption_family_publicip": "Öffentliche IP"
 }
