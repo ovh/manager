@@ -41,7 +41,12 @@
 
 <pci-project-billing-change-mediation-banner
     data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.BILLING_CHANGE_MEDIATION_BANNER)"
-></pci-project-billing-change-mediation-banner>
+>
+</pci-project-billing-change-mediation-banner>
+<pci-billing-change-banner
+    data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.BILLING_CHANGE_MEDIATION_BANNER_2) && !$ctrl.isDiscoveryProject"
+>
+</pci-billing-change-banner>
 
 <div class="mt-4">
     <cui-message-container
