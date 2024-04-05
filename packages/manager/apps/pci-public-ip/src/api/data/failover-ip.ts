@@ -9,8 +9,11 @@ export const getAllFailoverIP = async (
   return failoverIPs.data;
 };
 
-export const terminateFailoverIP = async (ip: string) => {
-  const { data } = await v6.post(`/ip/service/ip-${ip}/terminate`);
+export const terminateFailoverIP = async (ipBlock: string) => {
+  const [ip, block] = ipBlock.split('/');
+  const { data } = await v6.post(
+    `/ip/service/ip-${block === '32' ? ip : ipBlock}/terminate`,
+  );
   return data;
 };
 
