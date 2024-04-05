@@ -120,7 +120,7 @@ const DeleteService = ({
                   ) : (
                     <p>{t('deleteServiceIntegrationsDescription')}</p>
                   )}
-                  <ul className="list-disc pl-5">
+                  <ul className="list-disc pl-5 text-sm">
                     {integratedServices.map((integratedService) => (
                       <li className="ml-3" key={integratedService.id}>
                         {integratedService.description}

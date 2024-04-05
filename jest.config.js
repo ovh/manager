@@ -25,6 +25,7 @@ module.exports = {
       testPathIgnorePatterns: [
         '/node_modules/',
         '/apps/pci-vouchers/',
+        '/apps/pci-databases-analytics/',
         '/apps/pci-ssh-keys/',
         '/apps/pci-users/',
       ],

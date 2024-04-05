@@ -16,6 +16,7 @@ const PriceUnitSwitch = ({ showMonthly, onChange }: PriceUnitSwitch) => {
   return (
     <div className="grid grid-cols-2 w-full">
       <Button
+        data-testid="pricing_button_hourly"
         type="button"
         variant="ghost"
         size="sm"
@@ -30,6 +31,7 @@ const PriceUnitSwitch = ({ showMonthly, onChange }: PriceUnitSwitch) => {
         {t('pricing_button_hourly')}
       </Button>
       <Button
+        data-testid="pricing_button_monthly"
         type="button"
         variant="ghost"
         size="sm"
