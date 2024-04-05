@@ -1,0 +1,9 @@
+{
+  "pci_additional_ips_failoverips_edit": "Verbundene Instanz bearbeiten",
+  "pci_additional_ips_failoverips_edit_submit_label": "Verbinden",
+  "pci_additional_ips_failoverips_edit_cancel_label": "Abbrechen",
+  "pci_additional_ips_failoverips_edit_description": "Wählen Sie die Instanz aus, der Sie die IP-Adresse {{ serviceName }} zuweisen möchten.",
+  "pci_additional_ips_failoverips_edit_select_instance": "Instanz auswählen",
+  "pci_additional_ips_failoverips_edit_success": "Die Einstellungen der Instanz, der die IP {{ ip }} zugeordnet ist, wurden geändert.",
+  "pci_additional_ips_failoverips_edit_error": "Bei der Änderung der verbundenen Instanz ist ein Fehler aufgetreten: {{ error }}"
+}

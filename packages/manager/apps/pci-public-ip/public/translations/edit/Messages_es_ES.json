@@ -1,0 +1,9 @@
+{
+  "pci_additional_ips_failoverips_edit": "Modificar la instancia asociada",
+  "pci_additional_ips_failoverips_edit_submit_label": "Asociar",
+  "pci_additional_ips_failoverips_edit_cancel_label": "Cancelar",
+  "pci_additional_ips_failoverips_edit_description": "Seleccione la instancia a la que quiere asociar la dirección IP {{ serviceName }}.",
+  "pci_additional_ips_failoverips_edit_select_instance": "Seleccione una instancia",
+  "pci_additional_ips_failoverips_edit_success": "Se ha modificado la instancia asociada a la dirección IP {{ ip }}.",
+  "pci_additional_ips_failoverips_edit_error": "Se ha producido un error al modificar la instancia asociada: {{ error }}"
+}
