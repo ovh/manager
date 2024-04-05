@@ -4,7 +4,7 @@ import { useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
 import { useVrackServicesList } from '@/utils/vs-utils';
 import { ErrorPage } from '@/components/Error';
 
-export const RootWrapper = () => {
+export default function RootWrapper() {
   const { isError, error } = useVrackServicesList();
   useRouteSynchro();
 
@@ -13,6 +13,4 @@ export const RootWrapper = () => {
       {isError ? <ErrorPage error={error} /> : <Outlet />}
     </React.Suspense>
   );
-};
-
-export default RootWrapper;
+}

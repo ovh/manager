@@ -2,6 +2,7 @@ export const AT_INTERNET_LEVEL2: Record<string, string> = {
   0: '',
   56: 'Manager-Cloud',
   57: 'Manager-Dedicated',
+  58: 'Manager-DedicatedServers',
   67: 'Focus',
   81: 'Manager',
   84: 'Manager-Web',

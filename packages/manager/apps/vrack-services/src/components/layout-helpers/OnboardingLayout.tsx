@@ -9,7 +9,6 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { PageLayout } from './PageLayout';
 import { handleClick } from '@/utils/ods-utils';
 
@@ -24,7 +23,6 @@ export type OnboardingLayoutProps = React.PropsWithChildren<{
   primaryOnClick?: () => void;
   primaryButtonSize?: ODS_BUTTON_SIZE;
   primaryButtonDisabled?: boolean;
-  primaryButtonDataTracking?: string;
   secondaryButtonLabel?: string;
   secondaryHref?: string;
   secondaryOnClick?: () => void;
@@ -32,7 +30,6 @@ export type OnboardingLayoutProps = React.PropsWithChildren<{
   secondaryButtonSize?: ODS_BUTTON_SIZE;
   secondaryButtonIconPosition?: 'start' | 'end';
   secondaryButtonDisabled?: boolean;
-  secondaryButtonDataTracking?: string;
   noBreadcrumb?: boolean;
 }>;
 
@@ -47,7 +44,6 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   primaryOnClick,
   primaryButtonSize = ODS_BUTTON_SIZE.md,
   primaryButtonDisabled,
-  primaryButtonDataTracking,
   secondaryButtonLabel,
   secondaryHref,
   secondaryOnClick,
@@ -55,106 +51,80 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   secondaryButtonSize = ODS_BUTTON_SIZE.md,
   secondaryButtonIconPosition = 'end',
   secondaryButtonDisabled,
-  secondaryButtonDataTracking,
   children,
-}) => {
-  const { trackClick } = useOvhTracking();
-  return (
-    <PageLayout noBreacrumb>
-      <div className="flex flex-col mx-auto">
+}) => (
+  <PageLayout noBreacrumb>
+    <div className="flex flex-col mx-auto">
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        level={ODS_TEXT_LEVEL.heading}
+        size={ODS_TEXT_SIZE._600}
+        className="block mb-6"
+      >
+        {introTitle}
+      </OsdsText>
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        level={ODS_TEXT_LEVEL.body}
+        className="block mb-8"
+      >
+        {intro}
+      </OsdsText>
+      <section className="flex flex-col items-center">
+        <div className="flex justify-center py-8 max-h-28">
+          <img className="max-h-150px" src={imageSrc} alt="" />
+        </div>
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_TEXT_LEVEL.heading}
           size={ODS_TEXT_SIZE._600}
-          className="block mb-6"
+          className="block text-center mb-6"
         >
-          {introTitle}
+          {title}
         </OsdsText>
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_TEXT_LEVEL.body}
-          className="block mb-8"
+          className="block text-center mb-6"
         >
-          {intro}
+          {description}
         </OsdsText>
-        <section className="flex flex-col items-center">
-          <div className="flex justify-center py-8 max-h-28">
-            <img className="max-h-150px" src={imageSrc} alt="" />
-          </div>
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._600}
-            className="block text-center mb-6"
-          >
-            {title}
-          </OsdsText>
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.body}
-            className="block text-center mb-6"
-          >
-            {description}
-          </OsdsText>
-          <div className="flex mb-9 sm:py-8 xs:w-full xs:flex-col xs:space-y-4 sm:items-center sm:w-fit sm:flex-row sm:space-x-4 sm:space-y-0">
-            {primaryButtonLabel && (primaryHref || primaryOnClick) && (
-              <OsdsButton
-                inline
-                disabled={primaryButtonDisabled}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={primaryButtonSize}
-                href={primaryHref}
-                {...(primaryOnClick
-                  ? handleClick(() => {
-                      if (primaryButtonDataTracking) {
-                        trackClick({
-                          path: 'onboarding',
-                          value: primaryButtonDataTracking,
-                          type: 'action',
-                        });
-                      }
-                      primaryOnClick();
-                    })
-                  : {})}
-              >
-                {primaryButtonLabel}
-              </OsdsButton>
-            )}
-            {secondaryButtonLabel && (secondaryHref || secondaryOnClick) && (
-              <OsdsButton
-                inline
-                disabled={secondaryButtonDisabled}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                variant={ODS_BUTTON_VARIANT.stroked}
-                size={secondaryButtonSize}
-                href={secondaryHref}
-                {...(secondaryOnClick
-                  ? handleClick(() => {
-                      if (secondaryButtonDataTracking) {
-                        trackClick({
-                          path: 'onboarding',
-                          value: secondaryButtonDataTracking,
-                          type: 'action',
-                        });
-                      }
-                      secondaryOnClick();
-                    })
-                  : {})}
-              >
-                {secondaryButtonLabel}
-                <span slot={secondaryButtonIconPosition}>
-                  <OsdsIcon
-                    name={secondaryButtonIcon}
-                    size={ODS_ICON_SIZE.xs}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                  />
-                </span>
-              </OsdsButton>
-            )}
-          </div>
-        </section>
-        {children}
-      </div>
-    </PageLayout>
-  );
-};
+        <div className="flex mb-9 sm:py-8 xs:w-full xs:flex-col xs:space-y-4 sm:items-center sm:w-fit sm:flex-row sm:space-x-4 sm:space-y-0">
+          {primaryButtonLabel && (primaryHref || primaryOnClick) && (
+            <OsdsButton
+              inline
+              disabled={primaryButtonDisabled}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              size={primaryButtonSize}
+              href={primaryHref}
+              {...(primaryOnClick ? handleClick(primaryOnClick) : {})}
+            >
+              {primaryButtonLabel}
+            </OsdsButton>
+          )}
+          {secondaryButtonLabel && (secondaryHref || secondaryOnClick) && (
+            <OsdsButton
+              inline
+              disabled={secondaryButtonDisabled}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              variant={ODS_BUTTON_VARIANT.stroked}
+              size={secondaryButtonSize}
+              href={secondaryHref}
+              {...(secondaryOnClick ? handleClick(secondaryOnClick) : {})}
+            >
+              {secondaryButtonLabel}
+              <span slot={secondaryButtonIconPosition}>
+                <OsdsIcon
+                  name={secondaryButtonIcon}
+                  size={ODS_ICON_SIZE.xs}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                />
+              </span>
+            </OsdsButton>
+          )}
+        </div>
+      </section>
+      {children}
+    </div>
+  </PageLayout>
+);

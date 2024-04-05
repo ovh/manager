@@ -16,7 +16,7 @@ import {
   OsdsInput,
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   VrackServices,
@@ -38,14 +38,13 @@ import {
   getSubnetCreationMutationKey,
   defaultCidr,
   defaultServiceRange,
-} from './constants';
+} from './subnets.constants';
 import { useVrackService } from '@/utils/vs-utils';
 import { FormField } from '@/components/FormField';
-import { urls, pageTrackingLabels } from '@/router/constants';
+import { urls } from '@/router/constants';
+import { PageName, PageType, getPageProps } from '@/utils/tracking';
 
-const dataTrackingPath = pageTrackingLabels[urls.createSubnet];
-
-const SubnetCreationPage: React.FC = () => {
+export default function SubnetCreationPage() {
   const { t } = useTranslation('vrack-services/subnets');
   const { id } = useParams();
   const [displayName, setDisplayName] = React.useState<string | undefined>(
@@ -61,7 +60,11 @@ const SubnetCreationPage: React.FC = () => {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = urls.subnets.replace(':id', id);
-  const { trackPage } = useOvhTracking();
+  const {
+    shell: {
+      tracking: { trackPage },
+    },
+  } = React.useContext(ShellContext);
 
   const { mutate: createSubnet, isPending, isError, error } = useMutation<
     ApiResponse<VrackServices>,
@@ -93,12 +96,22 @@ const SubnetCreationPage: React.FC = () => {
         await queryClient.invalidateQueries({
           queryKey: getVrackServicesResourceQueryKey(id),
         }),
-        trackPage({ path: dataTrackingPath, value: '-succeess' }),
+        trackPage(
+          getPageProps({
+            pageName: PageName.pendingCreateSubnet,
+            pageType: PageType.bannerInfo,
+          }),
+        ),
       ]);
       navigate(dashboardUrl);
     },
     onError: () => {
-      trackPage({ path: dataTrackingPath, value: '-error' });
+      trackPage(
+        getPageProps({
+          pageName: PageName.errorCreateSubnet,
+          pageType: PageType.bannerError,
+        }),
+      );
     },
   });
 
@@ -113,8 +126,7 @@ const SubnetCreationPage: React.FC = () => {
       overviewUrl={dashboardUrl}
       title={t('createPageTitle')}
       createButtonLabel={t('createSubnetButtonLabel')}
-      dataTrackingPath={dataTrackingPath}
-      createButtonDataTracking="::confirm"
+      trackingParams={{ pageName: PageName.createSubnets }}
       formErrorMessage={t('subnetCreationError', {
         error: error?.response.data.message,
       })}
@@ -227,6 +239,4 @@ const SubnetCreationPage: React.FC = () => {
       )}
     </CreatePageLayout>
   );
-};
-
-export default SubnetCreationPage;
+}

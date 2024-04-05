@@ -7,20 +7,37 @@ import {
   OrderDescription,
   useOrderPollingStatus,
 } from '@ovh-ux/manager-module-order';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useGuideUtils } from '@/components/GuideLink';
 import { OnboardingLayout } from '@/components/layout-helpers';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { getVrackServicesResourceListQueryKey } from '@/api';
 import { urls } from '@/router/constants';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  TrackingClickParams,
+  getClickProps,
+  sanitizeLabel,
+} from '@/utils/tracking';
 
 const onboardingRefetchInterval = 30000;
 
-const OnboardingPage = () => {
+const sharedClickProps: TrackingClickParams = {
+  pageType: PageType.onboarding,
+  location: PageLocation.page,
+};
+
+export default function OnboardingPage() {
   const { t } = useTranslation('vrack-services/onboarding');
   const link = useGuideUtils();
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const {
+    shell: {
+      tracking: { trackClick },
+    },
+  } = React.useContext(ShellContext);
   const { data: vrackServicesDeliveringOrders } = useOrderPollingStatus({
     pollingKey: OrderDescription.vrackServices,
     queryToInvalidateOnDelivered: getVrackServicesResourceListQueryKey,
@@ -36,11 +53,13 @@ const OnboardingPage = () => {
       },
       href: link?.guideLink1 as string,
       onClick: () =>
-        trackClick({
-          path: 'onboarding',
-          value: `::docs::${t('guide1Title')}`,
-          type: 'action',
-        }),
+        trackClick(
+          getClickProps({
+            ...sharedClickProps,
+            buttonType: ButtonType.tutorial,
+            actions: [`go-to-${sanitizeLabel(t('guide1Title'))}`],
+          }),
+        ),
       isExternalHref: true,
       hoverable: true,
       badges: [
@@ -55,11 +74,13 @@ const OnboardingPage = () => {
       },
       href: link?.guideLink2 as string,
       onClick: () =>
-        trackClick({
-          path: 'onboarding',
-          value: `::docs::${t('guide2Title')}`,
-          type: 'action',
-        }),
+        trackClick(
+          getClickProps({
+            ...sharedClickProps,
+            buttonType: ButtonType.tutorial,
+            actions: [`go-to-${sanitizeLabel(t('guide2Title'))}`],
+          }),
+        ),
       isExternalHref: true,
       hoverable: true,
       badges: [
@@ -80,11 +101,27 @@ const OnboardingPage = () => {
       description={t('description')}
       imageSrc={onboardingImgSrc}
       primaryButtonLabel={t('orderButtonLabel')}
-      primaryOnClick={() => navigate(urls.createVrackServices)}
-      primaryButtonDataTracking="::add"
+      primaryOnClick={() => {
+        trackClick(
+          getClickProps({
+            ...sharedClickProps,
+            buttonType: ButtonType.button,
+            actions: ['add_vrack-services'],
+          }),
+        );
+        navigate(urls.createVrackServices);
+      }}
       secondaryButtonLabel={t('moreInfoButtonLabel')}
       secondaryHref={t('moreInfoButtonLink')}
-      secondaryButtonDataTracking="::discover"
+      secondaryOnClick={() => {
+        trackClick(
+          getClickProps({
+            ...sharedClickProps,
+            buttonType: ButtonType.externalLink,
+            actions: ['go-to-discover_vrack-services'],
+          }),
+        );
+      }}
     >
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
         {tileList.map((tile) => (
@@ -93,6 +130,4 @@ const OnboardingPage = () => {
       </section>
     </OnboardingLayout>
   );
-};
-
-export default OnboardingPage;
+}
