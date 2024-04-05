@@ -1,5 +1,4 @@
 import { renderHook, waitFor } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi } from 'vitest';
 import {
   useGetAdvancedConfiguration,
@@ -8,17 +7,13 @@ import {
 } from '@/hooks/api/advancedConfiguration.api.hook';
 import * as databaseAPI from '@/api/databases/advancedConfiguration';
 import { database } from '@/models/database';
+import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 // Mock the API functions
 vi.mock('@/api/databases/advancedConfiguration', () => ({
   getAdvancedConfiguration: vi.fn(),
   getAdvancedConfigurationCapabilities: vi.fn(),
   updateAdvancedConfiguration: vi.fn(),
 }));
-
-const queryClient = new QueryClient();
-const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
 
 describe('useGetAdvancedConfiguration', () => {
   it('should return advanced configuration data', async () => {
@@ -31,7 +26,7 @@ describe('useGetAdvancedConfiguration', () => {
 
     const { result } = renderHook(
       () => useGetAdvancedConfiguration(projectId, engine, serviceId),
-      { wrapper },
+      { wrapper: QueryClientWrapper },
     );
 
     await waitFor(() => {
@@ -67,7 +62,7 @@ describe('useGetAdvancedConfigurationCapabilities', () => {
     const { result } = renderHook(
       () =>
         useGetAdvancedConfigurationCapabilities(projectId, engine, serviceId),
-      { wrapper },
+      { wrapper: QueryClientWrapper },
     );
 
     await waitFor(() => {
@@ -97,7 +92,7 @@ describe('useUpdateAdvancedConfiguration', () => {
     );
     const { result } = renderHook(
       () => useUpdateAdvancedConfiguration({ onError, onSuccess }),
-      { wrapper },
+      { wrapper: QueryClientWrapper },
     );
 
     const updateProps = {

@@ -1,6 +1,6 @@
 import { useQueryState } from './useQueryState';
 
-const DEFAULT_OPEN_VALUE = 'true';
+export const DEFAULT_OPEN_VALUE = 'true';
 
 export interface ModalController {
   open: boolean;
