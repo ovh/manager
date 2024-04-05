@@ -1,4 +1,4 @@
-<div data-ng-controller="UserAccountUsersUpdateCtrl as $ctrl">
+<div data-ng-controller="IamUsersUpdateCtrl as $ctrl">
     <div
         data-wizard
         data-wizard-on-cancel="resetAction"
@@ -7,7 +7,7 @@
     >
         <div
             data-wizard-step
-            data-wizard-step-valid="$ctrl.userAccountUsersUpdateForm.$valid"
+            data-wizard-step-valid="$ctrl.iamUsersUpdateForm.$valid"
         >
             <p class="mb-4">
                 <span
@@ -26,23 +26,19 @@
                 </span>
             </p>
 
-            <h2
-                class="wizard-title-sub"
+            <h5
                 data-translate="user_users_update_modal_step1_question"
                 data-translate-values="{login: $ctrl.user.login}"
-            ></h2>
+            ></h5>
 
             <div class="text-center" data-ng-if="$ctrl.loader">
                 <oui-spinner data-size="s"></oui-spinner>
             </div>
 
-            <form
-                name="$ctrl.userAccountUsersUpdateForm"
-                data-ng-if="!$ctrl.loader"
-            >
+            <form name="$ctrl.iamUsersUpdateForm" data-ng-if="!$ctrl.loader">
                 <div
                     class="form-group"
-                    data-ng-class="{ 'has-error': $ctrl.userAccountUsersUpdateForm.email.$touched && $ctrl.userAccountUsersUpdateForm.email.$invalid }"
+                    data-ng-class="{ 'has-error': $ctrl.iamUsersUpdateForm.email.$touched && $ctrl.iamUsersUpdateForm.email.$invalid }"
                 >
                     <label
                         class="control-label"
@@ -61,8 +57,8 @@
                     <span
                         class="help-block"
                         role="alert"
-                        data-ng-if="$ctrl.userAccountUsersUpdateForm.email.$touched"
-                        data-ng-messages="$ctrl.userAccountUsersUpdateForm.email.$error"
+                        data-ng-if="$ctrl.iamUsersUpdateForm.email.$touched"
+                        data-ng-messages="$ctrl.iamUsersUpdateForm.email.$error"
                     >
                         <span
                             data-ng-message="email"
@@ -100,7 +96,7 @@
 
                 <div
                     class="form-group"
-                    data-ng-class="{ 'has-error': $ctrl.userAccountUsersUpdateForm.description.$touched && $ctrl.userAccountUsersUpdateForm.description.$invalid }"
+                    data-ng-class="{ 'has-error': $ctrl.iamUsersUpdateForm.description.$touched && $ctrl.iamUsersUpdateForm.description.$invalid }"
                 >
                     <label
                         class="control-label"
@@ -121,8 +117,8 @@
                     <span
                         class="help-block"
                         role="alert"
-                        data-ng-if="$ctrl.userAccountUsersUpdateForm.description.$touched"
-                        data-ng-messages="$ctrl.userAccountUsersUpdateForm.description.$error"
+                        data-ng-if="$ctrl.iamUsersUpdateForm.description.$touched"
+                        data-ng-messages="$ctrl.iamUsersUpdateForm.description.$error"
                     >
                         <span
                             data-ng-message="maxlength"

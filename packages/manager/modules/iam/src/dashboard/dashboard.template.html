@@ -9,19 +9,11 @@
                     data-translate="iam_dashboard_header_tabs_item_policies"
                 ></span
             ></oui-header-tabs-item>
-            <div class="oui-header-tabs-item">
-                <div class="oui-header-tabs__item">
-                    <a
-                        class="oui-header-tabs__action"
-                        target="_top"
-                        data-ng-href="{{ $ctrl.accountUsersURL }}"
-                    >
-                        <span
-                            data-translate="iam_dashboard_header_tabs_item_identities"
-                        ></span>
-                    </a>
-                </div>
-            </div>
+            <oui-header-tabs-item data-state="iam.dashboard.users"
+                ><span
+                    data-translate="iam_dashboard_header_tabs_item_identities"
+                ></span
+            ></oui-header-tabs-item>
             <oui-header-tabs-item data-state="iam.dashboard.resourceGroups"
                 ><span
                     data-translate="iam_dashboard_header_tabs_item_resource_groups"

@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <div data-ovh-alert="userUsers"></div>
+    <div data-ovh-alert="iamUsers"></div>
 
     <div
         data-ng-if="$ctrl.identityProvider == null || !$ctrl.identityProvider.disableUsers"
@@ -29,7 +29,7 @@
             id="btnAddUser"
             type="button"
             class="btn btn-primary my-4"
-            data-ng-click="setAction('users/add/user-users-add', user)"
+            data-ng-click="setAction('users/add/users-add', user)"
             data-ng-disabled="$ctrl.usersLoading"
             data-ng-class="{'disabled': $ctrl.usersLoading}"
         >
@@ -41,7 +41,7 @@
             id="btnSso"
             type="button"
             class="btn btn-primary float-right my-4"
-            data-ng-click="setAction('users/sso/add/user-users-sso-add', user)"
+            data-ng-click="setAction('users/sso/add/sso-add', user)"
             data-ng-disabled="$ctrl.usersLoading"
             data-ng-class="{'disabled': $ctrl.usersLoading}"
             data-ng-if="$ctrl.identityProvider == null"
@@ -125,7 +125,7 @@
                                     data-uib-dropdown-toggle
                                 >
                                     <span
-                                        class="ovh-font ovh-font-dots align-top"
+                                        class="oui-icon oui-icon-ellipsis"
                                         aria-hidden="true"
                                     >
                                     </span>
@@ -138,7 +138,7 @@
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            data-ng-click="setAction('users/update/user-users-update', user)"
+                                            data-ng-click="setAction('users/update/users-update', user)"
                                             data-translate="user_users_update"
                                         ></button>
                                     </li>
@@ -146,7 +146,7 @@
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            data-ng-click="setAction('users/delete/user-users-delete', user)"
+                                            data-ng-click="setAction('users/delete/users-delete', user)"
                                             data-translate="user_users_delete"
                                         ></button>
                                     </li>
@@ -154,7 +154,7 @@
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            data-ng-click="setAction('users/enable/user-users-enable', user)"
+                                            data-ng-click="setAction('users/enable/users-enable', user)"
                                             data-translate="user_users_enable"
                                         ></button>
                                     </li>
@@ -162,7 +162,7 @@
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            data-ng-click="setAction('users/disable/user-users-disable', user)"
+                                            data-ng-click="setAction('users/disable/users-disable', user)"
                                             data-translate="user_users_disable"
                                         ></button>
                                     </li>
@@ -233,7 +233,7 @@
                         <td>
                             <a
                                 data-ng-bind="$ctrl.identityProvider.ssoServiceUrl"
-                                data-ng-href="{{ '#/useraccount/users/sso' }}"
+                                data-ng-click="$ctrl.goToSSO()"
                             >
                             </a>
                         </td>
@@ -252,7 +252,7 @@
                                     data-uib-dropdown-toggle
                                 >
                                     <span
-                                        class="ovh-font ovh-font-dots align-top"
+                                        class="oui-icon oui-icon-ellipsis"
                                         aria-hidden="true"
                                     >
                                     </span>
@@ -262,17 +262,18 @@
                                     class="dropdown-menu dropdown-menu-right"
                                 >
                                     <li>
-                                        <a
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
                                             data-translate="user_users_sso_details"
-                                            data-ng-href="{{ '#/useraccount/users/sso' }}"
-                                        >
-                                        </a>
+                                            data-ng-click="$ctrl.goToSSO()"
+                                        ></button>
                                     </li>
                                     <li>
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            data-ng-click="setAction('users/sso/update/user-users-sso-update', user)"
+                                            data-ng-click="setAction('users/sso/update/sso-update', user)"
                                             data-translate="user_users_sso_update"
                                         ></button>
                                     </li>
@@ -280,7 +281,7 @@
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            data-ng-click="setAction('users/sso/delete/user-users-sso-delete', user)"
+                                            data-ng-click="setAction('users/sso/delete/sso-delete', user)"
                                             data-translate="user_users_sso_delete"
                                         ></button>
                                     </li>
@@ -302,7 +303,7 @@
     <button
         type="button"
         class="btn btn-primary mb-4"
-        data-ng-click="setAction('users/groups/add/user-users-groups-add', user)"
+        data-ng-click="setAction('users/groups/add/users-groups-add', user)"
         data-ng-disabled="$ctrl.groupsLoading"
         data-ng-class="{'disabled': $ctrl.groupsLoading}"
     >
@@ -368,7 +369,7 @@
                                 data-uib-dropdown-toggle
                             >
                                 <span
-                                    class="ovh-font ovh-font-dots align-top"
+                                    class="oui-icon oui-icon-ellipsis"
                                     aria-hidden="true"
                                 >
                                 </span>
@@ -381,7 +382,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-link"
-                                        data-ng-click="setAction('users/groups/update/user-users-groups-update', group)"
+                                        data-ng-click="setAction('users/groups/update/users-groups-update', group)"
                                         data-translate="user_users_groups_update"
                                     ></button>
                                 </li>
@@ -389,7 +390,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-link"
-                                        data-ng-click="setAction('users/groups/delete/user-users-groups-delete', group)"
+                                        data-ng-click="setAction('users/groups/delete/users-groups-delete', group)"
                                         data-translate="user_users_groups_delete"
                                     ></button>
                                 </li>
@@ -414,4 +415,15 @@
         data-page-placeholder="{{ 'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
         data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
     ></div>
+</div>
+
+<div id="currentAction" class="modal fade currentAction" role="dialog">
+    <div class="modal-dialog">
+        <div
+            id="modal-container"
+            class="modal-content"
+            data-ng-include="stepPath"
+        ></div>
+        <div id="modal-help" class="help4wizards"></div>
+    </div>
 </div>

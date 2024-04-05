@@ -1,11 +1,11 @@
 import template from './users.html';
 import controller from './users.controller';
-import ssoDetailsTemplate from './sso/details/user-users-sso-details.html';
-import ssoDetailsController from './sso/details/user-users-sso-details.controller';
+import ssoDetailsTemplate from './sso/details/sso-details.html';
+import ssoDetailsController from './sso/details/sso-details.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'app.account.user.users';
-  const nameSsoDetails = 'app.account.user.users.ssoDetails';
+  const name = 'iam.dashboard.users';
+  const nameSsoDetails = 'iam.dashboard.users.ssoDetails';
 
   $stateProvider.state(name, {
     url: '/users',
@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('user_users_title'),
+      goToSSO: /* @ngInject */ ($state) => () => $state.go(nameSsoDetails),
     },
   });
 
@@ -25,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
     controllerAs: '$ctrl',
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('user_users_title'),
+        $translate.instant('user_users_sso_title'),
     },
   });
 };

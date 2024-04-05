@@ -1,4 +1,4 @@
-<div data-ng-controller="UserAccountUsersGroupsUpdateCtrl as $ctrl">
+<div data-ng-controller="IamUsersGroupsUpdateCtrl as $ctrl">
     <div
         data-wizard
         data-wizard-on-cancel="resetAction"
@@ -7,22 +7,21 @@
     >
         <div
             data-wizard-step
-            data-wizard-step-valid="$ctrl.userAccountUsersGroupsUpdateForm.$valid"
+            data-wizard-step-valid="$ctrl.iamUsersGroupsUpdateForm.$valid"
         >
             <p data-translate="user_users_groups_update_modal_info"></p>
 
-            <h2
-                class="wizard-title-sub"
+            <h5
                 data-translate="user_users_groups_update_modal_step1_question"
                 data-translate-values="{login: $ctrl.user.login}"
-            ></h2>
+            ></h5>
 
             <div class="text-center" data-ng-if="$ctrl.loader">
                 <oui-spinner data-size="s"></oui-spinner>
             </div>
 
             <form
-                name="$ctrl.userAccountUsersGroupsUpdateForm"
+                name="$ctrl.iamUsersGroupsUpdateForm"
                 data-ng-if="!$ctrl.loader"
             >
                 <div class="form-group">

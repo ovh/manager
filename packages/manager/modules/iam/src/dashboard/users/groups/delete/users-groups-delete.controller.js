@@ -1,8 +1,8 @@
-export default class UserAccountUsersGroupsDeleteCtrl {
+export default class IamUsersGroupsDeleteCtrl {
   /* @ngInject */
-  constructor($scope, $translate, Alerter, UseraccountGroupsService) {
+  constructor($scope, $translate, Alerter, IamGroupsService) {
     this.$scope = $scope;
-    this.groupsService = UseraccountGroupsService;
+    this.groupsService = IamGroupsService;
     this.alerter = Alerter;
     this.$translate = $translate;
     this.group = $scope.currentActionData;
@@ -21,7 +21,7 @@ export default class UserAccountUsersGroupsDeleteCtrl {
       .then(() => {
         return this.alerter.success(
           this.$translate.instant('user_users_groups_delete_success_message'),
-          'userUsers',
+          'iamUsers',
         );
       })
       .catch((err) => {
@@ -32,14 +32,14 @@ export default class UserAccountUsersGroupsDeleteCtrl {
             )} ${this.$translate.instant('user_need_rights_message')} ${
               err.data.details.unauthorizedActionsByIAM
             }`,
-            'userUsers',
+            'iamUsers',
           );
         }
         return this.alerter.error(
           `${this.$translate.instant(
             'user_users_groups_delete_error_message',
           )} ${err.data.message}`,
-          'userUsers',
+          'iamUsers',
         );
       })
       .finally(() => {

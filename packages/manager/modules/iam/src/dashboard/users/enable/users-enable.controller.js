@@ -1,8 +1,8 @@
-export default class UserAccountUsersEnableCtrl {
+export default class IamUsersEnableCtrl {
   /* @ngInject */
-  constructor($scope, UseraccountUsersService, Alerter, $translate) {
+  constructor($scope, IamUsersService, Alerter, $translate) {
     this.$scope = $scope;
-    this.usersService = UseraccountUsersService;
+    this.usersService = IamUsersService;
     this.alerter = Alerter;
     this.$translate = $translate;
     this.user = $scope.currentActionData;
@@ -23,7 +23,7 @@ export default class UserAccountUsersEnableCtrl {
           this.$translate.instant('user_users_enable_success_message', {
             login: this.user.login,
           }),
-          'userUsers',
+          'iamUsers',
         );
       })
       .catch((err) => {
@@ -34,14 +34,14 @@ export default class UserAccountUsersEnableCtrl {
             )} ${this.$translate.instant('user_need_rights_message')} ${
               err.data.details.unauthorizedActionsByIAM
             }`,
-            'userUsers',
+            'iamUsers',
           );
         }
         return this.alerter.error(
           `${this.$translate.instant('user_users_enable_error_message')} ${
             err.data.message
           }`,
-          'userUsers',
+          'iamUsers',
         );
       })
       .finally(() => {

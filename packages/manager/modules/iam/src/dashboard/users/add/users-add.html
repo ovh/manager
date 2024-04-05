@@ -1,4 +1,4 @@
-<div data-ng-controller="UserAccountUsersAddCtrl as $ctrl">
+<div data-ng-controller="IamUsersAddCtrl as $ctrl">
     <div
         data-wizard
         data-wizard-on-cancel="resetAction"
@@ -7,30 +7,26 @@
     >
         <div
             data-wizard-step
-            data-wizard-step-valid="$ctrl.userAccountUsersAddForm.$valid"
+            data-wizard-step-valid="$ctrl.iamUsersAddForm.$valid"
         >
             <p
                 data-translate="user_users_info"
                 data-translate-values="{customerCode: $ctrl.me.customerCode}"
             ></p>
 
-            <h2
-                class="wizard-title-sub"
+            <h5
                 data-translate="user_users_add_modal_step1_question"
                 data-translate-values="{login: $ctrl.user.login}"
-            ></h2>
+            ></h5>
 
             <div class="text-center" data-ng-if="$ctrl.loader">
                 <oui-spinner data-size="s"></oui-spinner>
             </div>
 
-            <form
-                name="$ctrl.userAccountUsersAddForm"
-                data-ng-if="!$ctrl.loader"
-            >
+            <form name="$ctrl.iamUsersAddForm" data-ng-if="!$ctrl.loader">
                 <div
                     class="form-group"
-                    data-ng-class="{ 'has-error': $ctrl.userAccountUsersAddForm.login.$touched && $ctrl.userAccountUsersAddForm.login.$invalid }"
+                    data-ng-class="{ 'has-error': $ctrl.iamUsersAddForm.login.$touched && $ctrl.iamUsersAddForm.login.$invalid }"
                 >
                     <label
                         class="control-label"
@@ -50,8 +46,8 @@
                     <span
                         class="help-block"
                         role="alert"
-                        data-ng-if="$ctrl.userAccountUsersAddForm.login.$touched"
-                        data-ng-messages="$ctrl.userAccountUsersAddForm.login.$error"
+                        data-ng-if="$ctrl.iamUsersAddForm.login.$touched"
+                        data-ng-messages="$ctrl.iamUsersAddForm.login.$error"
                     >
                         <span
                             data-ng-message="required"
@@ -70,7 +66,7 @@
 
                 <div
                     class="form-group"
-                    data-ng-class="{ 'has-error': $ctrl.userAccountUsersAddForm.email.$touched && $ctrl.userAccountUsersAddForm.email.$invalid }"
+                    data-ng-class="{ 'has-error': $ctrl.iamUsersAddForm.email.$touched && $ctrl.iamUsersAddForm.email.$invalid }"
                 >
                     <label
                         class="control-label"
@@ -89,8 +85,8 @@
                     <span
                         class="help-block"
                         role="alert"
-                        data-ng-if="$ctrl.userAccountUsersAddForm.email.$touched"
-                        data-ng-messages="$ctrl.userAccountUsersAddForm.email.$error"
+                        data-ng-if="$ctrl.iamUsersAddForm.email.$touched"
+                        data-ng-messages="$ctrl.iamUsersAddForm.email.$error"
                     >
                         <span
                             data-ng-message="required"
@@ -105,7 +101,7 @@
 
                 <div
                     class="form-group"
-                    data-ng-class="{ 'has-error': $ctrl.userAccountUsersAddForm.password.$touched && $ctrl.userAccountUsersAddForm.password.$invalid }"
+                    data-ng-class="{ 'has-error': $ctrl.iamUsersAddForm.password.$touched && $ctrl.iamUsersAddForm.password.$invalid }"
                 >
                     <label
                         class="control-label"
@@ -125,8 +121,8 @@
                     <span
                         class="help-block"
                         role="alert"
-                        data-ng-if="$ctrl.userAccountUsersAddForm.password.$touched"
-                        data-ng-messages="$ctrl.userAccountUsersAddForm.password.$error"
+                        data-ng-if="$ctrl.iamUsersAddForm.password.$touched"
+                        data-ng-messages="$ctrl.iamUsersAddForm.password.$error"
                     >
                         <span
                             data-ng-message="required"
@@ -142,7 +138,7 @@
 
                 <div
                     class="form-group"
-                    data-ng-class="{ 'has-error': $ctrl.userAccountUsersAddForm.group.$touched && $ctrl.userAccountUsersAddForm.group.$invalid }"
+                    data-ng-class="{ 'has-error': $ctrl.iamUsersAddForm.group.$touched && $ctrl.iamUsersAddForm.group.$invalid }"
                 >
                     <label
                         class="control-label"
@@ -162,8 +158,8 @@
                     <span
                         class="help-block"
                         role="alert"
-                        data-ng-if="$ctrl.userAccountUsersAddForm.group.$touched"
-                        data-ng-messages="$ctrl.userAccountUsersAddForm.group.$touched && $ctrl.userAccountUsersAddForm.group.$error"
+                        data-ng-if="$ctrl.iamUsersAddForm.group.$touched"
+                        data-ng-messages="$ctrl.iamUsersAddForm.group.$touched && $ctrl.iamUsersAddForm.group.$error"
                     >
                         <span
                             data-ng-message="required"
@@ -174,7 +170,7 @@
 
                 <div
                     class="form-group"
-                    data-ng-class="{ 'has-error': $ctrl.userAccountUsersAddForm.description.$touched && $ctrl.userAccountUsersAddForm.description.$invalid }"
+                    data-ng-class="{ 'has-error': $ctrl.iamUsersAddForm.description.$touched && $ctrl.iamUsersAddForm.description.$invalid }"
                 >
                     <label
                         class="control-label"
@@ -195,8 +191,8 @@
                     <span
                         class="help-block"
                         role="alert"
-                        data-ng-if="$ctrl.userAccountUsersAddForm.description.$touched"
-                        data-ng-messages="$ctrl.userAccountUsersAddForm.description.$error"
+                        data-ng-if="$ctrl.iamUsersAddForm.description.$touched"
+                        data-ng-messages="$ctrl.iamUsersAddForm.description.$error"
                     >
                         <span
                             data-ng-message="maxlength"

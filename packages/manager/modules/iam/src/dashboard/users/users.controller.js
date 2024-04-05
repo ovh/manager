@@ -1,20 +1,24 @@
 import { get, map, set } from 'lodash-es';
 
-export default class UserAccountUsersCtrl {
+export default class IamUsersCtrl {
   /* @ngInject */
   constructor(
     $scope,
     coreConfig,
-    UseraccountUsersService,
-    UseraccountGroupsService,
+    IamUsersService,
+    IamGroupsService,
     $q,
     Alerter,
     $translate,
+    $timeout,
+    goToSSO,
   ) {
     this.$scope = $scope;
+    this.$timeout = $timeout;
     this.$q = $q;
-    this.usersService = UseraccountUsersService;
-    this.groupsService = UseraccountGroupsService;
+    this.goToSSO = goToSSO;
+    this.usersService = IamUsersService;
+    this.groupsService = IamGroupsService;
     this.alerter = Alerter;
     this.$translate = $translate;
     this.me = coreConfig.getUser();
@@ -26,8 +30,9 @@ export default class UserAccountUsersCtrl {
     this.groupsLoading = true;
     this.identityProvider = null;
     this.descriptionMaxSize = 40;
+    this.IAM_BASE_URL = 'iam/dashboard/';
 
-    this.$scope.$on('useraccount.security.users.refresh', () => {
+    this.$scope.$on('iam.security.users.refresh', () => {
       this.$onInit();
     });
   }
@@ -39,6 +44,33 @@ export default class UserAccountUsersCtrl {
     this.groupsArray = [];
     this.usersLoading = true;
     this.initIdentityProvider();
+
+    this.$scope.resetAction = function resetAction() {
+      this.$scope.setAction(false);
+    }.bind(this);
+
+    this.$scope.setAction = function setAction(action, data, basePath) {
+      this.$scope.currentAction = action;
+      this.$scope.currentActionData = data;
+      if (action) {
+        if (basePath) {
+          this.$scope.stepPath = `${basePath}${this.$scope.currentAction}.html`;
+        } else {
+          this.$scope.stepPath = `${this.IAM_BASE_URL}${this.$scope.currentAction}.html`;
+        }
+        $('#currentAction').modal({
+          keyboard: true,
+          backdrop: 'static',
+        });
+      } else {
+        $('#currentAction').modal('hide');
+        this.$scope.currentActionData = null;
+        this.$timeout(() => {
+          this.$scope.stepPath = '';
+        }, 300);
+      }
+    }.bind(this);
+
     return this.groupsService
       .getGroups()
       .then((groups) => {
@@ -64,7 +96,7 @@ export default class UserAccountUsersCtrl {
             'message',
             err,
           )}`,
-          'userUsers',
+          'iamUsers',
         );
       })
       .finally(() => {

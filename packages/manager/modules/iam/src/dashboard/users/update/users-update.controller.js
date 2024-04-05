@@ -1,16 +1,16 @@
-export default class UserAccountUsersUpdateCtrl {
+export default class IamUsersUpdateCtrl {
   /* @ngInject */
   constructor(
     $scope,
     coreConfig,
-    UseraccountUsersService,
-    UseraccountGroupsService,
+    IamUsersService,
+    IamGroupsService,
     Alerter,
     $translate,
   ) {
     this.$scope = $scope;
-    this.usersService = UseraccountUsersService;
-    this.groupsService = UseraccountGroupsService;
+    this.usersService = IamUsersService;
+    this.groupsService = IamGroupsService;
     this.alerter = Alerter;
     this.$translate = $translate;
     this.me = coreConfig.getUser();
@@ -32,7 +32,7 @@ export default class UserAccountUsersUpdateCtrl {
           `${this.$translate.instant('user_users_add_error_message_groups')} ${
             err.data.message
           }`,
-          'userUsers',
+          'iamUsers',
         );
         this.$scope.resetAction();
       })
@@ -51,7 +51,7 @@ export default class UserAccountUsersUpdateCtrl {
           this.$translate.instant('user_users_update_success_message', {
             login: this.user.login,
           }),
-          'userUsers',
+          'iamUsers',
         );
       })
       .catch((err) => {
@@ -62,14 +62,14 @@ export default class UserAccountUsersUpdateCtrl {
             )} ${this.$translate.instant('user_need_rights_message')} ${
               err.data.details.unauthorizedActionsByIAM
             }`,
-            'userUsers',
+            'iamUsers',
           );
         }
         return this.alerter.error(
           `${this.$translate.instant('user_users_update_error_message')} ${
             err.data.message
           }`,
-          'userUsers',
+          'iamUsers',
         );
       })
       .finally(() => {

@@ -1,4 +1,4 @@
-export default class UseraccountUsersService {
+export default class IamUsersService {
   /* @ngInject */
   constructor($http, $rootScope) {
     this.$http = $http;
@@ -20,7 +20,7 @@ export default class UseraccountUsersService {
   addUser(data) {
     return this.$http
       .post('/me/identity/user', data)
-      .then(() => this.broadcast('useraccount.security.users.refresh', {}));
+      .then(() => this.broadcast('iam.security.users.refresh', {}));
   }
 
   updateUser({ login, email, description, group }) {
@@ -30,25 +30,25 @@ export default class UseraccountUsersService {
         description,
         group,
       })
-      .then(() => this.broadcast('useraccount.security.users.refresh', {}));
+      .then(() => this.broadcast('iam.security.users.refresh', {}));
   }
 
   deleteUser(user) {
     return this.$http
       .delete(`/me/identity/user/${user.login}`)
-      .then(() => this.broadcast('useraccount.security.users.refresh', {}));
+      .then(() => this.broadcast('iam.security.users.refresh', {}));
   }
 
   enableUser(user) {
     return this.$http
       .post(`/me/identity/user/${user.login}/enable`)
-      .then(() => this.broadcast('useraccount.security.users.refresh', {}));
+      .then(() => this.broadcast('iam.security.users.refresh', {}));
   }
 
   disableUser(user) {
     return this.$http
       .post(`/me/identity/user/${user.login}/disable`)
-      .then(() => this.broadcast('useraccount.security.users.refresh', {}));
+      .then(() => this.broadcast('iam.security.users.refresh', {}));
   }
 
   getIdentityProvider() {
@@ -60,7 +60,7 @@ export default class UseraccountUsersService {
       .post('/me/identity/provider', postData)
       .then(({ data }) => data)
       .then((response) => {
-        this.broadcast('useraccount.security.users.refresh', response);
+        this.broadcast('iam.security.users.refresh', response);
         return response;
       });
   }
@@ -72,12 +72,12 @@ export default class UseraccountUsersService {
         userAttributeName: data.userAttributeName,
         disableUsers: data.disableUsers,
       })
-      .then(() => this.broadcast('useraccount.security.users.refresh', {}));
+      .then(() => this.broadcast('iam.security.users.refresh', {}));
   }
 
   deleteIdentityProvider() {
     return this.$http
       .delete('/me/identity/provider')
-      .then(() => this.broadcast('useraccount.security.users.refresh', {}));
+      .then(() => this.broadcast('iam.security.users.refresh', {}));
   }
 }

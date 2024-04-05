@@ -1,8 +1,8 @@
-export default class UserAccountUsersSsoDeleteCtrl {
+export default class IamUsersSsoDeleteCtrl {
   /* @ngInject */
-  constructor($scope, $translate, Alerter, UseraccountUsersService) {
+  constructor($scope, $translate, Alerter, IamUsersService) {
     this.$scope = $scope;
-    this.usersService = UseraccountUsersService;
+    this.usersService = IamUsersService;
     this.alerter = Alerter;
     this.$translate = $translate;
     this.user = $scope.currentActionData;
@@ -21,7 +21,7 @@ export default class UserAccountUsersSsoDeleteCtrl {
       .then(() => {
         return this.alerter.success(
           this.$translate.instant('user_users_sso_delete_success_message'),
-          'userUsers',
+          'iamUsers',
         );
       })
       .catch((err) => {
@@ -32,14 +32,14 @@ export default class UserAccountUsersSsoDeleteCtrl {
             )} ${this.$translate.instant('user_need_rights_message')} ${
               err.data.details.unauthorizedActionsByIAM
             }`,
-            'userUsers',
+            'iamUsers',
           );
         }
         return this.alerter.error(
           `${this.$translate.instant('user_users_sso_delete_error_message')} ${
             err.data.message
           }`,
-          'userUsers',
+          'iamUsers',
         );
       })
       .finally(() => {

@@ -24,13 +24,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('iam_breadcrumb'),
 
       /**
-       * Full URL of the my account > users sections
-       * @returns {string}
-       */
-      accountUsersURL: /* @ngInject */ (shellClient) =>
-        shellClient.navigation.getURL('dedicated', '#/useraccount/users'),
-
-      /**
        * Get the status of the advanced mode
        * @returns {boolean}
        */

@@ -1,8 +1,8 @@
-export default class UserAccountUsersSsoUpdateCtrl {
+export default class IamUsersSsoUpdateCtrl {
   /* @ngInject */
-  constructor($scope, UseraccountUsersService, Alerter, $translate) {
+  constructor($scope, IamUsersService, Alerter, $translate) {
     this.$scope = $scope;
-    this.usersService = UseraccountUsersService;
+    this.usersService = IamUsersService;
     this.alerter = Alerter;
     this.$translate = $translate;
     this.user = {
@@ -43,7 +43,7 @@ export default class UserAccountUsersSsoUpdateCtrl {
           this.$translate.instant('user_users_sso_update_success_message', {
             login: this.user.login,
           }),
-          'userUsers',
+          'iamUsers',
         );
       })
       .catch((err) => {
@@ -54,14 +54,14 @@ export default class UserAccountUsersSsoUpdateCtrl {
             )} ${this.$translate.instant('user_need_rights_message')} ${
               err.data.details.unauthorizedActionsByIAM
             }`,
-            'userUsers',
+            'iamUsers',
           );
         }
         return this.alerter.error(
           `${this.$translate.instant('user_users_sso_update_error_message')} ${
             err.data.message
           }`,
-          'userUsers',
+          'iamUsers',
         );
       })
       .finally(() => {

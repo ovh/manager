@@ -1,4 +1,4 @@
-export default class UseraccountGroupsService {
+export default class IamGroupsService {
   /* @ngInject */
   constructor($http, $rootScope) {
     this.$http = $http;
@@ -28,7 +28,7 @@ export default class UseraccountGroupsService {
       })
       .then(({ data }) => data)
       .then((response) => {
-        this.broadcast('useraccount.security.users.refresh', response);
+        this.broadcast('iam.security.users.refresh', response);
         return response;
       });
   }
@@ -39,12 +39,12 @@ export default class UseraccountGroupsService {
         description: group.description,
         role: group.role,
       })
-      .then(() => this.broadcast('useraccount.security.users.refresh', {}));
+      .then(() => this.broadcast('iam.security.users.refresh', {}));
   }
 
   deleteGroup(group) {
     return this.$http
       .delete(`/me/identity/group/${group.name}`)
-      .then(() => this.broadcast('useraccount.security.users.refresh', {}));
+      .then(() => this.broadcast('iam.security.users.refresh', {}));
   }
 }
