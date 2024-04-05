@@ -10,9 +10,8 @@ export const networkApi = {
     apiClient.v6
       .get(`/cloud/project/${projectId}/network/private/${networkId}/subnet`)
       .then((res) => res.data as Subnet[]),
+  getVrack: async (projectId: string) =>
+    apiClient.v6
+      .get(`/cloud/project/${projectId}/vrack`)
+      .then((res) => res.data as Vrack),
 };
-
-export const getVrack = async (projectId: string) =>
-  apiClient.v6
-    .get(`/cloud/project/${projectId}/vrack`)
-    .then((res) => res.data as Vrack);
