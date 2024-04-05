@@ -1,5 +1,7 @@
-import { DEFAULT_PROJECT_KEY, LINKS } from './index.constants';
-import { getRedirectPath, useDeepLinks } from './index.links';
+import { kebabCase } from 'lodash';
+import { LINK_PREFIX } from './index.constants';
+import { useDeepLinks } from './index.links';
+import links from './links.json';
 
 export default /* @ngInject */ (
   $stateProvider,
@@ -16,92 +18,70 @@ export default /* @ngInject */ (
 
   /* --------------------------- Deep linking set up -------------------------- */
 
-  const registerLinks = useDeepLinks({ $stateProvider, ovhShell });
-
-  /**
-   * @type {import('./index.links').LinkParams}
-   */
-  const linkParams = {
-    project: /* @ngInject */ ($q, publicCloud) => {
-      return $q
-        .all([
-          publicCloud.getDiscoveryProject(),
-          publicCloud.getDefaultProject(),
-          publicCloud.getUnpaidProjects(),
-        ])
-        .then(([discoveryProject, defaultProject, unPaidProjects]) => {
-          if (
-            unPaidProjects.length > 0 ||
-            (!discoveryProject && !defaultProject)
-          ) {
-            throw new Error();
-          }
-          return discoveryProject || defaultProject;
-        });
+  useDeepLinks({ $stateProvider, ovhShell }).register({
+    links,
+    params: {
+      project: /* @ngInject */ ($q, publicCloud) => {
+        return $q
+          .all([
+            publicCloud.getDiscoveryProject(),
+            publicCloud.getDefaultProject(),
+            publicCloud.getUnpaidProjects(),
+          ])
+          .then(([discoveryProject, defaultProject, unPaidProjects]) => {
+            if (
+              unPaidProjects.length > 0 ||
+              (!discoveryProject && !defaultProject)
+            ) {
+              throw new Error();
+            }
+            return discoveryProject || defaultProject;
+          });
+      },
     },
-  };
-
-  registerLinks({
-    links: LINKS,
+    options: {
+      stateName: ({ link }) => kebabCase(`${LINK_PREFIX}-${link.public.path}`),
+    },
     otherwise: 'app.redirect',
-    params: linkParams,
   });
 
   /* -------------------------------------------------------------------------- */
   /*                                DEV / QA ONLY                               */
   /* -------------------------------------------------------------------------- */
 
-  $stateProvider.state('link-test', {
-    url: '/link-test',
+  $stateProvider.state('test-links', {
+    url: '/test-links',
     controller: class {
       /* @ngInject */
-      constructor($scope, $transition$) {
-        $scope.LINKS = LINKS;
+      constructor($scope) {
         $scope.publicURL = [];
-        $scope.redirectUrl = [];
-        LINKS.forEach((link, i) => {
+        $scope.links = links;
+        $scope.links.forEach((link, i) => {
           ovhShell.navigation
             .getURL(link.public.application, link.public.path)
             .then((url) => {
               $scope.publicURL[i] = url;
             });
-          $scope.publicURL[i] = getRedirectPath({
-            transition: $transition$,
-            link,
-            params: linkParams,
-          }).then((path) => {
-            ovhShell.navigation
-              .getURL(link.redirect.application, path)
-              .then((url) => {
-                $scope.redirectUrl[i] = url;
-              })
-              .catch(() => {
-                $scope.redirectUrl[i] = 'N/A';
-              });
-          });
         });
       }
     },
     template: `
-      <div class="h-100" style="overflow: scroll;">
-        <table class="oui-table oui-table-responsive">
+      <div class="h-100 p-3" style="overflow: scroll;">
+        <table class="oui-table oui-table-responsive" style="width: 1px;">
           <thead>
             <tr>
-              <th class="oui-table__header p-3 sticky-top">Deep Links</th>
+              <th class="oui-table__header p-2">Product</th>
+              <th class="oui-table__header p-2">Link</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="oui-table__row" ng-repeat="(index, link) in LINKS">
-              <td class="oui-table__cell p-3">
-                {{ link.public.path.split('-').slice(1).join(' ') }} public URL
-                <br />
+            <tr class="oui-table__row" ng-repeat="(index, link) in links">
+              <td class="oui-table__cell p-2">
+                {{ link.public.path.split('-').slice(1).join(' ') }}
+              </td>
+              <td class="oui-table__cell p-2">
                 <oui-spinner ng-if="!publicURL[index]" size="s" />
-                <a ng-if="publicURL[index]" ng-href="{{ publicURL[index] }}">{{ publicURL[index] }}</a>
-                <br /> 
-                {{ link.public.path.split('-').slice(1).join(' ') }} resulting URL
-                <br />
-                <oui-spinner ng-if="!redirectUrl[index]" size="s" />
-                <a ng-if="redirectUrl[index]" ng-href="{{ redirectUrl[index] }}">{{ redirectUrl[index] }}</a>
+                <a ng-if="publicURL[index]" ng-href="{{ publicURL[index] }}" target="_blank">{{ publicURL[index] }}</a>
               </td>
             </tr>
           </tbody>
@@ -129,50 +109,6 @@ export default /* @ngInject */ (
     resolve: {
       redirect: /* @ngInject */ ($state) =>
         $state.go('pci.projects.onboarding'),
-    },
-  });
-
-  $stateProvider.state('redirect-kube', {
-    url: '/pci/projects/default/kubernetes/new',
-    redirectTo: (trans) => {
-      const ovhUserPref = trans.injector().get('ovhUserPref');
-      const publicCloud = trans.injector().get('publicCloud');
-
-      return publicCloud
-        .getProjects([
-          {
-            field: 'status',
-            comparator: 'in',
-            reference: ['creating', 'ok'],
-          },
-        ])
-        .then((projects) => {
-          if (projects.length > 0) {
-            return ovhUserPref
-              .getValue(DEFAULT_PROJECT_KEY)
-              .then(({ projectId }) => ({
-                state: 'pci.projects.project.kubernetes.add',
-                params: {
-                  projectId,
-                },
-              }))
-              .catch(({ status }) => {
-                if (status === 404) {
-                  // No project is defined as favorite
-                  // Go on the first one :)
-                  return {
-                    state: 'pci.projects.project.kubernetes.add',
-                    params: {
-                      projectId: projects[0].project_id,
-                    },
-                  };
-                }
-                // [TODO] Go to error page
-                return null;
-              });
-          }
-          return { state: 'pci.projects.onboarding' };
-        });
     },
   });
 
