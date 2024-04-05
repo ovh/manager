@@ -3,7 +3,7 @@ import {
   UseQueryResult,
   useQuery,
 } from '@tanstack/react-query';
-import { getVrack, networkApi } from '@/api/network';
+import { networkApi } from '@/api/network';
 import { Network, Subnet, Vrack } from '@/models/network';
 
 export function useGetNetwork(
@@ -38,7 +38,7 @@ export function useGetVrack(
   const queryKey = [projectId, 'vrack'];
   return useQuery({
     queryKey,
-    queryFn: () => getVrack(projectId),
+    queryFn: () => networkApi.getVrack(projectId),
     ...options,
   }) as UseQueryResult<Vrack, Error>;
 }

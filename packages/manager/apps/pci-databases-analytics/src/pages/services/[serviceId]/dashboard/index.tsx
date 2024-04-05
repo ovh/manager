@@ -221,7 +221,7 @@ const Dashboard = () => {
               </OvhLink>
               <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
             </div>
-            <div className="flex flex-row gap-1 mt-3">
+            <div className="flex flex-row gap-1 mt-2">
               <OvhLink application="dedicated" path={`#/support/tickets/new`}>
                 {t('supportLink')}
               </OvhLink>

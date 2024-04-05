@@ -21,10 +21,10 @@ const Price = ({ priceInUcents, taxInUcents, decimals = 2 }: PriceProps) => {
   };
   return (
     <>
-      <span className="font-bold">
+      <span data-testid="pricing-ht" className="font-bold">
         {t('pricing_ht', { price: formatPrice(price), unit })}
       </span>{' '}
-      <span className="text-xs">
+      <span data-testid="pricing-ttc" className="text-xs">
         ({t('pricing_ttc', { price: formatPrice(priceWithTax), unit })})
       </span>
     </>
