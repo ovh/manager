@@ -19,10 +19,11 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { handleClick } from '@/utils/ods-utils';
 import { FormField } from './FormField';
+import { TrackingClickParams, getClickProps } from '@/utils/tracking';
 
 export type DeleteModalProps = {
   headline: string;
@@ -33,9 +34,7 @@ export type DeleteModalProps = {
   isLoading?: boolean;
   onConfirmDelete: () => void;
   error?: ApiError;
-  dataTrackingPath?: string;
-  dataTrackingConfirmValue?: string;
-  dataTrackingCancelValue?: string;
+  trackingParams?: Omit<TrackingClickParams, 'actions'>;
 };
 
 const terminateValue = 'TERMINATE';
@@ -49,28 +48,28 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
   isLoading,
   onConfirmDelete,
   error,
-  dataTrackingPath,
-  dataTrackingConfirmValue,
-  dataTrackingCancelValue,
+  trackingParams,
 }) => {
   const { t } = useTranslation('vrack-services');
   const [deleteInput, setDeleteInput] = React.useState('');
-  const { trackPage, trackClick } = useOvhTracking();
+  const {
+    shell: {
+      tracking: { trackClick },
+    },
+  } = React.useContext(ShellContext);
 
   const close = () => {
-    trackClick({ path: dataTrackingPath, value: dataTrackingCancelValue });
+    if (trackingParams) {
+      trackClick(
+        getClickProps({
+          ...trackingParams,
+          actions: ['cancel'],
+        }),
+      );
+    }
     setDeleteInput('');
     closeModal();
   };
-
-  React.useEffect(() => {
-    if (isModalOpen && dataTrackingPath) {
-      trackPage({
-        path: dataTrackingPath,
-        pageParams: { category: 'pop-up' },
-      });
-    }
-  }, [isModalOpen, dataTrackingPath]);
 
   return (
     <OsdsModal
@@ -126,12 +125,14 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
         {...handleClick(() => {
+          trackClick(
+            getClickProps({
+              ...trackingParams,
+              actions: ['confirm'],
+            }),
+          );
           setDeleteInput('');
           onConfirmDelete();
-          trackClick({
-            path: dataTrackingPath,
-            value: dataTrackingConfirmValue,
-          });
         })}
       >
         {t('modalDeleteButton')}

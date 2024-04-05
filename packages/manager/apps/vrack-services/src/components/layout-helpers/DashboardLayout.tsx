@@ -17,12 +17,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { PageLayout } from './PageLayout';
 import { OperationMessages } from '../OperationMessages';
-
-export type DashboardTabItemProps = {
-  name: string;
-  title: string;
-  to: string;
-};
+import { DashboardTabItemProps } from './layout-helpers.type';
 
 export type DashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
@@ -36,12 +31,20 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    const activeTab = tabs.find((tab) => tab.to === location.pathname);
-    if (activeTab) {
-      setActivePanel(activeTab.name);
-    } else if (location.pathname === '') {
+    if (location.pathname === '') {
       setActivePanel(tabs[0].name);
       navigate(tabs[0].to);
+    } else {
+      const activeTab = tabs.find(
+        (tab) =>
+          tab.to === location.pathname ||
+          tab.pathMatchers?.some((pathMatcher) =>
+            pathMatcher.test(location.pathname),
+          ),
+      );
+      if (activeTab) {
+        setActivePanel(activeTab.name);
+      }
     }
   }, [location.pathname]);
 

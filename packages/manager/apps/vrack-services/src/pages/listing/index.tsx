@@ -33,7 +33,7 @@ import { betaVrackServicesLimit } from './constants';
 import { urls } from '@/router/constants';
 import { OperationMessages } from '@/components/OperationMessages';
 
-const ListingPage: React.FC = () => {
+export default function ListingPage() {
   const { t } = useTranslation('vrack-services/listing');
   const navigate = useNavigate();
   const [reachedBetaLimit, setReachedBetaLimit] = React.useState(false);
@@ -121,6 +121,4 @@ const ListingPage: React.FC = () => {
       )}
     </PageLayout>
   );
-};
-
-export default ListingPage;
+}

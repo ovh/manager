@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -17,21 +18,13 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { useAllowedVrackList } from '@/api';
-import { AssociateVrack } from './AssociateVrack';
-import { CreateVrack } from './CreateVrack';
+import { AssociateVrack } from './components/AssociateVrack';
+import { CreateVrack } from './components/CreateVrack';
 import { handleClick } from '@/utils/ods-utils';
 
-export type VrackAssociationModalProps = {
-  dataTrackingPath?: string;
-  vrackServicesId?: string;
-  closeModal: () => void;
-};
-
-export const VrackAssociationModal: React.FC<VrackAssociationModalProps> = ({
-  dataTrackingPath,
-  vrackServicesId,
-  closeModal,
-}) => {
+export default function Associate() {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const { t } = useTranslation('vrack-services/listing');
   const {
     allowedVrackList,
@@ -39,21 +32,19 @@ export const VrackAssociationModal: React.FC<VrackAssociationModalProps> = ({
     isLoading,
     error,
     vrackListInError,
-  } = useAllowedVrackList(vrackServicesId);
-  const close = () => {
-    closeModal();
-  };
+  } = useAllowedVrackList(id);
+  const closeModal = () => navigate('..');
 
-  if (!vrackServicesId) {
-    return <></>;
+  if (!id) {
+    return closeModal();
   }
 
   return (
     <OsdsModal
       dismissible
       headline={t('modalVrackAssociationTitle')}
-      masked={!vrackServicesId || undefined}
-      onOdsModalClose={close}
+      masked={!id || undefined}
+      onOdsModalClose={closeModal}
     >
       {isError && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
@@ -80,13 +71,13 @@ export const VrackAssociationModal: React.FC<VrackAssociationModalProps> = ({
       {isLoading && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
       {!isLoading && !isError && allowedVrackList.length > 0 && (
         <AssociateVrack
-          vrackServicesId={vrackServicesId}
-          closeModal={close}
+          vrackServicesId={id}
+          closeModal={closeModal}
           vrackList={allowedVrackList}
         />
       )}
       {!isLoading && !isError && allowedVrackList.length === 0 && (
-        <CreateVrack dataTrackingPath={dataTrackingPath} closeModal={close} />
+        <CreateVrack closeModal={closeModal} />
       )}
       {(isLoading || isError) && (
         <OsdsButton
@@ -94,11 +85,11 @@ export const VrackAssociationModal: React.FC<VrackAssociationModalProps> = ({
           type={ODS_BUTTON_TYPE.button}
           variant={ODS_BUTTON_VARIANT.ghost}
           color={ODS_THEME_COLOR_INTENT.primary}
-          {...handleClick(close)}
+          {...handleClick(closeModal)}
         >
           {t('modalCancelVrackAssociationButtonLabel')}
         </OsdsButton>
       )}
     </OsdsModal>
   );
-};
+}

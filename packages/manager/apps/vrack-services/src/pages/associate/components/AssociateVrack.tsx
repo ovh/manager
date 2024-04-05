@@ -21,6 +21,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   associateVrackServicesQueryKey,
   associateVrackServices,
@@ -28,6 +29,12 @@ import {
   Task,
 } from '@/api';
 import { handleClick } from '@/utils/ods-utils';
+import {
+  ButtonType,
+  PageLocation,
+  PageName,
+  getClickProps,
+} from '@/utils/tracking';
 
 export type AssociateVrackProps = {
   vrackServicesId: string;
@@ -43,6 +50,11 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
   const { t } = useTranslation('vrack-services/listing');
   const [selectedVrack, setSelectedVrack] = React.useState('');
   const queryClient = useQueryClient();
+  const {
+    shell: {
+      tracking: { trackClick },
+    },
+  } = React.useContext(ShellContext);
 
   const { mutate: associateVs, isPending, isError, error } = useMutation<
     ApiResponse<Task>,
@@ -113,7 +125,17 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={isPending || !selectedVrack || undefined}
-        {...handleClick(() => associateVs())}
+        {...handleClick(() => {
+          trackClick(
+            getClickProps({
+              location: PageLocation.popup,
+              pageName: PageName.associate,
+              buttonType: ButtonType.button,
+              actions: ['confirm'],
+            }),
+          );
+          associateVs();
+        })}
       >
         {t('modalConfirmVrackAssociationButtonLabel')}
       </OsdsButton>

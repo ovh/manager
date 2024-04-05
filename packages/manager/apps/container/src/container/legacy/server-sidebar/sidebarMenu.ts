@@ -228,7 +228,7 @@ export async function selectActiveItem(
       item.href?.endsWith(route)
     ) {
       if (
-        (item.routeMatcher && !item.routeMatcher.test(route)) ||
+        (item.routeMatcher && !item.routeMatcher.test(route)) &&
         (item.pathMatcher && !item.pathMatcher.test(path))
       ) {
         return null;

@@ -20,11 +20,11 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
 import { EditableText } from '@/components/EditableText';
 import { ProductStatus, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
+import { PageName, PageType, getPageProps } from '@/utils/tracking';
 
 export const DisplayNameCell: React.FC<DataGridCellProps<
   string | undefined,
@@ -36,26 +36,42 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
     UpdateVrackServicesParams
   >;
   navigate?: NavigateFunction;
-  trackClick: (prop: TrackingProps) => PromiseLike<void>;
-}> = ({ cellData, rowData, updateVS, navigate, trackClick }) => {
+  trackPage: (prop: unknown) => PromiseLike<void>;
+}> = ({ cellData, rowData, updateVS, navigate, trackPage }) => {
   const displayName = cellData || rowData?.id;
   return (
     <EditableText
       disabled={!isEditable(rowData)}
       defaultValue={cellData}
-      dataTrackingPath="overview"
-      editDataTracking="::edit"
-      confirmDataTracking="::update::confirm"
-      trackClick={trackClick}
       onEditSubmitted={async (value) => {
-        await updateVS({
-          vrackServicesId: rowData.id,
-          checksum: rowData.checksum,
-          targetSpec: {
-            displayName: value || null,
-            subnets: rowData.currentState.subnets || [],
+        await updateVS(
+          {
+            vrackServicesId: rowData.id,
+            checksum: rowData.checksum,
+            targetSpec: {
+              displayName: value || null,
+              subnets: rowData.currentState.subnets || [],
+            },
           },
-        });
+          {
+            onSuccess: () => {
+              trackPage(
+                getPageProps({
+                  pageType: PageType.bannerInfo,
+                  pageName: PageName.pendingUpdateVrackServices,
+                }),
+              );
+            },
+            onError: () => {
+              trackPage(
+                getPageProps({
+                  pageType: PageType.bannerError,
+                  pageName: PageName.errorUpdateVrackServices,
+                }),
+              );
+            },
+          },
+        );
       }}
     >
       {navigate ? (

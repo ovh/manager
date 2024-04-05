@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import {
   OsdsSpinner,
@@ -15,11 +14,8 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useParams } from 'react-router-dom';
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ErrorPage } from '@/components/Error';
 import { useUpdateVrackServices, useVrackService } from '@/utils/vs-utils';
 import { formatDateString } from '@/utils/date';
@@ -29,33 +25,35 @@ import {
   DisplayNameCell,
 } from '@/components/VrackServicesDataGridCells';
 import { TileBlock } from '@/components/TileBlock';
-import { VrackAssociationModal } from '@/components/VrackAssociationModal';
+import { urls } from '@/router/constants';
 
-export const OverviewTab: React.FC = () => {
+export default function OverviewTab() {
   const { t, i18n } = useTranslation('vrack-services/dashboard');
-  const [associateModalVisible, setAssociateModalVisible] = React.useState<
-    string | undefined
-  >(undefined);
+  const { t: tListing } = useTranslation('vrack-services/listing');
   const [vrackUrl, setVrackUrl] = React.useState('#');
-  const { shell } = React.useContext(ShellContext);
-  const { trackClick } = useOvhTracking();
+  const {
+    shell: {
+      tracking: { trackPage },
+      navigation: { getURL },
+    },
+  } = React.useContext(ShellContext);
   const { id } = useParams();
+  const navigate = useNavigate();
   const { data: vrackServices, error, isLoading } = useVrackService();
   const {
     updateVS,
     isErrorVisible,
     hideError,
     isPending,
+    updateError,
   } = useUpdateVrackServices({ key: id });
 
   React.useEffect(() => {
-    shell.navigation
-      .getURL(
-        'dedicated',
-        `#/vrack/${vrackServices?.currentState?.vrackId}`,
-        {},
-      )
-      .then(setVrackUrl);
+    getURL(
+      'dedicated',
+      `#/vrack/${vrackServices?.currentState?.vrackId}`,
+      {},
+    ).then(setVrackUrl);
   }, [vrackServices?.currentState?.vrackId]);
 
   if (error) {
@@ -75,7 +73,9 @@ export const OverviewTab: React.FC = () => {
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {t('updateError')}
+            {tListing('updateError', {
+              error: updateError?.response.data.message,
+            })}
           </OsdsText>
         </OsdsMessage>
       )}
@@ -101,7 +101,7 @@ export const OverviewTab: React.FC = () => {
                     updateVS={updateVS}
                     cellData={vrackServices?.currentState?.displayName}
                     rowData={vrackServices}
-                    trackClick={trackClick}
+                    trackPage={trackPage}
                   />
                 </TileBlock>
                 <TileBlock label={t('productStatus')}>
@@ -118,7 +118,12 @@ export const OverviewTab: React.FC = () => {
                   <VrackIdCell
                     label={t('associateVrackModal')}
                     openAssociationModal={() =>
-                      setAssociateModalVisible(vrackServices?.id)
+                      navigate(
+                        urls.overviewAssociate.replace(
+                          ':id',
+                          vrackServices?.id,
+                        ),
+                      )
                     }
                     cellData={vrackServices?.currentState?.vrackId}
                     isLoading={isPending}
@@ -137,13 +142,7 @@ export const OverviewTab: React.FC = () => {
           )}
         </div>
       </div>
-      <VrackAssociationModal
-        dataTrackingPath="dashboard"
-        vrackServicesId={associateModalVisible}
-        closeModal={() => setAssociateModalVisible(undefined)}
-      />
+      <Outlet />
     </>
   );
-};
-
-export default OverviewTab;
+}

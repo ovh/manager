@@ -9,10 +9,16 @@ import {
   ODS_TEXT_COLOR_INTENT,
 } from '@ovhcloud/ods-components';
 import { OsdsIcon, OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
-import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
 import { Endpoint, VrackServices, IAMResource } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
+import {
+  ButtonType,
+  PageLocation,
+  PageName,
+  PageType,
+  getClickProps,
+} from '@/utils/tracking';
 
 export const ServiceName: React.FC<DataGridCellProps<string, Endpoint> & {
   iamResources?: IAMResource[];
@@ -41,11 +47,10 @@ export const ServiceType: React.FC<DataGridCellProps<string, Endpoint> & {
 };
 
 export const ActionsCell: React.FC<DataGridCellProps<undefined, Endpoint> & {
-  isLoading?: boolean;
   vrackServices?: VrackServices;
   openDeleteModal: (managedServiceUrn: string) => void;
-  trackClick: (props: TrackingProps) => PromiseLike<void>;
-}> = ({ vrackServices, rowData, isLoading, openDeleteModal, trackClick }) => (
+  trackClick: (props: unknown) => PromiseLike<void>;
+}> = ({ vrackServices, rowData, openDeleteModal, trackClick }) => (
   <OsdsButton
     inline
     circle
@@ -53,13 +58,17 @@ export const ActionsCell: React.FC<DataGridCellProps<undefined, Endpoint> & {
     variant={ODS_BUTTON_VARIANT.ghost}
     type={ODS_BUTTON_TYPE.button}
     size={ODS_BUTTON_SIZE.sm}
-    disabled={isLoading || !isEditable(vrackServices) || undefined}
+    disabled={!isEditable(vrackServices) || undefined}
     {...handleClick(() => {
-      trackClick({
-        path: 'endpoints',
-        value: '::delete-endpoint',
-        type: 'action',
-      });
+      trackClick(
+        getClickProps({
+          pageName: PageName.endpoints,
+          pageType: PageType.listing,
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.button,
+          actions: ['delete-endpoint'],
+        }),
+      );
       openDeleteModal(rowData.managedServiceURN);
     })}
   >

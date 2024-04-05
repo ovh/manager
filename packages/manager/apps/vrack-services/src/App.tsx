@@ -2,10 +2,7 @@ import React from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { odsSetup } from '@ovhcloud/ods-common-core';
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import '@ovhcloud/ods-theme-blue-jeans';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { getRoutes } from '@/router/routes';
@@ -22,8 +19,7 @@ odsSetup();
 
 export const App: React.FC = () => {
   const { shell } = React.useContext(ShellContext);
-  const tracking = useOvhTracking();
-  const routes = getRoutes(tracking);
+  const routes = getRoutes(shell.tracking.trackPage);
   const router = createHashRouter(routes);
 
   React.useEffect(() => {
