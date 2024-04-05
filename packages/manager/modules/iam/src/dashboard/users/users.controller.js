@@ -1,6 +1,4 @@
-import get from 'lodash/get';
-import map from 'lodash/map';
-import set from 'lodash/set';
+import { get, map, set } from 'lodash-es';
 
 export default class UserAccountUsersCtrl {
   /* @ngInject */
