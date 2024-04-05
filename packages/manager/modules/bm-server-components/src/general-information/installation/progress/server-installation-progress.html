@@ -55,12 +55,22 @@
                         data-ng-click="$ctrl.cancelInstall()"
                         data-translate="server_configuration_installation_progress_cancel_button_confirm"
                     ></button>
+                </div>
+                <div
+                    class="text-center mt-3"
+                    data-ng-if="progress.errorMessage"
+                >
                     <button
                         type="button"
                         class="btn btn-default"
-                        data-ng-if="progress.errorMessage"
-                        data-ui-sref="{{$ctrl.statePrefix}}.dashboard.installation-choice"
-                        data-translate="server_configuration_installation_progress_cancel_retry"
+                        data-ui-sref="{{$ctrl.statePrefix}}.dashboard.installation-ovh"
+                        data-translate="server_configuration_installation_progress_cancel_retry_ovh"
+                    ></button>
+                    <button
+                        type="button"
+                        class="btn btn-default"
+                        data-ui-sref="{{$ctrl.statePrefix}}.dashboard.installation-gabarit"
+                        data-translate="server_configuration_installation_progress_cancel_retry_gabarit"
                     ></button>
                 </div>
                 <p
