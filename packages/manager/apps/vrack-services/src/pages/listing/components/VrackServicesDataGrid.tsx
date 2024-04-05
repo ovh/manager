@@ -13,12 +13,11 @@ import {
   OdsDatagridColumn,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import {
+  ShellContext,
   ovhLocaleToI18next,
-  useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { VrackAssociationModal } from '@/components/VrackAssociationModal';
 import { reactFormatter } from '@/utils/ods-utils';
 import {
   DisplayNameCell,
@@ -29,17 +28,21 @@ import {
   RegionCell,
 } from '@/components/VrackServicesDataGridCells';
 import { useUpdateVrackServices, useVrackServicesList } from '@/utils/vs-utils';
-import { DeleteModal } from '@/components/DeleteModal';
+import { urls } from '@/router/constants';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  getClickProps,
+} from '@/utils/tracking';
 
 export const VrackServicesDatagrid: React.FC = () => {
-  const [associateModalVisible, setAssociateModalVisible] = React.useState<
-    string | undefined
-  >(undefined);
-  const [openedDeleteModal, setOpenedDeleteModal] = React.useState<
-    string | undefined
-  >(undefined);
   const { t, i18n } = useTranslation('vrack-services/listing');
-  const { trackClick } = useOvhTracking();
+  const {
+    shell: {
+      tracking: { trackPage, trackClick },
+    },
+  } = React.useContext(ShellContext);
   const navigate = useNavigate();
   const {
     updateVS,
@@ -58,9 +61,20 @@ export const VrackServicesDatagrid: React.FC = () => {
       isSortable: true,
       formatter: reactFormatter(
         <DisplayNameCell
-          navigate={navigate}
+          navigateToDetails={(id) => {
+            trackClick(
+              getClickProps({
+                pageType: PageType.listing,
+                location: PageLocation.datagrid,
+                buttonType: ButtonType.link,
+                actionType: 'navigation',
+                actions: ['details_vrack-services'],
+              }),
+            );
+            navigate(`/${id}`);
+          }}
           updateVS={updateVS}
-          trackClick={trackClick}
+          trackPage={trackPage}
         />,
       ),
     },
@@ -83,7 +97,18 @@ export const VrackServicesDatagrid: React.FC = () => {
         <VrackIdCell
           label={t('associateVrackButtonLabel')}
           isLoading={isPending}
-          openAssociationModal={setAssociateModalVisible}
+          openAssociationModal={(id) => {
+            trackClick(
+              getClickProps({
+                pageType: PageType.listing,
+                location: PageLocation.datagrid,
+                buttonType: ButtonType.button,
+                actionType: 'navigation',
+                actions: ['associate_vrack-services'],
+              }),
+            );
+            navigate(urls.listingAssociate.replace(':id', id));
+          }}
           t={t}
         />,
       ),
@@ -100,7 +125,21 @@ export const VrackServicesDatagrid: React.FC = () => {
       title: t('actions'),
       field: '',
       formatter: reactFormatter(
-        <ActionsCell openModal={setOpenedDeleteModal} isLoading={isPending} />,
+        <ActionsCell
+          openModal={(id) => {
+            trackClick(
+              getClickProps({
+                pageType: PageType.listing,
+                location: PageLocation.datagrid,
+                buttonType: ButtonType.button,
+                actionType: 'navigation',
+                actions: ['delete_vrack-services'],
+              }),
+            );
+            navigate(urls.listingDelete.replace(':id', id));
+          }}
+          isLoading={isPending}
+        />,
       ),
     },
   ];
@@ -130,18 +169,7 @@ export const VrackServicesDatagrid: React.FC = () => {
         rows={data?.data}
         noResultLabel={t('emptyDataGridMessage')}
       />
-      <VrackAssociationModal
-        dataTrackingPath="listing"
-        vrackServicesId={associateModalVisible}
-        closeModal={() => setAssociateModalVisible(undefined)}
-      />
-      <DeleteModal
-        closeModal={() => setOpenedDeleteModal(undefined)}
-        deleteInputLabel={t('modalDeleteInputLabel')}
-        headline={t('modalDeleteHeadline')}
-        onConfirmDelete={() => console.log(`delete ${openedDeleteModal}`)}
-        isModalOpen={!!openedDeleteModal}
-      />
+      <Outlet />
     </>
   );
 };

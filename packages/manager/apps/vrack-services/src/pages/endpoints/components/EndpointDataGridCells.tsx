@@ -9,7 +9,6 @@ import {
   ODS_TEXT_COLOR_INTENT,
 } from '@ovhcloud/ods-components';
 import { OsdsIcon, OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
-import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
 import { Endpoint, VrackServices, IAMResource } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
@@ -41,11 +40,9 @@ export const ServiceType: React.FC<DataGridCellProps<string, Endpoint> & {
 };
 
 export const ActionsCell: React.FC<DataGridCellProps<undefined, Endpoint> & {
-  isLoading?: boolean;
   vrackServices?: VrackServices;
   openDeleteModal: (managedServiceUrn: string) => void;
-  trackClick: (props: TrackingProps) => PromiseLike<void>;
-}> = ({ vrackServices, rowData, isLoading, openDeleteModal, trackClick }) => (
+}> = ({ vrackServices, rowData, openDeleteModal }) => (
   <OsdsButton
     inline
     circle
@@ -53,15 +50,8 @@ export const ActionsCell: React.FC<DataGridCellProps<undefined, Endpoint> & {
     variant={ODS_BUTTON_VARIANT.ghost}
     type={ODS_BUTTON_TYPE.button}
     size={ODS_BUTTON_SIZE.sm}
-    disabled={isLoading || !isEditable(vrackServices) || undefined}
-    {...handleClick(() => {
-      trackClick({
-        path: 'endpoints',
-        value: '::delete-endpoint',
-        type: 'action',
-      });
-      openDeleteModal(rowData.managedServiceURN);
-    })}
+    disabled={!isEditable(vrackServices) || undefined}
+    {...handleClick(() => openDeleteModal(rowData.managedServiceURN))}
   >
     <OsdsIcon
       color={ODS_THEME_COLOR_INTENT.error}
