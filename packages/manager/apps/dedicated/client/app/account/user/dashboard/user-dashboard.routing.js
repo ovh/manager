@@ -21,17 +21,39 @@ export default /* @ngInject */ ($stateProvider) => {
           .execute(null, true)
           .$promise.then((lastBill) => head(lastBill.data))
           .catch(() => ({})),
-      shortcuts: /* @ngInject */ ($state, coreConfig, currentUser) =>
+      shortcuts: /* @ngInject */ (
+        $state,
+        coreConfig,
+        currentUser,
+        coreURLBuilder,
+      ) =>
         USER_DASHBOARD_SHORTCUTS.filter(
           ({ regions, isAvailable }) =>
             (!regions || coreConfig.isRegion(regions)) &&
             (!isAvailable || isAvailable(currentUser)),
-        ).map((shortcut) => ({
-          ...shortcut,
-          href: shortcut.state ? $state.href(shortcut.state) : shortcut.href,
-        })),
+        ).map((shortcut) => {
+          let href;
+
+          if (shortcut.state) {
+            href = $state.href(shortcut.state);
+          } else if (shortcut.url) {
+            href = coreURLBuilder.buildURL(
+              shortcut.url.baseURL,
+              shortcut.url.path,
+            );
+          } else {
+            href = shortcut.href;
+          }
+
+          return {
+            ...shortcut,
+            href,
+          };
+        }),
       breadcrumb: () => null,
       hideBreadcrumb: () => true,
+      iamUsersLink: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL('iam', '/dashboard/users'),
     },
   });
 };

@@ -7,6 +7,7 @@ export default {
     supportLevel: '<',
     user: '<',
     authMethodProvider: '<',
+    iamUsersLink: '<',
   },
   template,
 };
