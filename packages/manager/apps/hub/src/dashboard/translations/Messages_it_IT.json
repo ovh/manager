@@ -10,5 +10,9 @@
   "manager_hub_dashboard_modal_siret_cancel": "Non adesso",
   "manager_hub_dashboard_modal_title": "Aggiornamento dei tuoi dati",
   "manager_hub_dashboard_kyc_banner_description": "Vuoi ordinare un servizio OVHcloud: la normativa in vigore richiede una verifica dell'identità. Aggiungi i tuoi documenti d'identità.",
-  "manager_hub_dashboard_kyc_banner_link": "I miei documenti"
+  "manager_hub_dashboard_kyc_banner_link": "I miei documenti",
+  "manager_hub_dashboard_iam_banner_description": "Novità! La funzionalità di gestione delle identità e degli accessi (IAM) è disponibile per gestire in modo sicuro gli accessi da un'interfaccia unica per tutti i servizi.",
+  "manager_hub_dashboard_iam_banner_link": "Scopri di più",
+  "manager_hub_dashboard_iam_ga_banner_description": "Novità! Identity and Access Management (IAM) è ora disponibile per tutti. Rendi sicuro l'accesso a tutti i tuoi servizi da un'unica interfaccia.",
+  "manager_hub_dashboard_kyc_banner_description_waiting": "Per verificare la tua identità prima di effettuare un ordine, leggi l'email inviata dal nostro team e procedi con l'azione richiesta."
 }
