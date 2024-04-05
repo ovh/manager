@@ -70,6 +70,14 @@ export interface TerminateIPProps {
   onSuccess: () => void;
 }
 
+export interface AttachInstanceProps {
+  projectId: string;
+  ipId: string;
+  instanceId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}
+
 export type ImportsOptions = {
   pagination: PaginationState;
 };
