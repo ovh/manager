@@ -6,56 +6,71 @@ export interface Storage {
 }
 const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
 
-export function compareStorage(a: Storage, b: Storage) {
-  const unitAIndex = units.indexOf(a.unit);
-  const unitBIndex = units.indexOf(b.unit);
+export function convertToBytes(storage: Storage): number {
+  const unitIndex = units.indexOf(storage.unit);
+  return storage.value * 1000 ** unitIndex;
+}
 
-  if (unitAIndex < unitBIndex) {
+export function compareStorage(a: Storage, b: Storage): number {
+  // Convert both storage values to bytes
+  const aValueInBytes = convertToBytes(a);
+  const bValueInBytes = convertToBytes(b);
+
+  // Compare the converted values
+  if (aValueInBytes < bValueInBytes) {
     return -1;
   }
-  if (unitAIndex > unitBIndex) {
+
+  if (aValueInBytes > bValueInBytes) {
     return 1;
   }
-  return a.value - b.value;
+  return 0;
 }
 
 export function addStorage(a: Storage, b: Storage): Storage {
-  // Convert both storages to the unit with the highest index
-  const maxUnitIndex = Math.max(units.indexOf(a.unit), units.indexOf(b.unit));
-  const aValueInMaxUnit =
-    a.value * 1000 ** (maxUnitIndex - units.indexOf(a.unit));
-  const bValueInMaxUnit =
-    b.value * 1000 ** (maxUnitIndex - units.indexOf(b.unit));
+  // Convert both storages to bytes for accurate calculation
+  const aValueInBytes = convertToBytes(a);
+  const bValueInBytes = convertToBytes(b);
 
-  // Perform addition
-  const sumValue = aValueInMaxUnit + bValueInMaxUnit;
+  // Perform addition in bytes
+  let sumValueInBytes = aValueInBytes + bValueInBytes;
 
-  // Find the appropriate unit
-  const unit = units[maxUnitIndex];
+  // Determine the most appropriate unit for the result
+  let resultUnitIndex = 0; // Start from the smallest unit ('B')
+  while (sumValueInBytes >= 1000 && resultUnitIndex < units.length - 1) {
+    sumValueInBytes /= 1000;
+    resultUnitIndex += 1;
+  }
 
+  // Adjust the sum to a sensible precision to avoid floating point issues
+  sumValueInBytes = parseFloat(sumValueInBytes.toFixed(3));
+
+  // Construct the result with the adjusted unit
   return {
-    unit,
-    value: sumValue,
+    unit: units[resultUnitIndex],
+    value: sumValueInBytes,
   };
 }
 
 export function subtractStorage(a: Storage, b: Storage): Storage {
-  // Convert both storages to the unit with the highest index
-  const maxUnitIndex = Math.max(units.indexOf(a.unit), units.indexOf(b.unit));
-  const aValueInMaxUnit =
-    a.value * 1000 ** (maxUnitIndex - units.indexOf(a.unit));
-  const bValueInMaxUnit =
-    b.value * 1000 ** (maxUnitIndex - units.indexOf(b.unit));
+  // Convert both storages to bytes for accurate calculation
+  const aValueInBytes = convertToBytes(a);
+  const bValueInBytes = convertToBytes(b);
 
-  // Perform subtraction
-  const diffValue = aValueInMaxUnit - bValueInMaxUnit;
+  // Perform subtraction in bytes
+  let diffValueInBytes = aValueInBytes - bValueInBytes;
 
-  // Find the appropriate unit
-  const unit = units[maxUnitIndex];
+  // Determine the most appropriate unit for the result
+  let resultUnitIndex = 0; // Start from the smallest unit ('B')
+  while (diffValueInBytes >= 1000 && resultUnitIndex < units.length - 1) {
+    diffValueInBytes /= 1000;
+    resultUnitIndex += 1;
+  }
 
+  // Construct the result with the adjusted unit
   return {
-    unit,
-    value: diffValue,
+    unit: units[resultUnitIndex],
+    value: diffValueInBytes,
   };
 }
 
