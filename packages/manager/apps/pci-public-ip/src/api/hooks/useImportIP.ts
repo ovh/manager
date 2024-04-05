@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
+import { paginateResults } from '@/api/utils/pagination';
 import { ImportsOptions } from '@/interface';
-import { getImportsIPs, moveIPToProject } from '../data/import-ip';
-import { paginateResults } from '../utils/pagination';
+import { getImportsIPs, moveIPToProject } from '@/api/data/import-ip';
 
 export const useGetImportsIPs = (
   projectId: string,

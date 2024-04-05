@@ -17,4 +17,18 @@ export const terminateFailoverIP = async (ipBlock: string) => {
   return data;
 };
 
+export const attachInstance = async (
+  projectId: string,
+  ipId: string,
+  instanceId: string,
+) => {
+  const { data } = await v6.post(
+    `cloud/project/${projectId}/ip/failover/${ipId}/attach`,
+    {
+      instanceId,
+    },
+  );
+  return data;
+};
+
 export default { getAllFailoverIP };
