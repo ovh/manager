@@ -1,11 +1,5 @@
-import { fetchIcebergV6, FilterComparator, v6 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 import { ImportsIP } from '@/interface';
-
-export type Filter = {
-  key: string;
-  value: string | string[];
-  comparator: FilterComparator;
-};
 
 export const getImportsIPs = async (
   projectId: string,
