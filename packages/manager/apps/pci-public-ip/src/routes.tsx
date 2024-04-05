@@ -56,6 +56,12 @@ export default [
               ),
             ),
           },
+          {
+            path: ':ipId/edit',
+            ...lazyRouteConfig(() =>
+              import('@/pages/additional-ips/edit/EditInstancePage'),
+            ),
+          },
         ],
       },
       {
