@@ -1,17 +1,17 @@
 {
-  "crumb": "Usługi vRack",
-  "title": "Włącz usługi vRack",
+  "crumb": "vRack Services",
+  "title": "Włącz vRack Services",
   "displayNameLabel": "Nazwa (opcjonalnie)",
-  "displayNamePlaceholder": "Moje usługi vRack",
+  "displayNamePlaceholder": "Moje usługi vRack Services",
   "regionLabel": "Region",
-  "regionDescription": "vRack Services to usługa regionalna. Wybierz region, w którym chcesz go używać. Aby korzystać z Usługi Endpoint, wybierz region odpowiadający Twojej usłudze zarządzanej OVHcloud.",
-  "createButtonLabel": "Włącz usługi vRack",
-  "creationServiceError": "Wystąpił błąd podczas aktywacji usług vRack: {{error}}",
+  "regionDescription": "vRack Services to usługa regionalna. Wybierz region, w którym chcesz jej używać. Aby korzystać z Service Endpoint, wybierz region odpowiadający Twojej zarządzanej usłudze OVHcloud.",
+  "createButtonLabel": "Włącz vRack Services",
+  "creationServiceError": "Wystąpił błąd podczas aktywacji vRack Services: {{error}}",
   "modalHeadline": "Utwórz vRack",
-  "modalDescriptionLine1": "Aby włączyć vRack Services, utwórz vRack.",
-  "modalDescriptionLine2": "Chcesz zamówić usługę vRack równolegle z aktywacją usług vRack?",
-  "modalDescriptionLine3": "Cena usługi vRack: 0€",
+  "modalDescriptionLine1": "Aby włączyć vRack Services, utwórz sieć vRack.",
+  "modalDescriptionLine2": "Chcesz zamówić sieć vRack równolegle z aktywacją vRack Services?",
+  "modalDescriptionLine3": "Cena sieci vRack: 0 €",
   "modalCancelButtonLabel": "Anuluj",
-  "modalConfirmVrackButtonLabel": "Zamów usługę vRack",
-  "modalNoVrackButtonLabel": "Nie, dziękuję. Mam już vRack"
+  "modalConfirmVrackButtonLabel": "Zamów vRack",
+  "modalNoVrackButtonLabel": "Nie, dziękuję, mam już vRack"
 }
