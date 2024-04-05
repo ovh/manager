@@ -1,12 +1,13 @@
 import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  OsdsText,
-  OsdsSpinner,
-  OsdsModal,
   OsdsButton,
   OsdsMessage,
+  OsdsSpinner,
+  OsdsModal,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_TYPE,
@@ -16,38 +17,45 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useMutation } from '@tanstack/react-query';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { handleClick } from '@/utils/ods-utils';
-import { Task } from '@/api';
 import {
+  ButtonType,
+  PageLocation,
+  PageName,
+  PageType,
+  getClickProps,
+} from '@/utils/tracking';
+import {
+  Task,
   dissociateVrackServices,
   dissociateVrackServicesQueryKey,
-} from '@/api/vrack/delete';
+} from '@/api';
 
-export type DissociateVrackModalProps = {
-  isModalOpen?: boolean;
-  closeModal: () => void;
-  dataTrackingPath?: string;
-  dataTrackingConfirmValue?: string;
-  dataTrackingCancelValue?: string;
-  vrackId: string;
-  vrackServicesId: string;
+const sharedTrackingParams = {
+  pageName: PageName.dissociate,
+  pageType: PageType.popup,
+  location: PageLocation.popup,
+  buttonType: ButtonType.button,
 };
 
-export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
-  isModalOpen,
-  closeModal,
-  dataTrackingPath,
-  dataTrackingConfirmValue,
-  dataTrackingCancelValue,
-  vrackId,
-  vrackServicesId,
-}) => {
+export default function Dissociate() {
+  const { id, vrackId } = useParams();
+  const navigate = useNavigate();
   const { t } = useTranslation('vrack-services');
-  const { trackPage, trackClick } = useOvhTracking();
-
+  const { shell } = React.useContext(ShellContext);
+  const closeModal = () => {
+    shell.tracking.trackClick(
+      getClickProps({
+        ...sharedTrackingParams,
+        actionType: 'exit',
+        actions: ['cancel'],
+      }),
+    );
+    navigate('..');
+  };
   const { mutate: dissociateVs, isPending, error } = useMutation<
     ApiResponse<Task>,
     ApiError
@@ -55,37 +63,24 @@ export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
     mutationFn: () =>
       dissociateVrackServices({
         vrack: vrackId,
-        vrackServices: vrackServicesId,
+        vrackServices: id,
       }),
-    mutationKey: dissociateVrackServicesQueryKey(vrackId, vrackServicesId),
+    mutationKey: dissociateVrackServicesQueryKey(vrackId, id),
     onSuccess: () => {
       closeModal();
     },
   });
 
-  const close = () => {
-    if (dataTrackingPath && dataTrackingCancelValue) {
-      trackClick({ path: dataTrackingPath, value: dataTrackingCancelValue });
-    }
-    closeModal();
-  };
-
-  React.useEffect(() => {
-    if (isModalOpen && dataTrackingPath) {
-      trackPage({
-        path: dataTrackingPath,
-        pageParams: { category: 'pop-up' },
-      });
-    }
-  }, [isModalOpen, dataTrackingPath]);
+  if (!id || !vrackId) {
+    return closeModal();
+  }
 
   return (
     <OsdsModal
       dismissible
       color={ODS_THEME_COLOR_INTENT.error}
       headline={t('modalDissociateHeadline')}
-      masked={!isModalOpen || undefined}
-      onOdsModalClose={close}
+      onOdsModalClose={closeModal}
     >
       {!!error && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
@@ -113,7 +108,7 @@ export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.error}
-        {...handleClick(close)}
+        {...handleClick(closeModal)}
       >
         {t('modalCancelButton')}
       </OsdsButton>
@@ -124,17 +119,18 @@ export const DissociateVrackModal: React.FC<DissociateVrackModalProps> = ({
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.error}
         {...handleClick(() => {
+          shell.tracking.trackClick(
+            getClickProps({
+              ...sharedTrackingParams,
+              actionType: 'action',
+              actions: ['confirm'],
+            }),
+          );
           dissociateVs();
-          if (dataTrackingPath && dataTrackingConfirmValue) {
-            trackClick({
-              path: dataTrackingPath,
-              value: dataTrackingConfirmValue,
-            });
-          }
         })}
       >
         {t('modalConfirmButton')}
       </OsdsButton>
     </OsdsModal>
   );
-};
+}

@@ -18,7 +18,6 @@ import {
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
 import { handleClick } from '@/utils/ods-utils';
 
 export type EditableTextProps = React.PropsWithChildren<{
@@ -27,11 +26,6 @@ export type EditableTextProps = React.PropsWithChildren<{
   defaultValue: string;
   emptyValueLabel?: string;
   onEditSubmitted: (newValue: string) => Promise<void>;
-  dataTrackingPath?: string;
-  editDataTracking?: string;
-  confirmDataTracking?: string;
-  // TODO: Use the hook useOvhTracking directly once we use React data grid
-  trackClick: (props: TrackingProps) => PromiseLike<void>;
 }>;
 
 export type EditStatus = 'display' | 'editing' | 'loading';
@@ -43,10 +37,6 @@ export const EditableText: React.FC<EditableTextProps> = ({
   disabled,
   type = ODS_INPUT_TYPE.text,
   onEditSubmitted,
-  dataTrackingPath,
-  editDataTracking,
-  confirmDataTracking,
-  trackClick,
 }) => {
   const [editStatus, setEditStatus] = React.useState<EditStatus>('display');
   const [value, setValue] = React.useState(defaultValue);
@@ -101,15 +91,6 @@ export const EditableText: React.FC<EditableTextProps> = ({
           type={ODS_BUTTON_TYPE.submit}
           size={ODS_BUTTON_SIZE.sm}
           disabled={editStatus === 'loading' || undefined}
-          {...handleClick(() => {
-            if (confirmDataTracking) {
-              trackClick({
-                path: dataTrackingPath,
-                value: confirmDataTracking,
-                type: 'action',
-              });
-            }
-          })}
         >
           <OsdsIcon
             color={ODS_THEME_COLOR_INTENT.success}
@@ -144,13 +125,6 @@ export const EditableText: React.FC<EditableTextProps> = ({
         type={ODS_BUTTON_TYPE.button}
         size={ODS_BUTTON_SIZE.sm}
         {...handleClick(() => {
-          if (editDataTracking) {
-            trackClick({
-              path: dataTrackingPath,
-              value: editDataTracking,
-              type: 'action',
-            });
-          }
           setEditStatus('editing');
         })}
         disabled={disabled || undefined}

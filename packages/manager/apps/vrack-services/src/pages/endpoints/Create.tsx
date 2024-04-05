@@ -7,7 +7,7 @@ import {
   ODS_SELECT_SIZE,
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   VrackServices,
@@ -22,15 +22,14 @@ import {
   serviceTypeSelectName,
   serviceNameSelectName,
   getEndpointCreationMutationKey,
-} from './constants';
+} from './endpoints.constants';
 import { useServiceList, useVrackService } from '@/utils/vs-utils';
 import { ErrorPage } from '@/components/Error';
 import { FormField } from '@/components/FormField';
-import { urls, pageTrackingLabels } from '@/router/constants';
+import { urls } from '@/router/constants';
+import { PageName, PageType, getPageProps } from '@/utils/tracking';
 
-const dataTrackingPath = pageTrackingLabels[urls.createEndpoint];
-
-const EndpointCreationPage: React.FC = () => {
+export default function EndpointCreationPage() {
   const { t } = useTranslation('vrack-services/endpoints');
   const { id } = useParams();
   const [serviceType, setServiceType] = React.useState<string | undefined>(
@@ -44,7 +43,11 @@ const EndpointCreationPage: React.FC = () => {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = urls.endpoints.replace(':id', id);
-  const { trackPage } = useOvhTracking();
+  const {
+    shell: {
+      tracking: { trackPage },
+    },
+  } = React.useContext(ShellContext);
 
   const {
     iamResources,
@@ -88,12 +91,22 @@ const EndpointCreationPage: React.FC = () => {
         queryClient.invalidateQueries({
           queryKey: getVrackServicesResourceQueryKey(id),
         }),
-        trackPage({ path: dataTrackingPath, value: '-success' }),
+        trackPage(
+          getPageProps({
+            pageName: PageName.pendingCreateEndpoint,
+            pageType: PageType.bannerInfo,
+          }),
+        ),
       ]);
       navigate(dashboardUrl);
     },
     onError: () => {
-      trackPage({ path: dataTrackingPath, value: '-error' });
+      trackPage(
+        getPageProps({
+          pageName: PageName.errorCreateEndpoint,
+          pageType: PageType.bannerError,
+        }),
+      );
     },
   });
 
@@ -121,8 +134,7 @@ const EndpointCreationPage: React.FC = () => {
       title={t('createPageTitle')}
       description={t('createPageDescription')}
       createButtonLabel={t('createEndpointButtonLabel')}
-      dataTrackingPath={dataTrackingPath}
-      createButtonDataTracking="::confirm"
+      trackingParams={{ pageName: PageName.createEndpoints }}
       formErrorMessage={t('endpointCreationError', {
         error: error?.response.data.message,
       })}
@@ -213,6 +225,4 @@ const EndpointCreationPage: React.FC = () => {
       </FormField>
     </CreatePageLayout>
   );
-};
-
-export default EndpointCreationPage;
+}

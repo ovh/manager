@@ -19,7 +19,6 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { handleClick } from '@/utils/ods-utils';
 import { FormField } from './FormField';
@@ -33,9 +32,6 @@ export type DeleteModalProps = {
   isLoading?: boolean;
   onConfirmDelete: () => void;
   error?: ApiError;
-  dataTrackingPath?: string;
-  dataTrackingConfirmValue?: string;
-  dataTrackingCancelValue?: string;
 };
 
 const terminateValue = 'TERMINATE';
@@ -49,28 +45,14 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
   isLoading,
   onConfirmDelete,
   error,
-  dataTrackingPath,
-  dataTrackingConfirmValue,
-  dataTrackingCancelValue,
 }) => {
   const { t } = useTranslation('vrack-services');
   const [deleteInput, setDeleteInput] = React.useState('');
-  const { trackPage, trackClick } = useOvhTracking();
 
   const close = () => {
-    trackClick({ path: dataTrackingPath, value: dataTrackingCancelValue });
     setDeleteInput('');
     closeModal();
   };
-
-  React.useEffect(() => {
-    if (isModalOpen && dataTrackingPath) {
-      trackPage({
-        path: dataTrackingPath,
-        pageParams: { category: 'pop-up' },
-      });
-    }
-  }, [isModalOpen, dataTrackingPath]);
 
   return (
     <OsdsModal
@@ -128,10 +110,6 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
         {...handleClick(() => {
           setDeleteInput('');
           onConfirmDelete();
-          trackClick({
-            path: dataTrackingPath,
-            value: dataTrackingConfirmValue,
-          });
         })}
       >
         {t('modalDeleteButton')}

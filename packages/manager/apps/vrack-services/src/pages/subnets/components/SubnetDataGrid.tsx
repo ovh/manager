@@ -13,8 +13,8 @@ import {
   OdsDatagridColumn,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useParams } from 'react-router-dom';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { reactFormatter } from '@/utils/ods-utils';
 import {
   DisplayNameCell,
@@ -24,15 +24,17 @@ import {
 } from './SubnetDataGridCells';
 import { ErrorPage } from '@/components/Error';
 import { useVrackService, useUpdateVrackServices } from '@/utils/vs-utils';
-import { DeleteModal } from '@/components/DeleteModal';
+import { urls } from '@/router/constants';
 
 export const SubnetDatagrid: React.FC = () => {
   const { t } = useTranslation('vrack-services/subnets');
-  const [openedDeleteModal, setOpenedDeleteModal] = React.useState<
-    string | undefined
-  >(undefined);
   const { id } = useParams();
-  const { trackPage, trackClick } = useOvhTracking();
+  const {
+    shell: {
+      tracking: { trackPage, trackClick },
+    },
+  } = React.useContext(ShellContext);
+  const navigate = useNavigate();
   const emptyValueLabel = t('none');
 
   const { data: vrackServices, isError, error } = useVrackService();
@@ -43,9 +45,6 @@ export const SubnetDatagrid: React.FC = () => {
     isErrorVisible,
   } = useUpdateVrackServices({
     key: id,
-    onSuccess: () => {
-      setOpenedDeleteModal('');
-    },
   });
 
   const columns: OdsDatagridColumn[] = [
@@ -58,7 +57,6 @@ export const SubnetDatagrid: React.FC = () => {
           updateVS={updateVS}
           vrackServices={vrackServices}
           trackPage={trackPage}
-          trackClick={trackClick}
           emptyValueLabel={emptyValueLabel}
         />,
       ),
@@ -83,7 +81,13 @@ export const SubnetDatagrid: React.FC = () => {
       field: '',
       formatter: reactFormatter(
         <ActionsCell
-          openDeleteModal={setOpenedDeleteModal}
+          openDeleteModal={(cidr) =>
+            navigate(
+              urls.subnetsDelete
+                .replace(':id', id)
+                .replace(':cidr', cidr.replace('/', '_')),
+            )
+          }
           vrackServices={vrackServices}
           isLoading={isPending}
           trackClick={trackClick}
@@ -118,40 +122,6 @@ export const SubnetDatagrid: React.FC = () => {
         columns={columns}
         rows={subnetList}
         noResultLabel={t('emptyDataGridMessage')}
-      />
-      <DeleteModal
-        closeModal={() => setOpenedDeleteModal(undefined)}
-        deleteInputLabel={t('modalDeleteInputLabel')}
-        headline={t('modalDeleteHeadline')}
-        description={t('modalDeleteDescription')}
-        dataTrackingPath="subnets::delete"
-        dataTrackingConfirmValue="confirm"
-        dataTrackingCancelValue="cancel"
-        onConfirmDelete={() =>
-          updateVS(
-            {
-              checksum: vrackServices?.checksum,
-              vrackServicesId: vrackServices?.id,
-              targetSpec: {
-                displayName: vrackServices?.currentState.displayName,
-                subnets: vrackServices?.currentState.subnets.filter(
-                  (subnet) => subnet.cidr !== openedDeleteModal,
-                ),
-              },
-            },
-            {
-              onSuccess: () => {
-                trackPage({ path: 'subnets::delete', value: '-success' });
-              },
-              onError: () => {
-                trackPage({ path: 'subnets::delete', value: '-error' });
-              },
-            },
-          )
-        }
-        error={updateError}
-        isLoading={isPending}
-        isModalOpen={!!openedDeleteModal}
       />
     </>
   );
