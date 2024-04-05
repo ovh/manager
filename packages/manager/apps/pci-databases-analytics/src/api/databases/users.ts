@@ -45,7 +45,7 @@ export const getUsers = async ({
       break;
     default:
       throw new Error(
-        `The resource engine ${engine} does not implement the resource ${resource}`,
+        `The engine ${engine} does not implement the resource ${resource}`,
       );
   }
   return userReturnType;
@@ -114,10 +114,7 @@ export const getRoles = async ({
   return apiClient.v6.get(url).then((res) => res.data as string[]);
 };
 
-export type UserEdition = Omit<
-  GenericUser,
-  'createdAt' | 'status' | 'username'
->;
+export type UserEdition = Omit<GenericUser, 'createdAt' | 'status'>;
 
 export interface EditUserProps extends ServiceData {
   user: UserEdition;
