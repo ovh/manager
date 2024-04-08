@@ -47,6 +47,8 @@ export const GUIDE_LINKS = {
     'https://help.ovhcloud.com/csm/en-network-security-dashboard?id=kb_article_view&sysparm_article=KB0060700',
   WS:
     'https://help.ovhcloud.com/csm/es-network-security-dashboard?id=kb_article_view&sysparm_article=KB0060701',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/24715769871763-Monitoring-DDoS-Attacks-with-the-Network-Security-Dashboard',
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-network-security-dashboard?id=kb_article_view&sysparm_article=KB0060700',
 };
