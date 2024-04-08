@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.1.2...@ovh-ux/manager-pci-ssh-keys-app@0.2.0) (2024-04-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2892] ([f8cc28f](https://github.com/ovh/manager/commit/f8cc28f4c8867f5ea7e533c1f09d2e8751f33ed1))
+* **i18n:** add missing translations [CDS 2895] ([cd7d5fd](https://github.com/ovh/manager/commit/cd7d5fd6a17205f5a63a9adb558b3567e8c6fa6f))
+* **pci-ssh-keys:** fix guides urls ([#11313](https://github.com/ovh/manager/issues/11313)) ([b61d21f](https://github.com/ovh/manager/commit/b61d21f2f9935f862e5dd937d6c9f9999b74f226))
+
+
+### Features
+
+* **public-cloud:** gridscale ga m1 bis changes ([#11066](https://github.com/ovh/manager/issues/11066)) ([db91fbc](https://github.com/ovh/manager/commit/db91fbc22c11381eac7863710bf868a43d60eecf))
+
+
+
+
+
 ## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.1.1...@ovh-ux/manager-pci-ssh-keys-app@0.1.2) (2024-04-04)
 
 

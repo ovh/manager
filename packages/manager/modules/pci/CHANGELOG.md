@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.32.1...@ovh-ux/manager-pci@6.33.0) (2024-04-08)
+
+
+### Features
+
+* **pci:** remove voucher angularjs section ([#11270](https://github.com/ovh/manager/issues/11270)) ([135de15](https://github.com/ovh/manager/commit/135de15e45c80a475adb4cdd6c0e6d79f86f7852))
+* **public-cloud:** gridscale ga m1 bis changes ([#11066](https://github.com/ovh/manager/issues/11066)) ([db91fbc](https://github.com/ovh/manager/commit/db91fbc22c11381eac7863710bf868a43d60eecf))
+
+
+
+
+
 ## [6.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.32.0...@ovh-ux/manager-pci@6.32.1) (2024-04-04)
 
 

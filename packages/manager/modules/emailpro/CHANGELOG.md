@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.12.0...@ovh-ux/manager-emailpro@3.12.1) (2024-04-08)
+
+
+### Bug Fixes
+
+* **web.email:** hide external contact for mxplan ([#11311](https://github.com/ovh/manager/issues/11311)) ([947d23c](https://github.com/ovh/manager/commit/947d23c4f4cba6b94aa65cd3549effee3af087ea))
+* **web.email:** hide security policy tab for zimbra ([#11312](https://github.com/ovh/manager/issues/11312)) ([792673c](https://github.com/ovh/manager/commit/792673c1544f18d403b796de06d6ed2b8cfec632))
+
+
+
+
+
 # [3.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.11.2...@ovh-ux/manager-emailpro@3.12.0) (2024-03-25)
 
 
