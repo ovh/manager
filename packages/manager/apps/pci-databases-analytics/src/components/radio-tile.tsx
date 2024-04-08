@@ -24,8 +24,10 @@ const RadioTile = ({ children, className, ...props }: RadioTileProps) => {
       aria-checked={props.checked}
       tabIndex={0}
       onKeyDown={handleLabelKeyDown}
+      data-testid="radio-tile-container"
     >
       <input
+        data-testid="radio-tile-input"
         onChange={(e) => (props.onChange ? props.onChange(e) : null)}
         className="hidden"
         type="radio"
@@ -35,6 +37,7 @@ const RadioTile = ({ children, className, ...props }: RadioTileProps) => {
       />
       <label
         htmlFor={id}
+        data-testid="radio-tile-label"
         className={cn(
           `w-full group text-[#4d5592] border-2 border-primary-100 rounded-md p-4 hover:shadow-sm hover:border-primary-600 hover:bg-primary-100 cursor-pointer ${
             props.checked
