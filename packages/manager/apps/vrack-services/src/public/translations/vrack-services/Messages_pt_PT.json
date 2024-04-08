@@ -1,5 +1,5 @@
 {
-  "listingCrumb": "Serviços vRack",
+  "listingCrumb": "vRack Services",
   "deliveringVrackServicesMessage": "Foi efetuado um pedido de ativação dos vRack Services a {{date}} - {{time}}. Estado da encomenda: {{status}}",
   "deliveringVrackMessage": "Foi efetuado um pedido de criação de um vRack a {{date}} - {{time}}. Estado da encomenda: {{status}}",
   "orderStatus-cancelled": "Anulado",
