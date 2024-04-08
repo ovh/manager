@@ -38,6 +38,6 @@
   "createRancherCTA": "Managed Rancher Service erstellen",
   "createRancherError": "Bei der Erstellung Ihres Managed Rancher Service ist ein Fehler aufgetreten. Bitte versuchen Sie es noch einmal.",
   "createRancherRecomendedVersion": "Empfohlene Version",
-  "createRancherOVHCloudPlanDescription": "Erstellen oder verwalten Sie Managed Kubernetes Service oder selbstverwaltete Downstream-Cluster in der OVHcloud Public Cloud oder auf Ihren eigenen Maschinen. Sie können auch externe Cluster registrieren (ohne Cloud-Verwaltung).",
+  "createRancherOVHCloudPlanDescription": "Erstellen oder verwalten Sie Managed Kubernetes Service oder „selbstverwaltete“ Downstream-Cluster in der OVHcloud Public Cloud oder auf Ihren eigenen Maschinen. Sie können auch externe Cluster registrieren (ohne Cloud-Verwaltung).",
   "createRancherStandardPlanDescription": "Erstellen oder registrieren Sie „Downstream-Cluster“ mit jeder von Rancher unterstützten Public Cloud oder einer automatisierbaren Private Cloud (z. B. VMware vSphere), einschließlich der vom OVHcloud Edition Angebot unterstützten Szenarien."
 }
