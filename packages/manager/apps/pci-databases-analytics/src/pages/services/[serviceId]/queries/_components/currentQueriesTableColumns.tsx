@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { database } from '@/models/database';
+import { useServiceData } from '../../layout';
 
 interface CurrentQueriesListColumnsProps {
   onCancelQueryClicked: (query: database.service.currentqueries.Query) => void;
@@ -21,6 +22,7 @@ export const getColumns = ({
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/queries',
   );
+  const { service } = useServiceData();
   return [
     {
       id: 'query',
@@ -89,13 +91,18 @@ export const getColumns = ({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              {/* TODO: should we get the status from the api ? */}
-              <DropdownMenuItem
-                variant="destructive"
-                onClick={() => onCancelQueryClicked(row.original)}
-              >
-                {t('tableCurrentQueriesActionsMenuTerminateQuery')}
-              </DropdownMenuItem>
+              {service.capabilities.currentQueriesCancel && (
+                <DropdownMenuItem
+                  variant="destructive"
+                  onClick={() => onCancelQueryClicked(row.original)}
+                  disabled={
+                    service.capabilities.currentQueriesCancel.create ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                >
+                  {t('tableCurrentQueriesActionsMenuTerminateQuery')}
+                </DropdownMenuItem>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

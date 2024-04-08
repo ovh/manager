@@ -74,20 +74,36 @@ const Backups = () => {
         </Table>
       </div>
       <div className="flex gap-2">
-        {/* TODO: add capability in API */}
-        <Button variant="outline" size="sm" className="text-base" asChild>
-          <Link to="./fork" className="hover:no-underline">
-            {t('actionFork')}
-          </Link>
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          className="text-base"
-          onClick={() => restoreModal.open()}
-        >
-          {t('actionRestore')}
-        </Button>
+        {service.capabilities.fork?.create && (
+          <Button
+            disabled={
+              service.capabilities.fork.create ===
+              database.service.capability.StateEnum.disabled
+            }
+            variant="outline"
+            size="sm"
+            className="text-base"
+            asChild
+          >
+            <Link to="./fork" className="hover:no-underline">
+              {t('actionFork')}
+            </Link>
+          </Button>
+        )}
+        {service.capabilities.backupRestore?.create && (
+          <Button
+            disabled={
+              service.capabilities.backupRestore.create ===
+              database.service.capability.StateEnum.disabled
+            }
+            variant="outline"
+            size="sm"
+            className="text-base"
+            onClick={() => restoreModal.open()}
+          >
+            {t('actionRestore')}
+          </Button>
+        )}
       </div>
 
       {backupsQuery.isSuccess ? (
