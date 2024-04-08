@@ -21,6 +21,7 @@ export default defineConfig({
         'src/Router.tsx',
         'src/query.client.ts',
         'src/components/ui',
+        'src/configuration',
       ],
     },
   },
