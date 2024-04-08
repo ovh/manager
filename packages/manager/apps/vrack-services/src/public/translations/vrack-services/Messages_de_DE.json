@@ -1,16 +1,16 @@
 {
-  "listingCrumb": "vRack Services",
-  "deliveringVrackServicesMessage": "Die Aktivierung von vRack Services wurde am {{date}} - {{time}} angefordert. Bestellstatus: {{status}}",
-  "deliveringVrackMessage": "Eine Anfrage zur Erstellung eines vRacks wurde am {{date}} - {{time}} gestellt. Bestellstatus: {{status}}",
-  "orderStatus-cancelled": "Zurückgezogen",
+  "listingCrumb": "vRack Dienste",
+  "deliveringVrackServicesMessage": "Die Aktivierung von vRack Services wurde am {{date}} um {{time}} angefordert. Bestellstatus: {{status}}",
+  "deliveringVrackMessage": "Die Erstellung eines vRack wurde am {{date}} um {{time}} angefordert. Bestellstatus: {{status}}",
+  "orderStatus-cancelled": "Beendet",
   "orderStatus-cancelling": "Wird abgebrochen",
   "orderStatus-checking": "Wird überprüft",
-  "orderStatus-delivered": "Abgeschlossen",
+  "orderStatus-delivered": "Beendet",
   "orderStatus-delivering": "Wird ausgeführt",
-  "orderStatus-documentsRequested": "Erforderliches Dokument",
+  "orderStatus-documentsRequested": "Dokument erforderlich",
   "orderStatus-notPaid": "Zahlung erforderlich",
   "orderStatus-unknown": "Unbekannt",
-  "genericApiError": "Es ist folgender Fehler aufgetreten: {{error}}.",
+  "genericApiError": "Der folgende Fehler ist aufgetreten: {{error}}.",
   "modalCancelButton": "Abbrechen",
   "modalDeleteButton": "Löschen"
 }

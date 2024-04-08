@@ -1,7 +1,7 @@
 {
-  "listingCrumb": "vRack Services",
-  "deliveringVrackServicesMessage": "Um pedido de ativação dos vRack Services foi efetuado a {{date}} - {{time}}. Estado da encomenda: {{status}}",
-  "deliveringVrackMessage": "Foi efetuado um pedido de criação de um vRack em {{date}} - {{time}}. Estado da encomenda: {{status}}",
+  "listingCrumb": "Serviços vRack",
+  "deliveringVrackServicesMessage": "Foi efetuado um pedido de ativação dos vRack Services a {{date}} - {{time}}. Estado da encomenda: {{status}}",
+  "deliveringVrackMessage": "Foi efetuado um pedido de criação de um vRack a {{date}} - {{time}}. Estado da encomenda: {{status}}",
   "orderStatus-cancelled": "Anulado",
   "orderStatus-cancelling": "Anulação em curso",
   "orderStatus-checking": "Verificação em curso",
@@ -12,5 +12,5 @@
   "orderStatus-unknown": "Desconhecido",
   "genericApiError": "Ocorreu o seguinte erro: {{error}}.",
   "modalCancelButton": "Anular",
-  "modalDeleteButton": "Suprimir"
+  "modalDeleteButton": "Eliminar"
 }

@@ -1,16 +1,16 @@
 {
   "listingCrumb": "vRack Services",
-  "deliveringVrackServicesMessage": "Una richiesta di attivazione della vRack Services è stata effettuata il {{date}} - {{time}}. Stato dell'ordine: {{status}}",
-  "deliveringVrackMessage": "Il {{date}} - {{time}} è stata inviata una richiesta di creazione di una vRack. Stato dell'ordine: {{status}}",
-  "orderStatus-cancelled": "Annullata",
+  "deliveringVrackServicesMessage": "Il {{date}} - {{time}} è stata effettuata una richiesta di attivazione di vRack Services. Stato dell'ordine: {{status}}",
+  "deliveringVrackMessage": "Il {{date}} - {{time}} è stata effettuata una richiesta di creazione di una vRack. Stato dell'ordine: {{status}}",
+  "orderStatus-cancelled": "Annullato",
   "orderStatus-cancelling": "In corso di annullamento",
-  "orderStatus-checking": "Verifica in corso",
+  "orderStatus-checking": "Verifica in corso...",
   "orderStatus-delivered": "Completato",
   "orderStatus-delivering": "In corso",
-  "orderStatus-documentsRequested": "Documento richiesto",
-  "orderStatus-notPaid": "Pagamento richiesto",
+  "orderStatus-documentsRequested": "È richiesto un documento",
+  "orderStatus-notPaid": "È richiesto un pagamento",
   "orderStatus-unknown": "Sconosciuto",
   "genericApiError": "Si è verificato il seguente errore: {{error}}.",
-  "modalCancelButton": "Annulla",
-  "modalDeleteButton": "Eliminare"
+  "modalCancelButton": "Annullare",
+  "modalDeleteButton": "Elimina"
 }

@@ -1,16 +1,16 @@
 {
-  "title": "vRack Services",
-  "description": "O produto vRack Services permite-lhe beneficiar de serviços de rede no vRack. Ao criar um Serviço Endpoint, pode expor, com um endereço IP privado, um serviço gerido pela OVHcloud no seu vRack.",
+  "title": "Serviços vRack",
+  "description": "O produto vRack Services permite-lhe beneficiar de serviços de rede no vRack. Ao criar um Service Endpoint, pode expor no seu vRack, com um endereço IP privado, um serviço gerido pela OVHcloud.",
   "overviewTabLabel": "Geral",
   "subnetsTabLabel": "Sub-rede",
-  "endpointsTabLabel": "Serviço Endpoints",
+  "endpointsTabLabel": "Service Endpoint",
   "tileTitle": "Informações",
   "displayName": "Nome",
   "productStatus": "Estado",
-  "region": "Area",
+  "region": "Região",
   "vrackId": "Private Network",
   "createdAt": "Data de criação",
-  "ERI": "London (ERI)",
+  "ERI": "Londres (ERI)",
   "BHS": "Beauharnois (BHS)",
   "DC": "Beauharnois (DC)",
   "P": "Paris (P)",
@@ -30,8 +30,8 @@
   "DISABLED": "Inativo",
   "DRAFT": "A configurar",
   "associateVrackModal": "Associar a um vRack",
-  "vrackServicesNotReadyInfoMessage": "vRack Services {{displayName}} para uma operação em curso",
-  "vrackServicesInErrorMessage": "vRack Services {{displayName}} está em erro",
+  "vrackServicesNotReadyInfoMessage": "vRack Services {{displayName}} tem uma operação em curso",
+  "vrackServicesInErrorMessage": "vRack Services {{displayName}} apresenta um erro",
   "subnetCreationOnGoing": " : Sub-rede {{name}} em curso de criação",
-  "endpointCreationOnGoing": " : Serviço endpoint em curso de criação"
+  "endpointCreationOnGoing": " : Service Endpoint em curso de criação"
 }
