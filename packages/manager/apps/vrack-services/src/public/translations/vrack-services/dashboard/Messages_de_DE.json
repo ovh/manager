@@ -1,9 +1,9 @@
 {
-  "title": "vRack Services",
-  "description": "Mit dem Produkt vRack Services verfügen Sie über Netzwerkdienste im vRack. Indem Sie einen Endpoint-Dienst erstellen, können Sie einen von OVHcloud verwalteten Dienst mit einer privaten IP-Adresse in Ihrem vRack verfügbar machen.",
+  "title": "vRack Dienste",
+  "description": "Mit dem Produkt vRack Services können Sie Netzwerkdienste auf dem vRack nutzen. Indem Sie einen Service Endpoint erstellen, können Sie einen von OVHcloud Managed Service mit einer privaten IP-Adresse in Ihrem vRack verfügbar machen.",
   "overviewTabLabel": "Allgemein",
-  "subnetsTabLabel": "Subnetz",
-  "endpointsTabLabel": "Endpoint Service",
+  "subnetsTabLabel": "Subnetzwerk",
+  "endpointsTabLabel": "Service Endpoints",
   "tileTitle": "Informationen",
   "displayName": "Name",
   "productStatus": "Status",
@@ -32,6 +32,6 @@
   "associateVrackModal": "Einem vRack zuweisen",
   "vrackServicesNotReadyInfoMessage": "vRack Services {{displayName}} wird ausgeführt",
   "vrackServicesInErrorMessage": "vRack Services {{displayName}} ist fehlerhaft",
-  "subnetCreationOnGoing": " : Subnetz {{name}} wird erstellt",
-  "endpointCreationOnGoing": " : Endpoint-Dienst wird erstellt"
+  "subnetCreationOnGoing": " : Subnetzwerk {{name}} wird erstellt",
+  "endpointCreationOnGoing": " : Service Endpoint wird erstellt"
 }
