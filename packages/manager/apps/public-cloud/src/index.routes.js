@@ -61,6 +61,7 @@ export default /* @ngInject */ (
             .getURL(link.public.application, link.public.path)
             .then((url) => {
               $scope.publicURL[i] = url;
+              $scope.$apply();
             });
         });
       }
