@@ -1,4 +1,4 @@
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { useShell } from '@ovh-ux/manager-react-shell-client';
