@@ -1,5 +1,5 @@
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { isRouteErrorResponse, useNavigate, useRouteError } from 'react-router';
+import { useRouteError } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import errorImgSrc from '@/public/assets/oops.png';
 import { Alert, AlertDescription } from './ui/alert';
@@ -50,6 +50,7 @@ const ErrorBoundary = () => {
               size={'sm'}
               className="inline"
               onClick={() => navigateToHomepage()}
+              data-testid="errorBoundaryGoToHomepage"
             >
               {t('manager_error_page_action_home_label')}
             </Button>
@@ -58,6 +59,7 @@ const ErrorBoundary = () => {
               size={'sm'}
               className="inline"
               onClick={() => reloadPage()}
+              data-testid="errorBoundaryReload"
             >
               {t('manager_error_page_action_reload_label')}
             </Button>
