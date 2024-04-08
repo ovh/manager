@@ -19,7 +19,10 @@ export default function initI18n(
       lng: locale,
       fallbackLng: 'fr_FR',
       supportedLngs: availablesLocales,
-      ns: ['key-management-system/listing', 'key-management-system/dashboard'], // namespaces to load by default
+      ns: [
+        'key-management-service/listing',
+        'key-management-service/dashboard',
+      ], // namespaces to load by default
       backend: {
         loadPath: (lngs: string[], namespaces: string[]) =>
           `${import.meta.env.BASE_URL}translations/${namespaces[0]}/Messages_${
