@@ -22,7 +22,7 @@
   "ip_agora_ipv6_description": "Lorsque de grands blocs IP sont nécessaires et qu'un schéma d'adressage hiérarchique est défini, l'IPv6 est le meilleur choix. Assurez-vous que tous vos clients sont en mesure d'utiliser le nouveau protocole ainsi que vos services",
   "free_price": "gratuit",
   "ip_agora_ipv6_option_step_question": "Sélectionner des options supplémentaires",
-  "ip_agora_ipv6_option_header": "Dans de nombreux cas, vous aurez peut-être besoin d’une IPv4 standard, la plus utilisée, ou d’une nouvelle version du protocole : IPv6. Veuillez noter que la liste des produits compatibles peut varier.",
+  "ip_agora_ipv6_option_header": "Dans de nombreux cas, vous aurez peut-être besoin d'une IPv4 standard, la plus utilisée, ou d’une nouvelle version du protocole : IPv6. Veuillez noter que la liste des produits compatibles peut varier.",
   "ip_agora_ipv6_option_tile_title": "Nouveau préfixe /56 IPv6 (attribué par OVHcloud)",
   "ip_agora_ipv6_option_tile_description": "services. Obtenez votre nouveau préfixe IPv6 à utiliser dans les services vRack.",
   "ip_agora_ipv6_list_continent_all": "Toutes les localisations",

@@ -15,7 +15,7 @@
             </oui-header>
             <oui-field>
                 <oui-select-picker
-                    name="ip-version"
+                    data-name="ip-version"
                     class="text-center col-6"
                     data-variant="light"
                     data-model="$ctrl.model.option"
@@ -62,12 +62,12 @@
                 >
                     <label class="oui-select">
                         <oui-select
-                            items="$ctrl.services"
-                            match="displayName"
-                            model="$ctrl.model.selectedService"
-                            name="service"
-                            placeholder="Select a service..."
-                            searchable
+                            data-items="$ctrl.services"
+                            data-match="displayName"
+                            data-model="$ctrl.model.selectedService"
+                            data-name="service"
+                            data-placeholder="Select a service..."
+                            data-searchable
                         >
                         </oui-select>
                     </label>
