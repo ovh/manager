@@ -41,5 +41,10 @@
   "pci_projects_project_activateDiscovery_activate": "Activar el proyecto",
   "pci_projects_project_activateDiscovery_close": "Pasar a la nueva interfaz en otro momento",
   "pci_projects_project_activateDiscovery_heading": "Activar un proyecto",
-  "pci_projects_project_activateDiscovery_info": "Antes de crear un nuevo proyecto, deberá activarlo. ¿Todavía no está listo/a? Puede seguir explorando el universo Public Cloud en modo Discovery."
+  "pci_projects_project_activateDiscovery_info": "Antes de crear un nuevo proyecto, deberá activarlo. ¿Todavía no está listo/a? Puede seguir explorando el universo Public Cloud en modo Discovery.",
+  "pci_project_project_localzone": "Local Zones",
+  "pci_project_project_global_region": "Regiones",
+  "pci_project_project_localzone_tooltip": "Las Local Zones (zonas locales) son un nuevo tipo de localización en la que OVHcloud ofrece determinados servicios de su catálogo de productos Public Cloud. OVHcloud tiene previsto ampliar progresivamente el número de Local Zones disponibles en todo el mundo en los próximos años.",
+  "pci_project_project_globalregions_tooltip": "Las Regions incluyen uno o varios datacenters gestionados por OVHcloud. Cada región ofrece una o varias Availability Zones (zonas de disponibilidad) con todo el catálogo de servicios de OVHcloud.",
+  "pci_project_project_tooltip_link": "Más información"
 }

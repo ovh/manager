@@ -16,5 +16,6 @@
   "cpbc_hourly_floating_ip_title": "IP flutuante",
   "cpbc_hourly_gateway_title": "Gateway",
   "cpbc_hourly_ai_deploy_title": "AI Deploy",
-  "cpbc_cold_archive_detail_title": "Cold Archive"
+  "cpbc_cold_archive_detail_title": "Cold Archive",
+  "cpbc_hourly_public_ip_title": "IP público"
 }
