@@ -12,8 +12,15 @@ import { TimePicker } from '@/components/ui/time-picker';
 interface TimeUpdateProps {
   initialValue: Date;
   onSubmit: (newValue: Date) => void;
+  readonly?: boolean;
+  disabled?: boolean;
 }
-const TimeUpdate = ({ initialValue, onSubmit }: TimeUpdateProps) => {
+const TimeUpdate = ({
+  initialValue,
+  onSubmit,
+  readonly,
+  disabled,
+}: TimeUpdateProps) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const schema = z.object({
     date: z.date(),
@@ -32,6 +39,19 @@ const TimeUpdate = ({ initialValue, onSubmit }: TimeUpdateProps) => {
     form.reset();
     setIsUpdate(false);
   };
+  const updateButton = readonly ? (
+    <></>
+  ) : (
+    <Button
+      variant="ghost"
+      size="table"
+      className="py-0 h-auto"
+      onClick={() => setIsUpdate(true)}
+      disabled={disabled}
+    >
+      <Pen />
+    </Button>
+  );
   return (
     <Form {...form}>
       <TableCell>
@@ -72,14 +92,7 @@ const TimeUpdate = ({ initialValue, onSubmit }: TimeUpdateProps) => {
             </Button>
           </div>
         ) : (
-          <Button
-            variant="ghost"
-            size="table"
-            className="py-0 h-auto"
-            onClick={() => setIsUpdate(true)}
-          >
-            <Pen />
-          </Button>
+          updateButton
         )}
       </TableCell>
     </Form>
