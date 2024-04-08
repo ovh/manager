@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.12.0...@ovh-ux/manager-telecom@15.13.0) (2024-04-08)
+
+
+### Features
+
+* **telecom:** rework on axe x to display date/time from period ([#11285](https://github.com/ovh/manager/issues/11285)) ([429799e](https://github.com/ovh/manager/commit/429799ec113886d174c1f06e23141d71ee6ca65a))
+
+
+
+
+
 # [15.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.11.0...@ovh-ux/manager-telecom@15.12.0) (2024-04-04)
 
 

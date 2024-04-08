@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.30.0...@ovh-ux/manager-dedicated@19.31.0) (2024-04-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2887] ([c53248b](https://github.com/ovh/manager/commit/c53248b3114a012fc558f078aaf8eebda87493b6))
+* **i18n:** add missing translations [CDS 2892] ([f8cc28f](https://github.com/ovh/manager/commit/f8cc28f4c8867f5ea7e533c1f09d2e8751f33ed1))
+
+
+### Features
+
+* **dedicated.account:** fixed issues with disabling field for kyc ([#11295](https://github.com/ovh/manager/issues/11295)) ([1e1197e](https://github.com/ovh/manager/commit/1e1197edbb6c40de942d1c170830b58c6b4391c2))
+* **dedicated.vmware:** revert custom nsx edges sizing ([#11359](https://github.com/ovh/manager/issues/11359)) ([3d14b2e](https://github.com/ovh/manager/commit/3d14b2e59bd867b48528b768400cd85c6caf5528))
+
+
+
+
+
 # [19.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.29.0...@ovh-ux/manager-dedicated@19.30.0) (2024-04-04)
 
 

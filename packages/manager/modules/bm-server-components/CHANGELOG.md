@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.18.0...@ovh-ux/manager-bm-server-components@1.18.1) (2024-04-08)
+
+
+### Bug Fixes
+
+* **dedicated:** fix resiliated 3az node ([#11344](https://github.com/ovh/manager/issues/11344)) ([7f8f9f8](https://github.com/ovh/manager/commit/7f8f9f8cf788e20b130fec9f938b7386ae3fd28c))
+
+
+
+
+
 # [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.17.0...@ovh-ux/manager-bm-server-components@1.18.0) (2024-04-04)
 
 
