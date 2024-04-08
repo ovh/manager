@@ -7,27 +7,20 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
-import React, { FC, useEffect, useState } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import React, { FC, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { DashboardTabItemProps } from './Dashboard';
 
 const TabBar: FC<{ tabs: DashboardTabItemProps[] }> = ({ tabs }) => {
   const { t } = useTranslation('pci-rancher/dashboard');
 
-  const [activePanel, setActivePanel] = useState('');
   const location = useLocation();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    const activeTab = tabs.find((tab) => tab.to === location.pathname);
-    if (activeTab) {
-      setActivePanel(activeTab.name);
-    } else {
-      setActivePanel(tabs[0].name);
-      navigate(`${tabs[0].to}`);
-    }
-  }, [location.pathname]);
+  const [activePanel] = useState(
+    tabs.find((tab) => tab.to === location.pathname)?.name,
+  );
+
   return (
     <OsdsTabs panel={activePanel}>
       <OsdsTabBar slot="top">

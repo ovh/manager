@@ -21,7 +21,6 @@ export interface RancherTableTh {
 
 export interface RancherActionsCell {
   onClickManage: (path: string) => void;
-  openModal: () => void;
+  onClickDelete: () => void;
   row: Row<RancherService>;
-  setSelectedRancher: (rancher?: RancherService) => void;
 }

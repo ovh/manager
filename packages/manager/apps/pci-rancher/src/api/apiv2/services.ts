@@ -32,7 +32,7 @@ export const getRancherProjectById = async (
 export const getByRancherIdProjectId = async (
   projectId?: string,
   rancherId?: string,
-): Promise<{ data: RancherService }> =>
+): Promise<{ data: RancherService }> => 
   apiClient.v2.get(getByRancherIdProjectIdQueryKey(projectId, rancherId));
 
 export const getProject = async (projectId: string): Promise<PciProject> => {

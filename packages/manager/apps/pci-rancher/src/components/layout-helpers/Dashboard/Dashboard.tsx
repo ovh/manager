@@ -4,20 +4,20 @@ import {
   ODS_MESSAGE_TYPE,
 } from '@ovhcloud/ods-components';
 import { OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
-import React, { useState } from 'react';
+import React from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 
-import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useMutationState } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import { patchRancherServiceQueryKey, postRancherServiceQueryKey } from '@/api';
 import { RancherService } from '@/api/api.type';
+import { useTrackingPage } from '@/hooks/useTrackingPage';
 import { COMMON_PATH } from '@/routes';
-import useEditRancherName from '../../../hooks/useEditRancherName';
-import useGenerateAccessDetail from '../../../hooks/useGenerateAccessDetail';
+import { TrackingPageView } from '@/utils/tracking';
 import Title from '../../Title/Title';
 import RancherDetail from './RancherDetail';
 import TabBar from './TabBar';
-import { useTrackingPage } from '@/hooks/useTrackingPage';
-import { TrackingPageView } from '@/utils/tracking';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -30,41 +30,37 @@ export type DashboardTabItemProps = {
 export type DashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
   rancher: RancherService;
-  refetchRancher: () => void;
 };
 
-const Dashboard: React.FC<DashboardLayoutProps> = ({
-  tabs,
-  rancher,
-  refetchRancher,
-}) => {
+const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const { t } = useTranslation('pci-rancher/dashboard');
   const { projectId } = useParams();
   useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
-  const [editNameResponseType, setEditNameResponseType] = useState<
-    ODS_MESSAGE_TYPE.success | ODS_MESSAGE_TYPE.error | null
-  >(null);
 
-  const { mutate: editRancherName } = useEditRancherName({
-    projectId: projectId as string,
-    rancherId: rancher.id,
-    onSuccess: () => {
-      setEditNameResponseType(ODS_MESSAGE_TYPE.success);
-      refetchRancher();
+  const mutationEditNameState = useMutationState({
+    filters: { mutationKey: patchRancherServiceQueryKey('').slice(0, 1) },
+  });
+
+  const mutationGenerateAccessState = useMutationState({
+    filters: {
+      mutationKey: postRancherServiceQueryKey('').slice(0, 1),
+      status: 'error',
     },
-    onError: () => setEditNameResponseType(ODS_MESSAGE_TYPE.error),
   });
 
-  const {
-    generateAccesDetail,
-    accessDetail,
-    hasErrorAccessDetail,
-    onReset,
-  } = useGenerateAccessDetail({
-    projectId: projectId as string,
-    rancherId: rancher.id,
-  });
+  const editNameResponseStatus = mutationEditNameState.length
+    ? mutationEditNameState[0].status
+    : null;
+  let editNameResponseType = null;
+
+  if (editNameResponseStatus === 'error') {
+    editNameResponseType = ODS_MESSAGE_TYPE.error;
+  }
+
+  if (editNameResponseStatus === 'success') {
+    editNameResponseType = ODS_MESSAGE_TYPE.success;
+  }
 
   return (
     <>
@@ -88,11 +84,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({
       <RancherDetail
         rancher={rancher}
         editNameResponseType={editNameResponseType}
-        editRancherName={editRancherName}
-        generateAccesDetail={generateAccesDetail}
-        resetAccessDetail={onReset}
-        accessDetail={accessDetail}
-        hasErrorAccessDetail={hasErrorAccessDetail}
+        hasErrorAccessDetail={mutationGenerateAccessState.length > 0}
       />
       <Outlet />
     </>

@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -17,58 +17,42 @@ import {
   OsdsDivider,
   OsdsIcon,
   OsdsLink,
+  OsdsMessage,
   OsdsText,
   OsdsTile,
-  OsdsMessage,
 } from '@ovhcloud/ods-components/react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import EditNameModal from '../../Modal/EditNameModal';
+import { useHref } from 'react-router-dom';
 
 import { RancherService } from '@/api/api.type';
-import { TileBlock } from '../../TileBlock/TileBlock';
-import GenerateAccessModal from '../../Modal/GenerateAccesModal';
-import { AccessDetail } from '../../../hooks/useGenerateAccessDetail';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import { TileBlock } from '@/components/TileBlock/TileBlock';
 
 interface RancherDetailProps {
   rancher: RancherService;
   editNameResponseType: ODS_MESSAGE_TYPE | null;
-  editRancherName: (rancher: RancherService) => void;
-  generateAccesDetail: () => void;
-  resetAccessDetail: () => void;
-  accessDetail: AccessDetail;
   hasErrorAccessDetail: boolean;
 }
 const RancherDetail = ({
   rancher,
   editNameResponseType,
-  editRancherName,
-  generateAccesDetail,
-  resetAccessDetail,
-  accessDetail,
   hasErrorAccessDetail,
 }: RancherDetailProps) => {
   const { t } = useTranslation('pci-rancher/dashboard');
   const { t: tListing } = useTranslation('pci-rancher/listing');
   const trackAction = useTrackingAction();
-  const [showEditModal, toggleEditModal] = useState(false);
-  const [showGenerateAccesModal, toggleGenerateAccessModal] = useState(false);
-
   const { name, version, plan, url } = rancher.currentState;
   const dateUsage = rancher.currentState.usage
     ? new Date(rancher.currentState.usage?.datetime)
     : null;
 
-  useEffect(() => {
-    if (hasErrorAccessDetail) {
-      toggleGenerateAccessModal(false);
-    }
-  }, [hasErrorAccessDetail]);
-
   const onAccessRancherUrl = () =>
     trackAction(TrackingPageView.DetailRancher, TrackingEvent.accessUi);
+
+  const hrefEdit = useHref('./edit');
+  const hrefGenerateAccess = useHref('./generate-access');
 
   return (
     <div>
@@ -95,23 +79,6 @@ const RancherDetail = ({
         </OsdsMessage>
       )}
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 py-6 max-w-3xl">
-        {showEditModal && (
-          <EditNameModal
-            rancher={rancher}
-            toggleModal={toggleEditModal}
-            onEditRancher={(r: RancherService) => editRancherName(r)}
-          />
-        )}
-        {showGenerateAccesModal && (
-          <GenerateAccessModal
-            rancher={rancher}
-            toggleModal={toggleGenerateAccessModal}
-            onGenerateAccess={generateAccesDetail}
-            resetAccessDetail={resetAccessDetail}
-            accessDetail={accessDetail}
-          />
-        )}
-
         <div className="p-3">
           <OsdsTile className="w-full h-full flex-col" inline rounded>
             <div className="flex flex-col w-full">
@@ -124,7 +91,11 @@ const RancherDetail = ({
               </OsdsText>
               <OsdsDivider separator />
               <TileBlock label={t('description')}>
-                <div className="flex">
+                <OsdsLink
+                  className="flex flex-row"
+                  href={hrefEdit}
+                  aria-label="edit-link"
+                >
                   <OsdsText
                     className="overflow-hidden text-ellipsis max-w-[300px]"
                     level={ODS_TEXT_LEVEL.heading}
@@ -133,15 +104,16 @@ const RancherDetail = ({
                   >
                     {name}
                   </OsdsText>
-                  <OsdsIcon
-                    aria-label="edit"
-                    className="ml-4 cursor-pointer"
-                    onClick={() => toggleEditModal(true)}
-                    name={ODS_ICON_NAME.PEN}
-                    size={ODS_ICON_SIZE.xxs}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                  />
-                </div>
+                  <span slot="end">
+                    <OsdsIcon
+                      aria-label="edit"
+                      className="ml-4 cursor-pointer"
+                      name={ODS_ICON_NAME.PEN}
+                      size={ODS_ICON_SIZE.xxs}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                  </span>
+                </OsdsLink>
               </TileBlock>
 
               <TileBlock label={t('rancher_version')}>
@@ -182,13 +154,13 @@ const RancherDetail = ({
                 </OsdsButton>
                 <OsdsLink
                   color={ODS_THEME_COLOR_INTENT.primary}
-                  className="mt-3 flex items-center"
+                  className="mt-3 flex flex-row items-center"
+                  href={hrefGenerateAccess}
                   onClick={() => {
                     trackAction(
                       TrackingPageView.DetailRancher,
                       TrackingEvent.generateAccess,
                     );
-                    toggleGenerateAccessModal(true);
                   }}
                 >
                   <OsdsText
@@ -198,12 +170,14 @@ const RancherDetail = ({
                   >
                     {t('generate_access')}
                   </OsdsText>
-                  <OsdsIcon
-                    className="ml-4 cursor-pointer"
-                    name={ODS_ICON_NAME.ARROW_RIGHT}
-                    size={ODS_ICON_SIZE.xxs}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                  />
+                  <span slot="end">
+                    <OsdsIcon
+                      className="ml-4 cursor-pointer"
+                      name={ODS_ICON_NAME.ARROW_RIGHT}
+                      size={ODS_ICON_SIZE.xxs}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                  </span>
                 </OsdsLink>
               </TileBlock>
             </div>

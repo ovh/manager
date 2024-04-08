@@ -27,11 +27,7 @@ const useGenerateAccessDetail = ({
         projectId,
       });
     },
-    onSuccess: (response) => {
-      setErrorAccesDetail(false);
-      return setAccessDetail(response?.data);
-    },
-    onError: () => setErrorAccesDetail(true),
+    onSuccess: (response) => setAccessDetail(response?.data),
     mutationKey: postRancherServiceQueryKey(rancherId),
   });
 
