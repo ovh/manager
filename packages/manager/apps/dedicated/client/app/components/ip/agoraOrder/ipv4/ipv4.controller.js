@@ -10,6 +10,7 @@ import map from 'lodash/map';
 import range from 'lodash/range';
 import uniq from 'lodash/uniq';
 
+import { DASHBOARD_STATE_NAME } from '../ip-ip-agoraOrder.constant';
 import {
   IP_LOCATION_GROUPS,
   PRODUCT_TYPES,
@@ -19,7 +20,6 @@ import {
   ADDITIONAL_IP,
   BLOCK_ADDITIONAL_IP,
   IP_FAILOVER_PLANCODE,
-  DASHBOARD,
   ALERT_ID,
 } from './ipv4.constant';
 
@@ -466,9 +466,11 @@ export default class AgoraIpV4OrderController {
           this.$translate.instant('ip_order_finish_error'),
           this.ALERT_ID,
         );
-        return this.$state.go(DASHBOARD).then(() => this.$q.reject(err));
+        return this.$state
+          .go(DASHBOARD_STATE_NAME)
+          .then(() => this.$q.reject(err));
       })
-      .finally(() => this.$state.go(DASHBOARD));
+      .finally(() => this.$state.go(DASHBOARD_STATE_NAME));
   }
 
   getOfferDetails = (offerDetails, ipOffersByRegion, countryList) => {
@@ -535,6 +537,6 @@ export default class AgoraIpV4OrderController {
       name: `${TRACKING_PREFIX}cancel`,
       type: 'action',
     });
-    return this.$state.go(DASHBOARD);
+    return this.$state.go(DASHBOARD_STATE_NAME);
   }
 }

@@ -1,7 +1,7 @@
 import {
   ADDITIONAL_IP,
   TRACKING_PREFIX,
-  DASHBOARD,
+  DASHBOARD_STATE_NAME,
   ALERT_ID,
   IP_TYPE,
   IP_TYPE_TITLE,
@@ -65,6 +65,6 @@ export default class AgoraIpOrderCtrl {
       name: `${TRACKING_PREFIX}cancel`,
       type: 'action',
     });
-    return this.$state.go(DASHBOARD);
+    return this.$state.go(DASHBOARD_STATE_NAME);
   }
 }

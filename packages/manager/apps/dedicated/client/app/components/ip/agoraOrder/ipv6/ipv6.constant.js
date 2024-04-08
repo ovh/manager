@@ -1,8 +1,4 @@
-import {
-  TRACKING_PREFIX,
-  DASHBOARD,
-  ALERT_ID,
-} from '../ip-ip-agoraOrder.constant';
+import { TRACKING_PREFIX, ALERT_ID } from '../ip-ip-agoraOrder.constant';
 
 export const PRODUCT_TYPES = {
   vrack: {
@@ -42,12 +38,11 @@ export const FLAGS = {
   mrs: 'fr',
 };
 
-export { TRACKING_PREFIX, ALERT_ID, DASHBOARD };
+export { TRACKING_PREFIX, ALERT_ID };
 
 export default {
   PRODUCT_TYPES,
   TRACKING_PREFIX,
-  DASHBOARD,
   ALERT_ID,
   FLAGS,
 };
