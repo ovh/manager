@@ -1,6 +1,6 @@
 {
   "title": "vRack Services",
-  "description": "Con vRack Services podrás disfrutar de servicios de red en el vRack. Al crear un Service Endpoint, puedes exponer, con una dirección IP privada, un servicio administrado por OVHcloud en tu vRack.",
+  "description": "Con vRack Services podrá disfrutar de servicios de red en el vRack. Al crear un Service Endpoint, puede exponer, con una dirección IP privada, un servicio administrado por OVHcloud en su vRack.",
   "overviewTabLabel": "General",
   "subnetsTabLabel": "Subred",
   "endpointsTabLabel": "Service Endpoints",
@@ -25,7 +25,7 @@
   "WAW": "Warsaw (WAW)",
   "RBX_HZ": "Roubaix (RBX)",
   "GSW": "Clichy (GSW)",
-  "YNM": "Bombay (YNM)",
+  "YNM": "Mumbai (YNM)",
   "ACTIVE": "Activo",
   "DISABLED": "Inactivo",
   "DRAFT": "Pendiente de configuración",

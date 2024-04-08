@@ -4,7 +4,7 @@
   "deliveringVrackMessage": "A request to create a vRack was made on {{date}} - {{time}}. Order status: {{status}}",
   "orderStatus-cancelled": "Cancelled",
   "orderStatus-cancelling": "Cancelling",
-  "orderStatus-checking": "Verifying...",
+  "orderStatus-checking": "Verifying",
   "orderStatus-delivered": "Done",
   "orderStatus-delivering": "In progress",
   "orderStatus-documentsRequested": "Document required",
