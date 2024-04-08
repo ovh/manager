@@ -20,19 +20,14 @@ export default function ProgressLoader() {
     return () => clearInterval(interval); // Cleanup on component unmount
   }, []);
 
-  useEffect(() => {
-    if (progress >= 100) {
-      // Mimic NProgress behavior by fading out the loader and resetting progress
-      setTimeout(() => {
-        setProgress(0);
-      }, 400); // Wait a bit before resetting to show completion
-    }
-  }, [progress]);
-
   return (
-    <div className="w-full fixed top-0 left-0 z-50">
+    <div
+      className="w-full fixed top-0 left-0 z-50"
+      data-testid="progressLoaderContainer"
+    >
       <div
-        style={{ width: `${progress}%`, opacity: progress >= 100 ? 0 : 1 }}
+        data-testid="progressLoaderBar"
+        style={{ width: `${progress}%` }}
         className="h-1 bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)] transition-all ease-in-out duration-200"
       ></div>
     </div>
