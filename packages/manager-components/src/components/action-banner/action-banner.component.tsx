@@ -23,7 +23,7 @@ export function ActionBanner({ message, cta, onClick }: ActionBannerProps) {
       color={ODS_THEME_COLOR_INTENT.warning}
       className={'mt-3 flex-row'}
     >
-      <div className={'sm:flex sm:flex-row sm:justify-between'}>
+      <div className={'sm:flex sm:flex-row sm:justify-between sm:items-center'}>
         <OsdsText
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.default}
