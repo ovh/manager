@@ -46,6 +46,7 @@ const UpdateTable = () => {
     database.availability.ActionEnum.update,
     database.availability.TargetEnum.flavor,
   );
+
   const updateVersionModal = useModale('update-version');
   const updatePlanModal = useModale('update-plan');
   const updateFlavorModal = useModale('update-flavor');
@@ -99,103 +100,91 @@ const UpdateTable = () => {
     availabilitiesPlanQuery.refetch();
   }, [service.status]);
 
+  const rows = [
+    {
+      title: t('tableVersion'),
+      cell: `${humanizeEngine(service.engine)} ${service.version}`,
+      onClick: () => updateVersionModal.open(),
+      updateButtonDisplayed: availabilitiesVersionQuery.data?.length > 1,
+    },
+    {
+      title: t('tablePlan'),
+      cell: service.plan,
+      onClick: () => updatePlanModal.open(),
+      updateButtonDisplayed: availabilitiesPlanQuery.data?.length > 1,
+    },
+    {
+      title: t('tableFlavor'),
+      cell: service.flavor,
+      onClick: () => updateFlavorModal.open(),
+      updateButtonDisplayed: availabilitiesFlavorQuery.data?.length > 1,
+    },
+    service.storage?.size.value && {
+      title: t('tableStorage'),
+      cell: `${formatStorage(service.storage.size)} ${service.storage.type}`,
+      onClick: () => updateFlavorModal.open(),
+      updateButtonDisplayed: availabilitiesFlavorQuery.data?.length > 1,
+    },
+  ].filter((row) => Boolean(row));
   return (
     <>
       <Table>
         <TableBody>
-          <TableRow>
-            <TableCell className="font-semibold">{t('tableVersion')}</TableCell>
-            <TableCell>
-              {humanizeEngine(service.engine)} {service.version}
-            </TableCell>
-            {availabilitiesVersionQuery.data?.length > 1 && (
-              <TableCell className="text-right">
-                <Button
-                  variant="default"
-                  size="default"
-                  className="py-0 h-auto"
-                  onClick={() => updateVersionModal.open()}
-                >
-                  {t('tableUpdateButton')}
-                </Button>
-              </TableCell>
-            )}
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-semibold">{t('tablePlan')}</TableCell>
-            <TableCell>{service.plan}</TableCell>
-            {availabilitiesPlanQuery.data?.length > 1 && (
-              <TableCell className="text-right">
-                <Button
-                  variant="default"
-                  size="default"
-                  className="py-0 h-auto"
-                  onClick={() => updatePlanModal.open()}
-                >
-                  {t('tableUpdateButton')}
-                </Button>
-              </TableCell>
-            )}
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-semibold">{t('tableFlavor')}</TableCell>
-            <TableCell>{service.flavor}</TableCell>
-            {availabilitiesFlavorQuery.data?.length > 1 && (
-              <TableCell className="text-right">
-                <Button
-                  variant="default"
-                  size="default"
-                  className="py-0 h-auto"
-                  onClick={() => updateFlavorModal.open()}
-                >
-                  {t('tableUpdateButton')}
-                </Button>
-              </TableCell>
-            )}
-          </TableRow>
-          {service.storage?.size.value > 0 && (
-            <TableRow>
-              <TableCell className="font-semibold">
-                {t('tableStorage')}
-              </TableCell>
-              <TableCell>
-                {formatStorage(service.storage.size)} {service.storage.type}
-              </TableCell>
-              {availabilitiesFlavorQuery.data?.length > 1 && (
+          {rows.map((row) => (
+            <TableRow key={row.title}>
+              <TableCell className="font-semibold">{row.title}</TableCell>
+              <TableCell>{row.cell}</TableCell>
+              {row.updateButtonDisplayed && (
                 <TableCell className="text-right">
                   <Button
                     variant="default"
                     size="default"
                     className="py-0 h-auto"
-                    onClick={() => updateFlavorModal.open()}
+                    onClick={row.onClick}
+                    disabled={
+                      service.capabilities.service.update ===
+                      database.service.capability.StateEnum.disabled
+                    }
                   >
                     {t('tableUpdateButton')}
                   </Button>
                 </TableCell>
               )}
             </TableRow>
-          )}
+          ))}
           <TableRow>
             <TableCell className="font-semibold">{t('tableNodes')}</TableCell>
             <TableCell>{service.nodes.length}</TableCell>
             {availabilitiesFlavorQuery.data?.length > 1 && (
               <TableCell className="flex gap-2 justify-end">
-                <Button
-                  variant={'ghost'}
-                  size="table"
-                  className="p-0 h-auto text-destructive"
-                  onClick={() => deleteNode.open()}
-                >
-                  <MinusCircle />
-                </Button>
-                <Button
-                  variant={'ghost'}
-                  size="table"
-                  className="p-0 h-auto text-primary"
-                  onClick={() => addNode.open()}
-                >
-                  <PlusCircle />
-                </Button>
+                {service.capabilities.nodes?.delete && (
+                  <Button
+                    variant={'ghost'}
+                    size="table"
+                    className="p-0 h-auto text-destructive"
+                    onClick={() => deleteNode.open()}
+                    disabled={
+                      service.capabilities.nodes?.delete ===
+                      database.service.capability.StateEnum.disabled
+                    }
+                  >
+                    <MinusCircle />
+                  </Button>
+                )}
+                {service.capabilities.nodes?.create && (
+                  <Button
+                    variant={'ghost'}
+                    size="table"
+                    className="p-0 h-auto text-primary"
+                    onClick={() => addNode.open()}
+                    disabled={
+                      service.capabilities.nodes?.create ===
+                      database.service.capability.StateEnum.disabled
+                    }
+                  >
+                    <PlusCircle />
+                  </Button>
+                )}
               </TableCell>
             )}
           </TableRow>

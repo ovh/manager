@@ -13,6 +13,7 @@ import {
 import { useToast } from '@/components/ui/use-toast';
 import TimeUpdate from './serviceConfiguration/timeUpdate';
 import DeleteService from '../../_components/deleteService';
+import { database } from '@/models/database';
 
 const ServiceConfiguration = () => {
   const { t } = useTranslation(
@@ -90,32 +91,50 @@ const ServiceConfiguration = () => {
               {t('serviceConfigurationServiceName')}
             </TableCell>
             <TableCell>{service.description}</TableCell>
-            <TableCell className="text-right">
-              <Button
-                variant="ghost"
-                size="table"
-                className="py-0 h-auto"
-                onClick={() => renameModale.open()}
-              >
-                <Pen />
-              </Button>
-            </TableCell>
+            {service.capabilities.service?.update && (
+              <TableCell className="text-right">
+                <Button
+                  disabled={
+                    service.capabilities.service?.update ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                  variant="ghost"
+                  size="table"
+                  className="py-0 h-auto"
+                  onClick={() => renameModale.open()}
+                >
+                  <Pen />
+                </Button>
+              </TableCell>
+            )}
           </TableRow>
-          <TableRow>
-            <TableCell className="font-semibold">
-              {t('serviceConfigurationServiceMaintenanceTime')}
-            </TableCell>
-            <TimeUpdate
-              initialValue={convertTimeToDateTime(service.maintenanceTime)}
-              onSubmit={onMaintenanceTimeSubmit}
-            />
-          </TableRow>
-          {service.backups?.time && (
+          {service.capabilities.maintenanceTime?.read && (
+            <TableRow>
+              <TableCell className="font-semibold">
+                {t('serviceConfigurationServiceMaintenanceTime')}
+              </TableCell>
+              <TimeUpdate
+                readonly={!service.capabilities.maintenanceTime.update}
+                disabled={
+                  service.capabilities.maintenanceTime?.update ===
+                  database.service.capability.StateEnum.disabled
+                }
+                initialValue={convertTimeToDateTime(service.maintenanceTime)}
+                onSubmit={onMaintenanceTimeSubmit}
+              />
+            </TableRow>
+          )}
+          {service.capabilities.backupTime?.read && (
             <TableRow>
               <TableCell className="font-semibold">
                 {t('serviceConfigurationServiceBackupTime')}
               </TableCell>
               <TimeUpdate
+                readonly={!service.capabilities.backupTime.update}
+                disabled={
+                  service.capabilities.backupTime?.update ===
+                  database.service.capability.StateEnum.disabled
+                }
                 initialValue={convertTimeToDateTime(service.backups.time)}
                 onSubmit={onBackupTimeSubmit}
               />
@@ -123,13 +142,19 @@ const ServiceConfiguration = () => {
           )}
         </TableBody>
       </Table>
-      <Button
-        variant="destructive"
-        className="w-full bg-background border-2 hover:bg-destructive/10 font-semibold border-destructive text-destructive"
-        onClick={() => deleteModale.open()}
-      >
-        {t('serviceConfigurationDeleteService')}
-      </Button>
+      {service.capabilities.service?.delete && (
+        <Button
+          disabled={
+            service.capabilities.service?.delete ===
+            database.service.capability.StateEnum.disabled
+          }
+          variant="destructive"
+          className="w-full bg-background border-2 hover:bg-destructive/10 font-semibold border-destructive text-destructive"
+          onClick={() => deleteModale.open()}
+        >
+          {t('serviceConfigurationDeleteService')}
+        </Button>
+      )}
       <RenameService
         controller={renameModale.controller}
         service={service}

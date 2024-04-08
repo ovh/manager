@@ -33,12 +33,14 @@ export namespace database {
     export enum ActionEnum {
       'fork' = 'fork',
       'update' = 'update',
+      'read' = 'read',
     }
     /** Possible target to restrict availabilities */
     export enum TargetEnum {
       'flavor' = 'flavor',
       'plan' = 'plan',
       'version' = 'version',
+      'self' = 'self',
     }
     /** Backups availability of databases engines on cloud projects */
     export interface Backups {
@@ -1172,15 +1174,27 @@ export namespace database {
     }
     /** List of capabilities available for services */
     export enum CapabilityEnum {
-      'backups' = 'backups',
-      'currentQueries' = 'currentQueries',
-      'databases' = 'databases',
-      'namespaces' = 'namespaces',
-      'integrations' = 'integrations',
-      'queryStatistics' = 'queryStatistics',
-      'users' = 'users',
       'advancedConfiguration' = 'advancedConfiguration',
+      'backupTime' = 'backupTime',
+      'backups' = 'backups',
+      'backupRestore' = 'backupRestore',
+      'certificates' = 'certificates',
       'connectionPools' = 'connectionPools',
+      'currentQueries' = 'currentQueries',
+      'currentQueriesCancel' = 'currentQueriesCancel',
+      'databases' = 'databases',
+      'enableWrites' = 'enableWrites',
+      'fork' = 'fork',
+      'integrations' = 'integrations',
+      'ipRestrictions' = 'ipRestrictions',
+      'maintenanceTime' = 'maintenanceTime',
+      'namespaces' = 'namespaces',
+      'nodes' = 'nodes',
+      'queryStatistics' = 'queryStatistics',
+      'queryStatisticsReset' = 'queryStatisticsReset',
+      'service' = 'service',
+      'userCredentialsReset' = 'userCredentialsReset',
+      'users' = 'users',
     }
     /** Certificates definition for cloud project databases */
     export interface Certificates {

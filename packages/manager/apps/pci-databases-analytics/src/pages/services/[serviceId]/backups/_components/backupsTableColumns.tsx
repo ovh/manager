@@ -14,6 +14,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
+import { useServiceData } from '../../layout';
+import { database } from '@/models/database';
 
 interface BackupsTableColumnsProps {
   onForkClick: (backup: BackupWithExpiricyDate) => void;
@@ -26,6 +28,7 @@ export const getColumns = ({
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/backups',
   );
+  const { service } = useServiceData();
   const { t: tRegions } = useTranslation('regions');
   const nameColumn: ColumnDef<BackupWithExpiricyDate> = {
     id: 'name',
@@ -101,25 +104,36 @@ export const getColumns = ({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              {/* TODO: add capability in API */}
-              <DropdownMenuItem
-                variant="primary"
-                onClick={() => {
-                  onRestoreClick(row.original);
-                }}
-                className="w-full"
-              >
-                {t('tableActionRestore')}
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                variant="primary"
-                onClick={() => {
-                  onForkClick(row.original);
-                }}
-                className="w-full"
-              >
-                {t('tableActionFork')}
-              </DropdownMenuItem>
+              {service.capabilities.backupRestore?.create && (
+                <DropdownMenuItem
+                  disabled={
+                    service.capabilities.backupRestore.create ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                  variant="primary"
+                  onClick={() => {
+                    onRestoreClick(row.original);
+                  }}
+                  className="w-full"
+                >
+                  {t('tableActionRestore')}
+                </DropdownMenuItem>
+              )}
+              {service.capabilities.fork?.create && (
+                <DropdownMenuItem
+                  disabled={
+                    service.capabilities.fork.create ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                  variant="primary"
+                  onClick={() => {
+                    onForkClick(row.original);
+                  }}
+                  className="w-full"
+                >
+                  {t('tableActionFork')}
+                </DropdownMenuItem>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
