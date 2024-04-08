@@ -1,0 +1,60 @@
+<div data-uib-dropdown>
+    <button
+        type="button"
+        class="btn btn-link dropdown-toggle"
+        title="{{:: 'common_actions' | translate }}"
+        data-uib-dropdown-toggle
+    >
+        <span
+            class="ovh-font ovh-font-dots align-top"
+            aria-label="{{:: 'common_actions' | translate }}"
+            aria-hidden="true"
+        >
+        </span>
+    </button>
+
+    <ul class="dropdown-menu-right" data-uib-dropdown-menu>
+        <!-- DESCRIPTION -->
+        <li>
+            <button
+                type="button"
+                class="btn btn-link"
+                data-ng-click="goToEditDescription(ipBlock)"
+                data-ng-bind="ipBlock.description && ('ip_description_edit_title' | translate) || ('ip_description_new_title' | translate)"
+            ></button>
+        </li>
+
+        <li>
+            <button
+                type="button"
+                class="btn btn-link"
+                data-ng-click="goToUpdateReverse(ipBlock, ipBlock)"
+                data-translate="ip_table_manage_reverse"
+            ></button>
+        </li>
+
+        <!-- Additional IP / PCC / VRACK DELETE-->
+        <li>
+            <button
+                type="button"
+                class="btn btn-link"
+                data-ng-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock })"
+                data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
+                data-oui-tooltip-placement="left"
+                data-ng-disabled="!ipBlock.canBeTerminated"
+                data-ng-bind=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
+            ></button>
+        </li>
+
+        <!-- SUBNETS:: only for ipv6block -->
+        <li>
+            <button
+                type="button"
+                data-ng-disabled="ipBlock.type !== VRACK"
+                class="btn btn-link"
+                data-ng-click="goToVrack(ipBlock)"
+                data-translate="ip_table_manage_subnets"
+            ></button>
+        </li>
+    </ul>
+</div>

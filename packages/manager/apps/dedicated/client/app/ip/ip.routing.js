@@ -137,6 +137,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.ip.dashboard.iplb', $transition$.params()),
       goToOrganisation: /* @ngInject */ ($state) => () =>
         $state.go('app.ip.organisation'),
+      goToVrack: /* @ngInject */ ($state) => (vrackId) =>
+        $state.go('vrack.dashboard', { vrackId }),
       isByoipAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
           .checkFeatureAvailability(allowByoipFeatureName)

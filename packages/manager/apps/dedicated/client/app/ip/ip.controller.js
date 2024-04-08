@@ -13,6 +13,7 @@ export default /* @ngInject */ function IpMainCtrl(
   coreConfig,
   currentUser,
   goToOrganisation,
+  goToVrack,
   goToByoipConfiguration,
   goToAgoraOrder,
   goToDashboard,
@@ -26,7 +27,8 @@ export default /* @ngInject */ function IpMainCtrl(
   openBannerRepricePage,
 ) {
   $scope.currentUser = currentUser;
-  $scope.goToOrganisation = () => goToOrganisation();
+  $scope.goToOrganisation = (vrackId) => goToOrganisation(vrackId);
+  $scope.goToVrack = () => goToVrack();
   $scope.goToByoipConfiguration = goToByoipConfiguration;
   $scope.goToAgoraOrder = goToAgoraOrder;
   $scope.goToDashboard = goToDashboard;
