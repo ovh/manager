@@ -113,9 +113,7 @@ export default class PciStoragesContainersAddController {
   }
 
   isRightOffer() {
-    return [OBJECT_CONTAINER_OFFER_STORAGE_STANDARD].includes(
-      this.container.offer,
-    );
+    return OBJECT_CONTAINER_OFFER_STORAGE_STANDARD === this.container.offer;
   }
 
   isReadyForValidation() {
