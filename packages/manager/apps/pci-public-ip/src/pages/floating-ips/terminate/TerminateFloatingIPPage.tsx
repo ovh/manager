@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovhcloud/manager-components';
-import { useTranslation } from 'react-i18next';
+import { Translation } from 'react-i18next';
 import {
   useAllFloatingIP,
   useTerminateFloatingIP,
@@ -9,7 +9,6 @@ import TerminateModal from '@/components/terminate/TerminateModal';
 import { ResponseAPIError } from '@/interface';
 
 export default function TerminateFloatingIPPage() {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { projectId, ipId } = useParams();
@@ -21,25 +20,33 @@ export default function TerminateFloatingIPPage() {
     projectId,
     onSuccess: () => {
       addSuccess(
-        t(
-          'pci_additional_ips_floating_ips_floating_ip_terminate_success_info',
-          {
-            ip: floatingIP.ip,
-          },
-        ),
+        <Translation>
+          {(t) =>
+            t(
+              'pci_additional_ips_floating_ips_floating_ip_terminate_success_info',
+              {
+                ip: floatingIP.ip,
+              },
+            )
+          }
+        </Translation>,
       );
       onClose();
     },
     onError: (error) => {
       onClose();
       addError(
-        t(
-          'pci_additional_ips_floating_ips_floating_ip_terminate_failure_info',
-          {
-            ip: floatingIP.ip,
-            error: (error as ResponseAPIError)?.response?.data?.message,
-          },
-        ),
+        <Translation>
+          {(t) =>
+            t(
+              'pci_additional_ips_floating_ips_floating_ip_terminate_failure_info',
+              {
+                ip: floatingIP.ip,
+                error: (error as ResponseAPIError)?.response?.data?.message,
+              },
+            )
+          }
+        </Translation>,
       );
     },
   });
