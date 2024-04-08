@@ -286,9 +286,13 @@ export default class BillingService {
   }
 
   canHandleRenew() {
-    return !['VIP', 'OVH_CLOUD_CONNECT', 'PACK_XDSL', 'XDSL'].includes(
-      this.serviceType,
-    );
+    return ![
+      'VIP',
+      'OVH_CLOUD_CONNECT',
+      'PACK_XDSL',
+      'XDSL',
+      'VRACK_SERVICES_RESOURCE',
+    ].includes(this.serviceType);
   }
 
   isOneShot() {
