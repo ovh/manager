@@ -1,5 +1,9 @@
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { PciGuidesHeader } from '@ovhcloud/manager-components';
+import {
+  isDiscoveryProject,
+  PciDiscoveryBanner,
+  PciGuidesHeader,
+} from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -103,6 +107,13 @@ export default function ListingPage(): JSX.Element {
           </OsdsText>
         </div>
       </div>
+
+      <div className="mb-5">
+        {isDiscoveryProject(project) && (
+          <PciDiscoveryBanner projectId={projectId} />
+        )}
+      </div>
+
       <OsdsTabs
         panel={activeTab}
         onOdsTabsChanged={(event) => handlerTabChanged(event)}
