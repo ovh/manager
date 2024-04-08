@@ -19,6 +19,7 @@ import {
 interface IpsRestrictionsFormProps {
   value: database.IpRestrictionCreation[];
   onChange: (newIps: database.IpRestrictionCreation[]) => void;
+  disabled?: boolean;
 }
 
 const formatIpMask = (ipBlock: string) => {
@@ -29,7 +30,7 @@ const formatIpMask = (ipBlock: string) => {
 const IpsRestrictionsForm = React.forwardRef<
   HTMLInputElement,
   IpsRestrictionsFormProps
->(({ value, onChange }, ref) => {
+>(({ value, onChange, disabled }, ref) => {
   const { t } = useTranslation(
     'pci-databases-analytics/components/order-options',
   );
@@ -73,7 +74,7 @@ const IpsRestrictionsForm = React.forwardRef<
   return (
     <Form {...form}>
       <div className="flex w-full items-start gap-2">
-        <div className="grid grid-cols-2 gap-2 w-full">
+        <div className="grid grid-cols-2 gap-2 w-full items-end">
           <FormField
             control={form.control}
             name="ip"
@@ -106,6 +107,7 @@ const IpsRestrictionsForm = React.forwardRef<
         <Button
           variant={'ghost'}
           onClick={form.handleSubmit(onSubmit)}
+          disabled={disabled}
           className="mt-[1.875rem] text-primary rounded-full p-2 ml-2 hover:text-primary"
         >
           <PlusCircle />
@@ -119,6 +121,7 @@ const IpsRestrictionsForm = React.forwardRef<
               variant={'ghost'}
               type="button"
               onClick={() => removeIp(index)}
+              disabled={disabled}
             >
               <MinusCircle />
             </Button>

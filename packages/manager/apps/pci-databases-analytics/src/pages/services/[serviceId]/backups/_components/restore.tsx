@@ -94,8 +94,7 @@ const RestoreServiceModal = ({
     },
   });
 
-  // TODO: get from api in capababilities
-  const canUsePointInTime = service.engine === database.EngineEnum.mongodb;
+  const canUsePointInTime = service.backups.pitr;
   const minPitrDate = canUsePointInTime ? new Date(service.backups.pitr) : null;
   // define the schema for the form
   const schema = z

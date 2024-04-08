@@ -53,6 +53,9 @@ const AdvancedConfigurationForm = ({
   const [value, setValue] = useState('');
   const [open, setOpen] = useState(false);
   const { projectId, service, serviceQuery } = useServiceData();
+  const isDisabled =
+    service.capabilities.advancedConfiguration?.update ===
+    database.service.capability.StateEnum.disabled;
   const toast = useToast();
   const {
     updateAdvancedConfiguration,
@@ -254,6 +257,7 @@ const AdvancedConfigurationForm = ({
             variant={'ghost'}
             onClick={addProperty}
             className="text-primary rounded-full p-2 ml-2 hover:text-primary"
+            disabled={isDisabled}
           >
             <PlusCircle />
           </Button>
@@ -278,7 +282,10 @@ const AdvancedConfigurationForm = ({
             >
               {t('advancedConfigurationCancelButton')}
             </Button>
-            <Button form="advancedConfigurationForm" disabled={isPending}>
+            <Button
+              form="advancedConfigurationForm"
+              disabled={isPending || isDisabled}
+            >
               {t('advancedConfigurationSubmitButton')}
             </Button>
           </div>

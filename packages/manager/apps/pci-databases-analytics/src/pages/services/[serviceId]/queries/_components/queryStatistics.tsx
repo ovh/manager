@@ -54,16 +54,21 @@ const QueryStatistics = () => {
     <>
       <h3>{t('queryStatisticsTitle')}</h3>
       <p>{t('queryStatisticsDescription')}</p>
-      {/* TODO: get from api ? */}
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => handleResetButtonClicked()}
-        disabled={isPending}
-      >
-        <RotateCcw className="size-4 mr-2" />
-        {t('queryStatisticsResetButton')}
-      </Button>
+      {service.capabilities.queryStatisticsReset && (
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => handleResetButtonClicked()}
+          disabled={
+            isPending ||
+            service.capabilities.queryStatisticsReset.create ===
+              database.service.capability.StateEnum.disabled
+          }
+        >
+          <RotateCcw className="size-4 mr-2" />
+          {t('queryStatisticsResetButton')}
+        </Button>
+      )}
       {queryStatisticsQuery.isSuccess ? (
         <DataTable
           columns={columns}
