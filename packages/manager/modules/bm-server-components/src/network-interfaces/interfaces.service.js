@@ -66,6 +66,12 @@ export default class DedicatedServerInterfacesService {
   }
 
   getInterfaces(serverName, specifications) {
+    if (
+      specifications.constructor === Object &&
+      Object.keys(specifications).length === 0
+    )
+      return [];
+
     let nics;
     this.typeVrack = specifications.vrack.type;
 

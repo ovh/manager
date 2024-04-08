@@ -154,6 +154,7 @@
                     <span data-translate="emailpro_tab_REDIRECTION"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
+                    data-ng-if="!exchange.isMXPlan"
                     data-href="{{:: externalContactLink }}"
                     data-active="externalContactLink === currentActiveLink()"
                 >
@@ -176,8 +177,11 @@
                     >
                         <span data-translate="emailpro_tab_TASKS"></span>
                     </oui-header-tabs-item>
-                    <oui-header-tabs-divider></oui-header-tabs-divider>
+                    <oui-header-tabs-divider
+                        data-ng-if="!exchange.isZimbra"
+                    ></oui-header-tabs-divider>
                     <oui-header-tabs-item
+                        data-ng-if="!exchange.isZimbra"
                         disabled="is25g()"
                         on-click="configureEmailService()"
                     >

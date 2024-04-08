@@ -4,7 +4,7 @@
   "pci_projects_project_sshKeys_name": "Name",
   "pci_projects_project_sshKeys_public": "Key",
   "pci_projects_project_sshKeys_remove": "Delete this key",
-  "common_pagination_ofnresults": "of TOTAL_ITEMS results",
+  "common_pagination_ofnresults": "of {{ TOTAL_ITEMS }} results",
   "pci_projects_project_sshKeys_remove_title": "Delete an SSH key",
   "pci_projects_project_sshKeys_remove_description": "This action cannot be reversed. Do you want to delete the {{ name }} key?",
   "pci_projects_project_sshKeys_remove_submit_label": "Delete",

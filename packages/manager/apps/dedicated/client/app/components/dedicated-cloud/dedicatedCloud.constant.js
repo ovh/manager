@@ -3,12 +3,6 @@ export const DEDICATED_CLOUD_CONSTANTS = {
   pccNewGeneration: '2.0',
 };
 
-export const TASK_STATUS = {
-  DONE: 'done',
-  ERROR: 'error',
-  CANCELED: 'canceled',
-};
-
 export const UNAVAILABLE_PCC_CODE = [400, 404];
 
 export const VCD_PLAN_CODE = 'pcc-option-to-vcd-migration';
@@ -26,7 +20,6 @@ export const VCD_SERVICE_PACK_PRICING_MODE = {
 export default {
   DEDICATED_CLOUD_CONSTANTS,
   UNAVAILABLE_PCC_CODE,
-  TASK_STATUS,
   VCD_PLAN_CODE,
   VCD_GUIDE_LINKS,
   VCD_SERVICE_PACK_PRICING_MODE,

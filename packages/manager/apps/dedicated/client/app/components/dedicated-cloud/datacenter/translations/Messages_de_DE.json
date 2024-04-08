@@ -8,6 +8,5 @@
   "dedicatedCloud_tab_drp": "Disaster Recovery Plan (DRP)",
   "dedicatedCloud_datacenter_EOL_title": "Ablaufdatum der Dedicated Cloud: 30. September 2022",
   "dedicatedCloud_datacenter_EOL_part_1": "Im Oktober 2021 hatten wir bereits angekündigt, dass unsere Angebote der Art Dedicated Cloud auslaufen und am 30. September 2022 endgültig eingestellt werden. Dieser Schritt ist im Hinblick auf Ihre VMware-Plattformen von Bedeutung, da damit eine Verbesserung der Dienstqualität, der Performance und der Sicherheit Ihrer Cluster einhergeht. Die Hardware, die vor 2018 für die Angebote vom Typ „Dedicated Cloud“ verwendet wurde, ist nicht dazu geeignet, den höchsten Service-Level nach heutigem Stand zu gewährleisten. Außerdem ist keine Integration mit den neuen VMware-Architekturen möglich.",
-  "dedicatedCloud_datacenter_EOL_part_2": "Zahlreiche Kunden haben diese Migration bereits geplant und begonnen. Wir möchten dies nun auch Ihnen noch vor dem Stichtag am 30. September 2022 empfehlen.",
-  "dedicatedCloud_datacenter_resize": "Größe ändern"
+  "dedicatedCloud_datacenter_EOL_part_2": "Zahlreiche Kunden haben diese Migration bereits geplant und begonnen. Wir möchten dies nun auch Ihnen noch vor dem Stichtag am 30. September 2022 empfehlen."
 }

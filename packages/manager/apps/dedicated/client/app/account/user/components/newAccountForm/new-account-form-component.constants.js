@@ -125,6 +125,7 @@ export const FIELD_NAME_LIST = {
   vat: 'vat',
   gst: 'gst',
   iceNumber: 'iceNumber',
+  purposeOfPurchase: 'purposeOfPurchase',
 };
 
 export const SUBSIDIARIES_VAT_FIELD_OVERRIDE = {
