@@ -51,12 +51,15 @@ export default /* @ngInject */ ($stateProvider) => {
         const localZones = PciProject.getLocalZones(customerRegions);
         const isLocalZone = PciProject.checkIsLocalZone(
           localZones,
-          preselectedVolume.region,
+          preselectedVolume?.region,
         );
+        const volume = preselectedVolume
+          ? { ...preselectedVolume, isLocalZone }
+          : null;
         return {
           name: prefilledBackupName || '',
           selected: {
-            volume: { ...preselectedVolume, isLocalZone } || null,
+            volume,
             volumeOption: preselectedVolumeOption || null,
           },
           volumeRelatedInstance: null,
