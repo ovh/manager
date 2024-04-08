@@ -12,5 +12,6 @@
   "pci_additional_ips_onboarding_guides_configure_additional_ip_title": "Configuration Additional IP",
   "pci_additional_ips_onboarding_guides_configure_additional_ip_description": "Apprenez à configurer des adresses IP supplémentaires pour vos services.",
   "pci_additional_ips_onboarding_guides_configure_floating_ip_title": "Configurer une Floating IP",
-  "pci_additional_ips_onboarding_guides_configure_floating_ip_description": "Découvrez comment exposer vos services publiquement de manière cloud native."
+  "pci_additional_ips_onboarding_guides_configure_floating_ip_description": "Découvrez comment exposer vos services publiquement de manière cloud native.",
+  "onboarding_guide_title": "Tutoriel"
 }
