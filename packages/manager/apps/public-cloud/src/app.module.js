@@ -141,7 +141,6 @@ export default async (containerEl, shellClient) => {
       /* @ngInject */ ($rootScope, $state, $transitions) => {
         $transitions.onError({}, (transition) => {
           const error = transition.error();
-          console.error(error);
           if (error.type === RejectType.ERROR) {
             $rootScope.$emit('ovh::sidebar::hide');
             $state.go(
@@ -164,7 +163,6 @@ export default async (containerEl, shellClient) => {
           }
         });
         $state.defaultErrorHandler((error) => {
-          console.error(error);
           return error;
         });
       },

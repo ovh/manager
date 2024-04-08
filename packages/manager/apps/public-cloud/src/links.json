@@ -322,31 +322,31 @@
   {
     "public": {
       "application": "public-cloud",
-      "path": "/create-kafka-data-analysis"
+      "path": "/create-kafka-data-streaming"
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/data-analysis/new?e=kafka"
+      "path": "/pci/projects/{project}/storages/databases-analytics/data-streaming/new?e=kafka"
     }
   },
   {
     "public": {
       "application": "public-cloud",
-      "path": "/create-kafka-connect-data-analysis"
+      "path": "/create-kafka-connect-data-streaming"
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/data-analysis/new?e=kafkaConnect"
+      "path": "/pci/projects/{project}/storages/databases-analytics/data-streaming/new?e=kafkaConnect"
     }
   },
   {
     "public": {
       "application": "public-cloud",
-      "path": "/create-kafka-mirror-maker-data-analysis"
+      "path": "/create-kafka-mirror-maker-data-streaming"
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/data-analysis/new?e=kafkaMirrorMaker"
+      "path": "/pci/projects/{project}/storages/databases-analytics/data-streaming/new?e=kafkaMirrorMaker"
     }
   },
   {
@@ -356,7 +356,7 @@
     },
     "redirect": {
       "application": "dedicated",
-      "path": "/dbaas/logs/onboarding"
+      "path": "/dbaas/logs/order"
     }
   },
   {
