@@ -12,9 +12,9 @@ export interface Project {
 }
 
 export const getProject = async (projectId: string): Promise<Project> => {
-  const response = await v6.get(`/cloud/project/${projectId}`);
+  const { data } = await v6.get(`/cloud/project/${projectId}`);
 
-  return response.data as Project;
+  return data as Project;
 };
 
 export default getProject;
