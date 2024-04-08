@@ -19,6 +19,7 @@ export default /* @ngInject */
   goToAntispam,
   goToFirewall,
   goToOrganisation,
+  goToVrack,
   goToAgoraOrder,
   goToByoipConfiguration,
   Ip,
@@ -40,6 +41,7 @@ export default /* @ngInject */
   $scope.goToFirewall = goToFirewall;
   $scope.goToGameFirewall = goToGameFirewall;
   $scope.goToOrganisation = goToOrganisation;
+  $scope.goToVrack = goToVrack;
   $scope.isByoipAvailable = isByoipAvailable;
   $scope.orderIpAvailable = orderIpAvailable;
   $scope.selection = { service: null, serviceType: null };
