@@ -225,24 +225,38 @@ export const getColumns = ({
               >
                 {t('tableActionCopy')}
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                variant="primary"
-                onClick={() => {
-                  onRenameClicked(row.original);
-                }}
-              >
-                {t('tableActionEditName')}
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                variant="destructive"
-                onClick={() => {
-                  onDeleteClicked(row.original);
-                }}
-              >
-                {t('tableActionDelete')}
-              </DropdownMenuItem>
+              {service.capabilities.service?.update && (
+                <DropdownMenuItem
+                  disabled={
+                    service.capabilities.service?.update ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                  variant="primary"
+                  onClick={() => {
+                    onRenameClicked(row.original);
+                  }}
+                >
+                  {t('tableActionEditName')}
+                </DropdownMenuItem>
+              )}
+
+              {service.capabilities.service?.delete && (
+                <>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    disabled={
+                      service.capabilities.service?.delete ===
+                      database.service.capability.StateEnum.disabled
+                    }
+                    variant="destructive"
+                    onClick={() => {
+                      onDeleteClicked(row.original);
+                    }}
+                  >
+                    {t('tableActionDelete')}
+                  </DropdownMenuItem>
+                </>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         );

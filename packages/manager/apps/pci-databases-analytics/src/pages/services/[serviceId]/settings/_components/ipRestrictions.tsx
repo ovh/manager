@@ -82,6 +82,10 @@ const IpsRestrictionsUpdate = ({
               <FormControl>
                 <IpsRestrictionsForm
                   {...field}
+                  disabled={
+                    service.capabilities.ipRestrictions?.update !==
+                    database.service.capability.StateEnum.enabled
+                  }
                   value={field.value as database.IpRestrictionCreation[]}
                   onChange={field.onChange}
                 />
@@ -100,7 +104,15 @@ const IpsRestrictionsUpdate = ({
             >
               {t('ipsUpdateCancelButton')}
             </Button>
-            <Button disabled={isPending}>{t('ipsUpdateSubmitButton')}</Button>
+            <Button
+              disabled={
+                isPending ||
+                service.capabilities.ipRestrictions?.update ===
+                  database.service.capability.StateEnum.disabled
+              }
+            >
+              {t('ipsUpdateSubmitButton')}
+            </Button>
           </div>
         )}
       </form>

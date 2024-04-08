@@ -16,7 +16,7 @@ import ServiceConfiguration from './_components/serviceConfiguration';
 const Settings = () => {
   const { service } = useServiceData();
   const { t } = useTranslation(
-    'pci-databases-analytics/services/service/settings/update',
+    'pci-databases-analytics/services/service/settings',
   );
 
   return (
