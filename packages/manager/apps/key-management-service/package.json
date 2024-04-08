@@ -1,21 +1,21 @@
 {
-  "name": "@ovh-ux/manager-key-management-system-app",
+  "name": "@ovh-ux/manager-key-management-service-app",
   "version": "0.0.0",
   "private": true,
-  "description": "ovh key-management-system",
+  "description": "ovh key-management-service",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
-    "directory": "packages/manager/apps/key-management-system"
+    "directory": "packages/manager/apps/key-management-service"
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
     "dev": "tsc && vite",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-key-management-system-app' --include-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-key-management-system-app' --include-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-key-management-system-app' --include-dependencies -- npm run dev:watch --if-present",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-key-management-service-app' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-key-management-service-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-key-management-service-app' --include-dependencies -- npm run dev:watch --if-present",
     "test:e2e": "tsc && npx playwright test --headed",
     "test:e2e:ci": "tsc && npx playwright test",
     "test:e2e:script": "tsc && node ../../../../scripts/run-playwright.js"
@@ -25,7 +25,7 @@
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-react-core-application": "*",
-    "@ovh-ux/manager-react-shell-client": "^0.3.0",
+    "@ovh-ux/manager-react-shell-client": "^0.4.0",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/shell": "^3.1.0",
     "@ovhcloud/manager-components": "*",
