@@ -1,12 +1,14 @@
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+import {
+  useEnvironment,
+  useNavigation,
+} from '@ovh-ux/manager-react-shell-client';
 import {
   Card,
   OnboardingLayout,
   PciDiscoveryBanner,
   isDiscoveryProject,
 } from '@ovhcloud/manager-components';
-import { OdsBreadcrumbAttributeItem } from '@ovhcloud/ods-components';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -15,15 +17,24 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import {
+  ODS_TEXT_LEVEL,
+  OdsBreadcrumbAttributeItem,
+} from '@ovhcloud/ods-components';
 import { Project } from '@/api/data/project';
-import { useAllUsers } from '@/api/hooks/useUser';
 import { useAllFloatingIP } from '@/api/hooks/useFloatingIP';
+import { GUIDES } from './onboarding.constants';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation();
-  const { tOnBoarding } = useTranslation('onboarding');
+  const { t: tOnBoarding } = useTranslation('onboarding');
   const { projectId } = useParams();
   const navigation = useNavigation();
+  const { ovhSubsidiary } = useEnvironment().getUser();
   const project = useRouteLoaderData('public-ips') as Project;
   const [urlProject, setUrlProject] = useState('');
   const navigate = useNavigate();
@@ -58,44 +69,41 @@ export default function OnBoardingPage() {
     {
       id: 'create-delete-openstack-user',
       texts: {
-        title: t(
-          'pci_projects_project_users_onboarding_guides_create-delete-openstack-user_title',
+        title: tOnBoarding(
+          'pci_additional_ips_onboarding_guides_additional_public_ips_title',
         ),
-        description: t(
-          'pci_projects_project_users_onboarding_guides_create-delete-openstack-user_description',
+        description: tOnBoarding(
+          'pci_additional_ips_onboarding_guides_additional_public_ips_description',
         ),
-        category: t('onboarding_guide_title'),
+        category: tOnBoarding('onboarding_guide_title'),
       },
-      href:
-        'https://docs.ovh.com/gb/en/public-cloud/creation-and-deletion-of-openstack-user/',
+      href: GUIDES.additional_public_ips[ovhSubsidiary],
     },
     {
       id: 'configure-horizon-user-access',
       texts: {
-        title: t(
-          'pci_projects_project_users_onboarding_guides_configure-horizon-user-access_title',
+        title: tOnBoarding(
+          'pci_additional_ips_onboarding_guides_configure_additional_ip_title',
         ),
-        description: t(
-          'pci_projects_project_users_onboarding_guides_configure-horizon-user-access_description',
+        description: tOnBoarding(
+          'pci_additional_ips_onboarding_guides_configure_additional_ip_description',
         ),
-        category: t('onboarding_guide_title'),
+        category: tOnBoarding('onboarding_guide_title'),
       },
-      href:
-        'https://docs.ovh.com/gb/en/public-cloud/configure_user_access_to_horizon/',
+      href: GUIDES.configure_additional_ip[ovhSubsidiary],
     },
     {
       id: 'prepare-openstack-api-env',
       texts: {
-        title: t(
-          'pci_projects_project_users_onboarding_guides_prepare-openstack-api-env_title',
+        title: tOnBoarding(
+          'pci_additional_ips_onboarding_guides_configure_floating_ip_title',
         ),
-        description: t(
-          'pci_projects_project_users_onboarding_guides_prepare-openstack-api-env_description',
+        description: tOnBoarding(
+          'pci_additional_ips_onboarding_guides_configure_floating_ip_description',
         ),
-        category: t('onboarding_guide_title'),
+        category: tOnBoarding('onboarding_guide_title'),
       },
-      href:
-        'https://docs.ovh.com/gb/en/public-cloud/prepare_the_environment_for_using_the_openstack_api/',
+      href: GUIDES.configure_floating_ip[ovhSubsidiary],
     },
   ];
 
@@ -108,24 +116,72 @@ export default function OnBoardingPage() {
         </div>
       )}
       <OnboardingLayout
-        title={t('pci_projects_project_users_onboarding_title')}
+        title={t('pci_additional_ips_title')}
         description={
           <>
-            <span>{t('pci_projects_project_users_onboarding_content1')}</span>
-            <span className="font-bold block mt-4">
-              {t('pci_projects_project_users_onboarding_content2')}
-            </span>
-            <span>{t('pci_projects_project_users_onboarding_content3')}</span>
-            <span className="block mt-4">
-              {t('pci_projects_project_users_onboarding_content4')}
-            </span>
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+            >
+              {tOnBoarding('pci_additional_ips_onboarding_content1')}
+            </OsdsText>
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              className="mt-4 block"
+            >
+              {tOnBoarding('pci_additional_ips_onboarding_content2')}
+            </OsdsText>
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              className="mt-6 block"
+            >
+              {tOnBoarding('pci_additional_ips_onboarding_content3')}
+            </OsdsText>
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+              className="block mt-6"
+            >
+              {tOnBoarding('pci_additional_ips_onboarding_content4_heading')}
+            </OsdsText>
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              className="block"
+            >
+              {tOnBoarding(
+                'pci_additional_ips_onboarding_content4_description',
+              )}
+            </OsdsText>
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+              className="block mt-6"
+            >
+              {tOnBoarding('pci_additional_ips_onboarding_content5_heading')}
+            </OsdsText>
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              className="block"
+            >
+              {tOnBoarding(
+                'pci_additional_ips_onboarding_content5_description',
+              )}
+            </OsdsText>
           </>
         }
-        /**
-         * TODO: Should rename those props to make them generic because the component must be reused in other context different that order
-         */
-        orderButtonLabel={t(
-          'pci_projects_project_users_onboarding_action_label',
+        orderButtonLabel={tOnBoarding(
+          'pci_additional_ips_onboarding_action_buy',
         )}
         onOrderButtonClick={() => {
           if (!isDiscoveryProject(project)) navigate('./new');
