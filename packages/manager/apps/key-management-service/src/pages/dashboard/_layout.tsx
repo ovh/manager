@@ -5,7 +5,7 @@ import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
 
 export default function DashboardPage() {
-  const { t } = useTranslation('key-management-system/dashboard');
+  const { t } = useTranslation('key-management-service/dashboard');
   const tabsList = [
     {
       name: 'general_infos',
