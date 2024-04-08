@@ -48,7 +48,6 @@
   "resolutions": {
     "@babel/runtime": "7.22.15",
     "@rollup/plugin-commonjs": "11.0.2",
-    "@types/mime": "3.0.4",
     "@uirouter/angularjs": "1.0.23",
     "flatpickr": "4.6.9",
     "graphql": "16.6.0",
