@@ -8,7 +8,7 @@ import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 function Breadcrumb({ rootLabel }: BreadcrumbProps): JSX.Element {
   const breadcrumbItems = useBreadcrumb({
     rootLabel,
-    appName: 'key-management-system',
+    appName: 'key-management-service',
   });
 
   return <OsdsBreadcrumb items={breadcrumbItems} />;

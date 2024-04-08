@@ -11,7 +11,7 @@ import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 
 export default function Listing() {
-  const { t } = useTranslation('key-management-system/dashboard');
+  const { t } = useTranslation('key-management-service/dashboard');
   const [pageSize] = useState(10);
   const {
     data,
@@ -68,7 +68,7 @@ export default function Listing() {
 
   return (
     <>
-      <h2>key-management-system</h2>
+      <h2>key-management-service</h2>
       <div className="text-right pr-6 pb-6">
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
           ({flattenData.length} {t('results')})

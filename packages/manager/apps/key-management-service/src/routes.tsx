@@ -14,7 +14,7 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
   };
 };
 
-export const COMMON_PATH = '/key-management-system';
+export const COMMON_PATH = '/key-management-service';
 
 export default [
   {

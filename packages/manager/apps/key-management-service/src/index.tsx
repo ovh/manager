@@ -46,4 +46,4 @@ const init = async (
   );
 };
 
-init('key-management-system', { reloadOnLocaleChange: true });
+init('key-management-service', { reloadOnLocaleChange: true });
