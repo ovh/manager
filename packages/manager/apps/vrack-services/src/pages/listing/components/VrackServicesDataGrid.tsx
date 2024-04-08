@@ -21,7 +21,6 @@ import {
 import { reactFormatter } from '@/utils/ods-utils';
 import {
   DisplayNameCell,
-  ActionsCell,
   ProductStatusCell,
   VrackIdCell,
   CreatedAtCell,
@@ -94,16 +93,16 @@ export const VrackServicesDatagrid: React.FC = () => {
         <CreatedAtCell locale={ovhLocaleToI18next(i18n.language)} />,
       ),
     },
-    {
-      title: t('actions'),
-      field: '',
-      formatter: reactFormatter(
-        <ActionsCell
-          openModal={(id) => navigate(urls.listingDelete.replace(':id', id))}
-          isLoading={isPending}
-        />,
-      ),
-    },
+    // {
+    //   title: t('actions'),
+    //   field: '',
+    //   formatter: reactFormatter(
+    //     <ActionsCell
+    //       openModal={(id) => navigate(urls.listingDelete.replace(':id', id))}
+    //       isLoading={isPending}
+    //     />,
+    //   ),
+    // },
   ];
 
   return (
