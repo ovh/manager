@@ -4,7 +4,6 @@ import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import usePciProject from '../../hooks/usePciProject';
-import { getOnboardingUrl, getRanchersUrl } from '@/utils/route';
 
 export type BreadcrumbHandleParams = {
   data: unknown;
@@ -42,7 +41,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items = [] }) => {
           label: project?.description,
         },
         {
-          href: `/#/public-cloud${getRanchersUrl(projectId)}`,
+          href: `${urlProject}/rancher`,
           label: t('rancherTitle'),
         },
         ...items,

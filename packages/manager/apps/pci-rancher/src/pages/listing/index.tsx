@@ -1,6 +1,3 @@
-import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useHref, useParams } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -14,14 +11,17 @@ import {
   OsdsIcon,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { RancherService } from '@/api/api.type';
-import Title from '@/components/Title/Title';
-import RancherTaskMessage from './RancherTaskMessage';
 import TableContainer from '@/components/Table/TableContainer';
-import { getOnboardingUrl } from '@/utils/route';
+import Title from '@/components/Title/Title';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
+import { getOnboardingUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { useTrackingPage } from '../../hooks/useTrackingPage';
+import RancherTaskMessage from './RancherTaskMessage';
 
 export interface ListingProps {
   data: RancherService[];
