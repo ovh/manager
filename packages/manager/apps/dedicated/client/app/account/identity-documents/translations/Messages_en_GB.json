@@ -15,7 +15,7 @@
   "user_account_identity_documents_list_doc3_optional": "GST certificate (optional)",
   "user_account_identity_documents_description": "The documents will be retained for 5 years after the end of the contract.",
   "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png. The file size limit for each document is 10 MB.",
-  "user_account_identity_documents_selection_file_format_invalid": "File format not supported. Please use one of the accepted formats: jpg, jpeg, pdf and png",
+  "user_account_identity_documents_selection_file_format_invalid": "The {{values}} format of the downloaded document(s) is not supported. Please respect the format requirements: jpg, jpeg, pdf, and png.",
   "user_account_identity_documents_submit": "Send my documents",
   "user_account_identity_documents_submit_success_message_title": "Thank you, we have received your documents!",
   "user_account_identity_documents_submit_success_message_description": "We have received all of your documents. They will be submitted to our teams for validation. You will be notified of their validation by email, or you will be contacted if we need further information.",

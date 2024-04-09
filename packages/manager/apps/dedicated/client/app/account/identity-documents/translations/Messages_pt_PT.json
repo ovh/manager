@@ -15,7 +15,7 @@
   "user_account_identity_documents_list_doc3_optional": "Certificado GST (facultativo)",
   "user_account_identity_documents_description": "Os documentos serão conservados durante cinco anos após o termo do contrato.",
   "user_account_identity_documents_selection_file_format": "Formato: jpg, jpeg, pdf, png. O tamanho máximo do ficheiro para cada documento é de 10 MB.",
-  "user_account_identity_documents_selection_file_format_invalid": "Formato de ficheiro não suportado. Utilize um dos formatos possíveis: jpg, jpeg, pdf e png",
+  "user_account_identity_documents_selection_file_format_invalid": "O formato {{values}} dos documentos descarregados não é aceite. Respeite por favor o formato exigido : jpg, jpeg, pdf e png",
   "user_account_identity_documents_submit": "Enviar os meus documentos",
   "user_account_identity_documents_submit_success_message_title": "Obrigado. Recebemos com êxito os seus documentos!",
   "user_account_identity_documents_submit_success_message_description": "Recebemos com êxito todos os seus documentos. Serão sujeitos a validação por parte das nossas equipas. Receberá por e-mail a confirmação da validação, ou será contactado caso seja necessário fornecer mais informações.",
