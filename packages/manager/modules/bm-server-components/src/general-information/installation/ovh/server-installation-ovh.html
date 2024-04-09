@@ -125,7 +125,7 @@
                                             rel="nofollow noopener"
                                             target="_blank"
                                         >
-                                            <span class="oui-icon oui-icon-external-link"></span>
+                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
                                         </a>
                                     </i>
                                 </oui-radio-description>
@@ -1289,32 +1289,285 @@
                     <oui-spinner></oui-spinner>
                 </div>
                 <div data-ng-hide="loader.loading || loader.loadingForm">
-                    <p
-                        data-translate="server_configuration_installation_ovh_step3_info"
-                    ></p>
 
-                    <p
-                        class="form-inline"
-                        data-ng-show="installation.partitionSchemesList.length > 1 && installation.noPartitioning"
+                    <p class="mt-4"
+                        data-translate="server_configuration_installation_ovh_step3_info"
+                        data-translate-values="{ t0: installation.selectDistribution.description, t1: constants.server.name }"
                     >
-                        <label
-                            for="selectPartitionScheme"
-                            class="control-label"
-                            data-translate="server_configuration_installation_ovh_step3_scheme"
-                        >
-                        </label>
-                        <select
-                            class="form-control"
-                            id="selectPartitionScheme"
-                            name="selectPartitionScheme"
-                            data-ng-options="partitionScheme as partitionScheme for partitionScheme in installation.partitionSchemesList"
-                            data-ng-model="installation.selectPartitionScheme"
-                            data-ng-change="$ctrl.showPartition()"
-                        >
-                        </select>
                     </p>
+                    <oui-message
+                        data-type="warning"
+                        data-ng-if="$ctrl.constructor.showEndOfLifeMessage(installation.selectDistribution.endOfInstall,true)"
+                    >
+                        <span
+                            data-translate="server_configuration_installation_ovh_step3_warning_soon_eol"
+                            data-translate-values="{ t0: (installation.selectDistribution.endOfInstall | date:'mediumDate'), t1: installation.selectDistribution.description }"
+                        ></span>
+                    </oui-message>
+                    <div class="mt-4">
+                        <h5
+                            data-translate="server_configuration_installation_resume_os"
+                        ></h5>
+                        <div class="row">
+                            <dl class="col-md-3">
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_step3_name"
+                                ></dt>
+                                <dd>
+                                    <span data-ng-bind="installation.selectDistribution.project.os.name"></span>
+                                    <span
+                                        class="pl-2 fa"
+                                        aria-hidden="true"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_os_tooltip_project' | translate }}"
+                                        data-oui-tooltip-placement="bottom"
+                                        data-ng-if="installation.selectDistribution.project.os.releaseNotes"
+                                    >
+                                        <a
+                                            data-ng-href="{{ installation.selectDistribution.project.os.url }}"
+                                            rel="nofollow noopener"
+                                            target="_blank"
+                                        >
+                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                        </a>
+                                    </span>
+                                </dd>
+                            </dl>
+                            <dl
+                                class="col-md-3"
+                                data-ng-if="installation.selectDistribution.project.os.version"
+                            >
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_step3_version"
+                                ></dt>
+                                <dd>
+                                    <span data-ng-bind="installation.selectDistribution.project.os.version"></span>
+                                    <span
+                                        class="pl-2 fa"
+                                        aria-hidden="true"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_os_tooltip_releasenotes' | translate }}"
+                                        data-oui-tooltip-placement="bottom"
+                                        data-ng-if="installation.selectDistribution.project.os.releaseNotes"
+                                    >
+                                        <a
+                                            data-ng-href="{{ installation.selectDistribution.project.os.releaseNotes }}"
+                                            rel="nofollow noopener"
+                                            target="_blank"
+                                        >
+                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                        </a>
+                                    </span>
+                                </dd>
+                            </dl>
+                            <dl
+                                class="col-md-3"
+                                data-ng-if="installation.selectDistribution.license.os"
+                            >
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_step3_license"
+                                ></dt>
+                                <dd>
+                                    <span data-ng-bind="installation.selectDistribution.license.os.name.join(', ')"></span>
+                                    <span
+                                        class="pl-2 fa"
+                                        aria-hidden="true"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_os_tooltip_license' | translate }}"
+                                        data-oui-tooltip-placement="bottom"
+                                        data-ng-if="installation.selectDistribution.license.os.url"
+                                    >
+                                        <a
+                                            data-ng-href="{{ installation.selectDistribution.license.os.url }}"
+                                            rel="nofollow noopener"
+                                            target="_blank"
+                                        >
+                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                        </a>
+                                    </span>
+                                </dd>
+                            </dl>
+                            <dl
+                                class="col-md-3"
+                                data-ng-if="installation.selectDistribution.project.os.governance"
+                            >
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_step3_editor"
+                                ></dt>
+                                <dd>
+                                    <span data-ng-bind="installation.selectDistribution.project.os.governance.join(', ')"></span>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div
+                        data-ng-if="installation.selectDistribution.project && installation.selectDistribution.license.usage"
+                    >
+                        <h5
+                            data-translate="server_configuration_installation_resume_usage"
+                        ></h5>
+                        <div class="row">
+                            <dl class="col-md-3">
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_step3_name"
+                                ></dt>
+                                <dd>
+                                    <span data-ng-bind="installation.selectDistribution.project.usage.name"></span>
+                                    <span
+                                        class="pl-2 fa"
+                                        aria-hidden="true"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_usage_tooltip_project' | translate }}"
+                                        data-oui-tooltip-placement="bottom"
+                                        data-ng-if="installation.selectDistribution.project.usage.releaseNotes"
+                                    >
+                                        <a
+                                            data-ng-href="{{ installation.selectDistribution.project.usage.url }}"
+                                            rel="nofollow noopener"
+                                            target="_blank"
+                                        >
+                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                        </a>
+                                    </span>
+                                </dd>
+                            </dl>
+                            <dl
+                                class="col-md-3"
+                                data-ng-if="installation.selectDistribution.project.usage.version"
+                            >
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_step3_version"
+                                ></dt>
+                                <dd>
+                                    <span data-ng-bind="installation.selectDistribution.project.usage.version"></span>
+                                    <span
+                                        class="pl-2 fa"
+                                        aria-hidden="true"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_usage_tooltip_releasenotes' | translate }}"
+                                        data-oui-tooltip-placement="bottom"
+                                        data-ng-if="installation.selectDistribution.project.usage.releaseNotes"
+                                    >
+                                        <a
+                                            data-ng-href="{{ installation.selectDistribution.project.usage.releaseNotes }}"
+                                            rel="nofollow noopener"
+                                            target="_blank"
+                                        >
+                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                        </a>
+                                    </span>
+                                </dd>
+                            </dl>
+                            <dl
+                                class="col-md-3"
+                                data-ng-if="installation.selectDistribution.license.usage"
+                            >
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_step3_license"
+                                ></dt>
+                                <dd>
+                                    <span data-ng-bind="installation.selectDistribution.license.usage.name.join(', ')"></span>
+                                    <span
+                                        class="pl-2 fa"
+                                        aria-hidden="true"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_usage_tooltip_license' | translate }}"
+                                        data-oui-tooltip-placement="bottom"
+                                        data-ng-if="installation.selectDistribution.license.usage.url"
+                                    >
+                                        <a
+                                            data-ng-href="{{ installation.selectDistribution.license.usage.url }}"
+                                            rel="nofollow noopener"
+                                            target="_blank"
+                                        >
+                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                        </a>
+                                    </span>
+                                </dd>
+                            </dl>
+                            <dl
+                                class="col-md-3"
+                                data-ng-if="installation.selectDistribution.project.usage.governance"
+                            >
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_step3_editor"
+                                ></dt>
+                                <dd>
+                                    <span data-ng-bind="installation.selectDistribution.project.usage.governance.join(', ')"></span>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div>
+                        <h5
+                            data-translate="server_configuration_installation_resume_storage"
+                        ></h5>
+                        <div class="row">
+                            <dl class="col-md-4">
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_step3_disk_group"
+                                ></dt>
+                                <dd
+                                    data-ng-bind="installation.diskGroup.numberOfDisks + ' x ' + installation.diskGroup.diskSize.value + ' ' + ( 'unit_size_' + installation.diskGroup.diskSize.unit | translate)"
+                                ></dd>
+                            </dl>
+                            <dl
+                                class="col-md-4"
+                                data-ng-if="installation.hardwareRaid.raid"
+                            >
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_step3_hwraid"
+                                ></dt>
+                                <dd
+                                    data-ng-bind="installation.hardwareRaid.disks + ' x ' + installation.hardwareRaid.controller.disks[0].capacity.value + ' ' + ( 'unit_size_' + installation.hardwareRaid.controller.disks[0].capacity.unit | translate) + ' (' + installation.hardwareRaid.raid + ')'"
+                                ></dd>
+                            </dl>
+                            <dl
+                                class="col-md-4"
+                                data-ng-if="installation.hardwareRaid.raid"
+                            >
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_step3_disk_os"
+                                ></dt>
+                                <dd
+                                    data-ng-bind="'1 x ' + $ctrl.getDisplaySize(installation.hardwareRaid.availableSpace)"
+                                ></dd>
+                            </dl>
+                            <dl
+                                class="col-md-4"
+                                data-ng-if="!installation.hardwareRaid.raid"
+                            >
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_step3_disk_os"
+                                ></dt>
+                                <dd
+                                    data-ng-bind="installation.nbDiskUse + ' x ' + installation.diskGroup.diskSize.value + ' ' + ( 'unit_size_' + installation.diskGroup.diskSize.unit | translate)"
+                                ></dd>
+                            </dl>
+                        </div>
+                    </div>
 
                     <div class="table-responsive">
+
+                        <h5
+                            data-translate="server_configuration_installation_resume_partitioning"
+                        ></h5>
+
+                        <p
+                            class="form-inline"
+                            data-ng-show="installation.partitionSchemesList.length > 1 && installation.noPartitioning"
+                        >
+                            <label
+                                for="selectPartitionScheme"
+                                class="control-label"
+                                data-translate="server_configuration_installation_ovh_step3_scheme"
+                            >
+                            </label>
+                            <select
+                                class="form-control"
+                                id="selectPartitionScheme"
+                                name="selectPartitionScheme"
+                                data-ng-options="partitionScheme as partitionScheme for partitionScheme in installation.partitionSchemesList"
+                                data-ng-model="installation.selectPartitionScheme"
+                                data-ng-change="$ctrl.showPartition()"
+                            >
+                            </select>
+                        </p>
+
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -1485,70 +1738,7 @@
                         </table>
                     </div>
 
-                    <div class="mt-4">
-                        <h5
-                            data-translate="server_configuration_installation_resume"
-                        ></h5>
-                        <dl>
-                            <dt
-                                data-translate="server_configuration_installation_ovh_step3_server"
-                            ></dt>
-                            <dd data-ng-bind="constants.server.name"></dd>
-                            <dt
-                                data-translate="server_configuration_installation_ovh_step3_os"
-                            ></dt>
-                            <dd
-                                data-ng-bind="installation.selectDistribution.displayName"
-                            ></dd>
-                            <dt
-                                data-translate="server_configuration_installation_ovh_step3_disk_group"
-                            ></dt>
-                            <dd
-                                data-ng-bind="installation.diskGroup.description"
-                            ></dd>
-                            <dt
-                                data-translate="server_configuration_installation_ovh_step3_custom"
-                            ></dt>
-                            <dd>
-                                <span
-                                    data-ng-if="installation.customInstall"
-                                    data-translate="wizard_yes"
-                                >
-                                </span>
-                                <span
-                                    data-ng-if="!installation.customInstall"
-                                    data-translate="wizard_no"
-                                >
-                                </span>
-                            </dd>
-                        </dl>
-
-                        <div data-ng-if="installation.hardwareRaid.raid">
-                            <h5
-                                data-translate="server_configuration_installation_resume_hardwareRaid"
-                            ></h5>
-                            <dl>
-                                <dt
-                                    data-translate="server_configuration_installation_ovh_stephardraid_label_controllers"
-                                ></dt>
-                                <dd
-                                    data-ng-bind="installation.hardwareRaid.controller.model + ' (' + installation.hardwareRaid.controller.type + ')'"
-                                ></dd>
-                                <dt
-                                    data-translate="server_configuration_installation_ovh_stephardraid_label_disks"
-                                ></dt>
-                                <dd
-                                    data-ng-bind="installation.hardwareRaid.disks"
-                                ></dd>
-                                <dt
-                                    data-translate="server_configuration_installation_ovh_stephardraid_label_raid"
-                                ></dt>
-                                <dd
-                                    data-ng-bind="installation.hardwareRaid.raid"
-                                ></dd>
-                            </dl>
-                        </div>
-
+                    <div>
                         <h5
                             data-translate="server_configuration_installation_form_option"
                         ></h5>

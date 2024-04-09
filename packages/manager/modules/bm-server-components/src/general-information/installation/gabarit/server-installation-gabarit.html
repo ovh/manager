@@ -153,43 +153,21 @@
                 <div data-ng-hide="loader.loading || loader.loadingForm">
                     <p
                         data-translate="server_configuration_installation_gabarit_step2_info"
+                        data-translate-values="{ t0: '<b>' + installation.selectGabarit.description + '</b>', t1: installation.selectGabarit.distribution, t2: '<b>' + installation.server.name + '</b>' }"
                     ></p>
-                    <ul>
-                        <li>
-                            <span
-                                data-translate="server_configuration_installation_gabarit_step2_server"
-                            ></span>
-                            <strong
-                                data-ng-bind="installation.server.name"
-                            ></strong>
-                        </li>
-                        <li>
-                            <span
-                                data-translate="server_configuration_installation_gabarit_step2_os"
-                            ></span>
-                            <strong
-                                data-ng-bind="installation.selectGabarit.displayName"
-                            ></strong>
-                        </li>
-                        <li data-ng-if="informations.hardwareRaid">
-                            <span
-                                data-translate="server_configuration_installation_resume_hardwareRaid"
-                            ></span>
-                            <strong
-                                data-ng-if="informations.hardwareRaid.mode"
-                                data-ng-bind-html="'server_configuration_installation_gabarit_step2_hardwareRaid' | translate:{ t0: informations.hardwareRaid.mode, t1: informations.hardwareRaid.disks.length }"
-                            >
-                            </strong>
-                            <strong
-                                data-ng-if="informations.hardwareRaid && !informations.hardwareRaid.mode"
-                                data-translate="customized"
-                            >
-                            </strong>
-                        </li>
-                    </ul>
-                    <strong
+                    <oui-message
+                        data-type="warning"
+                        data-ng-if="$ctrl.constructor.showEndOfLifeMessage(installation.selectGabarit.endOfInstall,true)"
+                    >
+                        <span
+                            data-translate="server_configuration_installation_gabarit_step2_warning_soon_eol"
+                            data-translate-values="{ t0: (installation.selectGabarit.endOfInstall | date:'mediumDate'), t1: installation.selectGabarit.distribution, t2: installation.selectGabarit.description }"
+                        ></span>
+                    </oui-message>
+                    <h5
+                        class="mt-4"
                         data-translate="server_configuration_installation_form_option"
-                    ></strong>
+                    ></h5>
                     <!-- saveGabarit -->
                     <oui-checkbox
                         data-on-change="$ctrl.nameGabaritValidator()"
