@@ -14,6 +14,7 @@ import {
 import {
   deliveringVrackMessage,
   deliveringVrackServicesMessage,
+  modalDissociateDescription,
 } from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
 import { getUrl } from '../utils';
 import { ConfigParams } from '../../mock/handlers';
@@ -22,7 +23,11 @@ import {
   guide1Title,
   guide2Title,
 } from '../../src/public/translations/vrack-services/onboarding/Messages_fr_FR.json';
-import { onboardingDescription } from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
+import {
+  onboardingDescription,
+  betaSubnetLimitMessage,
+} from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
+import { vrackActionDissociate } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
 
 Then('User sees the create a vRack Services button {word}', async function(
   this: ICustomWorld<ConfigParams>,
@@ -240,3 +245,61 @@ Then('User sees the subnet {word} page', async function(
     expect(listing).toBeVisible();
   }
 });
+
+Then('User {string} the action menu with button dissociate', async function(
+  this: ICustomWorld<ConfigParams>,
+  seeActionMenu: 'see' | "doesn't see",
+) {
+  await sleep(1000);
+  const actionMenu = this.page.getByTestId('action-menu-icon');
+  if (seeActionMenu === 'see') {
+    expect(actionMenu).toBeInViewport();
+  } else {
+    expect(actionMenu).not.toBeInViewport();
+  }
+});
+
+Then('User sees button dissociate', async function(
+  this: ICustomWorld<ConfigParams>,
+) {
+  await sleep(1000);
+  const dissociateButton = this.page.getByText(vrackActionDissociate, {
+    exact: true,
+  });
+  if (await this.page.getByTestId('action-menu-icon').count()) {
+    expect(dissociateButton).toBeVisible();
+  } else {
+    expect(dissociateButton).not.toBeVisible();
+  }
+});
+
+Then(
+  'a modal appear to ask if the user wants to dissociate the vRack',
+  async function(this: ICustomWorld<ConfigParams>) {
+    await sleep(1000);
+
+    const modalDescription = await this.page.locator('osds-modal', {
+      hasText: modalDissociateDescription,
+    });
+    await expect(modalDescription).toBeVisible();
+  },
+);
+
+Then(
+  'User {string} on the Overview page from dissociation modal',
+  async function(
+    this: ICustomWorld<ConfigParams>,
+    returnOverview: 'returns' | "doesn't returns",
+  ) {
+    await sleep(1000);
+
+    const modalDescription = await this.page.locator('osds-modal', {
+      hasText: modalDissociateDescription,
+    });
+    if (returnOverview === 'returns') {
+      expect(modalDescription).not.toBeVisible();
+    } else {
+      expect(modalDescription).toBeVisible();
+    }
+  },
+);

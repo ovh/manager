@@ -25,7 +25,7 @@
   "netapp_dashboard_network_configuration_status_disabled": "Desativado",
   "netapp_dashboard_network_configuration_vrack_id": "Nome ou ID do vRack",
   "netapp_dashboard_network_configuration_vrack_associate": "Associar um vRack",
-  "netapp_dashboard_network_configuration_vrack_services": "Serviços vRack",
+  "netapp_dashboard_network_configuration_vrack_services": "vRack Services",
   "netapp_dashboard_network_configuration_vrack_subnet": "Subrede",
   "netapp_dashboard_network_configuration_vrack_endpoint_ip": "IP do Service Endpoint",
   "netapp_dashboard_network_configuration_vrack_no_endpoint_ip": "Não existe um Service Endpoint criado para este serviço, é preciso associar um vRack",

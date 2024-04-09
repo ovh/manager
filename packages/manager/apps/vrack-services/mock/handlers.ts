@@ -29,8 +29,8 @@ export const getConfig = (params: ConfigParams): Handler[] =>
     getAuthenticationMocks,
     getVrackServicesMocks,
     getRegionMocks,
-    getAssociationMocks,
     getVracMocks,
+    getAssociationMocks,
     getOrderDetailsMocks,
     getIamMocks,
   ].flatMap((getMocks) => getMocks(params));
