@@ -2,6 +2,7 @@ import {
   ADDITIONAL_IP,
   ALERT_ID,
   IP_TYPE,
+  IP_TYPE_TITLE,
   IP_FAILOVER_PLANCODE,
 } from './ip-ip-agoraOrder.constant';
 
@@ -15,6 +16,7 @@ export default class AgoraIpOrderCtrl {
     this.ADDITIONAL_IP = ADDITIONAL_IP;
     this.ALERT_ID = ALERT_ID;
     this.IP_TYPE = IP_TYPE;
+    this.IP_TYPE_TITLE = IP_TYPE_TITLE;
     this.ipCatalog = ipCatalog;
   }
 
