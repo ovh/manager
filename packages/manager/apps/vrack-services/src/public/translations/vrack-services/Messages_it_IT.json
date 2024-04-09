@@ -11,6 +11,9 @@
   "orderStatus-notPaid": "È richiesto un pagamento",
   "orderStatus-unknown": "Sconosciuto",
   "genericApiError": "Si è verificato il seguente errore: {{error}}.",
-  "modalCancelButton": "Annullare",
-  "modalDeleteButton": "Elimina"
+  "modalCancelButton": "Annulla",
+  "modalDeleteButton": "Eliminare",
+  "modalConfirmButton": "Confermare",
+  "modalDissociateHeadline": "Dissociare vRack Services dalla vRack",
+  "modalDissociateDescription": "Vuoi davvero dissociare questo vRack Services dalla tua vRack?"
 }

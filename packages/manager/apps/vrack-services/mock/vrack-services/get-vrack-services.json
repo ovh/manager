@@ -429,5 +429,51 @@
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
+  },
+  {
+    "checksum": "e65fa90ceffa95201a49c29b3c031e11",
+    "createdAt": "2024-02-27T17:43:15.225504Z",
+    "currentState": {
+      "displayName": "SUB-test",
+      "productStatus": "DRAFT",
+      "region": "LABEUPRE",
+      "subnets": [
+        {
+          "cidr": "10.0.0.0/24",
+          "displayName": null,
+          "serviceEndpoints": [],
+          "serviceRange": {
+            "cidr": "10.0.0.0/29",
+            "remainingIps": 3,
+            "reservedIps": 5,
+            "usedIps": 0
+          },
+          "vlan": null
+        }
+      ],
+      "vrackId": "pn-9000030"
+    },
+    "currentTasks": [],
+    "id": "vrs-d18-qi7-5lk-is2",
+    "resourceStatus": "READY",
+    "targetSpec": {
+      "displayName": "SUB-test",
+      "subnets": [
+        {
+          "cidr": "10.0.0.0/24",
+          "displayName": null,
+          "serviceEndpoints": [],
+          "serviceRange": {
+            "cidr": "10.0.0.0/29"
+          },
+          "vlan": null
+        }
+      ]
+    },
+    "updatedAt": "2024-03-26T11:37:49.16237Z",
+    "iam": {
+      "id": "685fd9e5-7634-450f-b085-81f23a6ee8e2",
+      "urn": "urn:v1:labeu:resource:vrackServices:vrs-d18-qi7-5lk-is2"
+    }
   }
 ]
