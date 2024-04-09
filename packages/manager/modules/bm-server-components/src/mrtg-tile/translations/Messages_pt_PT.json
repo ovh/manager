@@ -1,8 +1,6 @@
 {
   "server_mrtg_loading_fail": "Erro ao processar alteração das estatísticas",
   "server_mrtg_network": "Rede:",
-  "server_mrtg_network_public": "Interface da rede pública ({{t0}})",
-  "server_mrtg_network_private": "vRack ({{t0}})",
   "server_mrtg_network_no_vrack": "vRack (não configurada no seu servidor)",
   "server_mrtg_type": "Tipo:",
   "server_mrtg_type_ERRORS": "Erros",

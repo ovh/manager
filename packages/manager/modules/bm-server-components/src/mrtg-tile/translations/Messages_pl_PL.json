@@ -1,8 +1,6 @@
 {
   "server_mrtg_loading_fail": "Wystąpił błąd podczas wyświetlania statystyk.",
   "server_mrtg_network": "Sieć:",
-  "server_mrtg_network_public": "Publiczny interfejs sieciowy ({{t0}})",
-  "server_mrtg_network_private": "vRack ({{t0}})",
   "server_mrtg_network_no_vrack": "vRack (nieskonfigurowany na tym serwerze)",
   "server_mrtg_type": "Typ:",
   "server_mrtg_type_ERRORS": "Błędy",

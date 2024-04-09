@@ -1,8 +1,6 @@
 {
   "server_mrtg_loading_fail": "Si è verificato un errore durante il caricamento delle statistiche",
   "server_mrtg_network": "Rete:",
-  "server_mrtg_network_public": "Interfaccia di rete pubblica ({{t0}})",
-  "server_mrtg_network_private": "vRack ({{t0}})",
   "server_mrtg_network_no_vrack": "vRack (non configurata su questo server)",
   "server_mrtg_type": "Tipo:",
   "server_mrtg_type_ERRORS": "Errori",
