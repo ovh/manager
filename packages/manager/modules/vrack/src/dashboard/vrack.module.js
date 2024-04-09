@@ -21,6 +21,7 @@ import './vrack-mapper.less';
 import actionsPartials from '../partials/actions.html';
 import availablePartials from '../partials/available.html';
 import component from './vrack.component';
+import service from './vrack.service';
 import mappedPartials from '../partials/mapped.html';
 import routing from './vrack.routing';
 import vrackAdd from '../add';
@@ -43,6 +44,7 @@ angular
     vrackMoveDialog,
   ])
   .component('ovhManagerVrackComponent', component)
+  .service('vrackService', service)
   .config(routing)
   .run(
     /* @ngInject */ ($templateCache) => {
