@@ -105,7 +105,7 @@
             data-id="volume-backup-type-{{volumeOption.id}}"
             data-name="volume-backup-type-{{volumeOption.id}}"
             data-model="$ctrl.volumeBackupModel.selected.volumeOption"
-            data-disabled="$ctrl.isCreating || !$ctrl.volumeBackupModel.selected.volume || ($ctrl.volumeBackupModel.selected.volume.isLocalZone && volumeOption.type === $ctrl.VOLUME_OPTION_BACKUP)"
+            data-disabled="$ctrl.isCreating || !$ctrl.volumeBackupModel.selected.volume || $ctrl.volumeBackupModel.selected.volume.isLocalZone"
             data-values="[volumeOption]"
             data-variant="light"
             data-on-change="$ctrl.onVolumeTypeChange(modelValue)"
@@ -141,7 +141,10 @@
 </div>
 
 <!--Step 3 :: Detach volume from instance-->
-<div class="py-2" data-ng-if="$ctrl.isSelectedVolumeNeedToDetach()">
+<div
+    class="py-2"
+    data-ng-if="$ctrl.isSelectedVolumeNeedToDetach() && !$ctrl.volumeBackupModel.selected.volume.isLocalZone"
+>
     <!--Title-->
     <p
         class="oui-heading_3 mb-2"
@@ -194,7 +197,7 @@
     <oui-button
         data-size="l"
         data-variant="primary"
-        data-disabled="$ctrl.isCreating || !$ctrl.isValidConfiguration()"
+        data-disabled="$ctrl.isCreating || !$ctrl.isValidConfiguration() || $ctrl.volumeBackupModel.selected.volume.isLocalZone"
         data-on-click="$ctrl.onCreateBackupClick()"
     >
         <span
