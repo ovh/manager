@@ -167,11 +167,17 @@ export default class IpListController {
     }
 
     function checkIps(ipBlock) {
+      const isAdditionalIpv6 =
+        (ipBlock.version === IP_TYPE.V6 &&
+          (ipBlock.type === FAILOVER || ipBlock.type === VRACK)) ||
+        false;
+
       if (!(ipBlock.ips && ipBlock.ips.length)) {
         Object.assign(ipBlock, {
           hasSpamAlerts: ipBlock.alerts.spam?.length > 0,
           hasAntihackAlerts: ipBlock.alerts.antihack?.length > 0,
           hasMitigationAlerts: ipBlock.alerts.mitigation?.length > 0,
+          isAdditionalIpv6,
         });
         return;
       }
@@ -180,6 +186,7 @@ export default class IpListController {
         hasSpamAlerts: false,
         hasAntihackAlerts: false,
         hasMitigationAlerts: false,
+        isAdditionalIpv6,
       });
 
       angular.forEach(ipBlock.ips, (ip) => {

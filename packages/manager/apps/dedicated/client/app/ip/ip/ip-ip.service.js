@@ -213,14 +213,14 @@ export default /* @ngInject */ function Ip(
       .all({
         bridgedSubrange: $http
           .get(
-            `${swsProxypassPath}/vrack/${window.encodeURIComponent(
+            `/vrack/${window.encodeURIComponent(
               serviceName,
             )}/ipv6/${window.encodeURIComponent(ipBlock)}/bridgedSubrange`,
           )
           .then(({ data }) => data),
         routedSubrange: $http
           .get(
-            `${swsProxypassPath}/vrack/${window.encodeURIComponent(
+            `/vrack/${window.encodeURIComponent(
               serviceName,
             )}/ipv6/${window.encodeURIComponent(ipBlock)}/routedSubrange`,
           )

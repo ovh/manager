@@ -442,11 +442,11 @@
                 <!-- Actions -->
                 <td>
                     <div
-                        data-ng-if="ipBlock.version === IP_TYPE.V6 && (ipBlock.type === FAILOVER || ipBlock.type === VRACK)"
+                        data-ng-if="ipBlock.isAdditionalIpv6"
                         data-ng-include="'ip/popover/additional-ipv6.html'"
                     ></div>
                     <div
-                        data-ng-if="ipBlock.version !== IP_TYPE.V6 || ipBlock.type !== FAILOVER && ipBlock.type !== VRACK"
+                        data-ng-if="!ipBlock.isAdditionalIpv6"
                         data-ng-include="'ip/popover/ipBlock.html'"
                     ></div>
                 </td>
