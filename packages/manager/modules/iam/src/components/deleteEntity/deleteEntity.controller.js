@@ -1,5 +1,4 @@
 import { DELETE_STATEMENT, ENTITY } from '../../iam.constants';
-import { encodeUrn } from '../../iam.paramTypes';
 import { DELETE_ENTITY_TAG } from './deleteEntity.constants';
 
 export default class DeleteEntityController {
@@ -86,8 +85,6 @@ export default class DeleteEntityController {
 
     if (this.entity.type === ENTITY.POLICY) {
       promise = this.deletePolicy();
-    } else if (this.entity.type === ENTITY.IDENTITY) {
-      promise = this.deletePolicyIdentity();
     } else if (this.entity.type === ENTITY.RESOURCE_GROUP) {
       promise = this.deleteResourceGroup();
     } else if (this.entity.type === ENTITY.RESOURCE_TYPE) {
@@ -128,19 +125,6 @@ export default class DeleteEntityController {
    */
   deletePolicy() {
     return this.IAMService.deletePolicy(this.entity.data.id);
-  }
-
-  /**
-   * Delete the identity using the IAMService
-   * @returns {Promise}
-   */
-  deletePolicyIdentity() {
-    const { identity, policy } = this.entity.data;
-    const encodedIdentity = encodeUrn(identity);
-    return this.IAMService.setPolicyIdentities(
-      policy.id,
-      policy.identities.filter((item) => item !== encodedIdentity),
-    );
   }
 
   /**
