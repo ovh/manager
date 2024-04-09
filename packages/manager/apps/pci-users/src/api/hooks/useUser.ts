@@ -46,7 +46,7 @@ export const useAllUsers = (projectId: string, filters: Filter[] = []) => {
 
 export const useUserRoles = (projectId: string, userId: string) => {
   return useQuery({
-    queryKey: ['project', projectId, 'users', 'roles'],
+    queryKey: ['project', projectId, 'users', userId, 'roles'],
     queryFn: () => getUserRoles(projectId, userId),
     retry: false,
   });
