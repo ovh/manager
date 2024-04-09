@@ -15,7 +15,7 @@
   "user_account_identity_documents_selection_file_format": "Formato: jpg, jpeg, pdf, png Tamaño máximo: 10 MB.",
   "user_account_identity_documents_submit": "Enviar mis documentos",
   "user_account_identity_documents_submit_success_message_title": "Gracias, ¡hemos recibido sus documentos!",
-  "user_account_identity_documents_submit_success_message_description": "Le confirmamos que hemos recibido todos sus documentos. A continuación, deberán ser validados por nuestro equipo. Le enviaremos un mensaje de correo electrónico una vez que hayan sido validados. Si es necesaria alguna información adicional, nos pondremos en contacto con usted.",
+  "user_account_identity_documents_submit_success_message_description": "A continuación, deberán ser validados por nuestro equipo. Le enviaremos un mensaje de correo electrónico una vez que hayan sido validados. Si es necesaria alguna información adicional, nos pondremos en contacto con usted.",
   "user_account_identity_documents_submit_error_message_description": "Sus documentos no se han enviado correctamente. Por favor, vuelva a cargarlos y a enviar sus documentos.",
   "user_account_identity_documents_go_back_to_dashboard": "Ver mi panel de control",
   "user_account_identity_documents_legal_info1": "OVH SAS es el responsable del tratamiento de sus datos personales. Los datos recopilados a través de este formulario son tratados en cumplimiento de las <a href=\"{{ link1 }}\" target=\"_blank\">Directrices de Ciberseguridad del 28/04/2022</a> publicadas por el CERT-In en virtud de las disposiciones de la subsección (6) del <a href=\"{{ link2 }}\" target=\"_blank\">artículo 70-B</a> de la Information Technology (IT) Act, 2000.",
