@@ -1628,7 +1628,9 @@ export namespace database {
     /** Information related to the backups, null if the engine does not support backups */
     backups?: database.service.Backup;
     /** Capabilities of the services */
-    capabilities: Record<service.CapabilityEnum, service.CapabilityActions>;
+    capabilities: Partial<
+      Record<service.CapabilityEnum, service.CapabilityActions>
+    >;
     /** Category of the engine */
     category: CategoryEnum;
     /** Date of the creation of the cluster */

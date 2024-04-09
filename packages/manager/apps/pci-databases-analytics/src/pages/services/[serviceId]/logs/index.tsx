@@ -35,7 +35,10 @@ const RandomWidthSkeletons = ({
       `${Math.floor(Math.random() * (maxWidth - minWidth + 1)) + minWidth}rem`,
   );
   return (
-    <ul className="divide-y-4 divide-transparent">
+    <ul
+      className="divide-y-4 divide-transparent"
+      data-testid="skeleton-container"
+    >
       {randomWidths.map((width, index) => (
         <li key={index}>
           <Skeleton className={'h-4'} style={{ width }} />
@@ -65,6 +68,7 @@ const Logs = () => {
       });
     }
   }, [logsQuery.isSuccess, logsQuery.data]);
+
   return (
     <>
       <h2>{t('title')}</h2>
