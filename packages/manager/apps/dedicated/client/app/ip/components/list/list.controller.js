@@ -171,13 +171,15 @@ export default class IpListController {
         (ipBlock.version === IP_TYPE.V6 &&
           (ipBlock.type === FAILOVER || ipBlock.type === VRACK)) ||
         false;
-
+      const isIPv6Failover =
+        ipBlock.version === IP_TYPE.V6 && ipBlock.type === FAILOVER;
       if (!(ipBlock.ips && ipBlock.ips.length)) {
         Object.assign(ipBlock, {
           hasSpamAlerts: ipBlock.alerts.spam?.length > 0,
           hasAntihackAlerts: ipBlock.alerts.antihack?.length > 0,
           hasMitigationAlerts: ipBlock.alerts.mitigation?.length > 0,
           isAdditionalIpv6,
+          isIPv6Failover,
         });
         return;
       }
@@ -187,6 +189,7 @@ export default class IpListController {
         hasAntihackAlerts: false,
         hasMitigationAlerts: false,
         isAdditionalIpv6,
+        isIPv6Failover,
       });
 
       angular.forEach(ipBlock.ips, (ip) => {
