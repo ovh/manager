@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.33.0...@ovh-ux/manager-pci@6.33.1) (2024-04-09)
+
+
+### Bug Fixes
+
+* **pci:** disable creation for lz and resolve create volume issue ([#11410](https://github.com/ovh/manager/issues/11410)) ([eddbe93](https://github.com/ovh/manager/commit/eddbe93b8695fdd3de38e620dcdc96a82f275045))
+
+
+
+
+
 # [6.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.32.1...@ovh-ux/manager-pci@6.33.0) (2024-04-08)
 
 
