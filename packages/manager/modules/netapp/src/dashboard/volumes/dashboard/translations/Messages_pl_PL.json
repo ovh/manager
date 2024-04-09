@@ -31,5 +31,6 @@
   "netapp_volumes_dashboard_volume_description_update_error": "Wystąpił błąd podczas aktualizacji opisu nazwy wolumenu.",
   "netapp_volumes_dashboard_acl": "Kontrola dostępu (ACL)",
   "netapp_volumes_dashboard_snapshots": "Snapshoty",
-  "netapp_volumes_dashboard_volume_pattern": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki i maksymalnie 256 znaków."
+  "netapp_volumes_dashboard_volume_pattern": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki i maksymalnie 256 znaków.",
+  "netapp_volumes_dashboard_mount_path_not_configurated": "Nie skonfigurowano ustawień sieci"
 }

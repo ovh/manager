@@ -39,5 +39,6 @@
   "netapp_volumes_status_migrating_to": "Migrazione verso",
   "netapp_volumes_status_replication_change": "Modifica della replica",
   "netapp_volumes_status_reverting": "Ripristino",
-  "netapp_volumes_status_reverting_error": "Errore di ripristino"
+  "netapp_volumes_status_reverting_error": "Errore di ripristino",
+  "netapp_volumes_mount_path_not_configurated": "Non configurato"
 }

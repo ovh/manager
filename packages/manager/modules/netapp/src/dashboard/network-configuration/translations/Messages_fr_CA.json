@@ -1,0 +1,22 @@
+{
+  "netapp_network_configuration_title": "Configurer les paramètres réseaux",
+  "netapp_network_configuration_previous_link": "Retour à la page précédente",
+  "netapp_network_configuration_description": "Le service Enterprise File Storage est un service de stockage managé et exposé via une adresse IP sur le vRack. L'attribution de l'IP de votre système de stockage se fait après la selection ou la création d'un vRack, de l'activation de \"vRack Services\" et de la création d'un subnet",
+  "netapp_network_configuration_vrack_step_title": "Sélectionnez un vRack",
+  "netapp_network_configuration_vrack_field_placeholder": "Sélectionnez un vRack",
+  "netapp_network_configuration_no_vrack_field": "Vous n'avez pas de vRack",
+  "netapp_network_configuration_create_vrack_text": "Souhaitez-vous créer un nouveau vRack ?",
+  "netapp_network_configuration_vrack_services_step_title": "Configurez vRack Services",
+  "netapp_network_configuration_vrack_services_field_placeholder": "Sélectionnez votre service",
+  "netapp_network_configuration_subnet_field_placeholder": "Sélectionnez votre sous-réseau",
+  "netapp_network_configuration_no_vrack_services_field": "Vous n'avez pas de vRack Services associé au vRack {{ vrack }}",
+  "netapp_network_configuration_create_vrack_services_text": "Souhaitez-vous activer vRack Services ?",
+  "netapp_network_configuration_subnet_field_label": "Sous-réseau",
+  "netapp_network_configuration_no_subnet_field": "Vous n'avez pas de sous-réseau associé à vRack Services",
+  "netapp_network_configuration_no_subnet_text": "Souhaitez-vous créer un nouveau sous-réseau ?",
+  "netapp_network_configuration_create_button": "Activer",
+  "netapp_network_configuration_configure_button": "Configurer",
+  "netapp_network_configuration_cancel_button": "Annuler",
+  "netapp_network_configuration_success_message": "Vos paramètres réseaux sont en cours de création",
+  "netapp_network_configuration_vrack_association_warning": "Un problème est survenu lors de l'association de votre vRack à vRack services :"
+}

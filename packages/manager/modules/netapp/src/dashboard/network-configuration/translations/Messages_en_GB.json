@@ -1,0 +1,22 @@
+{
+  "netapp_network_configuration_title": "Configure network settings",
+  "netapp_network_configuration_previous_link": "Back to previous page",
+  "netapp_network_configuration_description": "The Enterprise File Storage service is a managed storage service exposed via an IP address on the vRack. Once you have selected or created a vRack, activated “vRack Services”, and created a subnet, you can assign your storage system’s IP.",
+  "netapp_network_configuration_vrack_step_title": "Select a vRack",
+  "netapp_network_configuration_vrack_field_placeholder": "Select a vRack",
+  "netapp_network_configuration_no_vrack_field": "You do not have a vRack",
+  "netapp_network_configuration_create_vrack_text": "Would you like to create a new vRack?",
+  "netapp_network_configuration_vrack_services_step_title": "Configure vRack Services",
+  "netapp_network_configuration_vrack_services_field_placeholder": "Select your service",
+  "netapp_network_configuration_subnet_field_placeholder": "Select your subnet",
+  "netapp_network_configuration_no_vrack_services_field": "You do not have any vRack Services attached to the {{ vrack }} vRack",
+  "netapp_network_configuration_create_vrack_services_text": "Do you want to enable vRack Services?",
+  "netapp_network_configuration_subnet_field_label": "Subnetwork",
+  "netapp_network_configuration_no_subnet_field": "You do not have any subnets attached to vRack Services",
+  "netapp_network_configuration_no_subnet_text": "Would you like to create a new subnet?",
+  "netapp_network_configuration_create_button": "Activate",
+  "netapp_network_configuration_configure_button": "Configure",
+  "netapp_network_configuration_cancel_button": "Cancel",
+  "netapp_network_configuration_success_message": "Creating your network settings...",
+  "netapp_network_configuration_vrack_association_warning": "A problem occurred attaching your vRack to vRack services:"
+}

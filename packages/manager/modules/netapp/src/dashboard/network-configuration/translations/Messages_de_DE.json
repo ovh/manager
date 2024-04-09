@@ -1,0 +1,22 @@
+{
+  "netapp_network_configuration_title": "Netzwerkeinstellungen konfigurieren",
+  "netapp_network_configuration_previous_link": "Zur vorherigen Seite",
+  "netapp_network_configuration_description": "Enterprise File Storage ist ein verwalteter Speicherdienst, der über eine IP-Adresse auf dem vRack verfügbar gemacht wird. Die Zuweisung der IP Ihres Speichersystems erfolgt nach der Auswahl oder Erstellung eines vRack, der Aktivierung von „vRack Services“ und der Erstellung eines Subnet",
+  "netapp_network_configuration_vrack_step_title": "vRack auswählen",
+  "netapp_network_configuration_vrack_field_placeholder": "vRack auswählen",
+  "netapp_network_configuration_no_vrack_field": "Sie haben kein vRack",
+  "netapp_network_configuration_create_vrack_text": "Möchten Sie ein neues vRack erstellen?",
+  "netapp_network_configuration_vrack_services_step_title": "vRack Services konfigurieren",
+  "netapp_network_configuration_vrack_services_field_placeholder": "Dienst auswählen",
+  "netapp_network_configuration_subnet_field_placeholder": "Subnetz auswählen",
+  "netapp_network_configuration_no_vrack_services_field": "Sie haben keine vRack Services, die mit dem vRack {{ vrack }} verbunden sind",
+  "netapp_network_configuration_create_vrack_services_text": "Möchten Sie vRack Services aktivieren?",
+  "netapp_network_configuration_subnet_field_label": "Subnetzwerk",
+  "netapp_network_configuration_no_subnet_field": "Sie haben kein Subnetzwerk, das mit vRack Services verbunden ist",
+  "netapp_network_configuration_no_subnet_text": "Möchten Sie ein neues Subnetzwerk erstellen?",
+  "netapp_network_configuration_create_button": "Aktivieren",
+  "netapp_network_configuration_configure_button": "Konfigurieren",
+  "netapp_network_configuration_cancel_button": "Abbrechen",
+  "netapp_network_configuration_success_message": "Ihre Netzwerkeinstellungen werden erstellt",
+  "netapp_network_configuration_vrack_association_warning": "Bei der Zuordnung Ihres vRack zu vRack Services ist ein Problem aufgetreten:"
+}

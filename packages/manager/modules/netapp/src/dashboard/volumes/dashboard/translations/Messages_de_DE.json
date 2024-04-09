@@ -31,5 +31,6 @@
   "netapp_volumes_dashboard_volume_description_update_error": "Bei der Aktualisierung der Beschreibung des Volumes ist ein Fehler aufgetreten.",
   "netapp_volumes_dashboard_acl": "Zugriffskontrolle (ACL)",
   "netapp_volumes_dashboard_snapshots": "Snapshots",
-  "netapp_volumes_dashboard_volume_pattern": "Höchstens 256 Zeichen: ausschließlich Zahlen, Buchstaben, Unterstriche, Bindestriche und Punkte."
+  "netapp_volumes_dashboard_volume_pattern": "Höchstens 256 Zeichen: ausschließlich Zahlen, Buchstaben, Unterstriche, Bindestriche und Punkte.",
+  "netapp_volumes_dashboard_mount_path_not_configurated": "Netzwerkeinstellungen nicht konfiguriert"
 }

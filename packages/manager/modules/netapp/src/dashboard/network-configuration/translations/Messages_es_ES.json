@@ -1,0 +1,22 @@
+{
+  "netapp_network_configuration_title": "Configurar las opciones de red",
+  "netapp_network_configuration_previous_link": "Volver a la página anterior",
+  "netapp_network_configuration_description": "Enterprise File Storage es un servicio de almacenamiento administrado expuesto a través de una dirección IP en el vRack. La IP de su sistema de almacenamiento se asigna tras la selección o la creación de un vRack, la activación de «vRack Services» y la creación de una subred",
+  "netapp_network_configuration_vrack_step_title": "Seleccione un vRack",
+  "netapp_network_configuration_vrack_field_placeholder": "Seleccione un vRack",
+  "netapp_network_configuration_no_vrack_field": "No dispone de ningún vRack",
+  "netapp_network_configuration_create_vrack_text": "¿Quiere crear un nuevo vRack?",
+  "netapp_network_configuration_vrack_services_step_title": "Configure vRack Services",
+  "netapp_network_configuration_vrack_services_field_placeholder": "Seleccione su servicio",
+  "netapp_network_configuration_subnet_field_placeholder": "Seleccione su subred",
+  "netapp_network_configuration_no_vrack_services_field": "No dispone de vRack Services asociado al vRack {{ vrack }}",
+  "netapp_network_configuration_create_vrack_services_text": "¿Quiere activar vRack Services?",
+  "netapp_network_configuration_subnet_field_label": "Subred",
+  "netapp_network_configuration_no_subnet_field": "No hay ninguna subred asociada a vRack Services",
+  "netapp_network_configuration_no_subnet_text": "¿Desea crear una nueva subred?",
+  "netapp_network_configuration_create_button": "Activar",
+  "netapp_network_configuration_configure_button": "Configurar",
+  "netapp_network_configuration_cancel_button": "Cancelar",
+  "netapp_network_configuration_success_message": "Creando la configuración de red...",
+  "netapp_network_configuration_vrack_association_warning": "Se ha producido un problema al asociar su vRack a vRack services:"
+}
