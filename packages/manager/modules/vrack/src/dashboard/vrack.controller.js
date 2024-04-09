@@ -50,6 +50,7 @@ export default class VrackMoveDialogCtrl {
     OvhApiVrack,
     OvhApiMe,
     CucVrackService,
+    vrackService,
     atInternet,
   ) {
     this.$scope = $scope;
@@ -63,6 +64,7 @@ export default class VrackMoveDialogCtrl {
     this.OvhApiVrack = OvhApiVrack;
     this.OvhApiMe = OvhApiMe;
     this.vrackService = CucVrackService;
+    this.vrackService = vrackService;
     this.atInternet = atInternet;
     this.changeOwnerTrackLabel = `${VRACK_DASHBOARD_TRACKING_PREFIX}::change-owner`;
   }
@@ -721,16 +723,7 @@ export default class VrackMoveDialogCtrl {
                 ).$promise;
               break;
             case 'ip':
-              task = this.OvhApiVrack.Ip()
-                .v6()
-                .create(
-                  {
-                    serviceName: this.serviceName,
-                  },
-                  {
-                    block: service.id,
-                  },
-                ).$promise;
+              task = this.createIp(service);
               break;
             case 'cloudProject':
               task = this.OvhApiVrack.CloudProject()
@@ -775,6 +768,22 @@ export default class VrackMoveDialogCtrl {
         this.form.servicesToAdd = [];
         this.loaders.adding = false;
       });
+  }
+
+  createIp(service) {
+    if (service.id.match(/::/)) {
+      return this.vrackService.createIpv6(this.serviceName, service.id);
+    }
+    return this.OvhApiVrack.Ip()
+      .v6()
+      .create(
+        {
+          serviceName: this.serviceName,
+        },
+        {
+          block: service.id,
+        },
+      ).$promise;
   }
 
   deleteSelectedServices() {
