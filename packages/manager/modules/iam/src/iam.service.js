@@ -94,25 +94,6 @@ export default class IAMService {
   }
 
   // **********************************************************************************************
-  // Identity
-
-  /**
-   * Get the list of identity groups
-   * @returns {Promise<string[]>}
-   */
-  getIdentityGroups() {
-    return this.$http.get(URL.IDENTITY_GROUP).then(({ data }) => data);
-  }
-
-  /**
-   * Get the list of identity users
-   * @returns {Promise<string[]>}
-   */
-  getIdentityUsers() {
-    return this.$http.get(URL.IDENTITY_USER).then(({ data }) => data);
-  }
-
-  // **********************************************************************************************
   // Users
 
   /**

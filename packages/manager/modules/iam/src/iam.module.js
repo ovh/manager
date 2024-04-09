@@ -14,7 +14,6 @@ import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
 
 import dashboard from './dashboard';
-import identities from './identities';
 import onboarding from './onboarding';
 import policy from './policy';
 import resourceGroup from './resourceGroup';
@@ -54,7 +53,6 @@ angular
     ngOvhUtils,
     uiKit,
     dashboard,
-    identities,
     onboarding,
     policy,
     resourceGroup,
