@@ -31,5 +31,6 @@
   "netapp_volumes_dashboard_volume_description_update_error": "An error has occurred updating the volume description.",
   "netapp_volumes_dashboard_acl": "Access Control List (ACL)",
   "netapp_volumes_dashboard_snapshots": "Snapshots",
-  "netapp_volumes_dashboard_volume_pattern": "May only contain numbers, letters, underscores, dashes or full stops, and a maximum of 256 characters."
+  "netapp_volumes_dashboard_volume_pattern": "May only contain numbers, letters, underscores, dashes or full stops, and a maximum of 256 characters.",
+  "netapp_volumes_dashboard_mount_path_not_configurated": "Network settings not configured"
 }

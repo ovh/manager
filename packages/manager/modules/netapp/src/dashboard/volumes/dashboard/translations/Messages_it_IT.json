@@ -31,5 +31,6 @@
   "netapp_volumes_dashboard_volume_description_update_error": "Si è verificato un errore durante l'aggiornamento della descrizione del volume.",
   "netapp_volumes_dashboard_acl": "Lista di controllo degli accessi (ACL)",
   "netapp_volumes_dashboard_snapshots": "Snapshot",
-  "netapp_volumes_dashboard_volume_pattern": "Deve contenere esclusivamente numeri, lettere, underscore, trattini o punti ed essere composta da un massimo di 256 caratteri."
+  "netapp_volumes_dashboard_volume_pattern": "Deve contenere esclusivamente numeri, lettere, underscore, trattini o punti ed essere composta da un massimo di 256 caratteri.",
+  "netapp_volumes_dashboard_mount_path_not_configurated": "Impostazioni di rete non configurate"
 }
