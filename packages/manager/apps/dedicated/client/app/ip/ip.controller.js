@@ -27,8 +27,8 @@ export default /* @ngInject */ function IpMainCtrl(
   openBannerRepricePage,
 ) {
   $scope.currentUser = currentUser;
-  $scope.goToOrganisation = (vrackId) => goToOrganisation(vrackId);
-  $scope.goToVrack = () => goToVrack();
+  $scope.goToOrganisation = goToOrganisation;
+  $scope.goToVrack = goToVrack;
   $scope.goToByoipConfiguration = goToByoipConfiguration;
   $scope.goToAgoraOrder = goToAgoraOrder;
   $scope.goToDashboard = goToDashboard;
