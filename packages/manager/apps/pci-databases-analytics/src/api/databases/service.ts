@@ -19,7 +19,18 @@ export const getService = async ({
 }: Omit<ServiceData, 'engine'>) =>
   apiClient.v6
     .get(`/cloud/project/${projectId}/database/service/${serviceId}`)
-    .then((res) => res.data as database.Service);
+    .then(
+      (res) =>
+        ({
+          ...res.data,
+          capabilities: {
+            ...res.data.capabilities,
+            fork: {
+              create: database.service.capability.StateEnum.enabled,
+            },
+          },
+        } as database.Service),
+    );
 
 interface AddServiceProps extends Omit<ServiceData, 'serviceId'> {
   serviceInfo: database.ServiceCreation;

@@ -1,6 +1,5 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import '@testing-library/jest-dom';
 import ProgressLoader from '@/components/Loading/ProgressLoader';
 
 describe('ProgressLoader component', () => {
@@ -39,7 +38,7 @@ describe('ProgressLoader component', () => {
   it('stops incrementing progress near 100% and does not exceed it', async () => {
     render(<ProgressLoader />);
     act(() => {
-      vi.advanceTimersByTime(10000);
+      vi.advanceTimersByTime(20000);
       vi.clearAllTimers();
     });
     const progressBar = screen.getByTestId('progressLoaderBar');
