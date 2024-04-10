@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_storages_containers_data_encryption_title": "Cifre sus datos",
+  "pci_projects_project_storages_containers_data_encryption_description": "Los datos introducidos en este contenedor son cifrados de inmediato por OVHcloud.",
+  "pci_projects_project_storages_containers_data_encryption_plaintext": "Sin cifrado",
+  "pci_projects_project_storages_containers_data_encryption_aes256": "SSE-S3",
+  "pci_projects_project_storages_containers_data_encryption_aes256_tooltip": "El cifrado se realiza con una clave gestionada por OVHcloud (OMK - OVHcloud Managed Key) y está protegido en el KMS de OVHcloud."
+}

@@ -1,4 +1,5 @@
 import { PCI_FEATURES } from '../../../projects.constant';
+import { TRACKING } from '../containers/containers.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.object-storage', {
@@ -145,6 +146,25 @@ export default /* @ngInject */ ($stateProvider) => {
         atInternet.trackPage({
           name: `PublicCloud_object_storage${hit}`,
         }),
+      trackEncryptionAction: /* @ngInject */ (atInternet) => (
+        encryptionValue,
+      ) => {
+        const name = TRACKING.STORAGE_ENCRYPTION[encryptionValue];
+        if (name) {
+          atInternet.trackClick({
+            name,
+            type: 'action',
+          });
+        }
+      },
+      encryptionAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('public-cloud:object-storage:encryption')
+          .then((feature) =>
+            feature.isFeatureAvailable(
+              'public-cloud:object-storage:encryption',
+            ),
+          ),
 
       breadcrumb: () => null,
     },
