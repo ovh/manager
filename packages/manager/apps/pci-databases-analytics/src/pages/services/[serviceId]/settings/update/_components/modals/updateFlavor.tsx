@@ -241,15 +241,17 @@ const UpdateFlavor = ({
                         />
                       </FormControl>
                       <FormMessage />
-                      <b>{t('updateStorageTotal')}</b>
-                      <span>
-                        {formatStorage({
-                          unit: 'GB',
-                          value:
-                            availability.specifications.storage.minimum.value +
-                            field.value,
-                        })}
-                      </span>
+                      <div className="flex gap-2">
+                        <b>{t('updateStorageTotal')}</b>
+                        <span>
+                          {formatStorage({
+                            unit: 'GB',
+                            value:
+                              availability.specifications.storage.minimum
+                                .value + field.value,
+                          })}
+                        </span>
+                      </div>
                     </FormItem>
                   )}
                 />

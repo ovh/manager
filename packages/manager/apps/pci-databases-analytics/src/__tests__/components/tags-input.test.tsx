@@ -6,7 +6,6 @@ import {
   act,
 } from '@testing-library/react';
 import { vi } from 'vitest';
-import '@testing-library/jest-dom';
 import TagsInput from '@/components/tags-input';
 
 describe('TagsInput component', () => {

@@ -1,6 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import '@testing-library/jest-dom';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 
 vi.mock('react-i18next', () => ({

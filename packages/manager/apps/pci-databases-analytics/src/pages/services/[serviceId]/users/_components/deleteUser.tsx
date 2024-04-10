@@ -73,18 +73,29 @@ const DeleteUser = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('deleteUserTitle')}</DialogTitle>
+          <DialogTitle data-testid="delete-user-modal">
+            {t('deleteUserTitle')}
+          </DialogTitle>
           <DialogDescription>
             {t('deleteUserDescription', { name: user.username })}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" variant="outline">
+            <Button
+              type="button"
+              variant="outline"
+              data-testid="delete-user-cancel-button"
+            >
               {t('deleteUserButtonCancel')}
             </Button>
           </DialogClose>
-          <Button type="button" disabled={isPending} onClick={handleDelete}>
+          <Button
+            type="button"
+            disabled={isPending}
+            onClick={handleDelete}
+            data-testid="delete-user-submit-button"
+          >
             {t('deleteUserButtonConfirm')}
           </Button>
         </DialogFooter>

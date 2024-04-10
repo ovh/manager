@@ -1,7 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-import '@testing-library/jest-dom';
 import { RouterWithQueryClientWrapper } from '../helpers/wrappers/RouterWithQueryClientWrapper';
 
 vi.mock('react-router-dom', async () => {

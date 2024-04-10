@@ -1,6 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import '@testing-library/jest-dom';
 import { useShell } from '@ovh-ux/manager-react-shell-client';
 import FormattedDate from '@/components/table-date';
 import { Locale } from '@/hooks/useLocale';

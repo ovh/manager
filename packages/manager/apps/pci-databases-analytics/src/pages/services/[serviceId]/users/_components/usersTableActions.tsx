@@ -34,14 +34,20 @@ const UserActions = ({
     <div className="w-full text-right pr-2">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="menu" size="menu">
+          <Button
+            variant="menu"
+            size="menu"
+            data-testid="user-action-trigger"
+            onClick={() => console.log('trigger')}
+          >
             <span className="sr-only">Open menu</span>
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" data-testid="user-action-content">
           {service.capabilities.users?.update && (
             <DropdownMenuItem
+              data-testid="user-action-edit-button"
               variant="primary"
               disabled={
                 service.capabilities.users?.update ===
@@ -53,9 +59,10 @@ const UserActions = ({
             </DropdownMenuItem>
           )}
           <DropdownMenuItem
+            data-testid="user-action-reset-password-button"
             variant="primary"
             disabled={
-              service.capabilities.users?.update ===
+              service.capabilities.userCredentialsReset?.create ===
               database.service.capability.StateEnum.disabled
             }
             onClick={() => onResetPasswordClicked(user)}
@@ -65,6 +72,7 @@ const UserActions = ({
           <DropdownMenuSeparator />
           {service.capabilities.users?.delete && (
             <DropdownMenuItem
+              data-testid="user-action-delete-button"
               variant="destructive"
               disabled={
                 service.capabilities.users?.delete ===
