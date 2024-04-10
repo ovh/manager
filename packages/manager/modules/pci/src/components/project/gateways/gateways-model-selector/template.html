@@ -1,7 +1,5 @@
 <div class="row">
-    <oui-spinner data-ng-if="$ctrl.loading" size="m"></oui-spinner>
     <oui-select-picker
-        data-ng-if="!$ctrl.loading"
         class="col-md-6 col-xl-4 my-3"
         data-ng-repeat="gateway in $ctrl.gatewayCatalog track by gateway.product"
         data-name="size_{{:: gateway.product }}"
@@ -13,22 +11,19 @@
         data-required
     >
         <oui-select-picker-section>
-            <div class="d-flex" data-ng-if="gateway.gatewayInfo[1].blobs">
+            <div class="d-flex" data-ng-if="gateway.bandwidth">
                 <strong
                     data-translate="{{ 'pci_projects_project_gateways_model_selector_bandwidth'}}"
-                    data-translate-values="{ bandwidth : $ctrl.getBandwidth(gateway.gatewayInfo[1].blobs.technical.bandwidth.level) }"
+                    data-translate-values="{ bandwidth : $ctrl.getBandwidth(gateway.bandwidth) }"
                 ></strong>
             </div>
-            <div
-                class="d-flex mt-3"
-                data-ng-if="gateway.gatewayInfo[0].pricings.length > 0 || gateway.gatewayInfo[1].pricings.length > 0"
-            >
+            <div class="d-flex mt-3" data-ng-if="gateway.price">
                 <strong
                     data-translate="{{ 'pci_projects_project_gateways_model_selector_catalog_price'}}"
                 ></strong>
                 <ovh-manager-catalog-price
                     class="mx-1 oui-font-light"
-                    data-price="gateway.gatewayInfo[1].gatewayPrice.price"
+                    data-price="gateway.price"
                     data-perform-rounding="false"
                     data-maximum-fraction-digits="4"
                     data-interval="'hour'"
@@ -36,11 +31,11 @@
                 >
                 </ovh-manager-catalog-price>
                 (<ovh-manager-catalog-price
-                    data-price="gateway.gatewayInfo[0].gatewayPrice.price*$ctrl.yearlyGatewayPrice"
+                    data-price="gateway.monthlyPrice * $ctrl.yearlyGatewayPrice"
                     data-perform-rounding="true"
                     data-maximum-fraction-digits="0"
                     data-user="$ctrl.user"
-                    data-interval="gateway.gatewayInfo[0].gatewayPrice.intervalUnit"
+                    data-interval="'month'"
                 ></ovh-manager-catalog-price
                 >)
                 <span>*</span>

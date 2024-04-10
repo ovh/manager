@@ -1,4 +1,4 @@
-import { GATEWAY_HORULY_PLANCODE } from '../gateways.constants';
+import { GATEWAY_FAMILY } from '../gateways.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.gateways.add', {
@@ -21,31 +21,21 @@ export default /* @ngInject */ ($stateProvider) => {
         network: $transition$.params().network,
         region: $transition$.params().region,
       }),
-      regions: /* @ngInject */ (
+      catalog: /* @ngInject */ (PciPublicGatewaysService, coreConfig) => {
+        return PciPublicGatewaysService.getGatwayCatalog({
+          ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
+        });
+      },
+      regionAvailability: /* @ngInject */ (
         projectId,
         PciPublicGatewaysService,
         coreConfig,
-      ) =>
-        PciPublicGatewaysService.getRegionsForActivation(projectId).then(
-          (inactiveRegions) => {
-            return PciPublicGatewaysService.getRegions(projectId, {
-              ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
-              planCode: GATEWAY_HORULY_PLANCODE,
-            }).then((data) =>
-              data.plans
-                .find((plan) => plan.code === GATEWAY_HORULY_PLANCODE)
-                .regions.map((region) => {
-                  return {
-                    ...region,
-                    hasEnoughQuota: () => true,
-                    inactive: inactiveRegions.some(
-                      (inactiveRegion) => inactiveRegion.name === region.name,
-                    ),
-                  };
-                }),
-            );
-          },
-        ),
+      ) => {
+        return PciPublicGatewaysService.getRegions(projectId, {
+          ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
+          addonFamily: GATEWAY_FAMILY,
+        }).then((data) => data.plans);
+      },
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
       onGoBackClick: /* @ngInject */ (
         projectId,

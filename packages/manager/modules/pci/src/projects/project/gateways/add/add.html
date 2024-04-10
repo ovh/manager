@@ -73,7 +73,8 @@
         ></p>
         <div class="px-0">
             <pci-project-gateways-model-selector
-                data-ovh-subsidiary="$ctrl.user.ovhSubsidiary"
+                data-catalog="$ctrl.catalog"
+                data-region-availability="$ctrl.regionAvailability"
                 data-on-gateway-size-selection="$ctrl.onGatewaySizeSelect(gateway)"
             >
             </pci-project-gateways-model-selector>
@@ -110,7 +111,7 @@
         ></pci-project-regions-list>
         <oui-message
             data-type="warning"
-            data-ng-if="$ctrl.selectedRegion && !$ctrl.selectedRegion.enabled && $ctrl.selectedRegion.inactive"
+            data-ng-if="$ctrl.selectedRegion && !$ctrl.selectedRegion.enabled"
         >
             <span
                 data-translate="pci_projects_project_public_gateways_add_region_activate_line1"

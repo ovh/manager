@@ -6,6 +6,8 @@ export default {
     projectId: '<',
     guideUrl: '<',
     regions: '<',
+    catalog: '<',
+    regionAvailability: '<',
     displayAddPrivateNetworkModal: '<',
     goToPublicGateway: '<',
     goBack: '<',

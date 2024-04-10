@@ -5,7 +5,6 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
 import component from './component';
-import service from './service';
 
 const moduleName = 'ovhManagerPciGatewayModelSelector';
 
@@ -16,7 +15,6 @@ angular
     'pascalprecht.translate',
   ])
   .component('pciProjectGatewaysModelSelector', component)
-  .service('PciProjectGatewayModelSelectorService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

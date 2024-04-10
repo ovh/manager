@@ -2,10 +2,13 @@ export const PUBLIC_GATEWAY_CATALOG_ADDON_PRODUCT_NAME = 'CLOUD';
 
 export const GATEWAY_DEFAULT_REGION = 'GRA9';
 
-export const GATEWAY_HORULY_PLANCODE = 'gateway.s.hour.consumption';
+export const GATEWAY_S_HOURLY_PLANCODE = 'gateway.s.hour.consumption';
+
+export const GATEWAY_FAMILY = 'gateway';
 
 export default {
   PUBLIC_GATEWAY_CATALOG_ADDON_PRODUCT_NAME,
   GATEWAY_DEFAULT_REGION,
-  GATEWAY_HORULY_PLANCODE,
+  GATEWAY_S_HOURLY_PLANCODE,
+  GATEWAY_FAMILY,
 };
