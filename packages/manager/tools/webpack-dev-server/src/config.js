@@ -27,6 +27,7 @@ module.exports = (env) => {
   }
   return {
     mode: 'development',
+    devtool: 'source-map',
     devServer: {
       setupMiddlewares(middlewares, devServer) {
         devServer.app.get('/auth', sso.auth.bind(sso));
