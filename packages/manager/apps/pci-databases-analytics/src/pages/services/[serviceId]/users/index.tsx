@@ -36,7 +36,6 @@ const Users = () => {
   const usersQuery = useGetUsers(projectId, service.engine, service.id, {
     refetchInterval: POLLING.USERS,
   });
-  console.log(service);
   const columns: ColumnDef<GenericUser>[] = getColumns({
     displayGroupCol: service.engine === database.EngineEnum.m3db,
     displayRolesCol: [
