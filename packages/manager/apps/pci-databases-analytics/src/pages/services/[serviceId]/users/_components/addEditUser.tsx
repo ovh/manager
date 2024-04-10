@@ -132,7 +132,9 @@ const AddEditUserModal = ({
     <Dialog {...controller}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle>{t(`${prefix}UserTitle`)}</DialogTitle>
+          <DialogTitle data-testid="add-edit-user-modal">
+            {t(`${prefix}UserTitle`)}
+          </DialogTitle>
           {!isEdition && (
             <DialogDescription>{t('addUserDescription')}</DialogDescription>
           )}
@@ -319,13 +321,18 @@ const AddEditUserModal = ({
 
             <DialogFooter className="flex justify-end">
               <DialogClose asChild>
-                <Button type="button" variant="outline">
+                <Button
+                  type="button"
+                  variant="outline"
+                  data-testid="add-edit-user-modal-cancel-button"
+                >
                   {t('formUserButtonCancel')}
                 </Button>
               </DialogClose>
               <Button
                 type="submit"
                 disabled={isPendingAddUser || isPendingEditUser}
+                data-testid="add-edit-user-modal-submit-button"
               >
                 {t(`${prefix}UserButtonConfirm`)}
               </Button>

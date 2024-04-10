@@ -68,6 +68,12 @@ const ResetUserPassword = ({
     },
   });
 
+  const handleClose = () => {
+    if (onClose) {
+      onClose();
+    }
+  };
+
   const handleResetPassword = () => {
     resetUserPassword({
       serviceId: service.id,
@@ -87,7 +93,9 @@ const ResetUserPassword = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('resetUserPasswordTitle')}</DialogTitle>
+          <DialogTitle data-testid="reset-password-modal">
+            {t('resetUserPasswordTitle')}
+          </DialogTitle>
           {newPass ? (
             <Alert variant="success">
               <p>{t('resetUserPasswordSuccess')}</p>
@@ -120,7 +128,12 @@ const ResetUserPassword = ({
           ) : (
             <>
               <DialogClose asChild>
-                <Button type="button" variant="outline">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={handleClose}
+                  data-testid="reset-password-cancel-button"
+                >
                   {t('resetUserPasswordButtonCancel')}
                 </Button>
               </DialogClose>
@@ -128,6 +141,7 @@ const ResetUserPassword = ({
                 type="button"
                 disabled={isPending}
                 onClick={handleResetPassword}
+                data-testid="reset-password-submit-button"
               >
                 {t('resetUserPasswordButtonConfirm')}
               </Button>
