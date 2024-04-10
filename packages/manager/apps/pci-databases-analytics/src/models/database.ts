@@ -1187,6 +1187,7 @@ export namespace database {
       'fork' = 'fork',
       'integrations' = 'integrations',
       'ipRestrictions' = 'ipRestrictions',
+      'maintenanceApply' = 'maintenanceApply',
       'maintenanceTime' = 'maintenanceTime',
       'maintenances' = 'maintenances',
       'namespaces' = 'namespaces',
