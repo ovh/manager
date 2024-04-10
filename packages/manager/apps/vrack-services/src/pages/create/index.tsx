@@ -26,7 +26,6 @@ import { RegionFormField } from './components/RegionFormField';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import { displayNameInputName } from './constants';
 import { urls } from '@/router/constants';
-import { PageName } from '@/utils/tracking';
 
 export default function CreationPage() {
   const [selectedRegion, setSelectedRegion] = React.useState('');
@@ -52,10 +51,7 @@ export default function CreationPage() {
     <>
       <CreatePageLayout
         createButtonLabel={t('createButtonLabel')}
-        trackingParams={{
-          pageName: PageName.createVrackServices,
-          confirmActions: [selectedRegion],
-        }}
+        confirmActionsTracking={['activate_vrack-service', selectedRegion]}
         onSubmit={() =>
           navigate(urls.createConfirm.replace(':region', selectedRegion), {
             state: { displayName },

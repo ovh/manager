@@ -14,7 +14,11 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  PageLocation,
+  ButtonType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { reactFormatter } from '@/utils/ods-utils';
 import {
   DisplayNameCell,
@@ -29,11 +33,7 @@ import { urls } from '@/router/constants';
 export const SubnetDatagrid: React.FC = () => {
   const { t } = useTranslation('vrack-services/subnets');
   const { id } = useParams();
-  const {
-    shell: {
-      tracking: { trackPage, trackClick },
-    },
-  } = React.useContext(ShellContext);
+  const { trackPage, trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const emptyValueLabel = t('none');
 
@@ -81,16 +81,20 @@ export const SubnetDatagrid: React.FC = () => {
       field: '',
       formatter: reactFormatter(
         <ActionsCell
-          openDeleteModal={(cidr) =>
+          openDeleteModal={(cidr) => {
+            trackClick({
+              location: PageLocation.datagrid,
+              buttonType: ButtonType.button,
+              actions: ['delete-subnet'],
+            });
             navigate(
               urls.subnetsDelete
                 .replace(':id', id)
                 .replace(':cidr', cidr.replace('/', '_')),
-            )
-          }
+            );
+          }}
           vrackServices={vrackServices}
           isLoading={isPending}
-          trackClick={trackClick}
         />,
       ),
     },

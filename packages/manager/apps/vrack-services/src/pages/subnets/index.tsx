@@ -12,7 +12,7 @@ export default function Subnets() {
   const location = useLocation();
 
   React.useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && location.pathname === urls.subnets.replace(':id', id)) {
       const url =
         vrackServices?.currentState.subnets.length === 0 &&
         vrackServices?.targetSpec.subnets.length === 0
@@ -20,7 +20,7 @@ export default function Subnets() {
           : urls.subnetsListing;
       navigate(url.replace(':id', id));
     }
-  }, [isLoading, location.pathname]);
+  }, [isLoading, location.pathname, id]);
 
   return isLoading ? (
     <div className="mt-5">

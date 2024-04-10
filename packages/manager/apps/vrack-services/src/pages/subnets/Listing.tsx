@@ -19,14 +19,11 @@ import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { PageLayout } from '@/components/layout-helpers';
 import { SubnetDatagrid } from './components/SubnetDataGrid';
-import { PageType } from '@/utils/tracking';
 import { useNavigateToCreateSubnetPage } from './subnets.hook';
 
 export default function SubnetsListing() {
   const { t } = useTranslation('vrack-services/subnets');
-  const navigateToCreateSubnetPage = useNavigateToCreateSubnetPage(
-    PageType.listing,
-  );
+  const navigateToCreateSubnetPage = useNavigateToCreateSubnetPage();
 
   return (
     <>
