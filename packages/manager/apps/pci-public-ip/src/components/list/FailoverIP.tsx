@@ -1,11 +1,14 @@
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
 import {
   DataGridTextCell,
   Datagrid,
-  useDatagridSearchParams,
-  Notifications,
-  FilterList,
-  useColumnFilters,
   FilterAdd,
+  FilterList,
+  Notifications,
+  PciAnnouncementBanner,
+  useColumnFilters,
+  useDatagridSearchParams,
 } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -22,25 +25,25 @@ import {
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
+  OsdsDivider,
+  OsdsIcon,
   OsdsLink,
+  OsdsMenu,
   OsdsMenuItem,
   OsdsMessage,
-  OsdsMenu,
-  OsdsSpinner,
-  OsdsText,
-  OsdsIcon,
-  OsdsDivider,
   OsdsPopover,
   OsdsPopoverContent,
   OsdsSearchBar,
+  OsdsSpinner,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { FailoverIP } from '@/interface';
 import { useFailoverIPs } from '@/api/hooks/useFailoverIP';
 import FailoverIPActions from './FailoverIPActions';
+import { pciAnnouncementBannerId } from '@/constants';
 
 export default function FailoverIPComponent({ projectId, projectUrl }) {
   const { t } = useTranslation('common');
@@ -48,6 +51,11 @@ export default function FailoverIPComponent({ projectId, projectUrl }) {
   const { pagination, setPagination } = useDatagridSearchParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const navigate = useNavigate();
+
+  const {
+    data: featureAvailabilityData,
+    isLoading: isFeatureAvailabilityLoading,
+  } = useFeatureAvailability([pciAnnouncementBannerId]);
 
   const { error, data: failoverIPs, isLoading } = useFailoverIPs(
     projectId || '',
@@ -119,6 +127,13 @@ export default function FailoverIPComponent({ projectId, projectUrl }) {
   return (
     <>
       <Notifications />
+
+      {featureAvailabilityData &&
+        featureAvailabilityData[pciAnnouncementBannerId] &&
+        !isFeatureAvailabilityLoading && (
+          <PciAnnouncementBanner projectId={projectId} />
+        )}
+
       <OsdsDivider />
       <div className="sm:flex items-center justify-between">
         <OsdsMenu>

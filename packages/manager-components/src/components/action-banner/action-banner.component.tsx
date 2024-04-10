@@ -13,15 +13,22 @@ import {
 export interface ActionBannerProps {
   message: string;
   cta: string;
+  type?: ODS_MESSAGE_TYPE;
   onClick: () => void;
 }
 
-export function ActionBanner({ message, cta, onClick }: ActionBannerProps) {
+export function ActionBanner({
+  message,
+  cta,
+  type = ODS_MESSAGE_TYPE.info,
+  onClick,
+}: ActionBannerProps) {
   return (
     <OsdsMessage
-      type={ODS_MESSAGE_TYPE.warning}
-      color={ODS_THEME_COLOR_INTENT.warning}
+      type={type}
+      color={(type as unknown) as ODS_THEME_COLOR_INTENT}
       className={'mt-3 flex-row'}
+      data-testid="actionBanner-message_container"
     >
       <div className={'sm:flex sm:flex-row sm:justify-between sm:items-center'}>
         <OsdsText
@@ -36,6 +43,7 @@ export function ActionBanner({ message, cta, onClick }: ActionBannerProps) {
         </OsdsText>
         <OsdsButton
           className="sm:mt-0 mt-4 sm:ml-4 ml-0"
+          data-testid="actionBanner-button"
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => {

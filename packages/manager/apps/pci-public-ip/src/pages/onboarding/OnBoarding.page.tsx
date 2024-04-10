@@ -1,3 +1,4 @@
+import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
 import {
   useEnvironment,
   useNavigation,
@@ -5,9 +6,18 @@ import {
 import {
   Card,
   OnboardingLayout,
+  PciAnnouncementBanner,
   PciDiscoveryBanner,
   isDiscoveryProject,
 } from '@ovhcloud/manager-components';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import {
+  ODS_TEXT_LEVEL,
+  OdsBreadcrumbAttributeItem,
+} from '@ovhcloud/ods-components';
 import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,17 +27,10 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_TEXT_LEVEL,
-  OdsBreadcrumbAttributeItem,
-} from '@ovhcloud/ods-components';
-import { Project } from '@/api/data/project';
 import { useAllFloatingIP } from '@/api/hooks/useFloatingIP';
+import { Project } from '@/api/data/project';
 import { GUIDES } from './onboarding.constants';
+import { pciAnnouncementBannerId } from '@/constants';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation();
@@ -47,6 +50,11 @@ export default function OnBoardingPage() {
         setUrlProject(data as string);
       });
   }, [projectId, navigation]);
+
+  const {
+    data: featureAvailabilityData,
+    isLoading: isFeatureAvailabilityLoading,
+  } = useFeatureAvailability([pciAnnouncementBannerId]);
 
   useEffect(() => {
     if (!isLoading && floatingIPs.length > 0) {
@@ -113,6 +121,13 @@ export default function OnBoardingPage() {
   return (
     <>
       {project && <OsdsBreadcrumb items={breadcrumbItems} />}
+
+      {featureAvailabilityData &&
+        featureAvailabilityData[pciAnnouncementBannerId] &&
+        !isFeatureAvailabilityLoading && (
+          <PciAnnouncementBanner projectId={projectId} />
+        )}
+
       {isDiscoveryProject(project) && (
         <div className="mb-8">
           <PciDiscoveryBanner projectId={projectId} />
