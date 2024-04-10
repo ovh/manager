@@ -284,7 +284,6 @@ export default class IpListController {
           $scope.ipsList = map(ips, (ip) => {
             return {
               ...ip,
-              ip: ip.ip || ip.ipBlock,
               collapsed: !ip.isUniq,
               fetchingData: true,
             };
