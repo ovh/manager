@@ -15,6 +15,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   $window,
   $timeout,
   billingDepositLink,
+  softphoneBetaEligibility,
   TelephonyMediator,
   OvhApiTelephony,
   TucToastError,
@@ -31,6 +32,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   self.showSvaProfile = false;
 
   self.billingAccountId = billingAccountId;
+  self.softphoneBetaEligibility = softphoneBetaEligibility;
 
   function isExpired() {
     return self.group ? self.group.status === 'expired' : false;
@@ -68,9 +70,30 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
     return 'ovh-font-lineCommunicating';
   }
 
+  self.getSoftphoneState = function(billingAccount, serviceName) {
+    return {
+      state: 'telecom.telephony.billingAccount.line.dashboard.softphone',
+      stateParams: {
+        billingAccount,
+        serviceName,
+      },
+    };
+  };
+
+  self.getSoftphoneLink = function() {
+    const { state, stateParams } = self.getSoftphoneState(
+      $stateParams.billingAccount,
+      self.sipLine,
+    );
+    return $state.href(state, stateParams);
+  };
+
   function fetchPhones(line) {
     self.loading.phones = true;
 
+    if (line.featureType === 'sip') {
+      self.sipLine = line.serviceName;
+    }
     return OvhApiTelephony.Line()
       .Phone()
       .v6()

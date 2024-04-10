@@ -28,6 +28,14 @@ export default /* @ngInject */ ($stateProvider) => {
       billingAccount: /* @ngInject */ ($transition$) =>
         $transition$.params().billingAccount,
       billingAccountId: /* @ngInject */ (billingAccount) => billingAccount,
+      softphoneBetaEligibility: /* @ngInject */ (
+        $stateParams,
+        SoftphoneService,
+      ) =>
+        SoftphoneService.getsoftphoneBetaEligibility(
+          $stateParams.billingAccount,
+          $stateParams.serviceName,
+        ),
       $title(translations, $translate, $stateParams, OvhApiTelephony) {
         return OvhApiTelephony.v6()
           .get({

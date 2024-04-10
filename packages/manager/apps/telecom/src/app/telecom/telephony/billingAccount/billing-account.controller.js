@@ -10,6 +10,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   administrationLink,
   billingLink,
   billingAccountLink,
+  telecomBillingAccount,
   currentActiveLink,
   guidesLink,
   manageContactsLink,
@@ -33,6 +34,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   self.administrationLink = administrationLink;
   self.billingLink = billingLink;
   self.billingAccountLink = billingAccountLink;
+  self.telecomBillingAccount = telecomBillingAccount;
   self.currentActiveLink = currentActiveLink;
   self.guidesLink = guidesLink;
   self.manageContactsLink = manageContactsLink;
@@ -46,6 +48,13 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   /*= ==============================
   =            ACTIONS            =
   =============================== */
+
+  self.getSofpthoneLink = function getSofpthoneLink() {
+    return self.telecomBillingAccount.getSofpthoneLink(
+      $stateParams.billingAccount,
+      self.sipLine,
+    );
+  };
 
   self.groupNameSave = function groupNameSave(newServiceName) {
     self.group.startEdition();

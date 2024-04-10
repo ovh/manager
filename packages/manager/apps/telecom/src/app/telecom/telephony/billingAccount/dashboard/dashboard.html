@@ -106,6 +106,21 @@
                             ></i>
                         </a>
                     </div>
+                    <div class="oui-tile__item oui-tile__item_button">
+                        <a
+                            class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
+                            data-ng-href="{{DashboardCtrl.getSoftphoneLink()}}"
+                            data-disabled="!DashboardCtrl.softphoneBetaEligibility"
+                        >
+                            <span
+                                data-translate="telephony_group_billing_dashboard_actions_softphone"
+                            ></span>
+                            <i
+                                class="oui-icon oui-icon-chevron-right"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 import service from './billingAccount.service';
+import SoftphoneService from '../line/softphone/softphone.service';
 
 const moduleName = 'ovhManagerTelecomTelephonyBillingAccountLazyLoading';
 
@@ -21,6 +22,7 @@ angular
       });
     },
   )
-  .service('telecomBillingAccount', service);
+  .service('telecomBillingAccount', service)
+  .service('SoftphoneService', SoftphoneService);
 
 export default moduleName;
