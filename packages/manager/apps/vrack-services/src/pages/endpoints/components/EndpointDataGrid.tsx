@@ -4,7 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { OsdsSpinner, OsdsDatagrid } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  PageLocation,
+  ButtonType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { reactFormatter } from '@/utils/ods-utils';
 import {
   ActionsCell,
@@ -15,22 +19,11 @@ import {
 import { ErrorPage } from '@/components/Error';
 import { useVrackService, useServiceList } from '@/utils/vs-utils';
 import { urls } from '@/router/constants';
-import {
-  ButtonType,
-  PageLocation,
-  PageName,
-  PageType,
-  getClickProps,
-} from '@/utils/tracking';
 
 export const EndpointDatagrid: React.FC = () => {
   const { t } = useTranslation('vrack-services/endpoints');
   const { id } = useParams();
-  const {
-    shell: {
-      tracking: { trackClick },
-    },
-  } = React.useContext(ShellContext);
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
   const { data: vrackServices, isError, error, isLoading } = useVrackService();
@@ -76,16 +69,12 @@ export const EndpointDatagrid: React.FC = () => {
       formatter: reactFormatter(
         <ActionsCell
           openDeleteModal={(urn) => {
-            trackClick(
-              getClickProps({
-                pageType: PageType.listing,
-                pageName: PageName.endpoints,
-                location: PageLocation.datagrid,
-                buttonType: ButtonType.button,
-                actionType: 'navigation',
-                actions: ['delete-endpoints'],
-              }),
-            );
+            trackClick({
+              location: PageLocation.datagrid,
+              buttonType: ButtonType.button,
+              actionType: 'navigation',
+              actions: ['delete-endpoints'],
+            });
             navigate(
               urls.endpointsDelete.replace(':id', id).replace(':urn', urn),
             );

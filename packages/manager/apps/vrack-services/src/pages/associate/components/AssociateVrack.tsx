@@ -21,7 +21,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  PageLocation,
+  ButtonType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { useNavigate } from 'react-router-dom';
 import {
   associateVrackServicesQueryKey,
   associateVrackServices,
@@ -29,12 +34,6 @@ import {
   Task,
 } from '@/api';
 import { handleClick } from '@/utils/ods-utils';
-import {
-  ButtonType,
-  PageLocation,
-  PageName,
-  getClickProps,
-} from '@/utils/tracking';
 
 export type AssociateVrackProps = {
   vrackServicesId: string;
@@ -50,11 +49,8 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
   const { t } = useTranslation('vrack-services/listing');
   const [selectedVrack, setSelectedVrack] = React.useState('');
   const queryClient = useQueryClient();
-  const {
-    shell: {
-      tracking: { trackClick },
-    },
-  } = React.useContext(ShellContext);
+  const { trackClick } = useOvhTracking();
+  const navigate = useNavigate();
 
   const { mutate: associateVs, isPending, isError, error } = useMutation<
     ApiResponse<Task>,
@@ -70,7 +66,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
       queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
-      closeModal();
+      navigate('..');
     },
   });
 
@@ -126,14 +122,11 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={isPending || !selectedVrack || undefined}
         {...handleClick(() => {
-          trackClick(
-            getClickProps({
-              location: PageLocation.popup,
-              pageName: PageName.associate,
-              buttonType: ButtonType.button,
-              actions: ['confirm'],
-            }),
-          );
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actions: ['associate-vrack', 'confirm'],
+          });
           associateVs();
         })}
       >

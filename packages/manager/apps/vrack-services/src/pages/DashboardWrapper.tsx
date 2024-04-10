@@ -1,20 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, Outlet, useLocation } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking, ButtonType } from '@ovh-ux/manager-react-shell-client';
 import { DashboardLayout } from '@/components/layout-helpers';
 import { useVrackService, useVrackServicesList } from '@/utils/vs-utils';
 import NotFound from '@/pages/404';
 import { ErrorPage } from '@/components/Error';
 import { urls } from '@/router/constants';
 import { DashboardTabItemProps } from '@/components/layout-helpers/layout-helpers.type';
-import { ButtonType, PageName, getClickProps } from '@/utils/tracking';
 
 export default function DashboardWrapper() {
   const { t } = useTranslation('vrack-services/dashboard');
   const { id } = useParams();
   const location = useLocation();
-  const { shell } = React.useContext(ShellContext);
+  const { trackClick } = useOvhTracking();
   const { data, isLoading } = useVrackServicesList();
   const { isError, error } = useVrackService();
 
@@ -28,13 +27,11 @@ export default function DashboardWrapper() {
           (path) => new RegExp(`${path.replace(':id', id)}$`),
         ),
         onClick: () => {
-          shell.tracking.trackClick(
-            getClickProps({
-              buttonType: ButtonType.tab,
-              actionType: 'navigation',
-              actions: ['overview'],
-            }),
-          );
+          trackClick({
+            buttonType: ButtonType.tab,
+            actionType: 'navigation',
+            actions: ['overview'],
+          });
         },
       },
       {
@@ -51,13 +48,11 @@ export default function DashboardWrapper() {
             new RegExp(path.replace(':id', id).replace(':cidr', '\\S+')),
         ),
         onClick: () => {
-          shell.tracking.trackClick(
-            getClickProps({
-              buttonType: ButtonType.tab,
-              actionType: 'navigation',
-              actions: ['subnets'],
-            }),
-          );
+          trackClick({
+            buttonType: ButtonType.tab,
+            actionType: 'navigation',
+            actions: ['subnets'],
+          });
         },
       },
       {
@@ -73,13 +68,11 @@ export default function DashboardWrapper() {
           (path) => new RegExp(path.replace(':id', id).replace(':urn', '\\S+')),
         ),
         onClick: () => {
-          shell.tracking.trackClick(
-            getClickProps({
-              buttonType: ButtonType.tab,
-              actionType: 'navigation',
-              actions: ['endpoints'],
-            }),
-          );
+          trackClick({
+            buttonType: ButtonType.tab,
+            actionType: 'navigation',
+            actions: ['endpoints'],
+          });
         },
       },
     ],

@@ -27,7 +27,6 @@ export type DeleteModalProps = {
   headline: string;
   description?: string;
   deleteInputLabel: string;
-  isModalOpen?: boolean;
   closeModal: () => void;
   isLoading?: boolean;
   onConfirmDelete: () => void;
@@ -39,7 +38,6 @@ const terminateValue = 'TERMINATE';
 export const DeleteModal: React.FC<DeleteModalProps> = ({
   headline,
   description,
-  isModalOpen,
   deleteInputLabel,
   closeModal,
   isLoading,
@@ -59,7 +57,6 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       dismissible
       color={ODS_THEME_COLOR_INTENT.warning}
       headline={headline}
-      masked={!isModalOpen || undefined}
       onOdsModalClose={close}
     >
       {!!error && (

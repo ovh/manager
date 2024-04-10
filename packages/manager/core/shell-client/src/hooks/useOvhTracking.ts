@@ -1,6 +1,7 @@
 import React from 'react';
 import { AT_INTERNET_LEVEL2 } from '@ovh-ux/ovh-at-internet';
-import { ShellContext } from '../ShellContext';
+import { useMatches } from 'react-router-dom';
+import { ShellContext, TrackingContextParams } from '../ShellContext';
 
 export const getLevel2TrackingParam = (universe: string) => {
   const result = Object.keys(AT_INTERNET_LEVEL2).filter((element) =>
@@ -12,101 +13,151 @@ export const getLevel2TrackingParam = (universe: string) => {
   return result ? result[0] : '0';
 };
 
-export type TrackingParams = {
-  name: string;
-  page: { name: string } & Record<string, string>;
-  page_category: string;
-  complete_page_name: string;
-  level2: string;
-  type?: string;
-  page_theme: string;
+export const sanitizeLabel = (label: string) =>
+  label.replace(/\s/g, '_').replace(/:/g, '');
+
+export enum PageType {
+  onboarding = 'onboarding',
+  listing = 'listing',
+  dashboard = 'dashboard',
+  popup = 'pop-up',
+  bannerSuccess = 'banner-success',
+  bannerError = 'banner-error',
+  bannerInfo = 'banner-info',
+  bannerWarning = 'banner-warning',
+  funnel = 'funnel',
+}
+
+export enum PageLocation {
+  page = 'page',
+  funnel = 'funnel',
+  banner = 'banner',
+  popup = 'pop-up',
+  datagrid = 'datagrid',
+  tile = 'tile',
+}
+
+export enum ButtonType {
+  button = 'button',
+  link = 'link',
+  select = 'select',
+  externalLink = 'external-link',
+  tile = 'tile',
+  tutorial = 'tile-tutorial',
+  tab = 'go-to-tab',
+}
+
+export type TrackingPageParams = {
+  pageType?: PageType;
+  pageName?: string;
 };
 
-export type TrackingProps = {
-  path: string;
-  value?: string;
-  type?: 'action' | 'display';
-  pageParams?: Record<string, string> & { category?: 'pop-up' };
+export const getPageProps = ({
+  chapter1,
+  chapter2,
+  chapter3,
+  level2,
+  appName,
+  pageTheme,
+  pageType,
+  pageName,
+}: TrackingPageParams & TrackingContextParams) => ({
+  name: [chapter1, chapter2, chapter3, appName, pageType, pageName]
+    .filter(Boolean)
+    .map(sanitizeLabel)
+    .join('::'),
+  page: [appName, pageType, pageName].filter(Boolean).join('::'),
+  page_category: pageType,
+  page_theme: pageTheme,
+  type: 'display',
+  level2,
+});
+
+export type TrackingClickParams = {
+  location?: PageLocation;
+  buttonType?: ButtonType;
+  actions?: string[];
+  actionType?: 'action' | 'navigation' | 'download' | 'exit';
 };
 
-export type GetTrackingParamsProps = {
-  universe: string;
-  applicationName: string;
-} & TrackingProps;
+export const getClickProps = ({
+  pageName,
+  pageType,
+  chapter1,
+  chapter2,
+  chapter3,
+  appName,
+  pageTheme,
+  level2,
+  location,
+  buttonType,
+  actions = [],
+  actionType = 'action',
+}: TrackingClickParams & TrackingPageParams & TrackingContextParams) => ({
+  name: [chapter1, chapter2, chapter3, location, buttonType, ...actions]
+    .filter(Boolean)
+    .map(sanitizeLabel)
+    .join('::'),
+  page: getPageProps({
+    chapter1,
+    chapter2,
+    chapter3,
+    appName,
+    pageName,
+    pageType,
+  }),
+  page_category: pageType,
+  page_theme: pageTheme,
+  type: actionType,
+  level2,
+});
 
-export const getTrackingParams = ({
-  universe,
-  path,
-  applicationName,
-  value,
-  type,
-  pageParams = {},
-}: GetTrackingParamsProps): TrackingParams => {
-  const page = [applicationName, path].join('::');
-  const name = value ? `${page}${value}` : page;
-
-  const params = {
-    name,
-    page: { name: page, ...pageParams },
-    page_category: path || 'homepage',
-    complete_page_name: page,
-    level2: getLevel2TrackingParam(universe),
-    type,
-    page_theme: applicationName,
-  };
-  if (window.location.hostname === 'localhost') {
-    console.log('Tracking sent', params);
-  }
-  return params;
+export const usePageTracking = () => {
+  const matches = useMatches();
+  const { handle } = matches[matches.length - 1];
+  return (handle as any)?.tracking as TrackingPageParams;
 };
 
 export const useOvhTracking = () => {
-  const { environment, shell } = React.useContext(ShellContext);
-  const { applicationName, universe } = environment;
+  const pageTracking = usePageTracking();
+  const { shell, tracking } = React.useContext(ShellContext);
 
   return {
-    trackClick: (props: TrackingProps) =>
-      shell.tracking.trackClick(
-        getTrackingParams({
-          universe,
-          applicationName,
-          type: 'action',
-          ...props,
-        }),
-      ),
-    trackEvent: (props: TrackingProps) =>
-      shell.tracking.trackEvent(
-        getTrackingParams({
-          universe,
-          applicationName,
-          ...props,
-        }),
-      ),
-    trackClickImpression: (props: TrackingProps) =>
-      shell.tracking.trackClickImpression(
-        getTrackingParams({
-          universe,
-          applicationName,
-          ...props,
-        }),
-      ),
-    trackMVTest: (props: TrackingProps) =>
-      shell.tracking.trackMVTest(
-        getTrackingParams({
-          universe,
-          applicationName,
-          ...props,
-        }),
-      ),
-    trackPage: (props: TrackingProps) =>
+    trackCurrentPage: () => {
+      if (tracking && pageTracking) {
+        shell.tracking.trackPage(
+          getPageProps({
+            ...tracking,
+            ...pageTracking,
+          }),
+        );
+      }
+    },
+    trackPage: (params: TrackingPageParams) => {
       shell.tracking.trackPage(
-        getTrackingParams({
-          universe,
-          applicationName,
-          type: 'display',
-          ...props,
+        getPageProps({
+          ...tracking,
+          ...params,
         }),
-      ),
+      );
+    },
+    trackClick: ({
+      location,
+      buttonType,
+      actions,
+      actionType,
+    }: TrackingClickParams) => {
+      shell.tracking.trackClick(
+        getClickProps({
+          ...tracking,
+          ...pageTracking,
+          location,
+          buttonType,
+          actionType,
+          actions,
+        }),
+      );
+    },
   };
 };
 

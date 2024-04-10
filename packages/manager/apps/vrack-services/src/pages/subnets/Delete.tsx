@@ -1,22 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useVrackService, useUpdateVrackServices } from '@/utils/vs-utils';
-import { DeleteModal } from '@/components/DeleteModal';
 import {
+  useOvhTracking,
   ButtonType,
   PageLocation,
-  PageName,
   PageType,
   TrackingClickParams,
-  getClickProps,
-  getPageProps,
-} from '@/utils/tracking';
+} from '@ovh-ux/manager-react-shell-client';
+import { useVrackService, useUpdateVrackServices } from '@/utils/vs-utils';
+import { DeleteModal } from '@/components/DeleteModal';
+import { PageName } from '@/utils/tracking';
 
 const sharedTrackingParams: TrackingClickParams = {
-  pageName: PageName.deleteSubnets,
-  pageType: PageType.popup,
   location: PageLocation.popup,
   buttonType: ButtonType.button,
 };
@@ -24,20 +20,14 @@ const sharedTrackingParams: TrackingClickParams = {
 export default function SubnetDeleteModal() {
   const { t } = useTranslation('vrack-services/subnets');
   const { id, cidr } = useParams();
-  const {
-    shell: {
-      tracking: { trackPage, trackClick },
-    },
-  } = React.useContext(ShellContext);
+  const { trackPage, trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const onClose = () => {
-    trackClick(
-      getClickProps({
-        ...sharedTrackingParams,
-        actionType: 'exit',
-        actions: ['cancel'],
-      }),
-    );
+    trackClick({
+      ...sharedTrackingParams,
+      actionType: 'exit',
+      actions: ['delete_subnets', 'cancel'],
+    });
     navigate('..');
   };
   const cidrToDelete = cidr.replace('_', '/');
@@ -46,7 +36,7 @@ export default function SubnetDeleteModal() {
   const { updateVS, isPending, updateError } = useUpdateVrackServices({
     key: id,
     onSuccess: () => {
-      onClose();
+      navigate('..');
     },
   });
 
@@ -57,13 +47,11 @@ export default function SubnetDeleteModal() {
       headline={t('modalDeleteHeadline')}
       description={t('modalDeleteDescription')}
       onConfirmDelete={() => {
-        trackClick(
-          getClickProps({
-            ...sharedTrackingParams,
-            actionType: 'action',
-            actions: ['confirm'],
-          }),
-        );
+        trackClick({
+          ...sharedTrackingParams,
+          actionType: 'action',
+          actions: ['delete_subnets', 'confirm'],
+        });
         updateVS(
           {
             checksum: vrackServices?.checksum,
@@ -77,27 +65,22 @@ export default function SubnetDeleteModal() {
           },
           {
             onSuccess: () => {
-              trackPage(
-                getPageProps({
-                  pageType: PageType.bannerInfo,
-                  pageName: PageName.pendingDeleteSubnet,
-                }),
-              );
+              trackPage({
+                pageType: PageType.bannerInfo,
+                pageName: PageName.pendingDeleteSubnet,
+              });
             },
             onError: () => {
-              trackPage(
-                getPageProps({
-                  pageType: PageType.bannerError,
-                  pageName: PageName.errorDeleteSubnet,
-                }),
-              );
+              trackPage({
+                pageType: PageType.bannerError,
+                pageName: PageName.errorDeleteSubnet,
+              });
             },
           },
         );
       }}
       error={updateError}
       isLoading={isPending}
-      isModalOpen
     />
   );
 }

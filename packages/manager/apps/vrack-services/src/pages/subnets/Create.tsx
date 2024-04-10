@@ -16,8 +16,8 @@ import {
   OsdsInput,
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
 import {
   VrackServices,
   getVrackServicesResourceListQueryKey,
@@ -42,7 +42,7 @@ import {
 import { useVrackService } from '@/utils/vs-utils';
 import { FormField } from '@/components/FormField';
 import { urls } from '@/router/constants';
-import { PageName, PageType, getPageProps } from '@/utils/tracking';
+import { PageName } from '@/utils/tracking';
 
 export default function SubnetCreationPage() {
   const { t } = useTranslation('vrack-services/subnets');
@@ -60,11 +60,7 @@ export default function SubnetCreationPage() {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = urls.subnets.replace(':id', id);
-  const {
-    shell: {
-      tracking: { trackPage },
-    },
-  } = React.useContext(ShellContext);
+  const { trackPage } = useOvhTracking();
 
   const { mutate: createSubnet, isPending, isError, error } = useMutation<
     ApiResponse<VrackServices>,
@@ -96,22 +92,18 @@ export default function SubnetCreationPage() {
         await queryClient.invalidateQueries({
           queryKey: getVrackServicesResourceQueryKey(id),
         }),
-        trackPage(
-          getPageProps({
-            pageName: PageName.pendingCreateSubnet,
-            pageType: PageType.bannerInfo,
-          }),
-        ),
+        trackPage({
+          pageName: PageName.pendingCreateSubnet,
+          pageType: PageType.bannerInfo,
+        }),
       ]);
       navigate(dashboardUrl);
     },
     onError: () => {
-      trackPage(
-        getPageProps({
-          pageName: PageName.errorCreateSubnet,
-          pageType: PageType.bannerError,
-        }),
-      );
+      trackPage({
+        pageName: PageName.errorCreateSubnet,
+        pageType: PageType.bannerError,
+      });
     },
   });
 
@@ -126,10 +118,10 @@ export default function SubnetCreationPage() {
       overviewUrl={dashboardUrl}
       title={t('createPageTitle')}
       createButtonLabel={t('createSubnetButtonLabel')}
-      trackingParams={{ pageName: PageName.createSubnets }}
       formErrorMessage={t('subnetCreationError', {
         error: error?.response.data.message,
       })}
+      confirmActionsTracking={['add_subnets', 'confirm']}
       hasFormError={isError}
       onSubmit={() => createSubnet()}
       isSubmitPending={isPending}

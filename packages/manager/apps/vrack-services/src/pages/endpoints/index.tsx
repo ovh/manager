@@ -12,7 +12,7 @@ export default function EndpointsPage() {
   const location = useLocation();
 
   React.useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && location.pathname === urls.endpoints.replace(':id', id)) {
       const url =
         vrackServices?.currentState.subnets.some(
           (subnet) => subnet.serviceEndpoints.length > 0,
@@ -24,7 +24,7 @@ export default function EndpointsPage() {
           : urls.endpointsOnboarding;
       navigate(url.replace(':id', id));
     }
-  }, [isLoading, location.pathname]);
+  }, [isLoading, location.pathname, id]);
 
   return isLoading ? (
     <div className="mt-5">
