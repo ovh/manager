@@ -8,7 +8,7 @@ import BreadCrumbs from '@/components/BreadCrumbs';
 import HidePreloader from '@/core/HidePreloader';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 
-import usePageTracking from '@/api/hooks/usePageTracking';
+import usePageTracking from '@/hooks/usePageTracking';
 
 export default function Layout() {
   const { projectId } = useParams();
