@@ -1,7 +1,7 @@
 {
   "name": "@ovhcloud/manager-components",
   "private": true,
-  "version": "1.8.0",
+  "version": "1.9.0",
   "main": "src/components/index.ts",
   "repository": {
     "type": "git",
@@ -34,7 +34,7 @@
   "devDependencies": {
     "@babel/core": "7.22.10",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@ovh-ux/manager-tailwind-config": "^0.1.0",
+    "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@storybook/addon-essentials": "7.5.3",
     "@storybook/addon-interactions": "7.5.3",
     "@storybook/addon-links": "7.5.3",
@@ -54,6 +54,7 @@
     "@vitest/coverage-v8": "0.34.1",
     "autoprefixer": "10.4.14",
     "babel-loader": "9.1.3",
+    "element-internals-polyfill": "^1.3.10",
     "eslint-config-prettier": "9.0.0",
     "eslint-config-standard-with-typescript": "37.0.0",
     "eslint-plugin-import": "2.28.0",
@@ -80,8 +81,7 @@
     "vite": "4.4.9",
     "vite-plugin-dts": "3.5.1",
     "vitest": "0.34.1",
-    "zustand": "^4.5.0",
-    "element-internals-polyfill": "^1.3.10"
+    "zustand": "^4.5.0"
   },
   "optionalDependencies": {
     "@ovh-ux/manager-react-shell-client": "^0.4.0",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.8.0...@ovhcloud/manager-components@1.9.0) (2024-04-10)
+
+### Features
+
+- pci-users app in reactjs ([07959d4](https://github.com/ovh/manager/commit/07959d410b2d61700cba62ce54c55be2d9dd2236))
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.7.0...@ovhcloud/manager-components@1.8.0) (2024-04-04)
 
 ### Features
