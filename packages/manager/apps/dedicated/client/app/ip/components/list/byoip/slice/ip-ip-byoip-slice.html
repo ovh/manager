@@ -4,28 +4,41 @@
         data-wizard-on-cancel="$ctrl.cancelSlice.bind($ctrl)"
         data-wizard-cancel-button-text="'ip_table_manage_byoip_cancel' | translate"
         data-wizard-on-finish="$ctrl.slice.bind($ctrl)"
+        data-wizard-hide-confirm-button="!$ctrl.showErrorMessage"
         data-wizard-title="('ip_byoip_slice_block_title' | translate) + ' ' + $ctrl.ip.ipBlock"
     >
         <div data-wizard-step data-wizard-step-valid="$ctrl.isLoaded">
-            <div data-ng-if="$ctrl.isLoaded">
-                <oui-message data-type="error" data-ng-show="$ctrl.errorMessage" >
-                    <span data-ng-bind="$ctrl.errorMessage"></span>
-                </oui-message>
+            <oui-message
+                data-type="error"
+                data-ng-show="$ctrl.showErrorMessage"
+            >
+                <span data-ng-bind-html="$ctrl.errorMessage"></span>
+            </oui-message>
+            <div data-ng-if="$ctrl.isLoaded && !$ctrl.showErrorMessage">
                 <p data-translate="ip_byoip_slice_set_children_size"></p>
                 <label class="oui-select">
-                    <select data-ng-model="$ctrl.selectedSize" class="oui-select__input" >
+                    <select
+                        data-ng-model="$ctrl.selectedSize"
+                        class="oui-select__input"
+                    >
                         <option
                             data-ng-repeat="size in $ctrl.ipSizes track by $index"
                             data-ng-value="size"
-                            data-ng-bind="'/' + size.slicingSize">
+                            data-ng-bind="'/' + size.slicingSize"
+                        >
                         </option>
                     </select>
-                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
                 </label>
                 <div class="bg-light p-3 rounded">
                     <p data-translate="ip_byoip_slice_configuration"></p>
                     <ul>
-                        <li data-ng-repeat="selectedSizeUnit in $ctrl.selectedSize.childrenIps track by $index">
+                        <li
+                            data-ng-repeat="selectedSizeUnit in $ctrl.selectedSize.childrenIps track by $index"
+                        >
                             <span data-ng-bind="selectedSizeUnit"></span>
                         </li>
                     </ul>
