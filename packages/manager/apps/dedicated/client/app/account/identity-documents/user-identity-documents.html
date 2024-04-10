@@ -113,6 +113,8 @@
             data-maxsize="$ctrl.maximum_size"
             data-name="files"
             data-disabled="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
+            data-on-select="$ctrl.isFileExtensionsValid()"
+            data-on-remove="$ctrl.isFileExtensionsValid()"
         ></oui-file>
 
         <oui-form-actions
