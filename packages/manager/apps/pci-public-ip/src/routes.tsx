@@ -15,6 +15,10 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
   };
 };
 
+export interface RouteHandle {
+  tracking?: string;
+}
+
 export default [
   {
     path: '/',
@@ -35,18 +39,27 @@ export default [
       {
         path: 'floating-ips',
         ...lazyRouteConfig(() => import('@/pages/list/ListingPage')),
+        handle: {
+          tracking: 'floatings-ips',
+        },
         children: [
           {
             path: ':ipId/terminate',
             ...lazyRouteConfig(() =>
               import('@/pages/floating-ips/terminate/TerminateFloatingIPPage'),
             ),
+            handle: {
+              tracking: 'terminate',
+            },
           },
         ],
       },
       {
         path: 'additional-ips',
         ...lazyRouteConfig(() => import('@/pages/list/ListingPage')),
+        handle: {
+          tracking: 'failover-ips',
+        },
         children: [
           {
             path: ':ipId/terminate',
@@ -55,12 +68,18 @@ export default [
                 '@/pages/additional-ips/terminate/TerminateAdditionalIPPage'
               ),
             ),
+            handle: {
+              tracking: 'terminate',
+            },
           },
           {
             path: ':ipId/edit',
             ...lazyRouteConfig(() =>
               import('@/pages/additional-ips/edit/EditInstancePage'),
             ),
+            handle: {
+              tracking: 'edit',
+            },
           },
         ],
       },
