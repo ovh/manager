@@ -15,13 +15,14 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Outlet, useNavigate } from 'react-router-dom';
 import {
-  ShellContext,
   ovhLocaleToI18next,
+  useOvhTracking,
+  ButtonType,
+  PageLocation,
 } from '@ovh-ux/manager-react-shell-client';
 import { reactFormatter } from '@/utils/ods-utils';
 import {
   DisplayNameCell,
-  ActionsCell,
   ProductStatusCell,
   VrackIdCell,
   CreatedAtCell,
@@ -29,20 +30,10 @@ import {
 } from '@/components/VrackServicesDataGridCells';
 import { useUpdateVrackServices, useVrackServicesList } from '@/utils/vs-utils';
 import { urls } from '@/router/constants';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  getClickProps,
-} from '@/utils/tracking';
 
 export const VrackServicesDatagrid: React.FC = () => {
   const { t, i18n } = useTranslation('vrack-services/listing');
-  const {
-    shell: {
-      tracking: { trackPage, trackClick },
-    },
-  } = React.useContext(ShellContext);
+  const { trackClick, trackPage } = useOvhTracking();
   const navigate = useNavigate();
   const {
     updateVS,
@@ -62,15 +53,12 @@ export const VrackServicesDatagrid: React.FC = () => {
       formatter: reactFormatter(
         <DisplayNameCell
           navigateToDetails={(id) => {
-            trackClick(
-              getClickProps({
-                pageType: PageType.listing,
-                location: PageLocation.datagrid,
-                buttonType: ButtonType.link,
-                actionType: 'navigation',
-                actions: ['details_vrack-services'],
-              }),
-            );
+            trackClick({
+              location: PageLocation.datagrid,
+              buttonType: ButtonType.link,
+              actionType: 'navigation',
+              actions: ['details_vrack-services'],
+            });
             navigate(`/${id}`);
           }}
           updateVS={updateVS}
@@ -98,15 +86,12 @@ export const VrackServicesDatagrid: React.FC = () => {
           label={t('associateVrackButtonLabel')}
           isLoading={isPending}
           openAssociationModal={(id) => {
-            trackClick(
-              getClickProps({
-                pageType: PageType.listing,
-                location: PageLocation.datagrid,
-                buttonType: ButtonType.button,
-                actionType: 'navigation',
-                actions: ['associate_vrack-services'],
-              }),
-            );
+            trackClick({
+              location: PageLocation.datagrid,
+              buttonType: ButtonType.button,
+              actionType: 'navigation',
+              actions: ['associate_vrack-services'],
+            });
             navigate(urls.listingAssociate.replace(':id', id));
           }}
           t={t}
@@ -121,27 +106,25 @@ export const VrackServicesDatagrid: React.FC = () => {
         <CreatedAtCell locale={ovhLocaleToI18next(i18n.language)} />,
       ),
     },
-    {
-      title: t('actions'),
-      field: '',
-      formatter: reactFormatter(
-        <ActionsCell
-          openModal={(id) => {
-            trackClick(
-              getClickProps({
-                pageType: PageType.listing,
-                location: PageLocation.datagrid,
-                buttonType: ButtonType.button,
-                actionType: 'navigation',
-                actions: ['delete_vrack-services'],
-              }),
-            );
-            navigate(urls.listingDelete.replace(':id', id));
-          }}
-          isLoading={isPending}
-        />,
-      ),
-    },
+    // TODO: Put back delete after beta
+    // {
+    //   title: t('actions'),
+    //   field: '',
+    //   formatter: reactFormatter(
+    //     <ActionsCell
+    //       openModal={(id) => {
+    //         trackClick({
+    //           location: PageLocation.datagrid,
+    //           buttonType: ButtonType.button,
+    //           actionType: 'navigation',
+    //           actions: ['delete_vrack-services'],
+    //         });
+    //         navigate(urls.listingDelete.replace(':id', id));
+    //       }}
+    //       isLoading={isPending}
+    //     />,
+    //   ),
+    // },
   ];
 
   return (

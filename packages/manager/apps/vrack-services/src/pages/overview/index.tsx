@@ -15,7 +15,11 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+  PageLocation,
+} from '@ovh-ux/manager-react-shell-client';
 import { ErrorPage } from '@/components/Error';
 import { useUpdateVrackServices, useVrackService } from '@/utils/vs-utils';
 import { formatDateString } from '@/utils/date';
@@ -26,27 +30,14 @@ import {
 } from '@/components/VrackServicesDataGridCells';
 import { TileBlock } from '@/components/TileBlock';
 import { urls } from '@/router/constants';
-import {
-  PageLocation,
-  PageName,
-  PageType,
-  TrackingClickParams,
-  getClickProps,
-} from '@/utils/tracking';
-
-const sharedTrackingParams: TrackingClickParams = {
-  pageType: PageType.dashboard,
-  pageName: PageName.overview,
-  location: PageLocation.tile,
-};
 
 export default function OverviewTab() {
   const { t, i18n } = useTranslation('vrack-services/dashboard');
   const { t: tListing } = useTranslation('vrack-services/listing');
   const [vrackUrl, setVrackUrl] = React.useState('#');
+  const { trackClick, trackPage } = useOvhTracking();
   const {
     shell: {
-      tracking: { trackPage, trackClick },
       navigation: { getURL },
     },
   } = React.useContext(ShellContext);
@@ -131,13 +122,11 @@ export default function OverviewTab() {
                   <VrackIdCell
                     label={t('associateVrackModal')}
                     openAssociationModal={(vsId) => {
-                      trackClick(
-                        getClickProps({
-                          ...sharedTrackingParams,
-                          actionType: 'navigation',
-                          actions: ['associate_vrack-services'],
-                        }),
-                      );
+                      trackClick({
+                        location: PageLocation.tile,
+                        actionType: 'navigation',
+                        actions: ['associate_vrack-services'],
+                      });
                       navigate(urls.overviewAssociate.replace(':id', vsId));
                     }}
                     cellData={vrackServices?.currentState?.vrackId}
@@ -145,13 +134,11 @@ export default function OverviewTab() {
                     rowData={vrackServices}
                     href={vrackUrl}
                     openDissociationModal={(vsId, vrackId) => {
-                      trackClick(
-                        getClickProps({
-                          ...sharedTrackingParams,
-                          actionType: 'navigation',
-                          actions: ['dissociate_vrack-services'],
-                        }),
-                      );
+                      trackClick({
+                        location: PageLocation.tile,
+                        actionType: 'navigation',
+                        actions: ['dissociate_vrack-services'],
+                      });
                       navigate(
                         urls.overviewDissociate
                           .replace(':id', vsId)

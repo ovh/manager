@@ -2,7 +2,6 @@ import React from 'react';
 import { TFunction } from 'react-i18next';
 import { UseMutateAsyncFunction } from '@tanstack/react-query';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { NavigateFunction } from 'react-router-dom';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
@@ -21,11 +20,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { ActionMenu, ActionMenuItem } from '@ovhcloud/manager-components';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { EditableText } from '@/components/EditableText';
 import { ProductStatus, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
-import { PageName, PageType, getPageProps } from '@/utils/tracking';
+import { PageName } from '@/utils/tracking';
 
 export const DisplayNameCell: React.FC<DataGridCellProps<
   string | undefined,
@@ -37,7 +37,7 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
     UpdateVrackServicesParams
   >;
   navigateToDetails?: (id: string) => void;
-  trackPage: (prop: unknown) => PromiseLike<void>;
+  trackPage: (prop: unknown) => void;
 }> = ({ cellData, rowData, updateVS, navigateToDetails, trackPage }) => {
   const displayName = cellData || rowData?.id;
   return (
@@ -56,20 +56,16 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
           },
           {
             onSuccess: () => {
-              trackPage(
-                getPageProps({
-                  pageType: PageType.bannerInfo,
-                  pageName: PageName.pendingUpdateVrackServices,
-                }),
-              );
+              trackPage({
+                pageType: PageType.bannerInfo,
+                pageName: PageName.pendingUpdateVrackServices,
+              });
             },
             onError: () => {
-              trackPage(
-                getPageProps({
-                  pageType: PageType.bannerError,
-                  pageName: PageName.errorUpdateVrackServices,
-                }),
-              );
+              trackPage({
+                pageType: PageType.bannerError,
+                pageName: PageName.errorUpdateVrackServices,
+              });
             },
           },
         );

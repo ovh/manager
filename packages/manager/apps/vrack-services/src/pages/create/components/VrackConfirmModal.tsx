@@ -14,21 +14,16 @@ import {
   OsdsButton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { handleClick } from '@/utils/ods-utils';
-import { getExpressOrderLink } from '../order-utils';
 import {
   ButtonType,
   PageLocation,
-  PageName,
-  PageType,
   TrackingClickParams,
-  getClickProps,
-} from '@/utils/tracking';
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { handleClick } from '@/utils/ods-utils';
+import { getExpressOrderLink } from '../order-utils';
 
 const trackingParams: TrackingClickParams = {
-  pageName: PageName.createVrackServices,
-  pageType: PageType.popup,
   buttonType: ButtonType.button,
   location: PageLocation.popup,
 };
@@ -50,19 +45,13 @@ export const VrackConfirmModal: React.FC<VrackConfirmModalProps> = ({
 }) => {
   const { t } = useTranslation('vrack-services/create');
   const orderBaseUrl = useOrderURL('express_review_base');
-  const {
-    shell: {
-      tracking: { trackClick },
-    },
-  } = React.useContext(ShellContext);
+  const { trackClick } = useOvhTracking();
 
   const cancel = () => {
-    trackClick(
-      getClickProps({
-        ...trackingParams,
-        actions: ['cancel'],
-      }),
-    );
+    trackClick({
+      ...trackingParams,
+      actions: ['add_vrack-services', 'cancel'],
+    });
     onCancel();
   };
 
@@ -118,12 +107,10 @@ export const VrackConfirmModal: React.FC<VrackConfirmModalProps> = ({
           includeVrackOrder: false,
         })}
         {...handleClick(() => {
-          trackClick(
-            getClickProps({
-              ...trackingParams,
-              actions: ['confirm', 'no-vrack'],
-            }),
-          );
+          trackClick({
+            ...trackingParams,
+            actions: ['no-vrack', 'confirm'],
+          });
           onDeny();
         })}
       >
@@ -142,12 +129,10 @@ export const VrackConfirmModal: React.FC<VrackConfirmModalProps> = ({
           includeVrackOrder: true,
         })}
         {...handleClick(() => {
-          trackClick(
-            getClickProps({
-              ...trackingParams,
-              actions: ['confirm', 'create-vrack'],
-            }),
-          );
+          trackClick({
+            ...trackingParams,
+            actions: ['create-vrack', 'confirm'],
+          });
           onConfirm();
         })}
       >

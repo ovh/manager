@@ -7,8 +7,8 @@ import {
   ODS_SELECT_SIZE,
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   VrackServices,
   getVrackServicesResourceListQueryKey,
@@ -27,7 +27,7 @@ import { useServiceList, useVrackService } from '@/utils/vs-utils';
 import { ErrorPage } from '@/components/Error';
 import { FormField } from '@/components/FormField';
 import { urls } from '@/router/constants';
-import { PageName, PageType, getPageProps } from '@/utils/tracking';
+import { PageName } from '@/utils/tracking';
 
 export default function EndpointCreationPage() {
   const { t } = useTranslation('vrack-services/endpoints');
@@ -43,11 +43,7 @@ export default function EndpointCreationPage() {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = urls.endpoints.replace(':id', id);
-  const {
-    shell: {
-      tracking: { trackPage },
-    },
-  } = React.useContext(ShellContext);
+  const { trackPage } = useOvhTracking();
 
   const {
     iamResources,
@@ -91,22 +87,18 @@ export default function EndpointCreationPage() {
         queryClient.invalidateQueries({
           queryKey: getVrackServicesResourceQueryKey(id),
         }),
-        trackPage(
-          getPageProps({
-            pageName: PageName.pendingCreateEndpoint,
-            pageType: PageType.bannerInfo,
-          }),
-        ),
+        trackPage({
+          pageName: PageName.pendingCreateEndpoint,
+          pageType: PageType.bannerInfo,
+        }),
       ]);
       navigate(dashboardUrl);
     },
     onError: () => {
-      trackPage(
-        getPageProps({
-          pageName: PageName.errorCreateEndpoint,
-          pageType: PageType.bannerError,
-        }),
-      );
+      trackPage({
+        pageName: PageName.errorCreateEndpoint,
+        pageType: PageType.bannerError,
+      });
     },
   });
 
@@ -134,10 +126,10 @@ export default function EndpointCreationPage() {
       title={t('createPageTitle')}
       description={t('createPageDescription')}
       createButtonLabel={t('createEndpointButtonLabel')}
-      trackingParams={{ pageName: PageName.createEndpoints }}
       formErrorMessage={t('endpointCreationError', {
         error: error?.response.data.message,
       })}
+      confirmActionsTracking={['add_endpoints', 'confirm']}
       hasFormError={isError}
       onSubmit={() => createEndpoint()}
       isSubmitPending={isPending}

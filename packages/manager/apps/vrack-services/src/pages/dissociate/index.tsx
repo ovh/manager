@@ -17,17 +17,14 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { handleClick } from '@/utils/ods-utils';
 import {
   ButtonType,
   PageLocation,
-  PageName,
-  PageType,
-  getClickProps,
-} from '@/utils/tracking';
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { handleClick } from '@/utils/ods-utils';
 import {
   Task,
   dissociateVrackServices,
@@ -35,8 +32,6 @@ import {
 } from '@/api';
 
 const sharedTrackingParams = {
-  pageName: PageName.dissociate,
-  pageType: PageType.popup,
   location: PageLocation.popup,
   buttonType: ButtonType.button,
 };
@@ -45,15 +40,13 @@ export default function Dissociate() {
   const { id, vrackId } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('vrack-services');
-  const { shell } = React.useContext(ShellContext);
+  const { trackClick } = useOvhTracking();
   const closeModal = () => {
-    shell.tracking.trackClick(
-      getClickProps({
-        ...sharedTrackingParams,
-        actionType: 'exit',
-        actions: ['cancel'],
-      }),
-    );
+    trackClick({
+      ...sharedTrackingParams,
+      actionType: 'exit',
+      actions: ['dissociate-vrack', 'cancel'],
+    });
     navigate('..');
   };
   const { mutate: dissociateVs, isPending, error } = useMutation<
@@ -119,13 +112,11 @@ export default function Dissociate() {
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.error}
         {...handleClick(() => {
-          shell.tracking.trackClick(
-            getClickProps({
-              ...sharedTrackingParams,
-              actionType: 'action',
-              actions: ['confirm'],
-            }),
-          );
+          trackClick({
+            ...sharedTrackingParams,
+            actionType: 'action',
+            actions: ['dissociate-vrack', 'confirm'],
+          });
           dissociateVs();
         })}
       >

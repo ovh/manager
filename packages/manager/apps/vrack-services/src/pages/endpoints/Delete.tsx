@@ -1,43 +1,33 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useQueryClient } from '@tanstack/react-query';
-import { useVrackService, useUpdateVrackServices } from '@/utils/vs-utils';
-import { DeleteModal } from '@/components/DeleteModal';
-import { getEligibleManagedServiceListQueryKey } from '@/api';
 import {
   ButtonType,
   PageLocation,
-  PageName,
   PageType,
-  getClickProps,
-  getPageProps,
-} from '@/utils/tracking';
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { useVrackService, useUpdateVrackServices } from '@/utils/vs-utils';
+import { DeleteModal } from '@/components/DeleteModal';
+import { getEligibleManagedServiceListQueryKey } from '@/api';
+import { PageName } from '@/utils/tracking';
 
 export default function EndpointsDeleteModal() {
   const { t } = useTranslation('vrack-services/endpoints');
   const { id, urn } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const {
-    shell: {
-      tracking: { trackPage, trackClick },
-    },
-  } = React.useContext(ShellContext);
+  const { trackPage, trackClick } = useOvhTracking();
   const urnToDelete = urn.replace('_', '/');
 
   const onClose = () => {
-    trackClick(
-      getClickProps({
-        pageType: PageType.popup,
-        pageName: PageName.deleteEndpoints,
-        location: PageLocation.popup,
-        buttonType: ButtonType.button,
-        actionType: 'exit',
-        actions: ['cancel'],
-      }),
-    );
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'exit',
+      actions: ['delete_endpoints', 'cancel'],
+    });
     navigate('..');
   };
 
@@ -59,16 +49,12 @@ export default function EndpointsDeleteModal() {
       headline={t('modalDeleteHeadline')}
       description={t('modalDeleteDescription')}
       onConfirmDelete={() => {
-        trackClick(
-          getClickProps({
-            pageName: PageName.deleteEndpoints,
-            pageType: PageType.popup,
-            location: PageLocation.popup,
-            buttonType: ButtonType.button,
-            actionType: 'action',
-            actions: ['confirm'],
-          }),
-        );
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['delete_endpoints', 'confirm'],
+        });
         updateVS(
           {
             checksum: vrackServices?.checksum,
@@ -85,27 +71,22 @@ export default function EndpointsDeleteModal() {
           },
           {
             onSuccess: async () => {
-              trackPage(
-                getPageProps({
-                  pageType: PageType.bannerInfo,
-                  pageName: PageName.pendingDeleteEndpoint,
-                }),
-              );
+              trackPage({
+                pageType: PageType.bannerInfo,
+                pageName: PageName.pendingDeleteEndpoint,
+              });
             },
             onError: async () => {
-              trackPage(
-                getPageProps({
-                  pageType: PageType.bannerError,
-                  pageName: PageName.errorDeleteEndpoint,
-                }),
-              );
+              trackPage({
+                pageType: PageType.bannerError,
+                pageName: PageName.errorDeleteEndpoint,
+              });
             },
           },
         );
       }}
       error={updateError}
       isLoading={isPending}
-      isModalOpen
     />
   );
 }

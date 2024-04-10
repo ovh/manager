@@ -4,15 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { OnboardingLayout } from '@/components/layout-helpers/OnboardingLayout';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { isEditable, useVrackService } from '@/utils/vs-utils';
-import { PageType } from '@/utils/tracking';
 import { useNavigateToCreateSubnetPage } from './subnets.hook';
 
 export default function SubnetsOnboarding() {
   const { t } = useTranslation('vrack-services/subnets');
   const { data: vrackServices } = useVrackService();
-  const navigateToCreateSubnetPage = useNavigateToCreateSubnetPage(
-    PageType.onboarding,
-  );
+  const navigateToCreateSubnetPage = useNavigateToCreateSubnetPage();
 
   return (
     <OnboardingLayout

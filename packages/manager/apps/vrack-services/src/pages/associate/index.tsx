@@ -17,18 +17,20 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useAllowedVrackList } from '@/api';
 import { AssociateVrack } from './components/AssociateVrack';
 import { CreateVrack } from './components/CreateVrack';
 import { handleClick } from '@/utils/ods-utils';
-import { getClickProps } from '@/utils/tracking';
-import { sharedTrackingParams } from './associate.constants';
 
 export default function Associate() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { shell } = React.useContext(ShellContext);
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('vrack-services/listing');
   const {
     allowedVrackList,
@@ -38,13 +40,12 @@ export default function Associate() {
     vrackListInError,
   } = useAllowedVrackList(id);
   const closeModal = () => {
-    shell.tracking.trackClick(
-      getClickProps({
-        ...sharedTrackingParams,
-        actionType: 'exit',
-        actions: ['cancel'],
-      }),
-    );
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'exit',
+      actions: ['associate-vrack', 'cancel'],
+    });
     navigate('..');
   };
 
