@@ -1,12 +1,10 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as logsHook from '@/hooks/api/logs.api.hooks';
-import * as LayoutContext from '@/pages/services/[serviceId]/layout';
 import Logs, {
   breadcrumb as LogsBreadcrumb,
-} from '@/pages/services/[serviceId]/logs'; // Adjust the import path according to your project structure
+} from '@/pages/services/[serviceId]/logs';
 import { database } from '@/models/database';
 import { Locale } from '@/hooks/useLocale';
 
