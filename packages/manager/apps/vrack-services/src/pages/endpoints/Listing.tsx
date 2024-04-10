@@ -13,14 +13,11 @@ import { PageLayout } from '@/components/layout-helpers';
 import { isEditable, useVrackService } from '@/utils/vs-utils';
 import { EndpointDatagrid } from './components/EndpointDataGrid';
 import { useNavigateToCreateEndpointPage } from './endpoints.hook';
-import { PageType } from '@/utils/tracking';
 
 export default function EndpointsListing() {
   const { t } = useTranslation('vrack-services/endpoints');
   const { data: vrackServices } = useVrackService();
-  const navigateToCreateEndpointPage = useNavigateToCreateEndpointPage(
-    PageType.listing,
-  );
+  const navigateToCreateEndpointPage = useNavigateToCreateEndpointPage();
 
   return (
     <>

@@ -21,16 +21,15 @@ import {
   useOrderPollingStatus,
   useOrderURL,
 } from '@ovh-ux/manager-module-order';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { getVrackListQueryKey } from '@/api';
-import { DeliveringMessages } from '../../../components/DeliveringMessages';
-import { handleClick } from '@/utils/ods-utils';
 import {
   ButtonType,
   PageLocation,
-  PageName,
-  getClickProps,
-} from '@/utils/tracking';
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { useNavigate } from 'react-router-dom';
+import { getVrackListQueryKey } from '@/api';
+import { DeliveringMessages } from '../../../components/DeliveringMessages';
+import { handleClick } from '@/utils/ods-utils';
 
 export type CreateVrackProps = {
   closeModal: () => void;
@@ -39,7 +38,8 @@ export type CreateVrackProps = {
 export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
   const { t } = useTranslation('vrack-services/listing');
   const vrackOrderUrl = useOrderURL('vrack');
-  const { shell } = React.useContext(ShellContext);
+  const { trackClick } = useOvhTracking();
+  const navigate = useNavigate();
 
   const {
     data: vrackDeliveringOrders,
@@ -110,15 +110,12 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
         target={OdsHTMLAnchorElementTarget._blank}
         href={vrackOrderUrl}
         {...handleClick(() => {
-          shell.tracking.trackClick(
-            getClickProps({
-              location: PageLocation.popup,
-              pageName: PageName.createVrack,
-              buttonType: ButtonType.button,
-              actions: ['confirm'],
-            }),
-          );
-          closeModal();
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actions: ['create-vrack', 'confirm'],
+          });
+          navigate('..');
         })}
       >
         {t('modalCreateNewVrackButtonLabel')}

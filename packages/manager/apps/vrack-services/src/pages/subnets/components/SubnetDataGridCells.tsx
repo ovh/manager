@@ -17,18 +17,12 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { EditableText } from '@/components/EditableText';
 import { Subnet, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
-import {
-  ButtonType,
-  PageLocation,
-  PageName,
-  PageType,
-  getClickProps,
-  getPageProps,
-} from '@/utils/tracking';
+import { PageName } from '@/utils/tracking';
 
 type UpdateVS = UseMutateAsyncFunction<
   ApiResponse<VrackServices>,
@@ -42,7 +36,7 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
 > & {
   vrackServices?: VrackServices;
   updateVS: UpdateVS;
-  trackPage: (data: unknown) => PromiseLike<void>;
+  trackPage: (data: unknown) => void;
   emptyValueLabel: string;
 }> = ({
   cellData,
@@ -75,20 +69,16 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
         },
         {
           onSuccess: () => {
-            trackPage(
-              getPageProps({
-                pageType: PageType.bannerInfo,
-                pageName: PageName.pendingUpdateSubnet,
-              }),
-            );
+            trackPage({
+              pageType: PageType.bannerInfo,
+              pageName: PageName.pendingUpdateSubnet,
+            });
           },
           onError: () => {
-            trackPage(
-              getPageProps({
-                pageType: PageType.bannerError,
-                pageName: PageName.errorUpdateSubnet,
-              }),
-            );
+            trackPage({
+              pageType: PageType.bannerError,
+              pageName: PageName.errorUpdateSubnet,
+            });
           },
         },
       );
@@ -119,8 +109,7 @@ export const ActionsCell: React.FC<DataGridCellProps<undefined, Subnet> & {
   isLoading?: boolean;
   vrackServices?: VrackServices;
   openDeleteModal: (cidr: string) => void;
-  trackClick: (data: unknown) => PromiseLike<void>;
-}> = ({ vrackServices, rowData, isLoading, openDeleteModal, trackClick }) => (
+}> = ({ vrackServices, rowData, isLoading, openDeleteModal }) => (
   <OsdsButton
     inline
     circle
@@ -129,18 +118,7 @@ export const ActionsCell: React.FC<DataGridCellProps<undefined, Subnet> & {
     type={ODS_BUTTON_TYPE.button}
     size={ODS_BUTTON_SIZE.sm}
     disabled={isLoading || !isEditable(vrackServices) || undefined}
-    {...handleClick(() => {
-      trackClick(
-        getClickProps({
-          pageName: PageName.subnets,
-          pageType: PageType.listing,
-          location: PageLocation.datagrid,
-          buttonType: ButtonType.button,
-          actions: ['delete-subnet'],
-        }),
-      );
-      openDeleteModal(rowData.cidr);
-    })}
+    {...handleClick(() => openDeleteModal(rowData.cidr))}
   >
     <OsdsIcon
       color={ODS_THEME_COLOR_INTENT.error}

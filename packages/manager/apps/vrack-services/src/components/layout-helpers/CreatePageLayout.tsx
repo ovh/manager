@@ -20,25 +20,19 @@ import {
 } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { PageLayout } from '@/components/layout-helpers/PageLayout';
-import { handleClick } from '@/utils/ods-utils';
 import {
   ButtonType,
   PageLocation,
-  PageName,
-  PageType,
-  getClickProps,
-} from '@/utils/tracking';
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { PageLayout } from '@/components/layout-helpers/PageLayout';
+import { handleClick } from '@/utils/ods-utils';
 
 export type CreatePageLayoutProps = React.PropsWithChildren<{
   overviewUrl?: string;
   goBackUrl?: string;
   goBackLinkLabel?: string;
-  trackingParams?: {
-    pageName: PageName;
-    confirmActions?: string[];
-  };
+  confirmActionsTracking?: string[];
   title: string;
   description?: string;
   onSubmit: React.FormEventHandler;
@@ -62,14 +56,11 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
   formErrorMessage,
   createButtonLabel,
   children,
-  trackingParams,
+  confirmActionsTracking = ['confirm'],
 }) => {
   const navigate = useNavigate();
-  const {
-    shell: {
-      tracking: { trackClick },
-    },
-  } = React.useContext(ShellContext);
+  const { trackClick } = useOvhTracking();
+
   return (
     <PageLayout items={[{ label: title }]} overviewUrl={overviewUrl}>
       {goBackUrl && goBackLinkLabel && (
@@ -77,17 +68,11 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
           className="block mt-4 mb-5"
           color={ODS_THEME_COLOR_INTENT.primary}
           {...handleClick(() => {
-            if (trackingParams) {
-              trackClick(
-                getClickProps({
-                  pageType: PageType.funnel,
-                  location: PageLocation.funnel,
-                  buttonType: ButtonType.link,
-                  pageName: trackingParams.pageName,
-                  actions: ['go-back'],
-                }),
-              );
-            }
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.link,
+              actions: ['go-back'],
+            });
             navigate(goBackUrl);
           })}
         >
@@ -135,17 +120,11 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
           variant={ODS_BUTTON_VARIANT.flat}
           size={ODS_BUTTON_SIZE.sm}
           {...handleClick(() => {
-            if (trackingParams) {
-              trackClick(
-                getClickProps({
-                  pageType: PageType.funnel,
-                  location: PageLocation.funnel,
-                  buttonType: ButtonType.button,
-                  pageName: trackingParams.pageName,
-                  actions: ['confirm'].concat(trackingParams?.confirmActions),
-                }),
-              );
-            }
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.button,
+              actions: confirmActionsTracking,
+            });
           })}
         >
           {createButtonLabel}

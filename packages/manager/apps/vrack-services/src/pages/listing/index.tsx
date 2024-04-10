@@ -23,7 +23,11 @@ import {
   useOrderPollingStatus,
   OrderDescription,
 } from '@ovh-ux/manager-module-order';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { getVrackServicesResourceListQueryKey } from '@/api';
 import { VrackServicesDatagrid } from '@/pages/listing/components/VrackServicesDataGrid';
 import { PageLayout } from '@/components/layout-helpers';
@@ -33,16 +37,10 @@ import { useVrackServicesList } from '@/utils/vs-utils';
 import { betaVrackServicesLimit } from './listing.constants';
 import { urls } from '@/router/constants';
 import { OperationMessages } from '@/components/OperationMessages';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  getClickProps,
-} from '@/utils/tracking';
 
 export default function ListingPage() {
   const { t } = useTranslation('vrack-services/listing');
-  const { shell } = React.useContext(ShellContext);
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const [reachedBetaLimit, setReachedBetaLimit] = React.useState(false);
 
@@ -106,15 +104,12 @@ export default function ListingPage() {
         variant={ODS_BUTTON_VARIANT.stroked}
         size={ODS_BUTTON_SIZE.sm}
         {...handleClick(() => {
-          shell.tracking.trackClick(
-            getClickProps({
-              pageType: PageType.listing,
-              location: PageLocation.page,
-              buttonType: ButtonType.button,
-              actionType: 'navigation',
-              actions: ['add_vrack-services'],
-            }),
-          );
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.button,
+            actionType: 'navigation',
+            actions: ['add_vrack-services'],
+          });
           navigate(urls.createVrackServices);
         })}
       >

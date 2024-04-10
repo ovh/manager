@@ -19,7 +19,7 @@ odsSetup();
 
 export const App: React.FC = () => {
   const { shell } = React.useContext(ShellContext);
-  const routes = getRoutes(shell.tracking.trackPage);
+  const routes = getRoutes();
   const router = createHashRouter(routes);
 
   React.useEffect(() => {

@@ -5,14 +5,11 @@ import { OnboardingLayout } from '@/components/layout-helpers/OnboardingLayout';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { hasSubnet, isEditable, useVrackService } from '@/utils/vs-utils';
 import { useNavigateToCreateEndpointPage } from './endpoints.hook';
-import { PageType } from '@/utils/tracking';
 
 export default function EndpointsOnboarding() {
   const { t } = useTranslation('vrack-services/endpoints');
   const { data: vrackServices } = useVrackService();
-  const navigateToCreateEndpointPage = useNavigateToCreateEndpointPage(
-    PageType.onboarding,
-  );
+  const navigateToCreateEndpointPage = useNavigateToCreateEndpointPage();
 
   return (
     <OnboardingLayout

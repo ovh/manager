@@ -10,6 +10,7 @@ import { App } from './App';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import './global.css';
 import './vite-hmr';
+import { getTrackingContext } from './utils/tracking';
 
 const init = async ({
   appName,
@@ -22,7 +23,7 @@ const init = async ({
     await setupMocks();
   }
 
-  const context = await initShellContext(appName);
+  const context = await initShellContext(appName, getTrackingContext(appName));
   await initI18n({
     context,
     reloadOnLocaleChange: true,
