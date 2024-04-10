@@ -1,8 +1,15 @@
-import { TRACKING_PREFIX_SLICE } from '../constants';
+import { TRACKING_PREFIX_SLICE, BYOIP_USAGE_GUIDE_URL } from '../constants';
 
 export default class IpByoipSliceController {
   /* @ngInject */
-  constructor($scope, IpByoipService, $translate, Alerter, atInternet) {
+  constructor(
+    $scope,
+    IpByoipService,
+    $translate,
+    Alerter,
+    atInternet,
+    coreConfig,
+  ) {
     this.$scope = $scope;
     this.IpByoipService = IpByoipService;
     this.ip = $scope.currentActionData.ipBlock;
@@ -13,20 +20,32 @@ export default class IpByoipSliceController {
     this.Alerter = Alerter;
     this.$translate = $translate;
     this.atInternet = atInternet;
+    this.byoipUsageGuideUrl =
+      BYOIP_USAGE_GUIDE_URL[coreConfig.getUser().ovhSubsidiary] ||
+      BYOIP_USAGE_GUIDE_URL.DEFAULT;
   }
 
   $onInit() {
+    this.showErrorMessage = false;
     this.atInternet.trackPage({ name: TRACKING_PREFIX_SLICE });
     this.IpByoipService.getAvailableSlicingConfigurations(this.ip.ipBlock)
       .then(({ data }) => {
         this.ipSizes = data;
         if (this.ipSizes.length) {
           [this.selectedSize] = this.ipSizes;
+        } else {
+          this.showErrorMessage = true;
+          this.errorMessage = this.$translate.instant(
+            'ip_byoip_aggregate_slicing_not_available_error_message',
+            {
+              url: this.byoipUsageGuideUrl,
+            },
+          );
         }
         this.isLoaded = true;
       })
-      .catch(({ data: { message } }) => {
-        this.errorMessage = message;
+      .catch((error) => {
+        this.displayErrorMessage(error);
       })
       .finally(() => {
         this.isLoaded = true;
@@ -46,6 +65,7 @@ export default class IpByoipSliceController {
   }
 
   slice() {
+    this.showErrorMessage = false;
     this.trackClick('confirm');
     this.isLoaded = false;
     this.IpByoipService.postSliceBYOIP(
@@ -58,11 +78,22 @@ export default class IpByoipSliceController {
         );
         this.$scope.resetAction();
       })
-      .catch(({ data: { message } }) => {
-        this.errorMessage = message;
+      .catch((error) => {
+        this.displayErrorMessage(error);
       })
       .finally(() => {
         this.isLoaded = true;
       });
+  }
+
+  displayErrorMessage(error) {
+    this.showErrorMessage = true;
+    if (error.status === 404) {
+      this.errorMessage = this.$translate.instant(
+        'ip_byoip_aggregate_ip_doesnt_exist_error_message',
+      );
+    } else {
+      this.errorMessage = error.data.message;
+    }
   }
 }
