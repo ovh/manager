@@ -111,9 +111,19 @@ export default class UpscaleController {
   }
 
   formatRange(range) {
+    const hasUpscaleConfigAvailable =
+      ['cpu.cores', 'memory.size', 'storage.disks[0].capacity'].reduce(
+        (acc, virtualHardware) =>
+          acc ||
+          this.getAvailableValuesForParameter(range.technicals, virtualHardware)
+            .length > 1,
+        false,
+      ) || range.formattedName !== this.currentVpsRange;
+
     return {
       ...range,
       isCurrentRange: range.formattedName === this.currentVpsRange,
+      hasUpscaleConfigAvailable,
       indicativePricing: this.getIndicativePricing(range.prices),
       formattedTechnical: {
         bandwidth: UpscaleController.getExtremumValueOfUnit(

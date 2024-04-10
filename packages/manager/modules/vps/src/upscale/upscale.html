@@ -37,10 +37,11 @@
                     <oui-select-picker
                         class="h-100"
                         name="range.formattedName"
-                        model="$ctrl.range"
-                        label="{{:: range.formattedName }}"
-                        values="[range]"
-                        variant="light"
+                        data-model="$ctrl.range"
+                        data-label="{{:: range.formattedName }}"
+                        data-values="[range]"
+                        data-variant="light"
+                        data-disabled="!range.hasUpscaleConfigAvailable"
                     >
                         <oui-select-picker-picture
                             data-ng-if="range.isCurrentRange"
