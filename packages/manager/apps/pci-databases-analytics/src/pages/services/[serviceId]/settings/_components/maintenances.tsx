@@ -53,10 +53,13 @@ const Maintenances = () => {
     );
   }
   const canApply = (maintenance: database.service.Maintenance) => {
-    return [
-      database.service.maintenance.StatusEnum.PENDING,
-      database.service.maintenance.StatusEnum.SCHEDULED,
-    ].includes(maintenance.status);
+    return (
+      service.capabilities.maintenanceApply.create &&
+      [
+        database.service.maintenance.StatusEnum.PENDING,
+        database.service.maintenance.StatusEnum.SCHEDULED,
+      ].includes(maintenance.status)
+    );
   };
   const getMaintenanceVariant = (
     status: database.service.maintenance.StatusEnum,
@@ -118,7 +121,11 @@ const Maintenances = () => {
               </div>
               {canApply(maintenance) && (
                 <Button
-                  disabled={isPending}
+                  disabled={
+                    isPending ||
+                    service.capabilities.maintenanceApply.create ===
+                      database.service.capability.StateEnum.disabled
+                  }
                   size="sm"
                   onClick={() =>
                     applyMaintenance({
