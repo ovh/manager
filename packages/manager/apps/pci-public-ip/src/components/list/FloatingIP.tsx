@@ -1,11 +1,14 @@
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
 import {
   DataGridTextCell,
   Datagrid,
-  useDatagridSearchParams,
-  Notifications,
-  FilterList,
-  useColumnFilters,
   FilterAdd,
+  FilterList,
+  Notifications,
+  PciAnnouncementBanner,
+  useColumnFilters,
+  useDatagridSearchParams,
 } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -27,18 +30,28 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { useTranslation } from 'react-i18next';
 import { FloatingIP } from '@/interface';
 import { useFloatingIPs } from '@/api/hooks/useFloatingIP';
 import FloatingIPActions from './FloatingIPActions';
+import { pciAnnouncementBannerId } from '@/constants';
 
 export default function FloatingIPComponent({ projectId, projectUrl }) {
   const { t } = useTranslation('common');
 
   const { pagination, setPagination } = useDatagridSearchParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
+
+  const {
+    data: featureAvailabilityData,
+    isLoading: isFeatureAvailabilityLoading,
+  } = useFeatureAvailability([pciAnnouncementBannerId]);
+
+  const displayAnnouncementBanner =
+    featureAvailabilityData &&
+    featureAvailabilityData[pciAnnouncementBannerId] &&
+    !isFeatureAvailabilityLoading;
 
   const { error, data: floatingIPs, isLoading } = useFloatingIPs(
     projectId || '',
@@ -99,6 +112,11 @@ export default function FloatingIPComponent({ projectId, projectUrl }) {
   return (
     <>
       <Notifications />
+
+      {displayAnnouncementBanner && (
+        <PciAnnouncementBanner projectId={projectId} />
+      )}
+
       <OsdsDivider />
       <div className="sm:flex items-center justify-between">
         <OsdsButton
