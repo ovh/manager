@@ -120,7 +120,10 @@ export const usePageTracking = () => {
 
 export const useOvhTracking = () => {
   const pageTracking = usePageTracking();
-  const { shell, tracking } = React.useContext(ShellContext);
+  const { shell, tracking, environment } = React.useContext(ShellContext);
+  const region = environment.getRegion();
+  const level2 =
+    tracking?.level2Config?.[region]?.config?.level2 || tracking?.level2;
 
   return {
     trackCurrentPage: () => {
@@ -129,6 +132,7 @@ export const useOvhTracking = () => {
           getPageProps({
             ...tracking,
             ...pageTracking,
+            level2,
           }),
         );
       }
@@ -138,6 +142,7 @@ export const useOvhTracking = () => {
         getPageProps({
           ...tracking,
           ...params,
+          level2,
         }),
       );
     },
@@ -155,6 +160,7 @@ export const useOvhTracking = () => {
           buttonType,
           actionType,
           actions,
+          level2,
         }),
       );
     },

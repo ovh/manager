@@ -12,7 +12,7 @@ export type RegionsTrackingConfig = {
 
 export interface TrackingConfig {
   config: {
-    level1: string;
+    level1?: string;
     level2: string;
     level3?: string;
     level4?: string;
