@@ -1,6 +1,5 @@
 import { expect, describe, it, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { useVrack } from '@/hooks/useVrack';
 import { QueryClientWrapper } from '../helpers/wrappers/QueryClientWrapper';
 import { mockedNetworks, mockedSubnets } from '../helpers/mocks/network';

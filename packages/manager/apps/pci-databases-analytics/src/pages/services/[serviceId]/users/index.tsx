@@ -36,6 +36,7 @@ const Users = () => {
   const usersQuery = useGetUsers(projectId, service.engine, service.id, {
     refetchInterval: POLLING.USERS,
   });
+  console.log(service);
   const columns: ColumnDef<GenericUser>[] = getColumns({
     displayGroupCol: service.engine === database.EngineEnum.m3db,
     displayRolesCol: [
@@ -71,6 +72,7 @@ const Users = () => {
       <h2>{t('title')}</h2>
       {service.capabilities.users?.create && (
         <Button
+          data-testid="users-add-button"
           variant={'outline'}
           size="sm"
           className="text-base"
@@ -88,7 +90,9 @@ const Users = () => {
       {usersQuery.isSuccess ? (
         <DataTable columns={columns} data={usersQuery.data} pageSize={25} />
       ) : (
-        <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
+        <div data-testid="users-table-skeleton">
+          <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
+        </div>
       )}
 
       <AddEditUserModal
@@ -124,6 +128,7 @@ const Users = () => {
           service={service}
           user={userToDelete}
           onSuccess={() => {
+            console.log('fe');
             deleteModale.close();
             usersQuery.refetch();
             serviceQuery.refetch();

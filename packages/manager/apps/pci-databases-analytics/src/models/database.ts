@@ -1188,6 +1188,7 @@ export namespace database {
       'integrations' = 'integrations',
       'ipRestrictions' = 'ipRestrictions',
       'maintenanceTime' = 'maintenanceTime',
+      'maintenances' = 'maintenances',
       'namespaces' = 'namespaces',
       'nodes' = 'nodes',
       'queryStatistics' = 'queryStatistics',

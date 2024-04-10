@@ -1,7 +1,6 @@
 import { describe, it } from 'vitest';
 import { act, renderHook, screen, waitFor } from '@testing-library/react';
 import { DEFAULT_OPEN_VALUE, useModale } from '@/hooks/useModale';
-import '@testing-library/jest-dom';
 import { RouterWithLocationWrapper } from '../helpers/wrappers/RouterWithLocationWrapper';
 
 describe('useModale', () => {

@@ -2,7 +2,6 @@ import { vi } from 'vitest';
 import { renderHook, act, waitFor, screen } from '@testing-library/react';
 import * as ReactRouter from 'react-router-dom';
 import { useQueryState } from '@/hooks/useQueryState';
-import '@testing-library/jest-dom';
 import { RouterWithLocationWrapper } from '../helpers/wrappers/RouterWithLocationWrapper';
 
 describe('useQueryState', () => {

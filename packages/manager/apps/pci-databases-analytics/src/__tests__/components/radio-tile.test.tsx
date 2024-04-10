@@ -6,7 +6,6 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import '@testing-library/jest-dom';
 import RadioTile from '@/components/radio-tile';
 
 describe('RadioTile component', () => {
