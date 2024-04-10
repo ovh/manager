@@ -40,10 +40,6 @@ export default class AccountUserIdentityDocumentsController {
     this.user_type = USER_TYPE[this.currentUser]
       ? USER_TYPE[this.currentUser]
       : USER_TYPE.default;
-
-    this.$scope.$watchCollection('$ctrl.files', () => {
-      this.isFileExtensionsValid();
-    });
   }
 
   uploadIdentityDocuments() {

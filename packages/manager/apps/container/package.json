@@ -34,7 +34,7 @@
     "@ovh-ux/ovh-reket": "^2.1.1",
     "@ovh-ux/request-tagger": "^0.2.0",
     "@ovh-ux/shell": "^3.5.0",
-    "@ovh-ux/ui-kit": "^6.7.7",
+    "@ovh-ux/ui-kit": "^6.10.0",
     "@ovhcloud/ods-core": "^14.0.1",
     "@ovhcloud/ods-stencil": "^14.0.1",
     "@ovhcloud/ods-theme-blue-jeans": "^14.0.1",

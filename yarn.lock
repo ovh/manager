@@ -4446,11 +4446,6 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.10.0.tgz#7299819d2150da5c1946b2199d1ecadd2013df51"
   integrity sha512-ijZTINZPeeCfC/Zahpc8c7QPbmsRgLQ8VUl2TY/WVJQhFR13P+oPL1f7qeYDKHGd0XoKPs3Lkb40j2rECw85PQ==
 
-"@ovh-ux/ui-kit@^6.7.7":
-  version "6.7.8"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.8.tgz#ec783cab3ddd9254087127793ca856780e48731b"
-  integrity sha512-am96JNK/XOKQkr9mixc1rNt63A1CxHKvjuKxBYgAEl6WQ9Jdlesytcts+Xn8c24kL1lkec4sJfeuDMG/5lhBIw==
-
 "@ovhcloud/ods-cdk@^14.1.1":
   version "14.1.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-cdk/-/ods-cdk-14.1.1.tgz#341ed0bfed7f599b253c2d087ba2f15a8915c436"
