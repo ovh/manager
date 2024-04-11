@@ -43,6 +43,7 @@ export const features = [
   'public-cloud:contacts',
   'public-cloud:project-settings',
   'ai-dashboard',
+  'data-platform',
 ];
 
 export function getPciProjectMenu(
