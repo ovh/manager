@@ -768,6 +768,6 @@
   "signup_field_iceNumber": "ICE number",
   "signup_field_purposeOfPurchase": "Reason for purchase",
   "new_account_content_check_validation": "Kindly check the information provided (VAT, phone number, date of birth, etc.) before confirming the form.",
-  "signup_enum_country_BV": "Norway - Bouvet Island",
-  "signup_enum_country_HM": "United Kingdom - Heard and MacDonald Islands"
+  "signup_enum_country_BV": "Norway – Bouvet Island",
+  "signup_enum_country_HM": "United Kingdom – Heard and MacDonald Islands"
 }

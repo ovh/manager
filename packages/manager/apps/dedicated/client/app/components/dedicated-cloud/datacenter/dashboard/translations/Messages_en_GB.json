@@ -1,6 +1,9 @@
 {
   "dedicatedCloud_information_title": "General information",
   "dedicatedCloud_options_title": "Options",
+  "dedicatedCloud_nsx_edge_title": "NSX Edges",
+  "dedicatedCloud_nsx_edge_level": "NSX Edge Size",
+  "dedicatedCloud_nsx_edge_quantity": "Number of NSX Edges",
   "dedicatedCloud_description": "Name",
   "dedicatedCloud_datacenter_delete": "Delete the datacenter",
   "dedicatedCloud_datacenter_description": "Description",

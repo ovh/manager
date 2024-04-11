@@ -8,7 +8,7 @@ create_smoke_tag() {
 }
 
 clean_tags() {
-  tags="$(git tag -l '@ovh-ux/*')"
+  tags="$(git tag -l '@ovh*')"
   while read -r tag; do
     git tag -d "$tag"
   done <<< "$tags"

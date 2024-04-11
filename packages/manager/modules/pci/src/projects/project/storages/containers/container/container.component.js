@@ -23,5 +23,7 @@ export default {
     customerRegions: '<',
     containersRegions: '<',
     trackingPrefix: '<',
+    trackEncryptionAction: '<',
+    encryptionAvailable: '<',
   },
 };

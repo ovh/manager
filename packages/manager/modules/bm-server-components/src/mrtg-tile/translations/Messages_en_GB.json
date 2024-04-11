@@ -1,8 +1,6 @@
 {
   "server_mrtg_loading_fail": "An error has occurred loading statistics",
   "server_mrtg_network": "Network:",
-  "server_mrtg_network_public": "Public network interface ({{t0}})",
-  "server_mrtg_network_private": "vRack ({{t0}})",
   "server_mrtg_network_no_vrack": "vRack (not configured on this server)",
   "server_mrtg_type": "Type:",
   "server_mrtg_type_ERRORS": "Errors",

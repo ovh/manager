@@ -69,6 +69,27 @@
                     data-translate="pci_projects_project_storages_containers_container_info_storedBytes"
                     data-translate-values="{ bytes: '<strong>'+ ($ctrl.container.storedBytes | RAUnitsBits) +'</strong>' }"
                 ></p>
+
+                <!--Container without data encryption-->
+                <p
+                    data-ng-if="$ctrl.displayEncryptionData && !$ctrl.container.isEncrypted"
+                    data-translate="pci_projects_project_storages_containers_container_info_data_encryption_disabled"
+                ></p>
+
+                <!--Container with data encryption-->
+                <p
+                    data-ng-if="$ctrl.displayEncryptionData && $ctrl.container.isEncrypted"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_info_data_encryption_enabled"
+                    ></span>
+                    <button
+                        type="button"
+                        class="pl-1 oui-color-p-500 oui-popover-button"
+                        data-oui-popover="{{:: 'pci_projects_project_storages_containers_data_encryption_aes256_tooltip' | translate }}"
+                        data-ng-click="$ctrl.trackEncryptionAction('TOOLTIP_AES256')"
+                    ></button>
+                </p>
             </div>
 
             <!--Container clipboards fields-->
