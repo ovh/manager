@@ -1,105 +1,128 @@
-import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { getListingIcebergV2 } from '@/api';
-
-import TableContainer from '@/components/layout-helpers/Listing/TableContainer';
-import Loading from '@/components/Loading/Loading';
-import ErrorBanner from '@/components/Error/Error';
+import {
+  ODS_SPINNER_SIZE,
+  ODS_MESSAGE_TYPE,
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsText,
+  OsdsDivider,
+  OsdsBreadcrumb,
+  OsdsButton,
+  OsdsMessage,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+} from '@ovhcloud/ods-common-theming';
+import {
+  Datagrid,
+  Notifications,
+  useDatagridSearchParams,
+} from '@ovhcloud/manager-components';
+import { useOKMS } from '@/hooks/useOKMS';
+import { ROUTES_URLS } from '@/routes/routes.constants';
+import {
+  DatagridCellId,
+  DatagridCellName,
+  DatagridCellRegion,
+} from '@/components/Listing/ListingCells';
 
 export default function Listing() {
-  const { t } = useTranslation('key-management-service/dashboard');
-  const [pageSize] = useState(10);
-  const {
-    data,
-    fetchNextPage,
-    isError,
-    hasNextPage,
-    isLoading,
-    error,
-    isFetching,
-  }: any = useInfiniteQuery({
-    initialPageParam: null,
-    queryKey: [`servicesListingIceberg`],
-    queryFn: ({ pageParam }) =>
-      getListingIcebergV2({ pageSize, cursor: pageParam }),
-    staleTime: Infinity,
-    getNextPageParam: (lastPage) => lastPage.cursorNext as any,
+  const { t } = useTranslation('key-management-service/listing');
+  const { t: tError } = useTranslation('error');
+  const navigate = useNavigate();
+
+  const columns = [
+    {
+      id: 'name',
+      cell: DatagridCellName,
+      label: t('key_management_service_listing_name_cell'),
+    },
+    {
+      id: 'id',
+      cell: DatagridCellId,
+      label: t('key_management_service_listing_id_cell'),
+    },
+    {
+      id: 'region',
+      cell: DatagridCellRegion,
+      label: t('key_management_service_listing_region_cell'),
+    },
+  ];
+
+  const { sorting, setSorting } = useDatagridSearchParams();
+
+  const { error, data: okms, isLoading } = useOKMS({
+    sorting,
   });
 
-  const tableContainerRef: React.MutableRefObject<HTMLDivElement> = React.useRef<
-    HTMLDivElement
-  >(null);
-
-  const flattenData = React.useMemo(
-    () => data?.pages?.flatMap((page: any) => page.data) ?? [],
-    [data],
-  );
-  const totalFetched = flattenData.length;
-
-  const fetchMoreOnBottomReached = React.useCallback(
-    (containerRefElement?: HTMLDivElement | null) => {
-      if (containerRefElement) {
-        const { scrollHeight, scrollTop, clientHeight } = containerRefElement;
-        if (scrollHeight - scrollTop - clientHeight < 500 && !isFetching) {
-          fetchNextPage();
-        }
-      }
-    },
-    [fetchNextPage, isFetching, totalFetched],
-  );
-
-  if (isError) {
-    return <ErrorBanner error={error} />;
-  }
-
-  if (isLoading) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  }
-
-  if (data?.length === 0) return <Navigate to="onboarding" />;
+  useEffect(() => {
+    if (okms.length === 0 && !isLoading) {
+      navigate(ROUTES_URLS.onboarding);
+    }
+  }, [okms.length, isLoading]);
 
   return (
     <>
-      <h2>key-management-service</h2>
-      <div className="text-right pr-6 pb-6">
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-          ({flattenData.length} {t('results')})
+      <OsdsBreadcrumb
+        items={[
+          {
+            href: ROUTES_URLS.listing,
+            label: t('key_management_service_listing_title'),
+          },
+        ]}
+      ></OsdsBreadcrumb>
+      <div className={'flex items-center justify-between mt-4'}>
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
+          color={ODS_THEME_COLOR_INTENT.primary}
+        >
+          {t('key_management_service_listing_title')}
         </OsdsText>
       </div>
-      <div>
-        {flattenData.length && (
-          <div
-            onScroll={(e) => {
-              if (hasNextPage) {
-                fetchMoreOnBottomReached(e.target as HTMLDivElement);
-              }
-            }}
-            ref={tableContainerRef}
-            className={
-              hasNextPage || flattenData.length > 10
-                ? `container overflow-auto relative h-[400px]`
-                : ``
-            }
-          >
-            <TableContainer data={flattenData} hasNextPage={hasNextPage} />
-          </div>
-        )}
-        {isFetching && (
-          <div className="text-center pt-3">
-            <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-              {t('loading')}
-            </OsdsText>
-          </div>
-        )}
+      <OsdsDivider></OsdsDivider>
+      <Notifications />
+      <div className={'flex mb-3 mt-6'}>
+        <OsdsButton
+          className="mr-1"
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.stroked}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          href={ROUTES_URLS.createKeyManagementService}
+        >
+          {t('key_management_service_listing_add_kms_button')}
+        </OsdsButton>
       </div>
+      {error && (
+        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
+          {tError('manager_error_page_default')}
+        </OsdsMessage>
+      )}
+
+      {isLoading && !error && (
+        <div className="text-center">
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+        </div>
+      )}
+      {!isLoading && !error && (
+        <div className={'mt-8'}>
+          <Datagrid
+            columns={columns}
+            items={okms || []}
+            totalItems={0}
+            sorting={sorting}
+            onSortChange={setSorting}
+            contentAlignLeft
+          />
+        </div>
+      )}
     </>
   );
 }
