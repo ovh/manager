@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { Network } from '@/interface';
 
 export interface AggregatedNetwork {
   resources: {
@@ -15,6 +16,15 @@ export const getAggregatedNetwork = async (
 ): Promise<AggregatedNetwork> => {
   const { data } = await v6.get<AggregatedNetwork>(
     `/cloud/project/${projectId}/aggregated/network`,
+  );
+  return data;
+};
+
+export const getAllPrivateNetworks = async (
+  projectId: string,
+): Promise<Network[]> => {
+  const { data } = await v6.get<Network[]>(
+    `/cloud/project/${projectId}/network/private`,
   );
   return data;
 };
