@@ -8,8 +8,8 @@ import {
   useGetSubnet,
 } from '@/hooks/api/network.api.hooks';
 import {
-  mockedNetwork,
-  mockedSubnet,
+  mockedNetworks,
+  mockedSubnets,
   mockedVrack,
 } from '@/__tests__/helpers/mocks/network';
 
@@ -25,9 +25,9 @@ describe('useGetNetwork', () => {
   it('should return network', async () => {
     const projectId = 'projectId';
 
-    vi.mocked(API.networkApi.getPrivateNetworks).mockResolvedValue([
-      mockedNetwork,
-    ]);
+    vi.mocked(API.networkApi.getPrivateNetworks).mockResolvedValue(
+      mockedNetworks,
+    );
 
     const { result } = renderHook(() => useGetNetwork(projectId), {
       wrapper: QueryClientWrapper,
@@ -35,7 +35,8 @@ describe('useGetNetwork', () => {
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
-      expect(result.current.data).toEqual([mockedNetwork]);
+      console.log(mockedNetworks);
+      expect(result.current.data).toEqual(mockedNetworks);
       expect(API.networkApi.getPrivateNetworks).toHaveBeenCalledWith(projectId);
     });
   });
@@ -46,7 +47,7 @@ describe('useGetSubnet', () => {
     const projectId = 'projectId';
     const networkId = 'networkId';
 
-    vi.mocked(API.networkApi.getSubnets).mockResolvedValue([mockedSubnet]);
+    vi.mocked(API.networkApi.getSubnets).mockResolvedValue(mockedSubnets);
 
     const { result } = renderHook(() => useGetSubnet(projectId, networkId), {
       wrapper: QueryClientWrapper,
@@ -54,7 +55,7 @@ describe('useGetSubnet', () => {
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
-      expect(result.current.data).toEqual([mockedSubnet]);
+      expect(result.current.data).toEqual(mockedSubnets);
       expect(API.networkApi.getSubnets).toHaveBeenCalledWith(
         projectId,
         networkId,

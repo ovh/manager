@@ -4,7 +4,7 @@ import { useGetMetrics, useGetMetric } from '@/hooks/api/metrics.api.hooks';
 import * as databaseAPI from '@/api/databases/metrics';
 import { database } from '@/models/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
-import { mockedMetric } from '@/__tests__/helpers/mocks/metrics';
+import { mockMetric } from '@/__tests__/helpers/mocks/metrics';
 
 vi.mock('@/api/databases/metrics', () => ({
   getMetrics: vi.fn(),
@@ -43,7 +43,7 @@ describe('useGetMetric', () => {
     const serviceId = 'serviceId';
     const metric = 'metric';
     const period = database.service.MetricPeriodEnum.lastDay;
-    vi.mocked(databaseAPI.getMetric).mockResolvedValue(mockedMetric);
+    vi.mocked(databaseAPI.getMetric).mockResolvedValue(mockMetric);
 
     const { result } = renderHook(
       () => useGetMetric(projectId, engine, serviceId, metric, period),
@@ -52,7 +52,7 @@ describe('useGetMetric', () => {
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
-      expect(result.current.data).toEqual(mockedMetric);
+      expect(result.current.data).toEqual(mockMetric);
       expect(databaseAPI.getMetric).toHaveBeenCalledWith({
         projectId,
         engine,
