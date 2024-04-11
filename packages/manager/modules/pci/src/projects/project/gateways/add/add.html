@@ -144,7 +144,7 @@
         <p
             data-translate="pci_projects_project_public_gateways_add_attach_private_network_to_public_gateway_intro2"
         ></p>
-        <div class="my-4">
+        <div class="my-4" data-ng-if="!$ctrl.privateNetworks">
             <oui-message data-type="warning">
                 <span
                     data-translate="pci_projects_project_public_gateways_add_no_private_network_warning"
