@@ -18,7 +18,7 @@
   "user_account_identity_documents_selection_file_format_invalid": "Das Format {{values}} der hochgeladenen Dokumente wird nicht akzeptiert. Verwenden Sie bitte eines der unterstützten Formate: .jpg, .jpeg, .pdf oder .png.",
   "user_account_identity_documents_submit": "Meine Dokumente senden",
   "user_account_identity_documents_submit_success_message_title": "Wir haben Ihre Dokumente erhalten.",
-  "user_account_identity_documents_submit_success_message_description": "Wir haben alle Ihre Dokumente erhalten. Sie werden unseren Teams zur Validierung vorgelegt. Sie werden per E-Mail über die Validierung informiert oder kontaktiert, wenn wir weitere Informationen benötigen.",
+  "user_account_identity_documents_submit_success_message_description": "Sie werden unseren Teams zur Validierung vorgelegt. Sie werden per E-Mail über die Validierung informiert oder kontaktiert, wenn wir weitere Informationen benötigen.",
   "user_account_identity_documents_submit_error_message_description": "Ihre Dokumente wurden nicht richtig gesendet. Bitte wiederholen Sie den Upload und die Übermittlung Ihrer Dokumente.",
   "user_account_identity_documents_go_back_to_dashboard": "Mein Dashboard anzeigen",
   "user_account_identity_documents_legal_info1": "OVH S.A.S ist für die Verarbeitung Ihrer personenbezogenen Daten verantwortlich. Die über dieses Formular erhobenen Daten werden verarbeitet, um den <a href=\"{{ link1 }}\" target=\"_blank\">Richtlinien zur Cybersicherheit vom 28.04.2022</a> Rechnung zu tragen, die das CERT-IN gemäß den Bestimmungen des Unterabschnitts (6) von <a href=\"{{ link2 }}\" target=\"_blank\">Artikel 70B</a> des Information Technology (IT) Act von 2000 veröffentlicht hat.",
