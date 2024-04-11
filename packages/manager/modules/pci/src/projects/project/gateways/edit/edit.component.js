@@ -10,6 +10,8 @@ export default {
     gatewayId: '<',
     region: '<',
     trackClick: '<',
+    catalog: '<',
+    regionAvailability: '<',
   },
   controller,
   template,

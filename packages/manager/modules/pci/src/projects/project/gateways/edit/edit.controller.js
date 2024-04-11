@@ -36,15 +36,13 @@ export default class PciPublicGatewaysEditController {
       .catch((err) => this.CucCloudMessage.error(err.data.message || err.data));
   }
 
-  getGatewayModel = (gatewaySize) => gatewaySize.split(/[-]+/).pop();
-
   onNextClick() {
     this.trackClick(
       `confirm-update-public-gateway::publiccloud-gateway-${this.gatewayDetails.model}::${this.selectedGatewaySize.product}`,
     );
     this.isEditing = true;
     this.editModel = {
-      model: this.getGatewayModel(this.selectedGatewaySize.product),
+      model: this.selectedGatewaySize.model,
       name: this.gatewayDetails.name,
     };
     return this.PciPublicGatewaysService.editGateway(

@@ -4,7 +4,7 @@
         data-ng-repeat="gateway in $ctrl.gatewayCatalog track by gateway.product"
         data-name="size_{{:: gateway.product }}"
         data-model="$ctrl.selectedGatewaySize"
-        data-label="{{:: ('pci_projects_project_gateways_model_selector_catalog_' + gateway.product + '_size') | translate }}"
+        data-label="{{:: ('pci_projects_project_gateways_model_selector_model') | translate: {model: gateway.model.toUpperCase()} }}"
         data-values="[gateway]"
         data-variant="light"
         data-on-change="$ctrl.onGatewaySizeSelection({gateway: gateway})"

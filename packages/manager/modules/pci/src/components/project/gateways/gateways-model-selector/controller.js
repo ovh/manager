@@ -29,6 +29,7 @@ export default class PciProjectGatewayModelSelectorCtrl {
           price: addonPrice,
           monthly: addonPlan.blobs.commercial.price.interval === 'P1M',
           bandwidth: addonPlan.blobs.technical.bandwidth.level,
+          model: addonPlan.blobs.technical.model || '?',
         };
       });
 

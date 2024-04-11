@@ -157,8 +157,6 @@ export default class PciPublicGatewaysAddController {
     this.messages = this.messageHandler.getMessages();
   }
 
-  getGatewayModel = (gatewaySize) => gatewaySize.split(/[-]+/).pop();
-
   getNetworkSubnet(projectId, regionName, networkId) {
     this.PciPublicGatewaysService.getSubnet(projectId, regionName, networkId)
       .then((subnet) => {
@@ -238,7 +236,7 @@ export default class PciPublicGatewaysAddController {
     this.gatewayModel = {
       gateway: {
         name: this.gatewayName,
-        model: this.getGatewayModel(this.selectedGatewaySize.product),
+        model: this.selectedGatewaySize.model,
       },
       name: this.selectedPrivateNetwork.name,
       subnet: {
@@ -263,7 +261,7 @@ export default class PciPublicGatewaysAddController {
   createGateway() {
     this.gatewayModel = {
       name: this.gatewayName,
-      model: this.getGatewayModel(this.selectedGatewaySize.product),
+      model: this.selectedGatewaySize.model,
     };
     return this.PciPublicGatewaysService.addGateway(
       this.projectId,
