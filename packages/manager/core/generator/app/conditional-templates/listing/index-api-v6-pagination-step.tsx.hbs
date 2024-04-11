@@ -53,7 +53,7 @@ export default function Listing() {
   useEffect(() => {
     if (status === 'success' && data?.data) {
       setRes(data?.data);
-      const columns = Object.keys(data?.data[0])
+      const newColumns = Object.keys(data?.data[0])
         .filter((element) => element !== 'iam')
         .map((element) => ({
           id: element,
@@ -79,7 +79,7 @@ export default function Listing() {
             return <div>-</div>;
           },
         }));
-      setColumns(columns);
+      setColumns(newColumns);
     }
   }, [data?.data]);
 
@@ -98,6 +98,7 @@ export default function Listing() {
       <div className="pt-5 pb-10">
         <Breadcrumb />
         <h2>{{appName}}</h2>
+        <React.Suspense>
         {columns && res && (
           <Datagrid
             columns={columns}
@@ -109,6 +110,7 @@ export default function Listing() {
             onSortChange={setSorting}
           />
         )}
+        </React.Suspense>
       </div>
     </>
   );

@@ -103,17 +103,19 @@ export default function Listing() {
       <div className="pt-5 pb-10">
         <Breadcrumb />
         <h2>a-iam</h2>
-        {columns && flattenData && (
-          <Datagrid
-            columns={columns}
-            items={flattenData || []}
-            totalItems={0}
-            pagination={pagination}
-            onPaginationChange={setPagination}
-            sorting={sorting}
-            onSortChange={setSorting}
-          />
-        )}
+        <React.Suspense>
+          {columns && flattenData && (
+            <Datagrid
+              columns={columns}
+              items={flattenData || []}
+              totalItems={0}
+              pagination={pagination}
+              onPaginationChange={setPagination}
+              sorting={sorting}
+              onSortChange={setSorting}
+            />
+          )}
+        </React.Suspense>
         <div className="grid justify-items-center my-5">
           {hasNextPage && (
             <div>
