@@ -25,6 +25,8 @@ import useProject from '@/api/hooks/useProject';
 import { FloatingIPComponent } from '@/components/list';
 import FailoverIPComponent from '@/components/list/FailoverIP';
 import { IPsTabName } from '@/constants';
+import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner';
+import { useProductMaintenance } from '@/components/maintenance/useMaintenance';
 
 export default function ListingPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -38,6 +40,7 @@ export default function ListingPage(): JSX.Element {
   const location = useLocation();
   const { projectId } = useParams();
   const { data: project } = useProject(projectId || '');
+  const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
 
   const handlerTabChanged = (event: CustomEvent) => {
     const { panel } = event.detail;
@@ -111,6 +114,11 @@ export default function ListingPage(): JSX.Element {
       <div className="mb-5">
         {isDiscoveryProject(project) && (
           <PciDiscoveryBanner projectId={projectId} />
+        )}
+        {hasMaintenance && (
+          <div className="mt-5">
+            <MaintenanceBanner maintenanceURL={maintenanceURL} />
+          </div>
         )}
       </div>
 
