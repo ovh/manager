@@ -1,0 +1,10 @@
+{
+  "domains_restore_renew_modal_title": "Restaurar / Renovar mis Dominios ({{number}})",
+  "domains_restore_renew_modal_confirm": "Restaurar / Renovar",
+  "domains_restore_renew_modal_cancel": "Cancelar",
+  "domains_restore_renew_modal_question": "Para renovar sus dominios, debe utilizar la interfaz de renovación de OVHcloud (fuera del área de cliente Web).",
+  "domains_restore_renew_modal_confirmation": "Haga clic en «Contratar» para abrir una nueva ventana y renovar sus dominios.",
+  "domains_restore_renew_modal_information": "Se abrirá una nueva pestaña y el sistema le redirigirá automáticamente a la interfaz de renovación de OVH.",
+  "domains_restore_renew_modal_alert": "Tenga en cuenta que es necesario un plazo aproximado de dos horas desde la aceptación del pago para que las renovaciones se reflejen en su área de cliente web.",
+  "domains_restore_renew_modal_no_selected_domains": "No ha seleccionado ningún dominio para renovar, o tiene autorización para renovar los dominios."
+}
