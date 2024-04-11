@@ -1,0 +1,20 @@
+<p data-translate="telephony_line_tab_beta_softphone_description"></p>
+
+<div class="d-flex align-items-center justify-content-between">
+    <oui-switch
+        data-model="$ctrl.currentServiceIsBeta"
+        data-on-change="$ctrl.handleToggleSwitch()"
+    >
+    </oui-switch>
+    <oui-collapsible
+        class="custom-collapsible-no-click m-5"
+        data-expanded="true"
+    >
+        <p
+            data-translate="telephony_line_tab_beta_softphone_active_description"
+        ></p>
+        <p
+            data-translate="telephony_line_tab_beta_softphone_inactive_description"
+        ></p>
+    </oui-collapsible>
+</div>
