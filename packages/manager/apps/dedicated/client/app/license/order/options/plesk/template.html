@@ -36,7 +36,7 @@
         class="form-control"
         id="languagePackNumber"
         name="languagePackNumber"
-        data-ng-options="(languagePack === 'unlimited' ? ('license_order_step2_option_PLESK_language_pack_unlimited' | translate) : languagePack) for languagePack in $ctrl.version.more.compliantLanguagePack | orderBy:'toString()'"
+        data-ng-options="(languagePack.includes('unlimited') ? ('license_order_step2_option_PLESK_language_pack_unlimited' | translate) : languagePack) for languagePack in $ctrl.version.more.compliantLanguagePack | orderBy:'toString()'"
         data-ng-model="$ctrl.options['PLESK'].languagePackNumber.value"
         data-ng-change="$ctrl.onOptionsChange()"
     >
