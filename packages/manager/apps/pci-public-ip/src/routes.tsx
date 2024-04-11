@@ -24,6 +24,7 @@ export const ROUTE_PATHS = {
   onboarding: 'onboarding',
   floatingIPs: 'floating-ips',
   floatingIPTerminate: ':ipId/terminate',
+  floatingIPEdit: ':ipId/edit',
   additionalIPs: 'additional-ips',
   additionalIPTerminate: ':ipId/terminate',
   additionalIPEdit: ':ipId/edit',
@@ -62,6 +63,15 @@ export default [
             ),
             handle: {
               tracking: 'terminate',
+            },
+          },
+          {
+            path: ROUTE_PATHS.floatingIPEdit,
+            ...lazyRouteConfig(() =>
+              import('@/pages/floating-ips/edit/EditInstance.page'),
+            ),
+            handle: {
+              tracking: 'edit',
             },
           },
         ],

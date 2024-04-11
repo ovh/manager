@@ -1,0 +1,12 @@
+{
+  "pci_additional_ips_floatingips_edit": "Modificar la instancia asociada",
+  "pci_additional_ips_floatingips_edit_submit_label": "Asociar",
+  "pci_additional_ips_floatingips_edit_cancel_label": "Cancelar",
+  "pci_additional_ips_floatingips_edit_description": "Seleccione la instancia a la que quiere asociar la dirección IP {{ serviceName }}.",
+  "pci_additional_ips_floatingips_edit_select_instance": "Seleccione una instancia",
+  "pci_additional_ips_floatingips_edit_select_ip": "Seleccione una red/IP",
+  "pci_additional_ips_floatingips_edit_success": "Se ha modificado la instancia asociada a la dirección IP {{ ip }}.",
+  "pci_additional_ips_floatingips_edit_error": "Se ha producido un error al modificar la instancia asociada: {{ error }}",
+  "pci_additional_ips_floatingips_edit_gateway_error": "No hemos encontrado ninguna puerta de enlace en la red privada seleccionada necesaria para asociar esta Floating IP. Deberá crear una en primer lugar o seleccionar otra instancia o red privada.",
+  "pci_additional_ips_floatingips_edit_gateway_no_instance_error": "No hay ninguna instancia asociada disponible"
+}
