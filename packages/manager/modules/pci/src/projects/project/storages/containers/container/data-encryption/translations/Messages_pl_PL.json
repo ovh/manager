@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_storages_containers_data_encryption_title": "Szyfruj dane",
+  "pci_projects_project_storages_containers_data_encryption_description": "Dane przesyłane do tego kontenera są szyfrowane w locie przez OVHcloud.",
+  "pci_projects_project_storages_containers_data_encryption_plaintext": "Brak szyfrowania",
+  "pci_projects_project_storages_containers_data_encryption_aes256": "SSE-S3",
+  "pci_projects_project_storages_containers_data_encryption_aes256_tooltip": "Szyfrowanie odbywa się za pomocą klucza zarządzanego przez OVHcloud (OMK - OVHcloud Managed Key) i zabezpieczonego w KMS od OVHcloud."
+}
