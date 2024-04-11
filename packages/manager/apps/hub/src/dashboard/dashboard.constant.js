@@ -10,6 +10,11 @@ export const KYC_TRACKING_PREFIX = 'alert::kyc-india';
 
 export const KYC_HIT_PREFIX = `${KYC_TRACKING_PREFIX}::verify-identity`;
 
+export const KYC_STATUS = {
+  OPEN: 'open',
+  REQUIRED: 'required',
+};
+
 export default {
   SIRET_TRACKING_PREFIX,
   SIRET_HIT_PREFIX,
