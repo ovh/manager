@@ -6,6 +6,6 @@
   "sign_up_form_next_button": "Weiter",
   "sign_up_form_submit_button": "Account erstellen",
   "sign_up_form_submit_error": " Bei der Erstellung des Accounts ist ein Fehler aufgetreten.",
-  "sign_up_form_global_information": "Denken Sie daran, alle Ihre Informationen einzugeben, damit Sie Bestellungen aufgeben können.",
+  "sign_up_form_global_information": "Um mit Ihrer Bestellung fortzufahren, sind die folgenden Informationen erforderlich.",
   "sign_up_form_global_information_kyc_reminder": "Achten Sie darauf, alle Informationen einzugeben, und vergewissern Sie sich, dass Ihre persönlichen Daten mit dem Namen und der Adresse auf Ihren offiziellen Dokumenten übereinstimmen, um eine Bestellung aufgeben zu können."
 }
