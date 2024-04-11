@@ -4,6 +4,7 @@ import {
   NetworkStatusEnum,
   NetworkTypeEnum,
   Subnet,
+  Vrack,
 } from '@/models/network';
 
 export const mockedNetworks: Network[] = [
@@ -31,3 +32,9 @@ export const mockedSubnets: Subnet[] = [
     gatewayIp: 'gatewayIp',
   },
 ];
+
+export const mockedVrack: Vrack = {
+  description: 'description',
+  id: 'vrackId',
+  name: 'vrackName',
+};
