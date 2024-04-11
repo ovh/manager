@@ -1,0 +1,12 @@
+{
+  "pci_additional_ips_floatingips_edit": "Verbundene Instanz bearbeiten",
+  "pci_additional_ips_floatingips_edit_submit_label": "Verbinden",
+  "pci_additional_ips_floatingips_edit_cancel_label": "Abbrechen",
+  "pci_additional_ips_floatingips_edit_description": "Wählen Sie die Instanz aus, der Sie die IP-Adresse {{ serviceName }} zuweisen möchten.",
+  "pci_additional_ips_floatingips_edit_select_instance": "Instanz auswählen",
+  "pci_additional_ips_floatingips_edit_select_ip": "Wählen Sie ein Netzwerk / eine IP aus",
+  "pci_additional_ips_floatingips_edit_success": "Die Einstellungen der Instanz, der die IP {{ ip }} zugeordnet ist, wurden geändert.",
+  "pci_additional_ips_floatingips_edit_error": "Bei der Änderung der verbundenen Instanz ist ein Fehler aufgetreten: {{ error }}",
+  "pci_additional_ips_floatingips_edit_gateway_error": "In dem ausgewählten privaten Netzwerk wurde kein Gateway gefunden. Das ist jedoch erforderlich, um diese Floating IP zuzuweisen. Bitte erstellen Sie daher zuerst ein Gateway. Alternativ dazu können Sie auch eine andere Instanz oder ein anderes privates Netzwerk auswählen.",
+  "pci_additional_ips_floatingips_edit_gateway_no_instance_error": "Es ist keine verfügbare Instanz zugewiesen"
+}

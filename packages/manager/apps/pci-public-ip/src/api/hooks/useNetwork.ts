@@ -1,7 +1,10 @@
 import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Region } from '@/api/data/project';
-import { getAggregatedNetwork } from '@/api/data/network';
+import {
+  getAggregatedNetwork,
+  getAllPrivateNetworks,
+} from '@/api/data/network';
 
 export const useAggregatedPrivateNetworks = (
   projectId: string,
@@ -73,3 +76,15 @@ export const useAggregatedPrivateNetworksRegions = (
     ),
   };
 };
+
+const getQueryKeyPrivateNetworks = (projectId: string) => [
+  'project',
+  projectId,
+  'privateNetworks',
+];
+export const useAllPrivateNetworks = (projectId: string) =>
+  useQuery({
+    queryKey: getQueryKeyPrivateNetworks(projectId),
+    queryFn: () => getAllPrivateNetworks(projectId),
+    throwOnError: true,
+  });

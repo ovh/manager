@@ -34,7 +34,7 @@ export default function EditInstanceModal({
   onClose,
   onConfirm,
 }: Readonly<EditInstanceModalProps>) {
-  const { t } = useTranslation('edit');
+  const { t } = useTranslation('failover-ips-edit');
 
   return (
     <OsdsModal

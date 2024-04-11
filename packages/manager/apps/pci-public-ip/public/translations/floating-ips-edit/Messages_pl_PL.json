@@ -1,0 +1,12 @@
+{
+  "pci_additional_ips_floatingips_edit": "Zmień przypisaną instancję",
+  "pci_additional_ips_floatingips_edit_submit_label": "Przypisz",
+  "pci_additional_ips_floatingips_edit_cancel_label": "Anuluj",
+  "pci_additional_ips_floatingips_edit_description": "Wybierz instancję, do której chcesz przypisać adres IP {{serviceName}}.",
+  "pci_additional_ips_floatingips_edit_select_instance": "Wybierz instancję",
+  "pci_additional_ips_floatingips_edit_select_ip": "Wybierz sieć/IP",
+  "pci_additional_ips_floatingips_edit_success": "Instancja przypisana do IP {{ip}} została zmieniona.",
+  "pci_additional_ips_floatingips_edit_error": "Wystąpił błąd podczas zmiany przypisanej instancji: {{error}}",
+  "pci_additional_ips_floatingips_edit_gateway_error": "W wybranej sieci prywatnej nie znaleźliśmy bramy, która jest niezbędna do podpięcia tego adresu Floating IP. Najpierw utwórz bramę albo wybierz inną instancję lub inną sieć prywatną.",
+  "pci_additional_ips_floatingips_edit_gateway_no_instance_error": "Nie masz dostępnej powiązanej instancji"
+}
