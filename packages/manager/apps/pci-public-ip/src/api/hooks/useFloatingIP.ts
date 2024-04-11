@@ -2,8 +2,18 @@ import { PaginationState } from '@ovhcloud/manager-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
-import { FloatingIP, Instance, TerminateIPProps } from '@/interface';
-import { getAllFloatingIP, terminateFloatingIP } from '@/api/data/floating-ip';
+import {
+  FloatingIP,
+  Instance,
+  TerminateIPProps,
+  UpdateInstanceProps,
+} from '@/interface';
+import {
+  getAllAssociatedInstances,
+  getAllFloatingIP,
+  terminateFloatingIP,
+  updateInstanceForFloatingIP,
+} from '@/api/data/floating-ip';
 import { useAllInstance } from './useInstance';
 import queryClient from '@/queryClient';
 import { paginateResults } from '@/api/utils/pagination';
@@ -122,6 +132,55 @@ export const useTerminateFloatingIP = ({
     terminate: (floatingIP: FloatingIP) => {
       return mutation.mutate(floatingIP);
     },
+    ...mutation,
+  };
+};
+
+export const useAllAssociatedInstances = (
+  projectId: string,
+  region: string,
+) => {
+  return useQuery({
+    queryKey: ['project', projectId, 'region', region, 'floatingIps'],
+    queryFn: () => getAllAssociatedInstances(projectId, region),
+    enabled: !!region,
+  });
+};
+
+export const useUpdateInstance = ({
+  projectId,
+  instanceId,
+  floatingIP,
+  ipAddresses,
+  onError,
+  onSuccess,
+}: UpdateInstanceProps) => {
+  const mutation = useMutation({
+    mutationFn: () =>
+      updateInstanceForFloatingIP(
+        projectId,
+        instanceId,
+        ipAddresses,
+        floatingIP,
+      ),
+    onSuccess: () => {
+      queryClient.setQueryData(
+        getQueryKeyFloatingIPs(projectId),
+        (data: FloatingIP[]) =>
+          data.map((floating) =>
+            floating.id === floatingIP.id
+              ? { ...floating, routedTo: instanceId }
+              : floating,
+          ),
+      );
+
+      return onSuccess();
+    },
+    onError,
+  });
+
+  return {
+    attach: () => mutation.mutate(),
     ...mutation,
   };
 };
