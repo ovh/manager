@@ -6,6 +6,7 @@
     "module": "ESNext",
     "outDir": "dist",
     "allowJs": false,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

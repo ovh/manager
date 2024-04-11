@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useShell } from '@ovh-ux/manager-react-core-application';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   ErrorMessage,
   TRACKING_LABELS,
@@ -23,7 +23,7 @@ function getTrackingTypology(error: ErrorMessage) {
 const Errors: React.FC<ErrorObject> = ({ error }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const shell = useShell();
+  const { shell } = React.useContext(ShellContext);
   const { tracking, environment } = shell;
   const env = environment.getEnvironment();
 

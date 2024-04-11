@@ -3,11 +3,12 @@ import I18NextHttpBackend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import { ShellContextType } from './ShellContext';
 
-export const defaultLocale = 'fr-FR';
+export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
 
 export const ovhLocaleToI18next = (ovhLocale = '') =>
   ovhLocale.replace('_', '-');
+
 export const i18nextLocaleToOvh = (i18nextLocale = '') =>
   i18nextLocale.replace('-', '_');
 
@@ -38,11 +39,11 @@ export const initI18n = async ({
         value ? value.replace(/&amp;/g, '&') : value,
     })
     .init({
-      lng: ovhLocaleToI18next(locale),
+      lng: locale,
       fallbackLng: defaultLocale,
       defaultNS,
       ns,
-      supportedLngs: availableLocales.map(ovhLocaleToI18next),
+      supportedLngs: availableLocales,
       postProcess: 'normalize',
       interpolation: {
         escapeValue: false,
@@ -50,9 +51,9 @@ export const initI18n = async ({
       backend: {
         allowMultiLoading: false,
         loadPath: (lngs: string[], namespaces: string[]) =>
-          `${import.meta.env.BASE_URL}translations/${
-            namespaces[0]
-          }/Messages_${i18nextLocaleToOvh(lngs[0])}.json`,
+          `${import.meta.env.BASE_URL}translations/${namespaces[0]}/Messages_${
+            lngs[0]
+          }.json`,
       },
     });
 
