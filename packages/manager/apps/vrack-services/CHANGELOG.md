@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.1.1...@ovh-ux/manager-vrack-services-app@0.1.2) (2024-04-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2901] ([ef88242](https://github.com/ovh/manager/commit/ef8824277309d2c33b0f4a7011afa3abe576395a))
+* **i18n:** add missing translations [CDS 2917] ([423f77c](https://github.com/ovh/manager/commit/423f77c1ca8ce9e42b992c65335ec31286e2f2fe))
+
+
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.1.0...@ovh-ux/manager-vrack-services-app@0.1.1) (2024-04-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-services-app

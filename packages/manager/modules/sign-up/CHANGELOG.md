@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.16.0...@ovh-ux/sign-up@2.16.1) (2024-04-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2902] ([3a7de54](https://github.com/ovh/manager/commit/3a7de54b2bfa223405115440468ea64258ca0f1b))
+* **i18n:** add missing translations [CDS 2917] ([423f77c](https://github.com/ovh/manager/commit/423f77c1ca8ce9e42b992c65335ec31286e2f2fe))
+
+
+
+
+
 # [2.16.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.15.0...@ovh-ux/sign-up@2.16.0) (2024-04-04)
 
 
