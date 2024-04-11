@@ -1,5 +1,5 @@
 import { QueryOptions, useQuery } from '@tanstack/react-query';
-import { getProject, Project } from '@/api/data/project';
+import { getProject, getProjectRegions, Project } from '@/api/data/project';
 
 export interface ResponseAPIError {
   message: string;
@@ -29,6 +29,12 @@ export const useProject = (
   useQuery({
     ...getProjectQuery(projectId),
     ...opt,
+  });
+
+export const useProjectRegions = (projectId: string) =>
+  useQuery({
+    queryKey: ['project', projectId, 'regions'],
+    queryFn: () => getProjectRegions(projectId),
   });
 
 export default useProject;
