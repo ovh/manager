@@ -3,6 +3,9 @@ import {
   fetchIcebergV6,
   apiClient,
 } from '@ovh-ux/manager-core-api';
+import { ColumnSort } from '@ovhcloud/manager-components';
+import { OKMS } from '@/interface';
+import { defaultCompareFunction } from '@/api/utils';
 
 type Response = unknown;
 type Uuid = unknown;
@@ -87,4 +90,38 @@ export const getListingIcebergV2 = async ({
   } catch (error) {
     return null;
   }
+};
+
+export type OKMSOptions = {
+  sorting: ColumnSort;
+};
+
+/**
+ *  Get okms listing with iceberg V2
+ */
+
+export const getListingIceberg = async () => {
+  try {
+    const List = await fetchIcebergV2({
+      route: '/okms/resource',
+    });
+    return List.data as OKMS[];
+  } catch (error) {
+    return null;
+  }
+};
+
+export const sortOKMS = (okms: OKMS[], sorting: ColumnSort): OKMS[] => {
+  const data = [...okms];
+
+  if (sorting) {
+    const { id: sortKey, desc } = sorting;
+
+    data.sort(defaultCompareFunction(sortKey as keyof OKMS));
+    if (desc) {
+      data.reverse();
+    }
+  }
+
+  return data;
 };

@@ -1,5 +1,6 @@
 import React from 'react';
-import NotFound from './pages/404';
+import NotFound from '../pages/404';
+import { ROUTES_URLS } from './routes.constants';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -18,11 +19,11 @@ export const COMMON_PATH = '/key-management-service';
 
 export default [
   {
-    path: '/',
+    path: ROUTES_URLS.root,
     ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
-        path: '/',
+        path: ROUTES_URLS.listing,
         ...lazyRouteConfig(() => import('@/pages/listing')),
       },
       {
@@ -40,7 +41,7 @@ export default [
         ],
       },
       {
-        path: '/onboarding',
+        path: ROUTES_URLS.onboarding,
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
       },
     ],

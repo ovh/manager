@@ -6,7 +6,7 @@ import { odsSetup } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import queryClient from './query.client';
 
-import appRoutes from './routes';
+import appRoutes from './routes/routes';
 
 odsSetup();
 const router = createHashRouter(appRoutes);
