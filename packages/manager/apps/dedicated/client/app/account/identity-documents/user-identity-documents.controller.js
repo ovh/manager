@@ -11,9 +11,10 @@ import {
 
 export default class AccountUserIdentityDocumentsController {
   /* @ngInject */
-  constructor($q, $http, coreConfig, coreURLBuilder, atInternet) {
+  constructor($q, $http, $scope, coreConfig, coreURLBuilder, atInternet) {
     this.$q = $q;
     this.$http = $http;
+    this.$scope = $scope;
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.maximum_size = MAX_SIZE;
@@ -39,6 +40,10 @@ export default class AccountUserIdentityDocumentsController {
     this.user_type = USER_TYPE[this.currentUser]
       ? USER_TYPE[this.currentUser]
       : USER_TYPE.default;
+
+    this.$scope.$watchCollection('$ctrl.files', () => {
+      this.isFileExtensionsValid();
+    });
   }
 
   uploadIdentityDocuments() {
@@ -99,10 +104,19 @@ export default class AccountUserIdentityDocumentsController {
   }
 
   isFileExtensionsValid() {
-    this.fileExtensionsValid = !this.files.find(
-      ({ infos: { extension } }) =>
-        !KYC_ALLOWED_FILE_EXTENSIONS.includes(extension.toLowerCase()),
+    const badFileExtensionsList = [];
+    this.fileExtensionsValid = this.files.reduce(
+      (acc, { infos: { extension } }) => {
+        const formatedExtension = extension.toLowerCase();
+        const isExtensionIncluded = KYC_ALLOWED_FILE_EXTENSIONS.includes(
+          formatedExtension,
+        );
+        if (!isExtensionIncluded) badFileExtensionsList.push(formatedExtension);
+        return isExtensionIncluded && acc;
+      },
+      true,
     );
+    this.badFileExtensionsFormatedList = badFileExtensionsList.join(', ');
     return this.fileExtensionsValid;
   }
 
