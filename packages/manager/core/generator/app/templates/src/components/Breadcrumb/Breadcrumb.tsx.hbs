@@ -1,15 +1,44 @@
 import React from 'react';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/breadcrumb/react';
+import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import {
+  {{#if isPCI}}
+  usePciBreadcrumb,
+  {{else}}
   useBreadcrumb,
-  BreadcrumbProps,
-} from '@ovh-ux/manager-react-core-application';
+  {{/if}}
+  BreadcrumbItem,
+} from '@/hooks/useBreadcrumb';
 
-function Breadcrumb({ rootLabel }: BreadcrumbProps): JSX.Element {
-  const breadcrumbItems = useBreadcrumb({ rootLabel, appName:'{{appName}}' });
+{{#if isPCI}}
+import { useParams } from 'react-router-dom';
+import { useProject } from '@/api/hooks/useProject';
+{{/if}}
 
- return <OsdsBreadcrumb items={breadcrumbItems} />;
+import appConfig from '@/{{appName}}.config';
+import ConfigInterface from '@/configInterface';
+
+export interface BreadcrumbProps {
+  customRootLabel?: string;
+  appName?: string;
+  items?: BreadcrumbItem[];
 }
 
+function Breadcrumb({ customRootLabel }: BreadcrumbProps): JSX.Element {
+  const myConfig: ConfigInterface = appConfig;
+  const label = customRootLabel || myConfig.rootLabel;
+
+  {{#if isPCI}}
+  const { projectId } = useParams();
+  const { project } = useProject({ projectId });
+
+  if (project) {
+    const breadcrumbPci = usePciBreadcrumb({ projectId, appName: '{{appName}}' });
+    return <OsdsBreadcrumb items={breadcrumbPci} />;
+  }
+  {{else}}
+  const breadcrumbItems = useBreadcrumb({ rootLabel: label, appName: '{{appName}}' });
+  return <OsdsBreadcrumb items={breadcrumbItems} />;
+  {{/if}}
+}
 
 export default Breadcrumb;

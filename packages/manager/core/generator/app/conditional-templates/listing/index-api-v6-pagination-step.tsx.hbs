@@ -1,46 +1,85 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate } from 'react-router-dom';
+import { Navigate,{{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import {
-  OdsSelectValueChangeEvent,
-} from '@ovhcloud/ods-components/select';
-import { OsdsSelect, } from '@ovhcloud/ods-components/select/react';
-import { OsdsPagination } from '@ovhcloud/ods-components/pagination/react';
 import { getListingIcebergV6 } from '@/api';
+
+import { OsdsLink } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
-import Breadcrumb, {
-} from '@/components/Breadcrumb/Breadcrumb';
-import DatagridWrapper from '@/components/layout-helpers/Listing/DatagridWrapper';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
+import {
+  Datagrid,
+  DataGridTextCell,
+  useDatagridSearchParams,
+} from '@ovhcloud/manager-components';
 
-const PAGE_SIZE_CHOICES = [10, 25, 50, 100, 300];
-const INITAL_PAGE = 1;
+import appConfig from '@/{{appName}}.config';
 
 export default function Listing() {
+  const myConfig = appConfig;
+  const serviceKey = myConfig.listing?.datagrid?.serviceKey;
   const [res, setRes] = useState([]);
-  const [totalCount, setTotalCount] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [columns, setColumns] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const {
+    pagination,
+    setPagination,
+    sorting,
+    setSorting,
+  } = useDatagridSearchParams();
+  const { pageIndex, pageSize } = pagination;
   const { t } = useTranslation('{{appName}}/listing');
-
+  {{#if isPCI }}
+  const { projectId } = useParams();
+  {{/if}}
   const { data, isError, error, isLoading, status }: any = useQuery({
-    queryKey: [`servicesListingIceberg-${page}-${pageSize}`],
-    queryFn: () => getListingIcebergV6({ pageSize, page }),
+    queryKey: [`servicesListingIceberg-${pageIndex + 1}-${pageSize}`],
+    queryFn: () => getListingIcebergV6({ {{#if isPCI }}projectId, {{/if}}pageSize, page: pageIndex + 1 }),
     staleTime: Infinity,
     enabled: true,
   });
 
+  const navigateToDashabord = (label: string) => {
+    let path =
+      location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
+    navigate(`${path}${label}`);
+  };
+
   useEffect(() => {
     if (status === 'success' && data?.data) {
-      if (totalPages === 0) {
-        setTotalPages(Math.ceil(data.totalCount / pageSize));
-      }
-      setTotalCount(data.totalCount)
       setRes(data?.data);
+      const columns = Object.keys(data?.data[0])
+        .filter((element) => element !== 'iam')
+        .map((element) => ({
+          id: element,
+          header: element,
+          label: element,
+          accessorKey: element,
+          cell: (props: any) => {
+            const label = props[element] as string;
+            if (typeof label === 'string' || typeof label === 'number') {
+              if (serviceKey === element)
+                return (
+                  <DataGridTextCell>
+                    <OsdsLink
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                      onClick={() => navigateToDashabord(label)}
+                    >
+                      {label}
+                    </OsdsLink>
+                  </DataGridTextCell>
+                );
+              return <DataGridTextCell>{label}</DataGridTextCell>;
+            }
+            return <div>-</div>;
+          },
+        }));
+      setColumns(columns);
     }
   }, [data?.data]);
 
@@ -48,40 +87,28 @@ export default function Listing() {
     return <ErrorBanner error={error.response} />;
   }
 
-  if (isLoading && page === 1) {
+  if (isLoading && pageIndex === 0) {
     return (<div><Loading/></div>)
   }
 
   if (data?.length === 0) return <Navigate to="onboarding" />;
-
-  const onOdsPageSizeChange = (event: OdsSelectValueChangeEvent) => {
-    if (event?.detail?.value) {
-      const newPageSize = Number(event.detail.value);
-      setPageSize(newPageSize);
-      setTotalPages(Math.ceil(data.totalCount / newPageSize));
-      setPage(INITAL_PAGE);
-    }
-  };
 
   return (
     <>
       <div className="pt-5 pb-10">
         <Breadcrumb />
         <h2>{{appName}}</h2>
-        <div>{res.length && <DatagridWrapper data={res} />}</div>
-        <div className="flex justify-end items-center mt-4">
-          {totalPages > 1 && (
-            <OsdsPagination
-              current={page}
-              id="main-pagination"
-              totalPages={totalPages}
-              totalItems={totalCount}
-              itemPerPage={pageSize}
-              onOdsValueChange={onOdsPageSizeChange}
-              onClick={(event: any) => setPage(event.target.current)}
-            />
-          )}
-        </div>
+        {columns && res && (
+          <Datagrid
+            columns={columns}
+            items={res || []}
+            totalItems={data?.totalCount || 0}
+            pagination={pagination}
+            onPaginationChange={setPagination}
+            sorting={sorting}
+            onSortChange={setSorting}
+          />
+        )}
       </div>
     </>
   );

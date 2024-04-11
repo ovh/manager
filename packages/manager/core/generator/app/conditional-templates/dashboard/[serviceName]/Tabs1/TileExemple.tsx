@@ -1,9 +1,9 @@
 import React from 'react';
-import { OsdsText, OsdsDivider } from '@ovhcloud/ods-stencil/components/react/';
+import { OsdsText, OsdsDivider } from '@ovhcloud/ods-components/react/';
 import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-} from '@ovhcloud/ods-theming';
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_COLOR_INTENT,
+} from '@ovhcloud/ods-common-theming';
 import ButtonTooltip from '@/components/ButtonTooltip/ButtonTooltip';
 
 const TileToRename1: React.FC = () => {
@@ -11,8 +11,8 @@ const TileToRename1: React.FC = () => {
     <>
       <div>
         <OsdsText
-          level={OdsThemeTypographyLevel.subheading}
-          color={OdsThemeColorIntent.text}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
+          color={ODS_THEME_COLOR_INTENT.text}
         >
           Subtitle 1
         </OsdsText>
@@ -20,7 +20,7 @@ const TileToRename1: React.FC = () => {
 
       <div className="button-tooltip">
         <div className="element-tile-left">
-          <OsdsText color={OdsThemeColorIntent.text}>Label</OsdsText>
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>Label</OsdsText>
         </div>
         <div className="element-tile-right">
           <ButtonTooltip
@@ -44,45 +44,45 @@ const TileToRename1: React.FC = () => {
       <div>
         <div>
           <OsdsText
-            level={OdsThemeTypographyLevel.subheading}
-            color={OdsThemeColorIntent.text}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
+            color={ODS_THEME_COLOR_INTENT.text}
           >
             Subtitle 2
           </OsdsText>
         </div>
 
         <div>
-          <OsdsText color={OdsThemeColorIntent.text}>Label</OsdsText>
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>Label</OsdsText>
         </div>
       </div>
       <OsdsDivider separator />
       <div>
         <div>
           <OsdsText
-            level={OdsThemeTypographyLevel.subheading}
-            color={OdsThemeColorIntent.text}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
+            color={ODS_THEME_COLOR_INTENT.text}
           >
             Subtitle 3
           </OsdsText>
         </div>
 
         <div>
-          <OsdsText color={OdsThemeColorIntent.text}>Label</OsdsText>
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>Label</OsdsText>
         </div>
       </div>
       <OsdsDivider separator />
       <div>
         <div>
           <OsdsText
-            level={OdsThemeTypographyLevel.subheading}
-            color={OdsThemeColorIntent.text}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
+            color={ODS_THEME_COLOR_INTENT.text}
           >
             Subtitle 4
           </OsdsText>
         </div>
 
         <div>
-          <OsdsText color={OdsThemeColorIntent.text}>Label</OsdsText>
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>Label</OsdsText>
         </div>
       </div>
     </>

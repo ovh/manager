@@ -20,13 +20,45 @@ const getApiV2AndV6GetEndpointsChoices = ({
   apiV6Endpoints,
   apiV2Endpoints,
 }) => [
-    { type: 'separator', line: 'V2 endpoints' },
-    ...(apiV2Endpoints?.get?.operationList?.map(toChoice) || []),
-    { type: 'separator' },
-    { type: 'separator', line: 'V6 endpoints' },
-    ...(apiV6Endpoints?.get?.operationList?.map(toChoice) || []),
-    { type: 'separator' },
-  ];
+  { type: 'separator', line: 'V2 endpoints' },
+  ...(apiV2Endpoints?.get?.operationList?.map(toChoice) || []),
+  { type: 'separator' },
+  { type: 'separator', line: 'V6 endpoints' },
+  ...(apiV6Endpoints?.get?.operationList?.map(toChoice) || []),
+  { type: 'separator' },
+];
+
+const apiComputed = (data) => {
+  let apiV6Computed,
+    apiV2Computed = {};
+  if (data.mainApiPathApiVersion === 'v6') {
+    apiV6Computed = {
+      get: {
+        ...data.apiV6Endpoints.get,
+        operationList: data.apiV6Endpoints.get?.operationList?.filter(
+          ({ apiPath }) =>
+            [data.listingEndpointPath, data.dashboardEndpointPath].includes(
+              apiPath,
+            ),
+        ),
+      },
+    };
+  }
+  if (data.mainApiPathApiVersion === 'v2') {
+    apiV2Computed = {
+      get: {
+        ...data.apiV2Endpoints.get,
+        operationList: data.apiV2Endpoints.get?.operationList?.filter(
+          ({ apiPath }) =>
+            [data.listingEndpointPath, data.dashboardEndpointPath].includes(
+              apiPath,
+            ) || apiPath.includes('/serviceInfos'),
+        ),
+      },
+    };
+  }
+  return { apiV6Computed, apiV2Computed };
+};
 
 export default (plop) => {
   plop.setGenerator('app', {
@@ -96,21 +128,22 @@ export default (plop) => {
         choices: getApiV2AndV6GetEndpointsChoices,
       },
       {
-        type: 'confirm',
-        name: 'isGenerateAllApi',
-        message: 'Would you like to generate all api related to your API base?',
-      },
-      {
         type: 'input',
         name: 'serviceKey',
         message: 'What is the service key ?',
         when: (data) => {
           // Add variables for templates
+
+          data.isPCI = data.appName.indexOf('pci') > -1;
+          if (data.isPCI) {
+            data.pciName = data.appName.split('pci-')[1];
+          }
           data.hasListing = data.templates.includes('listing');
           data.hasDashboard = data.templates.includes('dashboard');
           data.hasOnboarding = data.templates.includes('onboarding');
 
-          data.isApiV6 = data.apiV6Endpoints.get?.operationList.length
+          data.isApiV6 = data.apiV6Endpoints.get?.operationList.length > 0;
+          data.isApiV2 = data.apiV2Endpoints.get?.operationList.length > 0;
 
           if (data.hasListing) {
             const [listingPath, listingFn] =
@@ -123,6 +156,21 @@ export default (plop) => {
               .includes(data.mainApiPath)
               ? 'v2'
               : 'v6';
+
+            if (data.isPCI) {
+              if (data.isApiV2) {
+                data.mainApiPathPci = listingPath.replace(
+                  '{projectId}',
+                  '${projectId}',
+                );
+              }
+              if (data.isApiV6) {
+                data.mainApiPathPci = listingPath.replace(
+                  '{serviceName}',
+                  '${projectId}',
+                );
+              }
+            }
           }
           if (data.hasDashboard) {
             const [dashboardPath, dashboardFn] =
@@ -131,40 +179,13 @@ export default (plop) => {
             data.dashboardEndpointFn = dashboardFn;
           }
 
-          let apiV6Computed = {};
-          if (data.mainApiPathApiVersion === 'v6') {
-            apiV6Computed = data.isGenerateAllApi ? data.apiV6Endpoints : {
-              get: {
-                ...data.apiV6Endpoints.get,
-                operationList: data.apiV6Endpoints.get?.operationList?.filter(({ apiPath }) => [data.listingEndpointPath, data.dashboardEndpointPath].includes(apiPath))
-              }
-            }
-          }
-
-          let apiV2Computed = {}
-          if (data.mainApiPathApiVersion === 'v2') {
-            apiV2Computed = data.isGenerateAllApi ? data.apiV2Endpoints : {
-              get: {
-                ...data.apiV2Endpoints.get,
-                operationList: data.apiV2Endpoints.get?.operationList?.filter(({ apiPath }) => [data.listingEndpointPath, data.dashboardEndpointPath].includes(apiPath) || apiPath.includes('/serviceInfos'))
-              }
-            }
-          }
+          const { apiV2Computed, apiV6Computed } = apiComputed(data);
           data.apiV2Computed = apiV2Computed;
           data.apiV6Computed = apiV6Computed;
 
           return data.hasListing;
         },
         validate: (input) => input.length > 0,
-      },
-      {
-        type: 'input',
-        name: 'pimID',
-        message: 'What is the PIM ID? (leave empty for no PIM ID)',
-        validate: (input) => {
-          const number = Number(input);
-          return !isNaN(number) && typeof number === 'number';
-        },
       },
       {
         type: 'input',
@@ -181,26 +202,33 @@ export default (plop) => {
         validate: (input) => input.length > 0,
       },
     ],
-    actions: ({ apiV6Endpoints, apiV2Endpoints, templates, appName, apiV6Computed, apiV2Computed, isApiV6 }) => {
- 
+    actions: ({
+      apiV6Endpoints,
+      apiV2Endpoints,
+      templates,
+      appName,
+      apiV6Computed,
+      apiV2Computed,
+      isApiV6,
+    }) => {
       const apiV2Files =
         Object.keys(apiV2Endpoints).length > 0
           ? createApiQueryFilesActions({
-            endpoints: apiV2Computed,
-            apiVersion: 'v2',
-            appDirectory,
-          })
+              endpoints: apiV2Computed,
+              apiVersion: 'v2',
+              appDirectory,
+            })
           : [];
 
       const apiV6Files =
         Object.keys(apiV6Endpoints).length > 0
           ? createApiQueryFilesActions({
-            endpoints: apiV6Computed,
-            apiVersion: 'v6',
-            appDirectory,
-          })
+              endpoints: apiV6Computed,
+              apiVersion: 'v6',
+              appDirectory,
+            })
           : [];
-      
+
       const pages = createPages(templates, appDirectory, isApiV6);
       const translations = createTranslations(templates, appName, appDirectory);
       return [

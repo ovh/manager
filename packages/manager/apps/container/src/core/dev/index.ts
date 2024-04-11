@@ -34,8 +34,13 @@ export function setupDevApplication(shell: Shell) {
           enabled: true,
           isDefault: true,
           path: devApp,
+          hash: '',
         },
       };
+      if (devApp.indexOf('pci-') > -1) {
+        devConfig.container.hash = `/pci/projects/:projectId/${devApp.split('pci-')[1]}`
+        devConfig.container.path = 'public-cloud';
+      }
       apps[devApp] = devConfig;
       containerApp = devConfig;
       console.error(
