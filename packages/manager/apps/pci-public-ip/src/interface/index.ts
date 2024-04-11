@@ -3,6 +3,22 @@ import { PaginationState } from '@ovhcloud/manager-components';
 export interface Instance {
   id: string;
   name: string;
+  ipAddresses: IPAddress[];
+  flavorID: string;
+  imageId: string;
+  sshKeyId: string;
+  created: string;
+  region: string;
+  monthlyBilling: MonthlyBilling | null;
+  status: string;
+  planCode: string;
+  operationIds: string[];
+  currentMonthOutgoingTraffice: number;
+}
+
+export interface MonthlyBilling {
+  since: string;
+  status: string;
 }
 
 export interface AssociatedEntity {
@@ -81,3 +97,58 @@ export interface AttachInstanceProps {
 export type ImportsOptions = {
   pagination: PaginationState;
 };
+
+export interface Region {
+  region: string;
+  status: string;
+  openstackId: string;
+}
+
+export interface Network {
+  id: string;
+  name: string;
+  vlanId: number;
+  type: string;
+  status: string;
+  regions: Region[];
+}
+
+export interface IPAddress {
+  ip: string;
+  type: string;
+  version: number;
+  networkId: string;
+  gatewayIP: string;
+}
+
+export interface Gateway {
+  id: string;
+  status: string;
+  name: string;
+  region: string;
+  model: string;
+  interfaces: Interface[];
+  externalInformation: {
+    ips: {
+      ip: string;
+      subnetId: string;
+    }[];
+    networkId: string;
+  };
+}
+
+export interface Interface {
+  id: string;
+  ip: string;
+  subnetId: string;
+  networkId: string;
+}
+
+export interface UpdateInstanceProps {
+  projectId: string;
+  floatingIP: FloatingIP;
+  instanceId: string;
+  ipAddresses: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}
