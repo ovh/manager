@@ -8,10 +8,12 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementCtrl(
   TelephonyMediator,
   OvhApiTelephony,
   displayAntihackAlert,
+  softphoneBetaEligibility,
   filteringLink,
 ) {
   const self = this;
 
+  this.softphoneBetaEligibility = softphoneBetaEligibility;
   this.displayAntihackAlert = displayAntihackAlert;
   this.filteringLink = filteringLink;
   this.billingAccount = $stateParams.billingAccount;
@@ -102,6 +104,14 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementCtrl(
           'telecom.telephony.billingAccount.line.dashboard.phone.accessories',
         text: $translate.instant(
           'telephony_line_phone_actions_line_order_headset',
+        ),
+      },
+      {
+        name: 'line_softphone',
+        disabled: !self.softphoneBetaEligibility,
+        sref: 'telecom.telephony.billingAccount.line.dashboard.softphone',
+        text: $translate.instant(
+          'telephony_line_management_actions_line_softphone',
         ),
       },
     ];
