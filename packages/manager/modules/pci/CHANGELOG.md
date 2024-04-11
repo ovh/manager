@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.34.0...@ovh-ux/manager-pci@6.35.0) (2024-04-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2915] ([fadb7c2](https://github.com/ovh/manager/commit/fadb7c22ae7fb69b6c2e7f3c3bd922e0f5a38b84))
+
+
+### Features
+
+* **pci.storage:** add encryption for S3 object storage (OMK) ([#11249](https://github.com/ovh/manager/issues/11249)) ([ef5746a](https://github.com/ovh/manager/commit/ef5746a9f114001889ec81c9eac4a3a207d512e4))
+
+
+
+
+
 # [6.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.33.1...@ovh-ux/manager-pci@6.34.0) (2024-04-10)
 
 
