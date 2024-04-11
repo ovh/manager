@@ -6,20 +6,46 @@ import img from '@/assets/images/mfa/double-authentication.png';
 import img2x from '@/assets/images/mfa/double-authentication@2x.png';
 import img3x from '@/assets/images/mfa/double-authentication@3x.png';
 
-import style from './style.module.scss';
+import { OsdsButton, OsdsText, OsdsIcon } from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_TEXT_COLOR_HUE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { Subtitle } from '@ovhcloud/manager-components';
 
 type MfaEnrollmentProps = {
   forced?: boolean;
-  onHide: CallableFunction;
+  onHide: () => void;
 };
 
-export default function MfaEnrollment({ forced, onHide }: MfaEnrollmentProps) {
+const TextContent = ({ children }: { children: string }) => (
+  <OsdsText
+    level={ODS_TEXT_LEVEL.caption}
+    color={ODS_THEME_COLOR_INTENT.text}
+    size={ODS_TEXT_SIZE._300}
+    hue={ODS_TEXT_COLOR_HUE._500}
+    className="block mt-2"
+  >
+    {children}
+  </OsdsText>
+);
+
+const MfaEnrollment = ({ forced, onHide }: MfaEnrollmentProps) => {
   const { t } = useTranslation('mfa-enrollment');
   const redirectUrl = encodeURIComponent(window.top.location.href);
   const shell = useShell();
   const mfaURL = shell
     .getPlugin('navigation')
-    .getURL('dedicated', `#/useraccount/security/mfa?redirect_url=${redirectUrl}`);
+    .getURL(
+      'dedicated',
+      `#/useraccount/security/mfa?redirect_url=${redirectUrl}`,
+    );
 
   const gotoMfa = () => {
     shell.getPlugin('tracking').trackClick({
@@ -31,46 +57,56 @@ export default function MfaEnrollment({ forced, onHide }: MfaEnrollmentProps) {
   };
 
   return (
-    <div className={style.mfa_container}>
-      <div className="container-fluid">
-        <div className="row minh-100 justify-content-md-center d-flex">
-          <div className="col-md-7 p-4 p-md-5 bg-white minh-100">
-            <div className="p-0 p-md-5">
-              <div className="text-center mb-3">
-                <img
-                  src={img}
-                  srcSet={`${img2x} x2, ${img3x} x3`}
-                  className="img-fluid"
-                />
-              </div>
+    <div className="relative w-full h-full overflow-y-scroll bg-white-100 z-50">
+      <div className="flex justify-center">
+        <div className="md:w-7/12 p-4 md:p-5 bg-white min-h-screen">
+          <div className="p-0 md:p-5">
+            <div className="text-center mb-3">
+              <img
+                src={img}
+                srcSet={`${img2x} 2x, ${img3x} 3x`}
+                className="img-fluid"
+                alt=""
+              />
+            </div>
 
-              <h1 className="oui-heading_4">{t('mfa_enrollment_title')}</h1>
-              <p>{t('mfa_enrollment_info1')}</p>
-              <p>{t('mfa_enrollment_info2')}</p>
-              <div className="mx-auto my-5 float-right">
-                {!forced && (
-                  <button
-                    className="oui-button oui-button_secondary m-2"
-                    onClick={() => onHide()}
-                  >
-                    <span>{t('mfa_enrollment_cancel')}</span>
-                  </button>
-                )}
-                <button
-                  className="oui-button oui-button_primary oui-button_icon-right m-2"
-                  onClick={gotoMfa}
+            <Subtitle>{t('mfa_enrollment_title')}</Subtitle>
+            <TextContent>{t('mfa_enrollment_info1')}</TextContent>
+            <TextContent>{t('mfa_enrollment_info2')}</TextContent>
+
+            <div className="mx-auto my-5 float-right">
+              {!forced && (
+                <OsdsButton
+                  size={ODS_BUTTON_SIZE.sm}
+                  variant={ODS_BUTTON_VARIANT.stroked}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  className="inline-block"
+                  onClick={onHide}
                 >
-                  <span>{t('mfa_enrollment_go')}</span>
-                  <span
-                    className="oui-icon oui-icon-chevron-right"
-                    aria-hidden="true"
-                  ></span>
-                </button>
-              </div>
+                  <span>{t('mfa_enrollment_cancel')}</span>
+                </OsdsButton>
+              )}
+              <OsdsButton
+                size={ODS_BUTTON_SIZE.sm}
+                variant={ODS_BUTTON_VARIANT.flat}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                className="inline-block pl-3"
+                onClick={gotoMfa}
+              >
+                {t('mfa_enrollment_go')}
+                <span slot="end">
+                  <OsdsIcon
+                    name={ODS_ICON_NAME.CHEVRON_RIGHT}
+                    size={ODS_ICON_SIZE.xs}
+                    contrasted
+                  />
+                </span>
+              </OsdsButton>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+export default MfaEnrollment;
