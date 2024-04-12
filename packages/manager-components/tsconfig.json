@@ -10,6 +10,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "Node",
+    "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
     "declarationDir": "./dist/types",
