@@ -42,7 +42,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { FailoverIP } from '@/interface';
 import { useFailoverIPs } from '@/api/hooks/useFailoverIP';
-import FailoverIPActions from './FailoverIPActions';
+import FailoverIPActions from './FailoverIPActions.component';
 import { pciAnnouncementBannerId } from '@/constants';
 
 export default function FailoverIPComponent({ projectId, projectUrl }) {

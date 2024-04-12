@@ -5,7 +5,7 @@ import {
   useAllFloatingIP,
   useTerminateFloatingIP,
 } from '@/api/hooks/useFloatingIP';
-import TerminateModal from '@/components/terminate/TerminateModal';
+import TerminateModal from '@/components/terminate/Terminate.component';
 import { ResponseAPIError } from '@/interface';
 
 export default function TerminateFloatingIPPage() {

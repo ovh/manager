@@ -19,7 +19,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { ActionProps } from '@/interface';
-import { NetworkSecurityAction } from './NetworkSecurityAction';
+import { NetworkSecurityAction } from './NetworkSecurityAction.component';
 
 export default function FloatingIPActions({
   ipId,
