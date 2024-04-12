@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -34,6 +33,7 @@ import {
 import { useToast } from '@/components/ui/use-toast';
 import { useUserForm } from './formUser/formUser.hook';
 import RolesSelect from './formUser/rolesSelect';
+import { useServiceData } from '../../layout';
 
 interface AddEditUserModalProps {
   isEdition: boolean;
@@ -53,7 +53,7 @@ const AddEditUserModal = ({
   onSuccess,
   onError,
 }: AddEditUserModalProps) => {
-  const { projectId } = useParams();
+  const { projectId } = useServiceData();
 
   const { form, schema } = useUserForm({
     existingUsers: users,
@@ -111,7 +111,6 @@ const AddEditUserModal = ({
       if ('name' in userEditionValue) {
         delete userEditionValue.name;
       }
-
       editUser({
         projectId,
         engine: service.engine,
@@ -150,6 +149,7 @@ const AddEditUserModal = ({
                   <FormLabel>{t('formUserFieldNameLabel')}</FormLabel>
                   <FormControl>
                     <Input
+                      data-testid="add-edit-username-input"
                       placeholder="name"
                       disabled={
                         isPendingAddUser || isPendingEditUser || isEdition
@@ -171,6 +171,7 @@ const AddEditUserModal = ({
                     <FormLabel>{t('formUserFieldGroupLabel')}</FormLabel>
                     <FormControl>
                       <Input
+                        data-testid="add-edit-group-input"
                         placeholder="group"
                         disabled={isPendingAddUser || isPendingEditUser}
                         {...field}
@@ -208,15 +209,13 @@ const AddEditUserModal = ({
                     <FormControl>
                       <TagsInput
                         {...field}
+                        data-testid="add-edit-keys-input"
                         value={field.value}
                         onChange={(newTags) => form.setValue('keys', newTags)}
                         schema={
-                          ('keys' in schema.shape &&
-                            (schema.shape.keys as z.ZodArray<
-                              z.ZodString,
-                              'many'
-                            >).element) ||
-                          undefined
+                          'keys' in schema.shape &&
+                          (schema.shape.keys as z.ZodArray<z.ZodString, 'many'>)
+                            .element
                         }
                       />
                     </FormControl>
@@ -242,12 +241,11 @@ const AddEditUserModal = ({
                           form.setValue('categories', newTags)
                         }
                         schema={
-                          ('categories' in schema.shape &&
-                            (schema.shape.categories as z.ZodArray<
-                              z.ZodString,
-                              'many'
-                            >).element) ||
-                          undefined
+                          'categories' in schema.shape &&
+                          (schema.shape.categories as z.ZodArray<
+                            z.ZodString,
+                            'many'
+                          >).element
                         }
                       />
                     </FormControl>
@@ -273,12 +271,11 @@ const AddEditUserModal = ({
                           form.setValue('commands', newTags)
                         }
                         schema={
-                          ('commands' in schema.shape &&
-                            (schema.shape.commands as z.ZodArray<
-                              z.ZodString,
-                              'many'
-                            >).element) ||
-                          undefined
+                          'commands' in schema.shape &&
+                          (schema.shape.commands as z.ZodArray<
+                            z.ZodString,
+                            'many'
+                          >).element
                         }
                       />
                     </FormControl>
@@ -304,12 +301,11 @@ const AddEditUserModal = ({
                           form.setValue('channels', newTags)
                         }
                         schema={
-                          ('channels' in schema.shape &&
-                            (schema.shape.channels as z.ZodArray<
-                              z.ZodString,
-                              'many'
-                            >).element) ||
-                          undefined
+                          'channels' in schema.shape &&
+                          (schema.shape.channels as z.ZodArray<
+                            z.ZodString,
+                            'many'
+                          >).element
                         }
                       />
                     </FormControl>
@@ -324,7 +320,7 @@ const AddEditUserModal = ({
                 <Button
                   type="button"
                   variant="outline"
-                  data-testid="add-edit-user-modal-cancel-button"
+                  data-testid="add-edit-user-cancel-button"
                 >
                   {t('formUserButtonCancel')}
                 </Button>
@@ -332,7 +328,7 @@ const AddEditUserModal = ({
               <Button
                 type="submit"
                 disabled={isPendingAddUser || isPendingEditUser}
-                data-testid="add-edit-user-modal-submit-button"
+                data-testid="add-edit-user-submit-button"
               >
                 {t(`${prefix}UserButtonConfirm`)}
               </Button>
