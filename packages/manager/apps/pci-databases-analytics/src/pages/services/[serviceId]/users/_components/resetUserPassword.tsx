@@ -103,6 +103,7 @@ const ResetUserPassword = ({
                 <Button
                   onClick={() => handleCopyPass()}
                   className="absolute top-0 right-0 m-2 p-2 text-sm bg-primary-500 text-white rounded hover:bg-primary-700 transition duration-300"
+                  data-testid="reset-password-copy-button"
                 >
                   <Copy className="size-4" />
                   <span className="sr-only">copy</span>
@@ -121,7 +122,11 @@ const ResetUserPassword = ({
         <DialogFooter className="flex justify-end">
           {newPass ? (
             <DialogClose asChild onClick={() => onClose()}>
-              <Button type="button" variant="outline">
+              <Button
+                type="button"
+                variant="outline"
+                data-testid="reset-password-close-button"
+              >
                 {t('resetUserPasswordButtonClose')}
               </Button>
             </DialogClose>

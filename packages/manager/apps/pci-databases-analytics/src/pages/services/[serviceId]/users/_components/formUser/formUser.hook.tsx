@@ -27,20 +27,22 @@ export const useUserForm = ({
       u.username.includes('@') ? u.username.split('@')[0] : u.username,
     );
 
-  const nameRules = z
-    .string()
-    .min(USER_CONFIG.name.min, {
-      message: t('formUserErrorMinLength', { min: USER_CONFIG.name.min }),
-    })
-    .max(USER_CONFIG.name.max, {
-      message: t('formUserErrorMaxLength', { max: USER_CONFIG.name.max }),
-    })
-    .regex(USER_CONFIG.name.pattern, {
-      message: t('formUserNameErrorPattern'),
-    })
-    .refine((value) => !usedNames.includes(value), {
-      message: t('formUserNameErrorDuplicate'),
-    });
+  const nameRules = editedUser
+    ? z.string()
+    : z
+        .string()
+        .min(USER_CONFIG.name.min, {
+          message: t('formUserErrorMinLength', { min: USER_CONFIG.name.min }),
+        })
+        .max(USER_CONFIG.name.max, {
+          message: t('formUserErrorMaxLength', { max: USER_CONFIG.name.max }),
+        })
+        .regex(USER_CONFIG.name.pattern, {
+          message: t('formUserNameErrorPattern'),
+        })
+        .refine((value) => !usedNames.includes(value), {
+          message: t('formUserNameErrorDuplicate'),
+        });
 
   const groupRules = z
     .string()

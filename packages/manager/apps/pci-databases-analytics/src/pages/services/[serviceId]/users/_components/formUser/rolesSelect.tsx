@@ -139,54 +139,59 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
               render={({ field }) => (
                 <FormItem ref={ref}>
                   <FormControl>
-                    <Select
-                      value={field.value}
-                      onValueChange={field.onChange}
-                      disabled={
-                        availableRoles.admin.length === 0 &&
-                        availableRoles.custom.length === 0
-                      }
-                    >
-                      <SelectTrigger ref={roleInputRef}>
-                        <SelectValue
-                          placeholder={t('formUserRoleInputPlaceholder')}
-                        />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {availableRoles.admin.length > 0 && (
-                          <SelectGroup>
-                            <SelectLabel>
-                              {t('formUserRoleInputAdminRoles')}
-                            </SelectLabel>
-                            {availableRoles.admin.map((role) => (
-                              <SelectItem
-                                key={role}
-                                value={role}
-                                className="cursor-pointer"
-                              >
-                                <Badge>{getRoleName(role)}</Badge>
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        )}
-                        {availableRoles.custom.length > 0 && (
-                          <SelectGroup>
-                            <SelectLabel>
-                              {t('formUserRoleInputCustomRoles')}
-                            </SelectLabel>
-                            {availableRoles.custom.map((role) => (
-                              <SelectItem
-                                key={role}
-                                value={role}
-                                className="cursor-pointer"
-                              >
-                                <Badge>{getRoleName(role)}</Badge>
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        )}
-                      </SelectContent>
-                    </Select>
+                    <div data-testid="roles-select-input">
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        disabled={
+                          availableRoles.admin.length === 0 &&
+                          availableRoles.custom.length === 0
+                        }
+                      >
+                        <SelectTrigger
+                          ref={roleInputRef}
+                          data-testid="roles-select-input-trigger"
+                        >
+                          <SelectValue
+                            placeholder={t('formUserRoleInputPlaceholder')}
+                          />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {availableRoles.admin.length > 0 && (
+                            <SelectGroup>
+                              <SelectLabel>
+                                {t('formUserRoleInputAdminRoles')}
+                              </SelectLabel>
+                              {availableRoles.admin.map((role) => (
+                                <SelectItem
+                                  key={role}
+                                  value={role}
+                                  className="cursor-pointer"
+                                >
+                                  <Badge>{getRoleName(role)}</Badge>
+                                </SelectItem>
+                              ))}
+                            </SelectGroup>
+                          )}
+                          {availableRoles.custom.length > 0 && (
+                            <SelectGroup>
+                              <SelectLabel>
+                                {t('formUserRoleInputCustomRoles')}
+                              </SelectLabel>
+                              {availableRoles.custom.map((role) => (
+                                <SelectItem
+                                  key={role}
+                                  value={role}
+                                  className="cursor-pointer"
+                                >
+                                  <Badge>{getRoleName(role)}</Badge>
+                                </SelectItem>
+                              ))}
+                            </SelectGroup>
+                          )}
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -230,6 +235,7 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
             variant={'ghost'}
             type="button"
             onClick={form.handleSubmit(handleAddRole)}
+            data-testid="roles-select-submit-button"
             className="text-primary rounded-full p-2 ml-2 hover:text-primary"
           >
             <PlusCircle />
@@ -250,7 +256,11 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
           <ScrollArea className="h-40 rounded-md border">
             <ul ref={scrollListRef}>
               {value.map((role, index) => (
-                <li key={role} className="flex items-center">
+                <li
+                  key={role}
+                  className="flex items-center"
+                  data-testid="roles-select-list-roles"
+                >
                   <Button
                     className="text-destructive rounded-full p-2 ml-2 hover:text-destructive h-8 w-8"
                     variant={'ghost'}
