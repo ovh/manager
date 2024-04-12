@@ -1,156 +1,107 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as usersHook from '@/hooks/api/users.api.hooks';
 import * as LayoutContext from '@/pages/services/[serviceId]/layout';
 import Users, {
   breadcrumb as Breadcrumb,
-} from '@/pages/services/[serviceId]/users'; // Adjust the import path according to your project structure
+} from '@/pages/services/[serviceId]/users';
 import { database } from '@/models/database';
 import { Locale } from '@/hooks/useLocale';
-import { GenericUser } from '@/api/databases/users';
-import { RouterWithLocationWrapper } from '@/__tests__/helpers/wrappers/RouterWithLocationWrapper';
+import * as usersApi from '@/api/databases/users';
+import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
+import { mockedDatabaseUser } from '@/__tests__/helpers/mocks/databaseUser';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 
-const mockService: database.Service = {
-  engine: database.EngineEnum.mongodb,
-  id: 'serviceId',
-  capabilities: {},
-  category: database.CategoryEnum.operational,
-  createdAt: '',
-  description: '',
-  endpoints: [],
-  backupTime: '',
-  disk: {
-    size: 0,
-    type: '',
-  },
-  nodeNumber: 0,
-  flavor: '',
-  ipRestrictions: [],
-  maintenanceTime: '',
-  networkType: database.NetworkTypeEnum.private,
-  nodes: [],
-  plan: '',
-  status: database.StatusEnum.READY,
-  version: '',
-  backups: {
-    regions: [],
-    time: '',
+// Override mock to add capabilities
+const mockedService = {
+  ...mockedServiceOrig,
+  capabilities: {
+    userCredentialsReset: {
+      create: database.service.capability.StateEnum.enabled,
+    },
+    users: {
+      create: database.service.capability.StateEnum.enabled,
+      update: database.service.capability.StateEnum.enabled,
+      delete: database.service.capability.StateEnum.enabled,
+      read: database.service.capability.StateEnum.enabled,
+    },
   },
 };
-// Mock necessary hooks and dependencies
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
-vi.mock('@/hooks/api/users.api.hooks', () => {
-  const useGetUsers = vi.fn();
-  const useAddUser = vi.fn(() => ({
-    addUser: vi.fn(),
-    isPending: false,
-  }));
-  const useEditUser = vi.fn(() => ({
-    editUser: vi.fn(),
-    isPending: false,
-  }));
-  const useDeleteUser = vi.fn(() => ({
-    deleteUser: vi.fn(),
-    isPending: false,
-  }));
-  const useResetUserPassword = vi.fn(() => ({
-    useResetUserPassword: vi.fn(),
-    isPending: false,
-  }));
-  const useGetRoles = vi.fn(() => ({
-    data: [],
-    isSuccess: true,
-  }));
-  return {
-    useGetUsers,
-    useAddUser,
-    useEditUser,
-    useGetRoles,
-    useResetUserPassword,
-    useDeleteUser,
-  };
-});
-
-vi.mock('@/pages/services/[serviceId]/layout', () => {
-  const useServiceData = vi.fn(() => ({
-    projectId: 'projectId',
-    service: mockService,
-    category: 'operational',
-    serviceQuery: {} as UseQueryResult<database.Service, Error>,
-  }));
-  return {
-    useServiceData,
-  };
-});
-
-vi.mock('@ovh-ux/manager-react-shell-client', () => {
-  return {
-    useShell: vi.fn(() => ({
-      i18n: {
-        getLocale: vi.fn(() => Locale.fr_FR),
-        onLocaleChange: vi.fn(),
-        setLocale: vi.fn(),
-      },
-    })),
-  };
-});
 
 describe('Users page', () => {
+  beforeEach(() => {
+    // Mock necessary hooks and dependencies
+    vi.mock('react-i18next', () => ({
+      useTranslation: () => ({
+        t: (key: string) => key,
+      }),
+    }));
+    vi.mock('@/api/databases/users', () => ({
+      getUsers: vi.fn(() => [mockedDatabaseUser]),
+      addUser: vi.fn((user) => user),
+      deleteUser: vi.fn(),
+      resetUserPassword: vi.fn(),
+      getRoles: vi.fn(() => []),
+      editUser: vi.fn((user) => user),
+    }));
+    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+      useServiceData: vi.fn(() => ({
+        projectId: 'projectId',
+        service: mockedService,
+        category: 'operational',
+        serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      })),
+    }));
+    vi.mock('@ovh-ux/manager-react-shell-client', () => {
+      return {
+        useShell: vi.fn(() => ({
+          i18n: {
+            getLocale: vi.fn(() => Locale.fr_FR),
+            onLocaleChange: vi.fn(),
+            setLocale: vi.fn(),
+          },
+        })),
+      };
+    });
+  });
   afterEach(() => {
     vi.clearAllMocks();
   });
   it('renders the breadcrumb component', async () => {
     const translationKey = 'breadcrumb';
-    render(<Breadcrumb />);
+    render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText(translationKey)).toBeInTheDocument();
     });
   });
   it('renders and shows skeletons while loading', async () => {
-    vi.mocked(usersHook.useGetUsers).mockResolvedValue({
-      data: [],
-      isSuccess: false,
-    } as UseQueryResult<GenericUser[], Error>);
-    render(<Users />, { wrapper: RouterWithLocationWrapper });
+    vi.mocked(usersApi.getUsers).mockImplementationOnce(() => {
+      throw apiErrorMock;
+    });
+    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('users-table-skeleton')).toBeInTheDocument();
   });
   it('renders and shows users table', async () => {
-    vi.mocked(usersHook.useGetUsers).mockReturnValue({
-      isSuccess: true,
-      data: [
-        {
-          id: '0',
-          username: 'avadmin',
-          status: database.StatusEnum.READY,
-          createdAt: '2024-03-19T11:34:47.088723+01:00',
-        },
-      ],
-    } as UseQueryResult<GenericUser[], Error>);
-    render(<Users />, { wrapper: RouterWithLocationWrapper });
+    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText('avadmin')).toBeInTheDocument();
+      expect(screen.getByText(mockedDatabaseUser.username)).toBeInTheDocument();
     });
   });
   it('renders roles column for mongodb', async () => {
-    vi.mocked(usersHook.useGetUsers).mockReturnValue({
-      isSuccess: true,
-      data: [
-        {
-          id: '0',
-          username: 'avadmin',
-          status: database.StatusEnum.READY,
-          createdAt: '2024-03-19T11:34:47.088723+01:00',
-          roles: ['mongoRole'],
-        },
-      ],
-    } as UseQueryResult<GenericUser[], Error>);
-    render(<Users />, { wrapper: RouterWithLocationWrapper });
+    vi.mocked(usersApi.getUsers).mockResolvedValue([
+      {
+        ...mockedDatabaseUser,
+        roles: ['mongoRole'],
+      },
+    ]);
+    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText('mongoRole')).toBeInTheDocument();
     });
@@ -159,28 +110,22 @@ describe('Users page', () => {
     vi.mocked(LayoutContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
-        ...mockService,
+        ...mockedService,
         engine: database.EngineEnum.redis,
       },
       category: 'operational',
       serviceQuery: {} as UseQueryResult<database.Service, Error>,
     });
-    vi.mocked(usersHook.useGetUsers).mockReturnValue({
-      isSuccess: true,
-      data: [
-        {
-          id: '0',
-          username: 'avadmin',
-          status: database.StatusEnum.READY,
-          createdAt: '2024-03-19T11:34:47.088723+01:00',
-          categories: ['categories'],
-          channels: ['channels'],
-          commands: ['commands'],
-          keys: ['keys'],
-        },
-      ],
-    } as UseQueryResult<GenericUser[], Error>);
-    render(<Users />, { wrapper: RouterWithLocationWrapper });
+    vi.mocked(usersApi.getUsers).mockResolvedValue([
+      {
+        ...mockedDatabaseUser,
+        categories: ['categories'],
+        channels: ['channels'],
+        commands: ['commands'],
+        keys: ['keys'],
+      },
+    ]);
+    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText('categories')).toBeInTheDocument();
       expect(screen.getByText('channels')).toBeInTheDocument();
@@ -192,25 +137,19 @@ describe('Users page', () => {
     vi.mocked(LayoutContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
-        ...mockService,
+        ...mockedService,
         engine: database.EngineEnum.m3db,
       },
       category: 'operational',
       serviceQuery: {} as UseQueryResult<database.Service, Error>,
     });
-    vi.mocked(usersHook.useGetUsers).mockReturnValue({
-      isSuccess: true,
-      data: [
-        {
-          id: '0',
-          username: 'avadmin',
-          status: database.StatusEnum.READY,
-          createdAt: '2024-03-19T11:34:47.088723+01:00',
-          group: 'testGroup',
-        },
-      ],
-    } as UseQueryResult<GenericUser[], Error>);
-    render(<Users />, { wrapper: RouterWithLocationWrapper });
+    vi.mocked(usersApi.getUsers).mockResolvedValue([
+      {
+        ...mockedDatabaseUser,
+        group: 'testGroup',
+      },
+    ]);
+    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText('testGroup')).toBeInTheDocument();
     });
@@ -219,7 +158,7 @@ describe('Users page', () => {
     vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
-        ...mockService,
+        ...mockedService,
         capabilities: {
           users: {
             create: database.service.capability.StateEnum.enabled,
@@ -229,18 +168,27 @@ describe('Users page', () => {
       category: 'operational',
       serviceQuery: {} as UseQueryResult<database.Service, Error>,
     });
-    render(<Users />, { wrapper: RouterWithLocationWrapper });
+    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('users-add-button')).toBeInTheDocument();
   });
   it('does not display add user button if capability is absent', async () => {
-    render(<Users />, { wrapper: RouterWithLocationWrapper });
+    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+      projectId: 'projectId',
+      service: {
+        ...mockedService,
+        capabilities: {},
+      },
+      category: 'operational',
+      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+    });
+    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('users-add-button')).toBeNull();
   });
   it('disable add user button if capability is disabled', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
-        ...mockService,
+        ...mockedService,
         capabilities: {
           users: {
             create: database.service.capability.StateEnum.disabled,
@@ -250,9 +198,188 @@ describe('Users page', () => {
       category: 'operational',
       serviceQuery: {} as UseQueryResult<database.Service, Error>,
     });
-    render(<Users />, { wrapper: RouterWithLocationWrapper });
+    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     const addButton = screen.queryByTestId('users-add-button');
     expect(addButton).toBeInTheDocument();
     expect(addButton).toBeDisabled();
+  });
+});
+
+describe('Open modals', () => {
+  // Helper function to open a button in the table menu
+  const openButtonInMenu = async (buttonId: string) => {
+    act(() => {
+      const trigger = screen.getByTestId('user-action-trigger');
+      fireEvent.focus(trigger);
+      fireEvent.keyDown(trigger, {
+        key: 'Enter',
+        code: 'Enter',
+        keyCode: 13,
+        charCode: 13,
+      });
+    });
+    const actionButton = screen.getByTestId(buttonId);
+    await waitFor(() => {
+      expect(actionButton).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(actionButton);
+    });
+  };
+  beforeEach(async () => {
+    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByText(mockedDatabaseUser.username)).toBeInTheDocument();
+    });
+  });
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('shows add user modal', async () => {
+    await openButtonInMenu('user-action-delete-button');
+    await waitFor(() => {
+      expect(screen.getByTestId('delete-user-modal')).toBeInTheDocument();
+    });
+  });
+  it('closes add user modal', async () => {
+    act(() => {
+      fireEvent.click(screen.getByTestId('users-add-button'));
+    });
+    await waitFor(() => {
+      expect(screen.getByTestId('add-edit-user-modal')).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('add-edit-user-cancel-button'));
+    });
+    await waitFor(() => {
+      expect(
+        screen.queryByTestId('add-edit-user-modal'),
+      ).not.toBeInTheDocument();
+    });
+  });
+  it('refetch data on add user success', async () => {
+    act(() => {
+      fireEvent.click(screen.getByTestId('users-add-button'));
+    });
+    await waitFor(() => {
+      expect(screen.getByTestId('add-edit-user-modal')).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.change(screen.getByTestId('add-edit-username-input'), {
+        target: {
+          value: 'newUser',
+        },
+      });
+      fireEvent.click(screen.getByTestId('add-edit-user-submit-button'));
+    });
+    await waitFor(() => {
+      expect(
+        screen.queryByTestId('add-edit-user-modal'),
+      ).not.toBeInTheDocument();
+      expect(usersApi.getUsers).toHaveBeenCalled();
+    });
+  });
+
+  it('shows delete user modal', async () => {
+    await openButtonInMenu('user-action-delete-button');
+    await waitFor(() => {
+      expect(screen.getByTestId('delete-user-modal')).toBeInTheDocument();
+    });
+  });
+  it('closes delete user modal', async () => {
+    await openButtonInMenu('user-action-delete-button');
+    await waitFor(() => {
+      expect(screen.getByTestId('delete-user-modal')).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('delete-user-cancel-button'));
+    });
+    await waitFor(() => {
+      expect(screen.queryByTestId('delete-user-modal')).not.toBeInTheDocument();
+    });
+  });
+  it('refetch data on delete user success', async () => {
+    const mockedServiceData = vi
+      .mocked(LayoutContext.useServiceData)
+      .getMockImplementation();
+    mockedServiceData().serviceQuery.refetch = vi.fn();
+    await openButtonInMenu('user-action-delete-button');
+    await waitFor(() => {
+      expect(screen.getByTestId('delete-user-modal')).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('delete-user-submit-button'));
+    });
+    await waitFor(() => {
+      expect(screen.queryByTestId('delete-user-modal')).not.toBeInTheDocument();
+      expect(mockedServiceData().serviceQuery.refetch).toHaveBeenCalled();
+    });
+  });
+
+  it('shows edit user modal', async () => {
+    await openButtonInMenu('user-action-edit-button');
+    await waitFor(() => {
+      expect(screen.getByTestId('add-edit-user-modal')).toBeInTheDocument();
+    });
+  });
+  it('closes edit user modal', async () => {
+    await openButtonInMenu('user-action-edit-button');
+    await waitFor(() => {
+      expect(screen.getByTestId('add-edit-user-modal')).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('add-edit-user-cancel-button'));
+    });
+    await waitFor(() => {
+      expect(
+        screen.queryByTestId('add-edit-user-modal'),
+      ).not.toBeInTheDocument();
+    });
+  });
+  it('refetch data on edit user success', async () => {
+    const mockedServiceData = vi
+      .mocked(LayoutContext.useServiceData)
+      .getMockImplementation();
+    mockedServiceData().serviceQuery.refetch = vi.fn();
+    await openButtonInMenu('user-action-edit-button');
+    await waitFor(() => {
+      expect(screen.getByTestId('add-edit-user-modal')).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('add-edit-user-submit-button'));
+    });
+    await waitFor(() => {
+      expect(
+        screen.queryByTestId('add-edit-user-modal'),
+      ).not.toBeInTheDocument();
+      expect(mockedServiceData().serviceQuery.refetch).toHaveBeenCalled();
+    });
+  });
+
+  it('shows reset password user modal', async () => {
+    await openButtonInMenu('user-action-reset-password-button');
+    await waitFor(() => {
+      expect(screen.getByTestId('reset-password-modal')).toBeInTheDocument();
+    });
+  });
+  it('closes reset password user modal', async () => {
+    const mockedServiceData = vi
+      .mocked(LayoutContext.useServiceData)
+      .getMockImplementation();
+    mockedServiceData().serviceQuery.refetch = vi.fn();
+    await openButtonInMenu('user-action-reset-password-button');
+    await waitFor(() => {
+      expect(screen.getByTestId('reset-password-modal')).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('reset-password-cancel-button'));
+    });
+    await waitFor(() => {
+      expect(
+        screen.queryByTestId('reset-password-modal'),
+      ).not.toBeInTheDocument();
+      expect(mockedServiceData().serviceQuery.refetch).toHaveBeenCalled();
+    });
   });
 });

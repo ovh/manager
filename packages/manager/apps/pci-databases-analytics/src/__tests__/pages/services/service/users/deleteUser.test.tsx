@@ -7,102 +7,56 @@ import { Locale } from '@/hooks/useLocale';
 import * as usersApi from '@/api/databases/users';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import DeleteUser from '@/pages/services/[serviceId]/users/_components/deleteUser';
-import { CdbError } from '@/api/databases';
 import { useToast } from '@/components/ui/use-toast';
-
-const mockService: database.Service = {
-  engine: database.EngineEnum.mongodb,
-  id: 'serviceId',
-  capabilities: {
-    userCredentialsReset: {
-      create: database.service.capability.StateEnum.enabled,
-    },
-    users: {
-      create: database.service.capability.StateEnum.enabled,
-      update: database.service.capability.StateEnum.enabled,
-      delete: database.service.capability.StateEnum.enabled,
-      read: database.service.capability.StateEnum.enabled,
-    },
-  },
-  category: database.CategoryEnum.operational,
-  createdAt: '',
-  description: '',
-  endpoints: [],
-  backupTime: '',
-  disk: {
-    size: 0,
-    type: '',
-  },
-  nodeNumber: 0,
-  flavor: '',
-  ipRestrictions: [],
-  maintenanceTime: '',
-  networkType: database.NetworkTypeEnum.private,
-  nodes: [],
-  plan: '',
-  status: database.StatusEnum.READY,
-  version: '',
-  backups: {
-    regions: [],
-    time: '',
-  },
-};
-// Mock necessary hooks and dependencies
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-vi.mock('@/api/databases/users', () => ({
-  getUsers: vi.fn(() => [
-    {
-      id: '0',
-      username: 'avadmin',
-      status: database.StatusEnum.READY,
-      createdAt: '2024-03-19T11:34:47.088723+01:00',
-    },
-  ]),
-  addUser: vi.fn(),
-  deleteUser: vi.fn(),
-  resetUserPassword: vi.fn(),
-  getRoles: vi.fn(() => []),
-  editUser: vi.fn(),
-}));
-
-vi.mock('@/pages/services/[serviceId]/layout', () => {
-  const useServiceData = vi.fn(() => ({
-    projectId: 'projectId',
-    service: mockService,
-    category: 'operational',
-    serviceQuery: {} as UseQueryResult<database.Service, Error>,
-  }));
-  return {
-    useServiceData,
-  };
-});
-
-vi.mock('@ovh-ux/manager-react-shell-client', () => {
-  return {
-    useShell: vi.fn(() => ({
-      i18n: {
-        getLocale: vi.fn(() => Locale.fr_FR),
-        onLocaleChange: vi.fn(),
-        setLocale: vi.fn(),
-      },
-    })),
-  };
-});
-vi.mock('@/components/ui/use-toast', () => {
-  const toastMock = vi.fn();
-  return {
-    useToast: vi.fn(() => ({
-      toast: toastMock,
-    })),
-  };
-});
+import { mockedService } from '@/__tests__/helpers/mocks/services';
+import { mockedDatabaseUser } from '@/__tests__/helpers/mocks/databaseUser';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 
 describe('Delete user modal', () => {
-  beforeEach(async () => {});
+  beforeEach(() => {
+    vi.mock('react-i18next', () => ({
+      useTranslation: () => ({
+        t: (key: string) => key,
+      }),
+    }));
+    vi.mock('@/api/databases/users', () => ({
+      getUsers: vi.fn(() => [mockedDatabaseUser]),
+      addUser: vi.fn(),
+      deleteUser: vi.fn(),
+      resetUserPassword: vi.fn(),
+      getRoles: vi.fn(() => []),
+      editUser: vi.fn(),
+    }));
+
+    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+      useServiceData: vi.fn(() => ({
+        projectId: 'projectId',
+        service: mockedService,
+        category: 'operational',
+        serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      })),
+    }));
+
+    vi.mock('@ovh-ux/manager-react-shell-client', () => {
+      return {
+        useShell: vi.fn(() => ({
+          i18n: {
+            getLocale: vi.fn(() => Locale.fr_FR),
+            onLocaleChange: vi.fn(),
+            setLocale: vi.fn(),
+          },
+        })),
+      };
+    });
+    vi.mock('@/components/ui/use-toast', () => {
+      const toastMock = vi.fn();
+      return {
+        useToast: vi.fn(() => ({
+          toast: toastMock,
+        })),
+      };
+    });
+  });
   afterEach(() => {
     vi.clearAllMocks();
   });
@@ -111,14 +65,12 @@ describe('Delete user modal', () => {
       open: false,
       onOpenChange: vi.fn(),
     };
-    const user = {
-      id: '0',
-      username: 'avadmin',
-      status: database.StatusEnum.READY,
-      createdAt: '2024-03-19T11:34:47.088723+01:00',
-    };
     const { rerender } = render(
-      <DeleteUser controller={controller} service={mockService} user={user} />,
+      <DeleteUser
+        controller={controller}
+        service={mockedService}
+        user={mockedDatabaseUser}
+      />,
       { wrapper: RouterWithQueryClientWrapper },
     );
     await waitFor(() => {
@@ -126,7 +78,11 @@ describe('Delete user modal', () => {
     });
     controller.open = true;
     rerender(
-      <DeleteUser controller={controller} service={mockService} user={user} />,
+      <DeleteUser
+        controller={controller}
+        service={mockedService}
+        user={mockedDatabaseUser}
+      />,
     );
     await waitFor(() => {
       expect(screen.queryByTestId('delete-user-modal')).toBeInTheDocument();
@@ -137,18 +93,12 @@ describe('Delete user modal', () => {
       open: true,
       onOpenChange: vi.fn(),
     };
-    const user = {
-      id: '0',
-      username: 'avadmin',
-      status: database.StatusEnum.READY,
-      createdAt: '2024-03-19T11:34:47.088723+01:00',
-    };
     const onSuccess = vi.fn();
     render(
       <DeleteUser
         controller={controller}
-        service={mockService}
-        user={user}
+        service={mockedService}
+        user={mockedDatabaseUser}
         onSuccess={onSuccess}
       />,
       { wrapper: RouterWithQueryClientWrapper },
@@ -170,28 +120,15 @@ describe('Delete user modal', () => {
       open: true,
       onOpenChange: vi.fn(),
     };
-    const user = {
-      id: '0',
-      username: 'avadmin',
-      status: database.StatusEnum.READY,
-      createdAt: '2024-03-19T11:34:47.088723+01:00',
-    };
     const onError = vi.fn();
     vi.mocked(usersApi.deleteUser).mockImplementation(() => {
-      throw new CdbError(
-        'test',
-        'test error',
-        new XMLHttpRequest(),
-        { message: 'api error message' },
-        500,
-        'statusText',
-      );
+      throw apiErrorMock;
     });
     render(
       <DeleteUser
         controller={controller}
-        service={mockService}
-        user={user}
+        service={mockedService}
+        user={mockedDatabaseUser}
         onError={onError}
       />,
       { wrapper: RouterWithQueryClientWrapper },
@@ -203,7 +140,7 @@ describe('Delete user modal', () => {
       expect(usersApi.deleteUser).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'deleteUserToastErrorTitle',
-        description: 'api error message',
+        description: apiErrorMock.response.data.message,
         variant: 'destructive',
       });
       expect(onError).toHaveBeenCalled();
