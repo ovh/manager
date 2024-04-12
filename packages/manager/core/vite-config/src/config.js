@@ -26,6 +26,7 @@ const getBaseConfig = (config) => {
         '@': resolve(join(process.cwd(), 'src')),
       },
       dedupe: [
+        '@ovh-ux/manager-react-shell-client',
         'i18next',
         'react',
         'react-dom',

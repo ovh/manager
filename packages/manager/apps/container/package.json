@@ -35,6 +35,7 @@
     "@ovh-ux/request-tagger": "^0.2.0",
     "@ovh-ux/shell": "^3.5.1",
     "@ovh-ux/ui-kit": "^6.7.8",
+    "@ovhcloud/manager-components": "^1.9.1",
     "@ovhcloud/ods-common-core": "^17.2.1",
     "@ovhcloud/ods-common-testing": "^17.2.1",
     "@ovhcloud/ods-common-theming": "^17.2.1",
