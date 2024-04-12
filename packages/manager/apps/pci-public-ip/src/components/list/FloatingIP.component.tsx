@@ -34,7 +34,7 @@ import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FloatingIP } from '@/interface';
 import { useFloatingIPs } from '@/api/hooks/useFloatingIP';
-import FloatingIPActions from './FloatingIPActions';
+import FloatingIPActions from './FloatingIPActions.component';
 import { pciAnnouncementBannerId } from '@/constants';
 
 export default function FloatingIPComponent({ projectId, projectUrl }) {

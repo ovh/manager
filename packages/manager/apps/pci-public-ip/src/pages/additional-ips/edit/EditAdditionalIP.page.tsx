@@ -7,7 +7,7 @@ import {
   useAttachInstance,
 } from '@/api/hooks/useFailoverIP';
 import { useAllInstance } from '@/api/hooks/useInstance';
-import EditInstanceModal from '@/components/edit/EditInstanceModal';
+import EditInstanceModal from '@/components/edit/EditAdditionalIP.component';
 import { FailoverIP, ResponseAPIError } from '@/interface';
 
 export default function EditInstancePage() {
