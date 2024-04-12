@@ -5,7 +5,7 @@ import {
   useAllFailoverIPs,
   useTerminateFailoverIP,
 } from '@/api/hooks/useFailoverIP';
-import TerminateModal from '@/components/terminate/TerminateModal';
+import TerminateModal from '@/components/terminate/Terminate.component';
 import { ResponseAPIError } from '@/api/hooks/useProject';
 
 export default function TerminateAdditionalIPPage() {
