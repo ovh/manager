@@ -2,9 +2,9 @@ import { UserEdition } from '@/api/databases/users';
 import { database } from '@/models/database';
 
 export const mockedDatabaseUser: database.service.User = {
-  createdAt: 'createdAt',
+  createdAt: '2024-03-19T11:34:47.088723+01:00',
   id: 'userId',
-  status: database.StatusEnum.CREATING,
+  status: database.StatusEnum.READY,
   username: 'username',
 };
 
@@ -21,3 +21,23 @@ export const mockedDatabaseUserEdition: UserEdition = {
   id: 'userId',
   username: 'username',
 };
+
+export const mockedUserRoles = [
+  'backup@admin',
+  'clusterAdmin@admin',
+  'clusterManager@admin',
+  'clusterMonitor@admin',
+  'dbAdmin@(defined db)',
+  'dbAdminAnyDatabase@admin',
+  'dbOwner@(defined db)',
+  'enableSharding@(defined db)',
+  'hostManager@admin',
+  'read@(defined db)',
+  'readAnyDatabase@admin',
+  'readWrite@(defined db)',
+  'readWriteAnyDatabase@admin',
+  'restore@admin',
+  'root@admin',
+  'userAdmin@(defined db)',
+  'userAdminAnyDatabase@admin',
+];
