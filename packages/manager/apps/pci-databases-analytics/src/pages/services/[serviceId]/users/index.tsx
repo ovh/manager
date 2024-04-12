@@ -29,8 +29,7 @@ const Users = () => {
     'pci-databases-analytics/services/service/users',
   );
   const { projectId, service, serviceQuery } = useServiceData();
-  const addModale = useModale('add');
-  const editModale = useModale('edit');
+  const addEditModale = useModale('add-edit');
   const deleteModale = useModale('delete');
   const resetPasswordModale = useModale('reset-password');
   const usersQuery = useGetUsers(projectId, service.engine, service.id, {
@@ -53,7 +52,7 @@ const Users = () => {
       resetPasswordModale.open(user.id);
     },
     onEditClicked: (user: GenericUser) => {
-      editModale.open(user.id);
+      addEditModale.open(user.id);
     },
   });
 
@@ -61,7 +60,7 @@ const Users = () => {
     (u) => u.id === deleteModale.value,
   );
 
-  const userToEdit = usersQuery.data?.find((u) => u.id === editModale.value);
+  const userToEdit = usersQuery.data?.find((u) => u.id === addEditModale.value);
 
   const userToResetPassword = usersQuery.data?.find(
     (u) => u.id === resetPasswordModale.value,
@@ -79,7 +78,7 @@ const Users = () => {
             service.capabilities.users?.create ===
             database.service.capability.StateEnum.disabled
           }
-          onClick={() => addModale.open()}
+          onClick={() => addEditModale.open()}
         >
           <Plus className="size-4 mr-2" />
           {t('addButtonLabel')}
@@ -95,31 +94,17 @@ const Users = () => {
       )}
 
       <AddEditUserModal
-        isEdition={false}
-        controller={addModale.controller}
+        isEdition={!!userToEdit}
+        editedUser={userToEdit}
+        controller={addEditModale.controller}
         service={service}
         users={usersQuery.data || []}
         onSuccess={() => {
-          addModale.close();
+          addEditModale.close();
           usersQuery.refetch();
           serviceQuery.refetch();
         }}
       />
-
-      {userToEdit && (
-        <AddEditUserModal
-          isEdition={true}
-          editedUser={userToEdit}
-          controller={editModale.controller}
-          service={service}
-          users={usersQuery.data || []}
-          onSuccess={() => {
-            editModale.close();
-            usersQuery.refetch();
-            serviceQuery.refetch();
-          }}
-        />
-      )}
 
       {userToDelete && (
         <DeleteUser
@@ -127,7 +112,6 @@ const Users = () => {
           service={service}
           user={userToDelete}
           onSuccess={() => {
-            console.log('fe');
             deleteModale.close();
             usersQuery.refetch();
             serviceQuery.refetch();
