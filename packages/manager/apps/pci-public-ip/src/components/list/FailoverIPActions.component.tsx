@@ -18,9 +18,9 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
-import { AdditionalIPServiceAction } from './AdditionalIPServiceAction';
+import { AdditionalIPServiceAction } from './AdditionalIPServiceAction.component.tsx';
 import { ActionProps } from '@/interface';
-import { NetworkSecurityAction } from './NetworkSecurityAction';
+import { NetworkSecurityAction } from './NetworkSecurityAction.component.tsx';
 
 export default function FailoverIPActions({
   ipId,
