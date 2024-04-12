@@ -42,7 +42,6 @@ export function ActionBanner({
           ></span>
         </OsdsText>
         <OsdsButton
-          data-testid="cta"
           className="sm:mt-0 mt-4 sm:ml-4 ml-0"
           data-testid="actionBanner-button"
           size={ODS_BUTTON_SIZE.sm}

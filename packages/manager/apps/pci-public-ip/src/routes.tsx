@@ -19,6 +19,18 @@ export interface RouteHandle {
   tracking?: string;
 }
 
+export const ROUTE_PATHS = {
+  root: '/pci/projects/:projectId/public-ips',
+  onboarding: 'onboarding',
+  floatingIPs: 'floating-ips',
+  floatingIPTerminate: ':ipId/terminate',
+  additionalIPs: 'additional-ips',
+  additionalIPTerminate: ':ipId/terminate',
+  additionalIPEdit: ':ipId/edit',
+  imports: 'imports',
+  import: ':ip',
+};
+
 export default [
   {
     path: '/',
@@ -26,7 +38,7 @@ export default [
   },
   {
     id: 'public-ips',
-    path: '/pci/projects/:projectId/public-ips',
+    path: ROUTE_PATHS.root,
     loader: async ({ params }) => {
       return queryClient.fetchQuery(getProjectQuery(params.projectId));
     },
@@ -34,19 +46,19 @@ export default [
     children: [
       {
         path: '',
-        element: <Navigate to="floating-ips" replace />,
+        element: <Navigate to={ROUTE_PATHS.floatingIPs} replace />,
       },
       {
-        path: 'floating-ips',
-        ...lazyRouteConfig(() => import('@/pages/list/ListingPage')),
+        path: ROUTE_PATHS.floatingIPs,
+        ...lazyRouteConfig(() => import('@/pages/list/List.page')),
         handle: {
           tracking: 'floatings-ips',
         },
         children: [
           {
-            path: ':ipId/terminate',
+            path: ROUTE_PATHS.floatingIPTerminate,
             ...lazyRouteConfig(() =>
-              import('@/pages/floating-ips/terminate/TerminateFloatingIPPage'),
+              import('@/pages/floating-ips/terminate/TerminateFloatingIP.page'),
             ),
             handle: {
               tracking: 'terminate',
@@ -55,17 +67,17 @@ export default [
         ],
       },
       {
-        path: 'additional-ips',
-        ...lazyRouteConfig(() => import('@/pages/list/ListingPage')),
+        path: ROUTE_PATHS.additionalIPs,
+        ...lazyRouteConfig(() => import('@/pages/list/List.page')),
         handle: {
           tracking: 'failover-ips',
         },
         children: [
           {
-            path: ':ipId/terminate',
+            path: ROUTE_PATHS.additionalIPTerminate,
             ...lazyRouteConfig(() =>
               import(
-                '@/pages/additional-ips/terminate/TerminateAdditionalIPPage'
+                '@/pages/additional-ips/terminate/TerminateAdditionalIP.page'
               ),
             ),
             handle: {
@@ -73,9 +85,9 @@ export default [
             },
           },
           {
-            path: ':ipId/edit',
+            path: ROUTE_PATHS.additionalIPEdit,
             ...lazyRouteConfig(() =>
-              import('@/pages/additional-ips/edit/EditInstancePage'),
+              import('@/pages/additional-ips/edit/EditAdditionalIP.page'),
             ),
             handle: {
               tracking: 'edit',
@@ -84,17 +96,17 @@ export default [
         ],
       },
       {
-        path: 'imports',
-        ...lazyRouteConfig(() => import('@/pages/imports/ImportsPage')),
+        path: ROUTE_PATHS.imports,
+        ...lazyRouteConfig(() => import('@/pages/imports/Imports.page')),
         children: [
           {
-            path: ':ip',
-            ...lazyRouteConfig(() => import('@/pages/imports/MoveIPPage')),
+            path: ROUTE_PATHS.import,
+            ...lazyRouteConfig(() => import('@/pages/imports/MoveIP.page')),
           },
         ],
       },
       {
-        path: 'onboarding',
+        path: ROUTE_PATHS.onboarding,
         ...lazyRouteConfig(() => import('@/pages/onboarding/OnBoarding.page')),
         children: [],
       },
