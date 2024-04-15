@@ -107,7 +107,7 @@ const Pools = () => {
 
   return (
     <>
-      <div className="flex justify-between w-full">
+      <div className="flex justify-between w-full items-center">
         <h2>{t('title')}</h2>
         <Guides section={GuideSections.pools} engine={service.engine} />
       </div>
