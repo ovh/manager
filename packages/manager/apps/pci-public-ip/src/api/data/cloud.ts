@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-interface Stein {
+export interface Stein {
   date: string;
   zone: string;
   travaux: string;

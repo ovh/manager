@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
