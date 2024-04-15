@@ -5,13 +5,11 @@ import 'piano-analytics-js/dist/browser/piano-analytics.js';
 import { createRoot } from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 
-// @ts-ignore
 import { initShell } from '@ovh-ux/shell';
 import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-// @ts-ignore
 import { Environment } from '@ovh-ux/manager-config';
 
 import Container from '@/container';

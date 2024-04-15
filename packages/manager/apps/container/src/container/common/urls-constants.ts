@@ -8,7 +8,7 @@ interface ContentURLS {
     [key in string]: string;
   };
   status: string;
-  marketplace: string;
+  marketplace?: string;
 }
 
 type URLLinks = {
@@ -45,14 +45,12 @@ const urls: URLLinks = {
       WS: `${helpRoot}/es${homeIndex}`,
     },
     status: 'https://www.status-ovhcloud.com/',
-    marketplace: 'https://marketplace.ovhcloud.com/',
   },
   US: {
     help: {
       US: 'https://us.ovhcloud.com/support',
     },
     status: 'https://status.us.ovhcloud.com/',
-    marketplace: 'https://marketplace.ovhcloud.com/',
   },
 };
 

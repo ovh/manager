@@ -2,10 +2,9 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import style from './style.module.scss';
-import { OsdsButton } from '@ovhcloud/ods-stencil/components/react/';
-import { OdsButtonSize, OdsButtonVariant } from '@ovhcloud/ods-core';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 type Props = {
   children?: JSX.Element | JSX.Element[];
@@ -26,10 +25,9 @@ const UserAccountMenuButton = ({
       aria-haspopup={show}
       aria-expanded={show}
       aria-label={t('user_account_menu_manage_my_account')}
-      size={OdsButtonSize.sm}
-      variant={OdsButtonVariant.ghost}
-      color={OdsThemeColorIntent.primary}
-      flex
+      size={ODS_BUTTON_SIZE.sm}
+      variant={ODS_BUTTON_VARIANT.ghost}
+      color={ODS_THEME_COLOR_INTENT.primary}
       onClick={(e) => {
         e.preventDefault();
         onClick(!show);

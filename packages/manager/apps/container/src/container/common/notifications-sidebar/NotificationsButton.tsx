@@ -7,9 +7,9 @@ import style from './notifications-sidebar.module.scss';
 import useNotifications from '@/core/notifications';
 import { useHeader } from '@/context/header';
 import { useShell } from '@/context';
-import { OsdsIcon } from '@ovhcloud/ods-stencil/components/react';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
-import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 
 function NavbarNotifications(): JSX.Element {
   const { t } = useTranslation('navbar');
@@ -48,9 +48,9 @@ function NavbarNotifications(): JSX.Element {
       onClick={onClick}
     >
       <OsdsIcon
-        name={OdsIconName.BELL}
-        color={OdsThemeColorIntent.primary}
-        size={OdsIconSize.sm}
+        name={ODS_ICON_NAME.BELL}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        size={ODS_ICON_SIZE.sm}
         aria-hidden="true"
       ></OsdsIcon>
       {notificationsCount > 0 && (

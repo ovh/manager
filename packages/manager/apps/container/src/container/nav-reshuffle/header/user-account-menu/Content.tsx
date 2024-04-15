@@ -7,8 +7,8 @@ import { links } from './constants';
 
 import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
-//import { OsdsChip } from '@ovhcloud/ods-stencil/components/react';
-//import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';*/
+import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -64,6 +64,8 @@ const UserAccountMenu = ({
   const getUrl = (key: string, hash: string) =>
     shell.getPlugin('navigation').getURL(key, hash);
   const myAccountLink = getUrl('dedicated', '#/useraccount/dashboard');
+  const ssoLink = getUrl('dedicated', '#/useraccount/users');
+  const supportLink = getUrl('dedicated', '#/useraccount/support/level');
 
   return (
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
@@ -107,9 +109,11 @@ const UserAccountMenu = ({
         <div className="border-bottom pb-2 pt-2">
           <div className="d-flex justify-content-between">
             <span>{t('user_account_menu_role_connexion')}</span>
-            <OsdsChip color={OdsThemeColorIntent.success}>
-              {t(`user_account_menu_role_${user.auth.method}`)}
-            </OsdsChip>
+            <a href={ssoLink}>
+              <OsdsChip color={ODS_THEME_COLOR_INTENT.success}>
+                {t(`user_account_menu_role_${user.auth.method}`)}
+              </OsdsChip>
+            </a>
           </div>
           {!user.enterprise && (
             <UserDefaultPaymentMethod
@@ -120,13 +124,15 @@ const UserAccountMenu = ({
           {['EU', 'CA'].includes(region) && (
             <div className="d-flex mt-1 justify-content-between">
               <span>{t('user_account_menu_support')}</span>
-              <OsdsChip color={OdsThemeColorIntent.info}>
-                {t(
-                  `user_account_menu_support_level_${user.supportLevel.level}${
-                    user.isTrusted ? '_trusted' : ''
-                  }`,
-                )}
-              </OsdsChip>
+              <a href={supportLink}>
+                <OsdsChip color={ODS_THEME_COLOR_INTENT.info}>
+                  {t(
+                    `user_account_menu_support_level_${
+                      user.supportLevel.level
+                    }${user.isTrusted ? '_trusted' : ''}`,
+                  )}
+                </OsdsChip>
+              </a>
             </div>
           )}
         </div>

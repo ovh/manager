@@ -2,8 +2,9 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import style from './style.module.scss';
 import { PaymentMethodType } from '@/container/legacy/account-sidebar/PaymentMethod/usePaymentMethod';
-import { OsdsChip } from '@ovhcloud/ods-stencil/components/react';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useShell } from '@/context';
 
 type Props = {
   defaultPaymentMethod?: PaymentMethodType;
@@ -15,11 +16,23 @@ const UserDefaultPaymentMethod = ({
   isLoading = false,
 }: Props): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
+  const shell = useShell();
+  const trackingPlugin = shell.getPlugin('tracking');
+  const paymentMethodUrl = shell
+    .getPlugin('navigation')
+    .getURL('dedicated', '#/billing/payment/method');
 
   const getChipColor = () => {
-    return OdsThemeColorIntent[
-      defaultPaymentMethod.getStatusCategory() as OdsThemeColorIntent
+    return ODS_THEME_COLOR_INTENT[
+      defaultPaymentMethod.getStatusCategory() as ODS_THEME_COLOR_INTENT
     ];
+  };
+
+  const onPaymentMethodLinkClick = () => {
+    trackingPlugin.trackClick({
+      name: 'topnav::user_widget::go_to_payment_method',
+      type: 'navigation',
+    });
   };
 
   return (
@@ -30,11 +43,14 @@ const UserDefaultPaymentMethod = ({
       {!isLoading && defaultPaymentMethod && (
         <div className="d-flex mt-1 justify-content-between">
           <span>{t('user_account_menu_payment_method_title')}</span>
-          <OsdsChip color={getChipColor()}>
-            {t(
-              `user_account_menu_payment_method_status_${defaultPaymentMethod.status}`,
-            )}
-          </OsdsChip>
+
+          <a href={paymentMethodUrl} onClick={onPaymentMethodLinkClick}>
+            <OsdsChip color={getChipColor()}>
+              {t(
+                `user_account_menu_payment_method_status_${defaultPaymentMethod.status}`,
+              )}
+            </OsdsChip>
+          </a>
         </div>
       )}
     </div>

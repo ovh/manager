@@ -58,20 +58,22 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
           <span>{t('sidebar_assistance_title')}</span>
         </h2>
       </li>
-      <li className="flex px-3">
-        <span
-          className={`oui-icon oui-icon-home mr-2 ${style.sidebar_action_icon}`}
-          aria-hidden="true"
-        ></span>
-        <SidebarLink
-          node={{
-            translation: 'sidebar_marketplace',
-            url: urls.get('marketplace'),
-            count: false,
-            isExternal: true,
-          }}
-        />
-      </li>
+      {['EU'].includes(environment.getRegion()) && (
+        <li className="flex px-3">
+          <span
+            className={`oui-icon oui-icon-home mr-2 ${style.sidebar_action_icon}`}
+            aria-hidden="true"
+          ></span>
+          <SidebarLink
+            node={{
+              translation: 'sidebar_marketplace',
+              url: urls.get('marketplace'),
+              count: false,
+              isExternal: true,
+            }}
+          />
+        </li>
+      )}
       <li className="flex px-3">
         <span
           className={`oui-icon oui-icon-help mr-2 ${style.sidebar_action_icon}`}

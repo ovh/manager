@@ -13,9 +13,9 @@ import { useShell } from '@/context';
 import { useHeader } from '@/context/header';
 
 import style from './style.module.scss';
-import { OsdsIcon } from '@ovhcloud/ods-stencil/components/react';
-import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 type Props = {
   onToggle(show: boolean): void;
@@ -91,9 +91,9 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
       >
         <span slot="start" className={style.userIcon}>
           <OsdsIcon
-            name={OdsIconName.USER}
-            color={OdsThemeColorIntent.primary}
-            size={OdsIconSize.sm}
+            name={ODS_ICON_NAME.USER}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            size={ODS_ICON_SIZE.sm}
             aria-hidden="true"
           ></OsdsIcon>
         </span>

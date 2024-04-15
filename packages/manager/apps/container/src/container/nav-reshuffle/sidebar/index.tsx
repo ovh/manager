@@ -111,6 +111,30 @@ const Sidebar = (): JSX.Element => {
         if (mxPlanNode && region === 'CA') {
           mxPlanNode.routing.hash = '#/email_mxplan';
         }
+
+        /**
+         * Remove Identity Documents option
+         * Identity docments entry is added by default in ./navigation-tree/root.ts
+         */
+        let isIdentityDocumentsVisible;
+        if (results['identity-documents']) {
+          const { status } = await reketInstance.get(`/me/procedure/identity`);
+          if (!['required', 'open'].includes(status)) {
+            isIdentityDocumentsVisible = false;
+          }
+        } else {
+          isIdentityDocumentsVisible = false;
+        }
+        const account = findNodeById(tree, 'account');
+        if (!isIdentityDocumentsVisible && account) {
+          account.children.splice(
+            account.children.findIndex(
+              (node) => node.id === 'account_identity_documents',
+            ),
+            1,
+          );
+        }
+
         /**
          * US enterprise customers special case
          */

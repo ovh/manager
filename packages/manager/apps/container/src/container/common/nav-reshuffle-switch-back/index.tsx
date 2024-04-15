@@ -10,9 +10,9 @@ import {
   OsdsRadioButton,
   OsdsRadio,
   OsdsRadioGroup,
-} from '@ovhcloud/ods-stencil/components/react';
-import { OdsRadioButtonSize, OdsTextSize } from '@ovhcloud/ods-core';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+} from '@ovhcloud/ods-components/react';
+import { ODS_RADIO_BUTTON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import NavReshuffleSwitchBackModal from '@/container/common/nav-reshuffle-switch-back/Modal';
 
 function NavReshuffleSwitchBack(): JSX.Element {
@@ -60,13 +60,13 @@ function NavReshuffleSwitchBack(): JSX.Element {
           className="mr-1"
         >
           <OsdsRadioButton
-            size={OdsRadioButtonSize.sm}
-            color={OdsThemeColorIntent.primary}
+            size={ODS_RADIO_BUTTON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
           >
             <span slot="end">
               <OsdsText
-                size={OdsTextSize._400}
-                color={OdsThemeColorIntent.text}
+                size={ODS_TEXT_SIZE._400}
+                color={ODS_THEME_COLOR_INTENT.text}
               >
                 {t('beta_modal_old')}
               </OsdsText>
@@ -81,13 +81,13 @@ function NavReshuffleSwitchBack(): JSX.Element {
           checked={useBeta}
         >
           <OsdsRadioButton
-            size={OdsRadioButtonSize.sm}
-            color={OdsThemeColorIntent.primary}
+            size={ODS_RADIO_BUTTON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
           >
             <span slot="end">
               <OsdsText
-                size={OdsTextSize._400}
-                color={OdsThemeColorIntent.text}
+                size={ODS_TEXT_SIZE._400}
+                color={ODS_THEME_COLOR_INTENT.text}
               >
                 {t('beta_modal_new')}
               </OsdsText>
