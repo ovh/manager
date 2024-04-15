@@ -1,6 +1,7 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { vi, describe } from 'vitest';
 
+import { OsdsButton } from '@ovhcloud/ods-components';
 import TerminateModal from './Terminate.component';
 
 describe('Terminate component tests', () => {
@@ -54,7 +55,9 @@ describe('Terminate component tests', () => {
       <TerminateModal {...propsWithIsPendingFalse} />,
     );
 
-    const submitButton = queryByTestId('terminateModal-button_submit');
+    const submitButton = (queryByTestId(
+      'terminateModal-button_submit',
+    ) as unknown) as OsdsButton;
 
     expect(submitButton).toHaveAttribute('disabled');
     expect(submitButton.disabled).toBe(true);
@@ -73,7 +76,9 @@ describe('Terminate component tests', () => {
       <TerminateModal {...propsWithIsPendingFalse} />,
     );
 
-    const submitButton = queryByTestId('terminateModal-button_submit');
+    const submitButton = (queryByTestId(
+      'terminateModal-button_submit',
+    ) as unknown) as OsdsButton;
 
     expect(submitButton).toHaveAttribute('disabled');
     expect(submitButton.disabled).toBe(true);
