@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
@@ -20,7 +20,10 @@ import {
   getEligibleManagedServiceListQueryKey,
   getEligibleManagedServiceList,
   EligibleManagedService,
+  DeleteVrackServices,
+  DeleteVrackServicesQueryKey,
 } from '@/api';
+import { GetVrackServicesServiceId, GetVrackServicesServiceIdQueryKey } from '@/api/services/get';
 
 export const useVrackServicesList = (refetchInterval = 30000) =>
   useQuery<ApiResponse<VrackServicesWithIAM[]>, ApiError>({
@@ -63,11 +66,12 @@ export const useVrackService = (refetchInterval = 30000) => {
   });
 };
 
-export const isEditable = (vs?: VrackServices) =>
-  vs?.resourceStatus === ResourceStatus.READY &&
+export const isEditable = (vs?: VrackServices) => {
+  return vs?.resourceStatus === ResourceStatus.READY &&
   [ProductStatus.ACTIVE, ProductStatus.DRAFT].includes(
     vs?.currentState.productStatus,
   );
+}
 
 export const hasSubnet = (vs?: VrackServices) =>
   vs?.currentState.subnets.length > 0;
@@ -156,6 +160,59 @@ export const useUpdateVrackServices = ({
     updateError,
   };
 };
+
+export const useDeleteVrackServices = ({
+  vrackServices,
+  onSuccess,
+  onError,
+  updateTriggerDelay = 5000,
+}: {
+  vrackServices: string;
+  onSuccess?: () => void;
+  onError?: (result: ApiError) => void;
+  updateTriggerDelay?: number;
+}) => {
+
+  const [isErrorVisible, setIsErrorVisible] = React.useState(false);
+  const queryClient = useQueryClient();
+  const {
+    data: servicesId,
+    isError,
+    error
+  } = useQuery<ApiResponse<number[]>, ApiError>({
+    queryKey: GetVrackServicesServiceIdQueryKey({vrackServices}),
+    queryFn: () => GetVrackServicesServiceId({vrackServices}),
+    enabled: !!vrackServices,
+  });
+
+  const { mutate: deleteVs, isError: isTerminateError, error: terminateError, isSuccess } = useMutation({
+    mutationFn: () =>
+      DeleteVrackServices({
+        serviceId: servicesId?.data[0]
+      }),
+    mutationKey: DeleteVrackServicesQueryKey(vrackServices),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: DeleteVrackServicesQueryKey(vrackServices),
+      });
+      onSuccess && onSuccess();
+    },
+    onError
+  });
+
+  React.useEffect(() => {
+    if (isError || isTerminateError) {
+      setIsErrorVisible(true);
+    }
+  }, [isError, isTerminateError]);
+
+  return {
+    deleteVs,
+    isErrorVisible,
+    isSuccess,
+    error: error || terminateError,
+  };
+}
 
 export const useServiceList = (vrackServicesId: string) => {
   const [urnList, setUrnList] = React.useState<string[]>([]);
