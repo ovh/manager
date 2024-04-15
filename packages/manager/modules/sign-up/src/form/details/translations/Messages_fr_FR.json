@@ -2,7 +2,7 @@
   "sign_up_details_field_legalform": "Type de compte",
   "sign_up_details_field_country": "Pays de résidence",
   "sign_up_details_field_phone": "Numéro de téléphone",
-  "sign_up_details_field_language": "Langue parlée",
+  "sign_up_details_field_language": "Langue préférée",
   "sign_up_details_field_zip": "Code postal",
   "sign_up_details_field_city": "Ville",
   "sign_up_details_field_address": "Adresse",
@@ -12,7 +12,7 @@
   "sign_up_details_field_province": "Province",
   "sign_up_details_field_mobile_phone": "Mobile",
   "sign_up_details_field_landline_phone": "Fixe",
-  "sign_up_details_field_sms_consent": "J'accepte de recevoir des SMS relatifs aux nouveautés et offres commerciales d'OVHcloud",
+  "sign_up_details_field_sms_consent": "J'accepte librement de recevoir des SMS relatifs aux nouveautés et offres commerciales d'OVHcloud.",
   "sign_up_details_field_gender": "Genre",
   "sign_up_details_field_birthday": "Date de naissance"
 }

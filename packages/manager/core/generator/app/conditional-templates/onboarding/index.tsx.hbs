@@ -1,7 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Card, OnboardingLayout } from "@ovhcloud/manager-components";
-import useGuideUtils from "@/components/GuideLink/guide-utils";
+import { useGuideUtils } from '@/hooks/useGuideUtils';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import onboardingImgSrc from "./onboarding-img.png";
 
 export default function Onboarding() {
@@ -10,6 +11,7 @@ export default function Onboarding() {
 
   const tileList = [
     {
+      id: 1,
       texts: {
         title: t("guide1Title"),
         description: t("guide1Description"),
@@ -18,6 +20,7 @@ export default function Onboarding() {
       href: link?.guideLink1,
     },
     {
+      id: 2,
       texts: {
         title: t("guide2Title"),
         description: t("guide2Description"),
@@ -26,6 +29,7 @@ export default function Onboarding() {
       href: link?.guideLink2,
     },
     {
+      id: 3,
       texts: {
         title: t("guide3Title"),
         description: t("guide3Description"),
@@ -37,22 +41,28 @@ export default function Onboarding() {
 
   const title: string = t("title");
   const description: string = t("description");
+  const imgSrc = {
+    src: onboardingImgSrc
+  }
 
   return (
-    <OnboardingLayout
-      title={title}
-      imageSrc={onboardingImgSrc}
-      description={description}
-      orderButtonLabel={t("orderButtonLabel")}
-      orderHref={t("orderButtonLink")}
-      moreInfoButtonLabel={t("moreInfoButtonLabel")}
-      moreInfoHref={t("moreInfoButtonLink")}
-    >
-      <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
-        {tileList.map((tile) => (
-          <Card href={tile.href} texts={tile.texts} />
-        ))}
-      </aside>
-    </OnboardingLayout>
+    <>
+      <Breadcrumb />
+      <OnboardingLayout
+        title={title}
+        img={imgSrc}
+        description={description}
+        orderButtonLabel={t("orderButtonLabel")}
+        orderHref={t("orderButtonLink")}
+        moreInfoButtonLabel={t("moreInfoButtonLabel")}
+        moreInfoHref={t("moreInfoButtonLink")}
+      >
+        <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
+          {tileList.map((tile) => (
+            <Card key={tile.id} href={tile.href} texts={tile.texts} />
+          ))}
+        </aside>
+      </OnboardingLayout>
+    </>
   );
 }

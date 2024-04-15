@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 function RoutingSynchronisation() {
   const location = useLocation();
-  const routing = useRouting();
+  const { shell } = useContext(ShellContext);
 
-  const shell = useShell();
   useEffect(() => {
     // Need to also hide the preloader here due to firefox still display it when cache is disabled
     // Need to investigate why preloader is not hidden
@@ -14,10 +13,10 @@ function RoutingSynchronisation() {
   }, []);
 
   useEffect(() => {
-    routing.stopListenForHashChange();
+    shell.routing.stopListenForHashChange();
   }, []);
   useEffect(() => {
-    routing.onHashChange();
+    shell.routing.onHashChange();
   }, [location]);
   return <></>;
 }

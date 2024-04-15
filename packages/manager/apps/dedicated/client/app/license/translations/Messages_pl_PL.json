@@ -1314,5 +1314,6 @@
   "license_designation_WINDOWS_version_WINDOWS_SERVER_2008_WEB_EDITION_4_CPU": "Windows Server 2008 license - Web edition - 4 CPU",
   "license_designation_CPANEL_solo_option": "1 konto cPanel",
   "license_designation_CPANEL_plus_option": "31-50 kont cPanel",
-  "license_dashboard_table_title_name": "Nazwa"
+  "license_dashboard_table_title_name": "Nazwa",
+  "license_designation_PLESK_version_plesk-12-webadmin": "Plesk 12 - Edycja Web Admin"
 }

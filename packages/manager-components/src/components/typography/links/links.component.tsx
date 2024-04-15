@@ -21,6 +21,7 @@ export interface LinksProps {
   rel?: OdsHTMLAnchorElementRel;
   target?: OdsHTMLAnchorElementTarget;
   type?: LinkType;
+  onClickReturn?: () => void;
   [key: string]: any;
 }
 
@@ -28,6 +29,7 @@ export const Links: React.FC<LinksProps> = ({
   download,
   label,
   href,
+  onClickReturn,
   target,
   type,
   rel,
@@ -51,6 +53,7 @@ export const Links: React.FC<LinksProps> = ({
     <OsdsLink
       color={ODS_THEME_COLOR_INTENT.primary}
       download={download}
+      onClick={onClickReturn}
       href={href}
       target={target}
       rel={rel}

@@ -1,4 +1,3 @@
-import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { fetchIcebergV2, fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
 
 {{#if unknownTypeList}}
@@ -24,28 +23,19 @@ export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pa
  * {{this.description}}
  */
 {{/if}}
-export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}): Promise<{{this.responseType}}> => {
-  const fetchData = async () => {
-    const response: any = await apiClient.{{this.apiVersion}}.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
-    return response;
-  };
-  try {
-    return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
-  } catch(error) {
-    return Promise.reject(error);
-  }
-};
+export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}): Promise<{{this.responseType}}> =>
+  apiClient.{{this.apiVersion}}.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
 {{/each}}
 {{#ifEq arg1=apiVersion arg2=mainApiPathApiVersion}}
 
-{{#if apiV6Computed}}
+{{#if this.isApiV6}}
 /**
  *  Get listing with iceberg V6
  */
-export const getListingIcebergV6 = async ({ pageSize, page }: { pageSize: number, page: number }) => {
+export const getListingIcebergV6 = async ({ {{#if this.isPCI }}projectId, {{/if}}pageSize, page }: { {{#if this.isPCI }}projectId: string, {{/if}}pageSize: number, page: number }) => {
   try {
     const List = await fetchIcebergV6({
-      route: '{{this.mainApiPath}}',
+      route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
       pageSize,
       page
     }).then(
@@ -58,15 +48,15 @@ export const getListingIcebergV6 = async ({ pageSize, page }: { pageSize: number
 };
 {{/if}}
 
-{{#if apiV2Computed}}
+{{#if this.isApiV2}}
 /**
  *  Get listing with iceberg V2
  */
 
-export const getListingIcebergV2 = async ({ pageSize, cursor }: { pageSize: number, cursor?: string }) => {
+export const getListingIcebergV2 = async ({ {{#if this.isPCI }}projectId, {{/if}}pageSize, cursor }: { {{#if this.isPCI }}projectId: string, {{/if}}pageSize: number, cursor?: string }) => {
   try {
     const List = await fetchIcebergV2({
-      route: '{{this.mainApiPath}}',
+      route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
       pageSize,
       cursor
     }).then(

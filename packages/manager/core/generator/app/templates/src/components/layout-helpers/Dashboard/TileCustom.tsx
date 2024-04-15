@@ -3,11 +3,11 @@ import {
   OsdsText,
   OsdsDivider,
   OsdsTile,
-} from '@ovhcloud/ods-stencil/components/react/';
+} from '@ovhcloud/ods-components/react/';
 import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-} from '@ovhcloud/ods-theming';
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_COLOR_INTENT,
+} from '@ovhcloud/ods-common-theming';
 
 import './Dashboard.scss';
 
@@ -17,11 +17,11 @@ interface SectionProps {
 }
 
 const TileCustom: React.FC<SectionProps> = ({ title, children }) => (
-  <OsdsTile flex>
+  <OsdsTile>
     <div className="tile-content">
       <OsdsText
-        level={OdsThemeTypographyLevel.heading}
-        color={OdsThemeColorIntent.text}
+        level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+        color={ODS_THEME_COLOR_INTENT.text}
       >
         {title}
       </OsdsText>

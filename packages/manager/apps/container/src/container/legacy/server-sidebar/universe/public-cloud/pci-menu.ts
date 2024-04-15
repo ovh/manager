@@ -43,6 +43,7 @@ export const features = [
   'public-cloud:contacts',
   'public-cloud:project-settings',
   'ai-dashboard',
+  'data-platform',
 ];
 
 export function getPciProjectMenu(
@@ -250,7 +251,6 @@ export function getPciProjectMenu(
         {
           id: 'data-processing',
           title: 'Data Processing',
-          badge: 'new',
           feature: 'data-processing',
           href: getURL(
             'public-cloud',
@@ -265,6 +265,14 @@ export function getPciProjectMenu(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/databases-analytics/data-analysis`,
           ),
+        },
+        {
+          id: 'data-platform',
+          title: 'Data Platform',
+          feature: 'data-platform',
+          badge: 'beta',
+          href: 'https://hq-fp.dataintegration.ovh.net',
+          external: true,
         },
         {
           id: 'logs-data-platform',
@@ -282,7 +290,6 @@ export function getPciProjectMenu(
         {
           id: 'dashboard',
           title: 'AI Dashboard',
-          badge: 'new',
           feature: 'ai-dashboard',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai-dashboard`),
         },
@@ -301,7 +308,6 @@ export function getPciProjectMenu(
         {
           id: 'apps',
           title: 'AI Deploy',
-          badge: 'new',
           regions: ['CA', 'EU'],
           feature: 'ai-apps',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/apps`),

@@ -22,15 +22,17 @@
     "dev": "tsc",
     "start:watch": "tsc -w"
   },
+  "peerDependencies": {
+    "@tanstack/react-query": "5.x",
+    "react": "18.x"
+  },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "^0.7.0",
-    "@ovh-ux/manager-react-shell-client": "^0.4.0",
-    "@tanstack/react-query": "^5.18.1",
-    "@types/jsurl": "^0.1.2",
-    "jsurl": "^0.1.5",
-    "react": "^18.2.0"
+    "@ovh-ux/manager-core-api": "*",
+    "@ovh-ux/manager-react-shell-client": "*",
+    "jsurl": "^0.1.5"
   },
   "devDependencies": {
+    "@types/jsurl": "^0.1.2",
     "typescript": "^4.3.2"
   }
 }

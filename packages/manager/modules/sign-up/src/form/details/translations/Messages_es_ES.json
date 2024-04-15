@@ -2,7 +2,7 @@
   "sign_up_details_field_legalform": "Tipo de cuenta",
   "sign_up_details_field_country": "País de residencia",
   "sign_up_details_field_phone": "Teléfono",
-  "sign_up_details_field_language": "Idioma hablado",
+  "sign_up_details_field_language": "Idioma preferido",
   "sign_up_details_field_zip": "Código postal",
   "sign_up_details_field_city": "Localidad",
   "sign_up_details_field_address": "Dirección",
@@ -11,7 +11,7 @@
   "sign_up_details_field_province": "Provincia",
   "sign_up_details_field_mobile_phone": "Móvil",
   "sign_up_details_field_landline_phone": "Fijo",
-  "sign_up_details_field_sms_consent": "Acepto recibir SMS sobre las novedades y ofertas comerciales de OVHcloud.",
+  "sign_up_details_field_sms_consent": "Acepto libremente recibir SMS sobre las novedades y ofertas comerciales de OVHcloud.",
   "sign_up_details_field_gender": "Género",
   "sign_up_details_field_birthday": "Fecha de nacimiento",
   "sign_up_details_field_address_help_text": "Asegúrese de que la dirección coincide con la dirección que aparece en su justificante."
