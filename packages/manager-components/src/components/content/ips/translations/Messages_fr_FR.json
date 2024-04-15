@@ -1,0 +1,6 @@
+{
+  "ips_error_v4": "Veuillez saisir une adresse IPv4 valide (ex: 192.168.0.1).",
+  "ips_error_v6": "Veuillez saisir une adresse IPv6 valide.",
+  "ips_error_forbidden": "La valeur saisie existe déjà ou n'est pas autorisée.",
+  "ips_error_cidr_format": "Veuillez saisir une adresse ip valide au format Cidr (ex: 192.168.0.1/25)."
+}
