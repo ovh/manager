@@ -1,6 +1,11 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { vi, describe } from 'vitest';
 
+import {
+  OdsSelectValueChangeEventDetail,
+  OsdsButton,
+  OsdsSelect,
+} from '@ovhcloud/ods-components';
 import EditInstanceModal from './EditAdditionalIP.component';
 
 describe('EditInstanceModal component tests', () => {
@@ -42,7 +47,9 @@ describe('EditInstanceModal component tests', () => {
       <EditInstanceModal {...propsWithIsPendingTrue} />,
     );
 
-    const submitButton = queryByTestId('editInstanceModal-button_submit');
+    const submitButton = (queryByTestId(
+      'editInstanceModal-button_submit',
+    ) as unknown) as OsdsButton;
 
     expect(submitButton).toHaveAttribute('disabled');
     expect(submitButton.disabled).toBe(true);
@@ -120,9 +127,13 @@ describe('EditInstanceModal component tests', () => {
 
     const { queryByTestId } = render(<EditInstanceModal {...props} />);
 
-    const instancesSelect = queryByTestId('editInstanceModal-select_instances');
+    const instancesSelect = (queryByTestId(
+      'editInstanceModal-select_instances',
+    ) as unknown) as OsdsSelect;
 
-    instancesSelect.odsValueChange.emit({ value: 'new-selected-value' });
+    instancesSelect.odsValueChange.emit({
+      value: 'new-selected-value',
+    } as OdsSelectValueChangeEventDetail);
 
     expect(mockOnSelectChange).toHaveBeenCalledTimes(1);
   });
