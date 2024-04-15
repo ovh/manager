@@ -19,6 +19,8 @@ import { getColumns } from './_components/poolsTableColumns';
 import InfoConnectionPool from './_components/infoConnectionPool';
 import AddEditConnectionPool from './_components/addEditconnectionPool';
 import DeleteConnectionPool from './_components/deleteConnectionPool';
+import Guides from '@/components/guides';
+import { GuideSections } from '@/models/guide';
 
 export function breadcrumb() {
   return 'Pools';
@@ -105,7 +107,10 @@ const Pools = () => {
 
   return (
     <>
-      <h2>{t('title')}</h2>
+      <div className="flex justify-between w-full">
+        <h2>{t('title')}</h2>
+        <Guides section={GuideSections.pools} engine={service.engine} />
+      </div>
       <p>{t('description')}</p>
       {service.capabilities.connectionPools?.create && (
         <Button
