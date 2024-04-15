@@ -69,7 +69,7 @@ const Integrations = () => {
   });
   return (
     <>
-      <div className="flex justify-between w-full">
+      <div className="flex justify-between w-full items-center">
         <h2>{t('title')}</h2>
         <Guides section={GuideSections.integrations} engine={service.engine} />
       </div>
