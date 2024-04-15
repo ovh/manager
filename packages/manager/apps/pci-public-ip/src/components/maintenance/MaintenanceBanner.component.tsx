@@ -25,6 +25,7 @@ export function MaintenanceBanner({
           color={ODS_THEME_COLOR_INTENT.primary}
           href={maintenanceURL}
           target={OdsHTMLAnchorElementTarget._blank}
+          data-testid="maintennaceBanner_link"
         >
           {t('pci_projects_maintenance_banner_info_link')}
         </OsdsLink>
