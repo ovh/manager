@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { ActionBanner } from '../action-banner.component';
