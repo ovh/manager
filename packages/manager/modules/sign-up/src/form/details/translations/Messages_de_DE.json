@@ -2,7 +2,7 @@
   "sign_up_details_field_legalform": "Account-Typ",
   "sign_up_details_field_country": "Wohnsitzland",
   "sign_up_details_field_phone": "Telefonnummer",
-  "sign_up_details_field_language": "Gesprochene Sprache",
+  "sign_up_details_field_language": "Bevorzugte Sprache",
   "sign_up_details_field_zip": "Postleitzahl",
   "sign_up_details_field_city": "Stadt",
   "sign_up_details_field_address": "Adresse",
@@ -11,7 +11,7 @@
   "sign_up_details_field_province": "Provinz",
   "sign_up_details_field_mobile_phone": "Mobil",
   "sign_up_details_field_landline_phone": "Festnetz",
-  "sign_up_details_field_sms_consent": "Ich bin damit einverstanden, SMS zu Neuheiten und kommerziellen Angeboten von OVHcloud zu erhalten",
+  "sign_up_details_field_sms_consent": "Ich bin damit einverstanden, SMS zu den Neuheiten und kommerziellen Angeboten von OVHcloud zu erhalten.",
   "sign_up_details_field_gender": "Geschlecht",
   "sign_up_details_field_birthday": "Geburtsdatum",
   "sign_up_details_field_address_help_text": "Vergewissern Sie sich, dass die Adresse mit der Adresse auf Ihrem Nachweis übereinstimmt."

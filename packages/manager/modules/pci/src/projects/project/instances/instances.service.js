@@ -541,12 +541,11 @@ export default class PciProjectInstanceService {
       });
   }
 
-  getProductAvailability(projectId, planCode, ovhSubsidiary) {
+  getProductAvailability(projectId, ovhSubsidiary) {
     return this.$http
       .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
         params: {
           ovhSubsidiary,
-          planCode,
         },
       })
       .then(({ data }) => data);

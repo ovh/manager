@@ -1,16 +1,39 @@
-import { startApplication } from '@ovh-ux/manager-react-core-application';
-import { initShellClient } from '@ovh-ux/shell';
-import { setShellClient } from './shell';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import {
+  ShellContext,
+  initShellContext,
+  initI18n,
+} from '@ovh-ux/manager-react-shell-client';
+import App from './App';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
-import './index.scss'
 import './global.css';
+import './vite-hmr';
 
-initShellClient('{{ appName }}')
-  .then((client) => {
-    return setShellClient(client);
-  })
-  .then(() => {
-    startApplication('{{ appName }}');
+const init = async (appName: string) => {
+  const context = await initShellContext(appName);
+
+  await initI18n({
+    context,
+    reloadOnLocaleChange: true,
+    defaultNS: appName,
+    ns: [`${appName}/listing`, `${appName}/dashboard`, `${appName}/onboarding`],
   });
 
+  const region = context.environment.getRegion();
+  try {
+    await import(`./config-${region}.js`);
+  } catch (error) {
+    // nothing to do
+  }
 
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <ShellContext.Provider value={context}>
+        <App />
+      </ShellContext.Provider>
+    </React.StrictMode>,
+  );
+};
+
+init('{{appName}}');

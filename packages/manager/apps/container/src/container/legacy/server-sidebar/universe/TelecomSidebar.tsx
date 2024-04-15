@@ -60,7 +60,7 @@ export default function TelecomSidebar() {
 
   const { data: isBeta, isLoading: betaPreferenceLoading } = useQuery({
     queryKey: ['sidebar-telecom-beta'],
-    queryFn: getBetaPreference
+    queryFn: getBetaPreference,
   });
 
   const getTelecomMenu = (feature: Record<string, string>) => {
