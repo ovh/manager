@@ -10,6 +10,8 @@ import LegalMentions from '../_components/legalMentions';
 import { POLLING } from '@/configuration/polling';
 import { Link } from '@/components/links';
 import { Button } from '@/components/ui/button';
+import Guides from '@/components/guides';
+import { GuideSections } from '@/models/guide';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
@@ -33,7 +35,10 @@ const Services = () => {
   }
   return (
     <>
-      <h2>{t('title')}</h2>
+      <div className="flex justify-between w-full">
+        <h2>{t('title')}</h2>
+        <Guides section={GuideSections.landing} noEngineFilter />
+      </div>
       <Button variant="outline" size="sm" className="text-base" asChild>
         <Link to="./new" className="hover:no-underline">
           <Plus className="w-4 h-4 mr-2" />

@@ -13,6 +13,8 @@ import { getColumns } from './_components/integrationListColumns';
 import { useGetServices } from '@/hooks/api/services.api.hooks';
 import DeleteIntegration from './_components/deleteIntegration';
 import AddIntegration from './_components/addIntegration';
+import { GuideSections } from '@/models/guide';
+import Guides from '@/components/guides';
 
 export function breadcrumb() {
   return (
@@ -67,7 +69,10 @@ const Integrations = () => {
   });
   return (
     <>
-      <h2>{t('title')}</h2>
+      <div className="flex justify-between w-full">
+        <h2>{t('title')}</h2>
+        <Guides section={GuideSections.integrations} engine={service.engine} />
+      </div>
 
       {service.capabilities.integrations?.create && (
         <Button

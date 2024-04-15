@@ -12,6 +12,8 @@ import {
 } from '@/components/ui/accordion';
 import UpdateTable from './_components/updateTable';
 import ServiceConfiguration from './_components/serviceConfiguration';
+import Guides from '@/components/guides';
+import { GuideSections } from '@/models/guide';
 
 const Settings = () => {
   const { service } = useServiceData();
@@ -21,7 +23,10 @@ const Settings = () => {
 
   return (
     <>
-      <h3>{t('title')}</h3>
+      <div className="flex justify-between w-full">
+        <h2>{t('title')}</h2>
+        <Guides section={GuideSections.settings} engine={service.engine} />
+      </div>
       <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2" id="update">
         <Card>
           <CardHeader>
