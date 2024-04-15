@@ -56,6 +56,9 @@ export default /* @ngInject */ function UserAccountAgreementsController(
     UserAccountServicesAgreements.getToValidate().then(
       (agreements) => {
         $scope.toActivate = agreements;
+        $scope.toActivate.list.results = agreements.list.results.filter(
+          ({ state }) => state !== 'OK',
+        );
         $scope.loaders.toActivate = false;
       },
       angular.noop,
