@@ -47,6 +47,7 @@ export default function EditInstanceModal({
             inline
             size={ODS_SPINNER_SIZE.md}
             className="block text-center"
+            data-testid="editInstanceModal-spinner"
           />
         ) : (
           <div className="mt-5">
@@ -63,6 +64,7 @@ export default function EditInstanceModal({
               className="mt-5"
               value={selectedInstanceId}
               onOdsValueChange={onSelectChange}
+              data-testid="editInstanceModal-select_instances"
             >
               <span slot="placeholder">
                 {t('pci_additional_ips_failoverips_edit_select_instance')}
@@ -82,6 +84,7 @@ export default function EditInstanceModal({
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={onClose}
+        data-testid="editInstanceModal-button_cancel"
       >
         {t('pci_additional_ips_failoverips_edit_cancel_label')}
       </OsdsButton>
@@ -90,7 +93,7 @@ export default function EditInstanceModal({
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={onConfirm}
         {...(isPending || !selectedInstanceId ? { disabled: true } : {})}
-        data-testid="submitButton"
+        data-testid="editInstanceModal-button_submit"
       >
         {t('pci_additional_ips_failoverips_edit_submit_label')}
       </OsdsButton>
