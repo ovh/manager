@@ -10,6 +10,8 @@ import MetricChart from './_components/metricChart';
 import { useGetMetrics } from '@/hooks/api/metrics.api.hooks';
 import { cn } from '@/lib/utils';
 import { POLLING } from '@/configuration/polling';
+import Guides from '@/components/guides';
+import { GuideSections } from '@/models/guide';
 
 export function breadcrumb() {
   return (
@@ -34,7 +36,10 @@ const Metrics = () => {
 
   return (
     <>
-      <h2>{t('title')}</h2>
+      <div className="flex justify-between w-full">
+        <h2>{t('title')}</h2>
+        <Guides section={GuideSections.metrics} engine={service.engine} />
+      </div>
       <p>{t('description')}</p>
       {metricsQuery.isSuccess ? (
         <>

@@ -26,6 +26,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useGetVrack } from '@/hooks/api/network.api.hooks';
 import { useGetMetrics } from '@/hooks/api/metrics.api.hooks';
 import { Skeleton } from '@/components/ui/skeleton';
+import Guides from '@/components/guides';
+import { GuideSections } from '@/models/guide';
 
 interface MetricTile {
   name: string;
@@ -89,8 +91,10 @@ const Dashboard = () => {
 
   return (
     <>
-      <h2>{t('title')}</h2>
-
+      <div className="flex justify-between w-full">
+        <h2>{t('title')}</h2>
+        <Guides section={GuideSections.dashboard} engine={service.engine} />
+      </div>
       <Alert variant="info">
         <AlertDescription className="text-base">
           <div className="flex flex-row items-center justify-between mr-8">

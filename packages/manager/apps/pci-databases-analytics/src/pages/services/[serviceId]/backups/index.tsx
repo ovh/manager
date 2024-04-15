@@ -13,6 +13,8 @@ import { Button } from '@/components/ui/button';
 import { useModale } from '@/hooks/useModale';
 import RestoreServiceModal from './_components/restore';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
+import Guides from '@/components/guides';
+import { GuideSections } from '@/models/guide';
 
 export interface BackupWithExpiricyDate extends database.Backup {
   expiricyDate: Date;
@@ -41,7 +43,10 @@ const Backups = () => {
   );
   return (
     <>
-      <h2>{t('title')}</h2>
+      <div className="flex justify-between w-full">
+        <h2>{t('title')}</h2>
+        <Guides section={GuideSections.backups} engine={service.engine} />
+      </div>
       <p>{t('description')}</p>
       <div className="inline-block">
         <Table>

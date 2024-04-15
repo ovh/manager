@@ -9,6 +9,8 @@ import { useServiceData } from '../layout';
 import { Skeleton } from '@/components/ui/skeleton';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 import { POLLING } from '@/configuration/polling';
+import { GuideSections } from '@/models/guide';
+import Guides from '@/components/guides';
 
 export function breadcrumb() {
   return (
@@ -71,7 +73,10 @@ const Logs = () => {
 
   return (
     <>
-      <h2>{t('title')}</h2>
+      <div className="flex justify-between w-full">
+        <h2>{t('title')}</h2>
+        <Guides section={GuideSections.logs} engine={service.engine} />
+      </div>
       <p>{t('description')}</p>
       <div className="flex items-center space-x-2">
         <Switch
