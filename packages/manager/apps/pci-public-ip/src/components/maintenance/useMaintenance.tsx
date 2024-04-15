@@ -9,7 +9,9 @@ export function useProductMaintenance(projectId: string) {
     projectId,
     customerRegions,
   );
+
   const regionsMaintenance = steins?.map(({ zone }) => zone);
+
   const isProductConcernedByMaintenance = (
     productRegions || []
   ).some((region) => regionsMaintenance.includes(region));
