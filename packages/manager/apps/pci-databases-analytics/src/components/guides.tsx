@@ -70,9 +70,10 @@ const Guides = ({ section, engine, noEngineFilter = false }: GuidesProps) => {
                 <CommandItem
                   key={guide.url}
                   onSelect={() => openGuide(guide)}
-                  className="cursor-pointer"
+                  className="cursor-pointer flex-col items-start"
                 >
-                  <span>{guide.title}</span>
+                  <p className="text-sm font-semibold">{guide.title}</p>
+                  <p className="text-xs">{guide.excerpt}</p>
                 </CommandItem>
               ))}
           </CommandGroup>
