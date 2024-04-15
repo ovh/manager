@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.6.0...@ovh-ux/manager-hub-app@5.7.0) (2024-04-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2921] ([8db9804](https://github.com/ovh/manager/commit/8db980407300ba3a8efc3d34ecd447bc61c8cc9b))
+
+
+### Features
+
+* **hub.dashboard:** misleading message once documents uploaded ([#11232](https://github.com/ovh/manager/issues/11232)) ([444cee9](https://github.com/ovh/manager/commit/444cee9ebcb69dbd1e26fcd57c6b0d9dbe636d02))
+
+
+
+
+
 # [5.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.5.3...@ovh-ux/manager-hub-app@5.6.0) (2024-04-04)
 
 

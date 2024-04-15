@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-core-application",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "*",
-    "@ovh-ux/manager-core-api": "*",
+    "@ovh-ux/manager-core-api": "^0.7.1",
     "@ovh-ux/ovh-at-internet": "*",
     "@ovh-ux/shell": "*",
     "generouted": "1.6.4",
@@ -28,13 +28,13 @@
     "react-i18next": "^11.18.1",
     "react-router-dom": "^6.3.0"
   },
+  "devDependencies": {
+    "typescript": "^4.7.0"
+  },
   "peerDependencies": {
     "@tanstack/react-query": "5.x",
     "@tanstack/react-query-devtools": "5.x",
     "react": "18.x",
     "react-dom": "18.x"
-  },
-  "devDependencies": {
-    "typescript": "^4.7.0"
   }
 }

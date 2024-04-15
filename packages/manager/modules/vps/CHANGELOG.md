@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.40.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.40.2...@ovh-ux/manager-vps@2.40.3) (2024-04-15)
+
+
+### Bug Fixes
+
+* **vps:** allow configuration for all flavors upgrade ([#11310](https://github.com/ovh/manager/issues/11310)) ([c4518f2](https://github.com/ovh/manager/commit/c4518f258a47d99bf03fc668d7c7776ef6c20fa0))
+
+
+
+
+
 ## [2.40.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.40.1...@ovh-ux/manager-vps@2.40.2) (2024-03-19)
 
 

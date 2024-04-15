@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.53.1...@ovh-ux/manager-container-app@0.54.0) (2024-04-15)
+
+
+### Bug Fixes
+
+* fix react-query version for query client issue ([a6c553f](https://github.com/ovh/manager/commit/a6c553fe33a0fc1964f3e8a8cfe3361ded40e03d))
+* **generator:** fixes and improvements ([#10904](https://github.com/ovh/manager/issues/10904)) ([ba4c845](https://github.com/ovh/manager/commit/ba4c84573128923f67c996c98039ca5dc7133457))
+* **manager-components:** fix import error manager components ([8de51d7](https://github.com/ovh/manager/commit/8de51d7309db6d8eed7507c633a124b82bdacd83))
+
+
+### Features
+
+* **container:** add ods modal from sso auth ([#11105](https://github.com/ovh/manager/issues/11105)) ([e4d352f](https://github.com/ovh/manager/commit/e4d352f21ae2094f4e278f35428ec09c967f6e27))
+* **container:** replace cookies policy modal on odsmodal ([#11072](https://github.com/ovh/manager/issues/11072)) ([d9bd62a](https://github.com/ovh/manager/commit/d9bd62ad750a0e525d164a81df252241fc80c122))
+* **container:** replace double auth content from bootstrap to tailwind ([#11139](https://github.com/ovh/manager/issues/11139)) ([a7724f9](https://github.com/ovh/manager/commit/a7724f91c3745eb01eb3f7ba58332cd16d91c22b))
+* **pci:** add data platform menu ([#11281](https://github.com/ovh/manager/issues/11281)) ([73d02af](https://github.com/ovh/manager/commit/73d02af2b8c869e035714874ce5b709fec96682f))
+
+
+
+
+
 ## [0.53.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.53.0...@ovh-ux/manager-container-app@0.53.1) (2024-04-11)
 
 

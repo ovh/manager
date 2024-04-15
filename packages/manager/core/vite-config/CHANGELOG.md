@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.6.0...@ovh-ux/manager-vite-config@0.6.1) (2024-04-15)
+
+
+### Bug Fixes
+
+* **manager-components:** fix import error manager components ([8de51d7](https://github.com/ovh/manager/commit/8de51d7309db6d8eed7507c633a124b82bdacd83))
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.5.1...@ovh-ux/manager-vite-config@0.6.0) (2024-03-25)
 
 

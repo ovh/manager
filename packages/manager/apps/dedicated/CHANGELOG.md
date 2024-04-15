@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.31.1...@ovh-ux/manager-dedicated@19.32.0) (2024-04-15)
+
+
+### Bug Fixes
+
+* **dedicated:** fix plesk 12 licenses ([#11363](https://github.com/ovh/manager/issues/11363)) ([f569582](https://github.com/ovh/manager/commit/f569582a5d50e9ef63dd280b45b003e7a30e8dd4))
+
+
+### Features
+
+* **dedicated.account:** error messages to be reviewed ([#11250](https://github.com/ovh/manager/issues/11250)) ([515277a](https://github.com/ovh/manager/commit/515277ac7ac992640f12fbbd2212915d3053273e))
+* **dedicated.account:** validation message clarification in the manager ([#11165](https://github.com/ovh/manager/issues/11165)) ([f3e773c](https://github.com/ovh/manager/commit/f3e773c98d1b691b2306df288626e334c85c3397))
+
+
+
+
+
 ## [19.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.31.0...@ovh-ux/manager-dedicated@19.31.1) (2024-04-11)
 
 
