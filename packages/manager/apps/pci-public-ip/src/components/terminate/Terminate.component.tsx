@@ -14,6 +14,7 @@ type TerminateModalProps = {
   onClose: () => void;
   onConfirm: () => void;
 };
+
 export default function TerminateModal({
   ip,
   isPending,
@@ -27,8 +28,8 @@ export default function TerminateModal({
       headline={
         !isPending
           ? t('pci_additional_ips_floating_ips_floating_ip_terminate_title', {
-              ip,
-            })
+            ip,
+          })
           : ''
       }
       onOdsModalClose={onClose}
@@ -39,6 +40,7 @@ export default function TerminateModal({
             inline
             size={ODS_SPINNER_SIZE.md}
             className="block text-center"
+            data-testid="terminateModal-spinner"
           />
         )}
       </slot>
@@ -47,6 +49,7 @@ export default function TerminateModal({
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={onClose}
+        data-testid="terminateModal-button_cancel"
       >
         {t('pci_additional_ips_floating_ips_floating_ip_terminate_cancel')}
       </OsdsButton>
@@ -55,7 +58,7 @@ export default function TerminateModal({
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={onConfirm}
         {...(isPending || isPendingTerminate ? { disabled: true } : {})}
-        data-testid="submitButton"
+        data-testid="terminateModal-button_submit"
       >
         {t('pci_additional_ips_floating_ips_floating_ip_terminate_confirm')}
       </OsdsButton>
