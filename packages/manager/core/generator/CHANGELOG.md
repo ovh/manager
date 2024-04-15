@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.7.0...@ovh-ux/manager-generator@0.7.1) (2024-04-15)
+
+
+### Bug Fixes
+
+* fix react-query version for query client issue ([a6c553f](https://github.com/ovh/manager/commit/a6c553fe33a0fc1964f3e8a8cfe3361ded40e03d))
+* **generator:** fixes and improvements ([#10904](https://github.com/ovh/manager/issues/10904)) ([ba4c845](https://github.com/ovh/manager/commit/ba4c84573128923f67c996c98039ca5dc7133457))
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.6.0...@ovh-ux/manager-generator@0.7.0) (2024-03-19)
 
 

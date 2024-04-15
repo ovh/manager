@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.7.0...@ovh-ux/manager-core-api@0.7.1) (2024-04-15)
+
+
+### Bug Fixes
+
+* **generator:** fixes and improvements ([#10904](https://github.com/ovh/manager/issues/10904)) ([ba4c845](https://github.com/ovh/manager/commit/ba4c84573128923f67c996c98039ca5dc7133457))
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.6.0...@ovh-ux/manager-core-api@0.7.0) (2024-04-04)
 
 

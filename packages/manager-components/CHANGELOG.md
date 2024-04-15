@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.9.1...@ovhcloud/manager-components@1.10.0) (2024-04-15)
+
+### Bug Fixes
+
+- fix react-query version for query client issue ([a6c553f](https://github.com/ovh/manager/commit/a6c553fe33a0fc1964f3e8a8cfe3361ded40e03d))
+- **generator:** fixes and improvements ([#10904](https://github.com/ovh/manager/issues/10904)) ([ba4c845](https://github.com/ovh/manager/commit/ba4c84573128923f67c996c98039ca5dc7133457))
+- **i18n:** add missing translations [CDS 2921] ([8db9804](https://github.com/ovh/manager/commit/8db980407300ba3a8efc3d34ecd447bc61c8cc9b))
+- **manager-components:** fix import error manager components ([8de51d7](https://github.com/ovh/manager/commit/8de51d7309db6d8eed7507c633a124b82bdacd83))
+
+### Features
+
+- **container:** replace double auth content from bootstrap to tailwind ([#11139](https://github.com/ovh/manager/issues/11139)) ([a7724f9](https://github.com/ovh/manager/commit/a7724f91c3745eb01eb3f7ba58332cd16d91c22b))
+
 ## [1.9.1](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.9.0...@ovhcloud/manager-components@1.9.1) (2024-04-11)
 
 ### Bug Fixes

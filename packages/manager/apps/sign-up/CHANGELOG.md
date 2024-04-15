@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.6.1...@ovh-ux/sign-up-app@3.7.0) (2024-04-15)
+
+
+### Features
+
+* **signup:** clarify the mandatory fields on account creation ([#11184](https://github.com/ovh/manager/issues/11184)) ([197bf63](https://github.com/ovh/manager/commit/197bf632551fd6dba8b646e32c2cc3e4ad70b7b3))
+
+
+
+
+
 ## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.6.0...@ovh-ux/sign-up-app@3.6.1) (2024-04-11)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

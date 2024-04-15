@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.1.1...@ovh-ux/manager-pci-users-app@0.1.2) (2024-04-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2921] ([8db9804](https://github.com/ovh/manager/commit/8db980407300ba3a8efc3d34ecd447bc61c8cc9b))
+
+
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.1.0...@ovh-ux/manager-pci-users-app@0.1.1) (2024-04-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-users-app

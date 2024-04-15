@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-module-order",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "OVHcloud manager module order.",
   "repository": {
@@ -22,17 +22,17 @@
     "dev": "tsc",
     "start:watch": "tsc -w"
   },
-  "peerDependencies": {
-    "@tanstack/react-query": "5.x",
-    "react": "18.x"
-  },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "*",
-    "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/manager-core-api": "^0.7.1",
+    "@ovh-ux/manager-react-shell-client": "^0.4.1",
     "jsurl": "^0.1.5"
   },
   "devDependencies": {
     "@types/jsurl": "^0.1.2",
     "typescript": "^4.3.2"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "5.x",
+    "react": "18.x"
   }
 }

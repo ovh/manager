@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.16.1...@ovh-ux/sign-up@2.17.0) (2024-04-15)
+
+
+### Features
+
+* **signup:** clarify the mandatory fields on account creation ([#11184](https://github.com/ovh/manager/issues/11184)) ([197bf63](https://github.com/ovh/manager/commit/197bf632551fd6dba8b646e32c2cc3e4ad70b7b3))
+* **signup:** modification of the field related to language ([#11277](https://github.com/ovh/manager/issues/11277)) ([1800d11](https://github.com/ovh/manager/commit/1800d114c16043e2f2651a113b99f52b528053e6))
+
+
+
+
+
 ## [2.16.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.16.0...@ovh-ux/sign-up@2.16.1) (2024-04-11)
 
 

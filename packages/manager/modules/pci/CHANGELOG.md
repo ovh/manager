@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.35.0...@ovh-ux/manager-pci@6.36.0) (2024-04-15)
+
+
+### Features
+
+* **pci:** add data platform menu ([#11281](https://github.com/ovh/manager/issues/11281)) ([73d02af](https://github.com/ovh/manager/commit/73d02af2b8c869e035714874ce5b709fec96682f))
+* **public-cloud:** consider new localzone plancodes ([#11302](https://github.com/ovh/manager/issues/11302)) ([97ad25d](https://github.com/ovh/manager/commit/97ad25d3e68dbb46aa16e15311b03349feacbe06))
+
+
+
+
+
 # [6.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.34.0...@ovh-ux/manager-pci@6.35.0) (2024-04-11)
 
 

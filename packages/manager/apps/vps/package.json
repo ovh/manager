@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vps-app",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "private": true,
   "description": "VPS standalone application.",
   "repository": {
@@ -28,7 +28,7 @@
     "@ovh-ux/manager-models": "^1.14.11",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.0",
     "@ovh-ux/manager-product-offers": "^5.5.0",
-    "@ovh-ux/manager-vps": "^2.40.2",
+    "@ovh-ux/manager-vps": "^2.40.3",
     "@ovh-ux/ng-at-internet": "^5.11.9",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.13.0",
