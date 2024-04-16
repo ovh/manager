@@ -97,7 +97,7 @@ const Dashboard = () => {
       </div>
       <Alert variant="info">
         <AlertDescription className="text-base">
-          <div className="flex flex-row items-center justify-between mr-8">
+          <div className="flex flex-col items-stretch  md:flex-row md:items-center justify-between gap-4">
             <div className="flex flex-row gap-5 items-center">
               <AlertCircle className="h-6 w-6" />
               <p>{t('upgradeAlertDescription')}</p>
