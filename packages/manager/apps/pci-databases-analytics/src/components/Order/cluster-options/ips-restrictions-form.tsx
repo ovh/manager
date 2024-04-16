@@ -74,7 +74,7 @@ const IpsRestrictionsForm = React.forwardRef<
   return (
     <Form {...form}>
       <div className="flex w-full items-start gap-2">
-        <div className="grid grid-cols-2 gap-2 w-full items-end">
+        <div className="grid grid-cols-2 gap-2 w-full">
           <FormField
             control={form.control}
             name="ip"

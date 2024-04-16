@@ -1,5 +1,11 @@
 import { ControllerRenderProps, FieldValues } from 'react-hook-form';
-import { Check, ChevronsUpDown, PlusCircle, Trash2 } from 'lucide-react';
+import {
+  Check,
+  ChevronsUpDown,
+  FileJson,
+  PlusCircle,
+  Trash2,
+} from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { database } from '@/models/database';
@@ -36,6 +42,12 @@ import {
   CommandItem,
 } from '@/components/ui/command';
 import { cn } from '@/lib/utils';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 interface AdvancedConfigurationFormProps {
   advancedConfiguration: Record<string, string>;
@@ -65,7 +77,7 @@ const AdvancedConfigurationForm = ({
       toast.toast({
         variant: 'destructive',
         title: t('advancedConfigurationUpdateErrorTitle'),
-        description: error.response.data.message,
+        description: error.response.data.details.message,
       });
     },
     onSuccess: () => {
@@ -162,14 +174,14 @@ const AdvancedConfigurationForm = ({
     }
   };
   return (
-    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-2 mt-2">
+    <div className="flex flex-col gap-2 mt-2">
       {/* Left Col */}
-      <div className="flex flex-col">
+      <div className="flex flex-col pb-4 border-b">
         <Form {...model.form}>
           <form
             onSubmit={onSubmit}
             id="advancedConfigurationForm"
-            className="flex flex-col gap-2"
+            className="grid grid-cols-1 md:grid-cols-2 gap-2"
           >
             {model.lists.properties.map((property) => (
               <FormField
@@ -264,33 +276,48 @@ const AdvancedConfigurationForm = ({
         </div>
       </div>
       {/* Right Col */}
-      <div className="flex flex-col max-h-[500px] sticky top-4 gap-2">
-        <ScrollArea className="p-2 h-auto bg-[#122844] text-white whitespace-pre w-full">
-          {model.result.payload &&
-            JSON.stringify(model.result.payload, null, 2)}
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-        {(model.form.formState.isDirty ||
-          model.lists.properties.length !==
-            Object.keys(advancedConfiguration).length) && (
-          <div className="flex gap-2">
-            <Button
-              disabled={isPending}
-              variant="outline"
-              role="button"
-              onClick={() => model.methods.reset()}
+      <Accordion type="single" collapsible>
+        <AccordionItem value="json" className="border-none">
+          <AccordionTrigger className="text-base">
+            <div className="flex items-center gap-2">
+              <FileJson className="size-4" />
+              <span>{t('advancedConfigurationJSONButton')}</span>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent>
+            <ScrollArea
+              className="p-2 bg-[#122844] text-white whitespace-pre w-full"
+              viewportClassName="max-h-[400px]"
             >
-              {t('advancedConfigurationCancelButton')}
-            </Button>
-            <Button
-              form="advancedConfigurationForm"
-              disabled={isPending || isDisabled}
-            >
-              {t('advancedConfigurationSubmitButton')}
-            </Button>
-          </div>
-        )}
-      </div>
+              <div>
+                {model.result.payload &&
+                  JSON.stringify(model.result.payload, null, 2)}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+      {(model.form.formState.isDirty ||
+        model.lists.properties.length !==
+          Object.keys(advancedConfiguration).length) && (
+        <div className="flex gap-2">
+          <Button
+            disabled={isPending}
+            variant="outline"
+            role="button"
+            onClick={() => model.methods.reset()}
+          >
+            {t('advancedConfigurationCancelButton')}
+          </Button>
+          <Button
+            form="advancedConfigurationForm"
+            disabled={isPending || isDisabled}
+          >
+            {t('advancedConfigurationSubmitButton')}
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
