@@ -10,9 +10,6 @@
   "manager_hub_dashboard_modal_siret_cancel": "Nicht jetzt",
   "manager_hub_dashboard_modal_title": "Aktualisierung Ihrer Kontaktdaten",
   "manager_hub_dashboard_kyc_banner_description": "Sie möchten ein OVHcloud Produkt bestellen: Aufgrund der geltenden Vorschriften muss Ihre Identität überprüft werden. Bitte fügen Sie Ihre Ausweisdokumente hinzu.",
-  "manager_hub_dashboard_kyc_banner_link": "Meine Dokumente",
-  "manager_hub_dashboard_iam_banner_description": "Neu! Die Funktion Identity and Access Management (IAM) ist nun verfügbar, um Ihre Zugänge für alle Ihre Dienste über ein einziges Interface sicher zu verwalten.",
-  "manager_hub_dashboard_iam_banner_link": "Mehr erfahren",
-  "manager_hub_dashboard_iam_ga_banner_description": "Neu! Identity and Access Management (IAM) ist jetzt für alle verfügbar. Sichern Sie den Zugang zu allen Ihren Dienstleistungen über ein einziges Interface ab.",
-  "manager_hub_dashboard_kyc_banner_description_waiting": "Um Ihre Identität zu überprüfen, bevor Sie eine Bestellung aufgeben, lesen Sie bitte die E-Mail unseres Teams und führen Sie die angegebenen Schritte aus."
+  "manager_hub_dashboard_kyc_banner_description_waiting": "Um Ihre Identität zu überprüfen, bevor Sie eine Bestellung aufgeben, lesen Sie bitte die E-Mail unseres Teams und führen Sie die angegebenen Schritte aus.",
+  "manager_hub_dashboard_kyc_banner_link": "Meine Dokumente"
 }
