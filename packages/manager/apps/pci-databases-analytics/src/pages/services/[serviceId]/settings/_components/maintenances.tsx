@@ -82,9 +82,9 @@ const Maintenances = () => {
       {maintenanceQuery.data.map((maintenance) => (
         <Alert variant="info" key={maintenance.id}>
           <AlertDescription>
-            <div className="flex content-between gap-2">
+            <div className="flex flex-col items-stretch md:flex-row md:items-center justify-between gap-4">
               <div className="flex flex-col items-start w-full">
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <b>{t('maintenancesStatus')}</b>
                   <Badge
                     className="text-xs"

@@ -34,7 +34,7 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
           defaultValue="0"
           onValueChange={(v) => setSelectedContinentIndex(+v)}
         >
-          <TabsList className="flex bg-white justify-start p-0">
+          <TabsList className="bg-white justify-start p-0 hidden md:flex">
             {continents.map((continent, index) => (
               <TabsTrigger
                 key={continent}
