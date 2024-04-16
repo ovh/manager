@@ -5,7 +5,12 @@ import 'oclazyload';
 const moduleName = 'ovhManagerOtrsLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
-  /* @ngInject */ ($stateProvider, $urlRouterProvider, coreConfigProvider) => {
+  /* @ngInject */ (
+    $stateProvider,
+    $urlRouterProvider,
+    $windowProvider,
+    coreConfigProvider,
+  ) => {
     if (coreConfigProvider.isRegion('US')) {
       $stateProvider.state('app.otrs.**', {
         url: '/ticket',
@@ -29,11 +34,8 @@ angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
     } else {
       $urlRouterProvider.rule(($injector, $location) => {
         const path = $location.path();
-        if (path === '/ticket') {
-          return '/support';
-        }
-        if (/^\/ticket\//.test(path)) {
-          return path.replace(/^\/ticket\//, '/support/tickets/');
+        if (path.includes('/ticket') || path.includes('/support')) {
+          return '/configuration';
         }
         return undefined;
       });
