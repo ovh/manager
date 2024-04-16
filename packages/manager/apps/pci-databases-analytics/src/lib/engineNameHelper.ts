@@ -23,7 +23,7 @@ export function humanizeEngine(engine: database.EngineEnum) {
     case database.EngineEnum.opensearch:
       return 'OpenSearch';
     case database.EngineEnum.postgresql:
-      return 'PostrgreSQL';
+      return 'PostgreSQL';
     case database.EngineEnum.redis:
       return 'Redis™*';
     default:
