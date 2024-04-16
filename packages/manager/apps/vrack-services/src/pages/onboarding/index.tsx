@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { Card, CardProps } from '@ovhcloud/manager-components';
 import {
@@ -93,7 +94,8 @@ export default function OnboardingPage() {
         navigate(urls.createVrackServices);
       }}
       secondaryButtonLabel={t('moreInfoButtonLabel')}
-      secondaryHref={t('moreInfoButtonLink')}
+      secondaryHref={link?.guideLink2}
+      secondaryTarget={OdsHTMLAnchorElementTarget._blank}
       secondaryOnClick={() => {
         trackClick({
           location: PageLocation.page,
