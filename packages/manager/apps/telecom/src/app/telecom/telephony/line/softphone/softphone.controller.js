@@ -13,4 +13,12 @@ export default class {
       this.currentServiceIsBeta,
     );
   }
+
+  regenerateLink() {
+    this.handlingRegenerateLinkRequest = true;
+    this.softphoneService.regenerateToken(
+      this.$stateParams.billingAccount,
+      this.$stateParams.serviceName,
+    );
+  }
 }
