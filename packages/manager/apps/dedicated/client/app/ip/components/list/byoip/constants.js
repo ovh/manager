@@ -1,6 +1,7 @@
 export const TRACKING_PREFIX = 'dedicated::ip';
 export const TRACKING_PREFIX_SLICE = `${TRACKING_PREFIX}::slice-ip-block`;
 export const TRACKING_PREFIX_AGGREGATE = `${TRACKING_PREFIX}::merge-ip-block`;
+export const BYOIP_SLICE_PARK_IT_FIRST_ERROR_REGEX = /routed to a service.*park it first/;
 export const BYOIP_USAGE_GUIDE_URL = {
   DE:
     'https://help.ovhcloud.com/csm/de-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044858',
@@ -44,5 +45,6 @@ export const BYOIP_USAGE_GUIDE_URL = {
 export default {
   TRACKING_PREFIX_SLICE,
   TRACKING_PREFIX_AGGREGATE,
+  BYOIP_SLICE_PARK_IT_FIRST_ERROR_REGEX,
   BYOIP_USAGE_GUIDE_URL,
 };

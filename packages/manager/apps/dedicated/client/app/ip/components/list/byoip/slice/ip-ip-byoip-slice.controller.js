@@ -1,4 +1,8 @@
-import { TRACKING_PREFIX_SLICE, BYOIP_USAGE_GUIDE_URL } from '../constants';
+import {
+  TRACKING_PREFIX_SLICE,
+  BYOIP_SLICE_PARK_IT_FIRST_ERROR_REGEX,
+  BYOIP_USAGE_GUIDE_URL,
+} from '../constants';
 
 export default class IpByoipSliceController {
   /* @ngInject */
@@ -91,6 +95,13 @@ export default class IpByoipSliceController {
     if (error.status === 404) {
       this.errorMessage = this.$translate.instant(
         'ip_byoip_aggregate_ip_doesnt_exist_error_message',
+      );
+    } else if (
+      error.status === 400 &&
+      BYOIP_SLICE_PARK_IT_FIRST_ERROR_REGEX.test(error.data.message)
+    ) {
+      this.errorMessage = this.$translate.instant(
+        'ip_byoip_slicing_park_it_first_error_message',
       );
     } else {
       this.errorMessage = error.data.message;
