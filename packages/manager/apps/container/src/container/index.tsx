@@ -1,15 +1,17 @@
-import React, { Suspense, useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 
-import { Environment } from '@ovh-ux/manager-config';
 import LegacyContainer from '@/container/legacy';
+import { Environment } from '@ovh-ux/manager-config';
+
 import NavReshuffleContainer from '@/container/nav-reshuffle';
 import { useShell } from '@/context';
 import useContainer from '@/core/container';
-import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
+
+import LiveChat from '@/components/LiveChat';
 import { ProgressProvider } from '@/context/progress';
 import CookiePolicy from '@/cookie-policy/CookiePolicy';
+import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
 import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
-import LiveChat from '@/components/LiveChat';
 
 export default function Container(): JSX.Element {
   const {

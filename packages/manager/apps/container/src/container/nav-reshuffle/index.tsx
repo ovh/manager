@@ -1,28 +1,19 @@
-import React, {
-  Suspense,
+import {
   useContext,
   useEffect,
   useRef,
-  useState,
+  useState
 } from 'react';
 
-import { IFrameMessageBus } from '@ovh-ux/shell';
-import { IFrameAppRouter } from '@/core/routing';
 import ApplicationContext from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
+import { IFrameMessageBus } from '@ovh-ux/shell';
 
-import NavReshuffleFeedbackWidget from './feedback';
-import Header from './header';
-import Sidebar from './sidebar';
-import NavReshuffleOnboardingWidget from './onboarding';
 
-import style from './template.module.scss';
-import Progress from '../common/Progress';
-import { useProgress } from '@/context/progress';
-import Preloader from '../common/Preloader';
-import usePreloader from '../common/Preloader/usePreloader';
 import useMfaEnrollment from '@/container/mfa-enrollment';
-import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
+import { useProgress } from '@/context/progress';
+import usePreloader from '../common/Preloader/usePreloader';
+import NavReshuffleComponent from './NavReshuffle.component';
 
 function NavReshuffleContainer(): JSX.Element {
   const iframeRef = useRef(null);
@@ -43,12 +34,12 @@ function NavReshuffleContainer(): JSX.Element {
     hideMfaEnrollment,
   } = useMfaEnrollment();
 
-  const productNavReshuffle = useProductNavReshuffle();
   const {
     isNavigationSidebarOpened,
     openNavigationSidebar,
     closeNavigationSidebar,
-  } = productNavReshuffle;
+    isLoading
+  } = useProductNavReshuffle();
 
   const onHamburgerMenuClick = () => {
     if (isNavigationSidebarOpened) {
@@ -64,65 +55,20 @@ function NavReshuffleContainer(): JSX.Element {
   }, [iframeRef]);
 
   return (
-    <div className={style.navReshuffle}>
-      <div
-        className={`${style.sidebar} ${
-          isNavigationSidebarOpened ? '' : style.hidden
-        }`}
-      >
-        <Suspense fallback="">
-          <Sidebar />
-        </Suspense>
-      </div>
-      <div className={`${style.container}`}>
-        <Progress isAnimating={isProgressAnimating}></Progress>
-        <div className={style.navbar}>
-          <Header
-            isSidebarExpanded={isNavigationSidebarOpened}
-            onHamburgerMenuClick={() => onHamburgerMenuClick()}
-            onUserAccountMenuToggle={setShowOverlay}
-          />
-        </div>
-        <div className={style.iframeContainer}>
-          <div
-            className={`${style.iframeOverlay} ${
-              isNavigationSidebarOpened || showOverlay
-                ? style.iframeOverlay_visible
-                : ''
-            }`}
-            onClick={() =>
-              isNavigationSidebarOpened && closeNavigationSidebar()
-            }
-          ></div>
-          {isMfaEnrollmentVisible && (
-            <Suspense fallback="">
-              <MfaEnrollment
-                forced={isMfaEnrollmentForced}
-                onHide={hideMfaEnrollment}
-              />
-            </Suspense>
-          )}
-          <Preloader visible={preloaderVisible}>
-            <>
-              <IFrameAppRouter
-                iframeRef={iframeRef}
-                configuration={applications}
-              />
-              <iframe
-                title="app"
-                role="document"
-                src="about:blank"
-                ref={iframeRef}
-              ></iframe>
-            </>
-          </Preloader>
-        </div>
-        <Suspense fallback="">
-          {!productNavReshuffle.isLoading && <NavReshuffleOnboardingWidget />}
-          <NavReshuffleFeedbackWidget />
-        </Suspense>
-      </div>
-    </div>
+    <NavReshuffleComponent 
+    applications={applications}
+    preloaderVisible={preloaderVisible}
+    isMfaEnrollmentForced={isMfaEnrollmentForced}
+    isLoading={isLoading}
+    isMfaEnrollmentVisible={isMfaEnrollmentVisible}
+    isNavigationSidebarOpened={isNavigationSidebarOpened}
+    isProgressAnimating={isProgressAnimating}
+    onHamburgerMenuClick={onHamburgerMenuClick}
+    setShowOverlay={setShowOverlay}
+    showOverlay={showOverlay}
+    closeNavigationSidebar={closeNavigationSidebar}
+    hideMfaEnrollment={hideMfaEnrollment}
+    iframeRef={iframeRef}/>
   );
 }
 

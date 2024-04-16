@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Environment } from '@ovh-ux/manager-config';
@@ -84,7 +84,7 @@ type SidebarLinkProps = {
   id?: string;
 };
 
-const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
+const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = memo(({
   count = 0,
   node = {},
   linkParams = {},
@@ -122,6 +122,6 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       )}
     </a>
   );
-};
+})
 
 export default SidebarLink;

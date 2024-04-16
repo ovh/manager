@@ -21,17 +21,10 @@ import {
 import { Node } from './navigation-tree/node';
 import ProjectSelector, { PciProject } from './ProjectSelector/ProjectSelector';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
+import SidebarComponent from './Sidebar.component';
+import { ServicesCount } from './sidebar.type';
 
-interface ServicesCountError {
-  url: string;
-  status: number;
-  message: string;
-}
-interface ServicesCount {
-  total: number;
-  serviceTypes: Record<string, number>;
-  errors?: Array<ServicesCountError>;
-}
+
 
 const parseContainerURL = (
   location: Location,
@@ -41,13 +34,11 @@ const parseContainerURL = (
 };
 
 const Sidebar = (): JSX.Element => {
-  const { t } = useTranslation('sidebar');
   const shell = useShell();
   const location = useLocation();
   const trackingPlugin = shell.getPlugin('tracking');
   const navigationPlugin = shell.getPlugin('navigation');
   const environmentPlugin = shell.getPlugin('environment');
-  const routingPlugin = shell.getPlugin('routing');
   const reketInstance = useReket();
   const { betaVersion } = useContainer();
 
@@ -76,24 +67,6 @@ const Sidebar = (): JSX.Element => {
 
   const logoLink = navigationPlugin.getURL('hub', '#/');
 
-  const shouldHideElement = (node: Node, count: number | boolean) => {
-    if (node.hideIfEmpty && !count) {
-      return true;
-    }
-
-    if (node.forceVisibility) {
-      return false;
-    }
-
-    if (betaVersion === 2) {
-      if (node.id === 'services') return false;
-      if (node.count === false) return false;
-      if (node.hideIfEmpty === false) return false;
-      return !count;
-    }
-
-    return false;
-  };
 
   const menuClickHandler = (node: Node) => {
     if (node.children) {
@@ -402,159 +375,25 @@ const Sidebar = (): JSX.Element => {
     selectedPciProject,
   ]);
 
-  return (
-    <div className={style.sidebar}>
-      <a
-        role="img"
-        className={`block ${style.sidebar_logo}`}
-        aria-label="OVHcloud"
-        target="_top"
-        href={logoLink}
-      >
-        <img
-          className="mx-4 my-3"
-          src={logo}
-          alt="OVHcloud"
-          aria-hidden="true"
-        />
-      </a>
-
-      <div className={style.sidebar_action}>
-        <a
-          onClick={() =>
-            trackingPlugin.trackClick({
-              name: 'navbar_v2_cta_add_a_service',
-              type: 'action',
-            })
-          }
-          href={navigationPlugin.getURL('catalog', '/')}
-        >
-          <span
-            className={`oui-icon oui-icon-plus ${style.sidebar_action_icon}`}
-            aria-hidden="true"
-          ></span>
-          <span>{t('sidebar_service_add')}</span>
-        </a>
-      </div>
-      {currentNavigationNode.id !== 'home' && (
-        <a
-          className={style.sidebar_back_btn}
-          onClick={() => {
-            setCurrentNavigationNode(currentNavigationNode.parent);
-            setIsAssistanceOpen(false);
-          }}
-        >
-          <span
-            className="oui-icon oui-icon-chevron-left"
-            aria-hidden="true"
-          ></span>
-          {t('sidebar_back')}
-        </a>
-      )}
-      <div className={style.sidebar_menu}>
-        {(servicesCount || betaVersion === 1) && (
-          <ul id="menu">
-            <li>
-              <h2>{t(currentNavigationNode.translation)}</h2>
-            </li>
-
-            {/^pci/.test(currentNavigationNode?.id) && (
-              <li>
-                <ProjectSelector
-                  isLoading={!pciProjects}
-                  projects={pciProjects}
-                  selectedProject={selectedPciProject}
-                  onProjectChange={(option: typeof selectedPciProject) => {
-                    if (selectedPciProject !== option) {
-                      navigationPlugin.navigateTo(
-                        'public-cloud',
-                        `#/pci/projects/${option.project_id}`,
-                      );
-                    }
-                  }}
-                  onProjectCreate={() => {
-                    navigationPlugin.navigateTo(
-                      'public-cloud',
-                      `#/pci/projects/new`,
-                    );
-                  }}
-                  onSeeAllProjects={() => {
-                    navigationPlugin.navigateTo(
-                      'public-cloud',
-                      `#/pci/projects`,
-                    );
-                  }}
-                  onMenuOpen={() => setIsAssistanceOpen(false)}
-                  createLabel={t('sidebar_pci_new')}
-                  seeAllButton={true}
-                  seeAllLabel={t('sidebar_pci_all')}
-                />
-                {pciError && (
-                  <button
-                    className={style.sidebar_pci_refresh}
-                    onClick={() => fetchPciProjects()}
-                  >
-                    <span>{t('sidebar_pci_load_error')}</span>
-                    <span className="oui-icon oui-icon-refresh"></span>
-                  </button>
-                )}
-                {selectedPciProject && (
-                  <span
-                    className={`flex px-1 ${style.sidebar_clipboard}`}
-                    title={t('sidebar_clipboard_copy')}
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        selectedPciProject.project_id,
-                      )
-                    }
-                  >
-                    <span className={style.sidebar_clipboard_text}>
-                      {selectedPciProject.project_id}
-                    </span>
-
-                    <span
-                      className={`oui-icon oui-icon-copy px-1 mx-1  ml-auto ${style.sidebar_clipboard_copy}`}
-                    ></span>
-                  </span>
-                )}
-              </li>
-            )}
-
-            {menuItems?.map(({ node, count }) => (
-              <li
-                key={node.id}
-                id={node.id}
-                className={
-                  node === highlightedNode ? style.sidebar_selected : ''
-                }
-              >
-                {!shouldHideElement(node, count) && (
-                  <SidebarLink
-                    node={node}
-                    count={count}
-                    linkParams={{
-                      projectId: selectedPciProject?.project_id,
-                    }}
-                    onClick={() => menuClickHandler(node)}
-                    id={node.idAttr}
-                  />
-                )}
-                {node.separator && <hr />}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-
-      <Suspense fallback="">
-        <Assistance
-          containerURL={containerURL}
-          isOpen={isAssistanceOpen}
-          onToggle={(isOpen) => setIsAssistanceOpen(isOpen)}
-        />
-      </Suspense>
-    </div>
-  );
+  return <SidebarComponent 
+  logoLink={logoLink}
+  currentNavigationNode={currentNavigationNode}
+  trackingPlugin={trackingPlugin}
+  navigationPlugin={navigationPlugin}
+  servicesCount={servicesCount}
+  betaVersion={betaVersion}
+  pciError={pciError}
+  setIsAssistanceOpen={setIsAssistanceOpen}
+  fetchPciProjects={fetchPciProjects}
+  pciProjects={pciProjects}
+  selectedPciProject={selectedPciProject}
+  menuItems={menuItems}
+  menuClickHandler={menuClickHandler}
+  highlightedNode={highlightedNode}
+  containerURL={containerURL}
+  setCurrentNavigationNode={setCurrentNavigationNode}
+  isAssistanceOpen={isAssistanceOpen}
+  />
 };
 
 export default Sidebar;
