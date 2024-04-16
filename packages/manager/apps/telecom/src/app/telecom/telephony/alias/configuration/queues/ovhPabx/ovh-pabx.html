@@ -122,6 +122,10 @@
                             data-ng-bind="('telephony_alias_configuration_queues_strategy_' + queue.strategy) | translate"
                         ></dd>
                         <dt
+                            data-translate="telephony_alias_configuration_queues_confirmation_key"
+                        ></dt>
+                        <dd data-ng-bind="queue.confirmKey || '-'"></dd>
+                        <dt
                             data-translate="telephony_alias_configuration_queues_follow_call_forwards"
                         ></dt>
                         <dd
@@ -190,6 +194,27 @@
                                 data-ng-options="strategy as ('telephony_alias_configuration_queues_strategy_' + strategy | translate) for strategy in QueuesOvhPabxCtrl.enums.strategy"
                             >
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label
+                                for="confirmKey"
+                                class="control-label"
+                                data-translate="telephony_alias_configuration_queues_confirmation_key"
+                            >
+                            </label>
+                            <select
+                                id="confirmKey"
+                                name="confirmKey"
+                                class="form-control"
+                                data-ng-model="queue.inEdition.confirmKey"
+                                data-ng-options="confirmKey for confirmKey in QueuesOvhPabxCtrl.enums.confirmKey"
+                            >
+                                <option value=""></option>
+                            </select>
+                            <span
+                                class="help-block"
+                                data-translate="telephony_alias_configuration_queues_confirmation_key_helper"
+                            ></span>
                         </div>
                         <div class="form-group">
                             <label

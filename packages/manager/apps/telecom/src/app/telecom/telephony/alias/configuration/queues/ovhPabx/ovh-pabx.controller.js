@@ -64,6 +64,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationQueues
           'telephony.OvhPabxHuntingQueueStrategyEnum',
           'enum',
         ]),
+        confirmKey: result.models['telephony.OvhPabxIvrMenuKeyEnum'].enum,
       }));
   };
 
@@ -437,6 +438,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationQueues
       pick(queue, [
         'description',
         'strategy',
+        'confirmKey',
         'followCallForwards',
         'maxMember',
         'maxWaitTime',
@@ -450,6 +452,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationQueues
     const attrs = [
       'description',
       'strategy',
+      'confirmKey',
       'followCallForwards',
       'maxMember',
       'maxWaitTime',
@@ -474,6 +477,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationQueues
         {
           description: queue.inEdition.description,
           strategy: queue.inEdition.strategy,
+          confirmKey: queue.inEdition.confirmKey,
           followCallForwards: queue.inEdition.followCallForwards,
           maxMember: queue.inEdition.maxMember,
           maxWaitTime: queue.inEdition.maxWaitTime,

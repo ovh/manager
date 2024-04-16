@@ -17,6 +17,8 @@
   "telephony_alias_configuration_queues_options": "Options",
   "telephony_alias_configuration_queues_description": "Nom de la file",
   "telephony_alias_configuration_queues_strategy": "Stratégie",
+  "telephony_alias_configuration_queues_confirmation_key": "Clé de confirmation",
+  "telephony_alias_configuration_queues_confirmation_key_helper": "Cette touche interrompra les entrées de chiffres et répétera le menu lorsque aucune entrée n'est attendue.",
   "telephony_alias_configuration_queues_follow_call_forwards": "Suivre les renvois d'appels",
   "telephony_alias_configuration_queues_max_member": "Nombre maximum d'appelants en attente",
   "telephony_alias_configuration_queues_max_wait_time": "Temps d'attente maximum dans la file (en secondes)",
