@@ -145,6 +145,7 @@ export default function HostedPrivateCloudSidebar() {
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
         routeMatcher: new RegExp('^(/ip(/|$)|/network-security|(/network)?/iplb|/vrack|/cloud-connect|/vrack-services)'),
+        pathMatcher: new RegExp('^(/vrack-services/)'),
         subItems: [
           feature.ip && {
             id: 'hpc-ip',
@@ -190,7 +191,7 @@ export default function HostedPrivateCloudSidebar() {
             badge: 'beta',
             label: t('sidebar_vrack_services'),
             icon: getIcon('oui-icon oui-icon-vRack-services_concept'),
-            routeMatcher: new RegExp('^/vrack-services'),
+            pathMatcher: new RegExp('^/vrack-services'),
             async loader() {
               const appId = 'vrack-services';
               const items = await loadServices('/vrackServices/resource', undefined, appId);

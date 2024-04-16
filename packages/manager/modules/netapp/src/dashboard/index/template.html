@@ -33,11 +33,118 @@
     </div>
     <div class="col-md-4">
         <oui-tile
+            data-ng-if="$ctrl.isNetworkAvailable"
             class="mb-3"
-            heading="{{:: 'netapp_dashboard_configuration' | translate }}"
+            heading="{{:: 'netapp_dashboard_network_configuration' | translate }}"
         >
             <oui-tile-definition
-                term="{{:: 'netapp_dashboard_configuration_status' | translate }}"
+                term="{{:: 'netapp_dashboard_network_configuration_status' | translate }}"
+            >
+                <oui-tile-description>
+                    <span
+                        class="oui-badge"
+                        data-ng-if="!$ctrl.networkInformations.vrackServices || $ctrl.networkInformations.vrackServices.currentState.productStatus !== $ctrl.VRACK_SERVICES_STATUS.DISABLED"
+                        data-ng-class="{
+                    'oui-badge_success': $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.ASSOCIATED,
+                    'oui-badge_info': $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.TO_CONFIGURE,
+                    'oui-badge_warning': [$ctrl.NETWORK_STATUS.DISSOCIATING, $ctrl.NETWORK_STATUS.ASSOCIATING].includes($ctrl.networkInformations.status)
+                }"
+                        data-translate="{{ 'netapp_dashboard_network_configuration_status_' + $ctrl.networkInformations.status }}"
+                    ></span>
+                    <span
+                        class="oui-badge oui-badge_error"
+                        data-ng-if="$ctrl.networkInformations.vrackServices.currentState.productStatus === $ctrl.VRACK_SERVICES_STATUS.DISABLED"
+                        data-translate="netapp_dashboard_network_configuration_status_disabled"
+                    ></span>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <div data-ng-if="$ctrl.networkInformations.vRackServicesURN">
+                <oui-tile-definition
+                    term="{{:: 'netapp_dashboard_network_configuration_vrack_id' | translate }}"
+                >
+                    <oui-tile-description>
+                        <a
+                            data-ng-if="$ctrl.networkInformations.vrackServices.currentState.vrackId"
+                            data-ng-href="{{:: $ctrl.getVrackLink($ctrl.networkInformations.vrackServices.currentState.vrackId)}}"
+                            data-ng-bind=":: $ctrl.networkInformations.vrackServices.currentState.vrackId"
+                        ></a>
+                        <oui-button
+                            data-ng-if="!$ctrl.networkInformations.vrackServices.currentState.vrackId"
+                            data-variant="link"
+                            data-icon-right="oui-icon-arrow-right"
+                            data-on-click="$ctrl.goToNetworkConfiguration()"
+                        >
+                            <span
+                                data-translate="netapp_dashboard_network_configuration_vrack_associate"
+                            ></span>
+                        </oui-button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    term="{{:: 'netapp_dashboard_network_configuration_vrack_services' | translate }}"
+                >
+                    <oui-tile-description>
+                        <a
+                            data-ng-href="{{ $ctrl.vrackServicesLink($ctrl.networkInformations.vrackServices.id)}}"
+                        >
+                            <span
+                                data-ng-bind=":: $ctrl.networkInformations.vrackServices.currentState.displayName || $ctrl.networkInformations.vrackServices.id"
+                            ></span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    term="{{:: 'netapp_dashboard_network_configuration_vrack_subnet' | translate }}"
+                    description="{{:: $ctrl.attachedSubnet.cidr }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    class="keep-break"
+                    term="{{:: 'netapp_dashboard_network_configuration_vrack_endpoint_ip' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-if="$ctrl.networkInformations.vrackServices.currentState.vrackId"
+                            data-ng-bind="$ctrl.serviceEndpoint.endpoints[0].ip"
+                        >
+                        </span>
+                        <span
+                            data-ng-if="!$ctrl.networkInformations.vrackServices.currentState.vrackId"
+                            data-translate="netapp_dashboard_network_configuration_vrack_no_endpoint_ip"
+                        >
+                        </span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </div>
+            <oui-tile-button
+                data-ng-if="
+                    $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.TO_CONFIGURE
+                    && !$ctrl.networkInformations.vrackServices"
+                data-on-click="$ctrl.goToNetworkConfiguration()"
+            >
+                <span
+                    data-translate="netapp_dashboard_network_configuration_manage_button"
+                ></span>
+            </oui-tile-button>
+            <oui-tile-button
+                data-ng-if="
+                    $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.ASSOCIATED
+                    || ($ctrl.networkInformations.vRackServicesURN
+                    && !$ctrl.networkInformations.vrackServices.currentState.vrackId
+                    && $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.TO_CONFIGURE)"
+                data-on-click="$ctrl.goToDeleteNetworkConfiguration()"
+            >
+                <span
+                    data-translate="netapp_dashboard_network_configuration_delete_button"
+                ></span>
+            </oui-tile-button>
+        </oui-tile>
+        <oui-tile
+            class="mb-3"
+            heading="{{:: 'netapp_dashboard_service_configuration' | translate }}"
+        >
+            <oui-tile-definition
+                term="{{:: 'netapp_dashboard_service_configuration_status' | translate }}"
             >
                 <oui-tile-description>
                     <span
@@ -47,7 +154,7 @@
                     'oui-badge_error': $ctrl.storage.isInactive(),
                     'oui-badge_warning': $ctrl.storage.isPending()
                 }"
-                        data-translate="{{:: 'netapp_dashboard_configuration_status_' + $ctrl.storage.status }}"
+                        data-translate="{{:: 'netapp_dashboard_service_configuration_status_' + $ctrl.storage.status }}"
                     ></span>
                 </oui-tile-description>
             </oui-tile-definition>
@@ -57,7 +164,7 @@
                 on-click="$ctrl.goToCreateVolume()"
             >
                 <span
-                    data-translate="netapp_dashboard_configuration_create_volume"
+                    data-translate="netapp_dashboard_service_configuration_create_volume"
                 ></span>
             </oui-tile-button>
         </oui-tile>

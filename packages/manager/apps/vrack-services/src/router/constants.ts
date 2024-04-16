@@ -1,22 +1,27 @@
 export const urls = {
   root: '/',
-  listing: '/',
+
   onboarding: '/onboarding',
   createVrackServices: '/create',
+  createConfirm: '/create/confirm/:region',
+  listing: '/',
+  listingAssociate: '/associate/:id',
+  listingDelete: '/delete/:id',
+
   dashboard: '/:id',
   overview: '/:id',
-  subnets: '/:id/subnets',
-  createSubnet: '/:id/createsubnet',
-  endpoints: '/:id/endpoints',
-  createEndpoint: '/:id/createendpoint',
-};
+  overviewAssociate: '/:id/associate',
+  overviewDissociate: '/:id/dissociate/:vrackId',
 
-export const pageTrackingLabels = {
-  [urls.listing]: 'listing',
-  [urls.overview]: 'dashboard',
-  [urls.subnets]: 'subnets',
-  [urls.endpoints]: 'endpoints',
-  [urls.createEndpoint]: 'endpoints::add',
-  [urls.createSubnet]: 'subnets::add',
-  [urls.createVrackServices]: 'add',
+  subnets: '/:id/subnets',
+  subnetsOnboarding: '/:id/subnets/onboarding',
+  subnetsListing: '/:id/subnets/listing',
+  subnetsDelete: '/:id/subnets/listing/delete/:cidr',
+  createSubnet: '/:id/createsubnet',
+
+  endpoints: '/:id/endpoints',
+  endpointsOnboarding: '/:id/endpoints/onboarding',
+  endpointsListing: '/:id/endpoints/listing',
+  endpointsDelete: '/:id/endpoints/listing/delete/:urn',
+  createEndpoint: '/:id/createendpoint',
 };

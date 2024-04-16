@@ -1,0 +1,149 @@
+<div>
+    <oui-button
+        aria-label="{{:: 'netapp_network_configuration_previous_link' | translate }}"
+        data-on-click="$ctrl.goBack()"
+        data-variant="link"
+        data-icon-left="oui-icon-arrow-left"
+    >
+        <span
+            data-translate="netapp_network_configuration_previous_link"
+        ></span>
+    </oui-button>
+    <p
+        class="oui-heading_3"
+        data-translate="netapp_network_configuration_title"
+    ></p>
+    <div data-ovh-alert="netapp.alerts.network"></div>
+    <p data-translate="netapp_network_configuration_description"></p>
+    <oui-stepper
+        data-on-finish="$ctrl.configureNetwork()"
+        data-current-index="$ctrl.currentStep"
+    >
+        <!-- VRACK STEP -->
+        <oui-step-form
+            data-name="{{:: $ctrl.stepper.vrackSelection.name }}"
+            data-header="{{:: 'netapp_network_configuration_vrack_step_title' | translate }}"
+            data-prevent-next="true"
+            data-valid="!$ctrl.disableVrackField && $ctrl.selectedVrack"
+            data-on-submit="$ctrl.onVrackSelected()"
+            data-on-focus="$ctrl.focusVrackStep()"
+        >
+            <oui-field label="{{:: $ctrl.LABELS.VRACK }}" size="xl">
+                <oui-select
+                    data-items="$ctrl.vracks"
+                    data-match="internalName"
+                    data-model="$ctrl.selectedVrack"
+                    data-searchable="true"
+                    data-placeholder="{{:: 'netapp_network_configuration_vrack_field_placeholder' | translate }}"
+                    data-disabled="$ctrl.disableVrackField"
+                    name="vrack"
+                >
+                </oui-select>
+                <div class="mt-2" data-ng-if="$ctrl.currentStep === 0">
+                    <small class="d-flex flex-row align-items-center">
+                        <span
+                            data-translate="netapp_network_configuration_create_vrack_text"
+                        ></span>
+                        <button
+                            class="oui-button oui-button_secondary ml-2"
+                            data-ng-click="$ctrl.goToVrackOrder($event)"
+                        >
+                            <span
+                                data-translate="netapp_network_configuration_create_button"
+                            ></span>
+                        </button>
+                    </small>
+                </div>
+            </oui-field>
+        </oui-step-form>
+
+        <!-- VRACK SERVICES & SUBNET STEP-->
+        <oui-step-form
+            data-name="{{:: $ctrl.stepper.vrackServicesSelection.name }}"
+            data-header="{{:: 'netapp_network_configuration_vrack_services_step_title' | translate }}"
+            data-prevent-next="true"
+            data-valid="$ctrl.selectedVrackService && !$ctrl.disableVrackServicesField && $ctrl.selectedSubnet && !$ctrl.disableSubnetField"
+            data-on-cancel="$ctrl.goBack('cancel')"
+            data-submit-text="{{:: 'netapp_network_configuration_configure_button' | translate }}"
+        >
+            <div class="text-center" data-ng-if="$ctrl.vrackServicesLoader">
+                <oui-spinner></oui-spinner>
+            </div>
+            <div data-ng-if="!$ctrl.vrackServicesLoader">
+                <oui-field label="{{:: $ctrl.LABELS.VRACK_SERVICE }}" size="xl">
+                    <oui-select
+                        data-items="$ctrl.filteredVrackServices"
+                        data-match="display.nameWithVrackId"
+                        data-model="$ctrl.selectedVrackService"
+                        data-placeholder="{{:: 'netapp_network_configuration_vrack_services_field_placeholder' | translate }}"
+                        data-disabled="$ctrl.disableVrackServicesField"
+                        data-on-change="$ctrl.onVrackServiceSelected(modelValue)"
+                        name="vrackService"
+                    >
+                        <div class="d-flex justify-content-between">
+                            <span
+                                data-ng-bind="$item.currentState.displayName || $item.id"
+                            ></span>
+                            <span
+                                data-ng-bind="$item.currentState.vrackId"
+                            ></span>
+                        </div>
+                    </oui-select>
+                    <div class="mt-2">
+                        <small class="d-flex flex-row align-items-center">
+                            <span
+                                data-translate="netapp_network_configuration_create_vrack_services_text"
+                            ></span>
+                            <a
+                                class="oui-button oui-button_secondary ml-2"
+                                data-ng-href="{{:: $ctrl.createVrackServiceLink}}"
+                                target="_blank"
+                                data-track-on="click"
+                                data-track-name="{{:: $ctrl.TRACKING_BASE + '::add-vrack-services'}}"
+                                data-track-type="action"
+                            >
+                                <span
+                                    data-translate="netapp_network_configuration_create_button"
+                                ></span>
+                            </a>
+                        </small>
+                    </div>
+                </oui-field>
+
+                <oui-field
+                    label="{{:: 'netapp_network_configuration_subnet_field_label' | translate }}"
+                    size="xl"
+                >
+                    <oui-select
+                        data-items="$ctrl.subnets"
+                        data-match="displayName"
+                        data-model="$ctrl.selectedSubnet"
+                        data-placeholder="{{:: 'netapp_network_configuration_subnet_field_placeholder' | translate }}"
+                        data-disabled="$ctrl.disableSubnetField"
+                        name="subnet"
+                    >
+                    </oui-select>
+                    <div class="mt-2" data-ng-if="$ctrl.selectedVrackService">
+                        <small class="d-flex flex-row align-items-center">
+                            <span
+                                data-translate="netapp_network_configuration_no_subnet_text"
+                            ></span>
+                            <a
+                                class="oui-button oui-button_secondary ml-2"
+                                data-ng-href="{{ $ctrl.createSubnetLink($ctrl.selectedVrackService.id)}}"
+                                target="_blank"
+                                data-track-on="click"
+                                data-track-name="{{:: $ctrl.TRACKING_BASE + '::add-subnet'}}"
+                                data-track-type="action"
+                            >
+                                <span
+                                    data-translate="netapp_network_configuration_create_button"
+                                ></span>
+                            </a>
+                        </small>
+                    </div>
+                </oui-field>
+            </div>
+        </oui-step-form>
+    </oui-stepper>
+</div>

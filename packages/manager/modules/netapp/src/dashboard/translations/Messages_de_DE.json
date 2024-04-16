@@ -1,5 +1,6 @@
 {
   "netapp_dashboard_general_information": "Allgemeine Informationen",
   "netapp_dashboard_volumes": "Volumes",
-  "netapp_dashboard_snapshot_policies": "Regeln für Snapshots"
+  "netapp_dashboard_snapshot_policies": "Regeln für Snapshots",
+  "netapp_dashboard_global_error": "Der folgende Fehler ist aufgetreten: <br> {{message}}<br> request_id: {{requestId}}"
 }

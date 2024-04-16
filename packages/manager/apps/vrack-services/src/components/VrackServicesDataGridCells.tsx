@@ -2,7 +2,6 @@ import React from 'react';
 import { TFunction } from 'react-i18next';
 import { UseMutateAsyncFunction } from '@tanstack/react-query';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { NavigateFunction } from 'react-router-dom';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
@@ -20,11 +19,13 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu, ActionMenuItem } from '@ovhcloud/manager-components';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { EditableText } from '@/components/EditableText';
 import { ProductStatus, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
+import { PageName } from '@/utils/tracking';
 
 export const DisplayNameCell: React.FC<DataGridCellProps<
   string | undefined,
@@ -35,33 +36,45 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
     ApiError,
     UpdateVrackServicesParams
   >;
-  navigate?: NavigateFunction;
-  trackClick: (prop: TrackingProps) => PromiseLike<void>;
-}> = ({ cellData, rowData, updateVS, navigate, trackClick }) => {
+  navigateToDetails?: (id: string) => void;
+  trackPage: (prop: unknown) => void;
+}> = ({ cellData, rowData, updateVS, navigateToDetails, trackPage }) => {
   const displayName = cellData || rowData?.id;
   return (
     <EditableText
       disabled={!isEditable(rowData)}
       defaultValue={cellData}
-      dataTrackingPath="overview"
-      editDataTracking="::edit"
-      confirmDataTracking="::update::confirm"
-      trackClick={trackClick}
       onEditSubmitted={async (value) => {
-        await updateVS({
-          vrackServicesId: rowData.id,
-          checksum: rowData.checksum,
-          targetSpec: {
-            displayName: value || null,
-            subnets: rowData.currentState.subnets || [],
+        await updateVS(
+          {
+            vrackServicesId: rowData.id,
+            checksum: rowData.checksum,
+            targetSpec: {
+              displayName: value || null,
+              subnets: rowData.currentState.subnets || [],
+            },
           },
-        });
+          {
+            onSuccess: () => {
+              trackPage({
+                pageType: PageType.bannerInfo,
+                pageName: PageName.pendingUpdateVrackServices,
+              });
+            },
+            onError: () => {
+              trackPage({
+                pageType: PageType.bannerError,
+                pageName: PageName.errorUpdateVrackServices,
+              });
+            },
+          },
+        );
       }}
     >
-      {navigate ? (
+      {navigateToDetails ? (
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => navigate(`/${rowData.id}`)}
+          onClick={() => navigateToDetails(rowData.id)}
         >
           {displayName}
         </OsdsLink>
@@ -116,16 +129,52 @@ export const VrackIdCell: React.FC<DataGridCellProps<
 > & {
   isLoading?: boolean;
   openAssociationModal: (id: string) => void;
+  openDissociationModal?: (id: string, vrackId: string) => void;
   label: string;
   href?: string;
-}> = ({ cellData, rowData, isLoading, openAssociationModal, label, href }) => {
+  t: TFunction;
+}> = ({
+  cellData,
+  rowData,
+  isLoading,
+  openAssociationModal,
+  openDissociationModal,
+  label,
+  href,
+  t,
+}) => {
   const editable = isEditable(rowData);
 
+  const menuItems: ActionMenuItem[] = [
+    {
+      id: 1,
+      label: t('vrackActionDissociate'),
+      onClick: () => openDissociationModal(rowData.id, cellData),
+    },
+  ];
+
   if (cellData) {
-    return href ? (
-      <OsdsLink href={href}>{cellData}</OsdsLink>
-    ) : (
-      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{cellData}</OsdsText>
+    return (
+      <>
+        <div className="flex items-center">
+          <div className="grow">
+            {href ? (
+              <OsdsLink href={href} color={ODS_THEME_COLOR_INTENT.primary}>
+                {cellData}
+              </OsdsLink>
+            ) : (
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                {cellData}
+              </OsdsText>
+            )}
+          </div>
+          {openDissociationModal && (
+            <div className="flex-none">
+              <ActionMenu isCompact items={menuItems} />
+            </div>
+          )}
+        </div>
+      </>
     );
   }
 

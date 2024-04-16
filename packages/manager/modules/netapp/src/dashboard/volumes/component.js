@@ -4,11 +4,11 @@ export default {
   bindings: {
     volumes: '<',
     goToCreateVolume: '<',
-    getVolumeDetailsHref: '<',
+    goToVolumeDetails: '<',
     goToCreateSnapshot: '<',
     goToSnapshots: '<',
     goToAcls: '<',
-    getVolumeDeleteHref: '<',
+    goToDeleteVolume: '<',
     loadVolumeDetail: '<',
     storage: '<',
     isCreateVolumeAvailable: '<',

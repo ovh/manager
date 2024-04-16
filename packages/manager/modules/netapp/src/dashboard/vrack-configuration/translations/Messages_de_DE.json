@@ -1,0 +1,13 @@
+{
+  "netapp_vrack_configuration_title": "vRack verbinden",
+  "netapp_vrack_configuration_previous_link": "Zur vorherigen Seite",
+  "netapp_vrack_configuration_description": "Enterprise File Storage ist ein verwalteter Speicherdienst, der über eine IP-Adresse auf dem vRack verfügbar gemacht wird. Die Zuweisung der IP Ihres Speichersystems erfolgt nach der Auswahl oder Erstellung eines vRack, der Aktivierung von „vRack Services“ und der Erstellung eines Subnet",
+  "netapp_vrack_configuration_vrack_field_placeholder": "vRack auswählen",
+  "netapp_vrack_configuration_no_vrack_field": "Sie haben kein vRack zur Verfügung",
+  "netapp_vrack_configuration_create_vrack_text": "Möchten Sie ein neues vRack erstellen?",
+  "netapp_vrack_configuration_create_button": "Erstellen",
+  "netapp_vrack_configuration_associate_button": "Zuweisen",
+  "netapp_vrack_configuration_cancel_button": "Abbrechen",
+  "netapp_vrack_configuration_success_message": "Ihre Netzwerkeinstellungen werden erstellt",
+  "netapp_vrack_configuration_vrack_association_warning": "Bei der Zuordnung Ihres vRack zu vRack Services ist ein Problem aufgetreten:"
+}
