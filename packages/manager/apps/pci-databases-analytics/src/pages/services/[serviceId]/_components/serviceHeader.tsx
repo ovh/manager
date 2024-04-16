@@ -15,7 +15,7 @@ export const ServiceHeader = ({ service }: { service: database.Service }) => {
       </div>
       <div>
         <h2>{service.description ?? 'Dashboard'}</h2>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <ServiceStatusBadge status={service.status} />
           <Badge variant={'outline'}>
             {humanizeEngine(service.engine)} {service.version}
