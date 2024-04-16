@@ -5,10 +5,13 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 
-function Breadcrumb({ rootLabel }: BreadcrumbProps): JSX.Element {
-  const breadcrumbItems = useBreadcrumb({ rootLabel, appName: 'zimbra' });
+export const Breadcrumb: React.FC<BreadcrumbProps> = () => {
+  const breadcrumbItems = useBreadcrumb({
+    rootLabel: 'Zimbra',
+    appName: 'zimbra',
+  });
 
   return <OsdsBreadcrumb items={breadcrumbItems} />;
-}
+};
 
 export default Breadcrumb;
