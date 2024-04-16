@@ -14,6 +14,7 @@ import {
 import { useLocale } from '@/hooks/useLocale';
 import { Button } from './ui/button';
 import { Guide } from '@/models/guide';
+import { Skeleton } from './ui/skeleton';
 
 interface GuidesProps {
   section?: string;
@@ -49,15 +50,23 @@ const Guides = ({ section, engine, noEngineFilter = false }: GuidesProps) => {
       if (newWindow) newWindow.opener = null;
     }
   };
+  if (guidesQuery.isFetching) return <Skeleton className="w-40 h-4" />;
+  if (guidesQuery.data?.length === 0) return <></>;
   return (
     <>
       <Button
-        variant="ghost"
+        // variant="ghost"
         onClick={() => setOpen((prevValue) => !prevValue)}
-        className="text-primary-500 font-semibold"
+        // className="text-primary-500 font-semibold"
+        className="inline-flex items-center whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 relative text-sm text-muted-foreground justify-between max-w-40 gap-2"
       >
-        <BookOpen className="size-4 mr-2" />
-        <span>{t('buttonLabel')}</span>
+        <div className="flex items-center gap-2">
+          <BookOpen className="size-4" />
+          <span className="hidden md:inline">{t('buttonLabel')}</span>
+        </div>
+        <kbd className="pointer-events-none h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 rig hidden md:inline-flex">
+          <span className="text-xs">⌘</span>K
+        </kbd>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder={t('searchBarPlaceholder')} />
