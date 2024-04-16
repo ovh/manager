@@ -28,6 +28,7 @@
   "advancedConfigurationTitle": "Configuration avancée",
   "advancedConfigurationAddPropertyPlaceholder": "Selectionnez une propriété a ajouter",
   "advancedConfigurationAddPropertyNotFound": "Aucune propriété trouvée",
+  "advancedConfigurationJSONButton": "Payload JSON",
   "advancedConfigurationCancelButton": "Annuler",
   "advancedConfigurationSubmitButton": "Sauvegarder les modifications",
   "advancedConfigurationAlertMessage": "La modification de la configuration avancée peut entraîner un redémarrage du service.",
