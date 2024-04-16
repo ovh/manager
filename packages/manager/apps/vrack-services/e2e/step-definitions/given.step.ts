@@ -120,3 +120,40 @@ Given('User has a vRack Services that {string} a subnet', function(
   this.testContext.data.selectedVrackServices = vrackServicesList[index];
   this.testContext.data.vsIndex = index;
 });
+
+Given('User {string} a vRack associated to a vRack Services', function(
+  this: ICustomWorld<ConfigParams>,
+  hasVrack: 'has' | "doesn't have",
+) {
+  this.testContext.initialUrl = getUrl('listing');
+  this.handlersConfig.nbVs = 20;
+
+  const vsIndex = vrackServicesList.findIndex(
+    (v) =>
+      (hasVrack === 'has' && v.currentState.vrackId) ||
+      (hasVrack === "doesn't have" && !v.currentState.vrackId),
+  );
+  this.testContext.data.vsIndex = vsIndex;
+  this.testContext.data.selectedVrackServices = vrackServicesList[vsIndex];
+});
+
+Given('User is on Overview page', function(this: ICustomWorld<ConfigParams>) {
+  this.testContext.initialUrl = getUrl(
+    'overview',
+    this.testContext.data.selectedVrackServices.id,
+  );
+});
+
+Given('the webservice to dissociate a vRack is {word}', function(
+  this: ICustomWorld<ConfigParams>,
+  okOrKo: 'ok' | 'ko',
+) {
+  this.testContext.initialUrl = getUrl('listing');
+  this.handlersConfig.nbVs = 20;
+  this.handlersConfig.dissociateKo = okOrKo === 'ko';
+
+  const vsIndex = vrackServicesList.findIndex((v) => v.currentState.vrackId);
+
+  this.testContext.data.vsIndex = vsIndex;
+  this.testContext.data.selectedVrackServices = vrackServicesList[vsIndex];
+});

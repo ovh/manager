@@ -1,5 +1,5 @@
 {
-  "introTitle": "vRack Dienste",
+  "introTitle": "vRack Services",
   "intro": "Mit dem Produkt vRack Services können Sie Netzwerkdienste auf dem vRack nutzen. Indem Sie einen Service Endpoint erstellen, können Sie einen von OVHcloud Managed Service mit einer privaten IP-Adresse in Ihrem vRack verfügbar machen.",
   "title": "Sie haben vRack Services noch nicht aktiviert",
   "description": "Um die Dienste nutzen zu können, müssen Sie vRack Services aktivieren und konfigurieren.",

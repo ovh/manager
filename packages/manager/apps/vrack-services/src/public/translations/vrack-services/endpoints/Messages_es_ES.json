@@ -3,7 +3,7 @@
   "onboardingDescription": "Exponga sus servicios administrados de OVHcloud en el vRack con la funcionalidad Service Endpoint de vRack Services.",
   "createEndpointButtonLabel": "Crear un Service Endpoint",
   "createPageTitle": "Crear un Service Endpoint",
-  "createPageDescription": "El Service Endpoint te permite exponer tus servicios administrados por OVHcloud en el vRack, a través de una o varias direcciones IP, según el tipo de servicio. La dirección IP del servicio Endpoint pertenece al rango de direcciones de servicio definido en la subred seleccionada.",
+  "createPageDescription": "El Service Endpoint le permite exponer sus servicios administrados por OVHcloud en el vRack, a través de una o varias direcciones IP, según el tipo de servicio. La dirección IP del servicio Endpoint pertenece al rango de direcciones de servicio definido en la subred seleccionada.",
   "endpointCreationError": "Error al crear el Service Endpoint: {{error}}",
   "emptyDataGridMessage": "Todavía no tiene ningún Service Endpoint",
   "serviceTypeLabel": "Tipo de servicio administrado",
@@ -19,8 +19,8 @@
   "serviceType": "Tipo de servicio",
   "actions": "",
   "updateError": "Se ha producido un problema al actualizar el Service Endpoint. Por favor, vuelva a intentarlo más adelante.",
-  "modalDeleteInputLabel": "Introduce la palabra «TERMINATE» para confirmar la eliminación del Service Endpoint",
+  "modalDeleteInputLabel": "Introduzca la palabra «TERMINATE» para confirmar la eliminación del Service Endpoint",
   "modalDeleteHeadline": "Eliminar el Service Endpoint",
-  "modalDeleteDescription": "Si quita este Service Endpoint, perderás la conectividad con el servicio asociado.",
+  "modalDeleteDescription": "Si quita este Service Endpoint, perderá la conectividad con el servicio asociado.",
   "storageNetApp": "Enterprise File Storage"
 }

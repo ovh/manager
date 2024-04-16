@@ -4,7 +4,7 @@
   "deliveringVrackMessage": "A request to create a vRack was made on {{date}} - {{time}}. Order status: {{status}}",
   "orderStatus-cancelled": "Cancelled",
   "orderStatus-cancelling": "Cancelling",
-  "orderStatus-checking": "Verifying...",
+  "orderStatus-checking": "Verifying",
   "orderStatus-delivered": "Done",
   "orderStatus-delivering": "In progress",
   "orderStatus-documentsRequested": "Document required",
@@ -12,5 +12,8 @@
   "orderStatus-unknown": "Unknown",
   "genericApiError": "The following error has occurred: {{error}}.",
   "modalCancelButton": "Cancel",
-  "modalDeleteButton": "Delete"
+  "modalDeleteButton": "Delete",
+  "modalConfirmButton": "Confirm",
+  "modalDissociateHeadline": "Detach vRack Services from your vRack",
+  "modalDissociateDescription": "Are you sure you want to detach vRack Services from your vRack?"
 }

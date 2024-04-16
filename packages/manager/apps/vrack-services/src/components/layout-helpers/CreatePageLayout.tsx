@@ -20,7 +20,11 @@ import {
 } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { PageLayout } from '@/components/layout-helpers/PageLayout';
 import { handleClick } from '@/utils/ods-utils';
 
@@ -28,7 +32,7 @@ export type CreatePageLayoutProps = React.PropsWithChildren<{
   overviewUrl?: string;
   goBackUrl?: string;
   goBackLinkLabel?: string;
-  dataTrackingPath?: string;
+  confirmActionsTracking?: string[];
   title: string;
   description?: string;
   onSubmit: React.FormEventHandler;
@@ -37,14 +41,12 @@ export type CreatePageLayoutProps = React.PropsWithChildren<{
   hasFormError?: boolean;
   formErrorMessage?: string;
   createButtonLabel: string;
-  createButtonDataTracking?: string;
 }>;
 
 export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
   overviewUrl,
   goBackUrl,
   goBackLinkLabel,
-  dataTrackingPath,
   title,
   description,
   onSubmit,
@@ -53,11 +55,12 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
   hasFormError,
   formErrorMessage,
   createButtonLabel,
-  createButtonDataTracking,
   children,
+  confirmActionsTracking = ['confirm'],
 }) => {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
+
   return (
     <PageLayout items={[{ label: title }]} overviewUrl={overviewUrl}>
       {goBackUrl && goBackLinkLabel && (
@@ -66,9 +69,9 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
           color={ODS_THEME_COLOR_INTENT.primary}
           {...handleClick(() => {
             trackClick({
-              path: dataTrackingPath,
-              value: '::back',
-              type: 'action',
+              location: PageLocation.funnel,
+              buttonType: ButtonType.link,
+              actions: ['go-back'],
             });
             navigate(goBackUrl);
           })}
@@ -117,13 +120,11 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
           variant={ODS_BUTTON_VARIANT.flat}
           size={ODS_BUTTON_SIZE.sm}
           {...handleClick(() => {
-            if (createButtonDataTracking) {
-              trackClick({
-                path: dataTrackingPath,
-                value: createButtonDataTracking,
-                type: 'action',
-              });
-            }
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.button,
+              actions: confirmActionsTracking,
+            });
           })}
         >
           {createButtonLabel}
