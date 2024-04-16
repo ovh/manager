@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Region, CountryCode } from '@ovh-ux/manager-config';
+import { CountryCode } from '@ovh-ux/manager-config';
 import {
   useAuthentication,
   useEnvironment,
@@ -8,32 +8,6 @@ import {
 const docUrl = 'https://docs.ovh.com/';
 
 type GuideLinks = { [key in CountryCode]: string };
-type BaseUrlProps = { [key in Region]: Partial<GuideLinks> };
-
-const baseUrlPrefix: BaseUrlProps = {
-  EU: {
-    DE: `${docUrl}de`,
-    ES: `${docUrl}es`,
-    IE: `${docUrl}ie/en`,
-    IT: `${docUrl}it`,
-    PL: `${docUrl}pl`,
-    PT: `${docUrl}pt`,
-    FR: `${docUrl}fr`,
-    GB: `${docUrl}gb/en`,
-  },
-  CA: {
-    ASIA: `${docUrl}/asia`,
-    CA: `${docUrl}ca/en`,
-    QC: `${docUrl}ca/fr`,
-    IN: `${docUrl}/asia`,
-    SG: `${docUrl}/sg/en/`,
-    WE: `${docUrl}us/en`,
-    WS: `${docUrl}us/en`,
-  },
-  US: {
-    US: `${docUrl}us/en`,
-  },
-};
 
 const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
   guideLink1: {
@@ -93,15 +67,13 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
 
 type GetGuideLinkProps = {
   name?: string;
-  region: Region;
   subsidiary: CountryCode;
 };
 
-function getGuideListLink({ region, subsidiary }: GetGuideLinkProps) {
-  const baseUrl = `${baseUrlPrefix?.[region]?.[subsidiary]}`;
+function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
   const list: { [guideName: string]: string } = {};
   for (const [key, value] of Object.entries(GUIDE_LIST)) {
-    list[key] = `${baseUrl}${value[subsidiary]}`;
+    list[key] = value[subsidiary];
   }
   return list;
 }
@@ -112,15 +84,12 @@ interface GuideLinkProps {
 
 function useGuideUtils() {
   const environment = useEnvironment();
-  const region = environment.getRegion();
   const { subsidiary } = useAuthentication();
   const [linkTabs, setLinkTabs] = useState<GuideLinkProps>({});
 
   useEffect(() => {
-    setLinkTabs(
-      getGuideListLink({ region, subsidiary: subsidiary as CountryCode }),
-    );
-  }, [region, subsidiary]);
+    setLinkTabs(getGuideListLink({ subsidiary: subsidiary as CountryCode }));
+  }, [subsidiary]);
 
   return linkTabs;
 }

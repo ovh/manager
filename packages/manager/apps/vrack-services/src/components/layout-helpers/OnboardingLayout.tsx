@@ -8,6 +8,7 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { PageLayout } from './PageLayout';
 import { handleClick } from '@/utils/ods-utils';
@@ -25,6 +26,7 @@ export type OnboardingLayoutProps = React.PropsWithChildren<{
   primaryButtonDisabled?: boolean;
   secondaryButtonLabel?: string;
   secondaryHref?: string;
+  secondaryTarget?: OdsHTMLAnchorElementTarget;
   secondaryOnClick?: () => void;
   secondaryButtonIcon?: ODS_ICON_NAME;
   secondaryButtonSize?: ODS_BUTTON_SIZE;
@@ -46,6 +48,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   primaryButtonDisabled,
   secondaryButtonLabel,
   secondaryHref,
+  secondaryTarget,
   secondaryOnClick,
   secondaryButtonIcon = ODS_ICON_NAME.EXTERNAL_LINK,
   secondaryButtonSize = ODS_BUTTON_SIZE.md,
@@ -110,6 +113,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
               variant={ODS_BUTTON_VARIANT.stroked}
               size={secondaryButtonSize}
               href={secondaryHref}
+              target={secondaryTarget || OdsHTMLAnchorElementTarget._blank}
               {...(secondaryOnClick ? handleClick(secondaryOnClick) : {})}
             >
               {secondaryButtonLabel}

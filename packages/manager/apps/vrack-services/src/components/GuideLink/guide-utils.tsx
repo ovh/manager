@@ -1,78 +1,87 @@
 import React from 'react';
-import { Region, CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import Subsidiaries from '@/utils/subsidiaries';
 
-const docUrl = 'https://docs.ovh.com/';
-
-type GuideLinks = { [key in CountryCode]: string };
-type BaseUrlProps = { [key in Region]: Partial<GuideLinks> };
-
-const baseUrlPrefix: BaseUrlProps = {
-  EU: {
-    DE: `${docUrl}de`,
-    ES: `${docUrl}es`,
-    IE: `${docUrl}ie/en`,
-    IT: `${docUrl}it`,
-    PL: `${docUrl}pl`,
-    PT: `${docUrl}pt`,
-    FR: `${docUrl}fr`,
-    GB: `${docUrl}gb/en`,
-  },
-  CA: {
-    CA: `${docUrl}ca/en`,
-    QC: `${docUrl}ca/fr`,
-    WE: `${docUrl}us/en`,
-    WS: `${docUrl}us/en`,
-  },
-  US: {
-    US: `${docUrl}us/en`,
-  },
-};
+type GuideLinks = { [key in Subsidiaries]: string };
 
 const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
   guideLink1: {
-    DE: '/update-path',
-    ES: '/update-path',
-    IE: '/en/update-path',
-    IT: '/update-path',
-    PL: '/update-path',
-    PT: '/update-path',
-    FR: '/update-path',
-    GB: '/update-path',
-    CA: '/update-path',
-    QC: '/update-path',
-    WE: '/update-path',
-    WS: '/update-path',
-    US: '/update-path',
+    DE:
+      'https://help.ovhcloud.com/csm/de-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062696',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062697',
+    IE:
+      'https://help.ovhcloud.com/csm/en-ie-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062698',
+    IT:
+      'https://help.ovhcloud.com/csm/it-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062700',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062709',
+    PT:
+      'https://help.ovhcloud.com/csm/pl-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062709',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062705',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062703',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062704',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062701',
+    WE:
+      'https://help.ovhcloud.com/csm/en-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062706',
+    WS:
+      'https://help.ovhcloud.com/csm/es-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062708',
+    US:
+      'https://help.ovhcloud.com/csm/en-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062706',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062695',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062702',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-network-vrack-services-global-concept?id=kb_article_view&sysparm_article=KB0062699',
   },
   guideLink2: {
-    DE: '/guide-link-2-path',
-    ES: '/guide-link-2-path',
-    IE: '/en/guide-link-2-path',
-    IT: '/guide-link-2-path',
-    PL: '/guide-link-2-path',
-    PT: '/guide-link-2-path',
-    FR: '/guide-link-2-path',
-    GB: '/guide-link-2-path',
-    CA: '/update-path',
-    QC: '/update-path',
-    WE: '/update-path',
-    WS: '/update-path',
-    US: '/update-path',
+    DE:
+      'https://help.ovhcloud.com/csm/de-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062694',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062712',
+    IE:
+      'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062719',
+    IT:
+      'https://help.ovhcloud.com/csm/it-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062713',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062723',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062717',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062718',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062711',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062716',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062721',
+    WE:
+      'https://help.ovhcloud.com/csm/en-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062715',
+    WS:
+      'https://help.ovhcloud.com/csm/es-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062720',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062722',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062710',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-public-cloud-storage-netapp-network-configuration?id=kb_article_view&sysparm_article=KB0062714',
   },
 };
 
 type GetGuideLinkProps = {
   name?: string;
-  region: Region;
-  subsidiary: CountryCode;
+  subsidiary: Subsidiaries;
 };
 
-function getGuideListLink({ region, subsidiary }: GetGuideLinkProps) {
-  const baseUrl = `${baseUrlPrefix?.[region]?.[subsidiary]}`;
+function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
   return Object.entries(GUIDE_LIST).reduce(
     (result, [key, value]) => ({
-      [key]: `${baseUrl}${value[subsidiary]}`,
+      [key]: value[subsidiary],
       ...result,
     }),
     {} as { [guideName: string]: string },
@@ -85,18 +94,16 @@ export type UseGuideLinkProps = {
 
 export function useGuideUtils() {
   const { environment } = React.useContext(ShellContext);
-  const region = environment.getRegion();
   const user = environment.getUser();
   const [linkTabs, setLinkTabs] = React.useState<UseGuideLinkProps>({});
 
   React.useEffect(() => {
     setLinkTabs(
       getGuideListLink({
-        region,
-        subsidiary: user.ovhSubsidiary as CountryCode,
+        subsidiary: user.ovhSubsidiary as Subsidiaries,
       }),
     );
-  }, [region, user.ovhSubsidiary]);
+  }, [user.ovhSubsidiary]);
 
   return linkTabs;
 }
