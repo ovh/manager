@@ -234,6 +234,7 @@
   "ip_byoip_slice_block_title": "Segmenter le bloc",
   "ip_byoip_slice_set_children_size": "Veuillez indiquer la taille des blocs enfants désirée",
   "ip_byoip_slice_configuration": "Cette configuration entrainera la création des blocs suivants :",
+  "ip_byoip_slicing_park_it_first_error_message": "Cette IP est routée vers un service, veuillez d'abord la détacher (l'IP atterrira sur le parking) afin de la segmenter.",
   "ip_byoip_aggregate_block_title": "Agréger le bloc",
   "ip_byoip_aggregate_set_parent_size": "Veuillez spécifier le bloc parent désiré",
   "ip_byoip_aggregate_configuration": "Cette configuration entrainera la création du bloc parent suivant :",
