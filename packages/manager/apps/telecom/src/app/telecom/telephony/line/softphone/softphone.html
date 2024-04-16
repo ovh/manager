@@ -1,20 +1,38 @@
 <p data-translate="telephony_line_tab_beta_softphone_description"></p>
 
-<div class="d-flex align-items-center justify-content-between">
-    <oui-switch
-        data-model="$ctrl.currentServiceIsBeta"
-        data-on-change="$ctrl.handleToggleSwitch()"
-    >
-    </oui-switch>
-    <oui-collapsible
-        class="custom-collapsible-no-click m-5"
-        data-expanded="true"
-    >
-        <p
-            data-translate="telephony_line_tab_beta_softphone_active_description"
-        ></p>
-        <p
-            data-translate="telephony_line_tab_beta_softphone_inactive_description"
-        ></p>
-    </oui-collapsible>
+<div class="row">
+    <div class="d-flex align-items-center">
+        <oui-switch
+            data-model="$ctrl.currentServiceIsBeta"
+            data-on-change="$ctrl.handleToggleSwitch()"
+        >
+        </oui-switch>
+        <oui-collapsible
+            class="custom-collapsible-no-click m-5"
+            data-expanded="true"
+        >
+            <p
+                data-translate="telephony_line_tab_beta_softphone_active_description"
+            ></p>
+            <p
+                data-translate="telephony_line_tab_beta_softphone_inactive_description"
+            ></p>
+        </oui-collapsible>
+    </div>
+</div>
+<div class="row">
+    <div class="d-flex align-items-center">
+        <oui-button
+            data-id="regenerate_link"
+            class="mr-3"
+            data-variant="primary"
+            data-disabled="$ctrl.handlingRegenerateLinkRequest"
+            data-on-click="$ctrl.regenerateLink()"
+        >
+            <span class="oui-icon oui-icon-refresh" aria-hidden="true"></span>
+        </oui-button>
+        <span
+            data-translate="telephony_line_tab_beta_softphone_regenerate_link"
+        ></span>
+    </div>
 </div>

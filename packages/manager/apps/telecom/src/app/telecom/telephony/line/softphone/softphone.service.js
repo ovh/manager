@@ -12,8 +12,8 @@ export default class {
 
   checkServiceIsBeta(billingAccount, serviceName) {
     return this.$http
-      .get(`/telephony/${billingAccount}/line/${serviceName}/devices/beta`)
-      .then(({ data }) => data.softphone);
+      .get(`/telephony/${billingAccount}/line/${serviceName}/softphone/beta`)
+      .then(({ data }) => data.enabled);
   }
 
   handleToggleBeta(billingAccount, serviceName, softphone) {
@@ -21,6 +21,14 @@ export default class {
       .put(`/telephony/${billingAccount}/line/${serviceName}/devices/beta`, {
         softphone,
       })
+      .then(({ data }) => data);
+  }
+
+  regenerateToken(billingAccount, serviceName) {
+    return this.$http
+      .post(
+        `/telephony/${billingAccount}/line/${serviceName}/softphone/beta/regenerateToken`,
+      )
       .then(({ data }) => data);
   }
 }
