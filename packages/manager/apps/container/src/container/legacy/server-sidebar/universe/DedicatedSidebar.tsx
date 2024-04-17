@@ -259,6 +259,7 @@ export default function DedicatedSidebar() {
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
         routeMatcher: new RegExp('^(/ip(/|$)|/network-security|/vrack|/cloud-connect|/vrack-services|(/network)?/iplb)'),
+        pathMatcher: new RegExp('^(/vrack-services/)'),
         subItems: [
           feature.ip && {
             id: 'dedicated-ip',
@@ -304,7 +305,7 @@ export default function DedicatedSidebar() {
             badge: 'beta',
             label: t('sidebar_vrack_services'),
             icon: getIcon('oui-icon oui-icon-vRack-services_concept'),
-            routeMatcher: new RegExp('^/vrack-services'),
+            pathMatcher: new RegExp('^/vrack-services'),
             async loader() {
               const appId = 'vrack-services';
               const items = await loadServices('/vrackServices/resource', undefined, appId);

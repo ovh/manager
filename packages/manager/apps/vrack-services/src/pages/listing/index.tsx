@@ -23,18 +23,24 @@ import {
   useOrderPollingStatus,
   OrderDescription,
 } from '@ovh-ux/manager-module-order';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { getVrackServicesResourceListQueryKey } from '@/api';
 import { VrackServicesDatagrid } from '@/pages/listing/components/VrackServicesDataGrid';
 import { PageLayout } from '@/components/layout-helpers';
 import { DeliveringMessages } from '@/components/DeliveringMessages';
 import { handleClick } from '@/utils/ods-utils';
 import { useVrackServicesList } from '@/utils/vs-utils';
-import { betaVrackServicesLimit } from './constants';
+import { betaVrackServicesLimit } from './listing.constants';
 import { urls } from '@/router/constants';
 import { OperationMessages } from '@/components/OperationMessages';
 
-const ListingPage: React.FC = () => {
+export default function ListingPage() {
   const { t } = useTranslation('vrack-services/listing');
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const [reachedBetaLimit, setReachedBetaLimit] = React.useState(false);
 
@@ -97,7 +103,15 @@ const ListingPage: React.FC = () => {
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
         size={ODS_BUTTON_SIZE.sm}
-        {...handleClick(() => navigate(urls.createVrackServices))}
+        {...handleClick(() => {
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.button,
+            actionType: 'navigation',
+            actions: ['add_vrack-services'],
+          });
+          navigate(urls.createVrackServices);
+        })}
       >
         <OsdsIcon
           className="mr-4"
@@ -121,6 +135,4 @@ const ListingPage: React.FC = () => {
       )}
     </PageLayout>
   );
-};
-
-export default ListingPage;
+}

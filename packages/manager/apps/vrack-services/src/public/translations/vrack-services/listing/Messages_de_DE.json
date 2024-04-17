@@ -1,5 +1,5 @@
 {
-  "title": "vRack Dienste",
+  "title": "vRack Services",
   "description": "Mit dem Produkt vRack Services können Sie Netzwerkdienste auf dem vRack nutzen. Indem Sie einen Service Endpoint erstellen, können Sie einen von OVHcloud Managed Service mit einer privaten IP-Adresse in Ihrem vRack verfügbar machen.",
   "betaVrackServicesLimitMessage": "Derzeit können nur 20 vRack Services erstellt werden.",
   "createVrackServicesButtonLabel": "vRack Services aktivieren",

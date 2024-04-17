@@ -1,0 +1,22 @@
+{
+  "netapp_network_configuration_title": "Skonfiguruj ustawienia sieci",
+  "netapp_network_configuration_previous_link": "Powrót do poprzedniej strony",
+  "netapp_network_configuration_description": "Enterprise File Storage to zarządzana usługa przechowywania danych udostępniana w sieci vRack za pośrednictwem adresu IP. Po wybraniu lub utworzeniu sieci vRack, aktywacji „vRack Services” i utworzeniu podsieci możesz przypisać IP Twojego systemu przechowywania danych.",
+  "netapp_network_configuration_vrack_step_title": "Wybierz usługę vRack",
+  "netapp_network_configuration_vrack_field_placeholder": "Wybierz usługę vRack",
+  "netapp_network_configuration_no_vrack_field": "Nie posiadasz vRack",
+  "netapp_network_configuration_create_vrack_text": "Chcesz utworzyć nową sieć vRack?",
+  "netapp_network_configuration_vrack_services_step_title": "Skonfiguruj usługi vRack Services",
+  "netapp_network_configuration_vrack_services_field_placeholder": "Wybierz usługę",
+  "netapp_network_configuration_subnet_field_placeholder": "Wybierz podsieć",
+  "netapp_network_configuration_no_vrack_services_field": "Nie posiadasz vRack Services przypisanej do sieci vRack {{ vrack }}",
+  "netapp_network_configuration_create_vrack_services_text": "Czy chcesz włączyć vRack Services?",
+  "netapp_network_configuration_subnet_field_label": "Podsieć",
+  "netapp_network_configuration_no_subnet_field": "Nie posiadasz podsieci przypisanej do vRack Services",
+  "netapp_network_configuration_no_subnet_text": "Czy chcesz utworzyć nową podsieć?",
+  "netapp_network_configuration_create_button": "Włącz",
+  "netapp_network_configuration_configure_button": "Skonfiguruj",
+  "netapp_network_configuration_cancel_button": "Anuluj",
+  "netapp_network_configuration_success_message": "Trwa tworzenie ustawień sieciowych",
+  "netapp_network_configuration_vrack_association_warning": "Wystąpił problem podczas przypisywania Twojej vRack do vRack Services:"
+}

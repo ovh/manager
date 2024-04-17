@@ -17,11 +17,12 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { EditableText } from '@/components/EditableText';
 import { Subnet, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
+import { PageName } from '@/utils/tracking';
 
 type UpdateVS = UseMutateAsyncFunction<
   ApiResponse<VrackServices>,
@@ -35,8 +36,7 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
 > & {
   vrackServices?: VrackServices;
   updateVS: UpdateVS;
-  trackPage: (data: TrackingProps) => PromiseLike<void>;
-  trackClick: (prop: TrackingProps) => PromiseLike<void>;
+  trackPage: (data: unknown) => void;
   emptyValueLabel: string;
 }> = ({
   cellData,
@@ -44,16 +44,11 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
   updateVS,
   vrackServices,
   trackPage,
-  trackClick,
   emptyValueLabel,
 }) => (
   <EditableText
     disabled={!isEditable(vrackServices)}
     defaultValue={cellData}
-    dataTrackingPath="subnets"
-    editDataTracking="::edit-subnet"
-    confirmDataTracking="::update::confirm"
-    trackClick={trackClick}
     emptyValueLabel={emptyValueLabel}
     onEditSubmitted={async (value) => {
       await updateVS(
@@ -74,10 +69,16 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
         },
         {
           onSuccess: () => {
-            trackPage({ path: 'subnets::update', value: '-success' });
+            trackPage({
+              pageType: PageType.bannerInfo,
+              pageName: PageName.pendingUpdateSubnet,
+            });
           },
           onError: () => {
-            trackPage({ path: 'subnets::update', value: '-error' });
+            trackPage({
+              pageType: PageType.bannerError,
+              pageName: PageName.errorUpdateSubnet,
+            });
           },
         },
       );
@@ -108,8 +109,7 @@ export const ActionsCell: React.FC<DataGridCellProps<undefined, Subnet> & {
   isLoading?: boolean;
   vrackServices?: VrackServices;
   openDeleteModal: (cidr: string) => void;
-  trackClick: (data: TrackingProps) => PromiseLike<void>;
-}> = ({ vrackServices, rowData, isLoading, openDeleteModal, trackClick }) => (
+}> = ({ vrackServices, rowData, isLoading, openDeleteModal }) => (
   <OsdsButton
     inline
     circle
@@ -118,10 +118,7 @@ export const ActionsCell: React.FC<DataGridCellProps<undefined, Subnet> & {
     type={ODS_BUTTON_TYPE.button}
     size={ODS_BUTTON_SIZE.sm}
     disabled={isLoading || !isEditable(vrackServices) || undefined}
-    {...handleClick(() => {
-      trackClick({ path: 'subnets', value: '::delete-subnet', type: 'action' });
-      openDeleteModal(rowData.cidr);
-    })}
+    {...handleClick(() => openDeleteModal(rowData.cidr))}
   >
     <OsdsIcon
       color={ODS_THEME_COLOR_INTENT.error}

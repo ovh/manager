@@ -1,5 +1,5 @@
 {
-  "title": "Serviços vRack",
+  "title": "vRack Services",
   "description": "O produto vRack Services permite-lhe beneficiar de serviços de rede no vRack. Ao criar um Service Endpoint, pode expor no seu vRack, com um endereço IP privado, um serviço gerido pela OVHcloud.",
   "overviewTabLabel": "Geral",
   "subnetsTabLabel": "Sub-rede",
@@ -33,5 +33,6 @@
   "vrackServicesNotReadyInfoMessage": "vRack Services {{displayName}} tem uma operação em curso",
   "vrackServicesInErrorMessage": "vRack Services {{displayName}} apresenta um erro",
   "subnetCreationOnGoing": " : Sub-rede {{name}} em curso de criação",
-  "endpointCreationOnGoing": " : Service Endpoint em curso de criação"
+  "endpointCreationOnGoing": " : Service Endpoint em curso de criação",
+  "vrackActionDissociate": "Dissociar"
 }

@@ -14,8 +14,8 @@ import {
   VrackServicesWithIAM,
   updateVrackServicesQueryKey,
 } from '@/api';
-import { getSubnetCreationMutationKey } from '@/pages/subnets/constants';
-import { getEndpointCreationMutationKey } from '@/pages/endpoints/constants';
+import { getSubnetCreationMutationKey } from '@/pages/subnets/subnets.constants';
+import { getEndpointCreationMutationKey } from '@/pages/endpoints/endpoints.constants';
 
 const shouldDisplayMessage = (vs: VrackServicesWithIAM) =>
   [
