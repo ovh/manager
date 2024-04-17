@@ -20,7 +20,7 @@ import React, { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { isValidRancherName } from '@/utils/rancher';
-import { getOnboardingUrl, getRanchersUrl } from '@/utils/route';
+import { getRanchersUrl } from '@/utils/route';
 import Title, { Subtitle } from '@/components/Title/Title';
 import Block from '@/components/Block/Block';
 import {

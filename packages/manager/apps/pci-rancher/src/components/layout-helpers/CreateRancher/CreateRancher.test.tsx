@@ -124,19 +124,8 @@ describe('CreateRancher', () => {
   });
 
   describe('Cancel Click', () => {
-    it('Given that I cancel the creation of the Rancher service, I should be redirected to the onboarding page.', async () => {
-      const screen = await setupSpecTest();
-      const cancelButton = screen.getByText(dashboardTranslation.cancel);
-
-      await userEvent.click(cancelButton);
-
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(getOnboardingUrl('1234'));
-    });
-
     it('Given that I cancel the creation of the Rancher service and i had some rancher, I should be redirected to the listing page.', async () => {
-      const screen = await setupSpecTest({
-        hasSomeRancher: true,
-      });
+      const screen = await setupSpecTest({});
       const cancelButton = screen.getByText(dashboardTranslation.cancel);
 
       await userEvent.click(cancelButton);
