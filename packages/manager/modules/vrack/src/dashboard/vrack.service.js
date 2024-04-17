@@ -3,7 +3,7 @@ export default class Vrack {
     this.$http = $http;
   }
 
-  createIpv6(serviceName, ipv6) {
+  addIpv6(serviceName, ipv6) {
     return this.$http.post(`/vrack/${serviceName}/ipv6`, { block: ipv6 });
   }
 }
