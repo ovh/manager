@@ -9,14 +9,6 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       resolve: {
-        currentServiceIsBeta: /* @ngInject */ (
-          SoftphoneService,
-          $stateParams,
-        ) =>
-          SoftphoneService.checkServiceIsBeta(
-            $stateParams.billingAccount,
-            $stateParams.serviceName,
-          ),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant(
             'telephony_line_phone_actions_line_details_softphone_breadcrumb',
