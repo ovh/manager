@@ -295,7 +295,7 @@
   "signup_enum_country_PM": "Francia - Saint Pierre e Miquelon",
   "signup_enum_country_PN": "Regno Unito - Isole Pitcairn",
   "signup_enum_country_PR": "Stati Uniti - Porto Rico",
-  "signup_enum_country_PS": "Palestina, Stato di",
+  "signup_enum_country_PS": "Stato di Palestina",
   "signup_enum_country_PT": "Portogallo",
   "signup_enum_country_PW": "Palau",
   "signup_enum_country_PY": "Paraguay",
@@ -769,5 +769,5 @@
   "signup_field_purposeOfPurchase": "Motivo dell'acquisto",
   "new_account_content_check_validation": "Verifica le informazioni inserite (P. IVA, numero di telefono, data di nascita, etc.) per procedere alla convalida del modulo.",
   "signup_enum_country_BV": "Norvegia - Isola Bouvet",
-  "signup_enum_country_HM": "Regno Unito - Isole Heard e MacDonald"
+  "signup_enum_country_HM": "Regno Unito - Isole Heard e McDonald"
 }
