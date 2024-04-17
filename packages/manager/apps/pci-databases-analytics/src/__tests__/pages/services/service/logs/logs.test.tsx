@@ -7,6 +7,7 @@ import Logs, {
 } from '@/pages/services/[serviceId]/logs';
 import { database } from '@/models/database';
 import { Locale } from '@/hooks/useLocale';
+import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 
 const mockService: database.Service = {
   engine: database.EngineEnum.mongodb,
@@ -82,7 +83,7 @@ describe('Logs component', () => {
       data: [],
       isSuccess: false,
     } as UseQueryResult<database.service.LogEntry[], Error>);
-    render(<Logs />);
+    render(<Logs />, { wrapper: QueryClientWrapper });
     expect(screen.getByTestId('skeleton-container')).toBeInTheDocument();
   });
 
@@ -96,7 +97,7 @@ describe('Logs component', () => {
         { timestamp: 1609459260, hostname: 'host2', message: 'Test log 2' },
       ],
     } as UseQueryResult<database.service.LogEntry[], Error>);
-    render(<Logs />);
+    render(<Logs />, { wrapper: QueryClientWrapper });
     // Wait for logs to be displayed
     await waitFor(() => {
       expect(screen.getByText('Test log 1')).toBeInTheDocument();
@@ -115,7 +116,7 @@ describe('Logs component', () => {
         { timestamp: 1609459260, hostname: 'host2', message: 'Test log 2' },
       ],
     } as UseQueryResult<database.service.LogEntry[], Error>);
-    render(<Logs />);
+    render(<Logs />, { wrapper: QueryClientWrapper });
     const switchElement = screen.getByRole('switch');
     // Toggle switch
     fireEvent.click(switchElement);
