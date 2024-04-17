@@ -723,7 +723,7 @@ export default class VrackMoveDialogCtrl {
                 ).$promise;
               break;
             case 'ip':
-              task = this.createIp(service);
+              task = this.addIp(service);
               break;
             case 'cloudProject':
               task = this.OvhApiVrack.CloudProject()
@@ -770,9 +770,9 @@ export default class VrackMoveDialogCtrl {
       });
   }
 
-  createIp(service) {
+  addIp(service) {
     if (service.id.match(/::/)) {
-      return this.vrackService.createIpv6(this.serviceName, service.id);
+      return this.vrackService.addIpv6(this.serviceName, service.id);
     }
     return this.OvhApiVrack.Ip()
       .v6()
