@@ -15,7 +15,7 @@ const testCases: EngineTestCase[] = [
   [database.EngineEnum.mongodb, 'MongoDB'],
   [database.EngineEnum.mysql, 'MySQL'],
   [database.EngineEnum.opensearch, 'OpenSearch'],
-  [database.EngineEnum.postgresql, 'PostrgreSQL'],
+  [database.EngineEnum.postgresql, 'PostgreSQL'],
   [database.EngineEnum.redis, 'Redis™*'],
   // Including a case for an engine not defined in the enum to test the default case
   ['someUnknownEngine', 'someUnknownEngine'],
