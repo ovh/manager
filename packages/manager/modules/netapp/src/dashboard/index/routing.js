@@ -5,6 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard.index', {
     url: '',
     component: 'ovhManagerNetAppDashboardIndex',
+    params: {
+      isDissociating: null,
+    },
     resolve: {
       trackClick: /* @ngInject */ (atInternet) => (tracker) =>
         atInternet.trackClick({
@@ -52,6 +55,24 @@ export default /* @ngInject */ ($stateProvider) => {
       canManageSubscription: /* @ngInject */ (features) =>
         features.isFeatureAvailable('netapp:dashboard:subscription-tile'),
       breadcrumb: /* @ngInject */ () => null,
+      goToDeleteNetworkConfiguration: /* @ngInject */ (
+        $state,
+        trackClick,
+      ) => () => {
+        trackClick('delete-endpoint');
+        return $state.go(
+          'netapp.dashboard.index.delete-network',
+          {},
+          { reload: true },
+        );
+      },
+      pollDissociatingVrackServices: /* @ngInject */ ($transition$) =>
+        !!$transition$.params().isDissociating,
+      getVrackLink: /* @ngInject */ (coreURLBuilder) => (vrackId) =>
+        coreURLBuilder.buildURL('dedicated', `#/vrack/${vrackId}`),
+      vrackServicesLink: /* @ngInject */ (coreURLBuilder) => (
+        vrackServicesId,
+      ) => coreURLBuilder.buildURL('vrack-services', `#/${vrackServicesId}`),
     },
   });
 };

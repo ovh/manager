@@ -1,13 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { Card, CardProps } from '@ovhcloud/manager-components';
 import {
   OrderDescription,
   useOrderPollingStatus,
 } from '@ovh-ux/manager-module-order';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGuideUtils } from '@/components/GuideLink';
 import { OnboardingLayout } from '@/components/layout-helpers';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
@@ -16,7 +21,7 @@ import { urls } from '@/router/constants';
 
 const onboardingRefetchInterval = 30000;
 
-const OnboardingPage = () => {
+export default function OnboardingPage() {
   const { t } = useTranslation('vrack-services/onboarding');
   const link = useGuideUtils();
   const navigate = useNavigate();
@@ -37,9 +42,9 @@ const OnboardingPage = () => {
       href: link?.guideLink1 as string,
       onClick: () =>
         trackClick({
-          path: 'onboarding',
-          value: `::docs::${t('guide1Title')}`,
-          type: 'action',
+          location: PageLocation.page,
+          buttonType: ButtonType.tutorial,
+          actions: [`go-to-${t('guide1Title')}`],
         }),
       isExternalHref: true,
       hoverable: true,
@@ -56,9 +61,9 @@ const OnboardingPage = () => {
       href: link?.guideLink2 as string,
       onClick: () =>
         trackClick({
-          path: 'onboarding',
-          value: `::docs::${t('guide2Title')}`,
-          type: 'action',
+          location: PageLocation.page,
+          buttonType: ButtonType.tutorial,
+          actions: [`go-to-${t('guide2Title')}`],
         }),
       isExternalHref: true,
       hoverable: true,
@@ -80,11 +85,24 @@ const OnboardingPage = () => {
       description={t('description')}
       imageSrc={onboardingImgSrc}
       primaryButtonLabel={t('orderButtonLabel')}
-      primaryOnClick={() => navigate(urls.createVrackServices)}
-      primaryButtonDataTracking="::add"
+      primaryOnClick={() => {
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.button,
+          actions: ['add_vrack-services'],
+        });
+        navigate(urls.createVrackServices);
+      }}
       secondaryButtonLabel={t('moreInfoButtonLabel')}
-      secondaryHref={t('moreInfoButtonLink')}
-      secondaryButtonDataTracking="::discover"
+      secondaryHref={link?.guideLink2}
+      secondaryTarget={OdsHTMLAnchorElementTarget._blank}
+      secondaryOnClick={() => {
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.externalLink,
+          actions: ['go-to-discover_vrack-services'],
+        });
+      }}
     >
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
         {tileList.map((tile) => (
@@ -93,6 +111,4 @@ const OnboardingPage = () => {
       </section>
     </OnboardingLayout>
   );
-};
-
-export default OnboardingPage;
+}

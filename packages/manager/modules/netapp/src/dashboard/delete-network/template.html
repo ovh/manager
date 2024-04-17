@@ -1,0 +1,26 @@
+<oui-modal
+    data-on-dismiss="$ctrl.cancel()"
+    data-primary-action="$ctrl.delete()"
+    data-secondary-action="$ctrl.cancel()"
+    data-type="warning"
+    data-primary-label="{{:: 'netapp_network_delete_confirm' | translate }}"
+    data-secondary-label="{{:: 'netapp_network_delete_cancel' | translate }}"
+    data-heading="{{:: 'netapp_network_delete_title' | translate }}"
+    data-primary-disabled="!$ctrl.isTerminateFieldValid"
+>
+    <p
+        data-translate="netapp_network_delete_description"
+        data-translate-values="{ listener: $ctrl.listenerName }"
+    ></p>
+    <oui-field
+        data-label="{{:: 'netapp_network_delete_terminate' | translate }}"
+    >
+        <input
+            class="oui-input"
+            name="field"
+            type="text"
+            data-ng-model="$ctrl.terminateField"
+            data-ng-change="$ctrl.validateField()"
+        />
+    </oui-field>
+</oui-modal>

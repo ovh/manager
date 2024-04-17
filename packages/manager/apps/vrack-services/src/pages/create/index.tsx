@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import {
   OsdsInput,
   OsdsText,
@@ -17,10 +17,6 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
-  OrderDescription,
-  getDeliveringOrderQueryKey,
-} from '@ovh-ux/manager-module-order';
-import {
   getvrackServicesReferenceRegionList,
   getvrackServicesReferenceRegionListQueryKey,
   Region,
@@ -29,16 +25,13 @@ import { ErrorPage } from '@/components/Error';
 import { RegionFormField } from './components/RegionFormField';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import { displayNameInputName } from './constants';
-import { VrackConfirmModal } from './components/VrackConfirmModal';
 import { urls } from '@/router/constants';
 
-const CreationPage: React.FC = () => {
+export default function CreationPage() {
   const [selectedRegion, setSelectedRegion] = React.useState('');
   const [displayName, setDisplayName] = React.useState('');
-  const [isModalVisible, setIsModalVisible] = React.useState(false);
   const { t } = useTranslation('vrack-services/create');
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   const {
     isLoading: isRegionLoading,
@@ -58,9 +51,12 @@ const CreationPage: React.FC = () => {
     <>
       <CreatePageLayout
         createButtonLabel={t('createButtonLabel')}
-        dataTrackingPath="add"
-        createButtonDataTracking={`::${selectedRegion}::confim`}
-        onSubmit={() => setIsModalVisible(true)}
+        confirmActionsTracking={['activate_vrack-service', selectedRegion]}
+        onSubmit={() =>
+          navigate(urls.createConfirm.replace(':region', selectedRegion), {
+            state: { displayName },
+          })
+        }
         title={t('title')}
         isFormSubmittable={!isRegionLoading && !!selectedRegion}
       >
@@ -90,38 +86,7 @@ const CreationPage: React.FC = () => {
           setSelectedRegion={setSelectedRegion}
         />
       </CreatePageLayout>
-      <VrackConfirmModal
-        displayName={displayName}
-        selectedRegion={selectedRegion}
-        dataTrackingPath="add"
-        denyDataTracking="::create-vrack"
-        confirmDataTracking="::create-vrack-services"
-        onCancel={() => setIsModalVisible(false)}
-        onDeny={() => {
-          setIsModalVisible(false);
-          queryClient.invalidateQueries({
-            queryKey: getDeliveringOrderQueryKey(
-              OrderDescription.vrackServices,
-            ),
-          });
-          navigate(urls.listing);
-        }}
-        onConfirm={() => {
-          setIsModalVisible(false);
-          queryClient.invalidateQueries({
-            queryKey: getDeliveringOrderQueryKey(
-              OrderDescription.vrackServices,
-            ),
-          });
-          queryClient.invalidateQueries({
-            queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
-          });
-          navigate(urls.listing);
-        }}
-        isModalVisible={isModalVisible}
-      />
+      <Outlet />
     </>
   );
-};
-
-export default CreationPage;
+}

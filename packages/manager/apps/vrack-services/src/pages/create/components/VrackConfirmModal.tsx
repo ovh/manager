@@ -14,31 +14,31 @@ import {
   OsdsButton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  TrackingClickParams,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { handleClick } from '@/utils/ods-utils';
 import { getExpressOrderLink } from '../order-utils';
 
-export type Props = {
+const trackingParams: TrackingClickParams = {
+  buttonType: ButtonType.button,
+  location: PageLocation.popup,
+};
+
+export type VrackConfirmModalProps = {
   displayName?: string;
   selectedRegion: string;
-  isModalVisible?: boolean;
-  dataTrackingPath?: string;
-  cancelDataTracking?: string;
-  confirmDataTracking?: string;
-  denyDataTracking?: string;
   onCancel: () => void;
   onDeny: () => void;
   onConfirm: () => void;
 };
 
-export const VrackConfirmModal: React.FC<Props> = ({
+export const VrackConfirmModal: React.FC<VrackConfirmModalProps> = ({
   displayName,
   selectedRegion,
-  isModalVisible,
-  dataTrackingPath,
-  cancelDataTracking,
-  confirmDataTracking,
-  denyDataTracking,
   onCancel,
   onConfirm,
   onDeny,
@@ -48,13 +48,10 @@ export const VrackConfirmModal: React.FC<Props> = ({
   const { trackClick } = useOvhTracking();
 
   const cancel = () => {
-    if (cancelDataTracking) {
-      trackClick({
-        path: dataTrackingPath,
-        value: cancelDataTracking,
-        type: 'action',
-      });
-    }
+    trackClick({
+      ...trackingParams,
+      actions: ['add_vrack-services', 'cancel'],
+    });
     onCancel();
   };
 
@@ -62,7 +59,6 @@ export const VrackConfirmModal: React.FC<Props> = ({
     <OsdsModal
       dismissible
       headline={t('modalHeadline')}
-      masked={!isModalVisible || undefined}
       onOdsModalClose={cancel}
     >
       <OsdsText
@@ -111,13 +107,10 @@ export const VrackConfirmModal: React.FC<Props> = ({
           includeVrackOrder: false,
         })}
         {...handleClick(() => {
-          if (denyDataTracking) {
-            trackClick({
-              path: dataTrackingPath,
-              value: denyDataTracking,
-              type: 'action',
-            });
-          }
+          trackClick({
+            ...trackingParams,
+            actions: ['no-vrack', 'confirm'],
+          });
           onDeny();
         })}
       >
@@ -136,13 +129,10 @@ export const VrackConfirmModal: React.FC<Props> = ({
           includeVrackOrder: true,
         })}
         {...handleClick(() => {
-          if (confirmDataTracking) {
-            trackClick({
-              path: dataTrackingPath,
-              value: confirmDataTracking,
-              type: 'action',
-            });
-          }
+          trackClick({
+            ...trackingParams,
+            actions: ['create-vrack', 'confirm'],
+          });
           onConfirm();
         })}
       >

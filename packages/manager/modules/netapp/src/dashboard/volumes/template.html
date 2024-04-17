@@ -7,27 +7,32 @@
     ></p>
 
     <oui-button
-        ng-if="$ctrl.canCreateVolume"
+        data-ng-if="$ctrl.canCreateVolume"
         aria-label="{{:: 'netapp_volumes_create' | translate }}"
-        on-click="$ctrl.goToCreateVolume()"
-        disabled="!$ctrl.isCreateVolumeAvailable"
+        data-on-click="$ctrl.goToCreateVolume()"
+        data-disabled="!$ctrl.isCreateVolumeAvailable"
+        data-icon-left="oui-icon-plus"
+        class="mr-2"
     >
         <span data-translate="netapp_volumes_create_volume"></span>
     </oui-button>
 
     <oui-datagrid
         class="mt-2"
-        rows="$ctrl.volumes"
-        row-loader="$ctrl.loadVolumeDetail($row)"
+        data-rows="$ctrl.volumes"
+        data-row-loader="$ctrl.loadVolumeDetail($row)"
+        data-customizable
     >
         <oui-datagrid-column
-            title=":: 'netapp_volumes_id' | translate"
-            property="id"
+            data-title=":: 'netapp_volumes_id' | translate"
+            data-property="id"
+            data-prevent-customization
         >
             <a
-                ng-if="$ctrl.isDashboardAvailable"
-                data-ng-href="{{:: $ctrl.getVolumeDetailsHref($row) }}"
+                data-ng-if="$ctrl.isDashboardAvailable"
+                href
                 data-ng-bind="$row.id"
+                data-ng-click="$ctrl.goToVolumeDetails($row)"
             ></a>
             <span
                 data-ng-if="!$ctrl.isDashboardAvailable"
@@ -35,55 +40,65 @@
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
-            title=":: 'netapp_volumes_name' | translate"
-            property="name"
+            data-title=":: 'netapp_volumes_name' | translate"
+            data-property="name"
         ></oui-datagrid-column>
         <oui-datagrid-column
-            title=":: 'netapp_volumes_description' | translate"
-            property="description"
+            data-title=":: 'netapp_volumes_description' | translate"
+            data-property="description"
         ></oui-datagrid-column>
         <oui-datagrid-column
-            title=":: 'netapp_volumes_protocol' | translate"
-            property="protocol"
+            data-title=":: 'netapp_volumes_protocol' | translate"
+            data-property="protocol"
         ></oui-datagrid-column>
         <oui-datagrid-column
-            title=":: 'netapp_volumes_allocated_quota' | translate"
-            property="size"
+            data-title=":: 'netapp_volumes_allocated_quota' | translate"
+            data-property="size"
         ></oui-datagrid-column>
         <oui-datagrid-column
-            title=":: 'netapp_volumes_mount_path' | translate"
-            property="mountPath"
+            data-title=":: 'netapp_volumes_mount_path' | translate"
+            data-property="mountPath"
         >
-            <oui-clipboard name="mountPath" model="$value"></oui-clipboard>
+            <oui-clipboard
+                data-ng-if="$row.mountPath"
+                name="mountPath"
+                model="$value"
+            ></oui-clipboard>
+            <i
+                data-ng-if="!$row.mountPath"
+                translate="netapp_volumes_mount_path_not_configurated"
+            ></i>
         </oui-datagrid-column>
         <oui-datagrid-column
-            title=":: 'netapp_volumes_snapshot_policy' | translate"
+            data-title=":: 'netapp_volumes_snapshot_policy' | translate"
+            data-property="snapshotPolicy.name"
         >
             <span data-ng-bind="$row.snapshotPolicy.name"></span>
         </oui-datagrid-column>
-        <oui-datagrid-column title=":: 'netapp_volumes_status' | translate">
+        <oui-datagrid-column
+            data-title=":: 'netapp_volumes_status' | translate"
+            data-property="status"
+        >
             <span
                 data-ng-bind=":: ('netapp_volumes_status_'+$row.status) | translate "
             ></span>
         </oui-datagrid-column>
-        <oui-action-menu compact="true" ng-if="$ctrl.canEditVolumes">
-            <oui-action-menu-item
-                href="{{:: $ctrl.getVolumeDetailsHref($row) }}"
-            >
+        <oui-action-menu compact="true" data-ng-if="$ctrl.canEditVolumes">
+            <oui-action-menu-item data-ng-click="$ctrl.goToVolumeDetails($row)">
                 <span data-translate="netapp_volumes_edit_volume"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item on-click="$ctrl.goToCreateSnapshot($row)">
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToCreateSnapshot($row)"
+            >
                 <span data-translate="netapp_volumes_create_snapshot"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item on-click="$ctrl.goToSnapshots($row)">
+            <oui-action-menu-item data-on-click="$ctrl.goToSnapshots($row)">
                 <span data-translate="netapp_volumes_manage_snapshots"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item on-click="$ctrl.goToAcls($row)">
+            <oui-action-menu-item data-on-click="$ctrl.goToAcls($row)">
                 <span data-translate="netapp_volumes_manage_acl"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item
-                href="{{:: $ctrl.getVolumeDeleteHref($row) }}"
-            >
+            <oui-action-menu-item data-on-click="$ctrl.goToDeleteVolume($row)">
                 <span data-translate="netapp_volumes_delete_volume"></span>
             </oui-action-menu-item>
         </oui-action-menu>
