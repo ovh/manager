@@ -1,0 +1,10 @@
+{
+  "domains_restore_renew_modal_title": "Meine Domains ({{number}}) wiederherstellen / verlängern",
+  "domains_restore_renew_modal_confirm": "Wiederherstellen / verlängern",
+  "domains_restore_renew_modal_cancel": "Abbrechen",
+  "domains_restore_renew_modal_question": "Bitte verwenden Sie zur Verlängerung Ihrer Domaines das Verlängerungs-Interface von OVH (außerhalb des Kundencenters).",
+  "domains_restore_renew_modal_confirmation": "Klicken Sie auf die Schaltfläche „Bestellen“, um ein neues Fenster zu öffnen und Ihre Domains zu verlängern.",
+  "domains_restore_renew_modal_information": "Es wird dann ein neuer Tab geöffnet und Sie werden automatisch auf das Verlängerungs-Interface von OVHcloud weitergeleitet.",
+  "domains_restore_renew_modal_alert": "Bitte beachten Sie, dass es nach dem Eingang Ihrer Zahlung etwa 2 Stunden dauert, bis die Verlängerungen in Ihrem Web Kundencenter registriert werden.",
+  "domains_restore_renew_modal_no_selected_domains": "Sie haben entweder keine Domains zur Verlängerung ausgewählt, oder Sie verfügen nicht über die Berechtigung dazu."
+}

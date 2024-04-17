@@ -31,6 +31,7 @@ import triStateCheckbox from './triStateCheckbox/triStateCheckbox';
 import wizard from './wizard/wizard';
 import wizardForm from './wizardForm/wizardForm';
 import scroll from './scroll/scroll';
+import textAccordion from './textAccordion/textAccordion';
 
 const moduleName = 'ngOvhUtils';
 
@@ -50,6 +51,7 @@ angular.module(moduleName, [
   triStateCheckbox,
   wizard,
   wizardForm,
+  textAccordion,
 ]);
 
 export default moduleName;
