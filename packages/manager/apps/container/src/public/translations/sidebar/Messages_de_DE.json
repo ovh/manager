@@ -169,5 +169,6 @@
   "sidebar_network_security": "Network Security Dashboard",
   "sidebar_nasha_cdn": "HA-NAS und CDN",
   "sidebar_vrack_services": "vRack Services",
-  "sidebar_all_vrack_services": "Alle Dienste"
+  "sidebar_all_vrack_services": "Alle Dienste",
+  "sidebar_domain_list": "Meine Domains"
 }
