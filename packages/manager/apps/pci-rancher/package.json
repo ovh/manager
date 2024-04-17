@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-rancher-app",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "private": true,
   "description": "pci-rancher",
   "repository": {
@@ -23,9 +23,9 @@
     "@ovh-ux/manager-config": "^7.3.1",
     "@ovh-ux/manager-core-api": "^0.7.1",
     "@ovh-ux/manager-react-core-application": "^0.8.2",
-    "@ovh-ux/manager-react-shell-client": "^0.4.1",
+    "@ovh-ux/manager-react-shell-client": "^0.4.2",
     "@ovh-ux/shell": "^3.5.1",
-    "@ovhcloud/manager-components": "^1.10.0",
+    "@ovhcloud/manager-components": "^1.10.1",
     "@ovhcloud/ods-common-core": "17.1.0",
     "@ovhcloud/ods-common-theming": "17.1.0",
     "@ovhcloud/ods-components": "17.1.0",
