@@ -22,9 +22,9 @@ export default class PciBlockStorageContainersContainerObjectAddController {
   $onInit() {
     this.trackClick('add');
     this.isLoading = false;
-    this.priceLink = STORAGE_PRICES_LINK[
-      this.coreConfig.getUser().ovhSubsidiary
-    ] || STORAGE_PRICES_LINK.DEFAULT;
+    this.priceLink =
+      STORAGE_PRICES_LINK[this.coreConfig.getUser().ovhSubsidiary] ||
+      STORAGE_PRICES_LINK.DEFAULT;
     this.storageClass = OBJECT_CONTAINER_STORAGE_CLASS.STANDARD;
     this.prefix = '/';
     this.files = [];
