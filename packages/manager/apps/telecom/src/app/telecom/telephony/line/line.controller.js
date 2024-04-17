@@ -16,7 +16,6 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
   lineLink,
   phoneLink,
   softphoneLink,
-  softphoneBetaEligibility,
   orderPhoneLink,
   shellClient,
   TelephonyMediator,
@@ -43,7 +42,6 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
   self.answerLink = answerLink;
   self.phoneLink = phoneLink;
   self.softphoneLink = softphoneLink;
-  self.softphoneBetaEligibility = softphoneBetaEligibility;
   self.orderPhoneLink = orderPhoneLink;
   self.assistLink = assistLink;
   self.contactLink = contactLink;
