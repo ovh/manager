@@ -13,5 +13,10 @@
   "ipv4Block_organization_description3": "Jeśli nie przypiszesz podmiotu, mogą zostać użyte Twoje dane z konta OVHcloud (NIC)",
   "ipv4Block_organization_info_banner": "Nazwa organizacji przypisanej do Twojego bloku adresów IP oraz powiązane z nią dane kontaktowe będą wyświetlane w publicznej bazie danych WHOIS.",
   "ip_agora_table_submit_text": "Kontynuuj zamówienie",
-  "ip_agora_table_cancel_text": "Powrót"
+  "ip_agora_table_cancel_text": "Powrót",
+  "ip_agora_title": "Wybierz wersję adresu IP",
+  "ip_agora_description": "W niektórych przypadkach możesz potrzebować standardowego protokołu IPv4, który jest najczęściej używany, lub nowej wersji protokołu - IPv6. Lista kompatybilnych produktów może się zmieniać.",
+  "ip_agora_ipv4_description": "Standard internetowy (od dzisiaj). Protokół adresowania najczęściej używany w Internecie, a zatem najczęściej obsługiwany.",
+  "ip_agora_ip_v4_starting_from": "Od",
+  "order_catalog_price_interval_month_by_ip": "m-c/IP"
 }
