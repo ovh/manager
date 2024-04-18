@@ -12,7 +12,7 @@ describe('ActionBanner tests', () => {
     renderComponent({
       message: 'hello world',
       cta: 'custom action',
-      onClick: () => { },
+      onClick: () => {},
     });
     expect(screen.getAllByText('hello world')).not.toBeNull();
   });
