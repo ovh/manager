@@ -27,6 +27,7 @@ import {
   VrackIdCell,
   CreatedAtCell,
   RegionCell,
+  ActionsCell,
 } from '@/components/VrackServicesDataGridCells';
 import { useUpdateVrackServices, useVrackServicesList } from '@/utils/vs-utils';
 import { urls } from '@/router/constants';
@@ -106,25 +107,24 @@ export const VrackServicesDatagrid: React.FC = () => {
         <CreatedAtCell locale={ovhLocaleToI18next(i18n.language)} />,
       ),
     },
-    // TODO: Put back delete after beta
-    // {
-    //   title: t('actions'),
-    //   field: '',
-    //   formatter: reactFormatter(
-    //     <ActionsCell
-    //       openModal={(id) => {
-    //         trackClick({
-    //           location: PageLocation.datagrid,
-    //           buttonType: ButtonType.button,
-    //           actionType: 'navigation',
-    //           actions: ['delete_vrack-services'],
-    //         });
-    //         navigate(urls.listingDelete.replace(':id', id));
-    //       }}
-    //       isLoading={isPending}
-    //     />,
-    //   ),
-    // },
+    {
+      title: t('actions'),
+      field: '',
+      formatter: reactFormatter(
+        <ActionsCell
+          openModal={(id) => {
+            trackClick({
+              location: PageLocation.datagrid,
+              buttonType: ButtonType.button,
+              actionType: 'navigation',
+              actions: ['delete_vrack-services'],
+            });
+            navigate(urls.listingDelete.replace(':id', id));
+          }}
+          isLoading={isPending}
+        />,
+      ),
+    },
   ];
 
   return (
