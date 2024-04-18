@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.55.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.54.1...@ovh-ux/manager-container-app@0.55.0) (2024-04-18)
+
+
+### Features
+
+* **web.domain:** domain optim ([#11070](https://github.com/ovh/manager/issues/11070)) ([d7f93c5](https://github.com/ovh/manager/commit/d7f93c5ead464dd1f437d01194e69e860afc79f2))
+
+
+
+
+
 ## [0.54.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.54.0...@ovh-ux/manager-container-app@0.54.1) (2024-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

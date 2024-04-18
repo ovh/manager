@@ -1,0 +1,10 @@
+{
+  "domains_restore_renew_modal_title": "Ripristinare/Rinnovare i domini ({{number}})",
+  "domains_restore_renew_modal_confirm": "Ripristinare/Rinnovare",
+  "domains_restore_renew_modal_cancel": "Annullare",
+  "domains_restore_renew_modal_question": "Per rinnovare il tuo dominio, devi utilizzare l'interfaccia di rinnovo OVHcloud (esterna allo Spazio Cliente Web).",
+  "domains_restore_renew_modal_confirmation": "Clicca sul pulsante \"Ordinare\" per aprire una nuova finestra e rinnovare il dominio.",
+  "domains_restore_renew_modal_information": "Si aprirà una nuova finestra e verrai reindirizzato automaticamente all'interfaccia di rinnovo OVH.",
+  "domains_restore_renew_modal_alert": "A partire dall'accettazione del pagamento, sono necessarie circa 2 ore prima che il rinnovo risulti nello Spazio Cliente Web.",
+  "domains_restore_renew_modal_no_selected_domains": "Non hai selezionato domini da rinnovare o non sei autorizzato a rinnovare alcun dominio."
+}
