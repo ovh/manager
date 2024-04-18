@@ -7,35 +7,24 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 type Props = {
-  cssBaseClassName?: string;
   user?: User;
 };
 
-const UserDetails = ({
-  cssBaseClassName = '',
-  user = {} as User,
-}: Props): JSX.Element => {
+const UserDetails = ({ user = {} as User }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const { organisation, email, nichandle } = user;
 
   return (
-    <p>
-      {
-        <>
-          {organisation && (
-            <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="block">
-              {organisation}
-            </OsdsText>
-          )}
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="block break-all"
-          >
-            <div>{t('user_account_menu_notification_email')}</div>
-            {email}
-          </OsdsText>
-        </>
-      }
+    <>
+      {organisation && (
+        <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="block">
+          {organisation}
+        </OsdsText>
+      )}
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="block break-all">
+        <div>{t('user_account_menu_notification_email')}</div>
+        {email}
+      </OsdsText>
 
       {email !== nichandle && (
         <OsdsText
@@ -47,7 +36,7 @@ const UserDetails = ({
           {nichandle}
         </OsdsText>
       )}
-    </p>
+    </>
   );
 };
 
