@@ -36,9 +36,10 @@ const VersionSelector = ({
   const { t } = useTranslation('pci-databases-analytics/components/engine');
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <div className="hidden">
+      <div data-testid="engine-tile-version-container" className="hidden">
         {versions.map((engineVersion) => (
           <input
+            data-testid={`engine-tile-version-input-${engineVersion.name}`}
             type="radio"
             name="version-select"
             value={engineVersion.name}
@@ -50,6 +51,7 @@ const VersionSelector = ({
       </div>
       <PopoverTrigger asChild>
         <Button
+          data-testid="popover-trigger-button"
           disabled={versions.length === 1}
           variant="outline"
           size="sm"

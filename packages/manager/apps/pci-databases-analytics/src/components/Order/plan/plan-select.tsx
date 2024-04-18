@@ -15,6 +15,7 @@ const PlansSelect = React.forwardRef<HTMLInputElement, PlansSelectProps>(
   ({ plans, value, onChange, showMonthlyPrice = false, className }, ref) => {
     return (
       <div
+        data-testid="plans-select-container"
         ref={ref}
         className={cn(
           'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2',

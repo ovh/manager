@@ -26,6 +26,7 @@ export const PlanTile = ({
   );
   return (
     <RadioTile
+      data-testid="plan-tile-radio-tile"
       name="plan-select"
       onChange={() => onChange(plan.name)}
       value={plan.name}
@@ -42,6 +43,7 @@ export const PlanTile = ({
             <div>
               {plan.tags.map((tag) => (
                 <Badge
+                  data-testid={`plan-tile-badge-${tag}`}
                   key={tag}
                   variant={getTagVariant(tag)}
                   className="text-xs h-4"
@@ -64,7 +66,7 @@ export const PlanTile = ({
         <div>
           <RadioTile.Separator />
           <p className="text-sm">
-            <span>{t('priceStartingFrom')} </span>
+            <span data-testid="plan-tile-price">{t('priceStartingFrom')} </span>
             <Price
               priceInUcents={plan.minPricing[pricingUnit].price}
               taxInUcents={plan.minPricing[pricingUnit].tax}
@@ -83,11 +85,13 @@ PlanTile.Ram = function PlanTilesRam({ ram }: Partial<Plan>) {
   if (!ram || ram.maximum.value === 0) return <></>;
   if (compareStorage(ram.minimum, ram.maximum) === 0) {
     return (
-      <span>{t('memorySpec', { memory: formatStorage(ram.minimum) })}</span>
+      <span data-testid="plan-tile-ram-spec">
+        {t('memorySpec', { memory: formatStorage(ram.minimum) })}
+      </span>
     );
   }
   return (
-    <span>
+    <span data-testid="plan-tile-ram-range">
       {t('memorySpecRange', {
         min: formatStorage(ram.minimum),
         max: formatStorage(ram.maximum),
@@ -99,10 +103,14 @@ PlanTile.Cpu = function PlanTilesCpu({ cpu }: Partial<Plan>) {
   const { t } = useTranslation('pci-databases-analytics/components/plan');
   if (!cpu || cpu.maximum === 0) return <></>;
   if (cpu.minimum === cpu.maximum) {
-    return <span>{t('cpuSpec', { count: cpu.minimum })}</span>;
+    return (
+      <span data-testid="plan-tile-cpu-spec">
+        {t('cpuSpec', { count: cpu.minimum })}
+      </span>
+    );
   }
   return (
-    <span>
+    <span data-testid="plan-tile-cpu-range">
       {t('cpuSpecRange', {
         min: cpu.minimum,
         max: cpu.maximum,
@@ -114,10 +122,14 @@ PlanTile.Nodes = function PlanTilesNodes({ nodes }: Partial<Plan>) {
   const { t } = useTranslation('pci-databases-analytics/components/plan');
   if (!nodes || nodes.maximum === 0) return <></>;
   if (nodes.minimum === nodes.maximum) {
-    return <span>{t('nodeSpec', { count: nodes.minimum })}</span>;
+    return (
+      <span data-testid="plan-tile-nodes-spec">
+        {t('nodeSpec', { count: nodes.minimum })}
+      </span>
+    );
   }
   return (
-    <span>
+    <span data-testid="plan-tile-nodes-range">
       {t('nodeSpecRange', {
         min: nodes.minimum,
         max: nodes.maximum,
@@ -134,13 +146,13 @@ PlanTile.Storage = function PlanTileStorage({ storage }: Partial<Plan>) {
     storage.minimum.unit === storage.maximum.unit
   ) {
     return (
-      <span>
+      <span data-testid="plan-tile-storage-spec">
         {t('storageSpec', { storage: formatStorage(storage.minimum) })}
       </span>
     );
   }
   return (
-    <span>
+    <span data-testid="plan-tile-storage-range">
       {t('storageSpecRange', {
         min: formatStorage(storage.minimum),
         max: formatStorage(storage.maximum),
