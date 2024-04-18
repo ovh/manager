@@ -23,7 +23,7 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
     const minAddable = 0;
     const maxAddable = maximum.value - minimum.value;
     return (
-      <div>
+      <div data-testid="storage-configuration-container">
         <p>
           {t('storageFlavorDescription', {
             flavor,
@@ -48,6 +48,7 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
           </div>
           <Slider
             ref={ref}
+            data-testid="storage-slider"
             onValueChange={([newValue]) => onChange(newValue)}
             id="storage-select"
             name="storage-select"
@@ -57,7 +58,10 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
             max={maxAddable}
             step={step?.value || 1}
           />
-          <div className="flex w-full justify-center mt-2">
+          <div
+            data-testid="storage-unit-value-container"
+            className="flex w-full justify-center mt-2"
+          >
             <span className="font-bold">
               {formatStorage({
                 value,

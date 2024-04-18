@@ -20,7 +20,10 @@ const OrderPrice = ({ showMonthly, prices }: OrderPriceProps) => {
   const unit = showMonthly ? 'monthly' : 'hourly';
   const price = prices[unit];
   return (
-    <div className="flex justify-between items-baseline gap-2">
+    <div
+      data-testId="order-price-container"
+      className="flex justify-between items-baseline gap-2"
+    >
       <span>{t('pricing_label')}</span>
       <div className="inline-block">
         <Price
