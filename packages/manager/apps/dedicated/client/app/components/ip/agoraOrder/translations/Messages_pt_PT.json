@@ -13,5 +13,10 @@
   "ipv4Block_organization_description3": "Se não associar uma organização, as informações da sua conta OVHcloud (NIC) poderão ser utilizadas",
   "ipv4Block_organization_info_banner": "O nome da organização associada ao seu bloco de endereços IP, bem como as informações de contacto correspondentes, figurarão na base de dados pública Whois",
   "ip_agora_table_submit_text": "Prosseguir a encomenda",
-  "ip_agora_table_cancel_text": "Retroceder"
+  "ip_agora_table_cancel_text": "Retroceder",
+  "ip_agora_title": "Selecionar a versão do endereço IP",
+  "ip_agora_description": "Para um certo número de casos, poderá necessitar de um IPv4 standard, o mais utilizado, ou de uma nova versão do protocolo - o IPv6. A lista de produtos compatíveis pode variar.",
+  "ip_agora_ipv4_description": "Standard Internet (a partir de hoje). O protocolo de endereçamento mais utilizado na Internet, sendo, por conseguinte, o mais frequentemente suportado.",
+  "ip_agora_ip_v4_starting_from": "A partir de",
+  "order_catalog_price_interval_month_by_ip": "mês/IP"
 }
