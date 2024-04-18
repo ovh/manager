@@ -1,0 +1,10 @@
+{
+  "domains_restore_renew_modal_title": "Restaurer / Renouveler mes Domaines ({{number}})",
+  "domains_restore_renew_modal_confirm": "Restaurer / Renouveler",
+  "domains_restore_renew_modal_cancel": "Annuler",
+  "domains_restore_renew_modal_question": "Afin de renouveler vos domaines, vous devez utiliser l'interface de renouvellement OVH (hors de l'Espace Client Web).",
+  "domains_restore_renew_modal_confirmation": "Cliquez sur le bouton \"Commander\" pour ouvrir une nouvelle fenêtre et renouveler vos noms de domaine.",
+  "domains_restore_renew_modal_information": "Un nouvel onglet s'ouvrira et vous serez automatiquement redirigé(e) vers l'interface de renouvellement OVH.",
+  "domains_restore_renew_modal_alert": "Veuillez noter qu'un délai d'environ 2 heures à compter de l'acceptation de votre paiement est nécessaire pour que les renouvellements soient pris en compte dans votre Espace Client Web.",
+  "domains_restore_renew_modal_no_selected_domains": "Vous n'avez pas selectionné de domaines à renouveler ou n'êtes autorisé à en renouveler aucun."
+}

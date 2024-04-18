@@ -17,7 +17,9 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('resources')
         .then((resources) =>
-          resources.data.length === 0 && !transition.params().filter
+          resources.data.length === 0 &&
+          (!transition.params().filter ||
+            !JSON.parse(transition.params().filter).length)
             ? { state: 'app.domain.onboarding' }
             : false,
         ),
@@ -28,13 +30,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $http.get('/domain.json').then(({ data: schema }) => schema),
       domainStateEnum: /* @ngInject */ (schema) =>
         schema.models['domain.DomainStateEnum'].enum,
-      domainSuspensionStateEnum: /* @ngInject */ (schema) =>
-        schema.models['domain.DomainSuspensionStateEnum'].enum,
-      domainLockStatusEnum: /* @ngInject */ (schema) =>
-        schema.models['domain.DomainLockStatusEnum'].enum,
+      domainRenewalModeEnum: /* @ngInject */ (schema) =>
+        schema.models['domain.RenewalStateEnum'].enum,
       domainNsTypeEnum: /* @ngInject */ (schema) =>
-        schema.models['domain.DomainNsTypeEnum'].enum,
-      dataModel: () => 'domain.Domain',
+        schema.models['domain.nameServer.NameServerTypeEnum'].enum,
+      dataModel: () => 'domain.DomainServiceWithIAM',
       defaultFilterColumn: () => 'domain',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('domains_title'),
@@ -75,7 +75,8 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         },
       }),
-
+      goToRestoreRenew: /* @ngInject */ ($state) => (domains) =>
+        $state.go('app.domain.index.restore-renew', { domains }),
       hideBreadcrumb: () => true,
     },
   });

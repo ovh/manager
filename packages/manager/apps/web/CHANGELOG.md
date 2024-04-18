@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.20.2...@ovh-ux/manager-web@18.21.0) (2024-04-18)
+
+
+### Features
+
+* **web.domain:** domain optim ([#11070](https://github.com/ovh/manager/issues/11070)) ([d7f93c5](https://github.com/ovh/manager/commit/d7f93c5ead464dd1f437d01194e69e860afc79f2))
+
+
+
+
+
 ## [18.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.20.1...@ovh-ux/manager-web@18.20.2) (2024-04-15)
 
 
