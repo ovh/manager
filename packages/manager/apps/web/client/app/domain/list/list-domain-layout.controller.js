@@ -244,13 +244,19 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
   }
 
   static isDomainCancellable(domain) {
-    return ![
-      DOMAIN_STATUS.PENDING_INCOMING_TRANSFER,
-      DOMAIN_STATUS.DELETED,
-      DOMAIN_STATUS.PENDING_CREATE,
-      DOMAIN_STATUS.DISPUTE,
-      DOMAIN_STATUS.RESTORABLE,
-    ].includes(domain.state);
+    return (
+      ![
+        DOMAIN_STATUS.PENDING_INCOMING_TRANSFER,
+        DOMAIN_STATUS.DELETED,
+        DOMAIN_STATUS.PENDING_CREATE,
+        DOMAIN_STATUS.DISPUTE,
+        DOMAIN_STATUS.RESTORABLE,
+      ].includes(domain.state) &&
+      ![
+        DOMAIN_RENEWABLE_STATE.CANCELLATION_REQUESTED,
+        DOMAIN_RENEWABLE_STATE.CANCELLATION_COMPLETE,
+      ].includes(domain.renewalState)
+    );
   }
 
   onRowSelect(row, rows) {
