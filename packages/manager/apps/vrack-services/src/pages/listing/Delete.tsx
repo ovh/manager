@@ -9,7 +9,6 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { DeleteModal } from '@/components/DeleteModal';
 import { useDeleteVrackServices } from '@/utils/vs-utils';
-import { ApiError } from '@ovh-ux/manager-core-api';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,
@@ -26,13 +25,8 @@ export default function DeleteVrackServices() {
     deleteVs,
     isErrorVisible,
     error,
-    isSuccess
+    isSuccess,
   } = useDeleteVrackServices({ vrackServices: id });
-
-  useEffect(() => {
-    if(isSuccess)
-      onClose();
-  }, [isSuccess])
 
   const onClose = () => {
     trackClick({
@@ -43,12 +37,16 @@ export default function DeleteVrackServices() {
     navigate('..');
   };
 
+  useEffect(() => {
+    if (isSuccess) onClose();
+  }, [isSuccess]);
+
   return (
     <DeleteModal
       closeModal={onClose}
       deleteInputLabel={t('modalDeleteInputLabel')}
       headline={t('modalDeleteHeadline')}
-      error={isErrorVisible? error: null}
+      error={isErrorVisible ? error : null}
       onConfirmDelete={() => {
         trackClick({
           ...sharedTrackingParams,
