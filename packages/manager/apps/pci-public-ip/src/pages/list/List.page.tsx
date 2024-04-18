@@ -25,8 +25,8 @@ import useProject from '@/api/hooks/useProject';
 import FloatingIPComponent from '@/components/list/FloatingIP.component';
 import FailoverIPComponent from '@/components/list/FailoverIP.component';
 import { IPsTabName } from '@/constants';
-import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner';
 import { useProductMaintenance } from '@/components/maintenance/useMaintenance';
+import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner.component';
 
 export default function ListingPage(): JSX.Element {
   const { t } = useTranslation('common');

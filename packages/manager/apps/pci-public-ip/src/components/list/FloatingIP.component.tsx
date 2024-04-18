@@ -37,7 +37,15 @@ import { useFloatingIPs } from '@/api/hooks/useFloatingIP';
 import FloatingIPActions from './FloatingIPActions.component';
 import { pciAnnouncementBannerId } from '@/constants';
 
-export default function FloatingIPComponent({ projectId, projectUrl }) {
+export type FloatingIPComponentProps = {
+  projectId: string;
+  projectUrl: string;
+};
+
+export default function FloatingIPComponent({
+  projectId,
+  projectUrl,
+}: Readonly<FloatingIPComponentProps>) {
   const { t } = useTranslation('common');
 
   const { pagination, setPagination } = useDatagridSearchParams();
@@ -212,7 +220,11 @@ export default function FloatingIPComponent({ projectId, projectUrl }) {
       </div>
 
       {error && (
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
+        <OsdsMessage
+          data-testid="floatingIP_message_error"
+          className="mt-4"
+          type={ODS_MESSAGE_TYPE.error}
+        >
           {t('manager_error_page_default')}
         </OsdsMessage>
       )}
@@ -221,7 +233,11 @@ export default function FloatingIPComponent({ projectId, projectUrl }) {
       </div>
       {isLoading && !error && (
         <div className="text-center">
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+          <OsdsSpinner
+            data-testid="floatingIP_spinner_loading"
+            inline
+            size={ODS_SPINNER_SIZE.md}
+          />
         </div>
       )}
 
