@@ -60,8 +60,12 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
       }
     };
     return (
-      <Table ref={ref} className={cn('min-w-max w-full', className)}>
-        <TableHeader>
+      <Table
+        data-testid="flavor-select-table"
+        ref={ref}
+        className={cn('min-w-max w-full', className)}
+      >
+        <TableHeader data-testid="flavor-select-table-header">
           <TableRow className="bg-primary-100 hover:bg-primary-10">
             <TableHead className="font-bold text-base text-[#4d5592]">
               {t('tableHeadType')}
@@ -80,9 +84,10 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
             </TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody data-testid="flavor-select-table-body">
           {flavors.map((flavor) => (
             <TableRow
+              data-testid={`flavor-table-row-${flavor.name}`}
               tabIndex={0}
               onClick={() => clickInput(flavor.name)}
               onKeyDown={(e) => handleKeyDown(e, flavor.name)}

@@ -29,6 +29,7 @@ export const EngineTile = ({
   }, [selectedVersion]);
   return (
     <RadioTile
+      data-testid="engine-radio-tile"
       name="engine-select"
       onChange={handleEngineClick}
       value={engine.name}
@@ -44,6 +45,7 @@ export const EngineTile = ({
           <div className="flex gap-1">
             {engine.tags.map((tag) => (
               <Badge
+                data-testid={`Badge${tag}`}
                 key={tag}
                 variant={getTagVariant(tag)}
                 className="text-xs h-4"

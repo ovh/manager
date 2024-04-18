@@ -29,7 +29,7 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
       ]),
     ];
     return (
-      <div ref={ref}>
+      <div data-testid="regions-select-container" ref={ref}>
         <Tabs
           defaultValue="0"
           onValueChange={(v) => setSelectedContinentIndex(+v)}
@@ -54,6 +54,7 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
               )
               .map((region) => (
                 <RadioTile
+                  data-testid={`regions-radio-tile-${region.name}`}
                   name="region-select"
                   key={region.name}
                   onChange={() => onChange(region.name)}
