@@ -1,0 +1,155 @@
+<p data-translate="octavia_load_balancer_health_monitor_form_description_1"></p>
+<p>
+    <span
+        data-translate="octavia_load_balancer_health_monitor_form_description_2"
+    ></span>
+    <a ng-href="{{::$ctrl.HORIZON_LINK}}" class="oui-link_icon" target="_blank">
+        <span
+            data-translate="octavia_load_balancer_health_monitor_form_description_link"
+        ></span>
+        <span class="oui-icon oui-icon-arrow-right" aria-hidden="true"></span>
+    </a>
+</p>
+
+<form name="healthMonitor" novalidate>
+    <oui-field
+        size="l"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_health_monitor_form_name' | translate }}"
+        data-help-text="{{:: 'octavia_load_balancer_health_monitor_form_name_help' | translate }}"
+    >
+        <div class="oui-input-overlay">
+            <input
+                type="text"
+                class="oui-input"
+                name="name"
+                data-required
+                data-ng-model="$ctrl.model.name"
+                data-ng-pattern="$ctrl.NAME_REGEX"
+            />
+        </div>
+    </oui-field>
+    <oui-field
+        size="l"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_health_monitor_form_type' | translate }}"
+    >
+        <oui-select
+            name="type"
+            data-required
+            data-model="$ctrl.model.type"
+            data-items="$ctrl.healthMonitorTypes"
+            data-on-change="$ctrl.onTypeChange(modelValue)"
+            data-disabled="$ctrl.editionMode"
+            data-placeholder="{{:: 'octavia_load_balancer_health_monitor_form_type_default' | translate }}"
+        >
+        </oui-select>
+    </oui-field>
+    <div
+        class="health-monitor-http-fields"
+        data-ng-if="$ctrl.displayHttpSpecificFields"
+    >
+        <oui-field
+            size="l"
+            class="mb-4 mb-md-0"
+            data-label="{{:: $ctrl.LABELS.URLPATH }}"
+        >
+            <div class="oui-input-overlay">
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="url-path"
+                    data-required="$ctrl.displayHttpSpecificFields"
+                    data-ng-model="$ctrl.model.urlPath"
+                />
+            </div>
+        </oui-field>
+        <oui-field
+            size="l"
+            class="mb-4 mb-md-0"
+            data-label="{{:: 'octavia_load_balancer_health_monitor_form_expected_code' | translate }}"
+            data-help-text="{{:: 'octavia_load_balancer_health_monitor_form_expected_code_help' | translate}}"
+            data-label-popover="{{:: 'octavia_load_balancer_health_monitor_form_expected_code_tooltip' | translate }}"
+        >
+            <div class="oui-input-overlay">
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="expected-code"
+                    data-required="$ctrl.displayHttpSpecificFields"
+                    data-ng-model="$ctrl.model.expectedCode"
+                    data-ng-pattern="$ctrl.EXPECTED_STATUS_CODE_REGEX"
+                />
+            </div>
+        </oui-field>
+    </div>
+    <div class="health-monitor-numeric-fields">
+        <oui-field
+            size="l"
+            class="mb-4 mb-md-0"
+            data-inline="true"
+            data-label="{{:: $ctrl.LABELS.MAX_RETRIES_DOWN }}"
+            data-label-popover="{{:: 'octavia_load_balancer_health_monitor_form_max_retries_down_tooltip' | translate}}"
+        >
+            <oui-numeric
+                name="max-retries-down"
+                data-min="$ctrl.BOUNDS.MAX_RETRIES_DOWN.MIN"
+                data-max="$ctrl.BOUNDS.MAX_RETRIES_DOWN.MAX"
+                data-model="$ctrl.model.maxRetriesDown"
+            >
+            </oui-numeric>
+        </oui-field>
+        <oui-field
+            size="l"
+            class="mb-4 mb-md-0"
+            data-inline="true"
+            data-label="{{:: $ctrl.LABELS.DELAY }}"
+            data-label-popover="{{:: 'octavia_load_balancer_health_monitor_form_delay_tooltip' | translate}}"
+        >
+            <oui-numeric
+                name="delay"
+                data-min="$ctrl.BOUNDS.DELAY.MIN"
+                data-model="$ctrl.model.delay"
+                data-on-change="$ctrl.onDelayChange(modelValue)"
+            >
+            </oui-numeric>
+        </oui-field>
+        <oui-field
+            size="l"
+            class="mb-4 mb-md-0"
+            data-inline="true"
+            data-label="{{:: $ctrl.LABELS.MAX_RETRIES }}"
+            data-label-popover="{{:: 'octavia_load_balancer_health_monitor_form_max_retries_tooltip' | translate}}"
+        >
+            <oui-numeric
+                data-min="$ctrl.BOUNDS.MAX_RETRIES.MIN"
+                data-max="$ctrl.BOUNDS.MAX_RETRIES.MAX"
+                data-model="$ctrl.model.maxRetries"
+                name="max-retries"
+            >
+            </oui-numeric>
+        </oui-field>
+        <oui-field
+            size="l"
+            class="mb-4 mb-md-0"
+            data-inline="true"
+            data-label="{{:: $ctrl.LABELS.TIMEOUT }}"
+            data-label-popover="{{:: 'octavia_load_balancer_health_monitor_form_timeout_tooltip' | translate}}"
+        >
+            <oui-numeric
+                name="timeout"
+                data-min="$ctrl.BOUNDS.TIMEOUT.MIN"
+                data-max="$ctrl.model.delay - 1"
+                data-model="$ctrl.model.timeout"
+            >
+            </oui-numeric>
+        </oui-field>
+    </div>
+    <oui-form-actions
+        data-disabled="!healthMonitor.$valid"
+        data-submit-text="{{:: $ctrl.submitLabel }}"
+        data-cancel-text="{{:: 'octavia_load_balancer_health_monitor_form_cancel' | translate }}"
+        data-on-submit="$ctrl.onSubmit()"
+        data-on-cancel="$ctrl.onCancel()"
+    ></oui-form-actions>
+</form>

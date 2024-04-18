@@ -36,6 +36,7 @@
   "octavia_load_balancer_create_instance_banner_health_monitor_text": "Dans cette première intégration du Load Balancer dans votre espace client, les Health Monitors ne sont configurables qu'à la création du LoadBalancer.",
   "octavia_load_balancer_create_name_title": "Informations",
   "octavia_load_balancer_create_name_field_label": "Nom du Load Balancer",
+  "octavia_load_balancer_create_name_field_help": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points.",
   "octavia_load_balancer_create_submit": "Créer un Load Balancer",
   "octavia_load_balancer_create_banner": "Votre Load Balancer est en cours de création. Cela ne prendra que quelques minutes."
 }
