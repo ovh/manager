@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 import component from './component';
 
 import { GUIDE_URLS } from './constants';
@@ -31,7 +29,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
 
-      guideUrl: /* @ngInject */ (me) => get(GUIDE_URLS, me.ovhSubsidiary),
+      guideUrl: /* @ngInject */ (me) =>
+        GUIDE_URLS[me.ovhSubsidiary] || GUIDE_URLS.DEFAULT,
 
       pciProjectsHref: /* @ngInject */ ($state) => $state.href('pci.projects'),
 
