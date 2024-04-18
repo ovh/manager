@@ -106,7 +106,6 @@
             >
                 <oui-tile-description>
                     <a
-                        data-ng-if="!$ctrl.isLegacyPack"
                         class="oui-link oui-link_icon"
                         data-ng-href="{{:: $ctrl.NUTANIX_LINK }}"
                         target="_blank"
@@ -115,16 +114,14 @@
                         data-track-name="{{:: $ctrl.TRACKING.ACCESS_NUTANIX}}"
                         data-track-type="action"
                     >
-                        <span data-ng-bind="$ctrl.packType"></span>
+                        <span
+                            data-ng-bind="$ctrl.PACK_TYPE[$ctrl.packType] || $ctrl.packType"
+                        ></span>
                         <i
                             class="oui-icon oui-icon-external-link"
                             aria-hidden="true"
                         ></i>
                     </a>
-                    <span
-                        data-ng-if="$ctrl.isLegacyPack"
-                        data-ng-bind="$ctrl.packType"
-                    ></span>
                 </oui-tile-description>
             </oui-tile-definition>
 

@@ -5,8 +5,10 @@ import {
   PRIVATE_BANDWIDTH_SERVICE_PREFIX,
   REPLICATION_FACTOR_PREFIX,
   TRAVAUX_LINK,
-  GUIDE_PACKAGES_URL,
+  GUIDE_PACKAGES_BASE_URL,
+  GUIDE_PACKAGES_PATH,
   TRACKING,
+  PACK_TYPE,
 } from './constants';
 
 export default class NutanixGeneralInfoCtrl {
@@ -22,14 +24,13 @@ export default class NutanixGeneralInfoCtrl {
     this.atInternet = atInternet;
     this.TRAVAUX_LINK =
       TRAVAUX_LINK[coreConfig.getRegion()] || TRAVAUX_LINK.DEFAULT;
-    this.NUTANIX_LINK =
-      GUIDE_PACKAGES_URL[coreConfig.getUser().ovhSubsidiary] ||
-      GUIDE_PACKAGES_URL.DEFAULT;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.NutanixService = NutanixService;
+    this.coreConfig = coreConfig;
     this.REPLICATION_FACTOR_PREFIX = REPLICATION_FACTOR_PREFIX;
     this.NUTANIX_PERSONAL_LICENSE_EDITION = NUTANIX_PERSONAL_LICENSE_EDITION;
     this.GENERAL_INFO_TILE_TITLE = GENERAL_INFO_TILE_TITLE;
+    this.PACK_TYPE = PACK_TYPE;
   }
 
   $onInit() {
@@ -37,6 +38,11 @@ export default class NutanixGeneralInfoCtrl {
     this.setPrivateBandwidthServiceId();
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
     this.showRedeployWarningModal = false;
+    this.NUTANIX_LINK =
+      (GUIDE_PACKAGES_BASE_URL[this.coreConfig.getUser().ovhSubsidiary] ||
+        GUIDE_PACKAGES_BASE_URL.DEFAULT) +
+      (GUIDE_PACKAGES_PATH[PACK_TYPE[this.packType]] ||
+        GUIDE_PACKAGES_PATH.PACK);
     this.TRACKING = TRACKING;
   }
 
