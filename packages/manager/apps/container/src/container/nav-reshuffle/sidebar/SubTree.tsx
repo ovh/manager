@@ -112,7 +112,7 @@ const SubTree = ({
   }, [defaultPciProject, defaultPciProjectStatus, pciProjects]);
 
   return (
-    <div className={style.subtree}>
+    <div className={style.subtree} onClick={handleBackNavigation}>
       <div className={style.subtree_content}>
         <button
           className={style.subtree_back_btn}
@@ -120,6 +120,7 @@ const SubTree = ({
         >
           Retour au menu
         </button>
+        {rootNode.illustration && (
         <div
           aria-label={t(rootNode.translation)}
           className={`d-block py-3 ${style.subtree_illustration}`}
@@ -130,8 +131,9 @@ const SubTree = ({
             aria-hidden="true"
           />
         </div>
+        )}
 
-        <div>
+        <div className={rootNode.illustration ? '' : 'pt-4'}>
           <ul className={`${style.subtree_list} mx-3`}>
             <li>
               <h2>{t(rootNode.translation)}</h2>
@@ -195,8 +197,8 @@ const SubTree = ({
               </li>
             )}
             {(rootNode.id !== 'pci' || selectedPciProject !== null) &&
-              rootNode.children?.map((node) => (
-                <li key={node.id} id={node.id}>
+              rootNode.children?.map((node, index) => (
+                <li key={node.id} id={node.id} className={index === rootNode.children?.length - 1 ? 'pb-4' : ''}>
                   {!shouldHideElement(node, 1, 2) && (
                     <SubTreeSection
                       node={node}

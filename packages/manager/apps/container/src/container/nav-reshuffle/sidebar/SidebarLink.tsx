@@ -37,7 +37,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
     />
   ) : (
     <button
-      className={`${style['button-as-div']} px-3`}
+      className={`${style['button-as-div']}`}
       onMouseOver={!mobile ? handleNavigation : null}
       onFocus={!mobile ? handleNavigation : null}
       onTouchEnd={mobile ? handleNavigation : null}

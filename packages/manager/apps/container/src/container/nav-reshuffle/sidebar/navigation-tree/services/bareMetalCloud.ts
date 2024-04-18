@@ -120,22 +120,5 @@ export default {
         },
       ],
     },
-    {
-      id: 'bmc-databases',
-      translation: 'sidebar_databases',
-      features: ['logs-data-platform'],
-      children: [
-        {
-          id: 'pci-logs-data-platform',
-          translation: 'sidebar_logs_db',
-          serviceType: 'DBAAS_LOGS',
-          routing: {
-            application: 'dedicated',
-            hash: '#/dbaas/logs',
-          },
-          features: ['logs-data-platform'],
-        },
-      ],
-    },
   ],
 };

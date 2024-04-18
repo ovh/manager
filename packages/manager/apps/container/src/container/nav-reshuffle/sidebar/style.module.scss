@@ -7,7 +7,8 @@
   background-color: $p-700;
   position: relative;
   width: 20rem;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -62,7 +63,12 @@
     list-style-type: none;
   }
 
-  &_menu_items:hover {
+  &_menu_items button {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  &_menu_items:hover, &_menu_items_selected {
     background-color: $p-800;
   }
 
@@ -192,6 +198,11 @@
     align-items: center;
     justify-content: flex-end;
     padding: 0 0.625em;
+    font-weight: 600;
+
+    &_first_icon {
+      letter-spacing: -0.6rem;
+    }
   }
 }
 
@@ -203,9 +214,11 @@
   top: 0;
   left: 20rem;
   z-index: 901;
+  overflow-y: auto;
   &_content {
     background: $p-800;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     width: 20rem;
   }
   &_list {
@@ -279,6 +292,7 @@
   cursor: pointer;
   font: inherit;
   color: inherit;
+  font-weight: 600;
 }
 
 

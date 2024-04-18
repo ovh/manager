@@ -238,7 +238,7 @@ const Sidebar = (): JSX.Element => {
               <li
                 key={node.id}
                 id={node.id}
-                className={style.sidebar_menu_items}
+                className={`${style.sidebar_menu_items} ${node.id === selectedNode?.id ? style.sidebar_menu_items_selected : ''}`}
               >
                 {!shouldHideElement(node, count, betaVersion) && (
                   <SidebarLink
@@ -285,6 +285,10 @@ const Sidebar = (): JSX.Element => {
 
       <button className={style.sidebar_toggle_btn} onClick={toggleSidebar}>
         {open && <span className="mr-2">Réduire</span>}
+        <span
+          className={`${style.sidebar_toggle_btn_first_icon} oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
+          aria-hidden="true"
+        ></span>
         <span
           className={`oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
           aria-hidden="true"

@@ -6,6 +6,7 @@ import publicCloud from './services/publicCloud';
 import sunrise from './services/sunrise';
 import telecom from './services/telecom';
 import webCloud from './services/webCloud';
+import securityIdentityOperation from './services/securityIdentityOperation';
 
 const root: Node = {
   id: 'home',
@@ -21,6 +22,7 @@ const root: Node = {
     network,
     publicCloud,
     sunrise,
+    securityIdentityOperation,
     telecom,
     webCloud,
   ],
