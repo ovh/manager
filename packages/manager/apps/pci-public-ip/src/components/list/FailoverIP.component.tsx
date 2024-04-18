@@ -10,6 +10,7 @@ import {
   useColumnFilters,
   useDatagridSearchParams,
 } from '@ovhcloud/manager-components';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -45,7 +46,15 @@ import { useFailoverIPs } from '@/api/hooks/useFailoverIP';
 import FailoverIPActions from './FailoverIPActions.component';
 import { pciAnnouncementBannerId } from '@/constants';
 
-export default function FailoverIPComponent({ projectId, projectUrl }) {
+export type FailoverIPComponentProps = {
+  projectId: string;
+  projectUrl: string;
+};
+
+export default function FailoverIPComponent({
+  projectId,
+  projectUrl,
+}: Readonly<FailoverIPComponentProps>) {
   const { t } = useTranslation('common');
 
   const { pagination, setPagination } = useDatagridSearchParams();
@@ -265,7 +274,11 @@ export default function FailoverIPComponent({ projectId, projectUrl }) {
       </div>
 
       {error && (
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
+        <OsdsMessage
+          data-testid="failoverIP_message_error"
+          className="mt-4"
+          type={ODS_MESSAGE_TYPE.error}
+        >
           {t('manager_error_page_default')}
         </OsdsMessage>
       )}
@@ -275,7 +288,11 @@ export default function FailoverIPComponent({ projectId, projectUrl }) {
 
       {isLoading && !error && (
         <div className="text-center">
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+          <OsdsSpinner
+            data-testid="failoverIP_spinner_loading"
+            inline
+            size={ODS_SPINNER_SIZE.md}
+          />
         </div>
       )}
 

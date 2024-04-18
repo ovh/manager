@@ -28,8 +28,8 @@ export default function TerminateModal({
       headline={
         !isPending
           ? t('pci_additional_ips_floating_ips_floating_ip_terminate_title', {
-            ip,
-          })
+              ip,
+            })
           : ''
       }
       onOdsModalClose={onClose}
