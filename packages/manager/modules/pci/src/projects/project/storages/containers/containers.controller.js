@@ -56,17 +56,11 @@ export default class PciStoragesContainersController {
 
   addContainerSolution() {
     this.containers = this.containers.map((container) => {
-      let solution;
-      if (!container.s3StorageType) {
-        solution = OBJECT_CONTAINER_OFFERS_TYPES.SWIFT;
-      } else if (container.isHighPerfStorage) {
-        solution = OBJECT_CONTAINER_OFFERS_TYPES.HIGH_PERFORMANCE;
-      } else {
-        solution = OBJECT_CONTAINER_OFFERS_TYPES.STORAGE_STANDARD;
-      }
       return {
         ...container,
-        containerSolution: solution,
+        containerSolution: container.s3StorageType
+          ? OBJECT_CONTAINER_OFFERS_TYPES.S3
+          : OBJECT_CONTAINER_OFFERS_TYPES.SWIFT,
       };
     });
   }
