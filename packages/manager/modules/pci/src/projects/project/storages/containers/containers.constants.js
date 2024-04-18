@@ -4,8 +4,7 @@ export const OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE = 'storage-s3-high-perf';
 export const OBJECT_CONTAINER_S3_STATIC_URL_INFO = 'Virtual Hosted-Style :';
 export const OBJECT_CONTAINER_OFFERS_TYPES = {
   SWIFT: 'swift',
-  STORAGE_STANDARD: 'standard_s3',
-  HIGH_PERFORMANCE: 'high_performance',
+  S3: 's3',
 };
 export const OBJECT_CONTAINER_STORAGE_CLASS = {
   STANDARD: 'STANDARD',

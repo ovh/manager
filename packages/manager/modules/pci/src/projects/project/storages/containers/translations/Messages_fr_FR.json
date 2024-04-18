@@ -27,8 +27,7 @@
 
   "pci_projects_project_storages_blocks_add_archive_label": "Créer un conteneur d'archive",
   "pci_projects_project_storages_blocks_add_object_label": "Créer un conteneur d'objets",
-  "pci_projects_project_storages_containers_offer_high_performance": "High Performance - S3",
-  "pci_projects_project_storages_containers_offer_standard_s3": "Standard - S3",
+  "pci_projects_project_storages_containers_offer_s3": "S3",
   "pci_projects_project_storages_containers_offer_swift": "Standard - Swift",
   "pci_projects_project_storages_containers_switch_to_private_label": "Passer en Privé",
   "pci_projects_project_storages_containers_switch_to_public_label": "Passer en Public",
