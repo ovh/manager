@@ -25,6 +25,8 @@
   "domain_dashboard_show_authinfo": "AUTH/INFO",
   "domain_dashboard_show_authinfo_title": "Afficher le code AUTH/INFO",
   "domain_dashboard_show_authinfo_description": "Le code AUTH/INFO est une clé, nécessaire afin que le registry valide le transfert de votre nom de domaine {{t0}}.",
+  "domain_dashboard_show_authinfo_warning_part_1": "Attention, nous vous informons que le transfert de votre domaine vers un autre registrar entraîne la suppression de la zone dns et de son contenu. Votre site web et service email pourraient ne plus être fonctionnels.",
+  "domain_dashboard_show_authinfo_warning_part_2": "Si vous souhaitez simplement changer d'hébergeur web ou de service de messagerie, vous pouvez parfaitement conserver votre nom de domaine en gestion chez OVHcloud et ainsi continuer à bénéficier des meilleurs tarifs ainsi que nos services gratuits comme l'anti-spam, l'anonymisation des données personnelles ou le DNSSEC.",
   "domain_dashboard_authinfo_code": "Code AUTH/INFO",
   "domain_dashboard_show_authinfo_error": "Une erreur est survenue lors de la récupération du code AUTH/INFO",
   "domain_dashboard_security": "Sécurité",
