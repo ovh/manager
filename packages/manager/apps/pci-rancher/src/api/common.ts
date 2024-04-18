@@ -5,7 +5,7 @@ export type CreateFetchDataFnParams = {
   url: string;
   method: 'get' | 'post' | 'put' | 'delete';
   apiVersion: keyof typeof apiClient;
-  params?: any;
+  params?: unknown;
   catchError?: boolean;
 };
 

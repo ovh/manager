@@ -10,13 +10,13 @@ import RootWrapper from '@/pages/RootWrapper';
 import DashboardWrapper from '@/pages/DashboardWrapper';
 import { PageName } from '@/utils/tracking';
 
-type RouteConfig = {
+export type RouteConfig = {
   id?: string;
   pageImport: CallableFunction;
   path: string;
   tracking?: TrackingPageParams;
   currentPage?: string;
-  children?: any;
+  children?: RouteObject[];
 };
 
 export const getRoutes = (): RouteObject[] => {
