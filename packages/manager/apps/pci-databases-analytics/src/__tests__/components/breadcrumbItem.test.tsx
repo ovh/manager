@@ -19,7 +19,6 @@ describe('Breadcrumb component', () => {
     );
     await waitFor(() => {
       expect(screen.getByText(translationKey)).toBeInTheDocument();
-      screen.debug();
     });
   });
 });

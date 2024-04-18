@@ -81,9 +81,16 @@ const IpsRestrictionsForm = React.forwardRef<
             defaultValue=""
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t('ipFieldLabel')}</FormLabel>
+                <FormLabel data-testid="ip-field-label">
+                  {t('ipFieldLabel')}
+                </FormLabel>
                 <FormControl>
-                  <Input placeholder="0.0.0.0/32" {...field} ref={ref} />
+                  <Input
+                    data-testid="ip-input-field"
+                    placeholder="0.0.0.0/32"
+                    {...field}
+                    ref={ref}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -94,10 +101,10 @@ const IpsRestrictionsForm = React.forwardRef<
             name="description"
             defaultValue=""
             render={({ field }) => (
-              <FormItem>
+              <FormItem data-testid="ip-description-field-label">
                 <FormLabel>{t('ipDescriptionFieldLabel')}</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input data-testid="ip-description-input-field" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -105,6 +112,7 @@ const IpsRestrictionsForm = React.forwardRef<
           />
         </div>
         <Button
+          data-testid="ip-add-button"
           variant={'ghost'}
           onClick={form.handleSubmit(onSubmit)}
           disabled={disabled}
@@ -117,6 +125,7 @@ const IpsRestrictionsForm = React.forwardRef<
         {value.map((ip, index) => (
           <li key={ip.ip} className="flex items-center">
             <Button
+              data-testid={`ip-remove-button-${index}`}
               className="text-red-500 rounded-full p-2 ml-2 hover:text-red-500 h-8 w-8"
               variant={'ghost'}
               type="button"
@@ -129,7 +138,7 @@ const IpsRestrictionsForm = React.forwardRef<
           </li>
         ))}
       </ul>
-      <p>
+      <p data-testid="configured-ips">
         {t('numberOfConfiguredIps', {
           count: value.length,
           context: `${value.length}`,

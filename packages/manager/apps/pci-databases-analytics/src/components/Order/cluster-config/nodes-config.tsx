@@ -17,8 +17,14 @@ const NodesConfig = React.forwardRef<HTMLInputElement, NodesConfigProps>(
     }
     return (
       <div>
-        <Label htmlFor="node-number-select">{t('inputNodeLabel')}</Label>
+        <Label
+          data-testid="nodes-configuration-label"
+          htmlFor="node-number-select"
+        >
+          {t('inputNodeLabel')}
+        </Label>
         <Input
+          data-testid="nodes-configuration-input"
           ref={ref}
           name="node-number-select"
           type="number"
