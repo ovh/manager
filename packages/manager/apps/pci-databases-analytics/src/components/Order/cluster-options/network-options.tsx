@@ -73,7 +73,10 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
             }
           >
             <SelectTrigger>
-              <SelectValue placeholder={t('networkInputPlaceholder')} />
+              <SelectValue
+                data-testId="network-placeholder"
+                placeholder={t('networkInputPlaceholder')}
+              />
             </SelectTrigger>
             <SelectContent>
               {networks.map((network: Network) => (
@@ -87,7 +90,7 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
       }
 
       return (
-        <Alert variant="warning">
+        <Alert data-testId="AlertNoNetwork" variant="warning">
           <NetworkIcon className="h-4 w-4" />
           <AlertTitle>{t('noNetworkFoundTitle')}</AlertTitle>
           <AlertDescription>

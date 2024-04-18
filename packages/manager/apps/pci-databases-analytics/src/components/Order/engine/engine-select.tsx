@@ -12,6 +12,7 @@ const EnginesSelect = React.forwardRef<HTMLInputElement, EngineSelectProps>(
   ({ engines, value, onChange }, ref) => {
     return (
       <div
+        data-testid="engines-select-container"
         ref={ref}
         className="mb-2 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2"
       >
