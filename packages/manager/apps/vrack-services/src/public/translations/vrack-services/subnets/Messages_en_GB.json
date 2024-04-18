@@ -1,7 +1,7 @@
 {
   "onboardingTitle": "You have not yet created a subnet",
   "onboardingDescription": "To create an endpoint, you must first create a subnet.",
-  "betaSubnetLimitMessage": "You can only create one subnetwork per vRack Service at this time.",
+  "betaSubnetLimitMessage": "You can only create one subnet per vRack Service at this time.",
   "createSubnetButtonLabel": "Create subnet",
   "createPageTitle": "Create subnet",
   "subnetCreationError": "An error occurred while creating the subnet: {{error}}",
@@ -11,7 +11,7 @@
   "cidrPlaceholder": "10.0.0.0/24",
   "serviceRangeLabel": "Service Address Range (CIDR)",
   "serviceRangePlaceholder": "10.0.0.0/29",
-  "serviceRangeAdditionalText": "The service address range will be used by vRack Services. Therefore, the addresses in this range should not be used by other nodes connected to the vRack. The service address range must be a subset of the subnetwork address range, and its size must be between /27 and /29.",
+  "serviceRangeAdditionalText": "The service address range will be used by vRack Services. Therefore, the addresses in this range should not be used by other nodes connected to the vRack. The service address range must be a subset of the subnet address range, and its size must be between /27 and /29.",
   "vlanLabel": "VLAN",
   "vlanAdditionalText": "You can expose this subnetwork on a specific VLAN.",
   "vlanNoVlanOptionLabel": "No VLAN",
@@ -26,6 +26,6 @@
   "updateError": "An error occurred while updating your subnet: {{error}}",
   "modalDeleteInputLabel": "Please enter the word “TERMINATE” to confirm the deletion of your subnet.",
   "modalDeleteHeadline": "Delete subnet",
-  "modalDeleteDescription": "In order to be deleted, a subnetwork must not contain a linked Service Endpoint.",
+  "modalDeleteDescription": "In order to be deleted, a subnet must not contain a linked Service Endpoint.",
   "none": "None"
 }

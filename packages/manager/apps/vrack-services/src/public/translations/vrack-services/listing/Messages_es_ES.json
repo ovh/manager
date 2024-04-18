@@ -29,6 +29,6 @@
   "modalCreateNewVrackButtonLabel": "Crear un vRack",
   "vrackSelectPlaceholder": "Seleccionar un vRack",
   "modalConfirmVrackAssociationButtonLabel": "Asociar mi vRack",
-  "modalDeleteInputLabel": "Introduce la palabra «TERMINATE» para confirmar la eliminación del vRack Services",
+  "modalDeleteInputLabel": "Introduzca la palabra «TERMINATE» para confirmar la eliminación del vRack Services",
   "modalDeleteHeadline": "Eliminar vRack Services"
 }
