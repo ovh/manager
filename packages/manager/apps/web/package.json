@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "18.20.2",
+  "version": "18.21.0",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -55,7 +55,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.1",
-    "@ovh-ux/ng-ovh-utils": "^14.3.0",
+    "@ovh-ux/ng-ovh-utils": "^14.4.0",
     "@ovh-ux/ng-ovh-web-universe-components": "^9.16.0",
     "@ovh-ux/ng-pagination-front": "^10.3.0",
     "@ovh-ux/ng-q-allsettled": "^2.1.1",

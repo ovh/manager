@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@3.2.0...@ovh-ux/manager-nasha-app@3.2.1) (2024-04-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-nasha-app
+
+
+
+
+
 # [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@3.1.10...@ovh-ux/manager-nasha-app@3.2.0) (2024-04-04)
 
 
