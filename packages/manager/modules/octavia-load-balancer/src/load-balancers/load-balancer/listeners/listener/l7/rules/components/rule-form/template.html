@@ -1,0 +1,101 @@
+<form name="rule" novalidate>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_create_l7_rule_type' | translate }}"
+    >
+        <oui-select
+            name="type"
+            data-required
+            data-model="$ctrl.model.ruleType"
+            data-items="$ctrl.ruleTypes"
+            data-value-property="value"
+            data-match="label"
+            data-on-change="$ctrl.resetCompareType()"
+            data-placeholder="{{:: 'octavia_load_balancer_create_l7_rule_type_default' | translate }}"
+        >
+        </oui-select>
+        <span
+            class="help-block"
+            data-ng-if="$ctrl.model.ruleType"
+            data-translate="{{ 'octavia_load_balancer_create_l7_rule_type_' + $ctrl.model.ruleType }}"
+        ></span>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_create_l7_rule_compare_type' | translate }}"
+    >
+        <oui-select
+            name="compareType"
+            data-required
+            data-model="$ctrl.model.compareType"
+            data-items="$ctrl.COMPARE_TYPES_AVAILABILITY_BY_TYPE[$ctrl.model.ruleType]"
+            data-value-property="value"
+            data-match="label"
+            data-on-change="$ctrl.refreshValue()"
+            data-placeholder="{{:: 'octavia_load_balancer_create_l7_rule_compare_type_default' | translate }}"
+        >
+        </oui-select>
+        <span
+            class="help-block"
+            data-ng-if="$ctrl.model.compareType"
+            data-translate="{{ 'octavia_load_balancer_create_l7_rule_compare_type_' + $ctrl.model.compareType }}"
+        ></span>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_create_l7_rule_key' | translate }}"
+        data-label-popover="{{:: 'octavia_load_balancer_create_l7_rule_key_tooltip' | translate }}"
+        data-error-messages="{ pattern: ('octavia_load_balancer_create_l7_rule_key_pattern' | translate)}"
+    >
+        <div class="oui-input-overlay">
+            <input
+                type="text"
+                class="oui-input"
+                name="key"
+                data-ng-required="$ctrl.RULE_TYPES_WITH_KEY.includes($ctrl.model.ruleType)"
+                data-pattern="{{$ctrl.KEY_REGEX}}"
+                data-ng-disabled="!$ctrl.RULE_TYPES_WITH_KEY.includes($ctrl.model.ruleType)"
+                data-ng-model="$ctrl.model.key"
+            />
+        </div>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_create_l7_rule_value' | translate }}"
+        data-label-popover="{{:: 'octavia_load_balancer_create_l7_rule_value_tooltip' | translate }}"
+        data-error-messages="{ pattern: ($ctrl.getValuePatternErrorKey() | translate)}"
+    >
+        <div class="oui-input-overlay">
+            <input
+                type="text"
+                class="oui-input"
+                name="value"
+                data-required
+                data-ng-model-options="{ allowInvalid: true }"
+                data-ui-validate="{ pattern: '$ctrl.validateValuePattern($value)' }"
+                data-ng-disabled="$ctrl.model.ruleType === $ctrl.RULE_TYPES.SSL_CONN_HAS_CERT"
+                data-ng-model="$ctrl.model.value"
+            />
+        </div>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-inline="true"
+        data-label="{{:: 'octavia_load_balancer_create_l7_rule_invert' | translate }}"
+        data-label-popover="{{:: 'octavia_load_balancer_create_l7_rule_invert_tooltip' | translate }}"
+    >
+        <oui-switch name="invert" data-model="$ctrl.model.invert"> </oui-switch>
+    </oui-field>
+    <oui-form-actions
+        data-disabled="!rule.$valid"
+        data-submit-text="{{:: $ctrl.submitButtonLabel }}"
+        data-cancel-text="{{:: 'octavia_load_balancer_create_l7_rule_cancel' | translate }}"
+        data-on-submit="$ctrl.onSubmit()"
+        data-on-cancel="$ctrl.onCancel()"
+    ></oui-form-actions>
+</form>

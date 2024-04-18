@@ -22,6 +22,7 @@
     "@ovh-ux/ng-at-internet": "^5.10.3",
     "@ovh-ux/ng-ovh-pci-universe-components": "^1.0.0",
     "@ovh-ux/ng-ovh-utils": "^14.0.21",
+    "@ovh-ux/ng-translate-async-loader": "^2.2.1",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.0.0",
     "@ovh-ux/ng-ui-router-layout": "^4.2.1",
     "@ovh-ux/ui-kit": "^6.7.3",
