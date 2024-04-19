@@ -106,7 +106,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/blocks/new?help=snapshot"
+      "path": "/pci/projects/{project}/storages/volume-snapshots/onboarding"
     }
   },
   {
@@ -126,7 +126,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/instances/new?help=backup"
+      "path": "/pci/projects/{project}/storages/instance-backups/onboarding"
     }
   },
   {
@@ -317,6 +317,16 @@
     "redirect": {
       "application": "public-cloud",
       "path": "/pci/projects/{project}/storages/databases-analytics/data-analysis/new?e=grafana"
+    }
+  },
+  {
+    "public": {
+      "application": "public-cloud",
+      "path": "/create-data-processing"
+    },
+    "redirect": {
+      "application": "public-cloud",
+      "path": "/pci/projects/{project}/data-processing/onboarding"
     }
   },
   {
