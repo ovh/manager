@@ -1,6 +1,6 @@
 import React from 'react';
 import { TFunction } from 'react-i18next';
-import { UseMutateAsyncFunction } from '@tanstack/react-query';
+import { UseMutateFunction } from '@tanstack/react-query';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -18,42 +18,38 @@ import {
   OsdsChip,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { AxiosResponse } from 'axios';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { ActionMenu, ActionMenuItem } from '@ovhcloud/manager-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { EditableText } from '@/components/EditableText';
-import { ProductStatus, UpdateVrackServicesParams, VrackServices } from '@/api';
+import { ProductStatus, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
+import { UpdateVrackServicesNameMutationParams } from '@/api/services/services-api-utils';
 import { PageName } from '@/utils/tracking';
 
 export const DisplayNameCell: React.FC<DataGridCellProps<
   string | undefined,
   VrackServices
 > & {
-  updateVS: UseMutateAsyncFunction<
-    ApiResponse<VrackServices>,
+  updateVSName: UseMutateFunction<
+    AxiosResponse<any, any>,
     ApiError,
-    UpdateVrackServicesParams
+    UpdateVrackServicesNameMutationParams,
+    unknown
   >;
   navigateToDetails?: (id: string) => void;
   trackPage: (prop: unknown) => void;
-}> = ({ cellData, rowData, updateVS, navigateToDetails, trackPage }) => {
+}> = ({ cellData, rowData, updateVSName, navigateToDetails, trackPage }) => {
   const displayName = cellData || rowData?.id;
   return (
     <EditableText
       disabled={!isEditable(rowData)}
       defaultValue={cellData}
       onEditSubmitted={async (value) => {
-        await updateVS(
-          {
-            vrackServicesId: rowData.id,
-            checksum: rowData.checksum,
-            targetSpec: {
-              displayName: value || null,
-              subnets: rowData.currentState.subnets || [],
-            },
-          },
+        await updateVSName(
+          { vrackServices: rowData?.id, displayName: value || null },
           {
             onSuccess: () => {
               trackPage({
