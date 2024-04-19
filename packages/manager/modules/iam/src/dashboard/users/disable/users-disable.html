@@ -1,16 +1,16 @@
 <div data-ng-controller="IamUsersDisableCtrl as $ctrl">
-    <div
-        data-wizard
-        data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="disableUser"
-        data-wizard-title="::'user_users_disable' | translate"
+    <oui-modal
+        data-heading="{{:: 'user_users_disable' | translate }}"
+        data-primary-action="$ctrl.disableUser()"
+        data-primary-label="{{:: 'user_modal_confirm' | translate }}"
+        data-secondary-action="$ctrl.close()"
+        data-secondary-label="{{:: 'user_modal_cancel' | translate }}"
+        data-on-dismiss="$ctrl.close()"
     >
-        <div data-wizard-step>
-            <p
-                class="text-danger"
-                data-translate="user_users_disable_modal_step1_question"
-                data-translate-values="{login: $ctrl.user.login}"
-            ></p>
-        </div>
-    </div>
+        <p
+            class="text-danger"
+            data-translate="user_users_disable_modal_step1_question"
+            data-translate-values="{login: $ctrl.user.login}"
+        ></p>
+    </oui-modal>
 </div>

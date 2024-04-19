@@ -80,4 +80,8 @@ export default class IamUsersAddCtrl {
         this.$scope.resetAction();
       });
   }
+
+  close() {
+    this.$scope.resetAction();
+  }
 }

@@ -49,4 +49,8 @@ export default class IamUsersDeleteCtrl {
         this.$scope.resetAction();
       });
   }
+
+  close() {
+    this.$scope.resetAction();
+  }
 }

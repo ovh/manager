@@ -77,4 +77,8 @@ export default class IamUsersUpdateCtrl {
         this.$scope.resetAction();
       });
   }
+
+  close() {
+    this.$scope.resetAction();
+  }
 }

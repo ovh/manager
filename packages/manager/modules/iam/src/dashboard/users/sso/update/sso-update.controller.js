@@ -83,4 +83,8 @@ export default class IamUsersSsoUpdateCtrl {
         this.identityProvider = null;
       });
   }
+
+  close() {
+    this.$scope.resetAction();
+  }
 }

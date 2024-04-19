@@ -47,9 +47,11 @@ export default class IamUsersCtrl {
 
     this.$scope.resetAction = function resetAction() {
       this.$scope.setAction(false);
+      this.isModalOpened = false;
     }.bind(this);
 
     this.$scope.setAction = function setAction(action, data, basePath) {
+      this.isModalOpened = true;
       this.$scope.currentAction = action;
       this.$scope.currentActionData = data;
       if (action) {
@@ -58,12 +60,7 @@ export default class IamUsersCtrl {
         } else {
           this.$scope.stepPath = `${this.IAM_BASE_URL}${this.$scope.currentAction}.html`;
         }
-        $('#currentAction').modal({
-          keyboard: true,
-          backdrop: 'static',
-        });
       } else {
-        $('#currentAction').modal('hide');
         this.$scope.currentActionData = null;
         this.$timeout(() => {
           this.$scope.stepPath = '';

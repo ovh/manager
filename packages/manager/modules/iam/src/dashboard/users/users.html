@@ -417,13 +417,13 @@
     ></div>
 </div>
 
-<div id="currentAction" class="modal fade currentAction" role="dialog">
-    <div class="modal-dialog">
-        <div
-            id="modal-container"
-            class="modal-content"
-            data-ng-include="stepPath"
-        ></div>
-        <div id="modal-help" class="help4wizards"></div>
+<div data-ng-if="$ctrl.isModalOpened">
+    <div class="modal d-block">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div data-ng-include="stepPath"></div>
+            </div>
+        </div>
     </div>
+    <div class="oui-modal-backdrop"></div>
 </div>

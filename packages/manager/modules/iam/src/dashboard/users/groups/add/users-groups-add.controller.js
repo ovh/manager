@@ -54,4 +54,8 @@ export default class IamUsersGroupsAddCtrl {
         this.$scope.resetAction();
       });
   }
+
+  close() {
+    this.$scope.resetAction();
+  }
 }

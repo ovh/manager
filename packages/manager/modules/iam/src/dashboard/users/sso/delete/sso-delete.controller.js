@@ -47,4 +47,8 @@ export default class IamUsersSsoDeleteCtrl {
         this.$scope.resetAction();
       });
   }
+
+  close() {
+    this.$scope.resetAction();
+  }
 }

@@ -1,91 +1,89 @@
 <div data-ng-controller="IamUsersGroupsAddCtrl as $ctrl">
-    <div
-        data-wizard
-        data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="addGroup"
-        data-wizard-title="::'user_users_groups_add_modal_title' | translate"
+    <oui-modal
+        data-heading="{{:: 'user_users_add_modal_title' | translate }}"
+        data-primary-action="$ctrl.addGroup()"
+        data-primary-label="{{:: 'user_modal_confirm' | translate }}"
+        data-primary-disabled="!$ctrl.iamUsersGroupsAddForm.$valid"
+        data-secondary-action="$ctrl.close()"
+        data-secondary-label="{{:: 'user_modal_cancel' | translate }}"
+        data-on-dismiss="$ctrl.close()"
     >
-        <div
-            data-wizard-step
-            data-wizard-step-valid="$ctrl.iamUsersGroupsAddForm.$valid"
-        >
-            <p data-translate="user_users_groups_add_modal_info"></p>
+        <p data-translate="user_users_groups_add_modal_info"></p>
 
-            <h5
-                data-translate="user_users_groups_add_modal_step1_question"
-                data-translate-values="{login: $ctrl.user.login}"
-            ></h5>
+        <h5
+            data-translate="user_users_groups_add_modal_step1_question"
+            data-translate-values="{login: $ctrl.user.login}"
+        ></h5>
 
-            <div class="text-center" data-ng-if="$ctrl.loader">
-                <oui-spinner data-size="s"></oui-spinner>
-            </div>
-
-            <form name="$ctrl.iamUsersGroupsAddForm" data-ng-if="!$ctrl.loader">
-                <div class="form-group">
-                    <label
-                        class="control-label"
-                        for="groupName"
-                        data-translate="user_users_groups_add_modal_group_name"
-                    >
-                    </label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="groupName"
-                        name="groupName"
-                        data-ng-model="$ctrl.group.name"
-                    />
-                </div>
-                <div class="form-group">
-                    <label
-                        class="control-label"
-                        for="groupDescription"
-                        data-translate="user_users_groups_add_modal_group_description"
-                    >
-                    </label>
-
-                    <textarea
-                        class="py-2 form-control"
-                        id="groupDescription"
-                        name="groupDescription"
-                        rows="5"
-                        data-ng-model="$ctrl.group.description"
-                    >
-                    </textarea>
-                </div>
-                <div class="form-group">
-                    <label
-                        class="control-label"
-                        for="role"
-                        data-translate="user_users_role"
-                    >
-                    </label>
-                    <select
-                        class="form-control"
-                        id="role"
-                        name="role"
-                        required
-                        data-ng-model="$ctrl.group.role"
-                    >
-                        <option
-                            value="ADMIN"
-                            data-translate="user_roles_admin"
-                        ></option>
-                        <option
-                            value="REGULAR"
-                            data-translate="user_roles_regular"
-                        ></option>
-                        <option
-                            value="UNPRIVILEGED"
-                            data-translate="user_roles_unprivileged"
-                        ></option>
-                        <option
-                            value="NONE"
-                            data-translate="user_roles_none"
-                        ></option>
-                    </select>
-                </div>
-            </form>
+        <div class="text-center" data-ng-if="$ctrl.loader">
+            <oui-spinner data-size="s"></oui-spinner>
         </div>
-    </div>
+
+        <form name="$ctrl.iamUsersGroupsAddForm" data-ng-if="!$ctrl.loader">
+            <div class="form-group">
+                <label
+                    class="control-label"
+                    for="groupName"
+                    data-translate="user_users_groups_add_modal_group_name"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="groupName"
+                    name="groupName"
+                    data-ng-model="$ctrl.group.name"
+                />
+            </div>
+            <div class="form-group">
+                <label
+                    class="control-label"
+                    for="groupDescription"
+                    data-translate="user_users_groups_add_modal_group_description"
+                >
+                </label>
+
+                <textarea
+                    class="py-2 form-control"
+                    id="groupDescription"
+                    name="groupDescription"
+                    rows="5"
+                    data-ng-model="$ctrl.group.description"
+                >
+                </textarea>
+            </div>
+            <div class="form-group">
+                <label
+                    class="control-label"
+                    for="role"
+                    data-translate="user_users_role"
+                >
+                </label>
+                <select
+                    class="form-control"
+                    id="role"
+                    name="role"
+                    required
+                    data-ng-model="$ctrl.group.role"
+                >
+                    <option
+                        value="ADMIN"
+                        data-translate="user_roles_admin"
+                    ></option>
+                    <option
+                        value="REGULAR"
+                        data-translate="user_roles_regular"
+                    ></option>
+                    <option
+                        value="UNPRIVILEGED"
+                        data-translate="user_roles_unprivileged"
+                    ></option>
+                    <option
+                        value="NONE"
+                        data-translate="user_roles_none"
+                    ></option>
+                </select>
+            </div>
+        </form>
+    </oui-modal>
 </div>

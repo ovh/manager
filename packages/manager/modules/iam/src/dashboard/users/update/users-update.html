@@ -1,133 +1,131 @@
 <div data-ng-controller="IamUsersUpdateCtrl as $ctrl">
-    <div
-        data-wizard
-        data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="updateUser"
-        data-wizard-title="::'user_users_update_modal_title' | translate"
+    <oui-modal
+        data-heading="{{:: 'user_users_update_modal_title' | translate }}"
+        data-primary-action="$ctrl.updateUser()"
+        data-primary-label="{{:: 'user_modal_confirm' | translate }}"
+        data-primary-disabled="!$ctrl.iamUsersUpdateForm.$valid"
+        data-secondary-action="$ctrl.close()"
+        data-secondary-label="{{:: 'user_modal_cancel' | translate }}"
+        data-on-dismiss="$ctrl.close()"
     >
-        <div
-            data-wizard-step
-            data-wizard-step-valid="$ctrl.iamUsersUpdateForm.$valid"
-        >
-            <p class="mb-4">
-                <span
-                    class="d-block"
-                    data-translate="user_users_info"
-                    data-translate-values="{customerCode: $ctrl.me.customerCode}"
-                >
-                </span>
-                <span
-                    data-translate="user_users_info_example"
-                    data-translate-values="{
+        <p class="mb-4">
+            <span
+                class="d-block"
+                data-translate="user_users_info"
+                data-translate-values="{customerCode: $ctrl.me.customerCode}"
+            >
+            </span>
+            <span
+                data-translate="user_users_info_example"
+                data-translate-values="{
                         customerCode: $ctrl.me.customerCode,
                         login: $ctrl.user.login
                       }"
+            >
+            </span>
+        </p>
+
+        <h5
+            data-translate="user_users_update_modal_step1_question"
+            data-translate-values="{login: $ctrl.user.login}"
+        ></h5>
+
+        <div class="text-center" data-ng-if="$ctrl.loader">
+            <oui-spinner data-size="s"></oui-spinner>
+        </div>
+
+        <form name="$ctrl.iamUsersUpdateForm" data-ng-if="!$ctrl.loader">
+            <div
+                class="form-group"
+                data-ng-class="{ 'has-error': $ctrl.iamUsersUpdateForm.email.$touched && $ctrl.iamUsersUpdateForm.email.$invalid }"
+            >
+                <label
+                    class="control-label"
+                    for="email"
+                    data-translate="user_users_update_modal_email"
                 >
-                </span>
-            </p>
-
-            <h5
-                data-translate="user_users_update_modal_step1_question"
-                data-translate-values="{login: $ctrl.user.login}"
-            ></h5>
-
-            <div class="text-center" data-ng-if="$ctrl.loader">
-                <oui-spinner data-size="s"></oui-spinner>
-            </div>
-
-            <form name="$ctrl.iamUsersUpdateForm" data-ng-if="!$ctrl.loader">
-                <div
-                    class="form-group"
-                    data-ng-class="{ 'has-error': $ctrl.iamUsersUpdateForm.email.$touched && $ctrl.iamUsersUpdateForm.email.$invalid }"
+                </label>
+                <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    required
+                    data-ng-model="$ctrl.user.email"
+                />
+                <span
+                    class="help-block"
+                    role="alert"
+                    data-ng-if="$ctrl.iamUsersUpdateForm.email.$touched"
+                    data-ng-messages="$ctrl.iamUsersUpdateForm.email.$error"
                 >
-                    <label
-                        class="control-label"
-                        for="email"
-                        data-translate="user_users_update_modal_email"
-                    >
-                    </label>
-                    <input
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        name="email"
-                        required
-                        data-ng-model="$ctrl.user.email"
-                    />
                     <span
-                        class="help-block"
-                        role="alert"
-                        data-ng-if="$ctrl.iamUsersUpdateForm.email.$touched"
-                        data-ng-messages="$ctrl.iamUsersUpdateForm.email.$error"
+                        data-ng-message="email"
+                        data-translate="user_users_add_email_error"
                     >
+                        <span
+                            data-ng-message="required"
+                            data-translate="user_users_add_required"
+                        ></span>
                         <span
                             data-ng-message="email"
                             data-translate="user_users_add_email_error"
-                        >
-                            <span
-                                data-ng-message="required"
-                                data-translate="user_users_add_required"
-                            ></span>
-                            <span
-                                data-ng-message="email"
-                                data-translate="user_users_add_email_error"
-                            ></span>
-                        </span>
-                    </span>
-                </div>
-
-                <div class="form-group">
-                    <label
-                        class="control-label"
-                        for="group"
-                        data-translate="user_users_group"
-                    >
-                    </label>
-                    <select
-                        class="form-control"
-                        id="group"
-                        name="group"
-                        required
-                        data-ng-options="group as group for group in $ctrl.groups"
-                        data-ng-model="$ctrl.user.group"
-                    >
-                    </select>
-                </div>
-
-                <div
-                    class="form-group"
-                    data-ng-class="{ 'has-error': $ctrl.iamUsersUpdateForm.description.$touched && $ctrl.iamUsersUpdateForm.description.$invalid }"
-                >
-                    <label
-                        class="control-label"
-                        for="description"
-                        data-translate="user_users_add_modal_description"
-                    >
-                    </label>
-
-                    <textarea
-                        class="py-2 form-control"
-                        id="description"
-                        name="description"
-                        rows="5"
-                        data-ng-maxlength="$ctrl.DESCRIPTION_MAX_LENGTH"
-                        data-ng-model="$ctrl.user.description"
-                    >
-                    </textarea>
-                    <span
-                        class="help-block"
-                        role="alert"
-                        data-ng-if="$ctrl.iamUsersUpdateForm.description.$touched"
-                        data-ng-messages="$ctrl.iamUsersUpdateForm.description.$error"
-                    >
-                        <span
-                            data-ng-message="maxlength"
-                            data-translate="user_users_add_description_length_error"
-                            data-translate-values="{descriptionMaxLength: $ctrl.DESCRIPTION_MAX_LENGTH}"
                         ></span>
                     </span>
-                </div>
-            </form>
-        </div>
-    </div>
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label
+                    class="control-label"
+                    for="group"
+                    data-translate="user_users_group"
+                >
+                </label>
+                <select
+                    class="form-control"
+                    id="group"
+                    name="group"
+                    required
+                    data-ng-options="group as group for group in $ctrl.groups"
+                    data-ng-model="$ctrl.user.group"
+                >
+                </select>
+            </div>
+
+            <div
+                class="form-group"
+                data-ng-class="{ 'has-error': $ctrl.iamUsersUpdateForm.description.$touched && $ctrl.iamUsersUpdateForm.description.$invalid }"
+            >
+                <label
+                    class="control-label"
+                    for="description"
+                    data-translate="user_users_add_modal_description"
+                >
+                </label>
+
+                <textarea
+                    class="py-2 form-control"
+                    id="description"
+                    name="description"
+                    rows="5"
+                    data-ng-maxlength="$ctrl.DESCRIPTION_MAX_LENGTH"
+                    data-ng-model="$ctrl.user.description"
+                >
+                </textarea>
+                <span
+                    class="help-block"
+                    role="alert"
+                    data-ng-if="$ctrl.iamUsersUpdateForm.description.$touched"
+                    data-ng-messages="$ctrl.iamUsersUpdateForm.description.$error"
+                >
+                    <span
+                        data-ng-message="maxlength"
+                        data-translate="user_users_add_description_length_error"
+                        data-translate-values="{descriptionMaxLength: $ctrl.DESCRIPTION_MAX_LENGTH}"
+                    ></span>
+                </span>
+            </div>
+        </form>
+    </oui-modal>
 </div>

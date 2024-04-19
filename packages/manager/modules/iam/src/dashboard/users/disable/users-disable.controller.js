@@ -49,4 +49,8 @@ export default class IamUsersDisableCtrl {
         this.$scope.resetAction();
       });
   }
+
+  close() {
+    this.$scope.resetAction();
+  }
 }

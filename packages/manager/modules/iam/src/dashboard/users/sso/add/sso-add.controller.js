@@ -57,4 +57,8 @@ export default class IamUsersSsoAddCtrl {
         this.$scope.resetAction();
       });
   }
+
+  close() {
+    this.$scope.resetAction();
+  }
 }

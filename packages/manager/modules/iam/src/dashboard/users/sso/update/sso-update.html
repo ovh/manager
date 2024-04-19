@@ -1,72 +1,69 @@
 <div data-ng-controller="IamUsersSsoUpdateCtrl as $ctrl">
-    <div
-        data-wizard
-        data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="updateSso"
-        data-wizard-title="::'user_users_sso_update_modal_title' | translate"
+    <oui-modal
+        data-heading="{{:: 'user_users_sso_update_modal_title' | translate }}"
+        data-primary-action="$ctrl.updateSso()"
+        data-primary-label="{{:: 'user_modal_confirm' | translate }}"
+        data-primary-disabled="!$ctrl.iamUsersSsoUpdateForm.$valid"
+        data-secondary-action="$ctrl.close()"
+        data-secondary-label="{{:: 'user_modal_cancel' | translate }}"
+        data-on-dismiss="$ctrl.close()"
     >
-        <div
-            data-wizard-step
-            data-wizard-step-valid="$ctrl.iamUsersSsoUpdateForm.$valid"
-        >
-            <p data-translate="user_users_sso_update_modal_info"></p>
+        <p data-translate="user_users_sso_update_modal_info"></p>
 
-            <h5
-                data-translate="user_users_sso_update_modal_step1_question"
-                data-translate-values="{login: $ctrl.user.login}"
-            ></h5>
+        <h5
+            data-translate="user_users_sso_update_modal_step1_question"
+            data-translate-values="{login: $ctrl.user.login}"
+        ></h5>
 
-            <div class="text-center" data-ng-if="$ctrl.loader">
-                <oui-spinner data-size="s"></oui-spinner>
+        <div class="text-center" data-ng-if="$ctrl.loader">
+            <oui-spinner data-size="s"></oui-spinner>
+        </div>
+
+        <form name="$ctrl.iamUsersSsoUpdateForm" data-ng-if="!$ctrl.loader">
+            <div class="form-group">
+                <input
+                    type="checkbox"
+                    id="enableUsers"
+                    name="enableUsers"
+                    data-ng-model="$ctrl.enableLocalUsers"
+                />
+                <label for="enableUsers" style="display: inline-block">
+                    <span
+                        data-translate="user_users_sso_modal_group_local_users_to_enable"
+                    ></span>
+                </label>
             </div>
 
-            <form name="$ctrl.iamUsersSsoUpdateForm" data-ng-if="!$ctrl.loader">
-                <div class="form-group">
-                    <input
-                        type="checkbox"
-                        id="enableUsers"
-                        name="enableUsers"
-                        data-ng-model="$ctrl.enableLocalUsers"
-                    />
-                    <label for="enableUsers" style="display: inline-block">
-                        <span
-                            data-translate="user_users_sso_modal_group_local_users_to_enable"
-                        ></span>
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <label
-                        class="control-label"
-                        for="userAttributeName"
-                        data-translate="user_users_sso_modal_user_attribute_name"
-                    >
-                    </label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="userAttributeName"
-                        name="userAttributeName"
-                        data-ng-model="$ctrl.newUserAttributeName"
-                    />
-                </div>
-
-                <div class="form-group">
-                    <label
-                        class="control-label"
-                        for="groupAttributeName"
-                        data-translate="user_users_sso_update_modal_group_attribute_name"
-                    >
-                    </label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="groupAttributeName"
-                        name="groupAttributeName"
-                        data-ng-model="$ctrl.newGroupAttributeName"
-                    />
-                </div>
-            </form>
-        </div>
-    </div>
+            <div class="form-group">
+                <label
+                    class="control-label"
+                    for="userAttributeName"
+                    data-translate="user_users_sso_modal_user_attribute_name"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="userAttributeName"
+                    name="userAttributeName"
+                    data-ng-model="$ctrl.newUserAttributeName"
+                />
+            </div>
+            <div class="form-group">
+                <label
+                    class="control-label"
+                    for="groupAttributeName"
+                    data-translate="user_users_sso_update_modal_group_attribute_name"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="groupAttributeName"
+                    name="groupAttributeName"
+                    data-ng-model="$ctrl.newGroupAttributeName"
+                />
+            </div>
+        </form>
+    </oui-modal>
 </div>

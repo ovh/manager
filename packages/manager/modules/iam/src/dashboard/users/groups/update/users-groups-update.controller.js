@@ -50,4 +50,8 @@ export default class IamUsersGroupsUpdateCtrl {
         this.$scope.resetAction();
       });
   }
+
+  close() {
+    this.$scope.resetAction();
+  }
 }
