@@ -5,14 +5,14 @@ export type DeleteVrackServicesParams = {
   serviceId: number;
 };
 
-export const DeleteVrackServicesQueryKey = (vrackServices: string) => [
+export const deleteVrackServicesQueryKey = (vrackServices: string) => [
   `deleteVrackServices-${vrackServices}`,
 ];
 
 /**
- * Add a vrackServices to the vrack
+ * Terminiate a vrackServices
  */
-export const DeleteVrackServices = async ({
+export const deleteVrackServices = async ({
   serviceId,
 }: DeleteVrackServicesParams) =>
   apiClient.v6.post<{ message: string }>(`/services/${serviceId}/terminate`);

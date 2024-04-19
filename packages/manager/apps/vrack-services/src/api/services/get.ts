@@ -5,14 +5,14 @@ export type GetVrackServicesServiceIdParams = {
   vrackServices: string;
 };
 
-export const GetVrackServicesServiceIdQueryKey = ({
-  vrackServices,
-}: GetVrackServicesServiceIdParams) => [`get/services${vrackServices || ''}`];
+export const getVrackServicesServiceIdQueryKey = ({
+  vrackServices = '',
+}: GetVrackServicesServiceIdParams) => [`get/services${vrackServices}`];
 
 /**
  * allowedServices operations : List all services allowed in this vrack
  */
-export const GetVrackServicesServiceId = async ({
+export const getVrackServicesServiceId = async ({
   vrackServices,
 }: GetVrackServicesServiceIdParams) => {
   return apiClient.v6.get<number[]>(

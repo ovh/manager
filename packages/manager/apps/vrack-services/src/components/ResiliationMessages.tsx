@@ -8,23 +8,23 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { DeleteVrackServicesQueryKey, VrackServicesWithIAM } from '@/api';
+import { deleteVrackServicesQueryKey, VrackServicesWithIAM } from '@/api';
 import { useVrackServicesList } from '@/utils/vs-utils';
 
 const ResiliationMessage: React.FC<{ vs?: VrackServicesWithIAM }> = ({
   vs,
 }) => {
-  if (!vs && !vs.id) {
-    return null;
-  }
-
   const { t } = useTranslation('vrack-services/listing');
   const endpointTerminateServiceMutations = useMutationState({
     filters: {
-      mutationKey: DeleteVrackServicesQueryKey(vs.id),
+      mutationKey: deleteVrackServicesQueryKey(vs.id),
       exact: true,
     },
   });
+
+  if (!vs?.id) {
+    return null;
+  }
 
   return (
     <>
@@ -35,7 +35,9 @@ const ResiliationMessage: React.FC<{ vs?: VrackServicesWithIAM }> = ({
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {t('endpointTerminateServiceSuccess', { vrackServices: vs.id })}
+            {t('endpointTerminateServiceSuccess', {
+              vrackServices: vs.currentState?.displayName || vs.id,
+            })}
           </OsdsText>
         </OsdsMessage>
       )}
@@ -52,7 +54,7 @@ export const ResiliationMessages: React.FC<{ id?: string }> = ({ id }) => {
 
   return id ? (
     <ResiliationMessage
-      vs={vrackServicesList?.data?.data.find(
+      vs={vrackServicesList.data.data.find(
         (vs: VrackServicesWithIAM) => vs.id === id,
       )}
     />

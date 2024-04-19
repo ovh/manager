@@ -20,13 +20,11 @@ import {
   getEligibleManagedServiceListQueryKey,
   getEligibleManagedServiceList,
   EligibleManagedService,
-  DeleteVrackServices,
-  DeleteVrackServicesQueryKey,
+  deleteVrackServices,
+  deleteVrackServicesQueryKey,
+  getVrackServicesServiceId,
+  getVrackServicesServiceIdQueryKey,
 } from '@/api';
-import {
-  GetVrackServicesServiceId,
-  GetVrackServicesServiceIdQueryKey,
-} from '@/api/services/get';
 
 export const useVrackServicesList = (refetchInterval = 30000) =>
   useQuery<ApiResponse<VrackServicesWithIAM[]>, ApiError>({
@@ -172,14 +170,12 @@ export const useDeleteVrackServices = ({
   onSuccess?: () => void;
   onError?: (result: ApiError) => void;
 }) => {
-  const [isErrorVisible, setIsErrorVisible] = React.useState(false);
-  const queryClient = useQueryClient();
   const { data: servicesId, isError, error } = useQuery<
     ApiResponse<number[]>,
     ApiError
   >({
-    queryKey: GetVrackServicesServiceIdQueryKey({ vrackServices }),
-    queryFn: () => GetVrackServicesServiceId({ vrackServices }),
+    queryKey: getVrackServicesServiceIdQueryKey({ vrackServices }),
+    queryFn: () => getVrackServicesServiceId({ vrackServices }),
     enabled: !!vrackServices,
   });
 
@@ -187,32 +183,19 @@ export const useDeleteVrackServices = ({
     mutate: deleteVs,
     isError: isTerminateError,
     error: terminateError,
-    isSuccess,
   } = useMutation({
     mutationFn: () =>
-      DeleteVrackServices({
+      deleteVrackServices({
         serviceId: servicesId?.data[0],
       }),
-    mutationKey: DeleteVrackServicesQueryKey(vrackServices),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: DeleteVrackServicesQueryKey(vrackServices),
-      });
-      onSuccess?.();
-    },
+    mutationKey: deleteVrackServicesQueryKey(vrackServices),
+    onSuccess: () => onSuccess?.(),
     onError,
   });
 
-  React.useEffect(() => {
-    if (isError || isTerminateError) {
-      setIsErrorVisible(true);
-    }
-  }, [isError, isTerminateError]);
-
   return {
     deleteVs,
-    isErrorVisible,
-    isSuccess,
+    isErrorVisible: isError || isTerminateError,
     error: error || terminateError,
   };
 };
