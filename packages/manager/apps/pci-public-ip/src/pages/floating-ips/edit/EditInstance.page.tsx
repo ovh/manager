@@ -40,16 +40,19 @@ export default function EditInstancePage() {
   >(undefined);
   const [selectedPrivateNetworkId, setSelectedPrivateNetworkId] = useState('');
   const navigate = useNavigate();
+
   useEffect(() => {
     if (floatingIPs && floatingIPs.length !== 0) {
-      const selectedfloating = floatingIPs.find(({ id }) => id === ipId);
-      setFloatingIP(selectedfloating);
+      const selectedFloating = floatingIPs.find(({ id }) => id === ipId);
+      setFloatingIP(selectedFloating);
     }
   }, [floatingIPs]);
-  const { filteredInstances, isLoading } = useFilteredInstance(
-    projectId,
-    floatingIP,
-  );
+
+  const {
+    filteredInstances,
+    isLoading: isLoadingInstances,
+  } = useFilteredInstance(projectId, floatingIP);
+
   useEffect(() => {
     if (filteredInstances?.length) {
       setSelectedInstanceId(filteredInstances[0].id);
@@ -92,6 +95,7 @@ export default function EditInstancePage() {
   const onClose = () => {
     navigate('..');
   };
+
   const { attach, isPending: isPendingUpdateInstance } = useUpdateInstance({
     projectId,
     floatingIP,
@@ -122,7 +126,10 @@ export default function EditInstancePage() {
       onClose();
     },
   });
-  const isPending = floatingIPsLoading || isLoading || isPendingUpdateInstance;
+
+  const isPending =
+    floatingIPsLoading || isLoadingInstances || isPendingUpdateInstance;
+
   return (
     <OsdsModal
       headline={tEdit('pci_additional_ips_floatingips_edit')}
@@ -134,12 +141,12 @@ export default function EditInstancePage() {
             inline
             size={ODS_SPINNER_SIZE.md}
             className="block text-center"
+            data-testid="editInstancePage_spinner-loading"
           />
         ) : (
           <div className="mt-5">
             {selectedInstanceId ? (
               <>
-                {' '}
                 <OsdsText
                   level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
                   size={ODS_THEME_TYPOGRAPHY_SIZE._400}
@@ -162,6 +169,7 @@ export default function EditInstancePage() {
                   <OsdsSelect
                     value={selectedInstanceId}
                     onOdsValueChange={handleSelectInstanceChange}
+                    data-testid="editInstancePage_select_instance"
                   >
                     <span slot="placeholder">
                       {tEdit(
@@ -187,6 +195,7 @@ export default function EditInstancePage() {
                   <OsdsSelect
                     value={selectedPrivateNetworkId}
                     onOdsValueChange={handleSelectPrivateNetworkChange}
+                    data-testid="editInstancePage_select_IPAddresses"
                   >
                     {filteredPrivateNetwork?.map((network) => (
                       <OsdsSelectOption key={network.ip} value={network.ip}>
@@ -195,11 +204,12 @@ export default function EditInstancePage() {
                     ))}
                   </OsdsSelect>
                 </OsdsFormField>
-                {!selectedPrivateNetwork?.gatewayIP && (
+                {!selectedPrivateNetwork?.gatewayIp && (
                   <OsdsMessage
                     type={ODS_MESSAGE_TYPE.warning}
                     color={ODS_THEME_COLOR_INTENT.warning}
                     className="mt-8"
+                    data-testid="editInstancePage_message_noGatewayIPFound"
                   >
                     {tEdit('pci_additional_ips_floatingips_edit_gateway_error')}
                   </OsdsMessage>
@@ -210,6 +220,7 @@ export default function EditInstancePage() {
                 type={ODS_MESSAGE_TYPE.info}
                 color={ODS_THEME_COLOR_INTENT.info}
                 className="mt-8"
+                data-testid="editInstancePage_message_noInstance"
               >
                 {tEdit(
                   'pci_additional_ips_floatingips_edit_gateway_no_instance_error',
@@ -224,6 +235,7 @@ export default function EditInstancePage() {
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={onClose}
+        data-testid="editInstancePage_button-cancel"
       >
         {tEdit('pci_additional_ips_floatingips_edit_cancel_label')}
       </OsdsButton>
@@ -232,7 +244,7 @@ export default function EditInstancePage() {
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={attach}
         {...(isPending || !selectedInstanceId ? { disabled: true } : {})}
-        data-testid="submitButton"
+        data-testid="editInstancePage_button-submit"
       >
         {tEdit('pci_additional_ips_floatingips_edit_submit_label')}
       </OsdsButton>

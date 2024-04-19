@@ -4,7 +4,6 @@ import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBanner } from '@ovhcloud/manager-components';
 import { Suspense } from 'react';
 import useProject, { ResponseAPIError } from '@/api/hooks/useProject';
-import BreadCrumbs from '@/components/BreadCrumbs';
 import HidePreloader from '@/core/HidePreloader';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 
@@ -18,7 +17,6 @@ export default function Layout() {
   return (
     <div className="application">
       <Suspense>
-        <BreadCrumbs />
         <ShellRoutingSync />
         {isSuccess && (
           <>
