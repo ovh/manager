@@ -69,8 +69,6 @@ describe('FloatingIP component tests', () => {
 
     const { container, debug } = renderFloatingIP(props);
 
-    debug(container);
-
     expect(container).toContainHTML('<div>Notifications</div>');
   });
 

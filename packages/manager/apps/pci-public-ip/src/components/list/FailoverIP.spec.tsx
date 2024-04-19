@@ -68,8 +68,6 @@ describe('FailoverIP component tests', () => {
 
     const { container, debug } = renderFailover(props);
 
-    debug(container);
-
     expect(container).toContainHTML('<div>Notifications</div>');
   });
 
