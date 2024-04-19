@@ -1,10 +1,11 @@
 export default class IamUsersSsoDetailsCtrl {
   /* @ngInject */
-  constructor($scope, $state, IamUsersService) {
+  constructor($scope, $state, IamUsersService, goToUsers) {
     this.$scope = $scope;
     this.$state = $state;
     this.useraccountUsersService = IamUsersService;
     this.identityProvider = null;
+    this.goToUsers = goToUsers;
   }
 
   $onInit() {
@@ -16,9 +17,5 @@ export default class IamUsersSsoDetailsCtrl {
       .catch(() => {
         this.identityProvider = null;
       });
-  }
-
-  goToUsers() {
-    return this.$state.go('iam.dashboard.users');
   }
 }

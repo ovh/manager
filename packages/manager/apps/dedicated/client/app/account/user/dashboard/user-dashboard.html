@@ -1,5 +1,17 @@
 <div class="module-useraccount-sections-dashboard">
     <div data-ovh-alert="useraccount.alerts.dashboard"></div>
+    <!-- IAM Users Banner-->
+    <oui-message data-type="info">
+        <span
+            data-translate="user_account_dashboard_banner_users_iam_description"
+        ></span>
+        <a class="oui-link_icon" data-ng-href="{{:: $ctrl.iamUsersLink }}">
+            <span
+                data-translate="user_account_dashboard_banner_users_iam_link"
+            ></span>
+        </a>
+    </oui-message>
+
     <div class="row pt-4">
         <div class="col-md-4 mb-4">
             <oui-tile

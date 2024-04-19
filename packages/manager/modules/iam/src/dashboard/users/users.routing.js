@@ -27,6 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('user_users_sso_title'),
+      goToUsers: /* @ngInject */ ($state) => () => $state.go(name),
     },
   });
 };
