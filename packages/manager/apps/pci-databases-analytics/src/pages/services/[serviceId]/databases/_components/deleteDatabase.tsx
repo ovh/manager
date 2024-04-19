@@ -73,18 +73,29 @@ const DeleteDatabase = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('deleteDatabaseTitle')}</DialogTitle>
+          <DialogTitle data-testid="delete-database-modal">
+            {t('deleteDatabaseTitle')}
+          </DialogTitle>
           <DialogDescription>
             {t('deleteDatabaseDescription', { name: database.name })}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" variant="outline">
+            <Button
+              type="button"
+              variant="outline"
+              data-testid="delete-database-cancel-button"
+            >
               {t('deleteDatabaseButtonCancel')}
             </Button>
           </DialogClose>
-          <Button type="button" disabled={isPending} onClick={handleDelete}>
+          <Button
+            type="button"
+            disabled={isPending}
+            onClick={handleDelete}
+            data-testid="delete-database-submit-button"
+          >
             {t('deleteDatabaseButtonConfirm')}
           </Button>
         </DialogFooter>

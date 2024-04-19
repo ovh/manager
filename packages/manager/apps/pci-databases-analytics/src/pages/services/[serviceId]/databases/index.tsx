@@ -51,6 +51,7 @@ const Databases = () => {
           variant={'outline'}
           size="sm"
           className="text-base"
+          data-testid="add-button"
           disabled={
             service.capabilities.databases?.create ===
             database.service.capability.StateEnum.disabled
@@ -65,7 +66,9 @@ const Databases = () => {
       {databasesQuery.isSuccess ? (
         <DataTable columns={columns} data={databasesQuery.data} pageSize={25} />
       ) : (
-        <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
+        <div data-testid="table-skeleton">
+          <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
+        </div>
       )}
 
       <AddDatabase
