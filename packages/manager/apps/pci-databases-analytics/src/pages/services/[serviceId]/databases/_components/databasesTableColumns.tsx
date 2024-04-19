@@ -43,7 +43,11 @@ export const getColumns = ({ onDeleteClick }: DatabasesTableColumnsProps) => {
               <Tooltip>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="menu" size="menu">
+                    <Button
+                      variant="menu"
+                      size="menu"
+                      data-testid="databases-action-trigger"
+                    >
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
@@ -52,6 +56,7 @@ export const getColumns = ({ onDeleteClick }: DatabasesTableColumnsProps) => {
                     <TooltipTrigger className="w-full">
                       <DropdownMenuItem
                         variant="destructive"
+                        data-testid="databases-action-delete-button"
                         disabled={
                           row.original.default ||
                           service.capabilities.databases?.delete ===

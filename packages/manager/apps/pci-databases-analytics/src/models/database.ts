@@ -186,11 +186,11 @@ export namespace database {
     /** Cloud Database flavor definition */
     export interface Flavor {
       /** Flavor core number. @deprecated: use specifications.core */
-      core: number;
+      core?: number;
       /** Defines the lifecycle of the flavor */
       lifecycle: availability.Lifecycle;
       /** Flavor ram size in GB. @deprecated: use specifications.memory */
-      memory: number;
+      memory?: number;
       /** Name of the flavor */
       name: string;
       /** Display order */
@@ -198,7 +198,7 @@ export namespace database {
       /** Technical specifications of the flavor */
       specifications: database.capabilities.flavor.Specifications;
       /** Flavor disk size in GB. @deprecated: use specifications.storage */
-      storage: number;
+      storage?: number;
       /** Display tags */
       tags: Tags[];
     }
@@ -1498,9 +1498,9 @@ export namespace database {
   } /** Availability of databases engines on cloud projects */
   export interface Availability {
     /** Defines the type of backup. @@deprecated: use backups.enable */
-    backup: database.BackupTypeEnum;
+    backup?: database.BackupTypeEnum;
     /** Backup retention time of the availability in days. @deprecated: use backups.retentionDays */
-    backupRetentionDays: number;
+    backupRetentionDays?: number;
     /** Defines backups strategy for the availability */
     backups: database.availability.Backups;
     /** Category of the engine */
@@ -1512,19 +1512,19 @@ export namespace database {
     /** Database engine name */
     engine: string;
     /** Flavor name. @deprecated: use specifications.flavor */
-    flavor: string;
+    flavor?: string;
     /** Defines the lifecycle of the availability */
     lifecycle: database.availability.Lifecycle;
     /** Maximum possible disk size in GB. @deprecated: use specifications.storage.maximum */
-    maxDiskSize: number;
+    maxDiskSize?: number;
     /** Maximum nodes of the cluster. @deprecated: use specifications.nodes.maximum */
-    maxNodeNumber: number;
+    maxNodeNumber?: number;
     /** Minimum possible disk size in GB. @deprecated: use specifications.storage.minimum */
-    minDiskSize: number;
+    minDiskSize?: number;
     /** Minimum nodes of the cluster. @deprecated: use specifications.nodes.minimum */
-    minNodeNumber: number;
+    minNodeNumber?: number;
     /** Type of network. @deprecated: use specifications.network */
-    network: database.NetworkTypeEnum;
+    network?: database.NetworkTypeEnum;
     /** Plan name */
     plan: string;
     /** Region name */
@@ -1532,11 +1532,11 @@ export namespace database {
     /** Defines the technical specifications of the availability */
     specifications: database.availability.Specifications;
     /** Date of the release of the product. @deprecated: use lifecycle.startDate */
-    startDate: string;
+    startDate?: string;
     /** Status of the availability. @deprecated: use lifecycle.status */
-    status: database.availability.StatusEnum;
+    status?: database.availability.StatusEnum;
     /** Flex disk size step in GB. @deprecated: use specifications.storage.step */
-    stepDiskSize: number;
+    stepDiskSize?: number;
     /** End of life of the upstream product. @deprecated: use lifecycle */
     upstreamEndOfLife?: string;
     /** Version name */
