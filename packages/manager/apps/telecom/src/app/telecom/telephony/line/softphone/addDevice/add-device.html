@@ -1,0 +1,107 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-heading="{{ ::'telephony_line_softphone_add_my_device' | translate }}"
+>
+    <p>
+        <b
+            data-translate="telephony_line_softphone_add_device_description_bold"
+        ></b>
+        <span
+            data-translate="telephony_line_softphone_add_device_description"
+        ></span>
+    </p>
+    <div
+        class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-between"
+    >
+        <form class="form-inline" name="$ctrl.softphoneAddDeviceForm">
+            <div class="row">
+                <oui-field
+                    class="col-md-12"
+                    data-error-messages="{required: ('telephony_line_softphone_generate_warning' | translate )}"
+                    data-label="{{ ::'telephony_line_softphone_add_device_label' | translate }}"
+                >
+                    <div class="oui-input-group oui-input-group_inline">
+                        <input
+                            type="text"
+                            id="input_name"
+                            name="input_name"
+                            class="oui-input mr-2"
+                            data-ng-model="$ctrl.model.name"
+                            data-ng-pattern="$ctrl.FIELD_NAME_REGEX"
+                            data-ng-class="{'oui-field_error': $ctrl.softphoneAddDeviceForm.input_name.$invalid}"
+                            placeholder="{{'telephony_line_softphone_device_name_placeholder'  | translate : {deviceNumber: '1'} }}"
+                            required
+                        />
+                        <oui-button
+                            data-on-click=":: $ctrl.generateLink()"
+                            data-variant="primary"
+                        >
+                            <span
+                                data-translate="telephony_line_softphone_generate_link"
+                            >
+                            </span>
+                        </oui-button>
+                    </div>
+                </oui-field>
+            </div>
+            <div class="row">
+                <oui-field
+                    class="col-md-12"
+                    label="{{ ::'telephony_line_softphone_record_link' | translate }}"
+                >
+                    <oui-clipboard
+                        data-ng-if="$ctrl.recordLink"
+                        data-model="$ctrl.recordLink"
+                    ></oui-clipboard>
+                    <div
+                        class="oui-input-overlay"
+                        data-ng-if="!$ctrl.recordLink"
+                    >
+                        <input
+                            type="text"
+                            class="oui-input"
+                            id="recordLink"
+                            value="-"
+                            disabled
+                        />
+                        <span class="oui-icon oui-icon-copy-normal"></span>
+                    </div>
+                </oui-field>
+            </div>
+            <div class="row">
+                <oui-message data-type="info">
+                    <p
+                        data-translate="telephony_line_softphone_enroll_device_theme_description"
+                    ></p>
+                    <a data-ui-sref="^">
+                        <span
+                            data-translate="telephony_line_softphone_enroll_device_theme_link"
+                        ></span>
+                        <i
+                            class="oui-icon oui-icon-arrow-right align-middle"
+                            aria-hidden="true"
+                        ></i>
+                    </a>
+                </oui-message>
+            </div>
+        </form>
+    </div>
+
+    <div class="text-right">
+        <oui-button
+            size="l"
+            data-disabled="!$ctrl.recordLink"
+            data-variant="secondary"
+        >
+            <span data-translate="telephony_line_softphone_button_email_link">
+            </span>
+        </oui-button>
+        <oui-button
+            size="l"
+            data-disabled="!$ctrl.recordLink"
+            data-variant="primary"
+        >
+            <span data-translate="telephony_line_softphone_button_save"></span>
+        </oui-button>
+    </div>
+</oui-modal>
