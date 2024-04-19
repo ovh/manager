@@ -118,7 +118,7 @@ export interface IPAddress {
   type: string;
   version: number;
   networkId: string;
-  gatewayIP: string;
+  gatewayIp: string | null;
 }
 
 export interface Gateway {
