@@ -50,7 +50,7 @@ export default [
             },
           },
           {
-            path: 'email-accounts',
+            path: 'email_accounts',
             ...lazyRouteConfig(() => import('@/pages/dashboard/EmailAccounts')),
             handle: {
               breadcrumb: (): string =>
@@ -58,11 +58,11 @@ export default [
             },
           },
           {
-            path: 'mailing-lists',
+            path: 'mailing_lists',
             ...lazyRouteConfig(() => import('@/pages/dashboard/MailingLists')),
             handle: {
               breadcrumb: (): string =>
-                i18next.t('zimbra/dashboard:mailing_list'),
+                i18next.t('zimbra/dashboard:mailing_lists'),
             },
           },
           {

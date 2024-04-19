@@ -1,9 +1,8 @@
 import { useShell } from '..';
 
-export const useNavigation = () => {
+export function useNavigation() {
   const shell = useShell();
-
   return shell.navigation;
-};
+}
 
 export default useNavigation;

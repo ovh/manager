@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet, useResolvedPath } from 'react-router-dom';
 
 import {
@@ -9,11 +9,12 @@ import {
 } from '@ovhcloud/manager-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
-import TabsPanel from './TabsPanel';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import TabsPanel from './TabsPanel';
 
 export const Dashboard: React.FC<DashboardLayoutProps> = () => {
   const { t } = useTranslation('zimbra/dashboard');
+
   const guideItems: GuideItem[] = [
     {
       id: 1,
@@ -22,6 +23,7 @@ export const Dashboard: React.FC<DashboardLayoutProps> = () => {
       label: t('guides_title_1'),
     },
   ];
+
   const tabsList = [
     {
       name: 'general_informations',
@@ -30,23 +32,23 @@ export const Dashboard: React.FC<DashboardLayoutProps> = () => {
     },
     {
       name: 'organizations',
-      title: t('organization'),
+      title: t('organizations'),
       to: useResolvedPath('organizations').pathname,
     },
     {
       name: 'domains',
-      title: t('domain'),
+      title: t('domains'),
       to: useResolvedPath('domains').pathname,
     },
     {
       name: 'email_accounts',
       title: t('email_accounts'),
-      to: useResolvedPath('email-accounts').pathname,
+      to: useResolvedPath('email_accounts').pathname,
     },
     {
-      name: 'mailing_list',
-      title: t('mailing_list'),
-      to: useResolvedPath('mailing-lists').pathname,
+      name: 'mailing_lists',
+      title: t('mailing_lists'),
+      to: useResolvedPath('mailing_lists').pathname,
     },
     {
       name: 'redirections',
@@ -54,6 +56,7 @@ export const Dashboard: React.FC<DashboardLayoutProps> = () => {
       to: useResolvedPath('redirections').pathname,
     },
   ];
+
   return (
     <DashboardLayout
       header={{
