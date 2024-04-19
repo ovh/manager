@@ -11,6 +11,15 @@
   hr {
     border: 1px solid #85d9fd;
   }
+
+  &Row {
+    a:hover {
+      text-decoration: none;
+    }
+    &Chip {
+      height: fit-content;
+    }
+  }
 }
 
 .feedback {

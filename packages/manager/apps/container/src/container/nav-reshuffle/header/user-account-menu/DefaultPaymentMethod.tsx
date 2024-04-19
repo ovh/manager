@@ -41,11 +41,11 @@ const UserDefaultPaymentMethod = ({
       id="user-account-menu-payment-method"
     >
       {!isLoading && defaultPaymentMethod && (
-        <div className="d-flex mt-1 justify-content-between">
+        <div className={`d-flex mt-1 justify-content-between ${style.menuContentRow}`}>
           <span>{t('user_account_menu_payment_method_title')}</span>
 
           <a href={paymentMethodUrl} onClick={onPaymentMethodLinkClick}>
-            <OsdsChip color={getChipColor()}>
+            <OsdsChip color={getChipColor()} className={style.menuContentRowChip} selectable={true}>
               {t(
                 `user_account_menu_payment_method_status_${defaultPaymentMethod.status}`,
               )}
