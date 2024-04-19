@@ -48,6 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
             label: $translate.instant(`netapp_list_columns_header_id`),
             hidden: false,
             property: 'id',
+            serviceLink: true,
           },
           {
             label: $translate.instant(`netapp_list_columns_header_status`),
