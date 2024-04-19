@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-pci-universe-components@1.1.4...@ovh-ux/ng-ovh-pci-universe-components@1.1.5) (2024-04-19)
+
+
+### Bug Fixes
+
+* **octavia:** fix conflict directive name with ovh-utils ([#11492](https://github.com/ovh/manager/issues/11492)) ([9b49447](https://github.com/ovh/manager/commit/9b49447bfe60fb5db0f6b3ea6079c1c22b4a8c3c))
+
+
+
+
+
 ## [1.1.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-pci-universe-components@1.1.3...@ovh-ux/ng-ovh-pci-universe-components@1.1.4) (2024-04-04)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-pci-universe-components
