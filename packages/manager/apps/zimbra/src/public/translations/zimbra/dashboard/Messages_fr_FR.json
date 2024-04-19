@@ -4,9 +4,9 @@
   "guides_title_1": "FAQ sur la solution Zimbra OVHcloud",
   "error_service": "No services info",
   "general_informations": "Informations générales",
-  "organization": "Organisation",
-  "domain": "Domaine",
+  "organizations": "Organisation",
+  "domains": "Domaine",
   "email_accounts": "Comptes email",
-  "mailing_list": "Mailing list",
+  "mailing_lists": "Mailing list",
   "redirections": "Redirections"
 }
