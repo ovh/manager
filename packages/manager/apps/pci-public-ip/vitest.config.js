@@ -21,6 +21,7 @@ export default defineConfig({
         'src/i18n.ts',
         'src/main.tsx',
         'src/routes.tsx',
+        'src/**/*constants.ts',
       ],
     },
   },
