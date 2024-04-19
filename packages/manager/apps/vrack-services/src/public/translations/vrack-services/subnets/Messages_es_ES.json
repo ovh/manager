@@ -1,7 +1,7 @@
 {
   "onboardingTitle": "Todavía no se ha creado ninguna subred",
-  "onboardingDescription": "Para crear un endpoint, primero debe crear una subred.",
-  "betaSubnetLimitMessage": "Por ahora solo puede crear una subred mediante vRack Services.",
+  "onboardingDescription": "Para crear un endpoint, primero debes crear una subred.",
+  "betaSubnetLimitMessage": "Por ahora solo puedes crear una subred mediante vRack Services.",
   "createSubnetButtonLabel": "Crear una subred",
   "createPageTitle": "Crear una subred",
   "subnetCreationError": "Error al crear la subred: {{error}}",
@@ -26,6 +26,6 @@
   "updateError": "Error al actualizar la subred: {{error}}",
   "modalDeleteInputLabel": "Introduce la palabra «TERMINATE» para confirmar la eliminación de la subred.",
   "modalDeleteHeadline": "Eliminar la subred",
-  "modalDeleteDescription": "Para poder ser eliminada, una subred no puede contener un Service Endpoint asociado.",
+  "modalDeleteDescription": "Para poder eliminar una subred, esta no puede contener un Service Endpoint asociado.",
   "none": "Ninguno"
 }
