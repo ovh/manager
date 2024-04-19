@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/button';
 import { database } from '@/models/database';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -103,7 +104,9 @@ const AddDatabase = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('addDatabaseTitle')}</DialogTitle>
+          <DialogTitle data-testid="add-database-modal">
+            {t('addDatabaseTitle')}
+          </DialogTitle>
           <DialogDescription>{t('addDatabaseDescription')}</DialogDescription>
         </DialogHeader>
 
@@ -116,14 +119,27 @@ const AddDatabase = ({
                 <FormItem>
                   <FormLabel>{t('addDatabaseInputLabel')}</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} data-testid="add-database-name-input" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <DialogFooter className="flex justify-end">
-              <Button type="submit" disabled={isPending}>
+              <DialogClose asChild>
+                <Button
+                  type="button"
+                  variant="outline"
+                  data-testid="add-database-cancel-button"
+                >
+                  {t('addDatabaseButtonCancel')}
+                </Button>
+              </DialogClose>
+              <Button
+                type="submit"
+                disabled={isPending}
+                data-testid="add-database-submit-button"
+              >
                 {t('addDatabaseButtonAdd')}
               </Button>
             </DialogFooter>

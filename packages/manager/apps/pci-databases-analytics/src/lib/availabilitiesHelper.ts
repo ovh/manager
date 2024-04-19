@@ -246,6 +246,7 @@ const setPrices = (
   [flavor.pricing.hourly] = catalog.addons.find(
     (a) => a.planCode === `${prefix}.hour.consumption`,
   ).pricings;
+
   [flavor.pricing.monthly] = catalog.addons.find(
     (a) => a.planCode === `${prefix}.month.consumption`,
   ).pricings;
