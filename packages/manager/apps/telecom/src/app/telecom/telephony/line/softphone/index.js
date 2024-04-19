@@ -3,11 +3,13 @@ import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-comp
 import '@uirouter/angularjs';
 import routing from './softphone.routing';
 import component from './softphone.component';
+import addDeviceModule from './addDevice';
 
 const moduleName = 'ovhManagerTelecomTelephonyLineSoftphone';
 
 angular
   .module(moduleName, [
+    addDeviceModule,
     ngOvhTelecomUniverseComponents,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
