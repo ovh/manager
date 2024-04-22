@@ -1,4 +1,5 @@
 import React, { useState, useEffect, } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Navigate, {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
@@ -21,6 +22,7 @@ import {
 } from '@ovhcloud/manager-components';
 
 export default function Listing() {
+  const { t } = useTranslation('listing');
   const myConfig = appConfig;
   const serviceKey = myConfig.listing?.datagrid?.serviceKey;
   const [columns, setColumns] = useState([]);
@@ -103,6 +105,7 @@ export default function Listing() {
       <div className="pt-5 pb-10">
         <Breadcrumb />
         <h2>a-iam</h2>
+        <div>{t('title')}</div>
         <React.Suspense>
           {columns && flattenData && (
             <Datagrid

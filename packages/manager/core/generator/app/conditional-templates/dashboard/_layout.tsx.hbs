@@ -15,8 +15,7 @@ import {
   OsdsTabBarItem,
 } from '@ovhcloud/ods-components/react';
 
-import { DashboardLayout, LinkType } from '@ovhcloud/manager-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { DashboardLayout } from '@ovhcloud/manager-components';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
@@ -35,7 +34,7 @@ export default function DashboardPage() {
   const { serviceName } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const { t } = useTranslation('{{appName}}/dashboard');
+  const { t } = useTranslation('dashboard');
 
   const tabsList = [
     {

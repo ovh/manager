@@ -80,14 +80,18 @@ interface GuideLinkProps {
 }
 
 function useGuideUtils() {
-  const { subsidiary } = useAuthentication();
-  const [linkTabs, setLinkTabs] = useState<GuideLinkProps>({});
+  try {
+    const { subsidiary } = useAuthentication();
+    const [linkTabs, setLinkTabs] = useState<GuideLinkProps>({});
 
-  useEffect(() => {
-    setLinkTabs(getGuideListLink({ subsidiary: subsidiary as CountryCode }));
-  }, [subsidiary]);
+    useEffect(() => {
+      setLinkTabs(getGuideListLink({ subsidiary: subsidiary as CountryCode }));
+    }, [subsidiary]);
 
-  return linkTabs;
+    return linkTabs;
+  } catch {
+    // nothing to do
+  }
 }
 
 export default useGuideUtils;

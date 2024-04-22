@@ -33,7 +33,7 @@ export default function Listing() {
     setSorting,
   } = useDatagridSearchParams();
   const { pageIndex, pageSize } = pagination;
-  const { t } = useTranslation('{{appName}}/listing');
+  const { t } = useTranslation('listing');
   {{#if isPCI }}
   const { projectId } = useParams();
   {{/if}}
@@ -99,6 +99,7 @@ export default function Listing() {
         <Breadcrumb />
         <h2>{{appName}}</h2>
         <React.Suspense>
+          <div>{t('title')}</div>
         {columns && res && (
           <Datagrid
             columns={columns}

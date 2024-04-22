@@ -75,7 +75,7 @@ export const createTranslations = (templates, appName, appDirectory) =>
     type: 'add',
     path: join(
       appDirectory,
-      `../../../apps/{{dashCase appName}}/src/public/translations/${appName}/${template}/Messages_fr_FR.json`,
+      `../../../apps/{{dashCase appName}}/public/translations/${template}/Messages_fr_FR.json`,
     ),
     templateFile: join(
       appDirectory,
