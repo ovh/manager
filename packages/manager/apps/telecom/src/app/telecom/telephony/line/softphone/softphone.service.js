@@ -16,10 +16,10 @@ export default class {
       .then(({ data }) => data.enabled);
   }
 
-  handleToggleBeta(billingAccount, serviceName, softphone) {
+  handleToggleBeta(billingAccount, serviceName, enabled) {
     return this.$http
-      .put(`/telephony/${billingAccount}/line/${serviceName}/devices/beta`, {
-        softphone,
+      .put(`/telephony/${billingAccount}/line/${serviceName}/softphone/beta`, {
+        enabled,
       })
       .then(({ data }) => data);
   }
