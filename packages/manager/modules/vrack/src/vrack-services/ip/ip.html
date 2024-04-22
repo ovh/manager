@@ -1,0 +1,25 @@
+<div class="vrack__assigned-ip">
+    <div class="vrack__assigned-ip__sub-item">
+        <button
+            class="oui-button oui-button_secondary oui-button_icon-left"
+            ng-click="$ctrl.openAddSubnetModal()"
+        >
+            <span class="oui-icon oui-icon-plus" aria-hidden="true"></span>
+            <span data-translate="vrack__assigned_ip_add_subnet"></span>
+        </button>
+    </div>
+    <ul class="vrack__assigned-ip__sub-item">
+        <!-- subnet -->
+        <li class="vrack__assigned-ip__subnet">
+            <span
+                class="vrack__assigned-ip__subnet__title"
+                data-ng-bind="::$ctrl.ip.niceName"
+                data-translate="vrack__assigned_ip_subnet_via"
+                data-translate-values="{ ipblock: $ctrl.ip.niceName, ip: $ctrl.ip.niceName}"
+            ></span>
+            <oui-button size="s" variant="link">
+                <span class="oui-icon oui-icon-bin"></span>
+            </oui-button>
+        </li>
+    </ul>
+</div>

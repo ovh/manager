@@ -24,7 +24,9 @@ import component from './vrack.component';
 import mappedPartials from '../partials/mapped.html';
 import routing from './vrack.routing';
 import vrackAdd from '../add';
+import vrackAssignedIp from '../vrack-services/ip';
 import vrackMoveDialog from '../move-dialog/vrack-move-dialog.module';
+import IPv6SubnetAddModal from '../vrack-services/ip/add';
 
 const moduleName = 'ovhManagerVrackDetails';
 
@@ -39,6 +41,8 @@ angular
     'ngOvhToaster',
     'ui.router',
     ngOvhFeatureFlipping,
+    vrackAssignedIp,
+    IPv6SubnetAddModal,
     vrackAdd,
     vrackMoveDialog,
   ])

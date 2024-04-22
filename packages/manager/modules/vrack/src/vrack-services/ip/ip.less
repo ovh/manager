@@ -1,0 +1,40 @@
+.vrack {
+  &__assigned-ip {
+    &__sub-item {
+      display: flex;
+      justify-content: end;
+      flex-flow: wrap;
+    }
+
+    &__subnet,
+    &__subrang {
+      list-style: none;
+      padding: 0.625rem 0.9375rem;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #dee0de;
+      background-color: #f4f5f3;
+      margin: 0.3125rem 0 0.3125rem 0;
+      font-size: 0.9375rem;
+      color: #687689;
+      white-space: nowrap;
+      user-select: none;
+      cursor: default;
+      &__title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      &_selected {
+        background-color: white;
+        border-color: #aaadaf;
+        color: #112745;
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+      }
+
+      &_selectable:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

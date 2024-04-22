@@ -79,6 +79,7 @@ export default class VrackMoveDialogCtrl {
     this.changeOwnerUrl = null;
     this.vRackCloudRoadmapGuide = null;
     this.arrowIcon = arrowIcon;
+    this.isOpenModalAddSubnet = false;
 
     this.modals = {
       move: null,
@@ -165,6 +166,19 @@ export default class VrackMoveDialogCtrl {
           );
         });
     }
+
+    this.openModalAddSubnet = (confirmHandler) => {
+      this.addSubnetModalConfirm = (subnet, adress) => {
+        confirmHandler(subnet, adress);
+      };
+
+      this.isOpenModalAddSubnet = true;
+    };
+
+    this.subnetUpdatedFalback = () => {
+      this.resetCache();
+      this.refreshData();
+    };
 
     this.$scope.$on('$destroy', () => {
       if (this.poller) {
