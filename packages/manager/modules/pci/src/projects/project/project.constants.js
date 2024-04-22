@@ -75,6 +75,15 @@ export const ACTIONS = [
   },
 ];
 
+export const DATABASE_UAPP_CONFIG = {
+  universe: 'public-cloud',
+  url:
+    '#/pci/projects/{projectId}/databases-analytics/operational/services/new',
+  translation: 'pci_projects_project_create_cluster_database',
+  feature: PCI_FEATURES.PRODUCTS.DATABASES_ANALYTICS,
+  name: 'databases',
+};
+
 const PROJECT_PAGE_TRACKING_NAME = 'PublicCloud::pci::projects::project';
 
 export const DOCUMENTATION_LINKS = [
