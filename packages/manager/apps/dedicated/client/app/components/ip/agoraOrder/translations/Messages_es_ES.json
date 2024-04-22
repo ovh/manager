@@ -13,5 +13,10 @@
   "ipv4Block_organization_description3": "Si no tiene ninguna organización, puede utilizar la información de su cuenta de OVHcloud (NIC).",
   "ipv4Block_organization_info_banner": "El nombre de la organización asociada a su bloque de direcciones IP, así como los datos de contacto correspondientes, se incluirán en la base de datos pública Whois.",
   "ip_agora_table_submit_text": "Seguir con el pedido",
-  "ip_agora_table_cancel_text": "Volver"
+  "ip_agora_table_cancel_text": "Volver",
+  "ip_agora_title": "Seleccionar la versión de la dirección IP",
+  "ip_agora_description": "En algunos casos, es posible que necesite una IPv4 estándar, la más utilizada, o una nueva versión del protocolo, la IPv6. Tenga en cuenta que lista de productos compatibles puede variar.",
+  "ip_agora_ipv4_description": "Standard Internet (a partir de hoy). El protocolo de direccionamiento más utilizado en internet y, por lo tanto, el más comúnmente admitido.",
+  "ip_agora_ip_v4_starting_from": "Desde",
+  "order_catalog_price_interval_month_by_ip": "mes por IP"
 }

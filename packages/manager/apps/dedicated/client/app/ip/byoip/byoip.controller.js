@@ -64,7 +64,7 @@ export default class IpByoipConfiguration {
       .catch((err) =>
         this.Alerter.error(
           `${this.$translate.instant('ip_byoip_token_fetch_error')} ${get(
-            err,
+            err.data,
             'message',
           ) || err}`,
           'ip_byoip_configuration',

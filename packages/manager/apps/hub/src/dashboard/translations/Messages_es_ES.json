@@ -10,9 +10,6 @@
   "manager_hub_dashboard_modal_siret_cancel": "En otro momento",
   "manager_hub_dashboard_modal_title": "Actualización de sus datos",
   "manager_hub_dashboard_kyc_banner_description": "Según la normativa vigente, es necesario verificar su identidad para contratar los servicios de OVHcloud. Por favor, añada sus documentos de identidad.",
-  "manager_hub_dashboard_kyc_banner_link": "Mis documentos",
-  "manager_hub_dashboard_iam_banner_description": "Novedad La funcionalidad de gestión de accesos e identidades (IAM) ya está disponible para ayudarle a gestionar de manera segura sus accesos a través de una interfaz única para todos sus servicios.",
-  "manager_hub_dashboard_iam_banner_link": "Más información",
-  "manager_hub_dashboard_iam_ga_banner_description": "Novedad Identity and Access Management (IAM) ya está disponible para todos. Proteja el acceso a todos sus servicios desde una sola interfaz.",
-  "manager_hub_dashboard_kyc_banner_description_waiting": "Por favor, lea el mensaje de correo electrónico que le hemos enviado y realice la acción solicitada para verificar su identidad antes de realizar un pedido."
+  "manager_hub_dashboard_kyc_banner_description_waiting": "Por favor, lea el mensaje de correo electrónico que le hemos enviado y realice la acción solicitada para verificar su identidad antes de realizar un pedido.",
+  "manager_hub_dashboard_kyc_banner_link": "Mis documentos"
 }

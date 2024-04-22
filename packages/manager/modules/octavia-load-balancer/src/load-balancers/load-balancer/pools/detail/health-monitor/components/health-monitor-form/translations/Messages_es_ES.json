@@ -1,0 +1,18 @@
+{
+  "octavia_load_balancer_health_monitor_form_description_1": "El health monitor se utiliza para determinar la integridad de los miembros del pool. Los controles de integridad se ejecutan periódicamente en cada miembro del pool y los resultados de las comprobaciones se utilizan para determinar si el miembro recibe nuevas conexiones. Solo se puede definir un health monitor para cada pool.",
+  "octavia_load_balancer_health_monitor_form_description_2": "Descubra opciones adicionales en Horizon.",
+  "octavia_load_balancer_health_monitor_form_description_link": "Descubrir las opciones",
+  "octavia_load_balancer_health_monitor_form_name": "Nombre",
+  "octavia_load_balancer_health_monitor_form_name_help": "Solo debe contener números, letras, guiones, guiones bajos o puntos.",
+  "octavia_load_balancer_health_monitor_form_type": "Tipo",
+  "octavia_load_balancer_health_monitor_form_type_default": "Elija un tipo",
+  "octavia_load_balancer_health_monitor_form_expected_code": "Código esperado",
+  "octavia_load_balancer_health_monitor_form_expected_code_help": "El código HTTP considerado un éxito",
+  "octavia_load_balancer_health_monitor_form_expected_code_tooltip": "Los códigos de estado HTTP esperados en caso de éxito del health check. Debe ser un solo dígito, una lista de dígitos separados por comas o un intervalo (dos dígitos separados por un guión).",
+  "octavia_load_balancer_health_monitor_form_max_retries_down_tooltip": "Número de errores de conexión permitidos antes de marcar el miembro como error. Debe ser un número entre 1 y 10. El valor predeterminado es 3. ",
+  "octavia_load_balancer_health_monitor_form_delay_tooltip": "Intervalo entre 2 pruebas del Health Monitor. Debe ser mayor que el timeout.",
+  "octavia_load_balancer_health_monitor_form_max_retries_tooltip": "Número de errores de conexión permitidos antes de marcar el miembro como inactivo. Debe ser un número entre 1 y 10.",
+  "octavia_load_balancer_health_monitor_form_timeout_tooltip": "El tiempo después del cual un health check se detiene. Debe ser un número mayor o igual que 0 y menor que la periodicidad",
+  "octavia_load_balancer_health_monitor_form_cancel": "Cancelar",
+  "octavia_load_balancer_health_monitor_form_submit": "Editar"
+}

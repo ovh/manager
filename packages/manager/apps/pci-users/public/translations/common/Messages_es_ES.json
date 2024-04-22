@@ -45,7 +45,6 @@
   "pci_projects_project_users_delete_content": "Eliminar definitivamente el usuario {{ user }}",
   "pci_projects_project_users_delete_success_message": "Se ha eliminado el usuario {{ user }}.",
   "pci_projects_project_users_delete_error_delete": "Se ha producido un error al eliminar el usuario {{ user }}: {{ message }}.",
-
   "pci_projects_project_users_download-rclone_title": "Descargar un archivo de configuración Rclone",
   "pci_projects_project_users_download-rclone_submit_label": "Descargar",
   "pci_projects_project_users_download-rclone_cancel_label": "Cancelar",
@@ -58,19 +57,17 @@
   "pci_projects_project_users_download-rclone_error_rclone": "Se ha producido un error al descargar el archivo de configuración Rclone: {{ message }}.",
   "pci_projects_project_users_download-rclone_region_label_global": "Seleccione la región en la que se aplicará este archivo (solo se muestran las regiones que ofrecen los servicios Object Storage y Cloud Archive):",
   "pci_projects_project_users_download-rclone_file_type_label": "Tipo de archivo",
-
   "pci_projects_project_users_download-openrc_title": "Descargar un archivo de configuración OpenStack",
   "pci_projects_project_users_download-openrc_submit_label": "Descargar",
   "pci_projects_project_users_download-openrc_cancel_label": "Cancelar",
   "pci_projects_project_users_download-openrc_content": "Está a punto de descargar un archivo de configuración que le permitirá conectarse a OpenStack.",
   "pci_projects_project_users_download-openrc_more_link": "Más información",
-  "pci_projects_project_users_download-openrc_region_label": "Seleccionar la región en la que se aplicará el archivo:",
+  "pci_projects_project_users_download-openrc_region_label": "Seleccione la región en la que se aplicará el archivo:",
   "pci_projects_project_users_download-openrc_v3_label": "Utilizar el archivo de configuración OpenRC v3",
-  "pci_projects_project_users_download-openrc_success_message": "Ha comenzado la descarga del archivo de configuración OpenStack. De lo contrario,",
-  "pci_projects_project_users_download-openrc_success_message_link": "haga clic aquí",
+  "pci_projects_project_users_download-openrc_success_message": "Ha comenzado la descarga del archivo de configuración OpenStack. De lo contrario, ",
+  "pci_projects_project_users_download-openrc_success_message_link": "haga clic aquí.",
   "pci_projects_project_users_download-openrc_error_openrc": "Se ha producido un error al descargar el archivo de configuración OpenStack: {{ message }}.",
   "pci_projects_project_users_download-openrc_info_global": "Algunos servicios como Object Storage y Cloud Archive están ubicados en regiones denominadas «globales» (como GRA, por ejemplo), mientras que la mayoría del resto de servicios se alojan en regiones específicas (como GRA5, por ejemplo).",
-
   "pci_projects_project_users_openstack-token_title": "Generar un token OpenStack",
   "pci_projects_project_users_openstack-token_submit_label": "Generar",
   "pci_projects_project_users_openstack-token_close_label": "Cerrar",
@@ -78,7 +75,7 @@
   "pci_projects_project_users_openstack-token_content": "Para generar un token OpenStack, introduzca la contraseña del usuario {{ user }}.",
   "pci_projects_project_users_openstack-token_password_label": "Contraseña",
   "pci_projects_project_users_openstack-token_token_label": "El token OpenStack que le permitirá identificar sus peticiones HTTP (X-Auth-Token) es: ",
-  "pci_projects_project_users_openstack-token_token_guide_content": "Encontrará un ejemplo de su uso en ",
+  "pci_projects_project_users_openstack-token_token_guide_content": "Consulte un ejemplo de uso en ",
   "pci_projects_project_users_openstack-token_token_guide_link": "esta guía",
   "pci_projects_project_users_openstack-token_token_alert_message": "Por favor, anote estas claves. No podrá acceder a ellas en la próxima actualización.",
   "pci_projects_project_users_openstack-token_token_catalog_region_label": "Región",
@@ -87,18 +84,15 @@
   "pci_projects_project_users_openstack-token_error_save": "Se ha producido un error al generar el token OpenStack para el usuario {{ user }}: {{ message }}.",
   "pci_projects_project_users_roles": "Editar los roles",
   "pci_projects_project_users_roles_cancel": "Cancelar",
-  "pci_projects_project_users_roles_edit": "Aceptar",
+  "pci_projects_project_users_roles_edit": "Confirmar",
   "pci_projects_project_users_roles_edit_success": "Los permisos del usuario se han modificado correctamente. Los cambios no son instantáneos y pueden tardar hasta 10 minutos en guardarse.",
   "pci_projects_project_users_roles_edit_error": "Se ha producido un error al actualizar los roles del usuario {{ message }}.",
-
   "pci_projects_project_users_add_title": "Añadir un usuario",
   "pci_projects_project_users_add_submit_label": "Siguiente",
   "pci_projects_project_users_add_cancel_label": "Cancelar",
   "pci_projects_project_users_add_description_label": "Descripción del usuario",
-
   "pci_projects_project_users_add_description_error": "Complete este campo.",
-
-  "pci_projects_project_users_onboarding_title": "Usuarios y roles",
+  "pci_projects_project_users_onboarding_title": "Users and Roles",
   "pci_projects_project_users_onboarding_content1": "Todavía no ha creado ningún usuario OpenStack.",
   "pci_projects_project_users_onboarding_content2": "Gestione los accesos y los usuarios para administrar sus recursos cloud.",
   "pci_projects_project_users_onboarding_content3": "Los recursos cloud pueden estar administrados por varias personas o aplicaciones, lo que permite automatizar los despliegues y otras acciones. Al crear diferentes accesos, podrá segmentar los permisos y ámbitos de actuación de cada usuario.",
@@ -110,6 +104,5 @@
   "pci_projects_project_users_onboarding_guides_configure-horizon-user-access_description": "Cómo conectarse al panel de control Horizon",
   "pci_projects_project_users_onboarding_guides_prepare-openstack-api-env_title": "Preparar el entorno para utilizar la API de OpenStack",
   "pci_projects_project_users_onboarding_guides_prepare-openstack-api-env_description": "Cómo instalar el entorno OpenStack para controlar las instancias a través de la API",
-
   "onboarding_guide_title": "Guía"
 }

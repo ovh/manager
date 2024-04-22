@@ -37,5 +37,6 @@
   "octavia_load_balancer_create_name_title": "Informacje",
   "octavia_load_balancer_create_name_field_label": "Nazwa Load Balancera",
   "octavia_load_balancer_create_submit": "Stwórz Load Balancer",
-  "octavia_load_balancer_create_banner": "Trwa tworzenie Load Balancera. Zajmie to tylko kilka minut."
+  "octavia_load_balancer_create_banner": "Trwa tworzenie Load Balancera. Zajmie to tylko kilka minut.",
+  "octavia_load_balancer_create_name_field_help": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki."
 }

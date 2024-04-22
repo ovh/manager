@@ -19,7 +19,7 @@
   "deleteRancherError": " An error has occurred deleting your Rancher service. Please try again.",
   "deleteRancherSuccess": "Your Rancher has been deleted.",
   "rancherStatusDeleting": "Deleting your Managed Rancher Service. Please wait... This may take a few minutes.",
-  "editNameModalTitle": "Change the name of your Rancher",
+  "editNameModalTitle": "Change name",
   "editNameModalInfo": "Service name",
   "editNameModaleHelperInput": "The service name must be between 3 and 63 characters, must start and end with lower-case alphanumeric characters (a to z and 0 to 9), and may include the following punctuation marks: ‘_’ ‘.’ and ‘-’.",
   "editNameRancherCta": "Edit",

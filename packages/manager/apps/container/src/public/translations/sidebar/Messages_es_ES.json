@@ -170,5 +170,6 @@
   "sidebar_nasha_cdn": "NAS-HA y CDN",
   "sidebar_vrack_services": "vRack Services",
   "sidebar_all_vrack_services": "Todos los servicios",
-  "sidebar_domain_list": "Mis dominios"
+  "sidebar_domain_list": "Mis dominios",
+  "sidebar_pci_analytics_data_platform": "Data Platform"
 }

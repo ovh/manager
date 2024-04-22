@@ -5,7 +5,7 @@
   "common_criteria_adder_operator_includes": "contiene",
   "common_criteria_adder_operator_starts_with": "inizia per",
   "common_criteria_adder_operator_ends_with": "termina per",
-  "common_criteria_adder_operator_is_equals": "è uguale a",
+  "common_criteria_adder_operator_is_equal": "è uguale a",
   "common_criteria_adder_operator_is_different": "è diverso da",
   "common_criteria_adder_operator_is_lower": "è inferiore a",
   "common_criteria_adder_operator_is_higher": "è superiore a",
@@ -14,6 +14,5 @@
   "common_criteria_adder_true_label": "Sì",
   "common_criteria_adder_false_label": "No",
   "common_criteria_adder_value_label": "Valore",
-  "common_criteria_adder_submit_label": "Aggiungi",
-  "common_criteria_adder_operator_is_equal": "è uguale a"
+  "common_criteria_adder_submit_label": "Aggiungi"
 }

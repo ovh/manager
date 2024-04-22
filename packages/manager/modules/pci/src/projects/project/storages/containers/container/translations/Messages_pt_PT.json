@@ -39,5 +39,5 @@
   "pci_projects_project_storages_containers_container_back_button_label": "Os meus containers",
   "pci_projects_project_storages_containers_container_object_info_s3_staticUrl_help": "Exponha os seus containers e objetos na Internet, configurando os direitos de acesso (por objeto) e dando acesso público. Poderão ser acedidos através do endereço Virtual Hosted-Style.",
   "pci_projects_project_storages_containers_container_info_data_encryption_enabled": "Encriptação: <strong>SSE-S3</strong>",
-  "pci_projects_project_storages_containers_container_info_data_encryption_disabled": "Encriptação: <strong>Nenhuma</strong>"
+  "pci_projects_project_storages_containers_container_info_data_encryption_disabled": "Encriptação: <strong>Nenhum</strong>"
 }

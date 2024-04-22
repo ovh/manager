@@ -41,6 +41,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items = [] }) => {
           label: project?.description,
         },
         {
+          href: `${urlProject}/rancher`,
           label: t('rancherTitle'),
         },
         ...items,

@@ -5,11 +5,12 @@ import routing from './ip-ip-agoraOrder.routes';
 import controller from './ip-ip-agoraOrder.controller';
 import service from './ip-ip-agoraOrder.service';
 import template from './ip-ip-agoraOrder.html';
+import ipv4 from './ipv4/ipv4.module';
 
 const moduleName = 'ovhManagerIpDashboardOrder';
 
 angular
-  .module(moduleName, [ngUiRouterLayout, 'ovhManagerCatalogPrice'])
+  .module(moduleName, [ngUiRouterLayout, ipv4, 'ovhManagerCatalogPrice'])
   .config(routing)
   .controller('agoraIpOrderCtrl', controller)
   .service('IpAgoraOrder', service)

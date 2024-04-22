@@ -52,11 +52,13 @@ export const filterSshKeys = (
   }
 
   if (searchQueries?.length) {
-    return (data || []).filter(({ name }) => {
+    return (data || []).filter(({ name, publicKey }) => {
       let matchAll = true;
       searchQueries.forEach((query) => {
         matchAll =
-          matchAll && `${name}`.toLowerCase().includes(query.toLowerCase());
+          matchAll &&
+          (name.toLowerCase().includes(query.toLowerCase()) ||
+            publicKey.toLowerCase().includes(query.toLowerCase()));
       });
       return matchAll;
     });

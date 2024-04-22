@@ -27,7 +27,7 @@
   "createRancherDiscoveryMode": "Actualmente está en modo Discovery. <strong>Para terminar de crear el recurso</strong>, deberá activar su proyecto.",
   "createRancherDiscoveryModeActive": "Active su proyecto",
   "createRancherTitle": "Managed Rancher Service",
-  "createRancherInfoMessage": "Aunque el servicio es gratuito durante la fase beta, posteriormente su uso se facturará por horas, en función del número total de vCPU de cada uno de los nodos de trabajo («worker nodes») de sus «downstream clusters» Rancher, teniendo en cuenta un <strong>mínimo de 20 vCPU facturadas</strong>.",
+  "createRancherInfoMessage": "Su uso se facturará por horas, en función del número total de vCPU de cada uno de los nodos de trabajo («worker nodes») de sus «downstream clusters» Rancher, teniendo en cuenta un <strong>mínimo de 20 vCPU facturadas</strong>.",
   "createRancherName": "Nombre",
   "createRancherDescription": "En este servicio podrá gestionar varios «downstream clusters».",
   "createRancherPlaceholder": "NombreDelRancher",
@@ -38,6 +38,6 @@
   "createRancherCTA": "Crear un servicio Managed Rancher",
   "createRancherError": "Se ha producido un error al crear el servicio Managed Rancher. Por favor, vuelva a intentarlo.",
   "createRancherRecomendedVersion": "Versión recomendada",
-  "createRancherOVHCloudPlanDescription": "Cree o gestione «downstream clusters» Managed Kubernetes o autoadministrados en el cloud público de OVHcloud o en sus propias máquinas. También puede registrar clústeres externos (sin gestión cloud)",
+  "createRancherOVHCloudPlanDescription": "Cree o gestione clústeres «downstream» Managed Kubernetes Service o autoadministrados en el cloud público de OVHcloud o en sus propias máquinas. También puede registrar clústeres externos (sin gestión cloud)",
   "createRancherStandardPlanDescription": "Cree o registre «downstream clusters» con cualquier cloud público compatible con Rancher o en un cloud privado automatizable (p. ej., VMware vSphere), incluyendo los escenarios compatibles con la versión OVHcloud Edition."
 }

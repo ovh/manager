@@ -22,6 +22,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('license_dashboard_title'),
+      ipCatalog: /* @ngInject */ (coreConfig, IpAgoraOrder) =>
+        IpAgoraOrder.getIpCatalog(coreConfig.getUser().ovhSubsidiary),
     },
     atInternet: {
       rename: 'dedicated::ip::dashboard::order',
