@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.12.1...@ovh-ux/manager-components@1.13.0) (2024-04-22)
+
+
+### Features
+
+* **pci:** add dallas region ([#11309](https://github.com/ovh/manager/issues/11309)) ([520b690](https://github.com/ovh/manager/commit/520b690dd9669f1b590850cc2b46791471534084))
+
+
+
+
+
 ## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.12.0...@ovh-ux/manager-components@1.12.1) (2024-04-04)
 
 

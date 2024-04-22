@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.32.2...@ovh-ux/manager-dedicated@19.33.0) (2024-04-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2930] ([c74eca9](https://github.com/ovh/manager/commit/c74eca90f76ffbaeac4b9e1dbf43af54d556d9b5))
+* **i18n:** add missing translations [CDS 2932] ([95b660c](https://github.com/ovh/manager/commit/95b660c9a0600f16966d0be7f853f65b21bc9fa4))
+* **i18n:** add missing translations [CDS 2944] ([2465e81](https://github.com/ovh/manager/commit/2465e812898c6bab1d9b61f2bdd927fe7fea1227))
+* remove unused translations [CDS] ([533618a](https://github.com/ovh/manager/commit/533618ad3f9d6421bf91aea7f959f3b480f2a450))
+
+
+### Features
+
+* **dedicated:** byoip reseller mode ([#11370](https://github.com/ovh/manager/issues/11370)) ([9e0ed68](https://github.com/ovh/manager/commit/9e0ed6828c6005c928112f4a172ab3e00fb66c84))
+* **dedicated:** create new component for ipv4 in agoraOrder ([#11365](https://github.com/ovh/manager/issues/11365)) ([2b36abf](https://github.com/ovh/manager/commit/2b36abf1947e58d86cc62cd0d4eaa903d2a20f87))
+* **network-security:** add params into traffic url ([#11031](https://github.com/ovh/manager/issues/11031)) ([9dbe833](https://github.com/ovh/manager/commit/9dbe83323e0cf680203303b899714f881c0e3b73))
+
+
+### Reverts
+
+* Revert "feat(network-security): add params into traffic url (#11031)" (#11509) ([8ef9124](https://github.com/ovh/manager/commit/8ef912453287b0f9d7fce8ce6e28f32a6c19dc92)), closes [#11031](https://github.com/ovh/manager/issues/11031) [#11509](https://github.com/ovh/manager/issues/11509)
+
+
+
+
+
 ## [19.32.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.32.1...@ovh-ux/manager-dedicated@19.32.2) (2024-04-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

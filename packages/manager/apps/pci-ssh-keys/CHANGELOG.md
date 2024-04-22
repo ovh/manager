@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.2.4...@ovh-ux/manager-pci-ssh-keys-app@0.2.5) (2024-04-22)
+
+
+### Bug Fixes
+
+* **pci-ssh-key:** allow search on publicKey ([#11389](https://github.com/ovh/manager/issues/11389)) ([aae2e06](https://github.com/ovh/manager/commit/aae2e067bbfd1b8c5b052738054f28a3713d78a6))
+
+
+
+
+
 ## [0.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.2.3...@ovh-ux/manager-pci-ssh-keys-app@0.2.4) (2024-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app

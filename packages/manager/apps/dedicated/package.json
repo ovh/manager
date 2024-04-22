@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "19.32.2",
+  "version": "19.33.0",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -31,7 +31,7 @@
     "@ovh-ux/manager-cda": "^1.9.0",
     "@ovh-ux/manager-cloud-connect": "^1.14.0",
     "@ovh-ux/manager-cloud-styles": "^1.8.0",
-    "@ovh-ux/manager-components": "^1.12.1",
+    "@ovh-ux/manager-components": "^1.13.0",
     "@ovh-ux/manager-config": "^7.3.1",
     "@ovh-ux/manager-core": "^12.16.1",
     "@ovh-ux/manager-dbaas-logs": "^1.19.1",
@@ -85,7 +85,7 @@
     "@ovh-ux/ng-ui-router-layout": "^4.3.0",
     "@ovh-ux/request-tagger": "^0.2.0",
     "@ovh-ux/shell": "^3.5.1",
-    "@ovh-ux/sign-up": "^2.17.0",
+    "@ovh-ux/sign-up": "^2.17.1",
     "@ovh-ux/ui-kit": "^6.7.8",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "1.7.x",

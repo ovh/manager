@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.2.3...@ovh-ux/manager-octavia-load-balancer@1.3.0) (2024-04-22)
+
+
+### Features
+
+* **octavia:** health monitor management ([#11244](https://github.com/ovh/manager/issues/11244)) ([3907f94](https://github.com/ovh/manager/commit/3907f94df018b6e6b2926da183593d4b24289c8d))
+* **octavia:** L7 policies and rules management ([#11265](https://github.com/ovh/manager/issues/11265)) ([a766232](https://github.com/ovh/manager/commit/a766232f2411c0b4691d2e9a3b7792457e5f15ab))
+
+
+
+
+
 ## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.2.2...@ovh-ux/manager-octavia-load-balancer@1.2.3) (2024-03-25)
 
 
