@@ -26,23 +26,27 @@
     <oui-header-tabs>
         <oui-header-tabs-item
             data-state="dbaas-logs.detail.home"
+            data-on-click="ctrl.trackClick(ctrl.TRACKING_HITS.SUBHOME_TAB)"
             data-state-params="{ serviceName: ctrl.serviceName }"
             ><span data-translate="logs_tab_home"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-state="dbaas-logs.detail.streams"
             data-disabled="ctrl.disableTabs"
+            data-on-click="ctrl.trackClick(ctrl.TRACKING_HITS.DATA_STREAM)"
             data-state-params="{ serviceName: ctrl.serviceName }"
             ><span data-translate="logs_tab_streams"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-state="dbaas-logs.detail.dashboards"
             data-disabled="ctrl.disableTabs"
+            data-on-click="ctrl.trackClick(ctrl.TRACKING_HITS.DASHBOARD_TAB)"
             data-state-params="{ serviceName: ctrl.serviceName }"
             ><span data-translate="logs_tab_dashboards"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-state="dbaas-logs.detail.inputs"
+            data-on-click="ctrl.trackClick(ctrl.TRACKING_HITS.COLLECTION_TOOLS_TAB)"
             data-disabled="ctrl.disableTabs"
             data-state-params="{ serviceName: ctrl.serviceName }"
             ><span data-translate="logs_tab_inputs"></span>
@@ -50,18 +54,21 @@
         <oui-header-tabs-item
             data-state="dbaas-logs.detail.indices"
             data-disabled="ctrl.disableTabs"
+            data-on-click="ctrl.trackClick(ctrl.TRACKING_HITS.INDEX_TAB)"
             data-state-params="{ serviceName: ctrl.serviceName }"
             ><span data-translate="logs_tab_indices"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-state="dbaas-logs.detail.aliases"
             data-disabled="ctrl.disableTabs"
+            data-on-click="ctrl.trackClick(ctrl.TRACKING_HITS.ALIAS_TAB)"
             data-state-params="{ serviceName: ctrl.serviceName }"
             ><span data-translate="logs_tab_alias"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-state="dbaas-logs.detail.osd"
             data-disabled="ctrl.disableTabs"
+            data-on-click="ctrl.trackClick(ctrl.TRACKING_HITS.OPENSEARCH_DASHBOARDS)"
             data-state-params="{ serviceName: ctrl.serviceName }"
             ><span data-translate="logs_tab_kibana"></span>
         </oui-header-tabs-item>
@@ -69,6 +76,7 @@
             data-state="dbaas-logs.detail.roles"
             data-disabled="ctrl.disableTabs"
             data-state-params="{ serviceName: ctrl.serivceName }"
+            data-on-click="ctrl.trackClick(ctrl.TRACKING_HITS.ROLES)"
             ><span data-translate="logs_tab_roles"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>

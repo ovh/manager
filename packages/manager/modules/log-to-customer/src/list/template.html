@@ -1,0 +1,151 @@
+<oui-header
+    data-heading="{{:: $ctrl.title }}"
+    data-description="{{ :: $ctrl.description }}"
+>
+    <oui-back-button data-on-click="$ctrl.goBack()"> </oui-back-button>
+</oui-header>
+
+<oui-button
+    class="my-3"
+    data-icon-left="oui-icon-plus"
+    data-variant="secondary"
+    data-ng-click="$ctrl.goToAddDataStream()"
+>
+    <span data-translate="logs_list_add_data_stream_button"></span>
+</oui-button>
+
+<oui-datagrid
+    id="datagridLogAccounts"
+    data-empty-placeholder="{{:: 'list_empty' | translate }}"
+    data-rows="$ctrl.streams"
+    data-row-loader="$ctrl.getRetentionDetails($row)"
+>
+    <oui-datagrid-topbar>
+        <oui-select
+            class="w-50"
+            data-id="ldp_select"
+            data-name="ldp_account"
+            data-items="$ctrl.accountList"
+            data-match="formattedName"
+            data-model="$ctrl.selectedAccount"
+            data-on-change="$ctrl.onSelectedLogAccountChange()"
+        >
+        </oui-select>
+    </oui-datagrid-topbar>
+    <oui-datagrid-column
+        data-title=":: 'list_column_account' | translate"
+        data-type="string"
+    >
+        <div data-ng-if="$ctrl.selectedAccount.displayName">
+            <a
+                data-ng-href="{{ $ctrl.LDPHomePageLink }}"
+                data-ng-bind="$ctrl.selectedAccount.displayName"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="{{:: $ctrl.trackingHits.LDP_DETAIL}}"
+                target="_blank"
+                rel="noopener"
+            >
+            </a>
+            <p
+                class="small mb-0"
+                data-ng-bind="$ctrl.selectedAccount.serviceName"
+            ></p>
+        </div>
+
+        <a
+            data-ng-if="!$ctrl.selectedAccount.displayName"
+            data-ng-href="{{ $ctrl.LDPHomePageLink}}"
+            data-ng-bind="$ctrl.selectedAccount.serviceName"
+            data-track-on="click"
+            data-track-type="action"
+            data-track-name="{{:: $ctrl.trackingHits.LDP_DETAIL}}"
+            target="_blank"
+            rel="noopener"
+        >
+        </a>
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        class="stream-name-column"
+        data-title=":: 'list_column_stream_name' | translate"
+        data-property="title"
+        data-type="string"
+        data-filterable
+    >
+        <span class="d-inline-block word-break" data-ng-bind="$value"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'list_column_stream_description' | translate"
+        data-property="description"
+        data-type="string"
+    >
+        <span class="d-inline-block word-break" data-ng-bind="$value"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'list_column_stream_indexation' | translate"
+        data-property="indexingEnabled"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="$value ? 'oui-badge_success': 'oui-badge_warning'"
+            data-translate="{{'list_indexation_status_' + $value}}"
+        ></span>
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title=":: 'list_column_stream_retention' | translate"
+        data-property="duration"
+    >
+        <span data-ng-bind="$ctrl.retentionInfo($value)"></span>
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title=":: 'list_column_stream_subscription' | translate"
+        data-property="nbSubscription"
+    >
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <span data-ng-if="$value === 0">-</span>
+                <span data-ng-if="$value > 0">
+                    <span data-ng-bind="$value"></span>
+                    <a
+                        data-ng-href="{{ $ctrl.getSubscriptionLink($row.streamId)}}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </span>
+            </div>
+            <div>
+                <oui-button
+                    data-variant="secondary"
+                    data-ng-if="!$ctrl.streamSubscriptions.hasOwnProperty($row.streamId)"
+                    data-ng-click="$ctrl.createLogSubscription($row.streamId)"
+                >
+                    <span data-translate="list_button_subscribe"></span>
+                    <oui-spinner
+                        size="s"
+                        data-ng-if="$ctrl.loading === $row.streamId"
+                    ></oui-spinner>
+                </oui-button>
+                <oui-button
+                    data-variant="secondary"
+                    loading="$ctrl.loading === $row.streamId"
+                    data-ng-if="$ctrl.streamSubscriptions.hasOwnProperty($row.streamId)"
+                    data-ng-click="$ctrl.deleteLogSubscription($row.streamId)"
+                >
+                    <span data-translate="list_button_unsubscribe"></span>
+                    <oui-spinner
+                        size="s"
+                        data-ng-if="$ctrl.loading === $row.streamId"
+                    ></oui-spinner>
+                </oui-button>
+            </div>
+        </div>
+    </oui-datagrid-column>
+</oui-datagrid>

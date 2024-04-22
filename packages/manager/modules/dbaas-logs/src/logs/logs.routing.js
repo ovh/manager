@@ -1,3 +1,5 @@
+import LogConstants from './logs-constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('dbaas-logs', {
     component: 'dbaasLogs',
@@ -7,6 +9,12 @@ export default /* @ngInject */ ($stateProvider) => {
       format: 'json',
     },
     resolve: {
+      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+        atInternet.trackClick({
+          name: `${LogConstants.TRACKING_PREFIX}::${hit}`,
+          type: 'action',
+        });
+      },
       logs: /* @ngInject */ (OvhApiDbaas) =>
         OvhApiDbaas.Logs()
           .v6()

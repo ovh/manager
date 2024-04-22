@@ -1,82 +1,19 @@
-<div>
-    <span data-translate="kube_logs_description"></span>
-    <a
-        data-ng-href="{{::$ctrl.getLogsInfoLink()}}"
-        target="_blank"
-        rel="noopener"
-    >
-        <span data-translate="kube_logs_description_link"></span>
-        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
-    </a>
+<div data-ovh-alert></div>
 
-    <tail-logs>
-        <div
-            data-ng-repeat="log in $ctrl.logger.logs track by $index"
-            data-ng-class="{
-            'text-warning' : $ctrl.constructor.isWarningResponse(log.message.audit_responseStatus),
-            'text-danger'  : $ctrl.constructor.isDangerResponse(log.message.audit_responseStatus)
-        }"
-        >
-            <div class="row ml-0">
-                <span
-                    class="col-md-1 text-break"
-                    data-ng-bind="::log.message.audit_requestReceivedTimestamp_date"
-                    title="date"
-                ></span>
-                <span
-                    class="col-md-1 text-break"
-                    data-ng-bind="::log.message.audit_verb | uppercase"
-                    title="verb"
-                ></span>
-                <span
-                    class="col-md-1 text-break"
-                    data-ng-bind="::log.message.audit_authorizationDecision | uppercase"
-                    title="authorization_decision"
-                ></span>
-                <span
-                    class="col-md-1 text-break"
-                    data-ng-bind="::log.message.audit_responseStatus"
-                    title="response_status"
-                ></span>
-                <span
-                    class="col-md-1 text-break"
-                    data-ng-bind="::log.message.audit_user"
-                    title="user"
-                ></span>
-                <span
-                    class="col-md-2 text-break"
-                    data-ng-bind="::log.message.audit_requestURI"
-                    title="request_uri"
-                ></span>
-                <span class="col-md-4 text-break">
-                    <span
-                        data-ng-bind="::log.message.audit_groups"
-                        title="groups"
-                    ></span>
-                    <span title="ident"> - </span>
-                    <span
-                        data-ng-bind="::log.message.audit_authorizationReason"
-                        title="authorization_reason"
-                    ></span>
-                    <span title="ident"> - </span>
-                    <span
-                        data-ng-bind="::log.message.audit_userAgent"
-                        title="user_agent"
-                    ></span>
-                </span>
-                <span
-                    class="col-md-1 text-break"
-                    data-ng-bind="::log.message.audit_auditID"
-                    title="audit_id"
-                ></span>
-            </div>
-
-            <br />
-        </div>
-
-        <div
-            data-translate="kube_logs_list_no_logs"
-            data-ng-if="$ctrl.logger.logs.length === 0"
-        ></div>
-    </tail-logs>
-</div>
+<log-to-customer-live-tail
+    log-api-url="$ctrl.logApiUrl"
+    log-service-guide-link="$ctrl.logServiceGuideLink"
+    data-log-subscription-url="$ctrl.logSubscriptionUrl"
+    go-to-listing-page="$ctrl.goToListingPage"
+    log-kinds-list="$ctrl.logKindsList"
+    kind-init-value="$ctrl.kind"
+    data-track-click="$ctrl.trackClick"
+    data-tracking-hits="$ctrl.LOG_TRACKING_HITS"
+>
+    <main-description>
+        <span data-translate="kube_logs_main_description"></span>
+    </main-description>
+    <tile-description>
+        <span data-translate="kube_logs_tile_description"></span>
+    </tile-description>
+</log-to-customer-live-tail>

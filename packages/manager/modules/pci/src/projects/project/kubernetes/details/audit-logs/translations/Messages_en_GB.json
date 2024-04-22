@@ -1,6 +1,10 @@
 {
-  "kube_logs_tab_title": "Audit Logs",
+  "kube_logs_tab_title": "Logs",
   "kube_logs_list_no_logs": "Pending logs...",
   "kube_logs_description": "Here, you will find the logs for your Kubernetes cluster’s control-plane. To observe your business pods, please follow the documentation.",
-  "kube_logs_description_link": "Find out more."
+  "kube_logs_description_link": "Find out more.",
+  "kube_logs_main_description": "Below are the audit logs of your Kubernetes cluster. These logs track security-related activities in chronological order and record your cluster’s operations, including user actions and API usage by applications and the control plane.",
+  "kube_logs_tile_description": "Subscribing to this stream allows you to upload your logs directly to OVHcloud’s Logs Data Platform, which allows you to perform advanced searches, create alerts and visualisations, or simply archive them.",
+  "logs_list_title": "Data stream",
+  "logs_list_description_audit": "By subscribing to your Kubernetes cluster’s audit logs, they will be seamlessly transferred to the Logs Data Platform. This allows you to integrate them with your other logs, conduct advanced searches, manage retention, set alerts, and create dashboards to easily monitor your clusters."
 }
