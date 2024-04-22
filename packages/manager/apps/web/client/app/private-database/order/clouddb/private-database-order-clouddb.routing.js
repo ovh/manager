@@ -42,6 +42,44 @@ export default /* @ngInject */ ($stateProvider) => {
           Alerter.success(message, 'cloudDB_order_alert');
         }),
       hideBreadcrumb: () => true,
+      onError: /* @ngInject */ ($translate, $anchorScroll) => (error) => {
+        $translate.instant('private_database_order_error', {
+          message: error?.data?.message,
+        });
+        return $anchorScroll();
+      },
+      onSuccess: /* @ngInject */ (
+        $translate,
+        $anchorScroll,
+        displaySuccessMessage,
+      ) => (result) => {
+        const { url, autoPayWithPreferredPaymentMethod } = result;
+        displaySuccessMessage(
+          $translate.instant(
+            `private_database_order_clouddb_bill_success_${
+              autoPayWithPreferredPaymentMethod ? 'noCheckout' : 'checkout'
+            }`,
+            { url },
+          ),
+        );
+        return $anchorScroll();
+      },
+      dbCategories: /* @ngInject */ (
+        catalog,
+        webCloudCatalog,
+        PrivateDatabaseOrderCloudDb,
+      ) => {
+        return PrivateDatabaseOrderCloudDb.buildDbCategories(
+          catalog,
+          webCloudCatalog,
+        );
+      },
+      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
+      webCloudCatalog: /* @ngInject */ (user, PrivateDatabaseOrderCloudDb) => {
+        return PrivateDatabaseOrderCloudDb.getCloudDBCatalog(
+          user.ovhSubsidiary,
+        );
+      },
     },
   });
 };

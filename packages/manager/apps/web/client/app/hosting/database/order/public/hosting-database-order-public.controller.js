@@ -22,6 +22,7 @@ export default class HostingDatabaseOrderPublicCtrl {
     this.productOffers = {
       pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
       workflowOptions: {
+        expressOrder: true,
         catalog,
         catalogItemTypeName,
         productName: this.getProductName.bind(this),

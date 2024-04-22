@@ -1,27 +1,23 @@
 <oui-step-form
-    data-header="{{:: 'domain_webhosting_order_duration_title' | translate }}"
+    data-submit-text="{{ :: 'ovh_product_offers_order_express_submit' | translate }}"
+    data-header="{{:: 'ovh_product_offers_pricing_header' | translate }}"
     data-on-focus="$ctrl.getAvailableDurations()"
-    data-on-submit="$ctrl.updateDuration()"
-    data-navigation="false"
-    data-editable="$ctrl.duration && $ctrl.hasManyDurations() && !$ctrl.stepper.loadingCheckout()"
+    data-prevent-next="true"
     data-valid="$ctrl.duration"
     data-position="{{::$ctrl.stepperPosition}}"
 >
-    <oui-radio
+    <oui-select-picker
+        class="col-md-3 mb-3 align-self-baseline"
         name="duration"
         data-ng-repeat="pricing in $ctrl.availablePricings track by $index"
-        data-model="$ctrl.duration"
-        data-value="pricing.duration"
-        data-required
+        variant="light"
     >
-        <span
-            data-translate="{{:: 'domain_webhosting_order_duration_' + pricing.duration }}"
-        ></span
-        >&nbsp;&nbsp;
-        <ovh-manager-catalog-price
-            data-price="pricing.price"
-            data-tax="pricing.tax"
-            data-user="$ctrl.user"
-        ></ovh-manager-catalog-price>
-    </oui-radio>
+        <oui-select-picker-label>
+            <ovh-manager-catalog-price
+                data-price="pricing.price"
+                data-tax="pricing.tax"
+                data-user="$ctrl.user"
+            ></ovh-manager-catalog-price>
+        </oui-select-picker-label>
+    </oui-select-picker>
 </oui-step-form>
