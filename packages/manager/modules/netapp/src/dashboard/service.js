@@ -179,4 +179,16 @@ export default class NetAppDashboardService {
       .get(`/vrack/${vrackId}/allowedServices?serviceFamily=vrackServices`)
       .then(({ data }) => data);
   }
+
+  /**
+   * Update the EFS name
+   * @param {string} storageId
+   * @param {string} name
+   * @returns
+   */
+  updateStorageName(storageId, name) {
+    return this.$http.put(`/storage/netapp/${storageId}`, {
+      name,
+    });
+  }
 }

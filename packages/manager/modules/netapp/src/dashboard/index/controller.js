@@ -6,33 +6,27 @@ import {
   NETWORK_STATUS,
   POLLING_TYPE,
   VRACK_SERVICES_STATUS,
+  NETAPP_NAME_PATTERN,
 } from '../constants';
-import { PATTERN } from './constants';
 
 export default class OvhManagerNetAppDashboardIndexCtrl {
   /* @ngInject */
-  constructor($http, $translate, Alerter, NetAppDashboardService, OvhManagerNetAppDashboardIndex) {
+  constructor($translate, Alerter, NetAppDashboardService) {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.NetAppDashboardService = NetAppDashboardService;
-    this.$http = $http;
 
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.NETWORK_STATUS = NETWORK_STATUS;
     this.VRACK_SERVICES_STATUS = VRACK_SERVICES_STATUS;
-    this.isEditingName = false;
-    this.editNameValue = '';
-    this.OvhManagerNetAppDashboardIndex = OvhManagerNetAppDashboardIndex;
     this.SERVICE_TYPE = SERVICE_TYPE;
-    this.PATTERN = PATTERN;
+    this.NETAPP_NAME_PATTERN = NETAPP_NAME_PATTERN;
   }
 
   $onInit() {
     this.commitImpressionData = this.shouldReengage()
       ? RECOMMIT_IMPRESSION_TRACKING_DATA
       : COMMIT_IMPRESSION_TRACKING_DATA;
-
-    this.editNameValue = this.storage.name;
 
     if (this.isNetworkAvailable) {
       this.populateAttachedSubnetAndEndpoint();
@@ -92,11 +86,11 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
   }
 
   editName() {
-    this.OvhManagerNetAppDashboardIndex.updateStorage(
+    this.NetAppDashboardService.updateStorageName(
       this.storage.id,
       this.storage.name,
     ).then(() => {
-      window.location.reload();
+      this.reloadDashboard();
     });
   }
 

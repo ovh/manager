@@ -9,11 +9,10 @@ import '@ovh-ux/ng-at-internet';
 
 import '@ovh-ux/manager-advices';
 import '@ovh-ux/manager-billing-components';
+import { inlinePropertyEditor } from '@ovh-ux/manager-components';
 import component from './component';
 import routing from './routing';
-import { inlinePropertyEditor } from '@ovh-ux/manager-components';
 
-import OvhManagerNetAppDashboardIndex from './service';
 const moduleName = 'ovhManagerNetAppDashboardIndex';
 
 angular
@@ -29,7 +28,6 @@ angular
     'ngOvhUtils',
     inlinePropertyEditor,
   ])
-  .service('OvhManagerNetAppDashboardIndex', OvhManagerNetAppDashboardIndex)
   .config(routing)
   .component('ovhManagerNetAppDashboardIndex', component)
   .run(/* @ngTranslationsInject:json ./translations */);
