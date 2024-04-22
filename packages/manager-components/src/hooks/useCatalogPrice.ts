@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useMe } from '@/api/hooks/useMe';
+import { useMe } from './useMe';
 
 const ASIA_FORMAT = ['SG', 'ASIA', 'AU', 'IN'];
 const FRENCH_FORMAT = [

@@ -1,0 +1,7 @@
+{
+  "pci_projects_maintenance_banner_info_project_page": "Konserwacja: dotyczy co najmniej jednej z usług przypisanych do Twojego projektu {{projectName}}.",
+  "pci_projects_maintenance_banner_info_list_page": "Konserwacja: dotyczy co najmniej jednej z Twoich usług {{productName}}.",
+  "pci_projects_maintenance_banner_info_product_page": "Konserwacja: dotyczy Twojej usługi {{productServiceName}}.",
+  "pci_projects_maintenance_banner_info_link": "Dowiedz się więcej.",
+  "pci_projects_project_network_private": "Private Network"
+}
