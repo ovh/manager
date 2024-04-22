@@ -34,7 +34,7 @@
 
         <ul
             class="vrack__service-list"
-            data-ng-if="!$ctrl.vrackService.isGroupedServiceType(serviceType)"
+            data-ng-if="!$ctrl.vrackService.isGroupedServiceType(serviceType) && !serviceType === 'ip'"
         >
             <li
                 class="vrack__service vrack__service_selectable d-flex"
@@ -49,6 +49,36 @@
                 >
                 </oui-spinner>
             </li>
+        </ul>
+
+        <ul class="vrack__service-list" data-ng-if="serviceType === 'ip'">
+            <add-ipv6-subnet-modal
+                data-is-open-modal="$ctrl.isOpenModalAddSubnet"
+                data-on-confirm="$ctrl.addSubnetModalConfirm"
+            ></add-ipv6-subnet-modal>
+            <ul
+                data-ng-repeat="service in services | orderBy: service.niceName track by service.id"
+            >
+                <li
+                    class="vrack__service vrack__service_selectable d-flex"
+                    data-ng-click="$ctrl.toggleDeleteService(service.trueServiceType, service.id)"
+                    data-ng-class="{ vrack__service_selected: $ctrl.isSelected(service.trueServiceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
+                >
+                    <span data-ng-bind="::service.niceName"></span>
+                    <oui-spinner
+                        data-size="s"
+                        data-ng-if="$ctrl.isPending(service.id)"
+                    >
+                    </oui-spinner>
+                </li>
+                <vrack-assigned-ip
+                    ng-show="$ctrl.isSelected(service.trueServiceType, service.id)"
+                    data-open-add-modal="$ctrl.openModalAddSubnet"
+                    data-refresh-data="$ctrl.subnetUpdatedFalback"
+                    data-service-name="$ctrl.serviceName"
+                    data-ip="service"
+                ></vrack-assigned-ip>
+            </ul>
         </ul>
 
         <ul
