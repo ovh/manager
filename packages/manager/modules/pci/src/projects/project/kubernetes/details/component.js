@@ -14,6 +14,7 @@ const component = {
     restrictionsLink: '<',
     restrictions: '<',
     auditLogsLink: '<',
+    isLogToCustomerFeatureAvailable: '<',
   },
   template,
   controller,

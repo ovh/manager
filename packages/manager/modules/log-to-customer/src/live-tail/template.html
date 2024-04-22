@@ -1,0 +1,45 @@
+<div class="my-2" data-ng-if="$ctrl.logKindsList.length > 1">
+    <oui-radio-toggle-group dense data-model="$ctrl.kind" direction="row">
+        <oui-radio
+            data-ng-repeat="kind in $ctrl.logKindsList"
+            value="kind.name"
+        >
+            <span data-ng-bind="kind.displayName"></span>
+        </oui-radio>
+    </oui-radio-toggle-group>
+</div>
+
+<log-live-tail
+    data-log-keys="$ctrl.LOG_KEYS"
+    data-log-api-url="$ctrl.logApiUrl"
+    data-log-kind="$ctrl.kind"
+>
+    <description>
+        <main-descriptsion
+            data-ng-transclude="mainDescription"
+        ></main-descriptsion>
+        <a
+            data-ng-href="{{:: $ctrl.logServiceGuideLink }}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span data-translate="logs_info_link"></span>
+            <i class="oui-icon oui-icon-external-link" aria-hidden="true"></i>
+        </a>
+    </description>
+
+    <tile>
+        <log-tile
+            log-subscription-url="$ctrl.logSubscriptionUrl"
+            kind="$ctrl.kind"
+            go-to-listing-page="$ctrl.goToListingPage"
+            go-to-stream-listing-page="$ctrl.goToStreamListingPage"
+            data-track-click="$ctrl.trackClick"
+            data-tracking-hits="$ctrl.trackingHits"
+        >
+            <tile-description
+                data-ng-transclude="tileDescription"
+            ></tile-description>
+        </log-tile>
+    </tile>
+</log-live-tail>

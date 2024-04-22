@@ -1,6 +1,10 @@
 {
-  "kube_logs_tab_title": "Audit Logs",
+  "kube_logs_tab_title": "Logi",
   "kube_logs_list_no_logs": "Oczekiwanie na logi",
   "kube_logs_description": "Tutaj znajdziesz logi control-plane Twojego klastra Kubernetes. Aby obserwować pody biznesowe, śledź dokumentację.",
-  "kube_logs_description_link": "Dowiedz się więcej."
+  "kube_logs_description_link": "Dowiedz się więcej.",
+  "kube_logs_main_description": "Poniżej znajdują się dzienniki audytu klastra Kubernetes, stanowiące chronologiczny zbiór istotnych z punktu widzenia bezpieczeństwa zapisów dokumentujących sekwencję działań w klastrze: działań generowanych przez użytkowników, przez aplikacje korzystające z interfejsu API Kubernetes oraz przez sam „control plane”.",
+  "kube_logs_tile_description": "Subskrybując ten strumień, możesz przenieść logi bezpośrednio do Logs Data Platform, co pozwoli na bardziej zaawansowane wyszukiwanie, tworzenie alertów i wizualizacji lub po prostu ich archiwizację.",
+  "logs_list_title": "Strumień danych",
+  "logs_list_description_audit": "Po tym, jak zasubskrybujesz logi klastra Kubernetes, zostaną one przeniesione do Logs Data Platform. Będziesz mógł je scentralizować za pomocą innych logów, realizować zaawansowane wyszukiwanie, zarządzać retencją, definiować alerty oraz dashboardy i, co za tym idzie, łatwo obserwować klastry."
 }
