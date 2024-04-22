@@ -59,12 +59,12 @@
                     class="col-md-4 mb-3"
                     data-model="$ctrl.byoip.campus"
                     values="[region]"
-                    data-label="{{:: 'ip_byoip_region_' + region | translate }}"
+                    data-label="{{:: 'ip_byoip_region_' + region.name | translate }}"
                     data-variant="light"
                     data-on-change="$ctrl.onRegionSelect(modelValue)"
                 >
                     <oui-select-picker-section class="text-uppercase"
-                        ><span data-ng-bind="region"></span
+                        ><span data-ng-bind="region.name"></span
                     ></oui-select-picker-section>
                 </oui-select-picker>
             </div>

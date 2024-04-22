@@ -16,5 +16,7 @@
   "octavia_load_balancer_listeners_actions_delete": "Eliminar",
   "octavia_load_balancer_listeners_create_success": "El nuevo listener {{ listener }} se ha creado correctamente.",
   "octavia_load_balancer_listeners_edit_success": "El listener {{ listener }} se ha actualizado correctamente.",
-  "octavia_load_balancer_listener_delete_success": "El listener {{ listener }} se ha eliminado correctamente."
+  "octavia_load_balancer_listener_delete_success": "El listener {{ listener }} se ha eliminado correctamente.",
+  "octavia_load_balancer_listeners_actions_policies": "Ver las L7 policies",
+  "octavia_load_balancer_listeners_policies_unavailable": "La gestión de las L7 policies solo está disponible para los listeners que utilizan los protocolos 'HTTP' y 'TERMINATED HTTPS'"
 }

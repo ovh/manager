@@ -1,0 +1,6 @@
+{
+  "octavia_load_balancer_list_l7_policies_delete_title": "Delete an L7 policy",
+  "octavia_load_balancer_list_l7_policies_delete_description": "Are you sure you want to delete the L7 policy “{{policy}}”?",
+  "octavia_load_balancer_list_l7_policies_delete_cancel": "Cancel",
+  "octavia_load_balancer_list_l7_policies_delete_confirm": "Delete"
+}

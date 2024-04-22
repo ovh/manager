@@ -37,5 +37,6 @@
   "octavia_load_balancer_create_name_field_label": "Load Balancer name",
   "octavia_load_balancer_create_submit": "Create a Load Balancer",
   "octavia_load_balancer_create_banner": "Creating your Load Balancer... This will only take a few minutes.",
-  "octavia_load_balancer_create_instance_banner_health_monitor_text": "In this first integration of the Load Balancer in the OVHcloud Control Panel, the Health Monitors can only be configured when the Load Balancer is created."
+  "octavia_load_balancer_create_instance_banner_health_monitor_text": "In this first integration of the Load Balancer in the OVHcloud Control Panel, the Health Monitors can only be configured when the Load Balancer is created.",
+  "octavia_load_balancer_create_name_field_help": "May contain numbers, letters, underscores, dashes and full stops only."
 }

@@ -57,7 +57,7 @@ const UserInfos = (): JSX.Element => {
         user={user}
         translationBase={translationBase}
       />
-      <UserDetails user={user} cssBaseClassName={cssBaseClassName} />
+      <UserDetails user={user} />
       <UserInfosFooter
         translationBase={translationBase}
       />

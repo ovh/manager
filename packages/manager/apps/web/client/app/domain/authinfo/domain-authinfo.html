@@ -18,6 +18,14 @@
                     role="alert"
                     data-ng-bind-html="'domain_dashboard_show_authinfo_description' | translate: { t0: ctrl.domain.displayName }"
                 ></div>
+                <oui-message type="warning">
+                    <p
+                        data-translate="domain_dashboard_show_authinfo_warning_part_1"
+                    ></p>
+                    <p
+                        data-translate="domain_dashboard_show_authinfo_warning_part_2"
+                    ></p>
+                </oui-message>
                 <p class="text-center mt-5">
                     <span
                         data-translate="domain_dashboard_authinfo_code"
