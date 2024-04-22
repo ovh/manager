@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.36.0...@ovh-ux/manager-pci@6.36.1) (2024-04-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2924] ([507516b](https://github.com/ovh/manager/commit/507516b48055e6ecd64b03687802d901efbfbf84))
+* **i18n:** add missing translations [CDS 2930] ([c74eca9](https://github.com/ovh/manager/commit/c74eca90f76ffbaeac4b9e1dbf43af54d556d9b5))
+* **i18n:** add missing translations [CDS 2932] ([95b660c](https://github.com/ovh/manager/commit/95b660c9a0600f16966d0be7f853f65b21bc9fa4))
+* **i18n:** add missing translations [CDS 2939] ([ef031f0](https://github.com/ovh/manager/commit/ef031f0b1fcadead0efc9c01e41c11f379ed119c))
+
+
+
+
+
 # [6.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.35.0...@ovh-ux/manager-pci@6.36.0) (2024-04-15)
 
 

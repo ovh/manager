@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.7.0...@ovh-ux/manager-hub-app@5.7.1) (2024-04-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2930] ([c74eca9](https://github.com/ovh/manager/commit/c74eca90f76ffbaeac4b9e1dbf43af54d556d9b5))
+* remove unused translations [CDS] ([533618a](https://github.com/ovh/manager/commit/533618ad3f9d6421bf91aea7f959f3b480f2a450))
+
+
+
+
+
 # [5.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.6.0...@ovh-ux/manager-hub-app@5.7.0) (2024-04-15)
 
 

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.2.4...@ovh-ux/manager-pci-rancher-app@1.2.5) (2024-04-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2906] ([bab4e0c](https://github.com/ovh/manager/commit/bab4e0c690d93cc5048d6f1624612dfd049ea70e))
+* **i18n:** add missing translations [CDS 2930] ([c74eca9](https://github.com/ovh/manager/commit/c74eca90f76ffbaeac4b9e1dbf43af54d556d9b5))
+* **i18n:** add missing translations [CDS 2932] ([95b660c](https://github.com/ovh/manager/commit/95b660c9a0600f16966d0be7f853f65b21bc9fa4))
+* **i18n:** add missing translations [CDS 2944] ([2465e81](https://github.com/ovh/manager/commit/2465e812898c6bab1d9b61f2bdd927fe7fea1227))
+* **rancher:** add seconds on lastUpdate rancher status ([ab1777f](https://github.com/ovh/manager/commit/ab1777ff3f346ff6b8a38d731d6a33114e2a53ea))
+* **rancher:** add service name in generate access modal description ([0c9fe7e](https://github.com/ovh/manager/commit/0c9fe7e8eb18ddb3e9956d229d18ebf1710acff2))
+* **rancher:** breadcrumb to redirect on rancher ([1193495](https://github.com/ovh/manager/commit/11934952e2b5a75372beaf10b3c4ab48a3668eb3))
+* **rancher:** layout cancel button delete modal ([dc21d60](https://github.com/ovh/manager/commit/dc21d60e62e1b2bf48a038cda9e8c19b33ac74a9))
+* **rancher:** manager rancher redirect correctly on rancher page ([d649d40](https://github.com/ovh/manager/commit/d649d40ada7a0c4ff89265aef48d7ab48cce4494))
+* **rancher:** reset generate access when user close modal ([d3b3e66](https://github.com/ovh/manager/commit/d3b3e66df537c95eef6859ce20f8e24859edb5da))
+* **rancher:** update bad quote in configure page ([7a04b37](https://github.com/ovh/manager/commit/7a04b37d5aeb0f2a1db49ee5ff5341faed3a63da))
+* **rancher:** update edit name modal ([d7ae358](https://github.com/ovh/manager/commit/d7ae3589c374cdf156547caeadc6ce4f1e68429a))
+
+
+
+
+
 ## [1.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.2.3...@ovh-ux/manager-pci-rancher-app@1.2.4) (2024-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
