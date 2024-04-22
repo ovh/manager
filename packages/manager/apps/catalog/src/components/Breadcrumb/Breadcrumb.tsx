@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import { useShell } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 
 function Breadcrumb() {
-  const [href, setHref] = useState('');
-  const shell = useShell();
+  const { shell } = React.useContext(ShellContext);
   const { t } = useTranslation('catalog');
+  const [href, setHref] = React.useState('');
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchUrl = async () => {
       try {
         const response = await shell.navigation.getURL('hub', '#/', {});
