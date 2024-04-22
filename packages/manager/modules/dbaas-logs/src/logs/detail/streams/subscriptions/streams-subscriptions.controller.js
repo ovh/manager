@@ -1,5 +1,6 @@
 import startCase from 'lodash/startCase';
 import datagridToIcebergFilter from '../../logs-iceberg.utils';
+import { TRACKING_HITS } from './subscriptions.constants';
 
 export default class LogsStreamsSubscriptionsCtrl {
   /* @ngInject */
@@ -24,6 +25,7 @@ export default class LogsStreamsSubscriptionsCtrl {
 
     this.serviceName = this.$stateParams.serviceName;
     this.streamId = this.$stateParams.streamId;
+    this.TRACKING_HITS = TRACKING_HITS;
   }
 
   $onInit() {
@@ -100,6 +102,7 @@ export default class LogsStreamsSubscriptionsCtrl {
    * @param subscription Object Subscription object from API
    */
   removeSubscription(subscription) {
+    this.trackClick(this.TRACKING_HITS.DELETE);
     this.CucCloudMessage.flushChildMessage();
     this.deleteSubscriptionLoading = true;
     this.LogsStreamsSubscriptionsService.deleteSubscription(
