@@ -187,6 +187,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       productName: HOSTING_PRODUCT_NAME,
       serviceNameToAddProduct: serviceName,
+      expressOrder: true,
     }),
 
     breadcrumb: /* @ngInject */ ($translate) =>

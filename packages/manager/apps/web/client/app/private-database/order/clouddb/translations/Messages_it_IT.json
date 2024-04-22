@@ -1,7 +1,7 @@
 {
   "private_database_order_clouddb_title": "Ordinare un database Web Cloud Databases",
   "private_database_order_clouddb_subtitle": "Il servizio Web Cloud Database richiede un servizio con accesso alla rete Internet pubblica.",
-  "private_database_order_clouddb_customization": "Personalizzazione",
+  "private_database_order_clouddb_customization": "Scegli la tua soluzione",
   "private_database_order_clouddb_server_version": "Versione del server ",
   "private_database_order_clouddb_server_version_placeholder": "Selezionare la versione del server",
   "private_database_order_clouddb_server_version_mariadb": "MariaDB {{version}}",
@@ -26,5 +26,8 @@
   "private_database_order_clouddb_payment_checkout_success": "L'ordine del database Web Cloud Database è stato preso in carico correttamente. L’addebito di {{price}} è stato effettuato sull’account {{accountId}}.",
   "private_database_order_clouddb_payment_checkout_success_link": "Visualizzare la fattura",
   "private_database_order_clouddb_bill_success": "{{link}} è stato generato correttamente. Il database Web Cloud Database risulterà attivo dopo il pagamento.",
-  "private_database_order_clouddb_bill_success_link": "buono d’ordine"
+  "private_database_order_clouddb_bill_success_link": "buono d’ordine",
+  "private_database_order_clouddb_bill_success_noCheckout": "L’ordine è stato preso in carico La soluzione scelta sarà attiva entro pochi minuti.",
+  "private_database_order_clouddb_bill_success_checkout": "Il tuo <a href=\"{{url}}\" target=\"_blank\">buono d’ordine</a>è stato generato correttamente! Una volta convalidato, il servizio verrà attivato.",
+  "private_database_order_error": "Si è verificato un errore durante l'ordine del database: {{message}}"
 }

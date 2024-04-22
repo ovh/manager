@@ -17,5 +17,6 @@
   "ovh_product_offers_total_price_with_tax": "Prezzo IVA inclusa:",
   "ovh_product_offers_duration": "Durata:",
   "ovh_product_offers_detach_termination": "L’opzione {{option}} scade il {{date}}",
-  "ovh_product_offers_duration_prorata_up_to": "Prorata fino al:"
+  "ovh_product_offers_duration_prorata_up_to": "Prorata fino al:",
+  "ovh_product_offers_order_express_submit": "Continua"
 }
