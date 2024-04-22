@@ -1,5 +1,7 @@
 <p data-translate="telephony_line_tab_beta_softphone_description"></p>
 
+<tuc-toast-message></tuc-toast-message>
+
 <div class="row">
     <div class="d-flex align-items-center">
         <oui-switch
@@ -20,13 +22,12 @@
         </oui-collapsible>
     </div>
 </div>
-<div class="row">
+<div class="row" data-ng-if="$ctrl.regenerateTokenAvailable">
     <div class="d-flex align-items-center">
         <oui-button
             data-id="regenerate_link"
             class="mr-3"
             data-variant="primary"
-            data-disabled="$ctrl.handlingRegenerateLinkRequest"
             data-on-click="$ctrl.regenerateLink()"
         >
             <span class="oui-icon oui-icon-refresh" aria-hidden="true"></span>
