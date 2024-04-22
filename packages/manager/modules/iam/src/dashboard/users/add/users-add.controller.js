@@ -81,6 +81,10 @@ export default class IamUsersAddCtrl {
       });
   }
 
+  getUserLogin() {
+    return `${this.me.customerCode}/${this.user.login ? this.user.login : ''}`;
+  }
+
   close() {
     this.$scope.resetAction();
   }

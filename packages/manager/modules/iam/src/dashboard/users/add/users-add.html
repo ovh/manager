@@ -23,16 +23,10 @@
         </div>
 
         <form name="$ctrl.iamUsersAddForm" data-ng-if="!$ctrl.loader">
-            <div
-                class="form-group"
-                data-ng-class="{ 'has-error': $ctrl.iamUsersAddForm.login.$touched && $ctrl.iamUsersAddForm.login.$invalid }"
+            <oui-field
+                data-label="{{:: 'user_users_update_modal_login' | translate }}"
+                data-help-text="{{$ctrl.getUserLogin()}}"
             >
-                <label
-                    class="control-label"
-                    for="login"
-                    data-translate="user_users_update_modal_login"
-                >
-                </label>
                 <input
                     type="text"
                     class="form-control"
@@ -42,37 +36,10 @@
                     data-ng-model="$ctrl.user.login"
                     data-ng-pattern="'^[a-zA-Z0-9\._\-]+$'"
                 />
-                <span
-                    class="help-block"
-                    role="alert"
-                    data-ng-if="$ctrl.iamUsersAddForm.login.$touched"
-                    data-ng-messages="$ctrl.iamUsersAddForm.login.$error"
-                >
-                    <span
-                        data-ng-message="required"
-                        data-translate="user_users_add_required"
-                    ></span>
-                    <span
-                        data-ng-message="pattern"
-                        data-translate="user_users_add_login_pattern_error"
-                    ></span>
-                </span>
-                <small
-                    class="help-block text-muted"
-                    data-ng-bind="$ctrl.me.customerCode + '/' + $ctrl.user.login"
-                />
-            </div>
-
-            <div
-                class="form-group"
-                data-ng-class="{ 'has-error': $ctrl.iamUsersAddForm.email.$touched && $ctrl.iamUsersAddForm.email.$invalid }"
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'user_users_update_modal_email' | translate }}"
             >
-                <label
-                    class="control-label"
-                    for="email"
-                    data-translate="user_users_update_modal_email"
-                >
-                </label>
                 <input
                     type="email"
                     class="form-control"
@@ -81,33 +48,10 @@
                     required
                     data-ng-model="$ctrl.user.email"
                 />
-                <span
-                    class="help-block"
-                    role="alert"
-                    data-ng-if="$ctrl.iamUsersAddForm.email.$touched"
-                    data-ng-messages="$ctrl.iamUsersAddForm.email.$error"
-                >
-                    <span
-                        data-ng-message="required"
-                        data-translate="user_users_add_required"
-                    ></span>
-                    <span
-                        data-ng-message="email"
-                        data-translate="user_users_add_email_error"
-                    ></span>
-                </span>
-            </div>
-
-            <div
-                class="form-group"
-                data-ng-class="{ 'has-error': $ctrl.iamUsersAddForm.password.$touched && $ctrl.iamUsersAddForm.password.$invalid }"
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'user_users_add_modal_password' | translate }}"
             >
-                <label
-                    class="control-label"
-                    for="password"
-                    data-translate="user_users_add_modal_password"
-                >
-                </label>
                 <input
                     type="password"
                     class="form-control"
@@ -117,34 +61,8 @@
                     data-ng-minlength="8"
                     data-ng-model="$ctrl.user.password"
                 />
-                <span
-                    class="help-block"
-                    role="alert"
-                    data-ng-if="$ctrl.iamUsersAddForm.password.$touched"
-                    data-ng-messages="$ctrl.iamUsersAddForm.password.$error"
-                >
-                    <span
-                        data-ng-message="required"
-                        data-translate="user_users_add_required"
-                    ></span>
-                    <span
-                        data-ng-message="minlength"
-                        data-translate="user_users_add_password_length_error"
-                        data-translate-values="{passwordMinLength: $ctrl.PASSWORD_MIN_LENGTH}"
-                    ></span>
-                </span>
-            </div>
-
-            <div
-                class="form-group"
-                data-ng-class="{ 'has-error': $ctrl.iamUsersAddForm.group.$touched && $ctrl.iamUsersAddForm.group.$invalid }"
-            >
-                <label
-                    class="control-label"
-                    for="group"
-                    data-translate="user_users_group"
-                >
-                </label>
+            </oui-field>
+            <oui-field data-label="{{:: 'user_users_group' | translate }}">
                 <select
                     class="form-control"
                     id="group"
@@ -154,30 +72,10 @@
                     data-ng-model="$ctrl.user.group"
                 >
                 </select>
-                <span
-                    class="help-block"
-                    role="alert"
-                    data-ng-if="$ctrl.iamUsersAddForm.group.$touched"
-                    data-ng-messages="$ctrl.iamUsersAddForm.group.$touched && $ctrl.iamUsersAddForm.group.$error"
-                >
-                    <span
-                        data-ng-message="required"
-                        data-translate="user_users_add_required"
-                    ></span>
-                </span>
-            </div>
-
-            <div
-                class="form-group"
-                data-ng-class="{ 'has-error': $ctrl.iamUsersAddForm.description.$touched && $ctrl.iamUsersAddForm.description.$invalid }"
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'user_users_add_modal_description' | translate }}"
             >
-                <label
-                    class="control-label"
-                    for="description"
-                    data-translate="user_users_add_modal_description"
-                >
-                </label>
-
                 <textarea
                     class="py-2 form-control"
                     id="description"
@@ -187,19 +85,7 @@
                     data-ng-model="$ctrl.user.description"
                 >
                 </textarea>
-                <span
-                    class="help-block"
-                    role="alert"
-                    data-ng-if="$ctrl.iamUsersAddForm.description.$touched"
-                    data-ng-messages="$ctrl.iamUsersAddForm.description.$error"
-                >
-                    <span
-                        data-ng-message="maxlength"
-                        data-translate="user_users_add_description_length_error"
-                        data-translate-values="{descriptionMaxLength: $ctrl.DESCRIPTION_MAX_LENGTH}"
-                    ></span>
-                </span>
-            </div>
+            </oui-field>
         </form>
     </oui-modal>
 </div>
