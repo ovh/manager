@@ -22,13 +22,9 @@ export default /* @ngInject */ ($stateProvider) => {
           name: 'network-security::scrubbing-log::details',
           type: 'action',
         });
-        // Retrieve IP without / and retrieve start date to display traffic chartds
-        const ip = row.subnet.split('/')[0];
-        const dateTime = new Date(row.startedAt);
-        dateTime.setTime(dateTime.getTime() + 1 * 60 * 60 * 1000);
         goTo({
-          name: 'network-security.traffic.ip',
-          params: { ip, dateTime: dateTime.toISOString() },
+          name: 'network-security.traffic',
+          params: { subnet: row.subnet },
         });
       },
       getIp: /* @ngInject */ ($state) => () => $state.params.ip,
