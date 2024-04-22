@@ -4,6 +4,7 @@ import {
   COMMUNITY_LINKS,
   PRODUCT_IMAGES,
   PCI_FEATURES,
+  DATABASE_UAPP_CONFIG,
 } from './project.constants';
 
 export default class ProjectController {
@@ -50,6 +51,32 @@ export default class ProjectController {
 
     this.PciProject.setProjectInfo(this.project);
     this.loadMessages();
+    this.uAppActions = [];
+    this.displayDatabaseLink();
+  }
+
+  displayDatabaseLink() {
+    // Add databases µApp link if feature is activated
+    if (
+      this.pciFeatures.isFeatureAvailable(
+        PCI_FEATURES.PRODUCTS.DATABASES_ANALYTICS,
+      )
+    ) {
+      // remove link for old application
+      this.actions = this.actions.filter(
+        (action) => action.feature !== PCI_FEATURES.PRODUCTS.DATABASES,
+      );
+      // add new link for uApp
+      this.getUAppUrl(
+        DATABASE_UAPP_CONFIG.universe,
+        DATABASE_UAPP_CONFIG.url.replace('{projectId}', this.projectId),
+      ).then((url) => {
+        this.uAppActions.push({
+          ...DATABASE_UAPP_CONFIG,
+          url,
+        });
+      });
+    }
   }
 
   loadMessages() {
