@@ -18,20 +18,6 @@ export type Product = {
   [key: string]: string | number | string[];
 };
 
-export type CatalogData = {
-  data: Product[];
-};
-
-export type ResponseData<T> = {
-  status: number;
-  data: T;
-  code: string;
-  response?: {
-    status: number;
-    data: { message: string };
-  };
-};
-
 /**
  * 2API-catalog endpoints : Get catalog
  */
