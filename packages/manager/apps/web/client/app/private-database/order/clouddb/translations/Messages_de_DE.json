@@ -1,7 +1,7 @@
 {
   "private_database_order_clouddb_title": "Eine Datenbank mit der Lösung „Web Cloud Databases“ bestellen",
   "private_database_order_clouddb_subtitle": "Die Verwendung von Web Cloud Databases erfordert einen Dienst mit Zugriff auf das öffentliche Netzwerk/Internet.",
-  "private_database_order_clouddb_customization": "Anpassung",
+  "private_database_order_clouddb_customization": "Lösung wählen",
   "private_database_order_clouddb_server_version": "Version des Servers",
   "private_database_order_clouddb_server_version_placeholder": "Wählen Sie die Serverversion aus",
   "private_database_order_clouddb_server_version_mariadb": "MariaDB {{version}}",
@@ -26,5 +26,8 @@
   "private_database_order_clouddb_payment_checkout_success": "Die Bestellung Ihrer Datenbank mit der Lösung Web Cloud Databases wurde registriert. Ihr Konto {{accountId} wurde mit {{price} belastet.",
   "private_database_order_clouddb_payment_checkout_success_link": "Rechnung anzeigen",
   "private_database_order_clouddb_bill_success": "Ihre {{link}} wurde erstellt. Ihre Datenbank mit der Lösung Web Cloud Databases ist nach deren Bezahlung aktiv.",
-  "private_database_order_clouddb_bill_success_link": "Bestellschein"
+  "private_database_order_clouddb_bill_success_link": "Bestellschein",
+  "private_database_order_clouddb_bill_success_noCheckout": "Ihre Bestellung wurde registriert. Ihr Produkt wird in wenigen Minuten aktiviert.",
+  "private_database_order_clouddb_bill_success_checkout": "Ihr <a href=\"{{url}}\" target=\"_blank\">Bestellschein</a> wurde erstellt. Sobald Sie den Bestellschein bestätigen, wird Ihr Produkt aktiviert.",
+  "private_database_order_error": "Bei der Bestellung einer Datenbank ist ein Fehler aufgetreten: {{message}}"
 }

@@ -26,6 +26,7 @@ export default class PrivateSqlActivationController {
     this.productOffers = {
       pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
       workflowOptions: {
+        expressOrder: true,
         catalog,
         catalogItemTypeName,
         productName: WEBHOSTING_PRODUCT_NAME,

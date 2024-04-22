@@ -1,7 +1,7 @@
 {
   "private_database_order_clouddb_title": "Order a Web Cloud Database",
   "private_database_order_clouddb_subtitle": "Web Cloud Databases require a service that has access to the public network/internet.",
-  "private_database_order_clouddb_customization": "Customisation",
+  "private_database_order_clouddb_customization": "Choose your solution",
   "private_database_order_clouddb_server_version": "Server version",
   "private_database_order_clouddb_server_version_placeholder": "Select the server version",
   "private_database_order_clouddb_server_version_mariadb": "MariaDB {{version}}",
@@ -26,5 +26,8 @@
   "private_database_order_clouddb_payment_checkout_success": "Your order for your Web Cloud Database has been processed. Your {{accountId}} account has been charged {{price}}.",
   "private_database_order_clouddb_payment_checkout_success_link": "Pay my bill",
   "private_database_order_clouddb_bill_success": "Your {{link}} has been generated. Your Web Cloud Database will be active after payment.",
-  "private_database_order_clouddb_bill_success_link": "purchase order"
+  "private_database_order_clouddb_bill_success_link": "purchase order",
+  "private_database_order_clouddb_bill_success_noCheckout": "Your order has been processed. Your product will be enabled shortly.",
+  "private_database_order_clouddb_bill_success_checkout": "Your <a href=\"{{url}}\" target=\"_blank\">purchase order</a> has been generated. Your web hosting plan will be enabled once you have validated it.",
+  "private_database_order_error": "An error has occurred ordering a database: {{message}}"
 }

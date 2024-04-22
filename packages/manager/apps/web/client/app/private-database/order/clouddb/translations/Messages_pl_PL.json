@@ -1,7 +1,7 @@
 {
   "private_database_order_clouddb_title": "Zamów bazę danych Web Cloud Databases",
   "private_database_order_clouddb_subtitle": "Oferta Web Cloud Databases wymaga usługi z dostępem do publicznej sieci internetowej.",
-  "private_database_order_clouddb_customization": "Personalizacja",
+  "private_database_order_clouddb_customization": "Wybierz rozwiązanie",
   "private_database_order_clouddb_server_version": "Wersja serwera",
   "private_database_order_clouddb_server_version_placeholder": "Wybierz wersję serwera",
   "private_database_order_clouddb_server_version_mariadb": "MariaDB {{version}}",
@@ -26,5 +26,8 @@
   "private_database_order_clouddb_payment_checkout_success": "Zamówienie dotyczące bazy danych Web Cloud Databases zostało przyjęte. Twoje konto {{accountId}} zostało obciążone kwotą {{price}}.",
   "private_database_order_clouddb_payment_checkout_success_link": "Sprawdź fakturę",
   "private_database_order_clouddb_bill_success": "Twoja {{link}} została wygenerowana. Twoja baza danych Cloud Databases będzie aktywna po dokonaniu płatności.",
-  "private_database_order_clouddb_bill_success_link": "zamówienie"
+  "private_database_order_clouddb_bill_success_link": "zamówienie",
+  "private_database_order_clouddb_bill_success_noCheckout": "Twoje zamówienie zostało zarejestrowane. Usługa zostanie włączona za kilka minut.",
+  "private_database_order_clouddb_bill_success_checkout": "<a href=\"{{url}}\" target=\"_blank\">Zamówienie</a> zostało wygenerowane. Twoja usługa zostanie włączona, kiedy ją zatwierdzisz.",
+  "private_database_order_error": "Wystąpił błąd podczas zamawiania bazy danych: {{message}}"
 }
