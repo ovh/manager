@@ -26,7 +26,9 @@ export default function Layout() {
   return (
     <>
       <RoutingSynchronisation />
-      <Outlet />
+      <div className="m-10">
+        <Outlet />
+      </div>
     </>
   );
 }
