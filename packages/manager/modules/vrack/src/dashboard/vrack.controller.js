@@ -65,6 +65,7 @@ export default class VrackMoveDialogCtrl {
     this.OvhApiMe = OvhApiMe;
     this.vrackService = CucVrackService;
     this.vrackService = vrackService;
+    this.cucVrackService = CucVrackService;
     this.atInternet = atInternet;
     this.changeOwnerTrackLabel = `${VRACK_DASHBOARD_TRACKING_PREFIX}::change-owner`;
   }
@@ -810,7 +811,7 @@ export default class VrackMoveDialogCtrl {
       this.deleteSelectedServices();
     }
   }
-  
+
   addIp(service) {
       if (service.id.match(/::/)) {
         return this.vrackService.addIpv6(this.serviceName, service.id);
