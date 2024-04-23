@@ -4,11 +4,6 @@
     data-loading="$ctrl.loadingVrack || $ctrl.loadingIpLb ||
         $ctrl.loadingBandwidth || $ctrl.loadingBandwidthOptions"
 >
-    <server-public-bandwidth-tile-definition
-        data-specifications="$ctrl.specifications"
-        data-bandwidth-option="$ctrl.bandwidthOption"
-    ></server-public-bandwidth-tile-definition>
-
     <!-- Private Bandwidth -->
     <oui-tile-definition
         data-ng-if="$ctrl.specifications.vrack.bandwidth"
