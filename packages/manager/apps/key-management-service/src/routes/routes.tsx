@@ -27,6 +27,10 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/listing')),
       },
       {
+        path: ROUTES_URLS.createKeyManagementService,
+        ...lazyRouteConfig(() => import('@/pages/create')),
+      },
+      {
         path: '/:serviceName',
         ...lazyRouteConfig(() => import('@/pages/dashboard')),
         children: [
