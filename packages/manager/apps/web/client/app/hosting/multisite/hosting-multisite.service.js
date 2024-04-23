@@ -59,7 +59,10 @@ angular.module('services').service(
               });
             },
           );
+        } else {
+          throw new Error(response.messages[0]?.message);
         }
+
         this.Hosting.resetDomains();
         this.getTaskIds({ fn: 'attachedDomain/delete' }, serviceName).then(
           (taskIds) => {
