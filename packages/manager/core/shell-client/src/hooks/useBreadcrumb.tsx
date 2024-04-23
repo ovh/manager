@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShellContext } from '../ShellContext';
 
-type BreadcrumbItem = {
+export type BreadcrumbItem = {
   label: string;
   href?: string;
 };

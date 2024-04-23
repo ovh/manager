@@ -10,12 +10,13 @@ export const createApiQueryFilesActions = ({
   endpoints,
   apiVersion,
   appDirectory,
+  appName,
 }) =>
   Object.entries(endpoints).map(([method, data]) => ({
     type: 'add',
     path: join(
       appDirectory,
-      `../../../apps/{{dashCase appName}}/src/api/${method.toUpperCase()}/api${apiVersion}/services.ts`,
+      `../../../apps/{{dashCase appName}}/src/data/api/${appName}.ts`,
     ),
     templateFile: join(
       appDirectory,

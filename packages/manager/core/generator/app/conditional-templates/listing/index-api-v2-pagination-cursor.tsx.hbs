@@ -7,19 +7,19 @@ import { OsdsButton, OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
-import { getListingIcebergV2 } from '@/api';
+import {
+  Datagrid,
+  DataGridTextCell,
+  useDatagridSearchParams,
+} from '@ovhcloud/manager-components';
+
+import { getListingIcebergV2 } from '@/data/api/{{appName}}';
 
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 import appConfig from '@/{{appName}}.config';
-
-import {
-  Datagrid,
-  DataGridTextCell,
-  useDatagridSearchParams,
-} from '@ovhcloud/manager-components';
 
 export default function Listing() {
   const { t } = useTranslation('listing');

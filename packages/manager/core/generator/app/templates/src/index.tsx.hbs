@@ -7,7 +7,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import App from './App';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
-import './global.css';
+import './index.scss';
 import './vite-hmr';
 
 import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
@@ -28,7 +28,7 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: [`listing`, `dashboard`, `onboarding`],
+    ns: ['listing', 'dashboard', 'onboarding'],
   });
 
   const region = context.environment.getRegion();
