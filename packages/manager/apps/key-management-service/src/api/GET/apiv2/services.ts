@@ -125,3 +125,34 @@ export const sortOKMS = (okms: OKMS[], sorting: ColumnSort): OKMS[] => {
 
   return data;
 };
+
+type OKMSCatalogPlanConfiguration = {
+  isCustom: boolean;
+  isMandatory: boolean;
+  name: string;
+  values: string[];
+};
+
+type OKMSCatalogPlan = {
+  configurations: OKMSCatalogPlanConfiguration[];
+};
+
+export type ErrorResponse = {
+  response: {
+    status: number;
+    data: { message: string };
+  };
+};
+
+export type OKMSCatalog = {
+  plans: OKMSCatalogPlan[];
+};
+
+export const getOrderCatalogOKMS = async (
+  ovhSubsidiary: string,
+): Promise<OKMSCatalog> => {
+  const { data } = await apiClient.v6.get<OKMSCatalog>(
+    `/order/catalog/public/okms?ovhSubsidiary=${ovhSubsidiary}`,
+  );
+  return data;
+};
