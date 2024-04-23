@@ -7,5 +7,8 @@
   "cpbhd_bill_link": "Wyświetl wszystkie faktury",
   "cpbhd_bill_pdf_tooltip": "Wyświetl fakturę w formacie PDF",
   "cpbhd_bill_pdf_link": "Faktura {{month}} {{year}}",
-  "cpb_error_message": "Wystąpił problem z pobraniem wszystkich informacji."
+  "cpb_error_message": "Wystąpił problem z pobraniem wszystkich informacji.",
+  "cpbhd_monthly_post_paid_header": "Abonamenty miesięczne z {{lastMonth}} {{previousYear}}",
+  "cpbhd_monthly_bill_header": "Faktura {{month}} {{year}}",
+  "cpbhd_monthly_bill_description": "(za zużycie {{lastMonth}} {{previousYear}})"
 }
