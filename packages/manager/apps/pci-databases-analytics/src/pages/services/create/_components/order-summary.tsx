@@ -89,7 +89,7 @@ const EngineDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
           </>
         )}
       </div>
-      <div className="flex items-start pl-4 gap-2">
+      <div className="flex items-center pl-4 gap-2">
         <Hash className="size-4" />
         {order.version?.name ? (
           <span>
@@ -172,7 +172,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       {(order.flavor?.vcores > 0 || order.flavor?.ram.value > 0) && (
         <div>
           {order.flavor.vcores > 0 && (
-            <div className="flex items-start pl-4 gap-2">
+            <div className="flex items-center pl-4 gap-2">
               <Cpu className="size-4" />
               <span>
                 {t('summaryFieldFlavorCores', { count: order.flavor.vcores })}
@@ -180,7 +180,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
             </div>
           )}
           {order.flavor.ram.value > 0 && (
-            <div className="flex items-start pl-4 gap-2">
+            <div className="flex items-center pl-4 gap-2">
               <MemoryStick className="size-4" />
               <span>
                 {t('summaryFieldFlavorMemory', {
@@ -214,12 +214,12 @@ const ClusterDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         {t('summaryFieldClusterLabel')}
       </Button>
       <div>
-        <div className="flex items-start pl-4 gap-2">
+        <div className="flex items-center pl-4 gap-2">
           <Boxes className="size-4" />
           <span>{t('summaryFieldClusterNodes', { count: order.nodes })}</span>
         </div>
         {order.flavor?.storage && (
-          <div className="flex items-start pl-4 gap-2">
+          <div className="flex items-center pl-4 gap-2">
             <HardDrive className="size-4" />
             {order.additionalStorage > 0 ? (
               <span>
@@ -259,7 +259,7 @@ const NetworkrDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       </div>
       {order.network.type === database.NetworkTypeEnum.private && (
         <div>
-          <div className="flex items-start pl-4 gap-2 flex-wrap">
+          <div className="flex items-center pl-4 gap-2 flex-wrap">
             <Cloud className="size-4" />
             <span>{t('summaryFieldNetworkNetwork')}</span>
             {order.network.network ? (
@@ -270,7 +270,7 @@ const NetworkrDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
               </span>
             )}
           </div>
-          <div className="flex items-start pl-4 gap-2">
+          <div className="flex items-center pl-4 gap-2">
             <Cloudy className="size-4" />
             <span>{t('summaryFieldNetworSubnet')}</span>
             {order.network.subnet ? (

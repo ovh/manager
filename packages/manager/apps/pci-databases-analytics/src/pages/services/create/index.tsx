@@ -12,6 +12,8 @@ import OrderFunnel from './_components/order-funnel';
 import { database } from '@/models/database';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 import { OvhLink } from '@/components/links';
+import Guides from '@/components/guides';
+import { GuideSections } from '@/models/guide';
 
 export function breadcrumb() {
   return (
@@ -64,7 +66,10 @@ const Service = () => {
   }
   return (
     <>
-      <h2>{t('title')}</h2>
+      <div className="flex justify-between w-full items-center">
+        <h2>{t('title')}</h2>
+        <Guides section={GuideSections.funnel} noEngineFilter />
+      </div>
       <p>
         <Trans
           t={t}
@@ -80,7 +85,19 @@ const Service = () => {
         ></Trans>
       </p>
       {loading ? (
-        <Skeleton className="h-4 w-32" />
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          <div className="col-span-1 md:col-span-3 divide-y-[1rem] divide-transparent">
+            <Skeleton className="w-80 h-8" />
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
+              <Skeleton className="w-full h-52" />
+              <Skeleton className="w-full h-52" />
+              <Skeleton className="w-full h-52" />
+              <Skeleton className="w-full h-52" />
+              <Skeleton className="w-full h-52" />
+            </div>
+          </div>
+          <Skeleton className="w-full h-[600px]" />
+        </div>
       ) : (
         <OrderFunnel
           availabilities={availabilitiesQuery.data.filter((a) =>
