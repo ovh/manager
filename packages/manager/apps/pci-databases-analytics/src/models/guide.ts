@@ -20,4 +20,5 @@ export enum GuideSections {
   'onboarding' = 'onboarding',
   'metrics' = 'metrics',
   'queries' = 'queries',
+  'funnel' = 'funnel',
 }
