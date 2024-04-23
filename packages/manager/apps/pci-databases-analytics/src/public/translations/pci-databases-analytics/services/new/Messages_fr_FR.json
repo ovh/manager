@@ -1,7 +1,9 @@
 {
   "title": "Créer un service de base de données",
   "breadcrumb": "Créer un service de base de données",
-  "description": "Créer un service de base de données disponible dans votre projet Public Cloud. Si vous souhaitez utiliser un réseau privé et que celui-ci n’existe pas encore, merci de créer <anchor>un réseau privé ou un sous-réseau</anchor> d’abord.",
+  "discoveryMode": "Vous êtes actuellement en mode « Découverte ». Pour finaliser la création de votre service, vous devez activer votre projet.",
+  "discoveryModeActivate": "Activez votre projet",
+  "description": "Créer un service de base de données disponible dans votre projet Public Cloud. Si vous souhaitez utiliser un réseau privé et que celui-ci n'existe pas encore, merci de créer <anchor>un réseau privé ou un sous-réseau</anchor> d’abord.",
   "fieldEngineLabel": "Choisissez votre type de base de données",
   "fieldEngineDescription": "Sélectionnez le type de base de données correspondant à vos besoins",
   "fieldPlanLabel": "Sélectionnez une offre",
