@@ -1,7 +1,7 @@
 {
   "private_database_order_clouddb_title": "Contratar una base de datos Web Cloud Databases",
   "private_database_order_clouddb_subtitle": "La solución Web Cloud Databases requiere un servicio con acceso a la red pública de internet.",
-  "private_database_order_clouddb_customization": "Personalización",
+  "private_database_order_clouddb_customization": "Elija su solución",
   "private_database_order_clouddb_server_version": "Versión del servidor",
   "private_database_order_clouddb_server_version_placeholder": "Seleccione la versión del servidor",
   "private_database_order_clouddb_server_version_mariadb": "MariaDB {{version}}",
@@ -26,5 +26,8 @@
   "private_database_order_clouddb_payment_checkout_success": "El pedido de su base de datos Web Cloud Databases se ha procesado correctamente. Se ha cargado un importe de {{price}} a su cuenta {{accountId}}.",
   "private_database_order_clouddb_payment_checkout_success_link": "Ver mi factura",
   "private_database_order_clouddb_bill_success": "Su {{link}} se ha generado correctamente. Su base de datos Web Cloud Databases se activará una vez realizado el pago.",
-  "private_database_order_clouddb_bill_success_link": "orden de pedido"
+  "private_database_order_clouddb_bill_success_link": "orden de pedido",
+  "private_database_order_clouddb_bill_success_noCheckout": "El pedido se ha registrado. El producto se activará en unos instantes.",
+  "private_database_order_clouddb_bill_success_checkout": "La <a href=\"{{url}}\" target=\"_blank\">orden de pedido</a> se ha generado correctamente. El producto se activará una vez que lo haya validado.",
+  "private_database_order_error": "Se ha producido un error al contratar la base de datos: {{message}}"
 }

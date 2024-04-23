@@ -1,7 +1,14 @@
+import {
+  CONFIGURATION_OPTIONS,
+  WEBHOSTING_ORDER_PRODUCT,
+} from '../domain-webhosting-order.constants';
+
 export default class {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, $window, RedirectionService) {
     this.$translate = $translate;
+    this.$window = $window;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
   }
 
   $onInit() {
@@ -10,15 +17,54 @@ export default class {
   }
 
   orderWebhosting() {
-    this.validatingCheckout = true;
-    return this.validateCheckout(this.cartId, {
-      autoPayWithPreferredPaymentMethod: this.autoPayWithPreferredPaymentMethod,
-    }).catch(() =>
-      this.displayErrorMessage(
-        this.$translate.instant(
-          'domain_webhosting_order_payment_checkout_error',
-        ),
-      ),
+    const { enableHosting, enableEmails } = this.cartOption.dnsConfiguration;
+    let dnsZoneLabel = CONFIGURATION_OPTIONS.DNS_ZONE.VALUES.NO_CHANGE;
+    if (enableHosting && enableEmails) {
+      dnsZoneLabel = CONFIGURATION_OPTIONS.DNS_ZONE.VALUES.RESET_ALL;
+    }
+    if (enableHosting) {
+      dnsZoneLabel = CONFIGURATION_OPTIONS.DNS_ZONE.VALUES.RESET_ONLY_A;
+    }
+    if (enableEmails) {
+      dnsZoneLabel = CONFIGURATION_OPTIONS.DNS_ZONE.VALUES.RESET_ONLY_MX;
+    }
+
+    const expressOrderJson = {
+      planCode: this.cartOption.offer.planCode,
+      duration: this.cartOption.offer.durations[0],
+      pricingMode: this.cartOption.module.pricingMode,
+      quantity: 1,
+      configuration: [
+        {
+          label: CONFIGURATION_OPTIONS.LEGACY_DOMAIN,
+          value: this.domainName,
+        },
+        {
+          label: CONFIGURATION_OPTIONS.DNS_ZONE.LABEL,
+          value: dnsZoneLabel,
+        },
+      ],
+      option: [
+        {
+          planCode: this.cartOption.module.planCode,
+          duration: this.cartOption.module.duration,
+          pricingMode: this.cartOption.module.pricingMode,
+          quantity: 1,
+          configuration: [
+            {
+              label: CONFIGURATION_OPTIONS.LEGACY_DOMAIN,
+              value: this.domainName,
+            },
+          ],
+        },
+      ],
+      productId: WEBHOSTING_ORDER_PRODUCT,
+    };
+
+    return this.$window.open(
+      `${this.expressOrderUrl}?products=${JSURL.stringify([expressOrderJson])}`,
+      '_blank',
+      'noopener',
     );
   }
 }
