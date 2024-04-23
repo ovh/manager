@@ -156,7 +156,9 @@ const AddEditConnectionPool = ({
     <Dialog {...controller}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle>{t(`${prefix}ConnectionPoolTitle`)}</DialogTitle>
+          <DialogTitle data-testid="add-edit-pools-modal">
+            {t(`${prefix}ConnectionPoolTitle`)}
+          </DialogTitle>
           {!isEdition && (
             <DialogDescription>
               {t('addConnectionPoolDescription')}
@@ -174,6 +176,7 @@ const AddEditConnectionPool = ({
                   <FormLabel>{t('formConnectionPoolFieldNameLabel')}</FormLabel>
                   <FormControl>
                     <Input
+                      data-testId="add-edit-pools-name-input"
                       placeholder="name"
                       disabled={
                         isEdition || isPendingAddPool || isPendingEditPool
@@ -242,9 +245,14 @@ const AddEditConnectionPool = ({
               name="size"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('formUserFieldSizeLabel')}</FormLabel>
+                  <FormLabel>{t('formConnectionPoolFieldSizeLabel')}</FormLabel>
                   <FormControl>
-                    <Input type="number" value={field.value} {...field} />
+                    <Input
+                      data-testId="add-edit-pools-size-input"
+                      type="number"
+                      value={field.value}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -289,11 +297,16 @@ const AddEditConnectionPool = ({
             />
             <DialogFooter className="flex justify-end mt-4">
               <DialogClose asChild>
-                <Button type="button" variant="outline">
+                <Button
+                  data-testId="add-edit-pools-cancel-button"
+                  type="button"
+                  variant="outline"
+                >
                   {t('formConnectionButtonCancel')}
                 </Button>
               </DialogClose>
               <Button
+                data-testId="add-edit-pools-submit-button"
                 type="submit"
                 disabled={isPendingAddPool || isPendingEditPool}
               >
