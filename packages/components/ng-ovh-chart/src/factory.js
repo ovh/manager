@@ -101,6 +101,9 @@ export default /* @ngInject */ (CHARTS) => {
    * @param {String} label Label to set
    */
   ChartjsFactory.prototype.setYLabel = function setYLabel(label) {
+    if (!this.options.scales.y.title) {
+      this.options.scales.y.title = { display: true };
+    }
     this.options.scales.y.title.text = label;
   };
 
