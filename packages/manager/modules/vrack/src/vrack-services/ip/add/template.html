@@ -12,6 +12,7 @@
                         data-primary-label="{{:: 'vrack__assigned-ip__subrnet_add_confirm' | translate }}"
                         data-secondary-action="$ctrl.closeModal()"
                         data-secondary-label="{{:: 'vrack__assigned-ip__subrnet_add_cancel' | translate }}"
+                        data-primary-disabled="$ctrl.formName.$invalid"
                         data-on-dismiss="$ctrl.closeModal()"
                         class="oui-modal_info"
                     >

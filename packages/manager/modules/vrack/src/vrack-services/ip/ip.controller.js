@@ -10,6 +10,7 @@ export default class VrackAssignedIpCtrl {
   }
 
   $onInit() {
+    const parentCallBack = this.refreshData();
     this.vrackAssignedIpService
       .getIpVrackSubnet(this.serviceName, this.ip.niceName)
       .then(({ data }) => {
@@ -25,7 +26,7 @@ export default class VrackAssignedIpCtrl {
             nexthop: address,
           })
           .then(() => {
-            this.refreshData()();
+            parentCallBack();
           })
           .catch((err) => {
             this.CucCloudMessage.error(
