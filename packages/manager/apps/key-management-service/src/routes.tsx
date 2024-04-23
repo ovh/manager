@@ -27,7 +27,7 @@ export default [
       },
       {
         path: '/:serviceName',
-        ...lazyRouteConfig(() => import('@/pages/dashboard/_layout')),
+        ...lazyRouteConfig(() => import('@/pages/dashboard')),
         children: [
           {
             path: '',

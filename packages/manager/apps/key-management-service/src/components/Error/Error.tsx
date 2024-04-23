@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useShell } from '@ovh-ux/manager-react-core-application';
+import { useShell } from '@ovh-ux/manager-react-shell-client';
 import {
   ErrorMessage,
   TRACKING_LABELS,

@@ -1,16 +1,11 @@
-import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
   fetchIcebergV2,
   fetchIcebergV6,
   apiClient,
 } from '@ovh-ux/manager-core-api';
 
-type PermissionsGroup = unknown;
 type Response = unknown;
 type Uuid = unknown;
-type Action = unknown;
-type Resource = unknown;
-type TagFilter = unknown;
 
 export type GetiamPolicyListParams = {
   /** Pagination cursor */
