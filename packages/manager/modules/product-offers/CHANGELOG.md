@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.5.0...@ovh-ux/manager-product-offers@5.6.0) (2024-04-23)
+
+
+### Features
+
+* **web:** code promo project ([#11506](https://github.com/ovh/manager/issues/11506)) ([8f518d1](https://github.com/ovh/manager/commit/8f518d14663a5d05af05ba2424a61b381b4bbc14))
+
+
+
+
+
 # [5.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.4.0...@ovh-ux/manager-product-offers@5.5.0) (2024-02-21)
 
 

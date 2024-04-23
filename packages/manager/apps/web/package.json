@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "18.21.1",
+  "version": "18.22.0",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -34,7 +34,7 @@
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.0",
     "@ovh-ux/manager-office": "^2.11.0",
     "@ovh-ux/manager-phone-prefix": "^1.1.1",
-    "@ovh-ux/manager-product-offers": "^5.5.0",
+    "@ovh-ux/manager-product-offers": "^5.6.0",
     "@ovh-ux/manager-sharepoint": "^2.11.1",
     "@ovh-ux/manager-web-paas": "^1.10.0",
     "@ovh-ux/ng-at-internet": "^5.11.9",
