@@ -38,32 +38,25 @@ const Service = () => {
     capabilitiesQuery.isLoading ||
     catalogQuery.isLoading;
 
-  let suggestions = suggestionsQuery.data;
-  if (searchParams.has('target')) {
-    const targetValue = searchParams.get('target');
-    try {
-      const targetObject = JSON.parse(targetValue);
-      if (targetObject?.steps) {
-        const stepsObject = targetObject.steps;
-        suggestions = suggestions.map((s) =>
-          s.engine === stepsObject.STEP_1
+  // if we have en engine set in query params, override suggestions
+  const stepEngine = searchParams.get('STEP_1');
+  const suggestions =
+    stepEngine && suggestionsQuery.data?.find((f) => f.engine === stepEngine)
+      ? suggestionsQuery.data.map((s) =>
+          s.engine === stepEngine
             ? {
+                ...s,
                 default: true,
-                engine: s.engine,
-                version: stepsObject.STEP_2 ?? s.version,
-                plan: stepsObject.STEP_3 ?? s.plan,
-                region: stepsObject.STEP_4 ?? s.region,
-                flavor: stepsObject.STEP_5 ?? s.flavor,
+                plan: searchParams.get('STEP_2') ?? s.plan,
+                region: searchParams.get('STEP_3') ?? s.region,
+                flavor: searchParams.get('STEP_4') ?? s.flavor,
               }
             : {
                 ...s,
                 default: false,
               },
-        );
-      }
-      // eslint-disable-next-line no-empty
-    } catch (error) {}
-  }
+        )
+      : suggestionsQuery.data;
   return (
     <>
       <div className="flex justify-between w-full items-center">
