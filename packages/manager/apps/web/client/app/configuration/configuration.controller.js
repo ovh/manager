@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { OVH_WEB_OFFERS_2024 } from './configuration.constants';
 
 angular.module('App').controller(
   'configurationCtrl',
@@ -6,6 +7,7 @@ angular.module('App').controller(
     /* @ngInject */
     constructor($scope, coreConfig, constants) {
       this.constants = constants;
+      this.OVH_WEB_OFFERS_2024 = OVH_WEB_OFFERS_2024;
       $scope.user = coreConfig.getUser();
     }
 
