@@ -525,7 +525,11 @@ export default class OverTheBoxDetailsCtrl {
       })
       .$promise.then((devices) => {
         this.device = devices;
-        this.kpiInterfaces = devices.networkInterfaces;
+        this.kpiInterfaces = devices.networkInterfaces
+          .filter((netInterface) => netInterface.gateway != null)
+          .map((netInterface) =>
+            netInterface.device ? netInterface.device : netInterface.name,
+          );
         this.checkPublicIP();
 
         if (this.device && this.device.publicIp) {
