@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.21.1...@ovh-ux/manager-web@18.22.0) (2024-04-23)
+
+
+### Features
+
+* **web:** code promo project ([#11506](https://github.com/ovh/manager/issues/11506)) ([8f518d1](https://github.com/ovh/manager/commit/8f518d14663a5d05af05ba2424a61b381b4bbc14))
+
+
+
+
+
 ## [18.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.21.0...@ovh-ux/manager-web@18.21.1) (2024-04-22)
 
 
