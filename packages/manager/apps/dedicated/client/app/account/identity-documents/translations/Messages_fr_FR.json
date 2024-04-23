@@ -8,7 +8,7 @@
   "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png. La taille maximale du fichier pour chaque document est de 10 Mo.",
   "user_account_identity_documents_selection_file_format_invalid": "Le format {{values}} du ou des documents téléchargés n'est pas accepté. Veuillez respecter le format requis : jpg, jpeg, pdf et png",
   "user_account_identity_documents_submit": "Envoyer mes documents",
-  "user_account_identity_documents_submit_success_message_title": "Merci, nous avons bien reçu vos documents !",
+  "user_account_identity_documents_submit_success_message_title": "Merci, nous avons bien reçu tous vos documents !",
   "user_account_identity_documents_submit_success_message_description": "Ils vont être soumis à notre équipe pour validation. Notre équipe support vous répond dans les <b>24 heures !*</b> Vous serez notifié de leur validation par email, ou vous serez contacté si nous avons besoin de plus d'informations.",
   "user_account_identity_documents_submit_error_message_description": "Vos documents n'ont pas été correctement envoyés. Veuillez refaire l'upload et l'envoi de vos documents",
   "user_account_identity_documents_go_back_to_dashboard": "Voir mon tableau de bord",
