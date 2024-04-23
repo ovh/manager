@@ -66,5 +66,9 @@
   "manager_components_region_DAL": "Dallas",
   "manager_components_region_DAL_micro": "Dallas ({{ micro }})",
   "manager_components_region_location_DAL": "Estados Unidos",
-  "manager_components_region_continent_DAL": "Estados Unidos"
+  "manager_components_region_continent_DAL": "Estados Unidos",
+  "manager_components_region_VIN": "Vint Hill",
+  "manager_components_region_VIN_micro": "Vint Hill ({{ micro }})",
+  "manager_components_region_HIL": "Hillsboro",
+  "manager_components_region_HIL_micro": "Hillsboro ({{ micro }})"
 }
