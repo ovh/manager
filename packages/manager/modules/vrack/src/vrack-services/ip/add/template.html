@@ -8,20 +8,20 @@
                     data-ng-submit="$ctrl.onSubmit()"
                 >
                     <oui-modal
-                        data-heading="{{:: 'vrack__assigned-ip__subrnet_add_title' | translate }}"
-                        data-primary-label="{{:: 'vrack__assigned-ip__subrnet_add_confirm' | translate }}"
+                        data-heading="{{:: 'vrack__assigned-ip__subnet_add_title' | translate }}"
+                        data-primary-label="{{:: 'vrack__assigned-ip__subnet_confirm' | translate }}"
                         data-secondary-action="$ctrl.closeModal()"
-                        data-secondary-label="{{:: 'vrack__assigned-ip__subrnet_add_cancel' | translate }}"
+                        data-secondary-label="{{:: 'vrack__assigned-ip__subnet_cancel' | translate }}"
                         data-primary-disabled="$ctrl.formName.$invalid"
                         data-on-dismiss="$ctrl.closeModal()"
                         class="oui-modal_info"
                     >
                         <p
-                            data-translate="vrack__assigned-ip__subrnet_add_description"
+                            data-translate="vrack__assigned-ip__subnet_add_description"
                         ></p>
 
                         <oui-field
-                            label="{{ 'vrack__assigned-ip__subrnet_add_subnet' | translate }}"
+                            label="{{ 'vrack__assigned-ip__subnet_add_subnet' | translate }}"
                         >
                             <input
                                 class="oui-input"
@@ -33,7 +33,7 @@
                         </oui-field>
 
                         <oui-field
-                            label="{{ 'vrack__assigned-ip__subrnet_add_address' | translate }}"
+                            label="{{ 'vrack__assigned-ip__subnet_add_address' | translate }}"
                         >
                             <input
                                 class="oui-input"
