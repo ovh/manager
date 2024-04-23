@@ -8,14 +8,16 @@
             <span data-translate="vrack__assigned_ip_add_subnet"></span>
         </button>
     </div>
-    <ul class="vrack__assigned-ip__sub-item">
+    <ul
+        class="vrack__assigned-ip__sub-item"
+        data-ng-repeat="subnet in $ctrl.subnets track by $index"
+    >
         <!-- subnet -->
         <li class="vrack__assigned-ip__subnet">
             <span
                 class="vrack__assigned-ip__subnet__title"
-                data-ng-bind="::$ctrl.ip.niceName"
                 data-translate="vrack__assigned_ip_subnet_via"
-                data-translate-values="{ ipblock: $ctrl.ip.niceName, ip: $ctrl.ip.niceName}"
+                data-translate-values="{ ipblock: $ctrl.ip.niceName, ip: subnet }"
             ></span>
             <oui-button size="s" variant="link">
                 <span class="oui-icon oui-icon-bin"></span>
