@@ -17,5 +17,6 @@
   "telephony_line_management_actions_line_cancel_delete_line_new": "Annuler la résiliation de la ligne",
   "telephony_line_antihack_title": "Zabezpieczenie antyhakerskie",
   "telephony_line_antihack_text": "Wykryto podejrzane połączenia wychodzące z Twojej linii telefonicznej, numery docelowe zostały zablokowane.",
-  "telephony_line_antihack_link": "Kliknij tutaj, aby zarządzać wprowadzonymi ograniczeniami."
+  "telephony_line_antihack_link": "Kliknij tutaj, aby zarządzać wprowadzonymi ograniczeniami.",
+  "telephony_line_management_actions_line_softphone": "Wykorzystanie linii z Softphone'em"
 }

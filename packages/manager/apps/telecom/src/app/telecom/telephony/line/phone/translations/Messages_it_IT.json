@@ -14,5 +14,6 @@
   "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
   "telephony_group_line_phone_section_back_link_target": "gestione del telefono",
   "telephony_line_phone_actions_line_phone_order_attach": "Collegare la linea a un dispositivo attuale",
-  "telephony_line_phone_actions_line_phone_order_detach": "Scollega la linea di un telefono"
+  "telephony_line_phone_actions_line_phone_order_detach": "Scollega la linea di un telefono",
+  "telephony_line_phone_actions_line_details_softphone_breadcrumb": "Softphone"
 }
