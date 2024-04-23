@@ -64,10 +64,10 @@
         data-translate="{{'user_account_identity_documents_requirements_address_acceptance_criteria_1' + ($ctrl.userType === $ctrl.USER_TYPE.individual ? '_individual' : '')}}"
     ></li>
     <li
-        data-translate="{{'user_account_identity_documents_requirements_address_acceptance_criteria_2' + ($ctrl.userType === $ctrl.USER_TYPE.individual ? '_individual' : '')}}"
+        data-ng-if="$ctrl.userType !== $ctrl.USER_TYPE.individual"
+        data-translate="user_account_identity_documents_requirements_address_acceptance_criteria_2"
     ></li>
     <li
-        data-ng-if="$ctrl.userType !== $ctrl.USER_TYPE.individual"
         data-translate="user_account_identity_documents_requirements_address_acceptance_criteria_3"
     ></li>
 </ul>
