@@ -396,6 +396,17 @@ export const NEW_SUPPORT_TICKET_PARAMS = {
   preFetchData: true,
 };
 
+export const CORPORATION_TYPES = {
+  sapa: 'SAPA',
+  sas: 'SAS',
+  scarl: 'SCARL',
+  snc: 'SNC',
+  spa: 'SPA',
+  srl: 'SRL',
+  ss: 'SS',
+  sc: 'SC',
+};
+
 export default {
   ENUM_TRANSLATION_RULES,
   MODEL_DEBOUNCE_DELAY,
@@ -413,4 +424,5 @@ export default {
   IN_SUBSIDIARY,
   USER_TYPE_ENTERPRISE,
   NEW_SUPPORT_TICKET_PARAMS,
+  CORPORATION_TYPES,
 };

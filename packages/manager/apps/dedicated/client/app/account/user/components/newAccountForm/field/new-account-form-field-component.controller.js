@@ -10,6 +10,7 @@ import {
   MODEL_DEBOUNCE_DELAY,
   FIELD_NAME_LIST,
   USER_TYPE_ENTERPRISE,
+  CORPORATION_TYPES,
 } from '../new-account-form-component.constants';
 
 export default class NewAccountFormFieldController {
@@ -296,6 +297,10 @@ export default class NewAccountFormFieldController {
         translated = value;
       } else if (this.rule.fieldName === this.FIELD_NAME_LIST.managerLanguage) {
         translated = get(find(LANGUAGES.available, { key: value }), 'name');
+      } else if (this.rule.fieldName === this.FIELD_NAME_LIST.corporationType) {
+        translated =
+          CORPORATION_TYPES[value] ||
+          `signup_enum_${this.rule.fieldName}_${value}`;
       } else {
         translated = this.$translate.instant(
           `signup_enum_${this.rule.fieldName}_${value}`,
