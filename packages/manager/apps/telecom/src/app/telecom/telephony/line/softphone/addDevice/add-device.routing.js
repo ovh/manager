@@ -9,7 +9,12 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       resolve: {
-        goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+        angularQr: /* @ngInject */ ($ocLazyLoad) =>
+          import('angular-qr').then((module) =>
+            $ocLazyLoad.inject(module.default || module),
+          ),
+        goBack: /* @ngInject */ ($state) => (reload) =>
+          $state.go('^', {}, { reload }),
       },
       layout: 'modal',
     },
