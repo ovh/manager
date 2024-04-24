@@ -33,6 +33,7 @@
     "file-saver": "^2.0.5",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.3",
+    "lodash.uniqby": "^4.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.50.1",
