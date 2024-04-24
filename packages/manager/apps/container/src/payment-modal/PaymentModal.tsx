@@ -64,6 +64,10 @@ const PaymentModal = (): JSX.Element => {
     .getURL('dedicated', '#/billing/payment/method');
 
   const closeHandler = () => setShowPaymentModal(false);
+  const validateHandler = () =>  {
+    setShowPaymentModal(false);
+    window.location.href = paymentMethodURL;
+  }
 
   const { data: paymentResponse } = useQuery({
     queryKey: ['me-payment-method'],
@@ -107,7 +111,7 @@ const PaymentModal = (): JSX.Element => {
       </OsdsButton>
 
       <OsdsButton
-        onClick={() => (window.location.href = paymentMethodURL)}
+        onClick={validateHandler}
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.flat}
