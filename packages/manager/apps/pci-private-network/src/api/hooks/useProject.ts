@@ -1,21 +1,6 @@
 import { QueryOptions, useQuery } from '@tanstack/react-query';
-import { getProject, Project } from '@/api/data/project';
-
-export interface ResponseAPIError {
-  message: string;
-  stack: string;
-  name: string;
-  code: string;
-  response?: {
-    headers?: {
-      [key: string]: string;
-      'x-ovh-queryid': string;
-    };
-    data?: {
-      message?: string;
-    };
-  };
-}
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { getProject, TProject } from '@/api/data/project';
 
 export const getProjectQuery = (projectId: string) => ({
   queryKey: ['project', projectId],
@@ -24,7 +9,7 @@ export const getProjectQuery = (projectId: string) => ({
 
 export const useProject = (
   projectId: string,
-  opt?: QueryOptions<Project, ResponseAPIError>,
+  opt?: QueryOptions<TProject, ApiError>,
 ) =>
   useQuery({
     ...getProjectQuery(projectId),
