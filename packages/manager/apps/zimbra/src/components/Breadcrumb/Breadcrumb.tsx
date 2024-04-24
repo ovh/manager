@@ -29,7 +29,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
       className="mb-4"
       items={[
         {
-          label: t('title'),
+          label: t('zimbra_dashboard_title'),
           onClick: () => navigate(urls.root),
         },
         serviceName && {
