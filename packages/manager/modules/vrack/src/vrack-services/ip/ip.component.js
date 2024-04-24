@@ -7,6 +7,7 @@ export default {
   template,
   bindings: {
     openAddModal: '&',
+    openDeleteModal: '&',
     refreshData: '&',
     serviceName: '<',
     ip: '<',
