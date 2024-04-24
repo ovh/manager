@@ -194,14 +194,22 @@ export default class NewAccountFormFieldController {
   setDefaultValue() {
     if (this.rule.defaultValue && !this.rule.initialValue) {
       if (this.getFieldType() === 'select') {
+        let translated;
+        if (this.rule.fieldName === this.FIELD_NAME_LIST.timezone) {
+          translated = this.rule.defaultValue;
+        } else if (
+          this.rule.fieldName === this.FIELD_NAME_LIST.corporationType &&
+          CORPORATION_TYPES[this.rule.defaultValue]
+        ) {
+          translated = CORPORATION_TYPES[this.rule.defaultValue];
+        } else {
+          translated = this.$translate.instant(
+            `signup_enum_${this.rule.fieldName}_${this.rule.defaultValue}`,
+          );
+        }
         this.value = {
           key: this.rule.defaultValue,
-          translated:
-            this.rule.fieldName === this.FIELD_NAME_LIST.timezone
-              ? this.rule.defaultValue
-              : this.$translate.instant(
-                  `signup_enum_${this.rule.fieldName}_${this.rule.defaultValue}`,
-                ),
+          translated,
         };
         if (this.newAccountForm.onFieldChange) {
           this.newAccountForm.onFieldChange(
@@ -228,18 +236,26 @@ export default class NewAccountFormFieldController {
     if (this.rule.initialValue) {
       let value = angular.copy(this.rule.initialValue);
       if (this.getFieldType() === 'select') {
+        let translated;
+        if (this.rule.fieldName === this.FIELD_NAME_LIST.timezone) {
+          translated = value;
+        } else if (
+          this.rule.fieldName === this.FIELD_NAME_LIST.corporationType &&
+          CORPORATION_TYPES[value]
+        ) {
+          translated = CORPORATION_TYPES[value];
+        } else {
+          translated = this.$translate.instant(
+            `signup_enum_${
+              this.rule.fieldName === this.FIELD_NAME_LIST.area
+                ? `${this.newAccountForm.model.country}_`
+                : ''
+            }${this.rule.fieldName}_${value}`,
+          );
+        }
         value = {
           key: value,
-          translated:
-            this.rule.fieldName === this.FIELD_NAME_LIST.timezone
-              ? value
-              : this.$translate.instant(
-                  `signup_enum_${
-                    this.rule.fieldName === this.FIELD_NAME_LIST.area
-                      ? `${this.newAccountForm.model.country}_`
-                      : ''
-                  }${this.rule.fieldName}_${value}`,
-                ),
+          translated,
         };
       } else if (this.getFieldType() === 'date') {
         value = moment(this.rule.initialValue, 'YYYY-MM-DD').toDate();
@@ -297,10 +313,11 @@ export default class NewAccountFormFieldController {
         translated = value;
       } else if (this.rule.fieldName === this.FIELD_NAME_LIST.managerLanguage) {
         translated = get(find(LANGUAGES.available, { key: value }), 'name');
-      } else if (this.rule.fieldName === this.FIELD_NAME_LIST.corporationType) {
-        translated =
-          CORPORATION_TYPES[value] ||
-          `signup_enum_${this.rule.fieldName}_${value}`;
+      } else if (
+        this.rule.fieldName === this.FIELD_NAME_LIST.corporationType &&
+        CORPORATION_TYPES[value]
+      ) {
+        translated = CORPORATION_TYPES[value];
       } else {
         translated = this.$translate.instant(
           `signup_enum_${this.rule.fieldName}_${value}`,
