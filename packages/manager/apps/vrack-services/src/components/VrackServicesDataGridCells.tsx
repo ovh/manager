@@ -23,10 +23,13 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { ActionMenu, ActionMenuItem } from '@ovhcloud/manager-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { EditableText } from '@/components/EditableText';
-import { ProductStatus, VrackServices } from '@/api';
+import {
+  ProductStatus,
+  VrackServices,
+  UpdateVrackServicesNameMutationParams,
+} from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
-import { UpdateVrackServicesNameMutationParams } from '@/api/services/services-api-utils';
 import { PageName } from '@/utils/tracking';
 
 export const DisplayNameCell: React.FC<DataGridCellProps<
