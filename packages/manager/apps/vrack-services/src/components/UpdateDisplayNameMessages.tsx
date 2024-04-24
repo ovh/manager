@@ -8,8 +8,10 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { updateVrackServicesNameQueryKey } from '@/api/services/put';
-import { UpdateVrackServicesNameMutationParams } from '@/api/services/services-api-utils';
+import {
+  updateVrackServicesNameQueryKey,
+  UpdateVrackServicesNameMutationParams,
+} from '@/api';
 
 export const UpdateDisplayNameMessage: React.FC = () => {
   const { t } = useTranslation('vrack-services/listing');
@@ -57,7 +59,7 @@ export const UpdateDisplayNameMessage: React.FC = () => {
               key={updateMutation.variables.vrackServices + mutationIndex}
               type={ODS_MESSAGE_TYPE.success}
               className="mb-8"
-              removable={true}
+              removable
               onOdsRemoveClick={() => {
                 const newDisplayMessage = [...displayMessage];
                 newDisplayMessage[mutationIndex] = false;
