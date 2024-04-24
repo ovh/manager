@@ -159,7 +159,7 @@ export default function ListingPage() {
       cell: () => {
         return (
           <div className="min-w-16">
-            <Actions />
+            <Actions projectId={projectId} />
           </div>
         );
       },
