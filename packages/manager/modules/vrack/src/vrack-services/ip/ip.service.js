@@ -23,4 +23,14 @@ export default class VrackAssignedIpService {
       },
     );
   }
+
+  deleteIpVrackSubnet(serviceName, ipBlock, routedSubrange) {
+    return this.$http.delete(
+      `/vrack/${window.encodeURIComponent(
+        serviceName,
+      )}/ipv6/${window.encodeURIComponent(
+        ipBlock,
+      )}/routedSubrange/${window.encodeURIComponent(routedSubrange)}`,
+    );
+  }
 }

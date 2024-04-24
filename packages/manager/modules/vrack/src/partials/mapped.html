@@ -56,6 +56,10 @@
                 data-is-open-modal="$ctrl.isOpenModalAddSubnet"
                 data-on-confirm="$ctrl.addSubnetModalConfirm"
             ></add-ipv6-subnet-modal>
+            <delete-ipv6-subnet-modal
+                data-is-open-modal="$ctrl.isOpenModalDeleteSubnet"
+                data-on-confirm="$ctrl.deleteSubnetModalConfirm()"
+            ></delete-ipv6-subnet-modal>
             <ul
                 data-ng-repeat="service in services | orderBy: service.niceName track by service.id"
             >
@@ -74,6 +78,7 @@
                 <vrack-assigned-ip
                     ng-show="$ctrl.isSelected(service.trueServiceType, service.id)"
                     data-open-add-modal="$ctrl.openModalAddSubnet"
+                    data-open-delete-modal="$ctrl.openModalDeleteSubnet"
                     data-refresh-data="$ctrl.subnetUpdatedFalback"
                     data-service-name="$ctrl.serviceName"
                     data-ip="service"

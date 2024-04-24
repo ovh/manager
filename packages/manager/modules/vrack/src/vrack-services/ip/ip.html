@@ -19,7 +19,11 @@
                 data-translate="vrack__assigned_ip_subnet_via"
                 data-translate-values="{ ipblock: $ctrl.ip.niceName, ip: subnet }"
             ></span>
-            <oui-button size="s" variant="link">
+            <oui-button
+                size="s"
+                variant="link"
+                ng-click="$ctrl.openDeleteSubnetModal(subnet)"
+            >
                 <span class="oui-icon oui-icon-bin"></span>
             </oui-button>
         </li>

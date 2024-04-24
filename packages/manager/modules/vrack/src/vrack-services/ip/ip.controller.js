@@ -38,5 +38,24 @@ export default class VrackAssignedIpCtrl {
           });
       });
     };
+
+    this.openDeleteSubnetModal = (subnet) => {
+      this.openDeleteModal()(() => {
+        this.CucCloudMessage.flushMessages('vrack');
+        this.vrackAssignedIpService
+          .deleteIpVrackSubnet(this.serviceName, this.ip.niceName, subnet)
+          .then(() => {
+            parentCallBack();
+          })
+          .catch((err) => {
+            this.CucCloudMessage.error(
+              [
+                this.$translate.instant('vrack_error'),
+                (err.data && err.data.message) || err.message || '',
+              ].join(' '),
+            );
+          });
+      });
+    };
   }
 }

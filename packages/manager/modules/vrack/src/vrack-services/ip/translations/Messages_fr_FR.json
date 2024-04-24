@@ -8,5 +8,7 @@
   "vrack__assigned-ip__subnet_add_address": "Adresse Next-hope",
   "vrack__assigned-ip__subnet_cancel": "Annuler",
   "vrack__assigned-ip__subnet_confirm": "Confirmer",
+  "vrack__assigned-ip__subnet_delete_title": "Retirer le sous réseau de votre vRack",
+  "vrack__assigned-ip__subnet_delete_description": "Confirmez-vous vouloir retirer le sous réseau de votre vRack ?",
   "vrack__assigned_ip_subnet_via": "{{ ipblock }} via {{ ip }} "
 }
