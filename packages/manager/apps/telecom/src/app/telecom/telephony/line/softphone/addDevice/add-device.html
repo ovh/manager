@@ -2,6 +2,7 @@
     data-on-dismiss="$ctrl.goBack()"
     data-heading="{{ ::'telephony_line_softphone_add_my_device' | translate }}"
 >
+    <tuc-toast-message></tuc-toast-message>
     <p>
         <b
             data-translate="telephony_line_softphone_add_device_description_bold"
@@ -34,6 +35,7 @@
                         />
                         <oui-button
                             data-on-click=":: $ctrl.generateLink()"
+                            data-disabled="!$ctrl.model.name"
                             data-variant="primary"
                         >
                             <span
@@ -44,6 +46,20 @@
                     </div>
                 </oui-field>
             </div>
+
+            <oui-message data-type="warning" data-ng-if="$ctrl.recordLink">
+                <span
+                    data-translate="telephony_line_softphone_warning_link"
+                ></span>
+            </oui-message>
+
+            <div
+                data-ng-if="$ctrl.recordLink"
+                class="d-flex justify-content-center"
+            >
+                <qr data-text="$ctrl.recordLink"> </qr>
+            </div>
+
             <div class="row">
                 <oui-field
                     class="col-md-12"
@@ -100,6 +116,7 @@
             size="l"
             data-disabled="!$ctrl.recordLink"
             data-variant="primary"
+            data-ng-click="$ctrl.goBack(true)"
         >
             <span data-translate="telephony_line_softphone_button_save"></span>
         </oui-button>
