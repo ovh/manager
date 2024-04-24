@@ -1,3 +1,6 @@
+import queryClient from '@/queryClient';
+import { getProjectQuery } from '@/api/hooks/useProject';
+
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
     lazy: async () => {
@@ -11,12 +14,36 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
   };
 };
 
+export interface RouteHandle {
+  tracking?: string;
+}
+
+export const ROUTE_PATHS = {
+  root: '/pci/projects/:projectId/gateway',
+};
+
 export default [
   {
     path: '/',
     ...lazyRouteConfig(() => import('@/pages/Layout')),
   },
-  {},
+  {
+    id: 'public-gateway',
+    path: ROUTE_PATHS.root,
+    loader: async ({ params }) => {
+      return queryClient.fetchQuery(getProjectQuery(params.projectId));
+    },
+    ...lazyRouteConfig(() => import('@/pages/Layout')),
+    children: [
+      {
+        path: '',
+        handle: {
+          tracking: 'public-gateway',
+        },
+        ...lazyRouteConfig(() => import('@/pages/list/List.page')),
+      },
+    ],
+  },
   {
     path: '*',
     element: <>Not found page</>,
