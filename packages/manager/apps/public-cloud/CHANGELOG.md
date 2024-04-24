@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.3.7...@ovh-ux/manager-public-cloud@6.4.0) (2024-04-24)
+
+
+### Features
+
+* add log to customer for K8S service ([#11402](https://github.com/ovh/manager/issues/11402)) ([603f90d](https://github.com/ovh/manager/commit/603f90d5225316eee2700a03af76bc2e0a9d12ee))
+
+
+
+
+
 ## [6.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.3.6...@ovh-ux/manager-public-cloud@6.3.7) (2024-04-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud
