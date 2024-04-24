@@ -3,6 +3,7 @@ import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-comp
 import '@uirouter/angularjs';
 import routing from './softphone.routing';
 import component from './softphone.component';
+import softphoneService from './softphone.service';
 import addDeviceModule from './addDevice';
 
 const moduleName = 'ovhManagerTelecomTelephonyLineSoftphone';
@@ -16,6 +17,7 @@ angular
     'ui.router',
   ])
   .component('ovhManagerTelecomTelephonyLineSoftphoneComponent', component)
+  .service('softphoneService', softphoneService)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
