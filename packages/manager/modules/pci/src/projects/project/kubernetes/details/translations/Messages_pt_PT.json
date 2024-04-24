@@ -8,5 +8,5 @@
   "kube_containers_and_services": "Containers e serviços",
   "kube_node_pools": "Pools de nós",
   "kube_restrictions": "Acesso APIServer",
-  "kube_logs_tab_title": "Auditoria Logs"
+  "kube_logs_tab_title": "Logs"
 }

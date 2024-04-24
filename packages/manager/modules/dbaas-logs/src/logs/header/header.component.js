@@ -8,6 +8,7 @@ export default {
     serviceName: '<',
     isAccountDisabled: '<',
     accountSetupRequired: '<',
+    trackClick: '<',
   },
   controller,
   controllerAs: 'ctrl',

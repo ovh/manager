@@ -1,4 +1,5 @@
 export default {
+  TRACKING_PREFIX: 'DedicatedServers::dbaas::ldp',
   LDP_PLAN_CODE: 'logs-account',
   LDP_PLAN_CODE_ENTERPRISE: 'logs-enterprise',
   COLDSTORAGE: 'COLDSTORAGE',
