@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, useMatches, useRouteLoaderData } from 'react-router-dom';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
-import { Project } from '@/api/data/project';
+import { TProject } from '@/api/data/project';
 
 import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';
 import { RouteHandle } from '@/routes';
@@ -10,7 +10,7 @@ const DISCOVERY_PLANCODE = 'project.discovery';
 
 export default function usePageTracking() {
   const location = useLocation();
-  const project = useRouteLoaderData('private-networks') as Project;
+  const project = useRouteLoaderData('private-networks') as TProject;
   const { setPciProjectMode, trackPage } = useTracking();
   const handle = useMatches().slice(-1)[0]?.handle as RouteHandle;
 
