@@ -1,8 +1,11 @@
 import React, { PropsWithChildren } from 'react';
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -16,6 +19,7 @@ export type OnboardingLayoutProps = PropsWithChildren<{
   orderButtonLabel: string;
   orderHref?: string;
   description?: string;
+  additionalDescriptions?: string[];
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
   onOrderButtonClick?: () => void;
@@ -30,6 +34,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   hideHeadingSection,
   title,
   description,
+  additionalDescriptions,
   orderHref,
   orderButtonLabel,
   moreInfoHref,
@@ -55,38 +60,60 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             color={ODS_THEME_COLOR_INTENT.primary}
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._700}
-            className="block text-center mb-3"
+            className="block text-center mb-4"
           >
             {title}
           </OsdsText>
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            className="block text-center mb-2"
-          >
-            {description}
-          </OsdsText>
-          <div className="flex sm:py-8 xs:w-full xs:flex-col sm:items-center sm:w-fit sm:flex-row">
-            <div className="w-full xs:py-3">
-              <OsdsButton
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_BUTTON_SIZE.md}
-                href={orderHref}
-                onClick={onOrderButtonClick}
-              >
-                {orderButtonLabel}
-              </OsdsButton>
-            </div>
+          {description && (
+            <OsdsText
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_TEXT_SIZE._800}
+              className="block text-center mb-4"
+            >
+              {description}
+            </OsdsText>
+          )}{' '}
+          {additionalDescriptions?.map((desc) => (
+            <OsdsText
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_TEXT_SIZE._800}
+              className="block text-center mb-4"
+              key={desc}
+            >
+              {desc}
+            </OsdsText>
+          ))}
+          <div className="flex  sm:py-8 xs:w-full xs:flex-col sm:items-center sm:flex-row w-full justify-center">
+            <OsdsButton
+              inline
+              color={ODS_THEME_COLOR_INTENT.primary}
+              size={ODS_BUTTON_SIZE.md}
+              href={orderHref}
+              onClick={onOrderButtonClick}
+            >
+              {orderButtonLabel}
+            </OsdsButton>
+
             {moreInfoButtonLabel && moreInfoHref && (
-              <div className="w-full sm:m-2 xs:py-3 xs:mb-6">
-                <OsdsButton
-                  className="sm:ml-1"
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  variant={ODS_BUTTON_VARIANT.stroked}
-                  size={ODS_BUTTON_SIZE.md}
-                >
-                  {moreInfoButtonLabel}
-                </OsdsButton>
-              </div>
+              <OsdsButton
+                inline
+                className="sm:ml-1"
+                color={ODS_THEME_COLOR_INTENT.primary}
+                variant={ODS_BUTTON_VARIANT.stroked}
+                size={ODS_BUTTON_SIZE.md}
+                href={moreInfoHref}
+                target={OdsHTMLAnchorElementTarget._blank}
+              >
+                {moreInfoButtonLabel}
+                <span slot="end">
+                  <OsdsIcon
+                    className="ml-4 cursor-pointer"
+                    name={ODS_ICON_NAME.EXTERNAL_LINK}
+                    size={ODS_ICON_SIZE.xs}
+                    hoverable
+                  ></OsdsIcon>
+                </span>
+              </OsdsButton>
             )}
           </div>
         </section>
