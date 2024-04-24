@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Outlet, useResolvedPath } from 'react-router-dom';
 
 import {
@@ -12,8 +12,10 @@ import { useTranslation } from 'react-i18next';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import TabsPanel from './TabsPanel';
 
+import './Dashboard.scss';
+
 export const Dashboard: React.FC<DashboardLayoutProps> = () => {
-  const { t } = useTranslation('zimbra/dashboard');
+  const { t } = useTranslation('dashboard');
 
   const guideItems: GuideItem[] = [
     {
@@ -44,16 +46,6 @@ export const Dashboard: React.FC<DashboardLayoutProps> = () => {
       name: 'email_accounts',
       title: t('email_accounts'),
       to: useResolvedPath('email_accounts').pathname,
-    },
-    {
-      name: 'mailing_lists',
-      title: t('mailing_lists'),
-      to: useResolvedPath('mailing_lists').pathname,
-    },
-    {
-      name: 'redirections',
-      title: t('redirections'),
-      to: useResolvedPath('redirections').pathname,
     },
   ];
 

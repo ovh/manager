@@ -1,9 +1,8 @@
-import { fetchIcebergV2, apiClient } from '@ovh-ux/manager-core-api';
+import { apiClient } from '@ovh-ux/manager-core-api';
 
 type Response = unknown;
-type Uuid = unknown;
 
-export type GetiamPolicyListParams = {
+export type GetZimbraPlatformParams = {
   /** Pagination cursor */
   'X-Pagination-Cursor': string;
   /** Add extra information about resources in output */
@@ -12,52 +11,12 @@ export type GetiamPolicyListParams = {
   readOnly: boolean;
 };
 
-export const getiamPolicyListQueryKey = ['get/iam/policy'];
+export const getZimbraPlatformQueryKey = ['get//zimbra/platform'];
 
 /**
- *  : Retrieve all policies
+ *  : Retrieve platform
  */
-export const getiamPolicyList = async (
-  params: GetiamPolicyListParams,
-): Promise<Response[]> => apiClient.v2.get('/iam/policy', { data: params });
-
-export type GetiamPolicyPolicyIdParams = {
-  /** Add extra information about resources in output */
-  details: boolean;
-  /** Policy ID */
-  policyId?: Uuid;
-};
-
-export const getiamPolicyPolicyIdQueryKey = (
-  params: GetiamPolicyPolicyIdParams,
-) => [`get/iam/policy/${params.policyId}`];
-
-/**
- *  : Retrieve the given policy
- */
-export const getiamPolicyPolicyId = async (
-  params: GetiamPolicyPolicyIdParams,
-): Promise<Response> =>
-  apiClient.v2.get(`/iam/policy/${params.policyId}`, { data: params });
-
-/**
- *  Get listing with iceberg V2
- */
-export const getListingIcebergV2 = async ({
-  pageSize,
-  cursor,
-}: {
-  pageSize: number;
-  cursor?: string;
-}) => {
-  try {
-    const List = await fetchIcebergV2({
-      route: '/iam/policy',
-      pageSize,
-      cursor,
-    }).then(({ data, status, cursorNext }) => ({ data, status, cursorNext }));
-    return List;
-  } catch (error) {
-    return null;
-  }
-};
+export const getZimbraPlatform = async (
+  params: GetZimbraPlatformParams,
+): Promise<Response[]> =>
+  apiClient.v2.get('/zimbra/platform', { data: params });

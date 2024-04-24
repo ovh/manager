@@ -5,7 +5,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 export default function Organizations() {
-  const { t } = useTranslation('zimbra/organisations');
+  const { t } = useTranslation('organisations');
   return (
     <div className="py-6">
       <OsdsButton

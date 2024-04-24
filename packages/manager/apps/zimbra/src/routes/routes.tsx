@@ -1,12 +1,12 @@
 import React from 'react';
+import { RouteObject } from 'react-router-dom';
 import i18next from 'i18next';
-import NotFound from './pages/404';
+import NotFound from '@/pages/404';
 
-const lazyRouteConfig = (importFn: CallableFunction) => {
+const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   return {
     lazy: async () => {
       const { default: moduleDefault, ...moduleExports } = await importFn();
-
       return {
         Component: moduleDefault,
         ...moduleExports,
@@ -15,7 +15,7 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
   };
 };
 
-export default [
+export const Routes: any = [
   {
     path: '',
     handle: { breadcrumb: (): string => 'Zimbra' },
@@ -38,39 +38,21 @@ export default [
             path: 'organizations',
             ...lazyRouteConfig(() => import('@/pages/dashboard/Organizations')),
             handle: {
-              breadcrumb: (): string =>
-                i18next.t('zimbra/dashboard:organization'),
+              breadcrumb: (): string => i18next.t('dashboard:organization'),
             },
           },
           {
             path: 'domains',
             ...lazyRouteConfig(() => import('@/pages/dashboard/Domains')),
             handle: {
-              breadcrumb: (): string => i18next.t('zimbra/dashboard:domain'),
+              breadcrumb: (): string => i18next.t('dashboard:domain'),
             },
           },
           {
             path: 'email_accounts',
             ...lazyRouteConfig(() => import('@/pages/dashboard/EmailAccounts')),
             handle: {
-              breadcrumb: (): string =>
-                i18next.t('zimbra/dashboard:email_accounts'),
-            },
-          },
-          {
-            path: 'mailing_lists',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/MailingLists')),
-            handle: {
-              breadcrumb: (): string =>
-                i18next.t('zimbra/dashboard:mailing_lists'),
-            },
-          },
-          {
-            path: 'redirections',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/Redirections')),
-            handle: {
-              breadcrumb: (): string =>
-                i18next.t('zimbra/dashboard:redirections'),
+              breadcrumb: (): string => i18next.t('dashboard:email_accounts'),
             },
           },
         ],

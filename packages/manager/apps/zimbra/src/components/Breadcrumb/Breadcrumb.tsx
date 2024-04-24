@@ -14,7 +14,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   overviewUrl,
 }) => {
   const { serviceName } = useParams();
-  const { t } = useTranslation('zimbra/dashboard');
+  const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,7 +30,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
       items={[
         {
           label: t('title'),
-          onClick: () => navigate(urls.listing),
+          onClick: () => navigate(urls.root),
         },
         serviceName && {
           label: serviceName,

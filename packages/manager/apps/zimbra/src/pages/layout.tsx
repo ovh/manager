@@ -1,40 +1,43 @@
-import React, { useEffect } from 'react';
-import { Outlet, useLocation, Navigate } from 'react-router-dom';
-import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
+import React, { useEffect, useContext } from 'react';
+import { defineCurrentPage } from '@ovh-ux/request-tagger';
+import { Outlet, useLocation, useMatches, Navigate } from 'react-router-dom';
+import { ShellContext, useRouting } from '@ovh-ux/manager-react-shell-client';
+
 import { useQuery } from '@tanstack/react-query';
-import { getiamPolicyList } from '@/api';
+import { getZimbraPlatform } from '@/api';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 
-function RoutingSynchronisation() {
+export default function Layout() {
   const location = useLocation();
   const routing = useRouting();
+  const { shell } = useContext(ShellContext);
+  const matches = useMatches();
 
-  const shell = useShell();
   useEffect(() => {
-    // Need to also hide the preloader here due to firefox still display it when cache is disabled
-    // Need to investigate why preloader is not hidden
+    const match = matches.slice(-1);
+    defineCurrentPage(`app.zimbra-${match[0]?.id}`);
+  }, [location]);
+
+  useEffect(() => {
     shell.ux.hidePreloader();
   }, []);
 
   useEffect(() => {
     routing.stopListenForHashChange();
   }, []);
+
   useEffect(() => {
     routing.onHashChange();
   }, [location]);
-  return <></>;
-}
 
-export default function Layout() {
   const { data, isError, isLoading, error }: any = useQuery({
     queryKey: ['get/zimbra/platform'],
-    queryFn: () => getiamPolicyList(null), // The temp call to IAM api, because zimbra api isn't available
+    queryFn: () => getZimbraPlatform(null), // The temp call to IAM api, because zimbra api isn't available
   });
 
   return (
     <>
-      <RoutingSynchronisation />
       <Outlet />
       {isLoading && <Loading />}
       {isError && <ErrorBanner error={error} />}
