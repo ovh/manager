@@ -84,6 +84,7 @@
     "angular-leaflet-directive": "0.8.5",
     "angular-messages": "^1.7.5",
     "angular-mocks": "^1.7.5",
+    "angular-qr": "^0.2.3",
     "angular-resource": "^1.7.5",
     "angular-sanitize": "^1.7.5",
     "angular-translate": "^2.11.0",
