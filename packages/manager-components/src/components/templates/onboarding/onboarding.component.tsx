@@ -119,7 +119,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
                 color={ODS_THEME_COLOR_INTENT.primary}
                 variant={ODS_BUTTON_VARIANT.stroked}
                 size={ODS_BUTTON_SIZE.md}
-                onClick={onmoreInfoButtonClick}
+                onClick={onOrderButtonClick}
                 {...(isActionDisabled && { disabled: true })}
                 href={moreInfoHref}
                 target={OdsHTMLAnchorElementTarget._blank}
