@@ -23,7 +23,7 @@ import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import useProject from '@/api/hooks/useProject';
 import { PrivateNetworkTabName } from '@/constants';
-import GlobalRegionsComponent from '@/components/list/GlobalRegions.component';
+import GlobalRegionsComponent from '@/components/global-regions/GlobalRegions.component';
 import LocalZoneComponent from '@/components/list/LocalZone.component';
 
 export default function ListingPage() {
@@ -120,7 +120,10 @@ export default function ListingPage() {
         </OsdsTabBar>
 
         <OsdsTabPanel name={PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME}>
-          <GlobalRegionsComponent />
+          <GlobalRegionsComponent
+            projectId={projectId}
+            projectUrl={projectUrl}
+          />
         </OsdsTabPanel>
         <OsdsTabPanel name={PrivateNetworkTabName.LOCALZONE_TAB_NAME}>
           <LocalZoneComponent />
