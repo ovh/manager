@@ -36,7 +36,9 @@ export const Routes: any = [
           },
           {
             path: 'organizations',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/Organizations')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/Organizations/Organizations'),
+            ),
             handle: {
               breadcrumb: (): string => i18next.t('dashboard:organization'),
             },
