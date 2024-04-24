@@ -88,7 +88,7 @@
                             data-ng-href="{{ $ctrl.vrackServicesLink($ctrl.networkInformations.vrackServices.id)}}"
                         >
                             <span
-                                data-ng-bind=":: $ctrl.networkInformations.vrackServices.currentState.displayName || $ctrl.networkInformations.vrackServices.id"
+                                data-ng-bind=":: $ctrl.networkInformations.vrackServices.iam.displayName || $ctrl.networkInformations.vrackServices.id"
                             ></span>
                         </a>
                     </oui-tile-description>
