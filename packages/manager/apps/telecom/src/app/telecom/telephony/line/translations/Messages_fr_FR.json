@@ -21,6 +21,8 @@
   "telephony_line_softphone_record_link_label": "Lien d'enregistrement",
   "telephony_line_softphone_enroll_device_theme_description": "Vous pouvez appliquer un thème avant d'enroller votre appareil.",
   "telephony_line_softphone_enroll_device_theme_link": "Je souhaite appliquer un thème",
+  "telephony_line_softphone_warning_link": "Attention ce lien n'est valable qu'une seule fois. En cas de problème, il faudra le régénérer.",
+  "telephony_line_softphone_generate_link_error": "Le lien de votre application softphone n'a pas pu être généré.",
   "telephony_line_softphone_button_email_link": "Envoyer lien par mail",
   "telephony_line_softphone_button_save": "Enregistrer",
   "telephony_line_softphone_theme_title": "Appliquer un thème",
