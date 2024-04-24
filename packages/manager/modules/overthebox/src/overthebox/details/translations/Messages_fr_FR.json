@@ -85,5 +85,6 @@
   "overTheBox_reverse_dns": "Reverse DNS",
   "overTheBox_detail_link_guide": "Guides",
   "overthebox_detail_links": "Liens",
-  "overTheBox_service_id": "Identifiant du service :"
+  "overTheBox_service_id": "Identifiant du service :",
+  "overTheBox_available_update": "Une mise à jour est disponible pour votre appareil."
 }
