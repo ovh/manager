@@ -1,22 +1,32 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
+import { ZimbraPlatform, Organization } from '@/api/api.type';
 
-type Response = unknown;
+export const getZimbraPlatformListQueryKey = ['get/zimbra/platform'];
 
-export type GetZimbraPlatformParams = {
-  /** Pagination cursor */
-  'X-Pagination-Cursor': string;
-  /** Add extra information about resources in output */
-  details: boolean;
-  /** Filter on the readOnly attribute */
-  readOnly: boolean;
+export const getZimbraPlatformList = async () => {
+  try {
+    const response = await apiClient.v2.get<ZimbraPlatform[]>(
+      '/zimbra/platform',
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching Zimbra platform list:', error);
+    throw error;
+  }
 };
 
-export const getZimbraPlatformQueryKey = ['get//zimbra/platform'];
+export const getZimbraPlatformOrganizationQueryKey = (platformId: string) => [
+  `get/zimbra/platform/${platformId}/organization`,
+];
 
-/**
- *  : Retrieve platform
- */
-export const getZimbraPlatform = async (
-  params: GetZimbraPlatformParams,
-): Promise<Response[]> =>
-  apiClient.v2.get('/zimbra/platform', { data: params });
+export const getZimbraPlatformOrganization = async (platformId: string) => {
+  try {
+    const response = await apiClient.v2.get<Organization[]>(
+      `/zimbra/platform/${platformId}/organization`,
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching Zimbra organization list:', error);
+    throw error;
+  }
+};
