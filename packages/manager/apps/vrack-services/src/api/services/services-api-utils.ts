@@ -56,14 +56,11 @@ export const useUpdateVrackServicesName = ({
       });
       onSuccess?.();
     },
-    onError,
-  });
-
-  React.useEffect(() => {
-    if (isUpdateNameError) {
+    onError: (result: ApiError) => {
       setIsErrorVisible(true);
-    }
-  }, [isUpdateNameError]);
+      onError?.(result);
+    },
+  });
 
   return {
     updateVSName,

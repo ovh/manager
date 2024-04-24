@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   OsdsSpinner,
   OsdsMessage,
@@ -31,7 +31,7 @@ import {
 } from '@/components/VrackServicesDataGridCells';
 import { TileBlock } from '@/components/TileBlock';
 import { urls } from '@/router/constants';
-import { useUpdateVrackServicesName } from '@/api/services/services-api-utils';
+import { useUpdateVrackServicesName } from '@/api';
 
 export default function OverviewTab() {
   const { t, i18n } = useTranslation('vrack-services/dashboard');
@@ -71,7 +71,7 @@ export default function OverviewTab() {
         <OsdsMessage
           type={ODS_MESSAGE_TYPE.error}
           removable
-          onOdsRemoveClick={() => hideError()}
+          onOdsRemoveClick={hideError}
         >
           <OsdsText
             level={ODS_TEXT_LEVEL.body}

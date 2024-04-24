@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   OsdsDatagrid,
@@ -31,7 +31,7 @@ import {
 } from '@/components/VrackServicesDataGridCells';
 import { useVrackServicesList } from '@/utils/vs-utils';
 import { urls } from '@/router/constants';
-import { useUpdateVrackServicesName } from '@/api/services/services-api-utils';
+import { useUpdateVrackServicesName } from '@/api';
 
 export const VrackServicesDatagrid: React.FC = () => {
   const { t, i18n } = useTranslation('vrack-services/listing');
@@ -135,7 +135,7 @@ export const VrackServicesDatagrid: React.FC = () => {
         <OsdsMessage
           type={ODS_MESSAGE_TYPE.error}
           removable
-          onOdsRemoveClick={() => hideError()}
+          onOdsRemoveClick={hideError}
         >
           <OsdsText
             level={ODS_TEXT_LEVEL.body}
