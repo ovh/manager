@@ -1,9 +1,23 @@
 <div>
-    <oui-header
-        data-heading="{{:: ('ip_additional_order' | translate) + $ctrl.ADDITIONAL_IP}}"
-        class="mb-3"
-    >
-    </oui-header>
+    <div class="d-flex justify-content-between">
+        <oui-header
+            data-heading="{{:: ('ip_additional_order' | translate) + $ctrl.ADDITIONAL_IP}}"
+            class="mb-3"
+        >
+        </oui-header>
+        <div>
+            <a
+                class="btn btn-link"
+                target="_blank"
+                data-ng-href="{{ $ctrl.surveyUrl }}"
+                data-oui-tooltip="{{:: 'ip_agora_like_this_tooltip' | translate }}"
+                data-oui-tooltip-placement="top"
+            >
+                <i class="oui-icon oui-icon-smiley-happy_concept mr-1"></i>
+                <span data-translate="ip_agora_like_this"></span>
+            </a>
+        </div>
+    </div>
     <!--return to dashboard-->
     <oui-back-button data-on-click="$ctrl.resumeOrder()"> </oui-back-button>
     <div data-ovh-alert="{{:: $ctrl.ALERT_ID}}"></div>
