@@ -30,7 +30,7 @@ import {
 import { useEffect, useRef, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import {
   ODS_BUTTON_SIZE,
@@ -58,6 +58,7 @@ export default function ListingPage() {
   const { data: project } = useProject(projectId || '');
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
+  const navigate = useNavigate();
 
   const { pagination, setPagination } = useDataGrid();
 
@@ -173,6 +174,17 @@ export default function ListingPage() {
     },
     filters,
   );
+
+  useEffect(() => {
+    if (
+      !isLoading &&
+      !filters.length &&
+      pagination.pageIndex === 0 &&
+      !aggregatedGateways.totalRows
+    ) {
+      navigate(`/pci/projects/${projectId}/gateway/onboarding`);
+    }
+  }, [isLoading, aggregatedGateways, navigate, filters, pagination]);
   return (
     <>
       {project && (
