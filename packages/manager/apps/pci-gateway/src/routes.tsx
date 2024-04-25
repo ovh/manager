@@ -41,6 +41,18 @@ export default [
           tracking: 'public-gateway',
         },
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
+        children: [
+          {
+            path: 'delete',
+            ...lazyRouteConfig(() =>
+              import('@/pages/delete/DeleteGateway.page'),
+            ),
+            handle: {
+              tracking: 'delete',
+            },
+            children: [],
+          },
+        ],
       },
     ],
   },
