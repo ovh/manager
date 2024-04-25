@@ -783,5 +783,10 @@
   "streams_subscriptions_resource_products_webhosting": "Hosting",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
   "streams_subscriptions_resource_products_account-api": "Panel klienta OVHcloud &amp; OVHcloud API",
-  "streams_subscriptions_resource_products_account-audit": "Audyt logów OVHcloud"
+  "streams_subscriptions_resource_products_account-audit": "Audyt logów OVHcloud",
+  "logs_streams_manage_archives": "Zarządzaj archiwami",
+  "logs_streams_manage_subscriptions": "Zarządzaj subskrypcjami",
+  "logs_streams_copy_stream_id": "Skopiuj identyfikator strumienia",
+  "logs_streams_copy_id_success": "Identyfikator strumienia został skopiowany do schowka. Użyj skrótu CTRL+V, aby wkleić skopiowaną zawartość.",
+  "logs_streams_copy_id_error": "Twoja przeglądarka nie umożliwia skopiowania zawartości do schowka. Zaktualizuj przeglądarkę do najnowszej wersji. Identyfikator strumienia {{stream}}: {{stream_id}}"
 }

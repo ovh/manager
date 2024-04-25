@@ -783,5 +783,10 @@
   "streams_subscriptions_resource_products_webhosting": "Alojamento web",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes",
   "streams_subscriptions_resource_products_account-api": "Área de Cliente OVHcloud &amp; OVHcloud API",
-  "streams_subscriptions_resource_products_account-audit": "Auditoria Logs OVHcloud"
+  "streams_subscriptions_resource_products_account-audit": "Auditoria Logs OVHcloud",
+  "logs_streams_manage_archives": "Gerir os arquivos",
+  "logs_streams_manage_subscriptions": "Gerir as subscrições",
+  "logs_streams_copy_stream_id": "Copiar ID do fluxo",
+  "logs_streams_copy_id_success": "O identificador do fluxo foi copiado para a sua área de transferência, utilize CTRL+V para colar o seu conteúdo.",
+  "logs_streams_copy_id_error": "O seu navegador não permite copiar para a área de transferência. Atualize para uma versão mais recente do navegador. O identificador do fluxo {{stream}} é: {{stream_id}}"
 }
