@@ -1,20 +1,28 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { useTranslation } from 'react-i18next';
 
 /** Simple datagrid cell text formatter applying ODS style */
-export function DataGridTextCell({ children }: { children: ReactNode }) {
+export function DataGridTextCell({
+  children,
+}: React.PropsWithChildren<unknown>) {
+  const { t } = useTranslation('datagrid');
   return (
     <OsdsText
       level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-      size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+      size={
+        children
+          ? ODS_THEME_TYPOGRAPHY_SIZE._800
+          : ODS_THEME_TYPOGRAPHY_SIZE._300
+      }
       color={ODS_THEME_COLOR_INTENT.text}
     >
-      {children}
+      {children ?? t('common_empty_text_cell')}
     </OsdsText>
   );
 }

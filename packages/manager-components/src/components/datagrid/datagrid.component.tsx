@@ -63,6 +63,8 @@ export interface DatagridProps<T> {
   className?: string;
   /** option to adjust content on the left */
   contentAlignLeft?: boolean;
+  /** label displayed if there is no item in the datagrid */
+  noResultLabel?: string;
 }
 
 export const Datagrid = <T,>({
@@ -75,6 +77,7 @@ export const Datagrid = <T,>({
   onPaginationChange,
   onSortChange,
   contentAlignLeft,
+  noResultLabel,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
@@ -204,7 +207,7 @@ export const Datagrid = <T,>({
               >
                 <td className="text-center" colSpan={columns.length}>
                   <DataGridTextCell>
-                    {t('common_pagination_no_results')}
+                    {noResultLabel ?? t('common_pagination_no_results')}
                   </DataGridTextCell>
                 </td>
               </tr>
