@@ -18,6 +18,7 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
+import { FormField } from '@/components/form-field.component';
 import {
   VrackServices,
   getVrackServicesResourceListQueryKey,
@@ -40,7 +41,6 @@ import {
   defaultServiceRange,
 } from './subnets.constants';
 import { useVrackService } from '@/utils/vs-utils';
-import { FormField } from '@/components/FormField';
 import { urls } from '@/router/constants';
 import { PageName } from '@/utils/tracking';
 

@@ -8,8 +8,8 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { DeleteModal } from '@ovhcloud/manager-components';
 import { useVrackService, useUpdateVrackServices } from '@/utils/vs-utils';
-import { DeleteModal } from '@/components/DeleteModal';
 import { getEligibleManagedServiceListQueryKey } from '@/api';
 import { PageName } from '@/utils/tracking';
 
@@ -85,7 +85,7 @@ export default function EndpointsDeleteModal() {
           },
         );
       }}
-      error={updateError}
+      error={updateError?.response?.data?.message}
       isLoading={isPending}
     />
   );

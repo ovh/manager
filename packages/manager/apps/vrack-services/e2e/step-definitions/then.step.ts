@@ -10,6 +10,7 @@ import {
   modalVrackCreationDescriptionLine1,
   modalCreateNewVrackButtonLabel,
   associateVrackButtonLabel,
+  modalDeleteHeadline,
 } from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 import {
   deliveringVrackMessage,
@@ -18,7 +19,6 @@ import {
 } from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
 import { AppRoute, getUrl } from '../utils';
 import { ConfigParams } from '../../mock/handlers';
-import vsMocks from '../../mock/vrack-services/get-vrack-services.json';
 import {
   guide1Title,
   guide2Title,
@@ -115,6 +115,20 @@ Then('User sees {word} error message', async function(
   }
 });
 
+Then('User sees {word} success message', async function(
+  this: ICustomWorld<ConfigParams>,
+  anySuccessMessage: 'an' | 'no',
+) {
+  const error = await this.page.locator('osds-message', {
+    hasText: new RegExp(
+      this.testContext.message?.replace(/{{[a-zA-Z]+}}/gm, '.*'),
+    ),
+  });
+  if (anySuccessMessage === 'an') {
+    await expect(error).toBeVisible({ timeout: 300000 });
+  }
+});
+
 Then('User gets redirected to Onboarding page', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
@@ -148,17 +162,18 @@ Then(
 Then('User sees an empty listing page', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  const message = await this.page.locator('osds-datagrid', {
-    hasText: emptyDataGridMessage,
-  });
+  const message = await this.page.getByText(emptyDataGridMessage);
   await expect(message).toBeVisible();
 });
 
 Then(
   'User sees a data grid containing his vRack Services information',
   async function(this: ICustomWorld<ConfigParams>) {
-    const vsDisplayName = await this.page.locator('osds-datagrid', {
-      hasText: vsMocks[0].currentState.displayName,
+    const { selectedVrackServices } = this.testContext.data;
+    const displayName =
+      selectedVrackServices.iam?.displayName || selectedVrackServices.id;
+    const vsDisplayName = await this.page.getByText(displayName, {
+      exact: true,
     });
     await expect(vsDisplayName).toBeVisible();
   },
@@ -317,17 +332,17 @@ Then('User sees the endpoints Listing page', async function(
     .count();
   await expect(subnetNameCount).toBeGreaterThan(0);
 
-  const subnetTableHeader = this.page.getByRole('columnheader', {
-    name: subnet,
-  });
+  const subnetTableHeader = this.page
+    .getByTestId('header-subnet')
+    .getByText(subnet);
   await expect(subnetTableHeader).toBeVisible();
 
-  const ipTableHeader = this.page.getByRole('columnheader', { name: ip });
+  const ipTableHeader = this.page.getByTestId('header-ip').getByText(ip);
   await expect(ipTableHeader).toBeVisible();
 
-  const serviceTypeTableHeader = this.page.getByRole('columnheader', {
-    name: serviceType,
-  });
+  const serviceTypeTableHeader = this.page
+    .getByTestId('header-serviceType')
+    .getByText(serviceType);
   await expect(serviceTypeTableHeader).toBeVisible();
 });
 
@@ -389,10 +404,19 @@ Then('User sees the create a {word} button {word}', async function(
       tab === 'subnet' ? createSubnetButtonLabel : createEndpointButtonLabel,
   });
   if (buttonState === 'enabled') {
-    await expect(button).not.toHaveAttribute('disabled', '');
+    await expect(button).not.toHaveAttribute('disabled');
   } else {
-    await expect(button).toHaveAttribute('disabled', '');
+    await expect(button).toHaveAttribute('disabled');
   }
+});
+
+Then('User sees a modal to confirm vRack Services deletion', async function(
+  this: ICustomWorld<ConfigParams>,
+) {
+  const modalHeadLine = await this.page?.locator('osds-text', {
+    hasText: modalDeleteHeadline,
+  });
+  await expect(modalHeadLine).toBeVisible();
 });
 
 Then('User sees a modal to confirm {word} deletion', async function(

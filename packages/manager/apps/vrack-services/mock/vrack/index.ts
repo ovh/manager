@@ -36,14 +36,7 @@ export const getVrackMocks = ({
     response: (request: Request, params: PathParams) =>
       associationKo
         ? {
-            status: 500,
-            code: 'ERR_UPDATE_ERROR',
-            response: {
-              status: 500,
-              data: {
-                message: 'Update error',
-              },
-            },
+            message: 'Association KO',
           }
         : getAssociationResponse(request, params),
     method: 'post',

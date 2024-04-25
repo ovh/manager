@@ -7,9 +7,7 @@ export type UpdateVrackServicesNameParams = {
   displayName: string;
 };
 
-export const updateVrackServicesNameQueryKey = () => [
-  `put/services/displayName`,
-];
+export const updateVrackServicesNameQueryKey = [`put/services/displayName`];
 
 /**
  * Update a vrack services name

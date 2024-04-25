@@ -39,21 +39,12 @@ export const getVrackServicesMocks = ({
   {
     url: '/vrackServices/resource/:id',
     response: async (request: Request, params: PathParams) => {
+      if (updateKo) {
+        return { message: 'Update error' };
+      }
       const body =
         (await request.json?.()) ||
         ((request as unknown) as PlaywrightRequest).postData();
-      if (updateKo) {
-        return {
-          status: 500,
-          code: 'ERR_UPDATE_ERROR',
-          response: {
-            status: 500,
-            data: {
-              message: 'Update error',
-            },
-          },
-        };
-      }
       const vs = vrackServicesList.find(
         ({ id }) => id === (params || getParamsFromUrl(request, { id: -1 })).id,
       );

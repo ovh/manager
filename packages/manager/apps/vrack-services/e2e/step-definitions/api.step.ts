@@ -1,7 +1,11 @@
 import { Given } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers';
+import { errors } from '../../mock/services/services';
 import { ConfigParams } from '../../mock/handlers';
-import { updateError } from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
+import {
+  updateError,
+  updateDisplayNameSuccess,
+} from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 import { genericApiError } from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
 import {
   subnetCreationError,
@@ -28,16 +32,19 @@ Given('The webservice to dissociate a vRack is {word}', function(
 
 Given('The service to {word} a vRack Services is {word}', function(
   this: ICustomWorld<ConfigParams>,
-  action: 'edit' | 'associate',
+  action: 'edit' | 'delete' | 'associate',
   okOrKo: 'OK' | 'KO',
 ) {
   const isKo = okOrKo === 'KO';
   if (action === 'edit') {
-    this.handlersConfig.servicesKo = isKo;
+    this.handlersConfig.updateServicesKo = isKo;
+    this.testContext.errorMessage = errors.update;
+    this.testContext.message = updateDisplayNameSuccess;
+  } else if (action === 'delete') {
+    this.handlersConfig.deleteServicesKo = isKo;
+    this.testContext.errorMessage = errors.delete;
   } else if (action === 'associate') {
     this.handlersConfig.associationKo = isKo;
-  }
-  if (isKo) {
     this.testContext.errorMessage = updateError;
   }
 });

@@ -19,11 +19,12 @@ export const toPlaywrightMockHandler = (context: BrowserContext) => ({
   );
   return context.route(
     fullUrl,
-    (route, request) => {
+    async (route, request) => {
       if (request.method().toLowerCase() === method) {
         return route.fulfill({
           status,
-          json: typeof response === 'function' ? response(request) : response,
+          json:
+            typeof response === 'function' ? await response(request) : response,
           body: responseText,
         });
       }

@@ -52,14 +52,7 @@ export const getIamMocks = ({ iamKo }: GetIamMocksParams): Handler[] => [
     response: () => {
       if (iamKo) {
         return {
-          status: 500,
-          code: 'ERR_IAM_ERROR',
-          response: {
-            status: 500,
-            data: {
-              message: 'IAM error',
-            },
-          },
+          message: 'IAM error',
         };
       }
       return iamResources;
