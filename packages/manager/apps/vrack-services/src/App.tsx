@@ -6,6 +6,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import '@ovhcloud/ods-theme-blue-jeans';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { getRoutes } from '@/router/routes';
+import { UpdateDisplayNameContext } from './components/UpdateDisplayName/UpdateDisplayName.context';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,6 +19,7 @@ const queryClient = new QueryClient({
 odsSetup();
 
 export const App: React.FC = () => {
+  const [hiddenMessages, setHiddenMessages] = React.useState([]);
   const { shell } = React.useContext(ShellContext);
   const routes = getRoutes();
   const router = createHashRouter(routes);
@@ -28,7 +30,18 @@ export const App: React.FC = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <UpdateDisplayNameContext.Provider
+        value={{
+          hiddenMessages,
+          hideMessage: (submittedAt: number) => {
+            setHiddenMessages((hiddenMessage) =>
+              hiddenMessage.concat(submittedAt),
+            );
+          },
+        }}
+      >
+        <RouterProvider router={router} />
+      </UpdateDisplayNameContext.Provider>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );
