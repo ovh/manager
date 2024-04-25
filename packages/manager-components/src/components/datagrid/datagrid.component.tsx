@@ -77,6 +77,8 @@ export interface DatagridProps<T> {
   manualPagination?: boolean;
   /** If provided, this function will be called with an updaterFn when state.sorting changes. */
   /** setSorting?: OnChangeFn<SortingState>; */
+  /** label displayed if there is no item in the datagrid */
+  noResultLabel?: string;
 }
 
 export const Datagrid = <T,>({
@@ -93,6 +95,7 @@ export const Datagrid = <T,>({
   onFetchNextPage,
   manualSorting = true,
   manualPagination = true,
+  noResultLabel,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
@@ -233,7 +236,7 @@ export const Datagrid = <T,>({
                 >
                   <td className="text-center" colSpan={columns.length}>
                     <DataGridTextCell>
-                      {t('common_pagination_no_results')}
+                      {noResultLabel ?? t('common_pagination_no_results')}
                     </DataGridTextCell>
                   </td>
                 </tr>
