@@ -176,7 +176,7 @@ const AddEditConnectionPool = ({
                   <FormLabel>{t('formConnectionPoolFieldNameLabel')}</FormLabel>
                   <FormControl>
                     <Input
-                      data-testId="add-edit-pools-name-input"
+                      data-testid="add-edit-pools-name-input"
                       placeholder="name"
                       disabled={
                         isEdition || isPendingAddPool || isPendingEditPool
@@ -248,7 +248,7 @@ const AddEditConnectionPool = ({
                   <FormLabel>{t('formConnectionPoolFieldSizeLabel')}</FormLabel>
                   <FormControl>
                     <Input
-                      data-testId="add-edit-pools-size-input"
+                      data-testid="add-edit-pools-size-input"
                       type="number"
                       value={field.value}
                       {...field}
@@ -298,7 +298,7 @@ const AddEditConnectionPool = ({
             <DialogFooter className="flex justify-end mt-4">
               <DialogClose asChild>
                 <Button
-                  data-testId="add-edit-pools-cancel-button"
+                  data-testid="add-edit-pools-cancel-button"
                   type="button"
                   variant="outline"
                 >
@@ -306,7 +306,7 @@ const AddEditConnectionPool = ({
                 </Button>
               </DialogClose>
               <Button
-                data-testId="add-edit-pools-submit-button"
+                data-testid="add-edit-pools-submit-button"
                 type="submit"
                 disabled={isPendingAddPool || isPendingEditPool}
               >

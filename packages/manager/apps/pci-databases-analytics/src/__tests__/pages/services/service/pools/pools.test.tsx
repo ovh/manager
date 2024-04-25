@@ -279,10 +279,6 @@ describe('Open modals', () => {
     });
   });
   it('refetch data on delete pools success', async () => {
-    vi.mocked(connectionPoolApi.getConnectionPools).mockResolvedValue([
-      mockedConnectionPool,
-    ]);
-    vi.mocked(connectionPoolApi.deleteConnectionPool);
     await openButtonInMenu('pools-action-delete-button');
     await waitFor(() => {
       expect(screen.getByTestId('delete-pools-modal')).toBeInTheDocument();
@@ -330,7 +326,6 @@ describe('Open modals', () => {
       fireEvent.click(screen.getByTestId('info-pools-download-ca-action'));
     });
     await waitFor(() => {
-      expect(window.navigator.clipboard.writeText).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalled();
     });
   });

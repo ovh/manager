@@ -67,6 +67,7 @@ const Integrations = () => {
     onDeleteClick: (db: database.service.Integration) =>
       deleteModale.open(db.id),
   });
+
   return (
     <>
       <div className="flex justify-between w-full items-center">
@@ -76,6 +77,7 @@ const Integrations = () => {
 
       {service.capabilities.integrations?.create && (
         <Button
+          data-testid="integrations-add-button"
           variant={'outline'}
           size="sm"
           className="text-base"
@@ -93,7 +95,9 @@ const Integrations = () => {
       {!isLoading ? (
         <DataTable columns={columns} data={integrations} pageSize={25} />
       ) : (
-        <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
+        <div data-testid="integrations-table-skeleton">
+          <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
+        </div>
       )}
 
       <AddIntegration

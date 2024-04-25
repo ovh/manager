@@ -35,7 +35,6 @@ describe('useGetNetwork', () => {
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
-      console.log(mockedNetworks);
       expect(result.current.data).toEqual(mockedNetworks);
       expect(API.networkApi.getPrivateNetworks).toHaveBeenCalledWith(projectId);
     });

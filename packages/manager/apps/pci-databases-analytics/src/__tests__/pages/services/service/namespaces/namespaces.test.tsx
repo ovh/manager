@@ -3,7 +3,6 @@ import {
   act,
   fireEvent,
   render,
-  renderHook,
   screen,
   waitFor,
 } from '@testing-library/react';
@@ -19,7 +18,6 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { mockedNamespaces } from '@/__tests__/helpers/mocks/namespaces';
-import { useToast } from '@/components/ui/use-toast';
 
 // Override mock to add capabilities
 const mockedService = {
@@ -40,7 +38,7 @@ const ResizeObserverMock = vi.fn(() => ({
   disconnect: vi.fn(),
 }));
 
-describe('ConnectionPools page', () => {
+describe('Namespaces page', () => {
   beforeEach(() => {
     // Mock necessary hooks and dependencies
     vi.mock('react-i18next', () => ({
@@ -77,15 +75,6 @@ describe('ConnectionPools page', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
-
-  it('renders the breadcrumb component', async () => {
-    const translationKey = 'breadcrumb';
-    render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
-    await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
-    });
-  });
-
   it('renders and shows skeletons while loading', async () => {
     vi.mocked(namespaceApi.getNamespaces).mockImplementationOnce(() => {
       throw apiErrorMock;
@@ -93,14 +82,20 @@ describe('ConnectionPools page', () => {
     render(<Namespaces />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('namespaces-table-skeleton')).toBeInTheDocument();
   });
-
+  it('renders the breadcrumb component', async () => {
+    const translationKey = 'breadcrumb';
+    render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByText(translationKey)).toBeInTheDocument();
+    });
+  });
   it('renders and shows namespaces table', async () => {
+    vi.mocked(namespaceApi.getNamespaces).mockResolvedValue([mockedNamespaces]);
     render(<Namespaces />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText(mockedNamespaces.name)).toBeInTheDocument();
     });
   });
-
   it('displays add namespace button if capability is present', async () => {
     vi.mocked(LayoutContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
@@ -325,8 +320,6 @@ describe('Open modals', () => {
     });
   });
   it('refetch data on delete namespaces success', async () => {
-    vi.mocked(namespaceApi.getNamespaces).mockResolvedValue([mockedNamespaces]);
-    vi.mocked(namespaceApi.deleteNamespace);
     await openButtonInMenu('namespaces-action-delete-button');
     await waitFor(() => {
       expect(screen.getByTestId('delete-namespaces-modal')).toBeInTheDocument();
