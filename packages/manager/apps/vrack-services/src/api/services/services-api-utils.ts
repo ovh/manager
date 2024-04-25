@@ -9,7 +9,7 @@ import {
   getVrackServicesServiceId,
   getVrackServicesServiceIdQueryKey,
 } from './get';
-import { getVrackListQueryKey } from '../vrack';
+import { getVrackServicesResourceListQueryKey } from '../vrack-services';
 
 export type UpdateVrackServicesNameMutationParams = {
   /** vrackServices service id */
@@ -34,7 +34,6 @@ export const useUpdateVrackServicesName = ({
   const {
     mutate: updateVSName,
     isPending,
-    isError: isUpdateNameError,
     error: updateNameError,
   } = useMutation({
     mutationKey: updateVrackServicesNameQueryKey(),
@@ -51,9 +50,13 @@ export const useUpdateVrackServicesName = ({
       return updateVrackServicesName({ serviceId: servicesId[0], displayName });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: getVrackListQueryKey,
-      });
+      setTimeout(
+        () =>
+          queryClient.invalidateQueries({
+            queryKey: getVrackServicesResourceListQueryKey,
+          }),
+        1000,
+      );
       onSuccess?.();
     },
     onError: (result: ApiError) => {
