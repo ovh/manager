@@ -173,7 +173,7 @@ export default /* @ngInject */ function IpGameFirewallService(
   // rule = {from: 4300, to: 4400}
   this.hasNewRuleIntoRule = function hasNewRuleIntoRule(newRule, rule) {
     return (
-      newRule.ports.from < rule.ports.from && newRule.ports.to < rule.ports.to
+      newRule.ports.from > rule.ports.from && newRule.ports.to < rule.ports.to
     );
   };
 
@@ -226,8 +226,10 @@ export default /* @ngInject */ function IpGameFirewallService(
     rule,
   ) {
     return (
-      newRule.ports.from < newRule.ports.to &&
-      rule.ports.from > newRule.ports.from
+      newRule.ports.from < rule.ports.from &&
+      newRule.ports.from < rule.ports.to &&
+      newRule.ports.to > rule.ports.from &&
+      newRule.ports.to > rule.ports.to
     );
   };
 
