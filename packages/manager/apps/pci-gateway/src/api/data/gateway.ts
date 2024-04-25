@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovhcloud/manager-components';
-import { Gateway, GatewayResponse } from '@/interface';
+import { GatewayResponse } from '@/interface';
 
 export type GatewayOptions = {
   pagination: PaginationState;
@@ -26,3 +26,14 @@ export const paginateResults = (
   pageCount: Math.ceil(items.length / pagination.pageSize),
   totalRows: items.length,
 });
+
+export const deleteGateway = async (
+  projectId: string,
+  regionName: string,
+  gatewayId: string,
+) => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/region/${regionName}/gateway/${gatewayId}`,
+  );
+  return data;
+};

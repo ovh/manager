@@ -156,17 +156,16 @@ export default function ListingPage() {
     },
     {
       id: 'actions',
-      cell: () => {
+      cell: (props: Gateway) => {
         return (
           <div className="min-w-16">
-            <Actions projectId={projectId} />
+            <Actions projectId={projectId} gateway={props} />
           </div>
         );
       },
       label: t(''),
     },
   ];
-
   const { data: aggregatedGateways, isLoading, error } = useAggregatedGateway(
     projectId,
     {
