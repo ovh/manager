@@ -1,5 +1,6 @@
 {
   "common_pagination_of": "of",
   "common_pagination_results": "results",
-  "common_pagination_no_results": "No result"
+  "common_pagination_no_results": "No result",
+  "common_empty_text_cell": "None"
 }

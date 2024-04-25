@@ -61,6 +61,8 @@ export interface DatagridProps<T> {
   onSortChange?: (sorting: ColumnSort) => void;
   /** option to add custom CSS class */
   className?: string;
+  /** label displayed if there is no item in the datagrid */
+  noResultLabel?: string;
 }
 
 export const Datagrid = <T extends unknown>({
@@ -72,6 +74,7 @@ export const Datagrid = <T extends unknown>({
   className,
   onPaginationChange,
   onSortChange,
+  noResultLabel,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
@@ -201,7 +204,7 @@ export const Datagrid = <T extends unknown>({
               >
                 <td className="text-center" colSpan={columns.length}>
                   <DataGridTextCell>
-                    {t('common_pagination_no_results')}
+                    {noResultLabel ?? t('common_pagination_no_results')}
                   </DataGridTextCell>
                 </td>
               </tr>

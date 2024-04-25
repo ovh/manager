@@ -9,6 +9,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { FormField } from '@/components/form-field.component';
 import {
   VrackServices,
   getVrackServicesResourceListQueryKey,
@@ -25,7 +26,6 @@ import {
 } from './endpoints.constants';
 import { useServiceList, useVrackService } from '@/utils/vs-utils';
 import { ErrorPage } from '@/components/Error';
-import { FormField } from '@/components/FormField';
 import { urls } from '@/router/constants';
 import { PageName } from '@/utils/tracking';
 

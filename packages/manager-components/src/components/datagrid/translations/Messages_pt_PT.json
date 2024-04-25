@@ -1,5 +1,6 @@
 {
   "common_pagination_of": "em",
   "common_pagination_results": "resultados",
-  "common_pagination_no_results": "Nenhum resultado encontrado"
+  "common_pagination_no_results": "Nenhum resultado encontrado",
+  "common_empty_text_cell": "Nenhum"
 }

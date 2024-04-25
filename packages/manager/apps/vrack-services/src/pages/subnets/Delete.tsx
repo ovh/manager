@@ -8,8 +8,8 @@ import {
   PageType,
   TrackingClickParams,
 } from '@ovh-ux/manager-react-shell-client';
+import { DeleteModal } from '@ovhcloud/manager-components';
 import { useVrackService, useUpdateVrackServices } from '@/utils/vs-utils';
-import { DeleteModal } from '@/components/DeleteModal';
 import { PageName } from '@/utils/tracking';
 
 const sharedTrackingParams: TrackingClickParams = {
@@ -79,7 +79,7 @@ export default function SubnetDeleteModal() {
           },
         );
       }}
-      error={updateError}
+      error={updateError?.response?.data?.message}
       isLoading={isPending}
     />
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -7,9 +7,8 @@ import {
   TrackingClickParams,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { DeleteModal } from '@/components/DeleteModal';
+import { DeleteModal } from '@ovhcloud/manager-components';
 import { useDeleteVrackServices } from '@/utils/vs-utils';
-import { PageName } from '@/utils/tracking';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,
@@ -45,7 +44,7 @@ export default function DeleteVrackServices() {
       closeModal={onClose}
       deleteInputLabel={t('modalDeleteInputLabel')}
       headline={t('modalDeleteHeadline')}
-      error={isErrorVisible ? error : null}
+      error={isErrorVisible ? error?.response?.data?.message : null}
       onConfirmDelete={() => {
         trackClick({
           ...sharedTrackingParams,

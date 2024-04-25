@@ -6,6 +6,7 @@ import {
   DatagridColumn,
   PaginationState,
 } from './datagrid.component';
+import DataGridTextCell from './text-cell.component';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
@@ -26,6 +27,11 @@ const sampleColumns = [
     },
     label: 'Name',
   },
+  {
+    id: 'another-column',
+    label: 'test',
+    cell: () => <DataGridTextCell />,
+  },
 ];
 
 const DatagridTest = ({
@@ -33,11 +39,13 @@ const DatagridTest = ({
   items,
   pageIndex,
   className,
+  noResultLabel,
 }: {
   columns: DatagridColumn<string>[];
   items: string[];
   pageIndex: number;
   className?: string;
+  noResultLabel?: string;
 }) => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex,
@@ -55,6 +63,7 @@ const DatagridTest = ({
       onPaginationChange={setPagination}
       onSortChange={() => {}}
       className={className || ''}
+      noResultLabel={noResultLabel}
     />
   );
 };
@@ -169,6 +178,18 @@ describe('Paginated datagrid component', () => {
     expect(screen.queryByText('common_pagination_no_results')).not.toBeNull();
     expect(container.querySelectorAll('thead tr').length).toBe(1);
     expect(container.querySelectorAll('tbody tr').length).toBe(1);
+  });
+
+  it('should display a custom message if there are no items and we pass a custom message', async () => {
+    render(
+      <DatagridTest
+        columns={sampleColumns}
+        items={[]}
+        pageIndex={0}
+        noResultLabel="Test no result"
+      />,
+    );
+    expect(screen.queryByText('Test no result')).not.toBeNull();
   });
 });
 
