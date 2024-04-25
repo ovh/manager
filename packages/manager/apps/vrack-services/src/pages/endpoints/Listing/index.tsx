@@ -11,8 +11,8 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { PageLayout } from '@/components/layout-helpers';
 import { isEditable, useVrackService } from '@/utils/vs-utils';
-import { EndpointDatagrid } from './components/EndpointDataGrid';
-import { useNavigateToCreateEndpointPage } from './endpoints.hook';
+import { EndpointDatagrid } from './EndpointDataGrid';
+import { useNavigateToCreateEndpointPage } from '../endpoints.hook';
 
 export default function EndpointsListing() {
   const { t } = useTranslation('vrack-services/endpoints');

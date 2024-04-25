@@ -29,7 +29,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { getVrackServicesResourceListQueryKey } from '@/api';
-import { VrackServicesDatagrid } from '@/pages/listing/components/VrackServicesDataGrid';
+import { VrackServicesDatagrid } from '@/pages/listing/VrackServicesDataGrid';
 import { PageLayout } from '@/components/layout-helpers';
 import { DeliveringMessages } from '@/components/DeliveringMessages';
 import { handleClick } from '@/utils/ods-utils';

@@ -18,7 +18,7 @@ import {
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { handleClick } from '@/utils/ods-utils';
+import { handleClick } from '../../../utils/click-utils';
 
 export type EditableTextProps = React.PropsWithChildren<{
   type?: ODS_INPUT_TYPE;
@@ -103,12 +103,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
+    <span className="inline-flex items-center">
       <OsdsText
         level={ODS_TEXT_LEVEL.body}
         size={children ? ODS_TEXT_SIZE._800 : ODS_TEXT_SIZE._300}
@@ -117,7 +112,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
         {children ?? emptyValueLabel}
       </OsdsText>
       <OsdsButton
-        style={{ marginLeft: '4px' }}
+        className="ml-2"
         inline
         circle
         color={ODS_THEME_COLOR_INTENT.primary}
@@ -135,6 +130,6 @@ export const EditableText: React.FC<EditableTextProps> = ({
           size={ODS_ICON_SIZE.xs}
         />
       </OsdsButton>
-    </div>
+    </span>
   );
 };

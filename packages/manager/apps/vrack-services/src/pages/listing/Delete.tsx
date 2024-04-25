@@ -7,7 +7,7 @@ import {
   TrackingClickParams,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { DeleteModal } from '@/components/DeleteModal';
+import { DeleteModal } from '@ovhcloud/manager-components';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,

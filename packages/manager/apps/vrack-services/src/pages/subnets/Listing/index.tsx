@@ -18,8 +18,8 @@ import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { PageLayout } from '@/components/layout-helpers';
-import { SubnetDatagrid } from './components/SubnetDataGrid';
-import { useNavigateToCreateSubnetPage } from './subnets.hook';
+import { SubnetDatagrid } from './SubnetDataGrid';
+import { useNavigateToCreateSubnetPage } from '../subnets.hook';
 
 export default function SubnetsListing() {
   const { t } = useTranslation('vrack-services/subnets');

@@ -1,0 +1,5 @@
+{
+  "deleteModalError": "Si è verificato il seguente errore: {{error}}.",
+  "deleteModalCancelButton": "Annulla",
+  "deleteModalDeleteButton": "Eliminare"
+}

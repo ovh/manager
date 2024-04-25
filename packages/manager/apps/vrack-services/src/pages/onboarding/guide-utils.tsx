@@ -94,16 +94,8 @@ export type UseGuideLinkProps = {
 
 export function useGuideUtils() {
   const { environment } = React.useContext(ShellContext);
-  const user = environment.getUser();
-  const [linkTabs, setLinkTabs] = React.useState<UseGuideLinkProps>({});
 
-  React.useEffect(() => {
-    setLinkTabs(
-      getGuideListLink({
-        subsidiary: user.ovhSubsidiary as Subsidiaries,
-      }),
-    );
-  }, [user.ovhSubsidiary]);
-
-  return linkTabs;
+  return getGuideListLink({
+    subsidiary: environment.getUser().ovhSubsidiary as Subsidiaries,
+  });
 }

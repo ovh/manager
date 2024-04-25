@@ -19,9 +19,8 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { handleClick } from '@/utils/ods-utils';
-import { FormField } from './FormField';
+import { handleClick } from '../../../utils/click-utils';
+import { FormField } from '../../form/form-field/form-field.component';
 
 export type DeleteModalProps = {
   headline: string;
@@ -30,7 +29,9 @@ export type DeleteModalProps = {
   closeModal: () => void;
   isLoading?: boolean;
   onConfirmDelete: () => void;
-  error?: ApiError;
+  error?: string;
+  cancelButtonLabel?: string;
+  confirmButtonLabel?: string;
 };
 
 const terminateValue = 'TERMINATE';
@@ -43,8 +44,10 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
   isLoading,
   onConfirmDelete,
   error,
+  cancelButtonLabel,
+  confirmButtonLabel,
 }) => {
-  const { t } = useTranslation('vrack-services');
+  const { t } = useTranslation('delete-modal');
   const [deleteInput, setDeleteInput] = React.useState('');
 
   const close = () => {
@@ -66,7 +69,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {t('genericApiError', { error: error.response?.data?.message })}
+            {t('deleteModalError', { error })}
           </OsdsText>
         </OsdsMessage>
       )}
@@ -96,7 +99,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
         color={ODS_THEME_COLOR_INTENT.primary}
         {...handleClick(close)}
       >
-        {t('modalCancelButton')}
+        {cancelButtonLabel || t('deleteModalCancelButton')}
       </OsdsButton>
       <OsdsButton
         disabled={isLoading || deleteInput !== terminateValue || undefined}
@@ -109,7 +112,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
           onConfirmDelete();
         })}
       >
-        {t('modalDeleteButton')}
+        {confirmButtonLabel || t('deleteModalDeleteButton')}
       </OsdsButton>
     </OsdsModal>
   );
