@@ -195,7 +195,8 @@ export default class CreatePolicyController {
       this.model.actions.selection = this.policy.permissions.allow.filter(
         (action) => action !== wildcardAction,
       );
-      this.model.actions.isWildcardActive = Boolean(wildcardAction);
+      this.model.isWildcardActive = Boolean(wildcardAction);
+      this.model.actions.isWildcardActive = this.model.isWildcardActive;
       this.model.name = this.policy.name;
       this.model.description = this.policy.description;
       this.model.resources.selection = this.policy.resources
