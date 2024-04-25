@@ -27,7 +27,7 @@ export const useUpdateVrackServicesName = ({
 }: {
   onSuccess?: () => void;
   onError?: (result: ApiError) => void;
-}) => {
+} = {}) => {
   const [isErrorVisible, setIsErrorVisible] = React.useState(false);
   const queryClient = useQueryClient();
 
@@ -36,7 +36,7 @@ export const useUpdateVrackServicesName = ({
     isPending,
     error: updateNameError,
   } = useMutation({
-    mutationKey: updateVrackServicesNameQueryKey(),
+    mutationKey: updateVrackServicesNameQueryKey,
     mutationFn: async ({
       vrackServices,
       displayName,

@@ -11,6 +11,7 @@ export const setupMocks = async () =>
         deliveringVrackServicesOrders: true,
         deliveringVrackOrders: false,
         isAuthMocked: true,
+        updateServicesKo: true,
       }),
     ),
   ).start({
