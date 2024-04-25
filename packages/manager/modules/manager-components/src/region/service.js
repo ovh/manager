@@ -60,6 +60,7 @@ export default class ovhManagerRegionService {
       VIN: this.$translate.instant('manager_components_region_VIN'),
       HIL: this.$translate.instant('manager_components_region_HIL'),
       SGP: this.$translate.instant('manager_components_region_SGP'),
+      YYZ: this.$translate.instant('manager_components_region_YYZ'),
     };
   }
 

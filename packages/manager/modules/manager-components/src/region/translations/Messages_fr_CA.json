@@ -28,6 +28,8 @@
   "manager_components_region_HIL_micro": "Hillsboro ({{ micro }})",
   "manager_components_region_SYD": "Sydney",
   "manager_components_region_SYD_micro": "Sydney ({{ micro }})",
+  "manager_components_region_YYZ": "Toronto",
+  "manager_components_region_YYZ_micro": "Toronto ({{ micro }})",
   "manager_components_region_US": "États-Unis",
   "manager_components_region_US_micro": "États-Unis ({{ micro }})",
   "manager_components_region_GS": "GS",
@@ -70,5 +72,6 @@
   "manager_components_region_continent_SYD": "Océanie",
   "manager_components_region_continent_US": "États-Unis",
   "manager_components_region_continent_DAL": "États-Unis",
-  "manager_components_region_continent_SHA": "Europe de l'Ouest"
+  "manager_components_region_continent_SHA": "Europe de l'Ouest",
+  "manager_components_region_continent_YYZ": "Amérique du Nord (Toronto)"
 }

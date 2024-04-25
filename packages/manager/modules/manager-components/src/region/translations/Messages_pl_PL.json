@@ -70,5 +70,8 @@
   "manager_components_region_VIN": "Vint Hill",
   "manager_components_region_VIN_micro": "Vint Hill ({{micro}})",
   "manager_components_region_HIL": "Hillsboro",
-  "manager_components_region_HIL_micro": "Hillsboro ({{micro}})"
+  "manager_components_region_HIL_micro": "Hillsboro ({{micro}})",
+  "manager_components_region_YYZ": "Toronto",
+  "manager_components_region_YYZ_micro": "Toronto ({{micro}})",
+  "manager_components_region_continent_YYZ": "Ameryka Północna (Toronto)"
 }
