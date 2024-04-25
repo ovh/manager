@@ -1,1 +1,2 @@
-export * from '../content/headers/headers.component';
+export * from './headers/headers.component';
+export * from './price/price.component';
