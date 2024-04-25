@@ -13,7 +13,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useGuideUtils } from '@/components/GuideLink';
+import { useGuideUtils } from './guide-utils';
 import { OnboardingLayout } from '@/components/layout-helpers';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { getVrackServicesResourceListQueryKey } from '@/api';
