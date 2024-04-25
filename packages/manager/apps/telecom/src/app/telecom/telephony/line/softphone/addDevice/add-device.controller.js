@@ -1,6 +1,7 @@
 import { FIELD_NAME_REGEX } from './add-device.constants';
 
 export default class SoftphoneAddDeviceController {
+  /* @ngInject */
   constructor(softphoneService, TucToast, $translate, $stateParams) {
     this.softphoneService = softphoneService;
     this.TucToast = TucToast;
@@ -11,12 +12,21 @@ export default class SoftphoneAddDeviceController {
   }
 
   generateLink() {
-    this.softphoneService
-      .generateLink(
+    return this.softphoneService
+      .setDeviceName(
         this.$stateParams.billingAccount,
         this.$stateParams.serviceName,
         this.model.name,
+        this.deviceId,
       )
+      .then(({ deviceId }) => {
+        this.deviceId = deviceId;
+        return this.softphoneService.enroll(
+          this.$stateParams.billingAccount,
+          this.$stateParams.serviceName,
+          this.deviceId,
+        );
+      })
       .then(({ provisioningURL }) => {
         this.recordLink = provisioningURL;
       })
