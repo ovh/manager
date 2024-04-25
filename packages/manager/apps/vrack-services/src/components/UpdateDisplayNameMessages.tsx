@@ -29,13 +29,7 @@ export const UpdateDisplayNameMessage: React.FC = () => {
     },
   });
 
-  const [displayMessage, setDisplayMessage] = useState([]);
-
-  useEffect(() => {
-    setDisplayMessage(
-      Array.from({ length: updateDisplayNameMutations.length }, () => true),
-    );
-  }, [updateDisplayNameMutations]);
+  const [hiddenMessages, setHiddenMessages] = useState([]);
 
   if (!updateDisplayNameMutations.length) {
     return null;
@@ -43,41 +37,42 @@ export const UpdateDisplayNameMessage: React.FC = () => {
 
   return (
     <>
-      {updateDisplayNameMutations.map(
-        (
-          updateMutation: MutationState<
-            unknown,
-            Error,
-            UpdateVrackServicesNameMutationParams,
-            unknown
-          >,
-          mutationIndex: number,
-        ) =>
-          updateMutation.status === 'success' &&
-          displayMessage[mutationIndex] !== false && (
-            <OsdsMessage
-              key={updateMutation.variables.vrackServices + mutationIndex}
-              type={ODS_MESSAGE_TYPE.success}
-              className="mb-8"
-              removable
-              onOdsRemoveClick={() => {
-                const newDisplayMessage = [...displayMessage];
-                newDisplayMessage[mutationIndex] = false;
-                setDisplayMessage(newDisplayMessage);
-              }}
+      {updateDisplayNameMutations
+        .filter(
+          (
+            updateMutation: MutationState<
+              unknown,
+              Error,
+              UpdateVrackServicesNameMutationParams,
+              unknown
+            >,
+          ) =>
+            updateMutation.status === 'success' &&
+            !hiddenMessages.includes(updateMutation.submittedAt),
+        )
+        .map((updateMutation) => (
+          <OsdsMessage
+            key={updateMutation.submittedAt}
+            type={ODS_MESSAGE_TYPE.success}
+            className="mb-8"
+            removable
+            onOdsRemoveClick={() =>
+              setHiddenMessages((hiddenMessage) =>
+                hiddenMessage.concat(updateMutation.submittedAt),
+              )
+            }
+          >
+            <OsdsText
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_TEXT_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
             >
-              <OsdsText
-                level={ODS_TEXT_LEVEL.body}
-                size={ODS_TEXT_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t('updateDisplayNameSuccess', {
-                  vrackServices: updateMutation.variables.vrackServices,
-                })}
-              </OsdsText>
-            </OsdsMessage>
-          ),
-      )}
+              {t('updateDisplayNameSuccess', {
+                vrackServices: updateMutation.variables.vrackServices,
+              })}
+            </OsdsText>
+          </OsdsMessage>
+        ))}
     </>
   );
 };
