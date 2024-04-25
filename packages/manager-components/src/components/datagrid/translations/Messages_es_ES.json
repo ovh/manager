@@ -1,5 +1,6 @@
 {
   "common_pagination_of": "de",
   "common_pagination_results": "resultados",
-  "common_pagination_no_results": "No hay resultados"
+  "common_pagination_no_results": "No hay resultados",
+  "common_empty_text_cell": "Ninguno"
 }
