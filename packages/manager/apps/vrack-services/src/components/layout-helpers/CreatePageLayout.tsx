@@ -25,8 +25,8 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { PageLayout } from '@/components/layout-helpers/PageLayout';
 import { handleClick } from '@/utils/ods-utils';
+import { PageLayout } from '@/components/layout-helpers/PageLayout';
 
 export type CreatePageLayoutProps = React.PropsWithChildren<{
   overviewUrl?: string;

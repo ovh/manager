@@ -7,6 +7,7 @@ import { ConfigParams } from '../../mock/handlers';
 import {
   associateVrackButtonLabel,
   modalConfirmVrackAssociationButtonLabel,
+  modalDeleteInputLabel,
 } from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 import { orderButtonLabel } from '../../src/public/translations/vrack-services/onboarding/Messages_fr_FR.json';
 import {
@@ -36,7 +37,6 @@ import {
   subnetPlaceholder,
   modalDeleteInputLabel as endpointsDeleteInputLabel,
 } from '../../src/public/translations/vrack-services/endpoints/Messages_fr_FR.json';
-import { terminateValue } from '../../src/components/DeleteModal/DeleteModal.constants';
 
 When('User clicks on the vRack Services configuration button', async function(
   this: ICustomWorld<ConfigParams>,
@@ -112,6 +112,9 @@ When('User edits the vRack Services name', async function(
   await editButton.click();
 
   const input = await this.page.locator('input').nth(index);
+
+  await expect(input).toBeVisible();
+
   await input.fill('test');
   await input.press('Enter');
 });
@@ -277,6 +280,9 @@ When('User updates the display name of a subnet', async function(
   await editButton.click();
 
   const input = await this.page.locator('input').nth(0);
+
+  await expect(input).toBeVisible();
+
   await input.fill('test');
   await input.press('Enter');
 });
@@ -295,6 +301,24 @@ When('User clicks on the trash icon', async function(
   await deleteButton.click();
 });
 
+When('User fills the vRack Services delete form', async function(
+  this: ICustomWorld<ConfigParams>,
+) {
+  const input = await this.page
+    .locator('osds-form-field', {
+      hasText: modalDeleteInputLabel,
+    })
+    .locator('input');
+
+  await expect(input).toBeVisible();
+
+  await input.fill('TERMINATE');
+
+  await this.page
+    .locator('osds-button', { hasText: modalDeleteButton })
+    .click();
+});
+
 When('User fills the {word} delete form', async function(
   this: ICustomWorld<ConfigParams>,
   tab: 'subnets' | 'endpoints',
@@ -308,7 +332,7 @@ When('User fills the {word} delete form', async function(
 
   await expect(input).toBeVisible();
 
-  await input.fill(terminateValue);
+  await input.fill('TERMINATE');
 
   await this.page
     .locator('osds-button', { hasText: modalDeleteButton })

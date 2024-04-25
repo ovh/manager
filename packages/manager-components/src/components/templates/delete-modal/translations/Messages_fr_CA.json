@@ -1,0 +1,5 @@
+{
+  "deleteModalError": "L'erreur suivante est survenue : {{error}}.",
+  "deleteModalCancelButton": "Annuler",
+  "deleteModalDeleteButton": "Supprimer"
+}
