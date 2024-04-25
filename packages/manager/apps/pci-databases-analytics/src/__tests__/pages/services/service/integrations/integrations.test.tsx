@@ -16,7 +16,6 @@ import { Locale } from '@/hooks/useLocale';
 import * as integrationApi from '@/api/databases/integrations';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import {
-  mockedService,
   mockedServiceInte,
   mockedService as mockedServiceOrig,
 } from '@/__tests__/helpers/mocks/services';
@@ -51,7 +50,7 @@ describe('Integrations page', () => {
     }));
 
     vi.mock('@/api/databases/service', () => ({
-      getServices: vi.fn(() => [mockedService, mockedServiceInte]),
+      getServices: vi.fn(() => [mockedServiceOrig, mockedServiceInte]),
     }));
 
     vi.mock('@/pages/services/[serviceId]/layout', () => ({
@@ -103,10 +102,10 @@ describe('Integrations page', () => {
     });
   });
   it('displays add integrations button if capability is present', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
-        ...mockedService,
+        ...mockedNewService,
         capabilities: {
           integrations: {
             create: database.service.capability.StateEnum.enabled,
@@ -120,10 +119,10 @@ describe('Integrations page', () => {
     expect(screen.queryByTestId('integrations-add-button')).toBeInTheDocument();
   });
   it('does not display add integrations button if capability is absent', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
-        ...mockedService,
+        ...mockedNewService,
         capabilities: {
           integrations: {},
         },
@@ -135,10 +134,10 @@ describe('Integrations page', () => {
     expect(screen.queryByTestId('integrations-add-button')).toBeNull();
   });
   it('disable add integrations button if capability is disabled', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
-        ...mockedService,
+        ...mockedNewService,
         capabilities: {
           integrations: {
             create: database.service.capability.StateEnum.disabled,
@@ -177,14 +176,6 @@ describe('Open modals', () => {
     });
   };
   beforeEach(async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
-      projectId: 'projectId',
-      service: {
-        ...mockedNewService,
-      },
-      category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
-    });
     render(<Integrations />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText(mockedIntegrations.status)).toBeInTheDocument();

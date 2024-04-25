@@ -97,7 +97,7 @@ describe('Namespaces page', () => {
     });
   });
   it('displays add namespace button if capability is present', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -114,7 +114,7 @@ describe('Namespaces page', () => {
     expect(screen.queryByTestId('namespaces-add-button')).toBeInTheDocument();
   });
   it('does not display namespaces button if capability is absent', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -129,7 +129,7 @@ describe('Namespaces page', () => {
     expect(screen.queryByTestId('namespaces-add-button')).toBeNull();
   });
   it('disable add namespaces button if capability is disabled', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -181,14 +181,6 @@ describe('Open modals', () => {
           toast: toastMock,
         })),
       };
-    });
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
-      projectId: 'projectId',
-      service: {
-        ...mockedService,
-      },
-      category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
     });
     render(<Namespaces />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {

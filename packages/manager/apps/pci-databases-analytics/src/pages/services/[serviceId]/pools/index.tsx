@@ -111,6 +111,10 @@ const Pools = () => {
     (cp) => cp.id === editModale.value,
   );
 
+  console.log(usersQuery.data);
+  console.log(connectionPoolsQuery.data);
+  console.log(databasesQuery.data);
+
   return (
     <>
       <div className="flex justify-between w-full items-center">
