@@ -1,45 +1,55 @@
 import { Handler } from '@playwright-helpers';
 
 export type GetServicesMocksParams = {
-  servicesKo?: boolean;
+  getServicesKo?: boolean;
+  updateServicesKo?: boolean;
+  deleteServicesKo?: boolean;
+};
+
+export const errors = {
+  delete: 'Delete services error',
+  update: 'Update services error',
+  get: 'Get services error',
 };
 
 export const getServicesMocks = ({
-  servicesKo,
+  getServicesKo,
+  updateServicesKo,
+  deleteServicesKo,
 }: GetServicesMocksParams): Handler[] => [
   {
     url: '/services/:id/terminate',
     response: () =>
-      servicesKo
+      deleteServicesKo
         ? {
-            message: 'Services error',
+            message: errors.delete,
           }
         : null,
-    status: servicesKo ? 500 : 200,
+    status: deleteServicesKo ? 500 : 200,
     method: 'post',
     api: 'v6',
   },
   {
     url: '/services/:id',
     response: () =>
-      servicesKo
+      updateServicesKo
         ? {
-            message: 'Services error',
+            message: errors.update,
           }
         : null,
-    status: servicesKo ? 500 : 200,
+    status: updateServicesKo ? 500 : 200,
     method: 'put',
     api: 'v6',
   },
   {
     url: '/services',
     response: () =>
-      servicesKo
+      getServicesKo
         ? {
-            message: 'Services error',
+            message: errors.get,
           }
         : [1234567890],
-    status: servicesKo ? 500 : 200,
+    status: getServicesKo ? 500 : 200,
     method: 'get',
     api: 'v6',
   },

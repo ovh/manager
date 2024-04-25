@@ -16,7 +16,12 @@
       "displayName": null,
       "subnets": []
     },
-    "updatedAt": "2023-03-10T12:00:00Z"
+    "updatedAt": "2023-03-10T12:00:00Z",
+    "iam": {
+      "displayName": "test-qa",
+      "id": "f30d4ca1-d183-4484-a408-27b9139dce3d",
+      "urn": "urn:v1:eu:resource:vrackServices:vrs-ahc-fw4-od1-efq"
+    }
   },
   {
     "checksum": "4c5d68ea2231e90db7495406018a0f5e",
@@ -70,9 +75,21 @@
           "displayName": "My.Subnet",
           "serviceEndpoints": [
             {
+              "endpoints": [
+                {
+                  "description": "Nominal",
+                  "ip": "192.168.0.5"
+                }
+              ],
               "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-00e1-4a3d-ae89-ac145675c8bb"
             },
             {
+              "endpoints": [
+                {
+                  "description": "",
+                  "ip": "192.168.0.2"
+                }
+              ],
               "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-a77c-478e-93ce-06aa94cbd9d1"
             }
           ],
@@ -220,9 +237,21 @@
           "displayName": "My.Subnet",
           "serviceEndpoints": [
             {
+              "endpoints": [
+                {
+                  "description": "Nominal",
+                  "ip": "192.168.0.5"
+                }
+              ],
               "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-00e1-4a3d-ae89-ac145675c8bb"
             },
             {
+              "endpoints": [
+                {
+                  "description": "",
+                  "ip": "192.168.0.2"
+                }
+              ],
               "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-a77c-478e-93ce-06aa94cbd9d1"
             }
           ],
@@ -280,9 +309,21 @@
           "displayName": "My.Subnet",
           "serviceEndpoints": [
             {
+              "endpoints": [
+                {
+                  "description": "Nominal",
+                  "ip": "192.168.0.5"
+                }
+              ],
               "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-00e1-4a3d-ae89-ac145675c8bb"
             },
             {
+              "endpoints": [
+                {
+                  "description": "",
+                  "ip": "192.168.0.2"
+                }
+              ],
               "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-a77c-478e-93ce-06aa94cbd9d1"
             }
           ],
@@ -331,9 +372,21 @@
           "displayName": "My.Subnet",
           "serviceEndpoints": [
             {
+              "endpoints": [
+                {
+                  "description": "Nominal",
+                  "ip": "192.168.0.5"
+                }
+              ],
               "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-00e1-4a3d-ae89-ac145675c8bb"
             },
             {
+              "endpoints": [
+                {
+                  "description": "",
+                  "ip": "192.168.0.2"
+                }
+              ],
               "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-a77c-478e-93ce-06aa94cbd9d1"
             }
           ],
@@ -531,6 +584,7 @@
     "updatedAt": "2024-03-26T11:37:49.16237Z",
     "iam": {
       "id": "685fd9e5-7634-450f-b085-81f23a6ee8e2",
+      "displayName": "vrs-d18-qi7-5lk-is2",
       "urn": "urn:v1:labeu:resource:vrackServices:vrs-d18-qi7-5lk-is2"
     }
   }
