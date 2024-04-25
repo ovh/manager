@@ -68,7 +68,7 @@ export const useUpdateVrackServicesName = ({
   return {
     updateVSName,
     isPending,
-    isErrorVisible,
+    isErrorVisible: updateNameError && isErrorVisible,
     error: updateNameError,
     hideError: () => setIsErrorVisible(false),
   };
