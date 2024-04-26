@@ -42,7 +42,7 @@
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.6.2",
-    "@ovh-ux/ui-kit": "^6.7.0",
+    "@ovh-ux/ui-kit": "^6.10.0",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.5",
