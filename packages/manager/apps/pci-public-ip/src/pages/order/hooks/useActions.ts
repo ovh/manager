@@ -10,10 +10,21 @@ import { useMe } from '@/api/hooks/useMe';
 import { createFloatingIp } from '@/api/hooks/useCreateFloatingIp';
 import { IPTypeEnum, StepIdsEnum } from '@/api/types';
 import { useOrderStore } from '@/pages/order/hooks/useStore';
+import { useStepsStore } from '@/pages/order/hooks/useStepsStore';
 
 export const useActions = (projectId: string) => {
   const { trackClick } = useTracking();
-  const { form, steps, openStep, closeStep, setForm } = useOrderStore();
+  const { form, setForm } = useOrderStore();
+  const {
+    items: steps,
+    open,
+    close,
+    check,
+    uncheck,
+    lock,
+    unlock,
+    getPosteriorSteps,
+  } = useStepsStore();
   const { t: tOrder } = useTranslation('order');
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
@@ -100,23 +111,31 @@ export const useActions = (projectId: string) => {
     (id: string) => {
       switch (id) {
         case StepIdsEnum.IP_TYPE:
+          check(StepIdsEnum.IP_TYPE);
+          lock(StepIdsEnum.IP_TYPE);
           if (form.ipType === IPTypeEnum.FAILOVER) {
-            openStep(StepIdsEnum.FAILOVER_COUNTRY);
+            open(StepIdsEnum.FAILOVER_COUNTRY);
           } else {
-            openStep(StepIdsEnum.FLOATING_REGION);
+            open(StepIdsEnum.FLOATING_REGION);
           }
           break;
         case StepIdsEnum.FAILOVER_COUNTRY:
-          openStep(StepIdsEnum.FAILOVER_INSTANCE);
+          check(StepIdsEnum.FAILOVER_COUNTRY);
+          lock(StepIdsEnum.FAILOVER_COUNTRY);
+          open(StepIdsEnum.FAILOVER_INSTANCE);
           break;
         case StepIdsEnum.FAILOVER_INSTANCE:
           doOrderFailoverIp();
           break;
         case StepIdsEnum.FLOATING_REGION:
-          openStep(StepIdsEnum.FLOATING_INSTANCE);
+          check(StepIdsEnum.FLOATING_REGION);
+          lock(StepIdsEnum.FLOATING_REGION);
+          open(StepIdsEnum.FLOATING_INSTANCE);
           break;
         case StepIdsEnum.FLOATING_INSTANCE:
-          openStep(StepIdsEnum.FLOATING_SUMMARY);
+          check(StepIdsEnum.FLOATING_INSTANCE);
+          lock(StepIdsEnum.FLOATING_INSTANCE);
+          open(StepIdsEnum.FLOATING_SUMMARY);
           break;
         case StepIdsEnum.FLOATING_SUMMARY:
           doOrderFloatingIp()
@@ -153,35 +172,38 @@ export const useActions = (projectId: string) => {
             ipAddress: null,
           });
         }
-
-        Object.keys(StepIdsEnum)
-          .filter((key) => StepIdsEnum[key] !== StepIdsEnum.IP_TYPE)
-          .forEach((key) => {
-            closeStep(StepIdsEnum[key]);
-          });
         break;
       case StepIdsEnum.FAILOVER_COUNTRY:
         setForm({ ...form, instance: null });
-        closeStep(StepIdsEnum.FAILOVER_INSTANCE);
+        close(StepIdsEnum.FAILOVER_INSTANCE);
         break;
       case StepIdsEnum.FLOATING_REGION:
         setForm({ ...form, instance: null, ipAddress: null });
-        closeStep(StepIdsEnum.FLOATING_INSTANCE);
-        closeStep(StepIdsEnum.FLOATING_SUMMARY);
+        close(StepIdsEnum.FLOATING_INSTANCE);
+        close(StepIdsEnum.FLOATING_SUMMARY);
         break;
       case StepIdsEnum.FLOATING_INSTANCE:
-        closeStep(StepIdsEnum.FLOATING_SUMMARY);
+        close(StepIdsEnum.FLOATING_SUMMARY);
         break;
       default:
     }
+
+    getPosteriorSteps(id as StepIdsEnum).forEach((i) => {
+      uncheck(i);
+      unlock(i);
+      close(i);
+    });
+
+    unlock(id as StepIdsEnum);
+    uncheck(id as StepIdsEnum);
   };
 
   return {
-    Do: {
+    act: {
       orderFailoverIp: doOrderFailoverIp,
       orderFloatingIp: doOrderFloatingIp,
     },
-    On: {
+    on: {
       next: onNext,
       edit: onEdit,
     },

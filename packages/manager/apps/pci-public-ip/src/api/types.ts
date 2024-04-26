@@ -63,5 +63,7 @@ export type TStepState = {
   id: string;
   key: string;
   title: string;
-  open: boolean;
+  isOpen: boolean;
+  isChecked: boolean;
+  isLocked: boolean;
 };

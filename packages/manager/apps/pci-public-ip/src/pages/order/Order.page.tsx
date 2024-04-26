@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   isDiscoveryProject,
   Notifications,
@@ -25,10 +25,12 @@ import { FloatingSteps } from '@/pages/order/steps/FloatingSteps';
 import { IPTypeEnum } from '@/api/types';
 import { useOrderStore } from '@/pages/order/hooks/useStore';
 import { initStartupSteps } from '@/pages/order/utils/startupSteps';
+import { useStepsStore } from '@/pages/order/hooks/useStepsStore';
 
 export default function OrderPage(): JSX.Element {
   const { projectId } = useParams();
   const navigation = useNavigation();
+  const navigate = useNavigate();
 
   const context = useContext(ShellContext);
 
@@ -36,7 +38,8 @@ export default function OrderPage(): JSX.Element {
   const { t: tOrder } = useTranslation('order');
   const { t: tStepper } = useTranslation('stepper');
 
-  const { form, setSteps } = useOrderStore();
+  const { form } = useOrderStore();
+  const { setItems } = useStepsStore();
   const { data: project } = useProject(projectId);
 
   const [projectUrl, setProjectUrl] = useState('');
@@ -50,7 +53,7 @@ export default function OrderPage(): JSX.Element {
   }, [projectId, navigation]);
 
   useEffect(() => {
-    setSteps(initStartupSteps(tOrder));
+    setItems(initStartupSteps(tOrder));
   }, []);
 
   return (
@@ -75,7 +78,8 @@ export default function OrderPage(): JSX.Element {
       <OsdsLink
         color={ODS_THEME_COLOR_INTENT.primary}
         className="mt-10"
-        href={`${projectUrl}/public-ips`}
+        onClick={() => navigate(-1)}
+        href={`${projectUrl}/public-ips/floating-ips`}
       >
         <OsdsIcon
           slot="start"

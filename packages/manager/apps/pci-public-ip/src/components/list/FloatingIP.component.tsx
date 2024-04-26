@@ -32,6 +32,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { FloatingIP } from '@/interface';
 import { useFloatingIPs } from '@/api/hooks/useFloatingIP';
 import FloatingIPActions from './FloatingIPActions.component';
@@ -47,6 +48,9 @@ export default function FloatingIPComponent({
   projectUrl,
 }: Readonly<FloatingIPComponentProps>) {
   const { t } = useTranslation('common');
+  const navigate = useNavigate();
+
+  const goToOrderPage = () => navigate('../order');
 
   const { pagination, setPagination } = useDatagridSearchParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
@@ -132,6 +136,7 @@ export default function FloatingIPComponent({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
+          onClick={() => goToOrderPage()}
         >
           <OsdsIcon
             name={ODS_ICON_NAME.ADD}

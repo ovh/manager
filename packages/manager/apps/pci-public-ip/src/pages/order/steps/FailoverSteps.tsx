@@ -11,6 +11,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
+import { useRef } from 'react';
 import { GUIDE_URLS, TRACKING_GUIDE_LINKS } from '@/pages/order/constants';
 import { useData } from '@/api/hooks/useData';
 import { useMe } from '@/api/hooks/useMe';
@@ -18,7 +19,9 @@ import { StepIdsEnum, TCountry } from '@/api/types';
 import { useOrderStore } from '@/pages/order/hooks/useStore';
 import { useActions } from '@/pages/order/hooks/useActions';
 import { StepComponent } from '@/components/container/Step.component';
-import { CountryInputComponent } from '@/components/input/CountryInput.component';
+import { useTrackTranslationLink } from '@/hooks/useTrackTranslationLink';
+import { TileInputComponent } from '@/components/input/TileInput.component';
+import { useStepsStore } from '@/pages/order/hooks/useStepsStore';
 
 export const FailoverSteps = ({
   projectId,
@@ -28,23 +31,60 @@ export const FailoverSteps = ({
   regionName: string;
 }): JSX.Element => {
   const { t: tOrder } = useTranslation('order');
-  const { form, setForm, steps } = useOrderStore();
-  const { On } = useActions(projectId);
+  const { t: tCountries } = useTranslation('countries');
+  const { t: tStepper } = useTranslation('stepper');
+  const { form, setForm } = useOrderStore();
+  const { items: steps } = useStepsStore();
+  const { on } = useActions(projectId);
   const { state: DataState, getInstanceById } = useData(projectId, regionName);
   const { me } = useMe();
+
+  const trackRef = useRef<HTMLElement>(null);
+
+  useTrackTranslationLink(trackRef);
 
   return (
     <>
       <StepComponent
         key={StepIdsEnum.FAILOVER_COUNTRY}
         {...steps.get(StepIdsEnum.FAILOVER_COUNTRY)}
-        next={{ action: form.failoverCountry && On.next }}
-        onEdit={On.edit}
+        subtitle={
+          <OsdsText
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_TEXT_COLOR_INTENT.text}
+          >
+            <span
+              ref={trackRef}
+              dangerouslySetInnerHTML={{
+                __html: tOrder(
+                  'pci_additional_ip_create_step_select_region_description_failover_ip',
+                  {
+                    guideLink:
+                      GUIDE_URLS.FAILOVER_IP[me?.ovhSubsidiary] ||
+                      GUIDE_URLS.FAILOVER_IP.DEFAULT,
+                    trackLabel: TRACKING_GUIDE_LINKS.DISCOVER_FAILOVER_IP,
+                  },
+                ),
+              }}
+            ></span>
+          </OsdsText>
+        }
+        next={{
+          action: form.failoverCountry && on.next,
+          label: tStepper('common_stepper_next_button_label'),
+        }}
+        edit={{
+          action: on.edit,
+          label: tStepper('common_stepper_modify_this_step'),
+        }}
         order={2}
       >
-        <CountryInputComponent
+        <TileInputComponent<TCountry, string, string>
           value={form.failoverCountry}
-          countries={DataState.countries}
+          items={DataState.countries}
+          label={(item: TCountry) =>
+            tCountries(`pci_additional_ips_country_${item.name}`)
+          }
           onInput={(value: TCountry) =>
             setForm({
               ...form,
@@ -57,7 +97,7 @@ export const FailoverSteps = ({
         key={StepIdsEnum.FAILOVER_INSTANCE}
         {...steps.get(StepIdsEnum.FAILOVER_INSTANCE)}
         next={{
-          action: form.instance && On.next,
+          action: form.instance && on.next,
           label: 'Generate purchase order',
         }}
         order={3}

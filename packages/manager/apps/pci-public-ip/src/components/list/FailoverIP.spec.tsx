@@ -83,7 +83,7 @@ describe('FailoverIP component tests', () => {
       projectUrl: 'https://project-url',
     };
 
-    const { container, debug } = renderFailover(props);
+    const { container } = renderFailover(props);
 
     expect(container).toContainHTML('<div>Notifications</div>');
   });

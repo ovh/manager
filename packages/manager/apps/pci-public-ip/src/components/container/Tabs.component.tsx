@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useMedia } from 'react-use';
 import { clsx } from 'clsx';
+import { v4 as uuidV4 } from 'uuid';
 
 type TProps<Item> = {
-  id: string;
-  items: Item[];
-  titleElement: (item: Item, selected: boolean) => JSX.Element;
-  contentElement: (item: Item) => JSX.Element;
+  id?: string;
+  items?: Item[];
+  titleElement?: (item: Item, selected: boolean) => JSX.Element;
+  contentElement?: (item: Item) => JSX.Element;
   mobileBreakPoint?: number;
   className?: string;
 };
 
 export const TabsComponent = function TabsComponent<Item>({
-  id,
-  items,
-  titleElement,
-  contentElement,
+  id = uuidV4(),
+  items = [],
+  titleElement = (item, selected) => (
+    <div className={selected && 'selected'}>{`title ${item}`}</div>
+  ),
+  contentElement = (item) => <div>{`content ${item}`}</div>,
   mobileBreakPoint,
   className,
 }: TProps<Item>): JSX.Element {
@@ -29,8 +32,14 @@ export const TabsComponent = function TabsComponent<Item>({
   return (
     <>
       {isDesktop ? (
-        <section className={clsx('rounded-sm', className)}>
-          <ul className="flex flex-row list-none p-0 m-0 w-full">
+        <section
+          className={clsx('rounded-sm', className)}
+          data-testid="desktop"
+        >
+          <ul
+            className="flex flex-row list-none p-0 m-0 w-full"
+            data-testid="titles"
+          >
             {items.map(($item, index) => (
               <li
                 key={`tabs-${id}title-${index}`}
@@ -57,7 +66,10 @@ export const TabsComponent = function TabsComponent<Item>({
           </div>
         </section>
       ) : (
-        <section className={clsx('grid gap-6 grid-cols-1', className)}>
+        <section
+          className={clsx('grid gap-6 grid-cols-1', className)}
+          data-testid="mobile"
+        >
           {items.map(($item, index) => (
             <div
               key={`item-${index}`}

@@ -83,7 +83,7 @@ describe('FloatingIP component tests', () => {
       projectUrl: 'https://project-url',
     };
 
-    const { container, debug } = renderFloatingIP(props);
+    const { container } = renderFloatingIP(props);
 
     expect(container).toContainHTML('<div>Notifications</div>');
   });
