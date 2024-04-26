@@ -67,7 +67,7 @@
             <div class="row">
                 <oui-field
                     class="col-md-12"
-                    label="{{ ::'telephony_line_softphone_record_link' | translate }}"
+                    data-label="{{ ::'telephony_line_softphone_record_link' | translate }}"
                 >
                     <oui-clipboard
                         data-ng-if="$ctrl.recordLink"
@@ -82,6 +82,7 @@
                             class="oui-input"
                             id="recordLink"
                             value="-"
+                            name="disabledRecordLink"
                             disabled
                         />
                         <span class="oui-icon oui-icon-copy-normal"></span>

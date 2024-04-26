@@ -6,7 +6,7 @@ export default class SofpthoneService {
     this.$http = $http;
   }
 
-  setDeviceName(billingAccount, serviceName, name, deviceId) {
+  modifyDevice(billingAccount, serviceName, name, deviceId) {
     return this.$http
       .put(
         `/telephony/${billingAccount}/line/${serviceName}/devices/${deviceId}`,
