@@ -1,13 +1,8 @@
-import get from 'lodash/get';
-import isArray from 'lodash/isArray';
-import isEmpty from 'lodash/isEmpty';
-
 export default class IpAgoraOrder {
   /* @ngInject */
-  constructor($q, $http, OvhHttp) {
+  constructor($q, $http) {
     this.$q = $q;
     this.$http = $http;
-    this.OvhHttp = OvhHttp;
 
     this.fetchPricesTries = 0;
   }
@@ -26,11 +21,11 @@ export default class IpAgoraOrder {
       const [errorCode] = msg.match(/\d+/);
       return ![400, 404].includes(parseInt(errorCode, 10));
     });
-    if (isArray(filteredErrors) && !isEmpty(filteredErrors)) {
+    if (filteredErrors && filteredErrors.length) {
       return this.$q.reject(filteredErrors);
     }
 
-    return get(results, '[0].services', []);
+    return results && results.length ? results[0].services : [];
   }
 
   static createProductToOrder({
