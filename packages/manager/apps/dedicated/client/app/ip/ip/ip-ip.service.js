@@ -208,6 +208,35 @@ export default /* @ngInject */ function Ip(
         }),
       );
 
+  this.getIpsForIpV6 = (ipBlock, serviceName) =>
+    $q
+      .all({
+        bridgedSubrange: $http
+          .get(
+            `/vrack/${window.encodeURIComponent(
+              serviceName,
+            )}/ipv6/${window.encodeURIComponent(ipBlock)}/bridgedSubrange`,
+          )
+          .then(({ data }) => data),
+        routedSubrange: $http
+          .get(
+            `/vrack/${window.encodeURIComponent(
+              serviceName,
+            )}/ipv6/${window.encodeURIComponent(ipBlock)}/routedSubrange`,
+          )
+          .then(({ data }) => data),
+      })
+      .then(({ bridgedSubrange, routedSubrange }) => {
+        return map([...bridgedSubrange, ...routedSubrange], (ip) => {
+          return {
+            ip,
+            version: IP_TYPE.V6,
+            type: 'SUBRANGE',
+            isUniq: true,
+          };
+        });
+      });
+
   let ipsListDeferredObjs = [];
 
   this.getIpsListForService = (serviceName) => {

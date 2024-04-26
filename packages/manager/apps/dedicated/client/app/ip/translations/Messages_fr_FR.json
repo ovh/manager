@@ -180,6 +180,7 @@
   "ip_table_manage_view_virtualmac": "Détails de la MAC virtuelle",
   "ip_table_manage_view_virtualmac_question": "Voici le détail de la MAC virtuelle :",
   "ip_table_manage_del_virtualmac": "Supprimer la MAC virtuelle",
+  "ip_table_manage_subnets": "Gérer IPv6 subnets dans le vRack",
   "ip_virtualmac_add_new": "Créer une nouvelle MAC virtuelle",
   "ip_virtualmac_add_existing": "Utiliser une MAC virtuelle existante",
   "ip_virtualmac_type": "Type",

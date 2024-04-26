@@ -14,6 +14,7 @@ import virtualMac from './virtual-mac/virtual-mac.module';
 
 import popoverIpTemplate from './popover/ip.html';
 import popoverIpBlockTemplate from './popover/ipBlock.html';
+import popoverAdditionalIpV6Template from './popover/additional-ipv6.html';
 
 import component from './list.component';
 
@@ -39,6 +40,10 @@ angular
     /* @ngInject */ ($templateCache) => {
       $templateCache.put('ip/popover/ip.html', popoverIpTemplate);
       $templateCache.put('ip/popover/ipBlock.html', popoverIpBlockTemplate);
+      $templateCache.put(
+        'ip/popover/additional-ipv6.html',
+        popoverAdditionalIpV6Template,
+      );
     },
   )
   .run(/* @ngTranslationsInject:json ./translations */)
