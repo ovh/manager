@@ -20,7 +20,6 @@ angular
   .module(moduleName, [
     managerCore,
     ngOvhUtils,
-    'oc.lazyLoad',
     'oui',
     'ovh-api-services',
     'pascalprecht.translate',

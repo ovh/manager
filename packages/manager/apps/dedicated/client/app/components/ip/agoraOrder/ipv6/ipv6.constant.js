@@ -38,11 +38,14 @@ export const FLAGS = {
   mrs: 'fr',
 };
 
+export const EMPTY_CHOICE = '-';
+
 export { TRACKING_PREFIX, ALERT_ID };
 
 export default {
   PRODUCT_TYPES,
   TRACKING_PREFIX,
   ALERT_ID,
+  EMPTY_CHOICE,
   FLAGS,
 };

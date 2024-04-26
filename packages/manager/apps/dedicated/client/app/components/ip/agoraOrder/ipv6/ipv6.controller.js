@@ -1,7 +1,7 @@
 import find from 'lodash/find';
 
 import { DASHBOARD_STATE_NAME } from '../ip-ip-agoraOrder.constant';
-import { ALERT_ID, FLAGS } from './ipv6.constant';
+import { ALERT_ID, FLAGS, EMPTY_CHOICE } from './ipv6.constant';
 
 export default class AgoraIpV6OrderController {
   /* @ngInject */
@@ -50,7 +50,7 @@ export default class AgoraIpV6OrderController {
       })
       .then((results) => {
         this.user = results.user;
-        this.services = results.services;
+        this.services = [EMPTY_CHOICE, ...results.services];
         this.ipv6Catalog = this.getIpv6Catalog();
         if (this.$state.params.service) {
           this.model.selectedService = find(this.services, {
@@ -130,12 +130,14 @@ export default class AgoraIpV6OrderController {
       productId: 'ip',
       pricingMode: 'default',
       regionId,
-      country: this.ovhSubsidiary,
-      destination: this.selectedService,
       duration: 'P1M',
       planCode,
       quantity: 1,
     });
+
+    if (this.model.selectedService !== EMPTY_CHOICE) {
+      productToOrder.destination = this.model.selectedService;
+    }
 
     return this.User.getUrlOf('express_order')
       .then((url) => {
@@ -143,6 +145,7 @@ export default class AgoraIpV6OrderController {
           `${url}review?products=${JSURL.stringify([productToOrder])}`,
           '_blank',
         );
+        this.$state.go(DASHBOARD_STATE_NAME);
       })
       .catch((err) => {
         this.Alerter.error(
@@ -152,8 +155,7 @@ export default class AgoraIpV6OrderController {
         return this.$state
           .go(DASHBOARD_STATE_NAME)
           .then(() => this.$q.reject(err));
-      })
-      .finally(() => this.$state.go(DASHBOARD_STATE_NAME));
+      });
   }
 
   resumeOrder() {

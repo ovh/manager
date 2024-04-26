@@ -23,12 +23,8 @@ export default {
   ADDITIONAL_IP,
   TRACKING_PREFIX,
   IP_FAILOVER_PLANCODE,
-<<<<<<< HEAD
   IP_TYPE_TITLE,
-  DASHBOARD,
-=======
   DASHBOARD_STATE_NAME,
->>>>>>> 145ef4557b (feat(dedicated): rename DASHBOARD const and use data-xxx attributes)
   IP_TYPE,
   ALERT_ID,
 };
