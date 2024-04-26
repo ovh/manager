@@ -28,6 +28,7 @@ import vrackAdd from '../add';
 import vrackAssignedIp from '../vrack-services/ip';
 import vrackMoveDialog from '../move-dialog/vrack-move-dialog.module';
 import IPv6SubnetAddModal from '../vrack-services/ip/add';
+import vrackDeleteModal from '../delete-dialog';
 
 const moduleName = 'ovhManagerVrackDetails';
 
@@ -46,6 +47,7 @@ angular
     IPv6SubnetAddModal,
     vrackAdd,
     vrackMoveDialog,
+    vrackDeleteModal,
   ])
   .component('ovhManagerVrackComponent', component)
   .service('vrackService', service)

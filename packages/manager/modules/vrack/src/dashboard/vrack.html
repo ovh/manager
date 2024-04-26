@@ -203,6 +203,11 @@
                     >
                     </ng-include>
                 </div>
+                <vrack-delete-ipv6-modal
+                    data-is-open-modal="$ctrl.deleteIpv6Modal"
+                    data-on-confirm="$ctrl.deleteServiceAction()"
+                    data-on-cancel="$ctrl.resetAction()"
+                ></vrack-delete-ipv6-modal>
                 <div
                     class="vrack__mapper-actions col-sm-12 col-md-3 col-lg-2 top-space-p16 no-space"
                     data-ng-include="'vrack/partials/actions.html'"

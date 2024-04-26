@@ -65,6 +65,7 @@ export default class VrackMoveDialogCtrl {
     this.OvhApiMe = OvhApiMe;
     this.vrackService = CucVrackService;
     this.vrackService = vrackService;
+    this.cucVrackService = CucVrackService;
     this.atInternet = atInternet;
     this.changeOwnerTrackLabel = `${VRACK_DASHBOARD_TRACKING_PREFIX}::change-owner`;
   }
@@ -82,6 +83,7 @@ export default class VrackMoveDialogCtrl {
     this.vRackCloudRoadmapGuide = null;
     this.arrowIcon = arrowIcon;
     this.isOpenModalAddSubnet = false;
+    this.deleteIpv6Modal = false;
 
     this.modals = {
       move: null,
@@ -784,10 +786,36 @@ export default class VrackMoveDialogCtrl {
       });
   }
 
-  addIp(service) {
-    if (service.id.match(/::/)) {
-      return this.vrackService.addIpv6(this.serviceName, service.id);
+  resetAction() {
+    this.form.servicesToDelete = [];
+    this.deleteIpv6Modal = false;
+  }
+
+  deleteServiceAction() {
+    this.deleteIpv6Modal = false;
+    this.deleteSelectedServices();
+  }
+
+  servicesToDeleteList() {
+    return this.form.servicesToDelete.map((ip) => ip.id).join(', ');
+  }
+
+  deleteHandler() {
+    const ipv6ToDelete = this.form.servicesToDelete.find(
+      (service) => service.type === 'ip' && service.id.indexOf(':') !== -1,
+    );
+
+    if (ipv6ToDelete) {
+      this.deleteIpv6Modal = true;
+    } else {
+      this.deleteSelectedServices();
     }
+  }
+
+  addIp(service) {
+      if (service.id.match(/::/)) {
+        return this.vrackService.addIpv6(this.serviceName, service.id);
+      }
     return this.OvhApiVrack.Ip()
       .v6()
       .create(
