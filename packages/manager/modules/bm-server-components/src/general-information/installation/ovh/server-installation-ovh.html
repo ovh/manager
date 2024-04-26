@@ -135,28 +135,13 @@
                         data-match="description"
                     >
                     </oui-select>
-                    <oui-spinner
-                        class="d-inline-block align-middle"
-                        aria-label="{{ 'common_loading' | translate }}"
-                        data-ng-if="loader.loadingCapabilities"
-                        data-size="s"
-                    >
-                    </oui-spinner>
                 </oui-field>
-
-                <span
-                    class="text-danger"
-                    data-ng-if="$ctrl.canEditDiskGroup() && $ctrl.raidIsPersonnalizable()"
-                    data-translate="server_configuration_installation_ovh_step1_disk_group_warning"
-                    data-translate-values="{ t0: informations.diskGroups[0].description }"
-                >
-                </span>
 
                 <div
                     data-ng-hide="installation.warningExistPartition || informations.gabaritName != null"
                 >
                     <oui-checkbox
-                        data-disabled="!$ctrl.canPersonnalizeRaid()"
+                        data-disabled="!$ctrl.raidIsPersonnalizable()"
                         data-model="installation.raidSetup"
                     >
                         <oui-checkbox-label
@@ -392,13 +377,6 @@
                 <div
                     data-ng-bind-html="'server_configuration_installation_ovh_step2_info' | translate:{ t0: installation.selectDistribution.displayName }"
                 ></div>
-
-                <p data-ng-if="informations.isCachecade">
-                    <span class="icon-info-sign" aria-hidden="true"></span>
-                    <span
-                        data-translate="server_configuration_installation_ovh_step2_info_partition_cachecade"
-                    ></span>
-                </p>
 
                 <div class="form-inline">
                     <span
