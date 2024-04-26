@@ -1,0 +1,52 @@
+<div data-ng-if="$ctrl.isOpenModal">
+    <div class="modal d-block">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <form
+                    novalidate
+                    name="$ctrl.formName"
+                    data-ng-submit="$ctrl.onSubmit()"
+                >
+                    <oui-modal
+                        data-heading="{{:: 'vrack__assigned-ip__subnet_add_title' | translate }}"
+                        data-primary-label="{{:: 'vrack__assigned-ip__subnet_confirm' | translate }}"
+                        data-secondary-action="$ctrl.closeModal()"
+                        data-secondary-label="{{:: 'vrack__assigned-ip__subnet_cancel' | translate }}"
+                        data-primary-disabled="$ctrl.formName.$invalid"
+                        data-on-dismiss="$ctrl.closeModal()"
+                        class="oui-modal_info"
+                    >
+                        <p
+                            data-translate="vrack__assigned-ip__subnet_add_description"
+                        ></p>
+
+                        <oui-field
+                            label="{{ 'vrack__assigned-ip__subnet_add_subnet' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                name="ipv6"
+                                type="text"
+                                data-ng-model="$ctrl.subnet"
+                                required
+                            />
+                        </oui-field>
+
+                        <oui-field
+                            label="{{ 'vrack__assigned-ip__subnet_add_address' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                name="address"
+                                type="text"
+                                data-ng-model="$ctrl.address"
+                                required
+                            />
+                        </oui-field>
+                    </oui-modal>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>
