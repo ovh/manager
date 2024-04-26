@@ -472,9 +472,9 @@ export default class ServerInstallationOvhCtrl {
       this.$stateParams.productId,
     ).then((spec) => {
       this.$scope.informations.diskGroups =
-        spec.diskGroups
-          ?.filter((diskGroup) => diskGroup.raidController !== 'cache')
-          ?.sort((a, b) => a.description.localeCompare(b.description)) || [];
+        spec.diskGroups?.filter(
+          (diskGroup) => diskGroup.raidController !== 'cache',
+        ) || [];
       this.resetDiskGroup();
     });
   }
