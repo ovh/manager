@@ -9,6 +9,7 @@ import '@ovh-ux/sign-up';
 
 import component from './new-account-form-component';
 import fieldComponent from './field/new-account-form-field-component';
+import FieldTranslationStrategyFactory from './field/strategies/factory';
 
 const moduleName = 'UserNewAccountForm';
 
@@ -23,6 +24,7 @@ angular
   ])
   .component('newAccountForm', component)
   .component('newAccountFormField', fieldComponent)
+  .service('FieldTranslationStrategyFactory', FieldTranslationStrategyFactory)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

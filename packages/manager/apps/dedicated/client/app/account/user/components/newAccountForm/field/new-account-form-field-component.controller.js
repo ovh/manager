@@ -10,7 +10,6 @@ import {
   MODEL_DEBOUNCE_DELAY,
   FIELD_NAME_LIST,
   USER_TYPE_ENTERPRISE,
-  CORPORATION_TYPES,
 } from '../new-account-form-component.constants';
 
 export default class NewAccountFormFieldController {
@@ -23,6 +22,7 @@ export default class NewAccountFormFieldController {
     $translate,
     atInternet,
     coreConfig,
+    FieldTranslationStrategyFactory,
   ) {
     this.$filter = $filter;
     this.$locale = $locale;
@@ -32,6 +32,7 @@ export default class NewAccountFormFieldController {
     this.atInternet = atInternet;
     this.FIELD_NAME_LIST = FIELD_NAME_LIST;
     this.user = coreConfig.getUser();
+    this.FieldTranslationStrategyFactory = FieldTranslationStrategyFactory;
   }
 
   $onInit() {
@@ -44,6 +45,10 @@ export default class NewAccountFormFieldController {
 
     // field value
     this.value = undefined;
+
+    this.translationStrategy = this.FieldTranslationStrategyFactory.build(
+      this.rule.fieldName,
+    );
 
     this.debounce = MODEL_DEBOUNCE_DELAY;
     // set default value
@@ -194,19 +199,10 @@ export default class NewAccountFormFieldController {
   setDefaultValue() {
     if (this.rule.defaultValue && !this.rule.initialValue) {
       if (this.getFieldType() === 'select') {
-        let translated;
-        if (this.rule.fieldName === this.FIELD_NAME_LIST.timezone) {
-          translated = this.rule.defaultValue;
-        } else if (
-          this.rule.fieldName === this.FIELD_NAME_LIST.corporationType &&
-          CORPORATION_TYPES[this.rule.defaultValue]
-        ) {
-          translated = CORPORATION_TYPES[this.rule.defaultValue];
-        } else {
-          translated = this.$translate.instant(
-            `signup_enum_${this.rule.fieldName}_${this.rule.defaultValue}`,
-          );
-        }
+        const translated = this.translationStrategy.translate(
+          this.rule.defaultValue,
+          this.newAccountForm.model.country,
+        );
         this.value = {
           key: this.rule.defaultValue,
           translated,
@@ -236,23 +232,10 @@ export default class NewAccountFormFieldController {
     if (this.rule.initialValue) {
       let value = angular.copy(this.rule.initialValue);
       if (this.getFieldType() === 'select') {
-        let translated;
-        if (this.rule.fieldName === this.FIELD_NAME_LIST.timezone) {
-          translated = value;
-        } else if (
-          this.rule.fieldName === this.FIELD_NAME_LIST.corporationType &&
-          CORPORATION_TYPES[value]
-        ) {
-          translated = CORPORATION_TYPES[value];
-        } else {
-          translated = this.$translate.instant(
-            `signup_enum_${
-              this.rule.fieldName === this.FIELD_NAME_LIST.area
-                ? `${this.newAccountForm.model.country}_`
-                : ''
-            }${this.rule.fieldName}_${value}`,
-          );
-        }
+        const translated = this.translationStrategy.translate(
+          value,
+          this.newAccountForm.model.country,
+        );
         value = {
           key: value,
           translated,
@@ -302,25 +285,12 @@ export default class NewAccountFormFieldController {
 
     let result = map(this.rule.in || [], (value) => {
       let translated;
-      if (
-        this.rule.fieldName === this.FIELD_NAME_LIST.area &&
-        this.newAccountForm.model.country
-      ) {
-        translated = this.$translate.instant(
-          `signup_enum_${this.newAccountForm.model.country}_${this.rule.fieldName}_${value}`,
-        );
-      } else if (this.rule.fieldName === this.FIELD_NAME_LIST.timezone) {
-        translated = value;
-      } else if (this.rule.fieldName === this.FIELD_NAME_LIST.managerLanguage) {
+      if (this.rule.fieldName === this.FIELD_NAME_LIST.managerLanguage) {
         translated = get(find(LANGUAGES.available, { key: value }), 'name');
-      } else if (
-        this.rule.fieldName === this.FIELD_NAME_LIST.corporationType &&
-        CORPORATION_TYPES[value]
-      ) {
-        translated = CORPORATION_TYPES[value];
       } else {
-        translated = this.$translate.instant(
-          `signup_enum_${this.rule.fieldName}_${value}`,
+        translated = this.translationStrategy.translate(
+          value,
+          this.newAccountForm.model.country,
         );
       }
       return {
