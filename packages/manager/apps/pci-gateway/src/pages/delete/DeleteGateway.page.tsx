@@ -35,8 +35,7 @@ export default function DeleteGateway() {
       projectId: `${projectId}`,
       gatewayId,
       region,
-      onError: (err) => {
-        console.log(err);
+      onError: () => {
         addError(
           <Translation ns="delete">
             {(t) =>
@@ -93,7 +92,7 @@ export default function DeleteGateway() {
             inline
             size={ODS_SPINNER_SIZE.md}
             className="block text-center"
-            data-testid="terminateModal-spinner"
+            data-testid="deleteGateway-spinner"
           />
         )}
       </slot>
@@ -102,7 +101,7 @@ export default function DeleteGateway() {
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={onClose}
-        data-testid="terminateModal-button_cancel"
+        data-testid="deleteGateway-button_cancel"
       >
         {tDelete('pci_projects_project_public_gateway_delete_cancel')}
       </OsdsButton>
@@ -111,7 +110,7 @@ export default function DeleteGateway() {
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={deleteGateway}
         {...(isPendingDeleteGateway ? { disabled: true } : {})}
-        data-testid="terminateModal-button_submit"
+        data-testid="deleteGateway-button_submit"
       >
         {tDelete('pci_projects_project_public_gateway_delete_confirm')}
       </OsdsButton>
