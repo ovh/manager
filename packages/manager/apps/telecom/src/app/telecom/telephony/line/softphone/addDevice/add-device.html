@@ -14,7 +14,11 @@
     <div
         class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-between"
     >
-        <form class="form-inline" name="$ctrl.softphoneAddDeviceForm">
+        <form
+            class="form-inline"
+            name="$ctrl.softphoneAddDeviceForm"
+            data-ng-submit="$ctrl.generateLink()"
+        >
             <div class="row">
                 <oui-field
                     class="col-md-12"
@@ -34,9 +38,9 @@
                             required
                         />
                         <oui-button
-                            data-on-click=":: $ctrl.generateLink()"
-                            data-disabled="!$ctrl.model.name"
+                            data-disabled="!$ctrl.model.name || $ctrl.softphoneAddDeviceForm.$invalid"
                             data-variant="primary"
+                            data-type="submit"
                         >
                             <span
                                 data-translate="telephony_line_softphone_generate_link"
