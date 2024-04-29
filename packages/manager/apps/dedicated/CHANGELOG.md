@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.33.1...@ovh-ux/manager-dedicated@19.33.2) (2024-04-29)
+
+
+### Bug Fixes
+
+* **dedicated:** rework on check for rules ([#11404](https://github.com/ovh/manager/issues/11404)) ([2de7b05](https://github.com/ovh/manager/commit/2de7b05cf57eaac170b8975a5ef59a38b031e438))
+* **i18n:** add missing translations [CDS 2946] ([e2da067](https://github.com/ovh/manager/commit/e2da06730a1e7b34c5bd7cb15688f5e5cb56a27b))
+* **i18n:** add missing translations [CDS 2951] ([a1db386](https://github.com/ovh/manager/commit/a1db386e58d95fb0b7955b0dba72f91a2c5fa7af))
+
+
+
+
+
 ## [19.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.33.0...@ovh-ux/manager-dedicated@19.33.1) (2024-04-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

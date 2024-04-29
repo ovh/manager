@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-netapp",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "private": true,
   "description": "NetApp product.",
   "repository": {
