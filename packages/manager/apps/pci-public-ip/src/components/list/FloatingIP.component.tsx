@@ -84,7 +84,7 @@ export default function FloatingIPComponent({
     {
       id: 'ip-address',
       cell: (props: FloatingIP) => (
-        <DataGridTextCell> {props.ip}</DataGridTextCell>
+        <DataGridTextCell>{props.ip}</DataGridTextCell>
       ),
       label: t('pci_additional_ips_floating_ip_grid_ip'),
     },
