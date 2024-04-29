@@ -2,26 +2,26 @@ import { PRODUCT_TYPES } from './ipv6.constant';
 
 export default class IpAgoraV6Order {
   /* @ngInject */
-  constructor($http, IpAgoraOrder) {
-    this.$http = $http;
-    this.IpAgoraOrder = IpAgoraOrder;
+  constructor(iceberg) {
+    this.iceberg = iceberg;
   }
 
   getVrackService() {
-    return this.$http
-      .get('/products', {
-        params: {
-          product: PRODUCT_TYPES.vrack.apiTypeName,
-        },
-        serviceType: 'aapi',
-      })
-      .then(({ data }) => {
-        const availableVrack = this.IpAgoraOrder.handleErrorOrServices(data);
+    return this.iceberg('/vrack')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => {
         return [
-          ...availableVrack.map((vrackService) => ({
-            ...vrackService,
-            type: PRODUCT_TYPES.vrack.apiTypeName,
-          })),
+          ...data.map((vrackService) => {
+            const serviceName = vrackService.iam.urn.split(':').pop();
+            const displayName = vrackService.name || serviceName;
+            return {
+              displayName,
+              serviceName,
+              type: PRODUCT_TYPES.vrack.apiTypeName,
+            };
+          }),
         ];
       });
   }
