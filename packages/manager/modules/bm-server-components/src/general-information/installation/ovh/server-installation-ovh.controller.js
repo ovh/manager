@@ -507,13 +507,6 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.saveSelectDistribution = null;
       this.$scope.informations.gabaritName = null;
     }
-
-    if (
-      this.$scope.installation.selectDistribution?.hardRaidConfiguration ===
-      false
-    ) {
-      this.$scope.installation.raidSetup = false;
-    }
   }
 
   cancelSetSelectDistribution() {
@@ -2486,8 +2479,6 @@ export default class ServerInstallationOvhCtrl {
   raidIsPersonnalizable() {
     return (
       this.$scope.informations.raidController &&
-      this.$scope.installation.selectDistribution?.hardRaidConfiguration !==
-        false &&
       !this.$scope.informations.hardwareRaid.error.wrongLocation &&
       !this.$scope.informations.hardwareRaid.error.notAvailable
     );

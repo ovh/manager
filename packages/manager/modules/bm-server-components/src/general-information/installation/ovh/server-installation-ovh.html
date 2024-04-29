@@ -83,12 +83,6 @@
                                         data-translate="server_configuration_installation_deprecated"
                                     >
                                     </span>
-                                    <span
-                                        class="text-warning"
-                                        data-ng-show="constants.server.raidController && distribution.hardRaidConfiguration === false"
-                                        data-translate="server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported_short"
-                                    >
-                                    </span>
                                     <i
                                         class="pl-2 fa"
                                         aria-hidden="true"
@@ -151,11 +145,6 @@
                         ></oui-checkbox-label>
                         <oui-checkbox-description
                             ><p class="text-danger">
-                                <span
-                                    data-ng-if="installation.selectDistribution.hardRaidConfiguration === false"
-                                    data-translate="server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported"
-                                >
-                                </span>
                                 <span
                                     data-ng-if="informations.hardwareRaid.error.wrongLocation"
                                     data-translate="server_configuration_installation_ovh_step1_hardwareRaid_wrong_location"

@@ -403,8 +403,6 @@
   "server_configuration_installation_ovh_step1_custom": "Personnaliser la configuration des partitions",
   "server_configuration_installation_ovh_step1_hardwareRaid": "Personnaliser la configuration du hardware RAID",
   "server_configuration_installation_ovh_step1_hardwareRaid_wrong_location": "Le Hardware RAID n'est disponible que sur les serveurs situés sur le continent de votre compte client.",
-  "server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported_short": "Aucun Hard RAID",
-  "server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported": "Cet installateur d'OS ne peut pas reconfigurer votre RAID matériel. Si vous voulez reconfigurer votre RAID matériel, installez un autre OS. La configuration sera ensuite conservée.",
   "server_configuration_installation_ovh_step1_virtual_desktop_not_supported": "L'OS choisi ({{t0}}) n'offre pas la fonctionnalité de bureau virtuel, au besoin, choisir une autre licence. Pas d'autres OS disponibles? Rendez-vous à la section <a href='{{t1}}' target='_blank'>Licences</a> de l'espace client.",
   "server_configuration_installation_ovh_step1_warning_exist": "Attention, vous avez commencé la configuration d'une installation sous la distribution <b>{{t0}}</b>. La modification de la distribution supprimera cette configuration.",
   "server_configuration_installation_ovh_step1_warning_exist_valid": "Supprimer la configuration précédente",

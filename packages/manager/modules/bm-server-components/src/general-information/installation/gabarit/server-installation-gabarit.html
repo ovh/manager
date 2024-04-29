@@ -57,12 +57,6 @@
                                         data-translate="server_configuration_installation_deprecated"
                                     >
                                     </span>
-                                    <span
-                                        class="text-warning"
-                                        data-ng-show="constants.server.raidController && distribution.hardRaidConfiguration === false"
-                                        data-translate="server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported_short"
-                                    >
-                                    </span>
                                     <button
                                         type="button"
                                         class="btn btn-link ml-2"
@@ -341,11 +335,11 @@
                         >
                         </label>
                         <span
-                            data-ng-if="installation.selectSoftRaidOnlyMirroring && installation.server.nbDisk > 2"
+                            data-ng-if="installation.selectSoftRaidOnlyMirroring && informations.nbDisk > 2"
                         >
                             <i
                                 class="fa fa-info-circle"
-                                data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_type_disk_warning_windows' | translate:{ t0: installation.server.nbDisk } }}"
+                                data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_type_disk_warning_windows' | translate:{ t0: informations.nbDisk } }}"
                                 data-oui-tooltip-placement="bottom"
                                 aria-hidden="true"
                             >
