@@ -1,3 +1,5 @@
+import { GROUP_ROLES } from '../users-groups-constants';
+
 export default class IamUsersGroupsUpdateCtrl {
   /* @ngInject */
   constructor($scope, $translate, Alerter, IamGroupsService) {
@@ -10,6 +12,7 @@ export default class IamUsersGroupsUpdateCtrl {
     };
     this.group = $scope.currentActionData;
     this.loader = false;
+    this.roles = GROUP_ROLES;
   }
 
   $onInit() {

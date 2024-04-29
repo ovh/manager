@@ -1,3 +1,5 @@
+import { GROUP_ROLES } from '../users-groups-constants';
+
 export default class IamUsersGroupsAddCtrl {
   /* @ngInject */
   constructor($scope, $translate, Alerter, IamGroupsService) {
@@ -14,6 +16,7 @@ export default class IamUsersGroupsAddCtrl {
       role: null,
       description: null,
     };
+    this.roles = GROUP_ROLES;
   }
 
   $onInit() {

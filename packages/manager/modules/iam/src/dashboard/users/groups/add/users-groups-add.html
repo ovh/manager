@@ -65,23 +65,8 @@
                     name="role"
                     required
                     data-ng-model="$ctrl.group.role"
+                    data-ng-options="'user_roles_' + role | translate for role in $ctrl.roles"
                 >
-                    <option
-                        value="ADMIN"
-                        data-translate="user_roles_admin"
-                    ></option>
-                    <option
-                        value="REGULAR"
-                        data-translate="user_roles_regular"
-                    ></option>
-                    <option
-                        value="UNPRIVILEGED"
-                        data-translate="user_roles_unprivileged"
-                    ></option>
-                    <option
-                        value="NONE"
-                        data-translate="user_roles_none"
-                    ></option>
                 </select>
             </div>
         </form>
