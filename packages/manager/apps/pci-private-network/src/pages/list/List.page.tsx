@@ -24,7 +24,7 @@ import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import useProject from '@/api/hooks/useProject';
 import { PrivateNetworkTabName } from '@/constants';
 import GlobalRegionsComponent from '@/components/global-regions/GlobalRegions.component';
-import LocalZoneComponent from '@/components/list/LocalZone.component';
+import LocalZoneComponent from '@/components/local-zones/LocalZone.component';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -126,7 +126,7 @@ export default function ListingPage() {
           />
         </OsdsTabPanel>
         <OsdsTabPanel name={PrivateNetworkTabName.LOCALZONE_TAB_NAME}>
-          <LocalZoneComponent />
+          <LocalZoneComponent projectId={projectId} />
         </OsdsTabPanel>
       </OsdsTabs>
       <Outlet />

@@ -1,6 +1,5 @@
 import { PaginationState } from '@ovhcloud/manager-components';
 import { TRegion } from '@/api/data/project';
-import { TAggregatedNetwork } from '../data/network';
 
 export const getLocalZoneRegions = (customerRegions: TRegion[] = []) => {
   return (
@@ -12,10 +11,7 @@ export const isLocalZoneRegion = (regions: TRegion[], regionName: string) => {
   return regions.some((region) => region.name === regionName);
 };
 
-export const paginateResults = (
-  items: TAggregatedNetwork[],
-  pagination: PaginationState,
-) => {
+export const paginateResults = <T>(items: T[], pagination: PaginationState) => {
   return {
     rows: items.slice(
       pagination.pageIndex * pagination.pageSize,
