@@ -1,3 +1,4 @@
+import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovhcloud/manager-components';
 import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
@@ -5,8 +6,8 @@ import { getAggregatedNetwork, TAggregatedNetwork } from '@/api/data/network';
 import { TGateway, TRegion } from '@/api/data/project';
 import { getSubnets, TSubnet } from '@/api/data/subnets';
 import {
-  isLocalZoneRegion,
   getLocalZoneRegions,
+  isLocalZoneRegion,
   paginateResults,
 } from '@/api/utils/utils';
 
@@ -127,4 +128,89 @@ export const useGlobalRegionsNetworks = (
       data: paginateResults(data || [], pagination),
     };
   }, [data, isLoading, error, pagination]);
+};
+
+export const filterLocalPrivateNetworks = (
+  networks: TAggregatedNetwork[],
+  regions: TRegion[],
+): TAggregatedNetwork[] => {
+  const localZones = getLocalZoneRegions(regions);
+
+  const privateLocalNetworks = networks.filter(
+    (network) =>
+      network.visibility === 'private' &&
+      isLocalZoneRegion(localZones, network.region),
+  );
+
+  return privateLocalNetworks;
+};
+
+export const useAggregatedLocalNetworks = (
+  projectId: string,
+  regions: TRegion[],
+) =>
+  useQuery({
+    queryKey: [projectId, 'aggregated', 'local', 'network'],
+    queryFn: () => getAggregatedNetwork(projectId),
+    enabled: regions?.length > 0,
+    select: (data) => filterLocalPrivateNetworks(data, regions) || [],
+  });
+
+export type TLocalZoneNetwork = {
+  id: string;
+  name: string;
+  visibility: string;
+  vlanId: number;
+  allocatedIp?: string;
+  cidr: string;
+  dhcpEnabled: boolean;
+  gatewayIp: string | null;
+  gatewayName: string;
+  networkId: string;
+  region: string;
+  search?: string;
+};
+
+export const useLocalZoneNetworks = (
+  projectId: string,
+  networks: TAggregatedNetwork[],
+  pagination: PaginationState,
+  filters: Filter[] = [],
+) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: [projectId, 'private-network', 'local-zones'],
+    queryFn: () => {
+      return Promise.all(
+        networks.map(async (network) => {
+          const detailSubnet = await getSubnets(
+            projectId,
+            network.id,
+            network.region,
+          );
+
+          return {
+            ...network,
+            ...detailSubnet,
+            name: network.name,
+            allocatedIp: detailSubnet.allocationPools
+              .map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
+              .join(' ,'),
+          } as TLocalZoneNetwork;
+        }),
+      );
+    },
+    select: (result) =>
+      result.map((network) => ({
+        ...network,
+        search: `${network.name} ${network.region} ${network.dhcpEnabled} ${network.cidr} ${network.allocatedIp}`,
+      })) as TLocalZoneNetwork[],
+  });
+
+  return useMemo(() => {
+    return {
+      isLoading,
+      error,
+      data: paginateResults(applyFilters(data || [], filters), pagination),
+    };
+  }, [data, isLoading, error, pagination, filters]);
 };

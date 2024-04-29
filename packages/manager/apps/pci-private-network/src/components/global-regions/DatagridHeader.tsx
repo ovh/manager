@@ -2,6 +2,7 @@ import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_COLOR_HUE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { PRIVATE_NETWORK_LIST } from '@/constants';
 
 export default function DatagridHeader(): JSX.Element {
   const { t } = useTranslation();
@@ -27,11 +28,11 @@ export default function DatagridHeader(): JSX.Element {
       <th className="p-4">
         {renderText(t('pci_projects_project_network_private_region'))}
       </th>
-      <th className="p-4">{renderText('CIDR')}</th>
+      <th className="p-4">{renderText(PRIVATE_NETWORK_LIST.CIDR)}</th>
       <th className="p-4">
         {renderText(t('pci_projects_project_network_private_gateway'))}
       </th>
-      <th className="p-4">{renderText('DHCP')}</th>
+      <th className="p-4">{renderText(PRIVATE_NETWORK_LIST.DHCP)}</th>
       <th className="p-4">
         {renderText(t('pci_projects_project_network_private_ip_allocation'))}
       </th>
