@@ -15,6 +15,7 @@ import { useQuery } from '@tanstack/react-query';
 interface SubTreeProps {
   rootNode: Node;
   handleBackNavigation(): void;
+  handleOnMouseOver(node: Node): void;
 }
 
 const parseContainerURL = (
@@ -27,6 +28,7 @@ const parseContainerURL = (
 const SubTree = ({
   rootNode,
   handleBackNavigation,
+  handleOnMouseOver,
 }: SubTreeProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
@@ -112,13 +114,16 @@ const SubTree = ({
   }, [defaultPciProject, defaultPciProjectStatus, pciProjects]);
 
   return (
-    <div className={style.subtree} onClick={handleBackNavigation}>
-      <div className={style.subtree_content}>
+    <div className={style.subtree}>
+      <div className={style.subtree_content} onMouseOver={() => handleOnMouseOver(rootNode)} onMouseLeave={handleBackNavigation}>
         <button
           className={style.subtree_back_btn}
           onClick={handleBackNavigation}
         >
-          Retour au menu
+          <span
+            className={`oui-icon oui-icon-arrow-left mx-2`}
+            aria-hidden="true"
+          ></span>Retour au menu
         </button>
         {rootNode.illustration && (
         <div
@@ -198,7 +203,7 @@ const SubTree = ({
             )}
             {(rootNode.id !== 'pci' || selectedPciProject !== null) &&
               rootNode.children?.map((node, index) => (
-                <li key={node.id} id={node.id} className={index === rootNode.children?.length - 1 ? 'pb-4' : ''}>
+                <li key={node.id} id={node.id} className={style.sidebar_pciEntry}>
                   {!shouldHideElement(node, 1, 2) && (
                     <SubTreeSection
                       node={node}

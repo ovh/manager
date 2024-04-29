@@ -53,6 +53,11 @@
       background: $p-800;
     }
   }
+
+  &_pciEntry:last-of-type {
+    padding-bottom: 1.5rem;
+  }
+
   &_menu {
     flex: 1;
   }
@@ -275,7 +280,7 @@
     left: 0;
     width: 100%;
     &_content {
-      padding-top: 3em;
+      padding-top: 2.75rem;
       width: 100%;
     }
     &_back_btn {

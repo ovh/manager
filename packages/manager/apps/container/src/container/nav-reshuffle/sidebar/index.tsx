@@ -244,11 +244,9 @@ const Sidebar = (): JSX.Element => {
                   <SidebarLink
                     node={node}
                     count={count}
-                    handleNavigation={debounce(
-                      () => menuClickHandler(node),
-                      [timer, setTimer],
-                      50,
-                    )}
+                    handleNavigation={() => menuClickHandler(node)}
+                    handleOnMouseOver={() => menuClickHandler(node)}
+                    handleOnMouseLeave={() => setSelectedNode(null)}
                     id={node.idAttr}
                     isShortText={!open}
                   />
@@ -300,6 +298,7 @@ const Sidebar = (): JSX.Element => {
           handleBackNavigation={() => {
             setSelectedNode(null);
           }}
+          handleOnMouseOver={(node) => setSelectedNode(node)}
           rootNode={selectedNode}
         ></SubTree>
       )}

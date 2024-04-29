@@ -48,9 +48,6 @@ const UserAccountMenu = ({
 
   const onLinkClick = () => {
     closeAccountSidebar();
-    trackingPlugin.trackClick({
-      type: 'navigation',
-    });
   };
 
   const onMyAccountLinkClick = () => {
