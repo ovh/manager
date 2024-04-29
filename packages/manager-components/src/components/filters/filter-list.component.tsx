@@ -15,6 +15,8 @@ export function FilterList({
   onRemoveFilter,
 }: Readonly<FilterListProps>) {
   const { t } = useTranslation('filters');
+  const tComp = (comparator: string) =>
+    t(`common_criteria_adder_operator_${comparator}`);
 
   return (
     <>
@@ -28,8 +30,7 @@ export function FilterList({
           onOdsChipRemoval={() => onRemoveFilter(filter)}
           data-testid="filter-list_chip_item"
         >
-          {filter.label}{' '}
-          {t(`${'common_criteria_adder_operator_'}${filter.comparator}`)}{' '}
+          {filter.label ? `${filter.label} ${tComp(filter.comparator)} ` : ''}
           {filter.value}
         </OsdsChip>
       ))}
