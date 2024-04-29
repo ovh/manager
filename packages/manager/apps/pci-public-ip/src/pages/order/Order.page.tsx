@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useHref, useParams } from 'react-router-dom';
 import {
   isDiscoveryProject,
   Notifications,
@@ -40,6 +40,7 @@ export default function OrderPage(): JSX.Element {
   const { data: project } = useProject(projectId);
 
   const [projectUrl, setProjectUrl] = useState('');
+  const backLink = useHref('..');
 
   useEffect(() => {
     navigation
@@ -75,7 +76,7 @@ export default function OrderPage(): JSX.Element {
       <OsdsLink
         color={ODS_THEME_COLOR_INTENT.primary}
         className="mt-10"
-        href={`${projectUrl}/public-ips`}
+        href={backLink}
       >
         <OsdsIcon
           slot="start"
