@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.13.0...@ovh-ux/manager-components@1.14.0) (2024-04-29)
+
+
+### Bug Fixes
+
+* **dedicated:** fix label and flag of tile on toronto zone ([#11202](https://github.com/ovh/manager/issues/11202)) ([2d1d81a](https://github.com/ovh/manager/commit/2d1d81a6db8638540e8ccc1778805e9efa468765))
+
+
+### Features
+
+* **dedicated:** add new region for us ([#11331](https://github.com/ovh/manager/issues/11331)) ([64815cc](https://github.com/ovh/manager/commit/64815cca3c928702c48d9e4cc81ef9a357448313))
+
+
+
+
+
 # [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.12.1...@ovh-ux/manager-components@1.13.0) (2024-04-22)
 
 

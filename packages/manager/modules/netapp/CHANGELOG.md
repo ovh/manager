@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.10.3...@ovh-ux/manager-netapp@1.10.4) (2024-04-29)
+
+
+### Bug Fixes
+
+* **dedicated.netapp:** efs listing links ([#11491](https://github.com/ovh/manager/issues/11491)) ([3a9d675](https://github.com/ovh/manager/commit/3a9d6759f95f36d30a515c2a14bc70a059821079))
+* remove unused translations [CDS] ([a300597](https://github.com/ovh/manager/commit/a300597dd5a7e08bc9060484def0227d89ac82c2))
+
+
+
+
+
 ## [1.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.10.2...@ovh-ux/manager-netapp@1.10.3) (2024-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

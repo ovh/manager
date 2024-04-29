@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.1...@ovh-ux/manager-iam@1.9.2) (2024-04-29)
+
+
+### Bug Fixes
+
+* **iam:** fix toggle selectall actions for policy edition ([#11499](https://github.com/ovh/manager/issues/11499)) ([9661f8d](https://github.com/ovh/manager/commit/9661f8dd61f7b0803459ad640d98bda5a97ef2b3))
+
+
+
+
+
 ## [1.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.0...@ovh-ux/manager-iam@1.9.1) (2024-03-19)
 
 

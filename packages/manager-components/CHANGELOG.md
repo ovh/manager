@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.3](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.10.2...@ovhcloud/manager-components@1.10.3) (2024-04-29)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 2946] ([e2da067](https://github.com/ovh/manager/commit/e2da06730a1e7b34c5bd7cb15688f5e5cb56a27b))
+
 ## [1.10.2](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.10.1...@ovhcloud/manager-components@1.10.2) (2024-04-22)
 
 ### Bug Fixes

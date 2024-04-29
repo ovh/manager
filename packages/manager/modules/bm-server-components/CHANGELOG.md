@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.18.2...@ovh-ux/manager-bm-server-components@1.19.0) (2024-04-29)
+
+
+### Features
+
+* **dedicated:** add choice buttons between password or ssh key authentication ([#11063](https://github.com/ovh/manager/issues/11063)) ([57188d4](https://github.com/ovh/manager/commit/57188d4dccb402a851a30956159da344602391b1))
+
+
+
+
+
 ## [1.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.18.1...@ovh-ux/manager-bm-server-components@1.18.2) (2024-04-11)
 
 
