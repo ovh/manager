@@ -319,7 +319,7 @@ const pciNode: Node = {
           id: 'pci-analytics-data-platform',
           translation: 'sidebar_pci_analytics_data_platform',
           count: false,
-          url: 'https://hq-fp.dataintegration.ovh.net/',
+          url: 'https://eu.dataplatform.ovh.net/',
           features: ['data-platform'],
           tag: NodeTag.BETA,
           isExternal: true,

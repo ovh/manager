@@ -9,7 +9,10 @@ export const COUNTRIES = {
   ERI: 'GB',
   SYD: 'AU',
   UK: 'GB',
+  VIN: 'US',
+  HIL: 'US',
   SGP: 'SG',
+  YYZ: 'CA',
 };
 
 export default { COUNTRIES };
