@@ -62,5 +62,9 @@
   "network_security_dashboard_like_this": "Gefällt Ihnen das?",
   "network_security_dashboard_like_this_tooltip": "Gefällt Ihnen diese Seite? Teilen Sie uns Ihre Anmerkungen mit!",
   "network_security_dashboard_refresh": "Daten aktualisieren",
-  "network_security_dashboard_time_zone": "(Zeitzone: UTC{{ timeZoneOffset }})"
+  "network_security_dashboard_time_zone": "(Zeitzone: UTC{{ timeZoneOffset }})",
+  "network_security_dashboard_traffic_breadcrumb": "Datenverkehrsdiagramme",
+  "network_security_dashboard_filter_custom": "Personalisiert",
+  "network_security_dashboard_warning_period": "Achtung: Die gewünschten Daten sind nicht verfügbar. Beachten Sie, dass Traffic-Daten 14 Tage lang aufbewahrt werden.",
+  "network_security_dashboard_warning_default": "Stattdessen wird das aktuelle Datenverkehrsdiagramm für die ausgewählte IP-Adresse angezeigt."
 }
