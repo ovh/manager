@@ -55,6 +55,6 @@
   "dedicatedCloud_USER_right_resources_help": "Droit d'ajouter des ressources supplémentaires via le plugin OVH dans vSphere Client",
   "dedicatedCloud_USER_resource": "Ajout de ressource",
   "dedicatedCloud_USER_VM_NETWORK_ROLE": "Accès au vmNetwork",
-  "dedicatedCloud_USER_NETWORK_ROLE_EPCC": "Accès au V(x)Lans",
+  "dedicatedCloud_USER_NETWORK_ROLE_EPCC": "Accès à V(x)Lans / GENEVE",
   "dedicatedCloud_USER_NETWORK_ROLE_MBM": "Accès aux VLANs"
 }
