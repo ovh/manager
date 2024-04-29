@@ -122,7 +122,7 @@
                 >
                     <oui-select
                         class="w-75 mr-4 d-inline-block"
-                        data-disabled="!$ctrl.canEditDiskGroup()"
+                        data-disabled="informations.diskGroups.length < 2"
                         data-items="informations.diskGroups"
                         data-model="installation.diskGroup"
                         name="diskGroup"

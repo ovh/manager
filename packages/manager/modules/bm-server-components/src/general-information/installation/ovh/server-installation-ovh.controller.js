@@ -2484,10 +2484,6 @@ export default class ServerInstallationOvhCtrl {
     );
   }
 
-  canEditDiskGroup() {
-    return this.$scope.informations.diskGroups.length > 1;
-  }
-
   hasVirtualDesktop() {
     return !this.$scope.installation.selectDistribution?.id?.includes('hyperv');
   }

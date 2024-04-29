@@ -326,6 +326,21 @@
                         </span>
                     </div>
 
+                    <!-- diskgroup -->
+                    <oui-field
+                        data-label="{{ 'server_configuration_installation_ovh_step1_disk_group' | translate }}"
+                    >
+                        <oui-select
+                            class="oui-select_l d-inline-block"
+                            data-disabled="informations.diskGroups.length < 2"
+                            data-items="informations.diskGroups"
+                            data-model="installation.diskGroup"
+                            name="diskGroup"
+                            data-match="description"
+                        >
+                        </oui-select>
+                    </oui-field>
+
                     <!-- nbDisk -->
                     <p class="form-inline" data-ng-if="informations.nbDisk > 1">
                         <label
