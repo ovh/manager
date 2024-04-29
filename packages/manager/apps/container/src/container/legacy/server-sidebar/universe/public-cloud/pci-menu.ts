@@ -312,6 +312,14 @@ export function getPciProjectMenu(
           feature: 'ai-apps',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/apps`),
         },
+        {
+          id: 'endpoints',
+          title: 'AI Endpoints',
+          regions: ['CA', 'EU'],
+          feature: 'ai-endpoints',
+          href: 'https://endpoints.ai.cloud.ovh.net/',
+          external: true,
+        },
       ],
     },
     {
