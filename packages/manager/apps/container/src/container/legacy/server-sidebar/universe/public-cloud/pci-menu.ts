@@ -271,7 +271,7 @@ export function getPciProjectMenu(
           title: 'Data Platform',
           feature: 'data-platform',
           badge: 'beta',
-          href: 'https://hq-fp.dataintegration.ovh.net',
+          href: 'https://eu.dataplatform.ovh.net/',
           external: true,
         },
         {

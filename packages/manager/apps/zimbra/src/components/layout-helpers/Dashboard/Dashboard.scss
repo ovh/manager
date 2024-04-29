@@ -1,0 +1,38 @@
+.dashboard-layout-helpers {
+  osds-tab-bar-item {
+    a {
+      text-decoration: none;
+    }
+  }
+  @media (min-width: 768px) {
+    .dashboard-section {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(3, 1fr);
+      .tile-content {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+  @media (max-width: 767px) {
+    .dashboard-section {
+      display: block !important;
+      .tile-content {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+  .button-tooltip {
+    display: flex;
+    justify-content: space-between;
+  }
+  .element-tile-left {
+    align-items: flex-start;
+  }
+
+  .element-tile-right {
+    align-items: flex-end;
+  }
+}

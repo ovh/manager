@@ -782,6 +782,11 @@
   "streams_subscriptions_resource_products_ldp": "Logs Data Platform",
   "streams_subscriptions_resource_products_webhosting": "Web Hosting",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
-  "streams_subscriptions_resource_products_account-api": "OVHcloud and OVHcloud API Control Panel",
-  "streams_subscriptions_resource_products_account-audit": "OVHcloud Audit Logs"
+  "streams_subscriptions_resource_products_account-api": "OVHcloud &amp; OVHcloud API Control Panel",
+  "streams_subscriptions_resource_products_account-audit": "OVHcloud Logs Audit",
+  "logs_streams_manage_archives": "Manage archives",
+  "logs_streams_manage_subscriptions": "Manage subscriptions",
+  "logs_streams_copy_stream_id": "Copy feed ID",
+  "logs_streams_copy_id_success": "The feed ID has been copied to your clipboard. Use CTRL+V to paste the content.",
+  "logs_streams_copy_id_error": "Your browser does not allow copying to clipboard. Please upgrade to the most recent version of your browser. The {{stream}} data stream ID is: {{stream_id}}"
 }

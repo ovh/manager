@@ -38,5 +38,11 @@
   "server_configuration_netboot_save_in_progress": "Aktualizacja...",
   "server_configuration_netboot_invalid": "Nieprawidłowy",
   "server_configuration_netboot_rescue_help": "Tryb rescue może być przydatny podczas diagnozowania usterek sprzętowych na serwerze dedykowanym.",
-  "server_configuration_netboot_rescue_help_link": "Dostęp do przewodnika dotyczącego diagnostyki sprzętu."
+  "server_configuration_netboot_rescue_help_link": "Dostęp do przewodnika dotyczącego diagnostyki sprzętu.",
+  "server_configuration_netboot_rescue_mail_none": "Brak",
+  "server_configuration_netboot_auth_method": "Metoda uwierzytelnienia:",
+  "server_configuration_netboot_auth_method_sshkey": "Uwierzytelnienie za pomocą klucza SSH",
+  "server_configuration_netboot_auth_method_password": "Uwierzytelnienie za pomocą hasła",
+  "server_configuration_netboot_sshkey_input": "Publiczny klucz SSH:",
+  "server_configuration_netboot_sshkey_input_placeholder": "Wprowadź wartość typu sshPubKey. <u>Przykład:</u> {{t0}}"
 }

@@ -783,5 +783,10 @@
   "streams_subscriptions_resource_products_webhosting": "Webhosting",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
   "streams_subscriptions_resource_products_account-api": "OVHcloud Kundencenter und OVHcloud API",
-  "streams_subscriptions_resource_products_account-audit": "OVHcloud Audit-Logs"
+  "streams_subscriptions_resource_products_account-audit": "OVHcloud Audit-Logs",
+  "logs_streams_manage_archives": "Archive verwalten",
+  "logs_streams_manage_subscriptions": "Abonnements verwalten",
+  "logs_streams_copy_stream_id": "Kennung des Streams kopieren",
+  "logs_streams_copy_id_success": "Die Kennung des Streams wurde in die Zwischenablage kopiert. Verwenden Sie STRG+V, um den Inhalt einzufügen.",
+  "logs_streams_copy_id_error": "Ihr Browser ermöglicht nicht das Kopieren in die Zwischenablage. Bitte wechseln Sie zu einer neueren Version Ihres Browsers. Die Kennung des Streams {{stream}} lautet: {{stream_id}}"
 }

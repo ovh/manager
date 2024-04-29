@@ -783,5 +783,10 @@
   "streams_subscriptions_resource_products_webhosting": "Hosting Web",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes",
   "streams_subscriptions_resource_products_account-api": "Spazio Cliente OVHcloud e API OVHcloud",
-  "streams_subscriptions_resource_products_account-audit": "Audit Logs OVHcloud"
+  "streams_subscriptions_resource_products_account-audit": "Audit Logs OVHcloud",
+  "logs_streams_manage_archives": "Gestire gli archivi",
+  "logs_streams_manage_subscriptions": "Gestire gli abbonamenti",
+  "logs_streams_copy_stream_id": "Copiare l'identificativo del flusso",
+  "logs_streams_copy_id_success": "L'identificativo del flusso è stato copiato negli appunti, utilizza CTRL+V per incollarne il contenuto.",
+  "logs_streams_copy_id_error": "Il browser utilizzato non consente la copia negli appunti. Ti consigliamo di aggiornarlo a una versione più recente. L'identificativo del flusso {{stream}} è {{stream_id}}"
 }
