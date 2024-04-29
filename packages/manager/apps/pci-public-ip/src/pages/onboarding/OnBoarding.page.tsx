@@ -120,7 +120,7 @@ export default function OnBoardingPage() {
   ];
 
   const createPublicIP = () => {
-    if (!isDiscoveryProject(project)) navigate('./new');
+    if (!isDiscoveryProject(project)) navigate('../order');
   };
 
   return (
