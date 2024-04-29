@@ -192,6 +192,7 @@ export default function FailoverIPComponent({
               size={ODS_BUTTON_SIZE.sm}
               variant={ODS_BUTTON_VARIANT.ghost}
               color={ODS_THEME_COLOR_INTENT.primary}
+              onClick={() => navigate('../order')}
             >
               <OsdsText
                 size={ODS_THEME_TYPOGRAPHY_SIZE._500}
