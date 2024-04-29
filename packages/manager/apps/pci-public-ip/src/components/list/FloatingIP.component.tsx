@@ -141,6 +141,7 @@ export default function FloatingIPComponent({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
+          onClick={() => navigate('../order')}
         >
           <OsdsIcon
             name={ODS_ICON_NAME.ADD}
