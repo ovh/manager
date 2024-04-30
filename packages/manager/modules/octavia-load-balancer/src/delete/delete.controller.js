@@ -5,14 +5,14 @@ export default class OctaviaLoadBalancerDeleteCtrl {
     $http,
     Alerter,
     $translate,
-    OctaviaLoadBalanderService,
+    OctaviaLoadBalancerService,
   ) {
     this.isLoading = false;
     this.atInternet = atInternet;
     this.$http = $http;
     this.Alerter = Alerter;
     this.$translate = $translate;
-    this.OctaviaLoadBalanderService = OctaviaLoadBalanderService;
+    this.OctaviaLoadBalancerService = OctaviaLoadBalancerService;
   }
 
   cancel() {
@@ -23,7 +23,7 @@ export default class OctaviaLoadBalancerDeleteCtrl {
   delete() {
     this.isLoading = true;
     this.trackDeletionAction('confirm');
-    this.OctaviaLoadBalanderService.deleteLoadBalancer(
+    this.OctaviaLoadBalancerService.deleteLoadBalancer(
       this.projectId,
       this.loadBalancerRegion,
       this.loadBalancerId,
