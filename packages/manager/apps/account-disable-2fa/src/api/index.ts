@@ -5,7 +5,7 @@ export const get2faStatus: () => Promise<Status2fa> = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
-        status: Math.random() >= 0.5 ? 'creationAuthorized' : 'open',
+        status: 'creationAuthorized', // or 'open',
         ticketId: '',
       });
     }, 300);
