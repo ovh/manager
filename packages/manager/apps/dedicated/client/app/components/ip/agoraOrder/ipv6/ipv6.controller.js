@@ -1,7 +1,7 @@
 import find from 'lodash/find';
 
-import { DASHBOARD_STATE_NAME } from '../ip-ip-agoraOrder.constant';
-import { ALERT_ID, FLAGS, EMPTY_CHOICE } from './ipv6.constant';
+import { ALERT_ID, DASHBOARD_STATE_NAME } from '../ip-ip-agoraOrder.constant';
+import { FLAGS, EMPTY_CHOICE } from './ipv6.constant';
 
 export default class AgoraIpV6OrderController {
   /* @ngInject */
@@ -147,18 +147,15 @@ export default class AgoraIpV6OrderController {
         );
         this.$state.go(DASHBOARD_STATE_NAME);
       })
-      .catch((err) => {
+      .catch(() => {
         this.Alerter.error(
           this.$translate.instant('ip_order_finish_error'),
           this.ALERT_ID,
         );
-        return this.$state
-          .go(DASHBOARD_STATE_NAME)
-          .then(() => this.$q.reject(err));
       });
   }
 
-  resumeOrder() {
+  goToDashboard() {
     return this.$state.go(DASHBOARD_STATE_NAME);
   }
 }
