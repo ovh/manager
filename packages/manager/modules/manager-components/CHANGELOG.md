@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.14.0...@ovh-ux/manager-components@1.15.0) (2024-04-30)
+
+
+### Features
+
+* **pci.instance:** add marseille region label ([#11559](https://github.com/ovh/manager/issues/11559)) ([4e9b314](https://github.com/ovh/manager/commit/4e9b314e4ef8b9df8abfb341b15dd13d9c033900))
+
+
+
+
+
 # [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.13.0...@ovh-ux/manager-components@1.14.0) (2024-04-29)
 
 

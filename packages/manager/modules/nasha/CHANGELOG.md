@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.11.0...@ovh-ux/manager-nasha@2.12.0) (2024-04-30)
+
+
+### Features
+
+* **pci.instance:** add marseille region label ([#11559](https://github.com/ovh/manager/issues/11559)) ([4e9b314](https://github.com/ovh/manager/commit/4e9b314e4ef8b9df8abfb341b15dd13d9c033900))
+
+
+
+
+
 # [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.10.0...@ovh-ux/manager-nasha@2.11.0) (2024-02-26)
 
 
