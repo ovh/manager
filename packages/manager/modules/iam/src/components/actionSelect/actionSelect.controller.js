@@ -427,27 +427,6 @@ export default class ActionSelectController {
   }
 
   filterActions(actionTree) {
-    const shadowActionTree = cloneDeep(actionTree);
-    shadowActionTree.categories.forEach((category) => {
-      const shadowCategory = cloneDeep(category);
-      shadowCategory.filteredActions = category?.actions?.filter(
-        (action) =>
-          action?.value
-            .toLowerCase()
-            .indexOf(actionTree.searchQuery.toLowerCase()) > -1,
-      );
-      shadowActionTree.categories[
-        shadowActionTree.categories.findIndex(
-          (currentCategory) => currentCategory.value === category.value,
-        )
-      ] = shadowCategory;
-    });
-    this.actionTrees[
-      this.actionTrees.findIndex(
-        (currentActionTree) => currentActionTree.value === actionTree.value,
-      )
-    ] = shadowActionTree;
-
     // Check if any action of this category contains the searchQuery string
     this.showSearchNotFoundError = !actionTree.categories.some((category) =>
       category.actions.some(
