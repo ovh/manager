@@ -32,7 +32,7 @@ export default class {
     const expressOrderJson = {
       planCode: this.cartOption.offer.planCode,
       duration: this.cartOption.offer.durations[0],
-      pricingMode: this.cartOption.offer.pricing.pricingMode,
+      pricingMode: this.cartOption.module.pricingMode,
       quantity: 1,
       configuration: [
         {
@@ -44,11 +44,7 @@ export default class {
           value: dnsZoneLabel,
         },
       ],
-      productId: WEBHOSTING_ORDER_PRODUCT,
-    };
-
-    if (this.cartOption.module) {
-      expressOrderJson.option = [
+      option: [
         {
           planCode: this.cartOption.module.planCode,
           duration: this.cartOption.module.duration,
@@ -61,8 +57,9 @@ export default class {
             },
           ],
         },
-      ];
-    }
+      ],
+      productId: WEBHOSTING_ORDER_PRODUCT,
+    };
 
     return this.$window.open(
       `${this.expressOrderUrl}?products=${JSURL.stringify([expressOrderJson])}`,
