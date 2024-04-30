@@ -835,5 +835,6 @@
   "server_configuration_intervention_activate_failed": "Wystąpił błąd podczas włączania interwencji w centrum danych dla serwera {{serverName}}",
   "server_nutanix_cluster_node_warning_1": "Ten serwer dedykowany jest częścią klastra Nutanix: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "Zalecamy przeprowadzenie wszystkich zmian konfiguracji bezpośrednio na dashboardzie serwera powiązanego z klastrem Nutanix: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "Wszystkie operacje płatnicze związane z tym serwerem są widoczne w klastrze Nutanix: {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "Wszystkie operacje płatnicze związane z tym serwerem są widoczne w klastrze Nutanix: {{clusterDashboardLink}}",
+  "server_datacenter_MRS": "Marsylia"
 }
