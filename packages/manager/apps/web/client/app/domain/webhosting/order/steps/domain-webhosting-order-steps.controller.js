@@ -17,7 +17,8 @@ export default class {
   }
 
   orderWebhosting() {
-    const { enableHosting, enableEmails } = this.cartOption.dnsConfiguration;
+    const enableHosting = this.cartOption.dnsConfiguration?.enableHosting;
+    const enableEmails = this.cartOption.dnsConfiguration?.enableEmails;
     let dnsZoneLabel = CONFIGURATION_OPTIONS.DNS_ZONE.VALUES.NO_CHANGE;
     if (enableHosting && enableEmails) {
       dnsZoneLabel = CONFIGURATION_OPTIONS.DNS_ZONE.VALUES.RESET_ALL;
