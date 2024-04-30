@@ -1,8 +1,5 @@
 {
   "kube_logs_tab_title": "Log",
-  "kube_logs_list_no_logs": "In attesa dei log",
-  "kube_logs_description": "Qui trovi i log del control plane del tuo cluster Kubernetes. Per monitorare i pod aziendali, consulta la documentazione disponibile.",
-  "kube_logs_description_link": "Scopri di più",
   "kube_logs_main_description": "Qui sotto sono riportati i log di audit del cluster Kubernetes che forniscono un insieme cronologico di eventi rilevanti per la sicurezza e che documentano la sequenza di azioni nel cluster: attività generate dagli utenti, dalle applicazioni che utilizzano l’API Kubernetes e dallo stesso control plane.",
   "kube_logs_tile_description": "Abbonandoti a questo flusso, puoi trasferire i tuoi log direttamente nel servizio Logs Data Platform di OVHcloud, che permette di effettuare ricerche più avanzate, creare alert e grafici, oppure semplicemente archiviarli.",
   "logs_list_title": "Flussi di dati",
