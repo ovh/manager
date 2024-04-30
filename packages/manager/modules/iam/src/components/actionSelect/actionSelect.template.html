@@ -144,7 +144,7 @@
         <!-- <NoCategoryActions> -->
         <oui-checkbox
             class="ml-4"
-            data-ng-repeat="action in actionTree.filteredActions track by action.value"
+            data-ng-repeat="action in actionTree.actions | filter:actionTree.searchQuery track by action.value"
             data-model="action.selected"
             data-on-change="$ctrl.onModelChanged(action)"
             data-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
@@ -201,7 +201,7 @@
                 <!-- <CategoryActions> -->
                 <div
                     class="oui-checkbox ml-4"
-                    data-ng-repeat="action in category.filteredActions track by action.value"
+                    data-ng-repeat="action in category.actions | filter:actionTree.searchQuery track by action.value"
                 >
                     <input
                         class="oui-checkbox__input"
