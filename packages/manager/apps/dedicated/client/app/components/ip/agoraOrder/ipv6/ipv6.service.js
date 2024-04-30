@@ -11,8 +11,8 @@ export default class IpAgoraV6Order {
       .query()
       .expand('CachedObjectList-Pages')
       .execute()
-      .$promise.then(({ data }) => {
-        return data.map((vrackService) => {
+      .$promise.then(({ data }) =>
+        data.map((vrackService) => {
           const serviceName = vrackService.iam.urn.split(':').pop();
           const displayName = vrackService.name || serviceName;
           return {
@@ -20,7 +20,7 @@ export default class IpAgoraV6Order {
             serviceName,
             type: PRODUCT_TYPES.vrack.apiTypeName,
           };
-        });
-      });
+        }),
+      );
   }
 }

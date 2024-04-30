@@ -58,13 +58,10 @@ export default class AgoraIpV6OrderController {
           });
         }
       })
-      .catch((err) => {
+      .catch(() => {
         this.Alerter.error(
           this.$translate.instant('ip_order_loading_error', this.ALERT_ID),
         );
-        return this.$state
-          .go(DASHBOARD_STATE_NAME)
-          .then(() => this.$q.reject(err));
       })
       .finally(() => {
         this.loading.services = false;
@@ -145,7 +142,7 @@ export default class AgoraIpV6OrderController {
           `${url}review?products=${JSURL.stringify([productToOrder])}`,
           '_blank',
         );
-        this.$state.go(DASHBOARD_STATE_NAME);
+        this.goToDashboard();
       })
       .catch(() => {
         this.Alerter.error(
