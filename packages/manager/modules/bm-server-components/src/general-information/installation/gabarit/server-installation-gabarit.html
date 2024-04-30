@@ -5,6 +5,7 @@
         data-wizard-on-finish="$ctrl.install.bind($ctrl)"
         data-wizard-title=":: 'server_configuration_installation_gabarit_title' | translate"
         data-wizard-hide-cancel-button="loader.loading"
+        data-wizard-hide-previous-button="true"
         data-wizard-bread-crumb
         data-wizard-keydown-disabled
     >
@@ -130,7 +131,6 @@
                                         && !loader.loading
                                         && !loader.loadingForm
                                         && optionForm.$valid"
-                data-wizard-step-on-previous="$ctrl.clearErrorPersonalTemplate.bind($ctrl)"
                 data-wizard-step-on-load="$ctrl.loadStep2.bind($ctrl)"
             >
                 <div

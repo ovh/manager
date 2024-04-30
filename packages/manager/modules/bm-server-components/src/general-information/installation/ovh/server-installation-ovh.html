@@ -5,6 +5,7 @@
         data-wizard-on-finish="$ctrl.saveRemainingSize.bind($ctrl)"
         data-wizard-title=":: 'server_configuration_installation_ovh_title' | translate"
         data-wizard-hide-cancel-button="loader.loading"
+        data-wizard-hide-previous-button="true"
         data-wizard-bread-crumb
         data-wizard-keydown-disabled
     >
@@ -197,7 +198,6 @@
                                      && installation.hardwareRaid.disks
                                      && installation.hardwareRaid.arrays
                                      && !installation.hardwareRaid.error"
-            data-wizard-step-on-previous="$ctrl.reduceModal.bind($ctrl)"
             data-wizard-step-on-next="$ctrl.checkNextStep2.bind($ctrl)"
         >
             <div class="text-center" data-ng-if="loader.loading">
@@ -348,7 +348,6 @@
                                      && !setPartition.delModel
                                      && !configError.raidDiskUse
                                      && !errorInst.partitionSizeOver"
-            data-wizard-step-on-previous="$ctrl.checkPrev1.bind($ctrl)"
             data-wizard-step-on-load="$ctrl.loadPartition.bind($ctrl)"
         >
             <div class="text-center" data-ng-show="loader.loading">
@@ -1268,7 +1267,6 @@
                                         && installation.options.validForm
                                         && !loader.loading
                                         && optionForm.$valid"
-                data-wizard-step-on-previous="$ctrl.checkCustomPrevFinal.bind($ctrl)"
                 data-wizard-step-on-load="$ctrl.checkIntegrity.bind($ctrl)"
             >
                 <div class="text-center" data-ng-if="loader.loading">

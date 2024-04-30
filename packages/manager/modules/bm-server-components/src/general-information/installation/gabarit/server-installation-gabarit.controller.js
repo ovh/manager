@@ -132,9 +132,6 @@ export default class ServerInstallationGabaritCtrl {
   }
 
   // ------CUSTOME STEP MODAL------
-  static reduceModal() {
-    ServerInstallationGabaritCtrl.setSizeModalDialog(false);
-  }
 
   static extendModal() {
     ServerInstallationGabaritCtrl.setSizeModalDialog(true);
@@ -189,11 +186,6 @@ export default class ServerInstallationGabaritCtrl {
 
     this.$scope.installation.inputs =
       this.$scope.installation.selectGabarit.inputs || [];
-  }
-
-  clearErrorPersonalTemplate() {
-    this.$scope.errorGab.ws = null;
-    ServerInstallationGabaritCtrl.reduceModal();
   }
 
   static getDisks(disks) {

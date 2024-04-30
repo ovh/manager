@@ -2135,10 +2135,6 @@ export default class ServerInstallationOvhCtrl {
   }
 
   // ------CUSTOME STEP MODAL------
-  reduceModal() {
-    this.$scope.informations.softRaidOnlyMirroring = null;
-    ServerInstallationOvhCtrl.setSizeModalDialog(false);
-  }
 
   static extendModal() {
     ServerInstallationOvhCtrl.setSizeModalDialog(true);
@@ -2147,11 +2143,10 @@ export default class ServerInstallationOvhCtrl {
   checkNextStep1() {
     this.$scope.informations.nbDisk = this.$scope.installation.diskGroup.numberOfDisks;
     if (!this.$scope.installation.raidSetup) {
+      ServerInstallationOvhCtrl.extendModal();
       if (this.$scope.installation.customInstall) {
-        ServerInstallationOvhCtrl.extendModal();
         this.$rootScope.$broadcast('wizard-goToStep', 3);
       } else {
-        ServerInstallationOvhCtrl.extendModal();
         this.$rootScope.$broadcast('wizard-goToStep', 4);
       }
     }
@@ -2161,31 +2156,6 @@ export default class ServerInstallationOvhCtrl {
     ServerInstallationOvhCtrl.extendModal();
     if (!this.$scope.installation.customInstall) {
       this.$rootScope.$broadcast('wizard-goToStep', 4);
-    }
-  }
-
-  checkPrev1() {
-    if (!this.$scope.installation.raidSetup) {
-      this.reduceModal();
-      this.$rootScope.$broadcast('wizard-goToStep', 1);
-    } else {
-      this.reduceModal();
-    }
-    this.loadPartition();
-    this.$scope.installation.partitionSchemeModels = false;
-  }
-
-  checkCustomPrevFinal() {
-    if (!this.$scope.installation.customInstall) {
-      if (!this.$scope.installation.raidSetup) {
-        this.reduceModal();
-        this.$rootScope.$broadcast('wizard-goToStep', 1);
-      } else {
-        this.reduceModal();
-        this.$rootScope.$broadcast('wizard-goToStep', 2);
-      }
-    } else {
-      ServerInstallationOvhCtrl.extendModal();
     }
   }
 
@@ -2366,7 +2336,6 @@ export default class ServerInstallationOvhCtrl {
     ).then(
       (task) => {
         set(task, 'id', task.taskId);
-        this.reduceModal();
         this.$rootScope.$broadcast('dedicated.informations.reinstall', task);
         this.$state.go(`${this.statePrefix}.dashboard.installation-progress`);
         this.$scope.loader.loading = false;
