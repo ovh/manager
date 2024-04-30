@@ -64,7 +64,7 @@ export const FloatingSteps = ({
       <StepComponent
         key={StepIdsEnum.FLOATING_INSTANCE}
         {...steps.get(StepIdsEnum.FLOATING_INSTANCE)}
-        next={{ action: form.instance && On.next }}
+        next={{ action: form.instance && form.ipAddress && On.next }}
         order={3}
       >
         {selectedRegionInstances.length !== 0 ? (
