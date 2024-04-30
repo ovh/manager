@@ -1,4 +1,4 @@
-import { Status2fa } from '@/interfaces';
+import { Status2fa } from '@/types/status.type';
 
 // TODO: Replace this mock with a real call 'me/procedure/2fa'
 export const get2faStatus: () => Promise<Status2fa> = () => {
