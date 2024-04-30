@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import ovhCloudLogo from '@/assets/logo-ovhcloud.png';
-import { Status2faStrategies } from '@/interfaces';
+import { Status2faStrategies } from '@/types/status.type';
 import {
   createRoutePath,
   seeRoutePath,
 } from '@/constants/route-path-constants';
-import { get2faStatus } from '@/api';
+import { fetch2faStatus } from '@/data/hooks/useStatus';
 
 const redirectStrategies: Status2faStrategies = {
   open: `/${seeRoutePath}`,
@@ -18,10 +17,7 @@ export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { data, isFetched } = useQuery({
-    queryKey: ['get2faStatus'],
-    queryFn: get2faStatus,
-  });
+  const { data, isFetched } = fetch2faStatus();
 
   useEffect(() => {
     const route = redirectStrategies[data?.status];
