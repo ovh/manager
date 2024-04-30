@@ -1,7 +1,7 @@
 {
-  "beta_modal_title": "Découvrez la nouvelle version du Manager",
-  "beta_modal_infos": "Basculez sur la nouvelle version et donnez votre avis en cliquant sur votre profil.",
-  "beta_modal_accept": "Basculer vers la nouvelle version",
+  "beta_modal_title": "Découvrez la nouvelle version de votre espace client",
+  "beta_modal_infos": "Basculez vers la nouvelle version et donnez votre avis en remplissant le formulaire dédié.",
+  "beta_modal_accept": "Je teste la nouvelle version",
   "beta_modal_decline": "Peut-être plus tard",
   "beta_modal_screenshot": "Capture d'écran",
   "beta_modal_new": "Version beta",
