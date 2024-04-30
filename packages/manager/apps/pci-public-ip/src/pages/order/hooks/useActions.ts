@@ -111,6 +111,7 @@ export const useActions = (projectId: string) => {
           break;
         case StepIdsEnum.FAILOVER_INSTANCE:
           doOrderFailoverIp();
+          navigate('../additional-ips');
           break;
         case StepIdsEnum.FLOATING_REGION:
           openStep(StepIdsEnum.FLOATING_INSTANCE);
