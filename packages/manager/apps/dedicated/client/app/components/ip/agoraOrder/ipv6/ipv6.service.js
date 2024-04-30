@@ -12,17 +12,15 @@ export default class IpAgoraV6Order {
       .expand('CachedObjectList-Pages')
       .execute()
       .$promise.then(({ data }) => {
-        return [
-          ...data.map((vrackService) => {
-            const serviceName = vrackService.iam.urn.split(':').pop();
-            const displayName = vrackService.name || serviceName;
-            return {
-              displayName,
-              serviceName,
-              type: PRODUCT_TYPES.vrack.apiTypeName,
-            };
-          }),
-        ];
+        return data.map((vrackService) => {
+          const serviceName = vrackService.iam.urn.split(':').pop();
+          const displayName = vrackService.name || serviceName;
+          return {
+            displayName,
+            serviceName,
+            type: PRODUCT_TYPES.vrack.apiTypeName,
+          };
+        });
       });
   }
 }

@@ -21,11 +21,11 @@ export default class IpAgoraOrder {
       const [errorCode] = msg.match(/\d+/);
       return ![400, 404].includes(parseInt(errorCode, 10));
     });
-    if (filteredErrors && filteredErrors.length) {
+    if (filteredErrors?.length) {
       return this.$q.reject(filteredErrors);
     }
 
-    return results && results.length ? results[0].services : [];
+    return results?.length ? results[0].services : [];
   }
 
   static createProductToOrder({
