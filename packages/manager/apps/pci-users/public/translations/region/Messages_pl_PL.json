@@ -62,5 +62,8 @@
   "manager_components_region_location_BRU": "Europa Zachodnia",
   "manager_components_region_continent_GS": "Europa Zachodnia",
   "manager_components_region_continent_MAD": "Europa Zachodnia",
-  "manager_components_region_continent_BRU": "Europa Zachodnia"
+  "manager_components_region_continent_BRU": "Europa Zachodnia",
+  "manager_components_region_MRS": "Marsylia",
+  "manager_components_region_MRS_micro": "Marsylia ({{ micro }})",
+  "manager_components_region_continent_MRS": "Europa Zachodnia"
 }

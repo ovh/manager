@@ -3,6 +3,7 @@
   "nasha_acl_type_readwrite": "Lecture écriture",
   "nasha_datacenter_bhs": "Beauharnois",
   "nasha_datacenter_gra": "Gravelines",
+  "nasha_datacenter_mrs": "Marseille",
   "nasha_datacenter_rbx": "Roubaix",
   "nasha_datacenter_sbg": "Strasbourg",
   "nasha_error": "Une erreur est survenue: {{ message }}",

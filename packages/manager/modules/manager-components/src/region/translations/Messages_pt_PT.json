@@ -73,5 +73,8 @@
   "manager_components_region_HIL_micro": "Hillsboro ({{ micro }})",
   "manager_components_region_YYZ": "Toronto",
   "manager_components_region_YYZ_micro": "Toronto ({{ micro }})",
-  "manager_components_region_continent_YYZ": "América do Norte (Toronto)"
+  "manager_components_region_continent_YYZ": "América do Norte (Toronto)",
+  "manager_components_region_MRS": "Marselha",
+  "manager_components_region_MRS_micro": "Marselha ({{ micro }})",
+  "manager_components_region_continent_MRS": "Europa Ocidental"
 }

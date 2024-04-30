@@ -1,5 +1,7 @@
 {
   "manager_components_region_SBG1": "Strasbourg (SBG1)",
+  "manager_components_region_MRS": "Marseille",
+  "manager_components_region_MRS_micro": "Marseille ({{ micro }})",
   "manager_components_region_BHS1": "Beauharnois (BHS1)",
   "manager_components_region_GRA1": "Gravelines (GRA1)",
   "manager_components_region_SBG": "Strasbourg",
@@ -62,5 +64,6 @@
   "manager_components_region_continent_SGP": "Asie du Sud-Est",
   "manager_components_region_continent_SYD": "Océanie",
   "manager_components_region_continent_US": "États-Unis",
-  "manager_components_region_continent_SHA": "Europe de l'Ouest"
+  "manager_components_region_continent_SHA": "Europe de l'Ouest",
+  "manager_components_region_continent_MRS": "Europe de l'Ouest"
 }

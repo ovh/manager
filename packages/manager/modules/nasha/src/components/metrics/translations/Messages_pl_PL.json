@@ -11,5 +11,6 @@
   "nasha_components_metrics_ip": "Adres IP",
   "nasha_components_metrics_renew": "Odnów",
   "nasha_components_metrics_space_usage": "Powiadomienie o wykorzystaniu przestrzeni",
-  "nasha_components_metrics_space_usage_help": "Kontakt administracyjny i kontakt techniczny otrzymają alert na adres e-mail, gdy usługa NAS osiągnie 90% wykorzystania przestrzeni dyskowej."
+  "nasha_components_metrics_space_usage_help": "Kontakt administracyjny i kontakt techniczny otrzymają alert na adres e-mail, gdy usługa NAS osiągnie 90% wykorzystania przestrzeni dyskowej.",
+  "nasha_components_metrics_datacenter_mrs": "Marsylia"
 }

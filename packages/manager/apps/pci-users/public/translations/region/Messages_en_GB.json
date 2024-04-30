@@ -62,5 +62,8 @@
   "manager_components_region_location_BRU": "Western Europe",
   "manager_components_region_continent_GS": "Western Europe",
   "manager_components_region_continent_MAD": "Western Europe",
-  "manager_components_region_continent_BRU": "Western Europe"
+  "manager_components_region_continent_BRU": "Western Europe",
+  "manager_components_region_MRS": "Marseille",
+  "manager_components_region_MRS_micro": "Marseille ({{ micro }})",
+  "manager_components_region_continent_MRS": "Western Europe"
 }
