@@ -10,6 +10,8 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GUIDE_URLS, TRACKING_GUIDE_LINKS } from '@/pages/order/constants';
 import { useData } from '@/api/hooks/useData';
@@ -32,6 +34,14 @@ export const FailoverSteps = ({
   const { On } = useActions(projectId);
   const { state: DataState, getInstanceById } = useData(projectId, regionName);
   const { me } = useMe();
+  const [instanceCreationURL, setInstanceCreationURL] = useState('');
+  const nav = useNavigation();
+
+  useEffect(() => {
+    nav
+      .getURL('public-cloud', `#/pci/projects/${projectId}/instances/new`, {})
+      .then((data) => setInstanceCreationURL(`${data}`));
+  }, [projectId, nav]);
 
   return (
     <>
@@ -135,7 +145,7 @@ export const FailoverSteps = ({
                   className="font-sans no-underline"
                   dangerouslySetInnerHTML={{
                     __html: tOrder('pci_additional_ip_create_create_instance', {
-                      url: `/pci/projects/${projectId}/instances/new`,
+                      url: instanceCreationURL,
                     }),
                   }}
                 ></span>
