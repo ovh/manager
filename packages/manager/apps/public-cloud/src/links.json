@@ -99,6 +99,17 @@
       "path": "/pci/projects/{project}/storages/cold-archive/new"
     }
   },
+
+  {
+    "public": {
+      "application": "public-cloud",
+      "path": "/create-cloud-archive"
+    },
+    "redirect": {
+      "application": "public-cloud",
+      "path": "/pci/projects/{project}/storages/cloud-archives/new"
+    }
+  },
   {
     "public": {
       "application": "public-cloud",
@@ -146,7 +157,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/octavia-load-balancer/create"
+      "path": "/pci/projects/{project}/octavia-load-balancer/onboarding"
     }
   },
   {
@@ -206,7 +217,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/load-balancer/onboarding"
+      "path": "/pci/projects/{project}"
     }
   },
   {
@@ -376,7 +387,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/notebooks/new"
+      "path": "/pci/projects/{project}/notebooks/onboarding"
     }
   },
   {
@@ -386,7 +397,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/training/jobs/submit"
+      "path": "/pci/projects/{project}/training/onboarding"
     }
   },
   {
@@ -396,7 +407,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/ai/apps/new"
+      "path": "/pci/projects/{project}/ai/apps/onboarding"
     }
   }
 ]
