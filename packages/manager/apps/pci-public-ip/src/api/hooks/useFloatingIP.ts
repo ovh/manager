@@ -58,6 +58,11 @@ export const useAllFloatingIP = (projectId: string) => {
   return useQuery({
     queryKey: getQueryKeyFloatingIPs(projectId),
     queryFn: () => getAllFloatingIP(projectId),
+    select: (ips) =>
+      ips.map((ip) => ({
+        ...ip,
+        search: `${ip.ip} ${ip.associatedEntity?.id} ${ip.associatedEntity?.name} ${ip.region}`,
+      })) as FloatingIP[],
   });
 };
 

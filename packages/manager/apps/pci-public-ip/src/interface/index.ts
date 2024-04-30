@@ -38,6 +38,7 @@ export interface FloatingIP {
   status: string;
   associatedEntityId: string;
   associatedEntityName: string;
+  search?: string;
 }
 
 export interface FailoverIP {
