@@ -3,7 +3,7 @@ import { mockedNode } from './nodes';
 import { ServiceCreationWithEngine } from '@/hooks/api/services.api.hooks';
 
 export const mockedService: database.Service = {
-  backupTime: 'backupTime',
+  backupTime: '16:00:00',
   capabilities: {
     [database.service.CapabilityEnum.backups]: {
       create: database.service.capability.StateEnum.enabled,
@@ -30,6 +30,9 @@ export const mockedService: database.Service = {
       create: database.service.capability.StateEnum.enabled,
     },
     [database.service.CapabilityEnum.connectionPools]: {
+      create: database.service.capability.StateEnum.enabled,
+    },
+    [database.service.CapabilityEnum.maintenanceApply]: {
       create: database.service.capability.StateEnum.enabled,
     },
   },
@@ -62,7 +65,7 @@ export const mockedService: database.Service = {
       status: database.StatusEnum.CREATING,
     },
   ],
-  maintenanceTime: 'maintenanceTime',
+  maintenanceTime: '15:00:00',
   networkId: 'networkId',
   networkType: database.NetworkTypeEnum.private,
   nodeNumber: 2,
@@ -72,13 +75,19 @@ export const mockedService: database.Service = {
   status: database.StatusEnum.CREATING,
   storage: {
     size: {
-      unit: 'unit',
+      unit: 'GB',
       value: 3,
     },
     type: 'type',
   },
   subnetId: 'subnetId',
   version: 'version',
+  backups: {
+    pitr: 'pitr',
+    regions: ['GRA'],
+    retentionDays: 10,
+    time: '16:00:00',
+  },
 };
 
 export const mockedServiceInte: database.Service = {

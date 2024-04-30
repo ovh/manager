@@ -30,6 +30,7 @@ import {
 
 describe('Dashboard page', () => {
   beforeEach(() => {
+    vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
@@ -161,6 +162,7 @@ describe('Dashboard page', () => {
 
 describe('Maintenance section', () => {
   beforeEach(() => {
+    vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({

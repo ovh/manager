@@ -87,7 +87,9 @@ const AddNode = ({ controller, catalog, onSuccess, onError }: AddNodeProps) => {
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('addNodeTitle')}</DialogTitle>
+          <DialogTitle data-testid="add-node-modal">
+            {t('addNodeTitle')}
+          </DialogTitle>
         </DialogHeader>
         <Label>{t('priceUnitSwitchLabel')}</Label>
         <PriceUnitSwitch showMonthly={showMonthly} onChange={setShowMonthly} />
@@ -116,11 +118,20 @@ const AddNode = ({ controller, catalog, onSuccess, onError }: AddNodeProps) => {
         </p>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" variant="outline">
+            <Button
+              data-testid="add-node-cancel-button"
+              type="button"
+              variant="outline"
+            >
               {t('addNodeCancelButton')}
             </Button>
           </DialogClose>
-          <Button type="button" onClick={handleSumbit} disabled={isPending}>
+          <Button
+            data-testid="add-node-submit-button"
+            type="button"
+            onClick={handleSumbit}
+            disabled={isPending}
+          >
             {t('addNodeSubmitButton')}
           </Button>
         </DialogFooter>

@@ -19,7 +19,6 @@ import {
   mockedServiceInte,
   mockedService as mockedServiceOrig,
 } from '@/__tests__/helpers/mocks/services';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { mockedIntegrations } from '@/__tests__/helpers/mocks/integrations';
 
 // Override mock to add capabilities
@@ -85,15 +84,12 @@ describe('Integrations page', () => {
     });
   });
   it('renders and shows skeletons while loading', async () => {
-    vi.mocked(integrationApi.getServiceIntegrations).mockImplementationOnce(
-      () => {
-        throw apiErrorMock;
-      },
-    );
     render(<Integrations />, { wrapper: RouterWithQueryClientWrapper });
-    expect(
-      screen.getByTestId('integrations-table-skeleton'),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('integrations-table-skeleton'),
+      ).toBeInTheDocument();
+    });
   });
   it('renders and shows integrations table', async () => {
     render(<Integrations />, { wrapper: RouterWithQueryClientWrapper });

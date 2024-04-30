@@ -40,6 +40,7 @@ const ResizeObserverMock = vi.fn(() => ({
 
 describe('Namespaces page', () => {
   beforeEach(() => {
+    vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
@@ -75,18 +76,19 @@ describe('Namespaces page', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
-  it('renders and shows skeletons while loading', async () => {
-    vi.mocked(namespaceApi.getNamespaces).mockImplementationOnce(() => {
-      throw apiErrorMock;
-    });
-    render(<Namespaces />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('namespaces-table-skeleton')).toBeInTheDocument();
-  });
   it('renders the breadcrumb component', async () => {
     const translationKey = 'breadcrumb';
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText(translationKey)).toBeInTheDocument();
+    });
+  });
+  it('renders and shows skeletons while loading', async () => {
+    render(<Namespaces />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('namespaces-table-skeleton'),
+      ).toBeInTheDocument();
     });
   });
   it('renders and shows namespaces table', async () => {
@@ -187,6 +189,7 @@ describe('Open modals', () => {
       expect(screen.getByText(mockedNamespaces.name)).toBeInTheDocument();
     });
   });
+
   afterEach(() => {
     vi.clearAllMocks();
   });

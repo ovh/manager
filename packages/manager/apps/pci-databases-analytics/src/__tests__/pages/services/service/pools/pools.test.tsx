@@ -16,7 +16,6 @@ import { Locale } from '@/hooks/useLocale';
 import * as connectionPoolApi from '@/api/databases/connectionPool';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { mockedConnectionPool } from '@/__tests__/helpers/mocks/connectionPool';
 import { mockedDatabase } from '@/__tests__/helpers/mocks/databases';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
@@ -25,6 +24,7 @@ import { useToast } from '@/components/ui/use-toast';
 // Override mock to add capabilities
 const mockedService = {
   ...mockedServiceOrig,
+  engine: database.EngineEnum.postgresql,
   capabilities: {
     connectionPools: {
       create: database.service.capability.StateEnum.enabled,
@@ -38,6 +38,7 @@ const mockCertificate = { ca: 'certificateCA' };
 
 describe('ConnectionPools page', () => {
   beforeEach(() => {
+    vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
@@ -72,6 +73,7 @@ describe('ConnectionPools page', () => {
         serviceQuery: {} as UseQueryResult<database.Service, Error>,
       })),
     }));
+
     vi.mock('@ovh-ux/manager-react-shell-client', () => {
       return {
         useShell: vi.fn(() => ({
@@ -84,9 +86,6 @@ describe('ConnectionPools page', () => {
       };
     });
   });
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
 
   it('renders the breadcrumb component', async () => {
     const translationKey = 'breadcrumb';
@@ -97,15 +96,12 @@ describe('ConnectionPools page', () => {
   });
 
   it('renders and shows skeletons while loading', async () => {
-    vi.mocked(connectionPoolApi.getConnectionPools).mockImplementationOnce(
-      () => {
-        throw apiErrorMock;
-      },
-    );
     render(<Pools />, { wrapper: RouterWithQueryClientWrapper });
-    expect(
-      screen.getByTestId('connectionPools-table-skeleton'),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('connectionPools-table-skeleton'),
+      ).toBeInTheDocument();
+    });
   });
 
   it('renders and shows connectionPools table', async () => {
@@ -115,7 +111,7 @@ describe('ConnectionPools page', () => {
     });
   });
   it('displays add connection pool button if capability is present', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -132,7 +128,7 @@ describe('ConnectionPools page', () => {
     expect(screen.queryByTestId('pools-add-button')).toBeInTheDocument();
   });
   it('does not display add connection pool button if capability is absent', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -146,7 +142,7 @@ describe('ConnectionPools page', () => {
   });
 
   it('disable add connection pool button if capability is disabled', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -195,6 +191,12 @@ describe('Open modals', () => {
           toast: toastMock,
         })),
       };
+    });
+    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+      projectId: 'projectId',
+      service: mockedService,
+      category: 'operational',
+      serviceQuery: {} as UseQueryResult<database.Service, Error>,
     });
     render(<Pools />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
@@ -343,13 +345,6 @@ describe('Open modals', () => {
       expect(window.navigator.clipboard.writeText).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalled();
     });
-    /*
-    act(() => {
-      fireEvent.click(screen.getByTestId('info-pools-download-ca-action'));
-    });
-    await waitFor(() => {
-      expect(useToast().toast).toHaveBeenCalled();
-    }); */
   });
 
   it('closes info pools modal', async () => {

@@ -1,25 +1,24 @@
 import { database } from '@/models/database';
 
 export const mockedMaintenance: database.service.Maintenance = {
-  description: 'description',
+  description: 'maintenance description',
   id: 'maintenanceId',
-  scheduledAt: 'scheduleDate',
-  appliedAt: 'appliedDate',
+  scheduledAt: '05/05/2022',
   status: database.service.maintenance.StatusEnum.APPLYING,
 };
 
 export const mockedMaintenanceBis: database.service.Maintenance = {
   description: 'description',
   id: 'maintenanceId',
-  scheduledAt: 'scheduleDate',
-  appliedAt: 'appliedDate',
+  scheduledAt: '05/05/2022',
+  appliedAt: '',
   status: database.service.maintenance.StatusEnum.PENDING,
 };
 
 export const mockedMaintenanceTer: database.service.Maintenance = {
-  description: 'description',
+  description: 'descriptionMaintenace',
   id: 'maintenanceId',
-  scheduledAt: 'scheduleDate',
-  appliedAt: 'appliedDate',
+  scheduledAt: '05/05/2022',
+  appliedAt: '',
   status: database.service.maintenance.StatusEnum.SCHEDULED,
 };
