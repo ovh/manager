@@ -30,5 +30,6 @@
   "netapp_dashboard_service_configuration_status_suspended": "Zawieszony",
   "netapp_dashboard_service_configuration_status_deleting": "Trwa usuwanie",
   "netapp_dashboard_service_configuration_status_deleted": "Usunięto",
-  "netapp_dashboard_service_configuration_create_volume": "Utwórz wolumen"
+  "netapp_dashboard_service_configuration_create_volume": "Utwórz wolumen",
+  "netapp_dashboard_configuration_restrictions_info": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki i maksymalnie 64 znaków."
 }

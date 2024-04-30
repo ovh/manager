@@ -6,6 +6,7 @@ import {
   NETWORK_STATUS,
   POLLING_TYPE,
   VRACK_SERVICES_STATUS,
+  NETAPP_NAME_PATTERN,
 } from '../constants';
 
 export default class OvhManagerNetAppDashboardIndexCtrl {
@@ -18,6 +19,8 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.NETWORK_STATUS = NETWORK_STATUS;
     this.VRACK_SERVICES_STATUS = VRACK_SERVICES_STATUS;
+    this.SERVICE_TYPE = SERVICE_TYPE;
+    this.NETAPP_NAME_PATTERN = NETAPP_NAME_PATTERN;
   }
 
   $onInit() {
@@ -80,6 +83,15 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
       this.serviceInfos.engagedUpTo &&
       moment(this.serviceInfos.engagedUpTo).diff(moment(), 'month') < 3
     );
+  }
+
+  editName() {
+    this.NetAppDashboardService.updateStorageName(
+      this.storage.id,
+      this.storage.name,
+    ).then(() => {
+      this.reloadDashboard();
+    });
   }
 
   onBillingInformationError(error) {

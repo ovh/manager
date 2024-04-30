@@ -28,4 +28,16 @@ export default class NetApp {
       this.status,
     );
   }
+
+  update({ id, name, performanceLevel, quota, region, status }) {
+    Object.assign(this, {
+      id,
+      name,
+      performanceLevel,
+      quota,
+      region,
+      status,
+      maximumVolumesLimit: MAXIMUM_VOLUME_LIMIT,
+    });
+  }
 }

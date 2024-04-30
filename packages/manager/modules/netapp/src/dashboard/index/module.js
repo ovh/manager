@@ -9,6 +9,7 @@ import '@ovh-ux/ng-at-internet';
 
 import '@ovh-ux/manager-advices';
 import '@ovh-ux/manager-billing-components';
+import { inlinePropertyEditor } from '@ovh-ux/manager-components';
 import component from './component';
 import routing from './routing';
 
@@ -25,6 +26,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ngOvhUtils',
+    inlinePropertyEditor,
   ])
   .config(routing)
   .component('ovhManagerNetAppDashboardIndex', component)
