@@ -111,35 +111,37 @@ export const FloatingIpSummary = ({
                     )}
                   </OsdsText>
                 </p>
-                <p>
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.warning}
-                    className="font-sans"
-                  >
-                    {tOrder(
-                      'pci_additional_ip_create_summary_step_gateway_size_and_price',
-                      { size: selectedGateway.size },
-                    )}
-                    <span>&#40;</span>
-                    {tOrder('pci_additional_ip_create_summary_step_price')}
-                    <CatalogPriceComponent
-                      price={selectedGateway.price.month * 12}
-                      user={me}
-                      interval="month"
-                      maximumFractionDigits={4}
-                      locale={context.environment.getUserLocale()}
-                    />
-                    {tOrder('pci_additional_ip_create_summary_step_that_is')}
-                    <CatalogPriceComponent
-                      price={selectedGateway.price.hour}
-                      user={me}
-                      maximumFractionDigits={4}
-                      interval="hour"
-                      locale={context.environment.getUserLocale()}
-                    />
-                    <span>&#41;&#42;&#46;</span>
-                  </OsdsText>
-                </p>
+                {selectedGateway && (
+                  <p>
+                    <OsdsText
+                      color={ODS_THEME_COLOR_INTENT.warning}
+                      className="font-sans"
+                    >
+                      {tOrder(
+                        'pci_additional_ip_create_summary_step_gateway_size_and_price',
+                        { size: selectedGateway.size },
+                      )}
+                      <span>&#40;</span>
+                      {tOrder('pci_additional_ip_create_summary_step_price')}
+                      <CatalogPriceComponent
+                        price={selectedGateway.price.month * 12}
+                        user={me}
+                        interval="month"
+                        maximumFractionDigits={4}
+                        locale={context.environment.getUserLocale()}
+                      />
+                      {tOrder('pci_additional_ip_create_summary_step_that_is')}
+                      <CatalogPriceComponent
+                        price={selectedGateway.price.hour}
+                        user={me}
+                        maximumFractionDigits={4}
+                        interval="hour"
+                        locale={context.environment.getUserLocale()}
+                      />
+                      <span>&#41;&#42;&#46;</span>
+                    </OsdsText>
+                  </p>
+                )}
               </div>
             </OsdsMessage>
           )}
