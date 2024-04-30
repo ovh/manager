@@ -75,10 +75,15 @@ export default function FloatingIPComponent({
 
   // redirect to onboarding page if there are no floating ips
   useEffect(() => {
-    if (!error && !isLoading && floatingIPs.totalRows === 0) {
+    if (
+      !error &&
+      !isLoading &&
+      filters?.length === 0 &&
+      floatingIPs.totalRows === 0
+    ) {
       navigate('../onboarding');
     }
-  }, [isLoading, error, floatingIPs]);
+  }, [isLoading, error, filters, floatingIPs]);
 
   const columns = [
     {
@@ -161,10 +166,10 @@ export default function FloatingIPComponent({
                 pageSize: pagination.pageSize,
               });
               addFilter({
-                key: 'ip',
+                key: 'search',
                 value: detail.inputValue,
                 comparator: FilterComparator.Includes,
-                label: t('pci_additional_ips_floating_ip_grid_ip'),
+                label: '',
               });
               setSearchField('');
             }}
