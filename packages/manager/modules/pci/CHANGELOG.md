@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.37.0...@ovh-ux/manager-pci@6.37.1) (2024-04-30)
+
+
+### Bug Fixes
+
+* **pci.instance:** refresh billing summary when changing instance img ([#11558](https://github.com/ovh/manager/issues/11558)) ([906ff15](https://github.com/ovh/manager/commit/906ff15d237556549fc33c3148e75f4c94e9e106))
+* **pci:** consider all flavors for adding label ([#11541](https://github.com/ovh/manager/issues/11541)) ([2c530ed](https://github.com/ovh/manager/commit/2c530edda5aee811cf292ce97599867504ac2a17))
+
+
+
+
+
 # [6.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.36.1...@ovh-ux/manager-pci@6.37.0) (2024-04-24)
 
 

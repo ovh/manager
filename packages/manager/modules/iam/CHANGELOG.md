@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.2...@ovh-ux/manager-iam@1.9.3) (2024-04-30)
+
+
+### Bug Fixes
+
+* **iam:** actionSelect categories not working ([#11568](https://github.com/ovh/manager/issues/11568)) ([fe5b656](https://github.com/ovh/manager/commit/fe5b656ee3f449cf23d715c8431c5e320a5b0c31))
+
+
+
+
+
 ## [1.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.1...@ovh-ux/manager-iam@1.9.2) (2024-04-29)
 
 

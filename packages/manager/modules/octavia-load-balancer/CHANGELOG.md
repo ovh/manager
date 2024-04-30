@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.4.0...@ovh-ux/manager-octavia-load-balancer@1.4.1) (2024-04-30)
+
+
+### Bug Fixes
+
+* **octavia:** fixed wrong name causing injection error ([#11578](https://github.com/ovh/manager/issues/11578)) ([d825151](https://github.com/ovh/manager/commit/d825151f1bbeccfc1808642177c499f2541b1d82))
+
+
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.3.0...@ovh-ux/manager-octavia-load-balancer@1.4.0) (2024-04-29)
 
 
