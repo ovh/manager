@@ -835,5 +835,6 @@
   "server_configuration_intervention_activate_failed": "Si è verificato un errore durante l'attivazione degli interventi in loco sul server {{serverName}}",
   "server_nutanix_cluster_node_warning_1": "Questo server dedicato fa parte di un cluster Nutanix: {{clusterName}}",
   "server_nutanix_cluster_node_warning_2": "Consigliamo di apportare tutte le modifiche di configurazione direttamente nella dashboard del server associato al cluster Nutanix: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "Tutte le azioni di fatturazione associate a questo server sono visibili sul cluster Nutanix: {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "Tutte le azioni di fatturazione associate a questo server sono visibili sul cluster Nutanix: {{clusterDashboardLink}}",
+  "server_datacenter_MRS": "Marsiglia"
 }

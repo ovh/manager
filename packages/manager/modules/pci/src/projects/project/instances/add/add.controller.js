@@ -395,6 +395,11 @@ export default class PciInstancesAddController {
       this.instance.imageId = this.model.image.getIdByRegion(
         this.instance.region,
       );
+
+      this.model.flavorGroup.prices = this.model.flavorGroup.flavors.find(
+        (flavor) => this.model.image.type === flavor.osType,
+      )?.prices;
+      this.flavorGroup = { ...this.model.flavorGroup };
     }
 
     this.onFlexChange(false);

@@ -62,5 +62,8 @@
   "manager_components_region_location_BRU": "Europa Occidentale",
   "manager_components_region_continent_GS": "Europa Occidentale",
   "manager_components_region_continent_MAD": "Europa Occidentale",
-  "manager_components_region_continent_BRU": "Europa Occidentale"
+  "manager_components_region_continent_BRU": "Europa Occidentale",
+  "manager_components_region_MRS": "Marsiglia",
+  "manager_components_region_MRS_micro": "Marsiglia ({{ micro }})",
+  "manager_components_region_continent_MRS": "Europa Occidentale"
 }

@@ -280,7 +280,6 @@ export default class ActionTrees extends Array {
           expanded: true,
           value: CUSTOM_RESOURCE_TYPE,
         };
-    this.buffer.customActionTree.filteredActions = this.buffer.customActionTree.actions;
   }
 
   /**
@@ -372,7 +371,6 @@ export default class ActionTrees extends Array {
       }));
       Object.assign(category, {
         actions: currentActions,
-        filteredActions: currentActions,
         get selection() {
           return this.actions.filter(({ selected }) => selected);
         },

@@ -4,6 +4,8 @@
   "manager_components_region_GRA1": "Gravelines (GRA1)",
   "manager_components_region_SBG": "Strasbourg",
   "manager_components_region_SBG_micro": "Strasbourg ({{ micro }})",
+  "manager_components_region_MRS": "Marseille",
+  "manager_components_region_MRS_micro": "Marseille  ({{ micro }})",
   "manager_components_region_BHS": "Beauharnois",
   "manager_components_region_BHS_micro": "Beauharnois ({{ micro }})",
   "manager_components_region_ERI": "Londres",
@@ -73,5 +75,6 @@
   "manager_components_region_continent_US": "États-Unis",
   "manager_components_region_continent_DAL": "États-Unis",
   "manager_components_region_continent_SHA": "Europe de l'Ouest",
-  "manager_components_region_continent_YYZ": "Amérique du Nord (Toronto)"
+  "manager_components_region_continent_YYZ": "Amérique du Nord (Toronto)",
+  "manager_components_region_continent_MRS": "Europe de l'Ouest"
 }
