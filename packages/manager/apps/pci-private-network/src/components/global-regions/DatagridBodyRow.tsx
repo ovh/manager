@@ -107,13 +107,13 @@ export default function DataGridBodyRow({
         {renderText(
           subnetDetail.dhcpEnabled
             ? renderChip(
-                t('pci_projects_project_network_private_dhcp_active'),
-                ODS_THEME_COLOR_INTENT.success,
-              )
+              t('pci_projects_project_network_private_dhcp_active'),
+              ODS_THEME_COLOR_INTENT.success,
+            )
             : renderChip(
-                t('pci_projects_project_network_private_dhcp_disabled'),
-                ODS_THEME_COLOR_INTENT.warning,
-              ),
+              t('pci_projects_project_network_private_dhcp_disabled'),
+              ODS_THEME_COLOR_INTENT.warning,
+            ),
         )}
       </td>
       <td>{renderText(subnetDetail.allocatedIp)}</td>
