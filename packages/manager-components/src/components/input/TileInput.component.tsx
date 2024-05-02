@@ -99,13 +99,7 @@ export const SimpleTileInputComponent = function SimpleTileInputComponent<
                   'font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]',
               )}
             >
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                className={clsx(Object.is(value, item) && 'font-bold')}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-              >
-                {isItemStacked(item) ? stack.label(item) : label(item)}
-              </OsdsText>
+              {isItemStacked(item) ? stack.label(item) : label(item)}
             </OsdsTile>
           </li>
         ))}
