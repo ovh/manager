@@ -152,7 +152,7 @@ export function Price({
 
   const matchingComponent = components.find(({ condition }) => condition);
   if (!matchingComponent) {
-    return '';
+    return <></>;
   }
 
   return (
