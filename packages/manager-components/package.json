@@ -16,7 +16,7 @@
     "test": "jest --coverage -u",
     "test:cov": "vitest run --coverage",
     "test:e2e": "tsc && npx playwright test --ui --debug",
-    "test:v": "vitest"
+    "test:v": "vitest run"
   },
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
