@@ -33,4 +33,9 @@ export default class SofpthoneService {
       )
       .then(({ data }) => data);
   }
+
+  getStoreLinks(){
+    return this.$http.get('/telephony/softphone/storeLinks')
+      .then(({ data }) => data);
+  }
 }
