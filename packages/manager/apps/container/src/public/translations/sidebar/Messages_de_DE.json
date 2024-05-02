@@ -171,5 +171,6 @@
   "sidebar_vrack_services": "vRack Services",
   "sidebar_all_vrack_services": "Alle Dienste",
   "sidebar_domain_list": "Meine Domains",
-  "sidebar_pci_analytics_data_platform": "Data Platform"
+  "sidebar_pci_analytics_data_platform": "Data Platform",
+  "sidebar_pci_ai_endpoints": "AI Endpoints"
 }
