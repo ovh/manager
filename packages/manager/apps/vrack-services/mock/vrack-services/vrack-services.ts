@@ -38,15 +38,6 @@ export const getVrackServicesMocks = ({
   },
   {
     url: '/vrackServices/resource/:id',
-    response: (request: Request, params: PathParams) => {
-      return vrackServicesList.find(
-        ({ id }) => id === (params || getParamsFromUrl(request, { id: -1 })).id,
-      );
-    },
-    api: 'v2',
-  },
-  {
-    url: '/vrackServices/resource/:id',
     response: async (request: Request, params: PathParams) => {
       const body =
         (await request.json?.()) ||
@@ -66,13 +57,31 @@ export const getVrackServicesMocks = ({
       const vs = vrackServicesList.find(
         ({ id }) => id === (params || getParamsFromUrl(request, { id: -1 })).id,
       );
-      vs.currentState.displayName = body.targetSpec.displayName;
-      vs.currentState.subnets = body.targetSpec.subnets;
 
-      return vs;
+      return {
+        ...vs,
+        currentState: {
+          ...vs.currentState,
+          ...(body.targetSpec
+            ? {
+                displayName: body.targetSpec.displayName,
+                subnets: body.targetSpec.subnets,
+              }
+            : {}),
+        },
+      };
     },
     status: updateKo ? 500 : 200,
     method: 'put',
+    api: 'v2',
+  },
+  {
+    url: '/vrackServices/resource/:id',
+    response: (request: Request, params: PathParams) => {
+      return vrackServicesList.find(
+        ({ id }) => id === (params || getParamsFromUrl(request, { id: -1 })).id,
+      );
+    },
     api: 'v2',
   },
   {

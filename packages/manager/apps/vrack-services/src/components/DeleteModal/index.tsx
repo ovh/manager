@@ -21,7 +21,8 @@ import {
 } from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { handleClick } from '@/utils/ods-utils';
-import { FormField } from './FormField';
+import { FormField } from '../FormField';
+import { terminateValue } from './DeleteModal.constants';
 
 export type DeleteModalProps = {
   headline: string;
@@ -32,8 +33,6 @@ export type DeleteModalProps = {
   onConfirmDelete: () => void;
   error?: ApiError;
 };
-
-const terminateValue = 'TERMINATE';
 
 export const DeleteModal: React.FC<DeleteModalProps> = ({
   headline,
