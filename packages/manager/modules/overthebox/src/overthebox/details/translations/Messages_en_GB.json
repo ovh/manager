@@ -72,8 +72,8 @@
   "overTheBox_release_channels": "Available versions",
   "overTheBox_change_release_channel_success": "Version successfully changed",
   "overTheBox_change_release_channel_error": "We were unable to change the version: {{errorMessage}}",
-  "overTheBox_release_channel_stable": "General public stable version",
-  "overTheBox_release_channel_beta": "Beta version",
+  "overTheBox_release_channel_stable": "Stable version with automatic update",
+  "overTheBox_release_channel_beta": "Beta version with automatic update",
   "overTheBox_release_channel_alpha": "Alpha version",
   "overTheBox_release_channel_develop": "Development version",
   "overTheBox_release_channel_rpi3": "Raspberry 3 version",
@@ -85,5 +85,8 @@
   "overTheBox_reverse_dns": "Reverse DNS",
   "overTheBox_detail_link_guide": "Guides",
   "overthebox_detail_links": "Links",
-  "overTheBox_service_id": "Service ID:"
+  "overTheBox_service_id": "Service ID:",
+  "overTheBox_release_channel_v0_8": "Version v0.8",
+  "overTheBox_release_channel_v0_9": "Version v0.9",
+  "overTheBox_release_channel_v1_0": "Version v1.0"
 }
