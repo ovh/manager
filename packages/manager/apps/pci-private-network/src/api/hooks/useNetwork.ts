@@ -93,6 +93,7 @@ export const useGlobalRegionsNetworks = (
   networks: TAggregatedNetwork[],
   gateways: TGateway[],
   pagination: PaginationState,
+  filters: Filter[],
 ) => {
   const { data, isLoading, error } = useQuery({
     queryKey: [projectId, 'private-network', 'global-regions'],
@@ -119,13 +120,18 @@ export const useGlobalRegionsNetworks = (
       );
     },
     enabled: networks.length > 0 && gateways.length > 0,
+    select: (result) =>
+      result.map((network) => ({
+        ...network,
+        search: `${network.vlanId} ${network.name}`,
+      })) as TAggregatedNetwork[],
   });
 
   return useMemo(() => {
     return {
       isLoading,
       error,
-      data: paginateResults(data || [], pagination),
+      data: paginateResults(applyFilters(data || [], filters), pagination),
     };
   }, [data, isLoading, error, pagination]);
 };
