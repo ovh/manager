@@ -119,18 +119,22 @@ export const FloatingIpSummary = ({
                     >
                       {tOrder(
                         'pci_additional_ip_create_summary_step_gateway_size_and_price',
-                        { size: selectedGateway.size },
+                        {
+                          size: selectedGateway.size?.toUpperCase(),
+                        },
                       )}
-                      <span>&#40;</span>
-                      {tOrder('pci_additional_ip_create_summary_step_price')}
+                      <span> (</span>
+                      {tOrder(
+                        'pci_additional_ip_create_summary_step_price',
+                      )}{' '}
                       <CatalogPriceComponent
                         price={selectedGateway.price.month * 12}
                         user={me}
                         interval="month"
                         maximumFractionDigits={4}
                         locale={context.environment.getUserLocale()}
-                      />
-                      {tOrder('pci_additional_ip_create_summary_step_that_is')}
+                      />{' '}
+                      {tOrder('pci_additional_ip_create_summary_step_that_is')}{' '}
                       <CatalogPriceComponent
                         price={selectedGateway.price.hour}
                         user={me}
@@ -138,7 +142,7 @@ export const FloatingIpSummary = ({
                         interval="hour"
                         locale={context.environment.getUserLocale()}
                       />
-                      <span>&#41;&#42;&#46;</span>
+                      <span>)*.</span>
                     </OsdsText>
                   </p>
                 )}
