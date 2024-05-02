@@ -1,6 +1,6 @@
 import { describe, vi } from 'vitest';
 import { act, render } from '@testing-library/react';
-import { TileInputComponent } from '@/components/input/TileInput.component';
+import { TileInputComponent } from './TileInput.component';
 
 type TProps<T, S = void, G = void> = {
   value: T;
