@@ -31,7 +31,7 @@ export default function EditInstancePage() {
 
   const onAttachInstanceSuccess = () => {
     addSuccess(
-      <Translation ns="edit">
+      <Translation ns="failover-ips-edit">
         {(t) =>
           t('pci_additional_ips_failoverips_edit_success', {
             ip: failoverIP.ip,
@@ -44,7 +44,7 @@ export default function EditInstancePage() {
 
   const onAttachInstanceError = (error: ResponseAPIError) => {
     addError(
-      <Translation ns="edit">
+      <Translation ns="failover-ips-edit">
         {(t) =>
           t('pci_additional_ips_failoverips_edit_error', {
             error: error?.response?.data?.message,
