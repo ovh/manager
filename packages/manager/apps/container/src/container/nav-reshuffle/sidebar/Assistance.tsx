@@ -23,6 +23,7 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
   const reketInstance = useReket();
 
   const [hasLiveChat, setHashLiveChat] = useState(false);
+  const [hasCarbonCalculator, setHasCarbonCalculator] = useState(false);
 
   const { closeNavigationSidebar, openOnboarding } = useProductNavReshuffle();
 
@@ -36,7 +37,17 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
       );
       setHashLiveChat(results.livechat);
     };
+    const initCarbonCalculator = async () => {
+      const results = await reketInstance.get(
+        `/feature/carbon-calculator/availability`,
+        {
+          requestType: 'aapi',
+        },
+      );
+      setHasCarbonCalculator(results['carbon-calculator']);
+    }
     initLiveChat();
+    initCarbonCalculator();
   }, []);
 
   const startOnboarding = () => {
@@ -119,6 +130,28 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
               shell.getPlugin('ux').openLiveChat();
               setChatbotReduced(false);
               trackNode('assistance_live_chat');
+              closeNavigationSidebar();
+            }}
+          />
+        </li>
+      )}
+      {hasCarbonCalculator && (
+        <li className="flex px-3">
+          <span
+            className={`oui-icon oui-icon-truck invisible mr-2 ${style.sidebar_action_icon}`}
+            aria-hidden="true"
+          ></span>
+          <SidebarLink
+            node={{
+              translation: 'sidebar_assistance_carbon_calculator',
+              count: false,
+              routing: {
+                application: 'carbon-calculator',
+                hash: '#/',
+              },
+            }}
+            onClick={() => {
+              trackNode('assistance_carbon_calculator');
               closeNavigationSidebar();
             }}
           />

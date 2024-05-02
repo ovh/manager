@@ -15,6 +15,7 @@ $z-index-sidebar: 700;
 
 .sidebar {
   height: 100vh;
+  overflow-y: auto;
 }
 
 .navbar {

@@ -11,6 +11,25 @@
   hr {
     border: 1px solid #85d9fd;
   }
+
+  &Row {
+    & > span {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding-right: 0.5rem;
+    }
+
+    &Chip {
+      height: fit-content;
+      min-height: var(--ods-size-chip-md-height);
+      text-align: center;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .feedback {

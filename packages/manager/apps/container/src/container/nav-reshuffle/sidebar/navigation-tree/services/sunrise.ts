@@ -1,9 +1,7 @@
-import illustration from '@/assets/images/sidebar/sunrise.png';
 export default {
   id: 'sunrise',
   translation: 'sidebar_sunrise',
   shortTranslation: 'sidebar_sunrise_short',
-  illustration,
   routing: {
     application: 'sunrise',
   },

@@ -238,17 +238,15 @@ const Sidebar = (): JSX.Element => {
               <li
                 key={node.id}
                 id={node.id}
-                className={style.sidebar_menu_items}
+                className={`${style.sidebar_menu_items} ${node.id === selectedNode?.id ? style.sidebar_menu_items_selected : ''}`}
               >
                 {!shouldHideElement(node, count, betaVersion) && (
                   <SidebarLink
                     node={node}
                     count={count}
-                    handleNavigation={debounce(
-                      () => menuClickHandler(node),
-                      [timer, setTimer],
-                      50,
-                    )}
+                    handleNavigation={() => menuClickHandler(node)}
+                    handleOnMouseOver={() => menuClickHandler(node)}
+                    handleOnMouseLeave={() => setSelectedNode(null)}
                     id={node.idAttr}
                     isShortText={!open}
                   />
@@ -286,6 +284,10 @@ const Sidebar = (): JSX.Element => {
       <button className={style.sidebar_toggle_btn} onClick={toggleSidebar}>
         {open && <span className="mr-2">Réduire</span>}
         <span
+          className={`${style.sidebar_toggle_btn_first_icon} oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
+          aria-hidden="true"
+        ></span>
+        <span
           className={`oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
           aria-hidden="true"
         ></span>
@@ -296,6 +298,7 @@ const Sidebar = (): JSX.Element => {
           handleBackNavigation={() => {
             setSelectedNode(null);
           }}
+          handleOnMouseOver={(node) => setSelectedNode(node)}
           rootNode={selectedNode}
         ></SubTree>
       )}

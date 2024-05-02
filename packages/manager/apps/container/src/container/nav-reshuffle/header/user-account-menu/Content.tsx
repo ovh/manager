@@ -48,9 +48,6 @@ const UserAccountMenu = ({
 
   const onLinkClick = () => {
     closeAccountSidebar();
-    trackingPlugin.trackClick({
-      type: 'navigation',
-    });
   };
 
   const onMyAccountLinkClick = () => {
@@ -107,10 +104,10 @@ const UserAccountMenu = ({
           )}
         </div>
         <div className="border-bottom pb-2 pt-2">
-          <div className="d-flex justify-content-between">
+          <div className={`d-flex justify-content-between ${style.menuContentRow}`}>
             <span>{t('user_account_menu_role_connexion')}</span>
             <a href={ssoLink}>
-              <OsdsChip color={ODS_THEME_COLOR_INTENT.success}>
+              <OsdsChip color={ODS_THEME_COLOR_INTENT.success} className={style.menuContentRowChip} selectable={true}>
                 {t(`user_account_menu_role_${user.auth.method}`)}
               </OsdsChip>
             </a>
@@ -122,10 +119,10 @@ const UserAccountMenu = ({
             />
           )}
           {['EU', 'CA'].includes(region) && (
-            <div className="d-flex mt-1 justify-content-between">
+            <div className={`d-flex mt-1 justify-content-between ${style.menuContentRow}`}>
               <span>{t('user_account_menu_support')}</span>
               <a href={supportLink}>
-                <OsdsChip color={ODS_THEME_COLOR_INTENT.info}>
+                <OsdsChip color={ODS_THEME_COLOR_INTENT.info} className={style.menuContentRowChip} selectable={true}>
                   {t(
                     `user_account_menu_support_level_${
                       user.supportLevel.level
