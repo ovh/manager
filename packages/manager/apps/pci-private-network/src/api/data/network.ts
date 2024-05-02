@@ -8,6 +8,7 @@ export type TAggregatedNetwork = {
   visibility: string;
   vlanId: number;
   subnets: TSubnet[];
+  search?: string;
 };
 
 export const getAggregatedNetwork = async (projectId: string) => {

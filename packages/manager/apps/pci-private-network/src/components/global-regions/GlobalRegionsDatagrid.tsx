@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { TAggregatedNetwork } from '@/api/data/network';
 import DataGridBodyRow from './DatagridBodyRow';
 import DatagridHeader from './DatagridHeader';
+import DataGridNoResults from './DatagridNoResults';
 
 export type TGlobalRegionsDatagrid = {
   items: TAggregatedNetwork[];
@@ -31,13 +32,17 @@ export default function GlobalRegionsDatagrid({
           <DatagridHeader />
         </thead>
         <tbody>
-          {items.map((network) => (
-            <DataGridBodyRow
-              key={network.vlanId}
-              projectUrl={projectUrl}
-              network={network}
-            />
-          ))}
+          {items.length > 0 ? (
+            items.map((network) => (
+              <DataGridBodyRow
+                key={network.vlanId}
+                projectUrl={projectUrl}
+                network={network}
+              />
+            ))
+          ) : (
+            <DataGridNoResults />
+          )}
         </tbody>
       </table>
 
