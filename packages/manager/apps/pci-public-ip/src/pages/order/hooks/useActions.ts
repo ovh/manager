@@ -131,7 +131,8 @@ export const useActions = (projectId: string) => {
             .catch((error) =>
               addError(
                 tOrder('pci_additional_ip_create_floating_ip_error', {
-                  message: error.data?.message || null,
+                  message:
+                    error.response?.data?.message || error.message || null,
                 }),
               ),
             );
