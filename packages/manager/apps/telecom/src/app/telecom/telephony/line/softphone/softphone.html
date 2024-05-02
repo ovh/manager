@@ -2,10 +2,70 @@
     data-expanded="false"
     data-heading="{{ 'telephony_line_softphone_download_links_title' | translate }}"
 >
-    <span
-        data-translate="telephony_line_softphone_download_links_description_label"
-    >
-    </span>
+    <h4 class="pt-3">
+        <strong
+            data-translate="telephony_line_softphone_download_links_description_label"
+        ></strong>
+    </h4>
+
+    <p class="pt-1">
+        <b
+            data-translate="telephony_line_softphone_download_links_option_1"
+        ></b>
+    </p>
+    <div class="container-badges mb-2">
+        <div class="col-6 align-items-center">
+            <a data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.ios]}}">
+                <img
+                    class="ios"
+                    alt="{{:: 'telephony_line_softphone_store_link_ios' | translate}}"
+                    src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred.png"
+                />
+            </a>
+            <a data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.android]}}">
+                <img
+                    class="android"
+                    alt="{{:: 'telephony_line_softphone_store_link_android' | translate}}"
+                    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                />
+            </a>
+            <a data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.windows]}}">
+                <img
+                    class="windows"
+                    alt="{{:: 'telephony_line_softphone_store_link_windows'| translate}}"
+                    src="https://get.microsoft.com/images/fr-ca%20dark.svg"
+                />
+            </a>
+        </div>
+    </div>
+
+    <p class="pt-1">
+        <b
+            data-translate="telephony_line_softphone_download_links_option_2"
+        ></b>
+    </p>
+    <div class="row mb-2">
+        <div class="d-flex justify-content-left ml-5">
+            <qr data-text="$ctrl.storeLinks[$ctrl.constructor.osName]"></qr>
+        </div>
+    </div>
+
+    <p class="pt-1">
+        <b
+            data-translate="telephony_line_softphone_download_links_option_3"
+        ></b>
+    </p>
+    <div class="row">
+        <oui-field
+            class="col-md-4"
+            data-label="{{ :: 'telephony_line_softphone_download_link' | translate }}"
+        >
+            <oui-clipboard
+                data-name="downloadLink"
+                data-model="$ctrl.storeLinks[$ctrl.constructor.osName]"
+            ></oui-clipboard>
+        </oui-field>
+    </div>
 </oui-collapsible>
 <oui-collapsible
     class="custom-collapsible-no-click mt-3"
