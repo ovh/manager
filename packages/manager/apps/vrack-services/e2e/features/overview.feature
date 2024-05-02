@@ -1,9 +1,9 @@
 Feature: Overview page
 
   Scenario Outline: User wants to update his vRack Services informations
+    Given User has 19 vRack Services
     Given User has a vRack Services with a status <resourceStatus>
-    Given User selects his vRack Services in the Listing page
-    When User navigates to the vRack Services Overview page
+    When User navigates to vRack Services Overview page
     Then User sees the edit and associate a vRack buttons as <buttonState>
 
     Examples:

@@ -7,21 +7,19 @@ import {
   getVrackServicesMocks,
   GetVrackServicesMocksParams,
 } from './vrack-services/vrack-services';
-import { getVracMocks, GetVrackMocksParams } from './vrack/vrack';
+import { getVrackMocks, GetVrackMocksParams } from './vrack';
 import { getRegionMocks, GetRegionMocksParams } from './vrack-services/region';
-import {
-  getAssociationMocks,
-  GetAssociationMocksParams,
-} from './vrack/association';
 import { GetIamMocksParams, getIamMocks } from './iam/iam';
-import { GetAuthenticationMocks, getAuthenticationMocks } from './auth/auth';
+import {
+  GetAuthenticationMocks,
+  getAuthenticationMocks,
+} from '../../../../../playwright-helpers/mocks/auth';
 
 export type ConfigParams = GetVrackServicesMocksParams &
   GetAuthenticationMocks &
   GetOrderDetailsMocksParams &
   GetRegionMocksParams &
   GetVrackMocksParams &
-  GetAssociationMocksParams &
   GetIamMocksParams;
 
 export const getConfig = (params: ConfigParams): Handler[] =>
@@ -29,8 +27,7 @@ export const getConfig = (params: ConfigParams): Handler[] =>
     getAuthenticationMocks,
     getVrackServicesMocks,
     getRegionMocks,
-    getVracMocks,
-    getAssociationMocks,
+    getVrackMocks,
     getOrderDetailsMocks,
     getIamMocks,
   ].flatMap((getMocks) => getMocks(params));
