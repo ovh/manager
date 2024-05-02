@@ -112,9 +112,13 @@ export const CHART = {
             callback: (val, index) => {
               const { language } = navigator;
               const dateTimeFormat = new Intl.DateTimeFormat(language, {
-                hourCycle: 'h23',
-                timeStyle: 'medium',
-                dateStyle: 'short',
+                hour12: false,
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
               });
               // Display one label out of 5
               return index % 5 === 0
