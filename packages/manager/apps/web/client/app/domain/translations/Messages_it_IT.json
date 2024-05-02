@@ -106,5 +106,6 @@
   "domains_action_per_line_detail": "Dettagli del dominio",
   "domains_action_per_line_cancellation": "Disattiva",
   "domains_action_per_line_autorenew_activate": "Attiva il rinnovo automatico",
-  "domains_action_per_line_autorenew_deactivate": "Disattiva il rinnovo automatico"
+  "domains_action_per_line_autorenew_deactivate": "Disattiva il rinnovo automatico",
+  "domains_action_per_line_resiliation_cancellation": "Annulla la disattivazione del servizio"
 }
