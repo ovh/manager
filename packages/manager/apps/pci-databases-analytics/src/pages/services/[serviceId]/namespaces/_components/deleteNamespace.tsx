@@ -74,7 +74,9 @@ const DeleteNamespaceModal = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('deleteNamespaceTitle')}</DialogTitle>
+          <DialogTitle data-testid="delete-namespaces-modal">
+            {t('deleteNamespaceTitle')}
+          </DialogTitle>
           <DialogDescription>
             {t('deleteNamespaceDescription', {
               name: namespace.name,
@@ -83,11 +85,20 @@ const DeleteNamespaceModal = ({
         </DialogHeader>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" variant="outline">
+            <Button
+              data-testid="delete-namespaces-cancel-button"
+              type="button"
+              variant="outline"
+            >
               {t('deleteNamespaceButtonCancel')}
             </Button>
           </DialogClose>
-          <Button type="button" disabled={isPending} onClick={handleDelete}>
+          <Button
+            data-testid="delete-namespaces-submit-button"
+            type="button"
+            disabled={isPending}
+            onClick={handleDelete}
+          >
             {t('deleteNamespaceButtonConfirm')}
           </Button>
         </DialogFooter>

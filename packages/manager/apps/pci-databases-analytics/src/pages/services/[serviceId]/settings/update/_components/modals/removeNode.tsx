@@ -88,7 +88,9 @@ const DeleteNode = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('deleteNodeTitle')}</DialogTitle>
+          <DialogTitle data-testid="delete-node-modal">
+            {t('deleteNodeTitle')}
+          </DialogTitle>
         </DialogHeader>
         <Label>{t('priceUnitSwitchLabel')}</Label>
         <PriceUnitSwitch showMonthly={showMonthly} onChange={setShowMonthly} />
@@ -117,11 +119,20 @@ const DeleteNode = ({
         </p>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" variant="outline">
+            <Button
+              data-testid="delete-node-cancel-button"
+              type="button"
+              variant="outline"
+            >
               {t('deleteNodeCancelButton')}
             </Button>
           </DialogClose>
-          <Button type="button" onClick={handleSumbit} disabled={isPending}>
+          <Button
+            data-testid="delete-node-submit-button"
+            type="button"
+            onClick={handleSumbit}
+            disabled={isPending}
+          >
             {t('deleteNodeSubmitButton')}
           </Button>
         </DialogFooter>

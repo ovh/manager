@@ -26,7 +26,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
   );
   const toast = useToast();
   return (
-    <div>
+    <div data-testid="connection-details-container">
       {endpoints.length > 1 && (
         <Select
           value={selectedEndpoint.component}
@@ -36,7 +36,10 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
             )
           }
         >
-          <SelectTrigger className="h-8 mb-3">
+          <SelectTrigger
+            data-testid="dashboard-connection-detail-select"
+            className="h-8 mb-3"
+          >
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -65,6 +68,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
               </TableCell>
               <TableCell>
                 <Button
+                  data-testid="dashboard-connection-detail-domain-button"
                   type="button"
                   size="table"
                   variant="table"
@@ -119,6 +123,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
               </TableCell>
               <TableCell>
                 <Button
+                  data-testid="dashboard-connection-detail-uri-button"
                   type="button"
                   size="table"
                   variant="table"

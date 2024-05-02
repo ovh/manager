@@ -137,6 +137,7 @@ const UpdateTable = () => {
               {row.updateButtonDisplayed && (
                 <TableCell className="text-right">
                   <Button
+                    data-testid={`update-button-${row.title}`}
                     variant="default"
                     size="default"
                     className="py-0 h-auto"
@@ -159,6 +160,7 @@ const UpdateTable = () => {
               <TableCell className="flex gap-2 justify-end">
                 {service.capabilities.nodes?.delete && (
                   <Button
+                    data-testid="delete-node-button"
                     variant={'ghost'}
                     size="table"
                     className="p-0 h-auto text-destructive"
@@ -173,6 +175,7 @@ const UpdateTable = () => {
                 )}
                 {service.capabilities.nodes?.create && (
                   <Button
+                    data-testid="create-node-button"
                     variant={'ghost'}
                     size="table"
                     className="p-0 h-auto text-primary"

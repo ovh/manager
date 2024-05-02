@@ -28,7 +28,7 @@ const Settings = () => {
         <Guides section={GuideSections.settings} engine={service.engine} />
       </div>
       <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2" id="update">
-        <Card>
+        <Card data-testid="update-table-card">
           <CardHeader>
             <h5>{t('updateTitle')}</h5>
           </CardHeader>
@@ -68,7 +68,7 @@ const Settings = () => {
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="advancedConfiguration">
                 <CardHeader>
-                  <AccordionTrigger>
+                  <AccordionTrigger data-testid="advanced-config-accordion-trigger">
                     <h5>{t('advancedConfigurationTitle')}</h5>
                   </AccordionTrigger>
                 </CardHeader>

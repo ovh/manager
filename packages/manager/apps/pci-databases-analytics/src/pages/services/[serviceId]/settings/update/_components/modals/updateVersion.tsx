@@ -119,7 +119,9 @@ const UpdateVersion = ({
         <Form {...form}>
           <form onSubmit={onSubmit}>
             <DialogHeader>
-              <DialogTitle>{t('updateVersionTitle')}</DialogTitle>
+              <DialogTitle data-testid="update-version-modal">
+                {t('updateVersionTitle')}
+              </DialogTitle>
             </DialogHeader>
             <FormField
               control={form.control}
@@ -141,11 +143,18 @@ const UpdateVersion = ({
             />
             <DialogFooter className="flex justify-end mt-2">
               <DialogClose asChild>
-                <Button type="button" variant="outline">
+                <Button
+                  data-testid="update-version-cancel-button"
+                  type="button"
+                  variant="outline"
+                >
                   {t('updateVersionCancelButton')}
                 </Button>
               </DialogClose>
-              <Button disabled={isPending}>
+              <Button
+                data-testid="update-version-submit-button"
+                disabled={isPending}
+              >
                 {t('updateVersionSubmitButton')}
               </Button>
             </DialogFooter>

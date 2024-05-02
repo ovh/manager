@@ -33,7 +33,6 @@ const Metrics = () => {
     database.service.MetricPeriodEnum.lastHour,
   );
   const metricPeriods = Object.values(database.service.MetricPeriodEnum);
-
   return (
     <>
       <div className="flex justify-between w-full items-center">
@@ -47,6 +46,7 @@ const Metrics = () => {
             <div className="flex">
               {metricPeriods.map((periodValue, index) => (
                 <Button
+                  data-testid="manage-period-button"
                   variant={period === periodValue ? 'default' : 'outline'}
                   key={periodValue}
                   onClick={() => setPeriod(periodValue)}
@@ -61,7 +61,10 @@ const Metrics = () => {
                 </Button>
               ))}
             </div>
-            <div className="flex items-center space-x-2 mb-2">
+            <div
+              data-testid="swith-auto-refresh-container"
+              className="flex items-center space-x-2 mb-2"
+            >
               <Switch
                 className="rounded-xl"
                 id="poll-metrics"

@@ -182,7 +182,9 @@ const AddEditNamespace = ({
     <Dialog {...controller}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle>{t(`${prefix}NamespaceTitle`)}</DialogTitle>
+          <DialogTitle data-testid="add-edit-namespaces-modal">
+            {t(`${prefix}NamespaceTitle`)}
+          </DialogTitle>
           {!isEdition && (
             <DialogDescription>
               {t('addNamespaceDescription')}
@@ -200,6 +202,7 @@ const AddEditNamespace = ({
                   <FormLabel>{t('formNamespaceFieldNameLabel')}</FormLabel>
                   <FormControl>
                     <Input
+                      data-testid="add-edit-namespaces-name-input"
                       placeholder="name"
                       disabled={
                         isEdition ||
@@ -270,6 +273,7 @@ const AddEditNamespace = ({
                   </div>
                   <FormControl>
                     <Input
+                      data-testid="add-edit-namespaces-retention-input"
                       placeholder={t(
                         'formNamespaceFieldPeriodDurationPlaceholder',
                       )}
@@ -305,6 +309,7 @@ const AddEditNamespace = ({
                     </div>
                     <FormControl>
                       <Input
+                        data-testid="add-edit-namespaces-resolution-input"
                         placeholder={t(
                           'formNamespaceFieldResolutionPlaceholder',
                         )}
@@ -549,6 +554,7 @@ const AddEditNamespace = ({
                         </div>
                         <FormControl>
                           <Input
+                            data-testid="add-edit-namespaces-blockDataExpirationDuration-input"
                             placeholder={t(
                               'formNamespaceFieldDurationPlaceholder',
                             )}
@@ -567,11 +573,16 @@ const AddEditNamespace = ({
             </div>
             <DialogFooter className="flex justify-end mt-4">
               <DialogClose asChild>
-                <Button type="button" variant="outline">
+                <Button
+                  data-testid="add-edit-namespaces-cancel-button"
+                  type="button"
+                  variant="outline"
+                >
                   {t('formNamespaceButtonCancel')}
                 </Button>
               </DialogClose>
               <Button
+                data-testid="add-edit-namespaces-submit-button"
                 type="submit"
                 disabled={isPendingAddNamespace || isPendingEditNamespace}
               >

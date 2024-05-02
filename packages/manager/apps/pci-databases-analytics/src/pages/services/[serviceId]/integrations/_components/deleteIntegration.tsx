@@ -73,18 +73,29 @@ const DeleteIntegration = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('deleteIntegrationTitle')}</DialogTitle>
+          <DialogTitle data-testid="delete-integrations-modal">
+            {t('deleteIntegrationTitle')}
+          </DialogTitle>
           <DialogDescription>
             {t('deleteIntegrationDescription', { type: integration.type })}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" variant="outline">
+            <Button
+              data-testid="delete-integrations-cancel-button"
+              type="button"
+              variant="outline"
+            >
               {t('deleteIntegrationButtonCancel')}
             </Button>
           </DialogClose>
-          <Button type="button" disabled={isPending} onClick={handleDelete}>
+          <Button
+            data-testid="delete-integrations-submit-button"
+            type="button"
+            disabled={isPending}
+            onClick={handleDelete}
+          >
             {t('deleteIntegrationButtonConfirm')}
           </Button>
         </DialogFooter>
