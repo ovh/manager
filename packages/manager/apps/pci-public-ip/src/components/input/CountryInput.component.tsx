@@ -50,7 +50,7 @@ export const CountryInputComponent = ({
           ></span>
         </OsdsText>
       </div>
-      <ul className="grid gap-10 list-none p-0 mx-0 mb-0 mt-7 grid-cols-1 md:grid-cols-3">
+      <ul className="grid gap-8 list-none p-0 mx-0 mb-0 mt-7 grid-cols-1 md:grid-cols-3">
         {countries.map((country) => (
           <li key={country.name} className="w-full px-1">
             <OsdsTile
