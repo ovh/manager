@@ -1,8 +1,0 @@
-{
- "pci_projects_project_sshKeys_remove_title": "Elimina una chiave SSH",
- "pci_projects_project_sshKeys_remove_description": "Questa azione è irreversibile. Vuoi davvero eliminare la chiave {{ name }}?",
- "pci_projects_project_sshKeys_remove_submit_label": "Elimina",
- "pci_projects_project_sshKeys_remove_cancel_label": "Annulla",
- "pci_projects_project_sshKeys_remove_success": "La chiave SSH è stata eliminata correttamente.",
- "pci_projects_project_sshKeys_remove_error": "Si è verificato un errore durante l’eliminazione della chiave SSH: {{ error }}."
-}
