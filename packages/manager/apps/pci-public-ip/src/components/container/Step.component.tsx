@@ -14,6 +14,7 @@ type TStepProps = {
   title: string;
   open: boolean;
   order?: number;
+  showDisabledAction?: boolean;
   next: { action?: (id: string) => void; label?: string };
   onEdit?: (id: string) => void;
   children: JSX.Element | JSX.Element[];
@@ -24,6 +25,7 @@ export const StepComponent = ({
   title,
   open,
   order,
+  showDisabledAction,
   children,
   next,
   onEdit,
@@ -39,7 +41,7 @@ export const StepComponent = ({
   }, [open]);
 
   return (
-    <section className="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5">
+    <section className="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5 mt-5">
       <div className="basis-[40px]">
         {checked ? (
           <OsdsIcon
@@ -98,16 +100,19 @@ export const StepComponent = ({
             >
               {children}
             </div>
-            {next.action && !done && (
+            {(showDisabledAction || next.action) && !done && (
               <div className="mt-6">
                 <OsdsButton
                   size={ODS_BUTTON_SIZE.md}
                   color={ODS_THEME_COLOR_INTENT.primary}
                   onClick={() => {
-                    setChecked(true);
-                    setDone(true);
-                    next.action(id);
+                    if (next.action) {
+                      setChecked(true);
+                      setDone(true);
+                      next.action(id);
+                    }
                   }}
+                  {...(!next.action && { disabled: true })}
                   className="w-fit"
                 >
                   {next.label || tStepper('common_stepper_next_button_label')}

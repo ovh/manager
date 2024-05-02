@@ -68,8 +68,9 @@ export const FailoverSteps = ({
         {...steps.get(StepIdsEnum.FAILOVER_INSTANCE)}
         next={{
           action: form.instance && On.next,
-          label: 'Generate purchase order',
+          label: tOrder('pci_additional_ips_failoverip_order_generate'),
         }}
+        showDisabledAction={true}
         order={3}
       >
         {DataState.instances?.additional.filter((instance) =>
