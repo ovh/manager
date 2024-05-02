@@ -362,7 +362,7 @@ export default class OverTheBoxDetailsCtrl {
         this.releaseChannels = channels.map((channel) => ({
           name: channel,
           label: this.$translate.instant(
-            `overTheBox_release_channel_${channel}`,
+            `overTheBox_release_channel_${channel.replace('.', '_')}`,
           ),
         }));
 
