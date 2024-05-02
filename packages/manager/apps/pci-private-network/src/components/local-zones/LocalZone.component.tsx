@@ -268,7 +268,7 @@ export default function LocalZoneComponent({
         </div>
       )}
 
-      {!error && !isLoading && localZoneNetworks.rows.length > 0 && (
+      {!error && !isLoading && (
         <div className="mt-8">
           <Datagrid
             columns={columns}
