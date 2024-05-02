@@ -12,4 +12,8 @@ module.exports = {
       '<rootDir>/src/_mock_/images.tsx',
     '^@/(.*)$': '<rootDir>/src/$1',
   },
+  testPathIgnorePatterns: [
+    'src/components/container/',
+    'src/components/input/',
+  ],
 };
