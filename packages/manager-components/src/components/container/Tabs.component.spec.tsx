@@ -1,4 +1,4 @@
-import { describe, vi } from 'vitest';
+import { describe, expect, vi, it } from 'vitest';
 import { render } from '@testing-library/react';
 import { TabsComponent } from './Tabs.component';
 
