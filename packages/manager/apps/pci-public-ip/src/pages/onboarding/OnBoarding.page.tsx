@@ -1,4 +1,3 @@
-import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
 import {
   useEnvironment,
   useNavigation,
@@ -30,7 +29,7 @@ import {
 import { useAllFloatingIP } from '@/api/hooks/useFloatingIP';
 import { Project } from '@/api/data/project';
 import { GUIDES } from './onboarding.constants';
-import { pciAnnouncementBannerId } from '@/constants';
+import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation();
@@ -42,6 +41,7 @@ export default function OnBoardingPage() {
   const [urlProject, setUrlProject] = useState('');
   const navigate = useNavigate();
   const { data: floatingIPs, isLoading } = useAllFloatingIP(projectId);
+  const { isBannerVisible } = useAnnouncementBanner();
 
   useEffect(() => {
     navigation
@@ -50,16 +50,6 @@ export default function OnBoardingPage() {
         setUrlProject(data as string);
       });
   }, [projectId, navigation]);
-
-  const {
-    data: featureAvailabilityData,
-    isLoading: isFeatureAvailabilityLoading,
-  } = useFeatureAvailability([pciAnnouncementBannerId]);
-
-  const displayAnnouncementBanner =
-    featureAvailabilityData &&
-    featureAvailabilityData[pciAnnouncementBannerId] &&
-    !isFeatureAvailabilityLoading;
 
   useEffect(() => {
     if (!isLoading && floatingIPs.length > 0) {
@@ -127,9 +117,7 @@ export default function OnBoardingPage() {
     <>
       {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
-      {displayAnnouncementBanner && (
-        <PciAnnouncementBanner projectId={projectId} />
-      )}
+      {isBannerVisible && <PciAnnouncementBanner projectId={projectId} />}
 
       {isDiscoveryProject(project) && (
         <div className="mb-8">
