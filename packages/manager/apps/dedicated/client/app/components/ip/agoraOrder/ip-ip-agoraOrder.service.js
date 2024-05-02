@@ -1,9 +1,8 @@
 export default class IpAgoraOrder {
   /* @ngInject */
-  constructor($q, $http, OvhHttp) {
+  constructor($q, $http) {
     this.$q = $q;
     this.$http = $http;
-    this.OvhHttp = OvhHttp;
 
     this.fetchPricesTries = 0;
   }
@@ -17,12 +16,25 @@ export default class IpAgoraOrder {
       .catch(() => null);
   }
 
+  handleErrorOrServices({ errors, results }) {
+    const filteredErrors = errors.filter(({ msg }) => {
+      const [errorCode] = msg.match(/\d+/);
+      return ![400, 404].includes(parseInt(errorCode, 10));
+    });
+    if (filteredErrors?.length) {
+      return this.$q.reject(filteredErrors);
+    }
+
+    return results?.length ? results[0].services : [];
+  }
+
   static createProductToOrder({
     configuration = [],
     country,
     description,
     destination,
     duration = 'P1M',
+    regionId,
     organisation,
     netname,
     planCode,
@@ -52,6 +64,13 @@ export default class IpAgoraOrder {
       productToOrder.configuration.push({
         label: 'netname',
         value: netname,
+      });
+    }
+
+    if (regionId) {
+      productToOrder.configuration.push({
+        label: 'ip_region',
+        value: regionId,
       });
     }
 
