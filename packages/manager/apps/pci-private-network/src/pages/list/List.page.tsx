@@ -26,6 +26,13 @@ import { PrivateNetworkTabName } from '@/constants';
 import GlobalRegionsComponent from '@/components/global-regions/GlobalRegions.component';
 import LocalZoneComponent from '@/components/local-zones/LocalZone.component';
 
+const getActiveTab = (pathname: string) => {
+  if (pathname.includes('localZone')) {
+    return PrivateNetworkTabName.LOCALZONE_TAB_NAME;
+  }
+  return PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME;
+};
+
 export default function ListingPage() {
   const { t } = useTranslation('common');
   const [projectUrl, setProjectUrl] = useState('');
@@ -35,28 +42,18 @@ export default function ListingPage() {
   const location = useLocation();
   const { projectId } = useParams();
   const { data: project } = useProject(projectId || '');
-  const [activeTab, setActiveTab] = useState<PrivateNetworkTabName>(
-    PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME,
-  );
+
+  const activeTab = getActiveTab(location.pathname);
 
   const handlerTabChanged = (event: CustomEvent) => {
-    const { panel } = event.detail;
-    setActiveTab(panel as PrivateNetworkTabName);
-
-    if (panel === PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME) {
-      navigate(`..`);
-      return;
+    switch (event.detail?.panel) {
+      case PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME:
+        navigate(`..`);
+        break;
+      default:
+        navigate(`./localZone`);
     }
-    navigate(`./localZone`);
   };
-
-  useEffect(() => {
-    if (location.pathname.includes('localZone')) {
-      setActiveTab(PrivateNetworkTabName.LOCALZONE_TAB_NAME);
-    } else {
-      setActiveTab(PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME);
-    }
-  }, [location.pathname]);
 
   useEffect(() => {
     navigation
@@ -120,13 +117,17 @@ export default function ListingPage() {
         </OsdsTabBar>
 
         <OsdsTabPanel name={PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME}>
-          <GlobalRegionsComponent
-            projectId={projectId}
-            projectUrl={projectUrl}
-          />
+          {activeTab === PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME && (
+            <GlobalRegionsComponent
+              projectId={projectId}
+              projectUrl={projectUrl}
+            />
+          )}
         </OsdsTabPanel>
         <OsdsTabPanel name={PrivateNetworkTabName.LOCALZONE_TAB_NAME}>
-          <LocalZoneComponent projectId={projectId} />
+          {activeTab === PrivateNetworkTabName.LOCALZONE_TAB_NAME && (
+            <LocalZoneComponent projectId={projectId} />
+          )}
         </OsdsTabPanel>
       </OsdsTabs>
       <Outlet />
