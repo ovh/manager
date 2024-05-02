@@ -104,7 +104,7 @@ export default function OnBoardingPage() {
   ];
 
   const createGateway = () => {
-    if (!isDiscoveryProject(project)) navigate('./new');
+    navigate('./new');
   };
 
   return (
@@ -146,7 +146,6 @@ export default function OnBoardingPage() {
           'pci_projects_project_public_gateways_onboarding_action_label',
         )}
         onOrderButtonClick={createGateway}
-        isActionDisabled={isDiscoveryProject(project)}
       >
         <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
           {tileItems.map((tile) => (
