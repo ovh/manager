@@ -1,7 +1,7 @@
 <oui-datagrid rows="$ctrl.nodes" data-page-size="25" class="mt-5">
     <oui-datagrid-column
-        title="'nutanix_dashboard_nodes_list_display_name' | translate"
-        property="displayName"
+        data-title="'nutanix_dashboard_nodes_list_display_name' | translate"
+        data-property="displayName"
         data-sortable
         data-searchable
         data-filterable
@@ -14,34 +14,30 @@
         </a>
     </oui-datagrid-column>
     <oui-datagrid-column
-        title="'nutanix_dashboard_nodes_list_type_of_server' | translate"
-        property="commercialRange"
+        data-title="'nutanix_dashboard_nodes_list_type_of_server' | translate"
+        data-property="commercialRange"
         data-sortable
         data-searchable
         data-filterable
     >
     </oui-datagrid-column>
     <oui-datagrid-column
-        title="'nutanix_dashboard_nodes_list_status' | translate"
-        property="state"
+        data-title="'nutanix_dashboard_nodes_list_status' | translate"
+        data-property="state"
         data-sortable
-        data-searchable
+        data-type="options"
+        data-type-options="$ctrl.stateColumnOptions"
         data-filterable
     >
         <span
-            class="oui-badge"
-            data-ng-class="{
-                'oui-badge_success': $row.state === 'OK',
-                'oui-badge_warning': $row.state === 'ERROR',
-                'oui-badge_error': $row.state === 'HACKED' || $row.state === 'HACKED_BLOCKED'
-                }"
-            data-ng-bind="('nutanix_dashboard_nodes_list_status_' + $row.state) | translate"
+            class="{{'oui-badge ' + $ctrl.NODE_BADGE_STATE[$row.state] }}"
+            data-translate="{{ 'nutanix_dashboard_nodes_list_status_' + $row.state }}"
         >
         </span>
     </oui-datagrid-column>
     <oui-datagrid-column
-        title="'nutanix_dashboard_nodes_list_localisation' | translate"
-        property="datacenter"
+        data-title="'nutanix_dashboard_nodes_list_localisation' | translate"
+        data-property="datacenter"
     >
         <datacenter-name datacenter="$row.datacenter"> </datacenter-name>
     </oui-datagrid-column>
