@@ -16,10 +16,11 @@ export const useActions = (projectId: string) => {
   const { form, steps, openStep, closeStep, setForm } = useOrderStore();
   const { t: tOrder } = useTranslation('order');
   const navigate = useNavigate();
-  const { addError, addSuccess } = useNotifications();
+  const { addError, addSuccess, clearNotifications } = useNotifications();
   const { me } = useMe();
 
   const doOrderFloatingIp = async () => {
+    clearNotifications();
     trackClick({
       name: `confirm-add-additional-ip::failover-ip::${form.floatingRegion?.name}`,
       type: 'action',
@@ -60,6 +61,7 @@ export const useActions = (projectId: string) => {
   };
 
   const doOrderFailoverIp = () => {
+    clearNotifications();
     trackClick({
       name: `confirm-add-additional-ip::failover-ip::${form.failoverCountry.regionNames[0]}`,
       type: 'action',
