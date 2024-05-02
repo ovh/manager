@@ -15,7 +15,8 @@
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "jest --coverage -u",
     "test:cov": "vitest run --coverage",
-    "test:e2e": "tsc && npx playwright test --ui --debug"
+    "test:e2e": "tsc && npx playwright test --ui --debug",
+    "test:v": "vitest"
   },
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -82,7 +83,7 @@
     "typescript": "^4.3.2",
     "vite": "4.4.9",
     "vite-plugin-dts": "3.5.1",
-    "vitest": "0.34.1",
+    "vitest": "1.5.3",
     "zustand": "^4.5.0"
   },
   "optionalDependencies": {
