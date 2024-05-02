@@ -306,6 +306,16 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
+                data-on-click="$ctrl.goToResiliateCancelation($row)"
+                aria-label="{{:: 'domains_action_per_line_resiliation_cancellation' | translate }}"
+                data-ng-if="$row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.CANCELLATION_REQUESTED"
+                top
+            >
+                <span
+                    data-translate="domains_action_per_line_resiliation_cancellation"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
                 data-href="{{:: $ctrl.ENABLE_AUTO_RENEW_LINK + $row.serviceId }}"
                 aria-label="{{:: 'domains_action_per_line_autorenew_activate' | translate }}"
                 data-ng-if="$row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.MANUAL_RENEW"
