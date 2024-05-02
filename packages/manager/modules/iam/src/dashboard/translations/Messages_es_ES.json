@@ -3,5 +3,6 @@
   "iam_dashboard_header_heading": "Gestión de identidades y accesos (IAM)",
   "iam_dashboard_header_tabs_item_identities": "Identidades",
   "iam_dashboard_header_tabs_item_policies": "Políticas",
-  "iam_dashboard_header_tabs_item_resource_groups": "Grupos de recursos"
+  "iam_dashboard_header_tabs_item_resource_groups": "Grupos de recursos",
+  "iam_error": "No tiene permisos para realizar esta acción: {{details}}"
 }
