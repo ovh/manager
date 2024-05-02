@@ -185,7 +185,10 @@ const MetricChart = ({
   return (
     <>
       {metricQuery.isLoading ? (
-        <div style={{ position: 'relative' }}>
+        <div
+          data-testid="metric-chart-loading-container"
+          style={{ position: 'relative' }}
+        >
           <div
             className={cn(
               'aspect-square sm:aspect-auto sm:h-[400px]',
@@ -202,6 +205,7 @@ const MetricChart = ({
       ) : (
         isInitialized && (
           <div
+            data-testid="metric-chart-container"
             className={cn(
               'aspect-square sm:aspect-auto sm:h-[400px]',
               className,

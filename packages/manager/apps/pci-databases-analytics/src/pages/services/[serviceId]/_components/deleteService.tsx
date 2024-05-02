@@ -107,7 +107,9 @@ const DeleteService = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('deleteServiceTitle')}</DialogTitle>
+          <DialogTitle data-testid="delete-service-modal">
+            {t('deleteServiceTitle')}
+          </DialogTitle>
         </DialogHeader>
         {integratedServices.length > 0 && (
           <Alert variant="info">
@@ -139,11 +141,16 @@ const DeleteService = ({
         </p>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" variant="outline">
+            <Button
+              data-testid="delete-service-cancel-button"
+              type="button"
+              variant="outline"
+            >
               {t('deleteServiceButtonCancel')}
             </Button>
           </DialogClose>
           <Button
+            data-testid="delete-service-submit-button"
             type="button"
             disabled={
               isPending ||

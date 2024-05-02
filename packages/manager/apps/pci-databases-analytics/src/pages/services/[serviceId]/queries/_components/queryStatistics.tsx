@@ -53,9 +53,12 @@ const QueryStatistics = () => {
   return (
     <>
       <h3>{t('queryStatisticsTitle')}</h3>
-      <p>{t('queryStatisticsDescription')}</p>
+      <p data-testid="query-statistics-description">
+        {t('queryStatisticsDescription')}
+      </p>
       {service.capabilities.queryStatisticsReset && (
         <Button
+          data-testid="query-statistics-reset-button"
           variant="outline"
           size="sm"
           onClick={() => handleResetButtonClicked()}
@@ -78,7 +81,9 @@ const QueryStatistics = () => {
           pageSize={25}
         />
       ) : (
-        <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
+        <div data-testid="query-statistics-skeleton">
+          <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
+        </div>
       )}
     </>
   );

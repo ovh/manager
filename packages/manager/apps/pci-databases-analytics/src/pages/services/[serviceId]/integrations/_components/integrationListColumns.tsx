@@ -70,14 +70,22 @@ export const getColumns = ({
           <div className="flex justify-end">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="menu" size="menu">
+                <Button
+                  data-testid="integrations-action-trigger"
+                  variant="menu"
+                  size="menu"
+                >
                   <span className="sr-only">Open menu</span>
                   <MoreHorizontal className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent
+                data-testid="integrations-action-content"
+                align="end"
+              >
                 {service.capabilities.integrations?.delete && (
                   <DropdownMenuItem
+                    data-testid="integrations-action-delete-button"
                     variant="destructive"
                     disabled={
                       service.capabilities.integrations?.delete ===

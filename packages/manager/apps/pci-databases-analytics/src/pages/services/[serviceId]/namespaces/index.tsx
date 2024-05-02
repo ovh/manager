@@ -15,9 +15,15 @@ import { getColumns } from './_components/namespacesTableColumns';
 import DeleteNamespaceModal from './_components/deleteNamespace';
 import AddEditNamespace from './_components/addEditNamespace';
 import { NAMESPACES_CONFIG } from './_components/formNamespace/namespace.const';
+import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 
 export function breadcrumb() {
-  return 'Namespaces';
+  return (
+    <BreadcrumbItem
+      translationKey="breadcrumb"
+      namespace="pci-databases-analytics/services/service/namespaces"
+    />
+  );
 }
 
 const Namespaces = () => {
@@ -64,6 +70,7 @@ const Namespaces = () => {
       <p>{t('description3')}</p>
       {namespacesQuery.isSuccess && service.capabilities.namespaces?.create && (
         <Button
+          data-testid="namespaces-add-button"
           disabled={
             service.capabilities.namespaces?.create ===
               database.service.capability.StateEnum.disabled ||
@@ -85,7 +92,9 @@ const Namespaces = () => {
           pageSize={25}
         />
       ) : (
-        <DataTable.Skeleton columns={5} rows={2} width={100} height={16} />
+        <div data-testid="namespaces-table-skeleton">
+          <DataTable.Skeleton columns={5} rows={2} width={100} height={16} />
+        </div>
       )}
       {namespacesQuery.isSuccess && (
         <AddEditNamespace

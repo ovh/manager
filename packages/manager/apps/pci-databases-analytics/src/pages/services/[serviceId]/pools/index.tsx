@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
+import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 
 import { useModale } from '@/hooks/useModale';
 import { useGetConnectionPools } from '@/hooks/api/connectionPool.api.hooks';
@@ -23,7 +24,12 @@ import Guides from '@/components/guides';
 import { GuideSections } from '@/models/guide';
 
 export function breadcrumb() {
-  return 'Pools';
+  return (
+    <BreadcrumbItem
+      translationKey="breadcrumb"
+      namespace="pci-databases-analytics/services/service/connectionPools"
+    />
+  );
 }
 
 export interface ConnectionPoolWithData
@@ -114,6 +120,7 @@ const Pools = () => {
       <p>{t('description')}</p>
       {service.capabilities.connectionPools?.create && (
         <Button
+          data-testid="pools-add-button"
           variant={'outline'}
           size="sm"
           className="text-base"
@@ -127,14 +134,16 @@ const Pools = () => {
           {t('addButtonLabel')}
         </Button>
       )}
-      {connectionPoolListWithData ? (
+      {connectionPoolsQuery.isSuccess && connectionPoolListWithData ? (
         <DataTable
           columns={columns}
           data={connectionPoolListWithData}
           pageSize={25}
         />
       ) : (
-        <DataTable.Skeleton columns={5} rows={2} width={100} height={16} />
+        <div data-testid="connectionPools-table-skeleton">
+          <DataTable.Skeleton columns={5} rows={2} width={100} height={16} />
+        </div>
       )}
       {connectionPoolsQuery.isSuccess &&
         usersQuery.isSuccess &&

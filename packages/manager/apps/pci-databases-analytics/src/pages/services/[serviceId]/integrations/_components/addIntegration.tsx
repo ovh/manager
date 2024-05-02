@@ -113,7 +113,9 @@ const AddIntegration = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('addIntegrationTitle')}</DialogTitle>
+          <DialogTitle data-testid="add-integrations-modal">
+            {t('addIntegrationTitle')}
+          </DialogTitle>
           <DialogDescription>
             {t('addIntegrationDescription')}
           </DialogDescription>
