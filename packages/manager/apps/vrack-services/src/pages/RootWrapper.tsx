@@ -3,10 +3,17 @@ import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
   useOvhTracking,
   useRouteSynchro,
+  PageType,
 } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { useVrackServicesList } from '@/utils/vs-utils';
 import { ErrorPage } from '@/components/Error';
+import { PageName } from '@/utils/tracking';
+
+type Handle = {
+  tracking?: { pageType: PageType; pageName: PageName };
+  currentPage?: string;
+};
 
 export default function RootWrapper() {
   const { isError, error } = useVrackServicesList();
@@ -18,7 +25,7 @@ export default function RootWrapper() {
   React.useEffect(() => {
     trackCurrentPage();
 
-    const currentPage = (matches[matches.length - 1]?.handle as any)
+    const currentPage = (matches[matches.length - 1]?.handle as Handle)
       ?.currentPage;
     if (currentPage) {
       defineCurrentPage(currentPage);

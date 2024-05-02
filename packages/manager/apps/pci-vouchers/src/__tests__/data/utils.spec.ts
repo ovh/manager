@@ -1,11 +1,9 @@
-import { describe, expect, vi } from 'vitest';
-import { v6 } from '@ovh-ux/manager-core-api';
+import { describe, expect } from 'vitest';
 import {
   creditComparator,
   defaultCompareFunction,
   validityComparator,
 } from '@/data/utils';
-import { Voucher } from '@/interface';
 
 const voucherA = {
   id: 1,
