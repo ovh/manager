@@ -16,6 +16,7 @@ export default {
     projectId: '<',
     service: '<',
     iamLink: '<',
+    isDiscoveryProject: '<',
   },
   controller,
   template,
