@@ -5,6 +5,7 @@ import routing from './softphone.routing';
 import component from './softphone.component';
 import softphoneService from './softphone.service';
 import addDeviceModule from './addDevice';
+import './softphone.scss';
 
 const moduleName = 'ovhManagerTelecomTelephonyLineSoftphone';
 
