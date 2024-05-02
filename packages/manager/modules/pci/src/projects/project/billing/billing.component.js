@@ -17,6 +17,7 @@ export default {
     service: '<',
     iamLink: '<',
     isDiscoveryProject: '<',
+    isSubsidiaryWithPostPaidUsageBilling: '<',
   },
   controller,
   template,

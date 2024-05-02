@@ -7,5 +7,8 @@
   "cpbhd_bill_link": "Visualizza tutte le fatture",
   "cpbhd_bill_pdf_tooltip": "Visualizza la fattura in PDF",
   "cpbhd_bill_pdf_link": "Fattura {{month}} {{year}}",
-  "cpb_error_message": "Ops! Impossibile recuperare tutte le informazioni."
+  "cpb_error_message": "Ops! Impossibile recuperare tutte le informazioni.",
+  "cpbhd_monthly_post_paid_header": "Forfait mensile di {{lastMonth}} {{previousYear}}",
+  "cpbhd_monthly_bill_header": "Fattura di {{month}} {{year}}",
+  "cpbhd_monthly_bill_description": "(sul consumo di {{lastMonth}} {{previousYear}})"
 }

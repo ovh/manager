@@ -14,6 +14,7 @@ export default {
     pciFeatures: '<',
     projectId: '<',
     isDiscoveryProject: '<',
+    isSubsidiaryWithPostPaidUsageBilling: '<',
   },
   controllerAs: 'BillingCtrl',
   controller,
