@@ -93,7 +93,7 @@ const CurrentQueries = () => {
     <>
       <h3>{t('currentQueriesTitle')}</h3>
       <p>{t('currentQueriesDescription')}</p>
-      <div className="flex gap-4">
+      <div data-testid="current-queries-container" className="flex gap-4">
         <div className="flex items-center space-x-2 ">
           <Switch
             className="rounded-xl"
@@ -129,7 +129,9 @@ const CurrentQueries = () => {
       {currentQueriesQuery.isSuccess ? (
         <DataTable columns={columns} data={filteredQueries} pageSize={25} />
       ) : (
-        <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
+        <div data-testid="current-queries-skeleton">
+          <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
+        </div>
       )}
     </>
   );

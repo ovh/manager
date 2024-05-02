@@ -106,7 +106,9 @@ const RenameService = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('renameServiceTitle')}</DialogTitle>
+          <DialogTitle data-testid="rename-service-modal">
+            {t('renameServiceTitle')}
+          </DialogTitle>
           <DialogDescription>{t('renameServiceDescription')}</DialogDescription>
         </DialogHeader>
 
@@ -119,14 +121,22 @@ const RenameService = ({
                 <FormItem>
                   <FormLabel>{t('renameServiceNameInputLabel')}</FormLabel>
                   <FormControl>
-                    <Input placeholder="name" {...field} />
+                    <Input
+                      data-testid="rename-service-input"
+                      placeholder="name"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <DialogFooter className="flex justify-end">
-              <Button type="submit" disabled={isPending}>
+              <Button
+                data-testid="rename-service-submit-button"
+                type="submit"
+                disabled={isPending}
+              >
                 {t('renameServiceNameSubmit')}
               </Button>
             </DialogFooter>

@@ -52,11 +52,13 @@ const InfoConnectionPool = ({
     <Dialog {...controller}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle>{t('infoConnectionPoolTitle')}</DialogTitle>
+          <DialogTitle data-testid="info-pools-modal">
+            {t('infoConnectionPoolTitle')}
+          </DialogTitle>
         </DialogHeader>
         {certificateQuery.isSuccess ? (
           <div className="mt-4">
-            <Table>
+            <Table data-testid="info-pools-table">
               <TableBody>
                 <TableRow>
                   <TableCell className="font-semibold">
@@ -91,6 +93,7 @@ const InfoConnectionPool = ({
                   <TableCell>
                     <div className="flex flex-row gap-1">
                       <Button
+                        data-testid="info-pools-copy-certificate-action"
                         type="button"
                         size="table"
                         variant="table"
@@ -106,6 +109,7 @@ const InfoConnectionPool = ({
                         <Files className="w-4 h-4" />
                       </Button>
                       <Button
+                        data-testid="info-pools-download-ca-action"
                         type="button"
                         size="table"
                         variant="table"
@@ -138,6 +142,7 @@ const InfoConnectionPool = ({
                   <TableCell>
                     <div className="flex justify-center">
                       <Button
+                        data-testid="info-pools-copy-uri-action"
                         type="button"
                         size="table"
                         variant="table"

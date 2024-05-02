@@ -1,7 +1,10 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import StorageConfig from '@/components/Order/cluster-config/storage-config';
-import { mockedAvailabilities } from '@/__tests__/helpers/mocks/availabilities';
+import {
+  mockedAvailabilities,
+  mockedAvailabilitiesUpdate,
+} from '@/__tests__/helpers/mocks/availabilities';
 import { database } from '@/models/database';
 
 const ResizeObserverMock = vi.fn(() => ({
@@ -13,27 +16,6 @@ const ResizeObserverMock = vi.fn(() => ({
 // Stub the global ResizeObserver
 vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 
-const availabilitiesWithStorage: database.Availability = {
-  ...mockedAvailabilities,
-  specifications: {
-    ...mockedAvailabilities.specifications,
-    storage: {
-      maximum: {
-        unit: 'GB',
-        value: 100,
-      },
-      minimum: {
-        unit: 'GB',
-        value: 10,
-      },
-      step: {
-        unit: 'GB',
-        value: 10,
-      },
-    },
-  },
-};
-
 describe('StorageConfig component', () => {
   afterEach(() => {
     vi.clearAllMocks();
@@ -42,8 +24,8 @@ describe('StorageConfig component', () => {
     const onChange = vi.fn();
     render(
       <StorageConfig
-        availability={availabilitiesWithStorage}
-        value={10}
+        availability={mockedAvailabilities}
+        value={20}
         onChange={onChange}
       />,
     );
@@ -61,8 +43,8 @@ describe('StorageConfig component', () => {
     const onChange = vi.fn();
     render(
       <StorageConfig
-        availability={mockedAvailabilities}
-        value={10}
+        availability={mockedAvailabilitiesUpdate}
+        value={20}
         onChange={onChange}
       />,
     );

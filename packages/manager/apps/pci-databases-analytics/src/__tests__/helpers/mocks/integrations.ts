@@ -3,7 +3,7 @@ import { database } from '@/models/database';
 export const mockedIntegrations: database.service.Integration = {
   destinationServiceId: 'destinationServiceId',
   id: 'integrationId',
-  sourceServiceId: 'sourceServiceId',
+  sourceServiceId: 'serviceId',
   status: database.service.integration.StatusEnum.READY,
   type: database.service.integration.TypeEnum.kafkaConnect,
 };

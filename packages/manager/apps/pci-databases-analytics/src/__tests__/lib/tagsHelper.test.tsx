@@ -35,7 +35,7 @@ describe('tagsHelper', () => {
       ...mockedFlavor,
       tags: [],
     };
-    const updateFlavorTags = updateTags([newFlavor], 'flavorName');
+    const updateFlavorTags = updateTags([newFlavor], 'flavor');
     expect(updateFlavorTags).toStrictEqual([mockedFlavor]);
   });
 });

@@ -21,7 +21,7 @@ const OrderPrice = ({ showMonthly, prices }: OrderPriceProps) => {
   const price = prices[unit];
   return (
     <div
-      data-testId="order-price-container"
+      data-testid="order-price-container"
       className="flex justify-between items-baseline gap-2"
     >
       <span>{t('pricing_label')}</span>

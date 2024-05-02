@@ -179,7 +179,9 @@ const UpdatePlan = ({
           <Form {...form}>
             <form onSubmit={onSubmit} id="updatePlanForm">
               <DialogHeader className="mb-2">
-                <DialogTitle>{t('updatePlanTitle')}</DialogTitle>
+                <DialogTitle data-testid="update-plan-modal">
+                  {t('updatePlanTitle')}
+                </DialogTitle>
               </DialogHeader>
               <Label>{t('priceUnitSwitchLabel')}</Label>
               <PriceUnitSwitch
@@ -227,7 +229,11 @@ const UpdatePlan = ({
           </div>
           <div className="flex gap-2">
             <DialogClose asChild>
-              <Button type="button" variant="outline">
+              <Button
+                data-testid="update-plan-cancel-button"
+                type="button"
+                variant="outline"
+              >
                 {t('updatePlanCancelButton')}
               </Button>
             </DialogClose>
