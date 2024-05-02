@@ -57,6 +57,10 @@
                                 data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.BILLING_CHANGE_MEDIATION_BANNER) && !$ctrl.isDiscoveryProject"
                             ></pci-project-billing-change-mediation-banner>
 
+                            <pci-billing-change-banner
+                                data-ng-if="!$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.BILLING_CHANGE_MEDIATION_BANNER_2) && !$ctrl.isDiscoveryProject"
+                            ></pci-billing-change-banner>
+
                             <oui-message
                                 data-type="warning"
                                 data-ng-if="$ctrl.projectQuotaAboveThreshold && !$ctrl.isDiscoveryProject"

@@ -9,6 +9,7 @@ import activateMonthly from './monthly';
 import legacy from './legacy/billing-legacy.module';
 import component from './billing.component';
 import routing from './billing.routing';
+import components from '../components';
 
 const moduleName = 'ovhManagerPciProjectBilling';
 
@@ -17,6 +18,7 @@ angular
     activateMonthly,
     legacy,
     history,
+    components,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ovh-api-services',
