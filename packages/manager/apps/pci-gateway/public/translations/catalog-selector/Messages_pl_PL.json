@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_gateways_model_selector_catalog_publiccloud-gateway-s_size": "Rozmiar S",
+  "pci_projects_project_gateways_model_selector_catalog_publiccloud-gateway-m_size": "Rozmiar M",
+  "pci_projects_project_gateways_model_selector_catalog_publiccloud-gateway-l_size": "Rozmiar L",
+  "pci_projects_project_gateways_model_selector_bandwidth": "Do {{bandwidth}}",
+  "pci_projects_project_gateways_model_selector_catalog_price": "Cena:",
+  "pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps": " Mbps",
+  "pci_projects_project_gateways_model_selector_bandwidth_unit_size_gbps": " Gbps"
+}

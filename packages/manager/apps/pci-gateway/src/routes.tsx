@@ -56,6 +56,11 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/onboarding/OnBoarding.page')),
         children: [],
       },
+      {
+        path: 'new',
+        ...lazyRouteConfig(() => import('@/pages/add/AddGateway.page')),
+        children: [],
+      },
     ],
   },
   {
