@@ -85,7 +85,7 @@ const ServiceConfiguration = () => {
   return (
     <>
       <Table>
-        <TableBody>
+        <TableBody data-testid="service-configuration-table">
           <TableRow>
             <TableCell className="font-semibold">
               {t('serviceConfigurationServiceName')}
@@ -94,6 +94,7 @@ const ServiceConfiguration = () => {
             {service.capabilities.service?.update && (
               <TableCell className="text-right">
                 <Button
+                  data-testid="service-confi-rename-button"
                   disabled={
                     service.capabilities.service?.update ===
                     database.service.capability.StateEnum.disabled
@@ -110,7 +111,10 @@ const ServiceConfiguration = () => {
           </TableRow>
           {service.capabilities.maintenanceTime?.read && (
             <TableRow>
-              <TableCell className="font-semibold">
+              <TableCell
+                data-testid="maintenance-time-cell"
+                className="font-semibold"
+              >
                 {t('serviceConfigurationServiceMaintenanceTime')}
               </TableCell>
               <TimeUpdate
@@ -126,7 +130,10 @@ const ServiceConfiguration = () => {
           )}
           {service.capabilities.backupTime?.read && (
             <TableRow>
-              <TableCell className="font-semibold">
+              <TableCell
+                data-testid="backup-time-cell"
+                className="font-semibold"
+              >
                 {t('serviceConfigurationServiceBackupTime')}
               </TableCell>
               <TimeUpdate
@@ -144,6 +151,7 @@ const ServiceConfiguration = () => {
       </Table>
       {service.capabilities.service?.delete && (
         <Button
+          data-testid="service-confi-delete-button"
           disabled={
             service.capabilities.service?.delete ===
             database.service.capability.StateEnum.disabled

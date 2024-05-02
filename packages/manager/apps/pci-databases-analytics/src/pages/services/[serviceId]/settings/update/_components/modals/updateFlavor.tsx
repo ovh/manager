@@ -199,7 +199,9 @@ const UpdateFlavor = ({
         <Form {...form}>
           <form onSubmit={onSubmit}>
             <DialogHeader className="mb-2">
-              <DialogTitle>{t('updateFlavorTitle')}</DialogTitle>
+              <DialogTitle data-testid="update-flavor-modal">
+                {t('updateFlavorTitle')}
+              </DialogTitle>
             </DialogHeader>
             <Label>{t('priceUnitSwitchLabel')}</Label>
             <PriceUnitSwitch
@@ -279,7 +281,11 @@ const UpdateFlavor = ({
               </div>
               <div className="flex gap-2">
                 <DialogClose asChild>
-                  <Button type="button" variant="outline">
+                  <Button
+                    data-testid="update-flavor-cancel-button"
+                    type="button"
+                    variant="outline"
+                  >
                     {t('updateFlavorCancelButton')}
                   </Button>
                 </DialogClose>

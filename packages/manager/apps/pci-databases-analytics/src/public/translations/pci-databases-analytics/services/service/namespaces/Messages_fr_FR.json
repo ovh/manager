@@ -1,5 +1,6 @@
 {
   "title": "Namespaces",
+  "breadcrumb": "Namespaces",
   "description1": "Collections de points. Vous pouvez avoir maximum {{max}} namespaces sur votre service.",
   "description2": "Seul le namespace par default est non agrégé. Il inclut tous les nuages de points au fur et à mesure de leur arrivée.",
   "description3": "Vous pouvez créer des namespaces agrégés pour lesquels un seul point est stocké pour chaque interval configuré.",

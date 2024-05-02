@@ -29,7 +29,7 @@ const Maintenance = () => {
   return (
     <>
       {maintenanceQuery.isSuccess && (
-        <div>
+        <div data-testid="dashboard-maintenance-container">
           {plannedMaintenance === 0 && (
             <div>
               <p>{t('noMaintenanceDescription')}</p>
@@ -46,7 +46,10 @@ const Maintenance = () => {
             {plannedMaintenance === 1 && (
               <>
                 <Construction className="h-4 w-4 mr-1 text-red-600 inline" />
-                <span className="font-semibold text-red-600 mr-1">
+                <span
+                  data-testid="one-maintenance-span"
+                  className="font-semibold text-red-600 mr-1"
+                >
                   {t('oneMaintenanceDescription1', {
                     number: plannedMaintenance,
                   })}
@@ -57,7 +60,10 @@ const Maintenance = () => {
             {plannedMaintenance > 1 && (
               <>
                 <Construction className="h-4 w-4 mr-1 text-red-600 inline" />
-                <span className="font-semibold text-red-600 mr-1">
+                <span
+                  data-testid="many-maintenance-span"
+                  className="font-semibold text-red-600 mr-1"
+                >
                   {t('manyMaintenanceDescription1', {
                     number: plannedMaintenance,
                   })}

@@ -88,7 +88,6 @@ const Dashboard = () => {
         : [],
     [metricsQuery.data],
   );
-
   return (
     <>
       <div className="flex justify-between w-full items-center">
@@ -102,7 +101,12 @@ const Dashboard = () => {
               <AlertCircle className="h-6 w-6" />
               <p>{t('upgradeAlertDescription')}</p>
             </div>
-            <Button variant="default" type="button" asChild>
+            <Button
+              data-testid="dashboard-upgrade-button"
+              variant="default"
+              type="button"
+              asChild
+            >
               <Link
                 className="hover:no-underline hover:text-primary-foreground"
                 to={'settings#update'}
@@ -115,10 +119,16 @@ const Dashboard = () => {
         </AlertDescription>
       </Alert>
 
-      <div className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2">
+      <div
+        data-testid="dashboard-metrics-container"
+        className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2"
+      >
         {metricsQuery.isSuccess ? (
           metricsToDispplay.map((metric) => (
-            <Card key={metric.name}>
+            <Card
+              data-testid={`dashboard-metrics-card-${metric.name}`}
+              key={metric.name}
+            >
               <CardHeader>
                 <h5>
                   {metric.icon}
@@ -138,9 +148,11 @@ const Dashboard = () => {
           ))
         ) : (
           <>
-            <Skeleton className="w-full h-[200px]" />
-            <Skeleton className="w-full h-[200px]" />
-            <Skeleton className="w-full h-[200px]" />
+            <div data-testid="dashboard-metrics-skeleton">
+              <Skeleton className="w-full h-[200px]" />
+              <Skeleton className="w-full h-[200px]" />
+              <Skeleton className="w-full h-[200px]" />
+            </div>
           </>
         )}
       </div>
@@ -169,7 +181,7 @@ const Dashboard = () => {
             <Maintenance />
             {service.networkType === database.NetworkTypeEnum.private &&
               vrackQuery.isSuccess && (
-                <div>
+                <div data-testid="dashboard-vrack-container">
                   <h5 className="py-6">
                     <ShieldCheck className="size-4 inline mr-2 text-green-500" />
                     {t('networkTitle')}
@@ -203,6 +215,7 @@ const Dashboard = () => {
                 <p>{service.id}</p>
               </div>
               <Button
+                data-testid="dashboard-copy-id-button"
                 type="button"
                 size="table"
                 variant="table"
@@ -216,7 +229,10 @@ const Dashboard = () => {
                 <Files className="w-4 h-4" />
               </Button>
             </div>
-            <div className="flex flex-row gap-1 mt-3">
+            <div
+              data-testid="dashboard-billing-link"
+              className="flex flex-row gap-1 mt-3"
+            >
               <OvhLink
                 application="public-cloud"
                 path={`#/pci/projects/${projectId}/billing`}
@@ -225,7 +241,10 @@ const Dashboard = () => {
               </OvhLink>
               <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
             </div>
-            <div className="flex flex-row gap-1 mt-2">
+            <div
+              data-testid="dashboard-support-link"
+              className="flex flex-row gap-1 mt-2"
+            >
               <OvhLink application="dedicated" path={`#/support/tickets/new`}>
                 {t('supportLink')}
               </OvhLink>

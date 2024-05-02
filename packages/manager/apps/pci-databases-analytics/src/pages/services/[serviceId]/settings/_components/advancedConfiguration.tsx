@@ -23,7 +23,6 @@ const AdvancedConfigurationUpdate = () => {
     service.engine,
     service.id,
   );
-
   return (
     <>
       <Alert variant="info">
@@ -43,7 +42,10 @@ const AdvancedConfigurationUpdate = () => {
           key={JSON.stringify(advancedConfigurationQuery.data)}
         />
       ) : (
-        <Skeleton className="w-full h-64 mt-2" />
+        <Skeleton
+          data-testid="advanced-configuration-skeleton"
+          className="w-full h-64 mt-2"
+        />
       )}
     </>
   );

@@ -41,7 +41,12 @@ const Maintenances = () => {
     },
   });
   if (maintenanceQuery.isLoading) {
-    return <Skeleton className="w-full h20" />;
+    return (
+      <Skeleton
+        data-testid="maintenance-settings-skeleton"
+        className="w-full h20"
+      />
+    );
   }
   if (maintenanceQuery.data.length === 0) {
     return (
@@ -121,6 +126,7 @@ const Maintenances = () => {
               </div>
               {canApply(maintenance) && (
                 <Button
+                  data-testid="apply-maintenance-button"
                   disabled={
                     isPending ||
                     service.capabilities.maintenanceApply.create ===

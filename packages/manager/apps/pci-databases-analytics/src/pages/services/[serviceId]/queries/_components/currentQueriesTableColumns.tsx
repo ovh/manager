@@ -85,7 +85,11 @@ export const getColumns = ({
         <div className="w-full text-right pr-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="menu" size="menu">
+              <Button
+                data-testid="current-queries-action-trigger"
+                variant="menu"
+                size="menu"
+              >
                 <span className="sr-only">Open menu</span>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
@@ -93,6 +97,7 @@ export const getColumns = ({
             <DropdownMenuContent align="end">
               {service.capabilities.currentQueriesCancel && (
                 <DropdownMenuItem
+                  data-testid="current-queries-action-cancel-button"
                   variant="destructive"
                   onClick={() => onCancelQueryClicked(row.original)}
                   disabled={

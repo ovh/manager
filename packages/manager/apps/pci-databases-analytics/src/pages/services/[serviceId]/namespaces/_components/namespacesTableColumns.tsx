@@ -79,15 +79,23 @@ export const getColumns = ({
               <Tooltip>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="menu" size="menu">
+                    <Button
+                      data-testid="namespaces-action-trigger"
+                      variant="menu"
+                      size="menu"
+                    >
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
+                  <DropdownMenuContent
+                    data-testid="namepaces-action-content"
+                    align="end"
+                  >
                     <TooltipTrigger className="w-full">
                       {service.capabilities.namespaces?.update && (
                         <DropdownMenuItem
+                          data-testid="namespaces-action-edit-button"
                           variant="primary"
                           disabled={
                             service.capabilities.namespaces?.update ===
@@ -104,6 +112,7 @@ export const getColumns = ({
                       <DropdownMenuSeparator />
                       {service.capabilities.namespaces?.delete && (
                         <DropdownMenuItem
+                          data-testid="namespaces-action-delete-button"
                           variant="destructive"
                           disabled={
                             service.capabilities.namespaces?.delete ===

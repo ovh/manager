@@ -97,6 +97,7 @@ const IpsRestrictionsUpdate = ({
         {form.formState.isDirty && (
           <div className="mt-2 flex gap-2">
             <Button
+              data-testid="ips-update-cancel-button"
               variant="outline"
               type="button"
               disabled={isPending}
@@ -105,6 +106,7 @@ const IpsRestrictionsUpdate = ({
               {t('ipsUpdateCancelButton')}
             </Button>
             <Button
+              data-testid="ips-update-submit-button"
               disabled={
                 isPending ||
                 service.capabilities.ipRestrictions?.update ===

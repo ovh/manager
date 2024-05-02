@@ -83,14 +83,22 @@ export const getColumns = ({
               <Tooltip>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="menu" size="menu">
+                    <Button
+                      data-testid="pools-action-trigger"
+                      variant="menu"
+                      size="menu"
+                    >
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
+                  <DropdownMenuContent
+                    data-testid="pools-action-content"
+                    align="end"
+                  >
                     <TooltipTrigger className="w-full">
                       <DropdownMenuItem
+                        data-testid="pools-action-info-button"
                         variant="primary"
                         onClick={() => {
                           onGetInformationClick(row.original);
@@ -102,6 +110,7 @@ export const getColumns = ({
                       <DropdownMenuSeparator />
                       {service.capabilities.connectionPools?.update && (
                         <DropdownMenuItem
+                          data-testid="pools-action-edit-button"
                           variant="primary"
                           disabled={
                             service.capabilities.connectionPools?.update ===
@@ -118,6 +127,7 @@ export const getColumns = ({
                       <DropdownMenuSeparator />
                       {service.capabilities.connectionPools?.delete && (
                         <DropdownMenuItem
+                          data-testid="pools-action-delete-button"
                           variant="destructive"
                           disabled={
                             service.capabilities.connectionPools?.delete ===

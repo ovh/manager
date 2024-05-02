@@ -52,11 +52,14 @@ export const getColumns = ({ onDeleteClick }: DatabasesTableColumnsProps) => {
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
+                  <DropdownMenuContent
+                    data-testid="namepaces-menu-content"
+                    align="end"
+                  >
                     <TooltipTrigger className="w-full">
                       <DropdownMenuItem
-                        variant="destructive"
                         data-testid="databases-action-delete-button"
+                        variant="destructive"
                         disabled={
                           row.original.default ||
                           service.capabilities.databases?.delete ===

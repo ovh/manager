@@ -74,7 +74,9 @@ const DeleteConnectionPool = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('deleteConnectionPoolTitle')}</DialogTitle>
+          <DialogTitle data-testid="delete-pools-modal">
+            {t('deleteConnectionPoolTitle')}
+          </DialogTitle>
           <DialogDescription>
             {t('deleteConnectionPoolDescription', {
               name: connectionPool.name,
@@ -83,11 +85,20 @@ const DeleteConnectionPool = ({
         </DialogHeader>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" variant="outline">
+            <Button
+              data-testid="delete-pools-cancel-button"
+              type="button"
+              variant="outline"
+            >
               {t('deleteConnectionPoolButtonCancel')}
             </Button>
           </DialogClose>
-          <Button type="button" disabled={isPending} onClick={handleDelete}>
+          <Button
+            data-testid="delete-pools-submit-button"
+            type="button"
+            disabled={isPending}
+            onClick={handleDelete}
+          >
             {t('deleteConnectionPoolButtonConfirm')}
           </Button>
         </DialogFooter>
