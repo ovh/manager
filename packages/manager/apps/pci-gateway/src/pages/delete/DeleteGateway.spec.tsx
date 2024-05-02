@@ -22,7 +22,7 @@ const renderDeleteGatewayPage = () => {
 const mockedUseNavigate = vi.fn();
 
 type UseDeleteGatewayReturnType = UseMutationResult<
-  any,
+  unknown,
   Error,
   void,
   unknown
