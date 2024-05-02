@@ -7,7 +7,7 @@ import {
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useData } from '@/api/hooks/useData';
 import { StepIdsEnum, TRegion } from '@/api/types';
 import { useOrderStore } from '@/pages/order/hooks/useStore';
@@ -33,7 +33,7 @@ export const FloatingSteps = ({
       DataState.instances?.floating.filter(
         (instance) => instance.region === form.floatingRegion?.name,
       ),
-    [form.floatingRegion],
+    [form.floatingRegion, DataState.instances?.floating],
   );
 
   const selectedInstanceIpAddresses = useMemo(
@@ -43,6 +43,17 @@ export const FloatingSteps = ({
       ),
     [form.instance],
   );
+
+  useEffect(() => {
+    if (selectedInstanceIpAddresses?.length) {
+      setForm({
+        ...form,
+        ipAddress: form.instance.ipAddresses.find(
+          (ipAddress) => ipAddress.ip === selectedInstanceIpAddresses[0].ip,
+        ),
+      });
+    }
+  }, [selectedInstanceIpAddresses]);
 
   return (
     <>
@@ -82,6 +93,7 @@ export const FloatingSteps = ({
               </OsdsText>
             </div>
             <OsdsSelect
+              className="mb-4"
               required
               value={form.instance?.id}
               onOdsValueChange={(event) => {
@@ -123,8 +135,8 @@ export const FloatingSteps = ({
                   <span slot="placeholder">
                     {tOrder('pci_additional_ip_select_network_label')}
                   </span>
-                  {selectedInstanceIpAddresses.map((ipAddress) => (
-                    <OsdsSelectOption key={ipAddress.ip} value={ipAddress.ip}>
+                  {selectedInstanceIpAddresses.map((ipAddress, idx) => (
+                    <OsdsSelectOption key={idx} value={ipAddress.ip}>
                       {ipAddress.ip}
                     </OsdsSelectOption>
                   ))}
@@ -156,7 +168,10 @@ export const FloatingSteps = ({
       <StepComponent
         key={StepIdsEnum.FLOATING_SUMMARY}
         {...steps.get(StepIdsEnum.FLOATING_SUMMARY)}
-        next={{ action: On.next }}
+        next={{
+          action: On.next,
+          label: tOrder('pci_additional_ip_create_action_label'),
+        }}
         order={4}
       >
         <FloatingIpSummary
