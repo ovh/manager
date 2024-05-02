@@ -25,7 +25,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    include: ['src/components/container/**/*.spec.tsx'],
+    include: ['src/components/{container,input}/**/*.spec.tsx'],
     setupFiles: ['.vitest/setup.js'],
   },
 });
