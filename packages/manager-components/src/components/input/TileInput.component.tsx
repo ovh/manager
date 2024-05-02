@@ -7,7 +7,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { useCallback, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { TabsComponent } from '../container/Tabs.component';
+import { TabsComponent } from '../container';
 
 type TSimpleProps<T, S = void> = {
   value: T;
