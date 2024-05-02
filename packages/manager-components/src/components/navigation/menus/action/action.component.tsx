@@ -41,7 +41,6 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ items, isCompact }) => {
     <OsdsMenu>
       <OsdsButton
         slot="menu-title"
-        className="mb-4"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
         type={ODS_BUTTON_TYPE.button}

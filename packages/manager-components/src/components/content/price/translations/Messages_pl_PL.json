@@ -1,0 +1,10 @@
+{
+  "price_ht_label": "netto",
+  "price_ttc_label": "brutto",
+  "price_free": "Zawarte w cenie",
+  "price_gst_excl_label": "bez GST",
+  "price_gst_incl_label": "z GST",
+  "price_per_month": "/m-c",
+  "price_per_year": "/rok",
+  "price_per_day": "/dzień"
+}
