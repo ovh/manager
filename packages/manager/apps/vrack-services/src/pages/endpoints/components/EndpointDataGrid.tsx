@@ -37,10 +37,12 @@ export const EndpointDatagrid: React.FC = () => {
 
   const columns: OdsDatagridColumn[] = [
     {
-      title: t('subnet'),
-      field: 'subnet',
+      title: t('managedServiceURN'),
+      field: 'managedServiceURN',
       isSortable: true,
-      formatter: reactFormatter(<TextCell />),
+      formatter: reactFormatter(
+        <ServiceName iamResources={iamResources?.data} />,
+      ),
     },
     {
       title: t('serviceType'),
@@ -51,16 +53,14 @@ export const EndpointDatagrid: React.FC = () => {
       ),
     },
     {
-      title: t('managedServiceURN'),
-      field: 'managedServiceURN',
-      isSortable: true,
-      formatter: reactFormatter(
-        <ServiceName iamResources={iamResources?.data} />,
-      ),
-    },
-    {
       title: t('ip'),
       field: 'ip',
+      formatter: reactFormatter(<TextCell />),
+    },
+    {
+      title: t('subnet'),
+      field: 'subnet',
+      isSortable: true,
       formatter: reactFormatter(<TextCell />),
     },
     {
