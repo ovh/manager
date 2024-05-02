@@ -28,7 +28,7 @@ export const INPUTS_RULES = {
   },
   sshPubKey: {
     maxsize: 15,
-    pattern: /^(ssh-rsa|ecdsa-sha\d+-nistp\d+|ssh-ed\d+)\s+(AAAA[a-zA-Z0-9/=+]+)(\s+(\S{1,128}))*$/,
+    pattern: /\b(ssh-rsa|ecdsa-sha\d+-nistp\d+|ssh-ed\d+)\s+(AAAA[a-zA-Z0-9/=+]+)(\s+(\S{1,128}))*$/,
     placeholder:
       'ssh-rsa AAAAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX== my-public-key',
   },
