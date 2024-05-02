@@ -6,7 +6,7 @@ import {
   createRoutePath,
   seeRoutePath,
 } from '@/constants/route-path-constants';
-import { fetch2faStatus } from '@/data/hooks/useStatus';
+import { useFetch2faStatus } from '@/data/hooks/useStatus';
 import Loading from '@/components/Loading/Loading';
 
 const redirectStrategies: Status2faStrategies = {
@@ -18,7 +18,7 @@ export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { data, isFetched, isLoading } = fetch2faStatus();
+  const { data, isFetched, isLoading } = useFetch2faStatus();
 
   useEffect(() => {
     const route = redirectStrategies[data?.status];
