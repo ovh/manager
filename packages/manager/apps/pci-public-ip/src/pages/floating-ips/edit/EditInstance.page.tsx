@@ -38,7 +38,6 @@ export default function EditInstancePage() {
   const [selectedPrivateNetwork, setSelectedPrivateNetwork] = useState<
     IPAddress
   >(undefined);
-  const [selectedPrivateNetworkId, setSelectedPrivateNetworkId] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -76,7 +75,6 @@ export default function EditInstancePage() {
   }, [selectedInstanceId]);
 
   useEffect(() => {
-    setSelectedPrivateNetworkId(filteredPrivateNetwork[0]?.ip || '');
     setSelectedPrivateNetwork(filteredPrivateNetwork[0]);
   }, [filteredPrivateNetwork]);
 
@@ -86,7 +84,6 @@ export default function EditInstancePage() {
 
   const handleSelectPrivateNetworkChange = (event) => {
     const ip = event?.detail?.value;
-    setSelectedPrivateNetworkId(ip);
     setSelectedPrivateNetwork(
       filteredPrivateNetwork.find((network) => network.ip === ip),
     );
@@ -100,7 +97,7 @@ export default function EditInstancePage() {
     projectId,
     floatingIP,
     instanceId: selectedInstanceId,
-    ipAddresses: selectedPrivateNetworkId,
+    ipAddresses: selectedPrivateNetwork?.ip,
     onSuccess: () => {
       addSuccess(
         <Translation ns={'floating-ips-edit'}>
@@ -193,12 +190,12 @@ export default function EditInstancePage() {
                     {tEdit('pci_additional_ips_floatingips_edit_select_ip')}
                   </OsdsText>
                   <OsdsSelect
-                    value={selectedPrivateNetworkId}
+                    value={selectedPrivateNetwork?.ip}
                     onOdsValueChange={handleSelectPrivateNetworkChange}
                     data-testid="editInstancePage_select_IPAddresses"
                   >
-                    {filteredPrivateNetwork?.map((network) => (
-                      <OsdsSelectOption key={network.ip} value={network.ip}>
+                    {filteredPrivateNetwork?.map((network, idx) => (
+                      <OsdsSelectOption key={idx} value={network.ip}>
                         {network.ip}
                       </OsdsSelectOption>
                     ))}
