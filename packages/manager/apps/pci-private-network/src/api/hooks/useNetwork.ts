@@ -1,8 +1,12 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovhcloud/manager-components';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { getAggregatedNetwork, TAggregatedNetwork } from '@/api/data/network';
+import {
+  deleteNetwork,
+  getAggregatedNetwork,
+  TAggregatedNetwork,
+} from '@/api/data/network';
 import { TGateway, TRegion } from '@/api/data/project';
 import { getSubnets, TSubnet } from '@/api/data/subnets';
 import {
@@ -10,6 +14,7 @@ import {
   isLocalZoneRegion,
   paginateResults,
 } from '@/api/utils/utils';
+import queryClient from '@/queryClient';
 
 const getDetailSubnets = async (
   projectId: string,
@@ -127,13 +132,14 @@ export const useGlobalRegionsNetworks = (
       })) as TAggregatedNetwork[],
   });
 
-  return useMemo(() => {
-    return {
+  return useMemo(
+    () => ({
       isLoading,
       error,
       data: paginateResults(applyFilters(data || [], filters), pagination),
-    };
-  }, [data, isLoading, error, pagination]);
+    }),
+    [data, isLoading, error, pagination],
+  );
 };
 
 export const filterLocalPrivateNetworks = (
@@ -165,17 +171,19 @@ export const useAggregatedLocalNetworks = (
 export type TLocalZoneNetwork = {
   id: string;
   name: string;
-  visibility: string;
-  vlanId: number;
   allocatedIp?: string;
   cidr: string;
   dhcpEnabled: boolean;
   gatewayIp: string | null;
-  gatewayName: string;
-  networkId: string;
   region: string;
   search?: string;
 };
+
+const getLocalZoneRegionsQueryKey = (projectId: string) => [
+  projectId,
+  'private-network',
+  'local-zones',
+];
 
 export const useLocalZoneNetworks = (
   projectId: string,
@@ -183,10 +191,10 @@ export const useLocalZoneNetworks = (
   pagination: PaginationState,
   filters: Filter[] = [],
 ) => {
-  const { data, isLoading, error } = useQuery({
-    queryKey: [projectId, 'private-network', 'local-zones'],
-    queryFn: () => {
-      return Promise.all(
+  const { data, isLoading, error } = useQuery<TLocalZoneNetwork[]>({
+    queryKey: getLocalZoneRegionsQueryKey(projectId),
+    queryFn: () =>
+      Promise.all(
         networks.map(async (network) => {
           const detailSubnet = await getSubnets(
             projectId,
@@ -197,26 +205,59 @@ export const useLocalZoneNetworks = (
           return {
             ...network,
             ...detailSubnet,
+            id: network.id,
             name: network.name,
             allocatedIp: detailSubnet.allocationPools
               .map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
               .join(' ,'),
-          } as TLocalZoneNetwork;
+          };
         }),
-      );
-    },
+      ),
     select: (result) =>
       result.map((network) => ({
         ...network,
         search: `${network.name} ${network.region} ${network.dhcpEnabled} ${network.cidr} ${network.allocatedIp}`,
-      })) as TLocalZoneNetwork[],
+      })),
   });
 
-  return useMemo(() => {
-    return {
+  return useMemo(
+    () => ({
       isLoading,
       error,
       data: paginateResults(applyFilters(data || [], filters), pagination),
-    };
-  }, [data, isLoading, error, pagination, filters]);
+    }),
+    [data, isLoading, error, pagination, filters],
+  );
+};
+
+type TDeleteNetwork = {
+  projectId: string;
+  region: string;
+  networkId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useDeleteNetwork = ({
+  projectId,
+  region,
+  networkId,
+  onError,
+  onSuccess,
+}: TDeleteNetwork) => {
+  const mutation = useMutation({
+    mutationFn: () => deleteNetwork(projectId, region, networkId),
+    onError,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: getLocalZoneRegionsQueryKey(projectId),
+      });
+      return onSuccess();
+    },
+  });
+
+  return {
+    deleteNetwork: mutation.mutate,
+    ...mutation,
+  };
 };

@@ -1,6 +1,6 @@
 export enum PrivateNetworkTabName {
   GLOBAL_REGIONS_TAB_NAME = 'GLOBAL_REGIONS',
-  LOCALZONE_TAB_NAME = 'LOCALZONE',
+  LOCAL_ZONE_TAB_NAME = 'LOCAL_ZONE',
 }
 
 export const PRIVATE_NETWORK_LIST = {
