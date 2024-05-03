@@ -52,14 +52,6 @@
         </ul>
 
         <ul class="vrack__service-list" data-ng-if="serviceType === 'ip'">
-            <add-ipv6-subnet-modal
-                data-is-open-modal="$ctrl.isOpenModalAddSubnet"
-                data-on-confirm="$ctrl.addSubnetModalConfirm"
-            ></add-ipv6-subnet-modal>
-            <delete-ipv6-subnet-modal
-                data-is-open-modal="$ctrl.isOpenModalDeleteSubnet"
-                data-on-confirm="$ctrl.deleteSubnetModalConfirm()"
-            ></delete-ipv6-subnet-modal>
             <ul
                 data-ng-repeat="service in services | orderBy: service.niceName track by service.id"
             >
@@ -71,18 +63,19 @@
                     <span data-ng-bind="::service.niceName"></span>
                     <oui-spinner
                         data-size="s"
-                        data-ng-if="$ctrl.isPending(service.id)"
+                        data-ng-if="$ctrl.isPending(service.id) || service.loader"
                     >
                     </oui-spinner>
                 </li>
-                <vrack-assigned-ip
-                    ng-show="$ctrl.isSelected(service.trueServiceType, service.id)"
-                    data-open-add-modal="$ctrl.openModalAddSubnet"
-                    data-open-delete-modal="$ctrl.openModalDeleteSubnet"
-                    data-refresh-data="$ctrl.subnetUpdatedFalback"
+                <vrack-assigned-ipv6
+                    data-ng-if="$ctrl.isIPv6(service)"
+                    data-ng-show="$ctrl.isSelected(service.trueServiceType, service.id)"
+                    data-loader="service.loader"
                     data-service-name="$ctrl.serviceName"
+                    data-add-subnet-modal-context="$ctrl.addSubnetModalContext"
+                    data-delete-subnet-modal-context="$ctrl.deleteSubnetModalContext"
                     data-ip="service"
-                ></vrack-assigned-ip>
+                ></vrack-assigned-ipv6>
             </ul>
         </ul>
 
@@ -158,3 +151,9 @@
         </ul>
     </li>
 </ul>
+<add-ipv6-subnet-modal
+    data-context="$ctrl.addSubnetModalContext"
+></add-ipv6-subnet-modal>
+<delete-ipv6-subnet-modal
+    data-context="$ctrl.deleteSubnetModalContext"
+></delete-ipv6-subnet-modal>

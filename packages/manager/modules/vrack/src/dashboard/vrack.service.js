@@ -6,4 +6,10 @@ export default class Vrack {
   addIpv6(serviceName, ipv6) {
     return this.$http.post(`/vrack/${serviceName}/ipv6`, { block: ipv6 });
   }
+
+  deleteIpv6(serviceName, ipv6) {
+    return this.$http.delete(
+      `/vrack/${serviceName}/ipv6/${window.encodeURIComponent(ipv6)}`,
+    );
+  }
 }

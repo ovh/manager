@@ -3,19 +3,19 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <oui-modal
-                    data-heading="{{:: 'vrack_delete_modal_title' | translate }}"
-                    data-primary-label="{{:: 'vrack_delete_modal_confirm' | translate }}"
+                    data-heading="{{:: 'vrack_delete_ipv6_modal_title' | translate }}"
+                    data-primary-label="{{:: 'vrack_delete_ipv6_modal_confirm' | translate }}"
                     data-primary-action="$ctrl.onConfirm()"
                     data-secondary-action="$ctrl.onCancel()"
-                    data-secondary-label="{{:: 'vrack_delete_modal_cancel' | translate }}"
+                    data-secondary-label="{{:: 'vrack_delete_ipv6_modal_cancel' | translate }}"
                     data-on-dismiss="$ctrl.onCancel()"
                     class="ng-isolate-scope oui-modal oui-modal_shadow oui-modal_warning"
                 >
                     <p
-                        data-translate="vrack_delete_modal_description"
+                        data-translate="vrack_delete_ipv6_modal_description"
                         data-translate-values="{ ip: $ctrl.servicesToDeleteList() }"
                     ></p>
-                    <p data-translate="vrack_delete_modal_question"></p>
+                    <p data-translate="vrack_delete_ipv6_modal_question"></p>
                 </oui-modal>
             </div>
         </div>
