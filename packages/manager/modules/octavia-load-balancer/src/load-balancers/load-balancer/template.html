@@ -37,6 +37,12 @@
             data-translate="octavia_load_balancer_certificates_tab_title"
         ></span>
     </oui-header-tabs-item>
+    <oui-header-tabs-item
+        data-href="{{:: $ctrl.logsLink }}"
+        data-active="$ctrl.currentActiveLink().startsWith($ctrl.logsLink)"
+    >
+        <span data-translate="octavia_load_balancer_logs_tab_title"></span>
+    </oui-header-tabs-item>
 </oui-header-tabs>
 
 <div class="container-fluid mt-4" data-ui-view="loadbalancerView"></div>
