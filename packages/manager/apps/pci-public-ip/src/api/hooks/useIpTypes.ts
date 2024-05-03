@@ -6,7 +6,7 @@ import { useCloudCatalog } from '@/api/hooks/catalog/useCloudCatalog';
 import { useIpCatalog } from '@/api/hooks/catalog/useIpCatalog';
 
 export const useIpTypes = () => {
-  const { t: tOrder } = useTranslation('order');
+  const { t: tOrder, i18n } = useTranslation('order');
   const [ipTypes, setIpTypes] = useState<TIpType[]>([]);
 
   const {
@@ -46,7 +46,7 @@ export const useIpTypes = () => {
         })),
       );
     }
-  }, [isPublicCloudCatalogPending, isFormattedIpCatalogPending]);
+  }, [isPublicCloudCatalogPending, isFormattedIpCatalogPending, i18n.language]);
 
   return {
     isPending: isFormattedIpCatalogPending || isPublicCloudCatalogPending,

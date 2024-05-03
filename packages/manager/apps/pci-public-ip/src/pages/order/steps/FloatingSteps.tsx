@@ -60,6 +60,9 @@ export const FloatingSteps = ({
       <StepComponent
         key={StepIdsEnum.FLOATING_REGION}
         {...steps.get(StepIdsEnum.FLOATING_REGION)}
+        title={tOrder(
+          'pci_additional_ip_create_step_select_region_floating_ip',
+        )}
         next={{ action: form.floatingRegion && On.next }}
         onEdit={On.edit}
         order={2}
@@ -75,6 +78,7 @@ export const FloatingSteps = ({
       <StepComponent
         key={StepIdsEnum.FLOATING_INSTANCE}
         {...steps.get(StepIdsEnum.FLOATING_INSTANCE)}
+        title={tOrder('pci_additional_ip_create_step_attach_instance')}
         next={{ action: form.instance && form.ipAddress && On.next }}
         order={3}
       >
@@ -168,10 +172,8 @@ export const FloatingSteps = ({
       <StepComponent
         key={StepIdsEnum.FLOATING_SUMMARY}
         {...steps.get(StepIdsEnum.FLOATING_SUMMARY)}
-        next={{
-          action: On.next,
-          label: tOrder('pci_additional_ip_create_action_label'),
-        }}
+        title={tOrder('pci_additional_ip_create_step_summary')}
+        next={{ action: On.next }}
         order={4}
       >
         <FloatingIpSummary
