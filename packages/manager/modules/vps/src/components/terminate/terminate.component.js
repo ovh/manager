@@ -6,6 +6,7 @@ export default {
   controller,
   bindings: {
     serviceName: '<',
+    serviceInfo: '<',
     vps: '<',
     goBack: '<',
     vpsOption: '<',
