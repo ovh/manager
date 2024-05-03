@@ -51,7 +51,7 @@ export default function OrderPage(): JSX.Element {
   }, [projectId, navigation]);
 
   useEffect(() => {
-    setSteps(initStartupSteps(tOrder));
+    setSteps(initStartupSteps());
   }, []);
 
   return (

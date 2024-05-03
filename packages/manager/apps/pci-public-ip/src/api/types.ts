@@ -62,6 +62,5 @@ export type TFormState = {
 export type TStepState = {
   id: string;
   key: string;
-  title: string;
   open: boolean;
 };
