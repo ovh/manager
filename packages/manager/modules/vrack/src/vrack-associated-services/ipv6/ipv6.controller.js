@@ -21,7 +21,7 @@ export default class VrackAssignedIpCtrl {
   }
 
   $onInit() {
-    this.refrechData();
+    this.refreshData();
   }
 
   openAddSubnetModal() {
@@ -50,7 +50,7 @@ export default class VrackAssignedIpCtrl {
             this.CucCloudMessage.error(
               [
                 this.$translate.instant('vrack_error'),
-                (err.data && err.data.message) || err.message || '',
+                err?.data?.message || err.message || '',
               ].join(' '),
             );
           });
@@ -76,7 +76,7 @@ export default class VrackAssignedIpCtrl {
             this.CucCloudMessage.error(
               [
                 this.$translate.instant('vrack_error'),
-                (err.data && err.data.message) || err.message || '',
+                err?.data?.message || err.message || '',
               ].join(' '),
             );
           });
@@ -87,7 +87,7 @@ export default class VrackAssignedIpCtrl {
     };
   }
 
-  refrechData() {
+  refreshData() {
     this.vrackAssignedIpv6Service
       .getIpVrackSubnet(this.serviceName, this.ip.niceName)
       .then(({ data }) => {
@@ -109,7 +109,7 @@ export default class VrackAssignedIpCtrl {
       })
       .catch(() => {
         this.loader = false;
-        this.refrechData();
+        this.refreshData();
       });
   }
 }

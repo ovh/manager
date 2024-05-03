@@ -68,7 +68,7 @@
                     </oui-spinner>
                 </li>
                 <vrack-assigned-ipv6
-                    data-ng-if="$ctrl.isIPv6(service)"
+                    data-ng-if="$ctrl.constructor.isIPv6(service)"
                     data-ng-show="$ctrl.isSelected(service.trueServiceType, service.id)"
                     data-loader="service.loader"
                     data-service-name="$ctrl.serviceName"

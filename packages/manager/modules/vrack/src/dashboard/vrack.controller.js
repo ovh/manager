@@ -177,10 +177,6 @@ export default class VrackMoveDialogCtrl {
         this.$timeout.cancel(this.poller);
       }
     });
-
-    this.isIPv6 = (service) => {
-      return !!service.id.match(/::/);
-    };
   }
 
   refreshMessage() {
@@ -805,7 +801,7 @@ export default class VrackMoveDialogCtrl {
   }
 
   addIp(service) {
-    if (this.isIPv6(service)) {
+    if (this.constructor.isIPv6(service)) {
       return this.vrackService.addIpv6(this.serviceName, service.id);
     }
     return this.OvhApiVrack.Ip()
@@ -821,7 +817,7 @@ export default class VrackMoveDialogCtrl {
   }
 
   deleteIp(service) {
-    if (this.isIPv6(service)) {
+    if (this.constructor.isIPv6(service)) {
       return this.vrackService.deleteIpv6(this.serviceName, service.id);
     }
 
@@ -958,6 +954,10 @@ export default class VrackMoveDialogCtrl {
 
   isMoving() {
     return this.form.serviceToMove !== null && !this.loaders.moving;
+  }
+
+  static isIPv6(service) {
+    return !!service.id.match(/::/);
   }
 
   static hasServices(services) {
