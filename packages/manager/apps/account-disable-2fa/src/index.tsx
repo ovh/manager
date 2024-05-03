@@ -16,7 +16,7 @@ const user = {
 };
 const locale = user.language;
 
-initI18n(locale, [locale]);
+initI18n(locale, [locale], user.subsidiary);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
