@@ -5,9 +5,8 @@ export const useSubnets = (
   projectId: string,
   networkId: string,
   region: string,
-) => {
-  return useQuery({
+) =>
+  useQuery({
     queryKey: ['project', projectId, 'region', region, 'networkId', networkId],
     queryFn: () => getSubnets(projectId, networkId, region),
   });
-};
