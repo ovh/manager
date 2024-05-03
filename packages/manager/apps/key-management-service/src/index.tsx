@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom/client';
 import {
   ShellProvider,
   initShellContext,
-  initI18n,
 } from '@ovh-ux/manager-react-shell-client';
 import App from './App';
+import initI18n from './i18n';
 
 import './global.css';
 import '@ovhcloud/ods-theme-blue-jeans';
 
-const init = async (appName: string) => {
+const init = async (
+  appName: string,
+  { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
+) => {
   const context = await initShellContext(appName);
 
   const region = context.environment.getRegion();
@@ -20,11 +23,19 @@ const init = async (appName: string) => {
     // nothing to do
   }
 
-  await initI18n({
-    context,
-    reloadOnLocaleChange: true,
-    defaultNS: appName,
-    ns: [appName, `${appName}/listing`],
+  const locales = await context.shell.i18n.getAvailableLocales();
+
+  const i18n = initI18n(
+    context.environment.getUserLocale(),
+    locales.map(({ key }: any) => key),
+  );
+
+  context.shell.i18n.onLocaleChange(({ locale }: { locale: string }) => {
+    if (reloadOnLocaleChange) {
+      window.top?.location.reload();
+    } else {
+      i18n.changeLanguage(locale);
+    }
   });
 
   ReactDOM.createRoot(document.getElementById('root')!).render(
