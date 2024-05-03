@@ -9,7 +9,7 @@ export default class Vrack {
 
   deleteIpv6(serviceName, ipv6) {
     return this.$http.delete(
-      `/vrack/${serviceName}/ipv6/${window.encodeURIComponent(ipv6)}`,
+      `/vrack/${serviceName}/ipv6/${encodeURIComponent(ipv6)}`,
     );
   }
 }

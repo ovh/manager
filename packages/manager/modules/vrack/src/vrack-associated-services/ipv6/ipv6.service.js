@@ -6,17 +6,17 @@ export default class VrackAssignedIpService {
 
   getIpVrackSubnet(serviceName, ipBlock) {
     return this.$http.get(
-      `/vrack/${window.encodeURIComponent(
-        serviceName,
-      )}/ipv6/${window.encodeURIComponent(ipBlock)}/routedSubrange`,
+      `/vrack/${encodeURIComponent(serviceName)}/ipv6/${encodeURIComponent(
+        ipBlock,
+      )}/routedSubrange`,
     );
   }
 
   creatIpVrackSubnet(serviceName, ipBlock, { routedSubrange, nexthop }) {
     return this.$http.post(
-      `/vrack/${window.encodeURIComponent(
-        serviceName,
-      )}/ipv6/${window.encodeURIComponent(ipBlock)}/routedSubrange`,
+      `/vrack/${encodeURIComponent(serviceName)}/ipv6/${encodeURIComponent(
+        ipBlock,
+      )}/routedSubrange`,
       {
         routedSubrange,
         nexthop,
@@ -26,11 +26,9 @@ export default class VrackAssignedIpService {
 
   deleteIpVrackSubnet(serviceName, ipBlock, routedSubrange) {
     return this.$http.delete(
-      `/vrack/${window.encodeURIComponent(
-        serviceName,
-      )}/ipv6/${window.encodeURIComponent(
+      `/vrack/${encodeURIComponent(serviceName)}/ipv6/${encodeURIComponent(
         ipBlock,
-      )}/routedSubrange/${window.encodeURIComponent(routedSubrange)}`,
+      )}/routedSubrange/${encodeURIComponent(routedSubrange)}`,
     );
   }
 }
