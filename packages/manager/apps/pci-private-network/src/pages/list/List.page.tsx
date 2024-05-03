@@ -2,6 +2,7 @@ import {
   isDiscoveryProject,
   PciDiscoveryBanner,
   PciGuidesHeader,
+  useNotifications,
 } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -28,7 +29,7 @@ import LocalZoneComponent from '@/components/local-zones/LocalZone.component';
 
 const getActiveTab = (pathname: string) => {
   if (pathname.includes('localZone')) {
-    return PrivateNetworkTabName.LOCALZONE_TAB_NAME;
+    return PrivateNetworkTabName.LOCAL_ZONE_TAB_NAME;
   }
   return PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME;
 };
@@ -37,6 +38,7 @@ export default function ListingPage() {
   const { t } = useTranslation('common');
   const [projectUrl, setProjectUrl] = useState('');
 
+  const { clearNotifications } = useNotifications();
   const navigation = useNavigation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -46,6 +48,7 @@ export default function ListingPage() {
   const activeTab = getActiveTab(location.pathname);
 
   const handlerTabChanged = (event: CustomEvent) => {
+    clearNotifications();
     switch (event.detail?.panel) {
       case PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME:
         navigate(`..`);
@@ -109,7 +112,7 @@ export default function ListingPage() {
             {t('pci_projects_project_network_private_global_regions_tab_label')}
           </OsdsTabBarItem>
           <OsdsTabBarItem
-            panel={PrivateNetworkTabName.LOCALZONE_TAB_NAME}
+            panel={PrivateNetworkTabName.LOCAL_ZONE_TAB_NAME}
             className="flex items-center justify-center"
           >
             {t('pci_projects_project_network_private_local_zones_tab_label')}
@@ -124,8 +127,8 @@ export default function ListingPage() {
             />
           )}
         </OsdsTabPanel>
-        <OsdsTabPanel name={PrivateNetworkTabName.LOCALZONE_TAB_NAME}>
-          {activeTab === PrivateNetworkTabName.LOCALZONE_TAB_NAME && (
+        <OsdsTabPanel name={PrivateNetworkTabName.LOCAL_ZONE_TAB_NAME}>
+          {activeTab === PrivateNetworkTabName.LOCAL_ZONE_TAB_NAME && (
             <LocalZoneComponent projectId={projectId} />
           )}
         </OsdsTabPanel>

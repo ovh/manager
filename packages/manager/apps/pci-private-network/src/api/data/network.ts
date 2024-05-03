@@ -18,3 +18,15 @@ export const getAggregatedNetwork = async (projectId: string) => {
 
   return data.resources;
 };
+
+export const deleteNetwork = async (
+  projectId: string,
+  region: string,
+  networkId: string,
+) => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/region/${region}/network/${networkId}`,
+  );
+
+  return data;
+};
