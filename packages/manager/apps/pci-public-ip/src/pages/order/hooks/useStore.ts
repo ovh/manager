@@ -29,7 +29,6 @@ export const useOrderStore = create<Store>()((set) => {
         };
       });
     },
-
     closeAllSteps: () => {
       set((state) => {
         const $steps = new Map(state.steps);
