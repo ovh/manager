@@ -8,17 +8,8 @@ angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
   .component('deleteIpv6SubnetModal', {
     template,
-    controller: [
-      '$scope',
-      function() {
-        this.cancel = () => {
-          this.isOpenModal = false;
-        };
-      },
-    ],
     bindings: {
-      onConfirm: '&',
-      isOpenModal: '=',
+      context: '=',
     },
   })
   .run(/* @ngTranslationsInject:json ./translations */);

@@ -21,7 +21,7 @@
 <div data-ng-if="$ctrl.isRemoving()">
     <button
         class="oui-button oui-button_secondary oui-button_icon-left"
-        data-ng-click="$ctrl.deleteSelectedServices()"
+        data-ng-click="$ctrl.deleteHandler()"
         data-ng-class="{
                 'hidden': !$ctrl.isAdding() && !$ctrl.isRemoving()
             }"
