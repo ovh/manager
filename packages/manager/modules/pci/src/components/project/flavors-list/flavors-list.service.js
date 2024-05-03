@@ -114,6 +114,16 @@ export default class FlavorsList {
               ),
               'legacy',
             ),
+            priceInformation: groupedFlavors.map((flavor) => {
+              return {
+                id: flavor.id,
+                prices: {
+                  hourly: prices[flavor.planCodes.hourly]?.price,
+                  monthly: prices[flavor.planCodes.monthly]?.price,
+                },
+                region: flavor.region,
+              };
+            }),
             locationCompatibility: this.getlocationCompatibility(
               productAvailability.plans?.filter(({ code }) =>
                 planCodeList?.find((plans) => code.startsWith(plans)),

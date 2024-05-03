@@ -103,4 +103,10 @@ export default class FlavorGroup {
       return osTypes;
     }, []);
   }
+
+  getPriceBasedOnFlavorId(flavorId) {
+    return find(this.flavors, (flavor) =>
+      flavor.containsFlavor(flavorId),
+    ).priceInformation.find(({ id }) => id === flavorId)?.prices;
+  }
 }
