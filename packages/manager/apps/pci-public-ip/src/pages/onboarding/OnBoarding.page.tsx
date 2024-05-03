@@ -6,8 +6,6 @@ import {
   Card,
   OnboardingLayout,
   PciAnnouncementBanner,
-  PciDiscoveryBanner,
-  isDiscoveryProject,
 } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -109,21 +107,12 @@ export default function OnBoardingPage() {
     },
   ];
 
-  const createPublicIP = () => {
-    if (!isDiscoveryProject(project)) navigate('../order');
-  };
-
   return (
     <>
       {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
       {isBannerVisible && <PciAnnouncementBanner projectId={projectId} />}
 
-      {isDiscoveryProject(project) && (
-        <div className="mb-8">
-          <PciDiscoveryBanner projectId={projectId} />
-        </div>
-      )}
       <OnboardingLayout
         title={t('pci_additional_ips_title')}
         description={
@@ -192,8 +181,7 @@ export default function OnBoardingPage() {
         orderButtonLabel={tOnBoarding(
           'pci_additional_ips_onboarding_action_buy',
         )}
-        onOrderButtonClick={createPublicIP}
-        isActionDisabled={isDiscoveryProject(project)}
+        onOrderButtonClick={() => navigate('../order')}
       >
         <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
           {tileItems.map((tile) => (
