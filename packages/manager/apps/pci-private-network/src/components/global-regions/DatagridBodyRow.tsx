@@ -20,6 +20,7 @@ import {
   OsdsTooltipContent,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { useHref } from 'react-router-dom';
 import { TSubnet } from '@/api/data/subnets';
 import { TAggregatedNetwork } from '@/api/data/network';
 
@@ -54,12 +55,17 @@ export default function DataGridBodyRow({
     </OsdsChip>
   );
 
-  const renderTooltipButton = (icon: ODS_ICON_NAME, tooltipContent: string) => (
+  const renderTooltipButton = (
+    icon: ODS_ICON_NAME,
+    tooltipContent: string,
+    href?: string,
+  ) => (
     <OsdsTooltip>
       <OsdsButton
         size={ODS_BUTTON_SIZE.sm}
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
+        href={href}
       >
         <OsdsIcon
           name={icon}
@@ -107,13 +113,13 @@ export default function DataGridBodyRow({
         {renderText(
           subnetDetail.dhcpEnabled
             ? renderChip(
-              t('pci_projects_project_network_private_dhcp_active'),
-              ODS_THEME_COLOR_INTENT.success,
-            )
+                t('pci_projects_project_network_private_dhcp_active'),
+                ODS_THEME_COLOR_INTENT.success,
+              )
             : renderChip(
-              t('pci_projects_project_network_private_dhcp_disabled'),
-              ODS_THEME_COLOR_INTENT.warning,
-            ),
+                t('pci_projects_project_network_private_dhcp_disabled'),
+                ODS_THEME_COLOR_INTENT.warning,
+              ),
         )}
       </td>
       <td>{renderText(subnetDetail.allocatedIp)}</td>
@@ -126,6 +132,9 @@ export default function DataGridBodyRow({
         {renderTooltipButton(
           ODS_ICON_NAME.BIN,
           t('pci_projects_project_network_private_delete'),
+          useHref(
+            `./delete?networkId=${subnetDetail.networkId}&region=${subnetDetail.region}`,
+          ),
         )}
       </td>
     </tr>
