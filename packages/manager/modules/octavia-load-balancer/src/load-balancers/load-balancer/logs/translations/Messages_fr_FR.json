@@ -1,0 +1,7 @@
+{
+  "octavia_load_balancer_logs_breadcrumb_label": "Logs",
+  "octavia_load_balancer_logs_main_description": "TBD. Vous trouverez ci-dessous les journaux d'audit de votre cluster Kubernetes fournissant un ensemble chronologique d'enregistrements pertinents pour la sécurité et documentant la séquence d'actions dans votre cluster : activités générées par les utilisateurs, par les applications qui utilisent l'API Kubernetes et par le plan de contrôle lui-même.",
+  "octavia_load_balancer_logs_tile_description": "En vous abonnant à ce flux, vous pouvez transférer vos logs directement dans Logs Data Platform d'OVHcloud qui vous permet de faire des recherches plus avancées, créer des alertes et des visualisations ou bien tout simplement les archiver.",
+  "octavia_load_balancer_data_streams_title": "Flux de données",
+  "octavia_load_balancer_data_streams_description_haproxy": "TBD. En vous abonnant aux audit logs de votre cluster Kubernetes, ils seront transférés dans Logs Data Platform et vous pourrez les centraliser avec vos autres logs, effectuer des recherches avancées, gérer leurs rétentions, définir des alertes ainsi que des tableaux de bord pour observer facilement vos clusters."
+}

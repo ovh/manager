@@ -74,6 +74,12 @@ export default /* @ngInject */ ($stateProvider) => {
           region,
           loadbalancerId,
         }),
+      logsLink: /* @ngInject */ ($state, projectId, region, loadbalancerId) =>
+        $state.href('octavia-load-balancer.loadbalancer.logs', {
+          projectId,
+          region,
+          loadbalancerId,
+        }),
       discoverLink: () => DISCOVER_LINK,
       trackRoot: () => `${TRACKING_CHAPTER_1}::${TRACKING_NAME}`,
     },
