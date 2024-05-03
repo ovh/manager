@@ -48,6 +48,9 @@ export const FailoverSteps = ({
       <StepComponent
         key={StepIdsEnum.FAILOVER_COUNTRY}
         {...steps.get(StepIdsEnum.FAILOVER_COUNTRY)}
+        title={tOrder(
+          'pci_additional_ip_create_step_select_region_failover_ip',
+        )}
         next={{ action: form.failoverCountry && On.next }}
         onEdit={On.edit}
         order={2}
@@ -66,6 +69,7 @@ export const FailoverSteps = ({
       <StepComponent
         key={StepIdsEnum.FAILOVER_INSTANCE}
         {...steps.get(StepIdsEnum.FAILOVER_INSTANCE)}
+        title={tOrder('pci_additional_ip_create_step_attach_instance')}
         next={{
           action: form.instance && On.next,
           label: tOrder('pci_additional_ips_failoverip_order_generate'),
