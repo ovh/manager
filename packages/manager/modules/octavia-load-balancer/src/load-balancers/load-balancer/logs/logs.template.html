@@ -1,0 +1,23 @@
+<div data-ovh-alert></div>
+
+<log-to-customer-live-tail
+    data-log-api-url="$ctrl.logApiUrl"
+    data-log-service-guide-link="$ctrl.logServiceGuideLink"
+    data-log-subscription-url="$ctrl.logSubscriptionUrl"
+    data-go-to-listing-page="$ctrl.goToListingPage"
+    data-log-kinds-list="$ctrl.logKindsList"
+    data-kind-init-value="$ctrl.kind"
+    data-track-click="$ctrl.trackClick"
+    data-tracking-hits="$ctrl.LOAD_BALANCER_LOGS_TRACKING_HITS"
+>
+    <main-description>
+        <span
+            data-translate="octavia_load_balancer_logs_main_description"
+        ></span>
+    </main-description>
+    <tile-description>
+        <span
+            data-translate="octavia_load_balancer_logs_tile_description"
+        ></span>
+    </tile-description>
+</log-to-customer-live-tail>
