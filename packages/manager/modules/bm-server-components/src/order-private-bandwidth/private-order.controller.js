@@ -36,13 +36,7 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
               .priceInUcents,
         );
       })
-      .catch((error) => {
-        this.handleError(
-          error,
-          this.$translate.instant('server_error_bandwidth_order', error.data),
-        );
-        this.goBack();
-      })
+      .catch((error) => this.handleError(error))
       .finally(() => {
         this.isLoading = false;
         this.isInitializing = false;
@@ -69,16 +63,7 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
               res.planCode = this.model.plan;
               this.provisionalPlan = res;
             })
-            .catch((error) => {
-              this.handleError(
-                error,
-                this.$translate.instant(
-                  'server_error_bandwidth_order',
-                  error.data,
-                ),
-              );
-              this.goBack();
-            })
+            .catch((error) => this.handleError(error))
             .finally(() => {
               this.isLoading = false;
             });
@@ -108,6 +93,7 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
         .then((result) => {
           this.model.orderUrl = result.order.url;
         })
+        .catch((error) => this.handleError(error))
         .finally(() => {
           this.isLoading = false;
         });
@@ -162,12 +148,18 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
     return compact(list);
   }
 
-  handleError(error, message = null) {
+  handleError(error) {
+    const message = this.$translate.instant('server_error_bandwidth_order', {
+      error: error.data?.message,
+    });
+
     if (isFunction(this.onError)) {
       this.onError({
         error: { message, data: error },
       });
     }
+
+    this.goBack(true);
   }
 
   handleSuccess(message) {
