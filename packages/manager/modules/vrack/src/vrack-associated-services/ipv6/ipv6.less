@@ -1,3 +1,5 @@
+@import '../../dashboard/vrack-mapper.less';
+
 .vrack {
   &__assigned-ip {
     &__sub-item {
@@ -11,28 +13,19 @@
       padding: 0.625rem 0.9375rem;
       border-width: 1px;
       border-style: solid;
-      border-color: #dee0de;
-      background-color: #f4f5f3;
+      border-color: @vrack-service-border-color_selected;
+      background-color: @vrack-service-background-color_selected;
       margin: 0.3125rem 0 0.3125rem 0;
       font-size: 0.9375rem;
-      color: #687689;
+      color: @vrack-service-font-color_selected;
       white-space: nowrap;
       user-select: none;
       cursor: default;
+      box-shadow: @vrack-service-box-shadow_selected;
+
       &__title {
         text-overflow: ellipsis;
         overflow: hidden;
-      }
-
-      &_selected {
-        background-color: white;
-        border-color: #aaadaf;
-        color: #112745;
-        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-      }
-
-      &_selectable:hover {
-        cursor: pointer;
       }
     }
   }

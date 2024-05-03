@@ -82,8 +82,9 @@ export default class VrackMoveDialogCtrl {
     this.changeOwnerUrl = null;
     this.vRackCloudRoadmapGuide = null;
     this.arrowIcon = arrowIcon;
-    this.isOpenModalAddSubnet = false;
     this.deleteIpv6Modal = false;
+    this.isOpenModalAddSubnet = false;
+    this.isOpenModalDeleteSubnet = false;
 
     this.modals = {
       move: null,
@@ -170,19 +171,6 @@ export default class VrackMoveDialogCtrl {
           );
         });
     }
-
-    this.openModalAddSubnet = (confirmHandler) => {
-      this.addSubnetModalConfirm = (subnet, adress) => {
-        confirmHandler(subnet, adress);
-      };
-
-      this.isOpenModalAddSubnet = true;
-    };
-
-    this.subnetUpdatedFalback = () => {
-      this.resetCache();
-      this.refreshData();
-    };
 
     this.$scope.$on('$destroy', () => {
       if (this.poller) {
@@ -813,9 +801,9 @@ export default class VrackMoveDialogCtrl {
   }
 
   addIp(service) {
-      if (service.id.match(/::/)) {
-        return this.vrackService.addIpv6(this.serviceName, service.id);
-      }
+    if (this.constructor.isIPv6(service)) {
+      return this.vrackService.addIpv6(this.serviceName, service.id);
+    }
     return this.OvhApiVrack.Ip()
       .v6()
       .create(
@@ -826,6 +814,19 @@ export default class VrackMoveDialogCtrl {
           block: service.id,
         },
       ).$promise;
+  }
+
+  deleteIp(service) {
+    if (this.constructor.isIPv6(service)) {
+      return this.vrackService.deleteIpv6(this.serviceName, service.id);
+    }
+
+    return this.OvhApiVrack.Ip()
+      .v6()
+      .delete({
+        serviceName: this.serviceName,
+        ip: service.id,
+      }).$promise;
   }
 
   deleteSelectedServices() {
@@ -870,12 +871,7 @@ export default class VrackMoveDialogCtrl {
                 }).$promise;
               break;
             case 'ip':
-              task = this.OvhApiVrack.Ip()
-                .v6()
-                .delete({
-                  serviceName: this.serviceName,
-                  ip: service.id,
-                }).$promise;
+              task = this.deleteIp(service);
               break;
             case 'cloudProject':
               task = this.OvhApiVrack.CloudProject()
@@ -958,6 +954,10 @@ export default class VrackMoveDialogCtrl {
 
   isMoving() {
     return this.form.serviceToMove !== null && !this.loaders.moving;
+  }
+
+  static isIPv6(service) {
+    return !!service.id.match(/::/);
   }
 
   static hasServices(services) {

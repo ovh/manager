@@ -25,10 +25,12 @@ import service from './vrack.service';
 import mappedPartials from '../partials/mapped.html';
 import routing from './vrack.routing';
 import vrackAdd from '../add';
-import vrackAssignedIp from '../vrack-services/ip';
+import vrackAssignedIp from '../vrack-associated-services/ipv6';
 import vrackMoveDialog from '../move-dialog/vrack-move-dialog.module';
-import IPv6SubnetAddModal from '../vrack-services/ip/add';
-import vrackDeleteModal from '../delete-dialog';
+
+import vrackDeleteModal from '../vrack-associated-services/ipv6/delete-dialog';
+import IPv6SubnetAddModal from '../vrack-associated-services/ipv6/add-subnet';
+import IPv6SubnetDeleteModal from '../vrack-associated-services/ipv6/delete-subnet';
 
 const moduleName = 'ovhManagerVrackDetails';
 
@@ -45,6 +47,7 @@ angular
     ngOvhFeatureFlipping,
     vrackAssignedIp,
     IPv6SubnetAddModal,
+    IPv6SubnetDeleteModal,
     vrackAdd,
     vrackMoveDialog,
     vrackDeleteModal,

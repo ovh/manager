@@ -5,7 +5,7 @@
             ng-click="$ctrl.openAddSubnetModal()"
         >
             <span class="oui-icon oui-icon-plus" aria-hidden="true"></span>
-            <span data-translate="vrack__assigned_ip_add_subnet"></span>
+            <span data-translate="vrack__assigned-ipv6_add_subnet"></span>
         </button>
     </div>
     <ul
@@ -16,10 +16,14 @@
         <li class="vrack__assigned-ip__subnet">
             <span
                 class="vrack__assigned-ip__subnet__title"
-                data-translate="vrack__assigned_ip_subnet_via"
+                data-translate="vrack__assigned-ipv6_subnet_via"
                 data-translate-values="{ ipblock: $ctrl.ip.niceName, ip: subnet }"
             ></span>
-            <oui-button size="s" variant="link">
+            <oui-button
+                size="s"
+                variant="link"
+                ng-click="$ctrl.openDeleteSubnetModal(subnet)"
+            >
                 <span class="oui-icon oui-icon-bin"></span>
             </oui-button>
         </li>

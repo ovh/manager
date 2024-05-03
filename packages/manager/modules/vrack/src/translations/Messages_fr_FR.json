@@ -1,9 +1,4 @@
 {
   "vrack_title": "Réseau privé vRack",
-  "vrack_order": "Commander",
-  "vrack_delete_modal_title": "Bouger l'IP additionnelle",
-  "vrack_delete_modal_description": "Vous êtes sur le point de bouger {{ ip }} public [Parking] vers IP. Tous les services configurés ne seront plus disponibles.",
-  "vrack_delete_modal_question": "Souhaitez-vous continuer ?",
-  "vrack_delete_modal_cancel": "Annuler",
-  "vrack_delete_modal_confirm": "Confirmer"
+  "vrack_order": "Commander"
 }
