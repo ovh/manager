@@ -10,11 +10,12 @@ module.exports = {
     },
   },
   globals: {
-    '__VERSION__': true,
+    __VERSION__: true,
   },
   rules: {
     'import/extensions': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
-    'react/no-deprecated': 'off'
+    'react/no-deprecated': 'off',
+    'arrow-body-style': ['error', 'as-needed'],
   },
 };

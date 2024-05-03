@@ -1,10 +1,4 @@
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import {
-  FilterAdd,
-  FilterList,
-  useColumnFilters,
-  useDatagridSearchParams,
-} from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -26,13 +20,20 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  FilterAdd,
+  FilterList,
+  useColumnFilters,
+  Notifications,
+  useDatagridSearchParams,
+} from '@ovhcloud/manager-components';
+
 import { useProjectRegions } from '@/api/hooks/useRegions';
 import {
   useAggregatedNonLocalNetworks,
   useGlobalRegionsNetworks,
 } from '@/api/hooks/useNetwork';
 import { useGateways } from '@/api/hooks/useGateway';
-
 import GlobalRegionsDatagrid from './GlobalRegionsDatagrid';
 
 export type TGlobalRegions = {
@@ -81,8 +82,8 @@ export default function GlobalRegionsComponent({
 
   return (
     <div>
+      <Notifications />
       <OsdsDivider />
-
       <div className="sm:flex items-center justify-between">
         <OsdsButton
           className="mr-1 xs:mb-1 sm:mb-0"
