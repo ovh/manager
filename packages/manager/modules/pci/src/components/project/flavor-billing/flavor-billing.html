@@ -77,7 +77,7 @@
         data-variant="light"
         data-on-change="$ctrl.selectBilling(modelValue)"
         data-disabled="$ctrl.disabled && !$ctrl.monthly"
-        data-ng-if="!$ctrl.isPricingComingSoon() && !$ctrl.isLocalZone"
+        data-ng-if="!$ctrl.isPricingComingSoon()"
     >
         <oui-select-picker-section data-ng-if="$ctrl.prices">
             <p>
