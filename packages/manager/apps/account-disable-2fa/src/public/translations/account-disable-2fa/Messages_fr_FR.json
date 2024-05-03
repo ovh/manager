@@ -1,1 +1,6 @@
-{}
+{
+  "account-disable-2fa-see-title": "Vous avez déjà demandé la désactivation de la double authentification.",
+  "account-disable-2fa-see-description1": "Veuillez répondre sur l'échange e-mail initial ou attendre sa clôture avant de soumettre une nouvelle demande.",
+  "account-disable-2fa-see-description2": "Vous n'avez reçu aucun e-mail ? Veuillez nous contacter à l'aide des informations ci-dessous :",
+  "account-disable-2fa-back-home": "Retour à la page d'accueil"
+}
