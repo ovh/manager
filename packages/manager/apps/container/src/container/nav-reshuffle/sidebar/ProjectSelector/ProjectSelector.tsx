@@ -122,8 +122,8 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
           });
         });
       }
-      options.push(createProjectOption ?? []);
-      options.push(seeAllProjectsOption ?? []);
+      if (createProjectOption) options.push(createProjectOption);
+      if (seeAllProjectsOption) options.push(seeAllProjectsOption);
       return options;
     });
   }, [projects, createProjectOption]);
