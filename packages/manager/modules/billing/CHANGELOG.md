@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.34](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.33...@ovh-ux/manager-billing@0.20.0-alpha.34) (2024-05-06)
+
+
+### Features
+
+* **dedicated.order:** filter orders to remove null values ([#11493](https://github.com/ovh/manager/issues/11493)) ([814da72](https://github.com/ovh/manager/commit/814da7254598ac5fd436c190e903e7a712f534f6))
+
+
+
+
+
 # [0.20.0-alpha.33](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.32...@ovh-ux/manager-billing@0.20.0-alpha.33) (2024-04-04)
 
 

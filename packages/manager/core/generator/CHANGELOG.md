@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.7.2...@ovh-ux/manager-generator@0.7.3) (2024-05-06)
+
+
+### Bug Fixes
+
+* jest test workflow ([#11625](https://github.com/ovh/manager/issues/11625)) ([039df4d](https://github.com/ovh/manager/commit/039df4d8ba0d37f77603da39a3fc985c3c5e0807))
+
+
+
+
+
 ## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.7.1...@ovh-ux/manager-generator@0.7.2) (2024-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-generator

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.22.1...@ovh-ux/manager-web@18.23.0) (2024-05-06)
+
+
+### Bug Fixes
+
+* **web:** allow to order hosting without dnsConfiguration or module ([#11607](https://github.com/ovh/manager/issues/11607)) ([acc34bd](https://github.com/ovh/manager/commit/acc34bdf9a2468673c8452a9adfd5625353bb58c))
+* **web:** disable the resiliate button if not available ([#11480](https://github.com/ovh/manager/issues/11480)) ([cccc344](https://github.com/ovh/manager/commit/cccc34449d84d7109cf8dc8f1b42ea649ee9e3b6))
+* **web:** show expired service message ([#11513](https://github.com/ovh/manager/issues/11513)) ([52a8127](https://github.com/ovh/manager/commit/52a81276d31228d7ff152d9ddb3161f2f9919c7b))
+
+
+### Features
+
+* **web:** allow ipv6 for dyndns ip target ([#11307](https://github.com/ovh/manager/issues/11307)) ([7da0eee](https://github.com/ovh/manager/commit/7da0eeef7d1e23cbf8042097b0bbd02168d1dd44))
+
+
+
+
+
 ## [18.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.22.0...@ovh-ux/manager-web@18.22.1) (2024-04-29)
 
 

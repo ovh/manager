@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.34.0...@ovh-ux/manager-dedicated@19.35.0) (2024-05-06)
+
+
+### Features
+
+* **dedicated:** add params into traffic url ([#11583](https://github.com/ovh/manager/issues/11583)) ([3d4ab92](https://github.com/ovh/manager/commit/3d4ab922fee1858620120c41990a6abe89efaf4b))
+
+
+
+
+
 # [19.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.33.2...@ovh-ux/manager-dedicated@19.34.0) (2024-04-30)
 
 

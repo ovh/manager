@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.12.1...@ovh-ux/manager-overthebox@6.13.0) (2024-05-06)
+
+
+### Features
+
+* **overthebox:** rework on release channel labels ([#11527](https://github.com/ovh/manager/issues/11527)) ([bbc4104](https://github.com/ovh/manager/commit/bbc41045c64681b54f9945b74957bc786c3b8d5e))
+
+
+
+
+
 ## [6.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.12.0...@ovh-ux/manager-overthebox@6.12.1) (2024-03-19)
 
 

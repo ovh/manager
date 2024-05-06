@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.3...@ovh-ux/manager-iam@1.9.4) (2024-05-06)
+
+
+### Bug Fixes
+
+* **iam:** infinite loop on iam menu ([#11451](https://github.com/ovh/manager/issues/11451)) ([590bfa5](https://github.com/ovh/manager/commit/590bfa532b94dadfeae8afdbaf107c5060859c84))
+
+
+
+
+
 ## [1.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.2...@ovh-ux/manager-iam@1.9.3) (2024-04-30)
 
 
