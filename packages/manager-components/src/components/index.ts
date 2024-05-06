@@ -17,3 +17,6 @@ export * from './notifications/notifications.component';
 export * from './notifications/useNotifications';
 
 export * from './filters';
+
+export * from './ManagerButton/ManagerButton';
+export * from './ManagerText/ManagerText';

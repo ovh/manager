@@ -20,21 +20,28 @@ import {
 import { ReactI18NextChild, useTranslation } from 'react-i18next';
 import '../translations/translation';
 
+import { ManagerButton } from '../../../ManagerButton/ManagerButton';
+
 export interface ActionMenuItem {
   id: number;
   rel?: OdsHTMLAnchorElementRel;
   download?: string;
   href?: string;
   target?: OdsHTMLAnchorElementTarget;
-  color?: ODS_THEME_COLOR_INTENT;
   onClick?: () => void;
   label: ReactI18NextChild | Iterable<ReactI18NextChild>;
+  color?: ODS_THEME_COLOR_INTENT;
+  variant?: ODS_BUTTON_VARIANT;
+  disabled?: boolean;
+  iamActions?: string[];
+  urn?: string;
 }
 
 export interface ActionMenuProps {
   items: ActionMenuItem[];
   isCompact?: boolean;
   icon?: ODS_ICON_NAME;
+  disabled?: boolean;
 }
 
 const computeOdsIconProps = (
@@ -55,16 +62,60 @@ const computeOdsIconProps = (
   return { size, name, color };
 };
 
+const MenuItem = ({
+  item,
+  isTrigger,
+}: {
+  item: Omit<ActionMenuItem, 'id'>;
+  isTrigger: boolean;
+}) => {
+  const buttonProps = {
+    size: ODS_BUTTON_SIZE.sm,
+    color: ODS_THEME_COLOR_INTENT.primary,
+    variant: ODS_BUTTON_VARIANT.ghost,
+    displayTooltip: false,
+    ...item,
+  };
+  return (
+    <OsdsMenuItem>
+      {!item?.iamActions || item?.iamActions?.length === 0 ? (
+        <OsdsButton
+          {...buttonProps}
+          disabled={buttonProps.disabled || undefined}
+        >
+          <span slot="start">
+            <span>{item.label}</span>
+          </span>
+        </OsdsButton>
+      ) : (
+        <ManagerButton
+          isIamTrigger={isTrigger}
+          iamActions={item.iamActions}
+          urn={item.urn}
+          {...buttonProps}
+          disabled={buttonProps.disabled || undefined}
+        >
+          <span slot="start">
+            <span>{item.label}</span>
+          </span>
+        </ManagerButton>
+      )}
+    </OsdsMenuItem>
+  );
+};
+
 export const ActionMenu: React.FC<ActionMenuProps> = ({
   items,
   isCompact,
   icon,
+  disabled,
 }) => {
   const { t } = useTranslation('buttons');
   const odsIconProps = computeOdsIconProps(isCompact, icon);
+  const [isTrigger, setIsTrigger] = React.useState(false);
 
   return (
-    <OsdsMenu>
+    <OsdsMenu disabled={disabled || undefined}>
       <OsdsButton
         slot="menu-title"
         color={ODS_THEME_COLOR_INTENT.primary}
@@ -73,6 +124,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         size={ODS_BUTTON_SIZE.sm}
         inline
         circle={isCompact || undefined}
+        onClick={() => setIsTrigger(true)}
       >
         {!isCompact && t('common_actions')}
         <span slot={!isCompact ? 'end' : undefined}>
@@ -80,24 +132,9 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         </span>
       </OsdsButton>
 
-      {items.map((item) => (
-        <OsdsMenuItem key={item.id}>
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            color={item.color ?? ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            href={item.href}
-            rel={item.rel}
-            target={item.target}
-            onClick={item.onClick}
-            download={item.download}
-          >
-            <span slot="start">
-              <span>{item.label}</span>
-            </span>
-          </OsdsButton>
-        </OsdsMenuItem>
-      ))}
+      {items.map(({ id, ...item }) => {
+        return <MenuItem key={id} item={item} isTrigger={isTrigger} />;
+      })}
     </OsdsMenu>
   );
 };
