@@ -33,9 +33,7 @@ export function useKmsGuides() {
   };
 
   useEffect(() => {
-    if (ovhSubsidiary) {
-      setKmsGuides(KMS_GUIDES[ovhSubsidiary] ?? KMS_GUIDES.DEFAULT);
-    }
+    setKmsGuides(KMS_GUIDES[ovhSubsidiary] ?? KMS_GUIDES.DEFAULT);
   }, [ovhSubsidiary]);
 
   return { kmsGuides, kmsOnboardingGuide: kmsGuides[0] };
