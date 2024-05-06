@@ -38,14 +38,15 @@ const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
     return PAYMENT_ALERTS.NO_DEFAULT;
   }
   const currentCreditCard: IPaymentMethod = paymentMethods?.find(currentPaymentMethod => currentPaymentMethod.paymentType === 'CREDIT_CARD');
+  
   if (currentCreditCard) {
     const creditCardExpirationDate = new Date(currentCreditCard.expirationDate);
     if (creditCardExpirationDate.getTime() < Date.now()) {
       return PAYMENT_ALERTS.EXPIRED_CARD;
     }
-    const currentDateMinus30Days = new Date();
-    currentDateMinus30Days.setDate(currentDateMinus30Days.getDate() - 30);
-    const isSoonToBeExpireCreditCard = currentDateMinus30Days.getTime() > Date.now() && creditCardExpirationDate.getTime() > Date.now();
+    const expirationDateMinus30Days = new Date(creditCardExpirationDate);
+    expirationDateMinus30Days.setDate(creditCardExpirationDate.getDate() - 30);
+    const isSoonToBeExpireCreditCard = expirationDateMinus30Days.getTime() < Date.now();
     if (isSoonToBeExpireCreditCard) {
       return PAYMENT_ALERTS.SOON_EXPIRED_CARD;
     }
