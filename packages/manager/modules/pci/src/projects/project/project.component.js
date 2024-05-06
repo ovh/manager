@@ -34,6 +34,7 @@ export default {
     discoveryPromotionVoucherAmount: '<',
     activateDiscovery: '<',
     orderStatus: '<',
+    getUAppUrl: '<',
   },
   controller,
   template,

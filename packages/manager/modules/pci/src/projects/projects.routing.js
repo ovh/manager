@@ -77,26 +77,65 @@ export default /* @ngInject */ ($stateProvider) => {
         return isStateExist;
       },
 
-      getTargetedState: /* @ngInject */ (redirectTarget) => (project) => {
-        const category = redirectTarget.category.toUpperCase();
-        const state = redirectTarget.state.toUpperCase();
+      getTargetedState: /* @ngInject */ (
+        redirectTarget,
+        pciFeatures,
+        $injector,
+      ) => (project) =>
+        new Promise((resolve) => {
+          const category = redirectTarget.category.toUpperCase();
+          const state = redirectTarget.state.toUpperCase();
 
-        return {
-          state: PCI_FEATURES_STATES[category][state],
-          params: {
-            ...redirectTarget.params,
-            projectId: project.project_id,
-          },
-          options: {
-            inherit: true,
-          },
-        };
-      },
+          if (
+            category === 'DATABASES' &&
+            ['operational', 'databases'].includes(
+              redirectTarget.params?.type,
+            ) &&
+            pciFeatures.isFeatureAvailable(
+              PCI_FEATURES.PRODUCTS.DATABASES_ANALYTICS,
+            )
+          ) {
+            const ovhShell = $injector.get('ovhShell');
+            ovhShell.navigation
+              .getURL(
+                'public-cloud',
+                `#/pci/projects/${project.project_id}/databases-analytics/operational/services/new`,
+              )
+              .then((url) => {
+                resolve({
+                  url,
+                  isUApp: true,
+                  params: redirectTarget.steps,
+                });
+              });
+          } else {
+            resolve({
+              state: PCI_FEATURES_STATES[category][state],
+              params: {
+                ...redirectTarget.params,
+                projectId: project.project_id,
+              },
+              options: {
+                inherit: true,
+              },
+            });
+          }
+        }),
 
-      goToState: /* @ngInject */ ($state) => (targetedState) => {
-        const { state, params, options } = targetedState;
-
-        return $state.go(state, params, options);
+      goToState: /* @ngInject */ ($state) => (targetedStatePromise) => {
+        targetedStatePromise.then((targetedState) => {
+          if (targetedState.isUApp) {
+            const url = new URL(targetedState.url);
+            Object.keys(targetedState.params).forEach((key) => {
+              url.searchParams.append(key, targetedState.params[key]);
+            });
+            const state = [targetedState.url, url.searchParams].join('?');
+            window.location = state;
+            return state;
+          }
+          const { state, params, options } = targetedState;
+          return $state.go(state, params, options);
+        });
       },
 
       goToProject: /* @ngInject */ ($state) => (project) =>
