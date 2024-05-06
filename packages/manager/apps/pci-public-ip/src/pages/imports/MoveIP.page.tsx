@@ -31,7 +31,10 @@ export default function MoveIPPage() {
   const handleMoveIPSuccess = () => {
     addSuccess(
       t('pci_additional_ips_imports_import_success', {
-        ip: ipToMove,
+        ip: decodeURIComponent(ipToMove),
+        interpolation: {
+          escapeValue: false,
+        },
       }),
     );
 
@@ -41,8 +44,11 @@ export default function MoveIPPage() {
   const handleMoveIPError = (error: Error) => {
     addError(
       t('pci_additional_ips_imports_import_error', {
-        ip: ipToMove,
+        ip: decodeURIComponent(ipToMove),
         error,
+        interpolation: {
+          escapeValue: false,
+        },
       }),
     );
 
