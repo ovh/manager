@@ -1,9 +1,7 @@
 import angular from 'angular';
 
-import textAccordion from './databases/text-accordion';
-
 const moduleName = 'ovhManagerPciComponentsStorages';
 
-angular.module(moduleName, [textAccordion]);
+angular.module(moduleName);
 
 export default moduleName;
