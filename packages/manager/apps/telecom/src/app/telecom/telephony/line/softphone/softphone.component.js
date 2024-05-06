@@ -7,5 +7,7 @@ export default {
   bindings: {
     openAddDeviceModal: '<',
     storeLinks: '<',
+    softphoneDevices: '<',
+    goToDeleteDevice: '<',
   },
 };
