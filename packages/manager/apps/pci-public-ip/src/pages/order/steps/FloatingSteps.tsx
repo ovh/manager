@@ -6,8 +6,9 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useData } from '@/api/hooks/useData';
 import { StepIdsEnum, TRegion } from '@/api/types';
 import { useOrderStore } from '@/pages/order/hooks/useStore';
@@ -26,7 +27,15 @@ export const FloatingSteps = ({
   const { t: tOrder } = useTranslation('order');
   const { state: DataState, getInstanceById } = useData(projectId, regionName);
   const { form, setForm, steps } = useOrderStore();
+  const [instanceCreationURL, setInstanceCreationURL] = useState('');
   const { On } = useActions(projectId);
+  const nav = useNavigation();
+
+  useEffect(() => {
+    nav
+      .getURL('public-cloud', `#/pci/projects/${projectId}/instances/new`, {})
+      .then((data) => setInstanceCreationURL(`${data}`));
+  }, [projectId, nav]);
 
   const selectedRegionInstances = useMemo(
     () =>
@@ -157,11 +166,11 @@ export const FloatingSteps = ({
             <p className="text-base font-sans">
               {tOrder(
                 'pci_additional_ip_create_no_instance_message_floating_ip',
-              )}
+              )}{' '}
               <span
                 dangerouslySetInnerHTML={{
                   __html: tOrder('pci_additional_ip_create_create_instance', {
-                    url: `/pci/projects/${projectId}/instances/new`,
+                    url: instanceCreationURL,
                   }),
                 }}
               ></span>
