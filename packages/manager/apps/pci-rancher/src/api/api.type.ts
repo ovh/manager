@@ -105,4 +105,5 @@ export interface RancherPlan {
 export interface RancherVersion {
   name: string;
   status: RancherReferenceStatus;
+  description?: string;
 }

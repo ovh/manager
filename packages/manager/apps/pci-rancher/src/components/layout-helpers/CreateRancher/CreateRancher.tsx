@@ -137,7 +137,19 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
     }
 
     if (selectedVersion === null && versions?.length) {
-      setSelectedVersion(versions?.filter((v) => v.status === 'AVAILABLE')[0]);
+      const availableVersions = versions.filter(
+        (version) => version.status === 'AVAILABLE',
+      );
+      const versionToBeSelected = availableVersions.reduce(
+        (maxVersion, currentVersion) => {
+          return currentVersion.name > maxVersion.name
+            ? currentVersion
+            : maxVersion;
+        },
+        availableVersions[0],
+      );
+      versionToBeSelected.description = t('createRancherRecomendedVersion');
+      setSelectedVersion(versionToBeSelected);
     }
   }, [versions, plans]);
 
@@ -156,6 +168,10 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
       hasSomeRancher ? getRanchersUrl(projectId) : getOnboardingUrl(projectId),
     );
   };
+
+  const sortedVersions: RancherVersion[] = versions?.sort((a, b) =>
+    b.name.localeCompare(a.name),
+  );
 
   return (
     <div>
@@ -269,16 +285,12 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
           </div>
         </Block>
         <div className="flex my-5">
-          {versions?.map((version) => (
+          {sortedVersions?.map((version) => (
             <TileSection
               key={version.name}
               isActive={version.name === selectedVersion?.name}
               name={version.name}
-              description={
-                version.name === selectedVersion?.name
-                  ? t('createRancherRecomendedVersion')
-                  : undefined
-              }
+              description={version.description}
               isDisabled={version.status !== 'AVAILABLE'}
               onClick={() => setSelectedVersion(version)}
             />
