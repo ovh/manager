@@ -148,7 +148,7 @@ export default function FailoverIPComponent({
 
       <OsdsDivider />
       <div className="sm:flex items-center justify-between">
-        <OsdsMenu>
+        <OsdsMenu className="mb-3">
           <OsdsButton
             slot={'menu-title'}
             color={ODS_THEME_COLOR_INTENT.primary}
@@ -298,7 +298,7 @@ export default function FailoverIPComponent({
       )}
 
       {!isLoading && !error && (
-        <div className="mt-8">
+        <div className="mt-8 overflow-x-auto">
           <Datagrid
             columns={columns}
             items={failoverIPs.rows || []}
