@@ -3,6 +3,7 @@
   "telephony_line_management_actions_line_details_offer": "Informations générales",
   "telephony_line_management_actions_line_sip_password": "Mot de passe SIP",
   "telephony_line_management_actions_line_sip_domain_management": "Domaine SIP",
+  "telephony_line_management_actions_line_softphone": "Utiliser ma ligne avec un Softphone",
   "telephony_line_management_actions_line_sip_ips_restrictions": "Restrictions SIP par IP",
   "telephony_line_management_actions_line_language": "Gérer la langue",
   "telephony_line_management_actions_line_resume_offer": "Changer d'offre",

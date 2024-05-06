@@ -104,6 +104,13 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementCtrl(
           'telephony_line_phone_actions_line_order_headset',
         ),
       },
+      {
+        name: 'line_softphone',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.softphone',
+        text: $translate.instant(
+          'telephony_line_management_actions_line_softphone',
+        ),
+      },
     ];
 
     if (taskCount) {
