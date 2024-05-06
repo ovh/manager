@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.37.1...@ovh-ux/manager-pci@6.37.2) (2024-05-06)
+
+
+### Bug Fixes
+
+* **pci:** fetch pricing based on flavor id ([1b8486a](https://github.com/ovh/manager/commit/1b8486acb924623dc72850c39863187bc2d1e9fb))
+
+
+
+
+
 ## [6.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.37.0...@ovh-ux/manager-pci@6.37.1) (2024-04-30)
 
 
