@@ -125,7 +125,7 @@ export default function ImportsPage(): JSX.Element {
       )}
 
       {!isLoading && !error && (
-        <div className="mt-8">
+        <div className="mt-8 overflow-x-auto">
           <Datagrid
             columns={columns}
             items={importsIPs.rows || []}
