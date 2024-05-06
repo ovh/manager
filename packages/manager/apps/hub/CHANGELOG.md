@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.7.2...@ovh-ux/manager-hub-app@5.7.3) (2024-05-06)
+
+
+### Bug Fixes
+
+* **hub:** make dashboard usable without rights on /services ([#11256](https://github.com/ovh/manager/issues/11256)) ([6d79720](https://github.com/ovh/manager/commit/6d797209ab1a77253072b501963d706e3996ce81))
+
+
+
+
+
 ## [5.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.7.1...@ovh-ux/manager-hub-app@5.7.2) (2024-04-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

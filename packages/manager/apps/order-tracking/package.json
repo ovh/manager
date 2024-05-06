@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/order-tracking-app",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "private": true,
   "description": "Order tracking standalone application.",
   "repository": {
@@ -18,10 +18,10 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^7.3.1",
-    "@ovh-ux/manager-core": "^12.16.1",
+    "@ovh-ux/manager-core": "^12.16.2",
     "@ovh-ux/ng-at-internet": "^5.11.9",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
-    "@ovh-ux/ng-ovh-order-tracking": "^2.4.0",
+    "@ovh-ux/ng-ovh-order-tracking": "^2.4.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.2",
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",

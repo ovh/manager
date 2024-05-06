@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.37.2...@ovh-ux/manager-pci@6.38.0) (2024-05-06)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([5c67535](https://github.com/ovh/manager/commit/5c67535cf609d6626b7cc172a52b1fe780848fdb))
+
+
+### Features
+
+* **pci.project:** add billing change banner ([#11635](https://github.com/ovh/manager/issues/11635)) ([3cf8cbc](https://github.com/ovh/manager/commit/3cf8cbc0ba997fb0cf7bb958064ff4c9f005df68))
+* **pci:** add billing change banner ([#11390](https://github.com/ovh/manager/issues/11390)) ([ec56161](https://github.com/ovh/manager/commit/ec56161a544d7fdadc9556f3961e61725c949b3c))
+* **project:** update text content for the billing page ([#10903](https://github.com/ovh/manager/issues/10903)) ([06ad178](https://github.com/ovh/manager/commit/06ad1781c0e18407746c4bbc6a06e7228682ddee))
+
+
+### Reverts
+
+* Revert "feat(pci): add billing change banner (#11390)" (#11641) ([4ed663f](https://github.com/ovh/manager/commit/4ed663f826c4b17ba4a028cb7eedb503cb802835)), closes [#11390](https://github.com/ovh/manager/issues/11390) [#11641](https://github.com/ovh/manager/issues/11641)
+
+
+
+
+
 ## [6.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.37.1...@ovh-ux/manager-pci@6.37.2) (2024-05-06)
 
 

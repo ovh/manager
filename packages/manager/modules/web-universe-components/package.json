@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-web-universe-components",
-  "version": "9.16.0",
+  "version": "9.16.1",
   "private": true,
   "description": "Collection of components for the Web control panel.",
   "repository": {

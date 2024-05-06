@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-product-offers",
-  "version": "5.6.0",
+  "version": "5.6.1",
   "private": true,
   "description": "Set of components and services to handle option order with different workflows",
   "repository": {

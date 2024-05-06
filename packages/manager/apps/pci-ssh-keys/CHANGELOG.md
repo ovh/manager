@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.2.6...@ovh-ux/manager-pci-ssh-keys-app@0.2.7) (2024-05-06)
+
+
+### Bug Fixes
+
+* correct eslint typescript ([#11490](https://github.com/ovh/manager/issues/11490)) ([95560f7](https://github.com/ovh/manager/commit/95560f7aadd559abae0a26e37b12e0688b3dfd80))
+
+
+
+
+
 ## [0.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.2.5...@ovh-ux/manager-pci-ssh-keys-app@0.2.6) (2024-04-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app

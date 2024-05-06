@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-ng-apiv2-helper",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "OVHCloud Helper for apiv2",
   "repository": {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.10.0...@ovh-ux/manager-hub@3.10.1) (2024-05-06)
+
+
+### Bug Fixes
+
+* **hub:** make dashboard usable without rights on /services ([#11256](https://github.com/ovh/manager/issues/11256)) ([6d79720](https://github.com/ovh/manager/commit/6d797209ab1a77253072b501963d706e3996ce81))
+
+
+
+
+
 # [3.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.9.1...@ovh-ux/manager-hub@3.10.0) (2024-04-04)
 
 

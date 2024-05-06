@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.15.2...@ovh-ux/manager-nutanix@1.16.0) (2024-05-06)
+
+
+### Features
+
+* **dedicated.nutanix:** filter on nodes status ([#10647](https://github.com/ovh/manager/issues/10647)) ([037eb7a](https://github.com/ovh/manager/commit/037eb7aa87aead5255d69bb099c49356c34032c7))
+
+
+
+
+
 ## [1.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.15.1...@ovh-ux/manager-nutanix@1.15.2) (2024-03-19)
 
 

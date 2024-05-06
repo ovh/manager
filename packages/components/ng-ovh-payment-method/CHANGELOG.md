@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.15.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.15.0...@ovh-ux/ng-ovh-payment-method@9.15.1) (2024-05-06)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-payment-method
+
+
+
+
+
 # [9.15.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.14.1...@ovh-ux/ng-ovh-payment-method@9.15.0) (2024-03-25)
 
 
