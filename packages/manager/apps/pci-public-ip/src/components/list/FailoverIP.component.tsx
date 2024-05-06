@@ -132,7 +132,9 @@ export default function FailoverIPComponent({
     {
       id: 'actions',
       cell: (props: FailoverIP) => (
-        <FailoverIPActions projectId={projectId} ipId={props.id} />
+        <div className="min-w-16">
+          <FailoverIPActions projectId={projectId} ipId={props.id} />
+        </div>
       ),
       label: '',
     },
