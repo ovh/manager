@@ -140,6 +140,9 @@ export const useActions = (projectId: string) => {
                 tOrder('pci_additional_ip_create_floating_ip_error', {
                   message:
                     error.response?.data?.message || error.message || null,
+                  interpolation: {
+                    escapeValue: false,
+                  },
                 }),
               ),
             );
