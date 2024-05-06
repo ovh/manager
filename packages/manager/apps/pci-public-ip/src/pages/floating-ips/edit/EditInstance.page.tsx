@@ -116,6 +116,9 @@ export default function EditInstancePage() {
           {(t) =>
             t('pci_additional_ips_floatingips_edit_error', {
               error: (error as ResponseAPIError)?.response?.data?.message,
+              interpolation: {
+                escapeValue: false,
+              },
             })
           }
         </Translation>,

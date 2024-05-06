@@ -47,7 +47,7 @@ export default function FloatingIPComponent({
   projectId,
   projectUrl,
 }: Readonly<FloatingIPComponentProps>) {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', 'imports'], { nsMode: 'fallback' });
   const navigate = useNavigate();
 
   const { pagination, setPagination } = useDatagridSearchParams();
