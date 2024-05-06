@@ -318,6 +318,7 @@ export function getPciProjectMenu(
           title: 'AI Endpoints',
           regions: ['CA', 'EU'],
           feature: 'ai-endpoints',
+          badge: 'alpha',
           href: 'https://endpoints.ai.cloud.ovh.net/',
           external: true,
         },

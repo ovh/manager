@@ -382,7 +382,7 @@ const pciNode: Node = {
           count: false,
           url: 'https://endpoints.ai.cloud.ovh.net/',
           features: ['ai-endpoints'],
-          tag: NodeTag.BETA,
+          tag: NodeTag.ALPHA,
           isExternal: true,
         },
       ],
