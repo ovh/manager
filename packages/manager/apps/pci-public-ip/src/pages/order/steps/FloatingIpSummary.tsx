@@ -128,7 +128,7 @@ export const FloatingIpSummary = ({
                         'pci_additional_ip_create_summary_step_price',
                       )}{' '}
                       <CatalogPriceComponent
-                        price={selectedGateway.price.month * 12}
+                        price={selectedGateway.price.month}
                         user={me}
                         interval="month"
                         maximumFractionDigits={4}
