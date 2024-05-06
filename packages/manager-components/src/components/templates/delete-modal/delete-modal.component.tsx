@@ -97,7 +97,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
-        {...handleClick(close)}
+        // {...handleClick(close)}
       >
         {cancelButtonLabel || t('deleteModalCancelButton')}
       </OsdsButton>
@@ -107,10 +107,10 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
-        {...handleClick(() => {
-          setDeleteInput('');
-          onConfirmDelete();
-        })}
+        // {...handleClick(() => {
+        //   setDeleteInput('');
+        //   onConfirmDelete();
+        // })}
       >
         {confirmButtonLabel || t('deleteModalDeleteButton')}
       </OsdsButton>

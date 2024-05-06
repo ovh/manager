@@ -10,6 +10,7 @@ import { OsdsLink, OsdsButton } from '@ovhcloud/ods-components/react';
 import {
   ActionMenu,
   ActionMenuItem,
+  ManagerButton,
   DataGridTextCell,
 } from '@ovhcloud/manager-components';
 import {
@@ -59,6 +60,8 @@ export const VrackId: React.FC<VrackServicesWithIAM & {
             .replace(':vrackId', vs.currentState.vrackId),
         );
       },
+      action: 'vrackServices:apiovh:storageNetApp/detach',
+      urn: vs.iam.urn,
     },
   ];
 
@@ -86,7 +89,9 @@ export const VrackId: React.FC<VrackServicesWithIAM & {
   }
 
   return (
-    <OsdsButton
+    <ManagerButton
+      urn={vs.iam.urn}
+      action={'vrackServices:apiovh:vrack/attach'}
       inline
       color={ODS_THEME_COLOR_INTENT.primary}
       variant={ODS_BUTTON_VARIANT.stroked}
@@ -104,6 +109,6 @@ export const VrackId: React.FC<VrackServicesWithIAM & {
       })}
     >
       {t('associateVrackButtonLabel')}
-    </OsdsButton>
+    </ManagerButton>
   );
 };

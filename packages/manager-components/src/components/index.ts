@@ -19,3 +19,6 @@ export * from './notifications/useNotifications';
 export * from './filters';
 
 export * from './form';
+
+export * from './ManagerButton/ManagerButton';
+export * from './ManagerText/ManagerText';

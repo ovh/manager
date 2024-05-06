@@ -1,7 +1,7 @@
 import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
-import { EditableText } from '@ovhcloud/manager-components';
+import { EditableText, ManagerText } from '@ovhcloud/manager-components';
 import {
   ButtonType,
   PageLocation,
@@ -69,7 +69,12 @@ export const DisplayName: React.FC<VrackServicesWithIAM & {
           {name}
         </OsdsLink>
       ) : (
-        name
+        <ManagerText
+          urn={vs.iam.urn}
+          action="vrackServices:apiovh:resource/get"
+        >
+          {name}
+        </ManagerText>
       )}
     </EditableText>
   );

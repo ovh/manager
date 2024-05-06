@@ -119,9 +119,9 @@ export const EditableText: React.FC<EditableTextProps> = ({
         variant={ODS_BUTTON_VARIANT.ghost}
         type={ODS_BUTTON_TYPE.button}
         size={ODS_BUTTON_SIZE.sm}
-        {...handleClick(() => {
-          setEditStatus('editing');
-        })}
+        // {...handleClick(() => {
+        //   setEditStatus('editing');
+        // })}
         disabled={disabled || undefined}
       >
         <OsdsIcon
