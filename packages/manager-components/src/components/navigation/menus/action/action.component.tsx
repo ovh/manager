@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
@@ -12,6 +12,8 @@ import {
   OsdsMenu,
   OsdsMenuItem,
   OsdsIcon,
+  OsdsTooltip,
+  OsdsTooltipContent,
 } from '@ovhcloud/ods-components/react';
 import {
   OdsHTMLAnchorElementTarget,
@@ -19,6 +21,9 @@ import {
 } from '@ovhcloud/ods-common-core';
 import { ReactI18NextChild, useTranslation } from 'react-i18next';
 import '../translations/translation';
+
+import { ManagerButton } from '../../../ManagerButton/ManagerButton';
+import { useIsAuthorized } from '../../../../hooks/iam';
 
 export interface ActionMenuItem {
   id: number;
@@ -28,6 +33,10 @@ export interface ActionMenuItem {
   target?: OdsHTMLAnchorElementTarget;
   onClick?: () => void;
   label: ReactI18NextChild | Iterable<ReactI18NextChild>;
+  isIamDisabled?: boolean;
+  isIamAuthorized?: boolean;
+  action?: string;
+  urn?: string;
 }
 
 export interface ActionMenuProps {
@@ -35,8 +44,34 @@ export interface ActionMenuProps {
   isCompact?: boolean;
 }
 
+export type ActionMenuIamProps = PropsWithChildren<{
+  action?: string;
+  urn?: string;
+}>;
+
+export const ActionMenuIam = ({
+  children,
+  action,
+  urn,
+}: ActionMenuIamProps) => {
+  const { t } = useTranslation('iam');
+  const isAuthorized = useIsAuthorized(action, urn);
+  if (!isAuthorized) {
+    return (
+      <OsdsTooltip>
+        {children}
+        <OsdsTooltipContent slot="tooltip-content">
+          <div>{t('common_iam_actions_message')}</div>
+        </OsdsTooltipContent>
+      </OsdsTooltip>
+    );
+  }
+  return <>{children}</>;
+};
+
 export const ActionMenu: React.FC<ActionMenuProps> = ({ items, isCompact }) => {
   const { t } = useTranslation('buttons');
+
   return (
     <OsdsMenu>
       <OsdsButton
@@ -63,24 +98,29 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ items, isCompact }) => {
         </span>
       </OsdsButton>
 
-      {items.map((item) => (
-        <OsdsMenuItem key={item.id}>
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            href={item.href}
-            rel={item.rel}
-            target={item.target}
-            onClick={item.onClick}
-            download={item.download}
-          >
-            <span slot="start">
-              <span>{item.label}</span>
-            </span>
-          </OsdsButton>
-        </OsdsMenuItem>
-      ))}
+      {items.map((item) => {
+        const isAuthorized = useIsAuthorized(item.action, item.urn);
+        return (
+          <OsdsMenuItem key={item.id}>
+            <ManagerButton
+              action={item.action}
+              urn={item.urn}
+              size={ODS_BUTTON_SIZE.sm}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              variant={ODS_BUTTON_VARIANT.ghost}
+              href={item.href}
+              rel={item.rel}
+              target={item.target}
+              onClick={item.onClick}
+              download={item.download}
+            >
+              <span slot="start">
+                <span>{item.label}</span>
+              </span>
+            </ManagerButton>
+          </OsdsMenuItem>
+        );
+      })}
     </OsdsMenu>
   );
 };
