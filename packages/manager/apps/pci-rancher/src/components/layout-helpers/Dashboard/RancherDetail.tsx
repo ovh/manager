@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 
+import { CommonTitle } from '@ovhcloud/manager-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -23,12 +24,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
 
+import { useHref } from 'react-router-dom';
 import { RancherService } from '@/api/api.type';
+import { TileBlock } from '@/components/TileBlock/TileBlock';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import { TileBlock } from '@/components/TileBlock/TileBlock';
 
 interface RancherDetailProps {
   rancher: RancherService;
@@ -82,13 +83,7 @@ const RancherDetail = ({
         <div className="p-3">
           <OsdsTile className="w-full h-full flex-col" inline rounded>
             <div className="flex flex-col w-full">
-              <OsdsText
-                size={ODS_TEXT_SIZE._400}
-                level={ODS_TEXT_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t('general_informations')}
-              </OsdsText>
+              <CommonTitle>{t('general_informations')}</CommonTitle>
               <OsdsDivider separator />
               <TileBlock label={t('description')}>
                 <OsdsLink
@@ -127,13 +122,7 @@ const RancherDetail = ({
         <div className="p-3">
           <OsdsTile className="w-full h-full flex-col" inline rounded>
             <div className="flex flex-col w-full">
-              <OsdsText
-                size={ODS_TEXT_SIZE._400}
-                level={ODS_TEXT_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t('security_and_access')}
-              </OsdsText>
+              <CommonTitle>{t('security_and_access')}</CommonTitle>
               <OsdsDivider separator />
               <TileBlock label={t('rancher_ui_access')}>
                 <OsdsClipboard aria-label="clipboard" value={url}>
@@ -186,13 +175,7 @@ const RancherDetail = ({
         <div className="p-3">
           <OsdsTile className="w-full h-full flex-col" inline rounded>
             <div className="flex flex-col w-full">
-              <OsdsText
-                size={ODS_TEXT_SIZE._400}
-                level={ODS_TEXT_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t('consumption')}
-              </OsdsText>
+              <CommonTitle>{t('consumption')}</CommonTitle>
               <OsdsDivider separator />
               <TileBlock label={t('service_level')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>

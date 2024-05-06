@@ -8,8 +8,8 @@ import {
 import { OsdsText } from '@ovhcloud/ods-components/react';
 
 export const CommonTitle: React.FC<React.PropsWithChildren & {
-  typoSize: ODS_THEME_TYPOGRAPHY_SIZE;
-}> = ({ children, typoSize }) => {
+  typoSize?: ODS_THEME_TYPOGRAPHY_SIZE;
+}> = ({ children, typoSize = ODS_THEME_TYPOGRAPHY_SIZE._400 }) => {
   return (
     <OsdsText
       level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}

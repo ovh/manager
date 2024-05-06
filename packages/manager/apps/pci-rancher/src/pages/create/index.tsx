@@ -1,12 +1,12 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
+import { PageLayout } from '@ovhcloud/manager-components';
 import {
   getRancherPlan,
   getRancherVersion,
   getReferenceRancherInfo,
 } from '@/api';
-import PageLayout from '@/components/PageLayout/PageLayout';
 import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRancher';
 import useCreateRancher from '@/hooks/useCreateRancher';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';

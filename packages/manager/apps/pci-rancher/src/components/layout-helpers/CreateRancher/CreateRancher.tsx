@@ -1,6 +1,10 @@
+import {
+  PciDiscoveryBanner,
+  Subtitle,
+  Title,
+} from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_TYPE,
@@ -19,18 +23,16 @@ import {
 import React, { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { isValidRancherName } from '@/utils/rancher';
+import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { getRanchersUrl } from '@/utils/route';
-import Title, { Subtitle } from '@/components/Title/Title';
+import { isValidRancherName } from '@/utils/rancher';
+import { useTrackingAction } from '@/hooks/useTrackingPage';
 import Block from '@/components/Block/Block';
 import {
   CreateRancherPayload,
   RancherPlan,
   RancherVersion,
 } from '@/api/api.type';
-import { useActivatePciProjectURL } from '@/hooks/useActivatePciProjectURL';
-import { useTrackingAction } from '@/hooks/useTrackingPage';
-import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { useSimpleTrackingAction } from '../../../hooks/useTrackingPage';
 
 const TileSection: React.FC<{
@@ -118,7 +120,6 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const [selectedVersion, setSelectedVersion] = useState(null);
 
   const navigate = useNavigate();
-  const activateProjectUrl = useActivatePciProjectURL(projectId);
 
   const isValidName = rancherName !== '' && isValidRancherName(rancherName);
   const hasInputError = rancherName !== '' && !isValidName;
@@ -156,32 +157,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   return (
     <div>
       <Title>{t('createRancherTitle')}</Title>
-      {isProjectDiscoveryMode && (
-        <OsdsMessage
-          color={ODS_THEME_COLOR_INTENT.warning}
-          type={ODS_MESSAGE_TYPE.warning}
-          className="my-6"
-        >
-          <div className="flex items-center justify-between">
-            <div className="max-w-3xl">
-              <OsdsText color={ODS_THEME_COLOR_INTENT.warning}>
-                <Trans>
-                  {t('createRancherDiscoveryMode')} <br />
-                </Trans>
-              </OsdsText>
-            </div>
-            <div className="ml-4">
-              <OsdsButton
-                size={ODS_BUTTON_SIZE.sm}
-                href={activateProjectUrl}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              >
-                {t('createRancherDiscoveryModeActive')}
-              </OsdsButton>
-            </div>
-          </div>
-        </OsdsMessage>
-      )}
+      {isProjectDiscoveryMode && <PciDiscoveryBanner projectId={projectId} />}
       <OsdsMessage
         color={ODS_THEME_COLOR_INTENT.info}
         type={ODS_MESSAGE_TYPE.info}
