@@ -145,6 +145,27 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.$scope.$on('domain.csv.export.error', () => {
       this.loading.domainsExportCsv = false;
     });
+
+    this.loadColumnConfig();
+  }
+
+  onColumnChange(id, columns) {
+    this.columnsConfig = columns;
+    this.saveColumnConfig();
+  }
+
+  loadColumnConfig() {
+    const savedConfig = localStorage.getItem(`${this.datagridId}Config`);
+    if (savedConfig) {
+      this.columnsConfig = JSON.parse(savedConfig);
+    }
+  }
+
+  saveColumnConfig() {
+    localStorage.setItem(
+      `${this.datagridId}Config`,
+      JSON.stringify(this.columnsConfig),
+    );
   }
 
   goToContactManagementEdit(domain) {
