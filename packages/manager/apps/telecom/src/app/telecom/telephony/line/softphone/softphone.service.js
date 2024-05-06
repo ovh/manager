@@ -17,6 +17,14 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
+  deleteDevice(billingAccount, serviceName, deviceId) {
+    return this.$http
+      .delete(
+        `/telephony/${billingAccount}/line/${serviceName}/devices/${deviceId}`,
+      )
+      .then(({ data }) => data);
+  }
+
   createDevice(billingAccount, serviceName, name) {
     return this.$http
       .post(`/telephony/${billingAccount}/line/${serviceName}/devices`, {
@@ -34,8 +42,15 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
-  getStoreLinks(){
-    return this.$http.get('/telephony/softphone/storeLinks')
+  getStoreLinks() {
+    return this.$http
+      .get('/telephony/softphone/storeLinks')
+      .then(({ data }) => data);
+  }
+
+  getSoftphoneDevices(billingAccount, serviceName) {
+    return this.$http
+      .get(`/telephony/${billingAccount}/line/${serviceName}/devices`)
       .then(({ data }) => data);
   }
 }

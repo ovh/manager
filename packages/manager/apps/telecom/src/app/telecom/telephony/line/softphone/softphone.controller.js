@@ -4,6 +4,12 @@ export default class SoftphoneController {
   $onInit() {
     this.constructor.getMobileOperatingSystem();
     this.MOBILE_OS = MOBILE_OS;
+    this.guide = {
+      title: 'mocked_title',
+      url: 'mocked_url',
+      external: 'mocked_external',
+      name: 'mocked_name',
+    };
   }
 
   static getMobileOperatingSystem() {
