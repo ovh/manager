@@ -43,6 +43,9 @@ export default function TerminateAdditionalIPPage() {
               {
                 ip: failoverIP.ip,
                 error: (error as ResponseAPIError)?.response?.data?.message,
+                interpolation: {
+                  escapeValue: false,
+                },
               },
             )
           }
