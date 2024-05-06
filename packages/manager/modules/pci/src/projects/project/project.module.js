@@ -23,7 +23,6 @@ import kubernetes from './kubernetes';
 import loadBalancer from './load-balancer';
 import notebooks from './notebooks';
 import ai from './ai';
-import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
 import quota from './quota';
 import quotaExceedError from './quota-exceed-error';
@@ -75,7 +74,6 @@ angular
     'ovhManagerCore',
     'ovh-api-services',
     'pascalprecht.translate',
-    sshKeys,
     storages,
     users,
     workflow,

@@ -105,6 +105,7 @@
   "domains_action_per_line_restore": "Restaurer",
   "domains_action_per_line_detail": "Détails du nom de domaine",
   "domains_action_per_line_cancellation": "Résilier",
+  "domains_action_per_line_resiliation_cancellation": "Annuler la résiliation du service",
   "domains_action_per_line_autorenew_activate": "Activer le renouvellement automatique",
   "domains_action_per_line_autorenew_deactivate": "Désactiver le renouvellement automatique"
 }

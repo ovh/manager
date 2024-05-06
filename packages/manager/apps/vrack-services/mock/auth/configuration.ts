@@ -2,7 +2,9 @@ import user from './user.json';
 
 export const defaultRegion = 'EU';
 
-export const getConfigurationResponse = ({ region = defaultRegion }): any => ({
+export const getConfigurationResponse = ({
+  region = defaultRegion,
+}): unknown => ({
   region,
   user,
   applicationURLs: {

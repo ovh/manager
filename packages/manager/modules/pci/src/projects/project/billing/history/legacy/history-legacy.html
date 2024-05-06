@@ -36,45 +36,66 @@
         <oui-spinner></oui-spinner>
     </div>
     <div data-ng-if="!$ctrl.loading">
-        <div class="bg-light border my-4 p-4">
-            <div data-ng-if="$ctrl.data.details.totals">
+        <div class="col-xl-6 p-0">
+            <div class="bg-light border my-3 mr-3 ml-0 p-3">
+                <h4
+                    class="mb-0"
+                    data-translate="cpbhd_monthly_bill_header"
+                    data-translate-values="$ctrl.getBillingDateInfo()"
+                ></h4>
                 <span
-                    data-ng-bind="$ctrl.data.details.totals.total.toFixed(2)"
-                ></span
-                >&nbsp;
-                <span
-                    data-ng-bind="$ctrl.data.details.totals.currencySymbol"
-                ></span>
-            </div>
-            <a
-                data-ng-href="{{ $ctrl.currentMonthlyBillingBill.pdfUrl }}"
-                target="_top"
-            >
-                <span
-                    data-ng-if="$ctrl.currentMonthlyBillingBill"
-                    data-translate="cpbhd_bill_pdf_link"
+                    data-ng-if="$ctrl.isSubsidiaryWithPostPaidUsageBilling"
+                    data-translate="cpbhd_monthly_bill_description"
                     data-translate-values="$ctrl.getBillingDateInfo()"
                 ></span>
-                <i
+                <div
+                    class="h2 font-weight-bold mb-0 mt-2"
+                    data-ng-if="$ctrl.data.details.totals"
+                >
+                    <span
+                        data-ng-bind="$ctrl.data.details.totals.total.toFixed(2)"
+                    ></span
+                    >&nbsp;
+                    <span
+                        data-ng-bind="$ctrl.data.details.totals.currencySymbol"
+                    ></span>
+                </div>
+                <a
                     data-ng-if="$ctrl.currentMonthlyBillingBill"
-                    class="fa fa-file-pdf-o"
-                    title="{{ :: 'cpbhd_bill_pdf_tooltip' | translate }}"
-                ></i>
-            </a>
-            <a
-                data-ng-href="{{ $ctrl.billingUrl }}"
-                data-translate="cpbhd_bill_link"
-                target="_top"
-            ></a>
+                    data-ng-href="{{ $ctrl.currentMonthlyBillingBill.pdfUrl }}"
+                    target="_top"
+                >
+                    <span
+                        data-translate="cpbhd_bill_pdf_link"
+                        data-translate-values="$ctrl.getBillingDateInfo()"
+                    ></span>
+                    <i
+                        class="fa fa-file-pdf-o"
+                        title="{{ :: 'cpbhd_bill_pdf_tooltip' | translate }}"
+                    ></i>
+                </a>
+                <div>
+                    <a
+                        class="align-middle"
+                        data-ng-href="{{ $ctrl.billingUrl }}"
+                        target="_top"
+                    >
+                        <span data-translate="cpbhd_bill_link"></span>
+                        <i
+                            class="oui-icon oui-icon-arrow-right"
+                            aria-hidden="true"
+                        ></i>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
                 <oui-tile>
-                    <span
-                        class="oui-heading_4 oui-tile__title"
-                        data-translate="cpbhd_monthly_header"
+                    <h4
+                        data-translate="{{:: ($ctrl.isSubsidiaryWithPostPaidUsageBilling ? 'cpbhd_monthly_post_paid_header' : 'cpbhd_monthly_header') }}"
                         data-translate-values="$ctrl.getBillingDateInfo()"
-                    ></span>
+                    ></h4>
                     <monthly-resource-list
                         resources="$ctrl.data.details"
                     ></monthly-resource-list>
@@ -82,11 +103,10 @@
             </div>
             <div class="col-lg-6">
                 <oui-tile>
-                    <span
-                        class="oui-heading_4 oui-tile__title"
+                    <h4
                         data-translate="cpbhd_hourly_header"
                         data-translate-values="$ctrl.getBillingDateInfo()"
-                    ></span>
+                    ></h4>
                     <hourly-resource-list
                         resources="$ctrl.data.details"
                         show-additional-instance-details="true"

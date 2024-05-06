@@ -28,7 +28,7 @@ const init = async (
 
   const i18n = await initI18n(
     context.environment.getUserLocale(),
-    locales.map(({ key }: any) => key),
+    locales.map(({ key }) => key),
   );
 
   context.shell.i18n.onLocaleChange(({ locale }: { locale: string }) => {
@@ -39,7 +39,8 @@ const init = async (
     }
   });
 
-  ReactDOM.createRoot(document.getElementById('root')!).render(
+  const root = document.getElementById('root');
+  ReactDOM.createRoot(root).render(
     <React.StrictMode>
       <ShellProvider client={context}>
         <App />

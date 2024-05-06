@@ -22,7 +22,6 @@ export interface LinksProps {
   target?: OdsHTMLAnchorElementTarget;
   type?: LinkType;
   onClickReturn?: () => void;
-  [key: string]: any;
 }
 
 export const Links: React.FC<LinksProps> = ({

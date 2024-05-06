@@ -62,5 +62,9 @@
   "network_security_dashboard_like_this": "¿Le gusta?",
   "network_security_dashboard_like_this_tooltip": "¿Le gusta esta página? ¡Envíenos sus comentarios!",
   "network_security_dashboard_refresh": "Actualizar los datos",
-  "network_security_dashboard_time_zone": "(Zona horaria: UTC{{ timeZoneOffset }})"
+  "network_security_dashboard_time_zone": "(Zona horaria: UTC{{ timeZoneOffset }})",
+  "network_security_dashboard_traffic_breadcrumb": "Gráficos de tráfico",
+  "network_security_dashboard_filter_custom": "Personalizado",
+  "network_security_dashboard_warning_period": "Atención: Los datos solicitados no están disponibles. Tenga en cuenta que el período de conservación de los datos de tráfico es de 14 días.",
+  "network_security_dashboard_warning_default": "En su lugar, se mostrará un gráfico del tráfico reciente para la dirección IP seleccionada."
 }

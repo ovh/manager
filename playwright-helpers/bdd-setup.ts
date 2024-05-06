@@ -24,7 +24,7 @@ BeforeAll(async function beforeAll() {
 Before({ timeout: 60 * 1000 }, async function before(this: ICustomWorld) {
   this.handlersConfig = {};
   this.testContext = { data: {} };
-  this.context = await browser.newContext();
+  this.context = await browser.newContext({ locale: 'fr_FR' });
   this.page = await this.context.newPage();
 });
 

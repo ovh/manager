@@ -77,7 +77,7 @@ export interface RancherService {
     ];
   };
   currentTasks: Array<RancherTask>;
-  resourceStatus: RessourceStatus;
+  resourceStatus: ResourceStatus;
 }
 
 export interface CreateRancherPayload {
@@ -86,7 +86,7 @@ export interface CreateRancherPayload {
   plan: string;
 }
 
-export enum RessourceStatus {
+export enum ResourceStatus {
   READY = 'READY',
   DISABLED = 'DISABLED',
   UPDATING = 'UPDATING',

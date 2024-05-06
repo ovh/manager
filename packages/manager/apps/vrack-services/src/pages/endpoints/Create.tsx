@@ -210,7 +210,9 @@ export default function EndpointCreationPage() {
           <span slot="placeholder">{t('subnetPlaceholder')}</span>
           {vrackServices?.data?.currentState.subnets.map((subnet) => (
             <OsdsSelectOption key={subnet.cidr} value={subnet.cidr}>
-              {subnet.displayName || subnet.cidr}
+              {subnet.displayName
+                ? `${subnet.displayName} - ${subnet.cidr}`
+                : subnet.cidr}
             </OsdsSelectOption>
           ))}
         </OsdsSelect>

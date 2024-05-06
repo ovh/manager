@@ -1,4 +1,4 @@
-import { RancherService, RessourceStatus } from '@/api/api.type';
+import { RancherService, ResourceStatus } from '@/api/api.type';
 
 export const rancherMocked: RancherService = {
   id: '123',
@@ -27,10 +27,10 @@ export const rancherMocked: RancherService = {
     },
   },
   currentTasks: [],
-  resourceStatus: RessourceStatus.READY,
+  resourceStatus: ResourceStatus.READY,
 };
 
 export const rancherError: RancherService = {
   ...rancherMocked,
-  resourceStatus: RessourceStatus.ERROR,
+  resourceStatus: ResourceStatus.ERROR,
 };

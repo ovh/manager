@@ -7,5 +7,7 @@
   "cpbc_monthly_header_description": "Forfait e prorata",
   "cpbc_hourly_header": "Prossima fattura",
   "cpbc_hourly_header_description": "Consumi on demand del mese corrente",
-  "cpb_error_message": "Ops! Impossibile recuperare tutte le informazioni."
+  "cpb_error_message": "Ops! Impossibile recuperare tutte le informazioni.",
+  "cpbc_monthly_header_post_paid": "Fatture mensili",
+  "cpbc_hourly_header_post_paid": "Fatture orarie"
 }

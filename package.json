@@ -43,7 +43,7 @@
     "test": "yarn lint",
     "test:turbo": "turbo run test",
     "test:scripts": "make test",
-    "test:playwright:run": "lerna run test:e2e:script --concurrency 1"
+    "test:playwright:run": "lerna run test:e2e:ci --stream --concurrency=1 --no-bail"
   },
   "resolutions": {
     "@babel/runtime": "7.22.15",

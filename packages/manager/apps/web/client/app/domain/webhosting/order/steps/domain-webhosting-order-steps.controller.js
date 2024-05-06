@@ -17,7 +17,8 @@ export default class {
   }
 
   orderWebhosting() {
-    const { enableHosting, enableEmails } = this.cartOption.dnsConfiguration;
+    const enableHosting = this.cartOption.dnsConfiguration?.enableHosting;
+    const enableEmails = this.cartOption.dnsConfiguration?.enableEmails;
     let dnsZoneLabel = CONFIGURATION_OPTIONS.DNS_ZONE.VALUES.NO_CHANGE;
     if (enableHosting && enableEmails) {
       dnsZoneLabel = CONFIGURATION_OPTIONS.DNS_ZONE.VALUES.RESET_ALL;
@@ -32,7 +33,7 @@ export default class {
     const expressOrderJson = {
       planCode: this.cartOption.offer.planCode,
       duration: this.cartOption.offer.durations[0],
-      pricingMode: this.cartOption.module.pricingMode,
+      pricingMode: this.cartOption.offer.pricing.pricingMode,
       quantity: 1,
       configuration: [
         {
@@ -44,7 +45,11 @@ export default class {
           value: dnsZoneLabel,
         },
       ],
-      option: [
+      productId: WEBHOSTING_ORDER_PRODUCT,
+    };
+
+    if (this.cartOption.module) {
+      expressOrderJson.option = [
         {
           planCode: this.cartOption.module.planCode,
           duration: this.cartOption.module.duration,
@@ -57,9 +62,8 @@ export default class {
             },
           ],
         },
-      ],
-      productId: WEBHOSTING_ORDER_PRODUCT,
-    };
+      ];
+    }
 
     return this.$window.open(
       `${this.expressOrderUrl}?products=${JSURL.stringify([expressOrderJson])}`,

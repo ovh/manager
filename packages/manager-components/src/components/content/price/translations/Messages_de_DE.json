@@ -1,0 +1,10 @@
+{
+  "price_ht_label": "ohne MwSt.",
+  "price_ttc_label": "inkl. MwSt.",
+  "price_free": "Inklusive",
+  "price_gst_excl_label": "ohne GST",
+  "price_gst_incl_label": "inkl. GST",
+  "price_per_month": "/Monat",
+  "price_per_year": "/Jahr",
+  "price_per_day": "/Tag"
+}

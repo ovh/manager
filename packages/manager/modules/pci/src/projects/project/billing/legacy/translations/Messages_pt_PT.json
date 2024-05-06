@@ -7,5 +7,7 @@
   "cpbc_monthly_header_description": "Planos e pagamentos proporcionais",
   "cpbc_hourly_header": "Próxima fatura",
   "cpbc_hourly_header_description": "Consumo a pedido do mês decorrente",
-  "cpb_error_message": "Lamentamos, mas não foi possível recuperar todas as informações."
+  "cpb_error_message": "Lamentamos, mas não foi possível recuperar todas as informações.",
+  "cpbc_monthly_header_post_paid": "Faturas mensais",
+  "cpbc_hourly_header_post_paid": "Faturas por horas"
 }

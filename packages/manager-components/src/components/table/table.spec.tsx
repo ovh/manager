@@ -1,4 +1,3 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 import { within } from '@testing-library/react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
@@ -8,10 +7,7 @@ import { Table, TableProps } from './table.component';
 import { mockColumns, mocksData } from './table.mock';
 import { render } from '../../utils/test.provider';
 
-const setupSpecTest = async (
-  customProps?: Partial<TableProps>,
-  table?: TableProps,
-) =>
+const setupSpecTest = async (customProps?: Partial<TableProps>) =>
   render(
     <Table {...customProps}>
       <thead>

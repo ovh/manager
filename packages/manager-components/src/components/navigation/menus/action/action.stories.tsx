@@ -1,4 +1,3 @@
-import React from 'react';
 import { Meta } from '@storybook/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ActionMenu, ActionMenuProps } from './action.component';
