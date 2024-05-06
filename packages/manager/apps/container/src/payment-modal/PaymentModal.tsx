@@ -34,9 +34,6 @@ interface IPaymentMethod {
 }
 
 const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
-  if (!paymentMethods?.some(currentPaymentMethod => currentPaymentMethod.default)) {
-    return PAYMENT_ALERTS.NO_DEFAULT;
-  }
   const currentCreditCard: IPaymentMethod = paymentMethods?.find(currentPaymentMethod => currentPaymentMethod.paymentType === 'CREDIT_CARD');
   
   if (currentCreditCard) {
