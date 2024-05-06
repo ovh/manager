@@ -1,11 +1,14 @@
 import { useCallback } from 'react';
 import JSURL from 'jsurl';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  useEnvironment,
+  useTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useNotifications } from '@ovhcloud/manager-components';
+import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
 import { PCI_LEVEL2 } from '@/tracking.constants';
-import { URLS } from '@/pages/order/constants';
 import { useMe } from '@/api/hooks/useMe';
 import { createFloatingIp } from '@/api/hooks/useCreateFloatingIp';
 import { IPTypeEnum, StepIdsEnum } from '@/api/types';
@@ -13,6 +16,7 @@ import { useOrderStore } from '@/pages/order/hooks/useStore';
 
 export const useActions = (projectId: string) => {
   const { trackClick } = useTracking();
+  const { region } = useEnvironment();
   const { form, steps, openStep, closeStep, setForm } = useOrderStore();
   const { t: tOrder } = useTranslation('order');
   const navigate = useNavigate();
@@ -89,10 +93,11 @@ export const useActions = (projectId: string) => {
       ],
     };
 
-    const expressOrderUrl = URLS.get(me.ovhSubsidiary);
-
     window.open(
-      `${expressOrderUrl}?products=${JSURL.stringify([order])}`,
+      `${getExpressOrderURL(
+        region,
+        me.ovhSubsidiary,
+      )}?products=${JSURL.stringify([order])}`,
       '_blank',
       'noopener',
     );
