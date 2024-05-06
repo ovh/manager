@@ -10,6 +10,13 @@ export const toFilterValue = (label: string) =>
 export const toFilterLabel = (value: string) =>
   value.replace(/_/gm, ' ').replace(/\{coma\}/gm, ',');
 
+export interface Universe {
+  universe: string;
+  count: number;
+  category?: string;
+  name?: string;
+}
+
 export const filterByProperty = (
   product: Product,
   query: string[],
@@ -50,11 +57,14 @@ export const filterProducts = (
       matchSearchText(product, searchText),
   );
 
-const countAndFormat = (objectList: any[], property: string) => {
-  const countByProperty = objectList.reduce((acc, obj) => {
-    acc[obj[property]] = (acc[obj[property]] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
+const countAndFormat = (objectList: Product[], property: ProductKey) => {
+  const countByProperty = objectList.reduce(
+    (acc: { [key in string]: number }, obj: Product) => {
+      acc[obj[property]] = (acc[obj[property]] || 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>,
+  );
 
   return Object.entries(countByProperty)
     .map(([key, count]) => ({ [property]: key, count }))
@@ -65,10 +75,7 @@ const countAndFormat = (objectList: any[], property: string) => {
     );
 };
 
-export function getUniverses<T extends boolean>(
-  products: Product[],
-  withCounter: T,
-): T extends true ? { universe: string; count: number }[] : string[] {
+export function getUniverses(products: Product[], withCounter: boolean) {
   if (withCounter) {
     const formattedUniverses = countAndFormat(products, 'universe') as {
       universe: string;
@@ -77,7 +84,7 @@ export function getUniverses<T extends boolean>(
     formattedUniverses.sort((a, b) =>
       a.universe.localeCompare(b.universe, undefined, { sensitivity: 'base' }),
     );
-    return formattedUniverses as any;
+    return formattedUniverses;
   }
   const uniqueUniverses = [
     ...new Set(products.map((product) => product.universe)),
@@ -86,7 +93,7 @@ export function getUniverses<T extends boolean>(
   uniqueUniverses.sort((a, b) =>
     a.localeCompare(b, undefined, { sensitivity: 'base' }),
   );
-  return uniqueUniverses as any;
+  return uniqueUniverses;
 }
 
 export const getAvailableCategoriesWithCounter = (
@@ -98,7 +105,6 @@ export const getAvailableCategoriesWithCounter = (
       filterByProperty(product, selectedUniverses, 'universe'),
     )
     .filter((product) => !!product.category);
-
   return countAndFormat(productsInSelectedUniverses, 'category');
 };
 

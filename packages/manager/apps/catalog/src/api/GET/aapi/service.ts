@@ -15,6 +15,7 @@ export type Product = {
   order: string;
   universe: string;
   category: string;
+  [key: string]: string | number | string[];
 };
 
 export type CatalogData = {

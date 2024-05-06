@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .sort('date', 'DESC')
           .limit(5000)
           .execute(null, true)
-          .$promise.then(({ data }) => data),
+          .$promise.then(({ data }) => data.filter((value) => value !== null)),
       /* @ngInject */
       timeNow: ($http) =>
         $http

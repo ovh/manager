@@ -107,6 +107,15 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       estimateLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.billing.estimate', { projectId }),
+      isSubsidiaryWithPostPaidUsageBilling: /* @ngInject */ (
+        ovhFeatureFlipping,
+      ) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(['billing:postPaid'])
+          .then((postPaidBillingAvailability) =>
+            postPaidBillingAvailability.isFeatureAvailable('billing:postPaid'),
+          )
+          .catch(() => false),
     },
   });
 };

@@ -27,7 +27,7 @@ export const toPlaywrightMockHandler = (context: BrowserContext) => ({
           body: responseText,
         });
       }
-      return route.continue();
+      return route.fallback();
     },
     { times: once ? 1 : undefined },
   );

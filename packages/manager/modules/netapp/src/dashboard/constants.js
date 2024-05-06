@@ -97,6 +97,8 @@ export const LABELS = {
   VRACK_SERVICE: 'vRack Services',
 };
 
+export const NETAPP_NAME_PATTERN = /^[a-zA-Z0-9._-]{1,64}$/;
+
 export default {
   MINIMUM_VOLUME_SIZE,
   COMMIT_IMPRESSION_TRACKING_DATA,
@@ -107,4 +109,5 @@ export default {
   VRACK_SERVICES_STATUS,
   VRACK_ORDER_URLS,
   LABELS,
+  NETAPP_NAME_PATTERN,
 };

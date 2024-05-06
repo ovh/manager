@@ -62,5 +62,9 @@
   "network_security_dashboard_like_this": "Podoba Ci się?",
   "network_security_dashboard_like_this_tooltip": "Podoba Ci się ta strona? Podziel się z nami swoimi uwagami!",
   "network_security_dashboard_refresh": "Odśwież dane",
-  "network_security_dashboard_time_zone": "(Strefa czasowa: UTC{{ timeZoneOffset }})"
+  "network_security_dashboard_time_zone": "(Strefa czasowa: UTC{{ timeZoneOffset }})",
+  "network_security_dashboard_traffic_breadcrumb": "Wykresy ruchu",
+  "network_security_dashboard_filter_custom": "Spersonalizowany",
+  "network_security_dashboard_warning_period": "Uwaga: wymagane dane nie są dostępne. Pamiętaj, że okres przechowywania danych o ruchu wynosi 14 dni.",
+  "network_security_dashboard_warning_default": "Zamiast tego wyświetlony zostanie wykres dotyczący ostatniego ruchu dla wybranego adresu IP."
 }

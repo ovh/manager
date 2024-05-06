@@ -40,7 +40,7 @@ export interface CardProps {
   badges?: Badge[];
   hoverable?: boolean;
   onClick?: (event: React.MouseEvent) => void;
-  [attribute: string]: any;
+  trackingLabel?: string;
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -51,6 +51,7 @@ export const Card: React.FC<CardProps> = ({
   texts,
   hoverable,
   onClick,
+  trackingLabel,
   ...props
 }) => {
   const { title, description, category } = texts;
@@ -71,6 +72,7 @@ export const Card: React.FC<CardProps> = ({
         inline
         variant={ODS_TILE_VARIANT.stroked}
         hoverable={hoverable}
+        data-tracking={trackingLabel}
       >
         <div className="flex flex-col ">
           {img?.src && (

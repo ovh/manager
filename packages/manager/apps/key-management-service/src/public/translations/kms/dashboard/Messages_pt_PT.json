@@ -1,7 +1,7 @@
 {
-  "title": "Página de painel",
+  "title": "Dashboard page",
   "results": "resultados",
-  "loading": "carregamento",
-  "error_service": "Os nossos serviços info",
+  "loading": "a carregar...",
+  "error_service": "No services info",
   "general_informations": "Informações gerais"
 }

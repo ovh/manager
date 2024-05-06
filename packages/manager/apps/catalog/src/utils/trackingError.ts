@@ -1,11 +1,8 @@
 import { useShell } from '@ovh-ux/manager-react-core-application';
 import { useLocation } from 'react-router-dom';
-
 import { ErrorMessage, TRACKING_LABELS } from '@ovhcloud/manager-components';
-
-export interface ErrorObject {
-  [key: string]: any;
-}
+import { Environment } from '@ovh-ux/manager-config/dist/types';
+import { ErrorObject } from '@/components/Error/Errors';
 
 export function getTypology(error: ErrorMessage) {
   if (error?.detail?.status && Math.floor(error.detail.status / 100) === 4) {
@@ -22,9 +19,11 @@ export function sendErrorTracking({ error }: ErrorObject) {
   const { tracking, environment } = shell;
   const env = environment.getEnvironment();
 
-  env.then((response: any) => {
+  env.then((response: Environment) => {
     const { applicationName } = response;
-    const name = `errors::${getTypology(error)}::${applicationName}`;
+    const name = `errors::${getTypology(
+      error as ErrorMessage,
+    )}::${applicationName}`;
     tracking.trackPage({
       name,
       level2: '81',

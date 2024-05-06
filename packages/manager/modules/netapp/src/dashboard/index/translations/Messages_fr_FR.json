@@ -30,5 +30,6 @@
   "netapp_dashboard_service_configuration_status_suspended": "Suspendu",
   "netapp_dashboard_service_configuration_status_deleting": "Suppression en cours",
   "netapp_dashboard_service_configuration_status_deleted": "Supprimé",
-  "netapp_dashboard_service_configuration_create_volume": "Créer un volume"
+  "netapp_dashboard_service_configuration_create_volume": "Créer un volume",
+  "netapp_dashboard_configuration_restrictions_info": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points et un maximum de 64 caractères."
 }

@@ -14,6 +14,7 @@ import {
   getAvailableCategoriesWithCounter,
   getUniverses,
   toFilterValue,
+  Universe,
 } from '@/utils/utils';
 import { Product } from '@/api';
 
@@ -67,7 +68,7 @@ const Filters: React.FC<FiltersProps> = ({
   const universes = getUniverses(products, true);
   const categories = getAvailableCategoriesWithCounter(
     products,
-    getUniverses(products, false),
+    getUniverses(products, false) as string[],
   );
 
   const resetFilters = () => {
@@ -113,18 +114,21 @@ const Filters: React.FC<FiltersProps> = ({
           </OsdsText>
           <span className="grid grid-cols-1">
             {universes.length ? (
-              universes.map((item: { universe: string; count: number }) => (
-                <FilterItem
-                  key={item.universe}
-                  label={item.universe}
-                  count={item.count}
-                  type="universe"
-                  isChecked={selectedUniverses.includes(
-                    toFilterValue(item.universe),
-                  )}
-                  onCheckboxChange={handleCheckboxChange}
-                />
-              ))
+              universes.map((item) => {
+                const data = item as Universe;
+                return (
+                  <FilterItem
+                    key={data.universe}
+                    label={data.universe}
+                    count={data.count}
+                    type="universe"
+                    isChecked={selectedUniverses.includes(
+                      toFilterValue(data.universe),
+                    )}
+                    onCheckboxChange={handleCheckboxChange}
+                  />
+                );
+              })
             ) : (
               <LoadingFilterItem lineNumber={5} />
             )}
@@ -141,18 +145,20 @@ const Filters: React.FC<FiltersProps> = ({
           </OsdsText>
           <span className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {categories.length ? (
-              categories.map((item: { category: string; count: number }) => (
-                <FilterItem
-                  key={item.category}
-                  label={item.category}
-                  count={item.count}
-                  type="category"
-                  isChecked={selectedCategories.includes(
-                    toFilterValue(item.category),
-                  )}
-                  onCheckboxChange={handleCheckboxChange}
-                />
-              ))
+              categories.map((item: { category: string; count: number }) => {
+                return (
+                  <FilterItem
+                    key={item.category}
+                    label={item.category}
+                    count={item.count}
+                    type="category"
+                    isChecked={selectedCategories.includes(
+                      toFilterValue(item.category),
+                    )}
+                    onCheckboxChange={handleCheckboxChange}
+                  />
+                );
+              })
             ) : (
               <LoadingFilterItem lineNumber={15} />
             )}

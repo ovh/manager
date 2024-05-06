@@ -22,6 +22,11 @@ jobs:
         run: |
           yarn exec turbo -- run build --filter="./packages/manager/core/*"
           yarn exec turbo -- run build --filter="./packages/manager/manager-components/*"
+          yarn exec turbo -- run build --filter="./packages/manager/modules/order"
           yarn workspace @ovh-ux/manager-container-app start
       - name: Run tests
         run: yarn test:jest
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run e2e tests
+        run: yarn test:playwright:run

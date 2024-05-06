@@ -4,7 +4,6 @@ import { odsSetup } from '@ovhcloud/ods-common-core';
 
 import { Preview } from '@storybook/react';
 import '../src/tailwind/theme.css';
-import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import i18n from './i18n';
 
 import '@ovhcloud/ods-theme-blue-jeans';

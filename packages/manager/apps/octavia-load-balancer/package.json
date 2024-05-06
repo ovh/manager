@@ -40,7 +40,7 @@
     "@ovh-ux/ng-ui-router-layout": "^4.3.0",
     "@ovh-ux/request-tagger": "^0.2.0",
     "@ovh-ux/shell": "^3.5.1",
-    "@ovh-ux/ui-kit": "^6.7.8",
+    "@ovh-ux/ui-kit": "^6.10.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.8",

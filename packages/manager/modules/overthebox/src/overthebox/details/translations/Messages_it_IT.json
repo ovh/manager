@@ -72,8 +72,8 @@
   "overTheBox_release_channels": "Versioni disponibili",
   "overTheBox_change_release_channel_success": "La modifica della versione è stata effettuata correttamente.",
   "overTheBox_change_release_channel_error": "Non è stato possibile effettuare la modifica della versione: {{errorMessage}}",
-  "overTheBox_release_channel_stable": "Versione stabile pubblica",
-  "overTheBox_release_channel_beta": "Versione beta",
+  "overTheBox_release_channel_stable": "Versione stabile con aggiornamento automatico",
+  "overTheBox_release_channel_beta": "Versione beta con aggiornamento automatico",
   "overTheBox_release_channel_alpha": "Versione alpha",
   "overTheBox_release_channel_develop": "Versione di sviluppo",
   "overTheBox_release_channel_rpi3": "Versione per Raspberry 3",
@@ -85,5 +85,8 @@
   "overTheBox_reverse_dns": "Reverse DNS",
   "overTheBox_detail_link_guide": "Guide",
   "overthebox_detail_links": "Link",
-  "overTheBox_service_id": "Identificativo del servizio:"
+  "overTheBox_service_id": "Identificativo del servizio:",
+  "overTheBox_release_channel_v0_8": "Versione v0.8",
+  "overTheBox_release_channel_v0_9": "Versione v0.9",
+  "overTheBox_release_channel_v1_0": "Versione v1.0"
 }

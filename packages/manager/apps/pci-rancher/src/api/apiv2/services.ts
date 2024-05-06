@@ -139,7 +139,7 @@ export const getListingIceberg = async () => {
   try {
     return fetchIcebergV2({
       route: '/publicCloud/project',
-    }).then(({ data, status }: any) => ({ data, status }));
+    }).then(({ data, status }) => ({ data, status }));
   } catch (error) {
     return Promise.reject(error);
   }

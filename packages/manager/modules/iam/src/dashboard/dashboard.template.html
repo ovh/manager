@@ -3,7 +3,7 @@
         data-heading="{{:: 'iam_dashboard_header_heading' | translate }}"
     >
         <!-- <Tabs> -->
-        <oui-header-tabs>
+        <oui-header-tabs data-ng-if="!$ctrl.iamPolicies.error">
             <oui-header-tabs-item data-state="iam.dashboard.policies"
                 ><span
                     data-translate="iam_dashboard_header_tabs_item_policies"
@@ -45,5 +45,13 @@
         </oui-guide-menu>
         <!-- </Guide> -->
     </oui-header>
+
+    <oui-message data-ng-if="$ctrl.iamPolicies.error" data-type="info">
+        <span
+            data-translate="iam_error"
+            data-translate-values="{ details: $ctrl.iamPolicies.error }"
+        ></span>
+    </oui-message>
+
     <div data-ui-view></div>
 </div>

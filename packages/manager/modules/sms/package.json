@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.1",
-    "@ovh-ux/ui-kit": "^6.7.8",
+    "@ovh-ux/ui-kit": "^6.10.0",
     "bootstrap": "~3.3.7"
   },
   "peerDependencies": {
@@ -37,7 +37,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.1.7",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
     "@ovh-ux/ng-ui-router-layout": "^4.1.0",
-    "@ovh-ux/ui-kit": "^6.7.0",
+    "@ovh-ux/ui-kit": "^6.10.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-messages": "^1.7.6",
