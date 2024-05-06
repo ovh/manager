@@ -125,7 +125,9 @@ export default function FloatingIPComponent({
     {
       id: 'actions',
       cell: (props: FloatingIP) => (
-        <FloatingIPActions projectId={projectId} ipId={props.id} />
+        <div className="min-w-16">
+          <FloatingIPActions projectId={projectId} ipId={props.id} />
+        </div>
       ),
       label: '',
     },
