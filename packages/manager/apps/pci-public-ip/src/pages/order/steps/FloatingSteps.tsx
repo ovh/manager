@@ -123,8 +123,8 @@ export const FloatingSteps = ({
                   <span slot="placeholder">
                     {tOrder('pci_additional_ip_select_network_label')}
                   </span>
-                  {selectedInstanceIpAddresses.map((ipAddress) => (
-                    <OsdsSelectOption key={ipAddress.ip} value={ipAddress.ip}>
+                  {selectedInstanceIpAddresses.map((ipAddress, idx) => (
+                    <OsdsSelectOption key={idx} value={ipAddress.ip}>
                       {ipAddress.ip}
                     </OsdsSelectOption>
                   ))}
