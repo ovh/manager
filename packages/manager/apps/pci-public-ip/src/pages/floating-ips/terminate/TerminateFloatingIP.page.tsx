@@ -43,6 +43,9 @@ export default function TerminateFloatingIPPage() {
               {
                 ip: floatingIP.ip,
                 error: (error as ResponseAPIError)?.response?.data?.message,
+                interpolation: {
+                  escapeValue: false,
+                },
               },
             )
           }

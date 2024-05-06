@@ -48,6 +48,9 @@ export default function EditInstancePage() {
         {(t) =>
           t('pci_additional_ips_failoverips_edit_error', {
             error: error?.response?.data?.message,
+            interpolation: {
+              escapeValue: false,
+            },
           })
         }
       </Translation>,
