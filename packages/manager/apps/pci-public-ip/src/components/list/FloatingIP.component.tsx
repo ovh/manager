@@ -257,7 +257,7 @@ export default function FloatingIPComponent({
       )}
 
       {!isLoading && !error && (
-        <div className="mt-8">
+        <div className="mt-8 overflow-x-auto">
           <Datagrid
             columns={columns}
             items={floatingIPs.rows || []}
