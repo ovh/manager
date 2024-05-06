@@ -78,7 +78,11 @@ export default function ImportsPage(): JSX.Element {
     },
     {
       id: 'actions',
-      cell: (props: ImportsIP) => <ImportIPAction ip={props.ip} />,
+      cell: (props: ImportsIP) => (
+        <div className="min-w-16">
+          <ImportIPAction ip={props.ip} />
+        </div>
+      ),
       label: '',
     },
   ];
