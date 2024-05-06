@@ -76,8 +76,6 @@ export const PCI_FEATURES = {
   BANNERS: {
     BILLING_CHANGE_MEDIATION_BANNER:
       'public-cloud:project:billing-change-mediation-banner',
-    BILLING_CHANGE_MEDIATION_BANNER_2:
-      'public-cloud:project:billing-change-mediation-banner_2',
   },
   OTHERS: {
     PUBLIC_CLOUD: 'public-cloud',
