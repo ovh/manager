@@ -24,6 +24,33 @@ export default class VrackAssignedIpService {
     );
   }
 
+  fetchAllBridgedSubrange(serviceName, ipBlock) {
+    return this.$http.get(
+      `/vrack/${encodeURIComponent(serviceName)}/ipv6/${encodeURIComponent(
+        ipBlock,
+      )}/bridgedSubrange`,
+    );
+  }
+
+  getBridgedSubrange(serviceName, ipBlock, bridgedSubrange) {
+    return this.$http.get(
+      `/vrack/${encodeURIComponent(serviceName)}/ipv6/${encodeURIComponent(
+        ipBlock,
+      )}/bridgedSubrange/${encodeURIComponent(bridgedSubrange)}`,
+    );
+  }
+
+  updateBridgedSubrange(serviceName, ipBlock, bridgedSubrange, status) {
+    return this.$http.put(
+      `/vrack/${encodeURIComponent(serviceName)}/ipv6/${encodeURIComponent(
+        ipBlock,
+      )}/bridgedSubrange/${encodeURIComponent(bridgedSubrange)}`,
+      {
+        slaac: status ? 'enabled' : 'disabled',
+      },
+    );
+  }
+
   deleteIpVrackSubnet(serviceName, ipBlock, routedSubrange) {
     return this.$http.delete(
       `/vrack/${encodeURIComponent(serviceName)}/ipv6/${encodeURIComponent(

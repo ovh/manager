@@ -1,4 +1,4 @@
-import { POLLING_INTERVAL } from '../../dashboard/vrack.constant';
+import { POLLING_INTERVAL, SLAAC_VALUES } from '../../dashboard/vrack.constant';
 
 export default class VrackAssignedIpCtrl {
   /* @ngInject */
@@ -21,7 +21,33 @@ export default class VrackAssignedIpCtrl {
   }
 
   $onInit() {
-    this.refreshData();
+    this.vrackAssignedIpv6Service
+      .fetchAllBridgedSubrange(this.serviceName, this.ip.niceName)
+      .then(({ data }) => {
+        this.$q
+          .all(
+            data.map((bridgedSubrange) => {
+              return this.vrackAssignedIpv6Service
+                .getBridgedSubrange(
+                  this.serviceName,
+                  this.ip.niceName,
+                  bridgedSubrange,
+                )
+                .then((res) => {
+                  return {
+                    ...res.data,
+                    model: SLAAC_VALUES[res.data.slaac],
+                    loading: false,
+                  };
+                });
+            }),
+          )
+          .then((bridges) => {
+            this.bridgedSubranges = bridges;
+          });
+      });
+
+    this.loadSubnet();
   }
 
   openAddSubnetModal() {
@@ -44,7 +70,10 @@ export default class VrackAssignedIpCtrl {
             nexthop,
           })
           .then(({ data }) => {
-            this.watingTask(data.id);
+            this.loader = true;
+            this.watingTask(data.id, () => {
+              this.loadSubnet();
+            });
           })
           .catch((err) => {
             this.CucCloudMessage.error(
@@ -61,6 +90,34 @@ export default class VrackAssignedIpCtrl {
     };
   }
 
+  toggleSubrang(bridgedSubrange) {
+    const bridged = bridgedSubrange;
+    bridged.loading = true;
+    const targetValue = !bridged.model;
+    this.CucCloudMessage.flushMessages('vrack');
+    this.vrackAssignedIpv6Service
+      .updateBridgedSubrange(
+        this.serviceName,
+        this.ip.niceName,
+        bridged.bridgedSubrange,
+        targetValue,
+      )
+      .then(({ data }) => {
+        this.watingTask(data.id, () => {
+          bridged.model = targetValue;
+          bridged.loading = false;
+        });
+      })
+      .catch((err) => {
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('vrack_error'),
+            err?.data?.message || err.message || '',
+          ].join(' '),
+        );
+      });
+  }
+
   openDeleteSubnetModal(subnet) {
     this.deleteSubnetModalContext = {
       isOpenModal: true,
@@ -70,7 +127,10 @@ export default class VrackAssignedIpCtrl {
         this.vrackAssignedIpv6Service
           .deleteIpVrackSubnet(this.serviceName, this.ip.niceName, subnet)
           .then(({ data }) => {
-            this.watingTask(data.id);
+            this.loader = true;
+            this.watingTask(data.id, () => {
+              this.loadSubnet();
+            });
           })
           .catch((err) => {
             this.CucCloudMessage.error(
@@ -87,16 +147,16 @@ export default class VrackAssignedIpCtrl {
     };
   }
 
-  refreshData() {
+  loadSubnet() {
     this.vrackAssignedIpv6Service
       .getIpVrackSubnet(this.serviceName, this.ip.niceName)
       .then(({ data }) => {
+        this.loader = false;
         this.subnets = data;
       });
   }
 
-  watingTask(taskId) {
-    this.loader = true;
+  watingTask(taskId, callback) {
     this.OvhApiVrack.v6()
       .task({
         serviceName: this.serviceName,
@@ -104,12 +164,11 @@ export default class VrackAssignedIpCtrl {
       })
       .$promise.then(() => {
         this.$timeout(() => {
-          this.watingTask(taskId);
+          this.watingTask(taskId, callback);
         }, POLLING_INTERVAL);
       })
       .catch(() => {
-        this.loader = false;
-        this.refreshData();
+        if (callback) callback();
       });
   }
 }
