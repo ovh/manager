@@ -115,13 +115,11 @@ angular.module('services').service(
     };
 
     this.getDocument = function getDocument(id) {
-      return $http
-        .get(`apiv6/me/document/${id}`)
-        .then((response) => response.data);
+      return $http.get(`apiv6/me/document/${id}`).then(({ data }) => data);
     };
 
     this.getDocumentIds = function getDocumentIds() {
-      return $http.get('apiv6/me/document').then((response) => response.data);
+      return $http.get('apiv6/me/document').then(({ data }) => data);
     };
 
     this.getDocuments = function getDocuments() {
@@ -149,7 +147,7 @@ angular.module('services').service(
     this.getValidPaymentMethodIds = function getValidPaymentMethodIds() {
       return $http
         .get(`${constants.swsProxyRootPath}me/payment/method`)
-        .then((response) => response.data);
+        .then(({ data }) => data);
     };
   },
 );
