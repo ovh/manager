@@ -1,14 +1,15 @@
 @import '../../dashboard/vrack-mapper.less';
 
 .vrack {
-  &__assigned-ip {
+  &__assigned-ipv6 {
     &__sub-item {
       display: flex;
       justify-content: end;
       flex-flow: wrap;
     }
 
-    &__subnet {
+    &__subnet,
+    &__subrang {
       list-style: none;
       padding: 0.625rem 0.9375rem;
       border-width: 1px;
@@ -22,6 +23,7 @@
       user-select: none;
       cursor: default;
       box-shadow: @vrack-service-box-shadow_selected;
+      overflow: hidden;
 
       &__title {
         text-overflow: ellipsis;
