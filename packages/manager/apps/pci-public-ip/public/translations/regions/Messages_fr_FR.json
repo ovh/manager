@@ -62,5 +62,10 @@
   "manager_components_region_continent_SGP": "Asie du Sud-Est",
   "manager_components_region_continent_SYD": "Océanie",
   "manager_components_region_continent_US": "États-Unis",
-  "manager_components_region_continent_SHA": "Europe de l'Ouest"
+  "manager_components_region_continent_SHA": "Europe de l'Ouest",
+  "pci_project_regions_list_continent_all": "Toutes les localisations",
+  "pci_project_regions_list_empty": "Aucune localisation n'est disponible",
+  "pci_project_regions_list_add": "Nous vous invitons à activer les dernières localisations de chaque zone dans la partie <a href=\"{{url}}\" class=\"oui-link\">Localisations</a>",
+  "pci_project_regions_list_region": "Localisation",
+  "pci_project_regions_list_quota": "Augmenter mon quota"
 }
