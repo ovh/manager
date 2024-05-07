@@ -645,7 +645,10 @@ export function getOrderURL(
   return '';
 }
 
-export function getExpressOrderURL(region: string, subsidiary: string) {
-  const regionURLs = EXPRESS_ORDER_URLS[region];
-  return regionURLs[subsidiary] || regionURLs.DEFAULT;
+export function getExpressOrderURL(region: string, subsidiary: string): string {
+  const regionURLs =
+    EXPRESS_ORDER_URLS[region as keyof typeof EXPRESS_ORDER_URLS];
+  return (
+    regionURLs?.[subsidiary as keyof typeof regionURLs] || regionURLs?.DEFAULT
+  );
 }
