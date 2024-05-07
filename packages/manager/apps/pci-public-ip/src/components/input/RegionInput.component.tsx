@@ -45,7 +45,18 @@ export const RegionInputComponent = ({
     [regions],
   );
 
+  const getMacroRegions = useCallback(
+    (continent: string) =>
+      regions.filter(
+        (region) =>
+          (!continent || region.continent === continent) &&
+          region.macroName === selectedMacroName,
+      ),
+    [regions, selectedMacroName],
+  );
+
   const { t: tOrder } = useTranslation('order');
+  const { t: tRegion } = useTranslation('regions');
 
   const titleElement = isDesktop
     ? (continent: string, selected: boolean) => (
@@ -59,18 +70,25 @@ export const RegionInputComponent = ({
           }
         >
           <div className="whitespace-nowrap px-2 text-lg font-bold">
-            {continent || 'All continents'}
+            {continent || tRegion('pci_project_regions_list_continent_all')}
           </div>
         </OsdsText>
       )
-    : (continent: string) => (
-        <div className={'cursor-pointer p-4'}>
+    : (continent: string, selected: boolean, clickHandler: () => void) => (
+        <div
+          className={'cursor-pointer p-4'}
+          role="button"
+          onClick={() => clickHandler?.()}
+          onKeyDown={() => clickHandler?.()}
+        >
           <OsdsLink color={ODS_THEME_COLOR_INTENT.primary}>
-            {continent || 'All continents'}
+            {continent || tRegion('pci_project_regions_list_continent_all')}
           </OsdsLink>
           <OsdsIcon
             className="float-right"
-            name={ODS_ICON_NAME.CHEVRON_DOWN}
+            name={
+              selected ? ODS_ICON_NAME.CHEVRON_UP : ODS_ICON_NAME.CHEVRON_DOWN
+            }
             size={ODS_ICON_SIZE.xs}
             color={ODS_THEME_COLOR_INTENT.primary}
           />
@@ -117,26 +135,26 @@ export const RegionInputComponent = ({
             </li>
           ))}
         </ul>
-        {selectedMacroName && !isMacroRegionStandalone(selectedMacroName) && (
-          <>
-            <div className="mt-6">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
+        {selectedMacroName &&
+          !isMacroRegionStandalone(selectedMacroName) &&
+          getMacroRegions(continent).length > 0 && (
+            <>
+              <div className="mt-6">
+                <OsdsText
+                  level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                >
+                  {tRegion('pci_project_regions_list_region')}
+                </OsdsText>
+              </div>
+              <ul
+                className={clsx(
+                  'grid gap-5 m-0 p-0 list-none mt-8',
+                  isDesktop ? 'grid-cols-3' : 'grid-cols-1',
+                )}
               >
-                Local
-              </OsdsText>
-            </div>
-            <ul
-              className={clsx(
-                'grid gap-5 m-0 p-0 list-none mt-8',
-                isDesktop ? 'grid-cols-3' : 'grid-cols-1',
-              )}
-            >
-              {regions
-                .filter((region) => region.macroName === selectedMacroName)
-                .map((region) => (
+                {getMacroRegions(continent).map((region) => (
                   <li key={region.microName}>
                     <OsdsTile
                       className={clsx(
@@ -152,9 +170,9 @@ export const RegionInputComponent = ({
                     </OsdsTile>
                   </li>
                 ))}
-            </ul>
-          </>
-        )}
+              </ul>
+            </>
+          )}
       </div>
     );
   };
