@@ -5,7 +5,11 @@ import { clsx } from 'clsx';
 type TProps<Item> = {
   id: string;
   items: Item[];
-  titleElement: (item: Item, selected: boolean) => JSX.Element;
+  titleElement: (
+    item: Item,
+    selected: boolean,
+    clickHandler?: () => void,
+  ) => JSX.Element;
   contentElement: (item: Item) => JSX.Element;
   mobileBreakPoint?: number;
   className?: string;
@@ -63,8 +67,12 @@ export const TabsComponent = function TabsComponent<Item>({
               key={`item-${index}`}
               className="px-2 bg-[#F5FEFF] border border-solid border-[#bef1ff] rounded-lg"
             >
-              <div>{titleElement($item, $item === item)}</div>
-              <div>{contentElement($item)}</div>
+              <div>
+                {titleElement($item, $item === item, () => {
+                  setItem($item);
+                })}
+              </div>
+              <div>{$item === item && contentElement($item)}</div>
             </div>
           ))}
         </section>
