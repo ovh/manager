@@ -24,10 +24,11 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import { useAllFloatingIP } from '@/api/hooks/useFloatingIP';
+import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
 import { Project } from '@/api/data/project';
 import { GUIDES } from './onboarding.constants';
-import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
+
+import OnBoardingGuard from './OnBoardingGuard';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation();
@@ -38,7 +39,6 @@ export default function OnBoardingPage() {
   const project = useRouteLoaderData('public-ips') as Project;
   const [urlProject, setUrlProject] = useState('');
   const navigate = useNavigate();
-  const { data: floatingIPs, isLoading } = useAllFloatingIP(projectId);
   const { isBannerVisible } = useAnnouncementBanner();
 
   useEffect(() => {
@@ -48,12 +48,6 @@ export default function OnBoardingPage() {
         setUrlProject(data as string);
       });
   }, [projectId, navigation]);
-
-  useEffect(() => {
-    if (!isLoading && floatingIPs.length > 0) {
-      navigate(`/pci/projects/${projectId}/public-ips`);
-    }
-  }, [isLoading, floatingIPs, navigate]);
 
   const breadcrumbItems: OdsBreadcrumbAttributeItem[] = [
     {
@@ -108,88 +102,90 @@ export default function OnBoardingPage() {
   ];
 
   return (
-    <>
-      {project && <OsdsBreadcrumb items={breadcrumbItems} />}
+    <OnBoardingGuard projectId={projectId}>
+      <>
+        {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
-      {isBannerVisible && <PciAnnouncementBanner projectId={projectId} />}
+        {isBannerVisible && <PciAnnouncementBanner projectId={projectId} />}
 
-      <OnboardingLayout
-        title={t('pci_additional_ips_title')}
-        description={
-          <>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-            >
-              {tOnBoarding('pci_additional_ips_onboarding_content1')}
-            </OsdsText>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              className="mt-4 block"
-            >
-              {tOnBoarding('pci_additional_ips_onboarding_content2')}
-            </OsdsText>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              className="mt-6 block"
-            >
-              {tOnBoarding('pci_additional_ips_onboarding_content3')}
-            </OsdsText>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-              className="block mt-6"
-            >
-              {tOnBoarding('pci_additional_ips_onboarding_content4_heading')}
-            </OsdsText>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              className="block"
-            >
-              {tOnBoarding(
-                'pci_additional_ips_onboarding_content4_description',
-              )}
-            </OsdsText>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-              className="block mt-6"
-            >
-              {tOnBoarding('pci_additional_ips_onboarding_content5_heading')}
-            </OsdsText>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              className="block"
-            >
-              {tOnBoarding(
-                'pci_additional_ips_onboarding_content5_description',
-              )}
-            </OsdsText>
-          </>
-        }
-        orderButtonLabel={tOnBoarding(
-          'pci_additional_ips_onboarding_action_buy',
-        )}
-        onOrderButtonClick={() => navigate('../order')}
-      >
-        <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
-          {tileItems.map((tile) => (
-            <Card key={tile.id} href={tile.href} texts={tile.texts} />
-          ))}
-        </aside>
-      </OnboardingLayout>
-      <Outlet />
-    </>
+        <OnboardingLayout
+          title={t('pci_additional_ips_title')}
+          description={
+            <>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+              >
+                {tOnBoarding('pci_additional_ips_onboarding_content1')}
+              </OsdsText>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                className="mt-4 block"
+              >
+                {tOnBoarding('pci_additional_ips_onboarding_content2')}
+              </OsdsText>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                className="mt-6 block"
+              >
+                {tOnBoarding('pci_additional_ips_onboarding_content3')}
+              </OsdsText>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+                className="block mt-6"
+              >
+                {tOnBoarding('pci_additional_ips_onboarding_content4_heading')}
+              </OsdsText>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                className="block"
+              >
+                {tOnBoarding(
+                  'pci_additional_ips_onboarding_content4_description',
+                )}
+              </OsdsText>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+                className="block mt-6"
+              >
+                {tOnBoarding('pci_additional_ips_onboarding_content5_heading')}
+              </OsdsText>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                className="block"
+              >
+                {tOnBoarding(
+                  'pci_additional_ips_onboarding_content5_description',
+                )}
+              </OsdsText>
+            </>
+          }
+          orderButtonLabel={tOnBoarding(
+            'pci_additional_ips_onboarding_action_buy',
+          )}
+          onOrderButtonClick={() => navigate('../order')}
+        >
+          <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
+            {tileItems.map((tile) => (
+              <Card key={tile.id} href={tile.href} texts={tile.texts} />
+            ))}
+          </aside>
+        </OnboardingLayout>
+        <Outlet />
+      </>
+    </OnBoardingGuard>
   );
 }

@@ -24,12 +24,13 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import useProject from '@/api/hooks/useProject';
-import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
-import FloatingIPComponent from '@/components/list/FloatingIP.component';
 import FailoverIPComponent from '@/components/list/FailoverIP.component';
-import { IPsTabName } from '@/constants';
-import { useProductMaintenance } from '@/components/maintenance/useMaintenance';
+import FloatingIPComponent from '@/components/list/FloatingIP.component';
 import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner.component';
+import { useProductMaintenance } from '@/components/maintenance/useMaintenance';
+import { IPsTabName } from '@/constants';
+import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
+import ListGuard from './ListGuard';
 
 const getActiveTab = (pathname: string) => {
   if (pathname.includes('additional-ips')) {
@@ -71,97 +72,99 @@ export default function ListingPage(): JSX.Element {
   }, [projectId, navigation]);
 
   return (
-    <>
-      {project && (
-        <OsdsBreadcrumb
-          items={[
-            {
-              href: projectUrl,
-              label: project.description,
-            },
-            {
-              label: t('pci_additional_ips_title'),
-            },
-            {
-              label:
-                activeTab === IPsTabName.ADDITIONAL_IP_TAB_NAME
-                  ? t('pci_additional_ips_failover_ip_title')
-                  : t('pci_additional_ips_floating_ip_title'),
-            },
-          ]}
-        />
-      )}
-      <div className="header mb-10 mt-8">
-        <div className="flex items-center justify-between">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          >
-            {t('pci_additional_ips_title')}
-          </OsdsText>
-          <PciGuidesHeader category="instances"></PciGuidesHeader>
-        </div>
-        <div className="mt-4">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          >
-            {t('pci_additional_ips_additional_ips_description')}
-          </OsdsText>
-        </div>
-      </div>
-
-      {isBannerVisible && <PciAnnouncementBanner projectId={projectId} />}
-
-      <div className="mb-5">
-        {isDiscoveryProject(project) && (
-          <PciDiscoveryBanner projectId={projectId} />
+    <ListGuard projectId={projectId}>
+      <>
+        {project && (
+          <OsdsBreadcrumb
+            items={[
+              {
+                href: projectUrl,
+                label: project.description,
+              },
+              {
+                label: t('pci_additional_ips_title'),
+              },
+              {
+                label:
+                  activeTab === IPsTabName.ADDITIONAL_IP_TAB_NAME
+                    ? t('pci_additional_ips_failover_ip_title')
+                    : t('pci_additional_ips_floating_ip_title'),
+              },
+            ]}
+          />
         )}
-        {hasMaintenance && (
-          <div className="mt-5">
-            <MaintenanceBanner maintenanceURL={maintenanceURL} />
+        <div className="header mb-10 mt-8">
+          <div className="flex items-center justify-between">
+            <OsdsText
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._600}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            >
+              {t('pci_additional_ips_title')}
+            </OsdsText>
+            <PciGuidesHeader category="instances"></PciGuidesHeader>
           </div>
-        )}
-      </div>
+          <div className="mt-4">
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+            >
+              {t('pci_additional_ips_additional_ips_description')}
+            </OsdsText>
+          </div>
+        </div>
 
-      <OsdsTabs
-        panel={activeTab}
-        onOdsTabsChanged={(event) => handlerTabChanged(event)}
-      >
-        <OsdsTabBar slot="top">
-          <OsdsTabBarItem
-            panel={IPsTabName.FLOATING_IP_TAB_NAME}
-            className="flex items-center justify-center"
-          >
-            {t('pci_additional_ips_floating_ip_title')}
-          </OsdsTabBarItem>
-          <OsdsTabBarItem
-            panel={IPsTabName.ADDITIONAL_IP_TAB_NAME}
-            className="flex items-center justify-center"
-          >
-            {t('pci_additional_ips_failover_ip_title')}
-          </OsdsTabBarItem>
-        </OsdsTabBar>
+        {isBannerVisible && <PciAnnouncementBanner projectId={projectId} />}
 
-        <OsdsTabPanel name={IPsTabName.FLOATING_IP_TAB_NAME}>
-          {activeTab === IPsTabName.FLOATING_IP_TAB_NAME && (
-            <FloatingIPComponent
-              projectId={projectId}
-              projectUrl={projectUrl}
-            />
+        <div className="mb-5">
+          {isDiscoveryProject(project) && (
+            <PciDiscoveryBanner projectId={projectId} />
           )}
-        </OsdsTabPanel>
-        <OsdsTabPanel name={IPsTabName.ADDITIONAL_IP_TAB_NAME}>
-          {activeTab === IPsTabName.ADDITIONAL_IP_TAB_NAME && (
-            <FailoverIPComponent
-              projectId={projectId}
-              projectUrl={projectUrl}
-            />
+          {hasMaintenance && (
+            <div className="mt-5">
+              <MaintenanceBanner maintenanceURL={maintenanceURL} />
+            </div>
           )}
-        </OsdsTabPanel>
-      </OsdsTabs>
-      <Outlet />
-    </>
+        </div>
+
+        <OsdsTabs
+          panel={activeTab}
+          onOdsTabsChanged={(event) => handlerTabChanged(event)}
+        >
+          <OsdsTabBar slot="top">
+            <OsdsTabBarItem
+              panel={IPsTabName.FLOATING_IP_TAB_NAME}
+              className="flex items-center justify-center"
+            >
+              {t('pci_additional_ips_floating_ip_title')}
+            </OsdsTabBarItem>
+            <OsdsTabBarItem
+              panel={IPsTabName.ADDITIONAL_IP_TAB_NAME}
+              className="flex items-center justify-center"
+            >
+              {t('pci_additional_ips_failover_ip_title')}
+            </OsdsTabBarItem>
+          </OsdsTabBar>
+
+          <OsdsTabPanel name={IPsTabName.FLOATING_IP_TAB_NAME}>
+            {activeTab === IPsTabName.FLOATING_IP_TAB_NAME && (
+              <FloatingIPComponent
+                projectId={projectId}
+                projectUrl={projectUrl}
+              />
+            )}
+          </OsdsTabPanel>
+          <OsdsTabPanel name={IPsTabName.ADDITIONAL_IP_TAB_NAME}>
+            {activeTab === IPsTabName.ADDITIONAL_IP_TAB_NAME && (
+              <FailoverIPComponent
+                projectId={projectId}
+                projectUrl={projectUrl}
+              />
+            )}
+          </OsdsTabPanel>
+        </OsdsTabs>
+        <Outlet />
+      </>
+    </ListGuard>
   );
 }

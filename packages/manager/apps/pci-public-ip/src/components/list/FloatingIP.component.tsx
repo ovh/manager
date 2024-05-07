@@ -30,13 +30,13 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { FloatingIP } from '@/interface';
+import { pciAnnouncementBannerId } from '@/constants';
 import { useFloatingIPs } from '@/api/hooks/useFloatingIP';
 import FloatingIPActions from './FloatingIPActions.component';
-import { pciAnnouncementBannerId } from '@/constants';
 
 export type FloatingIPComponentProps = {
   projectId: string;
@@ -72,18 +72,6 @@ export default function FloatingIPComponent({
   const goToInstanceHref = (id: string) => `${projectUrl}/instances/${id}`;
   const [searchField, setSearchField] = useState('');
   const filterPopoverRef = useRef(undefined);
-
-  // redirect to onboarding page if there are no floating ips
-  useEffect(() => {
-    if (
-      !error &&
-      !isLoading &&
-      filters?.length === 0 &&
-      floatingIPs.totalRows === 0
-    ) {
-      navigate('../onboarding');
-    }
-  }, [isLoading, error, filters, floatingIPs]);
 
   const columns = [
     {
