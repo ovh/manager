@@ -1,10 +1,10 @@
 {
   "title": "Zimbra",
-  "header_guides": "Hilfen",
-  "guides_title_1": "Zimbra OVHcloud FAQ",
-  "error_service": "Unsere Info-Dienstleistungen",
+  "header_guides": "Anleitungen",
+  "guides_title_1": "FAQ zur Zimbra-Lösung von OVHcloud",
+  "error_service": "Keine Serviceinformationen",
   "general_informations": "Allgemeine Informationen",
   "organizations": "Organisation",
   "domains": "Domain",
-  "email_accounts": "E-Mail Accounts"
+  "email_accounts": "E-Mail-Accounts"
 }
