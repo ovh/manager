@@ -62,5 +62,10 @@
   "manager_components_region_location_BRU": "Westeuropa",
   "manager_components_region_continent_GS": "Westeuropa",
   "manager_components_region_continent_MAD": "Westeuropa",
-  "manager_components_region_continent_BRU": "Westeuropa"
+  "manager_components_region_continent_BRU": "Westeuropa",
+  "pci_project_regions_list_continent_all": "Alle Standorte",
+  "pci_project_regions_list_empty": "Kein Standort verfügbar",
+  "pci_project_regions_list_add": "Bitte aktivieren Sie die letzten Standorte jeder Zone im Bereich <a href=\"{{url}}\" class=\"oui-link\">Standorte</a>.",
+  "pci_project_regions_list_region": "Standort",
+  "pci_project_regions_list_quota": "Mein Quota erhöhen"
 }
