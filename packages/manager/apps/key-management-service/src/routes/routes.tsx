@@ -31,22 +31,24 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/create')),
       },
       {
-        path: '/:serviceName',
+        path: ROUTES_URLS.onboarding,
+        ...lazyRouteConfig(() => import('@/pages/onboarding')),
+      },
+      {
+        path: '/:okmsId',
         ...lazyRouteConfig(() => import('@/pages/dashboard')),
         children: [
           {
             path: '',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/Tabs1')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/tabs/GeneralInformations'),
+            ),
           },
           {
             path: 'Tabs2',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/Tabs2')),
+            ...lazyRouteConfig(() => import('@/pages/dashboard/tabs/Tabs2')),
           },
         ],
-      },
-      {
-        path: ROUTES_URLS.onboarding,
-        ...lazyRouteConfig(() => import('@/pages/onboarding')),
       },
     ],
   },
