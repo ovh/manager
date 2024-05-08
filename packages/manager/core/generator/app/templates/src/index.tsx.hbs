@@ -10,8 +10,19 @@ import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import './global.css';
 import './vite-hmr';
 
+import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
+
+const trackingContext = {
+  chapter1: UNIVERSE,
+  chapter2: SUB_UNIVERSE,
+  chapter3: APP_NAME,
+  appName: APP_NAME,
+  pageTheme: UNIVERSE,
+  level2Config: LEVEL2,
+};
+
 const init = async (appName: string) => {
-  const context = await initShellContext(appName);
+  const context = await initShellContext(appName, trackingContext);
 
   await initI18n({
     context,
@@ -21,6 +32,7 @@ const init = async (appName: string) => {
   });
 
   const region = context.environment.getRegion();
+  context.shell.tracking.setConfig(region, LEVEL2);
   try {
     await import(`./config-${region}.js`);
   } catch (error) {

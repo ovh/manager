@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
 import NotFound from './pages/404';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   return {
@@ -24,6 +25,12 @@ export const Routes: any = [
         id: 'listing',
         path: '',
         ...lazyRouteConfig(() => import('@/pages/listing')),
+        handle: {
+          tracking: {
+            pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        },
       },
       {
         path: ':serviceName',
@@ -33,11 +40,23 @@ export const Routes: any = [
             id: 'dashboard',
             path: '',
             ...lazyRouteConfig(() => import('@/pages/dashboard/index')),
+            handle: {
+              tracking: {
+                pageName: 'dashboard',
+                pageType: PageType.dashboard,
+              },
+            },
           },
           {
-            id: 'dashboard.tab2',
+            id: 'tab2',
             path: 'Tab2',
             ...lazyRouteConfig(() => import('@/pages/dashboard/Tab2')),
+            handle: {
+              tracking: {
+                pageName: 'tab2',
+                pageType: PageType.dashboard,
+              },
+            },
           },
         ],
       },
@@ -45,6 +64,12 @@ export const Routes: any = [
         id: 'onboarding',
         path: 'onboarding',
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
+        handle: {
+          tracking: {
+            pageName: 'onboarding',
+            pageType: PageType.onboarding,
+          },
+        },
       },
     ],
   },
@@ -63,6 +88,12 @@ export const Routes: any = [
         id: 'listing',
         path: '',
         ...lazyRouteConfig(() => import('@/pages/listing')),
+        handle: {
+          tracking: {
+            pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        },
       },
       {
         path: ':serviceName',
@@ -72,13 +103,25 @@ export const Routes: any = [
             id: 'dashboard',
             path: '',
             ...lazyRouteConfig(
-              () => import('@/pages/dashboard/index'))
+              () => import('@/pages/dashboard/index')),
+            handle: {
+              tracking: {
+                pageName: 'dashboard',
+                pageType: PageType.dashboard,
+              },
+            },
           },
           {
             id: 'dashboard.tab2',
             path: 'Tab2',
             ...lazyRouteConfig(
-              () => import('@/pages/dashboard/Tab2'))
+              () => import('@/pages/dashboard/Tab2')),
+            handle: {
+              tracking: {
+                pageName: 'tab2',
+                pageType: PageType.dashboard,
+              },
+            },
           },
         ],
       },
@@ -86,6 +129,12 @@ export const Routes: any = [
         id: 'onboarding',
         path: 'onboarding',
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
+        handle: {
+          tracking: {
+            pageName: 'onboarding',
+            pageType: PageType.onboarding,
+          },
+        },
       },
     ],
   },
