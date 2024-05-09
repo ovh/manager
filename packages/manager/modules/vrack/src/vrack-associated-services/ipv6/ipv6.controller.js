@@ -1,4 +1,8 @@
-import { POLLING_INTERVAL, SLAAC_VALUES } from '../../dashboard/vrack.constant';
+import {
+  POLLING_INTERVAL,
+  SLAAC_VALUES,
+  SLAAC_GUIDES_LINK,
+} from '../../dashboard/vrack.constant';
 
 export default class VrackAssignedIpCtrl {
   /* @ngInject */
@@ -9,6 +13,7 @@ export default class VrackAssignedIpCtrl {
     vrackAssignedIpv6Service,
     $translate,
     OvhApiVrack,
+    coreConfig,
   ) {
     this.$q = $q;
     this.vrackAssignedIpv6Service = vrackAssignedIpv6Service;
@@ -18,6 +23,9 @@ export default class VrackAssignedIpCtrl {
     this.$timeout = $timeout;
     this.loading = false;
     this.subnets = [];
+    this.user = coreConfig.getUser();
+    this.slaacGuidesLink =
+      SLAAC_GUIDES_LINK[this.user.ovhSubsidiary] || SLAAC_GUIDES_LINK.DEFAULT;
   }
 
   $onInit() {

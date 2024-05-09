@@ -33,6 +33,7 @@
             class="oui-popover-button"
             data-oui-popover="{{:: 'vrack__assigned-ipv6__subrang_slaac_help' | translate }}"
             data-oui-popover-placement="right"
+            data-oui-popover-scope="$ctrl"
             data-oui-popover-template="vrack__assigned-ipv6__subrang_slaac_help.html"
         ></button>
         <script
@@ -45,7 +46,7 @@
             <a
                 class="oui-link_icon"
                 aria-hidden="true"
-                data-ng-href="{{$ctrl.localZoneUrl}}"
+                data-ng-href="{{$ctrl.slaacGuidesLink}}"
                 target="_blank"
             >
                 <span class="oui-icon oui-icon-book ml-0" aria-hidden="true"></span>
