@@ -1,7 +1,7 @@
 {
-  "title": "Dashboard page",
+  "title": "Página del dashboard",
   "results": "resultados",
-  "loading": "carga",
-  "error_service": "No services info",
-  "general_informations": "Datos generales"
+  "loading": "cargando...",
+  "error_service": "No hay información sobre el servicio",
+  "general_informations": "Información general"
 }
