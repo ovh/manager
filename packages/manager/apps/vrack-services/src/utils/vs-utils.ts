@@ -89,12 +89,7 @@ export const useUpdateVrackServices = ({
   const [isErrorVisible, setIsErrorVisible] = React.useState(false);
   const queryClient = useQueryClient();
 
-  const {
-    mutateAsync: updateVS,
-    isPending,
-    isError,
-    error: updateError,
-  } = useMutation<
+  const { mutateAsync: updateVS, isPending, error: updateError } = useMutation<
     ApiResponse<VrackServices>,
     ApiError,
     UpdateVrackServicesParams
@@ -105,9 +100,11 @@ export const useUpdateVrackServices = ({
       queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
-      queryClient.invalidateQueries({
-        queryKey: getVrackServicesResourceQueryKey(result.data?.id || key),
-      });
+      if (result) {
+        queryClient.invalidateQueries({
+          queryKey: getVrackServicesResourceQueryKey(result.data?.id || key),
+        });
+      }
     },
     onSuccess: (result: ApiResponse<VrackServices>) => {
       queryClient.setQueryData(
@@ -139,19 +136,16 @@ export const useUpdateVrackServices = ({
       }, updateTriggerDelay);
       onSuccess?.(result);
     },
-    onError,
-  });
-
-  React.useEffect(() => {
-    if (isError) {
+    onError: (result) => {
       setIsErrorVisible(true);
-    }
-  }, [isError]);
+      onError?.(result);
+    },
+  });
 
   return {
     updateVS,
     isPending,
-    isErrorVisible,
+    isErrorVisible: updateError && isErrorVisible,
     hideError: () => setIsErrorVisible(false),
     updateError,
   };
