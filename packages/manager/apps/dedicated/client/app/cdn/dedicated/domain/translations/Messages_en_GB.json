@@ -86,7 +86,7 @@
   "cdn_domain_configuration_cacherule_create_title": "Create a new rule",
   "cdn_domain_configuration_cacherule_create_step1_question": "Do you want to create a cache rule?",
   "cdn_domain_configuration_cacherule_create_step1_information_FILE": "The rule must start with '/' and must contain an extension of at least 2 characters.",
-  "cdn_domain_configuration_cacherule_create_step1_information_EXTENSION": "The rule start with a '.' and must contain at least 2 characters but no more than 4.",
+  "cdn_domain_configuration_cacherule_create_step1_information_EXTENSION": "The rule should start with a '.' and have a length of 2 to 5 characters.",
   "cdn_domain_configuration_cacherule_create_step1_information_FOLDER": "The rule must start with '/'.",
   "cdn_domain_configuration_cacherule_create_cachetype": "Cache:",
   "cdn_domain_configuration_cacherule_create_cachetype_NO_CACHE": "Never",
