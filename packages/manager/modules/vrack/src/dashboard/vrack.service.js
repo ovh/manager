@@ -12,4 +12,8 @@ export default class Vrack {
       `/vrack/${serviceName}/ipv6/${encodeURIComponent(ipv6)}`,
     );
   }
+
+  getIpInfo(ip) {
+    return this.$http.get(`/ip/${encodeURIComponent(ip)}`);
+  }
 }

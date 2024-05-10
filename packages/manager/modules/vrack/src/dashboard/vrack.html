@@ -203,6 +203,12 @@
                     >
                     </ng-include>
                 </div>
+                <vrack-add-ipv6-modal
+                    data-is-open-modal="$ctrl.addIpv6Modal"
+                    data-on-confirm="$ctrl.addServiceAction()"
+                    data-on-cancel="$ctrl.resetAction()"
+                    data-state="$ctrl.addIpv6ModalState"
+                ></vrack-add-ipv6-modal>
                 <vrack-delete-ipv6-modal
                     data-is-open-modal="$ctrl.deleteIpv6Modal"
                     data-on-confirm="$ctrl.deleteServiceAction()"
