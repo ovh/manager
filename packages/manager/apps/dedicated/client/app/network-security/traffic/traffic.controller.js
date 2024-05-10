@@ -34,10 +34,6 @@ export default class TrafficController {
       this.services = data;
       return data;
     });
-    this.ip = this.$stateParams.ip;
-    this.dateTime = this.$stateParams.dateTime
-      ? new Date(this.$stateParams.dateTime)
-      : null;
     if (this.dateTime) {
       const dateLimit = new Date();
       dateLimit.setDate(dateLimit.getDate() - 14);

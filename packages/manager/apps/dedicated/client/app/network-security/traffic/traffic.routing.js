@@ -12,6 +12,11 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '?ip&dateTime',
       component: 'traffic',
       resolve: {
+        ip: /* @ngInject */ ($transition$) => $transition$.params().ip,
+        dateTime: /* @ngInject */ ($transition$) =>
+          $transition$.params().dateTime
+            ? new Date($transition$.params().dateTime)
+            : null,
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('network_security_dashboard_traffic_breadcrumb'),
       },
