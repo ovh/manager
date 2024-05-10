@@ -20,6 +20,10 @@ import {
   getEligibleManagedServiceListQueryKey,
   getEligibleManagedServiceList,
   EligibleManagedService,
+  deleteVrackServices,
+  deleteVrackServicesQueryKey,
+  getVrackServicesServiceId,
+  getVrackServicesServiceIdQueryKey,
 } from '@/api';
 
 export const useVrackServicesList = (refetchInterval = 30000) =>
@@ -148,6 +152,45 @@ export const useUpdateVrackServices = ({
     isErrorVisible: updateError && isErrorVisible,
     hideError: () => setIsErrorVisible(false),
     updateError,
+  };
+};
+
+export const useDeleteVrackServices = ({
+  vrackServices,
+  onSuccess,
+  onError,
+}: {
+  vrackServices: string;
+  onSuccess?: () => void;
+  onError?: (result: ApiError) => void;
+}) => {
+  const { data: servicesId, isError, error } = useQuery<
+    ApiResponse<number[]>,
+    ApiError
+  >({
+    queryKey: getVrackServicesServiceIdQueryKey({ vrackServices }),
+    queryFn: () => getVrackServicesServiceId({ vrackServices }),
+    enabled: !!vrackServices,
+  });
+
+  const {
+    mutate: deleteVs,
+    isError: isTerminateError,
+    error: terminateError,
+  } = useMutation({
+    mutationFn: () =>
+      deleteVrackServices({
+        serviceId: servicesId?.data[0],
+      }),
+    mutationKey: deleteVrackServicesQueryKey(vrackServices),
+    onSuccess: () => onSuccess?.(),
+    onError,
+  });
+
+  return {
+    deleteVs,
+    isErrorVisible: isError || isTerminateError,
+    error: error || terminateError,
   };
 };
 

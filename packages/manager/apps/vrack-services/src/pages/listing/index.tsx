@@ -37,6 +37,7 @@ import { useVrackServicesList } from '@/utils/vs-utils';
 import { betaVrackServicesLimit } from './listing.constants';
 import { urls } from '@/router/constants';
 import { OperationMessages } from '@/components/OperationMessages';
+import { ResiliationMessages } from '@/components/ResiliationMessages';
 
 export default function ListingPage() {
   const { t } = useTranslation('vrack-services/listing');
@@ -85,6 +86,7 @@ export default function ListingPage() {
         {t('description')}
       </OsdsText>
       {!isLoading && <OperationMessages />}
+      <ResiliationMessages />
       {reachedBetaLimit && (
         <OsdsMessage className="my-4" type={ODS_MESSAGE_TYPE.info}>
           <OsdsText
