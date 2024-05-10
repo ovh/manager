@@ -6,11 +6,7 @@ import disable from './vsphere-users/disable';
 import edit from './vsphere-users/edit';
 import enable from './vsphere-users/enable';
 import iamToggle from './iam/toggle';
-import federationAdd from './activeDirectories/add';
-import federationDelete from './activeDirectories/delete';
-import federationEdit from './activeDirectories/edit';
 import userIamRole from './vsphere-users/iam-role';
-import importUser from './vsphere-users/import';
 import passwordReset from './vsphere-users/password-reset';
 import rights from './vsphere-users/rights';
 import routing from './dedicatedCloud-users.routes';
@@ -26,11 +22,7 @@ angular
     edit,
     enable,
     iamToggle,
-    federationAdd,
-    federationDelete,
-    federationEdit,
     userIamRole,
-    importUser,
     passwordReset,
     rights,
     userComponent,

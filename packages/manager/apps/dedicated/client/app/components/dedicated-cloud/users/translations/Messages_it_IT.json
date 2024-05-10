@@ -1,6 +1,5 @@
 {
   "dedicatedCloud_user_management_authorization_vsphere": "Gestione delle autorizzazioni utente nel client vSphere",
-  "dedicatedCloud_user_management_activeDirectories": "Active Directory (LDAP)",
   "dedicatedCloud_user_management_iam": "IAM OVHcloud",
   "dedicatedCloud_user_management_beta": "BETA"
 }
