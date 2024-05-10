@@ -44,6 +44,7 @@ export const features = [
   'public-cloud:project-settings',
   'ai-dashboard',
   'data-platform',
+  'ai-endpoints',
 ];
 
 export function getPciProjectMenu(
@@ -311,6 +312,15 @@ export function getPciProjectMenu(
           regions: ['CA', 'EU'],
           feature: 'ai-apps',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/apps`),
+        },
+        {
+          id: 'endpoints',
+          title: 'AI Endpoints',
+          regions: ['CA', 'EU'],
+          feature: 'ai-endpoints',
+          badge: 'alpha',
+          href: 'https://endpoints.ai.cloud.ovh.net/',
+          external: true,
         },
       ],
     },
