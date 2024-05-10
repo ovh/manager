@@ -670,7 +670,7 @@ export default class DomainTabGeneralInformationsCtrl {
   }
 
   canDisplayDomainOwner() {
-    return this.loggedInUser === this.domainInfos.contactAdmin;
+    return this.loggedInUser === this.domainInfos.contactAdmin.id;
   }
 
   getDomainOwnerInformation() {
