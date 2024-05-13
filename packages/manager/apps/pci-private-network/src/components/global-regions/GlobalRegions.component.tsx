@@ -52,20 +52,19 @@ export default function GlobalRegionsComponent({
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
 
-  const { data: regions, isLoading: regionsLoading } = useProjectRegions(
-    projectId,
-  );
+  const { data: regions } = useProjectRegions(projectId);
 
-  const { data: gateways, isLoading: gatewaysLoading } = useGateways(projectId);
-  const {
-    data: aggregatedNetworks,
-    isLoading: aggregatedNetworksLoading,
-  } = useAggregatedNonLocalNetworks(projectId, regions);
+  const { data: gateways } = useGateways(projectId);
+  const { data: aggregatedNetworks } = useAggregatedNonLocalNetworks(
+    projectId,
+    regions,
+  );
 
   const {
     data: networks,
     error,
     isLoading: networksLoading,
+    isPending: networksPending,
   } = useGlobalRegionsNetworks(
     projectId,
     aggregatedNetworks || [],
@@ -74,11 +73,7 @@ export default function GlobalRegionsComponent({
     filters,
   );
 
-  const isLoading =
-    gatewaysLoading ||
-    regionsLoading ||
-    aggregatedNetworksLoading ||
-    networksLoading;
+  const isLoading = networksLoading || networksPending;
 
   return (
     <div>
