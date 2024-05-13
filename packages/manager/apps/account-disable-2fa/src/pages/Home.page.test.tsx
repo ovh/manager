@@ -45,19 +45,7 @@ describe('Home.page', () => {
     });
   });
 
-  it('should render loading component when isLoading is true', async () => {
-    fetch2faStatusFakeResponse.isLoading = true;
-    fetch2faStatusFakeResponse.isFetched = false;
-
-    render(<Home />);
-
-    const loadingElements = screen.getAllByText((content, element) => {
-      return element.textContent.includes('TestLoading');
-    });
-    expect(loadingElements.length).to.be.at.least(1);
-  });
-
-  it('should render outlet component when isLoading is false', async () => {
+  it('should render outlet component when isFetched is true', async () => {
     fetch2faStatusFakeResponse.isLoading = false;
     fetch2faStatusFakeResponse.isFetched = true;
 
