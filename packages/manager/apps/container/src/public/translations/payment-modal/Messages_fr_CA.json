@@ -1,0 +1,8 @@
+{
+  "payment_modal_action_cancel": "Pas maintenant",
+  "payment_modal_action_validate": "Mettre à jour",
+  "payment_modal_description_expired": "Votre carte bancaire est arrivée à expiration et vos paiements ne seront pas réalisés.",
+  "payment_modal_description_soon_expired": "Votre carte bancaire va prochainement expirer et vos paiements ne pourront être réalisés.",
+  "payment_modal_description_sub": "Afin de permettre le fonctionnement de vos services et éviter toute coupure, nous vous encourageons à mettre à jour votre moyen de paiement.",
+  "payment_modal_title": "Mise à jour de votre moyen de paiement"
+}

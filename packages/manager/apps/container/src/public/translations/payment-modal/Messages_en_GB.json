@@ -1,0 +1,8 @@
+{
+  "payment_modal_action_cancel": "Not now",
+  "payment_modal_action_validate": "Update",
+  "payment_modal_description_no_default": "Your credit/debit card is due to expire soon and will no longer be valid for payments.",
+  "payment_modal_description_expired": "Your credit/debit card is due to expire soon and will no longer be valid for payments.",
+  "payment_modal_description_sub": "To avoid service interruption and ensure your services run smoothly, please update your payment method.",
+  "payment_modal_title": "Update your payment method"
+}
