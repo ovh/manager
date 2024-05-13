@@ -13,6 +13,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { useEffect, useRef } from 'react';
 import { Instance } from '@/interface';
 
 type EditInstanceModalProps = {
@@ -35,6 +36,24 @@ export default function EditInstanceModal({
   onConfirm,
 }: Readonly<EditInstanceModalProps>) {
   const { t } = useTranslation('failover-ips-edit');
+
+  const selectRef = useRef(null);
+
+  /**
+   * Workaround to solve ods select width on mobile
+   * TODO: solve on ods side
+   */
+  useEffect(() => {
+    if (
+      selectRef.current &&
+      !selectRef.current.shadowRoot.querySelector('style')
+    ) {
+      const style = document.createElement('style');
+      style.innerHTML =
+        '.ocdk-surface--is-open-below.ocdk-surface--open {max-width: 100%;}';
+      selectRef.current.shadowRoot.appendChild(style);
+    }
+  }, [selectRef.current]);
 
   return (
     <OsdsModal
@@ -61,6 +80,7 @@ export default function EditInstanceModal({
               })}
             </OsdsText>
             <OsdsSelect
+              ref={selectRef}
               className="mt-5"
               value={selectedInstanceId}
               onOdsValueChange={onSelectChange}
