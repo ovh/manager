@@ -1,9 +1,6 @@
 import React from 'react';
-import NotFound from './pages/404';
-import {
-  createRoutePath,
-  seeRoutePath,
-} from '@/constants/route-path-constants';
+import NotFound from '../pages/404';
+import { createRoutePath, seeRoutePath } from '@/routes/home.constants';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {

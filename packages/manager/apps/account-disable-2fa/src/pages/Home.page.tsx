@@ -2,12 +2,8 @@ import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import ovhCloudLogo from '@/assets/logo-ovhcloud.png';
 import { Status2faStrategies } from '@/types/status.type';
-import {
-  createRoutePath,
-  seeRoutePath,
-} from '@/constants/route-path-constants';
 import { useFetch2faStatus } from '@/data/hooks/useStatus';
-import Loading from '@/components/Loading/Loading';
+import { createRoutePath, seeRoutePath } from '@/routes/home.constants';
 
 const redirectStrategies: Status2faStrategies = {
   open: `/${seeRoutePath}`,
@@ -18,7 +14,7 @@ export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { data, isFetched, isLoading } = useFetch2faStatus();
+  const { data, isFetched } = useFetch2faStatus();
 
   useEffect(() => {
     const route = redirectStrategies[data?.status];
@@ -35,7 +31,7 @@ export default function Home() {
             <img src={ovhCloudLogo} alt="ovh-cloud-logo" className="app-logo" />
           </div>
           <div className="flex justify-center app-content lg:w-8/12 mx-auto min-h-[500px] sm:shadow sm:shadow-[0_0_6px_0_rgba(40,89,192,0.2)] sm:border-none border-t-[1px] border-gray-300">
-            {isLoading ? <Loading /> : <Outlet />}
+            {isFetched && <Outlet />}
           </div>
         </div>
       </div>
