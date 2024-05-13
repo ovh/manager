@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate,{{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
+import { {{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { OsdsLink } from '@ovhcloud/ods-components/react';
@@ -19,6 +19,7 @@ import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 import appConfig from '@/{{appName}}.config';
+import { urls } from '@/routes/routes.constant';
 
 export default function Listing() {
   const myConfig = appConfig;
@@ -41,6 +42,7 @@ export default function Listing() {
   const { data, isError, error, isLoading, status }: any = useQuery({
     queryKey: [`servicesListingIceberg-${pageIndex + 1}-${pageSize}`],
     queryFn: () => getListingIcebergV6({ {{#if isPCI }}projectId, {{/if}}pageSize, page: pageIndex + 1 }),
+    retry: false,
     staleTime: Infinity,
     enabled: true,
   });
@@ -53,34 +55,38 @@ export default function Listing() {
 
   useEffect(() => {
     if (status === 'success' && data?.data) {
-      setRes(data?.data);
-      const newColumns = Object.keys(data?.data[0])
-        .filter((element) => element !== 'iam')
-        .map((element) => ({
-          id: element,
-          header: element,
-          label: element,
-          accessorKey: element,
-          cell: (props: any) => {
-            const label = props[element] as string;
-            if (typeof label === 'string' || typeof label === 'number') {
-              if (serviceKey === element)
-                return (
-                  <DataGridTextCell>
-                    <OsdsLink
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                      onClick={() => navigateToDashabord(label)}
-                    >
-                      {label}
-                    </OsdsLink>
-                  </DataGridTextCell>
-                );
-              return <DataGridTextCell>{label}</DataGridTextCell>;
-            }
-            return <div>-</div>;
-          },
-        }));
-      setColumns(newColumns);
+      if (data?.data.length === 0) {
+        navigate(urls.onboarding);
+      } else {
+        setRes(data?.data);
+        const newColumns = Object.keys(data?.data[0])
+          .filter((element) => element !== 'iam')
+          .map((element) => ({
+            id: element,
+            header: element,
+            label: element,
+            accessorKey: element,
+            cell: (props: any) => {
+              const label = props[element] as string;
+              if (typeof label === 'string' || typeof label === 'number') {
+                if (serviceKey === element)
+                  return (
+                    <DataGridTextCell>
+                      <OsdsLink
+                        color={ODS_THEME_COLOR_INTENT.primary}
+                        onClick={() => navigateToDashabord(label)}
+                      >
+                        {label}
+                      </OsdsLink>
+                    </DataGridTextCell>
+                  );
+                return <DataGridTextCell>{label}</DataGridTextCell>;
+              }
+              return <div>-</div>;
+            },
+          }));
+        setColumns(newColumns);
+      }
     }
   }, [data?.data]);
 
@@ -91,8 +97,6 @@ export default function Listing() {
   if (isLoading && pageIndex === 0) {
     return (<div><Loading/></div>)
   }
-
-  if (data?.length === 0) return <Navigate to="onboarding" />;
 
   return (
     <>

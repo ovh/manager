@@ -13,21 +13,24 @@ console.log(
 
 const runTests = async () => {
   let exitCode = 0;
-  const getBaseConfig = await import(
-    '../packages/manager/core/vite-config/src/index.js'
-  ).then((module) => module.getBaseConfig);
+  let server;
 
-  const server = await createServer({
-    ...getBaseConfig(),
-    server: {
-      port: 9001,
-    },
-    envDir: __dirname,
-  });
-
-  await server.listen();
+  const baseConfig = await import(`${process.cwd()}/vite.config.mjs`).then(
+    (module) => module.default,
+  );
 
   try {
+    server = await createServer({
+      ...baseConfig,
+      plugins: [],
+      server: {
+        port: 9001,
+      },
+      envDir: __dirname,
+    });
+
+    await server.listen();
+
     const result = await execa('npx', ['cucumber-js'], {
       stdio: 'inherit',
       detached: true,
@@ -44,7 +47,7 @@ const runTests = async () => {
     console.log('error:', err);
     exitCode = 2;
   } finally {
-    await server.close();
+    await server?.close();
   }
   return exitCode;
 };

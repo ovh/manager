@@ -31,7 +31,7 @@ export const SUB_UNIVERSES = [
   'Account-creation',
 ];
 export const LEVEL2 = {
-  0: '',
+  0: 'Unknown',
   56: 'ManagerCloud',
   57: 'ManagerDedicated',
   67: 'Focus',

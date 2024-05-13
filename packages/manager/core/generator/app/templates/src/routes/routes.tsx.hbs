@@ -104,7 +104,7 @@ export const Routes: any = [
             id: 'dashboard',
             path: '',
             ...lazyRouteConfig(
-              () => import('@/pages/dashboard/index')),
+              () => import('@/pages/dashboard/general-informations')),
             handle: {
               tracking: {
                 pageName: 'dashboard',
@@ -116,7 +116,7 @@ export const Routes: any = [
             id: 'dashboard.tab2',
             path: 'Tab2',
             ...lazyRouteConfig(
-              () => import('@/pages/dashboard/Tab2')),
+              () => import('@/pages/dashboard/tab2')),
             handle: {
               tracking: {
                 pageName: 'tab2',

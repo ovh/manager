@@ -1,4 +1,5 @@
-import { fetchIcebergV2, fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
+import { {{#if this.isApiV2}}fetchIcebergV2, {{/if}}{{#if this.isApiV6}}fetchIcebergV6, {{/if}}apiClient } from '@ovh-ux/manager-core-api';
+
 
 {{!-- {{#if unknownTypeList}}
 {{#each unknownTypeList}}
@@ -33,18 +34,15 @@ export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalC
  *  Get listing with iceberg V6
  */
 export const getListingIcebergV6 = async ({ {{#if this.isPCI }}projectId, {{/if}}pageSize, page }: { {{#if this.isPCI }}projectId: string, {{/if}}pageSize: number, page: number }) => {
-  try {
-    const List = await fetchIcebergV6({
-      route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
-      pageSize,
-      page
-    }).then(
-      ({ data, status, totalCount }) => ({ data, status, totalCount }),
-    );
-    return List;
-  } catch (error) {
-    return null;
+  const { data, status, totalCount } = await fetchIcebergV6({
+    route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
+    pageSize,
+    page
+  });
+  if (status > 400) {
+    throw new Error();
   }
+  return { data, status, totalCount };
 };
 {{/if}}
 
@@ -54,18 +52,15 @@ export const getListingIcebergV6 = async ({ {{#if this.isPCI }}projectId, {{/if}
  */
 
 export const getListingIcebergV2 = async ({ {{#if this.isPCI }}projectId, {{/if}}pageSize, cursor }: { {{#if this.isPCI }}projectId: string, {{/if}}pageSize: number, cursor?: string }) => {
-  try {
-    const List = await fetchIcebergV2({
-      route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
-      pageSize,
-      cursor
-    }).then(
-      ({ data, status, cursorNext }) => ({ data, status, cursorNext }),
-    );
-    return List;
-  } catch (error) {
-    return null;
+  const { data, status, cursorNext } = await fetchIcebergV2({
+    route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
+    pageSize,
+    cursor
+  });
+  if (status > 400) {
+    throw new Error();
   }
+  return { data, status, cursorNext };
 };
 {{/if}}
 
