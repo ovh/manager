@@ -19,6 +19,15 @@
         data-prevent-next
     >
         <div class="col-sm-12 mt-2 mb-4 d-flex flex-wrap align-content-stretch">
+            <oui-message
+                data-type="error"
+                data-ng-if="$ctrl.vdcList.length === 0"
+            >
+                <span
+                    data-translate="dedicatedCloud_configuration_add_datacenter_card_vdc_contact_support"
+                ></span>
+            </oui-message>
+
             <oui-select-picker
                 data-ng-repeat="datacenter in $ctrl.vdcList track by $index"
                 class="col-md-4"

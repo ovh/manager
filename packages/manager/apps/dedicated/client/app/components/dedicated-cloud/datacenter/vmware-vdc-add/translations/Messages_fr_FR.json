@@ -7,6 +7,7 @@
   "dedicatedCloud_configuration_add_datacenter_step_2_description": "Ajoutez les hôtes qui composeront initialement votre VDC. Si vos besoins évoluent, vous pourrez compléter avec d'autres types d'hôtes ultérieurement.",
   "dedicatedCloud_configuration_add_datacenter_cta_submit": "Ajouter un datacentre",
   "dedicatedCloud_configuration_add_datacenter_cta_cancel": "Annuler",
+  "dedicatedCloud_configuration_add_datacenter_card_vdc_contact_support": "Veuillez contacter le support",
   "dedicatedCloud_configuration_add_datacenter_card_vdc_vsphere_label": "Managed vSphere",
   "dedicatedCloud_configuration_add_datacenter_card_vdc_vsphere_description": "Ajoutez un virtual data center (VDC) standard.",
   "dedicatedCloud_configuration_add_datacenter_card_vdc_nsx-t_label": "Networking and Security Virtualization (NSX)",
