@@ -54,23 +54,21 @@ export default function LocalZoneComponent({
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
 
-  const { data: regions, isLoading: regionsLoading } = useProjectRegions(
+  const { data: regions } = useProjectRegions(projectId);
+
+  const { data: aggregatedNetworks } = useAggregatedLocalNetworks(
     projectId,
+    regions,
   );
 
   const {
-    data: aggregatedNetworks,
-    isLoading: aggregatedNetworksLoading,
-  } = useAggregatedLocalNetworks(projectId, regions);
-
-  const {
     data: localZoneNetworks,
-    isLoading: localZoneNetworksLoading,
+    isLoading: networksLoading,
+    isPending: networksPending,
     error,
   } = useLocalZoneNetworks(projectId, aggregatedNetworks, pagination, filters);
 
-  const isLoading =
-    regionsLoading || aggregatedNetworksLoading || localZoneNetworksLoading;
+  const isLoading = networksLoading || networksPending;
 
   const columns = [
     {
