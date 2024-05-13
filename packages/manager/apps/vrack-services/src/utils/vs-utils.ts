@@ -20,6 +20,10 @@ import {
   getEligibleManagedServiceListQueryKey,
   getEligibleManagedServiceList,
   EligibleManagedService,
+  deleteVrackServices,
+  deleteVrackServicesQueryKey,
+  getVrackServicesServiceId,
+  getVrackServicesServiceIdQueryKey,
 } from '@/api';
 
 export const useVrackServicesList = (refetchInterval = 30000) =>
@@ -89,12 +93,7 @@ export const useUpdateVrackServices = ({
   const [isErrorVisible, setIsErrorVisible] = React.useState(false);
   const queryClient = useQueryClient();
 
-  const {
-    mutateAsync: updateVS,
-    isPending,
-    isError,
-    error: updateError,
-  } = useMutation<
+  const { mutateAsync: updateVS, isPending, error: updateError } = useMutation<
     ApiResponse<VrackServices>,
     ApiError,
     UpdateVrackServicesParams
@@ -105,9 +104,11 @@ export const useUpdateVrackServices = ({
       queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
-      queryClient.invalidateQueries({
-        queryKey: getVrackServicesResourceQueryKey(result.data?.id || key),
-      });
+      if (result) {
+        queryClient.invalidateQueries({
+          queryKey: getVrackServicesResourceQueryKey(result.data?.id || key),
+        });
+      }
     },
     onSuccess: (result: ApiResponse<VrackServices>) => {
       queryClient.setQueryData(
@@ -139,21 +140,57 @@ export const useUpdateVrackServices = ({
       }, updateTriggerDelay);
       onSuccess?.(result);
     },
-    onError,
-  });
-
-  React.useEffect(() => {
-    if (isError) {
+    onError: (result) => {
       setIsErrorVisible(true);
-    }
-  }, [isError]);
+      onError?.(result);
+    },
+  });
 
   return {
     updateVS,
     isPending,
-    isErrorVisible,
+    isErrorVisible: updateError && isErrorVisible,
     hideError: () => setIsErrorVisible(false),
     updateError,
+  };
+};
+
+export const useDeleteVrackServices = ({
+  vrackServices,
+  onSuccess,
+  onError,
+}: {
+  vrackServices: string;
+  onSuccess?: () => void;
+  onError?: (result: ApiError) => void;
+}) => {
+  const { data: servicesId, isError, error } = useQuery<
+    ApiResponse<number[]>,
+    ApiError
+  >({
+    queryKey: getVrackServicesServiceIdQueryKey({ vrackServices }),
+    queryFn: () => getVrackServicesServiceId({ vrackServices }),
+    enabled: !!vrackServices,
+  });
+
+  const {
+    mutate: deleteVs,
+    isError: isTerminateError,
+    error: terminateError,
+  } = useMutation({
+    mutationFn: () =>
+      deleteVrackServices({
+        serviceId: servicesId?.data[0],
+      }),
+    mutationKey: deleteVrackServicesQueryKey(vrackServices),
+    onSuccess: () => onSuccess?.(),
+    onError,
+  });
+
+  return {
+    deleteVs,
+    isErrorVisible: isError || isTerminateError,
+    error: error || terminateError,
   };
 };
 

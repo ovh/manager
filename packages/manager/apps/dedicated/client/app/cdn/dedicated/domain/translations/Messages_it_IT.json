@@ -86,7 +86,7 @@
   "cdn_domain_configuration_cacherule_create_title": "Crea una nuova regola",
   "cdn_domain_configuration_cacherule_create_step1_question": "Vuoi creare una regola di cache?",
   "cdn_domain_configuration_cacherule_create_step1_information_FILE": "La regola deve essere preceduta dal simbolo \"/\" e contenere un'estensione di almeno 2 caratteri.",
-  "cdn_domain_configuration_cacherule_create_step1_information_EXTENSION": "La regola deve essere preceduta dal simbolo \".\" ed essere composta da almeno 2 caratteri e non più di 4.",
+  "cdn_domain_configuration_cacherule_create_step1_information_EXTENSION": "La regola deve essere preceduta dal simbolo \".\" ed essere composta da un minimo di 2 caratteri e un massimo di 5.",
   "cdn_domain_configuration_cacherule_create_step1_information_FOLDER": "La regola deve essere preceduta da almeno un simbolo \"/\".",
   "cdn_domain_configuration_cacherule_create_cachetype": "Memorizzazione in cache:",
   "cdn_domain_configuration_cacherule_create_cachetype_NO_CACHE": "Mai",

@@ -86,7 +86,7 @@
   "cdn_domain_configuration_cacherule_create_title": "Stwórz nową regułę",
   "cdn_domain_configuration_cacherule_create_step1_question": "Czy chcesz utworzyć regułę cache?",
   "cdn_domain_configuration_cacherule_create_step1_information_FILE": "Reguła musi zawierać prefiks w formie '/' i rozszerzenie z minimum 2 znaków.",
-  "cdn_domain_configuration_cacherule_create_step1_information_EXTENSION": "Reguła musi zawierać prefiks w formie '.' i musi się składać z 2 do 4 znaków.",
+  "cdn_domain_configuration_cacherule_create_step1_information_EXTENSION": "Reguła musi być poprzedzona znakiem „.” i składać się z co najmniej 2 i maksymalnie 5 znaków.",
   "cdn_domain_configuration_cacherule_create_step1_information_FOLDER": "Reguła musi zawierać prefiks w formie '/'.",
   "cdn_domain_configuration_cacherule_create_cachetype": "Dodanie do cache:",
   "cdn_domain_configuration_cacherule_create_cachetype_NO_CACHE": "Nigdy",
