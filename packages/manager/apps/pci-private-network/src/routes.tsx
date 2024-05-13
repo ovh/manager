@@ -18,6 +18,7 @@ export interface RouteHandle {
 
 export const ROUTE_PATHS = {
   root: '/pci/projects/:projectId/private-networks',
+  onboarding: 'onboarding',
   globalRegions: '',
   localZone: 'localZone',
   delete: 'delete',
@@ -70,6 +71,10 @@ export default [
             },
           },
         ],
+      },
+      {
+        path: ROUTE_PATHS.onboarding,
+        ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
       },
     ],
   },
