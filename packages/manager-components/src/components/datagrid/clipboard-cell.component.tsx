@@ -13,7 +13,7 @@ export function DataGridClipboardCell({
 }: Readonly<DataGridClipboardCellProps>) {
   const { t } = useTranslation('datagrid');
   return (
-    <OsdsClipboard inline value={text}>
+    <OsdsClipboard value={text}>
       <span slot="success-message">
         <OsdsText color={ODS_THEME_COLOR_INTENT.success}>
           {t('common_clipboard_success_label')}
