@@ -92,7 +92,7 @@ export const FloatingIpSummary = ({
               <div>
                 <p>
                   <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.warning}
+                    color={ODS_THEME_COLOR_INTENT.text}
                     className="font-sans"
                   >
                     {tOrder(
@@ -102,7 +102,7 @@ export const FloatingIpSummary = ({
                 </p>
                 <p>
                   <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.warning}
+                    color={ODS_THEME_COLOR_INTENT.text}
                     className="font-sans"
                   >
                     {tOrder(
@@ -115,10 +115,7 @@ export const FloatingIpSummary = ({
                 </p>
                 {selectedGateway && (
                   <p>
-                    <OsdsText
-                      color={ODS_THEME_COLOR_INTENT.warning}
-                      className="font-sans"
-                    >
+                    <OsdsText className="font-sans">
                       {tOrder(
                         'pci_additional_ip_create_summary_step_gateway_size_and_price',
                         {
