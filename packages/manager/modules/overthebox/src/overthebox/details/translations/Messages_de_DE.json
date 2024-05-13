@@ -74,9 +74,9 @@
   "overTheBox_change_release_channel_error": "Die Änderung der Version konnte nicht durchgeführt werden: {{errorMessage}}",
   "overTheBox_release_channel_stable": "Stabile Version mit automatischer Aktualisierung",
   "overTheBox_release_channel_beta": "Beta-Version mit automatischer Aktualisierung",
-  "overTheBox_release_channel_alpha": "Alpha-Version",
-  "overTheBox_release_channel_develop": "Entwicklungsversion",
-  "overTheBox_release_channel_rpi3": "Version für Raspberry 3",
+  "overTheBox_release_channel_v0_8": "Version 0.8",
+  "overTheBox_release_channel_v0_9": "Version 0.9",
+  "overTheBox_release_channel_v1_0": "Version 1.0",
   "overTheBox_version_device": "Hardware-Version",
   "overTheBox_version_system": "Version des Systems",
   "overTheBox_last_seen": "Letzter Zugang der Hardware über die Provisioning-Server",
@@ -85,8 +85,5 @@
   "overTheBox_reverse_dns": "DNS Reverse",
   "overTheBox_detail_link_guide": "Anleitungen",
   "overthebox_detail_links": "Links",
-  "overTheBox_service_id": "Kennung des Dienstes:",
-  "overTheBox_release_channel_v0_8": "Version 0.8",
-  "overTheBox_release_channel_v0_9": "Version 0.9",
-  "overTheBox_release_channel_v1_0": "Version 1.0"
+  "overTheBox_service_id": "Kennung des Dienstes:"
 }

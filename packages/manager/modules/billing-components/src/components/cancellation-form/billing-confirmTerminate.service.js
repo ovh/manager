@@ -1,13 +1,17 @@
 import { map } from 'lodash-es';
 import { Service } from '@ovh-ux/manager-models';
-import { TERMINATION_FORM_NAME } from './confirm-terminate.constants';
+import {
+  SERVICE_WITH_AGORA_TERMINATION,
+  TERMINATION_FORM_NAME,
+} from './confirm-terminate.constants';
 
 export default class BillingTerminate {
   /* @ngInject */
-  constructor(coreConfig, OvhApiServices, OvhHttp) {
+  constructor(coreConfig, OvhApiServices, OvhHttp, $http) {
     this.coreConfig = coreConfig;
     this.OvhApiServices = OvhApiServices;
     this.OvhHttp = OvhHttp;
+    this.$http = $http;
   }
 
   getServiceApi(serviceId, forceRefresh) {
@@ -31,11 +35,21 @@ export default class BillingTerminate {
   }
 
   confirmTermination(service, token) {
-    return this.OvhHttp.post(`${service.path}/confirmTermination`, {
-      rootPath: 'apiv6',
-      data: {
-        token,
-      },
+    if (
+      SERVICE_WITH_AGORA_TERMINATION.includes(service.billing?.plan?.code || '')
+    )
+      return this.agoraTermination(service, token);
+
+    return this.productTermination(service, token);
+  }
+
+  productTermination(service, token) {
+    return this.$http.post(`${service.path}/confirmTermination`, { token });
+  }
+
+  agoraTermination(service, token) {
+    return this.$http.post(`/services/${service.serviceId}/terminate/confirm`, {
+      token,
     });
   }
 
