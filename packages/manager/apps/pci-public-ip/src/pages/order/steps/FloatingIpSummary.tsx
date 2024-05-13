@@ -50,8 +50,10 @@ export const FloatingIpSummary = ({
   const [isSnatEnabled, setIsSnatEnabled] = useState(false);
 
   useEffect(() => {
-    onSelectedSizeChanged(selectedGateway?.size);
-  }, [selectedGateway]);
+    onSelectedSizeChanged(
+      gateways?.length === 0 ? selectedGateway?.size : null,
+    );
+  }, [gateways, selectedGateway]);
 
   useEffect(() => {
     if (rawGateways && rawSubnets) {
