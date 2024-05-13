@@ -22,7 +22,7 @@ export const IpTypeStep = ({
     <StepComponent
       {...steps.get(StepIdsEnum.IP_TYPE)}
       title={tOrder('pci_additional_ip_create_step_select_ip')}
-      next={{ action: On.next }}
+      next={dataState.ipTypes.length > 0 ? { action: On.next } : {}}
       onEdit={On.edit}
       order={1}
     >
