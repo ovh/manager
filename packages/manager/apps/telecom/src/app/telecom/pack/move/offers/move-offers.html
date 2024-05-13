@@ -854,7 +854,10 @@
                                 data-title="{{ offer.description }}"
                                 data-ng-repeat="offer in $ctrl.offers track by $index"
                             >
-                                <label class="oui-select">
+                                <label
+                                    class="oui-select"
+                                    data-ng-if="$ctrl.constructor.isGtrOptionExist(offer)"
+                                >
                                     <select
                                         class="oui-select__input"
                                         data-ng-model="offer.gtrSelected"

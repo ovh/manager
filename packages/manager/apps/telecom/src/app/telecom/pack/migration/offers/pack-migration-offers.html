@@ -68,6 +68,14 @@
                                     data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer' }"
                                     data-translate-values="{ offerName : $ctrl.process.pack.offerDescription }"
                                     data-ng-bind-html="$ctrl.process.pack.offerPrice.text | tucFormatPrice"
+                                    data-ng-if="!$ctrl.isGrt"
+                                ></td>
+                                <td
+                                    class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                    data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer' }"
+                                    data-translate-values="{ offerName : $ctrl.process.pack.offerDescription }"
+                                    data-ng-bind-html="$ctrl.process.pack.displayedCurrentPrice.text | tucFormatPrice"
+                                    data-ng-if="$ctrl.isGrt"
                                 ></td>
                                 <td
                                     class="table-comparison__cell table-comparison__cell--border table-comparison__value"
@@ -832,6 +840,14 @@
                                     <strong
                                         class="d-block text-muted"
                                         data-translate="telecom_pack_migration_option_unavailable"
+                                        data-ng-if="!$ctrl.isGrt"
+                                    >
+                                    </strong>
+                                    <strong
+                                        class="d-block text-muted"
+                                        data-translate="{{$ctrl.grtLabel}}"
+                                        data-translate-values="{ price: $ctrl.grtLabelPrice }"
+                                        data-ng-if="$ctrl.isGrt"
                                     >
                                     </strong>
                                 </td>
@@ -842,7 +858,30 @@
                                 >
                                     <label
                                         class="oui-select"
-                                        data-ng-if="offer.gtrOptions.length > 0"
+                                        data-ng-if="offer.gtrOptions.length === 1"
+                                    >
+                                        <select
+                                            class="oui-select__input"
+                                            data-ng-model="offer.gtrSelected"
+                                            name="gtr"
+                                            disabled
+                                        >
+                                            <option
+                                                data-ng-repeat="gtrOption in offer.gtrOptions"
+                                                data-ng-value="gtrOption.name"
+                                                data-ng-bind-html="gtrOption.label"
+                                            >
+                                            </option>
+                                        </select>
+                                        <span
+                                            class="oui-icon oui-icon-chevron-down"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </label>
+
+                                    <label
+                                        class="oui-select"
+                                        data-ng-if="offer.gtrOptions.length > 1"
                                     >
                                         <select
                                             class="oui-select__input"
@@ -862,10 +901,10 @@
                                             aria-hidden="true"
                                         ></span>
                                     </label>
+
                                     <strong
                                         class="d-block text-muted"
-                                        data-ng-if="!offer.options.gtr_4ho && !offer.options.gtr_5m_4ho && !offer.options.gtr_20m_4ho &&
-                                                    !offer.options.gtr_10ho && !offer.options.gtr_5m_10ho && !offer.options.gtr_20m_10ho"
+                                        data-ng-if="offer.gtrOptions.length === 0"
                                         data-translate="telecom_pack_migration_option_unavailable"
                                     >
                                     </strong>
