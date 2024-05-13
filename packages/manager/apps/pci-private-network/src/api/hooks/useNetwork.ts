@@ -1,7 +1,6 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovhcloud/manager-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useMemo } from 'react';
 import {
   deleteNetwork,
   getAggregatedNetwork,
@@ -99,8 +98,8 @@ export const useGlobalRegionsNetworks = (
   gateways: TGateway[],
   pagination: PaginationState,
   filters: Filter[],
-) => {
-  const { data, isLoading, error } = useQuery({
+) =>
+  useQuery({
     queryKey: [projectId, 'private-network', 'global-regions'],
     queryFn: () => {
       const gatewaySubnetObj = gateways.reduce((acc, gatewayItem: TGateway) => {
@@ -125,22 +124,18 @@ export const useGlobalRegionsNetworks = (
       );
     },
     enabled: networks.length > 0 && gateways.length > 0,
-    select: (result) =>
-      result.map((network) => ({
+    select: (result) => {
+      const mappedData = result.map((network) => ({
         ...network,
         search: `${network.vlanId} ${network.name}`,
-      })) as TAggregatedNetwork[],
-  });
+      })) as TAggregatedNetwork[];
 
-  return useMemo(
-    () => ({
-      isLoading,
-      error,
-      data: paginateResults(applyFilters(data || [], filters), pagination),
-    }),
-    [data, isLoading, error, pagination],
-  );
-};
+      return paginateResults(
+        applyFilters(mappedData || [], filters),
+        pagination,
+      );
+    },
+  });
 
 export const filterLocalPrivateNetworks = (
   networks: TAggregatedNetwork[],
@@ -190,8 +185,8 @@ export const useLocalZoneNetworks = (
   networks: TAggregatedNetwork[],
   pagination: PaginationState,
   filters: Filter[] = [],
-) => {
-  const { data, isLoading, error } = useQuery<TLocalZoneNetwork[]>({
+) =>
+  useQuery({
     queryKey: getLocalZoneRegionsQueryKey(projectId),
     queryFn: () =>
       Promise.all(
@@ -213,22 +208,18 @@ export const useLocalZoneNetworks = (
           };
         }),
       ),
-    select: (result) =>
-      result.map((network) => ({
+    select: (result) => {
+      const mappedData = result.map((network) => ({
         ...network,
         search: `${network.name} ${network.region} ${network.dhcpEnabled} ${network.cidr} ${network.allocatedIp}`,
-      })),
-  });
+      }));
 
-  return useMemo(
-    () => ({
-      isLoading,
-      error,
-      data: paginateResults(applyFilters(data || [], filters), pagination),
-    }),
-    [data, isLoading, error, pagination, filters],
-  );
-};
+      return paginateResults(
+        applyFilters(mappedData || [], filters),
+        pagination,
+      );
+    },
+  });
 
 type TDeleteNetwork = {
   projectId: string;
