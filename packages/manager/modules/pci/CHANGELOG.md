@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.38.0...@ovh-ux/manager-pci@6.38.1) (2024-05-13)
+
+
+### Bug Fixes
+
+* **public-cloud:** remove duplicated textAccordion ([#11658](https://github.com/ovh/manager/issues/11658)) ([9d073f9](https://github.com/ovh/manager/commit/9d073f9bbd820215bc672b16c7d2cbe0e3fa1c7f))
+
+
+
+
+
 # [6.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.37.2...@ovh-ux/manager-pci@6.38.0) (2024-05-06)
 
 

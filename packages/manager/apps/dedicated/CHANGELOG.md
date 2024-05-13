@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.35.0...@ovh-ux/manager-dedicated@19.35.1) (2024-05-13)
+
+
+### Bug Fixes
+
+* **cdn:** change regex and field information for cache cdn ([#11273](https://github.com/ovh/manager/issues/11273)) ([144a82f](https://github.com/ovh/manager/commit/144a82f5e7b3ecf321c7e18bd53fc0a38215d4a4))
+
+
+
+
+
 # [19.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.34.0...@ovh-ux/manager-dedicated@19.35.0) (2024-05-06)
 
 

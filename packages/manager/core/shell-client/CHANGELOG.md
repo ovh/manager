@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.4.2...@ovh-ux/manager-react-shell-client@0.5.0) (2024-05-13)
+
+
+### Features
+
+* **tracking:** add use ovh tracking in generator ([#11432](https://github.com/ovh/manager/issues/11432)) ([57f67db](https://github.com/ovh/manager/commit/57f67db062a73ae210974f0d30e382b77505466c))
+
+
+
+
+
 ## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.4.1...@ovh-ux/manager-react-shell-client@0.4.2) (2024-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-shell-client
