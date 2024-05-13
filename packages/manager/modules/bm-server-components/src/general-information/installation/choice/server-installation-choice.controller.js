@@ -15,9 +15,9 @@ export default class ServerInstallationChoiceCtrl {
     this.choice = {
       value: 1,
       ovh: 1,
-      personal: 2,
-      image: 3,
+      gabarit: 2,
     };
+
     this.customImageGuide =
       CUSTOM_IMAGE_GUIDES[this.ovhSubsidiary] || CUSTOM_IMAGE_GUIDES.DEFAULT;
     this.loading = false;
