@@ -303,7 +303,7 @@ export default class PciProjectStorageBlockService {
       storage.planCode,
       get(
         catalog,
-        `volume.${storage.type}.consumption.${storage.region}`,
+        `volume.${storage.type}.consumption.${storage.region?.name}`,
         get(catalog, `volume.${storage.type}.consumption`),
       ),
     );
