@@ -10,19 +10,19 @@
     </div>
     <!-- subridg -->
     <li
-        class="vrack__assigned-ipv6__subrang"
+        class="vrack__assigned-ipv6__subrange"
         data-ng-repeat="bridged in $ctrl.bridgedSubranges track by $index"
     >
         <span
-            class="vrack__assigned-ipv6__subrang__title"
+            class="vrack__assigned-ipv6__subrange__title"
             data-ng-bind="::bridged.bridgedSubrange"
         ></span>
-        <span
-            >SLAAC
+        <span>
+            {{:: $ctrl.label.SLAAC }}
             <oui-switch
                 data-ng-hide="bridged.loading"
                 model="bridged.model"
-                on-change="$ctrl.toggleSubrang(bridged)"
+                on-change="$ctrl.toggleSubrange(bridged)"
             >
             </oui-switch>
             <oui-spinner data-size="s" data-ng-show="bridged.loading">
@@ -31,17 +31,17 @@
         <button
             type="button"
             class="oui-popover-button"
-            data-oui-popover="{{:: 'vrack__assigned-ipv6__subrang_slaac_help' | translate }}"
+            data-oui-popover="{{:: 'vrack__assigned-ipv6__subrange_slaac_help' | translate }}"
             data-oui-popover-placement="right"
             data-oui-popover-scope="$ctrl"
-            data-oui-popover-template="vrack__assigned-ipv6__subrang_slaac_help.html"
+            data-oui-popover-template="vrack__assigned-ipv6__subrange_slaac_help.html"
         ></button>
         <script
             type="text/ng-template"
-            id="vrack__assigned-ipv6__subrang_slaac_help.html"
+            id="vrack__assigned-ipv6__subrange_slaac_help.html"
         >
             <p
-                data-translate="vrack__assigned-ipv6__subrang_slaac_help"
+                data-translate="vrack__assigned-ipv6__subrange_slaac_help"
             ></p>
             <a
                 class="oui-link_icon"
@@ -51,7 +51,7 @@
             >
                 <span class="oui-icon oui-icon-book ml-0" aria-hidden="true"></span>
                 <span
-                data-translate="vrack__assigned-ipv6__subrang_slaac_help_tooltip_link"
+                data-translate="vrack__assigned-ipv6__subrange_slaac_help_tooltip_link"
             ></span>
             </a>
         </script>

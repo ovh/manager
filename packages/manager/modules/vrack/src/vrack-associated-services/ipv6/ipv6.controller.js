@@ -1,8 +1,5 @@
-import {
-  POLLING_INTERVAL,
-  SLAAC_VALUES,
-  SLAAC_GUIDES_LINK,
-} from '../../dashboard/vrack.constant';
+import { POLLING_INTERVAL, SLAAC_VALUES } from '../../dashboard/vrack.constant';
+import { SLAAC_LABEL, SLAAC_GUIDES_LINK } from './ipv6.constant';
 
 export default class VrackAssignedIpCtrl {
   /* @ngInject */
@@ -26,6 +23,7 @@ export default class VrackAssignedIpCtrl {
     this.user = coreConfig.getUser();
     this.slaacGuidesLink =
       SLAAC_GUIDES_LINK[this.user.ovhSubsidiary] || SLAAC_GUIDES_LINK.DEFAULT;
+    this.label = { SLAAC: SLAAC_LABEL };
   }
 
   $onInit() {
@@ -98,7 +96,7 @@ export default class VrackAssignedIpCtrl {
     };
   }
 
-  toggleSubrang(bridgedSubrange) {
+  toggleSubrange(bridgedSubrange) {
     const bridged = bridgedSubrange;
     bridged.loading = true;
     const targetValue = !bridged.model;
