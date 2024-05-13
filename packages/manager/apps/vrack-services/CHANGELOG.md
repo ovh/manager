@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.2.0...@ovh-ux/manager-vrack-services-app@0.3.0) (2024-05-13)
+
+
+### Bug Fixes
+
+* **vrack-services:** error message not disappearing on overview page ([#11561](https://github.com/ovh/manager/issues/11561)) ([50dbdc6](https://github.com/ovh/manager/commit/50dbdc61d5e808720fc128954562fd4b3074ec3e))
+
+
+### Features
+
+* **vrack-services:** handle resiliate on vrack services ([#11483](https://github.com/ovh/manager/issues/11483)) ([2d1dbed](https://github.com/ovh/manager/commit/2d1dbed6445ae4bc377a9f3ebdd33438e22ba81a))
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.1.6...@ovh-ux/manager-vrack-services-app@0.2.0) (2024-05-06)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.2.7...@ovh-ux/manager-pci-rancher-app@1.3.0) (2024-05-13)
+
+
+### Features
+
+* bump ods version ([#11647](https://github.com/ovh/manager/issues/11647)) ([8ebc7f4](https://github.com/ovh/manager/commit/8ebc7f4564285a077e99d00e10c1f545f98d3204))
+* **pci-rancher:** update onboarding component ([#11482](https://github.com/ovh/manager/issues/11482)) ([769663e](https://github.com/ovh/manager/commit/769663e666a75c038139e6d423257f25fb1d78f5))
+
+
+
+
+
 ## [1.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.2.6...@ovh-ux/manager-pci-rancher-app@1.2.7) (2024-05-06)
 
 

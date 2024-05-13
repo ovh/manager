@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.17.2...@ovh-ux/manager-billing-components@3.18.0) (2024-05-13)
+
+
+### Features
+
+* **vrack-services:** handle resiliate on vrack services ([#11483](https://github.com/ovh/manager/issues/11483)) ([2d1dbed](https://github.com/ovh/manager/commit/2d1dbed6445ae4bc377a9f3ebdd33438e22ba81a))
+
+
+
+
+
 ## [3.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.17.1...@ovh-ux/manager-billing-components@3.17.2) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

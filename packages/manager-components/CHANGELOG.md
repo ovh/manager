@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.11.0...@ovhcloud/manager-components@1.12.0) (2024-05-13)
+
+### Features
+
+- **pci-rancher:** update onboarding component ([#11482](https://github.com/ovh/manager/issues/11482)) ([769663e](https://github.com/ovh/manager/commit/769663e666a75c038139e6d423257f25fb1d78f5))
+
 # [1.11.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.10.3...@ovhcloud/manager-components@1.11.0) (2024-05-06)
 
 ### Bug Fixes
