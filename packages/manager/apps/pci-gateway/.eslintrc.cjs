@@ -15,6 +15,7 @@ module.exports = {
   rules: {
     'import/extensions': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
-    'react/no-deprecated': 'off'
+    'arrow-body-style': ["error", "as-needed"],
+    'prefer-const': 'error',
   },
 };

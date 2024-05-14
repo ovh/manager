@@ -1,7 +1,4 @@
-import {
-  useEnvironment,
-  useNavigation,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   Card,
   isDiscoveryProject,
@@ -17,7 +14,7 @@ import {
   OdsBreadcrumbAttributeItem,
 } from '@ovhcloud/ods-components';
 import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Outlet,
@@ -25,23 +22,20 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import { Project } from '@/api/data/project';
+import { Project } from '@ovh-ux/manager-react-core-application';
 import { GUIDES } from './onboarding.constants';
-import { useAllAggregatedGateway } from '@/api/hooks/useGateway';
+import OnBoardingGuard from '@/pages/onboarding/OnBoardingGuard';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation();
   const { t: tOnBoarding } = useTranslation('onboarding');
   const { projectId } = useParams();
-  const navigation = useNavigation();
-  const { ovhSubsidiary } = useEnvironment().getUser();
+  const context = useContext(ShellContext);
+  const { navigation } = context.shell;
+  const { ovhSubsidiary } = context.environment.getUser();
   const project = useRouteLoaderData('public-gateway') as Project;
   const [urlProject, setUrlProject] = useState('');
   const navigate = useNavigate();
-
-  const { data: aggregatedGateways, isLoading } = useAllAggregatedGateway(
-    projectId,
-  );
 
   useEffect(() => {
     navigation
@@ -50,12 +44,6 @@ export default function OnBoardingPage() {
         setUrlProject(data as string);
       });
   }, [projectId, navigation]);
-
-  useEffect(() => {
-    if (!isLoading && aggregatedGateways.length > 0) {
-      navigate(`/pci/projects/${projectId}/gateway`);
-    }
-  }, [isLoading, aggregatedGateways, navigate]);
 
   const breadcrumbItems: OdsBreadcrumbAttributeItem[] = [
     {
@@ -108,53 +96,55 @@ export default function OnBoardingPage() {
   };
 
   return (
-    <>
-      {project && <OsdsBreadcrumb items={breadcrumbItems} />}
+    <OnBoardingGuard projectId={projectId}>
+      <>
+        {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
-      {isDiscoveryProject(project) && (
-        <div className="mb-8">
-          <PciDiscoveryBanner projectId={projectId} />
-        </div>
-      )}
-      <OnboardingLayout
-        title={tOnBoarding('pci_projects_project_public_gateways_onboarding')}
-        description={
-          <>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              className="mt-8 block"
-            >
-              {tOnBoarding(
-                'pci_projects_project_public_gateways_onboarding_content1',
-              )}
-            </OsdsText>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              className="mt-8 block"
-            >
-              {tOnBoarding(
-                'pci_projects_project_public_gateways_onboarding_content2',
-              )}
-            </OsdsText>
-          </>
-        }
-        orderButtonLabel={tOnBoarding(
-          'pci_projects_project_public_gateways_onboarding_action_label',
+        {isDiscoveryProject(project) && (
+          <div className="mb-8">
+            <PciDiscoveryBanner projectId={projectId} />
+          </div>
         )}
-        onOrderButtonClick={createGateway}
-        isActionDisabled={isDiscoveryProject(project)}
-      >
-        <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
-          {tileItems.map((tile) => (
-            <Card key={tile.id} href={tile.href} texts={tile.texts} />
-          ))}
-        </aside>
-      </OnboardingLayout>
-      <Outlet />
-    </>
+        <OnboardingLayout
+          title={tOnBoarding('pci_projects_project_public_gateways_onboarding')}
+          description={
+            <>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                className="mt-8 block"
+              >
+                {tOnBoarding(
+                  'pci_projects_project_public_gateways_onboarding_content1',
+                )}
+              </OsdsText>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                className="mt-8 block"
+              >
+                {tOnBoarding(
+                  'pci_projects_project_public_gateways_onboarding_content2',
+                )}
+              </OsdsText>
+            </>
+          }
+          orderButtonLabel={tOnBoarding(
+            'pci_projects_project_public_gateways_onboarding_action_label',
+          )}
+          onOrderButtonClick={createGateway}
+          isActionDisabled={isDiscoveryProject(project)}
+        >
+          <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
+            {tileItems.map((tile) => (
+              <Card key={tile.id} href={tile.href} texts={tile.texts} />
+            ))}
+          </aside>
+        </OnboardingLayout>
+        <Outlet />
+      </>
+    </OnBoardingGuard>
   );
 }
