@@ -24,7 +24,7 @@ export default function DeleteAction({
   networkId,
   region,
 }: Readonly<TDeleteAction>) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('listing');
 
   const hrefDelete = useHref(
     `./delete?networkId=${networkId}&region=${region}`,

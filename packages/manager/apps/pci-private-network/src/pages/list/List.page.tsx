@@ -39,7 +39,7 @@ const getActiveTab = (pathname: string) => {
 };
 
 export default function ListingPage() {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('listing');
   const [projectUrl, setProjectUrl] = useState('');
 
   const { clearNotifications } = useNotifications();

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useMedia } from 'react-use';
 import { clsx } from 'clsx';
+import { useMedia } from 'react-use';
 import { v4 as uuidV4 } from 'uuid';
 
 type TProps<Item> = {
