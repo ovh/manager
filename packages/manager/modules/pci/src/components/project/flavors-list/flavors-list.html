@@ -39,6 +39,7 @@
                         data-on-change="$ctrl.onFlavorChange(modelValue, flavorByCategory.category)"
                         data-disabled="($ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavors(flavor, $ctrl.flavorCount)) || !$ctrl.hasEnoughDisk(flavor)"
                         data-required
+                        data-ng-init="lowestPrice = $ctrl.constructor.getLowestPriceFromFlavor(flavor)"
                     >
                         <oui-select-picker-section>
                             <span
@@ -190,13 +191,15 @@
                                 class="d-block"
                                 data-translate="pci_project_flavors_price_monthly"
                                 data-ng-if="!$ctrl.constructor.isPricingComingSoon(flavor)"
-                                data-translate-values="{ price: $ctrl.PriceFormatter.format(flavor.prices.monthly.value) }"
+                                data-translate-values="{ price: $ctrl.PriceFormatter.format(lowestPrice.monthly.value) }"
                             >
                             </strong>
                             <span
                                 class="d-block"
-                                data-translate="pci_project_flavors_price_hourly"
-                                data-translate-values="{ price: $ctrl.PriceFormatter.format(flavor.prices.hourly.value) }"
+                                data-ng-if="lowestPrice.allHourlyPrices.length !== 0"
+                                data-translate="{{ lowestPrice.allHourlyPrices.length === 1 ?
+                                    'pci_project_flavors_price_hourly' : 'pci_project_flavors_price_hourly_from'}}"
+                                data-translate-values="{ price: $ctrl.PriceFormatter.format(lowestPrice.hourly.value) }"
                             >
                             </span>
                         </oui-select-picker-section>
