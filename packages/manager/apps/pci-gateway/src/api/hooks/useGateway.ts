@@ -16,14 +16,15 @@ export const useAllAggregatedGateway = (projectId: string) =>
     queryKey: ['project', projectId, 'gateway'],
     queryFn: () => getAllAggregatedGateway(projectId),
     retry: false,
-    select: (data): Gateway[] =>
-      data.resources.map((row) => ({
+    select: (data): Gateway[] => [
+      ...data.resources.map((row) => ({
         ...row,
         model: row.model.toUpperCase(),
         connectedNetworkCount: uniqBy(row.interfaces, 'subnetId').length,
         formattedIps:
           row.externalInformation.ips.map((ip) => ip.ip).join(', ') || '',
       })),
+    ],
   });
 
 export const useAggregatedGateway = (
@@ -31,17 +32,22 @@ export const useAggregatedGateway = (
   { pagination }: GatewayOptions,
   filters: Filter[] = [],
 ) => {
-  const { data: gateways, error, isLoading } = useAllAggregatedGateway(
-    projectId,
-  );
+  const {
+    data: gateways,
+    error,
+    isLoading,
+    isPending,
+  } = useAllAggregatedGateway(projectId);
 
-  return useMemo(() => {
-    return {
+  return useMemo(
+    () => ({
       isLoading,
+      isPending,
       error,
       data: paginateResults(applyFilters(gateways || [], filters), pagination),
-    };
-  }, [isLoading, error, gateways, pagination, filters]);
+    }),
+    [isLoading, error, gateways, pagination, filters],
+  );
 };
 
 type RemoveGatewayProps = {
@@ -60,9 +66,7 @@ export const useDeleteGateway = ({
   onSuccess,
 }: RemoveGatewayProps) => {
   const mutation = useMutation({
-    mutationFn: async () => {
-      return deleteGateway(projectId, region, gatewayId);
-    },
+    mutationFn: async () => deleteGateway(projectId, region, gatewayId),
     onError,
     onSuccess: async () => {
       queryClient.setQueryData(
@@ -77,9 +81,7 @@ export const useDeleteGateway = ({
   });
 
   return {
-    deleteGateway: () => {
-      return mutation.mutate();
-    },
+    deleteGateway: () => mutation.mutate(),
     ...mutation,
   };
 };

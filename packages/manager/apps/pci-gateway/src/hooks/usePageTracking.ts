@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useLocation, useRouteLoaderData } from 'react-router-dom';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
-import { Project } from '@/api/data/project';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { Project } from '@ovh-ux/manager-react-core-application';
 
 import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';
 
@@ -10,7 +10,9 @@ const DISCOVERY_PLANCODE = 'project.discovery';
 export default function usePageTracking() {
   const location = useLocation();
   const project = useRouteLoaderData('public-gateway') as Project;
-  const { setPciProjectMode, trackPage } = useTracking();
+  const { setPciProjectMode, trackPage } = useContext(
+    ShellContext,
+  ).shell.tracking;
 
   useEffect(() => {
     if (project) {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -9,9 +8,9 @@ import { Interface } from '@/interface';
 
 export default function PrivateIPs({
   interfaces,
-}: {
+}: Readonly<{
   interfaces: Interface[];
-}) {
+}>) {
   return (
     <OsdsText
       level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -19,8 +18,8 @@ export default function PrivateIPs({
       color={ODS_THEME_COLOR_INTENT.text}
     >
       <ul>
-        {interfaces.map((item, index) => (
-          <li className={'w-fit'} key={index}>
+        {interfaces.map((item) => (
+          <li className={'w-fit'} key={item.ip}>
             {item.ip}
           </li>
         ))}
