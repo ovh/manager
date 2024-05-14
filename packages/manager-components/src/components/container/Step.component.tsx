@@ -17,7 +17,7 @@ type TStepProps = {
   isChecked?: boolean;
   isLocked?: boolean;
   order?: number;
-  next?: { action: (id: string) => void; label: string };
+  next?: { action: (id: string) => void; label: string; isDisabled?: boolean };
   edit?: { action: (id: string) => void; label: string };
   children?: JSX.Element | JSX.Element[];
 };
@@ -134,6 +134,7 @@ export const StepComponent = ({
                     next.action(id);
                   }}
                   className="w-fit"
+                  {...(next.isDisabled ? { disabled: true } : {})}
                 >
                   {next.label}
                 </OsdsButton>

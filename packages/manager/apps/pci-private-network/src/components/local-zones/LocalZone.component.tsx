@@ -29,6 +29,7 @@ import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { useNavigate } from 'react-router-dom';
 import {
   useAggregatedLocalNetworks,
   useLocalZoneNetworks,
@@ -43,12 +44,15 @@ type TLocalZoneComponent = {
 export default function LocalZoneComponent({
   projectId,
 }: Readonly<TLocalZoneComponent>) {
-  const { t } = useTranslation(['common', 'filter']);
+  const { t } = useTranslation(['listing']);
+  const { t: tFilter } = useTranslation('filter');
+  const { t: tError } = useTranslation('error');
 
   const [searchField, setSearchField] = useState('');
   const { pagination, setPagination } = useDatagridSearchParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
+  const navigate = useNavigate();
 
   const { data: regions } = useProjectRegions(projectId);
 
@@ -71,13 +75,16 @@ export default function LocalZoneComponent({
   return (
     <div>
       <Notifications />
+
       <OsdsDivider />
+
       <div className="sm:flex items-center justify-between">
         <OsdsButton
           className="mr-1 xs:mb-1 sm:mb-0"
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
+          onClick={() => navigate('../new')}
         >
           <OsdsIcon
             name={ODS_ICON_NAME.ADD}
@@ -118,7 +125,7 @@ export default function LocalZoneComponent({
                 className={'mr-2'}
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
-              {t('common_criteria_adder_filter_label', { ns: 'filter' })}
+              {tFilter('common_criteria_adder_filter_label')}
             </OsdsButton>
             <OsdsPopoverContent>
               <FilterAdd
@@ -174,7 +181,7 @@ export default function LocalZoneComponent({
 
       {error && (
         <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
-          {t('manager_error_page_default', { ns: 'error' })}
+          {tError('manager_error_page_default')}
         </OsdsMessage>
       )}
 
