@@ -17,14 +17,14 @@
   resolved "https://registry.yarnpkg.com/@adobe/css-tools/-/css-tools-4.3.2.tgz#a6abc715fb6884851fca9dad37fc34739a04fd11"
   integrity sha512-DA5a1C0gD/pLOvhv33YMrbf2FK3oUzwNl9oOJqE4XVjuEtt6XIakRcsd7eLiOSPkp1kTRQGICTA8cKra/vFbjw==
 
-"@adyen/adyen-web@5.51.0":
-  version "5.51.0"
-  resolved "https://registry.yarnpkg.com/@adyen/adyen-web/-/adyen-web-5.51.0.tgz#ae63ddc425380d89c3b1d1422fdc2918230d2d40"
-  integrity sha512-jH3Us9k57AhdOrwBL444EQdQ+xTgg4BTD/9/RSOmldw9EM1LzX1+6AKkX/7QioJoYO6L7gI5DUu5iq915ju0IA==
+"@adyen/adyen-web@5.61.0":
+  version "5.61.0"
+  resolved "https://registry.yarnpkg.com/@adyen/adyen-web/-/adyen-web-5.61.0.tgz#b234bc9fe2cee3745addb41391b820d8958ca2f3"
+  integrity sha512-Wb4cSWwNp5My3YDCmT+Mei7Uv42TaevgX2onCpxuZHgaq6oTcEviMLhb3o0pwe4DTC4Cjxf0xv5Gp+ECAvGt2g==
   dependencies:
     "@babel/runtime" "^7.15.4"
     "@babel/runtime-corejs3" "^7.20.1"
-    "@types/applepayjs" "^3.0.4"
+    "@types/applepayjs" "14.0.6"
     "@types/googlepay" "^0.7.0"
     classnames "^2.3.1"
     core-js-pure "^3.25.3"
@@ -6704,10 +6704,10 @@
   resolved "https://registry.yarnpkg.com/@types/angular/-/angular-1.8.9.tgz#d1ae3e87a67f72342d55ff26e611df83df0fb176"
   integrity sha512-Z0HukqZkx0fotsV3QO00yqU9NzcQI+tMcrum+8MvfB4ePqCawZctF/gz6QiuII+T1ax+LitNoPx/eICTgnF4sg==
 
-"@types/applepayjs@^3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@types/applepayjs/-/applepayjs-3.0.4.tgz#9806a4b3ccd73dcf169c61a34be7a39f91d77540"
-  integrity sha512-RqaVZWy1Kj4e1PoUoOI8uA+4UuuLpicQFxfU9Y/xWJFZFT6mFB4PiiY911iDxFk7pdvaj5HKH7VsWRisRca1Rg==
+"@types/applepayjs@14.0.6":
+  version "14.0.6"
+  resolved "https://registry.yarnpkg.com/@types/applepayjs/-/applepayjs-14.0.6.tgz#99016ef379a4efcb873e677493dd0feab57444e3"
+  integrity sha512-nyq2+UXJL7rtcaWRtD3Tr028YTtthVFe0Y1vBhm34b+gmFdNi3VFDTsVbIxii3OgyD3CHskICZJd0tEhanqrFg==
 
 "@types/argparse@1.0.38":
   version "1.0.38"
