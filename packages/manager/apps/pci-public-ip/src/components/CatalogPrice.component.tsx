@@ -30,7 +30,7 @@ export const CatalogPriceComponent = ({
   maximumFractionDigits?: number;
   locale: string;
 }): JSX.Element => {
-  const { t } = useTranslation('price');
+  const { t } = useTranslation('order-price');
   const isTaxExcl = [...ASIA_FORMAT, ...FRENCH_FORMAT].includes(
     user.ovhSubsidiary,
   );
