@@ -48,7 +48,7 @@ const aggregateFloatingIPs = (
   return aggregatedData;
 };
 
-const getQueryKeyFloatingIPs = (projectId: string) => [
+export const getQueryKeyFloatingIPs = (projectId: string) => [
   'project',
   projectId,
   'floatingIps',
