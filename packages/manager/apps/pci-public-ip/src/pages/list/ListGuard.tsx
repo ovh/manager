@@ -11,7 +11,7 @@ export default function ListGuard({
   children: JSX.Element;
 }): JSX.Element {
   const navigate = useNavigate();
-  const [view, setView] = useState<JSX.Element>(null);
+  const [isValid, setIsValid] = useState(false);
 
   const {
     data: failoverIPs,
@@ -26,7 +26,7 @@ export default function ListGuard({
   useEffect(() => {
     if (!isFailoverIPsLoading && !isFloatingIPsLoading) {
       if (failoverIPs?.length > 0 || floatingIPs?.length > 0) {
-        setView(children);
+        setIsValid(true);
       } else {
         navigate(`/pci/projects/${projectId}/public-ips/onboarding`);
       }
@@ -39,5 +39,5 @@ export default function ListGuard({
     isFloatingIPsLoading,
   ]);
 
-  return view;
+  return isValid ? children : null;
 }
