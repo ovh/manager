@@ -11,7 +11,7 @@ export default function OnBoardingGuard({
   children: JSX.Element;
 }): JSX.Element {
   const navigate = useNavigate();
-  const [view, setView] = useState<JSX.Element>(null);
+  const [isValid, setIsValid] = useState(false);
 
   const {
     data: failoverIPs,
@@ -28,7 +28,7 @@ export default function OnBoardingGuard({
       if (failoverIPs?.length > 0 || floatingIPs?.length > 0) {
         navigate(`/pci/projects/${projectId}/public-ips`);
       } else {
-        setView(children);
+        setIsValid(true);
       }
     }
   }, [
@@ -39,5 +39,5 @@ export default function OnBoardingGuard({
     isFloatingIPsLoading,
   ]);
 
-  return view;
+  return isValid ? children : null;
 }
