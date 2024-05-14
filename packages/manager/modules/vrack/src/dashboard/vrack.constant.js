@@ -46,6 +46,11 @@ export const STATUS = {
   delivered: 'delivered',
 };
 
+export const SLAAC_VALUES = {
+  enabled: true,
+  disabled: false,
+};
+
 export const VRACK_DASHBOARD_TRACKING_PREFIX = 'vrack::dashboard';
 export const VRACK_ACTIONS_SUFFIX = 'action';
 

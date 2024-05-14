@@ -1,7 +1,7 @@
 {
   "vrack__assigned-ipv6_add_subnet": "Ajouter un sous réseau",
-  "vrack__assigned-ipv6__subrang_slaac_help": "L'activation de SLAAC facilite l'adressage IPv6, mais évitez de l'utiliser avec plusieurs région utilisés par vRack",
-  "vrack__assigned-ipv6__subrang_slaac_help_tooltip_link": "Plus de détails",
+  "vrack__assigned-ipv6__subrange_slaac_help": "L'activation de SLAAC facilite l'adressage IPv6, mais évitez de l'utiliser avec plusieurs région utilisés par vRack",
+  "vrack__assigned-ipv6__subrange_slaac_help_tooltip_link": "Plus de détails",
   "vrack__assigned-ipv6__subnet_add_title": "Ajouter un sous-réseau",
   "vrack__assigned-ipv6__subnet_add_description": "Vous allez ajouter un nouveau sous-réseau routé /64 à votre vRack. Veuillez spécifier le préfixe (qui ne doit pas chevaucher un autre préfixe existant) ainsi que l'adresse next-hop qui doit faire partie du premier sous-réseau /64 (bridged) de votre bloc IPv6 additionnel.",
   "vrack__assigned-ipv6__subnet_add_subnet": "IPv6 subnet en format CIDR",
