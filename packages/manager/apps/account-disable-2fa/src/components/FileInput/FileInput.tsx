@@ -34,9 +34,7 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
       ? [...value, ...Array.from(fileList)]
       : Array.from(fileList);
 
-    if (onChange) {
-      onChange({ files: newFiles.slice(0, maxFiles), e: event });
-    }
+    onChange?.({ files: newFiles.slice(0, maxFiles), e: event });
     fileInputRef.current.value = '';
   };
 
@@ -58,7 +56,7 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
         type={ODS_BUTTON_TYPE.button}
         size={ODS_BUTTON_SIZE.sm}
         className={className}
-        disabled={disabled ? true : undefined}
+        disabled={disabled || undefined}
         onClick={() => fileInputRef.current.click()}
       >
         <span slot="start" className="mr-4">
