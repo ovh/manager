@@ -9,6 +9,8 @@ type Store = {
   closeStep: (step: StepIdsEnum) => void;
   setForm: (newForm: TFormState) => void;
   closeAllSteps: () => void;
+  floatingIpCreation: boolean;
+  setFloatingIpCreation: () => void;
 };
 
 export const useOrderStore = create<Store>()((set) => {
@@ -69,5 +71,11 @@ export const useOrderStore = create<Store>()((set) => {
           form: { ...newForm },
         };
       }),
+    floatingIpCreation: false,
+    setFloatingIpCreation: () =>
+      set((state) => ({
+        ...state,
+        floatingIpCreation: true,
+      })),
   };
 });
