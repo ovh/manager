@@ -68,10 +68,9 @@ Then('User {string} on the Listing page', async function(
   returnsListing: 'returns' | "doesn't return",
 ) {
   if (returnsListing === 'returns') {
-    await this.page.waitForURL(getUrl('listing'), { waitUntil: 'load' });
+    await expect(this.page).toHaveURL(getUrl('listing'));
   } else {
-    await sleep(1000);
-    await expect(this.page.url()).not.toBe(getUrl('listing'));
+    await expect(this.page).not.toHaveURL(getUrl('listing'));
   }
 });
 
@@ -90,7 +89,6 @@ Then('User {string} on the {word} Listing page', async function(
       { waitUntil: 'load' },
     );
   } else {
-    await sleep(1000);
     const routes: AppRoute[] =
       tab === 'Subnet'
         ? ['subnets', 'subnetsListing', 'subnetsOnboarding']
@@ -187,16 +185,14 @@ Then('User sees a modal to create a new vRack', async function(
 Then(
   'User sees {word} information message about the order status of his vRack',
   async function(this: ICustomWorld<ConfigParams>, anyMessage: 'an' | 'no') {
-    await sleep(1000);
-
-    const messageList = await this.page
+    const message = await this.page
       .getByText(new RegExp(deliveringVrackMessage.replace(/{{date}}.*/, '.*')))
-      .all();
+      .nth(0);
 
     if (anyMessage === 'an') {
-      await expect(messageList.length).toBeGreaterThan(0);
+      await expect(message).toBeVisible();
     } else {
-      await expect(messageList.length).toBe(0);
+      await expect(message).not.toBeVisible();
     }
   },
 );
@@ -258,7 +254,6 @@ Then('User sees the {word} Onboarding page', async function(
   this: ICustomWorld<ConfigParams>,
   tabName: 'subnets' | 'endpoints',
 ) {
-  await sleep(1000);
   const title = await this.page.getByText(
     new RegExp(
       tabName === 'subnets' ? subnetOnboardingTitle : endpointsOnboardingTitle,
@@ -340,7 +335,6 @@ Then('User {string} the action menu with button dissociate', async function(
   this: ICustomWorld<ConfigParams>,
   seeActionMenu: 'see' | "doesn't see",
 ) {
-  await sleep(1000);
   const actionMenu = await this.page.getByTestId('action-menu-icon');
   if (seeActionMenu === 'see') {
     await expect(actionMenu).toBeVisible();
@@ -352,7 +346,6 @@ Then('User {string} the action menu with button dissociate', async function(
 Then('User sees button dissociate', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  await sleep(1000);
   const dissociateButton = this.page.getByText(vrackActionDissociate, {
     exact: true,
   });
@@ -366,8 +359,6 @@ Then('User sees button dissociate', async function(
 Then(
   'A modal appears to ask if the user wants to dissociate the vRack',
   async function(this: ICustomWorld<ConfigParams>) {
-    await sleep(1000);
-
     const modalTitle = await this.page.getByText(modalDissociateHeadline);
     await expect(modalTitle).toBeVisible();
   },
@@ -379,8 +370,6 @@ Then(
     this: ICustomWorld<ConfigParams>,
     returnOverview: 'returns' | "doesn't returns",
   ) {
-    await sleep(1000);
-
     const modalTitle = await this.page.getByText(modalDissociateHeadline);
 
     if (returnOverview === 'returns') {

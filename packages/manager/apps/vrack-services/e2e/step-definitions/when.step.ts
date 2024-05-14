@@ -1,6 +1,6 @@
 import { When } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers';
-import { sleep } from '../../../../../../playwright-helpers';
+import { expect } from '@playwright/test';
 import { vrackList } from '../../mock/vrack/vrack';
 import { setupNetwork, getUrl } from '../utils';
 import { ConfigParams } from '../../mock/handlers';
@@ -99,22 +99,21 @@ When('User edits the vRack Services name', async function(
     waitUntil: 'load',
   });
 
-  await sleep(1000);
+  const index = this.testContext.data.vsIndex || 0;
 
-  const editButtonList = await this.page
+  const editButton = await this.page
     .locator('osds-button', {
       has: this.page.locator('osds-icon[name="pen"]'),
     })
-    .all();
+    .nth(index);
 
-  const index = this.testContext.data.vsIndex || 0;
-  await editButtonList[index].click();
+  await expect(editButton).toBeVisible();
 
-  await sleep(1000);
+  await editButton.click();
 
-  const input = await this.page.locator('input').all();
-  await input[0].fill('test');
-  await input[0].press('Enter');
+  const input = await this.page.locator('input').nth(index);
+  await input.fill('test');
+  await input.press('Enter');
 });
 
 When('User clicks on the link to associate a vRack', async function(
@@ -125,15 +124,15 @@ When('User clicks on the link to associate a vRack', async function(
     waitUntil: 'load',
   });
 
-  // Wait for the datagrid to render cells
-  await sleep(1000);
-
-  const buttonList = await this.page
+  const associateButton = await this.page
     .locator('osds-button', {
       hasText: associateVrackButtonLabel,
     })
-    .all();
-  await buttonList[0].click();
+    .nth(0);
+
+  await expect(associateButton).toBeVisible();
+
+  await associateButton.click();
 });
 
 When(
@@ -169,9 +168,13 @@ When(
   'User click on dissociate in action menu of private network',
   async function(this: ICustomWorld<ConfigParams>) {
     await setupNetwork(this);
-    await sleep(1000);
+    const button = await this.page.getByText(vrackActionDissociate, {
+      exact: true,
+    });
 
-    await this.page.getByText(vrackActionDissociate, { exact: true }).click();
+    await expect(button).toBeVisible();
+
+    await button.click();
   },
 );
 
@@ -181,13 +184,15 @@ When('User {word} modal', async function(
 ) {
   await setupNetwork(this);
 
-  await sleep(1000);
   const labelToButton = {
     accept: modalConfirmButton,
     cancel: modalCancelButton,
   };
   const buttonLabel = labelToButton[acceptOrCancel];
   const button = await this.page.getByText(buttonLabel, { exact: true });
+
+  await expect(button).toBeVisible();
+
   await button.click();
 });
 
@@ -214,11 +219,14 @@ When('User fills the subnet form and clicks the submit button', async function(
     await this.page
       .locator('osds-radio-button', { hasText: vlanSelectVlanOptionLabel })
       .click();
-    await sleep(100);
-    await this.page
+
+    const vlanInput = await this.page
       .locator('osds-form-field', { hasText: vlanNumberLabel })
-      .locator('input')
-      .fill(this.testContext.data.vlan);
+      .locator('input');
+
+    await expect(vlanInput).toBeVisible();
+
+    await vlanInput.fill(this.testContext.data.vlan);
   }
 
   await this.page
@@ -235,11 +243,13 @@ When(
       waitUntil: 'load',
     });
 
-    await sleep(1000);
+    const select = await this.page.locator('osds-select', {
+      hasText: serviceNamePlaceholder,
+    });
 
-    await this.page
-      .locator('osds-select', { hasText: serviceNamePlaceholder })
-      .click();
+    await expect(select).toBeVisible();
+
+    select.click();
     await this.page.getByText('My-mongodb').click();
 
     await this.page
@@ -256,48 +266,49 @@ When(
 When('User updates the display name of a subnet', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  await sleep(1000);
-  const editButtonList = await this.page
+  const editButton = await this.page
     .locator('osds-button', {
       has: this.page.locator('osds-icon[name="pen"]'),
     })
-    .all();
+    .nth(0);
 
-  await editButtonList[0].click();
+  await expect(editButton).toBeVisible();
 
-  await sleep(1000);
+  await editButton.click();
 
-  const input = await this.page.locator('input').all();
-  await input[0].fill('test');
-  await input[0].press('Enter');
+  const input = await this.page.locator('input').nth(0);
+  await input.fill('test');
+  await input.press('Enter');
 });
 
 When('User clicks on the trash icon', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  await sleep(1000);
-  const deleteButtonList = await this.page
+  const deleteButton = await this.page
     .locator('osds-button', {
       has: this.page.locator('osds-icon[name="trash"]'),
     })
-    .all();
+    .nth(0);
 
-  await deleteButtonList[0].click();
+  await expect(deleteButton).toBeVisible();
+
+  await deleteButton.click();
 });
 
 When('User fills the {word} delete form', async function(
   this: ICustomWorld<ConfigParams>,
   tab: 'subnets' | 'endpoints',
 ) {
-  await sleep(1000);
-
-  await this.page
+  const input = await this.page
     .locator('osds-form-field', {
       hasText:
         tab === 'subnets' ? subnetsDeleteInputLabel : endpointsDeleteInputLabel,
     })
-    .locator('input')
-    .fill(terminateValue);
+    .locator('input');
+
+  await expect(input).toBeVisible();
+
+  await input.fill(terminateValue);
 
   await this.page
     .locator('osds-button', { hasText: modalDeleteButton })
