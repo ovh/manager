@@ -30,20 +30,16 @@ type UseDeleteGatewayReturnType = UseMutationResult<
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => mockedUseNavigate,
-  useSearchParams: () => {
-    return [
-      new URLSearchParams({
-        id: 'id-gateway',
-        name: 'name-gateway',
-        region: 'region-gateway',
-      }),
-    ];
-  },
-  useParams: () => {
-    return {
-      projectId: 'project-id-param',
-    };
-  },
+  useSearchParams: () => [
+    new URLSearchParams({
+      id: 'id-gateway',
+      name: 'name-gateway',
+      region: 'region-gateway',
+    }),
+  ],
+  useParams: () => ({
+    projectId: 'project-id-param',
+  }),
 }));
 
 describe('DeleteGateway component tests', () => {

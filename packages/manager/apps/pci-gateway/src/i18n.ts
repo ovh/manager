@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 
 export default async function initI18n(
   locale = 'fr_FR',
-  availablesLocales = ['fr_FR'],
+  availableLocales = ['fr_FR'],
 ) {
   await i18n
     .use(initReactI18next)
@@ -18,7 +18,10 @@ export default async function initI18n(
     .init({
       lng: locale,
       fallbackLng: 'fr_FR',
-      supportedLngs: availablesLocales,
+      supportedLngs: availableLocales,
+      interpolation: {
+        escapeValue: false,
+      },
       defaultNS: 'common',
       ns: ['common'], // namespaces to load by default
       backend: {
