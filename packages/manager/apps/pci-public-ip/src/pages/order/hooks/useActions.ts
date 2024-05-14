@@ -17,7 +17,14 @@ import { useOrderStore } from '@/pages/order/hooks/useStore';
 export const useActions = (projectId: string) => {
   const { trackClick } = useTracking();
   const { region } = useEnvironment();
-  const { form, steps, openStep, closeStep, setForm } = useOrderStore();
+  const {
+    form,
+    steps,
+    openStep,
+    closeStep,
+    setForm,
+    setFloatingIpCreation,
+  } = useOrderStore();
   const { t: tOrder } = useTranslation('order');
   const navigate = useNavigate();
   const { addError, addSuccess, clearNotifications } = useNotifications();
@@ -129,6 +136,7 @@ export const useActions = (projectId: string) => {
         case StepIdsEnum.FLOATING_SUMMARY:
           doOrderFloatingIp()
             .then(() => {
+              setFloatingIpCreation();
               navigate('..');
               addSuccess(
                 tOrder('pci_additional_ip_create_floating_ip_success'),
