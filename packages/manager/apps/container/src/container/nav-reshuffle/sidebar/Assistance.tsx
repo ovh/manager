@@ -13,6 +13,7 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const { shell } = useContext(ApplicationContext);
   const { setChatbotReduced } = useContainer();
+  const features = ['livechat', 'carbon-calculator'];
 
   const environment = shell
     .getPluginManager()
@@ -28,26 +29,17 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
   const { closeNavigationSidebar, openOnboarding } = useProductNavReshuffle();
 
   useEffect(() => {
-    const initLiveChat = async () => {
+    const initFeatures = async () => {
       const results: Record<string, boolean> = await reketInstance.get(
-        `/feature/livechat/availability`,
+        `/feature/${features.join(',')}/availability`,
         {
           requestType: 'aapi',
         },
       );
-      setHashLiveChat(results.livechat);
-    };
-    const initCarbonCalculator = async () => {
-      const results = await reketInstance.get(
-        `/feature/carbon-calculator/availability`,
-        {
-          requestType: 'aapi',
-        },
-      );
+      setHashLiveChat(results['livechat']);
       setHasCarbonCalculator(results['carbon-calculator']);
     }
-    initLiveChat();
-    initCarbonCalculator();
+    initFeatures();
   }, []);
 
   const startOnboarding = () => {
