@@ -99,6 +99,7 @@ export interface CreateRancherProps {
   plans: RancherPlan[];
   versions: RancherVersion[];
   hasRancherCreationError: boolean;
+  rancherCreationErrorMessage?: string | null;
   onCreateRancher: (payload: CreateRancherPayload) => void;
   isProjectDiscoveryMode?: boolean;
   isCreateRancherLoading: boolean;
@@ -109,6 +110,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   versions,
   onCreateRancher,
   hasRancherCreationError,
+  rancherCreationErrorMessage,
   projectId,
   isProjectDiscoveryMode,
   isCreateRancherLoading,
@@ -197,8 +199,14 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
           type={ODS_MESSAGE_TYPE.error}
           className="my-6"
         >
-          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-            {t('createRancherError')} <br />
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            data-testid="errorBanner"
+          >
+            {t('createRancherError', {
+              rancherCreationErrorMessage,
+            })}
+            <br />
           </OsdsText>
         </OsdsMessage>
       )}

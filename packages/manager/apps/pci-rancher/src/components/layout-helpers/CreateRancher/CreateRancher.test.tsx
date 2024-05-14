@@ -116,9 +116,7 @@ describe('CreateRancher', () => {
 
   it('Given that there is an error i should see error banner.', async () => {
     const screen = await setupSpecTest({ hasRancherCreationError: true });
-    const errorCreateBanner = screen.getByText(
-      dashboardTranslation.createRancherError,
-    );
+    const errorCreateBanner = screen.getByTestId('errorBanner');
 
     expect(errorCreateBanner).not.toBeNull();
   });
