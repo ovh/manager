@@ -5,7 +5,6 @@ import React, {
   createContext,
 } from 'react';
 import { FileInputList } from './FileInputList';
-import { FileInputErrorMessage } from './FileInputErrorMessage';
 import { FileInput } from './FileInput';
 
 type Event = {
@@ -42,5 +41,4 @@ const Container: FunctionComponent<FileInputProps> = (props) => {
 export const FileInputContainer = Object.assign(Container, {
   FileInput,
   FileList: FileInputList,
-  FileError: FileInputErrorMessage,
 });
