@@ -33,7 +33,8 @@ export default function DataGridBodyRow({
   projectUrl,
   network,
 }: Readonly<TDataGridBodyRow>) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('listing');
+
   const renderText = (
     text: string | number | JSX.Element,
     className?: string,

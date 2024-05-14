@@ -23,7 +23,7 @@ export default function GlobalRegionsDatagrid({
   pageCount,
   onPaginationChange,
 }: Readonly<TGlobalRegionsDatagrid>): JSX.Element {
-  const { t } = useTranslation(['common', 'pagination']);
+  const { t: tPagination } = useTranslation('pagination');
 
   return (
     <div className="container contents overflow-x-auto">
@@ -72,10 +72,10 @@ export default function GlobalRegionsDatagrid({
           }}
         >
           <span slot="before-total-items" className="mr-3">
-            {t('common_pagination_of', { ns: 'pagination' })}
+            {tPagination('common_pagination_of')}
           </span>
           <span slot="after-total-items" className="ml-3">
-            {t('common_pagination_results', { ns: 'pagination' })}
+            {tPagination('common_pagination_results')}
           </span>
         </OsdsPagination>
       ) : (

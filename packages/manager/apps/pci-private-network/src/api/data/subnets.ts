@@ -14,6 +14,9 @@ export type TSubnet = {
   gatewayName: string;
   networkId: string;
   region: string;
+  ipVersion: number;
+  id: string;
+  name: string;
 };
 
 export const getSubnets = async (

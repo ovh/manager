@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { PRIVATE_NETWORK_LIST } from '@/constants';
 
 export default function DatagridHeader(): JSX.Element {
-  const { t } = useTranslation();
+  const { t } = useTranslation('listing');
 
   const renderText = (text?: string) => (
     <OsdsText

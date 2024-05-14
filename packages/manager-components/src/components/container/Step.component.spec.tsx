@@ -10,7 +10,7 @@ type TProps = {
   isChecked?: boolean;
   isLocked?: boolean;
   order?: number;
-  next?: { action: (id: string) => void; label: string };
+  next?: { action: (id: string) => void; label: string; isDisabled?: boolean };
   edit?: { action: (id: string) => void; label: string };
   children?: JSX.Element | JSX.Element[];
 };
