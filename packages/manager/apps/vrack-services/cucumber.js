@@ -15,5 +15,6 @@ module.exports = {
       !isCI && ['usage-json', 'e2e/reports/cucumber-usage-report.json'],
     ].filter(Boolean),
     formatOptions: { snippetInterface: 'async-await' },
+    retry: 1,
   },
 };
