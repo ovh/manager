@@ -146,6 +146,7 @@ const RestoreServiceModal = ({
   });
 
   const onSubmit = form.handleSubmit((formValues) => {
+    console.log('inHandleSubmit');
     restoreBackup({
       projectId,
       engine: service.engine,
@@ -172,7 +173,9 @@ const RestoreServiceModal = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('restoreModalTitle')}</DialogTitle>
+          <DialogTitle data-testid="restore-modal">
+            {t('restoreModalTitle')}
+          </DialogTitle>
           <DialogDescription>{t('restoreModalDescription')}</DialogDescription>
         </DialogHeader>
 
@@ -328,7 +331,11 @@ const RestoreServiceModal = ({
               />
             )}
             <DialogFooter className="flex justify-end">
-              <Button type="submit" disabled={isPending}>
+              <Button
+                data-testid="restore-submit-button"
+                type="submit"
+                disabled={isPending}
+              >
                 {t('restoreButtonValidate')}
               </Button>
             </DialogFooter>

@@ -7,8 +7,12 @@ import { Link } from '@/components/links';
 
 const Onboarding = () => {
   const { t } = useTranslation('pci-databases-analytics/services/onboarding');
+  console.log('in onboarding');
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div
+      data-testid="onbaording-container"
+      className="flex flex-col items-center gap-2"
+    >
       <div className="w-full text-right">
         <Guides section={GuideSections.onboarding} noEngineFilter />
       </div>
