@@ -1,24 +1,22 @@
+import { getProjectQuery } from '@ovh-ux/manager-react-core-application';
 import queryClient from '@/queryClient';
-import { getProjectQuery } from '@/api/hooks/useProject';
 
-const lazyRouteConfig = (importFn: CallableFunction) => {
-  return {
-    lazy: async () => {
-      const { default: moduleDefault, ...moduleExports } = await importFn();
+const lazyRouteConfig = (importFn: CallableFunction) => ({
+  lazy: async () => {
+    const { default: moduleDefault, ...moduleExports } = await importFn();
 
-      return {
-        Component: moduleDefault,
-        ...moduleExports,
-      };
-    },
-  };
-};
+    return {
+      Component: moduleDefault,
+      ...moduleExports,
+    };
+  },
+});
 
 export interface RouteHandle {
   tracking?: string;
 }
 
-export const ROUTE_PATHS = {
+const ROUTE_PATHS = {
   root: '/pci/projects/:projectId/gateway',
 };
 
@@ -30,9 +28,8 @@ export default [
   {
     id: 'public-gateway',
     path: ROUTE_PATHS.root,
-    loader: async ({ params }) => {
-      return queryClient.fetchQuery(getProjectQuery(params.projectId));
-    },
+    loader: async ({ params }) =>
+      queryClient.fetchQuery(getProjectQuery(params.projectId)),
     ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [
       {

@@ -1,19 +1,3 @@
-export interface ResponseAPIError {
-  message: string;
-  stack: string;
-  name: string;
-  code: string;
-  response?: {
-    headers?: {
-      [key: string]: string;
-      'x-ovh-queryid': string;
-    };
-    data?: {
-      message?: string;
-    };
-  };
-}
-
 export interface IPAddress {
   ip: string;
   type: string;

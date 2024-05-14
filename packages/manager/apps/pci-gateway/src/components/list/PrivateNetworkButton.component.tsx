@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -10,7 +10,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 type PrivateNetworkButtonProps = {
   projectId: string;
@@ -20,7 +20,7 @@ export const PrivateNetworkButton = ({
 }: Readonly<PrivateNetworkButtonProps>) => {
   const { t } = useTranslation();
   const [url, setUrl] = useState('');
-  const nav = useNavigation();
+  const nav = useContext(ShellContext).shell.navigation;
 
   useEffect(() => {
     nav
