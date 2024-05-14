@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAllFailoverIPs } from '@/api/hooks/useFailoverIP';
 import { useAllFloatingIP } from '@/api/hooks/useFloatingIP';
+import { useOrderStore } from '../order/hooks/useStore';
 
 export default function ListGuard({
   projectId,
@@ -12,6 +13,7 @@ export default function ListGuard({
 }): JSX.Element {
   const navigate = useNavigate();
   const [isValid, setIsValid] = useState(false);
+  const { floatingIpCreation } = useOrderStore();
 
   const {
     data: failoverIPs,
@@ -25,7 +27,11 @@ export default function ListGuard({
 
   useEffect(() => {
     if (!isFailoverIPsLoading && !isFloatingIPsLoading) {
-      if (failoverIPs?.length > 0 || floatingIPs?.length > 0) {
+      if (
+        floatingIpCreation ||
+        failoverIPs?.length > 0 ||
+        floatingIPs?.length > 0
+      ) {
         setIsValid(true);
       } else {
         navigate(`/pci/projects/${projectId}/public-ips/onboarding`);
