@@ -20,6 +20,7 @@ import { mockedBackup } from '@/__tests__/helpers/mocks/backup';
 // Override mock to add capabilities
 const mockedService = {
   ...mockedServiceOrig,
+  id: 'serviceId-8794-81981-48984-18654-467',
   engine: database.EngineEnum.postgresql,
   capabilities: {
     fork: {
@@ -133,7 +134,6 @@ describe('ConnectionPools page', () => {
   });
 });
 
-/*
 describe('Open restore modals', () => {
   vi.mock('@/components/ui/use-toast', () => {
     const toastMock = vi.fn();
@@ -199,12 +199,10 @@ describe('Open restore modals', () => {
       });
     });
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('restore-modal'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId('restore-modal')).not.toBeInTheDocument();
     });
   });
-  it('restore backups on restore success', async () => {
+  it('restore from backup on restore success', async () => {
     await openButtonInMenu('backups-action-restore-button');
     await waitFor(() => {
       expect(screen.getByTestId('restore-modal')).toBeInTheDocument();
@@ -218,5 +216,37 @@ describe('Open restore modals', () => {
       expect(backupsApi.restoreBackup).toHaveBeenCalled();
     });
   });
+
+  it('restore from now on restore success', async () => {
+    act(() => {
+      fireEvent.click(screen.getByTestId('restore-backup-button'));
+    });
+    await waitFor(() => {
+      expect(screen.getByTestId('restore-modal')).toBeInTheDocument();
+    });
+
+    act(() => {
+      fireEvent.click(screen.getByTestId('restore-modal-radio-now'));
+      fireEvent.click(screen.getByTestId('restore-submit-button'));
+    });
+    await waitFor(() => {
+      expect(backupsApi.restoreBackup).toHaveBeenCalled();
+    });
+  });
+  it('restore from pitr on restore success', async () => {
+    act(() => {
+      fireEvent.click(screen.getByTestId('restore-backup-button'));
+    });
+    await waitFor(() => {
+      expect(screen.getByTestId('restore-modal')).toBeInTheDocument();
+    });
+
+    act(() => {
+      fireEvent.click(screen.getByTestId('restore-modal-radio-pitr'));
+      fireEvent.click(screen.getByTestId('restore-submit-button'));
+    });
+    await waitFor(() => {
+      expect(backupsApi.restoreBackup).toHaveBeenCalled();
+    });
+  });
 });
-*/

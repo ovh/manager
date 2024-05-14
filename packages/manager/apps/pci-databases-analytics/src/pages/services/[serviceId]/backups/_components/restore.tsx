@@ -146,7 +146,6 @@ const RestoreServiceModal = ({
   });
 
   const onSubmit = form.handleSubmit((formValues) => {
-    console.log('inHandleSubmit');
     restoreBackup({
       projectId,
       engine: service.engine,
@@ -199,6 +198,7 @@ const RestoreServiceModal = ({
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
                           <RadioGroupItem
+                            data-testid="restore-modal-radio-now"
                             value={ForkSourceType.now}
                             disabled={!canUsePointInTime}
                           />
@@ -210,6 +210,7 @@ const RestoreServiceModal = ({
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
                           <RadioGroupItem
+                            data-testid="restore-modal-radio-pitr"
                             value={ForkSourceType.pit}
                             disabled={!canUsePointInTime}
                           />
