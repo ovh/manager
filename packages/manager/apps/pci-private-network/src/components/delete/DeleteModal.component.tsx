@@ -26,7 +26,7 @@ export default function DeleteModal({
   onClose,
   onConfirm,
 }: Readonly<TDeleteModal>) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('listing');
   return (
     <OsdsModal
       headline={t('pci_projects_project_network_private_delete_label')}

@@ -22,6 +22,7 @@ const ROUTE_PATHS = {
   globalRegions: '',
   localZone: 'localZone',
   delete: 'delete',
+  new: 'new',
 };
 
 export default [
@@ -75,6 +76,13 @@ export default [
       {
         path: ROUTE_PATHS.onboarding,
         ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
+      },
+      {
+        path: ROUTE_PATHS.new,
+        handle: {
+          tracking: 'new',
+        },
+        ...lazyRouteConfig(() => import('@/pages/new/New.page')),
       },
     ],
   },

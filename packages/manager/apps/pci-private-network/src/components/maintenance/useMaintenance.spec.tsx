@@ -70,7 +70,7 @@ describe(' hook tests ', () => {
   });
 
   it('should return hasMaintenance true.', async () => {
-    const mockedCustomRegions: TRegion[] = [
+    const mockedCustomRegions: Partial<TRegion>[] = [
       {
         name: 'RN',
         type: 'RT',

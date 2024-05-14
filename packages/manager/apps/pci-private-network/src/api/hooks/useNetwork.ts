@@ -85,7 +85,7 @@ export const useAggregatedNonLocalNetworks = (
   regions: TRegion[],
 ) =>
   useQuery({
-    queryKey: [projectId, 'aggregated', 'network'],
+    queryKey: [projectId, 'aggregated', 'network', regions],
     queryFn: () => getAggregatedNetwork(projectId),
     enabled: regions?.length > 0,
     select: (data) => filterNonLocalPrivateNetworks(data, regions) || [],

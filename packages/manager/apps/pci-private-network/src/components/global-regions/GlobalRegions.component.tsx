@@ -1,4 +1,11 @@
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import {
+  FilterAdd,
+  FilterList,
+  Notifications,
+  useColumnFilters,
+  useDatagridSearchParams,
+} from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -20,14 +27,8 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  FilterAdd,
-  FilterList,
-  useColumnFilters,
-  Notifications,
-  useDatagridSearchParams,
-} from '@ovhcloud/manager-components';
 
+import { useNavigate } from 'react-router-dom';
 import { useProjectRegions } from '@/api/hooks/useRegions';
 import {
   useAggregatedNonLocalNetworks,
@@ -45,12 +46,15 @@ export default function GlobalRegionsComponent({
   projectId,
   projectUrl,
 }: Readonly<TGlobalRegions>) {
-  const { t } = useTranslation(['common', 'error', 'filter']);
+  const { t } = useTranslation('listing');
+  const { t: tError } = useTranslation('error');
+  const { t: tFilter } = useTranslation('filter');
 
   const [searchField, setSearchField] = useState('');
   const { pagination, setPagination } = useDatagridSearchParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
+  const navigate = useNavigate();
 
   const { data: regions } = useProjectRegions(projectId);
 
@@ -78,13 +82,16 @@ export default function GlobalRegionsComponent({
   return (
     <div>
       <Notifications />
+
       <OsdsDivider />
+
       <div className="sm:flex items-center justify-between">
         <OsdsButton
           className="mr-1 xs:mb-1 sm:mb-0"
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
+          onClick={() => navigate('./new')}
         >
           <OsdsIcon
             name={ODS_ICON_NAME.ADD}
@@ -126,7 +133,7 @@ export default function GlobalRegionsComponent({
                 className={'mr-2'}
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
-              {t('common_criteria_adder_filter_label', { ns: 'filter' })}
+              {tFilter('common_criteria_adder_filter_label')}
             </OsdsButton>
             <OsdsPopoverContent>
               <FilterAdd
@@ -165,7 +172,7 @@ export default function GlobalRegionsComponent({
 
       {error && (
         <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
-          {t('manager_error_page_default', { ns: 'error' })}
+          {tError('manager_error_page_default')}
         </OsdsMessage>
       )}
 
