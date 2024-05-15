@@ -6,6 +6,7 @@ import {
   OsdsIcon,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -23,6 +24,8 @@ import {
 } from '@/api';
 import { usePlatform } from '@/hooks';
 import ActionItems from './ActionsItems';
+import IdLink from './IdLink';
+import LabelChip from './LabelChip';
 
 type OrganizationItem = {
   id: string;
@@ -35,29 +38,14 @@ type OrganizationItem = {
 const columns: DatagridColumn<OrganizationItem>[] = [
   {
     id: 'name',
-    cell: (item) => (
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.primary}
-        size={ODS_TEXT_SIZE._200}
-        level={ODS_TEXT_LEVEL.body}
-      >
-        {item.name}
-      </OsdsText>
-    ),
+    cell: (item) => <IdLink id={item.id}>{item.name}</IdLink>,
     label: 'zimbra_organization_name',
   },
+
   {
     id: 'label',
-    cell: (item) => {
-      if (item.label) {
-        return (
-          <OsdsChip inline color={ODS_THEME_COLOR_INTENT.primary}>
-            {item.label}
-          </OsdsChip>
-        );
-      }
-      return null;
-    },
+    cell: (item) =>
+      item.label && <LabelChip id={item.id}>{item.label}</LabelChip>,
     label: 'zimbra_organization_label',
   },
   {
@@ -99,16 +87,9 @@ const columns: DatagridColumn<OrganizationItem>[] = [
   },
   {
     id: 'tooltip',
-    cell: (item) => {
-      if (
-        item.status === ResourceStatus.READY ||
-        item.status === ResourceStatus.ERROR
-      ) {
-        return <ActionItems />;
-      }
-
-      return null;
-    },
+    cell: (item) =>
+      (item.status === ResourceStatus.READY ||
+        item.status === ResourceStatus.ERROR) && <ActionItems />,
     label: '',
   },
 ];
@@ -135,7 +116,6 @@ export default function Organizations() {
         '',
       status: item.resourceStatus || '',
     })) ?? [];
-
   const handleAddOrganisation = () => {
     console.log('Ajouter une nouvelle organisation');
   };
