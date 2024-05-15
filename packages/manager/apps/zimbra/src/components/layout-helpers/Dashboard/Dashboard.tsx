@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Outlet, useResolvedPath } from 'react-router-dom';
+import { Outlet, useResolvedPath, useLocation } from 'react-router-dom';
 
 import {
   DashboardLayout,
@@ -10,7 +10,7 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import TabsPanel from './TabsPanel';
+import TabsPanel, { TabItemProps } from './TabsPanel';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { GUIDES_LIST } from '@/guides.constants';
 
@@ -20,6 +20,9 @@ export const Dashboard: React.FC<DashboardLayoutProps> = () => {
   const { t } = useTranslation('dashboard');
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
+  const location = useLocation();
+  const basePath = useResolvedPath('').pathname;
+
   const guideItems: GuideItem[] = [
     {
       id: 1,
@@ -30,26 +33,29 @@ export const Dashboard: React.FC<DashboardLayoutProps> = () => {
     },
   ];
 
-  const tabsList = [
+  const params = new URLSearchParams(location.search);
+  const selectedOrganizationId = params.get('organizationId');
+  const tabsList: TabItemProps[] = [
     {
       name: 'general_informations',
       title: t('zimbra_dashboard_general_informations'),
-      to: useResolvedPath('').pathname,
+      to: basePath,
     },
     {
       name: 'organizations',
       title: t('zimbra_dashboard_organizations'),
-      to: useResolvedPath('organizations').pathname,
+      to: `${basePath}/organizations`,
+      hidden: selectedOrganizationId !== null,
     },
     {
       name: 'domains',
       title: t('zimbra_dashboard_domains'),
-      to: useResolvedPath('domains').pathname,
+      to: `${basePath}/domains`,
     },
     {
       name: 'email_accounts',
       title: t('zimbra_dashboard_email_accounts'),
-      to: useResolvedPath('email_accounts').pathname,
+      to: `${basePath}/email_accounts`,
     },
   ];
 
