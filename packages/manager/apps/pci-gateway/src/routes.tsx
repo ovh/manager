@@ -61,6 +61,14 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/add/AddGateway.page')),
         children: [],
       },
+      {
+        path: 'edit',
+        ...lazyRouteConfig(() => import('@/pages/edit/EditGateway.page')),
+        handle: {
+          tracking: 'edit',
+        },
+        children: [],
+      },
     ],
   },
   {
