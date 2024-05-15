@@ -12,5 +12,8 @@
   "nasha_components_metrics_renew": "Verlängern",
   "nasha_components_metrics_space_usage": "Gebrauchsmeldung",
   "nasha_components_metrics_space_usage_help": "Der Administratorkontakt und der technische Kontakt erhalten eine Warnung per E-Mail, sobald 90 % des NAS belegt sind",
-  "nasha_components_metrics_datacenter_mrs": "Marseille"
+  "nasha_components_metrics_datacenter_mrs": "Marseille",
+  "nasha_components_metrics_datacenter_prg": "Prag",
+  "nasha_components_metrics_datacenter_ams": "Amsterdam",
+  "nasha_components_metrics_datacenter_mil": "Mailand"
 }
