@@ -243,7 +243,7 @@
   "logs_streams_col_retention": "Retention",
   "logs_streams_col_storage": "Space used",
   "logs_streams_enabled": "Active",
-  "logs_streams_disabled": "On break",
+  "logs_streams_disabled": "Paused",
   "logs_streams_no_streams": "No data streams",
   "logs_streams_col_shared": "Shared data stream",
   "logs_streams_manage_alerts": "Manage alerts",
