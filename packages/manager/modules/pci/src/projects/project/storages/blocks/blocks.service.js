@@ -323,7 +323,7 @@ export default class PciProjectStorageBlockService {
             currencyCode: relatedCatalog.price.currencyCode,
             text: relatedCatalog.price.text.replace(
               /\d+(?:[.,]\d+)?/,
-              `${value.toFixed(2)}`,
+              `${value.toFixed(3)}`,
             ),
             value,
           },
