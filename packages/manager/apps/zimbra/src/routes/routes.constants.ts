@@ -6,4 +6,5 @@ export const urls = {
   organizations: '/:serviceName/organizations',
   domains: '/:serviceName/domains',
   email_accounts: '/:serviceName/email_accounts',
+  returnOrganizations: './organizations',
 };
