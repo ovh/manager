@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import RegionSelector from '@/components/layout-helpers/Create/RegionSelector';
 import OrderConfirmation from '@/components/layout-helpers/Create/OrderConfirmation';
+import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 
 export default function Create() {
   const { t } = useTranslation('key-management-service/create');
@@ -38,6 +39,7 @@ export default function Create() {
         >
           {t('key_management_service_create_title')}
         </OsdsText>
+        <KmsGuidesHeader />
       </div>
       <OsdsText
         level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
