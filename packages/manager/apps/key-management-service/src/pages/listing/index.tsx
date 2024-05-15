@@ -32,6 +32,7 @@ import {
   DatagridCellName,
   DatagridCellRegion,
 } from '@/components/Listing/ListingCells';
+import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
@@ -86,6 +87,7 @@ export default function Listing() {
         >
           {t('key_management_service_listing_title')}
         </OsdsText>
+        <KmsGuidesHeader />
       </div>
       <OsdsDivider></OsdsDivider>
       <Notifications />
@@ -95,7 +97,7 @@ export default function Listing() {
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
-          href={ROUTES_URLS.createKeyManagementService}
+          onClick={() => navigate(ROUTES_URLS.createKeyManagementService)}
         >
           {t('key_management_service_listing_add_kms_button')}
         </OsdsButton>
