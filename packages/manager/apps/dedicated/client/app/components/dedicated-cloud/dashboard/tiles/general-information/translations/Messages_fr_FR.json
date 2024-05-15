@@ -32,7 +32,7 @@
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_arin": "ARIN",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_0": "Aucun",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_order": "Commander des blocs d’IP",
-  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "Associer des bloc d’IP à un autre service",
+  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "Associer des blocs d’IP à un autre service",
 
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_term": "Interfaces de gestion",
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_vscope": "vScope",
