@@ -32,12 +32,15 @@ export const getRancherProjectById = async (
 export const getByRancherIdProjectId = async (
   projectId?: string,
   rancherId?: string,
-): Promise<{ data: RancherService }> => 
-  apiClient.v2.get(getByRancherIdProjectIdQueryKey(projectId, rancherId));
-
+): Promise<RancherService> => {
+  const response = await apiClient.v2.get(
+    getByRancherIdProjectIdQueryKey(projectId, rancherId),
+  );
+  return response.data;
+};
 export const getProject = async (projectId: string): Promise<PciProject> => {
   const response = await apiClient.v6.get(`/cloud/project/${projectId}`);
-  return response.data as PciProject;
+  return response.data;
 };
 
 export const deleteRancherServiceQueryKey = (rancherId: string) => [
@@ -100,10 +103,7 @@ export const editRancherService = async ({
   return apiClient.v2.put(
     getByRancherIdProjectIdQueryKey(projectId, rancherId),
     {
-      targetSpec: {
-        ...rancher.targetSpec,
-        name: rancher.currentState.name,
-      },
+      targetSpec: rancher.targetSpec,
     },
   );
 };
@@ -131,6 +131,13 @@ export const getpublicCloudProjectProjectIdQueryKey = (
 export const getpublicCloudReferenceRancherVersionListQueryKey = [
   'get/publicCloud/reference/rancher/version',
 ];
+
+export const getVersions = async (): Promise<RancherVersion[]> => {
+  const response = await apiClient.v2.get(
+    '/publicCloud/reference/rancher/version',
+  );
+  return response.data;
+};
 
 /**
  *  Get listing with iceberg

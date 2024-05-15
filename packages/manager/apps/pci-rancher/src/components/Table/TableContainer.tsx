@@ -14,7 +14,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import TableComponent from './Table';
-import ProductStatusCell from './ProductStatusCell';
 import ActionsCell from './ActionsCell';
 import LinkService from './LinkService';
 import { RancherService } from '@/api/api.type';
@@ -22,6 +21,7 @@ import { RancherDatagridWrapper } from './Table.type';
 import DisplayCellText from './TextCell';
 import './Table.scss';
 import { deleteRancherServiceQueryKey } from '@/api';
+import StatusChip from '../StatusChip/StatusChip';
 
 export default function TableContainer({
   data,
@@ -70,14 +70,14 @@ export default function TableContainer({
       {
         id: 'numberOfCpu',
         header: t('numberOfCpu'),
-        accessorKey: 'currentState.usage.orchestratedVcpus',
+        accessorFn: (row) => row.currentState.usage?.orchestratedVcpus,
         cell: DisplayCellText,
       },
       {
         id: 'status',
         header: t('status'),
         accessorKey: 'resourceStatus',
-        cell: ProductStatusCell,
+        cell: (row) => <StatusChip label={row.getValue() as string} />,
       },
       {
         id: 'actions',

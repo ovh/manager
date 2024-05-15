@@ -112,6 +112,12 @@ export default [
           },
         ],
       },
+      {
+        path: 'rancher/:rancherId/update-software',
+        ...lazyRouteConfig(() =>
+          import('@/pages/dashboard/updateSoftware/UpdateSoftware.page'),
+        ),
+      },
     ],
   },
   {

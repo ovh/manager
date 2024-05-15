@@ -7,12 +7,11 @@ import { useTrackingAction } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 const GenerateAccessModalPage = () => {
-  const { data } = useRancher();
+  const { data: rancher } = useRancher();
   const { projectId } = useParams();
   const navigate = useNavigate();
   const trackAction = useTrackingAction();
 
-  const rancher = data.data;
   const { generateAccesDetail, accessDetail } = useGenerateAccessDetail({
     projectId: projectId as string,
     rancherId: rancher.id,

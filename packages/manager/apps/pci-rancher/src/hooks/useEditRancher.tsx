@@ -5,7 +5,17 @@ import {
 } from '../api/apiv2/services';
 import { RancherService } from '../api/api.type';
 
-const useEditRancherName = ({
+export enum EditAction {
+  EditName = 'EditName',
+  UpdateSoftware = 'UpdateSoftware',
+}
+
+export type EditMutationVariables = {
+  rancher: Partial<RancherService>;
+  editAction: EditAction;
+};
+
+const useEditRancher = ({
   rancherId,
   projectId,
   onSuccess,
@@ -17,11 +27,11 @@ const useEditRancherName = ({
   onError: () => void;
 }) => {
   return useMutation({
-    mutationFn: (rancherUpdated: RancherService) =>
+    mutationFn: ({ rancher }: EditMutationVariables) =>
       editRancherService({
         rancherId,
         projectId,
-        rancher: rancherUpdated,
+        rancher,
       }),
     onSuccess,
     onError,
@@ -29,4 +39,4 @@ const useEditRancherName = ({
   });
 };
 
-export default useEditRancherName;
+export default useEditRancher;

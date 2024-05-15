@@ -25,20 +25,45 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 
-import { RancherService } from '@/api/api.type';
+import { MutationStatus } from '@tanstack/react-query';
+import { RancherService, RancherVersion, ResourceStatus } from '@/api/api.type';
+import LinkIcon from '@/components/LinkIcon/LinkIcon';
+import StatusChip from '@/components/StatusChip/StatusChip';
+import { TileBlock } from '@/components/TileBlock/TileBlock';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import { TileBlock } from '@/components/TileBlock/TileBlock';
 
-interface RancherDetailProps {
+export interface RancherDetailProps {
   rancher: RancherService;
   editNameResponseType: ODS_MESSAGE_TYPE | null;
+  updateSoftwareResponseType: MutationStatus;
   hasErrorAccessDetail: boolean;
+  latestVersionAvailable: RancherVersion | null;
 }
+
+const getUpdateSoftwareBannerType = (
+  updateSoftwareResponseType: MutationStatus,
+) => {
+  if (updateSoftwareResponseType === 'error') {
+    return ODS_MESSAGE_TYPE.error;
+  }
+
+  if (
+    updateSoftwareResponseType === 'success' ||
+    updateSoftwareResponseType === 'pending'
+  ) {
+    return ODS_MESSAGE_TYPE.warning;
+  }
+
+  return null;
+};
+
 const RancherDetail = ({
   rancher,
   editNameResponseType,
+  updateSoftwareResponseType,
   hasErrorAccessDetail,
+  latestVersionAvailable,
 }: RancherDetailProps) => {
   const { t } = useTranslation('pci-rancher/dashboard');
   const { t: tListing } = useTranslation('pci-rancher/listing');
@@ -52,10 +77,37 @@ const RancherDetail = ({
     trackAction(TrackingPageView.DetailRancher, TrackingEvent.accessUi);
 
   const hrefEdit = useHref('./edit');
+  const hrefUpdateSoftware = useHref('./update-software');
   const hrefGenerateAccess = useHref('./generate-access');
 
+  const shouldDisplayUpdateSoftware =
+    latestVersionAvailable &&
+    rancher.resourceStatus === ResourceStatus.READY &&
+    !updateSoftwareResponseType;
+
+  const updateSoftwareBannerType = getUpdateSoftwareBannerType(
+    updateSoftwareResponseType,
+  );
+
   return (
-    <div>
+    <div className="max-w-4xl">
+      {shouldDisplayUpdateSoftware && (
+        <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="my-4 p-3">
+          <div className="flex flex-row items-center">
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              className="inline-block mr-5"
+            >
+              {t('updateSoftwareBannerAvailableUpdate')}
+            </OsdsText>
+            <LinkIcon
+              iconName={ODS_ICON_NAME.ARROW_RIGHT}
+              href={hrefUpdateSoftware}
+              text={t('updateSoftwareAvailableUpdate')}
+            />
+          </div>
+        </OsdsMessage>
+      )}
       {editNameResponseType && (
         <OsdsMessage type={editNameResponseType} className="my-4 p-3">
           <OsdsText
@@ -65,6 +117,18 @@ const RancherDetail = ({
             {editNameResponseType === ODS_MESSAGE_TYPE.success
               ? t('editNameRancherSuccess')
               : t('editNameRancherError')}
+          </OsdsText>
+        </OsdsMessage>
+      )}
+      {updateSoftwareBannerType && (
+        <OsdsMessage type={updateSoftwareBannerType} className="my-4 p-3">
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="inline-block"
+          >
+            {updateSoftwareBannerType === 'warning'
+              ? t('updateSoftwareBannerUpdateLoading')
+              : t('updateSoftwareBannerError')}
           </OsdsText>
         </OsdsMessage>
       )}
@@ -78,7 +142,7 @@ const RancherDetail = ({
           </OsdsText>
         </OsdsMessage>
       )}
-      <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 py-6 max-w-3xl">
+      <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 py-6">
         <div className="p-3">
           <OsdsTile className="w-full h-full flex-col" inline rounded>
             <div className="flex flex-col w-full">
@@ -120,6 +184,18 @@ const RancherDetail = ({
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                   {version}
                 </OsdsText>
+                {shouldDisplayUpdateSoftware && (
+                  <LinkIcon
+                    iconName={ODS_ICON_NAME.ARROW_RIGHT}
+                    href={hrefUpdateSoftware}
+                    text={t('updateSoftwareAvailableUpdate')}
+                  />
+                )}
+              </TileBlock>
+              <TileBlock label={tListing('status')}>
+                <div>
+                  <StatusChip label={rancher.resourceStatus} />
+                </div>
               </TileBlock>
             </div>
           </OsdsTile>

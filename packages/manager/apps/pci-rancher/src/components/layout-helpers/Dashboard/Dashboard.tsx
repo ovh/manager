@@ -1,19 +1,17 @@
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_MESSAGE_TYPE,
-} from '@ovhcloud/ods-components';
-import { OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import React from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useMutationState } from '@tanstack/react-query';
+import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { patchRancherServiceQueryKey, postRancherServiceQueryKey } from '@/api';
 import { RancherService } from '@/api/api.type';
+import PreviousButton from '@/components/PreviousButton/PreviousButton';
+import { EditAction, EditMutationVariables } from '@/hooks/useEditRancher';
 import { useTrackingPage } from '@/hooks/useTrackingPage';
+import useVersions from '@/hooks/useVersions';
 import { COMMON_PATH } from '@/routes';
+import { getLatestVersionAvailable } from '@/utils/rancher';
 import { TrackingPageView } from '@/utils/tracking';
 import Title from '../../Title/Title';
 import RancherDetail from './RancherDetail';
@@ -32,13 +30,34 @@ export type DashboardLayoutProps = {
   rancher: RancherService;
 };
 
+type MutationStateResut = {
+  variables: EditMutationVariables;
+  status: MutationStatus;
+};
+
+const getResponseStatusByEditAction = (
+  mutationState: MutationStateResut[],
+  editAction: EditAction,
+) =>
+  mutationState.length && mutationState[0].variables.editAction === editAction
+    ? mutationState[0].status
+    : null;
+
 const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
-  const { t } = useTranslation('pci-rancher/dashboard');
   const { projectId } = useParams();
+  const { t } = useTranslation('pci-rancher/dashboard');
   useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
+  const { data: versions } = useVersions();
 
-  const mutationEditNameState = useMutationState({
+  const latestVersionAvailable = getLatestVersionAvailable(rancher, versions);
+  const mutationEditRancherState = useMutationState<{
+    variables: {
+      editAction: EditAction;
+      rancher: RancherService;
+    };
+    status: MutationStatus;
+  }>({
     filters: { mutationKey: patchRancherServiceQueryKey('').slice(0, 1) },
   });
 
@@ -49,41 +68,38 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
     },
   });
 
-  const editNameResponseStatus = mutationEditNameState.length
-    ? mutationEditNameState[0].status
-    : null;
-  let editNameResponseType = null;
+  const editNameResponseType = getResponseStatusByEditAction(
+    mutationEditRancherState,
+    EditAction.EditName,
+  );
 
-  if (editNameResponseStatus === 'error') {
-    editNameResponseType = ODS_MESSAGE_TYPE.error;
+  let editNameBannerType = null;
+
+  if (editNameResponseType === 'error') {
+    editNameBannerType = ODS_MESSAGE_TYPE.error;
   }
 
-  if (editNameResponseStatus === 'success') {
-    editNameResponseType = ODS_MESSAGE_TYPE.success;
+  if (editNameResponseType === 'success') {
+    editNameBannerType = ODS_MESSAGE_TYPE.success;
   }
+
+  const updateSoftwareResponseType = getResponseStatusByEditAction(
+    mutationEditRancherState,
+    EditAction.UpdateSoftware,
+  );
 
   return (
     <>
       <div className="py-4 overflow-hidden text-ellipsis">
         <Title>{rancher.currentState.name}</Title>
       </div>
-      <OsdsLink
-        href={hrefPrevious}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        className="flex items-center my-6"
-      >
-        <OsdsIcon
-          className="mr-4"
-          name={ODS_ICON_NAME.ARROW_LEFT}
-          size={ODS_ICON_SIZE.xxs}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        />
-        <span>{t('see_all_rancher')}</span>
-      </OsdsLink>
+      <PreviousButton href={hrefPrevious} text={t('see_all_rancher')} />
       <TabBar tabs={tabs} />
       <RancherDetail
+        latestVersionAvailable={latestVersionAvailable}
         rancher={rancher}
-        editNameResponseType={editNameResponseType}
+        editNameResponseType={editNameBannerType}
+        updateSoftwareResponseType={updateSoftwareResponseType}
         hasErrorAccessDetail={mutationGenerateAccessState.length > 0}
       />
       <Outlet />
