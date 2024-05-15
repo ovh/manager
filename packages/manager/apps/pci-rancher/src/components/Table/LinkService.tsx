@@ -9,7 +9,7 @@ import './Table.scss';
 export default function LinkService({ cell, row }: Readonly<RancherCellData>) {
   const navigate = useNavigate();
   const label = cell.renderValue();
-  const path = `${row.original.id}`;
+  const path = row.original.id;
   return (
     <OsdsText
       color={ODS_THEME_COLOR_INTENT.text}

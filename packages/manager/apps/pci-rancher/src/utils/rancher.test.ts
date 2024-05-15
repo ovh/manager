@@ -1,4 +1,10 @@
-import { isValidRancherName } from './rancher';
+import { rancherMocked } from '@/_mock_/rancher';
+import {
+  getLatestVersionAvailable,
+  getVersion,
+  isValidRancherName,
+} from './rancher';
+import { versionsMocked } from '@/_mock_/version';
 
 describe('Should validate rancher name', () => {
   it('When i add a valid rancher name', () => {
@@ -33,5 +39,43 @@ describe('Should validate rancher name', () => {
       expect(isValidRancherName('_ran')).toBe(false);
       expect(isValidRancherName('ran-')).toBe(false);
     });
+  });
+});
+
+describe('Rancher version', () => {
+  it('When i get rancher version', () => {
+    expect(getVersion(rancherMocked)).toBe(rancherMocked.currentState.version);
+  });
+
+  describe('Check latest version', () => {
+    it('Should return latest version available', () => {
+      expect(getLatestVersionAvailable(rancherMocked, versionsMocked)).toBe(
+        versionsMocked.slice(-1)[0],
+      );
+    });
+
+    it('Should return null if there is no version available', () => {
+      expect(
+        getLatestVersionAvailable(rancherMocked, [
+          {
+            name: '2.9.7',
+            status: 'UNAVAILABLE',
+            changelogUrl: 'https://www.ovh.com',
+          },
+        ]),
+      ).toBe(null);
+    });
+  });
+
+  it('Should not return version if there is no higher version', () => {
+    expect(
+      getLatestVersionAvailable(rancherMocked, [
+        {
+          name: '2.0.0',
+          status: 'AVAILABLE',
+          changelogUrl: 'https://www.ovh.com',
+        },
+      ]),
+    ).toBe(null);
   });
 });

@@ -23,7 +23,9 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 export default function DashboardPage() {
   const { projectId } = useParams();
   const { t } = useTranslation('pci-rancher/dashboard');
-  const { data, error, isLoading } = useRancher();
+  const { data: rancher, error, isLoading } = useRancher({
+    refetchInterval: 5000,
+  });
   const navigate = useNavigate();
 
   const tabsList: DashboardTabItemProps[] = [
@@ -64,12 +66,8 @@ export default function DashboardPage() {
   return (
     <Suspense fallback={<Loading />}>
       <DashboardLayout
-        breadcrumb={
-          <Breadcrumb items={[{ label: data?.data.targetSpec.name }]} />
-        }
-        content={
-          data?.data && <Dashboard tabs={tabsList} rancher={data.data} />
-        }
+        breadcrumb={<Breadcrumb items={[{ label: rancher.targetSpec.name }]} />}
+        content={rancher && <Dashboard tabs={tabsList} rancher={rancher} />}
       />
       <Outlet />
     </Suspense>

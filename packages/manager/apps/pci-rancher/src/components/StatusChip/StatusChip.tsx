@@ -1,14 +1,11 @@
-import React from 'react';
-import { OsdsChip, OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/';
-import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsChip, OsdsSpinner } from '@ovhcloud/ods-components/react';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ResourceStatus } from '@/api/api.type';
-import { RancherCellData } from './Table.type';
-import './Table.scss';
 
-export default function ProductStatusCell({ cell }: Readonly<RancherCellData>) {
-  const label = cell.renderValue() as string;
+const StatusChip = ({ label }: { label: string }) => {
   const { t } = useTranslation('pci-rancher/listing');
   const colorByProductStatus: {
     [key in ResourceStatus]: ODS_THEME_COLOR_INTENT;
@@ -28,4 +25,6 @@ export default function ProductStatusCell({ cell }: Readonly<RancherCellData>) {
   ) : (
     <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />
   );
-}
+};
+
+export default StatusChip;

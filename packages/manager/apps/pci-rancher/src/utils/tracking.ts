@@ -5,6 +5,7 @@ export enum TrackingPageView {
   CreateRancher = 'add',
   DetailRancher = 'details',
   DeleteRancherModal = 'delete',
+  UpdateSoftware = 'update-software-modal',
   GenerateAccessModal = 'generate-access',
   EditNameModal = 'edit',
   ListingPage = '',

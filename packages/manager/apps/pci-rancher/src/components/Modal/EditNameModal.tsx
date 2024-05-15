@@ -45,11 +45,11 @@ const EditNameModal = ({
       trackAction(TrackingPageView.EditNameModal, TrackingEvent.confirm);
       onEditRancher({
         ...rancher,
-        currentState: {
-          ...rancher.currentState,
+        targetSpec: {
+          ...rancher.targetSpec,
           name: newName,
-        } as RancherService['currentState'],
-      } as RancherService);
+        },
+      });
       onClose();
     }
   };

@@ -106,4 +106,5 @@ export interface RancherVersion {
   name: string;
   status: RancherReferenceStatus;
   description?: string;
+  changelogUrl: string;
 }
