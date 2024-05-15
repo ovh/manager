@@ -1,6 +1,7 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNotifications } from '@ovhcloud/manager-components';
 import { terminateOKmsQueryKey, terminateOKms } from '../services/post';
 import { getOkmsServiceId, getOkmsServiceIdQueryKey } from '../services/get';
 import { getOkmsServicesResourceListQueryKey } from '../GET/apiv2/services';
@@ -12,16 +13,13 @@ export const useTerminateOKms = ({
 }: {
   okmsId: string;
   onSuccess?: () => void;
-  onError?: (result: ApiError) => void;
+  onError?: () => void;
 }) => {
-  const [isErrorVisible, setIsErrorVisible] = React.useState(false);
   const queryClient = useQueryClient();
+  const { addError, addSuccess, clearNotifications } = useNotifications();
+  const { t } = useTranslation('key-management-service/terminate');
 
-  const {
-    mutate: terminateKms,
-    isPending,
-    error: terminateKmsError,
-  } = useMutation({
+  const { mutate: terminateKms, isPending } = useMutation({
     mutationKey: terminateOKmsQueryKey(okmsId),
     mutationFn: async () => {
       const { data: servicesId } = await queryClient.fetchQuery<
@@ -33,22 +31,32 @@ export const useTerminateOKms = ({
       return terminateOKms({ serviceId: servicesId[0] });
     },
     onSuccess: () => {
+      clearNotifications();
+      addSuccess(
+        t('key_management_service_terminate_success_banner', {
+          ServiceName: okmsId,
+        }),
+        true,
+      );
       queryClient.invalidateQueries({
         queryKey: getOkmsServicesResourceListQueryKey,
       });
       onSuccess?.();
     },
     onError: (result: ApiError) => {
-      setIsErrorVisible(true);
-      onError?.(result);
+      clearNotifications();
+      addError(
+        t('key_management_service_terminate_error', {
+          error: result.message,
+        }),
+        true,
+      );
+      onError?.();
     },
   });
 
   return {
     terminateKms,
     isPending,
-    isErrorVisible: terminateKmsError && isErrorVisible,
-    error: terminateKmsError,
-    hideError: () => setIsErrorVisible(false),
   };
 };

@@ -6,7 +6,7 @@ import {
   OsdsDivider,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { Notifications } from '@ovhcloud/manager-components';
+import { Notifications, useNotifications } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -23,6 +23,8 @@ export default function DashboardPage() {
   const { t: tListing } = useTranslation('key-management-service/listing');
   const { okmsId } = useParams();
   const navigate = useNavigate();
+  const { clearNotifications } = useNotifications();
+
   const { data: okms } = useOKMSById(okmsId);
   const displayName = okms?.data?.iam?.displayName;
 
@@ -50,7 +52,10 @@ export default function DashboardPage() {
         items={[
           {
             label: tListing('key_management_service_listing_title'),
-            onClick: () => navigate(ROUTES_URLS.listing),
+            onClick: () => {
+              clearNotifications();
+              navigate(ROUTES_URLS.listing);
+            },
           },
           {
             href: `/${okmsId}`,
