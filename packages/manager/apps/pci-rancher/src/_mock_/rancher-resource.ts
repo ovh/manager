@@ -13,6 +13,10 @@ export const rancherPlan: RancherPlan[] = [
 
 export const rancherVersion: RancherVersion[] = [
   {
+    name: 'v2.7.4',
+    status: 'AVAILABLE',
+  },
+  {
     name: 'v2.7.5',
     status: 'UNAVAILABLE',
   },

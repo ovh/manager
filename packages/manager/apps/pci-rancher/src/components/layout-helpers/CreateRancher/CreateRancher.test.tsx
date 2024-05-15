@@ -172,5 +172,39 @@ describe('CreateRancher', () => {
 
       expect(banner).not.toBeNull();
     });
+
+    it('Given that I have the selected version null and the versions available, I should see the selected version to the available version with the highest name with the recommanded version description', async () => {
+      const screen = await setupSpecTest();
+      const versionActive = screen.getByLabelText('tile-v2.7.6');
+
+      expect(versionActive).not.toBeNull();
+      expect(versionActive).toHaveAttribute('checked');
+
+      const recommendedText =
+        dashboardTranslation.createRancherRecomendedVersion;
+
+      const childrenWithRecommendedText = Array.from(
+        versionActive.querySelectorAll('*'),
+      ).some((child) => child.textContent.includes(recommendedText));
+
+      expect(childrenWithRecommendedText).toBe(true);
+    });
+
+    it('Given that I have the selected version null and the versions available, I should see  the available version with other names than the highest name without the recommanded version description', async () => {
+      const screen = await setupSpecTest();
+      const versionNotActive = screen.getByLabelText('tile-v2.7.4');
+
+      expect(versionNotActive).not.toBeNull();
+      expect(versionNotActive).not.toHaveAttribute('checked');
+
+      const recommendedText =
+        dashboardTranslation.createRancherRecomendedVersion;
+
+      const childrenWithRecommendedText = Array.from(
+        versionNotActive.querySelectorAll('*'),
+      ).some((child) => child.textContent.includes(recommendedText));
+
+      expect(childrenWithRecommendedText).toBe(false);
+    });
   });
 });
