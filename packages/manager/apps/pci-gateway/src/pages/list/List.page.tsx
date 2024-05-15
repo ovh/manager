@@ -234,7 +234,7 @@ export default function ListingPage() {
       </div>
 
       <OsdsDivider></OsdsDivider>
-      <Notifications />
+      <Notifications clearAfterRead={true} />
       <div className="mb-5">
         {isDiscoveryProject(project) && (
           <PciDiscoveryBanner projectId={projectId} />

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMedia } from 'react-use';
 import { clsx } from 'clsx';
 import { v4 as uuidV4 } from 'uuid';
