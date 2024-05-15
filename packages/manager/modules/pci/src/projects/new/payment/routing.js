@@ -5,11 +5,13 @@ import {
   CREDIT_PROVISIONING,
   PAYMENTS_PER_LINE,
 } from './components/add/constants';
+import { DISCOVERY_PROMOTION_VOUCHER } from '../../project/project.constants';
 import {
   PCI_PROJECT_STEPS,
   PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
 } from '../constants';
 
+import PciEligibility from '../classes/eligibility.class';
 import { PCI_NEW_PAYMENT_STATE_NAME } from '../routing';
 
 import component from './component';
@@ -160,6 +162,15 @@ export const registerPCINewPaymentState = (
 
       paymentMethods: /* @ngInject */ (ovhPaymentMethod) =>
         ovhPaymentMethod.getAllPaymentMethods(),
+
+      freeTrialEligibility: /* @ngInject */ (pciProjectNew) =>
+        pciProjectNew
+          .checkEligibility(DISCOVERY_PROMOTION_VOUCHER)
+          .then((eligibility) => {
+            const voucher = new PciEligibility(eligibility);
+            return { ...voucher, value: DISCOVERY_PROMOTION_VOUCHER };
+          })
+          .catch(() => null),
 
       validPaymentMethods: /* @ngInject */ (
         eligibility,
