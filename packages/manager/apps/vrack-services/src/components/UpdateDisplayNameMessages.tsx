@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { MutationState, useMutationState } from '@tanstack/react-query';
 import {
