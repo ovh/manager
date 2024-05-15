@@ -33,6 +33,10 @@ export default function Actions({
   const hrefRemove = useHref(
     `./delete?id=${gateway.id}&name=${gateway.name}&region=${gateway.region}`,
   );
+  const hrefEdit = useHref(
+    `./edit?gatewayId=${gateway.id}&region=${gateway.region}`,
+  );
+
   return (
     <OsdsMenu>
       <OsdsButton
@@ -47,6 +51,23 @@ export default function Actions({
           size={ODS_ICON_SIZE.xxs}
         ></OsdsIcon>
       </OsdsButton>
+      <OsdsMenuItem>
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          href={hrefEdit}
+        >
+          <OsdsText
+            size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+            level={ODS_TEXT_LEVEL.button}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            slot={'start'}
+          >
+            {t('pci_projects_project_public_gateway_modify')}
+          </OsdsText>
+        </OsdsButton>
+      </OsdsMenuItem>
       <OsdsMenuItem>
         <PrivateNetworkButton projectId={projectId} />
       </OsdsMenuItem>
