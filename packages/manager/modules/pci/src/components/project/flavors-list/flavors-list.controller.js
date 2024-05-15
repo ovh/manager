@@ -176,49 +176,48 @@ export default class FlavorsListController {
    * @param {*} flavor
    * @returns Object with lowest hourly / monthly and all distinct hourly / monthly
    */
-  static getLowestPriceFromFlavor(flavor) {
-    const allHourlyPrices = [];
-    const allMontlyPrices = [];
-
-    // get the lowest hourly price for the flavor
-    const lowestHourlyPrice = flavor.priceInformation.reduce(
-      (lowest, current) => {
-        if (!current.prices.hourly?.value) return lowest;
-        // add current hourly price to distinct prices array
-        if (!allHourlyPrices.includes(current.prices.hourly.value)) {
-          allHourlyPrices.push(current.prices.hourly.value);
-        }
-        if (!lowest?.value) return current.prices.hourly;
-
-        return lowest.value > current.prices.hourly.value
-          ? current.prices.hourly
-          : lowest;
-      },
-      null,
-    );
-
-    // get the lowest monthly price for the flavor
-    const lowestMonthlyPrice = flavor.priceInformation.reduce(
-      (lowest, current) => {
-        if (!current.prices.monthly?.value) return lowest;
-        // add current monthly price to distinct prices array
-        if (!allMontlyPrices.includes(current.prices.monthly.value)) {
-          allMontlyPrices.push(current.prices.monthly.value);
-        }
-        if (!lowest?.value) return current.prices.monthly;
-
-        return lowest.value > current.prices.monthly.value
-          ? current.prices.monthly
-          : lowest;
-      },
-      null,
-    );
-
-    return {
-      hourly: lowestHourlyPrice,
-      monthly: lowestMonthlyPrice,
-      allHourlyPrices,
-      allMontlyPrices,
+  static getLowestAndDistinctPriceFromFlavor(flavor) {
+    const result = {
+      lowestHourlyPrice: null,
+      lowestMonthlyPrice: null,
+      allHourlyPrices: [],
+      allMontlyPrices: [],
     };
+
+    flavor.priceInformation.forEach((current) => {
+      // Manage the hourly prices for the flavor
+      if (current.prices.hourly?.value) {
+        // add current hourly price to distinct prices array
+        if (!result.allHourlyPrices.includes(current.prices.hourly.value)) {
+          result.allHourlyPrices.push(current.prices.hourly.value);
+        }
+
+        // Check if the current price is the lowest
+        if (
+          !result.lowestHourlyPrice ||
+          result.lowestHourlyPrice.value > current.prices.hourly.value
+        ) {
+          result.lowestHourlyPrice = current.prices.hourly;
+        }
+      }
+
+      // Manage the monthly prices for the flavor
+      if (current.prices.monthly?.value) {
+        // add current monthly price to distinct prices array
+        if (!result.allMontlyPrices.includes(current.prices.monthly.value)) {
+          result.allMontlyPrices.push(current.prices.monthly.value);
+        }
+
+        // Check if the current price is the lowest
+        if (
+          !result.lowestMonthlyPrice ||
+          result.lowestMonthlyPrice.value > current.prices.monthly.value
+        ) {
+          result.lowestMonthlyPrice = current.prices.monthly;
+        }
+      }
+    });
+
+    return result;
   }
 }
