@@ -28,7 +28,7 @@ export type OnboardingLayoutProps = PropsWithChildren<{
   title: string;
   orderButtonLabel: string;
   orderHref?: string;
-  description?: string;
+  description?: React.ReactNode;
   additionalDescriptions?: string[];
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
