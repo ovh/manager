@@ -24,6 +24,7 @@ import {
   Datagrid,
   Notifications,
   useDatagridSearchParams,
+  useNotifications,
 } from '@ovhcloud/manager-components';
 import { useOKMS } from '@/data/hooks/useOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
@@ -39,6 +40,7 @@ export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
   const { t: tError } = useTranslation('error');
   const navigate = useNavigate();
+  const { clearNotifications } = useNotifications();
 
   const columns = [
     {
@@ -104,7 +106,10 @@ export default function Listing() {
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => navigate(ROUTES_URLS.createKeyManagementService)}
+          onClick={() => {
+            clearNotifications();
+            navigate(ROUTES_URLS.createKeyManagementService);
+          }}
         >
           {t('key_management_service_listing_add_kms_button')}
         </OsdsButton>
