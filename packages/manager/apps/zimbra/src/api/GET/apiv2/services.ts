@@ -30,3 +30,21 @@ export const getZimbraPlatformOrganization = async (platformId: string) => {
     throw error;
   }
 };
+export const getZimbraPlatformOrganizationDetailsQueryKey = (
+  platformId: string,
+  organizationId: string,
+) => [`get/zimbra/platform/${platformId}/organization/${organizationId}`];
+export const getZimbraPlatformOrganizationDetails = async (
+  platformId: string,
+  organizationId: string,
+) => {
+  try {
+    const response = await apiClient.v2.get(
+      `/zimbra/platform/${platformId}/organization/${organizationId}`,
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching Zimbra organization details id', error);
+    throw error;
+  }
+};
