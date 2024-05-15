@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
-  ShellProvider,
+  ShellContext,
   initShellContext,
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
@@ -24,14 +24,14 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: [appName, `${appName}/listing`],
+    ns: [`${appName}/listing`, `${appName}/dashboard`],
   });
 
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-      <ShellProvider client={context}>
+      <ShellContext.Provider value={context}>
         <App />
-      </ShellProvider>
+      </ShellContext.Provider>
     </React.StrictMode>,
   );
 };
