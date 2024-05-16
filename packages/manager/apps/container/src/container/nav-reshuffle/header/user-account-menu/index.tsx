@@ -98,7 +98,7 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
           ></OsdsIcon>
         </span>
         <span
-          className={`${style.userInfos}`}
+          className={style.userInfos}
         >{`${user.firstname} ${user.name}`}</span>
       </UserAccountMenuButton>
       <UserAccountMenuContent

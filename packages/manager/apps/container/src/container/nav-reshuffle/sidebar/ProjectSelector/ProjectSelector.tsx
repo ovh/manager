@@ -112,20 +112,14 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   }, [seeAllButton, seeAllLabel]);
 
   useEffect(() => {
-    setOptions(() => {
-      const options = [];
-      if (projects) {
-        projects.forEach((project) => {
-          options.push({
-            id: project.project_id,
-            label: project.description || project.project_id,
-          });
-        });
-      }
-      if (createProjectOption) options.push(createProjectOption);
-      if (seeAllProjectsOption) options.push(seeAllProjectsOption);
-      return options;
-    });
+    setOptions([
+      ...(projects ? projects.map(({ project_id: projectId, description }) => ({
+        id: projectId,
+        label: description || projectId,
+      })) : []),
+      ...(createProjectOption ? [createProjectOption] : []),
+      ...(seeAllProjectsOption ? [seeAllProjectsOption] : []),
+    ]);
   }, [projects, createProjectOption]);
 
   useEffect(() => {
