@@ -7,6 +7,9 @@ import style from './notifications-sidebar.module.scss';
 import useNotifications from '@/core/notifications';
 import { useHeader } from '@/context/header';
 import { useShell } from '@/context';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 
 function NavbarNotifications(): JSX.Element {
   const { t } = useTranslation('navbar');
@@ -44,11 +47,15 @@ function NavbarNotifications(): JSX.Element {
       aria-label={t('navbar_notifications')}
       onClick={onClick}
     >
-      <span className="oui-icon oui-icon-bell" aria-hidden="true">
-        {notificationsCount > 0 && (
-          <span className="oui-icon__badge">{notificationsCount}</span>
-        )}
-      </span>
+      <OsdsIcon
+        name={ODS_ICON_NAME.BELL}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        size={ODS_ICON_SIZE.sm}
+        aria-hidden="true"
+      ></OsdsIcon>
+      {notificationsCount > 0 && (
+        <span className="oui-icon__badge">{notificationsCount}</span>
+      )}
     </button>
   );
 }

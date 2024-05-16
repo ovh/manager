@@ -1,6 +1,9 @@
+import illustration from '@/assets/images/sidebar/bare-metal-cloud.png';
 export default {
   id: 'baremetal-cloud',
   translation: 'sidebar_bare_metal_cloud',
+  shortTranslation: 'sidebar_bare_metal_cloud_short',
+  illustration,
   features: ['bare-metal-cloud'],
   routing: {
     application: 'dedicated',
@@ -114,23 +117,6 @@ export default {
             hash: '#/veeam',
           },
           features: ['veeam-cloud-connect'],
-        },
-      ],
-    },
-    {
-      id: 'bmc-databases',
-      translation: 'sidebar_databases',
-      features: ['logs-data-platform'],
-      children: [
-        {
-          id: 'pci-logs-data-platform',
-          translation: 'sidebar_logs_db',
-          serviceType: 'DBAAS_LOGS',
-          routing: {
-            application: 'dedicated',
-            hash: '#/dbaas/logs',
-          },
-          features: ['logs-data-platform'],
         },
       ],
     },
