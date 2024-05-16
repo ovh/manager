@@ -47,12 +47,7 @@ function Header({
             />
             <div className="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end">
               <div className="oui-navbar-list__item">
-                <NavReshuffleSwitchBack
-                  onChange={(show: boolean) => {
-                    setIsDropdownOpen(show);
-                    setIsNotificationsSidebarVisible(false);
-                  }}
-                />
+                <NavReshuffleSwitchBack />
               </div>
               <div className="oui-navbar-list__item">
                 <LanguageMenu

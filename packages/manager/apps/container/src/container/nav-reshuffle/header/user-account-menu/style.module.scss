@@ -2,17 +2,33 @@
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
 
-.userIcon {
-  font-size: 1.375rem;
-}
-
 .menuContent {
+  & > div { border-radius: 0.5rem; }
   strong {
     font-weight: 600;
   }
 
   hr {
     border: 1px solid #85d9fd;
+  }
+
+  &Row {
+    & > span {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding-right: 0.5rem;
+    }
+
+    &Chip {
+      height: fit-content;
+      min-height: var(--ods-size-chip-md-height);
+      text-align: center;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
   }
 }
 
@@ -83,20 +99,6 @@
     border-radius: 16px;
   }
 
-  .oui-badge {
-    &_error {
-      color: $ae-500;
-    }
-
-    &_warning {
-      color: $aw-500;
-    }
-
-    &_success {
-      color: $as-500;
-    }
-  }
-
   .oui-icon {
     color: $p-800;
   }
@@ -111,8 +113,21 @@
   vertical-align: top !important;
 }
 
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userInfos {
+  font-size: 1rem;
+}
+
 @media (max-width: $device-breakpoint-tablet-max-width) {
   .userInfos {
     display: none;
+  }
+  .userIcon {
+    margin: 0;
   }
 }
