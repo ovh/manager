@@ -63,7 +63,6 @@ export default class VrackMoveDialogCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiVrack = OvhApiVrack;
     this.OvhApiMe = OvhApiMe;
-    this.vrackService = CucVrackService;
     this.vrackService = vrackService;
     this.cucVrackService = CucVrackService;
     this.atInternet = atInternet;
