@@ -4,7 +4,6 @@ import { render, waitFor, fireEvent } from '../../../utils/test/test.provider';
 import { rancherMocked } from '../../../_mock_/rancher';
 import { RancherService } from '../../../api/api.type';
 import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
-import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 
 jest.mock('@ovh-ux/manager-react-shell-client', () => ({
   useTracking: jest.fn(() => ({
@@ -19,11 +18,7 @@ const setupSpecTest = async (rancherService: RancherService = rancherMocked) =>
       <RancherDetail
         rancher={rancherService}
         editNameResponseType={null}
-        editRancherName={jest.fn()}
-        generateAccesDetail={jest.fn()}
-        accessDetail={null}
         hasErrorAccessDetail={false}
-        resetAccessDetail={jest.fn()}
       />,
     ),
   );
@@ -67,12 +62,9 @@ describe('RancherDetail', () => {
     const rancherName = screen.getByLabelText('edit');
     await fireEvent.click(rancherName);
 
-    const editNameModalTitle = screen.getByText(
-      listingTranslation.editNameModalTitle,
-    );
-
     expect(rancherName).not.toBeNull();
-    expect(editNameModalTitle).not.toBeNull();
+
+    expect(screen.getByLabelText('edit-link')).toHaveAttribute('href', '/edit');
   });
 
   it('Given that the Consumption tile is displayed, it should contain the offer I configured, the nb of CPUs orchestrated and the last update date', async () => {

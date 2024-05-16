@@ -6,6 +6,7 @@ import listingTranslation from '../../public/translations/pci-rancher/listing/Me
 import { rancherMocked } from '../../_mock_/rancher';
 
 const onEditMocked = jest.fn();
+const onClose = jest.fn();
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -15,8 +16,8 @@ const setupSpecTest = async () =>
   waitFor(() =>
     render(
       <EditNameModal
+        onClose={onClose}
         rancher={rancherMocked}
-        toggleModal={() => true}
         onEditRancher={onEditMocked}
       />,
     ),

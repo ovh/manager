@@ -20,17 +20,11 @@ import './Table.scss';
 
 export default function ActionsCell({
   row,
-  openModal,
-  setSelectedRancher,
+  onClickDelete,
   onClickManage,
 }: Readonly<RancherActionsCell>) {
   const editable = true;
   const { t } = useTranslation('pci-rancher/listing');
-
-  const onDelete = () => {
-    setSelectedRancher(row.original);
-    openModal();
-  };
 
   const NOT_EDITABLE_STATUS: ResourceStatus[] = [
     ResourceStatus.CREATING,
@@ -80,7 +74,7 @@ export default function ActionsCell({
             variant={ODS_BUTTON_VARIANT.ghost}
             text-align="start"
             class="hydrated"
-            onClick={onDelete}
+            onClick={onClickDelete}
           >
             <span slot="start">
               <span>{t('delete')}</span>

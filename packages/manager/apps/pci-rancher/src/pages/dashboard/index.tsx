@@ -1,6 +1,11 @@
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
+import {
+  Outlet,
+  useNavigate,
+  useParams,
+  useResolvedPath,
+} from 'react-router-dom';
 import { ErrorBanner } from '@ovhcloud/manager-components';
 import Breadcrumb, {
   BreadcrumbHandleParams,
@@ -19,7 +24,7 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 export default function DashboardPage() {
   const { projectId } = useParams();
   const { t } = useTranslation('pci-rancher/dashboard');
-  const { data, error, isLoading, refetch } = useRancher();
+  const { data, error, isLoading } = useRancher();
   const navigate = useNavigate();
 
   const tabsList: DashboardTabItemProps[] = [
@@ -61,14 +66,9 @@ export default function DashboardPage() {
     <PageLayout>
       <Suspense fallback={<Loading />}>
         <Breadcrumb items={[{ label: data?.data.targetSpec.name }]} />
-        {data?.data && (
-          <Dashboard
-            tabs={tabsList}
-            rancher={data.data}
-            refetchRancher={refetch}
-          />
-        )}
+        {data?.data && <Dashboard tabs={tabsList} rancher={data.data} />}
       </Suspense>
+      <Outlet />
     </PageLayout>
   );
 }

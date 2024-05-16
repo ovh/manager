@@ -8,53 +8,41 @@ import {
   SortingState,
   Row,
 } from '@tanstack/react-table';
-import { useMutation } from '@tanstack/react-query';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { useMutationState } from '@tanstack/react-query';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import TableComponent from './Table';
 import ProductStatusCell from './ProductStatusCell';
 import ActionsCell from './ActionsCell';
 import LinkService from './LinkService';
-import DeleteModal from '../Modal/DeleteModal';
-import { deleteRancherService, deleteRancherServiceQueryKey } from '../../api';
 import { RancherService } from '@/api/api.type';
 import { RancherDatagridWrapper } from './Table.type';
 import DisplayCellText from './TextCell';
 import './Table.scss';
+import { deleteRancherServiceQueryKey } from '@/api';
 
 export default function TableContainer({
   data,
-  refetchRanchers,
 }: Readonly<RancherDatagridWrapper>) {
   const { t } = useTranslation('pci-rancher/listing');
   const [sorting, setSorting] = useState<SortingState>([]);
-  const { projectId } = useParams();
+  const state = useMutationState({
+    filters: {
+      mutationKey: deleteRancherServiceQueryKey('').slice(0, 1),
+      status: 'error',
+    },
+  });
   const navigate = useNavigate();
   const location = useLocation();
-  const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
-  const [selectedRancher, setSelectedRancher] = useState<RancherService>();
-  const [
-    deleteRancherResponse,
-    setDeleteRancherResponse,
-  ] = useState<ODS_MESSAGE_TYPE.error | null>(null);
-  const { mutate: deleteRancher } = useMutation({
-    mutationFn: () =>
-      deleteRancherService({
-        rancherId: selectedRancher?.id,
-        projectId,
-      }),
-    mutationKey: deleteRancherServiceQueryKey(selectedRancher?.id),
-    onSuccess: () => refetchRanchers(),
-    onError: () => setDeleteRancherResponse(ODS_MESSAGE_TYPE.error),
-  });
 
   const Actions = ({ row }: { row: Row<RancherService> }) => (
     <ActionsCell
-      openModal={() => setIsShowDeleteModal(true)}
-      setSelectedRancher={setSelectedRancher}
       row={row}
+      onClickDelete={() =>
+        navigate(`${location.pathname}/${row.original.id}/delete`)
+      }
       onClickManage={(path: string) => navigate(`${location.pathname}/${path}`)}
     />
   );
@@ -112,8 +100,8 @@ export default function TableContainer({
 
   return (
     <>
-      {deleteRancherResponse && (
-        <OsdsMessage type={deleteRancherResponse} className="my-4 p-3">
+      {!!state.length && (
+        <OsdsMessage type={ODS_MESSAGE_TYPE.error} className="my-4 p-3">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
             className="inline-block"
@@ -123,13 +111,6 @@ export default function TableContainer({
         </OsdsMessage>
       )}
       {data && columns && <TableComponent table={table} />}
-      {isShowDeleteModal && (
-        <DeleteModal
-          toggleModal={setIsShowDeleteModal}
-          onDeleteRancher={deleteRancher}
-          selectedRancher={selectedRancher}
-        />
-      )}
     </>
   );
 }
