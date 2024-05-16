@@ -45,56 +45,6 @@ export default /* @ngInject */ (
     otherwise: 'app.redirect',
   });
 
-  /* -------------------------------------------------------------------------- */
-  /*                                DEV / QA ONLY                               */
-  /* -------------------------------------------------------------------------- */
-
-  $stateProvider.state('test-links', {
-    url: '/test-links',
-    controller: class {
-      /* @ngInject */
-      constructor($scope) {
-        $scope.publicURL = [];
-        $scope.links = links;
-        $scope.links.forEach((link, i) => {
-          ovhShell.navigation
-            .getURL(link.public.application, link.public.path)
-            .then((url) => {
-              $scope.publicURL[i] = url;
-              $scope.$apply();
-            });
-        });
-      }
-    },
-    template: `
-      <div class="h-100 p-3" style="overflow: scroll;">
-        <table class="oui-table oui-table-responsive" style="width: 1px;">
-          <thead>
-            <tr>
-              <th class="oui-table__header p-2">Product</th>
-              <th class="oui-table__header p-2">Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="oui-table__row" ng-repeat="(index, link) in links">
-              <td class="oui-table__cell p-2">
-                {{ link.public.path.split('-').slice(1).join(' ') }}
-              </td>
-              <td class="oui-table__cell p-2">
-                <oui-spinner ng-if="!publicURL[index]" size="s" />
-                <a ng-if="publicURL[index]" ng-href="{{ publicURL[index] }}" target="_blank">{{ publicURL[index] }}</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    `,
-  });
-
-  /* -------------------------------------------------------------------------- */
-  /*                                DEV / QA ONLY                               */
-  /* -------------------------------------------------------------------------- */
-
   /**
    * Using redirectTo and using future states, this triggers the lazy loading mechanism which will,
    * once the state is loaded, execute a retry on the transition (https://github.com/ui-router/core/blob/master/src/hooks/lazyLoad.ts#L32-L67 )
