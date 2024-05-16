@@ -9,7 +9,7 @@ import useServiceLoader from "./useServiceLoader";
 import OrderTrigger from '../order/OrderTrigger';
 import webShopConfig from '../order/shop-config/web';
 import { ShopItem } from '../order/OrderPopupContent';
-import getIcon  from './GetIcon';
+import getIcon from './GetIcon';
 
 export const webFeatures = [
   'web:domains',
@@ -31,6 +31,7 @@ export const webFeatures = [
   'web-paas',
   'cloud-web',
   'cloud-database',
+  'zimbra'
 ];
 
 export default function WebSidebar() {
@@ -153,6 +154,19 @@ export default function WebSidebar() {
             })),
           ];
         },
+      });
+    }
+
+    if (features.zimbra) {
+      menu.push({
+        id: 'zimbra',
+        label: t('sidebar_zimbra'),
+        icon: getIcon('ovh-font ovh-font-mail'),
+        routeMatcher: new RegExp(`^/zimbra`),
+        href: navigation.getURL(
+          'zimbra',
+          '#/',
+        ),
       });
     }
 
