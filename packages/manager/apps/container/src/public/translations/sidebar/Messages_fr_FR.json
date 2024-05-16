@@ -165,5 +165,6 @@
   "sidebar_load_services": "Charger les services",
   "sidebar_access_list": "Accéder à la liste",
   "sidebar_access_dashboard": "Accéder au tableau de bord",
-  "sidebar_network_security": "Network Security Dashboard"
+  "sidebar_network_security": "Network Security Dashboard",
+  "sidebar_zimbra": "Zimbra"
 }
