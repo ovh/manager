@@ -19,6 +19,13 @@ translation required:
 universe-public-cloud:
   - packages/manager/*/pci/**
   - packages/manager/apps/public-cloud/**
+  - packages/manager/apps/octavia-load-balancer/**
+  - packages/manager/apps/pci-rancher/**
+  - packages/manager/apps/pci-ssh-keys/**
+  - packages/manager/apps/pci-users/**
+  - packages/manager/apps/pci-vouchers/**
+  - packages/manager/apps/pci-gateway/**
+  - packages/manager/apps/pci-private-network/**
 universe-bare-metal-cloud:
   - packages/manager/apps/dedicated/**/!(dedicatedCloud)/**
   - packages/manager/*/billing/**
@@ -35,9 +42,9 @@ universe-bare-metal-cloud:
   - packages/manager/*/veeam-*/**
   - packages/manager/*/vps/**
   - packages/manager/*/vrack/**
+  - packages/manager/apps/vrack-services/**
 universe-hosted-private-cloud:
   - packages/manager/apps/dedicated/client/app/dedicatedCloud/**
-  - packages/manager/*/anthos/**
   - packages/manager/*/nutanix/**
 universe-hub:
   - packages/manager/*/hub/**
@@ -55,5 +62,13 @@ universe-web-cloud:
   - packages/manager/*/exchange/**
   - packages/manager/*/office/**
   - packages/manager/*/sharepoint/**
+  - packages/manager/apps/zimbra/**
 sign-up:
   - packages/manager/*/sign-up/**
+enabler:
+  - packages/manager/apps/carbon-calculator/**
+  - packages/manager/apps/iam/**
+  - packages/manager/apps/key-management-service/**
+manager-components:
+  - packages/manager-components/src/**
+
