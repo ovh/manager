@@ -117,6 +117,7 @@
                 <span data-translate="domain_tab_DYNHOST"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
+                data-ng-if="ctrlDomain.domainInfos.hostSupported"
                 data-state="{{:: ctrlDomain.getState() + '.glue' }}"
                 data-state-params="ctrlDomain.$stateParams"
                 ><span data-translate="domain_tab_GLUE"></span>
