@@ -35,5 +35,10 @@
   "dedicated_server_dashboard_region_labeu-west-1-preprod": "LABEU (France – Croix) (PREPROD)",
   "dedicated_server_dashboard_region_labeu-west-1-dev-1": "LABEU (France – Croix) (DEV-1)",
   "dedicated_server_dashboard_region_labeu-west-1-dev-2": "LABEU (France – Croix) (DEV-2)",
-  "dedicated_server_dashboard_zone": "Zone"
+  "dedicated_server_dashboard_zone": "Zone",
+  "server_configuration_installation_inputs_item_tooltip": "Click here to insert a value of type {{t0}}",
+  "server_configuration_installation_inputs_item_number_increase_tooltip": "Click here to increment this value",
+  "server_configuration_installation_inputs_item_number_decrease_tooltip": "Click here to decrement this value",
+  "server_configuration_installation_inputs_item_keyValue_add_tooltip": "Click here to add a key-value pair",
+  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Click here to delete this key-value pair"
 }

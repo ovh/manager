@@ -836,10 +836,5 @@
   "server_nutanix_cluster_node_warning_1": "Dieser Dedicated Server ist Teil des Nutanix-Clusters: {{clusterName}}",
   "server_nutanix_cluster_node_warning_2": "Wir empfehlen Ihnen, Ihre Konfiguration direkt im Dashboard des Servers zu bearbeiten, der mit Ihrem Nutanix-Cluster verbunden ist. Zum Dashboard: {{clusterNodeDashboardLink}}",
   "server_nutanix_cluster_node_warning_3": "Alle mit diesem Server verbundenen Abrechnungen sehen Sie in Ihrem Nutanix-Cluster: {{clusterDashboardLink}}",
-  "server_datacenter_MRS": "Marseille",
-  "server_configuration_installation_inputs_item_tooltip": "Klicken Sie hier, um einen Wert vom Typ {{t0}} einzufügen.",
-  "server_configuration_installation_inputs_item_number_increase_tooltip": "Klicken Sie hier, um diesen Wert zu erhöhen.",
-  "server_configuration_installation_inputs_item_number_decrease_tooltip": "Klicken Sie hier, um diesen Wert zu verringern.",
-  "server_configuration_installation_inputs_item_keyValue_add_tooltip": "Klicken Sie hier, um ein Schlüssel-Wert-Paar hinzuzufügen.",
-  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Klicken Sie hier, um dieses Schlüssel-Wert-Paar zu löschen."
+  "server_datacenter_MRS": "Marseille"
 }

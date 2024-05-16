@@ -836,10 +836,5 @@
   "server_nutanix_cluster_node_warning_1": "Este servidor dedicado faz parte de um cluster Nutanix: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "Recomendamos que efetue todas as alterações de configuração diretamente no painel de controlo do servidor associado ao seu cluster Nutanix: {{clusterNodeDashboardLink}}",
   "server_nutanix_cluster_node_warning_3": "Todas as ações de faturação relacionadas com este servidor são visíveis no seu cluster Nutanix: {{clusterDashboardLink}}",
-  "server_datacenter_MRS": "Marselha",
-  "server_configuration_installation_inputs_item_tooltip": "Clique aqui para inserir um valor de tipo {{t0}}",
-  "server_configuration_installation_inputs_item_number_increase_tooltip": "Clique aqui para aumentar este valor",
-  "server_configuration_installation_inputs_item_number_decrease_tooltip": "Clique aqui para diminuir este valor",
-  "server_configuration_installation_inputs_item_keyValue_add_tooltip": "Clique aqui para adicionar um par chave-valor",
-  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Clique aqui para eliminar este par chave-valor"
+  "server_datacenter_MRS": "Marselha"
 }
