@@ -107,8 +107,18 @@ export default {
       idAttr: 'emails-link',
       label: 'Emails',
       translation: 'sidebar_emails',
-      features: ['email-pro', 'emails:mxplan'],
+      features: ['email-pro', 'emails:mxplan', 'zimbra'],
       children: [
+        {
+          id: 'zimbra',
+          translation: 'sidebar_zimbra',
+          routing: {
+            application: 'zimbra',
+            hash: '#/',
+          },
+          features: ['zimbra'],
+          count: false,
+        },
         {
           id: 'email-pro',
           idAttr: 'email-pro-link',
