@@ -28,5 +28,6 @@ describe('ActionBanner tests', () => {
     expect(onClick).not.toHaveBeenCalled();
     fireEvent.click(cta);
     expect(onClick).toHaveBeenCalled();
+    expect(false).toBe(true);
   });
 });
