@@ -1,11 +1,9 @@
 import { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-
 {{#if isPCI}}
-import { useProject, PciProject } from '@/api';
+import { useProject, PciProject } from '@/data/hooks/pci/useProject';
 {{/if}}
-
 export type BreadcrumbItem = {
   label: string | undefined;
   href?: string;
@@ -17,7 +15,6 @@ export interface BreadcrumbProps {
   projectId?: string;
   items?: BreadcrumbItem[];
 }
-
 {{#if isPCI}}
 export const usePciBreadcrumb = ({
   projectId,
@@ -75,8 +72,8 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
           href: String(response),
         };
         setRoot([rootItem]);
-      } catch (error) {
-        console.error('Error fetching root URL:', error);
+      } catch {
+        // Fetch navigation error
       }
     };
     fetchRoot();

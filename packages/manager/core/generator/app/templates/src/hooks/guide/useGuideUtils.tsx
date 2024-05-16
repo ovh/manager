@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CountryCode } from '@ovh-ux/manager-config';
-import { useAuthentication } from '@ovh-ux/manager-react-core-application';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-const docUrl = 'https://docs.ovh.com/';
+const docUrl = 'https://docs.ovh.com';
 
 type GuideLinks = { [key in CountryCode]: string };
 
@@ -64,14 +64,15 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
 
 type GetGuideLinkProps = {
   name?: string;
-  subsidiary: CountryCode;
+  subsidiary: CountryCode | string;
 };
 
 function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
   const list: { [guideName: string]: string } = {};
-  for (const [key, value] of Object.entries(GUIDE_LIST)) {
-    list[key] = value[subsidiary];
-  }
+  const keys = Object.entries(GUIDE_LIST);
+  keys.forEach((key) => {
+    list[key[0]] = docUrl + GUIDE_LIST[key[0]][subsidiary as CountryCode];
+  });
   return list;
 }
 
@@ -80,14 +81,20 @@ interface GuideLinkProps {
 }
 
 function useGuideUtils() {
-  const { subsidiary } = useAuthentication();
-  const [linkTabs, setLinkTabs] = useState<GuideLinkProps>({});
+  const { shell } = useContext(ShellContext);
+  const { environment } = shell;
+  const [list, setList] = useState({});
 
   useEffect(() => {
-    setLinkTabs(getGuideListLink({ subsidiary: subsidiary as CountryCode }));
-  }, [subsidiary]);
-
-  return linkTabs;
+    const getSubSidiary = async () => {
+      const env = await environment.getEnvironment();
+      const { ovhSubsidiary } = env.getUser();
+      const guideList = getGuideListLink({ subsidiary: ovhSubsidiary });
+      setList(guideList);
+    };
+    getSubSidiary();
+  }, []);
+  return list as GuideLinkProps;
 }
 
 export default useGuideUtils;

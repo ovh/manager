@@ -7,15 +7,12 @@ import {
   useBreadcrumb,
   {{/if}}
   BreadcrumbItem,
-} from '@/hooks/useBreadcrumb';
-
+} from '@/hooks/breadcrumb/useBreadcrumb';
 {{#if isPCI}}
 import { useParams } from 'react-router-dom';
-import { useProject } from '@/api/hooks/useProject';
+import { useProject } from '@/data/hooks/pci/useProject';
 {{/if}}
-
 import appConfig from '@/{{appName}}.config';
-import ConfigInterface from '@/configInterface';
 
 export interface BreadcrumbProps {
   customRootLabel?: string;
@@ -24,19 +21,24 @@ export interface BreadcrumbProps {
 }
 
 function Breadcrumb({ customRootLabel }: BreadcrumbProps): JSX.Element {
-  const myConfig: ConfigInterface = appConfig;
-  const label = customRootLabel || myConfig.rootLabel;
+  const label = customRootLabel || appConfig.rootLabel;
 
   {{#if isPCI}}
   const { projectId } = useParams();
   const { project } = useProject({ projectId });
 
   if (project) {
-    const breadcrumbPci = usePciBreadcrumb({ projectId, appName: '{{appName}}' });
+    const breadcrumbPci = usePciBreadcrumb({
+      projectId,
+      appName: '{{appName}}',
+    });
     return <OsdsBreadcrumb items={breadcrumbPci} />;
   }
   {{else}}
-  const breadcrumbItems = useBreadcrumb({ rootLabel: label, appName: '{{appName}}' });
+  const breadcrumbItems = useBreadcrumb({
+    rootLabel: label,
+    appName: '{{appName}}',
+  });
   return <OsdsBreadcrumb items={breadcrumbItems} />;
   {{/if}}
 }
