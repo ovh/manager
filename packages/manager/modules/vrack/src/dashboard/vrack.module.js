@@ -52,8 +52,8 @@ angular
     vrackMoveDialog,
     vrackDeleteModal,
   ])
-  .component('ovhManagerVrackComponent', component)
   .service('vrackService', service)
+  .component('ovhManagerVrackComponent', component)
   .config(routing)
   .run(
     /* @ngInject */ ($templateCache) => {

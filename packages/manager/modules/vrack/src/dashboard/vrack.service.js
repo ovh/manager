@@ -1,4 +1,5 @@
 export default class Vrack {
+  /* @ngInject */
   constructor($http) {
     this.$http = $http;
   }
@@ -11,5 +12,9 @@ export default class Vrack {
     return this.$http.delete(
       `/vrack/${serviceName}/ipv6/${encodeURIComponent(ipv6)}`,
     );
+  }
+
+  getIpInfo(ip) {
+    return this.$http.get(`/ip/${encodeURIComponent(ip)}`);
   }
 }
