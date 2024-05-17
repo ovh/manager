@@ -18,8 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { PageLayout } from './PageLayout';
 import { DashboardTabItemProps } from './layout-helpers.type';
 import { OperationMessages } from '../Messages/OperationMessages';
-import { ResiliationSuccessMessages } from '../Messages/ResiliationMessages';
-import { UpdateDisplayNameMessage } from '../Messages/UpdateDisplayNameMessages';
+import { SuccessMessages } from '../Messages/SuccessMessage';
 
 export type DashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
@@ -59,7 +58,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
           color={ODS_THEME_COLOR_INTENT.text}
           size={ODS_TEXT_SIZE._600}
         >
-          {t('title')}
+          {t('dashboardPageTitle')}
         </OsdsText>
         <OsdsText
           className="block mb-8"
@@ -67,11 +66,10 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
           color={ODS_THEME_COLOR_INTENT.default}
           size={ODS_TEXT_SIZE._400}
         >
-          {t('description')}
+          {t('dashboardPageDescription')}
         </OsdsText>
         <OperationMessages id={id} />
-        <ResiliationSuccessMessages id={id} />
-        <UpdateDisplayNameMessage id={id} />
+        <SuccessMessages id={id} />
       </div>
       <OsdsTabs panel={activePanel}>
         <OsdsTabBar slot="top">

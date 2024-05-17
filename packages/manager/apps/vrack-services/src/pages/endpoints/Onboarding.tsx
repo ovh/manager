@@ -21,8 +21,8 @@ export default function EndpointsOnboarding() {
       secondaryButtonDisabled={
         !isEditable(vrackServices) || !hasSubnet(vrackServices) || undefined
       }
-      title={t('onboardingTitle')}
-      description={t('onboardingDescription')}
+      title={t('endpointsOnboardingTitle')}
+      description={t('endpointsOnboardingDescription')}
       imageSrc={onboardingImgSrc}
       noBreadcrumb
     />

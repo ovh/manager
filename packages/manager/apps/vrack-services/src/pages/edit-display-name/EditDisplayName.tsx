@@ -9,8 +9,10 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { UpdateIamNameModal } from '@ovhcloud/manager-components';
-import { useVrackService } from '@/api';
+import { useQueryClient } from '@tanstack/react-query';
+import { getVrackServicesResourceListQueryKey, useVrackService } from '@/api';
 import { PageName } from '@/utils/tracking';
+import { MessagesContext } from '@/components/Messages/Messages.context';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,
@@ -19,10 +21,12 @@ const sharedTrackingParams: TrackingClickParams = {
 
 export default function EditVrackServices() {
   const { id } = useParams();
+  const { addSuccessMessage } = React.useContext(MessagesContext);
   const { t } = useTranslation('vrack-services');
   const { trackClick, trackPage } = useOvhTracking();
   const navigate = useNavigate();
   const { data: vs } = useVrackService();
+  const queryClient = useQueryClient();
 
   const onClose = () => {
     trackClick({
@@ -36,16 +40,27 @@ export default function EditVrackServices() {
   return (
     <UpdateIamNameModal
       closeModal={onClose}
-      inputLabel={t('updateDisplayNameInputLabel')}
-      headline={t('modalUpdateHeadline', { id })}
-      description={t('modalUpdateDescription')}
+      inputLabel={t('updateVrackServicesDisplayNameInputLabel')}
+      headline={t('modalUpdateVrackServicesHeadline', { id })}
+      description={t('modalUpdateVrackServicesDescription')}
       resourceName={id}
       onSuccess={() => {
         trackPage({
           pageType: PageType.bannerSuccess,
-          pageName: PageName.pendingUpdateVrackServices,
+          pageName: PageName.successUpdateVrackServices,
         });
         navigate('..');
+        addSuccessMessage(
+          t('updateVrackServicesDisplayNameSuccess', {
+            vrackServices: id,
+          }),
+          id,
+        );
+        setTimeout(() => {
+          queryClient.invalidateQueries({
+            queryKey: getVrackServicesResourceListQueryKey,
+          });
+        }, 2000);
       }}
       onError={() => {
         trackPage({
