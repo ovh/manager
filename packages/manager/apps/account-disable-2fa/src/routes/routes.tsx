@@ -1,5 +1,6 @@
 import React from 'react';
-import NotFound from './pages/404';
+import NotFound from '../pages/404';
+import { createRoutePath, seeRoutePath } from '@/routes/home.constants';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -20,7 +21,7 @@ export const Routes: any = [
     ...lazyRouteConfig(() => import('@/pages/Home.page')),
     children: [
       {
-        path: 'create',
+        path: createRoutePath,
         ...lazyRouteConfig(() => import('@/pages/create/Create.page')),
         children: [
           {
@@ -32,7 +33,7 @@ export const Routes: any = [
         ],
       },
       {
-        path: 'see',
+        path: seeRoutePath,
         ...lazyRouteConfig(() => import('@/pages/see/See.page')),
       },
     ],

@@ -5,7 +5,7 @@ import { odsSetup } from '@ovhcloud/ods-common-core';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import '@ovhcloud/ods-theme-blue-jeans';
 import queryClient from './query.client';
-import { Routes } from './routes';
+import { Routes } from './routes/routes';
 
 odsSetup();
 
