@@ -86,6 +86,14 @@
             </oui-header-tabs-item>
 
             <oui-header-tabs-item
+                data-ng-if="LineCtrl.softphoneBetaEligibility"
+                data-href="{{LineCtrl.softphoneLink}}"
+                data-active="LineCtrl.softphoneLink === LineCtrl.currentActiveLink()"
+            >
+                <span data-translate="telephony_line_tab_softphone"></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
                 href="{{LineCtrl.assistLink}}"
                 active="LineCtrl.assistLink === LineCtrl.currentActiveLink()"
             >

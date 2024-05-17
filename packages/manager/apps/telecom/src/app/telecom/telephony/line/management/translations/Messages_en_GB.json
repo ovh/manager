@@ -17,5 +17,6 @@
   "telephony_line_management_actions_line_cancel_delete_line_new": "Cancel line termination",
   "telephony_line_antihack_title": "Anti-hack",
   "telephony_line_antihack_text": "Suspicious calls have been detected from your line, and their destinations have been blocked.",
-  "telephony_line_antihack_link": "Click here to manage these restrictions."
+  "telephony_line_antihack_link": "Click here to manage these restrictions.",
+  "telephony_line_management_actions_line_softphone": "Using my line with a Softphone"
 }
