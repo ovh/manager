@@ -30,6 +30,10 @@ export const Routes: any = [
               import('@/pages/create/confirm/Confirm.page'),
             ),
           },
+          {
+            path: '',
+            ...lazyRouteConfig(() => import('@/pages/create/form/Form.page')),
+          },
         ],
       },
       {
