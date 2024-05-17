@@ -1,9 +1,10 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import { ApiError, ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import {
   AllowedServicesResponse,
   AllowedService,
   EligibleServicesResponse,
   NonExpiringService,
+  VrackTask,
 } from '../api.type';
 
 export const getVrackListQueryKey = ['get/vrack'];
@@ -89,3 +90,26 @@ export const getVrackVrackServicesList = async ({
   vrack,
 }: GetVrackVrackServicesListParams) =>
   apiClient.v6.get<string[]>(`/vrack/${vrack}/vrackServices`);
+
+export type GetVrackTaskParams = {
+  /** The internal name of your vrack */
+  vrack?: string;
+  /** The task ID */
+  taskId?: number;
+};
+
+export const getVrackTaskQueryKey = ({ vrack, taskId }: GetVrackTaskParams) => [
+  `get/vrack/task`,
+  { taskId, vrack },
+];
+
+/**
+ * Retrieve all the vrack task or 1 particular task
+ * @param vrack the vrack id
+ * @param taskId (optionnal) the task id
+ * @returns an array of task id if no tadkId is given or the detail of the task
+ */
+export const getVrackTask = async ({ vrack, taskId }: GetVrackTaskParams) =>
+  taskId
+    ? apiClient.v6.get<VrackTask>(`/vrack/${vrack}/task/${taskId}`)
+    : apiClient.v6.get<string[]>(`/vrack/${vrack}/task`);

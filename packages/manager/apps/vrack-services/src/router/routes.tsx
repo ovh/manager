@@ -133,6 +133,15 @@ export const getRoutes = (): RouteObject[] => {
                     pageName: PageName.dissociate,
                   },
                 }),
+                routeConfig({
+                  pageImport: () => import('@/pages/associate-another'),
+                  path: urls.overviewAssociateAnother,
+                  currentPage: 'vrack-services.dashboard.associate-another',
+                  tracking: {
+                    pageType: PageType.popup,
+                    pageName: PageName.associate,
+                  },
+                }),
               ],
             }),
             routeConfig({

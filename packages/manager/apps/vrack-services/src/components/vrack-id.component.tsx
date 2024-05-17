@@ -60,6 +60,17 @@ export const VrackId: React.FC<VrackServicesWithIAM & {
         );
       },
     },
+    {
+      id: 2,
+      label: tDashboard('vrackActionAssociateToAnother'),
+      onClick: () => {
+        navigate(
+          urls.overviewAssociateAnother
+            .replace(':id', vs.id)
+            .replace(':vrackId', vs.currentState.vrackId),
+        );
+      },
+    },
   ];
 
   if (vs.currentState.vrackId) {

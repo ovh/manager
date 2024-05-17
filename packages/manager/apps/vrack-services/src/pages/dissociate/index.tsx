@@ -27,6 +27,7 @@ import {
 import { handleClick } from '@/utils/ods-utils';
 import {
   Task,
+  VrackTask,
   dissociateVrackServices,
   dissociateVrackServicesQueryKey,
 } from '@/api';
@@ -50,7 +51,7 @@ export default function Dissociate() {
     navigate('..');
   };
   const { mutate: dissociateVs, isPending, error } = useMutation<
-    ApiResponse<Task>,
+    ApiResponse<VrackTask>,
     ApiError
   >({
     mutationFn: () =>
