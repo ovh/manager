@@ -8,7 +8,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { FileInputContext } from './FileInputContainer';
+import { FileInputContext, FileWithError } from './FileInputContainer';
 
 type Props = {
   className?: string;
@@ -21,24 +21,61 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
       'The component <FileInput /> must be a child of FileInputContainer',
     );
   }
-  const { onChange, id, multiple, accept, value, maxFiles } = context;
+  const { onChange, id, multiple, accept, value, maxFiles, maxSize } = context;
 
   const { t } = useTranslation('account-disable-2fa');
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const fileList = event.target.files;
-    if (!fileList) return;
-    const newFiles: File[] = multiple
-      ? [...value, ...Array.from(fileList)]
-      : Array.from(fileList);
-
-    onChange?.({ files: newFiles.slice(0, maxFiles), e: event });
-    fileInputRef.current.value = '';
+  const parseContentTypes = (inputString: string) => {
+    const typesArray = inputString.split(',').map((type) => type.trim());
+    const extensions = typesArray.map((type) => type.split('/')[1]);
+    const lastType = extensions.pop();
+    return { types: extensions.join(', '), lastType };
   };
 
-  const disabled = value.length >= maxFiles;
+  const mapToFilesWithError = (files: File[]): FileWithError[] => {
+    return files.map((fileItem) => {
+      const errorMessages: string[] = [];
+      if (!accept.includes(fileItem.type)) {
+        const { types, lastType } = parseContentTypes(accept);
+        errorMessages.push(
+          t('account-disable-2fa-file-input-type-file-error', {
+            types,
+            lastType,
+          }),
+        );
+      }
+
+      if (fileItem.size > maxSize) {
+        errorMessages.push(t('account-disable-2fa-file-input-size-file-error'));
+      }
+
+      const fileWithError = fileItem as FileWithError;
+      fileWithError.errors = errorMessages;
+
+      return fileWithError;
+    });
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = event.target.files;
+
+    if (!fileList) return;
+
+    const files = value || [];
+
+    const newFiles: File[] = multiple
+      ? [...files, ...Array.from(fileList)]
+      : Array.from(fileList);
+
+    onChange?.({
+      files: mapToFilesWithError(newFiles.slice(0, maxFiles)),
+      e: event,
+    });
+    fileInputRef.current.value = '';
+  };
+  const disabled = value?.length >= maxFiles;
   return (
     <>
       <input

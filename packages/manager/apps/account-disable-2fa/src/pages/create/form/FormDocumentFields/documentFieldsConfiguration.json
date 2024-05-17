@@ -1,0 +1,1424 @@
+{
+  "individual": {
+    "FR": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DE": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ES": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PL": {
+      "fields": [
+        { "field": "2.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "3.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IE": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IT": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "NL": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PT": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "GB": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CZ": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "FI": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LT": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LTE": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CA": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "QC": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WS": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "TN": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "MA": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SN": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "AU": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ASIA": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SG": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IN": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WE": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DEFAULT": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    }
+  },
+  "corporation": {
+    "FR": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ES": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PL": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.1", "multiple": false, "tooltipCount": 3 },
+        { "field": "7.1", "multiple": false, "tooltipCount": 3 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "NL": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "GB": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CZ": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "FI": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LTE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CA": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "QC": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WS": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "TN": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "MA": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SN": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "AU": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ASIA": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SG": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IN": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DEFAULT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    }
+  },
+  "association": {
+    "FR": {
+      "fields": [
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "10", "multiple": false, "tooltipCount": 0 },
+        { "field": "11", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ES": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PL": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.1", "multiple": false, "tooltipCount": 3 },
+        { "field": "9.1", "multiple": false, "tooltipCount": 3 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "NL": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "GB": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CZ": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "FI": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LTE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CA": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "QC": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WS": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "TN": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "MA": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SN": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "AU": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ASIA": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SG": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IN": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DEFAULT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "8.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "9.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    }
+  },
+  "administration": {
+    "FR": {
+      "fields": [
+        { "field": "12", "multiple": false, "tooltipCount": 0 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ES": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PL": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "16.1", "multiple": false, "tooltipCount": 3 },
+        { "field": "17.1", "multiple": false, "tooltipCount": 3 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "NL": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "GB": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CZ": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "FI": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LTE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CA": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "QC": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WS": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "TN": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "MA": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SN": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "AU": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ASIA": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SG": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IN": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DEFAULT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "13", "multiple": false, "tooltipCount": 0 },
+        { "field": "16.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "17.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    }
+  },
+  "personalcorporation": {
+    "FR": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ES": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PL": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.1", "multiple": false, "tooltipCount": 3 },
+        { "field": "7.1", "multiple": false, "tooltipCount": 3 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "NL": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "GB": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CZ": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "FI": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LTE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CA": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "QC": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WS": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "TN": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "MA": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SN": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "AU": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ASIA": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SG": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IN": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DEFAULT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    }
+  },
+  "other": {
+    "FR": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ES": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PL": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.1", "multiple": false, "tooltipCount": 3 },
+        { "field": "7.1", "multiple": false, "tooltipCount": 3 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "NL": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "GB": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CZ": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "FI": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LTE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CA": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "QC": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WS": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "TN": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "MA": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SN": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "AU": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ASIA": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SG": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IN": {
+      "fields": [
+        { "field": "5.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WE": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DEFAULT": {
+      "fields": [
+        { "field": "5.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "6.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "7.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    }
+  },
+  "default": {
+    "FR": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DE": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ES": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PL": {
+      "fields": [
+        { "field": "2.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "3.1", "multiple": false, "tooltipCount": 2 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IE": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IT": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "NL": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "PT": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "GB": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CZ": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "FI": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LT": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "LTE": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "CA": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "QC": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WS": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "TN": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "MA": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SN": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "AU": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "ASIA": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "SG": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "IN": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "WE": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    },
+    "DEFAULT": {
+      "fields": [
+        { "field": "2.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "3.2", "multiple": false, "tooltipCount": 1 },
+        { "field": "4", "multiple": false, "tooltipCount": 0 },
+        { "field": "18", "multiple": true, "tooltipCount": 0 }
+      ]
+    }
+  }
+}
