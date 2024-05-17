@@ -32,7 +32,7 @@ export type TDataGridBodyRow = {
 export default function DataGridBodyRow({
   projectUrl,
   network,
-}: Readonly<TDataGridBodyRow>): JSX.Element | JSX.Element[] {
+}: Readonly<TDataGridBodyRow>) {
   const { t } = useTranslation();
 
   const renderText = (

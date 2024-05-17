@@ -1,5 +1,6 @@
 import {
   isDiscoveryProject,
+  PciAnnouncementBanner,
   PciDiscoveryBanner,
   PciGuidesHeader,
   useNotifications,
@@ -26,6 +27,7 @@ import useProject from '@/api/hooks/useProject';
 import { PrivateNetworkTabName } from '@/constants';
 import GlobalRegionsComponent from '@/components/global-regions/GlobalRegions.component';
 import LocalZoneComponent from '@/components/local-zones/LocalZone.component';
+import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
 
 const getActiveTab = (pathname: string) => {
   if (pathname.includes('localZone')) {
@@ -46,6 +48,7 @@ export default function ListingPage() {
   const { data: project } = useProject(projectId || '');
 
   const activeTab = getActiveTab(location.pathname);
+  const { isBannerVisible } = useAnnouncementBanner();
 
   const handlerTabChanged = (event: CustomEvent) => {
     clearNotifications();
@@ -93,6 +96,8 @@ export default function ListingPage() {
           <PciGuidesHeader category="instances"></PciGuidesHeader>
         </div>
       </div>
+
+      {isBannerVisible && <PciAnnouncementBanner projectId={projectId} />}
 
       <div className="mb-5">
         {isDiscoveryProject(project) && (
