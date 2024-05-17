@@ -31,5 +31,8 @@
   "nasha_use_unit_YiB": "YiB",
   "nasha_use_unit_ZB": "ZB",
   "nasha_use_unit_ZiB": "ZiB",
-  "nasha_datacenter_mrs": "Marsiglia"
+  "nasha_datacenter_mrs": "Marsiglia",
+  "nasha_datacenter_prg": "Praga",
+  "nasha_datacenter_ams": "Amsterdam",
+  "nasha_datacenter_mil": "Milano"
 }
