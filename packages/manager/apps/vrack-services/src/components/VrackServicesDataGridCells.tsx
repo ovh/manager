@@ -130,6 +130,7 @@ export const VrackIdCell: React.FC<DataGridCellProps<
   isLoading?: boolean;
   openAssociationModal: (id: string) => void;
   openDissociationModal?: (id: string, vrackId: string) => void;
+  openAssociateToAnotherVrackModal?: (id: string, vrackId: string) => void;
   label: string;
   href?: string;
   t: TFunction;
@@ -139,6 +140,7 @@ export const VrackIdCell: React.FC<DataGridCellProps<
   isLoading,
   openAssociationModal,
   openDissociationModal,
+  openAssociateToAnotherVrackModal,
   label,
   href,
   t,
@@ -150,6 +152,11 @@ export const VrackIdCell: React.FC<DataGridCellProps<
       id: 1,
       label: t('vrackActionDissociate'),
       onClick: () => openDissociationModal(rowData.id, cellData),
+    },
+    {
+      id: 2,
+      label: t('vrackActionAssociateToAnother'),
+      onClick: () => openAssociateToAnotherVrackModal(rowData.id, cellData),
     },
   ];
 

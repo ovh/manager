@@ -12,6 +12,7 @@ export const urls = {
   overview: '/:id',
   overviewAssociate: '/:id/associate',
   overviewDissociate: '/:id/dissociate/:vrackId',
+  overviewAssociateAnother: '/:id/associate/:vrackId',
 
   subnets: '/:id/subnets',
   subnetsOnboarding: '/:id/subnets/onboarding',

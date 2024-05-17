@@ -34,5 +34,13 @@
   "vrackServicesInErrorMessage": "vRack Services {{displayName}} est en erreur",
   "subnetCreationOnGoing": " : Sous-réseau {{name}} en cours de création",
   "endpointCreationOnGoing": " : Service endpoint en cours de création",
-  "vrackActionDissociate": "Dissocier"
+  "vrackActionDissociate": "Dissocier",
+  "vrackActionAssociateToAnother": "Associer à un autre vRack",
+  "modalAssociateAnotherVrackTitle": "Associer à un autre vRack à vRack Services",
+  "modalAssociateAnotherVrackDescription": "Pour que vRack Services fonctionne, vous devez l'associer à l'un de vos vRack existants.",
+  "modalAssociateAnotherVrackCurrentVrack": "vRack Actuel",
+  "modalAssociateAnotherVrackSelect": "Sélectionnez un autre vRack",
+  "modalAssociateAnotherVrackWaitMessage": "Merci de patienter pendant l'association de votre vRack Services à votre nouveau vRack.",
+  "removeVrackServicesFromVrack": "Dissociation en cours...",
+  "addVrackServicesToVrack": "Association en cours..."
 }

@@ -148,6 +148,13 @@ export default function OverviewTab() {
                           .replace(':vrackId', vrackId),
                       );
                     }}
+                    openAssociateToAnotherVrackModal={(vsId, vrackId) => {
+                      navigate(
+                        urls.overviewAssociateAnother
+                          .replace(':id', vsId)
+                          .replace(':vrackId', vrackId),
+                      );
+                    }}
                     t={t}
                   />
                 </TileBlock>
