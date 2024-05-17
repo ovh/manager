@@ -31,21 +31,34 @@ export const GUIDES = [
     title: 'nutanix_onboarding_guide2_title',
     description: 'nutanix_onboarding_guide2_description',
     links: {
-      DEFAULT: 'https://docs.ovh.com/gb/en/nutanix/available-services/',
-      DE: 'https://docs.ovh.com/de/nutanix/available-services/',
-      ES: 'https://docs.ovh.com/es/nutanix/available-services/',
-      IE: 'https://docs.ovh.com/ie/en/nutanix/available-services/',
-      IT: 'https://docs.ovh.com/it/nutanix/available-services/',
-      PL: 'https://docs.ovh.com/pl/nutanix/available-services/',
-      PT: 'https://docs.ovh.com/pt/nutanix/available-services/',
-      GB: 'https://docs.ovh.com/gb/en/nutanix/available-services/',
-      CA: 'https://docs.ovh.com/ca/en/nutanix/available-services/',
-      QC: 'https://docs.ovh.com/ca/fr/nutanix/available-services/',
-      FR: 'https://docs.ovh.com/fr/nutanix/available-services/',
-      WE: 'https://docs.ovh.com/us/en/nutanix/available-services/',
-      WS: 'https://docs.ovh.com/us/en/nutanix/available-services/',
+      DEFAULT:
+        'https://help.ovhcloud.com/csm/en-gb-nutanix-available-services?id=kb_article_view&sysparm_article=KB0032024',
+      DE:
+        'https://help.ovhcloud.com/csm/de-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044899',
+      ES:
+        'https://help.ovhcloud.com/csm/es-es-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044902',
+      IE:
+        'https://help.ovhcloud.com/csm/en-ie-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044886',
+      IT:
+        'https://help.ovhcloud.com/csm/it-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044893',
+      PL:
+        'https://help.ovhcloud.com/csm/pl-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044896',
+      PT:
+        'https://help.ovhcloud.com/csm/pt-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044894',
+      GB:
+        'https://help.ovhcloud.com/csm/en-gb-nutanix-available-services?id=kb_article_view&sysparm_article=KB0032024',
+      CA:
+        'https://help.ovhcloud.com/csm/en-ca-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044887',
+      QC:
+        'https://help.ovhcloud.com/csm/fr-ca-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044904',
+      FR:
+        'https://help.ovhcloud.com/csm/fr-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044892',
+      WE:
+        'https://help.ovhcloud.com/csm/en-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044891',
+      WS:
+        'https://help.ovhcloud.com/csm/en-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044891',
       US:
-        'https://support.us.ovhcloud.com/hc/en-us/articles/16044245989523-Overview-of-Nutanix-Hyperconvergence',
+        'https://help.ovhcloud.com/csm/en-ie-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044886',
     },
     tracking: 'available-services-documentation',
   },
