@@ -26,13 +26,32 @@ export type GetVrackServicesMocksParams = {
   nbVs?: number;
   updateKo?: boolean;
   nbEligibleService?: number;
+  vrackServicesTaskError?: boolean;
 };
 
 export const getVrackServicesMocks = ({
   nbVs = 0,
   nbEligibleService = 2,
   updateKo,
+  vrackServicesTaskError,
 }: GetVrackServicesMocksParams): Handler[] => [
+  {
+    url: '/vrackServices/resource/:id/task/:taskId',
+    response: {
+      status: vrackServicesTaskError ? 'ERROR' : 'RUNNING',
+    },
+    status: 200,
+    api: 'v2',
+    once: true,
+  },
+  {
+    url: '/vrackServices/resource/:id/task/:taskId',
+    response: {
+      status: vrackServicesTaskError ? 'ERROR' : 'DONE',
+    },
+    status: 200,
+    api: 'v2',
+  },
   {
     url: '/vrackServices/resource/:id/eligibleManagedService',
     response: eligibleManagedServiceResponse.slice(0, nbEligibleService),
@@ -53,6 +72,7 @@ export const getVrackServicesMocks = ({
 
       return {
         ...vs,
+        currentTasks: [{ id: '1234', status: 'DONE' }],
         currentState: {
           ...vs.currentState,
           ...(body.targetSpec

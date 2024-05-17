@@ -10,8 +10,8 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { handleClick } from '@ovhcloud/manager-components';
 import { PageLayout } from './PageLayout';
-import { handleClick } from '@/utils/ods-utils';
 
 export type OnboardingLayoutProps = React.PropsWithChildren<{
   imageSrc?: string;

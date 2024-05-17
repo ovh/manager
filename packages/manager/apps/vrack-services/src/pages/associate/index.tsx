@@ -5,7 +5,6 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsButton,
   OsdsMessage,
-  OsdsSpinner,
   OsdsModal,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
@@ -13,7 +12,6 @@ import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_MESSAGE_TYPE,
-  ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -22,16 +20,17 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { handleClick } from '@ovhcloud/manager-components';
 import { useAllowedVrackList } from '@/api';
-import { AssociateVrack } from './components/AssociateVrack';
-import { CreateVrack } from './components/CreateVrack';
-import { handleClick } from '@/utils/ods-utils';
+import { AssociateVrack } from './AssociateVrack';
+import { CreateVrack } from '@/components/CreateVrack';
+import { LoadingText } from '@/components/LoadingText';
 
 export default function Associate() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('vrack-services/listing');
+  const { t } = useTranslation('vrack-services/associate');
   const {
     allowedVrackList,
     isError,
@@ -60,13 +59,15 @@ export default function Associate() {
       onOdsModalClose={closeModal}
     >
       {isError && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
+        <OsdsMessage className="mb-4" type={ODS_MESSAGE_TYPE.error}>
           <OsdsText
             level={ODS_TEXT_LEVEL.body}
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {t('genericApiError', { error: error?.response?.data.message })}
+            {t('modalVrackAssociationError', {
+              error: error?.response?.data?.message,
+            })}
           </OsdsText>
         </OsdsMessage>
       )}
@@ -77,17 +78,13 @@ export default function Associate() {
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {t('vrackListInError', { list: vrackListInError.join(', ') })}
+            {t('modalVrackListInError', { list: vrackListInError.join(', ') })}
           </OsdsText>
         </OsdsMessage>
       )}
-      {isLoading && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
+      {isLoading && <LoadingText title={t('modalLoadingVrackList')} />}
       {!isLoading && !isError && allowedVrackList.length > 0 && (
-        <AssociateVrack
-          vrackServicesId={id}
-          closeModal={closeModal}
-          vrackList={allowedVrackList}
-        />
+        <AssociateVrack closeModal={closeModal} vrackList={allowedVrackList} />
       )}
       {!isLoading && !isError && allowedVrackList.length === 0 && (
         <CreateVrack closeModal={closeModal} />
@@ -100,7 +97,7 @@ export default function Associate() {
           color={ODS_THEME_COLOR_INTENT.primary}
           {...handleClick(closeModal)}
         >
-          {t('modalCancelVrackAssociationButtonLabel')}
+          {t('modalAssociateCancelButton')}
         </OsdsButton>
       )}
     </OsdsModal>

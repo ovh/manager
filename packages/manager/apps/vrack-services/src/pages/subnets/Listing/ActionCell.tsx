@@ -27,7 +27,7 @@ export const ActionCell: React.FC<{
       items={[
         {
           id: 1,
-          label: t('action-editDisplayName'),
+          label: t('action-editSubnetDisplayName'),
           onClick: () => {
             trackClick({
               location: PageLocation.datagrid,
@@ -44,7 +44,7 @@ export const ActionCell: React.FC<{
         },
         {
           id: 2,
-          label: t('action-delete'),
+          label: t('action-deleteSubnet'),
           color: ODS_THEME_COLOR_INTENT.error,
           onClick: () => {
             trackClick({

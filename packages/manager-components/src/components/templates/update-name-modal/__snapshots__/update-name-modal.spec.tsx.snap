@@ -6,10 +6,6 @@ exports[`Update Name Modal component renders loading modal 1`] = `
     dismissible="true"
     headline="headline"
   >
-    <osds-spinner
-      inline="true"
-      size="md"
-    />
     <osds-text
       class="block my-4"
       color="text"
@@ -17,7 +13,9 @@ exports[`Update Name Modal component renders loading modal 1`] = `
     >
       description
     </osds-text>
-    <osds-form-field>
+    <osds-form-field
+      class="mb-8"
+    >
       <div
         slot="label"
       >
@@ -38,6 +36,14 @@ exports[`Update Name Modal component renders loading modal 1`] = `
         type="text"
       />
     </osds-form-field>
+    <div
+      class="flex justify-center"
+    >
+      <osds-spinner
+        inline="true"
+        size="md"
+      />
+    </div>
     <osds-button
       color="primary"
       disabled="true"

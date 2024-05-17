@@ -1,22 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { OsdsSelect, OsdsSelectOption } from '@ovhcloud/ods-components/react';
 import {
   ODS_SELECT_SIZE,
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { FormField } from '@/components/form-field.component';
 import {
-  VrackServices,
-  getVrackServicesResourceListQueryKey,
   getVrackServicesResourceQueryKey,
-  updateVrackServices,
-  updateVrackServicesQueryKey,
   useServiceList,
+  useUpdateVrackServices,
   useVrackService,
 } from '@/api';
 import { CreatePageLayout } from '@/components/layout-helpers';
@@ -24,15 +20,16 @@ import {
   subnetSelectName,
   serviceTypeSelectName,
   serviceNameSelectName,
-  getEndpointCreationMutationKey,
 } from './endpoints.constants';
 import { ErrorPage } from '@/components/Error';
 import { urls } from '@/router/constants';
 import { PageName } from '@/utils/tracking';
+import { MessagesContext } from '@/components/Messages/Messages.context';
 
 export default function EndpointCreationPage() {
   const { t } = useTranslation('vrack-services/endpoints');
   const { id } = useParams();
+  const { addSuccessMessage } = React.useContext(MessagesContext);
   const [serviceType, setServiceType] = React.useState<string | undefined>(
     undefined,
   );
@@ -55,45 +52,23 @@ export default function EndpointCreationPage() {
     serviceListError,
   } = useServiceList(id);
 
-  const { mutate: createEndpoint, isPending, isError, error } = useMutation<
-    ApiResponse<VrackServices>,
-    ApiError
-  >({
-    mutationKey: updateVrackServicesQueryKey(
-      getEndpointCreationMutationKey(id),
-    ),
-    mutationFn: () =>
-      updateVrackServices({
-        vrackServicesId: id,
-        checksum: vrackServices.data?.checksum,
-        targetSpec: {
-          displayName: vrackServices.data?.currentState.displayName,
-          subnets: vrackServices.data?.currentState.subnets.map((subnet) =>
-            subnet.cidr !== cidr
-              ? subnet
-              : {
-                  ...subnet,
-                  serviceEndpoints: (subnet.serviceEndpoints || []).concat({
-                    managedServiceURN,
-                  }),
-                },
-          ),
-        },
-      }),
-    onSuccess: async () => {
-      await Promise.all([
-        queryClient.invalidateQueries({
-          queryKey: getVrackServicesResourceListQueryKey,
-        }),
-        queryClient.invalidateQueries({
-          queryKey: getVrackServicesResourceQueryKey(id),
-        }),
-        trackPage({
-          pageName: PageName.pendingCreateEndpoint,
-          pageType: PageType.bannerInfo,
-        }),
-      ]);
+  const {
+    createEndpoint,
+    updateError,
+    isError,
+    isPending,
+  } = useUpdateVrackServices({
+    id,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: getVrackServicesResourceQueryKey(id),
+      });
+      trackPage({
+        pageName: PageName.successCreateEndpoint,
+        pageType: PageType.bannerSuccess,
+      });
       navigate(dashboardUrl);
+      addSuccessMessage(t('endpointCreationSuccess', { id }), id);
     },
     onError: () => {
       trackPage({
@@ -102,12 +77,6 @@ export default function EndpointCreationPage() {
       });
     },
   });
-
-  React.useEffect(() => {
-    queryClient.invalidateQueries({
-      queryKey: updateVrackServicesQueryKey(getEndpointCreationMutationKey(id)),
-    });
-  }, []);
 
   React.useEffect(() => {
     setServiceType(serviceListResponse?.data?.[0]?.managedServiceType);
@@ -124,18 +93,25 @@ export default function EndpointCreationPage() {
   return (
     <CreatePageLayout
       overviewUrl={dashboardUrl}
-      title={t('createPageTitle')}
-      description={t('createPageDescription')}
+      title={t('createEndpointPageTitle')}
+      description={t('createEndpointPageDescription')}
+      loadingText={t('endpointCreationPending')}
       createButtonLabel={t('createEndpointButtonLabel')}
+      hasFormError={isError}
       formErrorMessage={t('endpointCreationError', {
-        error: error?.response.data.message,
+        error: updateError?.response?.data?.message,
       })}
       confirmActionsTracking={['add_endpoints', 'confirm']}
-      hasFormError={isError}
-      onSubmit={() => createEndpoint()}
+      onSubmit={() =>
+        createEndpoint({
+          vs: vrackServices?.data,
+          cidr,
+          managedServiceURN,
+        })
+      }
       isSubmitPending={isPending}
       isFormSubmittable={
-        !vrackServices.isLoading && !!cidr && !!managedServiceURN && !isPending
+        !vrackServices?.isLoading && !!cidr && !!managedServiceURN && !isPending
       }
     >
       <FormField label={t('serviceTypeLabel')} isLoading={isServiceListLoading}>
@@ -209,7 +185,7 @@ export default function EndpointCreationPage() {
           size={ODS_SELECT_SIZE.md}
         >
           <span slot="placeholder">{t('subnetPlaceholder')}</span>
-          {vrackServices?.data?.currentState.subnets.map((subnet) => (
+          {vrackServices?.data.currentState.subnets.map((subnet) => (
             <OsdsSelectOption key={subnet.cidr} value={subnet.cidr}>
               {subnet.displayName
                 ? `${subnet.displayName} - ${subnet.cidr}`

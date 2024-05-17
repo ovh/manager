@@ -57,7 +57,6 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
 
   return (
     <OsdsModal dismissible headline={headline} onOdsModalClose={closeModal}>
-      {isLoading && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
       {!!error && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
           <OsdsText
@@ -76,7 +75,7 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
       >
         {description}
       </OsdsText>
-      <OsdsFormField>
+      <OsdsFormField className="mb-8">
         <div slot="label">
           <OsdsText
             className="block mb-3"
@@ -97,6 +96,11 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
           }
         />
       </OsdsFormField>
+      {isLoading && (
+        <div className="flex justify-center">
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+        </div>
+      )}
       <OsdsButton
         disabled={isLoading || undefined}
         slot="actions"

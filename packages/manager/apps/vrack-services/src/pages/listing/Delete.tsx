@@ -4,10 +4,14 @@ import { useTranslation } from 'react-i18next';
 import {
   ButtonType,
   PageLocation,
+  PageType,
   TrackingClickParams,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { DeleteServiceModal } from '@ovhcloud/manager-components';
+import { MessagesContext } from '@/components/Messages/Messages.context';
+import { getDisplayName, useVrackService } from '@/api';
+import { PageName } from '@/utils/tracking';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,
@@ -16,8 +20,10 @@ const sharedTrackingParams: TrackingClickParams = {
 
 export default function DeleteVrackServices() {
   const { id } = useParams();
-  const { t } = useTranslation('vrack-services/listing');
-  const { trackClick } = useOvhTracking();
+  const { t } = useTranslation('vrack-services');
+  const { data: vs } = useVrackService();
+  const { trackClick, trackPage } = useOvhTracking();
+  const { addSuccessMessage } = React.useContext(MessagesContext);
   const navigate = useNavigate();
 
   const onClose = () => {
@@ -32,9 +38,28 @@ export default function DeleteVrackServices() {
   return (
     <DeleteServiceModal
       closeModal={onClose}
-      deleteInputLabel={t('modalDeleteInputLabel')}
-      headline={t('modalDeleteHeadline')}
+      deleteInputLabel={t('modalDeleteVrackServicesInputLabel')}
+      headline={t('modalDeleteVrackServicesHeadline')}
       resourceName={id}
+      onSuccess={() => {
+        trackPage({
+          pageType: PageType.bannerSuccess,
+          pageName: PageName.successDeleteVrackServices,
+        });
+        navigate('..');
+        addSuccessMessage(
+          t('terminateVrackServicesSuccess', {
+            vrackServices: getDisplayName(vs),
+          }),
+          id,
+        );
+      }}
+      onError={() => {
+        trackPage({
+          pageType: PageType.bannerError,
+          pageName: PageName.errorDeleteVrackServices,
+        });
+      }}
       onConfirmDelete={() => {
         trackClick({
           ...sharedTrackingParams,

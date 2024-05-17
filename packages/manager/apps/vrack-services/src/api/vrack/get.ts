@@ -4,6 +4,7 @@ import {
   AllowedService,
   EligibleServicesResponse,
   NonExpiringService,
+  VrackTask,
 } from '../api.type';
 
 export const getVrackListQueryKey = ['get/vrack'];
@@ -89,3 +90,27 @@ export const getVrackVrackServicesList = async ({
   vrack,
 }: GetVrackVrackServicesListParams) =>
   apiClient.v6.get<string[]>(`/vrack/${vrack}/vrackServices`);
+
+export type GetVrackTaskWithIdParams = {
+  /** The internal name of your vrack */
+  vrack: string;
+  /** The task ID */
+  taskId: number;
+};
+
+export const getVrackTaskWithIdQueryKey = ({
+  vrack,
+  taskId,
+}: GetVrackTaskWithIdParams) => [`get/vrack/task`, { taskId, vrack }];
+
+/**
+ * Retrieve a given vrack task
+ * @param vrack the vrack id
+ * @param taskId the task id
+ * @returns the detail of the task
+ */
+export const getVrackTaskWithId = async ({
+  vrack,
+  taskId,
+}: GetVrackTaskWithIdParams) =>
+  apiClient.v6.get<VrackTask>(`/vrack/${vrack}/task/${taskId}`);

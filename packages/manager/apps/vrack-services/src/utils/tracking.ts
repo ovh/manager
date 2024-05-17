@@ -11,6 +11,7 @@ export const getTrackingContext = (appName: string): TrackingContextParams => ({
 
 export enum PageName {
   associate = 'associate',
+  associateAnother = 'associate_another_vrack',
   dissociate = 'dissociate',
   edit = 'edit_vrack-services',
   createVrack = 'create-vrack',
@@ -26,24 +27,29 @@ export enum PageName {
   editEndpoints = 'edit_endpoints',
   deleteEndpoints = 'delete_endpoints',
 
-  pendingCreateSubnet = 'create_subnets_pending',
+  successCreateSubnet = 'create_subnets_success',
   errorCreateSubnet = 'create_subnets_error',
-  pendingUpdateSubnet = 'update_subnets_pending',
+  successUpdateSubnet = 'update_subnets_success',
   errorUpdateSubnet = 'update_subnets_error',
-  pendingDeleteSubnet = 'delete_subnets_pending',
+  successDeleteSubnet = 'delete_subnets_success',
   errorDeleteSubnet = 'delete_subnets_error',
 
-  pendingCreateEndpoint = 'create_endpoints_pending',
+  successCreateEndpoint = 'create_endpoints_success',
   errorCreateEndpoint = 'create_endpoints_error',
-  pendingUpdateEndpoint = 'update_endpoints_pending',
+  successUpdateEndpoint = 'update_endpoints_success',
   errorUpdateEndpoint = 'update_endpoints_error',
-  pendingDeleteEndpoint = 'delete_endpoints_pending',
+  successDeleteEndpoint = 'delete_endpoints_success',
   errorDeleteEndpoint = 'delete_endpoints_error',
 
   pendingCreateVrackServices = 'create_vrack-services_pending',
   errorCreateVrackServices = 'create_vrack-services_error',
-  pendingUpdateVrackServices = 'update_vrack-services_pending',
+  successUpdateVrackServices = 'update_vrack-services_success',
   errorUpdateVrackServices = 'update_vrack-services_error',
-  pendingDeleteVrackServices = 'delete_vrack-services_pending',
+  successDeleteVrackServices = 'delete_vrack-services_success',
   errorDeleteVrackServices = 'delete_vrack-services_error',
+
+  successAssociateVrack = 'associate_vrack_success',
+  errorAssociateVrack = 'associate_vrack_error',
+  successDissociateVrack = 'dissociate_vrack_success',
+  errorDissociateVrack = 'dissociate_vrack_error',
 }

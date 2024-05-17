@@ -27,16 +27,16 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
+import { handleClick } from '@ovhcloud/manager-components';
 import { getVrackListQueryKey } from '@/api';
-import { DeliveringMessages } from '../../../components/DeliveringMessages';
-import { handleClick } from '@/utils/ods-utils';
+import { DeliveringMessages } from '@/components/DeliveringMessages';
 
 export type CreateVrackProps = {
   closeModal: () => void;
 };
 
 export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
-  const { t } = useTranslation('vrack-services/listing');
+  const { t } = useTranslation('vrack-services/create-vrack');
   const vrackOrderUrl = useOrderURL('vrack');
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
@@ -83,7 +83,7 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {t('genericApiError', { error: vrackOrdersError })}
+            {t('modalVrackCreationError', { error: vrackOrdersError })}
           </OsdsText>
         </OsdsMessage>
       )}
@@ -94,7 +94,7 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
         color={ODS_THEME_COLOR_INTENT.primary}
         {...handleClick(closeModal)}
       >
-        {t('modalCancelVrackAssociationButtonLabel')}
+        {t('modalVrackCreationCancel')}
       </OsdsButton>
       <OsdsButton
         slot="actions"

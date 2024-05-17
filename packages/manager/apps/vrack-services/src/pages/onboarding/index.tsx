@@ -88,8 +88,8 @@ export default function OnboardingPage() {
     <OnboardingLayout
       introTitle={t('introTitle')}
       intro={t('intro')}
-      title={t('title')}
-      description={t('description')}
+      title={t('onboardingPageTitle')}
+      description={t('onboardingPageDescription')}
       imageSrc={onboardingImgSrc}
       primaryButtonLabel={
         isSuccess && features['vrack-services:order']

@@ -19,6 +19,7 @@ const queryClient = new QueryClient({
 odsSetup();
 
 export const App: React.FC = () => {
+  const [successMessages, setSuccessMessages] = React.useState([]);
   const [hiddenMessages, setHiddenMessages] = React.useState([]);
   const { shell } = React.useContext(ShellContext);
   const routes = getRoutes();
@@ -32,7 +33,13 @@ export const App: React.FC = () => {
     <QueryClientProvider client={queryClient}>
       <MessagesContext.Provider
         value={{
+          successMessages,
           hiddenMessages,
+          addSuccessMessage: (msg: string, vrackServicesId?: string) => {
+            setSuccessMessages((msgList) =>
+              msgList.concat({ id: Date.now(), message: msg, vrackServicesId }),
+            );
+          },
           hideMessage: (submittedAt: number) => {
             setHiddenMessages((hiddenMessage) =>
               hiddenMessage.concat(submittedAt),

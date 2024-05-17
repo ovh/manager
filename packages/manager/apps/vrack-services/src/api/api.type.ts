@@ -38,6 +38,17 @@ export type Task = {
   updatedAt?: string;
 };
 
+export type VrackTask = {
+  function: string;
+  id: number;
+  lastUpdate: Date;
+  orderId?: number;
+  serviceName: string;
+  status: string;
+  targetDomain?: string;
+  todoDate: Date;
+};
+
 export type AllowedServicesResponse = {
   cloudProject: string[];
   dedicatedCloud: string[];

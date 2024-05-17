@@ -9,9 +9,9 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { UpdateIamNameModal } from '@ovhcloud/manager-components';
-import { useQueryClient } from '@tanstack/react-query';
-import { getIamResourceQueryKey, useServiceList } from '@/api';
+import { useServiceList } from '@/api';
 import { PageName } from '@/utils/tracking';
+import { MessagesContext } from '@/components/Messages/Messages.context';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,
@@ -20,11 +20,11 @@ const sharedTrackingParams: TrackingClickParams = {
 
 export default function EditEndpointDisplayName() {
   const { id, urn } = useParams();
+  const { addSuccessMessage } = React.useContext(MessagesContext);
   const { t } = useTranslation('vrack-services/endpoints');
   const { trackClick, trackPage } = useOvhTracking();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const { iamResources } = useServiceList(id);
+  const { iamResources, refetchIamResources } = useServiceList(id);
 
   const resource = iamResources?.data.find((r) => r.urn === urn);
 
@@ -40,9 +40,9 @@ export default function EditEndpointDisplayName() {
   return (
     <UpdateIamNameModal
       closeModal={onClose}
-      inputLabel={t('updateDisplayNameInputLabel')}
-      headline={t('modalUpdateHeadline')}
-      description={t('modalUpdateDescription')}
+      inputLabel={t('endpointUpdateDisplayNameInputLabel')}
+      headline={t('modalEndpointUpdateHeadline')}
+      description={t('modalEndpointUpdateDescription')}
       defaultValue={resource?.displayName}
       resourceName={resource?.name}
       onConfirm={() => {
@@ -55,14 +55,18 @@ export default function EditEndpointDisplayName() {
       onSuccess={() => {
         trackPage({
           pageType: PageType.bannerSuccess,
-          pageName: PageName.pendingUpdateEndpoint,
+          pageName: PageName.successUpdateEndpoint,
         });
-        setTimeout(() => {
-          queryClient.invalidateQueries({
-            queryKey: getIamResourceQueryKey([]),
-          });
-        }, 2000);
         navigate('..');
+        addSuccessMessage(
+          t('endpointUpdateDisplayNameSuccess', {
+            name: resource?.name,
+          }),
+          id,
+        );
+        setTimeout(() => {
+          refetchIamResources();
+        }, 2000);
       }}
       onError={() => {
         trackPage({

@@ -21,15 +21,20 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { EditButton } from './edit-button.component';
-import { ResourceStatus, VrackServicesWithIAM, isEditable } from '@/api';
+import {
+  ResourceStatus,
+  VrackServicesWithIAM,
+  getDisplayName,
+  isEditable,
+} from '@/api';
 import { urls } from '@/router/constants';
 
 const InfoIcon: React.FC<{ className?: string; vs: VrackServicesWithIAM }> = ({
   className,
   vs,
 }) => {
-  const { t } = useTranslation('vrack-services/dashboard');
-  const displayName = vs?.iam?.displayName || vs?.id;
+  const { t } = useTranslation('vrack-services');
+  const displayName = getDisplayName(vs);
   const size = ODS_ICON_SIZE.xs;
 
   if (vs.resourceStatus === ResourceStatus.READY) {
@@ -69,12 +74,13 @@ export const DisplayName: React.FC<VrackServicesWithIAM & {
   isListing?: boolean;
 }> = ({ isListing, ...vs }) => {
   const { trackClick } = useOvhTracking();
-  const name = vs.iam?.displayName || vs.id;
+  const name = getDisplayName(vs);
   const navigate = useNavigate();
 
   return isListing ? (
     <div className="flex align-center text-center justify-center">
       <OsdsLink
+        className="overflow-hidden text-ellipsis max-w-[200px]"
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
           trackClick({

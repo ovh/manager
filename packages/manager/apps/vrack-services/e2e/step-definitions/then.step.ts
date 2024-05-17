@@ -1,33 +1,15 @@
 import { Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { ICustomWorld } from '@playwright-helpers';
-import { sleep } from '../../../../../../playwright-helpers';
 import { modalDescriptionLine1 } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
-import listingLabels from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
-import generalLabels from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
 import {
   AppRoute,
   getActionMenu,
   getDashboardEditButton,
   getUrl,
+  labels,
 } from '../utils';
 import { ConfigParams } from '../../mock/handlers';
-import {
-  guide1Title,
-  guide2Title,
-} from '../../src/public/translations/vrack-services/onboarding/Messages_fr_FR.json';
-import {
-  onboardingTitle as subnetOnboardingTitle,
-  createSubnetButtonLabel,
-} from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
-import { vrackActionDissociate } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
-import {
-  createEndpointButtonLabel,
-  onboardingTitle as endpointsOnboardingTitle,
-  serviceType,
-  ip,
-  subnet,
-} from '../../src/public/translations/vrack-services/endpoints/Messages_fr_FR.json';
 import { Subnet } from '@/api';
 
 Then('User sees the create a vRack Services button {word}', async function(
@@ -35,7 +17,7 @@ Then('User sees the create a vRack Services button {word}', async function(
   buttonState: 'enabled' | 'disabled',
 ) {
   const button = await this.page.locator('osds-button', {
-    hasText: listingLabels.createVrackServicesButtonLabel,
+    hasText: labels.createVrackServicesButtonLabel,
   });
   if (buttonState === 'enabled') {
     await expect(button).not.toHaveAttribute('disabled', '');
@@ -110,13 +92,13 @@ Then('User sees {word} success message', async function(
   this: ICustomWorld<ConfigParams>,
   anySuccessMessage: 'an' | 'no',
 ) {
-  const error = await this.page.locator('osds-message', {
+  const message = await this.page.locator('osds-message', {
     hasText: new RegExp(
       this.testContext.message?.replace(/{{[a-zA-Z]+}}/gm, '.*'),
     ),
   });
   if (anySuccessMessage === 'an') {
-    await expect(error).toBeVisible({ timeout: 300000 });
+    await expect(message).toBeVisible({ timeout: 300000 });
   }
 });
 
@@ -130,7 +112,7 @@ Then('User sees {int} guides on vRack Services', async function(
   guideNumber: number,
 ) {
   const guideList = await Promise.all(
-    [guide1Title, guide2Title].map((guideTitle) =>
+    [labels.guide1Title, labels.guide2Title].map((guideTitle) =>
       this.page.locator('div', {
         hasText: guideTitle,
       }),
@@ -144,10 +126,7 @@ Then(
   async function(this: ICustomWorld<ConfigParams>) {
     const message = await this.page.locator('osds-message', {
       hasText: new RegExp(
-        generalLabels.deliveringVrackServicesMessage.replace(
-          /{{date}}.*/,
-          '.*',
-        ),
+        labels.deliveringVrackServicesMessage.replace(/{{date}}.*/, '.*'),
       ),
     });
     await expect(message).toBeVisible();
@@ -156,7 +135,9 @@ Then(
 Then('User sees an empty listing page', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  const message = await this.page.getByText(listingLabels.emptyDataGridMessage);
+  const message = await this.page.getByText(
+    labels.vrackServicesEmptyDataGridMessage,
+  );
   await expect(message).toBeVisible();
 });
 
@@ -177,7 +158,7 @@ Then('User sees a modal to select an eligible vRack', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
   const modalDescription = await this.page.getByText(
-    listingLabels.modalVrackAssociationDescription,
+    labels.modalVrackAssociationDescription,
   );
   await expect(modalDescription).toBeVisible();
 });
@@ -186,7 +167,7 @@ Then('User sees a modal to create a new vRack', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
   const modalDescription = await this.page.getByText(
-    listingLabels.modalVrackCreationDescriptionLine1,
+    labels.modalVrackCreationDescriptionLine1,
   );
   await expect(modalDescription).toBeVisible();
 });
@@ -196,9 +177,7 @@ Then(
   async function(this: ICustomWorld<ConfigParams>, anyMessage: 'an' | 'no') {
     const message = await this.page
       .getByText(
-        new RegExp(
-          generalLabels.deliveringVrackMessage.replace(/{{date}}.*/, '.*'),
-        ),
+        new RegExp(labels.deliveringVrackMessage.replace(/{{date}}.*/, '.*')),
       )
       .nth(0);
 
@@ -215,7 +194,7 @@ Then('The button to create a vRack is {word}', async function(
   buttonState: 'disabled' | 'enabled',
 ) {
   const button = await this.page.locator('osds-button', {
-    hasText: listingLabels.modalCreateNewVrackButtonLabel,
+    hasText: labels.modalCreateNewVrackButtonLabel,
   });
   if (buttonState === 'disabled') {
     await expect(button).toHaveAttribute('disabled', '');
@@ -241,13 +220,13 @@ Then(
 
     const associateButton = await this.page
       .locator('osds-button', {
-        hasText: listingLabels.associateVrackButtonLabel,
+        hasText: labels.associateVrackButtonLabel,
       })
       .nth(menuIndex);
 
     const editButton = await this.page
       .locator('osds-button', {
-        hasText: generalLabels['action-editDisplayName'],
+        hasText: labels['action-editDisplayName'],
       })
       .nth(menuIndex);
 
@@ -283,7 +262,9 @@ Then('User sees the {word} Onboarding page', async function(
 ) {
   const title = await this.page.getByText(
     new RegExp(
-      tabName === 'subnets' ? subnetOnboardingTitle : endpointsOnboardingTitle,
+      tabName === 'subnets'
+        ? labels.subnetsOnboardingTitle
+        : labels.endpointsOnboardingTitle,
     ),
   );
   await expect(title).toBeVisible();
@@ -291,8 +272,8 @@ Then('User sees the {word} Onboarding page', async function(
   const createButton = await this.page.locator('osds-button', {
     hasText:
       tabName === 'subnets'
-        ? createSubnetButtonLabel
-        : createEndpointButtonLabel,
+        ? labels.createSubnetButtonLabel
+        : labels.createEndpointButtonLabel,
   });
   await expect(createButton).toBeVisible();
 });
@@ -301,7 +282,7 @@ Then('User sees the subnets Listing page', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
   const createButton = await this.page.locator('osds-button', {
-    hasText: createSubnetButtonLabel,
+    hasText: labels.createSubnetButtonLabel,
   });
   await expect(createButton).toBeVisible();
 
@@ -331,7 +312,7 @@ Then('User sees the endpoints Listing page', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
   const createButton = await this.page.locator('osds-button', {
-    hasText: createEndpointButtonLabel,
+    hasText: labels.createEndpointButtonLabel,
   });
   await expect(createButton).toBeVisible();
 
@@ -346,15 +327,17 @@ Then('User sees the endpoints Listing page', async function(
 
   const subnetTableHeader = this.page
     .getByTestId('header-subnet')
-    .getByText(subnet);
+    .getByText(labels.endpointDatagridSubnetLabel);
   await expect(subnetTableHeader).toBeVisible();
 
-  const ipTableHeader = this.page.getByTestId('header-ip').getByText(ip);
+  const ipTableHeader = this.page
+    .getByTestId('header-ip')
+    .getByText(labels.endpointDatagridIpLabel);
   await expect(ipTableHeader).toBeVisible();
 
   const serviceTypeTableHeader = this.page
     .getByTestId('header-serviceType')
-    .getByText(serviceType);
+    .getByText(labels.endpointDatagridServiceTypeLabel);
   await expect(serviceTypeTableHeader).toBeVisible();
 });
 
@@ -373,7 +356,7 @@ Then('User {string} the action menu with button dissociate', async function(
 Then('User sees button dissociate', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  const dissociateButton = this.page.getByText(vrackActionDissociate, {
+  const dissociateButton = this.page.getByText(labels.vrackActionDissociate, {
     exact: true,
   });
   if (await this.page.getByTestId('action-menu-icon').count()) {
@@ -383,11 +366,37 @@ Then('User sees button dissociate', async function(
   }
 });
 
+Then('User sees button associate another', async function(
+  this: ICustomWorld<ConfigParams>,
+) {
+  const associateToAnotherButton = this.page.getByText(
+    labels.vrackActionAssociateToAnother,
+    {
+      exact: true,
+    },
+  );
+  if (await this.page.getByTestId('action-menu-icon').count()) {
+    await expect(associateToAnotherButton).toBeVisible();
+  } else {
+    await expect(associateToAnotherButton).not.toBeVisible();
+  }
+});
+
 Then(
   'A modal appears to ask if the user wants to dissociate the vRack',
   async function(this: ICustomWorld<ConfigParams>) {
     const modalTitle = await this.page.getByText(
-      generalLabels.modalDissociateHeadline,
+      labels.modalDissociateHeadline,
+    );
+    await expect(modalTitle).toBeVisible();
+  },
+);
+
+Then(
+  'A modal appears to associate the vRack Services to another vRack',
+  async function(this: ICustomWorld<ConfigParams>) {
+    const modalTitle = await this.page.getByText(
+      labels.modalAssociateAnotherVrackTitle,
     );
     await expect(modalTitle).toBeVisible();
   },
@@ -400,7 +409,7 @@ Then(
     returnOverview: 'returns' | "doesn't returns",
   ) {
     const modalTitle = await this.page.getByText(
-      generalLabels.modalDissociateHeadline,
+      labels.modalDissociateHeadline,
     );
 
     if (returnOverview === 'returns') {
@@ -410,6 +419,25 @@ Then(
     }
   },
 );
+
+Then(
+  'User {string} on the Overview page from associate another modal',
+  async function(
+    this: ICustomWorld<ConfigParams>,
+    returnOverview: 'returns' | "doesn't returns",
+  ) {
+    const modalTitle = await this.page.getByText(
+      labels.modalAssociateAnotherVrackTitle,
+    );
+
+    if (returnOverview === 'returns') {
+      await expect(modalTitle).not.toBeVisible();
+    } else {
+      await expect(modalTitle).toBeVisible();
+    }
+  },
+);
+
 Then('User sees the create a {word} button {word}', async function(
   this: ICustomWorld<ConfigParams>,
   tab: 'subnet' | 'endpoint',
@@ -417,7 +445,9 @@ Then('User sees the create a {word} button {word}', async function(
 ) {
   const button = await this.page.locator('osds-button', {
     hasText:
-      tab === 'subnet' ? createSubnetButtonLabel : createEndpointButtonLabel,
+      tab === 'subnet'
+        ? labels.createSubnetButtonLabel
+        : labels.createEndpointButtonLabel,
   });
   if (buttonState === 'enabled') {
     await expect(button).not.toHaveAttribute('disabled');

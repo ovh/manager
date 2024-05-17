@@ -15,14 +15,17 @@ import {
   getEligibleManagedServiceListQueryKey,
 } from '@/api';
 import { PageName } from '@/utils/tracking';
+import { MessagesContext } from '@/components/Messages/Messages.context';
 
 export default function EndpointsDeleteModal() {
   const { t } = useTranslation('vrack-services/endpoints');
   const { id, urn } = useParams();
+  const urnToDelete = urn.replace('_', '/');
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { addSuccessMessage } = React.useContext(MessagesContext);
   const { trackPage, trackClick } = useOvhTracking();
-  const urnToDelete = urn.replace('_', '/');
+  const { data: vs } = useVrackService();
 
   const onClose = () => {
     trackClick({
@@ -34,23 +37,23 @@ export default function EndpointsDeleteModal() {
     navigate('..');
   };
 
-  const { data: vs } = useVrackService();
   const {
     deleteEndpoint,
     isPending,
     updateError,
-    isErrorVisible,
+    isError,
   } = useUpdateVrackServices({
-    key: id,
+    id,
     onSuccess: () => {
       trackPage({
-        pageType: PageType.bannerInfo,
-        pageName: PageName.pendingDeleteEndpoint,
+        pageType: PageType.bannerSuccess,
+        pageName: PageName.successDeleteEndpoint,
       });
       navigate('..');
       queryClient.invalidateQueries({
         queryKey: getEligibleManagedServiceListQueryKey(id),
       });
+      addSuccessMessage(t('endpointDeleteSuccess', { id }), id);
     },
     onError: () => {
       trackPage({
@@ -63,9 +66,9 @@ export default function EndpointsDeleteModal() {
   return (
     <DeleteModal
       closeModal={onClose}
-      deleteInputLabel={t('modalDeleteInputLabel')}
-      headline={t('modalDeleteHeadline')}
-      description={t('modalDeleteDescription')}
+      deleteInputLabel={t('modalDeleteEndpointInputLabel')}
+      headline={t('modalDeleteEndpointHeadline')}
+      description={t('modalDeleteEndpointDescription')}
       onConfirmDelete={() => {
         trackClick({
           location: PageLocation.popup,
@@ -75,7 +78,7 @@ export default function EndpointsDeleteModal() {
         });
         deleteEndpoint({ vs, urnToDelete });
       }}
-      error={isErrorVisible ? updateError?.response?.data?.message : null}
+      error={isError ? updateError?.response?.data?.message : null}
       isLoading={isPending}
     />
   );

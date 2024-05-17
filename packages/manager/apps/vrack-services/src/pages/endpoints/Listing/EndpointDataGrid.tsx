@@ -18,7 +18,7 @@ export const EndpointDatagrid: React.FC = () => {
   const { t } = useTranslation('vrack-services/endpoints');
   const { id } = useParams();
 
-  const { data: vrackServices, isError, error, isLoading } = useVrackService();
+  const { data: vs, isError, error, isLoading } = useVrackService();
   const {
     iamResources,
     isServiceListLoading,
@@ -36,7 +36,7 @@ export const EndpointDatagrid: React.FC = () => {
   const columns: DatagridColumn<EndpointItem>[] = [
     {
       id: 'managedServiceURN',
-      label: t('managedServiceURN'),
+      label: t('endpointDatagridManagedServiceURNLabel'),
       cell: ({ managedServiceURN }) => {
         const resource = iamResources?.data?.find(
           (iamResource) => iamResource.urn === managedServiceURN,
@@ -50,7 +50,7 @@ export const EndpointDatagrid: React.FC = () => {
     },
     {
       id: 'serviceType',
-      label: t('serviceType'),
+      label: t('endpointDatagridServiceTypeLabel'),
       cell: ({ managedServiceURN }) => {
         const resource = iamResources?.data?.find(
           (iamResource) => iamResource.urn === managedServiceURN,
@@ -60,18 +60,18 @@ export const EndpointDatagrid: React.FC = () => {
     },
     {
       id: 'ip',
-      label: t('ip'),
+      label: t('endpointDatagridIpLabel'),
       cell: ({ ip }) => <DataGridTextCell>{ip}</DataGridTextCell>,
     },
     {
       id: 'subnet',
-      label: t('subnet'),
+      label: t('endpointDatagridSubnetLabel'),
       cell: ({ subnet }) => <DataGridTextCell>{subnet}</DataGridTextCell>,
     },
     {
       id: 'actions',
-      label: t('actions'),
-      cell: (endpoint) => <ActionCell vs={vrackServices} endpoint={endpoint} />,
+      label: t('endpointDatagridActionsLabel'),
+      cell: (endpoint) => <ActionCell vs={vs} endpoint={endpoint} />,
     },
   ];
 
@@ -93,7 +93,7 @@ export const EndpointDatagrid: React.FC = () => {
       totalItems={endpointList.length}
       sorting={sorting}
       onSortChange={setSorting}
-      noResultLabel={t('emptyDataGridMessage')}
+      noResultLabel={t('endpointsEmptyDataGridMessage')}
     />
   );
 };
