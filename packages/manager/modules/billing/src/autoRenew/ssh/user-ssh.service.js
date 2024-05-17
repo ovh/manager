@@ -139,21 +139,6 @@ export default /* @ngInject */ function UserAccountSshService(
     });
   };
 
-  self.setDefaultDedicatedSshKey = function setDefaultDedicatedSshKey(
-    sshkeyObj,
-  ) {
-    return OvhHttp.put('/me/sshKey/{keyName}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        keyName: sshkeyObj.keyName,
-      },
-      data: {
-        default: !sshkeyObj.default, // toggle
-      },
-      broadcast: 'useraccount.ssh.refresh',
-    });
-  };
-
   self.deleteDedicatedSshKey = function deleteDedicatedSshKey(key) {
     return OvhHttp.delete('/me/sshKey/{keyName}', {
       rootPath: 'apiv6',
