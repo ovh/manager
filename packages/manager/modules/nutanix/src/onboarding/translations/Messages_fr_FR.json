@@ -5,6 +5,6 @@
   "nutanix_onboarding_order": "Commander",
   "nutanix_onboarding_guide1_title": "Documentation générale",
   "nutanix_onboarding_guide1_description": "Les détails techniques de l’infrastructure de la solution Nutanix on OVHcloud",
-  "nutanix_onboarding_guide2_title": "Offre packagée : liste des services et licences Nutanix inclus",
-  "nutanix_onboarding_guide2_description": "Présentation des services et licences inclus dans l’offre packagée Nutanix on OVHcloud"
+  "nutanix_onboarding_guide2_title": "Offre packagée : liste des licenses incluses",
+  "nutanix_onboarding_guide2_description": "Périmètre des licences incluses dans l'offre Nutanix on OVHcloud packagée"
 }
