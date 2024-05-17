@@ -7,3 +7,5 @@ export const PRIVATE_NETWORK_LIST = {
   CIDR: 'CIDR',
   DHCP: 'DHCP',
 };
+
+export const pciAnnouncementBannerId = 'public-cloud:pci-announcement-banner';
