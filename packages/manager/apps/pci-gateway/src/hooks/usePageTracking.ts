@@ -1,15 +1,15 @@
 import { useContext, useEffect } from 'react';
 import { useLocation, useRouteLoaderData } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Project } from '@ovh-ux/manager-react-core-application';
 
+import { PublicCloudProject } from '@ovhcloud/manager-components/src/hooks/pci-project-provider/publicCloudProject.interface';
 import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';
 
 const DISCOVERY_PLANCODE = 'project.discovery';
 
 export default function usePageTracking() {
   const location = useLocation();
-  const project = useRouteLoaderData('public-gateway') as Project;
+  const project = useRouteLoaderData('public-gateway') as PublicCloudProject;
   const { setPciProjectMode, trackPage } = useContext(
     ShellContext,
   ).shell.tracking;
