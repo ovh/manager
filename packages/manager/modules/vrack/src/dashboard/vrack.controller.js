@@ -82,8 +82,12 @@ export default class VrackMoveDialogCtrl {
     this.vRackCloudRoadmapGuide = null;
     this.arrowIcon = arrowIcon;
     this.deleteIpv6Modal = false;
+    this.addIpv6Modal = false;
     this.isOpenModalAddSubnet = false;
     this.isOpenModalDeleteSubnet = false;
+    this.ipRegions = {};
+    this.addIpv6ModalState = null;
+    this.hasIpv6 = false;
 
     this.modals = {
       move: null,
@@ -189,6 +193,14 @@ export default class VrackMoveDialogCtrl {
     });
   }
 
+  loadIpRegion(ip) {
+    if (!this.ipRegions[ip]) {
+      this.vrackService.getIpInfo(ip).then(({ data }) => {
+        [this.ipRegions[ip]] = data.regions;
+      });
+    }
+  }
+
   getDisplayName(serviceType) {
     return this.$translate.instant(
       `vrack_service_type_${serviceType.toLowerCase()}`,
@@ -250,6 +262,15 @@ export default class VrackMoveDialogCtrl {
           );
 
           allServices.dedicatedServerInterface = [];
+        }
+
+        if (allServices?.ip?.length > 0) {
+          const ipv6List = allServices.ip.filter((ip) =>
+            this.constructor.isIPv6(ip),
+          );
+          angular.forEach(ipv6List, (ipv6) => {
+            this.loadIpRegion(ipv6.id);
+          });
         }
 
         return this.getAvailableServices(allServices);
@@ -348,6 +369,12 @@ export default class VrackMoveDialogCtrl {
           );
 
           allServices.dedicatedServerInterface = [];
+        }
+
+        if (allServices?.ip?.length > 0) {
+          this.hasIpv6 = !!allServices.ip.find((ip) =>
+            this.constructor.isIPv6(ip),
+          );
         }
 
         return this.getAvailableServices(allServices);
@@ -668,6 +695,30 @@ export default class VrackMoveDialogCtrl {
       });
   }
 
+  addHandler() {
+    const ipv6ToAdd = this.form.servicesToAdd.find(
+      (service) => service.type === 'ip' && service.id.indexOf(':') !== -1,
+    );
+
+    if (ipv6ToAdd) {
+      this.addIpv6ModalState = {
+        vrack: this.serviceName,
+        ipblock: ipv6ToAdd.id,
+        region: this.ipRegions[ipv6ToAdd.id],
+        hasIpv6: this.hasIpv6,
+        helpLink: 'http://', // todo waiting the merge of https://github.com/ovh/manager/pull/11663;
+      };
+      this.addIpv6Modal = true;
+    } else {
+      this.addSelectedServices();
+    }
+  }
+
+  addServiceAction() {
+    this.addIpv6Modal = false;
+    this.addSelectedServices();
+  }
+
   addSelectedServices() {
     this.trackClick('add');
     this.loaders.adding = true;
@@ -775,7 +826,9 @@ export default class VrackMoveDialogCtrl {
 
   resetAction() {
     this.form.servicesToDelete = [];
+    this.form.servicesToAdd = [];
     this.deleteIpv6Modal = false;
+    this.addIpv6Modal = false;
   }
 
   deleteServiceAction() {

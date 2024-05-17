@@ -11,9 +11,16 @@
   "vrack__assigned-ipv6__subnet_delete_title": "Retirer le sous réseau de votre vRack",
   "vrack__assigned-ipv6__subnet_delete_description": "Confirmez-vous vouloir retirer le sous réseau de votre vRack ?",
   "vrack__assigned-ipv6_subnet_via": "{{ ipblock }} via {{ ip }} ",
+  "vrack_add_ipv6_modal_title": "Ajouter un IP block dans le vRack",
+  "vrack_add_ipv6_modal_description": "Vous allez ajouter un bloc IP : {{ ipblock }} (situé dans {{ region }}) dans votre vRack : {{ vrack }}",
+  "vrack_add_ipv6_modal_description1": "Cette action permettra d'atteindre les machines situées dans ce vRack depuis l'internet public.",
+  "vrack_add_ipv6_modal_description2": "Le trafic public sera routé à travers la région {{ region }}",
+  "vrack_add_ipv6_modal_description3": "Pour plus d'information, veuillez consulter",
+  "vrack_add_ipv6_modal_help_link": "notre documentation",
+  "vrack_add_ipv6_modal_alert_msg": "Nous avons détecté qu'il y a déjà un bloc IPv6 public dans votre vrack, mais vous ajoutez un nouveau bloc. Veuillez vous assurer que l'option SLAAC est désactivée sur TOUS vos blocs IPv6, sinon le résultat ne sera pas celui escompté.",
   "vrack_delete_ipv6_modal_title": "Bouger l'IP additionnelle",
   "vrack_delete_ipv6_modal_description": "Vous êtes sur le point de bouger {{ ip }} public [Parking] vers IP. Tous les services configurés ne seront plus disponibles.",
   "vrack_delete_ipv6_modal_question": "Souhaitez-vous continuer ?",
-  "vrack_delete_ipv6_modal_cancel": "Annuler",
-  "vrack_delete_ipv6_modal_confirm": "Confirmer"
+  "vrack_ipv6_modal_cancel": "Annuler",
+  "vrack_ipv6_modal_confirm": "Confirmer"
 }
