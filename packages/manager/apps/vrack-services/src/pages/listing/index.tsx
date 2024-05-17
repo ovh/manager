@@ -28,6 +28,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { handleClick } from '@ovhcloud/manager-components';
 import {
   getVrackServicesResourceListQueryKey,
   useVrackServicesList,
@@ -35,11 +36,9 @@ import {
 import { VrackServicesDatagrid } from '@/pages/listing/VrackServicesDataGrid';
 import { PageLayout } from '@/components/layout-helpers';
 import { DeliveringMessages } from '@/components/DeliveringMessages';
-import { handleClick } from '@/utils/ods-utils';
 import { betaVrackServicesLimit } from './listing.constants';
 import { urls } from '@/router/constants';
-import { ResiliationSuccessMessages } from '@/components/Messages/ResiliationMessages';
-import { UpdateDisplayNameMessage } from '@/components/Messages/UpdateDisplayNameMessages';
+import { SuccessMessages } from '@/components/Messages/SuccessMessage';
 
 export default function ListingPage() {
   const { t } = useTranslation('vrack-services/listing');
@@ -78,17 +77,16 @@ export default function ListingPage() {
         size={ODS_TEXT_SIZE._600}
         className="block mt-7 mb-5"
       >
-        {t('title')}
+        {t('listingTitle')}
       </OsdsText>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.body}
         className="block mb-8"
       >
-        {t('description')}
+        {t('listingDescription')}
       </OsdsText>
-      <ResiliationSuccessMessages />
-      <UpdateDisplayNameMessage />
+      <SuccessMessages />
       {reachedBetaLimit && (
         <OsdsMessage className="my-4" type={ODS_MESSAGE_TYPE.info}>
           <OsdsText
