@@ -1,4 +1,4 @@
-import { getProjectQuery } from '@ovh-ux/manager-react-core-application';
+import { getProjectQuery } from '@ovhcloud/manager-components';
 import queryClient from '@/queryClient';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({

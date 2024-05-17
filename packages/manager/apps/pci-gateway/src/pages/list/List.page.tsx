@@ -8,6 +8,7 @@ import {
   PciGuidesHeader,
   useColumnFilters,
   useDataGrid,
+  useProject,
 } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -38,7 +39,6 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { useProject } from '@ovh-ux/manager-react-core-application';
 import { useAggregatedGateway } from '@/api/hooks/useGateway';
 import ListGuard from '@/pages/list/ListGuard';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
