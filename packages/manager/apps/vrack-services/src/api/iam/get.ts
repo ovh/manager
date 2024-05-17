@@ -13,6 +13,6 @@ export const getIamResource = async (resourceURNList: string[]) => {
   resourceURNList.forEach((urn) => params.append('resourceURN', urn));
 
   return apiClient.v2.get<IAMResource[]>(
-    `/iam/resource${params.size > 0 ? '?' : ''}${params.toString()}`,
+    `/iam/resource${!params.toString() ? '' : '?'}${params.toString()}`,
   );
 };

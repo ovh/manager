@@ -9,6 +9,17 @@ import {
 } from './get';
 import { AllowedServicesResponse } from '../api.type';
 
+export const useVrackList = () => {
+  const { data: vrackListResponse, isLoading, isError, error } = useQuery<
+    ApiResponse<string[]>,
+    ApiError
+  >({
+    queryKey: getVrackListQueryKey,
+    queryFn: getVrackList,
+  });
+
+  return { vrackList: vrackListResponse?.data, isLoading, isError, error };
+};
 /**
  * @returns List of allowed vRack to be associated to a vRack Services
  */
