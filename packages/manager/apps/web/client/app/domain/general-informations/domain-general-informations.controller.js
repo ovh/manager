@@ -196,7 +196,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.updateOwnerUrl = this.getUpdateOwnerUrl(this.domain);
 
     this.getRules();
-    this.loggedInUser = this.coreConfig.getUser()?.nichandle;
+    this.loggedInUser = this.coreConfig.getUser()?.auth.account;
 
     if (this.isAllDom) {
       this.getAllDomInfos(this.$stateParams.allDom);
