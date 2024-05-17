@@ -22,7 +22,7 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import { Project } from '@ovh-ux/manager-react-core-application';
+import { PublicCloudProject } from '@ovhcloud/manager-components/src/hooks/pci-project-provider/publicCloudProject.interface';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from '@/pages/onboarding/OnBoardingGuard';
 
@@ -33,7 +33,7 @@ export default function OnBoardingPage() {
   const context = useContext(ShellContext);
   const { navigation } = context.shell;
   const { ovhSubsidiary } = context.environment.getUser();
-  const project = useRouteLoaderData('public-gateway') as Project;
+  const project = useRouteLoaderData('public-gateway') as PublicCloudProject;
   const [urlProject, setUrlProject] = useState('');
   const navigate = useNavigate();
 
