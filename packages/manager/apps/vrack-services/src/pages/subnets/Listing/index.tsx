@@ -14,16 +14,25 @@ import {
   OsdsButton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { PageLayout } from '@/components/layout-helpers';
 import { SubnetDatagrid } from './SubnetDataGrid';
 import { useNavigateToCreateSubnetPage } from '../subnets.hook';
+import { hasSubnet, useVrackService } from '@/api';
+import { urls } from '@/router/constants';
 
 export default function SubnetsListing() {
+  const { id } = useParams();
   const { t } = useTranslation('vrack-services/subnets');
   const navigateToCreateSubnetPage = useNavigateToCreateSubnetPage();
+
+  const { data: vs } = useVrackService();
+
+  if (!hasSubnet(vs)) {
+    return <Navigate to={urls.subnetsOnboarding.replace(':id', id)} />;
+  }
 
   return (
     <>
@@ -39,7 +48,7 @@ export default function SubnetsListing() {
         </OsdsMessage>
         <OsdsButton
           // Disabled because for the beta user can only have 1 subnet per vRack Services
-          disabled
+          disabled={hasSubnet(vs) || undefined}
           // TODO: Uncomment after the beta
           // disabled={!isEditable(vrackServices) || undefined}
           className="my-4"

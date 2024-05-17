@@ -21,8 +21,7 @@ export const useVrackMenuItems = (
   vs: VrackServicesWithIAM,
   isListing?: boolean,
 ): ActionMenuItem[] => {
-  const { t } = useTranslation('vrack-services/listing');
-  const { t: tDashboard } = useTranslation('vrack-services/dashboard');
+  const { t } = useTranslation('vrack-services');
   const { trackClick } = useOvhTracking();
   const editable = isEditable(vs);
   const navigate = useNavigate();
@@ -51,7 +50,28 @@ export const useVrackMenuItems = (
     },
     vrackId && {
       id: 5,
-      label: tDashboard('vrackActionDissociate'),
+      label: t('vrackActionAssociateToAnother'),
+      disabled,
+      onClick: () => {
+        trackClick({
+          location: isListing ? PageLocation.datagrid : PageLocation.tile,
+          buttonType: ButtonType.button,
+          actionType: 'navigation',
+          actions: ['associate-another_vrack-services'],
+        });
+        navigate(
+          (isListing
+            ? urls.listingAssociateAnother
+            : urls.overviewAssociateAnother
+          )
+            .replace(':id', vs.id)
+            .replace(':vrackId', vs.currentState.vrackId),
+        );
+      },
+    },
+    vrackId && {
+      id: 6,
+      label: t('vrackActionDissociate'),
       disabled,
       onClick: () => {
         trackClick({

@@ -80,7 +80,7 @@ export const VrackServicesDatagrid: React.FC = () => {
         columns={columns}
         items={data?.data}
         totalItems={data?.data.length}
-        noResultLabel={t('emptyDataGridMessage')}
+        noResultLabel={t('vrackServicesEmptyDataGridMessage')}
       />
       <Outlet />
     </>

@@ -34,7 +34,7 @@ export const useServiceList = (vrackServicesId: string) => {
   } = useQuery<ApiResponse<IAMResource[]>, ApiError>({
     queryKey: getIamResourceQueryKey(urnList),
     queryFn: () => getIamResource(urnList),
-    enabled: false,
+    enabled: urnList.length > 0,
   });
 
   React.useEffect(() => {
@@ -76,5 +76,6 @@ export const useServiceList = (vrackServicesId: string) => {
     iamResources,
     iamResourcesError,
     isIamResourcesLoading,
+    refetchIamResources,
   };
 };

@@ -23,7 +23,7 @@ Feature: Dissociate from overview page
     Then User sees button dissociate
     When User click on dissociate in action menu of private network
     Then A modal appears to ask if the user wants to dissociate the vRack
-    When User <acceptOrCancel> modal
+    When User <acceptOrCancel> dissociate modal
     Then User "<returnOverview>" on the Overview page from dissociation modal
     Then User sees <anyErrorMessage> error message
 

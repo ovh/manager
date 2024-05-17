@@ -35,12 +35,12 @@ export default function CreationPage() {
   return (
     <>
       <CreatePageLayout
+        title={t('createPageTitle')}
         createButtonLabel={t('createButtonLabel')}
         confirmActionsTracking={['activate_vrack-service', selectedRegion]}
         onSubmit={() =>
           navigate(urls.createConfirm.replace(':region', selectedRegion))
         }
-        title={t('title')}
         isFormSubmittable={!isRegionLoading && !!selectedRegion}
       >
         <RegionFormField

@@ -9,8 +9,9 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { UpdateNameModal } from '@ovhcloud/manager-components';
-import { useUpdateVrackServices, useVrackService } from '@/api';
+import { getDisplayName, useUpdateVrackServices, useVrackService } from '@/api';
 import { PageName } from '@/utils/tracking';
+import { MessagesContext } from '@/components/Messages/Messages.context';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,
@@ -19,7 +20,9 @@ const sharedTrackingParams: TrackingClickParams = {
 
 export default function EditSubnetDisplayName() {
   const { id, cidr } = useParams();
+  const subnetCidr = cidr.replace('_', '/');
   const { t } = useTranslation('vrack-services/subnets');
+  const { addSuccessMessage } = React.useContext(MessagesContext);
   const { trackClick, trackPage } = useOvhTracking();
   const navigate = useNavigate();
   const {
@@ -28,19 +31,24 @@ export default function EditSubnetDisplayName() {
     isError,
     error,
   } = useVrackService();
+
   const {
     updateSubnetDisplayName,
     isPending,
     updateError,
-    isErrorVisible,
+    isError: isUpdateError,
   } = useUpdateVrackServices({
-    key: id,
+    id,
     onSuccess: () => {
       trackPage({
-        pageType: PageType.bannerInfo,
-        pageName: PageName.pendingUpdateSubnet,
+        pageType: PageType.bannerSuccess,
+        pageName: PageName.successUpdateSubnet,
       });
       navigate('..');
+      addSuccessMessage(
+        t('subnetUpdateSuccess', { id: getDisplayName(vrackServices) }),
+        id,
+      );
     },
     onError: () => {
       trackPage({
@@ -50,18 +58,8 @@ export default function EditSubnetDisplayName() {
     },
   });
 
-  const errorMessage = React.useMemo(() => {
-    if (isError) {
-      return error?.response?.data?.message;
-    }
-    if (isErrorVisible) {
-      return updateError?.response?.data?.message;
-    }
-    return null;
-  }, [isError, isError, error, updateError]);
-
   const subnet = vrackServices.currentState.subnets.find(
-    (s) => s.cidr === cidr.replace('_', '/'),
+    (s) => s.cidr === subnetCidr,
   );
 
   const onClose = () => {
@@ -76,10 +74,14 @@ export default function EditSubnetDisplayName() {
   return (
     <UpdateNameModal
       closeModal={onClose}
-      inputLabel={t('updateDisplayNameInputLabel')}
-      headline={t('modalUpdateHeadline')}
-      error={errorMessage}
-      description={t('modalUpdateDescription')}
+      inputLabel={t('subnetUpdateDisplayNameInputLabel')}
+      headline={t('modalSubnetUpdateHeadline')}
+      error={
+        isError || isUpdateError
+          ? (error || updateError)?.response?.data?.message
+          : null
+      }
+      description={t('modalSubnetUpdateDescription')}
       isLoading={isVrackServicesLoading || isPending}
       defaultValue={subnet?.displayName}
       updateDisplayName={(displayName) => {
@@ -90,7 +92,7 @@ export default function EditSubnetDisplayName() {
         });
         updateSubnetDisplayName({
           displayName,
-          cidr: cidr.replace('_', '/'),
+          cidr: subnetCidr,
           vs: vrackServices,
         });
       }}

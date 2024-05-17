@@ -2,6 +2,7 @@ import React from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
+import { useTask } from '@ovhcloud/manager-components';
 import {
   getVrackServicesResourceListQueryKey,
   getVrackServicesResource,
@@ -16,8 +17,9 @@ import {
   getVrackServicesResourceList,
 } from '@/api';
 
-export const useVrackServicesList = (refetchInterval = 30000) => {
+export const useVrackServicesList = (refetchIntervalTime = 5000) => {
   const queryClient = useQueryClient();
+
   return useQuery<ApiResponse<VrackServicesWithIAM[]>, ApiError>({
     queryKey: getVrackServicesResourceListQueryKey,
     queryFn: async () => {
@@ -27,14 +29,21 @@ export const useVrackServicesList = (refetchInterval = 30000) => {
       });
       return result;
     },
-    refetchInterval,
+    refetchInterval: (query) =>
+      query.state.data?.data?.some((vs) =>
+        vs?.currentTasks?.some((task) =>
+          ['RUNNING', 'PENDING'].includes(task.status),
+        ),
+      )
+        ? refetchIntervalTime
+        : undefined,
   });
 };
 
 /**
  * Query the current vRack Services and poll it if it is not ready
  */
-export const useVrackService = (refetchInterval = 30000) => {
+export const useVrackService = (refetchIntervalTime = 2000) => {
   const { id } = useParams();
   const queryClient = useQueryClient();
 
@@ -58,10 +67,14 @@ export const useVrackService = (refetchInterval = 30000) => {
           ...rest,
         }),
       );
-
       return response.data;
     },
-    refetchInterval,
+    refetchInterval: (query) =>
+      query.state.data?.currentTasks?.some((task) =>
+        ['RUNNING', 'PENDING'].includes(task.status),
+      )
+        ? refetchIntervalTime
+        : undefined,
   });
 };
 
@@ -74,74 +87,94 @@ export const isEditable = (vs?: VrackServices) =>
 export const hasSubnet = (vs?: VrackServices) =>
   vs?.currentState.subnets.length > 0;
 
+export const getDisplayName = (vs?: VrackServicesWithIAM) =>
+  vs?.iam?.displayName || vs?.id;
+
 /**
  * Get the function to mutate a vRack Services
  */
 export const useUpdateVrackServices = ({
-  key,
+  id,
   onSuccess,
   onError,
-  updateTriggerDelay = 5000,
 }: {
-  key: string;
-  onSuccess?: (result: ApiResponse<VrackServices>) => void;
-  onError?: (result: ApiError) => void;
-  updateTriggerDelay?: number;
+  id: string;
+  onSuccess?: () => void;
+  onError?: () => void;
 }) => {
-  const [isErrorVisible, setIsErrorVisible] = React.useState(false);
+  const [taskId, setTaskId] = React.useState<string>();
   const queryClient = useQueryClient();
 
-  const { mutateAsync: updateVS, isPending, error: updateError } = useMutation<
+  const {
+    isSuccess: isTaskSuccess,
+    isPending: isTaskPending,
+    isError: isTaskError,
+    error: taskError,
+  } = useTask({
+    resourceUrl: `/vrackServices/resource/${id}`,
+    apiVersion: 'v2',
+    taskId,
+    onSuccess,
+    onError,
+    onFinish: () => {
+      setTaskId(undefined);
+      queryClient.invalidateQueries({
+        queryKey: getVrackServicesResourceListQueryKey,
+      });
+    },
+  });
+
+  const {
+    mutate: updateVS,
+    isPending,
+    isError,
+    error: updateError,
+  } = useMutation<
     ApiResponse<VrackServices>,
     ApiError,
     UpdateVrackServicesParams
   >({
-    mutationKey: updateVrackServicesQueryKey(key),
+    mutationKey: updateVrackServicesQueryKey(id),
     mutationFn: updateVrackServices,
-    onSettled: (result) => {
+    onSuccess: (result: ApiResponse<VrackServices>) => {
+      setTaskId(result?.data?.currentTasks[0].id);
       queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
-      if (result) {
-        queryClient.invalidateQueries({
-          queryKey: getVrackServicesResourceQueryKey(result.data?.id || key),
-        });
-      }
     },
-    onSuccess: (result: ApiResponse<VrackServices>) => {
-      queryClient.setQueryData(
-        getVrackServicesResourceListQueryKey,
-        ({ data: listingData, ...rest }: ApiResponse<VrackServices[]>) => ({
-          data: listingData.map((vrackServices) =>
-            vrackServices.id === result.data.id ? result.data : vrackServices,
-          ),
-          ...rest,
-        }),
-      );
-      queryClient.setQueryData(
-        getVrackServicesResourceQueryKey(result.data.id),
-        (response: ApiResponse<VrackServices>) => ({
-          ...response,
-          data: result.data,
-        }),
-      );
-      // Triggers an update in 5seconds for fast operations
-      setTimeout(() => {
-        queryClient.refetchQueries({
-          queryKey: getVrackServicesResourceListQueryKey,
-          exact: true,
-        });
-      }, updateTriggerDelay);
-      onSuccess?.(result);
-    },
-    onError: (result) => {
-      setIsErrorVisible(true);
-      onError?.(result);
-    },
+    onError,
   });
 
   return {
     updateVS,
+    createSubnet: ({
+      vs,
+      displayName,
+      cidr,
+      serviceRange,
+      vlan,
+    }: {
+      vs: VrackServicesWithIAM;
+      displayName?: string;
+      cidr: string;
+      serviceRange: string;
+      vlan?: number;
+    }) =>
+      updateVS({
+        vrackServicesId: id,
+        checksum: vs.checksum,
+        targetSpec: {
+          subnets: (vs.currentState.subnets || []).concat({
+            displayName,
+            cidr,
+            serviceEndpoints: [],
+            serviceRange: {
+              cidr: serviceRange,
+            },
+            vlan,
+          }),
+        },
+      }),
     updateSubnetDisplayName: ({
       displayName,
       cidr,
@@ -181,6 +214,32 @@ export const useUpdateVrackServices = ({
           ),
         },
       }),
+    createEndpoint: ({
+      vs,
+      cidr,
+      managedServiceURN,
+    }: {
+      vs: VrackServicesWithIAM;
+      cidr: string;
+      managedServiceURN: string;
+    }) =>
+      updateVS({
+        vrackServicesId: id,
+        checksum: vs.checksum,
+        targetSpec: {
+          displayName: vs.currentState.displayName,
+          subnets: vs.currentState.subnets.map((subnet) =>
+            subnet.cidr !== cidr
+              ? subnet
+              : {
+                  ...subnet,
+                  serviceEndpoints: (subnet.serviceEndpoints || []).concat({
+                    managedServiceURN,
+                  }),
+                },
+          ),
+        },
+      }),
     deleteEndpoint: ({
       vs,
       urnToDelete,
@@ -200,9 +259,9 @@ export const useUpdateVrackServices = ({
           })),
         },
       }),
-    isPending,
-    isErrorVisible: updateError && isErrorVisible,
-    hideError: () => setIsErrorVisible(false),
-    updateError,
+    isTaskSuccess,
+    isPending: isPending || isTaskPending,
+    isError: isError || isTaskError,
+    updateError: updateError || taskError,
   };
 };
