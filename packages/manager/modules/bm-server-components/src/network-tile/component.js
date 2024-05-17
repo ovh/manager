@@ -19,6 +19,7 @@ export default {
     goToUpdateReverseDns: '<?',
     goToDeleteReverseDns: '<?',
     statePrefix: '<?',
+    hidePublicBandwidth: '<?',
   },
   controller,
   template,
