@@ -2,8 +2,9 @@ import { EVENT_NAMES } from '../../support.constants';
 
 export default class {
   /* @ngInject */
-  constructor($scope, ticketService) {
+  constructor($scope, $http, ticketService) {
     this.$scope = $scope;
+    this.$http = $http;
     this.ticketService = ticketService;
   }
 
@@ -15,6 +16,16 @@ export default class {
       .then(() => this.reload())
       .finally(() => {
         this.$scope.$emit(EVENT_NAMES.stopLoading);
+
+        // This request is used to refresh the support's cache
+        this.$http
+          .get('/hub/support', {
+            serviceType: 'aapi',
+            headers: {
+              Pragma: 'no-cache',
+            },
+          })
+          .then(({ data }) => data);
       });
   }
 

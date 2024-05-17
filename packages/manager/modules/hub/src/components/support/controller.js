@@ -59,9 +59,6 @@ export default class ManagerHubSupportCtrl {
     return this.$http
       .get('/hub/support', {
         serviceType: 'aapi',
-        headers: {
-          Pragma: 'no-cache',
-        },
       })
       .then(({ data }) => data)
       .then((result) => get(result, 'data.support.data'));
