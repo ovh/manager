@@ -1,4 +1,4 @@
-import { map, reverse, sortBy } from 'lodash-es';
+import { get, map, reverse, sortBy } from 'lodash-es';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.dashboard', {
@@ -57,8 +57,10 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     resolvePolicy: {
       async: 'NOWAIT',
     },
-    componentProvider: /* @ngInject */ (order, numberOfServices) => {
-      return !numberOfServices && !order ? 'hubOrderDashboard' : 'hubDashboard';
+    componentProvider: /* @ngInject */ (order, services) => {
+      return !get(services, 'data.count') && !order
+        ? 'hubOrderDashboard'
+        : 'hubDashboard';
     },
   });
 
