@@ -7,10 +7,6 @@ exports[`Delete Modal component renders loading modal 1`] = `
     dismissible="true"
     headline="headline"
   >
-    <osds-spinner
-      inline="true"
-      size="md"
-    />
     <osds-text
       class="block my-4"
       color="text"
@@ -18,7 +14,9 @@ exports[`Delete Modal component renders loading modal 1`] = `
     >
       description
     </osds-text>
-    <osds-form-field>
+    <osds-form-field
+      class="mb-8"
+    >
       <div
         slot="label"
       >
@@ -40,6 +38,14 @@ exports[`Delete Modal component renders loading modal 1`] = `
         value=""
       />
     </osds-form-field>
+    <div
+      class="flex justify-center"
+    >
+      <osds-spinner
+        inline="true"
+        size="md"
+      />
+    </div>
     <osds-button
       color="primary"
       disabled="true"

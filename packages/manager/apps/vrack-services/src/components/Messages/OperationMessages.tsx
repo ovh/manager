@@ -7,43 +7,19 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { useMutationState } from '@tanstack/react-query';
 import {
   useVrackServicesList,
   ResourceStatus,
   VrackServicesWithIAM,
-  updateVrackServicesQueryKey,
+  getDisplayName,
 } from '@/api';
-import { getSubnetCreationMutationKey } from '@/pages/subnets/subnets.constants';
-import { getEndpointCreationMutationKey } from '@/pages/endpoints/endpoints.constants';
 
 const shouldDisplayMessage = (vs: VrackServicesWithIAM) =>
-  [
-    ResourceStatus.CREATING,
-    ResourceStatus.UPDATING,
-    ResourceStatus.DELETING,
-    ResourceStatus.ERROR,
-  ].includes(vs.resourceStatus);
+  vs.resourceStatus !== ResourceStatus.READY;
 
 const OperationMessage: React.FC<{ vs?: VrackServicesWithIAM }> = ({ vs }) => {
-  const { t } = useTranslation('vrack-services/dashboard');
+  const { t } = useTranslation('vrack-services');
   const isError = vs?.resourceStatus === ResourceStatus.ERROR;
-  const endpointCreationMutations = useMutationState({
-    filters: {
-      mutationKey: updateVrackServicesQueryKey(
-        getEndpointCreationMutationKey(vs?.id),
-      ),
-      exact: true,
-    },
-  });
-  const subnetCreationMutations = useMutationState({
-    filters: {
-      mutationKey: updateVrackServicesQueryKey(
-        getSubnetCreationMutationKey(vs?.id),
-      ),
-      exact: true,
-    },
-  });
 
   if (!vs || !shouldDisplayMessage(vs)) {
     return null;
@@ -64,38 +40,26 @@ const OperationMessage: React.FC<{ vs?: VrackServicesWithIAM }> = ({ vs }) => {
             ? 'vrackServicesInErrorMessage'
             : 'vrackServicesNotReadyInfoMessage',
           {
-            displayName: vs?.iam?.displayName || vs?.id,
+            displayName: getDisplayName(vs),
           },
         )}
-        {subnetCreationMutations[0]?.status === 'success' &&
-          t('subnetCreationOnGoing', {
-            name:
-              vs?.targetSpec?.subnets?.[vs?.targetSpec.subnets.length - 1]
-                ?.displayName ||
-              vs?.targetSpec?.subnets?.[vs?.targetSpec.subnets.length - 1]
-                ?.cidr,
-          })}
-        {endpointCreationMutations[0]?.status === 'success' &&
-          t('endpointCreationOnGoing')}
       </OsdsText>
     </OsdsMessage>
   );
 };
 
 export const OperationMessages: React.FC<{ id?: string }> = ({ id }) => {
-  const vrackServicesList = useVrackServicesList();
+  const { data: vrackServicesList } = useVrackServicesList();
 
-  if (vrackServicesList?.data?.data?.length === 0) {
+  if (vrackServicesList?.data?.length === 0) {
     return null;
   }
 
   return id ? (
-    <OperationMessage
-      vs={vrackServicesList?.data?.data.find((vs) => vs.id === id)}
-    />
+    <OperationMessage vs={vrackServicesList?.data.find((vs) => vs.id === id)} />
   ) : (
     <>
-      {vrackServicesList?.data?.data.map((vs) => (
+      {vrackServicesList?.data.map((vs) => (
         <OperationMessage key={vs.id} vs={vs} />
       ))}
     </>

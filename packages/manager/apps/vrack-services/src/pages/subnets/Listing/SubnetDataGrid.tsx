@@ -24,14 +24,14 @@ export const SubnetDatagrid: React.FC = () => {
   const columns: DatagridColumn<Subnet>[] = [
     {
       id: 'displayName',
-      label: t('displayName'),
+      label: t('subnetDatagridDisplayNameLabel'),
       cell: (subnet) => (
         <DataGridTextCell>{subnet?.displayName}</DataGridTextCell>
       ),
     },
     {
       id: 'cidr',
-      label: t('cidr'),
+      label: t('subnetDatagridCidrLabel'),
       cell: ({ cidr }) => (
         <OsdsClipboard value={cidr} inline>
           <span slot="success-message">{t('copiedSuccessMessage')}</span>
@@ -40,19 +40,19 @@ export const SubnetDatagrid: React.FC = () => {
     },
     {
       id: 'serviceRange.cidr',
-      label: t('serviceRange'),
+      label: t('subnetDatagridServiceRangeLabel'),
       cell: ({ serviceRange }) => (
         <DataGridTextCell>{serviceRange.cidr}</DataGridTextCell>
       ),
     },
     {
       id: 'vlan',
-      label: t('vlan'),
+      label: t('subnetDatagridVlanLabel'),
       cell: ({ vlan }) => <DataGridTextCell>{vlan}</DataGridTextCell>,
     },
     {
       id: 'actions',
-      label: t('actions'),
+      label: t('subnetDatagridActionsLabel'),
       cell: ({ cidr }) => <ActionCell cidr={cidr} vs={vs} />,
     },
   ];
@@ -67,7 +67,7 @@ export const SubnetDatagrid: React.FC = () => {
       totalItems={subnetList.length}
       sorting={sorting}
       onSortChange={setSorting}
-      noResultLabel={t('emptyDataGridMessage')}
+      noResultLabel={t('subnetsEmptyDataGridMessage')}
     />
   );
 };

@@ -5,7 +5,6 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsButton,
   OsdsMessage,
-  OsdsSpinner,
   OsdsModal,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
@@ -13,23 +12,26 @@ import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_MESSAGE_TYPE,
-  ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useMutation } from '@tanstack/react-query';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { useQueryClient } from '@tanstack/react-query';
 import {
   ButtonType,
   PageLocation,
+  PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { handleClick } from '@/utils/ods-utils';
+import { handleClick } from '@ovhcloud/manager-components';
 import {
-  Task,
-  dissociateVrackServices,
-  dissociateVrackServicesQueryKey,
+  getDisplayName,
+  getVrackServicesResourceListQueryKey,
+  useDissociateVrack,
+  useVrackService,
 } from '@/api';
+import { MessagesContext } from '@/components/Messages/Messages.context';
+import { LoadingText } from '@/components/LoadingText';
+import { PageName } from '@/utils/tracking';
 
 const sharedTrackingParams = {
   location: PageLocation.popup,
@@ -38,9 +40,12 @@ const sharedTrackingParams = {
 
 export default function Dissociate() {
   const { id, vrackId } = useParams();
+  const queryClient = useQueryClient();
+  const { addSuccessMessage } = React.useContext(MessagesContext);
+  const { data: vs } = useVrackService();
   const navigate = useNavigate();
-  const { t } = useTranslation('vrack-services');
-  const { trackClick } = useOvhTracking();
+  const { t } = useTranslation('vrack-services/dissociate');
+  const { trackClick, trackPage } = useOvhTracking();
   const closeModal = () => {
     trackClick({
       ...sharedTrackingParams,
@@ -49,18 +54,31 @@ export default function Dissociate() {
     });
     navigate('..');
   };
-  const { mutate: dissociateVs, isPending, error } = useMutation<
-    ApiResponse<Task>,
-    ApiError
-  >({
-    mutationFn: () =>
-      dissociateVrackServices({
-        vrack: vrackId,
-        vrackServices: id,
-      }),
-    mutationKey: dissociateVrackServicesQueryKey(vrackId, id),
+
+  const { dissociateVs, isPending, error, isError } = useDissociateVrack({
+    vrackServicesId: id,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: PageName.successDissociateVrack,
+      });
+      queryClient.invalidateQueries({
+        queryKey: getVrackServicesResourceListQueryKey,
+      });
       navigate('..');
+      addSuccessMessage(
+        t('vrackServicesDissociateSuccess', {
+          vs: getDisplayName(vs),
+          vrack: vrackId,
+        }),
+        id,
+      );
+    },
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PageName.errorDissociateVrack,
+      });
     },
   });
 
@@ -75,14 +93,16 @@ export default function Dissociate() {
       headline={t('modalDissociateHeadline')}
       onOdsModalClose={closeModal}
     >
-      {!!error && (
+      {!!isError && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
           <OsdsText
             level={ODS_TEXT_LEVEL.body}
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {t('genericApiError', { error: error.response?.data?.message })}
+            {t('modalDissociateError', {
+              error: error.response?.data?.message,
+            })}
           </OsdsText>
         </OsdsMessage>
       )}
@@ -90,11 +110,16 @@ export default function Dissociate() {
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.body}
-        className="block mb-3"
+        className="block mb-8"
       >
         {t('modalDissociateDescription')}
       </OsdsText>
-      {isPending && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
+      {isPending && (
+        <LoadingText
+          title={t('modalDissociateVrackWaitMessage')}
+          description={t('removeVrackServicesFromVrack')}
+        />
+      )}
       <OsdsButton
         disabled={isPending || undefined}
         slot="actions"
@@ -103,7 +128,7 @@ export default function Dissociate() {
         color={ODS_THEME_COLOR_INTENT.error}
         {...handleClick(closeModal)}
       >
-        {t('modalCancelButton')}
+        {t('modalDissociateCancelButton')}
       </OsdsButton>
       <OsdsButton
         disabled={isPending || undefined}
@@ -120,7 +145,7 @@ export default function Dissociate() {
           dissociateVs();
         })}
       >
-        {t('modalConfirmButton')}
+        {t('modalDissociateConfirmButton')}
       </OsdsButton>
     </OsdsModal>
   );

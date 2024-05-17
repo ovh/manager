@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  OsdsSpinner,
   OsdsIcon,
   OsdsText,
   OsdsButton,
@@ -13,7 +12,6 @@ import {
   ODS_BUTTON_TYPE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
-  ODS_SPINNER_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
@@ -25,8 +23,9 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { handleClick } from '@/utils/ods-utils';
+import { handleClick } from '@ovhcloud/manager-components';
 import { PageLayout } from '@/components/layout-helpers/PageLayout';
+import { LoadingText } from '../LoadingText';
 
 export type CreatePageLayoutProps = React.PropsWithChildren<{
   overviewUrl?: string;
@@ -41,6 +40,8 @@ export type CreatePageLayoutProps = React.PropsWithChildren<{
   hasFormError?: boolean;
   formErrorMessage?: string;
   createButtonLabel: string;
+  loadingText?: string;
+  loadingDescription?: string;
 }>;
 
 export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
@@ -57,6 +58,8 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
   createButtonLabel,
   children,
   confirmActionsTracking = ['confirm'],
+  loadingText,
+  loadingDescription,
 }) => {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
@@ -132,7 +135,7 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
       </form>
       {isSubmitPending && (
         <div className="mt-4">
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+          <LoadingText title={loadingText} description={loadingDescription} />
         </div>
       )}
       {hasFormError && (

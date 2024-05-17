@@ -49,8 +49,9 @@ Feature: Service Endpoints page
     And User opens endpoints delete modal
     When User fills the endpoints delete form
     Then User sees <anyErrorMessage> error message
+    Then User sees <anySuccessMessage> success message
 
     Examples:
-      | apiOk | anyErrorMessage |
-      | OK    | no              |
-      | KO    | an              |
+      | apiOk | anyErrorMessage | anySuccessMessage |
+      | OK    | no              | an                |
+      | KO    | an              | no                |

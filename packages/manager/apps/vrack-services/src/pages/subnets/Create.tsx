@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import {
   ODS_RADIO_BUTTON_SIZE,
   ODS_INPUT_SIZE,
@@ -16,15 +16,13 @@ import {
   OsdsInput,
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
 import { FormField } from '@/components/form-field.component';
 import {
-  VrackServices,
+  getDisplayName,
   getVrackServicesResourceListQueryKey,
   getVrackServicesResourceQueryKey,
-  updateVrackServices,
-  updateVrackServicesQueryKey,
+  useUpdateVrackServices,
   useVrackService,
 } from '@/api';
 import { CreatePageLayout } from '@/components/layout-helpers';
@@ -37,16 +35,17 @@ import {
   noVlanOptionValue,
   vlanNumberOptionValue,
   isValidVlanNumber,
-  getSubnetCreationMutationKey,
   defaultCidr,
   defaultServiceRange,
 } from './subnets.constants';
 import { urls } from '@/router/constants';
 import { PageName } from '@/utils/tracking';
+import { MessagesContext } from '@/components/Messages/Messages.context';
 
 export default function SubnetCreationPage() {
   const { t } = useTranslation('vrack-services/subnets');
   const { id } = useParams();
+  const { addSuccessMessage } = React.useContext(MessagesContext);
   const [displayName, setDisplayName] = React.useState<string | undefined>(
     undefined,
   );
@@ -62,42 +61,29 @@ export default function SubnetCreationPage() {
   const dashboardUrl = urls.subnets.replace(':id', id);
   const { trackPage } = useOvhTracking();
 
-  const { mutate: createSubnet, isPending, isError, error } = useMutation<
-    ApiResponse<VrackServices>,
-    ApiError
-  >({
-    mutationKey: updateVrackServicesQueryKey(getSubnetCreationMutationKey(id)),
-    mutationFn: () =>
-      updateVrackServices({
-        vrackServicesId: id,
-        checksum: vrackServices.data?.checksum,
-        targetSpec: {
-          displayName: vrackServices.data?.currentState.displayName,
-          subnets: (vrackServices.data?.currentState.subnets || []).concat({
-            displayName,
-            cidr: cidr || defaultCidr,
-            serviceEndpoints: [],
-            serviceRange: {
-              cidr: serviceRange || defaultServiceRange,
-            },
-            vlan,
-          }),
-        },
-      }),
-    onSuccess: async () => {
-      await Promise.all([
-        await queryClient.invalidateQueries({
-          queryKey: getVrackServicesResourceListQueryKey,
-        }),
-        await queryClient.invalidateQueries({
-          queryKey: getVrackServicesResourceQueryKey(id),
-        }),
-        trackPage({
-          pageName: PageName.pendingCreateSubnet,
-          pageType: PageType.bannerInfo,
-        }),
-      ]);
+  const {
+    createSubnet,
+    updateError,
+    isError,
+    isPending,
+  } = useUpdateVrackServices({
+    id,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: getVrackServicesResourceListQueryKey,
+      });
+      queryClient.invalidateQueries({
+        queryKey: getVrackServicesResourceQueryKey(id),
+      });
+      trackPage({
+        pageName: PageName.successCreateSubnet,
+        pageType: PageType.bannerSuccess,
+      });
       navigate(dashboardUrl);
+      addSuccessMessage(
+        t('subnetCreationSuccess', { id: getDisplayName(vrackServices?.data) }),
+        id,
+      );
     },
     onError: () => {
       trackPage({
@@ -107,26 +93,29 @@ export default function SubnetCreationPage() {
     },
   });
 
-  React.useEffect(() => {
-    queryClient.invalidateQueries({
-      queryKey: updateVrackServicesQueryKey(getSubnetCreationMutationKey(id)),
-    });
-  }, []);
-
   return (
     <CreatePageLayout
       overviewUrl={dashboardUrl}
-      title={t('createPageTitle')}
+      title={t('createSubnetPageTitle')}
       createButtonLabel={t('createSubnetButtonLabel')}
+      loadingText={t('subnetCreationPending')}
+      hasFormError={isError}
       formErrorMessage={t('subnetCreationError', {
-        error: error?.response.data.message,
+        error: updateError?.response?.data?.message,
       })}
       confirmActionsTracking={['add_subnets', 'confirm']}
-      hasFormError={isError}
-      onSubmit={() => createSubnet()}
+      onSubmit={() =>
+        createSubnet({
+          vs: vrackServices?.data,
+          cidr: cidr || defaultCidr,
+          serviceRange: serviceRange || defaultServiceRange,
+          displayName,
+          vlan,
+        })
+      }
       isSubmitPending={isPending}
       isFormSubmittable={
-        !vrackServices.isLoading &&
+        !vrackServices?.isLoading &&
         !isPending &&
         (!hasVlan || isValidVlanNumber(vlan))
       }
@@ -216,7 +205,7 @@ export default function SubnetCreationPage() {
       </FormField>
 
       {hasVlan && (
-        <FormField className="ml-11" label={t('vlanNumberLabel')}>
+        <FormField className="ml-8" label={t('vlanNumberLabel')}>
           <OsdsInput
             inline
             disabled={isPending || undefined}
