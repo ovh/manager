@@ -11,10 +11,12 @@ export default class UserAccountUsersSsoUpdateCtrl {
     this.loader = false;
     this.identityProvider = {
       metadata: null,
+      userAttributeName: null,
       groupAttributeName: null,
       disableUsers: false,
     };
     this.newGroupAttributeName = '';
+    this.newUserAttributeName = '';
     this.enableLocalUsers = true;
   }
 
@@ -31,6 +33,7 @@ export default class UserAccountUsersSsoUpdateCtrl {
     }
 
     this.identityProvider.groupAttributeName = this.newGroupAttributeName;
+    this.identityProvider.userAttributeName = this.newUserAttributeName;
     this.identityProvider.disableUsers = !this.enableLocalUsers;
 
     this.usersService
@@ -73,6 +76,7 @@ export default class UserAccountUsersSsoUpdateCtrl {
       .then((identityProvider) => {
         this.identityProvider = identityProvider;
         this.newGroupAttributeName = this.identityProvider.groupAttributeName;
+        this.newUserAttributeName = this.identityProvider.userAttributeName;
         this.enableLocalUsers = !this.identityProvider.disableUsers;
       })
       .catch(() => {
