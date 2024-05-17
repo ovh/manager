@@ -16,14 +16,14 @@ import { useNavigateToCreateEndpointPage } from '../endpoints.hook';
 
 export default function EndpointsListing() {
   const { t } = useTranslation('vrack-services/endpoints');
-  const { data: vrackServices } = useVrackService();
+  const { data: vs } = useVrackService();
   const navigateToCreateEndpointPage = useNavigateToCreateEndpointPage();
 
   return (
     <>
       <PageLayout noBreacrumb>
         <OsdsButton
-          disabled={!isEditable(vrackServices) || undefined}
+          disabled={!isEditable(vs) || undefined}
           className="my-4"
           inline
           size={ODS_BUTTON_SIZE.sm}

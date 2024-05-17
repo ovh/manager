@@ -20,7 +20,7 @@ import {
   TrackingClickParams,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { handleClick } from '@/utils/ods-utils';
+import { handleClick } from '@ovhcloud/manager-components';
 import { getExpressOrderLink } from '../order-utils';
 
 const trackingParams: TrackingClickParams = {
