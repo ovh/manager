@@ -9,6 +9,7 @@ export const urls = {
   listingDissociate: '/dissociate/:id/:vrackId',
   listingDelete: '/delete/:id',
   listingEdit: '/edit/:id',
+  listingAssociateAnother: '/associate-another/:id/:vrackId',
 
   dashboard: '/:id',
   overview: '/:id',
@@ -16,6 +17,7 @@ export const urls = {
   overviewDissociate: '/:id/dissociate/:vrackId',
   overviewEdit: '/:id/edit',
   overviewDelete: '/:id/delete',
+  overviewAssociateAnother: '/:id/associate-another/:vrackId',
 
   subnets: '/:id/subnets',
   subnetsOnboarding: '/:id/subnets/onboarding',

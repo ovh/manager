@@ -6,7 +6,6 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_MESSAGE_TYPE,
   ODS_SELECT_SIZE,
-  ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
   OdsSelectValueChangeEvent,
@@ -14,59 +13,71 @@ import {
 import {
   OsdsText,
   OsdsSelect,
-  OsdsSpinner,
   OsdsSelectOption,
   OsdsMessage,
   OsdsButton,
 } from '@ovhcloud/ods-components/react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { useQueryClient } from '@tanstack/react-query';
 import {
   PageLocation,
   ButtonType,
   useOvhTracking,
+  PageType,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { handleClick } from '@ovhcloud/manager-components';
 import {
-  associateVrackServicesQueryKey,
-  associateVrackServices,
   getVrackServicesResourceListQueryKey,
-  Task,
+  useVrackService,
+  useAssociateVrack,
+  getDisplayName,
 } from '@/api';
-import { handleClick } from '@/utils/ods-utils';
+import { MessagesContext } from '@/components/Messages/Messages.context';
+import { LoadingText } from '@/components/LoadingText';
+import { PageName } from '@/utils/tracking';
 
 export type AssociateVrackProps = {
-  vrackServicesId: string;
   vrackList: string[];
   closeModal: () => void;
 };
 
 export const AssociateVrack: React.FC<AssociateVrackProps> = ({
-  vrackServicesId,
   vrackList,
   closeModal,
 }) => {
-  const { t } = useTranslation('vrack-services/listing');
+  const { id } = useParams();
+  const { t } = useTranslation('vrack-services/associate');
+  const { addSuccessMessage } = React.useContext(MessagesContext);
   const [selectedVrack, setSelectedVrack] = React.useState('');
+  const { data: vs } = useVrackService();
   const queryClient = useQueryClient();
-  const { trackClick } = useOvhTracking();
+  const { trackClick, trackPage } = useOvhTracking();
   const navigate = useNavigate();
 
-  const { mutate: associateVs, isPending, isError, error } = useMutation<
-    ApiResponse<Task>,
-    ApiError
-  >({
-    mutationFn: () =>
-      associateVrackServices({
-        vrack: selectedVrack,
-        vrackServices: vrackServicesId,
-      }),
-    mutationKey: associateVrackServicesQueryKey(vrackServicesId),
+  const { associateVs, error, isError, isPending } = useAssociateVrack({
+    vrackServicesId: id,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: PageName.successAssociateVrack,
+      });
       queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
       navigate('..');
+      addSuccessMessage(
+        t('vrackServicesAssociateSuccess', {
+          vs: getDisplayName(vs),
+          vrack: selectedVrack,
+        }),
+        id,
+      );
+    },
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PageName.errorAssociateVrack,
+      });
     },
   });
 
@@ -87,11 +98,14 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {t('updateError', { error: error?.response?.data.message })}
+            {t('modalVrackAssociationError', {
+              error: error?.response?.data?.message,
+            })}
           </OsdsText>
         </OsdsMessage>
       )}
       <OsdsSelect
+        className="mb-4"
         size={ODS_SELECT_SIZE.md}
         disabled={isPending || undefined}
         onOdsValueChange={(event: OdsSelectValueChangeEvent) =>
@@ -105,15 +119,21 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
           </OsdsSelectOption>
         ))}
       </OsdsSelect>
-      {isPending && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
+      {isPending && (
+        <LoadingText
+          title={t('modalAssociateVrackWaitMessage')}
+          description={t('addVrackServicesToVrack')}
+        />
+      )}
       <OsdsButton
         slot="actions"
+        disabled={isPending || undefined}
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
         {...handleClick(closeModal)}
       >
-        {t('modalCancelVrackAssociationButtonLabel')}
+        {t('modalAssociateCancelButton')}
       </OsdsButton>
       <OsdsButton
         slot="actions"
@@ -127,7 +147,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
             buttonType: ButtonType.button,
             actions: ['associate-vrack', 'confirm'],
           });
-          associateVs();
+          associateVs({ vrackId: selectedVrack });
         })}
       >
         {t('modalConfirmVrackAssociationButtonLabel')}
