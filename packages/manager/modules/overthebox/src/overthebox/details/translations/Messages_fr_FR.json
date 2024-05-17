@@ -85,5 +85,8 @@
   "overTheBox_reverse_dns": "Reverse DNS",
   "overTheBox_detail_link_guide": "Guides",
   "overthebox_detail_links": "Liens",
-  "overTheBox_service_id": "Identifiant du service :"
+  "overTheBox_service_id": "Identifiant du service :",
+  "overTheBox_authorize_autoupgrade": "Autoriser les mises à jour automatiques la nuit",
+  "overTheBox_change_auto_upgrade_success": "Le changement des mises automatiques la nuit a été effectué avec succès.",
+  "overTheBox_change_auto_upgrade_error": "Nous n'avons pas pu effectuer le changement des mises automatiques la nuit : {{errorMessage}}"
 }
