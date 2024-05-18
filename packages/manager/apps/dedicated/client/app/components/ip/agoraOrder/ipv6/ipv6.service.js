@@ -2,7 +2,8 @@ import { PRODUCT_TYPES } from './ipv6.constant';
 
 export default class IpAgoraV6Order {
   /* @ngInject */
-  constructor(iceberg) {
+  constructor(iceberg, $http) {
+    this.$http = $http;
     this.iceberg = iceberg;
   }
 
@@ -22,5 +23,19 @@ export default class IpAgoraV6Order {
           };
         }),
       );
+  }
+
+  fetchIpv6Services() {
+    return this.$http.get('/ip/service');
+  }
+
+  fetchIpv6ServicesWithDetails() {
+    return this.iceberg('/ip')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => {
+        return data.filter((ip) => ip.version === 6);
+      });
   }
 }
