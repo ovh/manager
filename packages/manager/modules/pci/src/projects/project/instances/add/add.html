@@ -69,7 +69,7 @@
                                 data-variant="light"
                                 data-picture="{{ ::datacenters[0].icon }}"
                                 data-model="$ctrl.model.datacenter"
-                                data-on-change="$ctrl.model.location = location"
+                                data-on-change="$ctrl.updateLocation(location)"
                                 data-match="name"
                                 data-values="datacenters"
                             >
