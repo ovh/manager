@@ -41,6 +41,7 @@ const Backups = () => {
   const selectedBackup = backupsQuery.data?.find(
     (b) => b.id === restoreModal.value,
   );
+
   return (
     <>
       <div className="flex justify-between w-full items-center">
@@ -50,7 +51,7 @@ const Backups = () => {
       <p>{t('description')}</p>
       <div className="inline-block">
         <Table>
-          <TableBody>
+          <TableBody data-testid="backups-table">
             <TableRow>
               <TableCell className="font-semibold">
                 {t('detailsRetentionDays')}
@@ -81,6 +82,7 @@ const Backups = () => {
       <div className="flex gap-2">
         {service.capabilities.fork?.create && (
           <Button
+            data-testid="fork-button"
             disabled={
               service.capabilities.fork.create ===
               database.service.capability.StateEnum.disabled
@@ -97,6 +99,7 @@ const Backups = () => {
         )}
         {service.capabilities.backupRestore?.create && (
           <Button
+            data-testid="restore-backup-button"
             disabled={
               service.capabilities.backupRestore.create ===
               database.service.capability.StateEnum.disabled
@@ -123,7 +126,9 @@ const Backups = () => {
           pageSize={25}
         />
       ) : (
-        <DataTable.Skeleton columns={5} rows={5} width={100} height={16} />
+        <div data-testid="skeleton-container-backup">
+          <DataTable.Skeleton columns={5} rows={5} width={100} height={16} />
+        </div>
       )}
 
       {backupsQuery.data && (

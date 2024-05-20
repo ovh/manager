@@ -1,6 +1,10 @@
 import React from 'react';
-import { MemoryRouter, useLocation } from 'react-router';
-import { RouterProvider, createHashRouter } from 'react-router-dom';
+import {
+  RouterProvider,
+  createHashRouter,
+  MemoryRouter,
+  useLocation,
+} from 'react-router-dom';
 import * as useLoadingIndicator from '@/contexts/loadingIndicatorContext';
 
 /**
