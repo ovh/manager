@@ -123,7 +123,9 @@ export default function GenerateOpenStackTokenModal({
             <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="my-2">
               {t('pci_projects_project_users_openstack-token_token_label')}
             </OsdsText>
-            <OsdsClipboard value={token['X-Auth-Token']} />
+            <OsdsClipboard value={token['X-Auth-Token']}>
+              <span slot="success-message">{t('copied')}</span>
+            </OsdsClipboard>
             <OsdsMessage className="mt-2 mb-4" type={ODS_MESSAGE_TYPE.warning}>
               {t(
                 'pci_projects_project_users_openstack-token_token_alert_message',
