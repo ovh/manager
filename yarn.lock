@@ -4632,6 +4632,20 @@
   resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-2.1.0.tgz#0acf32f470af2ceaf47f095cdecd40d68666efda"
   integrity sha512-U69T3ItWHvLwGg5eJ0n3I62nWuE6ilHlmz7zM0npLBRvPRd7e6NYmg54vvRtP5mZG7kZqZCFVdsTWo7BPtBujg==
 
+"@ovh-ux/manager-log-to-customer@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-log-to-customer/-/manager-log-to-customer-1.1.0.tgz#dd1ec08d65c7687925e59770298f8009b36eb92a"
+  integrity sha512-eariUnoiBmaFiCxV17pViFoJC6kFCSW9lllc5SQK/Atvme+EbBI1A9NWAHLNQhlCbS4tA/xcaas5z3lB3Aawfw==
+  dependencies:
+    lodash "~4.17.15"
+
+"@ovh-ux/ng-log-live-tail@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-log-live-tail/-/ng-log-live-tail-1.1.0.tgz#2741c430461c0af371a37346b2900e571bd02e9b"
+  integrity sha512-C6IksFIFoW0ZVXhiitdPO0PjRt3GTwvThxteDvj7c5WBEnFBBtrMMOwTMJl71u7qEBUOJ/OPh1WYA8ltGztJig==
+  dependencies:
+    lodash "~4.17.15"
+
 "@ovh-ux/ng-ovh-api-wrappers@^5.0.0", "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-5.1.0.tgz#b8bfef258a4e0860eabf219cb1880ca0a15da687"
@@ -12249,6 +12263,11 @@ date-fns@^3.0.4, date-fns@^3.2.0, date-fns@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-3.3.1.tgz#7581daca0892d139736697717a168afbb908cfed"
   integrity sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==
+
+date-fns@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-3.6.0.tgz#f20ca4fe94f8b754951b24240676e8618c0206bf"
+  integrity sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==
 
 dateformat@^3.0.0:
   version "3.0.3"
