@@ -98,7 +98,11 @@ export const getColumns = ({
         <div className="flex justify-end">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="menu" size="menu">
+              <Button
+                data-testid="backups-action-trigger"
+                variant="menu"
+                size="menu"
+              >
                 <span className="sr-only">Open menu</span>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
@@ -106,6 +110,7 @@ export const getColumns = ({
             <DropdownMenuContent align="end">
               {service.capabilities.backupRestore?.create && (
                 <DropdownMenuItem
+                  data-testid="backups-action-restore-button"
                   disabled={
                     service.capabilities.backupRestore.create ===
                     database.service.capability.StateEnum.disabled
@@ -121,6 +126,7 @@ export const getColumns = ({
               )}
               {service.capabilities.fork?.create && (
                 <DropdownMenuItem
+                  data-testid="backups-action-fork-button"
                   disabled={
                     service.capabilities.fork.create ===
                     database.service.capability.StateEnum.disabled
