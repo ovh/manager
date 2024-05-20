@@ -33,6 +33,17 @@ export const LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK = {
     'https://help.ovhcloud.com/csm/asia-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062938',
 };
 
+export const LOAD_BALANCER_LOG_KINDS_KEYS = {
+  haproxy: [
+    'client_ip',
+    'http_verb',
+    'http_request',
+    'http_version_num',
+    'http_status_int',
+    'bytes_uploaded_int',
+  ],
+};
+
 // TODO waiting for tracking PR
 export const LOAD_BALANCER_LOGS_TRACKING_HITS = {
   LOGS_PAGE: ``,
