@@ -61,14 +61,18 @@
 
             <div data-ng-repeat="log in $ctrl.logs track by $index">
                 <div>
-                    <span data-ng-repeat="key in $ctrl.keys track by key">
+                    <span
+                        data-ng-bind-html="log['formattedTimestamp_highlighted']"
+                        class="log-timestamp"
+                    ></span>
+                    <span
+                        data-level="{{ log['level'] }}"
+                        data-ng-bind-html="log['levelLabel_highlighted']"
+                        class="log-severity"
+                    ></span>
+                    <span data-ng-repeat="key in $ctrl.logKeys track by key">
                         <span
-                            data-ng-if="$ctrl.DISPLAY_RULES.HIDE.indexOf(key) === -1"
-                            class="text-break mr-2"
-                            data-ng-class="{
-                             'text-primary' : $ctrl.DISPLAY_RULES.TEXT_PRIMARY.indexOf(key) > -1,
-                             'text-uppercase' : $ctrl.DISPLAY_RULES.UPPERCASE.indexOf(key) > -1
-                             }"
+                            class="text-break"
                             data-ng-bind-html="log[key + '_highlighted']"
                         ></span>
                     </span>
