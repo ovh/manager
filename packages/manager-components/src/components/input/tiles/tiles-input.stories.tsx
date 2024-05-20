@@ -1,6 +1,5 @@
 import { Meta, Story } from '@storybook/react';
 
-import TilesInputComponent from './TileInput.component';
 import { useArgs } from '@storybook/client-api';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -8,6 +7,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { clsx } from 'clsx';
+import TilesInputComponent from './TilesInput.component';
 
 export default {
   title: 'Components/TilesInput',
@@ -140,7 +140,6 @@ DemoStack.args = {
       return `${countries[0].language} (${countries.length})`;
     },
     title: 'Countries',
-    onChange: (stack: string) => console.log(`stack changed:${stack}`),
   },
 };
 
@@ -173,7 +172,6 @@ DemoGroup.args = {
       </OsdsText>
     ),
     showAllTab: true,
-    onChange: (group: string) => console.log(`group changed:${group}`),
   },
 };
 
@@ -206,7 +204,6 @@ DemoGroupStack.args = {
       </OsdsText>
     ),
     showAllTab: true,
-    onChange: (group: string) => console.log(`group changed:${group}`),
   },
   stack: {
     by: (country: TCountry) => country.language,
@@ -214,6 +211,5 @@ DemoGroupStack.args = {
       return `${countries[0].language} (${countries.length})`;
     },
     title: 'Countries',
-    onChange: (stack: string) => console.log(`stack changed:${stack}`),
   },
 };
