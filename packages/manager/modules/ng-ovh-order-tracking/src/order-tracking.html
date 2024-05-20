@@ -23,10 +23,6 @@
         </oui-button>
     </oui-message>
 
-    <oui-message type="info" class="my-3" data-ng-if="!$ctrl.isLoading">
-        <p data-translate="order_tracking_bare_metal_delivery_delay"></p>
-    </oui-message>
-
     <div data-ng-if="$ctrl.order">
         <oui-spinner data-ng-if="!$ctrl.orderFollowUp" size="m"> </oui-spinner>
         <div class="oui-progress-tracker" data-ng-if="$ctrl.orderFollowUp">
