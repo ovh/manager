@@ -1,16 +1,27 @@
 import flatten from 'lodash/flatten';
 import uniqBy from 'lodash/uniqBy.js';
-import { DISPLAY_RULES } from './constants';
+import { format } from 'date-fns';
+import * as dateFnsLocales from 'date-fns/locale';
+import { PREFIX_KEYS, LEVEL_LABELS } from './constants';
 
 export default class LogLiveTailCtrl {
   /* @ngInject */
-  constructor($translate, LogLiveTail, $interval, $timeout, $sce, $transclude) {
+  constructor(
+    $translate,
+    LogLiveTail,
+    $interval,
+    $timeout,
+    $sce,
+    $transclude,
+    $locale,
+  ) {
     this.$translate = $translate;
     this.LogLiveTail = LogLiveTail;
     this.$interval = $interval;
     this.$timeout = $timeout;
     this.$sce = $sce;
     this.$transclude = $transclude;
+    this.$locale = $locale;
   }
 
   $onInit() {
@@ -19,13 +30,15 @@ export default class LogLiveTailCtrl {
     this.searchText = null;
     this.glued = true;
     this.url = null;
-    this.DISPLAY_RULES = DISPLAY_RULES;
     this.errorMessage = null;
     this.isTileSlotFilled = this.$transclude.isSlotFilled('tile');
     this.fullScreen = !this.isTileSlotFilled;
 
-    this.keys = Object.keys(this.logKeys);
+    this.searchableKeys = [...PREFIX_KEYS, ...this.logKeys];
     this.setUrlTimeout = null;
+
+    this.locale = this.constructor.getDateFnsLocale(this.$locale.localeID);
+    this.dateFnsLocale = dateFnsLocales[this.locale];
   }
 
   $onChanges(changes) {
@@ -61,7 +74,7 @@ export default class LogLiveTailCtrl {
     return logs.map((log) => {
       const highlightedLog = { ...log };
 
-      this.keys.forEach((key) => {
+      this.searchableKeys.forEach((key) => {
         highlightedLog[`${key}_highlighted`] = this.safeHighlight(
           highlightedLog[key].toString(),
           this.searchText,
@@ -155,14 +168,51 @@ export default class LogLiveTailCtrl {
   }
 
   formatLogs(data) {
-    return data.messages.map((log) => {
-      return this.keys.reduce((customLog, key) => {
-        const path = this.logKeys[key];
+    return data.messages.map(({ message }) => {
+      const { _id, timestamp, level } = message;
+
+      // LOG PREFIX
+      const formattedTimestamp = format(timestamp, 'P pp', {
+        locale: this.dateFnsLocale,
+      });
+
+      const levelLabel = LEVEL_LABELS[level];
+
+      // LOG CUSTOM FIELDS
+      const customFields = this.logKeys.reduce((customLog, key) => {
         // eslint-disable-next-line no-param-reassign
-        customLog[key] = this.getValueByPath(log, path) || '';
+        customLog[key] = this.getValueByPath(message, key) || '';
         return customLog;
       }, {});
+
+      const formattedLog = {
+        _id,
+        formattedTimestamp,
+        level,
+        levelLabel,
+        ...customFields,
+      };
+
+      return formattedLog;
     });
+  }
+
+  /**
+   * angularJS version of packages/manager/core/utils/src/datefns/index.ts
+   * Converts an ovh locale to date-fns locale.
+   * Examples:
+   *   getDateFnsLocale('fr_FR') => 'fr'
+   *   getDateFnsLocale('fr_CA') => 'frCA'
+   */
+  static getDateFnsLocale(ovhLocale) {
+    if (ovhLocale === 'en_GB') {
+      return 'enGB';
+    }
+    if (ovhLocale === 'fr_CA') {
+      return 'frCA';
+    }
+    const [locale] = ovhLocale?.split('_');
+    return locale || 'enGB';
   }
 
   generateTempUrlSource() {

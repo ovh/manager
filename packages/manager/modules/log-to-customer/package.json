@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-log-to-customer",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Module to handle logs to customer",
   "keywords": [
     "angularjs",
@@ -42,7 +42,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-ng-layout-helpers": "^2.8.1",
-    "@ovh-ux/ng-log-live-tail": "^1.0.0",
+    "@ovh-ux/ng-log-live-tail": "^2.0.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.0",
