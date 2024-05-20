@@ -31,6 +31,11 @@ const getMacroRegion = (region: string) => {
   return macro ? macro[0].replace('-', '').toUpperCase() : '';
 };
 
+const getLitteralProductSize = (productName: string): string => {
+  const [, size] = productName.match(/-([^-]+)$/) || [];
+  return size || '';
+};
+
 export type TAvailableRegion = {
   name: string;
   datacenter: string;
@@ -114,10 +119,10 @@ export const useData = (projectId: string) => {
         )
         .forEach((product) => {
           const size: TSizeItem = {
-            payload: product.name.split(/-+/).pop(),
-            label: tSelector(
-              `pci_projects_project_gateways_model_selector_catalog_${product.name}_size`,
-            ),
+            payload: getLitteralProductSize(product.name),
+            label: `${tSelector(
+              `pci_projects_project_gateways_model_selector_size`,
+            )} ${getLitteralProductSize(product.name).toUpperCase()}`,
             bandwidth: product.hourly.addon.blobs.technical.bandwidth.level,
             bandwidthLabel: ((bandwidthLevel: number) => {
               return bandwidthLevel > 1000
