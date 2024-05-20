@@ -10,6 +10,7 @@
   "tableHeaderNodes": "Nœuds",
   "tableHeaderCreationDate": "Date de création",
   "tableHeaderStatus": "Statut",
+  "tableActionManage": "Détails",
   "tableActionCopy": "Copier ID",
   "tableActionEditName": "Renommer",
   "tableActionDelete": "Supprimer"
