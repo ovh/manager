@@ -1,4 +1,3 @@
-// stylelint-disable-next-line selector-type-no-unknown
 .log-live-tail {
   background-color: #122844;
   color: white;
@@ -43,22 +42,77 @@
     bottom: 10px;
   }
 
-  @keyframes tail-logs-blink {
-    0% {
-      opacity: 1;
-    }
+  .log-timestamp {
+    color: DodgerBlue;
+  }
 
-    50% {
-      opacity: 0;
-    }
+  .log-severity {
+    text-transform: uppercase;
+    text-align: right;
+  }
 
-    100% {
-      opacity: 1;
-    }
+  .log-timestamp::after,
+  .log-severity::after {
+    content: '|';
+    display: inline-block;
+    padding-left: 1ch;
+    color: white;
+    opacity: 0.3;
+  }
+
+  /*
+  https://en.wikipedia.org/wiki/Syslog#Severity_level
+  */
+
+  // level 0 - emerg
+  .log-severity[data-level='0'] {
+    color: Magenta;
+  }
+  // level 1 - alert
+  .log-severity[data-level='1'] {
+    color: Violet;
+  }
+  // level 2 - crit
+  .log-severity[data-level='2'] {
+    color: red;
+  }
+  // level 3 - err
+  .log-severity[data-level='3'] {
+    color: Crimson;
+  }
+  // level 4 - warning
+  .log-severity[data-level='4'] {
+    color: Gold;
+  }
+  // level 5 - notice
+  .log-severity[data-level='5'] {
+    color: RosyBrown;
+  }
+  // level 6 - info
+  .log-severity[data-level='6'] {
+    color: LightSkyBlue;
+  }
+  // level 7 - debug
+  .log-severity[data-level='7'] {
+    color: Cyan;
   }
 }
 
 .log-tile {
   flex: 1;
   max-height: 70vh;
+}
+
+@keyframes tail-logs-blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
