@@ -38,7 +38,7 @@ export const TabsComponent = function TabsComponent<Item>({
   });
 
   useEffect(() => {
-    if ('function' === typeof onChange) {
+    if (typeof onChange === 'function') {
       onChange(state.selectedItem);
     }
   }, [state.selectedItem]);
