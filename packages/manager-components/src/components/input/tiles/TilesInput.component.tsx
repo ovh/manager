@@ -1,5 +1,5 @@
-import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import { clsx } from 'clsx';
+import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -65,7 +65,7 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
   const [selectedStack, setSelectedStack] = useState<S>(undefined);
 
   useEffect(() => {
-    if ('function' === typeof stack?.onChange) {
+    if (typeof stack?.onChange === 'function') {
       stack.onChange(selectedStack);
     }
   }, [selectedStack]);
