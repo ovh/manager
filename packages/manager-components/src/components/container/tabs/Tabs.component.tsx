@@ -9,10 +9,11 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 type TProps<Item> = {
   id?: string;
   items?: Item[];
-  titleElement?: (item: Item, selected: boolean) => JSX.Element;
+  titleElement?: (item: Item, selected: boolean) => JSX.Element | string;
   contentElement?: (item: Item) => JSX.Element;
   mobileBreakPoint?: number;
   className?: string;
+  onChange?: (item: Item) => void;
 };
 
 type TState<Item> = {
@@ -29,11 +30,18 @@ export const TabsComponent = function TabsComponent<Item>({
   contentElement = (item) => <div>{`content ${item}`}</div>,
   mobileBreakPoint,
   className,
+  onChange,
 }: TProps<Item>): JSX.Element {
   const [state, setState] = useState<TState<Item>>({
     selectedItem: undefined,
     items: [],
   });
+
+  useEffect(() => {
+    if ('function' === typeof onChange) {
+      onChange(state.selectedItem);
+    }
+  }, [state.selectedItem]);
 
   const toggle = (index: number) => {
     if (index >= 0 && index < state.items.length) {
@@ -89,7 +97,10 @@ export const TabsComponent = function TabsComponent<Item>({
                 }
                 role="button"
               >
-                {titleElement(item.payload, item.payload === item)}
+                {titleElement(
+                  item.payload,
+                  Object.is(item.payload, state.selectedItem),
+                )}
               </li>
             ))}
             <li
@@ -118,7 +129,7 @@ export const TabsComponent = function TabsComponent<Item>({
                 <div className="w-full">
                   {titleElement(
                     $item.payload,
-                    $item.payload === state.selectedItem,
+                    Object.is($item.payload, state.selectedItem),
                   )}
                 </div>
                 <div className="w-fit flex items-center">
