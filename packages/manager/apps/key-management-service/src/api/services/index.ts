@@ -1,3 +1,3 @@
 export * from './get';
 export * from './put';
-export * from './useUpdateOkmsName';
+export * from '../hooks/useUpdateOkmsName';

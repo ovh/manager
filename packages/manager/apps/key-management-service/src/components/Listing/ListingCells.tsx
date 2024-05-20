@@ -11,16 +11,17 @@ import { OKMS } from '@/interface';
 
 export const DatagridCellName = (props: OKMS) => {
   const navigate = useNavigate();
-
   return (
-    <OsdsLink
-      onClick={() => {
-        return navigate(`/${props?.id}`);
-      }}
-      color={ODS_TEXT_COLOR_INTENT.primary}
-    >
-      {props?.iam.displayName}
-    </OsdsLink>
+    <div>
+      <OsdsLink
+        onClick={() => {
+          navigate(`/${props?.id}`);
+        }}
+        color={ODS_TEXT_COLOR_INTENT.primary}
+      >
+        {props?.iam.displayName}
+      </OsdsLink>
+    </div>
   );
 };
 

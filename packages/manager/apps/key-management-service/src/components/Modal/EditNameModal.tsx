@@ -39,7 +39,7 @@ const EditNameModal = ({ okms, toggleModal, onEditName }: DeleteModalProps) => {
         iam: {
           ...okms.iam,
           displayName: newName,
-        } as OKMS['iam'],
+        },
       } as OKMS);
       toggleModal(false);
     }

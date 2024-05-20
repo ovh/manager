@@ -27,19 +27,15 @@ type InformationTileProps = {
 
 const InformationsTile = ({ okmsData }: InformationTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
-  const [showEditModal, toggleEditModal] = useState(false);
-  const {
-    updateKmsName,
-    isPending,
-    error: updateNameError,
-  } = useUpdateOkmsName({});
+  const [editModalDisplayed, setEditModalDisplayed] = useState(false);
+  const { updateKmsName } = useUpdateOkmsName({});
 
   return (
     <OsdsTile className="w-full h-full flex-col" inline rounded>
-      {showEditModal && (
+      {editModalDisplayed && (
         <EditNameModal
           okms={okmsData}
-          toggleModal={toggleEditModal}
+          toggleModal={setEditModalDisplayed}
           onEditName={(okms: OKMS) =>
             updateKmsName({ okms: okms.id, displayName: okms.iam.displayName })
           }
@@ -75,7 +71,7 @@ const InformationsTile = ({ okmsData }: InformationTileProps) => {
             <OsdsIcon
               aria-label="edit"
               className="mx-6 cursor-pointer"
-              onClick={() => toggleEditModal(true)}
+              onClick={() => setEditModalDisplayed(true)}
               name={ODS_ICON_NAME.PEN}
               size={ODS_ICON_SIZE.xxs}
               color={ODS_THEME_COLOR_INTENT.primary}

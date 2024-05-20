@@ -6,7 +6,11 @@ export function breadcrumb() {
   return i18next.t('key-management-service:crumb');
 }
 
-export default function App({ children }: { children: React.ReactNode }) {
+export default function App({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   useTranslation('key-management-service');
 
   return <>{children}</>;

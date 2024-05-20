@@ -26,12 +26,12 @@ function GeneralInformationsTab() {
   }
 
   return (
-    <div className="grid xs:grid-cols-1 sm:grid-cols-2 py-6">
+    <div className="grid xs:grid-cols-1 sm:grid-cols-3 py-6">
       <div className="p-3">
         <InformationsTile okmsData={data.data} />
       </div>
       <div className="p-3">
-        <OsdsTile>Tile 2</OsdsTile>
+        <OsdsTile>Billing informations (Soon)</OsdsTile>
       </div>
     </div>
   );

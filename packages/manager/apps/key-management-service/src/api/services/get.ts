@@ -12,7 +12,6 @@ export const getOkmsServiceIdQueryKey = ({
  * allowedServices operations : List all services allowed in this kms
  */
 export const getOkmsServiceId = async ({ okms }: GetOkmsServiceIdParams) => {
-  return apiClient.v6.get<number[]>(
-    `/services${okms ? `?resourceName=${okms}` : ''}`,
-  );
+  const resourceName = okms ? `?resourceName=${okms}` : '';
+  return apiClient.v6.get<number[]>(`/services${resourceName}`);
 };
