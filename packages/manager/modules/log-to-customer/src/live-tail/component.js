@@ -14,6 +14,7 @@ export default {
     logSubscriptionUrl: '<',
     goToListingPage: '<',
     logKindsList: '<',
+    logKindsKeys: '<',
     kindInitValue: '<',
     trackClick: '<',
     trackingHits: '<',
