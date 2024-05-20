@@ -2,6 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { database } from '@/models/database';
 import { Button } from '@/components/ui/button';
 import ServiceStatusBadge from './serviceStatusBadge';
@@ -26,6 +27,7 @@ export const getColumns = ({
   onRenameClicked,
   onDeleteClicked,
 }: ServiceListColumnsProps) => {
+  const navigate = useNavigate();
   const { t } = useTranslation('pci-databases-analytics/services');
   const { t: tRegions } = useTranslation('regions');
   const columns: ColumnDef<database.Service>[] = [
@@ -221,6 +223,12 @@ export const getColumns = ({
               align="end"
             >
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                variant="primary"
+                onClick={() => navigate(`./${row.original.id}`)}
+              >
+                {t('tableActionManage')}
+              </DropdownMenuItem>
               <DropdownMenuItem
                 variant="primary"
                 onClick={() => {
