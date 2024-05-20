@@ -2,6 +2,7 @@
   "pci_projects_project_gateways_model_selector_catalog_publiccloud-gateway-s_size": "Size S",
   "pci_projects_project_gateways_model_selector_catalog_publiccloud-gateway-m_size": "Size M",
   "pci_projects_project_gateways_model_selector_catalog_publiccloud-gateway-l_size": "Size L",
+  "pci_projects_project_gateways_model_selector_size": "Size",
   "pci_projects_project_gateways_model_selector_bandwidth": "Up to {{bandwidth}}",
   "pci_projects_project_gateways_model_selector_catalog_price": "Price:",
   "pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps": " Mbps",
