@@ -207,12 +207,19 @@ export const getColumns = ({
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="menu" size="menu">
+              <Button
+                data-testid="services-action-trigger"
+                variant="menu"
+                size="menu"
+              >
                 <span className="sr-only">Open menu</span>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent
+              data-testid="services-action-content"
+              align="end"
+            >
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
                 variant="primary"
@@ -227,6 +234,7 @@ export const getColumns = ({
               </DropdownMenuItem>
               {service.capabilities.service?.update && (
                 <DropdownMenuItem
+                  data-testid="service-action-rename-button"
                   disabled={
                     service.capabilities.service?.update ===
                     database.service.capability.StateEnum.disabled
@@ -244,6 +252,7 @@ export const getColumns = ({
                 <>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
+                    data-testid="service-action-delete-button"
                     disabled={
                       service.capabilities.service?.delete ===
                       database.service.capability.StateEnum.disabled

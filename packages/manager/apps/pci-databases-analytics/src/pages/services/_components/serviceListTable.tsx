@@ -37,6 +37,7 @@ export default function ServicesList({
     },
   });
 
+  console.log(services[0].capabilities);
   return (
     <>
       <DataTable columns={columns} data={services} pageSize={25} />
@@ -67,7 +68,10 @@ export default function ServicesList({
 ServicesList.Skeleton = function ServicesListSkeleton() {
   return (
     <>
-      <div className="flex justify-between w-100 mb-2 items-end">
+      <div
+        data-testid="service-list-table-skeleton"
+        className="flex justify-between w-100 mb-2 items-end"
+      >
         <Skeleton className="h-10 w-48" />
         <div className="flex">
           <Skeleton className="h-10 w-48" />

@@ -173,6 +173,7 @@ const AdvancedConfigurationForm = ({
       setValue('');
     }
   };
+
   return (
     <div className="flex flex-col gap-2 mt-2">
       {/* Left Col */}
@@ -192,11 +193,15 @@ const AdvancedConfigurationForm = ({
                   <FormItem className="border rounded-md p-2 relative">
                     <FormLabel>{property.name}</FormLabel>
                     <div className="flex gap-2">
-                      <FormControl className="w-full">
+                      <FormControl
+                        className="w-full"
+                        data-testid="advanced-config-input"
+                      >
                         {getInput(field, property)}
                       </FormControl>
                       {property.isDeletable && (
                         <Button
+                          data-testid={`remove-property-${property.name}`}
                           className="text-red-500 rounded-full p-1 hover:text-red-500 absolute top-0 right-0"
                           variant={'ghost'}
                           type="button"
@@ -266,6 +271,7 @@ const AdvancedConfigurationForm = ({
             </PopoverContent>
           </Popover>
           <Button
+            data-testid="advanced-config-add-button"
             variant={'ghost'}
             onClick={addProperty}
             className="text-primary rounded-full p-2 ml-2 hover:text-primary"
@@ -303,6 +309,7 @@ const AdvancedConfigurationForm = ({
           Object.keys(advancedConfiguration).length) && (
         <div className="flex gap-2">
           <Button
+            data-testid="advanced-config-cancel-button"
             disabled={isPending}
             variant="outline"
             role="button"
@@ -311,6 +318,7 @@ const AdvancedConfigurationForm = ({
             {t('advancedConfigurationCancelButton')}
           </Button>
           <Button
+            data-testid="advanced-config-submit-button"
             form="advancedConfigurationForm"
             disabled={isPending || isDisabled}
           >

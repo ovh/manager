@@ -35,9 +35,13 @@ export const mockedService: database.Service = {
     [database.service.CapabilityEnum.maintenanceApply]: {
       create: database.service.capability.StateEnum.enabled,
     },
+    [database.service.CapabilityEnum.service]: {
+      delete: database.service.capability.StateEnum.enabled,
+      update: database.service.capability.StateEnum.enabled,
+    },
   },
   category: database.CategoryEnum.all,
-  createdAt: 'createdAt',
+  createdAt: '12/12/2022',
   description: 'description',
   disk: {
     size: 1,

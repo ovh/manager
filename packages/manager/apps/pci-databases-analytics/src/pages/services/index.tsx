@@ -29,17 +29,27 @@ const Services = () => {
   const hasRedisService =
     filteredServices.filter((s) => s.engine === database.EngineEnum.redis)
       .length > 0;
+
   if (servicesQuery.isLoading) return <ServicesList.Skeleton />;
   if (servicesQuery.isSuccess && filteredServices.length === 0) {
     return <Onboarding />;
   }
   return (
     <>
-      <div className="flex justify-between w-full items-center">
+      <div
+        data-testid="services-guides-container"
+        className="flex justify-between w-full items-center"
+      >
         <h2>{t('title')}</h2>
         <Guides section={GuideSections.landing} noEngineFilter />
       </div>
-      <Button variant="outline" size="sm" className="text-base" asChild>
+      <Button
+        data-testid="create-service-button"
+        variant="outline"
+        size="sm"
+        className="text-base"
+        asChild
+      >
         <Link to="./new" className="hover:no-underline">
           <Plus className="w-4 h-4 mr-2" />
           {t('createNewService')}

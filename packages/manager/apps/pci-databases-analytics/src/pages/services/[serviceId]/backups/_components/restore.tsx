@@ -172,7 +172,9 @@ const RestoreServiceModal = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('restoreModalTitle')}</DialogTitle>
+          <DialogTitle data-testid="restore-modal">
+            {t('restoreModalTitle')}
+          </DialogTitle>
           <DialogDescription>{t('restoreModalDescription')}</DialogDescription>
         </DialogHeader>
 
@@ -196,6 +198,7 @@ const RestoreServiceModal = ({
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
                           <RadioGroupItem
+                            data-testid="restore-modal-radio-now"
                             value={ForkSourceType.now}
                             disabled={!canUsePointInTime}
                           />
@@ -207,6 +210,7 @@ const RestoreServiceModal = ({
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
                           <RadioGroupItem
+                            data-testid="restore-modal-radio-pitr"
                             value={ForkSourceType.pit}
                             disabled={!canUsePointInTime}
                           />
@@ -328,7 +332,11 @@ const RestoreServiceModal = ({
               />
             )}
             <DialogFooter className="flex justify-end">
-              <Button type="submit" disabled={isPending}>
+              <Button
+                data-testid="restore-submit-button"
+                type="submit"
+                disabled={isPending}
+              >
                 {t('restoreButtonValidate')}
               </Button>
             </DialogFooter>
