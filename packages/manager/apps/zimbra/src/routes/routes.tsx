@@ -45,7 +45,9 @@ export const Routes: any = [
           },
           {
             path: 'domains',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/Domains')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/Domains/Domains'),
+            ),
             handle: {
               breadcrumb: (): string => i18next.t('dashboard:domain'),
             },

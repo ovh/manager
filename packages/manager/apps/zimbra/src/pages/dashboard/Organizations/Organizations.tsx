@@ -23,9 +23,9 @@ import {
   getZimbraPlatformOrganizationQueryKey,
 } from '@/api';
 import { usePlatform } from '@/hooks';
-import ActionItems from './ActionsItems';
+import ActionButtonOrganization from './ActionButtonOrganization';
 import IdLink from './IdLink';
-import LabelChip from './LabelChip';
+import LabelChip from '@/components/LabelChip';
 
 type OrganizationItem = {
   id: string;
@@ -89,7 +89,7 @@ const columns: DatagridColumn<OrganizationItem>[] = [
     id: 'tooltip',
     cell: (item) =>
       (item.status === ResourceStatus.READY ||
-        item.status === ResourceStatus.ERROR) && <ActionItems />,
+        item.status === ResourceStatus.ERROR) && <ActionButtonOrganization />,
     label: '',
   },
 ];
@@ -105,9 +105,8 @@ export default function Organizations() {
       platformId ? getZimbraPlatformOrganization(platformId) : null,
     enabled: !!platformId,
   });
-
   const items: OrganizationItem[] =
-    data?.map((item) => ({
+    data?.map((item: any) => ({
       id: item.id,
       name: item.targetSpec.name,
       label: item.targetSpec.label,

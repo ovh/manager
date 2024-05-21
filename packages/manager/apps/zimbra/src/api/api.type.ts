@@ -66,6 +66,38 @@ export type Organization = {
   };
   currentTasks: Task[];
 };
+
+export type Domain = {
+  checksum: string;
+  currentState: {
+    authoritative: boolean;
+    cnameToCheck: string;
+    createdAt: string;
+    name: string;
+    organizationId: string;
+    organizationLabel: string;
+    status: ResourceStatus;
+    updatedAt: string;
+  };
+  currentTasks: Array<{
+    id: string;
+    link: string;
+    status: ResourceStatus;
+    type: string;
+  }>;
+  id: string;
+  resourceStatus: ResourceStatus;
+  targetSpec: {
+    authoritative: boolean;
+    cnameToCheck: string;
+    createdAt: string;
+    name: string;
+    organizationId: string;
+    organizationLabel: string;
+    status: ResourceStatus;
+    updatedAt: string;
+  };
+};
 export enum ResourceStatus {
   CREATING = 'CREATING',
   DELETING = 'DELETING',
