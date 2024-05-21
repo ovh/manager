@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { ErrorBanner } from '@ovhcloud/manager-components';
+import { Outlet } from 'react-router-dom';
 import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb';
@@ -13,7 +14,7 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 }
 
 export default function Home() {
-  const { data, isError, error, isLoading, refetch } = useRanchers();
+  const { data, isError, error, isLoading, refetch } = useRanchers({});
 
   if (isError && error) {
     return (
@@ -35,6 +36,7 @@ export default function Home() {
         </div>
         {data && <Listing data={data} refetchRanchers={refetch} />}
       </Suspense>
+      <Outlet />
     </PageLayout>
   );
 }

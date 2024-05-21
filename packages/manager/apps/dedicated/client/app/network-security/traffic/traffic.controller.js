@@ -34,11 +34,27 @@ export default class TrafficController {
       this.services = data;
       return data;
     });
-    if (this.getSubnet()) {
-      this.subnet = this.getSubnet();
-      this.selectedIp = this.subnet;
-      this.model = this.selectedIp;
-      this.getTraffic();
+
+    if (this.dateTime) {
+      const dateLimit = new Date();
+      dateLimit.setDate(dateLimit.getDate() - 14);
+      if (this.dateTime >= dateLimit) {
+        const customPeriod = {
+          name: 'custom',
+          label: this.$translate.instant(
+            'network_security_dashboard_filter_custom',
+          ),
+        };
+        this.periods.push(customPeriod);
+        this.period = this.periods[this.periods.length - 1];
+      } else {
+        // Display warning message
+        this.displayWarning = true;
+      }
+    }
+    if (this.ip) {
+      this.selectedIp = this.ip;
+      this.checkSelectedSubnet(this.ip);
     }
 
     this.units = this.CHART.units;
@@ -135,6 +151,9 @@ export default class TrafficController {
         break;
       case this.TRAFFIC_PERIOD_LIST.last14d:
         after.setDate(after.getDate() - 14);
+        break;
+      case 'custom':
+        after.setTime(this.dateTime);
         break;
       default:
         after.setDate(after.getDate() - 1);

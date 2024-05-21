@@ -3,22 +3,22 @@ import React from 'react';
 import { TFunction } from 'react-i18next';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { RessourceStatus } from '@/api/api.type';
+import { ResourceStatus } from '@/api/api.type';
 
 export type DataGridCellProps<Cell = string> = {
   cellData?: Cell;
 };
 
-export const ProductStatusCell: React.FC<DataGridCellProps<RessourceStatus> & {
+export const ProductStatusCell: React.FC<DataGridCellProps<ResourceStatus> & {
   t: TFunction;
 }> = ({ cellData, t }) => {
   const colorByProductStatus = {
-    [RessourceStatus.READY]: ODS_THEME_COLOR_INTENT.success,
-    [RessourceStatus.DISABLED]: ODS_THEME_COLOR_INTENT.error,
-    [RessourceStatus.UPDATING]: ODS_THEME_COLOR_INTENT.info,
-    [RessourceStatus.ERROR]: ODS_THEME_COLOR_INTENT.error,
-    [RessourceStatus.CREATING]: ODS_THEME_COLOR_INTENT.info,
-    [RessourceStatus.DELETING]: ODS_THEME_COLOR_INTENT.info,
+    [ResourceStatus.READY]: ODS_THEME_COLOR_INTENT.success,
+    [ResourceStatus.DISABLED]: ODS_THEME_COLOR_INTENT.error,
+    [ResourceStatus.UPDATING]: ODS_THEME_COLOR_INTENT.info,
+    [ResourceStatus.ERROR]: ODS_THEME_COLOR_INTENT.error,
+    [ResourceStatus.CREATING]: ODS_THEME_COLOR_INTENT.info,
+    [ResourceStatus.DELETING]: ODS_THEME_COLOR_INTENT.info,
   };
 
   return cellData ? (

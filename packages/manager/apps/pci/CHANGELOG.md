@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.3.5...@ovh-ux/manager-pci-app@4.3.6) (2024-05-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+## [4.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.3.4...@ovh-ux/manager-pci-app@4.3.5) (2024-05-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+## [4.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.3.3...@ovh-ux/manager-pci-app@4.3.4) (2024-05-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+## [4.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.3.2...@ovh-ux/manager-pci-app@4.3.3) (2024-05-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+## [4.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.3.1...@ovh-ux/manager-pci-app@4.3.2) (2024-04-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+## [4.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.3.0...@ovh-ux/manager-pci-app@4.3.1) (2024-04-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+# [4.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.2.7...@ovh-ux/manager-pci-app@4.3.0) (2024-04-24)
+
+
+### Features
+
+* add log to customer for K8S service ([#11402](https://github.com/ovh/manager/issues/11402)) ([603f90d](https://github.com/ovh/manager/commit/603f90d5225316eee2700a03af76bc2e0a9d12ee))
+
+
+
+
+
 ## [4.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.2.6...@ovh-ux/manager-pci-app@4.2.7) (2024-04-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-app

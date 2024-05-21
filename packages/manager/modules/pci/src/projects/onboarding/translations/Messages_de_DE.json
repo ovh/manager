@@ -10,5 +10,9 @@
   "pci_projects_onboarding_us_description3": "Wenn Sie Ihre Architekturen nach Projekten strukturieren, können Sie Ihre Cloud-Deployments nach Funktions- oder Betriebsbereichen einteilen, wie es Ihren Anforderungen entspricht. So können Sie beispielsweise ein Projekt für die Entwicklungsumgebung und ein anderes für die Produktionsumgebung erstellen. Denkbar ist auch eine Aufteilung nach Anwendungstyp, zum Beispiel mit einem Back-Office-Projekt und einem E-Commerce-Projekt.",
   "pci_projects_onboarding_us_create_project": "Erstellen Sie Ihr erstes OVH Public Cloud Projekt",
   "pci_projects_onboarding_us_banner_trusted_customer_info_1": "Möchten Sie sich noch eingehender informieren oder eine Bestellung aufgeben?",
-  "pci_projects_onboarding_us_banner_trusted_customer_info_2": "Ein Berater von OVHcloud ruft Sie kostenlos zurück."
+  "pci_projects_onboarding_us_banner_trusted_customer_info_2": "Ein Berater von OVHcloud ruft Sie kostenlos zurück.",
+  "pci_projects_onboarding_banner_trusted_customer_info_1": "Möchten Sie sich noch eingehender informieren oder eine Bestellung aufgeben?",
+  "pci_projects_onboarding_banner_trusted_customer_info_2": "Ein Berater von OVHcloud ruft Sie kostenlos zurück.",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_description": "Sie möchten ein Public Cloud Projekt erstellen: Gemäß den geltenden Vorschriften ist eine Identitätsüberprüfung erforderlich. Die Verarbeitung Ihrer Dokumente wird derzeit von unserem Team analysiert. Weitere Informationen finden Sie in ",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_link": "Meine Support-Anfragen"
 }

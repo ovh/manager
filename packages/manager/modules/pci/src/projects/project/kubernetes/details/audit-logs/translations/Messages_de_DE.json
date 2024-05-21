@@ -1,6 +1,7 @@
 {
-  "kube_logs_tab_title": "Audit Logs",
-  "kube_logs_list_no_logs": "Warten auf Logs",
-  "kube_logs_description": "Hier finden Sie die Logs der Steuerungsebene Ihres Kubernetes-Clusters. Bitte entnehmen Sie der Dokumentation, wie Sie Ihre Pods einsehen können.",
-  "kube_logs_description_link": "Mehr erfahren."
+  "kube_logs_tab_title": "Logs",
+  "kube_logs_main_description": "Im Folgenden finden Sie die Audit-Logs Ihres Kubernetes-Clusters, die eine chronologische Auflistung sicherheitsrelevanter Datensätze enthalten und die Abfolge der Aktionen in Ihrem Cluster dokumentieren: von den Usern, den Anwendungen, die die Kubernetes-API verwenden, und dem Kontrollplan selbst generierte Aktivitäten.",
+  "kube_logs_tile_description": "Wenn Sie diesen Feed abonnieren, können Sie Ihre Logs direkt auf die Logs Data Platform von OVHcloud übertragen, auf der Sie erweiterte Suchvorgänge durchführen, Alarme und Visualisierungen erstellen oder diese einfach archivieren können.",
+  "logs_list_title": "Streams",
+  "logs_list_description_audit": "Wenn Sie die Logs Ihres Kubernetes-Clusters abonnieren, werden sie auf die Logs Data Platform übertragen. Sie können sie mit Ihren anderen Logs zentralisieren, erweiterte Suchvorgänge durchführen, ihre Aufbewahrung verwalten, Alarme definieren und Dashboards verwenden, um Ihre Cluster einfach zu überwachen."
 }

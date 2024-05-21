@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.7.4...@ovh-ux/manager-hub-app@5.7.5) (2024-05-21)
+
+
+### Bug Fixes
+
+* **hub:** remove useless services call ([#11599](https://github.com/ovh/manager/issues/11599)) ([2bd9a33](https://github.com/ovh/manager/commit/2bd9a338063463bd1e56bb9f21616585c57cc798))
+
+
+
+
+
+## [5.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.7.3...@ovh-ux/manager-hub-app@5.7.4) (2024-05-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [5.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.7.2...@ovh-ux/manager-hub-app@5.7.3) (2024-05-06)
+
+
+### Bug Fixes
+
+* **hub:** make dashboard usable without rights on /services ([#11256](https://github.com/ovh/manager/issues/11256)) ([6d79720](https://github.com/ovh/manager/commit/6d797209ab1a77253072b501963d706e3996ce81))
+
+
+
+
+
+## [5.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.7.1...@ovh-ux/manager-hub-app@5.7.2) (2024-04-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
 ## [5.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.7.0...@ovh-ux/manager-hub-app@5.7.1) (2024-04-22)
 
 

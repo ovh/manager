@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-utils",
-  "version": "14.4.0",
+  "version": "14.4.1",
   "description": "[DEPRECATED] A collection of directives for AngularJS.",
   "keywords": [
     "angularjs",
@@ -47,7 +47,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
-    "@ovh-ux/ui-kit": "^6.7.3",
+    "@ovh-ux/ui-kit": "^6.10.0",
     "angular": "^1.5.0",
     "angular-translate": "^2.18.1",
     "jquery": "^2.1.3"

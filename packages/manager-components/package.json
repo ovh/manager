@@ -1,8 +1,8 @@
 {
   "name": "@ovhcloud/manager-components",
   "private": true,
-  "version": "1.10.2",
-  "main": "src/components/index.ts",
+  "version": "1.13.0",
+  "main": "src/lib.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@ovh-ux/manager-core-api": "^0.7.1",
-    "@ovh-ux/manager-react-shell-client": "^0.4.2",
+    "@ovh-ux/manager-react-shell-client": "^0.6.0",
     "@ovhcloud/ods-common-core": "17.2.1",
     "@ovhcloud/ods-common-testing": "17.2.1",
     "@ovhcloud/ods-common-theming": "17.2.1",
@@ -90,6 +90,9 @@
     "react-i18next": "^11.18.1",
     "react-router-dom": "^6.21.0",
     "zustand": "^4.5.0"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.18.1"
   },
   "files": [
     "dist"

@@ -1,4 +1,4 @@
-import { filter, get, groupBy, map, reverse, sortBy } from 'lodash-es';
+import { get, map, reverse, sortBy } from 'lodash-es';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.dashboard', {
@@ -17,20 +17,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             serviceType: 'aapi',
           })
           .then((data) => data.data.data.services),
-      products: /* @ngInject */ ($http, $q, order, services) => {
-        if (get(services, 'data.count') === 0 && !order) {
-          return $http
-            .get('/hub/catalog', {
-              serviceType: 'aapi',
-            })
-            .then((data) => {
-              const { catalog } = data.data.data;
-              return groupBy(
-                filter(catalog.data, ({ highlight }) => highlight),
-                'universe',
-              );
-            });
-        }
+      products: /* @ngInject */ ($q, services) => {
         return $q.resolve(
           reverse(
             sortBy(
@@ -70,8 +57,10 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     resolvePolicy: {
       async: 'NOWAIT',
     },
-    componentProvider: /* @ngInject */ (order, numberOfServices) => {
-      return !numberOfServices && !order ? 'hubOrderDashboard' : 'hubDashboard';
+    componentProvider: /* @ngInject */ (order, services) => {
+      return !get(services, 'data.count') && !order
+        ? 'hubOrderDashboard'
+        : 'hubDashboard';
     },
   });
 

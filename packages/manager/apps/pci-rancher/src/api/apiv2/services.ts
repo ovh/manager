@@ -32,7 +32,7 @@ export const getRancherProjectById = async (
 export const getByRancherIdProjectId = async (
   projectId?: string,
   rancherId?: string,
-): Promise<{ data: RancherService }> =>
+): Promise<{ data: RancherService }> => 
   apiClient.v2.get(getByRancherIdProjectIdQueryKey(projectId, rancherId));
 
 export const getProject = async (projectId: string): Promise<PciProject> => {
@@ -139,7 +139,7 @@ export const getListingIceberg = async () => {
   try {
     return fetchIcebergV2({
       route: '/publicCloud/project',
-    }).then(({ data, status }: any) => ({ data, status }));
+    }).then(({ data, status }) => ({ data, status }));
   } catch (error) {
     return Promise.reject(error);
   }

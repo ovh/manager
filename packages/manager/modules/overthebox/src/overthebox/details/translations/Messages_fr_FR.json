@@ -72,11 +72,11 @@
   "overTheBox_release_channels": "Versions disponibles",
   "overTheBox_change_release_channel_success": "Le changement de la version a été effectué avec succès.",
   "overTheBox_change_release_channel_error": "Nous n'avons pas pu effectuer le changement de la version : {{errorMessage}}",
-  "overTheBox_release_channel_stable": "Version stable grand publique",
-  "overTheBox_release_channel_beta": "Version beta",
-  "overTheBox_release_channel_alpha": "Version alpha",
-  "overTheBox_release_channel_develop": "Version de développement",
-  "overTheBox_release_channel_rpi3": "Version pour Raspberry 3",
+  "overTheBox_release_channel_stable": "Version stable avec mise à jour automatique",
+  "overTheBox_release_channel_beta": "Version beta avec mise à jour automatique",
+  "overTheBox_release_channel_v0_8": "Version v0.8",
+  "overTheBox_release_channel_v0_9": "Version v0.9",
+  "overTheBox_release_channel_v1_0": "Version v1.0",
   "overTheBox_version_device": "Version du matériel",
   "overTheBox_version_system": "Version du système",
   "overTheBox_last_seen": "Dernier accès du matériel depuis les serveurs de provisionning",
@@ -86,5 +86,8 @@
   "overTheBox_detail_link_guide": "Guides",
   "overthebox_detail_links": "Liens",
   "overTheBox_service_id": "Identifiant du service :",
-  "overTheBox_available_update": "Une mise à jour est disponible pour votre appareil."
+  "overTheBox_available_update": "Une mise à jour est disponible pour votre appareil.",
+  "overTheBox_authorize_autoupgrade": "Autoriser les mises à jour automatiques la nuit",
+  "overTheBox_change_auto_upgrade_success": "Le changement des mises automatiques la nuit a été effectué avec succès.",
+  "overTheBox_change_auto_upgrade_error": "Nous n'avons pas pu effectuer le changement des mises automatiques la nuit : {{errorMessage}}"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-services-app",
-  "version": "0.1.5",
+  "version": "0.3.2",
   "private": true,
   "description": "OVHcloud VrackServices app",
   "repository": {
@@ -24,11 +24,11 @@
   "dependencies": {
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
-    "@ovh-ux/manager-module-order": "^0.2.2",
-    "@ovh-ux/manager-react-shell-client": "^0.4.2",
+    "@ovh-ux/manager-module-order": "^0.2.4",
+    "@ovh-ux/manager-react-shell-client": "^0.6.0",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "*",
-    "@ovhcloud/manager-components": "^1.10.2",
+    "@ovhcloud/manager-components": "^1.13.0",
     "@ovhcloud/ods-common-core": "17.2.1",
     "@ovhcloud/ods-common-theming": "17.2.1",
     "@ovhcloud/ods-components": "17.2.1",
@@ -50,6 +50,7 @@
     "@types/jest": "27.x",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.2.0",
+    "c8": "^9.1.0",
     "jest": "27.x",
     "msw": "2.1.7",
     "ts-jest": "27.x",

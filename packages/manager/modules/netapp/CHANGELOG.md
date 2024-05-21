@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.10.4...@ovh-ux/manager-netapp@1.11.0) (2024-05-06)
+
+
+### Features
+
+* **dedicated:** add name column in netapp dashboard ([#10458](https://github.com/ovh/manager/issues/10458)) ([47c1078](https://github.com/ovh/manager/commit/47c1078aa788406b92c2ab092c467ed408978614))
+* **netapp:** modify name of service ([#11508](https://github.com/ovh/manager/issues/11508)) ([68e6e8b](https://github.com/ovh/manager/commit/68e6e8bd9cf27f3c558db76d5e074c93f319deef))
+
+
+
+
+
+## [1.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.10.3...@ovh-ux/manager-netapp@1.10.4) (2024-04-29)
+
+
+### Bug Fixes
+
+* **dedicated.netapp:** efs listing links ([#11491](https://github.com/ovh/manager/issues/11491)) ([3a9d675](https://github.com/ovh/manager/commit/3a9d6759f95f36d30a515c2a14bc70a059821079))
+* remove unused translations [CDS] ([a300597](https://github.com/ovh/manager/commit/a300597dd5a7e08bc9060484def0227d89ac82c2))
+
+
+
+
+
 ## [1.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.10.2...@ovh-ux/manager-netapp@1.10.3) (2024-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

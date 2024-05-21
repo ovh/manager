@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.5.1...@ovh-ux/ng-ovh-contracts@4.6.0) (2024-05-21)
+
+
+### Features
+
+* **pci:** disable discovery project creation in IN when undergoing kyc validation ([#11297](https://github.com/ovh/manager/issues/11297)) ([a4f3dce](https://github.com/ovh/manager/commit/a4f3dce8090a7be5b81b10538823182ffcba845f))
+
+
+
+
+
+## [4.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.5.0...@ovh-ux/ng-ovh-contracts@4.5.1) (2024-05-06)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-contracts
+
+
+
+
+
 # [4.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.4.1...@ovh-ux/ng-ovh-contracts@4.5.0) (2024-02-21)
 
 

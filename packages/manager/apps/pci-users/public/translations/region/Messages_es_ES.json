@@ -62,5 +62,17 @@
   "manager_components_region_location_BRU": "Europa Occidental",
   "manager_components_region_continent_GS": "Europa Occidental",
   "manager_components_region_continent_MAD": "Europa Occidental",
-  "manager_components_region_continent_BRU": "Europa Occidental"
+  "manager_components_region_continent_BRU": "Europa Occidental",
+  "manager_components_region_MRS": "Marsella",
+  "manager_components_region_MRS_micro": "Marsella ({{ micro }})",
+  "manager_components_region_continent_MRS": "Europa Occidental",
+  "manager_components_region_PRG": "Praga",
+  "manager_components_region_PRG_micro": "Praga ({{ micro }})",
+  "manager_components_region_continent_PRG": "Europa Central",
+  "manager_components_region_AMS": "Ámsterdam",
+  "manager_components_region_AMS_micro": "Ámsterdam ({{ micro }})",
+  "manager_components_region_continent_AMS": "Europa Occidental",
+  "manager_components_region_MIL": "Milán",
+  "manager_components_region_MIL_micro": "Milán ({{ micro }})",
+  "manager_components_region_continent_MIL": "Europa Occidental"
 }

@@ -29,6 +29,7 @@ export default class Kubernetes {
     OvhApiCloudProjectKube,
     OvhApiKube,
     OvhApiCloudProjectQuota,
+    iceberg,
   ) {
     this.$http = $http;
     this.$q = $q;
@@ -39,6 +40,7 @@ export default class Kubernetes {
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
     this.OvhApiKube = OvhApiKube;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
+    this.iceberg = iceberg;
   }
 
   static isProcessing(status) {
@@ -106,6 +108,16 @@ export default class Kubernetes {
       ramCapacity: flavor.ram / 1000,
       diskCapacity: flavor.disk,
     });
+  }
+
+  getKubeLogKinds(projectId) {
+    return this.iceberg(
+      `/cloud/project/${projectId}/capabilities/kube/log/kind`,
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => data);
   }
 
   getKubeConfig(serviceName, kubeId) {

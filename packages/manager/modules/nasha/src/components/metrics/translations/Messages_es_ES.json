@@ -11,5 +11,9 @@
   "nasha_components_metrics_ip": "IP",
   "nasha_components_metrics_renew": "Renovar",
   "nasha_components_metrics_space_usage": "Aviso de uso",
-  "nasha_components_metrics_space_usage_help": "El contacto administrador y el contacto técnico recibirán una alerta por correo electrónico cuando el NAS alcance el 90% de espacio ocupado."
+  "nasha_components_metrics_space_usage_help": "El contacto administrador y el contacto técnico recibirán una alerta por correo electrónico cuando el NAS alcance el 90% de espacio ocupado.",
+  "nasha_components_metrics_datacenter_mrs": "Marsella",
+  "nasha_components_metrics_datacenter_prg": "Praga",
+  "nasha_components_metrics_datacenter_ams": "Ámsterdam",
+  "nasha_components_metrics_datacenter_mil": "Milán"
 }

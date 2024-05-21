@@ -49,4 +49,4 @@ const Errors: React.FC<ErrorObject> = ({ error }) => {
   );
 };
 
-export default ErrorBanner;
+export default Errors;

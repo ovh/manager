@@ -1,17 +1,17 @@
 import { fetchIcebergV2, fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
 
-{{#if unknownTypeList}}
+{{!-- {{#if unknownTypeList}}
 {{#each unknownTypeList}}
 type {{this}} = unknown;
 {{/each}}
-{{/if}}
+{{/if}} --}}
 {{#each operationList}}
 
 {{#if this.params}}
 export type {{pascalCase this.functionName}}Params = {
   {{#each this.params}}
   /** {{this.description}} */
-  '{{this.name}}'{{#if this.required}}?{{/if}}: {{this.type}};
+  '{{this.name}}'{{#if this.required}}?{{/if}}: any;
   {{/each}}
 };
 
@@ -23,7 +23,7 @@ export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pa
  * {{this.description}}
  */
 {{/if}}
-export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}): Promise<{{this.responseType}}> =>
+export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}): Promise<any> =>
   apiClient.{{this.apiVersion}}.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
 {{/each}}
 {{#ifEq arg1=apiVersion arg2=mainApiPathApiVersion}}

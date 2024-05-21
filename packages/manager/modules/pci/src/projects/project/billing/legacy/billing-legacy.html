@@ -37,6 +37,10 @@
     data-ng-if="BillingCtrl.pciFeatures.isFeatureAvailable(BillingCtrl.PCI_FEATURES.BANNERS.BILLING_CHANGE_MEDIATION_BANNER)"
 ></pci-project-billing-change-mediation-banner>
 
+<pci-billing-change-banner
+    data-ng-if="BillingCtrl.pciFeatures.isFeatureAvailable(BillingCtrl.PCI_FEATURES.BANNERS.BILLING_CHANGE_MEDIATION_BANNER_2) && !$ctrl.isDiscoveryProject"
+></pci-billing-change-banner>
+
 <div class="mt-4">
     <cui-message-container
         data-messages="BillingCtrl.messages"
@@ -51,7 +55,7 @@
     <div data-ng-if="!BillingCtrl.loading">
         <div class="row">
             <div class="col-xl-6 mb-4">
-                <oui-tile heading="{{ ::'cpbc_monthly_header' | translate }}">
+                <oui-tile heading="{{:: BillingCtrl.monthlyBillingTitle }}">
                     <p class="oui-tile__legend">
                         <span
                             data-translate="cpbc_monthly_header_description"
@@ -67,7 +71,7 @@
                 </oui-tile>
             </div>
             <div class="col-xl-6">
-                <oui-tile heading="{{ ::'cpbc_hourly_header' | translate }}">
+                <oui-tile heading="{{:: BillingCtrl.hourlyBillingTitle }}">
                     <p class="oui-tile__legend">
                         <span
                             data-translate="cpbc_hourly_header_description"

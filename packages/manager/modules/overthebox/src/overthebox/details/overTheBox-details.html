@@ -35,6 +35,13 @@
         >
             <span data-translate="overTheBox_action_reboot_label"></span>
         </oui-button>
+        <span>
+            <oui-switch
+                data-model="$ctrl.autoUpgrade"
+                data-on-change="$ctrl.changeAutoUpgrade(modelValue)"
+            ></oui-switch>
+            <span data-translate="overTheBox_authorize_autoupgrade"></span>
+        </span>
     </header>
 
     <tuc-toast-message></tuc-toast-message>

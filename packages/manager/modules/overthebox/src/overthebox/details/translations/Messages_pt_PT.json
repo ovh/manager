@@ -72,11 +72,11 @@
   "overTheBox_release_channels": "Versões disponíveis",
   "overTheBox_change_release_channel_success": "A alteração da versão foi efetuada com sucesso.",
   "overTheBox_change_release_channel_error": "Não foi possível alterar a versão: {{errorMessage}}",
-  "overTheBox_release_channel_stable": "Versão estável grande pública",
-  "overTheBox_release_channel_beta": "Versão beta",
-  "overTheBox_release_channel_alpha": "Versão alfa",
-  "overTheBox_release_channel_develop": "Versão de desenvolvimento",
-  "overTheBox_release_channel_rpi3": "Versão para Raspberry 3",
+  "overTheBox_release_channel_stable": "Versão estável com atualização automática",
+  "overTheBox_release_channel_beta": "Versão beta com atualização automática",
+  "overTheBox_release_channel_v0_8": "Versão v0.8",
+  "overTheBox_release_channel_v0_9": "Versão v0.9",
+  "overTheBox_release_channel_v1_0": "Versão v1.0",
   "overTheBox_version_device": "Versão do material",
   "overTheBox_version_system": "Versão do sistema",
   "overTheBox_last_seen": "Último acesso do hardware a partir dos servidores de aprovisionamento",
@@ -85,5 +85,8 @@
   "overTheBox_reverse_dns": "Reverse DNS",
   "overTheBox_detail_link_guide": "Manuais",
   "overthebox_detail_links": "Links",
-  "overTheBox_service_id": "Identificador do serviço:"
+  "overTheBox_service_id": "Identificador do serviço:",
+  "overTheBox_authorize_autoupgrade": "Permitir atualizações automáticas durante a noite",
+  "overTheBox_change_auto_upgrade_success": "A alteração das apostas automáticas durante a noite foi realizada com sucesso.",
+  "overTheBox_change_auto_upgrade_error": "Não foi possível efetuar a alteração das apostas automáticas durante a noite: {{errorMessage}}"
 }

@@ -86,7 +86,7 @@
   "cdn_domain_configuration_cacherule_create_title": "Crear una nueva regla",
   "cdn_domain_configuration_cacherule_create_step1_question": "¿Quiere crear una regla de caché?",
   "cdn_domain_configuration_cacherule_create_step1_information_FILE": "La regla debe comenzar por '/' y contener una extensión de al menos 2 caracteres.",
-  "cdn_domain_configuration_cacherule_create_step1_information_EXTENSION": "La regla debe comenzar por '.' y estar formada por un mínimo de 2 caracteres y un máximo de 4.",
+  "cdn_domain_configuration_cacherule_create_step1_information_EXTENSION": "La regla debe comenzar por un «.» y estar formada por un mínimo de 2 caracteres y un máximo de 5.",
   "cdn_domain_configuration_cacherule_create_step1_information_FOLDER": "La regla debe comenzar por '/'.",
   "cdn_domain_configuration_cacherule_create_cachetype": "Cacheado:",
   "cdn_domain_configuration_cacherule_create_cachetype_NO_CACHE": "Nunca",

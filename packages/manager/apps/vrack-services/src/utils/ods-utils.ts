@@ -7,11 +7,11 @@ export type DataGridCellProps<Cell = string, Row = any> = {
   rowData?: Row;
 };
 
-export const reactFormatter = (jsx: any) => (
-  cellData: any,
+export const reactFormatter = (jsx: React.ReactElement) => (
+  cellData: string,
   rowData: any,
   cell: any,
-  onRendered: any,
+  onRendered: (callback: () => void) => void,
 ): string => {
   let isFirstRender = true;
   let root: Root = null;

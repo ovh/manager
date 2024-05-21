@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.20.1...@ovh-ux/manager-dbaas-logs@1.20.2) (2024-05-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs
+
+
+
+
+
+## [1.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.20.0...@ovh-ux/manager-dbaas-logs@1.20.1) (2024-04-29)
+
+
+### Bug Fixes
+
+* **pci:** ldp streams action menu better wording and copy stream id ([#11057](https://github.com/ovh/manager/issues/11057)) ([5ca042b](https://github.com/ovh/manager/commit/5ca042b88b27e106e06e596732f473ae8e07c4a5))
+* **pci:** logs data platform archive url payload ([#11047](https://github.com/ovh/manager/issues/11047)) ([70a989b](https://github.com/ovh/manager/commit/70a989b12350b15caf57f9d6dc57fa12fdef76f1))
+
+
+
+
+
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.19.1...@ovh-ux/manager-dbaas-logs@1.20.0) (2024-04-24)
+
+
+### Features
+
+* add log to customer for K8S service ([#11402](https://github.com/ovh/manager/issues/11402)) ([603f90d](https://github.com/ovh/manager/commit/603f90d5225316eee2700a03af76bc2e0a9d12ee))
+
+
+
+
+
 ## [1.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.19.0...@ovh-ux/manager-dbaas-logs@1.19.1) (2024-03-19)
 
 

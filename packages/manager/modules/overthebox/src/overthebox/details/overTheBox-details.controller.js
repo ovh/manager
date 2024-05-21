@@ -71,6 +71,7 @@ export default class OverTheBoxDetailsCtrl {
           .$promise.then((otb) => {
             this.nameEditable = otb.status === 'active';
             this.releaseChannel = otb.releaseChannel;
+            this.autoUpgrade = otb.autoUpgrade;
             return otb;
           }),
       ])
@@ -362,7 +363,7 @@ export default class OverTheBoxDetailsCtrl {
         this.releaseChannels = channels.map((channel) => ({
           name: channel,
           label: this.$translate.instant(
-            `overTheBox_release_channel_${channel}`,
+            `overTheBox_release_channel_${channel.replace('.', '_')}`,
           ),
         }));
 
@@ -762,6 +763,35 @@ export default class OverTheBoxDetailsCtrl {
       })
       .finally(() => {
         this.loaders.changingReleaseChannel = false;
+      });
+  }
+
+  changeAutoUpgrade(autoUpgrade) {
+    this.loaders.changingAutoUpgrade = true;
+    return this.OvhApiOverTheBox.v6()
+      .putService(
+        {
+          serviceName: this.serviceName,
+        },
+        {
+          autoUpgrade,
+        },
+      )
+      .$promise.then(() => {
+        this.TucToast.success(
+          this.$translate.instant('overTheBox_change_auto_upgrade_success'),
+        );
+      })
+      .catch((err) => {
+        this.TucToast.error(
+          this.$translate.instant('overTheBox_change_auto_upgrade_error', {
+            errorMessage: err.data.message,
+          }),
+        );
+        return this.$q.reject(err);
+      })
+      .finally(() => {
+        this.loaders.changingAutoUpgrade = false;
       });
   }
 }

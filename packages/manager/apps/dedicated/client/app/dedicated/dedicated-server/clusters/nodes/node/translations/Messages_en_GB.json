@@ -833,5 +833,9 @@
   "server_configuration_intervention_activate_failed": "An error has occurred enabling on-site interventions on server {{serverName}}",
   "server_nutanix_cluster_node_warning_1": "This dedicated server is part of a Nutanix cluster: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "We recommend making all of the configuration changes directly in the dashboard of the server linked to your Nutanix cluster: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "All billing actions linked to this server are visible on your Nutanix cluster: {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "All billing actions linked to this server are visible on your Nutanix cluster: {{clusterDashboardLink}}",
+  "server_datacenter_MRS": "Marseille",
+  "server_datacenter_PRG": "Prague",
+  "server_datacenter_AMS": "Amsterdam",
+  "server_datacenter_MIL": "Milan"
 }

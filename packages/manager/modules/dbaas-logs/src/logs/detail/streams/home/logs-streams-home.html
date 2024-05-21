@@ -138,6 +138,9 @@
                 on-click="ctrl.copyToken($row)"
                 ><span data-translate="logs_streams_copy_token"></span
             ></oui-action-menu-item>
+            <oui-action-menu-item on-click="ctrl.copyStreamId($row)"
+                ><span data-translate="logs_streams_copy_stream_id"></span
+            ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.webSocketEnabled"
                 on-click="ctrl.followLive($row)"
@@ -151,12 +154,12 @@
             <oui-action-menu-item
                 disabled="!$row.coldStorageEnabled && $row.nbArchive === 0"
                 on-click="ctrl.goToArchives($row)"
-                ><span data-translate="logs_streams_archives"></span
+                ><span data-translate="logs_streams_manage_archives"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.isEditable || $row.nbSubscription === 0"
                 on-click="ctrl.goToSubscriptions($row)"
-                ><span data-translate="logs_streams_subscriptions"></span
+                ><span data-translate="logs_streams_manage_subscriptions"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.isEditable"

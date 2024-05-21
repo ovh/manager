@@ -1,11 +1,10 @@
 import { PathParams } from 'msw';
 import { Request as PlaywrightRequest } from '@playwright/test';
-import { Handler } from '@playwright-helpers';
 import { getParamsFromUrl } from '../../../../../../playwright-helpers/network';
 import { AllowedServicesResponse, Status, Task } from '../../src/api/api.type';
 import vrackServicesList from '../vrack-services/get-vrack-services.json';
 
-const getAllowedServicesResponse = (
+export const getAllowedServicesResponse = (
   nbEligibleVrackServices: number,
 ): AllowedServicesResponse => ({
   ip: null,
@@ -23,7 +22,7 @@ const getAllowedServicesResponse = (
     .slice(0, nbEligibleVrackServices),
 });
 
-const getAssociationResponse = async (
+export const getAssociationResponse = async (
   request: Request,
   params: PathParams,
 ): Promise<Task> => {
@@ -57,38 +56,3 @@ const getAssociationResponse = async (
     updatedAt: dateString,
   };
 };
-
-export type GetAssociationMocksParams = {
-  nbEligibleVrackServices?: number;
-  associationKo?: boolean;
-};
-
-export const getAssociationMocks = ({
-  nbEligibleVrackServices = 1,
-  associationKo,
-}: GetAssociationMocksParams): Handler[] => [
-  {
-    url: '/vrack/:id/allowedServices',
-    response: getAllowedServicesResponse(nbEligibleVrackServices),
-    api: 'v6',
-  },
-  {
-    url: '/vrack/:id/vrackServices',
-    response: (request: Request, params: PathParams) =>
-      associationKo
-        ? {
-            status: 500,
-            code: 'ERR_UPDATE_ERROR',
-            response: {
-              status: 500,
-              data: {
-                message: 'Update error',
-              },
-            },
-          }
-        : getAssociationResponse(request, params),
-    method: 'post',
-    status: associationKo ? 500 : 200,
-    api: 'v6',
-  },
-];

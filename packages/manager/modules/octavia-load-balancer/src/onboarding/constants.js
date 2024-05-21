@@ -4,7 +4,7 @@ export const GUIDES = [
     description: 'octavia_load_balancer_onboarding_guide1_description',
     links: {
       DEFAULT:
-        'https://help.ovhcloud.com/csm/en-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050207',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/18610207964051-Getting-Started-with-Load-Balancer-on-Public-Cloud',
       ASIA:
         'https://help.ovhcloud.com/csm/asia-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050195',
       AU:
@@ -40,9 +40,9 @@ export const GUIDES = [
       TN:
         'https://help.ovhcloud.com/csm/fr-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050200',
       US:
-        'https://help.ovhcloud.com/csm/en-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050207',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/18610207964051-Getting-Started-with-Load-Balancer-on-Public-Cloud',
       WE:
-        'https://help.ovhcloud.com/csm/en-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050207',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/18610207964051-Getting-Started-with-Load-Balancer-on-Public-Cloud',
       WS:
         'https://help.ovhcloud.com/csm/es-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050197',
     },
@@ -52,7 +52,7 @@ export const GUIDES = [
     description: 'octavia_load_balancer_onboarding_guide2_description',
     links: {
       DEFAULT:
-        'https://help.ovhcloud.com/csm/en-public-cloud-network-octavia-use-lbaas-openstack?id=kb_article_view&sysparm_article=KB0050297',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/21133261407251-Concepts-Load-Balancer',
       ASIA:
         'https://help.ovhcloud.com/csm/asia-public-cloud-network-octavia-use-lbaas-openstack?id=kb_article_view&sysparm_article=KB0037954',
       AU:
@@ -88,9 +88,9 @@ export const GUIDES = [
       TN:
         'https://help.ovhcloud.com/csm/fr-public-cloud-network-octavia-use-lbaas-openstack?id=kb_article_view&sysparm_article=KB0050299',
       US:
-        'https://help.ovhcloud.com/csm/en-public-cloud-network-octavia-use-lbaas-openstack?id=kb_article_view&sysparm_article=KB0050297',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/21133261407251-Concepts-Load-Balancer',
       WE:
-        'https://help.ovhcloud.com/csm/en-public-cloud-network-octavia-use-lbaas-openstack?id=kb_article_view&sysparm_article=KB0050297',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/21133261407251-Concepts-Load-Balancer',
       WS:
         'https://help.ovhcloud.com/csm/es-public-cloud-network-octavia-use-lbaas-openstack?id=kb_article_view&sysparm_article=KB0050306',
     },
@@ -100,7 +100,7 @@ export const GUIDES = [
     description: 'octavia_load_balancer_onboarding_guide3_description',
     links: {
       DEFAULT:
-        'https://help.ovhcloud.com/csm/en-public-cloud-network-load-balancer-letsencrypt?id=kb_article_view&sysparm_article=KB0050316',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/21194412563219-Configuring-a-Secure-Load-Balancer-with-Let-s-Encrypt',
       ASIA:
         'https://help.ovhcloud.com/csm/asia-public-cloud-network-load-balancer-letsencrypt?id=kb_article_view&sysparm_article=KB0037974',
       AU:
@@ -136,9 +136,9 @@ export const GUIDES = [
       TN:
         'https://help.ovhcloud.com/csm/fr-public-cloud-network-load-balancer-letsencrypt?id=kb_article_view&sysparm_article=KB0050318',
       US:
-        'https://help.ovhcloud.com/csm/en-public-cloud-network-load-balancer-letsencrypt?id=kb_article_view&sysparm_article=KB0050316',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/21194412563219-Configuring-a-Secure-Load-Balancer-with-Let-s-Encrypt',
       WE:
-        'https://help.ovhcloud.com/csm/en-public-cloud-network-load-balancer-letsencrypt?id=kb_article_view&sysparm_article=KB0050316',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/21194412563219-Configuring-a-Secure-Load-Balancer-with-Let-s-Encrypt',
       WS:
         'https://help.ovhcloud.com/csm/fr-ca-public-cloud-network-load-balancer-letsencrypt?id=kb_article_view&sysparm_article=KB0050310',
     },

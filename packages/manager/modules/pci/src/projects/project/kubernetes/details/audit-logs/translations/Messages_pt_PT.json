@@ -1,6 +1,7 @@
 {
-  "kube_logs_tab_title": "Auditoria Logs",
-  "kube_logs_list_no_logs": "A aguardar logs",
-  "kube_logs_description": "Encontrará aqui os logs do control-plane do seu cluster Kubernetes. Para consultar os seus pods profissionais, consulte os manuais.",
-  "kube_logs_description_link": "Saber mais"
+  "kube_logs_tab_title": "Logs",
+  "kube_logs_main_description": "Encontrará abaixo os registos de auditoria do seu cluster Kubernetes que fornecem um conjunto cronológico de registos pertinentes para a segurança e documentam a sequência de ações no seu cluster: atividades geradas pelos utilizadores, pelas aplicações que utilizam a API Kubernetes e pelo próprio plano de controlo.",
+  "kube_logs_tile_description": "Ao subscrever este fluxo, pode transferir os seus logs diretamente para o Logs Data Platform da OVHcloud, o que lhe permite realizar pesquisas mais avançadas, criar alertas e visualizações ou simplesmente arquivá-los.",
+  "logs_list_title": "Fluxo de dados",
+  "logs_list_description_audit": "Ao subscrever os logs de auditoria do seu cluster Kubernetes, estes serão transferidos para o Logs Data Platform e poderá centralizá-los com os seus outros logs, efetuar pesquisas avançadas, gerir as suas retenções, definir alertas, bem como painéis de controlo para observar facilmente os seus clusters."
 }

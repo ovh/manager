@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.3.1...@ovh-ux/manager-vrack-services-app@0.3.2) (2024-05-21)
+
+
+### Bug Fixes
+
+* **vrack-services:** avoid refetching vrack list to associate ([#11516](https://github.com/ovh/manager/issues/11516)) ([546426b](https://github.com/ovh/manager/commit/546426bdca66aa0ee4724befb03f25a52dc7da14))
+
+
+
+
+
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.3.0...@ovh-ux/manager-vrack-services-app@0.3.1) (2024-05-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.2.0...@ovh-ux/manager-vrack-services-app@0.3.0) (2024-05-13)
+
+
+### Bug Fixes
+
+* **vrack-services:** error message not disappearing on overview page ([#11561](https://github.com/ovh/manager/issues/11561)) ([50dbdc6](https://github.com/ovh/manager/commit/50dbdc61d5e808720fc128954562fd4b3074ec3e))
+
+
+### Features
+
+* **vrack-services:** handle resiliate on vrack services ([#11483](https://github.com/ovh/manager/issues/11483)) ([2d1dbed](https://github.com/ovh/manager/commit/2d1dbed6445ae4bc377a9f3ebdd33438e22ba81a))
+
+
+
+
+
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.1.6...@ovh-ux/manager-vrack-services-app@0.2.0) (2024-05-06)
+
+
+### Bug Fixes
+
+* correct eslint typescript ([#11490](https://github.com/ovh/manager/issues/11490)) ([95560f7](https://github.com/ovh/manager/commit/95560f7aadd559abae0a26e37b12e0688b3dfd80))
+
+
+### Features
+
+* **vrack-services:** add the subnet name in the endpoint creation page ([#11522](https://github.com/ovh/manager/issues/11522)) ([fd473a7](https://github.com/ovh/manager/commit/fd473a7feb79e06f8ddbce2066ced008993fb33f))
+* **vrack-services:** change column order in endpoints listing ([#11523](https://github.com/ovh/manager/issues/11523)) ([c810123](https://github.com/ovh/manager/commit/c81012389472cdf67d9ad0bfa1ee0a0b51d30862))
+* **vrack-services:** implement e2e tests ([#10984](https://github.com/ovh/manager/issues/10984)) ([3c6895e](https://github.com/ovh/manager/commit/3c6895e24ef18da6e034d05caaa0cf7e950587aa))
+
+
+
+
+
+## [0.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.1.5...@ovh-ux/manager-vrack-services-app@0.1.6) (2024-04-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
 ## [0.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.1.4...@ovh-ux/manager-vrack-services-app@0.1.5) (2024-04-22)
 
 

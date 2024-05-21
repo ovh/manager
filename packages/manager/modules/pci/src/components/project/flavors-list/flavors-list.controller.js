@@ -169,4 +169,55 @@ export default class FlavorsListController {
   formatStorage(capacity) {
     return this.$filter('bytes')(capacity, 2, false, 'GB');
   }
+
+  /**
+   * Get the lowest hourly price and lowest monthly price for the flavor
+   * and return distinct prices for both hourly and monthly
+   * @param {*} flavor
+   * @returns Object with lowest hourly / monthly and all distinct hourly / monthly
+   */
+  static getLowestAndDistinctPriceFromFlavor(flavor) {
+    const result = {
+      lowestHourlyPrice: null,
+      lowestMonthlyPrice: null,
+      allHourlyPrices: [],
+      allMontlyPrices: [],
+    };
+
+    flavor.priceInformation.forEach((current) => {
+      // Manage the hourly prices for the flavor
+      if (current.prices.hourly?.value) {
+        // add current hourly price to distinct prices array
+        if (!result.allHourlyPrices.includes(current.prices.hourly.value)) {
+          result.allHourlyPrices.push(current.prices.hourly.value);
+        }
+
+        // Check if the current price is the lowest
+        if (
+          !result.lowestHourlyPrice ||
+          result.lowestHourlyPrice.value > current.prices.hourly.value
+        ) {
+          result.lowestHourlyPrice = current.prices.hourly;
+        }
+      }
+
+      // Manage the monthly prices for the flavor
+      if (current.prices.monthly?.value) {
+        // add current monthly price to distinct prices array
+        if (!result.allMontlyPrices.includes(current.prices.monthly.value)) {
+          result.allMontlyPrices.push(current.prices.monthly.value);
+        }
+
+        // Check if the current price is the lowest
+        if (
+          !result.lowestMonthlyPrice ||
+          result.lowestMonthlyPrice.value > current.prices.monthly.value
+        ) {
+          result.lowestMonthlyPrice = current.prices.monthly;
+        }
+      }
+    });
+
+    return result;
+  }
 }

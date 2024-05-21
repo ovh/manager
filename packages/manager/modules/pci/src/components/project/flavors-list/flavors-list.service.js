@@ -78,6 +78,9 @@ export default class FlavorsList {
         const groupedPlanCodesByName = groupBy(hourlyPlanCodes, 'name');
         return map(groupedPlanCodesByName, (groupedFlavors) => {
           const resource = groupedFlavors[0];
+          const planCodeList = groupedFlavors.map(
+            (flavor) => flavor.planCodes.hourly,
+          );
           return new Flavor({
             ...omit(resource, ['available', 'region']),
             technicalBlob: get(
@@ -111,9 +114,19 @@ export default class FlavorsList {
               ),
               'legacy',
             ),
+            priceInformation: groupedFlavors.map((flavor) => {
+              return {
+                id: flavor.id,
+                prices: {
+                  hourly: prices[flavor.planCodes.hourly]?.price,
+                  monthly: prices[flavor.planCodes.monthly]?.price,
+                },
+                region: flavor.region,
+              };
+            }),
             locationCompatibility: this.getlocationCompatibility(
-              productAvailability.plans?.filter((plan) =>
-                plan.code?.startsWith(resource.planCodes.hourly),
+              productAvailability.plans?.filter(({ code }) =>
+                planCodeList?.find((plans) => code.startsWith(plans)),
               ),
             ),
           });

@@ -5,6 +5,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
+import '@ovh-ux/ng-ovh-feature-flipping';
 
 import kubernetesComponent from './component';
 import routing from './details.routing';
@@ -20,6 +21,7 @@ const moduleName = 'ovhManagerPciProjectKubernetesDetailComponent';
 
 angular
   .module(moduleName, [
+    'ngOvhFeatureFlipping',
     'ngOvhCloudUniverseComponents',
     'oui',
     'ovh-api-services',

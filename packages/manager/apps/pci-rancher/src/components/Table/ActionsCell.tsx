@@ -14,28 +14,22 @@ import {
 } from '@ovhcloud/ods-components/';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { RessourceStatus } from '@/api/api.type';
+import { ResourceStatus } from '@/api/api.type';
 import { RancherActionsCell } from './Table.type';
 import './Table.scss';
 
 export default function ActionsCell({
   row,
-  openModal,
-  setSelectedRancher,
+  onClickDelete,
   onClickManage,
 }: Readonly<RancherActionsCell>) {
   const editable = true;
   const { t } = useTranslation('pci-rancher/listing');
 
-  const onDelete = () => {
-    setSelectedRancher(row.original);
-    openModal();
-  };
-
-  const NOT_EDITABLE_STATUS: RessourceStatus[] = [
-    RessourceStatus.CREATING,
-    RessourceStatus.DELETING,
-    RessourceStatus.UPDATING,
+  const NOT_EDITABLE_STATUS: ResourceStatus[] = [
+    ResourceStatus.CREATING,
+    ResourceStatus.DELETING,
+    ResourceStatus.UPDATING,
   ];
 
   return NOT_EDITABLE_STATUS.includes(row.original.resourceStatus) ? null : (
@@ -57,7 +51,7 @@ export default function ActionsCell({
             size={ODS_ICON_SIZE.xs}
           />
         </OsdsButton>
-        {row?.original?.resourceStatus !== RessourceStatus.ERROR && (
+        {row?.original?.resourceStatus !== ResourceStatus.ERROR && (
           <OsdsMenuItem>
             <OsdsButton
               color={ODS_THEME_COLOR_INTENT.primary}
@@ -80,7 +74,7 @@ export default function ActionsCell({
             variant={ODS_BUTTON_VARIANT.ghost}
             text-align="start"
             class="hydrated"
-            onClick={onDelete}
+            onClick={onClickDelete}
           >
             <span slot="start">
               <span>{t('delete')}</span>

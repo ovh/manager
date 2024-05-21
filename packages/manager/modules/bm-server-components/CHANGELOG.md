@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.19.1...@ovh-ux/manager-bm-server-components@1.20.0) (2024-05-21)
+
+
+### Features
+
+* **dedicated.nutanix:** display error message with operations ongoing ([#11634](https://github.com/ovh/manager/issues/11634)) ([0af9aac](https://github.com/ovh/manager/commit/0af9aac23ded73b8162271d800bdeb4e3a76f5f6))
+* **dedicated:** remove paymentmean deprecated call ([#11642](https://github.com/ovh/manager/issues/11642)) ([0983d74](https://github.com/ovh/manager/commit/0983d7474e3f223ed115195d6ac93548ba8a5417))
+
+
+### Reverts
+
+* Revert "feat(dedicated): display error message with operations ongoing" ([def8e8f](https://github.com/ovh/manager/commit/def8e8f679ff7137bc1924c15b7410a9597b2b1c))
+
+
+
+
+
+## [1.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.19.0...@ovh-ux/manager-bm-server-components@1.19.1) (2024-05-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+# [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.18.2...@ovh-ux/manager-bm-server-components@1.19.0) (2024-04-29)
+
+
+### Features
+
+* **dedicated:** add choice buttons between password or ssh key authentication ([#11063](https://github.com/ovh/manager/issues/11063)) ([57188d4](https://github.com/ovh/manager/commit/57188d4dccb402a851a30956159da344602391b1))
+
+
+
+
+
 ## [1.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.18.1...@ovh-ux/manager-bm-server-components@1.18.2) (2024-04-11)
 
 

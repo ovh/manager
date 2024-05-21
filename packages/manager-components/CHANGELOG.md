@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.12.0...@ovhcloud/manager-components@1.13.0) (2024-05-21)
+
+### Features
+
+- **manager-components:** useProject and useIsDiscoveryProject hooks ([#11438](https://github.com/ovh/manager/issues/11438)) ([ef335db](https://github.com/ovh/manager/commit/ef335dbefcebfd00b11f4fd07d3859412931331c))
+
+# [1.12.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.11.0...@ovhcloud/manager-components@1.12.0) (2024-05-13)
+
+### Features
+
+- **pci-rancher:** update onboarding component ([#11482](https://github.com/ovh/manager/issues/11482)) ([769663e](https://github.com/ovh/manager/commit/769663e666a75c038139e6d423257f25fb1d78f5))
+
+# [1.11.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.10.3...@ovhcloud/manager-components@1.11.0) (2024-05-06)
+
+### Bug Fixes
+
+- correct eslint typescript ([#11490](https://github.com/ovh/manager/issues/11490)) ([95560f7](https://github.com/ovh/manager/commit/95560f7aadd559abae0a26e37b12e0688b3dfd80))
+- jest test workflow ([#11625](https://github.com/ovh/manager/issues/11625)) ([039df4d](https://github.com/ovh/manager/commit/039df4d8ba0d37f77603da39a3fc985c3c5e0807))
+
+### Features
+
+- **manager-components:** add price component ([#11325](https://github.com/ovh/manager/issues/11325)) ([a6bf562](https://github.com/ovh/manager/commit/a6bf562803ee22faba28b38d0662af930920b4b6))
+
+## [1.10.3](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.10.2...@ovhcloud/manager-components@1.10.3) (2024-04-29)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 2946] ([e2da067](https://github.com/ovh/manager/commit/e2da06730a1e7b34c5bd7cb15688f5e5cb56a27b))
+
 ## [1.10.2](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.10.1...@ovhcloud/manager-components@1.10.2) (2024-04-22)
 
 ### Bug Fixes

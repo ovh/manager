@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.13.4...@ovh-ux/manager-telecom@15.14.0) (2024-05-21)
+
+
+### Features
+
+* **telecom:** add softphone beta ([#11535](https://github.com/ovh/manager/issues/11535)) ([8884247](https://github.com/ovh/manager/commit/888424708820c94246d2da7dc4abcf84c522ac41))
+
+
+
+
+
+## [15.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.13.3...@ovh-ux/manager-telecom@15.13.4) (2024-05-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.13.2...@ovh-ux/manager-telecom@15.13.3) (2024-05-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.13.1...@ovh-ux/manager-telecom@15.13.2) (2024-04-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 ## [15.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.13.0...@ovh-ux/manager-telecom@15.13.1) (2024-04-22)
 
 

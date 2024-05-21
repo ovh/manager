@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-catalog-app",
-  "version": "1.9.5",
+  "version": "1.10.2",
   "private": true,
   "description": "OVHcloud Catalog application",
   "repository": {
@@ -19,16 +19,16 @@
     "pretest": "tsc -p tsconfig.e2e.json",
     "test": "jest",
     "test:e2e": "tsc && npx playwright test --headed",
-    "test:e2e:ci": "tsc && npx playwright test",
+    "test:e2e:cii": "tsc && npx playwright test",
     "test:e2e:script": "tsc && node ../../../../scripts/run-playwright.js"
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.7.1",
     "@ovh-ux/manager-core-utils": "^0.2.0",
-    "@ovh-ux/manager-react-core-application": "^0.8.2",
-    "@ovh-ux/manager-react-shell-client": "^0.4.2",
-    "@ovh-ux/shell": "^3.5.1",
-    "@ovhcloud/manager-components": "^1.10.2",
+    "@ovh-ux/manager-react-core-application": "^0.8.3",
+    "@ovh-ux/manager-react-shell-client": "^0.6.0",
+    "@ovh-ux/shell": "^3.6.0",
+    "@ovhcloud/manager-components": "^1.13.0",
     "@ovhcloud/ods-common-core": "17.2.1",
     "@ovhcloud/ods-common-theming": "17.2.1",
     "@ovhcloud/ods-components": "17.2.1",

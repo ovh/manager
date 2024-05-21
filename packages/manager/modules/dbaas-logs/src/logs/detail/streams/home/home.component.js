@@ -5,4 +5,7 @@ export default {
   controller,
   controllerAs: 'ctrl',
   template,
+  bindings: {
+    trackClick: '<',
+  },
 };

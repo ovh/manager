@@ -20,6 +20,7 @@
             data-submit-text="{{ ::'server_configuration_netboot_next' | translate }}"
             data-on-focus="$ctrl.isInConfigurationStep = true"
             data-on-submit="$ctrl.onConfigurationSubmit(form)"
+            prevent-next
         >
             <div class="row mb-1">
                 <div
@@ -78,6 +79,7 @@
                             name="rescue"
                             data-ng-options="rescue as rescue.kernel + ' - ' + rescue.description for rescue in $ctrl.netboots.rescue track by rescue.kernel"
                             data-ng-model="$ctrl.currentNetboot.rescue"
+                            data-ng-change="$ctrl.onRescueKernelChange()"
                             required
                         >
                             <option
@@ -87,6 +89,51 @@
                             </option>
                         </select>
                     </oui-field>
+
+                    <div class="row mb-2">
+                        <div
+                            class="col-md-4"
+                            data-ng-repeat="(key, data) in $ctrl.rescueAuthMethods"
+                        >
+                            <oui-select-picker
+                                data-name="{{:: data }}"
+                                data-model="$ctrl.currentAuthMethod"
+                                data-label="{{:: ('server_configuration_netboot_auth_method_'+ data) | translate }}"
+                                data-values="[data]"
+                            >
+                            </oui-select-picker>
+                        </div>
+                    </div>
+
+                    <div data-ng-if="$ctrl.currentAuthMethod === $ctrl.SSHKEY">
+                        <oui-field
+                            data-label="{{:: 'server_configuration_netboot_sshkey_input' | translate}}"
+                        >
+                            <div
+                                class="float-right sshkey-switch"
+                                data-ng-model="model.keyIsValid"
+                                data-sshkey-switch
+                                data-sshkey-switch-key="{{$ctrl.ssh.publicKey}}"
+                            ></div>
+
+                            <textarea
+                                class="oui-input form-control"
+                                name="rescueSshKey"
+                                id="rescueSshKey"
+                                placeholder="{{:: 'server_configuration_netboot_sshkey_input_placeholder' | translate:{t0: $ctrl.ssh.inputRules.placeholder} }}"
+                                data-ng-model="$ctrl.ssh.publicKey"
+                                data-ng-required="true"
+                                data-ng-pattern="$ctrl.ssh.inputRules.pattern"
+                                data-ng-trim="true"
+                                spellcheck="false"
+                                autocomplete="off"
+                                autocapitalize="off"
+                                autocorrect="off"
+                                rows="{{ $ctrl.ssh.inputRules.rows }}"
+                            >
+                            </textarea>
+                        </oui-field>
+                    </div>
 
                     <oui-field
                         label="{{:: 'server_configuration_netboot_rescue_mail' | translate}}"
@@ -196,9 +243,22 @@
                 </li>
                 <li data-ng-if="$ctrl.currentNetboot.type === $ctrl.RESCUE">
                     <strong
+                        data-ng-bind=":: 'server_configuration_netboot_auth_method' | translate"
+                    ></strong>
+                    <span data-ng-bind="$ctrl.currentAuthMethod"></span>
+                </li>
+                <li data-ng-if="$ctrl.currentNetboot.type === $ctrl.RESCUE">
+                    <strong
                         data-ng-bind=":: 'server_configuration_netboot_step2_rescue_mail' | translate"
                     ></strong>
-                    <span data-ng-bind="$ctrl.currentNetboot.rescueMail"></span>
+                    <span
+                        data-ng-if="$ctrl.currentNetboot.rescueMail !== '' && $ctrl.currentNetboot.rescueMail !== null"
+                        data-ng-bind="$ctrl.currentNetboot.rescueMail"
+                    ></span>
+                    <span
+                        data-ng-if="$ctrl.currentNetboot.rescueMail === '' || $ctrl.currentNetboot.rescueMail === null"
+                        data-ng-bind=":: 'server_configuration_netboot_rescue_mail_none' | translate"
+                    ></span>
                 </li>
                 <li data-ng-if="$ctrl.currentNetboot.type === $ctrl.NETWORK">
                     <strong

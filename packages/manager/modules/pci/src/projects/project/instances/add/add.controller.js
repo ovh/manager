@@ -474,7 +474,7 @@ export default class PciInstancesAddController {
                 subnet: [
                   {
                     ...data,
-                    ipPools: data.allocationPools,
+                    ipPools: data?.allocationPools,
                   },
                 ],
               };
@@ -513,6 +513,10 @@ export default class PciInstancesAddController {
       isFlex,
     );
     this.generateInstanceName();
+    this.model.flavorGroup.prices = this.model.flavorGroup.getPriceBasedOnFlavorId(
+      this.instance.flavorId,
+    );
+    this.flavorGroup = { ...this.model.flavorGroup };
   }
 
   isRegionAvailable(datacenter) {

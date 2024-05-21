@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-sidebar-menu",
-  "version": "10.5.0",
+  "version": "10.5.1",
   "description": "Manage and display a left menu tree",
   "keywords": [
     "angularjs",
@@ -47,7 +47,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.12",
-    "@ovh-ux/ui-kit": "^6.7.0",
+    "@ovh-ux/ui-kit": "^6.10.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.9",
     "angular-translate": "^2.18.1",

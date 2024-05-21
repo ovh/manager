@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.35.1...@ovh-ux/manager-dedicated@19.36.0) (2024-05-21)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing state parameter ([#11694](https://github.com/ovh/manager/issues/11694)) ([41b941c](https://github.com/ovh/manager/commit/41b941c2caa87695b8b5a5ff57d73dab8f2a76cc))
+* **dedicated:** pcc ip blocks label ([#11674](https://github.com/ovh/manager/issues/11674)) ([94ed6cc](https://github.com/ovh/manager/commit/94ed6ccdb387758cee0c5a656f3161667da03e2a))
+* **dedicated:** update guide links for us version ([#11407](https://github.com/ovh/manager/issues/11407)) ([788f72a](https://github.com/ovh/manager/commit/788f72ac2b63a0107662a8ba621d2a4bc12e2300))
+* **i18n:** add missing translations [CDS 2988] ([c04cb3b](https://github.com/ovh/manager/commit/c04cb3bf5cccacb4d1d616a91b907fa11793bc20))
+
+
+### Features
+
+* **dedicated:** remove paymentmean deprecated call ([#11642](https://github.com/ovh/manager/issues/11642)) ([0983d74](https://github.com/ovh/manager/commit/0983d7474e3f223ed115195d6ac93548ba8a5417))
+* **iam:** sso, personnalisation of username attribute ([#10613](https://github.com/ovh/manager/issues/10613)) ([#11048](https://github.com/ovh/manager/issues/11048)) ([545b21b](https://github.com/ovh/manager/commit/545b21b47d12bc7b0f5114393805bce3a7f87ef2))
+* **public-cloud:** add translation for next localzone regions ([#11686](https://github.com/ovh/manager/issues/11686)) ([349b279](https://github.com/ovh/manager/commit/349b279019d62f9082d788b7fa1d46596a70bd04))
+
+
+
+
+
+## [19.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.35.0...@ovh-ux/manager-dedicated@19.35.1) (2024-05-13)
+
+
+### Bug Fixes
+
+* **cdn:** change regex and field information for cache cdn ([#11273](https://github.com/ovh/manager/issues/11273)) ([144a82f](https://github.com/ovh/manager/commit/144a82f5e7b3ecf321c7e18bd53fc0a38215d4a4))
+
+
+
+
+
+# [19.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.34.0...@ovh-ux/manager-dedicated@19.35.0) (2024-05-06)
+
+
+### Features
+
+* **dedicated:** add params into traffic url ([#11583](https://github.com/ovh/manager/issues/11583)) ([3d4ab92](https://github.com/ovh/manager/commit/3d4ab922fee1858620120c41990a6abe89efaf4b))
+
+
+
+
+
+# [19.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.33.2...@ovh-ux/manager-dedicated@19.34.0) (2024-04-30)
+
+
+### Features
+
+* **pci.instance:** add marseille region label ([#11559](https://github.com/ovh/manager/issues/11559)) ([4e9b314](https://github.com/ovh/manager/commit/4e9b314e4ef8b9df8abfb341b15dd13d9c033900))
+
+
+
+
+
+## [19.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.33.1...@ovh-ux/manager-dedicated@19.33.2) (2024-04-29)
+
+
+### Bug Fixes
+
+* **dedicated:** rework on check for rules ([#11404](https://github.com/ovh/manager/issues/11404)) ([2de7b05](https://github.com/ovh/manager/commit/2de7b05cf57eaac170b8975a5ef59a38b031e438))
+* **i18n:** add missing translations [CDS 2946] ([e2da067](https://github.com/ovh/manager/commit/e2da06730a1e7b34c5bd7cb15688f5e5cb56a27b))
+* **i18n:** add missing translations [CDS 2951] ([a1db386](https://github.com/ovh/manager/commit/a1db386e58d95fb0b7955b0dba72f91a2c5fa7af))
+
+
+
+
+
+## [19.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.33.0...@ovh-ux/manager-dedicated@19.33.1) (2024-04-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 # [19.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.32.2...@ovh-ux/manager-dedicated@19.33.0) (2024-04-22)
 
 

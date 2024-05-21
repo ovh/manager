@@ -48,6 +48,11 @@ export default /* @ngInject */ ($stateProvider) => {
             label: $translate.instant(`netapp_list_columns_header_id`),
             hidden: false,
             property: 'id',
+            serviceLink: true,
+          },
+          {
+            label: $translate.instant(`netapp_list_columns_header_name`),
+            property: 'name',
           },
           {
             label: $translate.instant(`netapp_list_columns_header_status`),
@@ -87,11 +92,6 @@ export default /* @ngInject */ ($stateProvider) => {
               `netapp_list_columns_header_performanceLevel`,
             ),
             property: 'performanceLevel',
-            hidden: true,
-          },
-          {
-            label: $translate.instant(`netapp_list_columns_header_name`),
-            property: 'name',
             hidden: true,
           },
         ],

@@ -1104,6 +1104,9 @@ export default class PrivateDatabase {
       urlParams: {
         serviceName,
       },
+    }).catch(({ message = '' }) => {
+      const error = { data: { message } };
+      throw error;
     });
   }
 

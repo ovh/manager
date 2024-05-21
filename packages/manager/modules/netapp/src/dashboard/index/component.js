@@ -7,6 +7,7 @@ export default {
     isNetworkAvailable: '<',
     goToNetworkConfiguration: '<',
     goToDeleteNetworkConfiguration: '<',
+    reloadDashboard: '<',
     networkInformations: '<',
     getVrackLink: '<',
     vrackServicesLink: '<',

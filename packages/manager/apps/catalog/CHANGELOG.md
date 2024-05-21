@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.10.1...@ovh-ux/manager-catalog-app@1.10.2) (2024-05-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.10.0...@ovh-ux/manager-catalog-app@1.10.1) (2024-05-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.9.6...@ovh-ux/manager-catalog-app@1.10.0) (2024-05-06)
+
+
+### Bug Fixes
+
+* correct eslint typescript ([#11490](https://github.com/ovh/manager/issues/11490)) ([95560f7](https://github.com/ovh/manager/commit/95560f7aadd559abae0a26e37b12e0688b3dfd80))
+
+
+### Features
+
+* **vrack-services:** implement e2e tests ([#10984](https://github.com/ovh/manager/issues/10984)) ([3c6895e](https://github.com/ovh/manager/commit/3c6895e24ef18da6e034d05caaa0cf7e950587aa))
+
+
+
+
+
+## [1.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.9.5...@ovh-ux/manager-catalog-app@1.9.6) (2024-04-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
 ## [1.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.9.4...@ovh-ux/manager-catalog-app@1.9.5) (2024-04-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app

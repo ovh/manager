@@ -67,6 +67,7 @@
   "sidebar_pci_ai_notebooks": "AI Notebooks",
   "sidebar_pci_ai_training": "AI Training",
   "sidebar_pci_ai_app": "AI Deploy",
+  "sidebar_pci_ai_endpoints": "AI Endpoints",
   "sidebar_pci_ml_serving": "ML Serving",
   "sidebar_pci_data_processing": "Data Processing",
   "sidebar_pci_logs_data_platform": "Logs Data Platform",

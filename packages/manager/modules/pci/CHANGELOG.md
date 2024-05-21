@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.38.1...@ovh-ux/manager-pci@6.39.0) (2024-05-21)
+
+
+### Features
+
+* **dedicated:** remove paymentmean deprecated call ([#11642](https://github.com/ovh/manager/issues/11642)) ([0983d74](https://github.com/ovh/manager/commit/0983d7474e3f223ed115195d6ac93548ba8a5417))
+* **pci:** add instances tooltips for some openstack status ([#11376](https://github.com/ovh/manager/issues/11376)) ([20c4174](https://github.com/ovh/manager/commit/20c4174fc43f04105e5e2b71ffc1858c8883ffb4))
+* **pci:** change update db version button label ([#11528](https://github.com/ovh/manager/issues/11528)) ([642f3e5](https://github.com/ovh/manager/commit/642f3e5a5c0db2c22945b426a0948f43cd05f8b1))
+* **pci:** disable discovery project creation in IN when undergoing kyc validation ([#11297](https://github.com/ovh/manager/issues/11297)) ([a4f3dce](https://github.com/ovh/manager/commit/a4f3dce8090a7be5b81b10538823182ffcba845f))
+* **public-cloud:** fix instances prices ([#11707](https://github.com/ovh/manager/issues/11707)) ([6c2e2e4](https://github.com/ovh/manager/commit/6c2e2e4642c7bf9745ad10a8a996b15836b37c2a))
+* **public-cloud:** fix localzone estimation price on block storage ([#11685](https://github.com/ovh/manager/issues/11685)) ([f2ce4b0](https://github.com/ovh/manager/commit/f2ce4b047c3adb8d682e7b9096efc29f2cff1649))
+
+
+
+
+
+## [6.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.38.0...@ovh-ux/manager-pci@6.38.1) (2024-05-13)
+
+
+### Bug Fixes
+
+* **public-cloud:** remove duplicated textAccordion ([#11658](https://github.com/ovh/manager/issues/11658)) ([9d073f9](https://github.com/ovh/manager/commit/9d073f9bbd820215bc672b16c7d2cbe0e3fa1c7f))
+
+
+
+
+
+# [6.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.37.2...@ovh-ux/manager-pci@6.38.0) (2024-05-06)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([5c67535](https://github.com/ovh/manager/commit/5c67535cf609d6626b7cc172a52b1fe780848fdb))
+
+
+### Features
+
+* **pci.project:** add billing change banner ([#11635](https://github.com/ovh/manager/issues/11635)) ([3cf8cbc](https://github.com/ovh/manager/commit/3cf8cbc0ba997fb0cf7bb958064ff4c9f005df68))
+* **pci:** add billing change banner ([#11390](https://github.com/ovh/manager/issues/11390)) ([ec56161](https://github.com/ovh/manager/commit/ec56161a544d7fdadc9556f3961e61725c949b3c))
+* **project:** update text content for the billing page ([#10903](https://github.com/ovh/manager/issues/10903)) ([06ad178](https://github.com/ovh/manager/commit/06ad1781c0e18407746c4bbc6a06e7228682ddee))
+
+
+### Reverts
+
+* Revert "feat(pci): add billing change banner (#11390)" (#11641) ([4ed663f](https://github.com/ovh/manager/commit/4ed663f826c4b17ba4a028cb7eedb503cb802835)), closes [#11390](https://github.com/ovh/manager/issues/11390) [#11641](https://github.com/ovh/manager/issues/11641)
+
+
+
+
+
+## [6.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.37.1...@ovh-ux/manager-pci@6.37.2) (2024-05-06)
+
+
+### Bug Fixes
+
+* **pci:** fetch pricing based on flavor id ([1b8486a](https://github.com/ovh/manager/commit/1b8486acb924623dc72850c39863187bc2d1e9fb))
+
+
+
+
+
+## [6.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.37.0...@ovh-ux/manager-pci@6.37.1) (2024-04-30)
+
+
+### Bug Fixes
+
+* **pci.instance:** refresh billing summary when changing instance img ([#11558](https://github.com/ovh/manager/issues/11558)) ([906ff15](https://github.com/ovh/manager/commit/906ff15d237556549fc33c3148e75f4c94e9e106))
+* **pci:** consider all flavors for adding label ([#11541](https://github.com/ovh/manager/issues/11541)) ([2c530ed](https://github.com/ovh/manager/commit/2c530edda5aee811cf292ce97599867504ac2a17))
+
+
+
+
+
+# [6.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.36.1...@ovh-ux/manager-pci@6.37.0) (2024-04-24)
+
+
+### Features
+
+* add log to customer for K8S service ([#11402](https://github.com/ovh/manager/issues/11402)) ([603f90d](https://github.com/ovh/manager/commit/603f90d5225316eee2700a03af76bc2e0a9d12ee))
+
+
+
+
+
 ## [6.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.36.0...@ovh-ux/manager-pci@6.36.1) (2024-04-22)
 
 

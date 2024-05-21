@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.4...@ovh-ux/manager-iam@1.9.5) (2024-05-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2988] ([c04cb3b](https://github.com/ovh/manager/commit/c04cb3bf5cccacb4d1d616a91b907fa11793bc20))
+* **i18n:** add missing translations [CDS 2996] ([2c89c7d](https://github.com/ovh/manager/commit/2c89c7defb9974e999433bfe28f25f9989afad72))
+
+
+
+
+
+## [1.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.3...@ovh-ux/manager-iam@1.9.4) (2024-05-06)
+
+
+### Bug Fixes
+
+* **iam:** infinite loop on iam menu ([#11451](https://github.com/ovh/manager/issues/11451)) ([590bfa5](https://github.com/ovh/manager/commit/590bfa532b94dadfeae8afdbaf107c5060859c84))
+
+
+
+
+
+## [1.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.2...@ovh-ux/manager-iam@1.9.3) (2024-04-30)
+
+
+### Bug Fixes
+
+* **iam:** actionSelect categories not working ([#11568](https://github.com/ovh/manager/issues/11568)) ([fe5b656](https://github.com/ovh/manager/commit/fe5b656ee3f449cf23d715c8431c5e320a5b0c31))
+
+
+
+
+
+## [1.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.1...@ovh-ux/manager-iam@1.9.2) (2024-04-29)
+
+
+### Bug Fixes
+
+* **iam:** fix toggle selectall actions for policy edition ([#11499](https://github.com/ovh/manager/issues/11499)) ([9661f8d](https://github.com/ovh/manager/commit/9661f8dd61f7b0803459ad640d98bda5a97ef2b3))
+
+
+
+
+
 ## [1.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.0...@ovh-ux/manager-iam@1.9.1) (2024-03-19)
 
 

@@ -5,6 +5,10 @@ const auditLogsComponent = {
   bindings: {
     projectId: '<',
     kubeId: '<',
+    goToListingPage: '<',
+    logKindsList: '<',
+    kind: '<',
+    trackClick: '<',
   },
   controller,
   template,

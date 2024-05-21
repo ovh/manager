@@ -66,6 +66,9 @@ export default /* @ngInject */ ($stateProvider) => {
           { reload: true },
         );
       },
+      reloadDashboard: /* @ngInject */ ($state) => () => {
+        return $state.go('netapp.dashboard.index', {}, { reload: true });
+      },
       pollDissociatingVrackServices: /* @ngInject */ ($transition$) =>
         !!$transition$.params().isDissociating,
       getVrackLink: /* @ngInject */ (coreURLBuilder) => (vrackId) =>

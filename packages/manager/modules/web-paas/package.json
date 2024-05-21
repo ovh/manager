@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-paas",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "private": true,
   "description": "OVHcloud Web PaaS powered by Platform.sh",
   "repository": {
@@ -33,7 +33,7 @@
     "@ovh-ux/ng-ovh-web-universe-components": "^9.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ng-ui-router-layout": "^4.1.0",
-    "@ovh-ux/ui-kit": "^6.7.0",
+    "@ovh-ux/ui-kit": "^6.10.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",

@@ -1,4 +1,4 @@
-import { Table, Header, Row } from '@tanstack/react-table';
+import { Table, Header, Row, Cell } from '@tanstack/react-table';
 import { RancherService } from '../../api/api.type';
 
 export interface RancherDatagridWrapper {
@@ -11,7 +11,7 @@ export interface RancherTable {
 }
 
 export interface RancherCellData {
-  cell?: any;
+  cell?: Cell<RancherService, unknown>;
   row?: Row<RancherService>;
 }
 
@@ -21,7 +21,6 @@ export interface RancherTableTh {
 
 export interface RancherActionsCell {
   onClickManage: (path: string) => void;
-  openModal: () => void;
+  onClickDelete: () => void;
   row: Row<RancherService>;
-  setSelectedRancher: (rancher?: RancherService) => void;
 }

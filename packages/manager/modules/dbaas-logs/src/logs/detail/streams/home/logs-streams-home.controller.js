@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import datagridToIcebergFilter from '../../logs-iceberg.utils';
+import { DATAGRID_BUTTON_TRACKING } from './home.constants';
 
 export default class LogsStreamsHomeCtrl {
   /* @ngInject */
@@ -76,6 +77,7 @@ export default class LogsStreamsHomeCtrl {
    * @memberof LogsStreamsHomeCtrl
    */
   add() {
+    this.trackClick(DATAGRID_BUTTON_TRACKING.ADD_STREAM);
     this.$state.go('dbaas-logs.detail.streams.add', {
       serviceName: this.serviceName,
     });
@@ -99,6 +101,7 @@ export default class LogsStreamsHomeCtrl {
    * @memberof LogsStreamsHomeCtrl
    */
   edit(stream) {
+    this.trackClick(DATAGRID_BUTTON_TRACKING.EDIT_STREAM);
     this.$state.go('dbaas-logs.detail.streams.stream.edit', {
       serviceName: this.serviceName,
       streamId: stream.streamId,
@@ -130,6 +133,7 @@ export default class LogsStreamsHomeCtrl {
    * @memberof LogsStreamsHomeCtrl
    */
   remove(stream) {
+    this.trackClick(DATAGRID_BUTTON_TRACKING.DELETE);
     this.delete = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.LogsStreamsService.deleteStream(this.serviceName, stream)
@@ -149,6 +153,7 @@ export default class LogsStreamsHomeCtrl {
    * @memberof LogsStreamsHomeCtrl
    */
   manageAlerts(stream) {
+    this.trackClick(DATAGRID_BUTTON_TRACKING.MANAGE_ALERTS);
     this.CucCloudMessage.flushChildMessage();
     this.$state.go('dbaas-logs.detail.streams.stream.alerts', {
       serviceName: this.serviceName,
@@ -192,6 +197,7 @@ export default class LogsStreamsHomeCtrl {
    * @memberof LogsStreamsHomeCtrl
    */
   goToArchives(stream) {
+    this.trackClick(DATAGRID_BUTTON_TRACKING.ARCHIVE);
     this.CucCloudMessage.flushChildMessage();
     this.$state.go('dbaas-logs.detail.streams.stream.archives', {
       serviceName: this.serviceName,
@@ -206,6 +212,7 @@ export default class LogsStreamsHomeCtrl {
    * @memberof LogsStreamsHomeCtrl
    */
   goToSubscriptions(stream) {
+    this.trackClick(DATAGRID_BUTTON_TRACKING.MANAGE_SUBSCRIPTIONS);
     this.CucCloudMessage.flushChildMessage();
     this.$state.go('dbaas-logs.detail.streams.stream.subscriptions', {
       serviceName: this.serviceName,
@@ -220,6 +227,7 @@ export default class LogsStreamsHomeCtrl {
    * @memberof LogsStreamsHomeCtrl
    */
   followLive(stream) {
+    this.trackClick(DATAGRID_BUTTON_TRACKING.FOLLOW_LIVE);
     this.CucCloudMessage.flushChildMessage();
     this.$state.go('dbaas-logs.detail.streams.stream.follow', {
       serviceName: this.serviceName,
@@ -235,6 +243,7 @@ export default class LogsStreamsHomeCtrl {
    * @memberof LogsStreamsHomeCtrl
    */
   openGrayLog(stream) {
+    this.trackClick(DATAGRID_BUTTON_TRACKING.WATCH_GRAYLOG);
     this.LogsStreamsService.getStreamGraylogUrl(this.serviceName, stream).then(
       (url) => {
         this.$window.open(url, '_blank');
@@ -243,10 +252,16 @@ export default class LogsStreamsHomeCtrl {
   }
 
   copyToken(stream) {
+    this.trackClick(DATAGRID_BUTTON_TRACKING.COPY_TOKEN);
     this.LogsStreamsService.copyStreamToken(this.serviceName, stream).then(
       () => {
         this.CucControllerHelper.scrollPageToTop();
       },
     );
+  }
+
+  copyStreamId(stream) {
+    this.LogsStreamsService.copyStreamId(stream);
+    this.CucControllerHelper.scrollPageToTop();
   }
 }

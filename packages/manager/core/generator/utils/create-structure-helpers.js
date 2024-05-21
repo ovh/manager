@@ -10,12 +10,13 @@ export const createApiQueryFilesActions = ({
   endpoints,
   apiVersion,
   appDirectory,
+  appName,
 }) =>
   Object.entries(endpoints).map(([method, data]) => ({
     type: 'add',
     path: join(
       appDirectory,
-      `../../../apps/{{dashCase appName}}/src/api/${method.toUpperCase()}/api${apiVersion}/services.ts`,
+      `../../../apps/{{dashCase appName}}/src/data/api/${appName}.ts`,
     ),
     templateFile: join(
       appDirectory,
@@ -75,7 +76,7 @@ export const createTranslations = (templates, appName, appDirectory) =>
     type: 'add',
     path: join(
       appDirectory,
-      `../../../apps/{{dashCase appName}}/src/public/translations/${appName}/${template}/Messages_fr_FR.json`,
+      `../../../apps/{{dashCase appName}}/public/translations/${template}/Messages_fr_FR.json`,
     ),
     templateFile: join(
       appDirectory,

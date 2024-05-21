@@ -1,5 +1,7 @@
 {
   "manager_components_region_SBG1": "Strasbourg (SBG1)",
+  "manager_components_region_MRS": "Marseille",
+  "manager_components_region_MRS_micro": "Marseille ({{ micro }})",
   "manager_components_region_BHS1": "Beauharnois (BHS1)",
   "manager_components_region_GRA1": "Gravelines (GRA1)",
   "manager_components_region_SBG": "Strasbourg",
@@ -33,6 +35,15 @@
   "manager_components_region_GS_micro": "Gridscale ({{ micro }})",
   "manager_components_region_MAD_micro": "Madrid ({{ micro }})",
   "manager_components_region_BRU_micro": "Bruxelles ({{ micro }})",
+  "manager_components_region_PRG": "Prague",
+  "manager_components_region_PRG_micro": "Prague ({{ micro }})",
+  "manager_components_region_continent_PRG": "Europe Centrale",
+  "manager_components_region_AMS": "Amsterdam",
+  "manager_components_region_AMS_micro": "Amsterdam ({{ micro }})",
+  "manager_components_region_continent_AMS": "Europe de l'Ouest",
+  "manager_components_region_MIL": "Milan",
+  "manager_components_region_MIL_micro": "Milan ({{ micro }})",
+  "manager_components_region_continent_MIL": "Europe de l'Ouest",
   "manager_components_region_localize": "Localiser",
   "manager_components_region_location_SBG": "Europe centrale (France)",
   "manager_components_region_location_WAW": "Europe centrale (Pologne)",
@@ -62,5 +73,6 @@
   "manager_components_region_continent_SGP": "Asie du Sud-Est",
   "manager_components_region_continent_SYD": "Océanie",
   "manager_components_region_continent_US": "États-Unis",
-  "manager_components_region_continent_SHA": "Europe de l'Ouest"
+  "manager_components_region_continent_SHA": "Europe de l'Ouest",
+  "manager_components_region_continent_MRS": "Europe de l'Ouest"
 }

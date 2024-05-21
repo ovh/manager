@@ -24,14 +24,14 @@ import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 interface DeleteModalProps {
-  toggleModal: (showModal: boolean) => void;
+  onClose: () => void;
   onDeleteRancher: () => void;
   selectedRancher: RancherService;
 }
 export const TERMINATE_TEXT = 'TERMINATE';
 
 const DeleteModal = ({
-  toggleModal,
+  onClose,
   onDeleteRancher,
   selectedRancher,
 }: DeleteModalProps) => {
@@ -44,14 +44,11 @@ const DeleteModal = ({
   const onDelete = () => {
     trackAction(TrackingPageView.DeleteRancherModal, TrackingEvent.confirm);
     onDeleteRancher();
-    toggleModal(false);
+    onClose();
   };
 
   return (
-    <Modal
-      color={ODS_THEME_COLOR_INTENT.warning}
-      onClose={() => toggleModal(false)}
-    >
+    <Modal color={ODS_THEME_COLOR_INTENT.warning} onClose={onClose}>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
@@ -99,8 +96,7 @@ const DeleteModal = ({
             TrackingPageView.DeleteRancherModal,
             TrackingEvent.cancel,
           );
-
-          toggleModal(false);
+          onClose();
         }}
       >
         {t('cancel')}

@@ -8,6 +8,7 @@ import {
   createTranslations,
   createApiQueryFilesActions,
 } from '../utils/create-structure-helpers.js';
+import { UNIVERSES, SUB_UNIVERSES, LEVEL2 } from './universes.constant.js';
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
 
@@ -190,7 +191,7 @@ export default (plop) => {
       {
         type: 'input',
         name: 'serviceKey',
-        message: 'What is the service key ?',
+        message: 'What is the service key in listing page ?',
         when: (data) => {
           // Add variables for templates
           data.hasListing = data.templates.includes('listing');
@@ -200,6 +201,33 @@ export default (plop) => {
           return data.templates.includes('listing');
         },
         validate: (input) => input.length > 0,
+      },
+      {
+        type: 'list',
+        name: 'level2',
+        message: 'What is the level2 of the app ? (tracking)',
+        choices: Object.keys(LEVEL2).map((element) => ({
+          name: `${element} - ${LEVEL2[element]}`,
+          value: element,
+        })),
+      },
+      {
+        type: 'list',
+        name: 'universe',
+        message: 'What is the universe of the app ? (tracking)',
+        choices: UNIVERSES.map((element) => ({
+          name: element,
+          value: element,
+        })),
+      },
+      {
+        type: 'list',
+        name: 'subuniverse',
+        message: 'What is the subuniverse of the app ? (tracking)',
+        choices: SUB_UNIVERSES.map((element) => ({
+          name: element,
+          value: element,
+        })),
       },
     ],
     actions: ({
@@ -217,6 +245,7 @@ export default (plop) => {
               endpoints: apiV2Computed,
               apiVersion: 'v2',
               appDirectory,
+              appName,
             })
           : [];
 
@@ -226,6 +255,7 @@ export default (plop) => {
               endpoints: apiV6Computed,
               apiVersion: 'v6',
               appDirectory,
+              appName,
             })
           : [];
 

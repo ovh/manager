@@ -1,5 +1,5 @@
 import { Environment } from '@ovh-ux/manager-config';
-import { ShellClientApi } from '@ovh-ux/shell';
+import { ShellClientApi, RegionsTrackingConfig } from '@ovh-ux/shell';
 import { createContext } from 'react';
 
 export type TrackingContextParams = {
@@ -9,6 +9,7 @@ export type TrackingContextParams = {
   pageTheme?: string;
   level2?: string;
   appName?: string;
+  level2Config?: RegionsTrackingConfig;
 };
 
 export type ShellContextType = {

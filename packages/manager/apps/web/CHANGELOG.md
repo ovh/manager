@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.23.1...@ovh-ux/manager-web@18.24.0) (2024-05-21)
+
+
+### Features
+
+* **dedicated:** remove paymentmean deprecated call ([#11642](https://github.com/ovh/manager/issues/11642)) ([0983d74](https://github.com/ovh/manager/commit/0983d7474e3f223ed115195d6ac93548ba8a5417))
+
+
+
+
+
+## [18.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.23.0...@ovh-ux/manager-web@18.23.1) (2024-05-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [18.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.22.1...@ovh-ux/manager-web@18.23.0) (2024-05-06)
+
+
+### Bug Fixes
+
+* **web:** allow to order hosting without dnsConfiguration or module ([#11607](https://github.com/ovh/manager/issues/11607)) ([acc34bd](https://github.com/ovh/manager/commit/acc34bdf9a2468673c8452a9adfd5625353bb58c))
+* **web:** disable the resiliate button if not available ([#11480](https://github.com/ovh/manager/issues/11480)) ([cccc344](https://github.com/ovh/manager/commit/cccc34449d84d7109cf8dc8f1b42ea649ee9e3b6))
+* **web:** show expired service message ([#11513](https://github.com/ovh/manager/issues/11513)) ([52a8127](https://github.com/ovh/manager/commit/52a81276d31228d7ff152d9ddb3161f2f9919c7b))
+
+
+### Features
+
+* **web:** allow ipv6 for dyndns ip target ([#11307](https://github.com/ovh/manager/issues/11307)) ([7da0eee](https://github.com/ovh/manager/commit/7da0eeef7d1e23cbf8042097b0bbd02168d1dd44))
+
+
+
+
+
+## [18.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.22.0...@ovh-ux/manager-web@18.22.1) (2024-04-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2951] ([a1db386](https://github.com/ovh/manager/commit/a1db386e58d95fb0b7955b0dba72f91a2c5fa7af))
+* remove unused translations [CDS] ([a300597](https://github.com/ovh/manager/commit/a300597dd5a7e08bc9060484def0227d89ac82c2))
+
+
+
+
+
 # [18.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.21.1...@ovh-ux/manager-web@18.22.0) (2024-04-23)
 
 

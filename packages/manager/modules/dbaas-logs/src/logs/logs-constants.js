@@ -1,4 +1,5 @@
 export default {
+  TRACKING_PREFIX: 'DedicatedServers::dbaas::ldp',
   LDP_PLAN_CODE: 'logs-account',
   LDP_PLAN_CODE_ENTERPRISE: 'logs-enterprise',
   COLDSTORAGE: 'COLDSTORAGE',
@@ -55,7 +56,6 @@ export default {
   GRACE_PERIOD_MAX_IN_MINUTES: 60,
   BACKLOG_MIN: 1,
   BACKLOG_MAX: 20,
-  expirationInSeconds: 86400,
   indexStorage: {
     success: 'success',
     error: 'error',

@@ -116,7 +116,9 @@ export default /* @ngInject */ ($stateProvider) => {
       hasPolicies: /* @ngInject */ (IAMService, advancedMode) =>
         IAMService.getPolicies({
           ...(!advancedMode && { readOnly: false }),
-        }).then(({ data }) => data.length > 0),
+        })
+          .then(({ data }) => data.length > 0)
+          .catch(() => false),
 
       /**
        * The onboarding guides

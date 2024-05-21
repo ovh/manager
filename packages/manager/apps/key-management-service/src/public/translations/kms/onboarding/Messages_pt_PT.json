@@ -1,0 +1,18 @@
+{
+  "title": "key-management-service",
+  "description": "Descubra os serviços de armazenamento geridos que se baseiam no sistema de ficheiros OpenZFS. Usufrua de espaços de armazenamento centralizados em apenas alguns cliques para armazenar ou salvaguardar os seus dados e ficheiros.",
+  "orderButtonLabel": "Encomendar um key-management-service",
+  "orderButtonLink": "/#/dedicated/key-management-service/order",
+  "moreInfoButtonLabel": "Saber mais sobre key-management-service",
+  "moreInfoButtonLink": "/#/dedicated/key-management-service/info",
+  "guideCategory": "Tutorial",
+  "guide1Title": "Primeiros passos com um key-management-service",
+  "guide1Description": "Saiba como gerir um NAS-HA a partir da Área de Cliente OVHcloud",
+  "guide1Link": "https://help.ovhcloud.com/csm/pt-public-cloud-storage-nas-get-started?id=kb_article_view&amp;sysparm_article=KB0046699",
+  "guide2Title": "Montar um NAS através de NFS",
+  "guide2Description": "Saiba como montar um NAS através de NFS",
+  "guide2Link": "https://help.ovhcloud.com/csm/pt-public-cloud-storage-nas-nfs?id=kb_article_view&amp;sysparm_article=KB0046743",
+  "guide3Title": "Configure o seu NAS-HA no Windows Server através do CIFS",
+  "guide3Description": "Saiba como montar um NAS no Windows Server através do protocolo CIFS",
+  "guide3Link": "https://help.ovhcloud.com/csm/pt-public-cloud-storage-nas-cifs?id=kb_article_view&amp;sysparm_article=KB0046676"
+}

@@ -21,7 +21,7 @@ export default function LinkService({ cell, row }: Readonly<RancherCellData>) {
         onClick={() => navigate(path)}
         className="overflow-hidden text-ellipsis max-w-[200px]"
       >
-        {label}
+        {label as string}
       </OsdsLink>
     </OsdsText>
   );
