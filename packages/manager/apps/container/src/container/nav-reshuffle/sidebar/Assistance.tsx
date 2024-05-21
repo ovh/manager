@@ -57,7 +57,7 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
 
   const trackNode = (id: string) => {
     trackingPlugin.trackClick({ name: `navbar_v2_${id}`, type: 'navigation' });
-  }; 
+  };
 
   return (
     <ul className="mt-auto pb-3" id="useful-links">

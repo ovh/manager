@@ -45,7 +45,7 @@ export const OnboardingIntroduction = () => {
     trackingPlugin.trackClickImpression({
       click: {
         ...commonTrackingOptions,
-        format: `[0-4]`,
+        format: '[0-4]',
         generalPlacement: '[next]',
       },
     });
