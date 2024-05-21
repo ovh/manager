@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.4.0...@ovh-ux/ovh-payment-method@0.5.0) (2024-05-21)
+
+
+### Features
+
+* **dedicated:** remove paymentmean deprecated call ([#11642](https://github.com/ovh/manager/issues/11642)) ([0983d74](https://github.com/ovh/manager/commit/0983d7474e3f223ed115195d6ac93548ba8a5417))
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.3.1...@ovh-ux/ovh-payment-method@0.4.0) (2024-02-05)
 
 

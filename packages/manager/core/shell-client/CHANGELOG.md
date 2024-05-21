@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.5.0...@ovh-ux/manager-react-shell-client@0.6.0) (2024-05-21)
+
+
+### Features
+
+* **generator:** update folder structure ([#11536](https://github.com/ovh/manager/issues/11536)) ([348c312](https://github.com/ovh/manager/commit/348c3128139ddb5dc92fc330744f71624c693a2b))
+
+
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.4.2...@ovh-ux/manager-react-shell-client@0.5.0) (2024-05-13)
 
 

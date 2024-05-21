@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.4...@ovh-ux/manager-iam@1.9.5) (2024-05-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2988] ([c04cb3b](https://github.com/ovh/manager/commit/c04cb3bf5cccacb4d1d616a91b907fa11793bc20))
+* **i18n:** add missing translations [CDS 2996] ([2c89c7d](https://github.com/ovh/manager/commit/2c89c7defb9974e999433bfe28f25f9989afad72))
+
+
+
+
+
 ## [1.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.9.3...@ovh-ux/manager-iam@1.9.4) (2024-05-06)
 
 

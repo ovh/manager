@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.10.2...@ovh-ux/manager-hub@3.10.3) (2024-05-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3000] ([a789012](https://github.com/ovh/manager/commit/a7890129489e8e0e921dcf9c3699dd0dbf2a1398))
+
+
+
+
+
 ## [3.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.10.1...@ovh-ux/manager-hub@3.10.2) (2024-05-13)
 
 

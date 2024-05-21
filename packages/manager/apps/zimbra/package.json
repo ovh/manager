@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-zimbra-app",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "description": "zimbra react app",
   "repository": {
@@ -25,11 +25,11 @@
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-react-core-application": "^0.8.3",
-    "@ovh-ux/manager-react-shell-client": "^0.5.0",
+    "@ovh-ux/manager-react-shell-client": "^0.6.0",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "*",
     "@ovh-ux/shell": "^3.6.0",
-    "@ovhcloud/manager-components": "^1.12.0",
+    "@ovhcloud/manager-components": "^1.13.0",
     "@ovhcloud/ods-common-core": "17.1.0",
     "@ovhcloud/ods-common-theming": "^17.1.0",
     "@ovhcloud/ods-components": "^17.1.0",

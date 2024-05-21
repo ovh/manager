@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-key-management-service-app",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "description": "ovh key-management-service",
   "repository": {
@@ -24,9 +24,9 @@
     "@ovh-ux/manager-config": "^7.3.0",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-react-shell-client": "^0.5.0",
+    "@ovh-ux/manager-react-shell-client": "^0.6.0",
     "@ovh-ux/manager-tailwind-config": "*",
-    "@ovhcloud/manager-components": "^1.12.0",
+    "@ovhcloud/manager-components": "^1.13.0",
     "@ovhcloud/ods-common-core": "17.2.1",
     "@ovhcloud/ods-common-theming": "17.2.1",
     "@ovhcloud/ods-components": "17.2.1",

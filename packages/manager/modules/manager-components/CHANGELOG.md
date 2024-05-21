@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.15.1...@ovh-ux/manager-components@1.16.0) (2024-05-21)
+
+
+### Features
+
+* **public-cloud:** add translation for next localzone regions ([#11686](https://github.com/ovh/manager/issues/11686)) ([349b279](https://github.com/ovh/manager/commit/349b279019d62f9082d788b7fa1d46596a70bd04))
+
+
+
+
+
 ## [1.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.15.0...@ovh-ux/manager-components@1.15.1) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-components

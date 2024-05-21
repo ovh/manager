@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.35.1...@ovh-ux/manager-dedicated@19.36.0) (2024-05-21)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing state parameter ([#11694](https://github.com/ovh/manager/issues/11694)) ([41b941c](https://github.com/ovh/manager/commit/41b941c2caa87695b8b5a5ff57d73dab8f2a76cc))
+* **dedicated:** pcc ip blocks label ([#11674](https://github.com/ovh/manager/issues/11674)) ([94ed6cc](https://github.com/ovh/manager/commit/94ed6ccdb387758cee0c5a656f3161667da03e2a))
+* **dedicated:** update guide links for us version ([#11407](https://github.com/ovh/manager/issues/11407)) ([788f72a](https://github.com/ovh/manager/commit/788f72ac2b63a0107662a8ba621d2a4bc12e2300))
+* **i18n:** add missing translations [CDS 2988] ([c04cb3b](https://github.com/ovh/manager/commit/c04cb3bf5cccacb4d1d616a91b907fa11793bc20))
+
+
+### Features
+
+* **dedicated:** remove paymentmean deprecated call ([#11642](https://github.com/ovh/manager/issues/11642)) ([0983d74](https://github.com/ovh/manager/commit/0983d7474e3f223ed115195d6ac93548ba8a5417))
+* **iam:** sso, personnalisation of username attribute ([#10613](https://github.com/ovh/manager/issues/10613)) ([#11048](https://github.com/ovh/manager/issues/11048)) ([545b21b](https://github.com/ovh/manager/commit/545b21b47d12bc7b0f5114393805bce3a7f87ef2))
+* **public-cloud:** add translation for next localzone regions ([#11686](https://github.com/ovh/manager/issues/11686)) ([349b279](https://github.com/ovh/manager/commit/349b279019d62f9082d788b7fa1d46596a70bd04))
+
+
+
+
+
 ## [19.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.35.0...@ovh-ux/manager-dedicated@19.35.1) (2024-05-13)
 
 
