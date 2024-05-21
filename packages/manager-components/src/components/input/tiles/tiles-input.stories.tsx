@@ -108,7 +108,7 @@ const Template: Story<any> = (args) => {
   const [, updateArgs] = useArgs();
 
   return (
-    <TilesInputComponent<TCountry, string, string>
+    <TilesInputComponent<TCountry, string, { continent: string; key: string }>
       {...args}
       onInput={(country) => updateArgs({ value: country })}
     />

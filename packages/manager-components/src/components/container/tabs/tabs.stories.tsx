@@ -5,6 +5,7 @@ import TabsComponent from './Tabs.component';
 type TContinent = {
   name: string;
   countries: string[];
+  key: string;
 };
 
 export default {
@@ -27,14 +28,17 @@ Demo.args = {
     {
       name: 'Africa',
       countries: ['Morocco', 'Algeria', 'Tunisia'],
+      key: 'Africa',
     },
     {
       name: 'Europe',
       countries: ['France', 'Germany', 'germany'],
+      key: 'Europe',
     },
     {
       name: 'Asia',
       countries: ['China', 'Japan', 'South Corea'],
+      key: 'Asia',
     },
   ] as TContinent[],
   titleElement: (item: TContinent) => <div className="py-6">{item.name}</div>,
