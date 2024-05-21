@@ -112,7 +112,9 @@
                         data-variant="light"
                         data-picture="{{ ::plan.icon }}"
                         data-model="$ctrl.model.selectedPlan"
+                        data-disabled="!plan.available"
                         data-values="[plan]"
+                        oui-tooltip="{{:: $ctrl.getRegionTooltip(plan.available) }}"
                     >
                     </oui-select-picker>
                 </div>
