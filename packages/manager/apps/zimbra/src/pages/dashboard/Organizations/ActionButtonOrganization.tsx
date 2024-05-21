@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovhcloud/manager-components';
 
-const ActionItems: React.FC = () => {
+export const ActionButtonOrganization: React.FC = () => {
   const { t } = useTranslation('organisations');
   const actionItems = [
     {
@@ -16,11 +16,7 @@ const ActionItems: React.FC = () => {
       label: t('zimbra_organization_delete'),
     },
   ];
-  return (
-    <div>
-      <ActionMenu items={actionItems} isCompact />
-    </div>
-  );
+  return <ActionMenu items={actionItems} isCompact />;
 };
 
-export default ActionItems;
+export default ActionButtonOrganization;
