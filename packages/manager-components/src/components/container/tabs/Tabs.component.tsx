@@ -21,6 +21,15 @@ type TState<Item> = {
   selectedItem?: Item;
 };
 
+const hashCode = (s: string) => {
+  let h = 0;
+  const l = s?.length || 0;
+  let i = 0;
+  // eslint-disable-next-line
+  if (l > 0) while (i < l) h = ((h << 5) - h + s.charCodeAt(i++)) | 0;
+  return h;
+};
+
 export const TabsComponent = function TabsComponent<Item>({
   id = uuidV4(),
   items = [],
@@ -80,27 +89,36 @@ export const TabsComponent = function TabsComponent<Item>({
             className="flex flex-row list-none p-0 m-0 w-full"
             data-testid="titles"
           >
-            {state.items.map((item, index) => (
+            {state.items.map((item) => (
               <li
-                key={`tabs-${id}title-${index}`}
+                key={`tabs-${id}title-${hashCode(JSON.stringify(item))}`}
                 className={clsx(
                   'px-4 py-4 cursor-pointer border border-solid border-[#bef1ff] rounded-t-lg',
                   item.payload === state.selectedItem
                     ? 'border-b-0 bg-[#F5FEFF]'
                     : 'border-b bg-white',
                 )}
-                onClick={() =>
-                  setState((prev) => ({ ...prev, selectedItem: item.payload }))
-                }
-                onKeyDown={() =>
-                  setState((prev) => ({ ...prev, selectedItem: item.payload }))
-                }
-                role="button"
               >
-                {titleElement(
-                  item.payload,
-                  Object.is(item.payload, state.selectedItem),
-                )}
+                <button
+                  className="border-0 bg-transparent cursor-pointer w-full"
+                  onClick={() =>
+                    setState((prev) => ({
+                      ...prev,
+                      selectedItem: item.payload,
+                    }))
+                  }
+                  onKeyDown={() =>
+                    setState((prev) => ({
+                      ...prev,
+                      selectedItem: item.payload,
+                    }))
+                  }
+                >
+                  {titleElement(
+                    item.payload,
+                    Object.is(item.payload, state.selectedItem),
+                  )}
+                </button>
               </li>
             ))}
             <li
@@ -119,12 +137,13 @@ export const TabsComponent = function TabsComponent<Item>({
         >
           {state.items.map(($item, index) => (
             <div
-              key={`item-${index}`}
+              key={`tabs-${id}title-${hashCode(JSON.stringify($item.payload))}`}
               className="px-2 bg-[#F5FEFF] border border-solid border-[#bef1ff] rounded-lg"
             >
-              <div
-                className="flex cursor-pointer px-4"
+              <button
+                className="flex cursor-pointer px-4 py-4 w-full border-0 bg-transparent"
                 onClick={() => toggle(index)}
+                onKeyDown={() => toggle(index)}
               >
                 <div className="w-full">
                   {titleElement(
@@ -149,7 +168,7 @@ export const TabsComponent = function TabsComponent<Item>({
                     ></OsdsIcon>
                   )}
                 </div>
-              </div>
+              </button>
               {$item.isOpen && <div>{contentElement($item.payload)}</div>}
             </div>
           ))}

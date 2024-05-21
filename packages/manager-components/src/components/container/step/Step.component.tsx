@@ -1,3 +1,4 @@
+import React from 'react';
 import { OsdsButton, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
 import { v4 as uuidV4 } from 'uuid';
 import {
@@ -16,8 +17,8 @@ type TStepProps = {
   isChecked: boolean;
   isLocked: boolean;
   order: number;
-  next: { action: (id: string) => void; label: string; isDisabled: boolean };
-  edit: { action: (id: string) => void; label: string; isDisabled: boolean };
+  next?: { action: (id: string) => void; label: string; isDisabled: boolean };
+  edit?: { action: (id: string) => void; label: string; isDisabled: boolean };
   children?: JSX.Element | JSX.Element[];
 };
 
@@ -96,7 +97,7 @@ export const StepComponent = ({
             >
               {children}
             </div>
-            {next && next.action && !isLocked && (
+            {next?.action && !isLocked && (
               <div className="mt-6" data-testid="next">
                 <OsdsButton
                   data-testid="next-cta"
