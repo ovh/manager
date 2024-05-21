@@ -2,7 +2,7 @@
   "onboarding_button_text": "C'est parti !",
   "onboarding_introduction_popover_title": "{{userName}}, bienvenue sur votre espace client",
   "onboarding_introduction_popover_content": "Souhaitez-vous voir la visite guidée ?",
-  "onboarding_popover_follow_guide_button": "Voir la visite guidée ",
+  "onboarding_popover_follow_guide_button": "Voir la visite guidée",
   "onboarding_popover_hide_button": "Arrêter la visite",
   "onboarding_walkme_popover_next_step": "Suivant {{current}}/{{total}}",
   "onboarding_walkme_popover_step1_title": "Comment accéder à mon compte ?",
