@@ -26,11 +26,24 @@ export default /* @ngInject */ ($stateProvider) => {
             'telecom.telephony.billingAccount.line.dashboard.softphone.delete',
             { deviceId },
           ),
-        softphoneDevices: /* @ngInject */ (softphoneService, $stateParams) =>
-          softphoneService.getSoftphoneDevices(
-            $stateParams.billingAccount,
-            $stateParams.serviceName,
-          ),
+        softphoneDevices: /* @ngInject */ (
+          softphoneService,
+          billingAccount,
+          serviceName,
+        ) => softphoneService.getSoftphoneDevices(billingAccount, serviceName),
+        billingAccount: /* @ngInject */ ($stateParams) =>
+          $stateParams.billingAccount,
+        serviceName: /* @ngInject */ ($stateParams) => $stateParams.serviceName,
+        themes: /* @ngInject */ (softphoneService) =>
+          softphoneService.getThemes(),
+        currentTheme: /* @ngInject */ (
+          softphoneService,
+          billingAccount,
+          serviceName,
+        ) =>
+          softphoneService
+            .getSoftphoneCurrentTheme(billingAccount, serviceName)
+            .then(({ themeId }) => themeId),
         storeLinks: /* @ngInject */ (softphoneService) =>
           softphoneService.getStoreLinks(),
       },

@@ -2,8 +2,10 @@ import { SOFTPHONE_TYPE } from './softphone.constants';
 
 export default class SofpthoneService {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, $window, iceberg) {
     this.$http = $http;
+    this.$window = $window;
+    this.iceberg = iceberg;
   }
 
   modifyDevice(billingAccount, serviceName, name, deviceId) {
@@ -52,5 +54,74 @@ export default class SofpthoneService {
     return this.$http
       .get(`/telephony/${billingAccount}/line/${serviceName}/devices`)
       .then(({ data }) => data);
+  }
+
+  getThemes() {
+    return this.iceberg('/telephony/softphone/themes')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => data);
+  }
+
+  getSoftphoneCurrentTheme(billingAccount, serviceName) {
+    return this.$http
+      .get(`/telephony/${billingAccount}/line/${serviceName}/softphone/theme`)
+      .then(({ data }) => data);
+  }
+
+  putSoftphoneTheme(billingAccount, serviceName, themeId) {
+    return this.$http
+      .put(`/telephony/${billingAccount}/line/${serviceName}/softphone/theme`, {
+        themeId,
+      })
+      .then(({ data }) => data);
+  }
+
+  putSoftphoneLogo(billingAccount, serviceName, filename, url) {
+    return this.$http
+      .put(`/telephony/${billingAccount}/line/${serviceName}/softphone/logo`, {
+        filename,
+        url,
+      })
+      .then(({ data }) => data);
+  }
+
+  getLogo(billingAccount, serviceName) {
+    return this.$http
+      .get(`/telephony/${billingAccount}/line/${serviceName}/softphone/logo`)
+      .then(({ data }) => data);
+  }
+
+  /*
+   * TODO: this API is not testable inside LABEU
+   * => Some tests will be needed for testing this in production
+   */
+
+  uploadDocument(file) {
+    const createDocument = () =>
+      this.$http
+        .post('/me/document', {
+          name: file.name,
+        })
+        .then(({ data }) => data);
+
+    const applyCors = () =>
+      this.$http.post('/me/document/cors', {
+        origin: this.$window.location.origin,
+      });
+
+    const saveDocumentFile = (putUrl) =>
+      this.$http
+        .put(putUrl, file, {
+          headers: {
+            'Content-type': 'multipart/form-data',
+          },
+        })
+        .then(() => putUrl);
+
+    return createDocument().then(({ putUrl }) => {
+      return applyCors().then(() => saveDocumentFile(putUrl));
+    });
   }
 }
