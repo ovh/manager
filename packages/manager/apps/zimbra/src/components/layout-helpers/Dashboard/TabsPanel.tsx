@@ -8,14 +8,10 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { Headers } from '@ovhcloud/manager-components';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
-import { useQuery } from '@tanstack/react-query';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { usePlatform } from '@/hooks';
-import {
-  getZimbraPlatformOrganizationDetails,
-  getZimbraPlatformOrganizationDetailsQueryKey,
-} from '@/api';
+
 import { urls } from '@/routes/routes.constants';
+import { useOrganization } from '@/hooks';
 
 export type TabItemProps = {
   name: string;
@@ -32,26 +28,8 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
   const [activePanel, setActivePanel] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
-  const { platformId } = usePlatform();
 
-  const params = new URLSearchParams(location.search);
-  const selectedOrganizationId = params.get('organizationId');
-  const { data } = useQuery({
-    queryKey: platformId
-      ? getZimbraPlatformOrganizationDetailsQueryKey(
-          platformId,
-          selectedOrganizationId,
-        )
-      : null,
-    queryFn: () =>
-      platformId
-        ? getZimbraPlatformOrganizationDetails(
-            platformId,
-            selectedOrganizationId,
-          )
-        : null,
-    enabled: !!selectedOrganizationId && !!platformId,
-  });
+  const { data } = useOrganization();
   useEffect(() => {
     const activeTab = tabs.find((tab) => tab.to === location.pathname);
     if (activeTab) {
@@ -88,9 +66,7 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
                 <NavLink
                   key={`osds-tab-bar-item-${tab.name}`}
                   to={
-                    selectedOrganizationId
-                      ? `${tab.to}?organizationId=${selectedOrganizationId}`
-                      : tab.to
+                    data?.id ? `${tab.to}?organizationId=${data?.id}` : tab.to
                   }
                   className="no-underline"
                 >
