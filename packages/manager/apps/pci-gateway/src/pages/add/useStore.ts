@@ -51,174 +51,160 @@ type TStore = {
   };
 };
 
-export const useNewGatewayStore = create<TStore>()((set) => {
-  return {
-    project: undefined,
-    form: {
-      name: undefined,
-      size: undefined,
-      regionName: undefined,
-      network: {
-        id: undefined,
-        subnetId: undefined,
-      },
-      newNetwork: {
-        name: undefined,
-        subnet: undefined,
-      },
+export const useNewGatewayStore = create<TStore>()((set) => ({
+  project: undefined,
+  form: {
+    name: undefined,
+    size: undefined,
+    regionName: undefined,
+    network: {
+      id: undefined,
+      subnetId: undefined,
     },
-    steps: new Map([
-      [
-        StepsEnum.SIZE,
-        {
-          isOpen: true,
-          isChecked: false,
-          isLocked: false,
+    newNetwork: {
+      name: undefined,
+      subnet: undefined,
+    },
+  },
+  steps: new Map([
+    [
+      StepsEnum.SIZE,
+      {
+        isOpen: true,
+        isChecked: false,
+        isLocked: false,
+      },
+    ],
+    [
+      StepsEnum.LOCATION,
+      {
+        isOpen: false,
+        isChecked: false,
+        isLocked: false,
+      },
+    ],
+    [
+      StepsEnum.NETWORK,
+      {
+        isOpen: false,
+        isChecked: false,
+        isLocked: false,
+      },
+    ],
+  ]),
+  setProject: (project: { id: string; isDiscovery: boolean }) => {
+    set(() => ({
+      project,
+    }));
+  },
+  updateForm: {
+    name: (name: string) => {
+      set((state) => ({
+        form: {
+          ...state.form,
+          name,
         },
-      ],
-      [
-        StepsEnum.LOCATION,
-        {
-          isOpen: false,
-          isChecked: false,
-          isLocked: false,
+      }));
+    },
+    size: (size: string) => {
+      set((state) => ({
+        form: {
+          ...state.form,
+          size,
         },
-      ],
-      [
-        StepsEnum.NETWORK,
-        {
-          isOpen: false,
-          isChecked: false,
-          isLocked: false,
+      }));
+    },
+    regionName: (regionName: string) => {
+      set((state) => ({
+        form: {
+          ...state.form,
+          regionName,
         },
-      ],
-    ]),
-    setProject: (project: { id: string; isDiscovery: boolean }) => {
-      set(() => {
+      }));
+    },
+    network: (id: string, subnetId: string) => {
+      set((state) => ({
+        form: {
+          ...state.form,
+          network: {
+            id,
+            subnetId,
+          },
+        },
+      }));
+    },
+    newNetwork: (name: string, subnet: string) => {
+      set((state) => ({
+        form: {
+          ...state.form,
+          newNetwork: {
+            name,
+            subnet,
+          },
+        },
+      }));
+    },
+  },
+  updateStep: {
+    open: (id: StepsEnum) => {
+      set((state) => {
+        const steps = new Map(state.steps);
+        steps.get(id).isOpen = true;
         return {
-          project,
+          ...state,
+          steps,
         };
       });
     },
-    updateForm: {
-      name: (name: string) => {
-        set((state) => {
-          return {
-            form: {
-              ...state.form,
-              name,
-            },
-          };
-        });
-      },
-      size: (size: string) => {
-        set((state) => {
-          return {
-            form: {
-              ...state.form,
-              size,
-            },
-          };
-        });
-      },
-      regionName: (regionName: string) => {
-        set((state) => {
-          return {
-            form: {
-              ...state.form,
-              regionName,
-            },
-          };
-        });
-      },
-      network: (id: string, subnetId: string) => {
-        set((state) => {
-          return {
-            form: {
-              ...state.form,
-              network: {
-                id,
-                subnetId,
-              },
-            },
-          };
-        });
-      },
-      newNetwork: (name: string, subnet: string) => {
-        set((state) => {
-          return {
-            form: {
-              ...state.form,
-              newNetwork: {
-                name,
-                subnet,
-              },
-            },
-          };
-        });
-      },
+    close: (id: StepsEnum) => {
+      set((state) => {
+        const steps = new Map(state.steps);
+        steps.get(id).isOpen = false;
+        return {
+          ...state,
+          steps,
+        };
+      });
     },
-    updateStep: {
-      open: (id: StepsEnum) => {
-        set((state) => {
-          const steps = new Map(state.steps);
-          steps.get(id).isOpen = true;
-          return {
-            ...state,
-            steps,
-          };
-        });
-      },
-      close: (id: StepsEnum) => {
-        set((state) => {
-          const steps = new Map(state.steps);
-          steps.get(id).isOpen = false;
-          return {
-            ...state,
-            steps,
-          };
-        });
-      },
-      check: (id: StepsEnum) => {
-        set((state) => {
-          const steps = new Map(state.steps);
-          steps.get(id).isChecked = true;
-          return {
-            ...state,
-            steps,
-          };
-        });
-      },
-      unCheck: (id: StepsEnum) => {
-        set((state) => {
-          const steps = new Map(state.steps);
-          steps.get(id).isChecked = false;
-          return {
-            ...state,
-            steps,
-          };
-        });
-      },
-      lock: (id: StepsEnum) => {
-        set((state) => {
-          const steps = new Map(state.steps);
-          steps.get(id).isLocked = true;
-          return {
-            ...state,
-            steps,
-          };
-        });
-      },
-      unlock: (id: StepsEnum) => {
-        set((state) => {
-          const steps = new Map(state.steps);
-          steps.get(id).isLocked = false;
-          return {
-            ...state,
-            steps,
-          };
-        });
-      },
+    check: (id: StepsEnum) => {
+      set((state) => {
+        const steps = new Map(state.steps);
+        steps.get(id).isChecked = true;
+        return {
+          ...state,
+          steps,
+        };
+      });
     },
-  };
-});
+    unCheck: (id: StepsEnum) => {
+      set((state) => {
+        const steps = new Map(state.steps);
+        steps.get(id).isChecked = false;
+        return {
+          ...state,
+          steps,
+        };
+      });
+    },
+    lock: (id: StepsEnum) => {
+      set((state) => {
+        const steps = new Map(state.steps);
+        steps.get(id).isLocked = true;
+        return {
+          ...state,
+          steps,
+        };
+      });
+    },
+    unlock: (id: StepsEnum) => {
+      set((state) => {
+        const steps = new Map(state.steps);
+        steps.get(id).isLocked = false;
+        return {
+          ...state,
+          steps,
+        };
+      });
+    },
+  },
+}));

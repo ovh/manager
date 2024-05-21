@@ -29,7 +29,7 @@ import {
 import { useContext, useEffect, useRef, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useHref, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   ODS_BUTTON_SIZE,
@@ -48,6 +48,8 @@ export default function ListingPage() {
   const { t: tFilter } = useTranslation('filter');
   const [projectUrl, setProjectUrl] = useState('');
   const [privateNetworkUrl, setPrivateNetworkUrl] = useState('');
+
+  const hrefAdd = useHref(`./new`);
 
   const { navigation } = useContext(ShellContext).shell;
   const { projectId } = useParams();
@@ -151,6 +153,7 @@ export default function ListingPage() {
             variant={ODS_BUTTON_VARIANT.stroked}
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0"
+            href={hrefAdd}
           >
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}

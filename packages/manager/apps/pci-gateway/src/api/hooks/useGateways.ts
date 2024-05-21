@@ -26,23 +26,14 @@ export const useCreateGateway = ({
   onSuccess,
 }: TCreateGatewayParam) => {
   const mutation = useMutation({
-    mutationFn: (newGateway: TNewGateway) => {
-      return createGateway(
-        projectId,
-        regionName,
-        networkId,
-        subnetId,
-        newGateway,
-      );
-    },
+    mutationFn: (newGateway: TNewGateway) =>
+      createGateway(projectId, regionName, networkId, subnetId, newGateway),
     onError,
     onSuccess,
   });
 
   return {
-    createGateway: (newGateway: TNewGateway) => {
-      return mutation.mutate(newGateway);
-    },
+    createGateway: (newGateway: TNewGateway) => mutation.mutate(newGateway),
     ...mutation,
   };
 };
@@ -82,9 +73,8 @@ export const useEditGateway = ({
   onSuccess,
 }: TUpdateGatewayParam) => {
   const mutation = useMutation({
-    mutationFn: ({ name, model }: { name: string; model: string }) => {
-      return updateGateway(projectId, regionName, gatewayId, name, model);
-    },
+    mutationFn: ({ name, model }: { name: string; model: string }) =>
+      updateGateway(projectId, regionName, gatewayId, name, model),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -95,9 +85,8 @@ export const useEditGateway = ({
   });
 
   return {
-    updateGateway: ({ name, model }: { name: string; model: string }) => {
-      return mutation.mutate({ name, model });
-    },
+    updateGateway: ({ name, model }: { name: string; model: string }) =>
+      mutation.mutate({ name, model }),
     ...mutation,
   };
 };

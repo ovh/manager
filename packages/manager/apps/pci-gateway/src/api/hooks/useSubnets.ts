@@ -17,9 +17,8 @@ export const useSubnets = (
   projectId: string,
   regionName: string,
   networkId: string,
-) => {
-  return useQuery({
+) =>
+  useQuery({
     ...getSubnetsQuery(projectId, regionName, networkId),
     enabled: !!projectId && !!regionName && !!networkId,
   });
-};
