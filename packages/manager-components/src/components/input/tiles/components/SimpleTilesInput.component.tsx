@@ -40,7 +40,7 @@ export type TSimpleProps<T, S = void> = {
 
 export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
   T,
-  S,
+  S
 >({
   items,
   value,
