@@ -24,6 +24,14 @@ export default [
       {
         path: 'rancher',
         ...lazyRouteConfig(() => import('@/pages/')),
+        children: [
+          {
+            path: ':rancherId/delete',
+            ...lazyRouteConfig(() =>
+              import('@/pages/listing/delete/DeleteRancherModal'),
+            ),
+          },
+        ],
       },
       {
         path: 'rancher/onboarding',
@@ -35,7 +43,21 @@ export default [
       },
       {
         path: 'rancher/:rancherId',
-        ...lazyRouteConfig(() => import('@/pages/dashboard/_layout')),
+        ...lazyRouteConfig(() => import('@/pages/dashboard')),
+        children: [
+          {
+            path: 'edit',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/edit-modal/EditModal'),
+            ),
+          },
+          {
+            path: 'generate-access',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/generate-access/GenerateAccessModal'),
+            ),
+          },
+        ],
       },
     ],
   },

@@ -18,5 +18,14 @@
   "telephony_line_convert_link": "Vous pourrez annuler dans la section suivante.",
   "telephony_line_breacrumb": "Linee",
   "telephony_line_mgcp_banner_link": "Clicca qui.",
-  "telephony_line_mgcp_banner_description": "Il terminale MGCP utilizzato è obsoleto, ti chiediamo di sostituirlo."
+  "telephony_line_mgcp_banner_description": "Il terminale MGCP utilizzato è obsoleto, ti chiediamo di sostituirlo.",
+  "telephony_line_tab_softphone": "Softphone",
+  "telephony_line_tab_beta_softphone_description": "Configura qui l’opzione Softphone. Da notare che durante la fase Beta, se scegliete di attivare il Softphone sulla vostra linea, non potremo più provisionarlo se non sulle nostre applicazioni di Softphone, \"Softcall\" (e quindi non su un terminale di telefonia fissa o su un altro software di Softphone)",
+  "telephony_line_tab_beta_softphone_active_description": "Se l'interruttore è attivo, questa linea è utilizzabile su tutte le applicazioni \"Softcall\": mobile e computer.",
+  "telephony_line_tab_beta_softphone_email_message_success": "La tua richiesta di rigenerazione dell'email di configurazione è stata presa in carico.",
+  "telephony_line_tab_beta_softphone_email_message_error": "La richiesta di rigenerazione dell'email di configurazione non è andata a buon fine.",
+  "telephony_line_tab_beta_softphone_option_message_success": "L'attivazione/disattivazione dell'opzione Softphone sulla tua linea è stata presa in carico.",
+  "telephony_line_tab_beta_softphone_option_message_error": "L'attivazione/disattivazione dell'opzione Softphone sulla tua linea non ha avuto esito positivo.",
+  "telephony_line_tab_beta_softphone_inactive_description": "Se l'interruttore è inattivo, questa linea è utilizzabile solo su un terminale di telefonia fissa (cablato o DECT) o su un softphone di vostra scelta.",
+  "telephony_line_tab_beta_softphone_regenerate_link": "In caso di necessità, rigenera l’email di configurazione."
 }

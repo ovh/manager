@@ -85,5 +85,8 @@
   "overTheBox_reverse_dns": "Reverse DNS",
   "overTheBox_detail_link_guide": "Guides",
   "overthebox_detail_links": "Links",
-  "overTheBox_service_id": "Service ID:"
+  "overTheBox_service_id": "Service ID:",
+  "overTheBox_authorize_autoupgrade": "Allow automatic updates at night",
+  "overTheBox_change_auto_upgrade_success": "The automatic bets have been changed at night.",
+  "overTheBox_change_auto_upgrade_error": "We were unable to change your automatic payments at night: {{errorMessage}}"
 }

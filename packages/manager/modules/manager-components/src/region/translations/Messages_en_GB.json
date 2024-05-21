@@ -76,5 +76,14 @@
   "manager_components_region_continent_YYZ": "North America (Toronto)",
   "manager_components_region_MRS": "Marseille",
   "manager_components_region_MRS_micro": "Marseille ({{ micro }})",
-  "manager_components_region_continent_MRS": "Western Europe"
+  "manager_components_region_continent_MRS": "Western Europe",
+  "manager_components_region_PRG": "Prague",
+  "manager_components_region_PRG_micro": "Prague ({{ micro }})",
+  "manager_components_region_continent_PRG": "Central Europe",
+  "manager_components_region_AMS": "Amsterdam",
+  "manager_components_region_AMS_micro": "Amsterdam ({{ micro }})",
+  "manager_components_region_continent_AMS": "Western Europe",
+  "manager_components_region_MIL": "Milan",
+  "manager_components_region_MIL_micro": "Milan ({{ micro }})",
+  "manager_components_region_continent_MIL": "Western Europe"
 }

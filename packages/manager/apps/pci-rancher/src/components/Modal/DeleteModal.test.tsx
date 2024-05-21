@@ -16,7 +16,7 @@ const setupSpecTest = async () =>
     render(
       <DeleteModal
         selectedRancher={rancherMocked}
-        toggleModal={() => true}
+        onClose={() => true}
         onDeleteRancher={onDeleteMocked}
       />,
     ),

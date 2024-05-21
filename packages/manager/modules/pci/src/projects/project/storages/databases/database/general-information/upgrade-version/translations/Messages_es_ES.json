@@ -1,5 +1,5 @@
 {
-  "pci_databases_general_information_upgrade_version_confirm": "Cambiar de versión",
+  "pci_databases_general_information_upgrade_version_confirm": "Actualizar mi versión",
   "pci_databases_general_information_upgrade_version_cancel": "Cancelar",
   "pci_databases_general_information_upgrade_version_description": "Actualmente está utilizando la versión {{currentVersion}} de {{engine}}. Puede actualizar la instancia haciendo clic en «Actualizar mi versión».",
   "pci_databases_general_information_upgrade_version_warning": "Una vez completada la actualización, no podrá volver a una versión anterior.",

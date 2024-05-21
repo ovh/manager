@@ -49,18 +49,6 @@ function userService($http, $q, constants, coreConfig, OvhHttp) {
       return constants.urls.FR[link];
     });
 
-  this.getCreditCards = () =>
-    $http.get('apiv6/me/paymentMean/creditCard').then((response) => {
-      const queries = response.data.map(this.getCreditCard);
-
-      return $q.all(queries);
-    });
-
-  this.getCreditCard = (id) =>
-    $http
-      .get(`apiv6/me/paymentMean/creditCard/${id}`)
-      .then((response) => response.data);
-
   this.uploadFile = (filename, file, tags) => {
     if (filename == null || filename === '' || isEmpty(file.name)) {
       throw new Error("File doesn't have a name");

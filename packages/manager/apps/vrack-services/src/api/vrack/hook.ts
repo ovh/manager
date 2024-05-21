@@ -24,13 +24,19 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
     queryKey: getVrackListQueryKey,
     queryFn: getVrackList,
     enabled: !!vrackServicesId,
+    staleTime: Infinity,
   });
 
-  const result = useQueries({
+  return useQueries({
     queries:
       isFetched && vrackListResponse?.data && vrackListResponse.data.length > 0
         ? vrackListResponse?.data.map(
             (vrack): UseQueryOptions => ({
+              retry: false,
+              refetchOnWindowFocus: false,
+              refetchOnMount: false,
+              refetchOnReconnect: false,
+              retryOnMount: false,
               queryKey: getVrackAllowedServicesQueryKey({
                 vrack,
                 serviceFamily,
@@ -43,33 +49,37 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
             }),
           )
         : [],
+    combine: (result) => {
+      const resultStatus = {
+        isLoading:
+          isVrackListLoading || result.some(({ isLoading }) => isLoading),
+        isError: isVrackListError,
+        error: vrackListError,
+        vrackListInError: result
+          .map(({ isError }, index) =>
+            isError ? vrackListResponse?.data?.[index] : null,
+          )
+          .filter(Boolean),
+      };
+
+      return {
+        allowedVrackList:
+          vrackServicesId && !resultStatus.isLoading && !resultStatus.isError
+            ? result.reduce((allowedVrackList, { data }, index) => {
+                if (
+                  (data as {
+                    data: AllowedServicesResponse;
+                  })?.data.vrackServices?.includes(vrackServicesId)
+                ) {
+                  return allowedVrackList.concat(
+                    vrackListResponse?.data[index],
+                  );
+                }
+                return allowedVrackList;
+              }, [] as string[])
+            : [],
+        ...resultStatus,
+      };
+    },
   });
-
-  const resultStatus = {
-    isLoading: isVrackListLoading || result.some(({ isLoading }) => isLoading),
-    isError: isVrackListError,
-    error: vrackListError,
-    vrackListInError: result
-      .map(({ isError }, index) =>
-        isError ? vrackListResponse?.data?.[index] : null,
-      )
-      .filter(Boolean),
-  };
-
-  return {
-    allowedVrackList:
-      vrackServicesId && !resultStatus.isLoading && !resultStatus.isError
-        ? result.reduce((allowedVrackList, { data }, index) => {
-            if (
-              (data as {
-                data: AllowedServicesResponse;
-              })?.data.vrackServices?.includes(vrackServicesId)
-            ) {
-              return allowedVrackList.concat(vrackListResponse?.data[index]);
-            }
-            return allowedVrackList;
-          }, [] as string[])
-        : [],
-    ...resultStatus,
-  };
 };

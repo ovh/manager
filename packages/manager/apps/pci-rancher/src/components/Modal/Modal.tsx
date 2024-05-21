@@ -10,7 +10,6 @@ const Modal: React.FC<React.PropsWithChildren & {
 
   const onOdsModalClose = () => {
     onClose();
-    modal.current?.close();
   };
 
   return (

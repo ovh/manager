@@ -245,6 +245,7 @@ export default (plop) => {
               endpoints: apiV2Computed,
               apiVersion: 'v2',
               appDirectory,
+              appName,
             })
           : [];
 
@@ -254,6 +255,7 @@ export default (plop) => {
               endpoints: apiV6Computed,
               apiVersion: 'v6',
               appDirectory,
+              appName,
             })
           : [];
 

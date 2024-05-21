@@ -12,5 +12,8 @@
   "nasha_components_metrics_renew": "Renew",
   "nasha_components_metrics_space_usage": "Usage notification",
   "nasha_components_metrics_space_usage_help": "The administration contact and the technical contact will both get an email alert when the NAS reaches 90% capacity",
-  "nasha_components_metrics_datacenter_mrs": "Marseille"
+  "nasha_components_metrics_datacenter_mrs": "Marseille",
+  "nasha_components_metrics_datacenter_prg": "Prague",
+  "nasha_components_metrics_datacenter_ams": "Amsterdam",
+  "nasha_components_metrics_datacenter_mil": "Milan"
 }

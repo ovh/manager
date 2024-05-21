@@ -48,15 +48,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           .then((data) =>
             transformOrder($q, data.data.data.lastOrder, OrderTracking),
           ),
-      numberOfServices: /* @ngInject */ ($http) =>
-        $http
-          .get('/services', {
-            headers: {
-              'X-Pagination-Size': 5,
-            },
-          })
-          .then((data) => data.data.length)
-          .catch(() => null),
       trackingPrefix: () => 'hub::dashboard::activity::payment-status',
       refresh: /* @ngInject */ ($http) => (type) =>
         $http

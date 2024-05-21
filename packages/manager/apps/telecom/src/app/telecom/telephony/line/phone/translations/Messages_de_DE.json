@@ -14,5 +14,6 @@
   "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
   "telephony_group_line_phone_section_back_link_target": "Verwaltung des Telefons",
   "telephony_line_phone_actions_line_phone_order_attach": "Die Leitung an eine aktuelle Hardware anhängen",
-  "telephony_line_phone_actions_line_phone_order_detach": "Leitung eines Telefons abtrennen"
+  "telephony_line_phone_actions_line_phone_order_detach": "Leitung eines Telefons abtrennen",
+  "telephony_line_phone_actions_line_details_softphone_breadcrumb": "Softphone"
 }

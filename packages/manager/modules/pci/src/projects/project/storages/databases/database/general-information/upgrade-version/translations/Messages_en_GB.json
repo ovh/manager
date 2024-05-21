@@ -1,5 +1,5 @@
 {
-  "pci_databases_general_information_upgrade_version_confirm": "Change version",
+  "pci_databases_general_information_upgrade_version_confirm": "Upgrade my version",
   "pci_databases_general_information_upgrade_version_cancel": "Cancel",
   "pci_databases_general_information_upgrade_version_description": "You are currently using version {{currentVersion}} of {{engine}}. You can upgrade your instance by clicking 'Upgrade my version' below.",
   "pci_databases_general_information_upgrade_version_warning": "Once the update is complete, you will not be able to revert to an earlier version.",

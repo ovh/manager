@@ -24,14 +24,14 @@ import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 interface DeleteModalProps {
   rancher: RancherService;
-  toggleModal: (showModal: boolean) => void;
   onEditRancher: (rancher: RancherService) => void;
+  onClose: () => void;
 }
 
 const EditNameModal = ({
   rancher,
-  toggleModal,
   onEditRancher,
+  onClose,
 }: DeleteModalProps) => {
   const { t } = useTranslation('pci-rancher/listing');
   const trackAction = useTrackingAction();
@@ -50,14 +50,11 @@ const EditNameModal = ({
           name: newName,
         } as RancherService['currentState'],
       } as RancherService);
-      toggleModal(false);
+      onClose();
     }
   };
   return (
-    <Modal
-      color={ODS_THEME_COLOR_INTENT.info}
-      onClose={() => toggleModal(false)}
-    >
+    <Modal color={ODS_THEME_COLOR_INTENT.info} onClose={onClose}>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
@@ -102,7 +99,7 @@ const EditNameModal = ({
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
           trackAction(TrackingPageView.EditNameModal, TrackingEvent.cancel);
-          toggleModal(false);
+          onClose();
         }}
       >
         {t('cancel')}

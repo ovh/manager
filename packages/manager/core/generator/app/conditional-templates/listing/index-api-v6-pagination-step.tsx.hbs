@@ -2,20 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navigate,{{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { getListingIcebergV6 } from '@/api';
 
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-
-import Loading from '@/components/Loading/Loading';
-import ErrorBanner from '@/components/Error/Error';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 import {
   Datagrid,
   DataGridTextCell,
   useDatagridSearchParams,
 } from '@ovhcloud/manager-components';
+
+import { getListingIcebergV6 } from '@/data/api/{{appName}}';
+
+import Loading from '@/components/Loading/Loading';
+import ErrorBanner from '@/components/Error/Error';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 import appConfig from '@/{{appName}}.config';
 
@@ -33,7 +34,7 @@ export default function Listing() {
     setSorting,
   } = useDatagridSearchParams();
   const { pageIndex, pageSize } = pagination;
-  const { t } = useTranslation('{{appName}}/listing');
+  const { t } = useTranslation('listing');
   {{#if isPCI }}
   const { projectId } = useParams();
   {{/if}}
@@ -45,7 +46,7 @@ export default function Listing() {
   });
 
   const navigateToDashabord = (label: string) => {
-    let path =
+    const path =
       location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
     navigate(`${path}${label}`);
   };
@@ -99,6 +100,7 @@ export default function Listing() {
         <Breadcrumb />
         <h2>{{appName}}</h2>
         <React.Suspense>
+          <div>{t('title')}</div>
         {columns && res && (
           <Datagrid
             columns={columns}

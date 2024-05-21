@@ -36,7 +36,7 @@ export default function Create() {
 
   const { data: project } = usePciProject();
 
-  const { data: ranchers } = useRanchers();
+  const { data: ranchers } = useRanchers({ disablePolling: true });
   const ranchersQueryKeyValue = ranchersQueryKey(projectId);
 
   const { mutate: createRancher, isPending } = useCreateRancher({

@@ -1,5 +1,3 @@
-import flatten from 'lodash/flatten';
-
 import { User } from '@ovh-ux/manager-models';
 
 angular.module('services').service(
@@ -82,20 +80,6 @@ angular.module('services').service(
       });
     };
 
-    this.getCreditCards = function getCreditCards() {
-      return $http.get('apiv6/me/paymentMean/creditCard').then((response) => {
-        const queries = response.data.map(self.getCreditCard);
-
-        return $q.all(queries);
-      });
-    };
-
-    this.getCreditCard = function getCreditCard(id) {
-      return $http
-        .get(`apiv6/me/paymentMean/creditCard/${id}`)
-        .then((response) => response.data);
-    };
-
     this.uploadFile = function uploadFile(filename, file, tags) {
       let idFile;
       let documentResponse;
@@ -131,13 +115,11 @@ angular.module('services').service(
     };
 
     this.getDocument = function getDocument(id) {
-      return $http
-        .get(`apiv6/me/document/${id}`)
-        .then((response) => response.data);
+      return $http.get(`apiv6/me/document/${id}`).then(({ data }) => data);
     };
 
     this.getDocumentIds = function getDocumentIds() {
-      return $http.get('apiv6/me/document').then((response) => response.data);
+      return $http.get('apiv6/me/document').then(({ data }) => data);
     };
 
     this.getDocuments = function getDocuments() {
@@ -162,28 +144,10 @@ angular.module('services').service(
       });
     };
 
-    this.getValidPaymentMeansIds = function getValidPaymentMeansIds() {
-      const means = [
-        'bankAccount',
-        'paypal',
-        'creditCard',
-        'deferredPaymentAccount',
-      ];
-      const baseUrl = `${constants.swsProxyRootPath}me/paymentMean`;
-      const meanRequests = [];
-      means.forEach((paymentMethod) => {
-        let paramStruct = null;
-        if (paymentMethod === 'bankAccount') {
-          paramStruct = {
-            state: 'valid',
-          };
-        }
-        const promise = $http
-          .get([baseUrl, paymentMethod].join('/'), { params: paramStruct })
-          .then((response) => response.data);
-        meanRequests.push(promise);
-      });
-      return $q.all(meanRequests).then((response) => flatten(response));
+    this.getValidPaymentMethodIds = function getValidPaymentMethodIds() {
+      return $http
+        .get(`${constants.swsProxyRootPath}me/payment/method`)
+        .then(({ data }) => data);
     };
   },
 );

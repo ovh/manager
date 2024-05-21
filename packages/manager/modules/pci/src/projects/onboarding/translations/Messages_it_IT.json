@@ -10,5 +10,9 @@
   "pci_projects_onboarding_us_description3": "Organizzare le architetture per progetto permette di segmentare i deploy nel Cloud in base alle aree funzionali e operative più adatte alle tue necessità. Ad esempio, puoi creare un progetto per il tuo ambiente di sviluppo e un altro per l'ambiente di produzione. È anche possibile effettuare una segmentazione in base al tipo di applicazione, in particolare con un progetto \"back office\" e un progetto \"e-commerce\".",
   "pci_projects_onboarding_us_create_project": "Crea il tuo primo progetto Public Cloud OVH ",
   "pci_projects_onboarding_us_banner_trusted_customer_info_1": "Vuoi richiedere maggiori informazioni o effettuare un ordine?",
-  "pci_projects_onboarding_us_banner_trusted_customer_info_2": "Chiedi di essere ricontattato gratuitamente da un consulente OVHcloud."
+  "pci_projects_onboarding_us_banner_trusted_customer_info_2": "Chiedi di essere ricontattato gratuitamente da un consulente OVHcloud.",
+  "pci_projects_onboarding_banner_trusted_customer_info_1": "Vuoi richiedere maggiori informazioni o effettuare un ordine?",
+  "pci_projects_onboarding_banner_trusted_customer_info_2": "Chiedi di essere ricontattato gratuitamente da un consulente OVHcloud.",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_description": "Per creare un progetto Public Cloud, è necessario verificare l’identità conformemente alle normative vigenti. Il trattamento dei documenti è attualmente in fase di analisi da parte dei nostri team. Per maggiori informazioni, consulta ",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_link": "Le mie richieste di assistenza"
 }

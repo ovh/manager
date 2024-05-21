@@ -303,7 +303,7 @@ export default class PciProjectStorageBlockService {
       storage.planCode,
       get(
         catalog,
-        `volume.${storage.type}.consumption.${storage.region}`,
+        `volume.${storage.type}.consumption.${storage.region?.name}`,
         get(catalog, `volume.${storage.type}.consumption`),
       ),
     );
@@ -323,7 +323,7 @@ export default class PciProjectStorageBlockService {
             currencyCode: relatedCatalog.price.currencyCode,
             text: relatedCatalog.price.text.replace(
               /\d+(?:[.,]\d+)?/,
-              `${value.toFixed(2)}`,
+              `${value.toFixed(3)}`,
             ),
             value,
           },

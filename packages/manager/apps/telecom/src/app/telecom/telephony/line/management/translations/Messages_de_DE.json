@@ -17,5 +17,6 @@
   "telephony_line_management_actions_line_cancel_delete_line_new": "Annuler la résiliation de la ligne",
   "telephony_line_antihack_title": "Schutz vor Hackern",
   "telephony_line_antihack_text": "Von Ihrer Leitung aus sind verdächtige Anrufe getätigt worden. Die Anrufziele wurden gesperrt.",
-  "telephony_line_antihack_link": "Klicken Sie hier, um diese Einschränkungen zu verwalten."
+  "telephony_line_antihack_link": "Klicken Sie hier, um diese Einschränkungen zu verwalten.",
+  "telephony_line_management_actions_line_softphone": "Meine Leitung mit einem Softphone verwenden"
 }

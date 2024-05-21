@@ -26,17 +26,15 @@ import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 export interface GenerateAccessModalProps {
   rancher: RancherService;
-  toggleModal: (showModal: boolean) => void;
+  onClose: () => void;
   onGenerateAccess: () => void;
-  resetAccessDetail: () => void;
   accessDetail: AccessDetail;
 }
 
 const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
   rancher,
-  toggleModal,
+  onClose,
   onGenerateAccess,
-  resetAccessDetail,
   accessDetail,
 }) => {
   const { t } = useTranslation('pci-rancher/dashboard');
@@ -44,17 +42,8 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
   useTrackingPage(TrackingPageView.GenerateAccessModal);
   const hasValidAccess = !!accessDetail?.username && !!accessDetail?.password;
 
-  const onCloseModal = () => {
-    trackAction(
-      TrackingPageView.GenerateAccessModal,
-      hasValidAccess ? TrackingEvent.close : TrackingEvent.cancel,
-    );
-    toggleModal(false);
-    resetAccessDetail();
-  };
-
   return (
-    <Modal color={ODS_THEME_COLOR_INTENT.info} onClose={onCloseModal}>
+    <Modal color={ODS_THEME_COLOR_INTENT.info} onClose={onClose}>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
@@ -108,7 +97,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
         slot="actions"
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={onCloseModal}
+        onClick={onClose}
       >
         {t(hasValidAccess ? 'close' : 'cancel')}
       </OsdsButton>

@@ -17,5 +17,6 @@
   "telephony_line_management_actions_line_cancel_delete_line_new": "Cancelar la baja de la línea",
   "telephony_line_antihack_title": "Anti-hackeo",
   "telephony_line_antihack_text": "Hemos detectado llamadas sospechosas desde su línea y sus destinos han sido bloqueados.",
-  "telephony_line_antihack_link": "Haga clic aquí para gestionar estas restricciones."
+  "telephony_line_antihack_link": "Haga clic aquí para gestionar estas restricciones.",
+  "telephony_line_management_actions_line_softphone": "Utilizar mi línea con un Softphone"
 }
