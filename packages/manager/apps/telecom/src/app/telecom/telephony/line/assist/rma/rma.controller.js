@@ -1,21 +1,16 @@
 import remove from 'lodash/remove';
+import { SUPPORT_URLS } from '../../../../../app.constants';
 
 import { TEXT_FOR_MODAL, ACTION_TYPE, RMA_NEW_TYPE } from './rma.constants';
 
 export default class TelecomTelephonyLineAssistRmaCtrl {
   /* @ngInject */
-  constructor(
-    $translate,
-    lineAssistRmaService,
-    TucToast,
-    TucToastError,
-    SUPPORT_URL,
-  ) {
+  constructor($translate, lineAssistRmaService, TucToast, TucToastError) {
     this.$translate = $translate;
     this.lineAssistRmaService = lineAssistRmaService;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
-    this.SUPPORT_URL = SUPPORT_URL;
+    this.SUPPORT_URL = SUPPORT_URLS.viewTickets;
   }
 
   $onInit() {

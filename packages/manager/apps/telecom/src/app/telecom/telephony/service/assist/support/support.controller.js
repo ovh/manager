@@ -1,8 +1,9 @@
+import { SUPPORT_URLS } from '../../../../../app.constants';
+
 export default /* @ngInject */ function TelecomTelephonyServiceAssistSupportCtrl(
   $stateParams,
   TelephonyMediator,
   URLS,
-  SUPPORT_URL,
 ) {
   const self = this;
 
@@ -12,7 +13,7 @@ export default /* @ngInject */ function TelecomTelephonyServiceAssistSupportCtrl
 
   self.service = null;
   self.guideUrl = URLS.guides.telephony;
-  self.supportUrl = SUPPORT_URL;
+  self.supportUrl = SUPPORT_URLS.viewTickets;
 
   /*= =====================================
     =            INITIALIZATION            =
