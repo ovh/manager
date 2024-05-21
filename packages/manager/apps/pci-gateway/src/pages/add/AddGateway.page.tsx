@@ -19,9 +19,9 @@ import {
   Notifications,
   PciDiscoveryBanner,
   PciGuidesHeader,
+  useProject,
 } from '@ovhcloud/manager-components';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import useProject from '@/api/hooks/useProject';
 import { SizeStep } from '@/pages/add/SizeStep';
 import { LocationStep } from '@/pages/add/LocationStep';
 import { NetworkStep } from '@/pages/add/NetworkStep';

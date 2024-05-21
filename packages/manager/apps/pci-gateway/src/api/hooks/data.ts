@@ -124,51 +124,48 @@ export const useData = (projectId: string) => {
               `pci_projects_project_gateways_model_selector_size`,
             )} ${getLitteralProductSize(product.name).toUpperCase()}`,
             bandwidth: product.hourly.addon.blobs.technical.bandwidth.level,
-            bandwidthLabel: ((bandwidthLevel: number) => {
-              return bandwidthLevel > 1000
+            bandwidthLabel: ((bandwidthLevel: number) =>
+              bandwidthLevel > 1000
                 ? tSelector(
                     `pci_projects_project_gateways_model_selector_bandwidth`,
                     { bandwidth: bandwidthLevel / 1000 },
                   ) +
-                    tSelector(
-                      'pci_projects_project_gateways_model_selector_bandwidth_unit_size_gbps',
-                    )
+                  tSelector(
+                    'pci_projects_project_gateways_model_selector_bandwidth_unit_size_gbps',
+                  )
                 : tSelector(
                     `pci_projects_project_gateways_model_selector_bandwidth`,
                     { bandwidth: bandwidthLevel },
                   ) +
-                    tSelector(
-                      'pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps',
-                    );
-            })(product.hourly.addon.blobs.technical.bandwidth.level),
+                  tSelector(
+                    'pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps',
+                  ))(product.hourly.addon.blobs.technical.bandwidth.level),
             hourlyPrice: product.hourly.addon.pricings.find((price) =>
               price.capacities.includes('consumption'),
             )?.price,
             monthlyPrice: product.monthly.addon.pricings.find((price) =>
               price.capacities.includes('consumption'),
             )?.price,
-            availableRegions: product.monthly.plan?.regions.map((region) => {
-              return {
-                name: region.name,
-                datacenter: region.datacenter,
-                continentCode: region.continentCode,
-                enabled: region.enabled,
-                // TODO inactive regions /cloud/project/${projectId}/regionAvailable
-                active: false,
-                macroName: getMacroRegion(region.name),
-                microName: tRegion(
-                  `manager_components_region_${getMacroRegion(
-                    region.name,
-                  )}_micro`,
-                  { micro: region.name },
-                ),
-                continent: tRegion(
-                  `manager_components_region_continent_${getMacroRegion(
-                    region.name,
-                  )}`,
-                ),
-              };
-            }),
+            availableRegions: product.monthly.plan?.regions.map((region) => ({
+              name: region.name,
+              datacenter: region.datacenter,
+              continentCode: region.continentCode,
+              enabled: region.enabled,
+              // TODO inactive regions /cloud/project/${projectId}/regionAvailable
+              active: false,
+              macroName: getMacroRegion(region.name),
+              microName: tRegion(
+                `manager_components_region_${getMacroRegion(
+                  region.name,
+                )}_micro`,
+                { micro: region.name },
+              ),
+              continent: tRegion(
+                `manager_components_region_continent_${getMacroRegion(
+                  region.name,
+                )}`,
+              ),
+            })),
           };
 
           setSizes((prev) => [...prev, size]);
