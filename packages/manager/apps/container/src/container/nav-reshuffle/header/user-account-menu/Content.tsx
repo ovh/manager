@@ -110,6 +110,7 @@ const UserAccountMenu = ({
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
       <div
         className={`oui-navbar-menu oui-navbar-menu_fixed oui-navbar-menu_end p-4 ${style.menuContentContainer}`}
+        id="user-account-menu-profile"
         data-navi-id="account-sidebar-block"
       >
         <div className="border-bottom pb-2 pt-2">
