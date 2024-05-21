@@ -1,0 +1,17 @@
+<div
+    data-ng-click="$ctrl.toggleSelected()"
+    role="button"
+    class="m-3 text-center overflow-hidden border rounded softphone-theme-picker"
+    data-ng-class="{
+                        'border-primary': $ctrl.isSelected(),
+                        'border-black': !$ctrl.isSelected()
+                    }"
+>
+    <div
+        style="height: 70%;"
+        data-ng-style="{
+            'background-color': $ctrl.color
+        }"
+    ></div>
+    <span data-ng-bind="$ctrl.themeId"></span>
+</div>
