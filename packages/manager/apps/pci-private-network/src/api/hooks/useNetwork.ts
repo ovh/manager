@@ -1,6 +1,7 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovhcloud/manager-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
 import {
   deleteNetwork,
   getAggregatedNetwork,
@@ -26,7 +27,7 @@ const getDetailSubnets = async (
     ),
   );
 
-  const updatedSubnets = network.subnets.map((subnet, index) => {
+  return network.subnets.map((subnet, index) => {
     const subnetData = subnetsData[index];
 
     if (subnetData) {
@@ -45,8 +46,6 @@ const getDetailSubnets = async (
 
     return subnet;
   });
-
-  return updatedSubnets;
 };
 
 export const filterNonLocalPrivateNetworks = (
@@ -91,6 +90,29 @@ export const useAggregatedNonLocalNetworks = (
     enabled: regions?.length > 0,
     select: (data) => filterNonLocalPrivateNetworks(data, regions) || [],
   });
+
+export const useAggregatedNonLocalNetworksRegions = (
+  projectId: string,
+  customerRegions: TRegion[],
+) => {
+  const { data } = useAggregatedNonLocalNetworks(projectId, customerRegions);
+
+  return {
+    data: useMemo(
+      () =>
+        Array.from(
+          new Set(
+            data?.reduce<string[]>(
+              (result: string[], network: { subnets: TSubnet[] }) =>
+                result.concat(network.subnets.map(({ region }) => region)),
+              [],
+            ),
+          ),
+        ),
+      [data],
+    ),
+  };
+};
 
 export const useGlobalRegionsNetworks = (
   projectId: string,
@@ -143,13 +165,11 @@ export const filterLocalPrivateNetworks = (
 ): TAggregatedNetwork[] => {
   const localZones = getLocalZoneRegions(regions);
 
-  const privateLocalNetworks = networks.filter(
+  return networks.filter(
     (network) =>
       network.visibility === 'private' &&
       isLocalZoneRegion(localZones, network.region),
   );
-
-  return privateLocalNetworks;
 };
 
 export const useAggregatedLocalNetworks = (
@@ -239,8 +259,8 @@ export const useDeleteNetwork = ({
   const mutation = useMutation({
     mutationFn: () => deleteNetwork(projectId, region, networkId),
     onError,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getLocalZoneRegionsQueryKey(projectId),
       });
       return onSuccess();

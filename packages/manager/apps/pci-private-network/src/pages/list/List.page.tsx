@@ -28,6 +28,8 @@ import GlobalRegionsComponent from '@/components/global-regions/GlobalRegions.co
 import LocalZoneComponent from '@/components/local-zones/LocalZone.component';
 import { PrivateNetworkTabName } from '@/constants';
 import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
+import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner.component';
+import { useProductMaintenance } from '@/components/maintenance/useMaintenance';
 import ListGuard from './ListGuard';
 
 const getActiveTab = (pathname: string) => {
@@ -47,7 +49,7 @@ export default function ListingPage() {
   const location = useLocation();
   const { projectId } = useParams();
   const { data: project } = useProject(projectId || '');
-
+  const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const activeTab = getActiveTab(location.pathname);
   const { isBannerVisible } = useAnnouncementBanner();
 
@@ -104,6 +106,11 @@ export default function ListingPage() {
         <div className="mb-5">
           {isDiscoveryProject(project) && (
             <PciDiscoveryBanner projectId={projectId} />
+          )}
+          {hasMaintenance && (
+            <div className="mt-5">
+              <MaintenanceBanner maintenanceURL={maintenanceURL} />
+            </div>
           )}
         </div>
 
