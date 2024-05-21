@@ -6,6 +6,10 @@ export default {
   controller,
   bindings: {
     openAddDeviceModal: '<',
+    currentTheme: '<',
+    billingAccount: '<',
+    serviceName: '<',
+    themes: '<',
     storeLinks: '<',
     softphoneDevices: '<',
     goToDeleteDevice: '<',

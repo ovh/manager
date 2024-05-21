@@ -1,7 +1,7 @@
 <tuc-toast-message></tuc-toast-message>
 
 <oui-collapsible
-    data-expanded="false"
+    data-expanded="$ctrl.softphoneDevices.length === 0"
     data-heading="{{ 'telephony_line_softphone_download_links_title' | translate }}"
 >
     <h4 class="pt-3">
@@ -135,4 +135,37 @@
     data-expanded="true"
     data-heading="{{ 'telephony_line_softphone_theme_title' | translate }}"
 >
+    <!-- Coloured List !-->
+
+    <!-- Update logo with image file !-->
+    <h3 data-translate="telephony_line_softphone_upload_logo"></h3>
+    <form name="form" data-ng-submit=":: $ctrl.applyTheme()">
+        <div style class="d-flex flex-wrap w-100 align-items-center">
+            <theme-picker
+                data-ng-repeat="theme in ::$ctrl.themes track by $index"
+                data-color="theme.color"
+                data-theme-id="theme.themeId"
+                data-selected="$ctrl.currentTheme"
+            ></theme-picker>
+        </div>
+        <oui-field
+            data-label="{{ 'telephony_line_softphone_your_logo' | translate }}"
+            data-help-text="{{ $ctrl.acceptedFormatsDesc + ' (< '+ $ctrl.maxSizeLogoFile/1000 + ' KB)' }}"
+        >
+            <oui-file
+                data-accept="{{ $ctrl.acceptedFormats }}"
+                data-maxsize="$ctrl.maxSizeLogoFile"
+                data-on-select="$ctrl.updateFilesList()"
+                data-droparea
+                data-model="$ctrl.fileModel"
+            >
+            </oui-file>
+        </oui-field>
+        <button type="submit" class="btn btn-default">
+            <span
+                data-translate="telephony_line_softphone_btn_apply_theme"
+            ></span>
+        </button>
+    </form>
+    <p data-translate="telephony_line_softphone_save_theme"></p>
 </oui-collapsible>
