@@ -8,25 +8,11 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       nodeId: /* @ngInject */ ($transition$) => $transition$.params().nodeId,
-      handleError: /* @ngInject */ (Alerter) => (error) => {
-        Alerter.alertFromSWS(error.message, 'ERROR', 'nutanix_node_alert');
-      },
-      goBack: /* @ngInject */ ($state) => (scrollToTop) => {
-        $state.go('^').then(() => {
-          if (scrollToTop) {
-            const element = document.getElementById('nutanix_dashboard_node');
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          }
-        });
-      },
-      orderPrivateBandwidthLink: /* @ngInject */ ($state, nodeId, goBack) =>
+      orderPrivateBandwidthLink: /* @ngInject */ ($state, nodeId) =>
         $state.href(
           'nutanix.dashboard.nodes.node.general-info.bandwidth-private-order',
           {
             nodeId,
-            goBack,
           },
         ),
       server: /* @ngInject */ (node) => node,
