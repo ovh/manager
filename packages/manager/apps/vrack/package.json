@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-app",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "private": true,
   "description": "vRack standalone application.",
   "repository": {
@@ -26,7 +26,7 @@
     "@ovh-ux/manager-vrack": "^1.9.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.13.2",
-    "@ovh-ux/ng-ovh-contracts": "^4.5.1",
+    "@ovh-ux/ng-ovh-contracts": "^4.6.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.1",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.1",

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nasha-app",
-  "version": "3.2.6",
+  "version": "3.2.7",
   "private": true,
   "description": "NAS-HA standalone application.",
   "repository": {
@@ -21,12 +21,12 @@
   "dependencies": {
     "@ovh-ux/manager-billing-components": "^3.18.0",
     "@ovh-ux/manager-catalog-price": "^1.8.0",
-    "@ovh-ux/manager-components": "^1.15.1",
+    "@ovh-ux/manager-components": "^1.16.0",
     "@ovh-ux/manager-config": "^7.3.1",
     "@ovh-ux/manager-core": "^12.16.2",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-models": "^1.14.11",
-    "@ovh-ux/manager-nasha": "^2.12.1",
+    "@ovh-ux/manager-nasha": "^2.13.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/ng-at-internet": "^5.11.9",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.0",
@@ -35,7 +35,7 @@
     "@ovh-ux/ng-ovh-doc-url": "^2.1.1",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.1",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
-    "@ovh-ux/ng-ovh-payment-method": "^9.15.1",
+    "@ovh-ux/ng-ovh-payment-method": "^9.15.2",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.2",
     "@ovh-ux/ng-ovh-responsive-popover": "^6.1.1",

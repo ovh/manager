@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.12.0...@ovhcloud/manager-components@1.13.0) (2024-05-21)
+
+### Features
+
+- **manager-components:** useProject and useIsDiscoveryProject hooks ([#11438](https://github.com/ovh/manager/issues/11438)) ([ef335db](https://github.com/ovh/manager/commit/ef335dbefcebfd00b11f4fd07d3859412931331c))
+
 # [1.12.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.11.0...@ovhcloud/manager-components@1.12.0) (2024-05-13)
 
 ### Features

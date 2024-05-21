@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.2.2...@ovh-ux/manager-pci-users-app@0.3.0) (2024-05-21)
+
+
+### Features
+
+* **public-cloud:** add translation for next localzone regions ([#11686](https://github.com/ovh/manager/issues/11686)) ([349b279](https://github.com/ovh/manager/commit/349b279019d62f9082d788b7fa1d46596a70bd04))
+
+
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.2.1...@ovh-ux/manager-pci-users-app@0.2.2) (2024-05-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-users-app

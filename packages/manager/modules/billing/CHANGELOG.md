@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.35](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.34...@ovh-ux/manager-billing@0.20.0-alpha.35) (2024-05-21)
+
+
+### Features
+
+* **dedicated:** remove default key from ssh key management ([#11594](https://github.com/ovh/manager/issues/11594)) ([b1bf70f](https://github.com/ovh/manager/commit/b1bf70f244b287ea44e41edf6d95462fa933c1c3))
+* **dedicated:** remove paymentmean deprecated call ([#11642](https://github.com/ovh/manager/issues/11642)) ([0983d74](https://github.com/ovh/manager/commit/0983d7474e3f223ed115195d6ac93548ba8a5417))
+
+
+
+
+
 # [0.20.0-alpha.34](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.33...@ovh-ux/manager-billing@0.20.0-alpha.34) (2024-05-06)
 
 

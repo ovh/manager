@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.13.1...@ovh-ux/manager-overthebox@6.14.0) (2024-05-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2988] ([c04cb3b](https://github.com/ovh/manager/commit/c04cb3bf5cccacb4d1d616a91b907fa11793bc20))
+* **i18n:** add missing translations [CDS 2996] ([2c89c7d](https://github.com/ovh/manager/commit/2c89c7defb9974e999433bfe28f25f9989afad72))
+* **i18n:** add missing translations [CDS 3000] ([a789012](https://github.com/ovh/manager/commit/a7890129489e8e0e921dcf9c3699dd0dbf2a1398))
+
+
+### Features
+
+* **telecom:** add auto upgrade configuration switch ([#11521](https://github.com/ovh/manager/issues/11521)) ([b3a294b](https://github.com/ovh/manager/commit/b3a294b37627b08a5edc6f871a8bda9871fee71e))
+
+
+
+
+
 ## [6.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.13.0...@ovh-ux/manager-overthebox@6.13.1) (2024-05-13)
 
 

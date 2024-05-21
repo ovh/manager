@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.3.0...@ovh-ux/manager-pci-rancher-app@1.4.0) (2024-05-21)
+
+
+### Features
+
+* **rancher:** add routes for modals ([#11418](https://github.com/ovh/manager/issues/11418)) ([60d6f1e](https://github.com/ovh/manager/commit/60d6f1e5c515c3b187485bb2cd1e54d4c82b964a))
+
+
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.2.7...@ovh-ux/manager-pci-rancher-app@1.3.0) (2024-05-13)
 
 
