@@ -6,7 +6,7 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { clsx } from 'clsx';
 
 type TStepProps = {
