@@ -39,6 +39,33 @@ export default class AgoraIpV6OrderController {
     };
     this.user = this.$state.params.user;
     this.catalogName = this.$state.params.catalogName;
+    this.ipv6Catalog = this.getIpv6Catalog();
+    this.ipv6RegionsWithPlan = this.getIpv6RegionsWithPlan();
+    this.canOrderIpv6 = true;
+    this.regionState = {};
+    this.IpAgoraV6Order.fetchIpv6Services().then(({ data }) => {
+      if (data.length < this.getIpv6OrderableNumber()) {
+        this.IpAgoraV6Order.fetchIpv6ServicesWithDetails().then((ips) => {
+          ips.forEach((ip) => {
+            ip.regions.forEach((region) => {
+              this.regionState[region] = this.regionState[region]
+                ? this.regionState[region] + 1
+                : 1;
+            });
+          });
+        });
+      } else {
+        this.canOrderIpv6 = false;
+      }
+    });
+  }
+
+  getIpv6OrderableNumber() {
+    return (
+      Array.from(
+        new Set(this.ipv6RegionsWithPlan.map(({ regionId }) => regionId)),
+      ).length * 3
+    );
   }
 
   loadServices() {
@@ -51,7 +78,6 @@ export default class AgoraIpV6OrderController {
       .then((results) => {
         this.user = results.user;
         this.services = [EMPTY_CHOICE, ...results.services];
-        this.ipv6Catalog = this.getIpv6Catalog();
         if (this.$state.params.service) {
           this.model.selectedService = find(this.services, {
             serviceName: this.$state.params.service.serviceName,
@@ -74,26 +100,42 @@ export default class AgoraIpV6OrderController {
     );
   }
 
-  loadRegions() {
-    this.catalogByLocation = this.ipv6Catalog.map((plan) => {
-      const {
-        details: {
-          product: { configurations },
-        },
-      } = plan;
-      const regionConfig = configurations.find(
-        (config) => config.name === 'ip_region',
-      );
-      const regionId = regionConfig.values[0] || '';
-      const countryCode = this.constructor.getMacroRegion(regionId);
+  getIpv6RegionsWithPlan() {
+    return this.ipv6Catalog
+      .map((plan) => {
+        const {
+          details: {
+            product: { configurations },
+          },
+        } = plan;
+        const regionConfig = configurations.find(
+          (config) => config.name === 'ip_region',
+        );
 
-      return {
-        regionId,
-        planCode: plan.planCode,
-        location: this.$translate.instant(`ip_agora_ipv6_location_${regionId}`),
-        icon: `oui-flag oui-flag_${FLAGS[countryCode]}`,
-      };
-    });
+        return regionConfig.values.map((regionId) => ({
+          regionId,
+          plan: plan.planCode,
+        }));
+      })
+      .flat();
+  }
+
+  loadRegions() {
+    this.catalogByLocation = this.ipv6RegionsWithPlan.map(
+      ({ regionId, plan }) => {
+        const countryCode = this.constructor.getMacroRegion(regionId);
+
+        return {
+          regionId,
+          planCode: plan,
+          available: this.canOrderIpv6 && this.regionState[regionId] < 3,
+          location: this.$translate.instant(
+            `ip_agora_ipv6_location_${regionId}`,
+          ),
+          icon: `oui-flag oui-flag_${FLAGS[countryCode]}`,
+        };
+      },
+    );
   }
 
   static getMacroRegion(region) {
@@ -150,6 +192,15 @@ export default class AgoraIpV6OrderController {
           this.ALERT_ID,
         );
       });
+  }
+
+  getRegionTooltip(regionAvailable) {
+    if (!regionAvailable) {
+      return this.canOrderIpv6
+        ? this.$translate.instant('ipv6-per-region_limit_reached_error')
+        : this.$translate.instant('ipv6_limit_reached_error');
+    }
+    return undefined;
   }
 
   goToDashboard() {
