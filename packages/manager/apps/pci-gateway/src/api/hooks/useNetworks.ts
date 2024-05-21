@@ -27,19 +27,17 @@ export const getPrivateNetworksQuery = (
   queryFn: () => getPrivateNetworks(projectId, regionName),
 });
 
-export const useNetworks = (projectId: string, regionName: string) => {
-  return useQuery({
+export const useNetworks = (projectId: string, regionName: string) =>
+  useQuery({
     ...getNetworksQuery(projectId, regionName),
     enabled: !!projectId && !!regionName,
   });
-};
 
-export const usePrivateNetworks = (projectId: string, regionName: string) => {
-  return useQuery({
+export const usePrivateNetworks = (projectId: string, regionName: string) =>
+  useQuery({
     ...getPrivateNetworksQuery(projectId, regionName),
     enabled: !!projectId && !!regionName,
   });
-};
 
 export const useCreateNetworkWithGateway = ({
   projectId,
@@ -48,17 +46,15 @@ export const useCreateNetworkWithGateway = ({
   onSuccess,
 }: TCreateNetworkWithGatewayParam) => {
   const mutation = useMutation({
-    mutationFn: (newNetwork: TNewNetworkWithGateway) => {
-      return createNetworkWithGateway(projectId, regionName, newNetwork);
-    },
+    mutationFn: (newNetwork: TNewNetworkWithGateway) =>
+      createNetworkWithGateway(projectId, regionName, newNetwork),
     onError,
     onSuccess,
   });
 
   return {
-    createNetworkWithGateway: (newNetwork: TNewNetworkWithGateway) => {
-      return mutation.mutate(newNetwork);
-    },
+    createNetworkWithGateway: (newNetwork: TNewNetworkWithGateway) =>
+      mutation.mutate(newNetwork),
     ...mutation,
   };
 };

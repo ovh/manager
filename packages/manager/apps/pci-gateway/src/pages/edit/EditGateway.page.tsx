@@ -2,6 +2,7 @@ import {
   StepComponent,
   TilesInputComponent,
   useNotifications,
+  useProject,
 } from '@ovhcloud/manager-components';
 import {
   OsdsFormField,
@@ -29,7 +30,6 @@ import {
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { useEditGateway, useGateway } from '@/api/hooks/useGateways';
-import useProject from '@/api/hooks/useProject';
 import { TSizeItem, useData } from '@/api/hooks/data';
 import { useCatalogPrice } from '@/hooks/catalog-price';
 
