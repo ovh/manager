@@ -35,10 +35,12 @@ export const useCatalogPrice = (maximumFractionDigits?: number) => {
       currency: me?.currency?.code,
       ...(maximumFractionDigits ? { maximumFractionDigits } : {}),
     };
-    return new Intl.NumberFormat(
-      locale.replace('_', '-'),
-      numberFormatOptions,
-    ).format(priceToFormat);
+    return me
+      ? new Intl.NumberFormat(
+          locale.replace('_', '-'),
+          numberFormatOptions,
+        ).format(priceToFormat)
+      : '';
   };
 
   const getFormattedCatalogPrice = (price: number): string =>
