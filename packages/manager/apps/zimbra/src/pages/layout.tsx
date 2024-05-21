@@ -33,7 +33,7 @@ export default function Layout() {
       {isError && <ErrorBanner error={error} />}
       {data?.length === 0 && <Navigate to="onboarding" />}
       {data?.length > 0 &&
-        location.pathname === `/${data[0].id}` &&
+        location.pathname === '/' &&
         location.search === '' && <Navigate to={`${data[0].id}`} />}
     </>
   );
