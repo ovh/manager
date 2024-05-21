@@ -834,5 +834,8 @@
   "server_nutanix_cluster_node_warning_1": "Este servidor dedicado faz parte de um cluster Nutanix: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "Recomendamos que efetue todas as alterações de configuração diretamente no painel de controlo do servidor associado ao seu cluster Nutanix: {{clusterNodeDashboardLink}}",
   "server_nutanix_cluster_node_warning_3": "Todas as ações de faturação relacionadas com este servidor são visíveis no seu cluster Nutanix: {{clusterDashboardLink}}",
-  "server_datacenter_MRS": "Marselha"
+  "server_datacenter_MRS": "Marselha",
+  "server_datacenter_PRG": "Praga",
+  "server_datacenter_AMS": "Amesterdão",
+  "server_datacenter_MIL": "Milão"
 }

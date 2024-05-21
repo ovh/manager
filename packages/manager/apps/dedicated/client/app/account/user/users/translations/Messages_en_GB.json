@@ -119,5 +119,6 @@
   "user_users_group": "Group",
   "user_need_rights_message": "You do not have permission to perform this operation. Please ask your administrators to enable the following permissions: ",
   "user_users_users_section_title": "Users",
-  "user_users_sso_modal_group_local_users_to_enable": "Keep active OVHcloud users"
+  "user_users_sso_modal_group_local_users_to_enable": "Keep active OVHcloud users",
+  "user_users_sso_modal_user_attribute_name": "User attribute name (userAttributeName, usually known as UPN [user principal name])"
 }

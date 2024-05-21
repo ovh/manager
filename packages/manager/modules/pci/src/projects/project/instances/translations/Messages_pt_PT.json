@@ -1,6 +1,6 @@
 {
   "pci_projects_project_instances_title": "Instâncias",
-  "pci_projects_project_instances_beta_subscribe_labs": "Aceda em primeira mão às nossas instâncias BareMetal preenchendo o formulário de inscrição disponível na página <a href=\"https://labs.ovh.com/bare-metal-on-public-cloud\" target=\"_blank\">OVH Labs dedicada</a>.",
+  "pci_projects_project_instances_beta_subscribe_labs": "Aceda em primeira mão às nossas instâncias Bare Metal preenchendo o formulário de inscrição disponível na página <a href=\"https://labs.ovh.com/bare-metal-on-public-cloud\" target=\"_blank\">OVH Labs dedicada</a>.",
   "pci_projects_project_instances_name_id_label": "Nome/ID",
   "pci_projects_project_instances_region_label": "Localização",
   "pci_projects_project_instances_flavor_label": "Modelo",
@@ -17,12 +17,12 @@
   "pci_projects_project_instances_status_HARD_REBOOT": "Reinicialização (hard)",
   "pci_projects_project_instances_status_PASSWORD": "Palavra-passe",
   "pci_projects_project_instances_status_PAUSED": "Em pausa",
-  "pci_projects_project_instances_status_REBOOT": "Reinicialização ",
+  "pci_projects_project_instances_status_REBOOT": "Reinicialização",
   "pci_projects_project_instances_status_REBUILD": "Reinstalação",
   "pci_projects_project_instances_status_RESCUED": "Em modo Rescue",
   "pci_projects_project_instances_status_RESIZED": "Atualização",
   "pci_projects_project_instances_status_REVERT_RESIZE": "Anulação",
-  "pci_projects_project_instances_status_SOFT_DELETED": "Eliminada (sft)",
+  "pci_projects_project_instances_status_SOFT_DELETED": "Eliminada (soft)",
   "pci_projects_project_instances_status_STOPPED": "Interrompida",
   "pci_projects_project_instances_status_SUSPENDED": "Suspensa",
   "pci_projects_project_instances_status_UNKNOWN": "Indefinido",
@@ -37,7 +37,7 @@
   "pci_projects_project_instances_status_UNSHELVING": "Reativação em curso",
   "pci_projects_project_instances_status_SHELVED_OFFLOADED": "Suspensa",
   "pci_projects_project_instances_status_RESCUING": "Reinicialização (rescue)",
-  "pci_projects_project_instances_status_UNRESCUING": "Reinicialização ",
+  "pci_projects_project_instances_status_UNRESCUING": "Reinicialização",
   "pci_projects_project_instances_status_SNAPSHOTTING": "Criação de uma instância de backup",
   "pci_projects_project_instances_status_RESUMING": "Retoma em curso",
   "pci_projects_project_instances_view_label": "Dados da instância",
@@ -63,5 +63,10 @@
   "pci_projects_project_instances_autobackup_label": "Criar um backup automatizado",
   "pci_projects_project_instances_refresh": "Atualizar as instâncias",
   "pci_projects_project_instances_private_ip": "IP privados",
-  "pci_projects_project_instances_no_data": "Nenhum dado disponível."
+  "pci_projects_project_instances_no_data": "Nenhum dado disponível.",
+  "pci_projects_project_instances_status_PAUSED_TOOLTIP": "Terá sempre uma faturação ao mesmo preço para a sua instância.",
+  "pci_projects_project_instances_status_SUSPENDED_TOOLTIP": "Terá sempre uma faturação ao mesmo preço para a sua instância.",
+  "pci_projects_project_instances_status_SHUTOFF_TOOLTIP": "Terá sempre uma faturação ao mesmo preço para a sua instância.",
+  "pci_projects_project_instances_status_SHELVED_TOOLTIP": "Apenas a snapshot é faturada.",
+  "pci_projects_project_instances_status_SHELVED_OFFLOADED_TOOLTIP": "Apenas a snapshot é faturada."
 }

@@ -87,37 +87,6 @@ export default class UserAccountSshCtrl {
     this.sshLoading = false;
   }
 
-  setDefaultDedicatedSshKey(sshObj) {
-    this.UseraccountSshService.setDefaultDedicatedSshKey(sshObj).then(
-      () => {
-        if (!sshObj.default) {
-          // Switch to true
-          this.Alerter.success(
-            this.$translate.instant('user_ssh_default_on_success_message', {
-              t0: sshObj.keyName,
-            }),
-            'userSsh',
-          );
-        } else {
-          // Switch to false
-          this.Alerter.success(
-            this.$translate.instant('user_ssh_default_off_success_message'),
-            'userSsh',
-          );
-        }
-      },
-      (err) => {
-        this.Alerter.error(
-          `${this.$translate.instant('user_ssh_default_error_message')} ${get(
-            err,
-            'message',
-          ) || err}`,
-          'userSsh',
-        );
-      },
-    );
-  }
-
   onCategoryFilterChanged() {
     this.getSshKeys();
   }

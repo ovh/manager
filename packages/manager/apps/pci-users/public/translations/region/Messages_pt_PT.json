@@ -65,5 +65,14 @@
   "manager_components_region_continent_BRU": "Western Europe",
   "manager_components_region_MRS": "Marselha",
   "manager_components_region_MRS_micro": "Marselha ({{ micro }})",
-  "manager_components_region_continent_MRS": "Europa Ocidental"
+  "manager_components_region_continent_MRS": "Europa Ocidental",
+  "manager_components_region_PRG": "Praga",
+  "manager_components_region_PRG_micro": "Praga ({{ micro }})",
+  "manager_components_region_continent_PRG": "Europa Central",
+  "manager_components_region_AMS": "Amesterdão",
+  "manager_components_region_AMS_micro": "Amesterdão ({{ micro }})",
+  "manager_components_region_continent_AMS": "Europa Ocidental",
+  "manager_components_region_MIL": "Milão",
+  "manager_components_region_MIL_micro": "Milão ({{ micro }})",
+  "manager_components_region_continent_MIL": "Europa Ocidental"
 }

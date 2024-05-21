@@ -10,5 +10,9 @@
   "pci_projects_onboarding_us_description3": "Dzieląc infrastrukturę według projektów, możesz ustrukturyzować wdrożenia w chmurze w zależności od ich charakteru funkcjonalnego lub operacyjnego.  Możesz na przykład utworzyć jeden projekt dla środowiska programistycznego, a inny dla środowiska produkcyjnego. Możesz również przeprowadzić segmentację według typu aplikacji, na przykład z podziałem na projekt „back-office” i projekt „e-commerce”.",
   "pci_projects_onboarding_us_create_project": "Utwórz pierwszy projekt Public Cloud",
   "pci_projects_onboarding_us_banner_trusted_customer_info_1": "Chcesz uzyskać więcej informacji lub złożyć zamówienie?",
-  "pci_projects_onboarding_us_banner_trusted_customer_info_2": "Konsultant skontaktuje się z Tobą telefonicznie. Połączenie jest bezpłatne."
+  "pci_projects_onboarding_us_banner_trusted_customer_info_2": "Konsultant skontaktuje się z Tobą telefonicznie. Połączenie jest bezpłatne.",
+  "pci_projects_onboarding_banner_trusted_customer_info_1": "Chcesz uzyskać więcej informacji lub złożyć zamówienie?",
+  "pci_projects_onboarding_banner_trusted_customer_info_2": "Konsultant skontaktuje się z Tobą telefonicznie. Połączenie jest bezpłatne.",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_description": "Chcesz utworzyć projekt Public Cloud : obowiązujące przepisy wymagają weryfikacji Twojej tożsamości. Twoje dokumenty są obecnie przetwarzane przez nasz zespół. Aby uzyskać więcej informacji, sprawdź ",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_link": "Moje zgłoszenia"
 }

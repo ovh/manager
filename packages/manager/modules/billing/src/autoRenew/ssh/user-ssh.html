@@ -63,7 +63,6 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th></th>
                     <th data-translate="user_ssh_keyname"></th>
                     <th>
                         <select
@@ -115,19 +114,6 @@
                 data-ng-show="ctrlSsh.sshKeyList.length > 0 && !ctrlSsh.sshLoading"
             >
                 <tr data-ng-repeat="ssh in ctrlSsh.sshKeys track by $index">
-                    <td class="text-center">
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            data-ng-if="ssh.category === 'dedicated'"
-                            data-ng-click="ctrlSsh.setDefaultDedicatedSshKey(ssh)"
-                            data-ng-class="{ 'text-primary': ssh.default }"
-                            data-oui-tooltip="{{:: 'user_ssh_tooltip_default_'+ssh.default | translate }}"
-                            data-oui-tooltip-placement="right"
-                        >
-                            <span class="fa fa-key" aria-hidden="true"> </span>
-                        </button>
-                    </td>
                     <td>
                         <span data-ng-bind-html="ssh.keyName"></span>
                     </td>
@@ -199,11 +185,6 @@
             data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
         ></div>
         <br />
-        <p
-            class="text-muted"
-            data-ng-show="sshKeyList.count > 0 && !sshLoading"
-            data-ng-bind-html="'user_ssh_default_help' | translate"
-        ></p>
     </div>
 </div>
 <div id="sshAction" class="modal fade currentAction" role="dialog">
