@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCloudCatalog } from '@/api/hooks/cloud-catalog';
 import { useAvailableGatewayPlans } from '@/api/hooks/gateway-plans';
 import { TCloudCatalogResponse } from '@/api/data/cloud-catalog';
 import { TAvailableGatewayPlansResponse } from '@/api/data/gateway-plans';
+import { useInactiveRegions } from '@/api/hooks/useInactiveRegions';
 
 const getMacroRegion = (region: string) => {
   const localZonePattern = /^lz/i;
@@ -32,7 +33,7 @@ const getMacroRegion = (region: string) => {
 };
 
 const getLitteralProductSize = (productName: string): string => {
-  const [, size] = productName.match(/-([^-]+)$/) || [];
+  const [, size] = /-([^-]+)$/.exec(productName) || [];
   return size || '';
 };
 
@@ -63,10 +64,20 @@ export const useData = (projectId: string) => {
   const { data: cloudCatalog } = useCloudCatalog();
   const { data: availableGatewayPlans } = useAvailableGatewayPlans(projectId);
 
+  const { data: inactiveRegions } = useInactiveRegions(projectId);
+
   const [sizes, setSizes] = useState<TSizeItem[]>([]);
 
+  const isRegionActive = useCallback(
+    (region: { name: string }) =>
+      !inactiveRegions?.some(
+        (inactiveRegion) => inactiveRegion.name === region.name,
+      ),
+    [inactiveRegions],
+  );
+
   useEffect(() => {
-    if (availableGatewayPlans && cloudCatalog) {
+    if (availableGatewayPlans && cloudCatalog && inactiveRegions) {
       const gatewayPlansWithRegions = availableGatewayPlans.plans.filter(
         (plan) => plan.regions.length,
       );
@@ -151,8 +162,7 @@ export const useData = (projectId: string) => {
               datacenter: region.datacenter,
               continentCode: region.continentCode,
               enabled: region.enabled,
-              // TODO inactive regions /cloud/project/${projectId}/regionAvailable
-              active: false,
+              active: isRegionActive(region),
               macroName: getMacroRegion(region.name),
               microName: tRegion(
                 `manager_components_region_${getMacroRegion(
@@ -171,7 +181,7 @@ export const useData = (projectId: string) => {
           setSizes((prev) => [...prev, size]);
         });
     }
-  }, [availableGatewayPlans, cloudCatalog]);
+  }, [availableGatewayPlans, cloudCatalog, inactiveRegions]);
 
   return sizes.reverse();
 };

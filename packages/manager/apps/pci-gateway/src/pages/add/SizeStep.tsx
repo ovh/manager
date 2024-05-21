@@ -19,6 +19,7 @@ export const SizeStep = (): JSX.Element => {
   const { projectId } = useParams();
 
   const { t: tAdd } = useTranslation('add');
+  const { t: tStepper } = useTranslation('stepper');
 
   const sizes = useData(projectId);
   const [size, setSize] = useState<TSizeItem>(undefined);
@@ -62,7 +63,7 @@ export const SizeStep = (): JSX.Element => {
               store.updateStep.open(StepsEnum.LOCATION);
             }
           : undefined,
-        label: 'Next',
+        label: tStepper('common_stepper_next_button_label'),
         isDisabled: false,
       }}
       edit={{
@@ -77,7 +78,7 @@ export const SizeStep = (): JSX.Element => {
           store.updateForm.name(undefined);
           store.updateForm.network(undefined, undefined);
         },
-        label: 'Edit this step',
+        label: tStepper('common_stepper_modify_this_step'),
         isDisabled: false,
       }}
     >

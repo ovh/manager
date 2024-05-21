@@ -58,10 +58,17 @@ export const NetworkStep = (): JSX.Element => {
   const navigate = useNavigate();
   const store = useNewGatewayStore();
 
-  const {
-    data: privateNetworks,
-    isPending: isPrivateNetworksLoading,
-  } = usePrivateNetworks(store.project?.id, store.form.regionName);
+  const { data: privateNetworks } = usePrivateNetworks(
+    store.project?.id,
+    store.form.regionName,
+  );
+
+  const isNextButtonDisabled = () =>
+    !store.form.name ||
+    !store.form.size ||
+    !store.form.regionName ||
+    !store.form.network.id ||
+    store.project?.isDiscovery;
 
   // <editor-fold desc="create">
   const {
@@ -308,13 +315,7 @@ export const NetworkStep = (): JSX.Element => {
           inline={true}
           variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
-          {...(!store.form.name ||
-          !store.form.size ||
-          !store.form.regionName ||
-          !store.form.network.id ||
-          store.project?.isDiscovery
-            ? { disabled: true }
-            : {})}
+          {...{ disabled: isNextButtonDisabled() }}
           onClick={() => create()}
         >
           {tAdd('pci_projects_project_public_gateways_add_submit_label')}

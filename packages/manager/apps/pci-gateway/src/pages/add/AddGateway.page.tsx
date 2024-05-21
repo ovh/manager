@@ -5,9 +5,8 @@ import {
   OsdsLink,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+import { useHref, useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -26,24 +25,18 @@ import { SizeStep } from '@/pages/add/SizeStep';
 import { LocationStep } from '@/pages/add/LocationStep';
 import { NetworkStep } from '@/pages/add/NetworkStep';
 import { useNewGatewayStore } from '@/pages/add/useStore';
+import { useProjectUrl } from '@/hooks/project-url';
 
 export default function AddGatewayPage(): JSX.Element {
-  const navigation = useNavigation();
   const navigate = useNavigate();
   const { t } = useTranslation('common');
   const { t: tAdd } = useTranslation('add');
   const { t: tEdit } = useTranslation('edit');
   const { projectId } = useParams();
   const { data: project } = useProject(projectId || '');
-  const [projectUrl, setProjectUrl] = useState('');
   const store = useNewGatewayStore();
-
-  useEffect(() => {
-    // const appName = 'public-cloud';
-    navigation.getURL('', `#/pci/projects/${projectId}`, {}).then((data) => {
-      setProjectUrl(data as string);
-    });
-  }, [projectId, navigation]);
+  const projectUrl = useProjectUrl('public-cloud');
+  const backHref = useHref('..');
 
   useEffect(() => {
     store.setProject({
@@ -77,7 +70,7 @@ export default function AddGatewayPage(): JSX.Element {
       <OsdsLink
         className="mt-6 mb-3"
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => navigate('..')}
+        href={backHref}
       >
         <OsdsIcon
           className="mr-2"
