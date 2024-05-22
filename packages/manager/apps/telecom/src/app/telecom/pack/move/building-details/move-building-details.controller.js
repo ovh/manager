@@ -1,6 +1,7 @@
 import has from 'lodash/has';
 
-import { FIBER_PTO, STAIR_FLOOR } from './move-building-details.constant';
+import { STAIR_FLOOR } from './move-building-details.constant';
+import { FIBER_PTO } from '../pack-move.constant';
 
 export default class MoveBuildingDetailsCtrl {
   /* @ngInject */
@@ -37,6 +38,7 @@ export default class MoveBuildingDetailsCtrl {
       ptoReferenceNotKnown: false,
     };
 
+    this.FIBER_PTO = FIBER_PTO;
     this.ptoReferenceValid = true;
 
     // check if the building name is empty to set a name to display in the select component
@@ -68,20 +70,29 @@ export default class MoveBuildingDetailsCtrl {
     this.selectedOffer.pto = [
       FIBER_PTO.FIBER_PTO_YES,
       FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN,
+      FIBER_PTO.FIBER_PTO_MULTI_OTP,
     ].includes(this.model.pto);
     this.selectedOffer.ptoReference =
-      this.model.pto === FIBER_PTO.FIBER_PTO_YES
+      this.model.pto === this.model.ptoReference
         ? this.model.ptoReference
         : null;
+    this.selectedOffer.selectedPto = this.model.pto;
 
     this.$scope.$emit('updateBuildingDetails', this.selectedOffer);
   }
 
   /* Check PTO reference value is valid */
   isPtoRegexValid() {
-    this.ptoReferenceValid = this.model.ptoReference.match(
-      /^[A-Z]{2}-[A-Z\d]{4}-[A-Z\d]{4}$/,
-    );
+    this.ptoReferenceValid = true;
+    if (
+      this.model.pto === FIBER_PTO.FIBER_PTO_YES ||
+      (this.model.pto === FIBER_PTO.FIBER_PTO_MULTI_OTP &&
+        this.model.ptoReference)
+    ) {
+      this.ptoReferenceValid = this.model.ptoReference?.match(
+        /^[A-Z]{2}-[A-Z\d]{4}-[A-Z\d]{4}$/,
+      );
+    }
   }
 
   isValidSelection() {
@@ -99,6 +110,7 @@ export default class MoveBuildingDetailsCtrl {
         [
           FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN,
           FIBER_PTO.FIBER_PTO_NO,
+          FIBER_PTO.FIBER_PTO_MULTI_OTP,
         ].includes(this.model.pto)
       );
     }
@@ -189,5 +201,12 @@ export default class MoveBuildingDetailsCtrl {
       }
     }
     this.model.selectedFloor = null;
+  }
+
+  isPtoSelected() {
+    this.isPtoRegexValid();
+    return [FIBER_PTO.FIBER_PTO_YES, FIBER_PTO.FIBER_PTO_MULTI_OTP].includes(
+      this.model.pto,
+    );
   }
 }
