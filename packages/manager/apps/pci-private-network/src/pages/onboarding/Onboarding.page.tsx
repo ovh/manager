@@ -1,7 +1,4 @@
-import {
-  useEnvironment,
-  useNavigation,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Card, OnboardingLayout } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -12,7 +9,7 @@ import {
   OdsBreadcrumbAttributeItem,
 } from '@ovhcloud/ods-components';
 import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Outlet,
@@ -20,7 +17,7 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import { TProject } from '@/api/data/project';
+import { PublicCloudProject } from '@ovhcloud/manager-components/src/hooks/pci-project-provider/publicCloudProject.interface';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from './OnboardingGuard';
 
@@ -28,9 +25,10 @@ export default function OnBoardingPage() {
   const { t } = useTranslation(['onboarding', 'common']);
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const navigation = useNavigation();
-  const { ovhSubsidiary } = useEnvironment().getUser();
-  const project = useRouteLoaderData('public-ips') as TProject;
+  const context = useContext(ShellContext);
+  const { navigation } = context.shell;
+  const { ovhSubsidiary } = context.environment.getUser();
+  const project = useRouteLoaderData('private-networks') as PublicCloudProject;
   const [urlProject, setUrlProject] = useState('');
 
   useEffect(() => {

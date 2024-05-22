@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import {
   useAggregatedLocalNetworks,
   useAggregatedNonLocalNetworks,
@@ -13,9 +12,6 @@ export default function OnBoardingGuard({
   projectId: string;
   children: JSX.Element;
 }): JSX.Element {
-  const [displayChildren, setDisplayChildren] = useState(false);
-  const navigate = useNavigate();
-
   const { data: regions } = useProjectRegions(projectId);
 
   const {
@@ -28,21 +24,13 @@ export default function OnBoardingGuard({
     isPending: localNetworksPending,
   } = useAggregatedLocalNetworks(projectId, regions);
 
-  useEffect(() => {
-    if (!localNetworksPending && !nonLocalNetworksPending) {
-      if (localNetworks?.length > 0 || nonLocalNetworks?.length > 0) {
-        navigate(`/pci/projects/${projectId}/private-networks`);
-      } else {
-        setDisplayChildren(true);
-      }
-    }
-  }, [
-    localNetworksPending,
-    nonLocalNetworksPending,
-    localNetworks,
-    nonLocalNetworks,
-    navigate,
-  ]);
+  if (localNetworksPending || nonLocalNetworksPending) {
+    return null;
+  }
 
-  return displayChildren ? children : null;
+  return localNetworks?.length > 0 || nonLocalNetworks?.length > 0 ? (
+    <Navigate to={`/pci/projects/${projectId}/private-networks`} />
+  ) : (
+    <>{children}</>
+  );
 }

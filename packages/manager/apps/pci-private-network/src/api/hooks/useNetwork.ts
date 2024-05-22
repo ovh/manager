@@ -7,7 +7,7 @@ import {
   getAggregatedNetwork,
   TAggregatedNetwork,
 } from '@/api/data/network';
-import { TGateway, TRegion } from '@/api/data/project';
+import { TGateway, TRegion } from '@/api/data/regions';
 import { getSubnets, TSubnet } from '@/api/data/subnets';
 import {
   getLocalZoneRegions,
