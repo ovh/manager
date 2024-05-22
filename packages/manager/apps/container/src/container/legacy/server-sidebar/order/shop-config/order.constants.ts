@@ -197,7 +197,7 @@ export const ORDER_URLS: Record<
       FR: 'https://www.ovh.com/manager/cloud/#/iaas/pci/project/new',
     },
     publicCloudProjectOrder: {
-      FR: 'https://www.ovh.com/manager/public-cloud/#/pci/projects/new',
+      FR: 'https://www.ovh.com/manager/public-cloud/#/pci/projects',
     },
     publicCloudKubernetes: null,
     orderDomain: {
@@ -508,14 +508,14 @@ export const ORDER_URLS: Record<
       WS: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
     },
     publicCloudProjectOrder: {
-      ASIA: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
-      AU: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
-      CA: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
-      QC: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
-      SG: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
-      WE: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
-      WS: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
-      IN: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
+      ASIA: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
+      AU: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
+      CA: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
+      QC: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
+      SG: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
+      WE: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
+      WS: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
+      IN: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
     },
     publicCloudKubernetes: {
       CA:
@@ -595,7 +595,7 @@ export const ORDER_URLS: Record<
       US: 'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
     },
     publicCloudProjectOrder: {
-      US: 'https://us.ovhcloud.com/manager/public-cloud/#/pci/projects/new',
+      US: 'https://us.ovhcloud.com/manager/public-cloud/#/pci/projects',
     },
     publicCloudKubernetes: {
       US:
