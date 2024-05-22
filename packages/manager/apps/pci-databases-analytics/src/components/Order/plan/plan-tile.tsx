@@ -68,8 +68,12 @@ export const PlanTile = ({
           <p className="text-sm">
             <span data-testid="plan-tile-price">{t('priceStartingFrom')} </span>
             <Price
-              priceInUcents={plan.minPricing[pricingUnit].price}
-              taxInUcents={plan.minPricing[pricingUnit].tax}
+              priceInUcents={
+                plan.minPricing[pricingUnit].price * plan.nodes.minimum
+              }
+              taxInUcents={
+                plan.minPricing[pricingUnit].tax * plan.nodes.minimum
+              }
               decimals={showMonthlyPrice ? 2 : 3}
             />
             <b> {tPricing(`pricing_unit_${pricingUnit}`)}</b>

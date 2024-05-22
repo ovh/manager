@@ -158,13 +158,13 @@ const UpdatePlan = ({
     });
   }, [service.flavor]);
   const newPrice = useMemo(() => {
-    const flavorObject = listPlans
-      .find((p) => p.name === selectedPlan)
-      .regions.find((r) => r.name === service.nodes[0].region)
+    const planObject = listPlans.find((p) => p.name === selectedPlan);
+    const flavorObject = planObject.regions
+      .find((r) => r.name === service.nodes[0].region)
       .flavors.find((f) => f.name === service.flavor);
     return computeServicePrice({
       offerPricing: flavorObject.pricing,
-      nbNodes: service.nodes.length,
+      nbNodes: Math.max(service.nodes.length, planObject.nodes.minimum),
       storagePricing: flavorObject.storage?.pricing,
       additionalStorage: initialAddedStorage,
       storageMode: listEngines.find((e) => e.name === service.engine)
