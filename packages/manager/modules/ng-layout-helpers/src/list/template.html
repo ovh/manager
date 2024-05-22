@@ -1,8 +1,22 @@
-<oui-header
-    data-ng-if="$ctrl.header"
-    class="mb-2"
-    data-heading="{{:: $ctrl.header }}"
-></oui-header>
+<div class="d-flex justify-content-between">
+    <oui-header
+        data-ng-if="$ctrl.header"
+        class="mb-2"
+        data-heading="{{:: $ctrl.header }}"
+    ></oui-header>
+    <div data-ng-if="$ctrl.surveyUrl">
+        <a
+            class="btn btn-link"
+            target="_blank"
+            data-ng-href="{{ $ctrl.surveyUrl }}"
+            data-oui-tooltip="{{:: 'list_layout_like_this_tooltip' | translate }}"
+            data-oui-tooltip-placement="top"
+        >
+            <i class="oui-icon oui-icon-smiley-happy_concept mr-1"></i>
+            <span data-translate="list_layout_like_this"></span>
+        </a>
+    </div>
+</div>
 <div data-ng-bind-html="$ctrl.description"></div>
 <oui-datagrid
     data-ng-if="$ctrl.staticResources"
