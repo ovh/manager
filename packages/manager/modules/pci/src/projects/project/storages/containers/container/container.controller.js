@@ -42,6 +42,7 @@ export default class PciStoragesContainersContainerController {
   }
 
   $onInit() {
+    this.translateStorageClass();
     this.columnsParameters = [
       {
         name: 'retrievalState',
@@ -61,6 +62,15 @@ export default class PciStoragesContainersContainerController {
       this.container.s3StorageType !== null &&
       !this.archive;
     this.loadMessages();
+  }
+
+  translateStorageClass() {
+    this.container.objects = this.container.objects.map((object) => ({
+      ...object,
+      storageClass: this.$translate.instant(
+        `pci_projects_project_storages_containers_container_storage_class_${object.storageClass}`,
+      ),
+    }));
   }
 
   loadMessages() {
