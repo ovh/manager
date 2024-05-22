@@ -9,5 +9,11 @@
   "zimbra_dashboard_title": "Zimbra",
   "zimbra_dashboard_usefull_links": "Liens utiles",
   "zimbra_dashboard_user_guides": "Guide d'utilisateur",
-  "zimbra_dashboard_webmail": "Webmail"
+  "zimbra_dashboard_webmail": "Webmail",
+  "zimbra_dashboard_tile_status_title": "Statut",
+  "zimbra_dashboard_tile_status_serviceStatus": "Statut service",
+  "zimbra_dashboard_tile_status_ongoingTask": "Tâches en cours",
+  "zimbra_dashboard_tile_status_ongoingTask_viewMore": "Voir plus",
+  "zimbra_dashboard_tile_status_ongoingTask_viewLess": "Voir moins",
+  "zimbra_dashboard_tile_usefulLinks_title": "Liens utiles"
 }
