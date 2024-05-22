@@ -54,7 +54,9 @@ export const Routes: any = [
           },
           {
             path: 'email_accounts',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/EmailAccounts')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/EmailAccounts/EmailAccounts'),
+            ),
             handle: {
               breadcrumb: (): string => i18next.t('dashboard:email_accounts'),
             },
