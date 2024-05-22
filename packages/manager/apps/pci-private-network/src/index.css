@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .application {
-  @apply mx-11 mt-8;
+  @apply md:mx-11 mt-8;
 }
 
 code {

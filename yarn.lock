@@ -4664,6 +4664,11 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.2.1.tgz#c5cc5ec6dede4ddf7b8e45a52bbc3eeab5bd6812"
   integrity sha512-gJspFlE4UZpiYcwKxuvOSMuQndPMU1TPOlTnyzsaswOu5nooF5lCHmN2+gTq5Co0mkh4P5y94W/KORBMp9Vnzw==
 
+"@ovhcloud/ods-common-core@17.2.2", "@ovhcloud/ods-common-core@^17.2.2":
+  version "17.2.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.2.2.tgz#9c4c620aa70e0b95a9747debf9f5a83d502987a1"
+  integrity sha512-tGux+pchnUqrtviBOb098Re+z2B+/594fU7UC+lGVlBGbpfQZ5YYPZAkSKyjO2aPinxC9sqn+b4xqwhrh3yZ3w==
+
 "@ovhcloud/ods-common-stencil@17.2.1", "@ovhcloud/ods-common-stencil@^17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-17.2.1.tgz#eaaf4f2f2da5cf9039af476dc8f58611de51dc31"
@@ -4671,6 +4676,15 @@
   dependencies:
     "@ovhcloud/ods-common-core" "17.2.1"
     "@ovhcloud/ods-theme-blue-jeans" "17.2.1"
+    "@stencil/core" "4.12.0"
+
+"@ovhcloud/ods-common-stencil@17.2.2", "@ovhcloud/ods-common-stencil@^17.2.2":
+  version "17.2.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-17.2.2.tgz#5edea312cc65058f004d91816082d6de5ef63290"
+  integrity sha512-ikMmqA1klHz7e01iEQYojAll2xD5327y24cWOO7z6KttDJJLsZAjmSZTd8sWFhK17MS2/4ACrvDgFz2u/KDCtQ==
+  dependencies:
+    "@ovhcloud/ods-common-core" "17.2.2"
+    "@ovhcloud/ods-theme-blue-jeans" "17.2.2"
     "@stencil/core" "4.12.0"
 
 "@ovhcloud/ods-common-testing@17.2.1", "@ovhcloud/ods-common-testing@^17.1.0":
@@ -4690,6 +4704,11 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.2.1.tgz#681c355499c35029536a56973dcf3ab634cb94d9"
   integrity sha512-yzAmWzUJlud0xBd6qL9O3+jJvYpaduZ1N22wZsqSBstpTZH7U5tFxcckfweggc6tfIcL88FTZil8LQvx0hb8DA==
 
+"@ovhcloud/ods-common-theming@17.2.2", "@ovhcloud/ods-common-theming@^17.2.2":
+  version "17.2.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.2.2.tgz#376b54531aa10d5019d489f318f97ca83f46aac0"
+  integrity sha512-eGL4d1utEkjpEnAx1SwjCUv3VhWSHD2/KcqqURWLgRpFrUf2H49Z599qyU+UNkwq3JYMFD9L1D9BT8Y5p+Sggw==
+
 "@ovhcloud/ods-components@17.2.1", "@ovhcloud/ods-components@^17.1.0", "@ovhcloud/ods-components@^17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-17.2.1.tgz#a4d64fdaafae54f95efca891d77633f43751ea45"
@@ -4699,12 +4718,28 @@
     "@ovhcloud/ods-common-stencil" "17.2.1"
     "@ovhcloud/ods-common-theming" "17.2.1"
 
+"@ovhcloud/ods-components@^17.2.2":
+  version "17.2.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-17.2.2.tgz#85c8647c10d0427213525dbec7873cd9beb784ed"
+  integrity sha512-+YzRON5IUSIKLmTGtSZFkVlSzUxn9ubce29j3ikF/KRLFfOwhIGOdHaLs4W78DGkRMRmbTL2bHiC+owAHKNObA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "17.2.2"
+    "@ovhcloud/ods-common-stencil" "17.2.2"
+    "@ovhcloud/ods-common-theming" "17.2.2"
+
 "@ovhcloud/ods-theme-blue-jeans@17.2.1", "@ovhcloud/ods-theme-blue-jeans@^17.1.0", "@ovhcloud/ods-theme-blue-jeans@^17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.1.tgz#6495afedce96505481f38ea072177d5be8ff4446"
   integrity sha512-RfDWcw1SESylSsnsy4umwMyuIzXn0FHo8/LHLOCLtxmBSIq326Kp2GoLPIQUs+56E+cBlA4f+mkaDdwPgHcIJA==
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.1"
+
+"@ovhcloud/ods-theme-blue-jeans@17.2.2", "@ovhcloud/ods-theme-blue-jeans@^17.2.2":
+  version "17.2.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.2.tgz#12029b0e1c129f47a98ffd4f2002d7968182922a"
+  integrity sha512-0Fr6ZJ10btgkGAXJDun5tftlV1gYFevB7piQiYT4kFjfVXmxmpSw9A1nusPHiZfmV+Dnzv3/+SVxpYK/uccYXw==
+  dependencies:
+    "@ovhcloud/ods-common-theming" "17.2.2"
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -6507,10 +6542,20 @@
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.29.0.tgz#d0b3d12c07d5a47f42ab0c1ed4f317106f3d4b20"
   integrity sha512-WgPTRs58hm9CMzEr5jpISe8HXa3qKQ8CxewdYZeVnA54JrPY9B1CZiwsCoLpLkf0dGRZq+LcX5OiJb0bEsOFww==
 
+"@tanstack/query-core@5.36.1":
+  version "5.36.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.36.1.tgz#ae46f935c4752812a56c6815305061a3da82e7b8"
+  integrity sha512-BteWYEPUcucEu3NBcDAgKuI4U25R9aPrHSP6YSf2NvaD2pSlIQTdqOfLRsxH9WdRYg7k0Uom35Uacb6nvbIMJg==
+
 "@tanstack/query-devtools@5.28.10":
   version "5.28.10"
   resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.28.10.tgz#33e9a42dd2199fca12f0dd2d891570ecdbfd3c7b"
   integrity sha512-5UN629fKa5/1K/2Pd26gaU7epxRrYiT1gy+V+pW5K6hnf1DeUKK3pANSb2eHKlecjIKIhTwyF7k9XdyE2gREvQ==
+
+"@tanstack/query-devtools@5.37.1":
+  version "5.37.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.37.1.tgz#8dcfa1488b4f2e353be7eede6691b0ad9197183b"
+  integrity sha512-XcG4IIHIv0YQKrexTqo2zogQWR1Sz672tX2KsfE9kzB+9zhx44vRKH5si4WDILE1PIWQpStFs/NnrDQrBAUQpg==
 
 "@tanstack/react-query-devtools@5.29.2", "@tanstack/react-query-devtools@^5.13.3", "@tanstack/react-query-devtools@^5.14.2", "@tanstack/react-query-devtools@^5.18.1", "@tanstack/react-query-devtools@^5.25.0", "@tanstack/react-query-devtools@^5.8.3":
   version "5.29.2"
@@ -6519,12 +6564,26 @@
   dependencies:
     "@tanstack/query-devtools" "5.28.10"
 
+"@tanstack/react-query-devtools@^5.37.1":
+  version "5.37.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-5.37.1.tgz#e28e68c9a931da2bc8294c971c309439e3cdd1e5"
+  integrity sha512-fWL3rV/avL9HsHt3RVYxuLCqSHghBwSGPIUMDZ9hfg9PDjQaeI9d8kJj6yLoCBWUhTue5/rQbISvFtr+yxyYyA==
+  dependencies:
+    "@tanstack/query-devtools" "5.37.1"
+
 "@tanstack/react-query@5.29.2", "@tanstack/react-query@^5.12.2", "@tanstack/react-query@^5.14.2", "@tanstack/react-query@^5.18.1", "@tanstack/react-query@^5.25.0", "@tanstack/react-query@^5.8.3":
   version "5.29.2"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.29.2.tgz#c55ffbfaf9d8cf34212428db2b6c61ca6b545188"
   integrity sha512-nyuWILR4u7H5moLGSiifLh8kIqQDLNOHGuSz0rcp+J75fNc8aQLyr5+I2JCHU3n+nJrTTW1ssgAD8HiKD7IFBQ==
   dependencies:
     "@tanstack/query-core" "5.29.0"
+
+"@tanstack/react-query@^5.37.1":
+  version "5.37.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.37.1.tgz#82d79cdf54923b1f0638c080e8f0439a6a8a2ddc"
+  integrity sha512-EhtBNA8GL3XFeSx6VYUjXQ96n44xe3JGKZCzBINrCYlxbZP6UwBafv7ti4eSRWc2Fy+fybQre0w17gR6lMzULA==
+  dependencies:
+    "@tanstack/query-core" "5.36.1"
 
 "@tanstack/react-table@^8.11.6":
   version "8.11.6"
@@ -6539,6 +6598,13 @@
   integrity sha512-NEwvIq4iSiDQozEyvbdiSdCOiLa+g5xHmdEnvwDb98FObcK6YkBOkRrs/CNqrKdDy+/lqoIllIWHk+M80GW6+g==
   dependencies:
     "@tanstack/table-core" "8.11.8"
+
+"@tanstack/react-table@^8.17.3":
+  version "8.17.3"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-table/-/react-table-8.17.3.tgz#4e10b4cf5355a40d6d72a83d3f4b3ecd32f56bf4"
+  integrity sha512-5gwg5SvPD3lNAXPuJJz1fOCEZYk9/GeBFH3w/hCgnfyszOIzwkwgp5I7Q4MJtn0WECp84b5STQUDdmvGi8m3nA==
+  dependencies:
+    "@tanstack/table-core" "8.17.3"
 
 "@tanstack/react-virtual@^3.0.0-beta.18":
   version "3.0.4"
@@ -6556,6 +6622,11 @@
   version "8.11.8"
   resolved "https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.11.8.tgz#7f46c31894249dbb57e43ad95c80e891236a895f"
   integrity sha512-DECHvtq4YW4U/gqg6etup7ydt/RB1Bi1pJaMpHUXl65ooW1d71Nv7BzD66rUdHrBSNdyiW3PLTPUQlpXjAgDeA==
+
+"@tanstack/table-core@8.17.3":
+  version "8.17.3"
+  resolved "https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.17.3.tgz#d7a9830abb29cd369b52b2a7159dc0360af646fd"
+  integrity sha512-mPBodDGVL+fl6d90wUREepHa/7lhsghg2A3vFpakEhrhtbIlgNAZiMr7ccTgak5qbHqF14Fwy+W1yFWQt+WmYQ==
 
 "@tanstack/virtual-core@3.0.0":
   version "3.0.0"
@@ -18720,7 +18791,7 @@ jest@^26.1.0:
     import-local "^3.0.2"
     jest-cli "^26.6.3"
 
-jiti@1.21.0, jiti@^1.19.1, jiti@^1.20.0:
+jiti@1.21.0, jiti@^1.19.1, jiti@^1.20.0, jiti@^1.21.0:
   version "1.21.0"
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.21.0.tgz#7c97f8fe045724e136a397f7340475244156105d"
   integrity sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==
@@ -26058,6 +26129,34 @@ tailwindcss@^3.4.0, tailwindcss@^3.4.1:
     glob-parent "^6.0.2"
     is-glob "^4.0.3"
     jiti "^1.19.1"
+    lilconfig "^2.1.0"
+    micromatch "^4.0.5"
+    normalize-path "^3.0.0"
+    object-hash "^3.0.0"
+    picocolors "^1.0.0"
+    postcss "^8.4.23"
+    postcss-import "^15.1.0"
+    postcss-js "^4.0.1"
+    postcss-load-config "^4.0.1"
+    postcss-nested "^6.0.1"
+    postcss-selector-parser "^6.0.11"
+    resolve "^1.22.2"
+    sucrase "^3.32.0"
+
+tailwindcss@^3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.4.3.tgz#be48f5283df77dfced705451319a5dffb8621519"
+  integrity sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==
+  dependencies:
+    "@alloc/quick-lru" "^5.2.0"
+    arg "^5.0.2"
+    chokidar "^3.5.3"
+    didyoumean "^1.2.2"
+    dlv "^1.1.3"
+    fast-glob "^3.3.0"
+    glob-parent "^6.0.2"
+    is-glob "^4.0.3"
+    jiti "^1.21.0"
     lilconfig "^2.1.0"
     micromatch "^4.0.5"
     normalize-path "^3.0.0"

@@ -12,7 +12,7 @@ import * as useRegionsModule from '@/api/hooks/useRegions';
 
 import { useProductMaintenance } from './useMaintenance';
 import { Stein } from '@/api/data/cloud';
-import { TRegion } from '@/api/data/project';
+import { TRegion } from '@/api/data/regions';
 
 const renderUseMaintenanceHook = () => {
   const queryClient = new QueryClient();

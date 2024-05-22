@@ -1,21 +1,5 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 
-export type TProject = {
-  access: string;
-  creationDate: string;
-  description: string;
-  planCode: string;
-  projectName: string;
-  project_id: string;
-  status: string;
-  unleash: boolean;
-};
-
-export const getProject = async (projectId: string): Promise<TProject> => {
-  const { data } = await v6.get<TProject>(`/cloud/project/${projectId}`);
-  return data;
-};
-
 export type TRegion = {
   continentCode: string;
   datacenterLocation: string;
@@ -54,5 +38,3 @@ export const getGateways = async (projectId: string) => {
 
   return data?.resources;
 };
-
-export default getProject;
