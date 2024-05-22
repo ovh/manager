@@ -44,7 +44,7 @@ const uniqBy = function uniqBy<I, U>(arr: I[], cb: (item: I) => U) {
 
 export const SimpleTileInputComponent = function SimpleTileInputComponent<
   T,
-  S,
+  S
 >({
   items,
   value,

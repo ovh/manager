@@ -4,6 +4,7 @@ import {
   PciDiscoveryBanner,
   PciGuidesHeader,
   useNotifications,
+  useProject,
 } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -18,12 +19,10 @@ import {
   OsdsTabs,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
-
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
-import useProject from '@/api/hooks/useProject';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import GlobalRegionsComponent from '@/components/global-regions/GlobalRegions.component';
 import LocalZoneComponent from '@/components/local-zones/LocalZone.component';
 import { PrivateNetworkTabName } from '@/constants';
@@ -44,7 +43,7 @@ export default function ListingPage() {
   const [projectUrl, setProjectUrl] = useState('');
 
   const { clearNotifications } = useNotifications();
-  const navigation = useNavigation();
+  const { navigation } = useContext(ShellContext).shell;
   const navigate = useNavigate();
   const location = useLocation();
   const { projectId } = useParams();
@@ -55,12 +54,10 @@ export default function ListingPage() {
 
   const handlerTabChanged = (event: CustomEvent) => {
     clearNotifications();
-    switch (event.detail?.panel) {
-      case PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME:
-        navigate(`..`);
-        break;
-      default:
-        navigate(`./localZone`);
+    if (event.detail?.panel === PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME) {
+      navigate(`..`);
+    } else {
+      navigate(`./localZone`);
     }
   };
 

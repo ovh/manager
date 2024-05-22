@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getGateways } from '@/api/data/project';
+import { getGateways } from '@/api/data/regions';
 
 export const useGateways = (projectId: string) =>
   useQuery({
