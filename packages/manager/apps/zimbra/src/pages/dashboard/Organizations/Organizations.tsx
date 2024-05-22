@@ -1,11 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  OsdsButton,
-  OsdsChip,
-  OsdsIcon,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -26,6 +21,7 @@ import { usePlatform } from '@/hooks';
 import ActionButtonOrganization from './ActionButtonOrganization';
 import IdLink from './IdLink';
 import LabelChip from '@/components/LabelChip';
+import { BadgeStatus } from '@/components/BadgeStatus';
 
 type OrganizationItem = {
   id: string;
@@ -63,26 +59,7 @@ const columns: DatagridColumn<OrganizationItem>[] = [
   },
   {
     id: 'status',
-    cell: (item) => {
-      const getStatusColor = (status: string) => {
-        switch (status) {
-          case ResourceStatus.READY:
-            return ODS_THEME_COLOR_INTENT.success;
-          case ResourceStatus.ERROR:
-            return ODS_THEME_COLOR_INTENT.error;
-          default:
-            return ODS_THEME_COLOR_INTENT.primary;
-        }
-      };
-
-      const statusColor = getStatusColor(item.status);
-
-      return (
-        <OsdsChip inline color={statusColor}>
-          {item.status}
-        </OsdsChip>
-      );
-    },
+    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
     label: 'zimbra_organization_status',
   },
   {
@@ -106,7 +83,7 @@ export default function Organizations() {
     enabled: !!platformId,
   });
   const items: OrganizationItem[] =
-    data?.map((item: any) => ({
+    data?.map((item) => ({
       id: item.id,
       name: item.targetSpec.name,
       label: item.targetSpec.label,
@@ -115,6 +92,7 @@ export default function Organizations() {
         '',
       status: item.resourceStatus || '',
     })) ?? [];
+
   const handleAddOrganisation = () => {
     console.log('Ajouter une nouvelle organisation');
   };
