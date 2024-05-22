@@ -125,3 +125,90 @@ export enum ResourceStatus {
   READY = 'READY',
   UPDATING = 'UPDATING',
 }
+export type Email = {
+  checksum: string;
+  currentState: {
+    contactInformation: {
+      city: string;
+      company: string;
+      country: string;
+      faxNumber: string;
+      mobileNumber: string;
+      office: string;
+      phoneNumber: string;
+      postcode: string;
+      profession: string;
+      service: string;
+      street: string;
+    };
+    createdAt: string;
+    description: string;
+    detailedStatus: {
+      details: string;
+      link: string;
+      status: TaskErrorMessage;
+    }[];
+    displayName: string;
+    domainId: string;
+    email: string;
+    firstName: string;
+    hideInGal: boolean;
+    lastConnectionAt: string;
+    lastName: string;
+    organizationId: string;
+    organizationLabel: string;
+    password: string;
+    quota: {
+      available: number;
+      used: number;
+    };
+    resourceName: string;
+    responder: string;
+  };
+  currentTasks: {
+    id: string;
+    link: string;
+    status: 'ERROR' | '...';
+    type: string;
+  }[];
+  id: string;
+  resourceStatus: ResourceStatus;
+  targetSpec: {
+    contactInformation: {
+      city: string;
+      company: string;
+      country: string;
+      faxNumber: string;
+      mobileNumber: string;
+      office: string;
+      phoneNumber: string;
+      postcode: string;
+      profession: string;
+      service: string;
+      street: string;
+    };
+    createdAt: string; // ISO 8601 date string
+    description: string;
+    detailedStatus: {
+      details: string;
+      link: string;
+      status: string;
+    }[];
+    displayName: string;
+    domainId: string;
+    email: string;
+    firstName: string;
+    hideInGal: boolean;
+    lastConnectionAt: string;
+    lastName: string;
+    organizationId: string;
+    organizationLabel: string;
+    password: string;
+    quota: {
+      available: number;
+      used: number;
+    };
+    resourceName: string;
+    responder: string;
+  };
+};
