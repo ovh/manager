@@ -1,0 +1,13 @@
+{
+  "zimbra_emails_datagrid_email_label": "Comptes email",
+  "zimbra_emails_datagrid_organization_label": "Organisation",
+  "zimbra_emails_datagrid_webmail_label": "Webmail :",
+  "zimbra_emails_datagrid_quota": "Taille",
+  "zimbra_emails_datagrid_quota_octets": "Octets",
+  "zimbra_emails_datagrid_quota_ko": "Ko",
+  "zimbra_emails_datagrid_quota_mo": "Mo",
+  "zimbra_emails_datagrid_quota_go": "Go",
+  "zimbra_emails_datagrid_quota_to": "To",
+  "zimbra_emails_datagrid_tooltip_modification": "Modifier",
+  "zimbra_emails_datagrid_tooltip_delete": "Supprimer"
+}
