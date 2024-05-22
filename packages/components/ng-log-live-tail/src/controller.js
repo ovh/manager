@@ -208,11 +208,17 @@ export default class LogLiveTailCtrl {
     if (ovhLocale === 'en_GB') {
       return 'enGB';
     }
+
     if (ovhLocale === 'fr_CA') {
       return 'frCA';
     }
-    const [locale] = ovhLocale?.split('_');
-    return locale || 'enGB';
+
+    if (typeof ovhLocale === 'string') {
+      const [locale] = ovhLocale.split('_');
+      return locale;
+    }
+
+    return 'enGB';
   }
 
   generateTempUrlSource() {
