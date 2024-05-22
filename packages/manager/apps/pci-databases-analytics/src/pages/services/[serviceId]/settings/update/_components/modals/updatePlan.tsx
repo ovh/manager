@@ -140,8 +140,10 @@ const UpdatePlan = ({
     .find((p) => p.name === service.plan)
     .regions.find((r) => r.name === service.nodes[0].region)
     .flavors.find((f) => f.name === service.flavor);
+  const hasStorage =
+    service.storage?.size.value > 0 && service.storage.size.unit === 'GB';
   const initialAddedStorage =
-    service.storage?.size.value > 0 && service.storage.size.unit === 'GB'
+    hasStorage && initialFlavorObject
       ? service.storage.size.value - initialFlavorObject.storage?.minimum.value
       : 0;
 
