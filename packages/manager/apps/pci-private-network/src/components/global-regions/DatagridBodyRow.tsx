@@ -34,7 +34,6 @@ export default function DataGridBodyRow({
   network,
 }: Readonly<TDataGridBodyRow>) {
   const { t } = useTranslation();
-
   const renderText = (
     text: string | number | JSX.Element,
     className?: string,
@@ -128,6 +127,7 @@ export default function DataGridBodyRow({
           renderTooltipButton(
             ODS_ICON_NAME.SETTINGS,
             t('pci_projects_project_network_private_assign_gateway'),
+            `${projectUrl}/gateway/new?network=${subnetDetail.networkId}&region=${subnetDetail.region}`,
           )}
         {renderTooltipButton(
           ODS_ICON_NAME.BIN,
