@@ -1,10 +1,8 @@
 import { Outlet, useParams, useRouteError } from 'react-router-dom';
-
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { ErrorBanner } from '@ovhcloud/manager-components';
-import { Suspense } from 'react';
+import { ErrorBanner, useProject } from '@ovhcloud/manager-components';
+import { Suspense, useContext } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import useProject from '@/api/hooks/useProject';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import HidePreloader from '@/core/HidePreloader';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 
@@ -31,7 +29,7 @@ export default function Layout() {
 
 export const ErrorBoundary = () => {
   const error = useRouteError() as ApiError;
-  const nav = useNavigation();
+  const nav = useContext(ShellContext).shell.navigation;
 
   const redirectionApplication = 'public-cloud';
 
@@ -47,10 +45,7 @@ export const ErrorBoundary = () => {
       <ErrorBanner
         onReloadPage={reloadPage}
         onRedirectHome={navigateToHomePage}
-        error={{
-          data: { message: error.response?.data?.message || error.message },
-          headers: error.response?.headers || {},
-        }}
+        error={error.response}
       />
       <ShellRoutingSync />
       <HidePreloader />

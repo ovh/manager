@@ -1,3 +1,7 @@
-import { useProject, useIsDiscoveryProject } from './useProject';
+import {
+  getProjectQuery,
+  useIsDiscoveryProject,
+  useProject,
+} from './useProject';
 
-export { useProject, useIsDiscoveryProject };
+export { useProject, useIsDiscoveryProject, getProjectQuery };
