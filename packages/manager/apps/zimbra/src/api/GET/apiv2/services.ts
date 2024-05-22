@@ -1,5 +1,11 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { ZimbraPlatform, Organization, Domain, Task } from '@/api/api.type';
+import {
+  ZimbraPlatform,
+  Organization,
+  Domain,
+  Task,
+  Email,
+} from '@/api/api.type';
 
 export const getZimbraPlatformListQueryKey = ['get/zimbra/platform'];
 
@@ -88,6 +94,29 @@ export const getZimbraPlatformTask = async (
   try {
     const response = await apiClient.v2.get<Task[]>(
       `/zimbra/platform/${platformId}/task${
+        organizationId ? `?organizationId=${organizationId}` : ''
+      }`,
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching Zimbra organization list:', error);
+    throw error;
+  }
+};
+export const getZimbraPlatformEmailsQueryKey = (
+  platformId: string,
+  organizationId?: string,
+) => [
+  `get/zimbra/platform/${platformId}/account?organizationId=${organizationId}`,
+];
+
+export const getZimbraPlatformEmails = async (
+  platformId: string,
+  organizationId?: string,
+) => {
+  try {
+    const response = await apiClient.v2.get<Email[]>(
+      `/zimbra/platform/${platformId}/account${
         organizationId ? `?organizationId=${organizationId}` : ''
       }`,
     );
