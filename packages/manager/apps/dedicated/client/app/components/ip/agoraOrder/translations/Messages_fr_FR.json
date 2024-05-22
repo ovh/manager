@@ -58,5 +58,7 @@
   "ip_agora_ipv6_location_us-east-lz-atl": "North America (US - East - Atlanta)",
   "ip_agora_ipv6_location_eu-west-lz-mrs": "Europe (France - Marseille)",
   "ipv6-per-region_limit_reached_error": "Le nombre maximum de 3 blocs IPv6 supplémentaires a déjà été atteint dans la région sélectionnée. Veuillez choisir une autre région",
-  "ipv6_limit_reached_error": "Le nombre maximum de blocs IPv6 supplémentaires a déjà été atteint"
+  "ipv6_limit_reached_error": "Le nombre maximum de blocs IPv6 supplémentaires a déjà été atteint",
+  "ip_agora_like_this": "Vous aimez ?",
+  "ip_agora_like_this_tooltip": "Vous aimez cette page ? Faites nous part de vos remarques !"
 }

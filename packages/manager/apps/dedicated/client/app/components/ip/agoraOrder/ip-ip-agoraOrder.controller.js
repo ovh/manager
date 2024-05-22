@@ -6,11 +6,21 @@ import {
   IP_TYPE,
   IP_TYPE_TITLE,
   IP_FAILOVER_PLANCODE,
+  SURVEY_LANGUAGES,
+  BASE_URL_SURVEY,
 } from './ip-ip-agoraOrder.constant';
 
 export default class AgoraIpOrderCtrl {
   /* @ngInject */
-  constructor($q, $rootScope, $scope, $state, atInternet, ipCatalog) {
+  constructor(
+    $q,
+    $rootScope,
+    $scope,
+    $state,
+    ipCatalog,
+    atInternet,
+    coreConfig,
+  ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
     this.$scope = $scope;
@@ -20,7 +30,10 @@ export default class AgoraIpOrderCtrl {
     this.ALERT_ID = ALERT_ID;
     this.IP_TYPE = IP_TYPE;
     this.IP_TYPE_TITLE = IP_TYPE_TITLE;
+    this.SURVEY_LANGUAGES = SURVEY_LANGUAGES;
+    this.BASE_URL_SURVEY = BASE_URL_SURVEY;
     this.ipCatalog = ipCatalog;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -28,6 +41,15 @@ export default class AgoraIpOrderCtrl {
     this.user = this.$state.params.user;
     this.ipType = this.$state.params.ipType || this.ipType;
     this.getlowestPrice();
+    const userLanguage = this.coreConfig.getUserLanguage();
+    const languageToUse = this.SURVEY_LANGUAGES.ALLOWED.includes(userLanguage)
+      ? userLanguage
+      : this.SURVEY_LANGUAGES.DEFAULT;
+    // Get user
+    const user = this.coreConfig.getUser();
+
+    // Build url for survey link
+    this.surveyUrl = `${this.BASE_URL_SURVEY}${languageToUse}&nic=${user.nichandle}`;
   }
 
   getlowestPrice() {

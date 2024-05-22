@@ -18,6 +18,7 @@ export default {
     formatters: '<?',
     topbarOptions: '<?',
     customizeColumnsMap: '<?',
+    surveyUrl: '<?',
   },
   controller,
   template,
