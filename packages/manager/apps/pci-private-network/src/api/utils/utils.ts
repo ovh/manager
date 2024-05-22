@@ -1,5 +1,5 @@
 import { PaginationState } from '@ovhcloud/manager-components';
-import { TRegion } from '@/api/data/project';
+import { TRegion } from '@/api/data/regions';
 
 export const getLocalZoneRegions = (customerRegions: TRegion[] = []) =>
   customerRegions?.filter(({ type }) => type.includes('localzone')) || [];

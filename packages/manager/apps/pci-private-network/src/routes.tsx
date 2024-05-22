@@ -1,4 +1,4 @@
-import { getProjectQuery } from '@/api/hooks/useProject';
+import { getProjectQuery } from '@ovhcloud/manager-components';
 import queryClient from '@/queryClient';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
@@ -16,7 +16,7 @@ export interface RouteHandle {
   tracking?: string;
 }
 
-export const ROUTE_PATHS = {
+const ROUTE_PATHS = {
   root: '/pci/projects/:projectId/private-networks',
   onboarding: 'onboarding',
   globalRegions: '',

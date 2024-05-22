@@ -1,6 +1,5 @@
 import {
   Datagrid,
-  DataGridTextCell,
   FilterAdd,
   FilterList,
   Notifications,
@@ -11,7 +10,6 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-  ODS_CHIP_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
@@ -19,7 +17,6 @@ import {
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
-  OsdsChip,
   OsdsDivider,
   OsdsIcon,
   OsdsMessage,
@@ -33,13 +30,12 @@ import { useTranslation } from 'react-i18next';
 
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
-  TLocalZoneNetwork,
   useAggregatedLocalNetworks,
   useLocalZoneNetworks,
 } from '@/api/hooks/useNetwork';
 import { useProjectRegions } from '@/api/hooks/useRegions';
 import { PRIVATE_NETWORK_LIST } from '@/constants';
-import DeleteAction from './DeleteAction.component';
+import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 
 type TLocalZoneComponent = {
   projectId: string;
@@ -70,65 +66,7 @@ export default function LocalZoneComponent({
 
   const isLoading = networksLoading || networksPending;
 
-  const columns = [
-    {
-      id: 'name',
-      cell: (props: TLocalZoneNetwork) => (
-        <DataGridTextCell>{props.name}</DataGridTextCell>
-      ),
-      label: t('pci_projects_project_network_private_name'),
-    },
-    {
-      id: 'region',
-      cell: (props: TLocalZoneNetwork) => (
-        <DataGridTextCell>{props.region}</DataGridTextCell>
-      ),
-      label: t('pci_projects_project_network_private_region'),
-    },
-    {
-      id: 'cidr',
-      cell: (props: TLocalZoneNetwork) => (
-        <DataGridTextCell>{props.cidr}</DataGridTextCell>
-      ),
-      label: PRIVATE_NETWORK_LIST.CIDR,
-    },
-    {
-      id: 'dhcp',
-      cell: (props: TLocalZoneNetwork) =>
-        props.dhcpEnabled ? (
-          <OsdsChip
-            className="inline-flex m-3"
-            color={ODS_THEME_COLOR_INTENT.success}
-            size={ODS_CHIP_SIZE.sm}
-          >
-            {t('pci_projects_project_network_private_dhcp_active')}
-          </OsdsChip>
-        ) : (
-          <OsdsChip
-            className="inline-flex m-3"
-            color={ODS_THEME_COLOR_INTENT.warning}
-            size={ODS_CHIP_SIZE.sm}
-          >
-            {t('pci_projects_project_network_private_dhcp_disabled')},
-          </OsdsChip>
-        ),
-      label: PRIVATE_NETWORK_LIST.DHCP,
-    },
-    {
-      id: 'allocatedIp',
-      cell: (props: TLocalZoneNetwork) => (
-        <DataGridTextCell>{props.allocatedIp}</DataGridTextCell>
-      ),
-      label: t('pci_projects_project_network_private_ip_allocation'),
-    },
-    {
-      id: 'actions',
-      cell: (props: TLocalZoneNetwork) => (
-        <DeleteAction networkId={props.id} region={props.region} />
-      ),
-      label: '',
-    },
-  ];
+  const columns = useDatagridColumn();
 
   return (
     <div>
