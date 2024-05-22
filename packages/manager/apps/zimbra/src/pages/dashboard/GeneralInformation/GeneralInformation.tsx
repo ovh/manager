@@ -4,6 +4,10 @@ import { OsdsTile, OsdsDivider } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { LinkType, Links, Subtitle } from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
+import { TileBlock } from '@/components/TileBlock';
+import { BadgeStatus } from '@/components/BadgeStatus';
+import { useOrganization } from '@/hooks';
+import { OngoingTasks } from './OngoingTasks';
 import { GUIDES_LIST } from '@/guides.constants';
 
 interface GuideLinks {
@@ -32,19 +36,40 @@ function GeneralInformation() {
     });
   };
 
+  const { data: organisation } = useOrganization();
+
   return (
     <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-6">
       <div className="p-3">
-        <OsdsTile>Tile 1</OsdsTile>
+        <OsdsTile>
+          <div className="flex flex-col w-full">
+            <span>
+              <Subtitle>{t('zimbra_dashboard_tile_status_title')}</Subtitle>
+            </span>
+            <OsdsDivider separator />
+            {organisation && (
+              <TileBlock
+                label={t('zimbra_dashboard_tile_status_serviceStatus')}
+              >
+                <BadgeStatus itemStatus={organisation?.resourceStatus} />
+              </TileBlock>
+            )}
+            <TileBlock label={t('zimbra_dashboard_tile_status_ongoingTask')}>
+              <OngoingTasks />
+            </TileBlock>
+          </div>
+        </OsdsTile>
       </div>
       <div className="p-3 relative">
         <OsdsTile>Tile 2</OsdsTile>
       </div>
       <div className="p-3">
-        <OsdsTile className="w-full h-full flex-col">
+        <OsdsTile className="w-full flex-col">
           <div className="flex flex-col w-full">
             <span slot="start">
-              <Subtitle>Useful Links</Subtitle>
+              <Subtitle>
+                {t('zimbra_dashboard_tile_usefulLinks_title')}
+              </Subtitle>
               {guideLinks({
                 zimbra_dashboard_webmail: webmail,
                 zimbra_dashboard_administrator_guide:

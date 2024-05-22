@@ -9,7 +9,6 @@ import {
 import { Headers } from '@ovhcloud/manager-components';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-
 import { urls } from '@/routes/routes.constants';
 import { useOrganization } from '@/hooks';
 
@@ -30,6 +29,7 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
   const navigate = useNavigate();
 
   const { data } = useOrganization();
+
   useEffect(() => {
     const activeTab = tabs.find((tab) => tab.to === location.pathname);
     if (activeTab) {

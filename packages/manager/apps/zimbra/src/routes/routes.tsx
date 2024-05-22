@@ -28,7 +28,7 @@ export const Routes: any = [
           {
             path: '',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/GeneralInformation'),
+              import('@/pages/dashboard/GeneralInformation/GeneralInformation'),
             ),
             handle: {
               breadcrumb: (): null => null,

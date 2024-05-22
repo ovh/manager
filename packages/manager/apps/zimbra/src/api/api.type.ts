@@ -2,11 +2,7 @@ export type AccountStatistics = {
   offer: string;
   configuredAccountsCount: number;
 };
-export type Task = {
-  id: string;
-  type: string;
-  link: string;
-};
+
 export type ZimbraPlatform = {
   id: string;
   resourceStatus: string;
@@ -35,6 +31,7 @@ export type ZimbraPlatform = {
     urn: string;
   };
 };
+
 export type ErrorResponse = {
   response: {
     status: number;
@@ -98,6 +95,29 @@ export type Domain = {
     updatedAt: string;
   };
 };
+export type TaskErrorMessage = {
+  message: string;
+};
+
+export type TaskProgressStatus = {
+  name: string;
+  status: string;
+};
+
+export type Task = {
+  createdAt: string;
+  errors: TaskErrorMessage[];
+  finishedAt: string;
+  id: string;
+  link: string;
+  message: string;
+  progress: TaskProgressStatus[];
+  startedAt: string;
+  status: string;
+  type: string;
+  updatedAt: string;
+};
+
 export enum ResourceStatus {
   CREATING = 'CREATING',
   DELETING = 'DELETING',
