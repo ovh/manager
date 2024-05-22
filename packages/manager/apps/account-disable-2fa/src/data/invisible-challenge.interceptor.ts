@@ -2,8 +2,8 @@ import { v6 } from '@ovh-ux/manager-core-api';
 import {
   ChallengeApiInterceptor,
   ChallengeApiInterceptorChallengeResponse,
-  INVISIBLE_CHALLENGE_ERROR_CLASS,
-} from '@/utils/invisible-challenge';
+} from '@/utils/invisible-challenge.class';
+import { INVISIBLE_CHALLENGE_ERROR_CLASS } from '@/utils/invisible-challenge.constants';
 
 export const initInterceptor = () => {
   const challengeApiInterceptor = new ChallengeApiInterceptor(v6);

@@ -33,10 +33,6 @@ const getNewIframeElement = (
 };
 
 export const loadIframe = (payload: IframeLoaderPayload): Promise<unknown> => {
-  if (!payload || !payload.src) {
-    throw new Error('[IframeLoader][load()] missing payload.');
-  }
-
   const iframe = getNewIframeElement(payload);
   const promise = new Promise((resolve, reject) => {
     iframe.onload = resolve;

@@ -1,5 +1,10 @@
 import { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 import { IframeLoaderPayload, loadIframe, removeIframe } from '@/utils/iframe';
+import {
+  CHALLENGE_IFRAME_ID,
+  IFRAME_STYLE,
+  TTL_TO_WAIT_IFRAME_RESPONSE,
+} from '@/utils/invisible-challenge.constants';
 
 export type ChallengeApiInterceptorChallengeResponse = {
   challenge_response: string;
@@ -15,12 +20,6 @@ export enum ChallengeFailureReasons {
   NoIframe,
   Timeout,
 }
-
-export const CHALLENGE_IFRAME_ID = 'ovh_security_challenge';
-export const TTL_TO_WAIT_IFRAME_RESPONSE = 1000;
-export const INVISIBLE_CHALLENGE_ERROR_CLASS =
-  'Client::BadRequest::ChallengeRequired';
-export const IFRAME_STYLE = 'position: absolute; width:0; height:0; border:0;';
 
 export class ChallengeApiInterceptor {
   private apiClient: AxiosInstance;
@@ -39,10 +38,8 @@ export class ChallengeApiInterceptor {
   }
 
   public attachMessageListener() {
-    window.addEventListener(
-      'message',
-      (message: MessageEvent) => this.onIframeMessage(message),
-      false,
+    window.addEventListener('message', (message: MessageEvent) =>
+      this.onIframeMessage(message),
     );
   }
 
