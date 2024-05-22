@@ -52,7 +52,7 @@ export default function DashboardPage() {
             label: tListing('key_management_service_listing_title'),
           },
           {
-            href: ROUTES_URLS.dashboard,
+            href: `/${okmsId}`,
             label: okmsId,
           },
         ]}

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_SPINNER_SIZE,
@@ -28,6 +28,7 @@ import {
 import { useOKMS } from '@/hooks/useOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import {
+  DatagridActionMenu,
   DatagridCellId,
   DatagridCellName,
   DatagridCellRegion,
@@ -54,6 +55,12 @@ export default function Listing() {
       id: 'region',
       cell: DatagridCellRegion,
       label: t('key_management_service_listing_region_cell'),
+    },
+    {
+      id: 'action',
+      cell: DatagridActionMenu,
+      isSortable: false,
+      label: '',
     },
   ];
 
@@ -125,6 +132,7 @@ export default function Listing() {
           />
         </div>
       )}
+      <Outlet />
     </>
   );
 }

@@ -24,7 +24,7 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: [`${appName}/listing`, `${appName}/dashboard`],
+    ns: [`${appName}/listing`, `${appName}/dashboard`, `${appName}/terminate`],
   });
 
   ReactDOM.createRoot(document.getElementById('root')!).render(
