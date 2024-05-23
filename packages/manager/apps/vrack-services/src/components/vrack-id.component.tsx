@@ -1,12 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_TYPE,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components';
-import { OsdsLink, OsdsButton } from '@ovhcloud/ods-components/react';
+import { OsdsLink } from '@ovhcloud/ods-components/react';
 import {
   ActionMenu,
   ActionMenuItem,
@@ -19,89 +14,94 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { VrackServicesWithIAM } from '@/api';
-import { handleClick } from '@/utils/ods-utils';
-import { isEditable, useUpdateVrackServices } from '@/utils/vs-utils';
+import { VrackServicesWithIAM, isEditable } from '@/api';
 import { urls } from '@/router/constants';
 
-export const VrackId: React.FC<VrackServicesWithIAM & {
-  hasMenu?: boolean;
-}> = ({ hasMenu, ...vs }) => {
+export const useVrackMenuItems = (
+  vs: VrackServicesWithIAM,
+  isListing?: boolean,
+): ActionMenuItem[] => {
   const { t } = useTranslation('vrack-services/listing');
   const { t: tDashboard } = useTranslation('vrack-services/dashboard');
-  const { shell } = React.useContext(ShellContext);
-  const [vrackUrl, setVrackUrl] = React.useState('#');
   const { trackClick } = useOvhTracking();
-  const { isPending } = useUpdateVrackServices({ key: vs.id });
   const editable = isEditable(vs);
   const navigate = useNavigate();
+  const disabled = !editable;
+  const vrackId = vs?.currentState?.vrackId;
 
-  React.useEffect(() => {
-    shell.navigation
-      .getURL('dedicated', `#/vrack/${vs?.currentState?.vrackId}`, {})
-      .then(setVrackUrl);
-  }, [vs?.currentState?.vrackId]);
-
-  const menuItems: ActionMenuItem[] = [
-    {
-      id: 1,
-      label: tDashboard('vrackActionDissociate'),
+  return [
+    !vrackId && {
+      id: 4,
+      label: t('associateVrackButtonLabel'),
+      disabled,
       onClick: () => {
         trackClick({
-          location: PageLocation.tile,
-          actionType: 'navigation',
+          location: isListing ? PageLocation.datagrid : PageLocation.tile,
           buttonType: ButtonType.button,
+          actionType: 'navigation',
+          actions: ['associate_vrack-services'],
+        });
+        navigate(
+          (isListing ? urls.listingAssociate : urls.overviewAssociate).replace(
+            ':id',
+            vs.id,
+          ),
+        );
+      },
+    },
+    vrackId && {
+      id: 5,
+      label: tDashboard('vrackActionDissociate'),
+      disabled,
+      onClick: () => {
+        trackClick({
+          location: isListing ? PageLocation.datagrid : PageLocation.tile,
+          buttonType: ButtonType.button,
+          actionType: 'navigation',
           actions: ['dissociate_vrack-services'],
         });
         navigate(
-          urls.overviewDissociate
+          (isListing ? urls.listingDissociate : urls.overviewDissociate)
             .replace(':id', vs.id)
             .replace(':vrackId', vs.currentState.vrackId),
         );
       },
     },
-  ];
+  ].filter(Boolean);
+};
 
-  if (vs.currentState.vrackId) {
-    return (
-      <div className="flex items-center">
-        <div className="grow">
-          {hasMenu ? (
-            <OsdsLink href={vrackUrl} color={ODS_THEME_COLOR_INTENT.primary}>
-              {vs.currentState.vrackId}
-            </OsdsLink>
-          ) : (
-            <DataGridTextCell>{vs.currentState.vrackId}</DataGridTextCell>
-          )}
-        </div>
-        {hasMenu && (
-          <div className="flex-none">
-            <ActionMenu isCompact items={menuItems} />
-          </div>
+export const VrackId: React.FC<VrackServicesWithIAM & {
+  isListing?: boolean;
+}> = ({ isListing, ...vs }) => {
+  const { shell } = React.useContext(ShellContext);
+  const [vrackUrl, setVrackUrl] = React.useState('#');
+  const vrackId = vs?.currentState?.vrackId;
+  const menuItems = useVrackMenuItems(vs, isListing);
+
+  React.useEffect(() => {
+    if (vrackId) {
+      shell.navigation
+        .getURL('dedicated', `#/vrack/${vrackId}`, {})
+        .then(setVrackUrl);
+    }
+  }, [vrackId]);
+
+  return isListing ? (
+    <DataGridTextCell>{vs.currentState.vrackId}</DataGridTextCell>
+  ) : (
+    <div className="flex items-center">
+      <div className="grow">
+        {vrackId ? (
+          <OsdsLink href={vrackUrl} color={ODS_THEME_COLOR_INTENT.primary}>
+            {vrackId}
+          </OsdsLink>
+        ) : (
+          <DataGridTextCell>{vrackId}</DataGridTextCell>
         )}
       </div>
-    );
-  }
-
-  return (
-    <OsdsButton
-      inline
-      color={ODS_THEME_COLOR_INTENT.primary}
-      variant={ODS_BUTTON_VARIANT.stroked}
-      type={ODS_BUTTON_TYPE.button}
-      size={ODS_BUTTON_SIZE.sm}
-      disabled={isPending || !editable || undefined}
-      {...handleClick(() => {
-        trackClick({
-          location: hasMenu ? PageLocation.tile : PageLocation.datagrid,
-          buttonType: ButtonType.button,
-          actionType: 'navigation',
-          actions: ['associate_vrack-services'],
-        });
-        navigate(urls.listingAssociate.replace(':id', vs.id));
-      })}
-    >
-      {t('associateVrackButtonLabel')}
-    </OsdsButton>
+      <div className="flex-none">
+        <ActionMenu isCompact items={menuItems} disabled={!isEditable(vs)} />
+      </div>
+    </div>
   );
 };
