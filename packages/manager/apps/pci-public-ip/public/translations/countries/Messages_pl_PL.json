@@ -1,6 +1,6 @@
 {
   "pci_additional_ips_title": "Publiczne adresy IP",
-  "pci_additional_ips_failover_ip_title": "Dodatkowe IP",
+  "pci_additional_ips_failover_ip_title": "Additional IP",
   "pci_additional_ips_floating_ip_title": "Floating IP",
   "pci_additional_ips_additional_ips_description": "Zarządzaj publicznymi adresami IP przypisanymi do Twoich usług",
   "pci_additional_ips_country_US": "Stany Zjednoczone",
@@ -10,7 +10,7 @@
   "pci_additional_ips_country_ES": "Hiszpania",
   "pci_additional_ips_country_FR": "Francja",
   "pci_additional_ips_country_PL": "Polska",
-  "pci_additional_ips_country_UK": "Wielka Brytania",
+  "pci_additional_ips_country_UK": "Zjednoczone Królestwo",
   "pci_additional_ips_country_IT": "Włochy",
   "pci_additional_ips_country_CA": "Kanada",
   "pci_additional_ips_country_BE": "Belgia",

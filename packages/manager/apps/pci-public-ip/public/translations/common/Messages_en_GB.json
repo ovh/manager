@@ -16,7 +16,7 @@
   "manager_error_page_default": "An error has occurred loading the page.",
   "pci_additional_ips_floating_ips_floating_ip_terminate_title": "Are you sure you want to delete the {{ip}} Floating IP?",
   "pci_additional_ips_floating_ips_floating_ip_terminate_confirm": "Confirm",
-  "pci_additional_ips_floating_ips_floating_ip_terminate_cancel": "Exit",
+  "pci_additional_ips_floating_ips_floating_ip_terminate_cancel": "Cancel",
   "pci_additional_ips_floating_ips_floating_ip_terminate_success_info": "The IP {{ip}} has been deleted.",
   "pci_additional_ips_floating_ips_floating_ip_terminate_failure_info": "An error has occurred deleting the IP {{ip}}: {{error}}",
   "pci_additional_ips_ip_block": "IP block",

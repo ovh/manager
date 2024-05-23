@@ -1,7 +1,7 @@
 {
   "pci_additional_ips_failoverips_edit": "Update attached instance ",
   "pci_additional_ips_failoverips_edit_submit_label": "Attach",
-  "pci_additional_ips_failoverips_edit_cancel_label": "Exit",
+  "pci_additional_ips_failoverips_edit_cancel_label": "Cancel",
   "pci_additional_ips_failoverips_edit_description": "Select the instance you want to attach the {{serviceName}} IP address to.",
   "pci_additional_ips_failoverips_edit_select_instance": "Select an instance",
   "pci_additional_ips_failoverips_edit_success": "The instance attached to the IP {{ip}} has been edited.",
