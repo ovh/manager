@@ -1,7 +1,7 @@
 export type OKMS = {
   id: string;
   region: string;
-  kmiEndpoint: string;
+  kmipEndpoint: string;
   restEndpoint: string;
   iam: IAM;
 };
