@@ -1,11 +1,3 @@
-export interface IPAddress {
-  ip: string;
-  type: string;
-  version: number;
-  networkId: string;
-  gatewayIp: string | null;
-}
-
 export interface GatewayResponse {
   resources: Gateway[];
   errors: unknown[];
