@@ -32,7 +32,13 @@ export function useVrack(
       ) || [],
     [networkQuery.data, region],
   );
-  const subnets = useMemo(() => subnetQuery.data || [], [subnetQuery.data]);
+  const subnets = useMemo(
+    () =>
+      subnetQuery.data?.filter((subnet) =>
+        subnet.ipPools.find((ipPool) => ipPool.region.startsWith(region)),
+      ) || [],
+    [subnetQuery.data],
+  );
   // fetch the subnets of the selected network when selected
   useEffect(() => {
     if (networkId) {
