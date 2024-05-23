@@ -3,11 +3,26 @@ import {
   DataGridClipboardCell,
   DataGridTextCell,
 } from '@ovhcloud/manager-components';
+import { OsdsLink } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_COLOR_INTENT } from '@ovhcloud/ods-components';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OKMS } from '@/interface';
 
 export const DatagridCellName = (props: OKMS) => {
-  return <DataGridTextCell>{props.iam.displayName}</DataGridTextCell>;
+  const navigate = useNavigate();
+  return (
+    <div>
+      <OsdsLink
+        onClick={() => {
+          navigate(`/${props?.id}`);
+        }}
+        color={ODS_TEXT_COLOR_INTENT.primary}
+      >
+        {props?.iam.displayName}
+      </OsdsLink>
+    </div>
+  );
 };
 
 export const DatagridCellId = (props: OKMS) => {
@@ -21,4 +36,8 @@ export const DatagridCellRegion = (props: OKMS) => {
       {t(`key_management_service_listing_region_${props.region.toLowerCase()}`)}
     </DataGridTextCell>
   );
+};
+
+export const DatagridCellRestApiEndpoint = (props: OKMS) => {
+  return <OsdsLink href={props?.restEndpoint}>{props?.restEndpoint}</OsdsLink>;
 };
