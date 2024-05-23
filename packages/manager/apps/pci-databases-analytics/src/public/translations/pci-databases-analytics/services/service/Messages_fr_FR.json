@@ -18,6 +18,7 @@
   "renameServiceTitle": "Modifier le nom",
   "renameServiceDescription": "Modifie le nom affiché dans l'en-tête",
   "renameServiceNameInputLabel": "Nom",
+  "renameServiceButtonCancel": "Annuler",
   "renameServiceNameSubmit": "Modifier",
   "deleteServiceToastErrorTitle": "Erreur lors de la suppression de votre service",
   "deleteServiceToastSuccessTitle": "Service supprimé",

@@ -28,7 +28,9 @@ export const mockedSubnets: Subnet[] = [
     cidr: 'cidr',
     dhcpEnabled: false,
     id: '1',
-    ipPools: [],
+    ipPools: [
+      { dhcp: false, network: '123', region: 'GRA11', start: '', end: '' },
+    ],
     gatewayIp: 'gatewayIp',
   },
 ];

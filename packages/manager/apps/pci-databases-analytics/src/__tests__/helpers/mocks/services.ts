@@ -42,7 +42,7 @@ export const mockedService: database.Service = {
   },
   category: database.CategoryEnum.all,
   createdAt: '12/12/2022',
-  description: 'description',
+  description: 'serviceDescription',
   disk: {
     size: 1,
     type: 'type',

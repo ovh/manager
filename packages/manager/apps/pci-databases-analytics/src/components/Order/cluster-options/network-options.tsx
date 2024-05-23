@@ -55,7 +55,7 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
     );
 
     const renderNetworkSelect = () => {
-      if (networkQuery.isFetching) {
+      if (networkQuery.isPending) {
         return <Skeleton className="h-4 w-56" />;
       }
 
@@ -112,7 +112,7 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
     };
 
     const renderSubnetSelect = () => {
-      if (subnetQuery.isFetching) {
+      if (subnetQuery.isPending) {
         return <Skeleton className="h-4 w-56" />;
       }
 
@@ -134,7 +134,7 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
             <SelectContent>
               {subnets.map((subnet) => (
                 <SelectItem key={subnet.id} value={subnet.id}>
-                  {subnet.cidr}
+                  {`${subnet.ipPools[0].network} - ${subnet.ipPools[0].region}`}
                 </SelectItem>
               ))}
             </SelectContent>

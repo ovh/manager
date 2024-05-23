@@ -109,13 +109,15 @@ const UpdateFlavor = ({
     [listEngines, service],
   );
 
+  // initialFlavor can be undefined
   const initialFlavorObject = useMemo(
     () => listFlavors.find((f) => f.name === service.flavor),
     [service.flavor, listFlavors],
   );
-  const initialAddedStorage = hasStorage
-    ? service.storage.size.value - initialFlavorObject.storage?.minimum.value
-    : 0;
+  const initialAddedStorage =
+    hasStorage && initialFlavorObject
+      ? service.storage.size.value - initialFlavorObject.storage?.minimum.value
+      : 0;
 
   const schema = z.object({
     flavor: z.string().min(1),
