@@ -9,22 +9,25 @@ import {
   getAllAggregatedGateway,
   paginateResults,
 } from '@/api/data/gateway';
-import { Gateway, GatewayResponse } from '@/interface';
+import { GatewayResponse } from '@/interface';
 
 export const useAllAggregatedGateway = (projectId: string) =>
   useQuery({
     queryKey: ['project', projectId, 'gateway'],
     queryFn: () => getAllAggregatedGateway(projectId),
     retry: false,
-    select: (data): Gateway[] => [
-      ...data.resources.map((row) => ({
-        ...row,
-        model: row.model.toUpperCase(),
-        connectedNetworkCount: uniqBy(row.interfaces, 'subnetId').length,
-        formattedIps:
-          row.externalInformation.ips.map((ip) => ip.ip).join(', ') || '',
-      })),
-    ],
+    select: (data) =>
+      data.map((row) => {
+        const formattedIps =
+          row.externalInformation.ips.map((ip) => ip.ip).join(', ') || '';
+        return {
+          ...row,
+          model: row.model.toUpperCase(),
+          connectedNetworkCount: uniqBy(row.interfaces, 'subnetId').length,
+          formattedIps,
+          search: `${row.region} ${formattedIps} ${row.name} ${row.status}`,
+        };
+      }),
   });
 
 export const useAggregatedGateway = (

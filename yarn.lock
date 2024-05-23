@@ -7103,6 +7103,13 @@
   dependencies:
     "@types/lodash" "*"
 
+"@types/lodash.uniqby@^4.7.9":
+  version "4.7.9"
+  resolved "https://registry.yarnpkg.com/@types/lodash.uniqby/-/lodash.uniqby-4.7.9.tgz#10bacba9cf3263c6e07ae11d953de6ada6605104"
+  integrity sha512-rjrXji/seS6BZJRgXrU2h6FqxRVufsbq/HE0Tx0SdgbtlWr2YmD/M64BlYEYYlaMcpZwy32IYVkMfUMYlPuv0w==
+  dependencies:
+    "@types/lodash" "*"
+
 "@types/lodash@*", "@types/lodash@^4.14.167":
   version "4.14.198"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.198.tgz#4d27465257011aedc741a809f1269941fa2c5d4c"

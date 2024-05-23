@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovhcloud/manager-components';
-import { GatewayResponse } from '@/interface';
+import { Gateway, GatewayResponse } from '@/interface';
 
 export type GatewayOptions = {
   pagination: PaginationState;
@@ -8,11 +8,11 @@ export type GatewayOptions = {
 
 export const getAllAggregatedGateway = async (
   projectId: string,
-): Promise<GatewayResponse> => {
+): Promise<Gateway[]> => {
   const { data } = await v6.get<GatewayResponse>(
     `/cloud/project/${projectId}/aggregated/gateway`,
   );
-  return data;
+  return data.resources;
 };
 
 export const paginateResults = (

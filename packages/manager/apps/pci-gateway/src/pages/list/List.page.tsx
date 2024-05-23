@@ -173,10 +173,10 @@ export default function ListingPage() {
                   pageSize: pagination.pageSize,
                 });
                 addFilter({
-                  key: 'name',
+                  key: 'search',
                   value: detail.inputValue,
                   comparator: FilterComparator.Includes,
-                  label: t('pci_projects_project_public_gateway_name'),
+                  label: '',
                 });
                 setSearchField('');
               }}
