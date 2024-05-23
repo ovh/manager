@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_MESSAGE_TYPE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -18,58 +24,18 @@ import {
   getZimbraPlatformOrganizationQueryKey,
 } from '@/api';
 import { usePlatform } from '@/hooks';
-import ActionButtonOrganization from './ActionButtonOrganization';
+import { ActionButtonOrganization } from './ActionButtonOrganization';
 import IdLink from './IdLink';
 import LabelChip from '@/components/LabelChip';
 import { BadgeStatus } from '@/components/BadgeStatus';
 
-type OrganizationItem = {
+export type OrganizationItem = {
   id: string;
   name: string;
   label: string;
   account: string;
   status: string;
 };
-
-const columns: DatagridColumn<OrganizationItem>[] = [
-  {
-    id: 'name',
-    cell: (item) => <IdLink id={item.id}>{item.name}</IdLink>,
-    label: 'zimbra_organization_name',
-  },
-
-  {
-    id: 'label',
-    cell: (item) =>
-      item.label && <LabelChip id={item.id}>{item.label}</LabelChip>,
-    label: 'zimbra_organization_label',
-  },
-  {
-    id: 'account',
-    cell: (item) => (
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._200}
-        level={ODS_TEXT_LEVEL.body}
-      >
-        {item.account}
-      </OsdsText>
-    ),
-    label: 'zimbra_organization_account_number',
-  },
-  {
-    id: 'status',
-    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
-    label: 'zimbra_organization_status',
-  },
-  {
-    id: 'tooltip',
-    cell: (item) =>
-      (item.status === ResourceStatus.READY ||
-        item.status === ResourceStatus.ERROR) && <ActionButtonOrganization />,
-    label: '',
-  },
-];
 
 export default function Organizations() {
   const { t } = useTranslation('organisations');
@@ -96,9 +62,85 @@ export default function Organizations() {
   const handleAddOrganisation = () => {
     console.log('Ajouter une nouvelle organisation');
   };
+  const [deleteSuccess, setDeleteSuccess] = useState<{
+    message: string;
+    status: boolean;
+  }>({
+    message: '',
+    status: false,
+  });
+  const handleDeleteSuccess = (hasError: boolean) => {
+    const message = hasError
+      ? t('zimbra_organization_delete_error_message')
+      : t('zimbra_organization_delete_success_message');
+    setDeleteSuccess({ message, status: true });
+  };
 
+  const columns: DatagridColumn<OrganizationItem>[] = useMemo(
+    () => [
+      {
+        id: 'name',
+        cell: (item) => <IdLink id={item.id}>{item.name}</IdLink>,
+        label: 'zimbra_organization_name',
+      },
+
+      {
+        id: 'label',
+        cell: (item) =>
+          item.label && <LabelChip id={item.id}>{item.label}</LabelChip>,
+        label: 'zimbra_organization_label',
+      },
+      {
+        id: 'account',
+        cell: (item) => (
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._200}
+            level={ODS_TEXT_LEVEL.body}
+          >
+            {item.account}
+          </OsdsText>
+        ),
+        label: 'zimbra_organization_account_number',
+      },
+      {
+        id: 'status',
+        cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
+        label: 'zimbra_organization_status',
+      },
+      {
+        id: 'tooltip',
+        cell: (item) =>
+          (item.status === ResourceStatus.READY ||
+            item.status === ResourceStatus.ERROR) && (
+            <ActionButtonOrganization
+              organizationItem={item}
+              onDeleteSuccessCallback={(error: any) =>
+                handleDeleteSuccess(error)
+              }
+            />
+          ),
+        label: '',
+      },
+    ],
+    [],
+  );
   return (
     <div className="py-6">
+      {deleteSuccess.status &&
+        deleteSuccess.message ===
+          t('zimbra_organization_delete_success_message') && (
+          <OsdsMessage type={ODS_MESSAGE_TYPE.success}>
+            {deleteSuccess.message}
+          </OsdsMessage>
+        )}
+      {deleteSuccess.status &&
+        deleteSuccess.message ===
+          t('zimbra_organization_delete_error_message') && (
+          <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
+            {deleteSuccess.message}
+          </OsdsMessage>
+        )}
       <div className="flex items-center justify-between">
         <OsdsButton
           color={ODS_THEME_COLOR_INTENT.primary}

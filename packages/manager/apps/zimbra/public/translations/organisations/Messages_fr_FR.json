@@ -4,6 +4,13 @@
   "zimbra_organization_account_number": "Nombre de comptes",
   "zimbra_organization_edit": "Modifier",
   "zimbra_organization_delete": "Supprimer",
+  "zimbra_organization_delete_modal_subtitle": "Supprimer l'organisation",
+  "zimbra_organization_delete_modal_label": "Voulez-vous vraiment supprimer l’organisation ?",
+  "zimbra_organization_delete_modal_label_disabled_part1": "Au moins un domaine est encore associé à cette organisation.",
+  "zimbra_organization_delete_modal_label_disabled_part2": " Veuillez supprimer les domaines associés avant de supprimer votre organisation.",
+
+  "zimbra_organization_delete_success_message": "Votre demande de modification a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
+  "zimbra_organization_delete_error_message": "Votre demande de suppression n'a pas pu aboutir. Merci de réessayer dans quelques instants.",
   "zimbra_organization_label": "Label",
   "zimbra_organization_name": "Nom",
   "zimbra_organization_status": "Statut"
