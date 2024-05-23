@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
 import UserDefaultPaymentMethod from './DefaultPaymentMethod';
@@ -66,44 +66,45 @@ const UserAccountMenu = ({
   const ssoLink = getUrl('dedicated', '#/useraccount/users');
   const supportLink = getUrl('dedicated', '#/useraccount/support/level');
 
-  useEffect(() => {
-    const getAllLinks = async () => {
-      let isIdentityDocumentsAvailable = false;
-      const featureAvailability = await reketInstance.get(
-        `/feature/identity-documents/availability`,
-        {
-          requestType: 'aapi',
-        },
-      );
-      if (featureAvailability['identity-documents']) {
-        const { status } = await reketInstance.get(`/me/procedure/identity`);
-        isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
-      }
+  const getAllLinks = useMemo(() => async () => {
+    let isIdentityDocumentsAvailable = false;
+    const featureAvailability = await reketInstance.get(
+      `/feature/identity-documents/availability`,
+      {
+        requestType: 'aapi',
+      },
+    );
+    if (featureAvailability['identity-documents']) {
+      const { status } = await reketInstance.get(`/me/procedure/identity`);
+      isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
+    }
 
-      setAllLinks([
-        ...links,
-        ...(isIdentityDocumentsAvailable
-          ? [
-              {
-                key: 'myIdentityDocuments',
-                hash: '#/identity-documents',
-                i18nKey: 'user_account_menu_my_identity_documents',
-              },
-            ]
-          : []),
-        ...(region === 'US'
-          ? [
-              {
-                key: 'myAssistanceTickets',
-                hash: '#/ticket',
-                i18nKey: 'user_account_menu_my_assistance_tickets',
-              },
-            ]
-          : []),
-      ]);
-    };
-    getAllLinks();
+    setAllLinks([
+      ...links,
+      ...(isIdentityDocumentsAvailable
+        ? [
+            {
+              key: 'myIdentityDocuments',
+              hash: '#/identity-documents',
+              i18nKey: 'user_account_menu_my_identity_documents',
+            },
+          ]
+        : []),
+      ...(region === 'US'
+        ? [
+            {
+              key: 'myAssistanceTickets',
+              hash: '#/ticket',
+              i18nKey: 'user_account_menu_my_assistance_tickets',
+            },
+          ]
+        : []),
+    ]);
   }, []);
+
+  useEffect(() => {
+    getAllLinks();
+  }, [getAllLinks]);
 
   return (
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
@@ -133,7 +134,9 @@ const UserAccountMenu = ({
           )}
         </div>
         <div className="border-bottom pb-2 pt-2">
-          <div className={`d-flex justify-content-between ${style.menuContentRow}`}>
+          <div
+            className={`d-flex justify-content-between ${style.menuContentRow}`}
+          >
             <span>{t('user_account_menu_role_connexion')}</span>
             <a href={ssoLink}>
               <OsdsChip
@@ -152,7 +155,9 @@ const UserAccountMenu = ({
             />
           )}
           {['EU', 'CA'].includes(region) && (
-            <div className={`d-flex mt-1 justify-content-between ${style.menuContentRow}`}>
+            <div
+              className={`d-flex mt-1 justify-content-between ${style.menuContentRow}`}
+            >
               <span>{t('user_account_menu_support')}</span>
               <a href={supportLink}>
                 <OsdsChip
