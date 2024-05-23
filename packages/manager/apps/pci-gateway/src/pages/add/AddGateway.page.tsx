@@ -59,7 +59,7 @@ export default function AddGatewayPage(): JSX.Element {
               label: project.description,
             },
             {
-              href: `${projectUrl}/gateway`,
+              href: backHref,
               label: t('pci_projects_project_public_gateway_title'),
             },
             {
