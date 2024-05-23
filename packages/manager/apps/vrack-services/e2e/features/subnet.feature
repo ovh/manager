@@ -66,8 +66,7 @@ Feature: Subnet page
     Given User has a vRack Services that "has" a subnet and a status READY
     Given The service to delete a subnet is <apiOk>
     When User navigates to subnets page
-    And User clicks on the trash icon
-    Then User sees a modal to confirm subnet deletion
+    And User opens subnets delete modal
     When User fills the subnets delete form
     Then User sees <anyErrorMessage> error message
 

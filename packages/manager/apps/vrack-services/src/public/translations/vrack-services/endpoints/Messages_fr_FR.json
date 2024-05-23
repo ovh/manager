@@ -22,5 +22,10 @@
   "modalDeleteInputLabel": "Veuillez entrer le mot « TERMINATE » pour confirmer la suppression de votre Service Endpoint",
   "modalDeleteHeadline": "Supprimer le Service Endpoint",
   "modalDeleteDescription": "Si vous supprimez ce Service Endpoint, vous perdrez la connectivité au service associé.",
-  "storageNetApp": "Enterprise File Storage"
+  "storageNetApp": "Enterprise File Storage",
+  "action-editServiceDisplayName": "Modifier le nom du service",
+  "action-deleteServiceEndpoint": "Supprimer le service endpoint",
+  "modalUpdateHeadline": "Modifier le nom du service {{name}}",
+  "modalUpdateDescription": "",
+  "updateDisplayNameInputLabel": "Nom du service"
 }

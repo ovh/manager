@@ -1,4 +1,4 @@
-import { Handler } from '@playwright-helpers';
+import { Handler } from '../../../../../../playwright-helpers';
 
 export type GetServicesMocksParams = {
   getServicesKo?: boolean;
@@ -6,7 +6,7 @@ export type GetServicesMocksParams = {
   deleteServicesKo?: boolean;
 };
 
-export const errors = {
+export const servicesMockErrors = {
   delete: 'Delete services error',
   update: 'Update services error',
   get: 'Get services error',
@@ -22,7 +22,7 @@ export const getServicesMocks = ({
     response: () =>
       deleteServicesKo
         ? {
-            message: errors.delete,
+            message: servicesMockErrors.delete,
           }
         : null,
     status: deleteServicesKo ? 500 : 200,
@@ -34,7 +34,7 @@ export const getServicesMocks = ({
     response: () =>
       updateServicesKo
         ? {
-            message: errors.update,
+            message: servicesMockErrors.update,
           }
         : null,
     status: updateServicesKo ? 500 : 200,
@@ -46,7 +46,7 @@ export const getServicesMocks = ({
     response: () =>
       getServicesKo
         ? {
-            message: errors.get,
+            message: servicesMockErrors.get,
           }
         : [1234567890],
     status: getServicesKo ? 500 : 200,

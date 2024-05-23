@@ -8,8 +8,8 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { useMutationState } from '@tanstack/react-query';
-import { useVrackServicesList } from '@/utils/vs-utils';
 import {
+  useVrackServicesList,
   ResourceStatus,
   VrackServicesWithIAM,
   updateVrackServicesQueryKey,

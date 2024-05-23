@@ -31,7 +31,7 @@
   "DRAFT": "To be configured",
   "associateVrackModal": "Link to a vRack",
   "vrackServicesNotReadyInfoMessage": "vRack Services {{displayName}} has an operation in progress",
-  "vrackServicesInErrorMessage": "vRack Services {{displayName}} has an error:",
+  "vrackServicesInErrorMessage": "vRack Services {{displayName}} has an error",
   "subnetCreationOnGoing": " : Creating subnet {{name}}:",
   "endpointCreationOnGoing": " : Creating Service Endpoint",
   "vrackActionDissociate": "Detach"

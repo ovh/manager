@@ -9,8 +9,11 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { DeleteModal } from '@ovhcloud/manager-components';
-import { useVrackService, useUpdateVrackServices } from '@/utils/vs-utils';
-import { getEligibleManagedServiceListQueryKey } from '@/api';
+import {
+  useVrackService,
+  useUpdateVrackServices,
+  getEligibleManagedServiceListQueryKey,
+} from '@/api';
 import { PageName } from '@/utils/tracking';
 
 export default function EndpointsDeleteModal() {
@@ -31,13 +34,28 @@ export default function EndpointsDeleteModal() {
     navigate('..');
   };
 
-  const { data: vrackServices } = useVrackService();
-  const { updateVS, isPending, updateError } = useUpdateVrackServices({
+  const { data: vs } = useVrackService();
+  const {
+    deleteEndpoint,
+    isPending,
+    updateError,
+    isErrorVisible,
+  } = useUpdateVrackServices({
     key: id,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerInfo,
+        pageName: PageName.pendingDeleteEndpoint,
+      });
       navigate('..');
       queryClient.invalidateQueries({
         queryKey: getEligibleManagedServiceListQueryKey(id),
+      });
+    },
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PageName.errorDeleteEndpoint,
       });
     },
   });
@@ -55,37 +73,9 @@ export default function EndpointsDeleteModal() {
           actionType: 'action',
           actions: ['delete_endpoints', 'confirm'],
         });
-        updateVS(
-          {
-            checksum: vrackServices?.checksum,
-            vrackServicesId: vrackServices?.id,
-            targetSpec: {
-              displayName: vrackServices?.currentState.displayName,
-              subnets: vrackServices?.currentState.subnets.map((subnet) => ({
-                ...subnet,
-                serviceEndpoints: subnet.serviceEndpoints.filter(
-                  (endpoint) => endpoint.managedServiceURN !== urnToDelete,
-                ),
-              })),
-            },
-          },
-          {
-            onSuccess: async () => {
-              trackPage({
-                pageType: PageType.bannerInfo,
-                pageName: PageName.pendingDeleteEndpoint,
-              });
-            },
-            onError: async () => {
-              trackPage({
-                pageType: PageType.bannerError,
-                pageName: PageName.errorDeleteEndpoint,
-              });
-            },
-          },
-        );
+        deleteEndpoint({ vs, urnToDelete });
       }}
-      error={updateError?.response?.data?.message}
+      error={isErrorVisible ? updateError?.response?.data?.message : null}
       isLoading={isPending}
     />
   );

@@ -12,15 +12,18 @@ export const getTrackingContext = (appName: string): TrackingContextParams => ({
 export enum PageName {
   associate = 'associate',
   dissociate = 'dissociate',
+  edit = 'edit_vrack-services',
   createVrack = 'create-vrack',
   delete = 'delete_vrack-services',
   createVrackServices = 'add_vrack-services',
   overview = 'general-informations',
   subnets = 'subnets',
   createSubnets = 'add_subnets',
+  editSubnets = 'edit_subnets',
   deleteSubnets = 'delete_subnets',
   endpoints = 'endpoints',
   createEndpoints = 'add_endpoints',
+  editEndpoints = 'edit_endpoints',
   deleteEndpoints = 'delete_endpoints',
 
   pendingCreateSubnet = 'create_subnets_pending',

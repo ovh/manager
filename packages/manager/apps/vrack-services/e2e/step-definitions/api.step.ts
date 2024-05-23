@@ -1,16 +1,14 @@
 import { Given } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers';
-import { errors } from '../../mock/services/services';
+import { vsUpdateErrorMessage } from '../../mock/vrack-services/vrack-services';
+import { servicesMockErrors } from '../../../../../manager-components/src/hooks/services/mocks/services.mock';
 import { ConfigParams } from '../../mock/handlers';
 import {
   updateError,
   updateDisplayNameSuccess,
 } from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 import { genericApiError } from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
-import {
-  subnetCreationError,
-  updateError as subnetEditError,
-} from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
+import { subnetCreationError } from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
 import {
   endpointCreationError,
   updateError as endpointUpdateError,
@@ -38,11 +36,11 @@ Given('The service to {word} a vRack Services is {word}', function(
   const isKo = okOrKo === 'KO';
   if (action === 'edit') {
     this.handlersConfig.updateServicesKo = isKo;
-    this.testContext.errorMessage = errors.update;
+    this.testContext.errorMessage = servicesMockErrors.update;
     this.testContext.message = updateDisplayNameSuccess;
   } else if (action === 'delete') {
     this.handlersConfig.deleteServicesKo = isKo;
-    this.testContext.errorMessage = errors.delete;
+    this.testContext.errorMessage = servicesMockErrors.delete;
   } else if (action === 'associate') {
     this.handlersConfig.associationKo = isKo;
     this.testContext.errorMessage = updateError;
@@ -57,7 +55,7 @@ Given('The service to {word} a {word} is {word}', function(
 ) {
   const errorMessageByAction = {
     create: tab === 'subnet' ? subnetCreationError : endpointCreationError,
-    edit: tab === 'subnet' ? subnetEditError : endpointUpdateError,
+    edit: tab === 'subnet' ? vsUpdateErrorMessage : endpointUpdateError,
     delete: genericApiError,
   };
 

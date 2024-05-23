@@ -16,6 +16,8 @@ import {
   getVrackServicesResourceQueryKey,
   updateVrackServices,
   updateVrackServicesQueryKey,
+  useServiceList,
+  useVrackService,
 } from '@/api';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import {
@@ -24,7 +26,6 @@ import {
   serviceNameSelectName,
   getEndpointCreationMutationKey,
 } from './endpoints.constants';
-import { useServiceList, useVrackService } from '@/utils/vs-utils';
 import { ErrorPage } from '@/components/Error';
 import { urls } from '@/router/constants';
 import { PageName } from '@/utils/tracking';

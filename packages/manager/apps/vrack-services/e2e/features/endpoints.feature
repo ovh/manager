@@ -46,8 +46,7 @@ Feature: Service Endpoints page
     Given User has a vRack Services that "has" a subnet and "has" an endpoint and a status READY
     Given The service to delete a endpoint is <apiOk>
     When User navigates to endpoints page
-    And User clicks on the trash icon
-    Then User sees a modal to confirm endpoint deletion
+    And User opens endpoints delete modal
     When User fills the endpoints delete form
     Then User sees <anyErrorMessage> error message
 

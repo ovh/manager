@@ -3,7 +3,7 @@ import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { OnboardingLayout } from '@/components/layout-helpers/OnboardingLayout';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import { hasSubnet, isEditable, useVrackService } from '@/utils/vs-utils';
+import { hasSubnet, isEditable, useVrackService } from '@/api';
 import { useNavigateToCreateEndpointPage } from './endpoints.hook';
 
 export default function EndpointsOnboarding() {
