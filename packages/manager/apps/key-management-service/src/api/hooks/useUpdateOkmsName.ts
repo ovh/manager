@@ -41,13 +41,9 @@ export const useUpdateOkmsName = ({
       return updateOkmsName({ serviceId: servicesId[0], displayName });
     },
     onSuccess: () => {
-      setTimeout(
-        () =>
-          queryClient.invalidateQueries({
-            queryKey: getOkmsServicesResourceListQueryKey,
-          }),
-        1000,
-      );
+      queryClient.invalidateQueries({
+        queryKey: getOkmsServicesResourceListQueryKey,
+      });
       onSuccess?.();
     },
     onError: (result: ApiError) => {
