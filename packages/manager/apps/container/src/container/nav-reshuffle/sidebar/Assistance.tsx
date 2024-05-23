@@ -33,7 +33,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
   const reketInstance = useReket();
   const [selectedItem, setSelectedItem] = useState<string>(null);
 
-  const hasAdvancedSupport = ['EU', 'CA'].includes(environment.getRegion());
+  const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
   const [hasLiveChat, setHashLiveChat] = useState(false);
 
   const { closeNavigationSidebar, openOnboarding } = useProductNavReshuffle();
@@ -60,10 +60,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
       appHash.startsWith('/useraccount/support/level')
     ) {
       setSelectedItem('support_level');
-    } else if (
-      appId === 'dedicated' &&
-      (appHash.startsWith('/ticket') || appHash.startsWith('/support/tickets'))
-    ) {
+    } else if (appId === 'dedicated' && appHash.startsWith('/ticket')) {
       setSelectedItem('tickets');
     }
   }, [containerURL]);
@@ -104,22 +101,23 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
             />
           </li>
           <li
-            className={`${
-              selectedItem === 'tickets' ? style.sidebar_selected : ''
-            }`}
+            className={`${selectedItem === 'tickets' ? style.sidebar_selected : ''
+              }`}
           >
             <SidebarLink
               node={{
+                count: false,
                 translation: 'sidebar_assistance_tickets',
-                routing: {
+                routing: !isEUOrCA ? {
                   application: 'dedicated',
                   hash: '#/ticket',
-                },
-                count: false,
+                } : null,
+                isExternal: isEUOrCA,
+                url: isEUOrCA ? urls.get('support') : null,
               }}
               onClick={() => {
                 trackNode('assistance_tickets');
-                closeNavigationSidebar();
+                !isEUOrCA && closeNavigationSidebar();
               }}
             />
           </li>
@@ -134,11 +132,10 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
               onClick={() => trackNode('assistance_status')}
             />
           </li>
-          {hasAdvancedSupport && (
+          {isEUOrCA && (
             <li
-              className={`${
-                selectedItem === 'support_level' ? style.sidebar_selected : ''
-              }`}
+              className={`${selectedItem === 'support_level' ? style.sidebar_selected : ''
+                }`}
             >
               <SidebarLink
                 node={{

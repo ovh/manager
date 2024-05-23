@@ -1,6 +1,6 @@
 import { get } from 'lodash-es';
 import { Ticket as SupportTicket } from '@ovh-ux/manager-models';
-import { MAX_TICKETS_TO_DISPLAY } from './constants';
+import { MAX_TICKETS_TO_DISPLAY, SUPPORT_URLS } from './constants';
 
 export default class ManagerHubSupportCtrl {
   /* @ngInject */
@@ -18,32 +18,25 @@ export default class ManagerHubSupportCtrl {
     this.coreURLBuilder = coreURLBuilder;
     this.coreConfig = coreConfig;
     this.RedirectionService = RedirectionService;
-    this.SUPPORT_URL = this.coreURLBuilder.buildURL('dedicated', '#/ticket');
   }
 
   $onInit() {
     this.error = false;
     this.isLoading = true;
     this.me = this.coreConfig.getUser();
+    this.isSupportWithExternalLinks = this.coreConfig.isRegion(['EU', 'CA']);
+    this.SUPPORT_URL = this.isSupportWithExternalLinks
+      ? SUPPORT_URLS.allTickets
+      : this.coreURLBuilder.buildURL('dedicated', '#/ticket');
     this.guideURL = this.RedirectionService.getURL('guides.home', {
       ovhSubsidiary: this.me.ovhSubsidiary,
     });
     this.fetchTickets()
       .then(({ data, count }) => {
         if (Array.isArray(data)) {
-          this.tickets = data.slice(0, MAX_TICKETS_TO_DISPLAY).map(
-            (ticket) =>
-              new SupportTicket({
-                ...ticket,
-                url: this.coreURLBuilder.buildURL(
-                  'dedicated',
-                  '#/support/tickets/:ticketId',
-                  {
-                    ticketId: ticket.ticketId,
-                  },
-                ),
-              }),
-          );
+          this.tickets = data
+            .slice(0, MAX_TICKETS_TO_DISPLAY)
+            .map((ticket) => this.createTicket(ticket));
         }
         this.ticketsCount = count;
       })
@@ -53,6 +46,23 @@ export default class ManagerHubSupportCtrl {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  createTicket(ticket) {
+    const { ticketId } = ticket;
+    const url = this.isSupportWithExternalLinks
+      ? SUPPORT_URLS.viewTicket.replace('{ticketId}', ticketId)
+      : this.coreURLBuilder.buildURL(
+          'dedicated',
+          '#/support/tickets/:ticketId',
+          {
+            ticketId,
+          },
+        );
+    return new SupportTicket({
+      ...ticket,
+      url,
+    });
   }
 
   fetchTickets() {
