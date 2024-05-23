@@ -4,9 +4,10 @@ import { OsdsTile, OsdsDivider } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { LinkType, Links, Subtitle } from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
+import { AccountStatistics } from '@/api/api.type';
 import { TileBlock } from '@/components/TileBlock';
 import { BadgeStatus } from '@/components/BadgeStatus';
-import { useOrganization } from '@/hooks';
+import { useOrganization, usePlatform } from '@/hooks';
 import { OngoingTasks } from './OngoingTasks';
 import { GUIDES_LIST } from '@/guides.constants';
 
@@ -19,6 +20,9 @@ function GeneralInformation() {
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const webmail = GUIDES_LIST.webmail.url;
+
+  const { data: platform } = usePlatform();
+  const { data: organisation } = useOrganization();
 
   const guideLinks = (links: GuideLinks) => {
     return Object.entries(links).map(([key, value]) => {
@@ -36,16 +40,16 @@ function GeneralInformation() {
     });
   };
 
-  const { data: organisation } = useOrganization();
+  const accountsStatistics: AccountStatistics[] = organisation
+    ? organisation.currentState.accountsStatistics
+    : platform?.currentState?.accountsStatistics;
 
   return (
     <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-6">
       <div className="p-3">
         <OsdsTile>
           <div className="flex flex-col w-full">
-            <span>
-              <Subtitle>{t('zimbra_dashboard_tile_status_title')}</Subtitle>
-            </span>
+            <Subtitle>{t('zimbra_dashboard_tile_status_title')}</Subtitle>
             <OsdsDivider separator />
             {organisation && (
               <TileBlock
@@ -60,24 +64,36 @@ function GeneralInformation() {
           </div>
         </OsdsTile>
       </div>
-      <div className="p-3 relative">
-        <OsdsTile>Tile 2</OsdsTile>
+      <div className="p-3">
+        <OsdsTile>
+          <div className="flex flex-col w-full">
+            <Subtitle>
+              {t('zimbra_dashboard_tile_serviceConsumption_title')}
+            </Subtitle>
+            <OsdsDivider separator />
+            <TileBlock
+              label={t('zimbra_dashboard_tile_serviceConsumption_accountOffer')}
+            >
+              {accountsStatistics?.map((stats, index) => (
+                <span
+                  key={index}
+                >{`${stats.configuredAccountsCount} ${stats.offer}`}</span>
+              ))}
+            </TileBlock>
+          </div>
+        </OsdsTile>
       </div>
       <div className="p-3">
         <OsdsTile className="w-full flex-col">
           <div className="flex flex-col w-full">
-            <span slot="start">
-              <Subtitle>
-                {t('zimbra_dashboard_tile_usefulLinks_title')}
-              </Subtitle>
-              {guideLinks({
-                zimbra_dashboard_webmail: webmail,
-                zimbra_dashboard_administrator_guide:
-                  GUIDES_LIST.administrator_guide.url[ovhSubsidiary],
-                zimbra_dashboard_user_guides:
-                  GUIDES_LIST.user_guide.url[ovhSubsidiary],
-              })}
-            </span>
+            <Subtitle>{t('zimbra_dashboard_tile_usefulLinks_title')}</Subtitle>
+            {guideLinks({
+              zimbra_dashboard_webmail: webmail,
+              zimbra_dashboard_administrator_guide:
+                GUIDES_LIST.administrator_guide.url[ovhSubsidiary],
+              zimbra_dashboard_user_guides:
+                GUIDES_LIST.user_guide.url[ovhSubsidiary],
+            })}
           </div>
         </OsdsTile>
       </div>

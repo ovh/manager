@@ -7,5 +7,11 @@ export const usePlatform = () => {
     queryFn: () => getZimbraPlatformList(),
   });
 
-  return { isLoading, isError, error, platformId: data ? data[0]?.id : null };
+  return {
+    isLoading,
+    isError,
+    error,
+    platformId: data ? data[0].id : null,
+    data: data ? data[0] : null,
+  };
 };

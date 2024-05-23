@@ -162,7 +162,7 @@ export default function WebSidebar() {
         id: 'zimbra',
         label: t('sidebar_zimbra'),
         icon: getIcon('ovh-font ovh-font-mail'),
-        routeMatcher: new RegExp(`^/zimbra`),
+        routeMatcher: new RegExp('^/zimbra'),
         href: navigation.getURL(
           'zimbra',
           '#/',
