@@ -22,5 +22,10 @@ export const useOrganization = () => {
     enabled: !!selectedOrganizationId,
   });
 
-  return { isLoading, isError, error, data };
+  return {
+    isLoading,
+    isError,
+    error,
+    data,
+  };
 };
