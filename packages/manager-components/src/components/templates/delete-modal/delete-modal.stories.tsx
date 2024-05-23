@@ -1,12 +1,12 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { DeleteModal } from './delete-modal.component';
+import { DeleteModal as DeleteModalComponent } from './delete-modal.component';
 
-export const Delete = (props) => <DeleteModal {...props} />;
+export const DeleteModal = (props) => <DeleteModalComponent {...props} />;
 
 const meta: Meta = {
   title: 'Templates/Delete Modal',
-  component: DeleteModal,
+  component: DeleteModalComponent,
   argTypes: {
     isLoading: { control: 'boolean' },
     error: { control: 'text' },
@@ -25,6 +25,7 @@ const meta: Meta = {
     isLoading: false,
     cancelButtonLabel: 'Cancel',
     confirmButtonLabel: 'Delete',
+    error: '',
   },
 };
 

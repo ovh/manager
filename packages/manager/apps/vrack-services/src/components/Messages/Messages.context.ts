@@ -1,13 +1,11 @@
 import React from 'react';
 
-export type UpdateDisplayNameContextType = {
+export type MessagesContextType = {
   hiddenMessages: number[];
   hideMessage: (submittedAt: number) => void;
 };
 
-export const UpdateDisplayNameContext = React.createContext<
-  UpdateDisplayNameContextType
->({
+export const MessagesContext = React.createContext<MessagesContextType>({
   hiddenMessages: [],
   hideMessage: () => undefined,
 });

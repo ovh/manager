@@ -64,6 +64,25 @@ export const getRoutes = (): RouteObject[] => {
               },
             }),
             routeConfig({
+              pageImport: () => import('@/pages/dissociate'),
+              path: urls.listingDissociate,
+              currentPage: 'vrack-services.dissociate',
+              tracking: {
+                pageType: PageType.popup,
+                pageName: PageName.dissociate,
+              },
+            }),
+            routeConfig({
+              pageImport: () =>
+                import('@/pages/edit-display-name/EditDisplayName'),
+              path: urls.listingEdit,
+              currentPage: 'vrack-services.listing.edit',
+              tracking: {
+                pageType: PageType.popup,
+                pageName: PageName.edit,
+              },
+            }),
+            routeConfig({
               pageImport: () => import('@/pages/listing/Delete'),
               path: urls.listingDelete,
               currentPage: 'vrack-services.listing.delete',
@@ -133,6 +152,16 @@ export const getRoutes = (): RouteObject[] => {
                     pageName: PageName.dissociate,
                   },
                 }),
+                routeConfig({
+                  pageImport: () =>
+                    import('@/pages/edit-display-name/EditDisplayName'),
+                  path: urls.overviewEdit,
+                  currentPage: 'vrack-services.dashboard.edit',
+                  tracking: {
+                    pageType: PageType.popup,
+                    pageName: PageName.edit,
+                  },
+                }),
               ],
             }),
             routeConfig({
@@ -157,6 +186,15 @@ export const getRoutes = (): RouteObject[] => {
                     pageName: PageName.subnets,
                   },
                   children: [
+                    routeConfig({
+                      pageImport: () => import('@/pages/subnets/Edit'),
+                      path: urls.subnetsEdit,
+                      currentPage: 'vrack-services.subnets.listing.edit',
+                      tracking: {
+                        pageType: PageType.popup,
+                        pageName: PageName.editSubnets,
+                      },
+                    }),
                     routeConfig({
                       pageImport: () => import('@/pages/subnets/Delete'),
                       path: urls.subnetsDelete,
@@ -201,6 +239,16 @@ export const getRoutes = (): RouteObject[] => {
                     pageName: PageName.endpoints,
                   },
                   children: [
+                    routeConfig({
+                      pageImport: () =>
+                        import('@/pages/endpoints/EditEndpointDisplayName'),
+                      path: urls.endpointsEdit,
+                      currentPage: 'vrack-services.endpoints.listing.edit',
+                      tracking: {
+                        pageType: PageType.popup,
+                        pageName: PageName.editEndpoints,
+                      },
+                    }),
                     routeConfig({
                       pageImport: () => import('@/pages/endpoints/Delete'),
                       path: urls.endpointsDelete,
