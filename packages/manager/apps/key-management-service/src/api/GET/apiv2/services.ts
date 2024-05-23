@@ -111,6 +111,12 @@ export const getListingIceberg = async () => {
   }
 };
 
+export const getOkmsResourceQueryKey = (okmsId: string) => [
+  `get/okms/resource/${okmsId}`,
+];
+
+export const getOkmsServicesResourceListQueryKey = ['get/okms/resource'];
+
 export const sortOKMS = (okms: OKMS[], sorting: ColumnSort): OKMS[] => {
   const data = [...okms];
 
