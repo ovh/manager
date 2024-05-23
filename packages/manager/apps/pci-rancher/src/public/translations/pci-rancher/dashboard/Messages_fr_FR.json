@@ -39,21 +39,5 @@
   "createRancherError": "Un erreur est survenue lors de la création de votre Managed Rancher Service. Merci de réessayer.",
   "createRancherRecomendedVersion": "Version Recommandée",
   "createRancherOVHCloudPlanDescription": "Créez ou gérez des « downstream clusters » Managed Kubernetes Service ou « self managed » sur le cloud public OVHcloud ou vos propres machines. Vous pouvez aussi enregistrer des clusters externes (sans gestion cloud)",
-  "createRancherStandardPlanDescription": "Créez ou enregistrez des « downstream clusters » avec n’importe quel cloud public supporté par Rancher ou sur un cloud privé automatisable (ex. VMware vSphere), y compris les scénarios supportés par l’offre OVHcloud Edition.",
-  "updteSoftwareRancherTitle": "Update Software",
-  "updteSoftwareRancherPreviousButton": "Retour a la page précedente",
-  "updteSoftwareRancherBreadcrumb": "Mise a jour de Rancher",
-  "updteSoftwareRancherCurrentVersion": "Version courante",
-  "updteSoftwareRancherDurationInfo": "La durée moyenne de mise à jour de version est estimée à 1 heure. Différents composants de votre control plane sont mis à jour via une procédure de rolling update (mise à jour progressive) et restent disponibles pendant la mise à jour (sauf mention contraire indiquée dans le changelog associé).",
-  "updateSoftwareRancherImpact": "Les clusters gérés par Rancher (downstream clusters) ne sont pas impactées par cette mise à jour.",
-  "updateSoftwareRancherUpgradeInfo": "A l'issue de la mise à jour de votre control plane, de nouvelles mises à jour peuvent être applicables via la section « Upgrades » du dashboard de votre interface Rancher. Vous pourrez les appliquer à chaque « downstream cluster » au rythme de votre choix.",
-  "updateSoftwareRancherChangelog": "Consulter le changelog",
-  "updateSoftwareRancherCta": "Mettre à jour",
-  "updateSoftwareAvailableUpdate": "Mise(s) à jour disponible(s)",
-  "updateSoftwareBannerAvailableUpdate": "Une nouvelle version du software est disponible",
-  "updateSoftwareBannerUpdateLoading": " La version de votre Managed Rancher Service est en cours de mise à jour. Merci de patienter, cela peut prendre quelques minutes.",
-  "updateSoftwareBannerError": "Une erreur est survenue lors de la mise a jour de votre Managed Rancher Service",
-  "updateSoftwareModalTitle": "Mettre à jour votre Managed Rancher Service",
-  "updateSoftwareModalDescription": " En confirmant la mise à jour, vous confirmez avoir pris connaissance du changelog de la version selectionnée et des impacts potentiels sur vos clusters, applicatifs et usages spécifiques.",
-  "updateSoftwareModalCTAConfirm": "Confirmer"
+  "createRancherStandardPlanDescription": "Créez ou enregistrez des « downstream clusters » avec n’importe quel cloud public supporté par Rancher ou sur un cloud privé automatisable (ex. VMware vSphere), y compris les scénarios supportés par l’offre OVHcloud Edition."
 }

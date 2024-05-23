@@ -21,6 +21,7 @@ import { isValidRancherName } from '@/utils/rancher';
 import Modal from './Modal';
 import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import { useTranslate } from '@/utils/translation';
 
 interface DeleteModalProps {
   rancher: RancherService;
@@ -33,7 +34,7 @@ const EditNameModal = ({
   onEditRancher,
   onClose,
 }: DeleteModalProps) => {
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslate('pci-rancher/listing');
   const trackAction = useTrackingAction();
   useTrackingPage(TrackingPageView.EditNameModal);
   const [newName, setNewName] = useState(rancher.currentState?.name || '');

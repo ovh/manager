@@ -32,6 +32,7 @@ import { useActivatePciProjectURL } from '@/hooks/useActivatePciProjectURL';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { useSimpleTrackingAction } from '../../../hooks/useTrackingPage';
+import { useTranslate } from '@/utils/translation';
 
 const TileSection: React.FC<{
   name: string;
@@ -90,7 +91,7 @@ const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
     case 'OVHCLOUD_EDITION':
       return 'createRancherOVHCloudPlanDescription';
     default:
-      return '';
+      return null;
   }
 };
 
@@ -124,8 +125,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const hasInputError = rancherName !== '' && !isValidName;
   const isCreateRancherAllowed = isValidName && !isProjectDiscoveryMode;
 
-  const { t } = useTranslation('pci-rancher/dashboard');
-  const { t: tListing } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslate(['pci-rancher/dashboard', 'pci-rancher/listing']);
   const trackAction = useTrackingAction();
   const simpleTrackAction = useSimpleTrackingAction();
 
@@ -243,7 +243,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
               key={plan.name}
               isActive={plan.name === selectedPlan?.name}
               isDisabled={plan.status !== 'AVAILABLE'}
-              name={tListing(plan.name)}
+              name={t(plan.name)}
               description={t(getRancherPlanDescription(plan.name))}
               chipLabel={
                 plan.name === 'OVHCLOUD_EDITION' ? t('comingSoon') : ''

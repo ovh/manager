@@ -23,6 +23,7 @@ import { RancherService } from '@/api/api.type';
 import Modal from './Modal';
 import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import { useTranslate } from '@/utils/translation';
 
 export interface GenerateAccessModalProps {
   rancher: RancherService;
@@ -37,7 +38,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
   onGenerateAccess,
   accessDetail,
 }) => {
-  const { t } = useTranslation('pci-rancher/dashboard');
+  const { t } = useTranslate('pci-rancher/dashboard');
   const trackAction = useTrackingAction();
   useTrackingPage(TrackingPageView.GenerateAccessModal);
   const hasValidAccess = !!accessDetail?.username && !!accessDetail?.password;

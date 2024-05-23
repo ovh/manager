@@ -25,6 +25,7 @@
   "editNameRancherCta": "Modifier",
 
   "READY": "Ready",
+  "DISABLED": "Disabled",
   "UPDATING": "Updating",
   "ERROR": "Error",
   "DELETING": "Deleting",

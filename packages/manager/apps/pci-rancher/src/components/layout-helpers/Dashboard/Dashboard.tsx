@@ -1,12 +1,10 @@
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { ODS_MESSAGE_TYPE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import React from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
 import { patchRancherServiceQueryKey, postRancherServiceQueryKey } from '@/api';
 import { RancherService } from '@/api/api.type';
-import PreviousButton from '@/components/PreviousButton/PreviousButton';
 import { EditAction, EditMutationVariables } from '@/hooks/useEditRancher';
 import { useTrackingPage } from '@/hooks/useTrackingPage';
 import useVersions from '@/hooks/useVersions';
@@ -16,6 +14,8 @@ import { TrackingPageView } from '@/utils/tracking';
 import Title from '../../Title/Title';
 import RancherDetail from './RancherDetail';
 import TabBar from './TabBar';
+import { useTranslate } from '@/utils/translation';
+import LinkIcon from '@/components/LinkIcon/LinkIcon';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -30,13 +30,13 @@ export type DashboardLayoutProps = {
   rancher: RancherService;
 };
 
-type MutationStateResut = {
+type MutationStateReset = {
   variables: EditMutationVariables;
   status: MutationStatus;
 };
 
 const getResponseStatusByEditAction = (
-  mutationState: MutationStateResut[],
+  mutationState: MutationStateReset[],
   editAction: EditAction,
 ) =>
   mutationState.length && mutationState[0].variables.editAction === editAction
@@ -45,7 +45,7 @@ const getResponseStatusByEditAction = (
 
 const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const { projectId } = useParams();
-  const { t } = useTranslation('pci-rancher/dashboard');
+  const { t } = useTranslate('pci-rancher/dashboard');
   useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
   const { data: versions } = useVersions();
@@ -93,7 +93,15 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
       <div className="py-4 overflow-hidden text-ellipsis">
         <Title>{rancher.currentState.name}</Title>
       </div>
-      <PreviousButton href={hrefPrevious} text={t('see_all_rancher')} />
+      <div className="my-4">
+        <LinkIcon
+          href={hrefPrevious}
+          text={t('see_all_rancher')}
+          iconName={ODS_ICON_NAME.ARROW_LEFT}
+          slot="start"
+        />
+      </div>
+
       <TabBar tabs={tabs} />
       <RancherDetail
         latestVersionAvailable={latestVersionAvailable}

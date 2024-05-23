@@ -1,3 +1,5 @@
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import {
   OsdsChip,
   OsdsTabBar,
@@ -5,15 +7,13 @@ import {
   OsdsTabs,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import React, { FC, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslate } from '@/utils/translation';
 import { DashboardTabItemProps } from './Dashboard';
 
 const TabBar: FC<{ tabs: DashboardTabItemProps[] }> = ({ tabs }) => {
-  const { t } = useTranslation('pci-rancher/dashboard');
+  const { t } = useTranslate('pci-rancher/dashboard');
 
   const location = useLocation();
 

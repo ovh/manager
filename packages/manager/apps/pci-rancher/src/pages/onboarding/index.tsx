@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { OnboardingLayout } from '@ovhcloud/manager-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import onboardingImgSrc from '../../assets/onboarding-img.png';
@@ -8,9 +7,10 @@ import PageLayout from '@/components/PageLayout/PageLayout';
 import { getCreateRancherUrl } from '@/utils/route';
 import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import { useTranslate } from '@/utils/translation';
 
 export default function Onboarding() {
-  const { t } = useTranslation('pci-rancher/onboarding');
+  const { t } = useTranslate('pci-rancher/onboarding');
   const navigate = useNavigate();
   const { projectId } = useParams();
   const title: string = t('title');

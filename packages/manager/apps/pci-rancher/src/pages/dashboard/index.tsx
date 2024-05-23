@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Outlet,
   useNavigate,
@@ -16,6 +15,7 @@ import { DashboardTabItemProps } from '../../components/layout-helpers/Dashboard
 import { useRancher } from '@/hooks/useRancher';
 import PageLayout from '@/components/PageLayout/PageLayout';
 import { getRanchersUrl } from '@/utils/route';
+import { useTranslate } from '@/utils/translation';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
@@ -23,7 +23,7 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 
 export default function DashboardPage() {
   const { projectId } = useParams();
-  const { t } = useTranslation('pci-rancher/dashboard');
+  const { t } = useTranslate('pci-rancher/dashboard');
   const { data: rancher, error, isLoading } = useRancher({
     refetchInterval: 5000,
   });

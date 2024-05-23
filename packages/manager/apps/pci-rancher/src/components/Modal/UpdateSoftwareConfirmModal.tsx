@@ -15,10 +15,10 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { RancherVersion } from '@/api/api.type';
 import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import { useTranslate } from '@/utils/translation';
 import LinkIcon from '../LinkIcon/LinkIcon';
 import Modal from './Modal';
 
@@ -35,7 +35,7 @@ const UpdateSoftwareModal = ({
   version,
   isUpdatePending,
 }: UpdateSoftwareModalProps) => {
-  const { t } = useTranslation('pci-rancher/dashboard');
+  const { t } = useTranslate('pci-rancher/updateSoftware');
   useTrackingPage(TrackingPageView.UpdateSoftware);
   const trackAction = useTrackingAction();
 

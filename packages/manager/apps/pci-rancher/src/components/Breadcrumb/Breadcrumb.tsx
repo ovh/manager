@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Params, useParams } from 'react-router-dom';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { useTranslation } from 'react-i18next';
 import usePciProject from '../../hooks/usePciProject';
+import { useTranslate } from '@/utils/translation';
 
 export type BreadcrumbHandleParams = {
   data: unknown;
@@ -16,7 +16,7 @@ interface BreadcrumbProps {
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ items = [] }) => {
   const { projectId } = useParams();
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslate('pci-rancher/listing');
   const { data: project } = usePciProject();
 
   const navigation = useNavigation();

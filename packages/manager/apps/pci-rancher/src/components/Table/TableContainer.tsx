@@ -22,11 +22,12 @@ import DisplayCellText from './TextCell';
 import './Table.scss';
 import { deleteRancherServiceQueryKey } from '@/api';
 import StatusChip from '../StatusChip/StatusChip';
+import { useTranslate } from '@/utils/translation';
 
 export default function TableContainer({
   data,
 }: Readonly<RancherDatagridWrapper>) {
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslate('pci-rancher/listing');
   const [sorting, setSorting] = useState<SortingState>([]);
   const state = useMutationState({
     filters: {

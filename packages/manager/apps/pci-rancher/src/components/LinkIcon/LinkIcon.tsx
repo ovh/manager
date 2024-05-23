@@ -14,8 +14,15 @@ type LinkIconProps = {
   href: string;
   iconName: ODS_ICON_NAME;
   target?: OdsHTMLAnchorElementTarget;
+  slot?: 'start' | 'end';
 };
-const LinkIcon: FC<LinkIconProps> = ({ text, href, iconName, target }) => {
+const LinkIcon: FC<LinkIconProps> = ({
+  text,
+  href,
+  iconName,
+  target,
+  slot = 'end',
+}) => {
   return (
     <OsdsLink
       className="flex flex-row mt-2"
@@ -31,10 +38,10 @@ const LinkIcon: FC<LinkIconProps> = ({ text, href, iconName, target }) => {
       >
         {text}
       </OsdsText>
-      <span slot="end">
+      <span slot={slot}>
         <OsdsIcon
           aria-hidden="true"
-          className="ml-4 cursor-pointer"
+          className="mx-4 cursor-pointer"
           name={iconName}
           size={ODS_ICON_SIZE.xxs}
           color={ODS_THEME_COLOR_INTENT.primary}

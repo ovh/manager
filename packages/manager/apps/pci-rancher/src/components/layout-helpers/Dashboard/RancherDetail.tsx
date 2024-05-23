@@ -32,6 +32,7 @@ import StatusChip from '@/components/StatusChip/StatusChip';
 import { TileBlock } from '@/components/TileBlock/TileBlock';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import { useTranslate } from '@/utils/translation';
 
 export interface RancherDetailProps {
   rancher: RancherService;
@@ -65,8 +66,11 @@ const RancherDetail = ({
   hasErrorAccessDetail,
   latestVersionAvailable,
 }: RancherDetailProps) => {
-  const { t } = useTranslation('pci-rancher/dashboard');
-  const { t: tListing } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslate([
+    'pci-rancher/dashboard',
+    'pci-rancher/updateSoftware',
+    'pci-rancher/listing',
+  ]);
   const trackAction = useTrackingAction();
   const { name, version, plan, url } = rancher.currentState;
   const dateUsage = rancher.currentState.usage
@@ -192,7 +196,7 @@ const RancherDetail = ({
                   />
                 )}
               </TileBlock>
-              <TileBlock label={tListing('status')}>
+              <TileBlock label={t('status')}>
                 <div>
                   <StatusChip label={rancher.resourceStatus} />
                 </div>
@@ -272,7 +276,7 @@ const RancherDetail = ({
               <OsdsDivider separator />
               <TileBlock label={t('service_level')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {tListing(plan)}
+                  {t(plan)}
                 </OsdsText>
               </TileBlock>
               <TileBlock label={t('count_cpu_orchestrated')}>

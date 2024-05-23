@@ -3,7 +3,8 @@ import { fireEvent, render, waitFor } from '@/utils/test/test.provider';
 
 import { versionsMocked } from '@/_mock_/version';
 import { rancherMocked } from '@/_mock_/rancher';
-import dashboardTranslation from '@/public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
+import updateTranslation from '@/public/translations/pci-rancher/updateSoftware/Messages_fr_FR.json';
+
 import UpdateSoftware, {
   UpdateSoftwareProps,
 } from './UpdateSoftware.component';
@@ -44,7 +45,7 @@ describe('UpdateSoftware', () => {
   it('should render the component', async () => {
     const { getByText } = await setupSpecTest();
     expect(
-      getByText(dashboardTranslation.updteSoftwareRancherDurationInfo),
+      getByText(updateTranslation.updateSoftwareRancherDurationInfo),
     ).toBeInTheDocument();
   });
 

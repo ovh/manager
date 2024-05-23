@@ -14,15 +14,14 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import React, { FC, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useHref, useParams } from 'react-router-dom';
 import { RancherService, RancherVersion } from '@/api/api.type';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import LinkIcon from '@/components/LinkIcon/LinkIcon';
 import UpdateSoftwareModal from '@/components/Modal/UpdateSoftwareConfirmModal';
-import PreviousButton from '@/components/PreviousButton/PreviousButton';
 import { getLatestVersionsAvailable, getVersion } from '@/utils/rancher';
 import { getRancherByIdUrl } from '@/utils/route';
+import { useTranslate } from '@/utils/translation';
 
 interface VersionTableProps {
   versions: RancherVersion[];
@@ -37,7 +36,11 @@ const VersionTable = ({
   setSelectedVersion,
   currentVersion,
 }: VersionTableProps) => {
-  const { t } = useTranslation('pci-rancher/dashboard');
+  const { t } = useTranslate([
+    'pci-rancher/updateSoftware',
+
+    'pci-rancher/dashboard',
+  ]);
   return (
     <OsdsTable className="my-6" size={ODS_TABLE_SIZE.sm}>
       <table>
@@ -65,7 +68,7 @@ const VersionTable = ({
                     <OsdsText>
                       Version {version.name}
                       {currentVersion.name === version.name &&
-                        ` (${t('updteSoftwareRancherCurrentVersion')})`}
+                        ` (${t('updateSoftwareRancherCurrentVersion')})`}
                     </OsdsText>
                   </span>
                 </OsdsRadioButton>
@@ -101,7 +104,7 @@ const UpdateSoftware: FC<UpdateSoftwareProps> = ({
 }) => {
   const { projectId } = useParams();
 
-  const { t } = useTranslation('pci-rancher/dashboard');
+  const { t } = useTranslate('pci-rancher/updateSoftware');
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const currentVersion = getVersion(rancher);
 
@@ -125,18 +128,22 @@ const UpdateSoftware: FC<UpdateSoftwareProps> = ({
         <Breadcrumb
           items={[
             {
-              label: t('updteSoftwareRancherBreadcrumb'),
+              label: t('updateSoftwareRancherBreadcrumb'),
             },
           ]}
         />
       }
       content={
         <div className="max-w-4xl">
-          <PreviousButton
-            href={hrefRancherById}
-            text={t('updteSoftwareRancherPreviousButton')}
-          />
-          <Subtitle>{t('updteSoftwareRancherTitle')}</Subtitle>
+          <div className="my-4">
+            <LinkIcon
+              href={hrefRancherById}
+              text={t('updateSoftwareRancherPreviousButton')}
+              iconName={ODS_ICON_NAME.ARROW_LEFT}
+              slot="start"
+            />
+          </div>
+          <Subtitle>{t('updateSoftwareRancherTitle')}</Subtitle>
           {currentVersionDetails && versions?.length > 0 && (
             <VersionTable
               versions={availableVersions}
@@ -147,7 +154,7 @@ const UpdateSoftware: FC<UpdateSoftwareProps> = ({
           )}
           <div>
             <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-              {t('updteSoftwareRancherDurationInfo')}
+              {t('updateSoftwareRancherDurationInfo')}
             </OsdsText>
           </div>
           <div className="mt-5">
