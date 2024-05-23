@@ -1,0 +1,17 @@
+{
+  "pci_additional_ips_onboarding_content1": "Weisen Sie Ihre öffentlichen IP-Adressen zu und übertragen Sie sie zwischen den Instanzen.",
+  "pci_additional_ips_onboarding_content2": "Mit öffentlichen IPs lassen sich eine Instanz oder Netzwerkfunktion verbinden, beispielsweise LBaaS. Diese IPs verhalten sich dem Dienst gegenüber agnostisch und können daher einfach auf eine andere Instanz im Rahmen Ihres Projekts übertragen werden. Dieser Dienst eignet sich besonders für Wartungsarbeiten und Aktualisierungen.",
+  "pci_additional_ips_onboarding_content3": "Wir bieten zwei Arten von öffentlichen IPs an:",
+  "pci_additional_ips_onboarding_content4_heading": "Additional IP von OVHcloud:",
+  "pci_additional_ips_onboarding_content4_description": "Die ideale Lösung für den Wechsel zwischen Produkten von OVHcloud. An den Endpunkten muss das System manuell konfiguriert werden.",
+  "pci_additional_ips_onboarding_content5_heading": "Floating IP der Public Cloud:",
+  "pci_additional_ips_onboarding_content5_description": "Dieses Produkt eignet sich optimal für Public Cloud-Anwendungen, die Automatisierung der Cloud (Terraform) oder auch regionale private Netzwerke. Die Systemkonfiguration der Endpoints erfolgt automatisch.",
+  "pci_additional_ips_onboarding_action_buy": "Eine öffentliche IP erstellen",
+  "pci_additional_ips_onboarding_guides_additional_public_ips_title": "Öffentliche IPs bei OVHcloud",
+  "pci_additional_ips_onboarding_guides_additional_public_ips_description": "Wählen Sie ganz nach Bedarf: Additional IP vs Floating IP",
+  "pci_additional_ips_onboarding_guides_configure_additional_ip_title": "Konfiguration der Additional IP",
+  "pci_additional_ips_onboarding_guides_configure_additional_ip_description": "Hier erfahren Sie alles über die Konfiguration von Additional IPs für Ihre Services.",
+  "pci_additional_ips_onboarding_guides_configure_floating_ip_title": "Eine Floating IP konfigurieren",
+  "pci_additional_ips_onboarding_guides_configure_floating_ip_description": "Hier erfahren Sie, wie Sie Ihre Dienste cloud-nativ im Internet bereitstellen können.",
+  "onboarding_guide_title": "Tutorial"
+}

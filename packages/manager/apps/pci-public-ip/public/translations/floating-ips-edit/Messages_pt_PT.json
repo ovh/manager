@@ -1,0 +1,12 @@
+{
+  "pci_additional_ips_floatingips_edit": "Alterar a instância associada",
+  "pci_additional_ips_floatingips_edit_submit_label": "Associar",
+  "pci_additional_ips_floatingips_edit_cancel_label": "Anular",
+  "pci_additional_ips_floatingips_edit_description": "Escolha a instância à qual deseja associar o endereço IP {{ serviceName }}.",
+  "pci_additional_ips_floatingips_edit_select_instance": "Selecione uma instância",
+  "pci_additional_ips_floatingips_edit_select_ip": "Escolha uma rede/IP",
+  "pci_additional_ips_floatingips_edit_success": "A instância associada ao IP {{ ip }} foi alterada.",
+  "pci_additional_ips_floatingips_edit_error": "Ocorreu um erro aquando da modificação da instância associada: {{ error }}",
+  "pci_additional_ips_floatingips_edit_gateway_error": "Não encontrámos um Gateway na rede privada escolhida a fim de associar este Floating IP. Crie um primeiro ou escolha outra instância ou outra rede privada.",
+  "pci_additional_ips_floatingips_edit_gateway_no_instance_error": "Não possui nenhuma instância associada disponível"
+}

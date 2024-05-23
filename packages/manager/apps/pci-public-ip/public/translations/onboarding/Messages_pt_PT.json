@@ -1,0 +1,17 @@
+{
+  "pci_additional_ips_onboarding_content1": "Atribua e mova os seus endereços IP públicos de um serviço para outro.",
+  "pci_additional_ips_onboarding_content2": "Os IP públicos permitem ligar um endereço IP público a uma instância ou a uma função de rede (como o LBaaS, por exemplo). Estes IP são agnósticos do serviço e podem ser facilmente transferidos para outra instância do seu projeto de forma instantânea. Este serviço é particularmente útil para as operações de manutenção ou de atualização.",
+  "pci_additional_ips_onboarding_content3": "Oferecemos dois tipos de IP públicos:",
+  "pci_additional_ips_onboarding_content4_heading": "Additional IP OVHcloud:",
+  "pci_additional_ips_onboarding_content4_description": "mais adequados para as operações de migração interprodutos OVHcloud e necessitam de uma configuração de sistema manual nos pontos terminais.",
+  "pci_additional_ips_onboarding_content5_heading": "Floating IP do Public Cloud:",
+  "pci_additional_ips_onboarding_content5_description": "mais adequados aos casos de uso Public Cloud, à automatização da cloud (Terraform) e às redes privadas regionalizadas. A configuração do sistema de endpoint é automática.",
+  "pci_additional_ips_onboarding_action_buy": "Criar um IP público",
+  "pci_additional_ips_onboarding_guides_additional_public_ips_title": "IP públicos na OVHcloud",
+  "pci_additional_ips_onboarding_guides_additional_public_ips_description": "Escolha o que mais lhe convém: Additional IP vs. Floating IP",
+  "pci_additional_ips_onboarding_guides_configure_additional_ip_title": "Configuração Additional IP",
+  "pci_additional_ips_onboarding_guides_configure_additional_ip_description": "Saiba como configurar endereços IP adicionais para os seus serviços.",
+  "pci_additional_ips_onboarding_guides_configure_floating_ip_title": "Configurar um Floating IP",
+  "pci_additional_ips_onboarding_guides_configure_floating_ip_description": "Saiba como expor os seus serviços publicamente de forma cloud nativa.",
+  "onboarding_guide_title": "Tutorial"
+}
