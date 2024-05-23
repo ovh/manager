@@ -4,6 +4,7 @@ import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import component from './user-identitiy-documents.component';
 import routing from './user-identity-documents.routes';
 import uploadConfirmModule from './upload-identity-documents-confirm';
+import uploadDocumentsRequirements from './components/identity-documents-requirements';
 
 const moduleName = 'DedicatedUserAccountIdentityDocuments';
 
@@ -12,6 +13,7 @@ angular
     ngAtInternet,
     ngOvhHttp,
     uploadConfirmModule,
+    uploadDocumentsRequirements,
     'oui',
     'pascalprecht.translate',
     'ui.router',
