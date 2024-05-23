@@ -64,7 +64,8 @@ export const useAssociateAnotherVrack = ({
       return result;
     },
     retry: (failureCount, error: ApiError) => {
-      if (failureCount < 2) return true;
+      // Do not retry if we are in BDD environment
+      if (!import.meta.env.VITE_TEST_BDD && failureCount < 2) return true;
       if (error?.response?.status === 404) {
         switch (taskInfo.type) {
           case 'dissociation':

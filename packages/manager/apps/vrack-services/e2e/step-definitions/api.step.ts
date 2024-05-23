@@ -13,6 +13,19 @@ import {
 } from '../../src/public/translations/vrack-services/endpoints/Messages_fr_FR.json';
 import vrackServicesList from '../../mock/vrack-services/get-vrack-services.json';
 
+Given('The vRack task service is {word}', function(
+  this: ICustomWorld<ConfigParams>,
+  okOrKo: 'ok' | 'ko',
+) {
+  this.handlersConfig.vrackTaskKo = okOrKo === 'ko';
+  this.testContext.errorMessage = updateError;
+
+  const vsIndex = vrackServicesList.findIndex((v) => v.currentState.vrackId);
+
+  this.testContext.data.vsIndex = vsIndex;
+  this.testContext.data.selectedVrackServices = vrackServicesList[vsIndex];
+});
+
 Given('The webservice to dissociate a vRack is {word}', function(
   this: ICustomWorld<ConfigParams>,
   okOrKo: 'ok' | 'ko',

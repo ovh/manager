@@ -1,16 +1,13 @@
 import { Handler } from '@playwright-helpers';
-import { PathParams } from 'msw';
 import { vrackDetails, vrackList } from './vrack';
-import {
-  getAllowedServicesResponse,
-  getAssociationResponse,
-} from './association';
+import { getAllowedServicesResponse } from './association';
 
 export type GetVrackMocksParams = {
   nbEligibleVrackServices?: number;
   associationKo?: boolean;
   nbVrack?: number;
   dissociateKo?: boolean;
+  vrackTaskKo?: boolean;
 };
 
 export const getVrackMocks = ({
@@ -18,10 +15,22 @@ export const getVrackMocks = ({
   associationKo,
   nbVrack = 5,
   dissociateKo = false,
+  vrackTaskKo = false,
 }: GetVrackMocksParams): Handler[] => [
   {
+    url: '/vrack/:id/task/:taskId',
+    response: vrackTaskKo ? { message: 'Task error' } : {},
+    status: vrackTaskKo ? 500 : 404,
+    api: 'v6',
+  },
+  {
     url: '/vrack/:id/vrackServices/:vsId',
-    response: dissociateKo ? { message: 'Update error' } : {},
+    response: dissociateKo
+      ? { message: 'Update error' }
+      : {
+          function: '',
+          id: 123456,
+        },
     status: dissociateKo ? 500 : 200,
     api: 'v6',
     method: 'delete',
@@ -33,19 +42,21 @@ export const getVrackMocks = ({
   },
   {
     url: '/vrack/:id/vrackServices',
-    response: (request: Request, params: PathParams) =>
-      associationKo
-        ? {
+    response: associationKo
+      ? {
+          status: 500,
+          code: 'ERR_UPDATE_ERROR',
+          response: {
             status: 500,
-            code: 'ERR_UPDATE_ERROR',
-            response: {
-              status: 500,
-              data: {
-                message: 'Update error',
-              },
+            data: {
+              message: 'Update error',
             },
-          }
-        : getAssociationResponse(request, params),
+          },
+        }
+      : {
+          function: '',
+          id: 123456,
+        },
     method: 'post',
     status: associationKo ? 500 : 200,
     api: 'v6',
