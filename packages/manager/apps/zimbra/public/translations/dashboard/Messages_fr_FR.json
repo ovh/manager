@@ -15,5 +15,7 @@
   "zimbra_dashboard_tile_status_ongoingTask": "Tâches en cours",
   "zimbra_dashboard_tile_status_ongoingTask_viewMore": "Voir plus",
   "zimbra_dashboard_tile_status_ongoingTask_viewLess": "Voir moins",
+  "zimbra_dashboard_tile_serviceConsumption_title": "Statistiques",
+  "zimbra_dashboard_tile_serviceConsumption_accountOffer": "Compte par offre",
   "zimbra_dashboard_tile_usefulLinks_title": "Liens utiles"
 }
