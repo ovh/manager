@@ -25,6 +25,7 @@ import {
   getVrackServicesResourceQueryKey,
   updateVrackServices,
   updateVrackServicesQueryKey,
+  useVrackService,
 } from '@/api';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import {
@@ -40,7 +41,6 @@ import {
   defaultCidr,
   defaultServiceRange,
 } from './subnets.constants';
-import { useVrackService } from '@/utils/vs-utils';
 import { urls } from '@/router/constants';
 import { PageName } from '@/utils/tracking';
 

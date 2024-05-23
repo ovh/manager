@@ -12,7 +12,6 @@
   "orderStatus-unknown": "Sconosciuto",
   "genericApiError": "Si è verificato il seguente errore: {{error}}.",
   "modalCancelButton": "Annulla",
-  "modalDeleteButton": "Eliminare",
   "modalConfirmButton": "Confermare",
   "modalDissociateHeadline": "Dissociare vRack Services dalla vRack",
   "modalDissociateDescription": "Vuoi davvero dissociare questo vRack Services dalla tua vRack?"
