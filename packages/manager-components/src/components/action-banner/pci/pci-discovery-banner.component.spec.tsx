@@ -29,7 +29,7 @@ describe('PciDiscoveryBanner tests', () => {
     renderComponent({
       projectId: '123',
     });
-    const cta = screen.queryByTestId('cta');
+    const cta = screen.queryByTestId('actionBanner-button');
     expect(navigateTo).not.toHaveBeenCalled();
     fireEvent.click(cta);
     expect(navigateTo).toHaveBeenCalledWith(

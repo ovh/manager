@@ -1,0 +1,17 @@
+{
+  "pci_additional_ips_onboarding_content1": "Asigne y transfiera sus IP públicas de un servicio a otro.",
+  "pci_additional_ips_onboarding_content2": "Las IP públicas permiten asociar una IP pública a una instancia o función de red (como LBaaS, por ejemplo). Estas IP son agnósticas y pueden transferirse fácilmente a otra instancia del proyecto de manera instantánea. Este servicio es especialmente útil para las operaciones de mantenimiento o actualizaciones.",
+  "pci_additional_ips_onboarding_content3": "Ofrecemos dos tipos de IP públicas:",
+  "pci_additional_ips_onboarding_content4_heading": "Additional IP de OVHcloud:",
+  "pci_additional_ips_onboarding_content4_description": "servicio adaptado a las operaciones de balanceo entre las soluciones de OVHcloud. Es necesario configurar el sistema manualmente en los «endpoints».",
+  "pci_additional_ips_onboarding_content5_heading": "Floating IP de Public Cloud:",
+  "pci_additional_ips_onboarding_content5_description": "servicio adaptado a los casos de uso de Public Cloud, la automatización del cloud (Terraform) o las redes privadas regionalizadas. La configuración de sistema del «endpoint» es automática.",
+  "pci_additional_ips_onboarding_action_buy": "Crear una IP pública",
+  "pci_additional_ips_onboarding_guides_additional_public_ips_title": "IP públicas de OVHcloud",
+  "pci_additional_ips_onboarding_guides_additional_public_ips_description": "Elija la opción que mejor se adapta a su actividad: Additional IP vs. Floating IP",
+  "pci_additional_ips_onboarding_guides_configure_additional_ip_title": "Configuración de Additional IP",
+  "pci_additional_ips_onboarding_guides_configure_additional_ip_description": "Esta guía explica cómo configurar direcciones IP adicionales en sus servicios.",
+  "pci_additional_ips_onboarding_guides_configure_floating_ip_title": "Configurar una Floating IP",
+  "pci_additional_ips_onboarding_guides_configure_floating_ip_description": "Esta guía explica cómo exponer sus servicios públicamente de forma «cloud native».",
+  "onboarding_guide_title": "Guía"
+}

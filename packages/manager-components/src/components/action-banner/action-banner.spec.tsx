@@ -16,6 +16,7 @@ describe('ActionBanner tests', () => {
     });
     expect(screen.getAllByText('hello world')).not.toBeNull();
   });
+
   it('should have a working call to action button', () => {
     const onClick = jest.fn();
     renderComponent({
@@ -24,7 +25,7 @@ describe('ActionBanner tests', () => {
       onClick,
     });
     expect(screen.getAllByText('custom action')).not.toBeNull();
-    const cta = screen.queryByTestId('cta');
+    const cta = screen.queryByTestId('actionBanner-button');
     expect(onClick).not.toHaveBeenCalled();
     fireEvent.click(cta);
     expect(onClick).toHaveBeenCalled();

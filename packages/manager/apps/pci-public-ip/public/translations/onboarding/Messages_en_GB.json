@@ -1,0 +1,17 @@
+{
+  "pci_additional_ips_onboarding_content1": "Assign and move your public IPs from one service to another.",
+  "pci_additional_ips_onboarding_content2": "Public IPs are used to connect a public IP address to an instance or a network feature (e.g. LBaaS). These IPs are service-agnostic, which means they can easily be transferred to another instance of your project immediately. This service is particularly useful for maintenance or update operations.",
+  "pci_additional_ips_onboarding_content3": "We offer two types of public IP:",
+  "pci_additional_ips_onboarding_content4_heading": "OVHcloud Additional IP:",
+  "pci_additional_ips_onboarding_content4_description": "Best suited to OVHcloud cross-product failover operations, while requiring manual system configuration at endpoints.",
+  "pci_additional_ips_onboarding_content5_heading": "Public Cloud Floating IP:",
+  "pci_additional_ips_onboarding_content5_description": "Best suited to use cases in the Public Cloud, cloud automation (Terraform) and regional private networks. The endpoint system configuration is automatic.",
+  "pci_additional_ips_onboarding_action_buy": "Create a public IP address",
+  "pci_additional_ips_onboarding_guides_additional_public_ips_title": "Public IPs at OVHcloud",
+  "pci_additional_ips_onboarding_guides_additional_public_ips_description": "Choose the best options for your project: Additional IP vs Floating IP",
+  "pci_additional_ips_onboarding_guides_configure_additional_ip_title": "Additional IP configuration",
+  "pci_additional_ips_onboarding_guides_configure_additional_ip_description": "Find out how to configure additional IP addresses for your services.",
+  "pci_additional_ips_onboarding_guides_configure_floating_ip_title": "Configure a Floating IP",
+  "pci_additional_ips_onboarding_guides_configure_floating_ip_description": "Find out how to expose your services publicly in a cloud-native way.",
+  "onboarding_guide_title": "Tutorial"
+}
