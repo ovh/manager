@@ -5,6 +5,10 @@ import set from 'lodash/set';
 import slice from 'lodash/slice';
 
 import { TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS } from '../../line/phone/phone.constant';
+import {
+  LOGO_FILE_FORMATS,
+  MAX_SIZE_LOGO_FILE,
+} from '../../line/softphone/softphone.constants';
 
 export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardCtrl(
   $translate,
@@ -17,13 +21,24 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   billingDepositLink,
   TelephonyMediator,
   OvhApiTelephony,
+  softphoneService,
   TucToastError,
   TelephonyGroupLinePhone,
   billingAccountId,
   isSvaWalletFeatureAvailable,
   svaWallet,
+  themes,
+  currentTheme,
 ) {
   const self = this;
+
+  self.acceptedFormats = LOGO_FILE_FORMATS;
+  self.acceptedFormatsDesc = LOGO_FILE_FORMATS.map((format) =>
+    ['image/', format].join(''),
+  );
+  self.maxSizeLogoFile = MAX_SIZE_LOGO_FILE;
+  self.themes = themes;
+  self.currentTheme = currentTheme;
 
   self.svaWallet = svaWallet;
 
@@ -282,6 +297,49 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
 
   this.isGroupSuspended = function isGroupSuspended() {
     return (isExpired() || isClosed()) && shouldIncreaseDeposit();
+  };
+
+  this.updateFilesList = function updateFilesList() {
+    if (this.fileModel?.length > 1) {
+      this.fileModel.shift();
+    }
+  };
+
+  this.applyThemeGlobally = function applyThemeGlobally() {
+    let promise;
+    const applyTheme = () => {
+      return softphoneService.putSoftphoneThemeGlobally(
+        this.billingAccountId,
+        this.currentTheme,
+      );
+    };
+    if (!this.fileModel) {
+      promise = $q.resolve(applyTheme());
+    } else {
+      promise = softphoneService
+        .uploadDocument(this.fileModel[0])
+        .then((url) => {
+          softphoneService
+            .putSoftphoneLogo(
+              this.billingAccountId,
+              this.fileModel[0].infos.name,
+              url,
+            )
+            .then(applyTheme());
+        });
+    }
+
+    promise.catch(
+      (error) =>
+        new TucToastError(
+          $translate.instant(
+            'telephony_group_line_softphone_apply_theme_error',
+            {
+              errorMessage: error.message,
+            },
+          ),
+        ),
+    );
   };
 
   /*= =====================================
