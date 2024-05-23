@@ -1,5 +1,5 @@
 export const SOFTPHONE_TYPE = 'softphone';
-export const LOGO_FILE_FORMATS = ['png', 'pdf', 'jpeg', 'jpg'];
+export const LOGO_FILE_FORMATS = ['png', 'jpeg', 'jpg'];
 export const MAX_SIZE_LOGO_FILE = 1000000;
 export const MOBILE_OS = {
   windows: 'windows',

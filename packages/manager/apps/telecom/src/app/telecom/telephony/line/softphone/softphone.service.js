@@ -87,6 +87,29 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
+  putSoftphoneLogoGlobally(billingAccount, filename, url) {
+    return this.$http
+      .put(`/telephony/${billingAccount}/softphone/logo`, {
+        filename,
+        url,
+      })
+      .then(({ data }) => data);
+  }
+
+  putSoftphoneThemeGlobally(billingAccount, themeId) {
+    return this.$http
+      .put(`/telephony/${billingAccount}/softphone/theme`, {
+        themeId,
+      })
+      .then(({ data }) => data);
+  }
+
+  getSoftphoneCurrentGlobalTheme(billingAccount) {
+    return this.$http
+      .get(`/telephony/${billingAccount}/softphone/theme`)
+      .then(({ data }) => data);
+  }
+
   getLogo(billingAccount, serviceName) {
     return this.$http
       .get(`/telephony/${billingAccount}/line/${serviceName}/softphone/logo`)
