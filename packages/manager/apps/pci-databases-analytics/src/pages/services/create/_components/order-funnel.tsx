@@ -147,7 +147,7 @@ const OrderFunnel = ({
   return (
     <>
       {isProjectDiscoveryMode && (
-        <Alert variant="info">
+        <Alert variant="warning">
           <AlertDescription className="text-base">
             <div className="flex flex-col items-stretch  md:flex-row md:items-center justify-between gap-4">
               <div className="flex flex-row gap-5 items-center">

@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import { database } from '@/models/database';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -132,6 +133,15 @@ const RenameService = ({
               )}
             />
             <DialogFooter className="flex justify-end">
+              <DialogClose asChild>
+                <Button
+                  data-testid="rename-service-cancel-button"
+                  type="button"
+                  variant="outline"
+                >
+                  {t('renameServiceButtonCancel')}
+                </Button>
+              </DialogClose>
               <Button
                 data-testid="rename-service-submit-button"
                 type="submit"

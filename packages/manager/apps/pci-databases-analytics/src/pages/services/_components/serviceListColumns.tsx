@@ -38,16 +38,22 @@ export const getColumns = ({
       ),
       accessorFn: (row) => row.description,
       cell: ({ row }) => {
-        const { id, description } = row.original;
+        const { id, description, status } = row.original;
         return (
           <div className="flex flex-col flex-nowrap text-left">
-            <Button
-              asChild
-              variant="link"
-              className="justify-normal px-0 h-auto leading-4 font-semibold"
-            >
-              <Link to={id}>{description}</Link>
-            </Button>
+            {status === database.StatusEnum.DELETING ? (
+              <span className="justify-normal px-0 h-auto leading-4 font-semibold py-2">
+                {description}
+              </span>
+            ) : (
+              <Button
+                asChild
+                variant="link"
+                className="justify-normal px-0 h-auto leading-4 font-semibold"
+              >
+                <Link to={id}>{description}</Link>
+              </Button>
+            )}
             <span className="text-sm whitespace-nowrap">{id}</span>
           </div>
         );
@@ -226,6 +232,7 @@ export const getColumns = ({
               <DropdownMenuItem
                 variant="primary"
                 onClick={() => navigate(`./${row.original.id}`)}
+                disabled={row.original.status === database.StatusEnum.DELETING}
               >
                 {t('tableActionManage')}
               </DropdownMenuItem>

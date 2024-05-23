@@ -28,10 +28,20 @@ const Service = () => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   const [searchParams] = useSearchParams();
   const { projectId, category } = useParams();
-  const availabilitiesQuery = useGetAvailabilities(projectId);
-  const suggestionsQuery = useGetSuggestions(projectId);
-  const capabilitiesQuery = useGetFullCapabilities(projectId);
-  const catalogQuery = useGetCatalog();
+  const availabilitiesQuery = useGetAvailabilities(
+    projectId,
+    null,
+    null,
+    null,
+    { refetchOnWindowFocus: false },
+  );
+  const suggestionsQuery = useGetSuggestions(projectId, {
+    refetchOnWindowFocus: false,
+  });
+  const capabilitiesQuery = useGetFullCapabilities(projectId, {
+    refetchOnWindowFocus: false,
+  });
+  const catalogQuery = useGetCatalog({ refetchOnWindowFocus: false });
   const loading =
     availabilitiesQuery.isLoading ||
     suggestionsQuery.isLoading ||

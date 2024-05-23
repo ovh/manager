@@ -47,7 +47,7 @@ const IpsRestrictionsForm = React.forwardRef<
           message: t('existingIpError'),
         },
       ),
-    description: z.string().max(255),
+    description: z.string().max(50),
   });
 
   const form = useForm({
@@ -134,7 +134,17 @@ const IpsRestrictionsForm = React.forwardRef<
             >
               <MinusCircle />
             </Button>
-            {ip.ip} {ip.description && <span>- {ip.description}</span>}
+            <div>
+              <span>{ip.ip}</span>
+              {ip.description && (
+                <>
+                  <span> - </span>
+                  <span className="truncate max-w-96" title={ip.description}>
+                    {ip.description}
+                  </span>
+                </>
+              )}
+            </div>
           </li>
         ))}
       </ul>
