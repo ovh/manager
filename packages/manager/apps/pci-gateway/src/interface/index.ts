@@ -26,6 +26,7 @@ export interface Gateway {
     }[];
     networkId: string;
   };
+  search: string;
 }
 
 export interface Interface {
