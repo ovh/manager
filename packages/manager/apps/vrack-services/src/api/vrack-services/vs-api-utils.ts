@@ -14,24 +14,22 @@ import {
   ProductStatus,
   VrackServicesWithIAM,
   getVrackServicesResourceList,
-  getIamResourceQueryKey,
-  getIamResource,
-  IAMResource,
-  getEligibleManagedServiceListQueryKey,
-  getEligibleManagedServiceList,
-  EligibleManagedService,
-  deleteVrackServices,
-  deleteVrackServicesQueryKey,
-  getVrackServicesServiceId,
-  getVrackServicesServiceIdQueryKey,
 } from '@/api';
 
-export const useVrackServicesList = (refetchInterval = 30000) =>
-  useQuery<ApiResponse<VrackServicesWithIAM[]>, ApiError>({
+export const useVrackServicesList = (refetchInterval = 30000) => {
+  const queryClient = useQueryClient();
+  return useQuery<ApiResponse<VrackServicesWithIAM[]>, ApiError>({
     queryKey: getVrackServicesResourceListQueryKey,
-    queryFn: () => getVrackServicesResourceList(),
+    queryFn: async () => {
+      const result = await getVrackServicesResourceList();
+      result?.data.forEach((vs) => {
+        queryClient.setQueryData(getVrackServicesResourceQueryKey(vs.id), vs);
+      });
+      return result;
+    },
     refetchInterval,
   });
+};
 
 /**
  * Query the current vRack Services and poll it if it is not ready
@@ -133,10 +131,6 @@ export const useUpdateVrackServices = ({
           queryKey: getVrackServicesResourceListQueryKey,
           exact: true,
         });
-        queryClient.refetchQueries({
-          queryKey: getVrackServicesResourceQueryKey(result.data.id),
-          exact: true,
-        });
       }, updateTriggerDelay);
       onSuccess?.(result);
     },
@@ -148,114 +142,67 @@ export const useUpdateVrackServices = ({
 
   return {
     updateVS,
+    updateSubnetDisplayName: ({
+      displayName,
+      cidr,
+      vs,
+    }: {
+      displayName?: string;
+      cidr: string;
+      vs: VrackServicesWithIAM;
+    }) =>
+      updateVS({
+        vrackServicesId: vs.id,
+        checksum: vs.checksum,
+        targetSpec: {
+          subnets: vs.currentState.subnets.map((subnet) =>
+            subnet.cidr === cidr
+              ? {
+                  ...subnet,
+                  displayName,
+                }
+              : subnet,
+          ),
+        },
+      }),
+    deleteSubnet: ({
+      vs,
+      cidrToDelete,
+    }: {
+      vs: VrackServicesWithIAM;
+      cidrToDelete: string;
+    }) =>
+      updateVS({
+        vrackServicesId: vs.id,
+        checksum: vs?.checksum,
+        targetSpec: {
+          subnets: vs?.currentState.subnets.filter(
+            (subnet) => subnet.cidr !== cidrToDelete,
+          ),
+        },
+      }),
+    deleteEndpoint: ({
+      vs,
+      urnToDelete,
+    }: {
+      vs: VrackServicesWithIAM;
+      urnToDelete: string;
+    }) =>
+      updateVS({
+        vrackServicesId: vs?.id,
+        checksum: vs?.checksum,
+        targetSpec: {
+          subnets: vs?.currentState.subnets.map((subnet) => ({
+            ...subnet,
+            serviceEndpoints: subnet.serviceEndpoints.filter(
+              (endpoint) => endpoint.managedServiceURN !== urnToDelete,
+            ),
+          })),
+        },
+      }),
     isPending,
     isErrorVisible: updateError && isErrorVisible,
     hideError: () => setIsErrorVisible(false),
     updateError,
-  };
-};
-
-export const useDeleteVrackServices = ({
-  vrackServices,
-  onSuccess,
-  onError,
-}: {
-  vrackServices: string;
-  onSuccess?: () => void;
-  onError?: (result: ApiError) => void;
-}) => {
-  const { data: servicesId, isError, error } = useQuery<
-    ApiResponse<number[]>,
-    ApiError
-  >({
-    queryKey: getVrackServicesServiceIdQueryKey({ vrackServices }),
-    queryFn: () => getVrackServicesServiceId({ vrackServices }),
-    enabled: !!vrackServices,
-  });
-
-  const {
-    mutate: deleteVs,
-    isError: isTerminateError,
-    error: terminateError,
-  } = useMutation({
-    mutationFn: () =>
-      deleteVrackServices({
-        serviceId: servicesId?.data[0],
-      }),
-    mutationKey: deleteVrackServicesQueryKey(vrackServices),
-    onSuccess: () => onSuccess?.(),
-    onError,
-  });
-
-  return {
-    deleteVs,
-    isErrorVisible: isError || isTerminateError,
-    error: error || terminateError,
-  };
-};
-
-export const useServiceList = (vrackServicesId: string) => {
-  const [urnList, setUrnList] = React.useState<string[]>([]);
-  const { data: vrackServices } = useVrackService();
-
-  const {
-    data: serviceListResponse,
-    isLoading: isServiceListLoading,
-    error: serviceListError,
-  } = useQuery<ApiResponse<EligibleManagedService[]>, ApiError>({
-    queryKey: getEligibleManagedServiceListQueryKey(vrackServicesId),
-    queryFn: () => getEligibleManagedServiceList(vrackServicesId),
-  });
-
-  const {
-    data: iamResources,
-    isLoading: isIamResourcesLoading,
-    error: iamResourcesError,
-    refetch: refetchIamResources,
-  } = useQuery<ApiResponse<IAMResource[]>, ApiError>({
-    queryKey: getIamResourceQueryKey(urnList),
-    queryFn: () => getIamResource(urnList),
-    enabled: false,
-  });
-
-  React.useEffect(() => {
-    setUrnList((urns) =>
-      Array.from(
-        new Set(
-          serviceListResponse?.data
-            .flatMap((service) => service.managedServiceURNs)
-            .concat(urns),
-        ),
-      ),
-    );
-  }, [serviceListResponse?.data]);
-
-  React.useEffect(() => {
-    setUrnList((urns) =>
-      Array.from(
-        new Set(
-          vrackServices?.currentState.subnets
-            .flatMap((subnet) =>
-              subnet.serviceEndpoints.map(
-                (endpoint) => endpoint.managedServiceURN,
-              ),
-            )
-            .concat(urns),
-        ),
-      ),
-    );
-  }, [vrackServices?.checksum]);
-
-  React.useEffect(() => {
-    refetchIamResources();
-  }, [urnList]);
-
-  return {
-    serviceListResponse,
-    serviceListError,
-    isServiceListLoading,
-    iamResources,
-    iamResourcesError,
-    isIamResourcesLoading,
   };
 };

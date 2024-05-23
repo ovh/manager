@@ -61,6 +61,10 @@ export interface DatagridProps<T> {
   onSortChange?: (sorting: ColumnSort) => void;
   /** option to add custom CSS class */
   className?: string;
+  /** option to add custom inline style to the wrapper */
+  wrapperStyle?: React.CSSProperties;
+  /** option to add custom inline style to the table */
+  tableStyle?: React.CSSProperties;
   /** label displayed if there is no item in the datagrid */
   noResultLabel?: string;
 }
@@ -72,6 +76,8 @@ export const Datagrid = <T extends unknown>({
   pagination,
   sorting,
   className,
+  wrapperStyle,
+  tableStyle,
   onPaginationChange,
   onSortChange,
   noResultLabel,
@@ -115,8 +121,11 @@ export const Datagrid = <T extends unknown>({
 
   return (
     <div>
-      <div className={`contents overflow-x-auto px-[1px] ${className || ''}`}>
-        <table className="w-full border-collapse">
+      <div
+        style={wrapperStyle}
+        className={`contents overflow-x-auto px-[1px] ${className || ''}`}
+      >
+        <table style={tableStyle} className="w-full border-collapse">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>

@@ -9,7 +9,7 @@ import {
   TrackingClickParams,
 } from '@ovh-ux/manager-react-shell-client';
 import { DeleteModal } from '@ovhcloud/manager-components';
-import { useVrackService, useUpdateVrackServices } from '@/utils/vs-utils';
+import { useVrackService, useUpdateVrackServices } from '@/api';
 import { PageName } from '@/utils/tracking';
 
 const sharedTrackingParams: TrackingClickParams = {
@@ -32,11 +32,26 @@ export default function SubnetDeleteModal() {
   };
   const cidrToDelete = cidr.replace('_', '/');
 
-  const { data: vrackServices } = useVrackService();
-  const { updateVS, isPending, updateError } = useUpdateVrackServices({
+  const { data: vs } = useVrackService();
+  const {
+    deleteSubnet,
+    isPending,
+    updateError,
+    isErrorVisible,
+  } = useUpdateVrackServices({
     key: id,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerInfo,
+        pageName: PageName.pendingDeleteSubnet,
+      });
       navigate('..');
+    },
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PageName.errorDeleteSubnet,
+      });
     },
   });
 
@@ -52,34 +67,9 @@ export default function SubnetDeleteModal() {
           actionType: 'action',
           actions: ['delete_subnets', 'confirm'],
         });
-        updateVS(
-          {
-            checksum: vrackServices?.checksum,
-            vrackServicesId: vrackServices?.id,
-            targetSpec: {
-              displayName: vrackServices?.currentState.displayName,
-              subnets: vrackServices?.currentState.subnets.filter(
-                (subnet) => subnet.cidr !== cidrToDelete,
-              ),
-            },
-          },
-          {
-            onSuccess: () => {
-              trackPage({
-                pageType: PageType.bannerInfo,
-                pageName: PageName.pendingDeleteSubnet,
-              });
-            },
-            onError: () => {
-              trackPage({
-                pageType: PageType.bannerError,
-                pageName: PageName.errorDeleteSubnet,
-              });
-            },
-          },
-        );
+        deleteSubnet({ vs, cidrToDelete });
       }}
-      error={updateError?.response?.data?.message}
+      error={isErrorVisible ? updateError?.response?.data?.message : null}
       isLoading={isPending}
     />
   );
