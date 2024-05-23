@@ -1,5 +1,5 @@
 {
-  "pci_projects_project_network_private_vrack_create": "Créez un vRack",
+  "pci_projects_project_network_private_vrack_create_heading": "Créez un vRack",
   "pci_projects_project_network_private_vrack_create_new": "Nouveau vRack",
   "pci_projects_project_network_private_vrack_create_existing": "vRack existant",
   "pci_projects_project_network_private_vrack_create_description": "Cliquez sur \"Créer\" pour activer votre nouveau vRack",
