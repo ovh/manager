@@ -79,7 +79,7 @@ export const NetworkStep = (): JSX.Element => {
     regionName: store.form.regionName,
     onSuccess: () => {
       navigate('..');
-      addSuccess('pci_projects_project_public_gateways_add_success');
+      addSuccess(tAdd('pci_projects_project_public_gateways_add_success'));
     },
     onError: (error) => {
       addError(
@@ -98,7 +98,7 @@ export const NetworkStep = (): JSX.Element => {
     subnetId: store.form.network.subnetId,
     onSuccess: () => {
       navigate('..');
-      addSuccess('pci_projects_project_public_gateways_add_success');
+      addSuccess(tAdd('pci_projects_project_public_gateways_add_success'));
     },
     onError: (error) => {
       addError(
