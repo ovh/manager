@@ -39,7 +39,6 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
       navigate(`${tabs[0].to}`);
     }
   }, [location.pathname]);
-
   return (
     <>
       {data && (
@@ -50,7 +49,7 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
             inline
             size={ODS_CHIP_SIZE.sm}
             color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => navigate(urls.returnOrganizations)}
+            onClick={() => navigate(location.pathname)}
             className="ml-4"
           >
             {data.targetSpec.label}
