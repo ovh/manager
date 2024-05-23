@@ -10,7 +10,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { PageLayout } from '@/components/layout-helpers';
-import { isEditable, useVrackService } from '@/utils/vs-utils';
+import { isEditable, useVrackService } from '@/api';
 import { EndpointDatagrid } from './EndpointDataGrid';
 import { useNavigateToCreateEndpointPage } from '../endpoints.hook';
 
