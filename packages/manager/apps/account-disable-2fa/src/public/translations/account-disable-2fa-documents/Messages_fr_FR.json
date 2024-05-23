@@ -1,90 +1,25 @@
 {
-  "field-1": "Type de compte",
-
-  "field-2.1": "Pièce d'identité (recto)",
-  "tooltip-1-2.1": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-  "tooltip-2-2.1": "Il est possible de masquer les informations sensibles, mais le nom, le prénom et la date d'expiration doivent être lisibles",
-
-  "field-2.2": "Pièce d'identité (recto)",
-  "tooltip-1-2.2": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-
-  "field-3.1": "Pièce d'identité (verso)",
-  "tooltip-1-3.1": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-  "tooltip-2-3.1": "Il est possible de masquer les informations sensibles, mais le nom, le prénom et la date d'expiration doivent être lisibles",
-
-  "field-3.2": "Pièce d'identité (verso)",
-  "tooltip-1-3.2": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-
-  "field-4": "Justificatif de domicile de moins de 3 mois",
-
-  "field-5.1": "Preuve d'existence de l'entité",
-  "tooltip-1-5.1": "KBIS, Registre du commerce, licence commerciale, etc.",
-  "tooltip-2-5.1": "L'adresse indiquée sur votre compte client doit correspondre à l'adresse de la pièce justificative",
-
-  "field-5.2": "Preuve d'existence de l'entité",
-  "tooltip-1-5.2": "KBIS, Registre du commerce, licence commerciale, etc.",
-
-  "field-6.1": "Pièce d'identité du chef d'entreprise/président/directeur général (recto)",
-  "tooltip-1-6.1": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-  "tooltip-2-6.1": "Il est possible de masquer les informations sensibles, mais le nom, le prénom et la date d'expiration doivent être lisibles",
-  "tooltip-3-6.1": "Un document avec tampon de l'entité affichant le nom du représentant et sa fonction peut remplacer la pièce d'identité",
-
-  "field-6.2": "Pièce d'identité du chef d'entreprise/président/directeur général (recto)",
-  "tooltip-1-6.2": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-
-  "field-7.1": "Pièce d'identité du chef d'entreprise/président/directeur général (verso)",
-  "tooltip-1-7.1": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-  "tooltip-2-7.1": "Il est possible de masquer les informations sensibles, mais le nom, le prénom et la date d'expiration doivent être lisibles",
-  "tooltip-3-7.1": "Un document avec tampon de l'entité affichant le nom du représentant et sa fonction peut remplacer la pièce d'identité",
-
-  "field-7.2": "Pièce d'identité du chef d'entreprise/président/directeur général (verso)",
-  "tooltip-1-7.2": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-
-  "field-8.1": "Pièce d'identité du président/gérant/directeur de l'association (recto)",
-  "tooltip-1-8.1": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-  "tooltip-2-8.1": "Il est possible de masquer les informations sensibles, mais le nom, le prénom et la date d'expiration doivent être lisibles",
-  "tooltip-3-8.1": "Un document avec tampon de l'entité affichant le nom du représentant et sa fonction peut remplacer la pièce d'identité",
-
-  "field-8.2": "Pièce d'identité du président/gérant/directeur de l'association (recto)",
-  "tooltip-1-8.2": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-
-  "field-9.1": "Pièce d'identité du président/gérant/directeur de l'association (verso)",
-  "tooltip-1-9.1": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-  "tooltip-2-9.1": "Il est possible de masquer les informations sensibles, mais le nom, le prénom et la date d'expiration doivent être lisibles",
-  "tooltip-3-9.1": "Un document avec tampon de l'entité affichant le nom du représentant et sa fonction peut remplacer la pièce d'identité",
-
-  "field-9.2": "Pièce d'identité du président/gérant/directeur de l'association (verso)",
-  "tooltip-1-9.2": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-
-  "field-10": "Publication au Journal officiel",
-
-  "field-11": "Procès-verbal de la dernière assemblée générale",
-
-  "field-12": "Attestation INSEE",
-
-  "field-13": "Attestation sur papier à en-tête tamponné et signé, indiquant que le représentant autorise le demandeur à agir au nom de l'entité",
-
-  "field-14": "Pièce d'identité du professionnel libéral (recto)",
-  "tooltip-1-14": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-
-  "field-15": "Pièce d'identité du professionnel libéral (verso)",
-  "tooltip-1-15": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-
-  "field-16.1": "Pièce d'identité du responsable de l'administration publique (recto)",
-  "tooltip-1-16.1": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-  "tooltip-2-16.1": "Il est possible de masquer les informations sensibles, mais le nom, le prénom et la date d'expiration doivent être lisibles",
-  "tooltip-3-16.1": "Un document avec tampon de l'entité affichant le nom du représentant et sa fonction peut remplacer la pièce d'identité",
-
-  "field-16.2": "Pièce d'identité du responsable de l'administration publique (recto)",
-  "tooltip-1-16.2": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-
-  "field-17.1": "Pièce d'identité du responsable de l'administration publique (verso)",
-  "tooltip-1-17.1": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-  "tooltip-2-17.1": "Il est possible de masquer les informations sensibles, mais le nom, le prénom et la date d'expiration doivent être lisibles",
-  "tooltip-3-17.1": "Un document avec tampon de l'entité affichant le nom du représentant et sa fonction peut remplacer la pièce d'identité",
-
-  "field-17.2": "Pièce d'identité du responsable de l'administration publique (verso)",
-  "tooltip-1-17.2": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
-
-  "field-18": "Tout autre document que vous jugez utile à votre identification"
+  "account-disable-2fa-create-form-field-select-type-account": "Type de compte",
+  "account-disable-2fa-create-form-field-identity-document-front": "Pièce d'identité (recto)",
+  "account-disable-2fa-create-form-tooltip-identity-document-national-card-passport": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire",
+  "account-disable-2fa-create-form-tooltip-hide-sensitive-info": "Il est possible de masquer les informations sensibles, mais le nom, le prénom et la date d'expiration doivent être lisibles",
+  "account-disable-2fa-create-form-field-identity-document-back": "Pièce d'identité (verso)",
+  "account-disable-2fa-create-form-field-proof-of-address": "Justificatif de domicile de moins de 3 mois",
+  "account-disable-2fa-create-form-field-proof-of-existence": "Preuve d'existence de l'entité",
+  "account-disable-2fa-create-form-tooltip-proof-of-existence-types": "KBIS, Registre du commerce, licence commerciale, etc.",
+  "account-disable-2fa-create-form-tooltip-proof-of-address-matching": "L'adresse indiquée sur votre compte client doit correspondre à l'adresse de la pièce justificative",
+  "account-disable-2fa-create-form-field-executive-identity-document-front": "Pièce d'identité du chef d'entreprise/président/directeur général (recto)",
+  "account-disable-2fa-create-form-tooltip-replace-identity-document": "Un document avec tampon de l'entité affichant le nom du représentant et sa fonction peut remplacer la pièce d'identité",
+  "account-disable-2fa-create-form-field-executive-identity-document-back": "Pièce d'identité du chef d'entreprise/président/directeur général (verso)",
+  "account-disable-2fa-create-form-field-association-executive-identity-document-front": "Pièce d'identité du président/gérant/directeur de l'association (recto)",
+  "account-disable-2fa-create-form-field-association-executive-identity-document-back": "Pièce d'identité du président/gérant/directeur de l'association (verso)",
+  "account-disable-2fa-create-form-field-official-journal-publication": "Publication au Journal officiel",
+  "account-disable-2fa-create-form-field-general-assembly-minutes": "Procès-verbal de la dernière assemblée générale",
+  "account-disable-2fa-create-form-field-insee-certificate": "Attestation INSEE",
+  "account-disable-2fa-create-form-field-authorization-letter": "Attestation sur papier à en-tête tamponné et signé, indiquant que le représentant autorise le demandeur à agir au nom de l'entité",
+  "account-disable-2fa-create-form-field-professional-identity-document-front": "Pièce d'identité du professionnel libéral (recto)",
+  "account-disable-2fa-create-form-field-professional-identity-document-back": "Pièce d'identité du professionnel libéral (verso)",
+  "account-disable-2fa-create-form-field-public-administrator-identity-document-front": "Pièce d'identité du responsable de l'administration publique (recto)",
+  "account-disable-2fa-create-form-field-public-administrator-identity-document-back": "Pièce d'identité du responsable de l'administration publique (verso)",
+  "account-disable-2fa-create-form-field-other-useful-document": "Tout autre document que vous jugez utile à votre identification"
 }

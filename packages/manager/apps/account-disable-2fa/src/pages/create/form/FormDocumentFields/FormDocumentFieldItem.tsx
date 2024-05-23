@@ -1,14 +1,24 @@
 import React, { FunctionComponent } from 'react';
-import { useTranslation } from 'react-i18next';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+} from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   FileInputContainer,
   FileInputEventHandler,
   FileWithError,
 } from '@/components/FileInput/FileInputContainer';
+import {
+  acceptFile,
+  maxFileSize,
+  maxFiles,
+} from './formDocumentFieldValidationConstants';
 
 type Props = {
-  fieldCode: string;
-  tooltipCount: number;
+  label: string;
+  tooltips: string[];
   onChange?: FileInputEventHandler;
   multiple?: boolean;
   value?: FileWithError[];
@@ -18,36 +28,29 @@ export const FormDocumentFieldItem: FunctionComponent<Props> = ({
   value,
   onChange,
   multiple,
-  fieldCode,
-  tooltipCount,
+  tooltips,
+  label,
 }) => {
-  const { t: tdoc } = useTranslation('account-disable-2fa-documents');
-
-  const getTransletedTooltips = (code: string, count: number) =>
-    Array.from({ length: count }, (_, index) =>
-      tdoc(`tooltip-${index + 1}-${code}`),
-    );
-  const getTransletedFieldLabel = (code: string) => tdoc(`field-${code}`);
-
   return (
     <FileInputContainer
-      accept={'image/jpeg,image/jpg,image/png,application/pdf'}
-      maxFiles={10}
+      accept={acceptFile}
+      maxFiles={maxFiles}
       value={value}
       onChange={onChange}
-      maxSize={10 * 1024 * 1024}
+      maxSize={maxFileSize}
       multiple={multiple}
     >
-      <FileInputContainer.FileLabel className="block">
-        <li className="my-3 ml-6 list-disc">
-          {getTransletedFieldLabel(fieldCode)}
-        </li>
-      </FileInputContainer.FileLabel>
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+        className="block"
+        size={ODS_TEXT_SIZE._500}
+      >
+        <li className="my-3 ml-6 list-disc">{label}</li>
+      </OsdsText>
       <FileInputContainer.FileInput className="w-1/3" />
-      <FileInputContainer.FileTooltip
-        tooltips={getTransletedTooltips(fieldCode, tooltipCount)}
-      />
-      <FileInputContainer.FileList className="w-4/5" />
+      <FileInputContainer.FileTooltip tooltips={tooltips} />
+      <FileInputContainer.FileList className="w-5/5" />
     </FileInputContainer>
   );
 };

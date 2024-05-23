@@ -28,10 +28,11 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const parseContentTypes = (inputString: string) => {
-    const typesArray = inputString.split(',').map((type) => type.trim());
-    const extensions = typesArray.map((type) => type.split('/')[1]);
-    const lastType = extensions.pop();
-    return { types: extensions.join(', '), lastType };
+    const typesArray = inputString
+      .split(',')
+      .map((type) => type.trim().split('/')[1]);
+    const lastType = typesArray.pop();
+    return { types: typesArray.join(', '), lastType };
   };
 
   const mapToFilesWithError = (files: File[]): FileWithError[] => {
