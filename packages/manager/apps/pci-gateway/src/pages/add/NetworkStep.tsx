@@ -64,7 +64,7 @@ export const NetworkStep = (): JSX.Element => {
     store.form.regionName,
   );
 
-  const isNextButtonDisabled = () =>
+  const isNextButtonDisabled =
     !store.form.name ||
     !store.form.size ||
     !store.form.regionName ||
@@ -315,7 +315,7 @@ export const NetworkStep = (): JSX.Element => {
           inline={true}
           variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
-          {...{ disabled: isNextButtonDisabled() }}
+          {...(isNextButtonDisabled ? { disabled: true } : {})}
           onClick={() => create()}
         >
           {tAdd('pci_projects_project_public_gateways_add_submit_label')}
