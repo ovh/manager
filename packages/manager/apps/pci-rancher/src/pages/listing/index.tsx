@@ -22,6 +22,7 @@ import { getOnboardingUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { useTrackingPage } from '../../hooks/useTrackingPage';
 import RancherTaskMessage from './RancherTaskMessage';
+import { useTranslate } from '@/utils/translation';
 
 export interface ListingProps {
   data: RancherService[];
@@ -32,7 +33,7 @@ const ListingTablePage: React.FC<ListingProps> = ({
   data,
   refetchRanchers,
 }) => {
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslate('pci-rancher/listing');
   const hrefDashboard = useHref('');
   const trackAction = useTrackingAction();
   const trackClick = () =>

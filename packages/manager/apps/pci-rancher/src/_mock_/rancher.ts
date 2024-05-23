@@ -6,7 +6,7 @@ export const rancherMocked: RancherService = {
   updatedAt: '0',
   targetSpec: {
     name: 'rancher1',
-    plan: 'OVH_CLOUD_EDITION',
+    plan: 'OVHCLOUD_EDITION',
     version: '2.7.6',
     ipRestrictions: [
       {
@@ -18,7 +18,7 @@ export const rancherMocked: RancherService = {
   currentState: {
     url: 'www.ovh.com',
     name: 'rancher1',
-    plan: 'OVH_CLOUD_EDITION',
+    plan: 'OVHCLOUD_EDITION',
     region: 'region',
     version: '2.7.6',
     usage: {

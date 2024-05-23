@@ -2,11 +2,11 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsChip, OsdsSpinner } from '@ovhcloud/ods-components/react';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { ResourceStatus } from '@/api/api.type';
+import { useTranslate } from '@/utils/translation';
 
 const StatusChip = ({ label }: { label: string }) => {
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslate('pci-rancher/listing');
   const colorByProductStatus: {
     [key in ResourceStatus]: ODS_THEME_COLOR_INTENT;
   } = {
@@ -20,7 +20,7 @@ const StatusChip = ({ label }: { label: string }) => {
 
   return label ? (
     <OsdsChip inline color={colorByProductStatus[label as ResourceStatus]}>
-      {t(label)}
+      {t(label as ResourceStatus)}
     </OsdsChip>
   ) : (
     <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />

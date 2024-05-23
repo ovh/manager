@@ -62,7 +62,7 @@ export interface RancherService {
   currentState: {
     url: string;
     name: string;
-    plan: string;
+    plan: RancherPlan['name'];
     region: string;
     version: string;
     usage?: {

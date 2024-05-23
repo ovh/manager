@@ -3,6 +3,8 @@ import { versionsMocked } from '@/_mock_/version';
 import { rancherMocked } from '@/_mock_/rancher';
 import { ResourceStatus } from '@/api/api.type';
 import dashboardTranslation from '@/public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
+import updateTranslation from '@/public/translations/pci-rancher/updateSoftware/Messages_fr_FR.json';
+
 import { fireEvent, render, waitFor } from '@/utils/test/test.provider';
 import RancherDetail, { RancherDetailProps } from './RancherDetail';
 
@@ -105,11 +107,11 @@ describe('RancherDetail', () => {
       });
 
       const updateSoftwareLabel = screen.getByText(
-        dashboardTranslation.updateSoftwareBannerAvailableUpdate,
+        updateTranslation.updateSoftwareBannerAvailableUpdate,
       );
 
       const updateSoftwareButton = screen.getAllByText(
-        dashboardTranslation.updateSoftwareAvailableUpdate,
+        updateTranslation.updateSoftwareAvailableUpdate,
       );
 
       expect(updateSoftwareLabel).not.toBeNull();
@@ -124,13 +126,13 @@ describe('RancherDetail', () => {
       });
 
       const updateSoftwareLabel = screen.queryByText(
-        dashboardTranslation.updateSoftwareBannerAvailableUpdate.replaceAll(
+        updateTranslation.updateSoftwareBannerAvailableUpdate.replaceAll(
           '{{version}}',
           versionsMocked[1].name,
         ),
       );
       const updateSoftwareButton = screen.queryByText(
-        dashboardTranslation.updateSoftwareAvailableUpdate,
+        updateTranslation.updateSoftwareAvailableUpdate,
       );
 
       expect(updateSoftwareLabel).toBeNull();
@@ -148,13 +150,13 @@ describe('RancherDetail', () => {
       });
 
       const updateSoftwareLabel = screen.queryByText(
-        dashboardTranslation.updateSoftwareBannerAvailableUpdate.replaceAll(
+        updateTranslation.updateSoftwareBannerAvailableUpdate.replaceAll(
           '{{version}}',
           versionsMocked[1].name,
         ),
       );
       const updateSoftwareButton = screen.queryByText(
-        dashboardTranslation.updateSoftwareAvailableUpdate,
+        updateTranslation.updateSoftwareAvailableUpdate,
       );
 
       expect(updateSoftwareLabel).toBeNull();
