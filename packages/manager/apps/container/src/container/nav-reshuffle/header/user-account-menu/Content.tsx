@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
 import UserDefaultPaymentMethod from './DefaultPaymentMethod';
@@ -9,6 +9,9 @@ import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
+import { useReket } from '@ovh-ux/ovh-reket';
+import { UserLink } from './UserLink';
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -25,6 +28,8 @@ const UserAccountMenu = ({
   const environment = shell.getPlugin('environment').getEnvironment();
   const region = environment.getRegion();
   const { closeAccountSidebar } = useProductNavReshuffle();
+  const [allLinks, setAllLinks] = useState<UserLink[]>(links);
+  const reketInstance = useReket();
 
   const user = shell
     .getPlugin('environment')
@@ -46,23 +51,59 @@ const UserAccountMenu = ({
     shell.getPlugin('auth').logout();
   };
 
-  const onLinkClick = () => {
+  const onLinkClick = (link: UserLink) => {
     closeAccountSidebar();
-  };
-
-  const onMyAccountLinkClick = () => {
-    closeAccountSidebar();
-    trackingPlugin.trackClick({
-      name: 'topnav::user_widget::go_to_profile',
-      type: 'navigation',
-    });
+    if (link.key === 'user-account-menu-profile') {
+      trackingPlugin.trackClick({
+        name: 'topnav::user_widget::go_to_profile',
+        type: 'navigation',
+      });
+    }
   };
 
   const getUrl = (key: string, hash: string) =>
     shell.getPlugin('navigation').getURL(key, hash);
-  const myAccountLink = getUrl('dedicated', '#/useraccount/dashboard');
   const ssoLink = getUrl('dedicated', '#/useraccount/users');
   const supportLink = getUrl('dedicated', '#/useraccount/support/level');
+
+  useEffect(() => {
+    const getAllLinks = async () => {
+      let isIdentityDocumentsAvailable = false;
+      const featureAvailability = await reketInstance.get(
+        `/feature/identity-documents/availability`,
+        {
+          requestType: 'aapi',
+        },
+      );
+      if (featureAvailability['identity-documents']) {
+        const { status } = await reketInstance.get(`/me/procedure/identity`);
+        isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
+      }
+
+      setAllLinks([
+        ...links,
+        ...(isIdentityDocumentsAvailable
+          ? [
+              {
+                key: 'myIdentityDocuments',
+                hash: '#/identity-documents',
+                i18nKey: 'user_account_menu_my_identity_documents',
+              },
+            ]
+          : []),
+        ...(region === 'US'
+          ? [
+              {
+                key: 'myAssistanceTickets',
+                hash: '#/ticket',
+                i18nKey: 'user_account_menu_my_assistance_tickets',
+              },
+            ]
+          : []),
+      ]);
+    };
+    getAllLinks();
+  }, []);
 
   return (
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
@@ -74,18 +115,6 @@ const UserAccountMenu = ({
           <h1 className={displayUserName.className}>
             {displayUserName.userName}
           </h1>
-          <a
-            onClick={onMyAccountLinkClick}
-            className="d-block my-3"
-            aria-label={t('user_account_menu_profile')}
-            title={t('user_account_menu_profile')}
-            href={myAccountLink}
-            target="_top"
-            id="user-account-menu-profile"
-            data-navi-id="profile"
-          >
-            {t('user_account_menu_profile')}
-          </a>
           <p
             className={`${style.ellipsis} mb-0`}
             data-navi-id="account-email"
@@ -107,7 +136,11 @@ const UserAccountMenu = ({
           <div className={`d-flex justify-content-between ${style.menuContentRow}`}>
             <span>{t('user_account_menu_role_connexion')}</span>
             <a href={ssoLink}>
-              <OsdsChip color={ODS_THEME_COLOR_INTENT.success} className={style.menuContentRowChip} selectable={true}>
+              <OsdsChip
+                color={ODS_THEME_COLOR_INTENT.success}
+                className={style.menuContentRowChip}
+                selectable={true}
+              >
                 {t(`user_account_menu_role_${user.auth.method}`)}
               </OsdsChip>
             </a>
@@ -122,7 +155,11 @@ const UserAccountMenu = ({
             <div className={`d-flex mt-1 justify-content-between ${style.menuContentRow}`}>
               <span>{t('user_account_menu_support')}</span>
               <a href={supportLink}>
-                <OsdsChip color={ODS_THEME_COLOR_INTENT.info} className={style.menuContentRowChip} selectable={true}>
+                <OsdsChip
+                  color={ODS_THEME_COLOR_INTENT.info}
+                  className={style.menuContentRowChip}
+                  selectable={true}
+                >
                   {t(
                     `user_account_menu_support_level_${
                       user.supportLevel.level
@@ -134,19 +171,23 @@ const UserAccountMenu = ({
           )}
         </div>
         <div className="border-bottom pb-2 pt-2">
-          {links.map(({ key, hash, i18nKey }) => (
-            <a
-              key={key}
-              onClick={onLinkClick}
-              className="d-block"
-              aria-label={t(i18nKey)}
-              title={t(i18nKey)}
-              href={getUrl('dedicated', hash)}
-              target="_top"
-            >
-              {t(i18nKey)}
-            </a>
-          ))}
+          {allLinks.map((link: UserLink) => {
+            const { key, hash, i18nKey } = link;
+            return (
+              <a
+                key={key}
+                id={key}
+                onClick={() => onLinkClick(link)}
+                className="d-block"
+                aria-label={t(i18nKey)}
+                title={t(i18nKey)}
+                href={getUrl('dedicated', hash)}
+                target="_top"
+              >
+                {t(i18nKey)}
+              </a>
+            );
+          })}
         </div>
 
         <button
