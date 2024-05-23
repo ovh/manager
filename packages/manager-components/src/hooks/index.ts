@@ -10,6 +10,7 @@ export * from './feature-availability';
 export * from './datagrid/useIcebergV2';
 export * from './datagrid/useIcebergV6';
 export * from './datagrid/useResourcesV6';
+export * from './services';
 export { useProductMaintenance } from './pci/useMaintenance';
 export {
   getMacroRegion,

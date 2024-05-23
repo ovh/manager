@@ -3,21 +3,14 @@ import { expect } from '@playwright/test';
 import { ICustomWorld } from '@playwright-helpers';
 import { sleep } from '../../../../../../playwright-helpers';
 import { modalDescriptionLine1 } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
+import listingLabels from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
+import generalLabels from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
 import {
-  createVrackServicesButtonLabel,
-  emptyDataGridMessage,
-  modalVrackAssociationDescription,
-  modalVrackCreationDescriptionLine1,
-  modalCreateNewVrackButtonLabel,
-  associateVrackButtonLabel,
-  modalDeleteHeadline,
-} from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
-import {
-  deliveringVrackMessage,
-  deliveringVrackServicesMessage,
-  modalDissociateHeadline,
-} from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
-import { AppRoute, getUrl } from '../utils';
+  AppRoute,
+  getActionMenu,
+  getDashboardEditButton,
+  getUrl,
+} from '../utils';
 import { ConfigParams } from '../../mock/handlers';
 import {
   guide1Title,
@@ -26,13 +19,11 @@ import {
 import {
   onboardingTitle as subnetOnboardingTitle,
   createSubnetButtonLabel,
-  modalDeleteHeadline as subnetModalDeleteHeadline,
 } from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
 import { vrackActionDissociate } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
 import {
   createEndpointButtonLabel,
   onboardingTitle as endpointsOnboardingTitle,
-  modalDeleteHeadline as endpointModalDeleteHeadline,
   serviceType,
   ip,
   subnet,
@@ -44,7 +35,7 @@ Then('User sees the create a vRack Services button {word}', async function(
   buttonState: 'enabled' | 'disabled',
 ) {
   const button = await this.page.locator('osds-button', {
-    hasText: createVrackServicesButtonLabel,
+    hasText: listingLabels.createVrackServicesButtonLabel,
   });
   if (buttonState === 'enabled') {
     await expect(button).not.toHaveAttribute('disabled', '');
@@ -153,7 +144,10 @@ Then(
   async function(this: ICustomWorld<ConfigParams>) {
     const message = await this.page.locator('osds-message', {
       hasText: new RegExp(
-        deliveringVrackServicesMessage.replace(/{{date}}.*/, '.*'),
+        generalLabels.deliveringVrackServicesMessage.replace(
+          /{{date}}.*/,
+          '.*',
+        ),
       ),
     });
     await expect(message).toBeVisible();
@@ -162,7 +156,7 @@ Then(
 Then('User sees an empty listing page', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  const message = await this.page.getByText(emptyDataGridMessage);
+  const message = await this.page.getByText(listingLabels.emptyDataGridMessage);
   await expect(message).toBeVisible();
 });
 
@@ -183,7 +177,7 @@ Then('User sees a modal to select an eligible vRack', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
   const modalDescription = await this.page.getByText(
-    modalVrackAssociationDescription,
+    listingLabels.modalVrackAssociationDescription,
   );
   await expect(modalDescription).toBeVisible();
 });
@@ -192,7 +186,7 @@ Then('User sees a modal to create a new vRack', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
   const modalDescription = await this.page.getByText(
-    modalVrackCreationDescriptionLine1,
+    listingLabels.modalVrackCreationDescriptionLine1,
   );
   await expect(modalDescription).toBeVisible();
 });
@@ -201,7 +195,11 @@ Then(
   'User sees {word} information message about the order status of his vRack',
   async function(this: ICustomWorld<ConfigParams>, anyMessage: 'an' | 'no') {
     const message = await this.page
-      .getByText(new RegExp(deliveringVrackMessage.replace(/{{date}}.*/, '.*')))
+      .getByText(
+        new RegExp(
+          generalLabels.deliveringVrackMessage.replace(/{{date}}.*/, '.*'),
+        ),
+      )
       .nth(0);
 
     if (anyMessage === 'an') {
@@ -217,7 +215,7 @@ Then('The button to create a vRack is {word}', async function(
   buttonState: 'disabled' | 'enabled',
 ) {
   const button = await this.page.locator('osds-button', {
-    hasText: modalCreateNewVrackButtonLabel,
+    hasText: listingLabels.modalCreateNewVrackButtonLabel,
   });
   if (buttonState === 'disabled') {
     await expect(button).toHaveAttribute('disabled', '');
@@ -232,38 +230,52 @@ Then(
     this: ICustomWorld<ConfigParams>,
     buttonState: 'disabled' | 'enabled',
   ) {
-    await sleep(1000);
+    const menuIndex = this.testContext.data.vsIndex || 0;
 
-    const associateButtonList = await this.page
-      .getByText(associateVrackButtonLabel)
-      .all();
-    const editButtonList = await this.page
+    const actionMenu = await getActionMenu({
+      ctx: this,
+      menuIndex,
+    });
+
+    await actionMenu.click();
+
+    const associateButton = await this.page
       .locator('osds-button', {
-        has: this.page.locator('osds-icon[name="pen"]'),
+        hasText: listingLabels.associateVrackButtonLabel,
       })
-      .all();
+      .nth(menuIndex);
 
-    const buttons =
-      associateButtonList.length > 1
-        ? {
-            associateButton:
-              associateButtonList[this.testContext.data.vsIndex || 0],
-            editButton: editButtonList[this.testContext.data.vsIndex || 0],
-          }
-        : {
-            associateButton: associateButtonList[0],
-            editButton: editButtonList[0],
-          };
+    const editButton = await this.page
+      .locator('osds-button', {
+        hasText: generalLabels['action-editDisplayName'],
+      })
+      .nth(menuIndex);
 
     if (buttonState === 'disabled') {
-      await expect(buttons.associateButton).toHaveAttribute('disabled', '');
-      await expect(buttons.editButton).toHaveAttribute('disabled', '');
+      await expect(associateButton).toHaveAttribute('disabled', '');
+      await expect(editButton).toHaveAttribute('disabled', '');
     } else {
-      await expect(buttons.associateButton).not.toHaveAttribute('disabled', '');
-      await expect(buttons.editButton).not.toHaveAttribute('disabled', '');
+      await expect(associateButton).not.toHaveAttribute('disabled');
+      await expect(editButton).not.toHaveAttribute('disabled');
     }
   },
 );
+
+Then('User sees the action buttons on the overview as {word}', async function(
+  this: ICustomWorld<ConfigParams>,
+  buttonState: 'disabled' | 'enabled',
+) {
+  const actionMenu = await getActionMenu({ ctx: this });
+  const editButton = await getDashboardEditButton({ ctx: this });
+
+  if (buttonState === 'disabled') {
+    await expect(actionMenu).toHaveAttribute('disabled', '');
+    await expect(editButton).toHaveAttribute('disabled', '');
+  } else {
+    await expect(actionMenu).not.toHaveAttribute('disabled');
+    await expect(editButton).not.toHaveAttribute('disabled');
+  }
+});
 
 Then('User sees the {word} Onboarding page', async function(
   this: ICustomWorld<ConfigParams>,
@@ -374,7 +386,9 @@ Then('User sees button dissociate', async function(
 Then(
   'A modal appears to ask if the user wants to dissociate the vRack',
   async function(this: ICustomWorld<ConfigParams>) {
-    const modalTitle = await this.page.getByText(modalDissociateHeadline);
+    const modalTitle = await this.page.getByText(
+      generalLabels.modalDissociateHeadline,
+    );
     await expect(modalTitle).toBeVisible();
   },
 );
@@ -385,7 +399,9 @@ Then(
     this: ICustomWorld<ConfigParams>,
     returnOverview: 'returns' | "doesn't returns",
   ) {
-    const modalTitle = await this.page.getByText(modalDissociateHeadline);
+    const modalTitle = await this.page.getByText(
+      generalLabels.modalDissociateHeadline,
+    );
 
     if (returnOverview === 'returns') {
       await expect(modalTitle).not.toBeVisible();
@@ -408,26 +424,4 @@ Then('User sees the create a {word} button {word}', async function(
   } else {
     await expect(button).toHaveAttribute('disabled');
   }
-});
-
-Then('User sees a modal to confirm vRack Services deletion', async function(
-  this: ICustomWorld<ConfigParams>,
-) {
-  const modalHeadLine = await this.page?.locator('osds-text', {
-    hasText: modalDeleteHeadline,
-  });
-  await expect(modalHeadLine).toBeVisible();
-});
-
-Then('User sees a modal to confirm {word} deletion', async function(
-  this: ICustomWorld<ConfigParams>,
-  tab: 'subnet' | 'endpoint',
-) {
-  const modalHeadLine = await this.page?.locator('osds-text', {
-    hasText:
-      tab === 'subnet'
-        ? subnetModalDeleteHeadline
-        : endpointModalDeleteHeadline,
-  });
-  await expect(modalHeadLine).toBeVisible();
 });

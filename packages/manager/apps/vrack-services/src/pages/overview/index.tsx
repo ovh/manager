@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
 import { DashboardTile } from '@ovhcloud/manager-components';
 import { ErrorPage } from '@/components/Error';
-import { useVrackService } from '@/utils/vs-utils';
+import { useVrackService } from '@/api';
 import { formatDateString } from '@/utils/date';
 import { VrackId } from '@/components/vrack-id.component';
 import { DisplayName } from '@/components/display-name.component';
@@ -52,7 +52,7 @@ export default function OverviewTab() {
                 {
                   id: 'vrackId',
                   label: t('vrackId'),
-                  value: <VrackId hasMenu {...vrackServices} />,
+                  value: <VrackId {...vrackServices} />,
                 },
                 {
                   id: 'createdAt',
