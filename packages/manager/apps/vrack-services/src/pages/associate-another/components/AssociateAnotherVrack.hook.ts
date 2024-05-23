@@ -8,12 +8,31 @@ import {
   getVrackTaskQueryKey,
   associateVrackServices,
   associateVrackServicesQueryKey,
-  getVrackServicesResourceListQueryKey,
   Task,
   VrackTask,
   getVrackServicesResourceQueryKey,
 } from '@/api';
 
+/**
+ * Hook to manage association of vRack Services to another vRack
+ * This is done in 4 steps :
+ * - Step 1: Do the dissociation from current vRack
+ * - Step 2: Wait for dissociation Task is done
+ * - Step 3: Do the association on the new vRack
+ * - Step 4: Wait for the association Task is done
+ * Then If all steps succeed, call the onSuccess prop and reload the vRack Services datas.
+ * If at least 1 step fail, stop everything and call the onError prop.
+ *
+ * UI can use startAssociateToAnotherVrack with { newVrack: <vRackID> } as param to start the association process
+ * UI can use loadingstate to have information of the current ongoing task
+ * UI can use isError to know if an error occured in one of the 4 steps
+ * UI can use error to retrieve the error occured in one of the 4 steps
+ * @param vrackServices vRack Services ID to work with
+ * @param currentVrack vRack currently associated to the vRack Services to dissociate
+ * @param onSuccess Function to call on success
+ * @param onError Function to call on error
+ * @returns {startAssociateToAnotherVrack, loadingstate, isError, error}
+ */
 export const useAssociateAnotherVrack = ({
   vrackServices,
   currentVrack,
@@ -64,7 +83,8 @@ export const useAssociateAnotherVrack = ({
       return result;
     },
     retry: (failureCount, error: ApiError) => {
-      if (failureCount < 2) return true;
+      // Do not retry if we are in BDD environment
+      if (!import.meta.env.VITE_TEST_BDD && failureCount < 2) return true;
       if (error?.response?.status === 404) {
         queryClient.invalidateQueries({
           queryKey: getVrackServicesResourceQueryKey(vrackServices),
@@ -84,6 +104,7 @@ export const useAssociateAnotherVrack = ({
         }
         setTaskInfo(null);
       } else {
+        onError?.(error);
         setLoadingState({ isLoading: false });
       }
       return false;

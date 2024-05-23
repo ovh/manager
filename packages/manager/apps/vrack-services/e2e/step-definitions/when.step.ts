@@ -1,5 +1,5 @@
 import { When } from '@cucumber/cucumber';
-import { ICustomWorld } from '@playwright-helpers';
+import { ICustomWorld, sleep } from '@playwright-helpers';
 import { expect } from '@playwright/test';
 import { vrackList } from '../../mock/vrack/vrack';
 import { setupNetwork, getUrl } from '../utils';
@@ -8,6 +8,7 @@ import {
   associateVrackButtonLabel,
   modalConfirmVrackAssociationButtonLabel,
   modalDeleteInputLabel,
+  vrackSelectPlaceholder,
 } from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 import { orderButtonLabel } from '../../src/public/translations/vrack-services/onboarding/Messages_fr_FR.json';
 import {
@@ -16,7 +17,10 @@ import {
   modalNoVrackButtonLabel,
 } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
 import { displayNameInputName } from '../../src/pages/create/constants';
-import { vrackActionDissociate } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
+import {
+  vrackActionDissociate,
+  vrackActionAssociateToAnother,
+} from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
 import {
   modalConfirmButton,
   modalCancelButton,
@@ -178,6 +182,30 @@ When(
     await expect(button).toBeVisible();
 
     await button.click();
+  },
+);
+
+When(
+  'User click on associate another in action menu of private network',
+  async function(this: ICustomWorld<ConfigParams>) {
+    await setupNetwork(this);
+    const button = await this.page.getByText(vrackActionAssociateToAnother, {
+      exact: true,
+    });
+
+    await expect(button).toBeVisible();
+
+    await button.click();
+  },
+);
+
+When(
+  'User select the first vRack on the associate another vRack list and confirm',
+  async function(this: ICustomWorld<ConfigParams>) {
+    await setupNetwork(this);
+    await this.page.getByText(vrackSelectPlaceholder).click();
+    await this.page.getByText(vrackList[1]).click();
+    await this.page.getByText(modalConfirmVrackAssociationButtonLabel).click();
   },
 );
 

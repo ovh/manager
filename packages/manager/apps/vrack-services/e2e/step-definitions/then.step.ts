@@ -28,7 +28,11 @@ import {
   createSubnetButtonLabel,
   modalDeleteHeadline as subnetModalDeleteHeadline,
 } from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
-import { vrackActionDissociate } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
+import {
+  vrackActionDissociate,
+  vrackActionAssociateToAnother,
+  modalAssociateAnotherVrackTitle,
+} from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
 import {
   createEndpointButtonLabel,
   onboardingTitle as endpointsOnboardingTitle,
@@ -371,10 +375,36 @@ Then('User sees button dissociate', async function(
   }
 });
 
+Then('User sees button associate another', async function(
+  this: ICustomWorld<ConfigParams>,
+) {
+  const associateToAnotherButton = this.page.getByText(
+    vrackActionAssociateToAnother,
+    {
+      exact: true,
+    },
+  );
+  if (await this.page.getByTestId('action-menu-icon').count()) {
+    await expect(associateToAnotherButton).toBeVisible();
+  } else {
+    await expect(associateToAnotherButton).not.toBeVisible();
+  }
+});
+
 Then(
   'A modal appears to ask if the user wants to dissociate the vRack',
   async function(this: ICustomWorld<ConfigParams>) {
     const modalTitle = await this.page.getByText(modalDissociateHeadline);
+    await expect(modalTitle).toBeVisible();
+  },
+);
+
+Then(
+  'A modal appears to associate the vRack Services to another vRack',
+  async function(this: ICustomWorld<ConfigParams>) {
+    const modalTitle = await this.page.getByText(
+      modalAssociateAnotherVrackTitle,
+    );
     await expect(modalTitle).toBeVisible();
   },
 );
@@ -394,6 +424,25 @@ Then(
     }
   },
 );
+
+Then(
+  'User {string} on the Overview page from associate another modal',
+  async function(
+    this: ICustomWorld<ConfigParams>,
+    returnOverview: 'returns' | "doesn't returns",
+  ) {
+    const modalTitle = await this.page.getByText(
+      modalAssociateAnotherVrackTitle,
+    );
+
+    if (returnOverview === 'returns') {
+      await expect(modalTitle).not.toBeVisible();
+    } else {
+      await expect(modalTitle).toBeVisible();
+    }
+  },
+);
+
 Then('User sees the create a {word} button {word}', async function(
   this: ICustomWorld<ConfigParams>,
   tab: 'subnet' | 'endpoint',

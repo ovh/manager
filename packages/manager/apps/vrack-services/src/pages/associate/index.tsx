@@ -53,8 +53,6 @@ export default function Associate() {
     return closeModal();
   }
 
-  console.log({ vrackId });
-
   return (
     <OsdsModal
       dismissible
