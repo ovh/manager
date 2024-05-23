@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.13.0...@ovhcloud/manager-components@1.14.0) (2024-05-23)
+
+### Features
+
+- **pci-public-ip:** public ips ([#11718](https://github.com/ovh/manager/issues/11718)) ([313bb4e](https://github.com/ovh/manager/commit/313bb4ed96056b376c70bcb448f356f22ef75f13))
+
 # [1.13.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.12.0...@ovhcloud/manager-components@1.13.0) (2024-05-21)
 
 ### Features
