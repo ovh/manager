@@ -4,7 +4,7 @@ import { render } from '../../../utils/test.provider';
 import { DeleteModal } from './delete-modal.component';
 import '@testing-library/jest-dom';
 
-const sharedProps = {
+export const sharedProps = {
   closeModal: jest.fn(),
   onConfirmDelete: jest.fn(),
   headline: 'headline',
@@ -28,6 +28,32 @@ describe('Delete Modal component', () => {
       ).toBeInTheDocument();
       expect(
         screen.getByText(sharedProps.confirmButtonLabel),
+      ).toBeInTheDocument();
+    });
+  });
+
+  it('renders loading modal', async () => {
+    const { asFragment } = render(
+      <DeleteModal
+        {...sharedProps}
+        isLoading
+        cancelButtonLabel={undefined}
+        confirmButtonLabel={undefined}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(asFragment()).toMatchSnapshot();
+    });
+  });
+
+  it('renders error message in modal', async () => {
+    const errorMessage = 'Error message';
+    render(<DeleteModal {...sharedProps} error={errorMessage} />);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(errorMessage, { exact: false }),
       ).toBeInTheDocument();
     });
   });

@@ -14,7 +14,10 @@ import {
   GetAuthenticationMocks,
   getAuthenticationMocks,
 } from '../../../../../playwright-helpers/mocks/auth';
-import { getServicesMocks, GetServicesMocksParams } from './services/services';
+import {
+  GetServicesMocksParams,
+  getServicesMocks,
+} from '../../../../manager-components/src/hooks/services/mocks/services.mock';
 
 export type ConfigParams = GetVrackServicesMocksParams &
   GetAuthenticationMocks &

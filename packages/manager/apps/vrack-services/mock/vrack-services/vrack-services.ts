@@ -4,6 +4,8 @@ import { Handler } from '@playwright-helpers';
 import { getParamsFromUrl } from '../../../../../../playwright-helpers/network';
 import vrackServicesList from './get-vrack-services.json';
 
+export const vsUpdateErrorMessage = 'Update vs error';
+
 export const eligibleManagedServiceResponse = [
   {
     managedServiceType: 'storageNetApp',
@@ -40,7 +42,7 @@ export const getVrackServicesMocks = ({
     url: '/vrackServices/resource/:id',
     response: async (request: Request, params: PathParams) => {
       if (updateKo) {
-        return { message: 'Update error' };
+        return { message: vsUpdateErrorMessage };
       }
       const body =
         (await request.json?.()) ||

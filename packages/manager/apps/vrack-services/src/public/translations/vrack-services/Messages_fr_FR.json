@@ -12,8 +12,13 @@
   "orderStatus-unknown": "Inconnu",
   "genericApiError": "L'erreur suivante est survenue : {{error}}.",
   "modalCancelButton": "Annuler",
-  "modalDeleteButton": "Supprimer",
   "modalConfirmButton": "Confirmer",
   "modalDissociateHeadline": "Dissocier le vRack Services de votre vRack",
-  "modalDissociateDescription": "Etes-vous sûr de vouloir dissocier ce vRack Services de votre vRack ?"
+  "modalDissociateDescription": "Etes-vous sûr de vouloir dissocier ce vRack Services de votre vRack ?",
+  "action-goDetails": "Aller au détail",
+  "action-editDisplayName": "Modifier le nom",
+  "action-deleteVrackServices": "Supprimer",
+  "modalUpdateHeadline": "Modifier le nom du vRack Services {{id}}",
+  "modalUpdateDescription": "",
+  "updateDisplayNameInputLabel": "Nom"
 }
