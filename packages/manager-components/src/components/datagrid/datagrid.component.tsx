@@ -63,6 +63,10 @@ export interface DatagridProps<T> {
   className?: string;
   /** option to adjust content on the left */
   contentAlignLeft?: boolean;
+  /** option to add custom inline style to the wrapper */
+  wrapperStyle?: React.CSSProperties;
+  /** option to add custom inline style to the table */
+  tableStyle?: React.CSSProperties;
   /** label displayed if there is no item in the datagrid */
   noResultLabel?: string;
 }
@@ -74,6 +78,8 @@ export const Datagrid = <T,>({
   pagination,
   sorting,
   className,
+  wrapperStyle,
+  tableStyle,
   onPaginationChange,
   onSortChange,
   contentAlignLeft,
@@ -118,8 +124,11 @@ export const Datagrid = <T,>({
 
   return (
     <div>
-      <div className={`contents overflow-x-auto px-[1px] ${className || ''}`}>
-        <table className="w-full border-collapse">
+      <div
+        style={wrapperStyle}
+        className={`contents overflow-x-auto px-[1px] ${className || ''}`}
+      >
+        <table style={tableStyle} className="w-full border-collapse">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
