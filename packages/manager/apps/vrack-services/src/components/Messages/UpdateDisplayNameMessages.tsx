@@ -10,10 +10,10 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
-  updateVrackServicesNameQueryKey,
+  updateServiceNameQueryKey,
   UpdateVrackServicesNameMutationParams,
 } from '@/api';
-import { UpdateDisplayNameContext } from './UpdateDisplayName.context';
+import { MessagesContext } from './Messages.context';
 
 type UpdateDisplayNameMutation = MutationState<
   unknown,
@@ -30,14 +30,12 @@ export const UpdateDisplayNameMessage: React.FC<UpdateDisplayNameMessageProps> =
   vrackServicesId,
 }) => {
   const { t } = useTranslation('vrack-services/listing');
-  const { hiddenMessages, hideMessage } = React.useContext(
-    UpdateDisplayNameContext,
-  );
+  const { hiddenMessages, hideMessage } = React.useContext(MessagesContext);
   const updateDisplayNameMutations = useMutationState<
     UpdateDisplayNameMutation
   >({
     filters: {
-      mutationKey: updateVrackServicesNameQueryKey,
+      mutationKey: updateServiceNameQueryKey,
       exact: true,
     },
   });
@@ -51,12 +49,10 @@ export const UpdateDisplayNameMessage: React.FC<UpdateDisplayNameMessageProps> =
       {updateDisplayNameMutations
         .filter(
           (updateMutation: UpdateDisplayNameMutation) =>
-            ['success', 'error'].includes(updateMutation.status) &&
-            !hiddenMessages.includes(updateMutation.submittedAt),
-        )
-        .filter(
-          ({ variables }) =>
-            !vrackServicesId || vrackServicesId === variables.vrackServices,
+            updateMutation.status === 'success' &&
+            !hiddenMessages.includes(updateMutation.submittedAt) &&
+            (updateMutation.variables.vrackServices === vrackServicesId ||
+              !vrackServicesId),
         )
         .map((updateMutation) => (
           <OsdsMessage

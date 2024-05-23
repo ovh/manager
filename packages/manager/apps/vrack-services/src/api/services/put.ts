@@ -1,21 +1,21 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 
-export type UpdateVrackServicesNameParams = {
-  /** vrackServices service id */
+export type UpdateServiceNameParams = {
+  /** Service id */
   serviceId: number;
-  /** vrackServices new name */
+  /** Service new display name */
   displayName: string;
 };
 
-export const updateVrackServicesNameQueryKey = [`put/services/displayName`];
+export const updateServiceNameQueryKey = [`put/services/displayName`];
 
 /**
- * Update a vrack services name
+ * Update a service's display name
  */
-export const updateVrackServicesName = async ({
+export const updateServiceName = async ({
   serviceId,
   displayName,
-}: UpdateVrackServicesNameParams) =>
+}: UpdateServiceNameParams) =>
   apiClient.v6.put(`/services/${serviceId}`, {
     displayName,
   });

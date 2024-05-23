@@ -22,6 +22,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import {
+  ActionMenu,
   DataGridTextCell,
   Datagrid,
   DatagridColumn,
@@ -29,7 +30,7 @@ import {
 } from '@ovhcloud/manager-components';
 import { handleClick } from '@/utils/ods-utils';
 import { ErrorPage } from '@/components/Error';
-import { useVrackService, useServiceList, isEditable } from '@/utils/vs-utils';
+import { useVrackService, useServiceList, isEditable } from '@/api';
 import { urls } from '@/router/constants';
 
 type EndpointItem = {
@@ -99,34 +100,47 @@ export const EndpointDatagrid: React.FC = () => {
       id: 'actions',
       label: t('actions'),
       cell: ({ managedServiceURN }) => (
-        <OsdsButton
-          inline
-          circle
-          color={ODS_THEME_COLOR_INTENT.error}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          type={ODS_BUTTON_TYPE.button}
-          size={ODS_BUTTON_SIZE.sm}
-          disabled={!isVsEditable || undefined}
-          {...handleClick(() => {
-            trackClick({
-              location: PageLocation.datagrid,
-              buttonType: ButtonType.button,
-              actionType: 'navigation',
-              actions: ['delete-endpoints'],
-            });
-            navigate(
-              urls.endpointsDelete
-                .replace(':id', id)
-                .replace(':urn', managedServiceURN),
-            );
-          })}
-        >
-          <OsdsIcon
-            color={ODS_THEME_COLOR_INTENT.error}
-            name={ODS_ICON_NAME.TRASH}
-            size={ODS_ICON_SIZE.xs}
-          />
-        </OsdsButton>
+        <ActionMenu
+          isCompact
+          disabled={!isVsEditable}
+          items={[
+            {
+              id: 0,
+              label: t('edit'),
+              onClick: () => {
+                trackClick({
+                  location: PageLocation.datagrid,
+                  buttonType: ButtonType.button,
+                  actionType: 'navigation',
+                  actions: ['edit-endpoints'],
+                });
+                navigate(
+                  urls.endpointsEdit
+                    .replace(':id', vrackServices.id)
+                    .replace(':urn', managedServiceURN),
+                );
+              },
+            },
+            {
+              id: 1,
+              label: t('delete'),
+              color: ODS_THEME_COLOR_INTENT.error,
+              onClick: () => {
+                trackClick({
+                  location: PageLocation.datagrid,
+                  buttonType: ButtonType.button,
+                  actionType: 'navigation',
+                  actions: ['delete-endpoints'],
+                });
+                navigate(
+                  urls.endpointsDelete
+                    .replace(':id', id)
+                    .replace(':urn', managedServiceURN),
+                );
+              },
+            },
+          ]}
+        />
       ),
     },
   ];
@@ -158,7 +172,9 @@ export const EndpointDatagrid: React.FC = () => {
     </div>
   ) : (
     <Datagrid
-      className="overflow-x-hidden px-0"
+      wrapperStyle={{ display: 'flex' }}
+      tableStyle={{ minWidth: '700px' }}
+      className="pb-[200px] -mx-6"
       columns={columns}
       items={endpointList}
       totalItems={endpointList.length}

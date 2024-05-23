@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { useOvhTracking, ButtonType } from '@ovh-ux/manager-react-shell-client';
 import { DashboardLayout } from '@/components/layout-helpers';
-import { useVrackService, useVrackServicesList } from '@/utils/vs-utils';
+import { useVrackService, useVrackServicesList } from '@/api';
 import NotFound from '@/pages/404';
 import { ErrorPage } from '@/components/Error';
 import { urls } from '@/router/constants';

@@ -1,15 +1,13 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
-import {
-  updateVrackServicesName,
-  updateVrackServicesNameQueryKey,
-} from './put';
+import { updateServiceName, updateServiceNameQueryKey } from './put';
 import {
   getVrackServicesServiceId,
   getVrackServicesServiceIdQueryKey,
 } from './get';
 import { getVrackServicesResourceListQueryKey } from '../vrack-services';
+import { deleteVrackServices, deleteVrackServicesQueryKey } from './post';
 
 export type UpdateVrackServicesNameMutationParams = {
   /** vrackServices service id */
@@ -24,9 +22,11 @@ export type UpdateVrackServicesNameMutationParams = {
 export const useUpdateVrackServicesName = ({
   onSuccess,
   onError,
+  invalidateTimeoutOnSuccess = 1000,
 }: {
   onSuccess?: () => void;
   onError?: (result: ApiError) => void;
+  invalidateTimeoutOnSuccess?: number;
 } = {}) => {
   const [isErrorVisible, setIsErrorVisible] = React.useState(false);
   const queryClient = useQueryClient();
@@ -36,7 +36,7 @@ export const useUpdateVrackServicesName = ({
     isPending,
     error: updateNameError,
   } = useMutation({
-    mutationKey: updateVrackServicesNameQueryKey,
+    mutationKey: updateServiceNameQueryKey,
     mutationFn: async ({
       vrackServices,
       displayName,
@@ -47,7 +47,7 @@ export const useUpdateVrackServicesName = ({
         queryKey: getVrackServicesServiceIdQueryKey({ vrackServices }),
         queryFn: () => getVrackServicesServiceId({ vrackServices }),
       });
-      return updateVrackServicesName({ serviceId: servicesId[0], displayName });
+      return updateServiceName({ serviceId: servicesId[0], displayName });
     },
     onSuccess: () => {
       setTimeout(
@@ -55,7 +55,7 @@ export const useUpdateVrackServicesName = ({
           queryClient.invalidateQueries({
             queryKey: getVrackServicesResourceListQueryKey,
           }),
-        1000,
+        invalidateTimeoutOnSuccess,
       );
       onSuccess?.();
     },
@@ -71,5 +71,55 @@ export const useUpdateVrackServicesName = ({
     isErrorVisible: updateNameError && isErrorVisible,
     error: updateNameError,
     hideError: () => setIsErrorVisible(false),
+  };
+};
+
+export const useDeleteVrackServices = ({
+  vrackServices,
+  onSuccess,
+  onError,
+  invalidateTimeoutOnSuccess = 5000,
+}: {
+  vrackServices: string;
+  onSuccess?: () => void;
+  onError?: (result: ApiError) => void;
+  invalidateTimeoutOnSuccess?: number;
+}) => {
+  const queryClient = useQueryClient();
+
+  const { data: servicesId, isError, error } = useQuery<
+    ApiResponse<number[]>,
+    ApiError
+  >({
+    queryKey: getVrackServicesServiceIdQueryKey({ vrackServices }),
+    queryFn: () => getVrackServicesServiceId({ vrackServices }),
+    enabled: !!vrackServices,
+  });
+
+  const {
+    mutate: deleteVs,
+    isError: isTerminateError,
+    error: terminateError,
+  } = useMutation({
+    mutationFn: () =>
+      deleteVrackServices({
+        serviceId: servicesId?.data[0],
+      }),
+    mutationKey: deleteVrackServicesQueryKey(vrackServices),
+    onSuccess: () => {
+      onSuccess?.();
+      setTimeout(() => {
+        queryClient.invalidateQueries({
+          queryKey: getVrackServicesResourceListQueryKey,
+        });
+      }, invalidateTimeoutOnSuccess);
+    },
+    onError,
+  });
+
+  return {
+    deleteVs,
+    isErrorVisible: isError || isTerminateError,
+    error: error || terminateError,
   };
 };

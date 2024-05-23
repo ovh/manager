@@ -16,9 +16,8 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { PageLayout } from './PageLayout';
-import { OperationMessages } from '../OperationMessages';
 import { DashboardTabItemProps } from './layout-helpers.type';
-import { UpdateDisplayNameMessage } from '../UpdateDisplayName/UpdateDisplayNameMessages';
+import { Messages } from '../Messages/Messages';
 
 export type DashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
@@ -68,9 +67,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
         >
           {t('description')}
         </OsdsText>
-        <OperationMessages id={id} />
+        <Messages vrackServicesId={id} />
       </div>
-      <UpdateDisplayNameMessage vrackServicesId={id} />
       <OsdsTabs panel={activePanel}>
         <OsdsTabBar slot="top">
           {tabs.map((tab: DashboardTabItemProps) => (

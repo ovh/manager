@@ -1,70 +1,54 @@
 import React from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsLink } from '@ovhcloud/ods-components/react';
 import {
   ButtonType,
   PageLocation,
-  PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { EditableText } from './editable-text.component';
-import { VrackServicesWithIAM, useUpdateVrackServicesName } from '@/api';
-import { isEditable } from '@/utils/vs-utils';
-import { PageName } from '@/utils/tracking';
+import { OsdsLink } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { EditButton } from './edit-button.component';
+import { VrackServicesWithIAM, isEditable } from '@/api';
+import { urls } from '@/router/constants';
 
 export const DisplayName: React.FC<VrackServicesWithIAM & {
-  hasLinkToDetails?: boolean;
-}> = ({ hasLinkToDetails, ...vs }) => {
-  const { trackClick, trackPage } = useOvhTracking();
+  isListing?: boolean;
+}> = ({ isListing, ...vs }) => {
+  const { trackClick } = useOvhTracking();
   const name = vs.iam?.displayName || vs.id;
   const navigate = useNavigate();
-  const navigateToDetails = () => {
-    trackClick({
-      location: PageLocation.datagrid,
-      buttonType: ButtonType.link,
-      actionType: 'navigation',
-      actions: ['details_vrack-services'],
-    });
-    navigate(`/${vs.id}`);
-  };
 
-  const { updateVSName, isPending } = useUpdateVrackServicesName({
-    onSuccess: () => {
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: PageName.pendingUpdateVrackServices,
-      });
-    },
-    onError: () => {
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: PageName.errorUpdateVrackServices,
-      });
-    },
-  });
-
-  return (
-    <EditableText
-      disabled={!isEditable(vs) || isPending}
-      defaultValue={name}
-      onEditSubmitted={async (value) => {
-        await updateVSName({
-          vrackServices: vs.id,
-          displayName: value || null,
+  return isListing ? (
+    <div>
+      <OsdsLink
+        color={ODS_THEME_COLOR_INTENT.primary}
+        onClick={() => {
+          trackClick({
+            location: PageLocation.datagrid,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: ['details_vrack-services'],
+          });
+          navigate(urls.overview.replace(':id', vs.id));
+        }}
+      >
+        {name}
+      </OsdsLink>
+    </div>
+  ) : (
+    <EditButton
+      disabled={!isEditable(vs)}
+      onClick={() => {
+        trackClick({
+          location: PageLocation.tile,
+          buttonType: ButtonType.button,
+          actionType: 'navigation',
+          actions: ['edit_vrack-services'],
         });
+        navigate(urls.overviewEdit.replace(':id', vs.id));
       }}
     >
-      {hasLinkToDetails ? (
-        <OsdsLink
-          color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={navigateToDetails}
-        >
-          {name}
-        </OsdsLink>
-      ) : (
-        name
-      )}
-    </EditableText>
+      {name}
+    </EditButton>
   );
 };
