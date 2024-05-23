@@ -7,7 +7,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { getCurrentUser } from '@/utils/userUtil';
+import { getCurrentUser } from '@/utils/user.util';
 
 export default function CreateRequest() {
   const user = getCurrentUser();
@@ -52,8 +52,10 @@ export default function CreateRequest() {
         className="block"
         size={ODS_TEXT_SIZE._400}
       >
-        <p>{t('account-disable-2fa-create-attention1')}</p>
-        <p className="mb-4">{t('account-disable-2fa-create-attention2')}</p>
+        <p>{t('account-disable-2fa-create-attention-readable-doc')}</p>
+        <p className="mb-4">
+          {t('account-disable-2fa-create-attention-no-valid-doc')}
+        </p>
         <p>{t('account-disable-2fa-create-delay', { mail: user.email })}</p>
         <p className="mb-4">
           {t('account-disable-2fa-create-reactivate-info')}

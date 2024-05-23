@@ -1,31 +1,31 @@
 import React, { FunctionComponent } from 'react';
-import {
-  Control,
-  Controller,
-  FieldValues,
-  UseFormSetError,
-} from 'react-hook-form';
+import { Control, Controller, FieldValues } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { FormDocumentFieldItem } from './FormDocumentFieldItem';
 import documentsFieldRules from './documentFieldsConfiguration.json';
 import { FileWithError } from '@/components/FileInput/FileInputContainer';
+import { LegalFrom, Subsidiary } from '@/types/user.type';
 
 type Props = {
-  legalForm: string;
-  subsidiary: string;
+  legalForm: LegalFrom | 'default';
+  subsidiary: Subsidiary | 'DEFAULT';
   control: Control<FieldValues>;
 };
 
-type DocumentsFieldRules = {
-  [key: string]: {
-    [key: string]: {
-      fields: {
-        field: string;
-        multiple: boolean;
-        tooltipCount: number;
-      }[];
-    };
-  };
+type FieldDefinition = {
+  field: string;
+  translateCode: string;
+  multiple: boolean;
+  tooltips: string[];
 };
+
+type FieldsListDefinition = {
+  fields: FieldDefinition[];
+};
+type DocumentsFieldRules = Record<
+  LegalFrom | 'default',
+  Record<Subsidiary | 'DEFAULT', FieldsListDefinition>
+>;
 
 export const FormDocumentFieldList: FunctionComponent<Props> = ({
   control,
@@ -48,6 +48,8 @@ export const FormDocumentFieldList: FunctionComponent<Props> = ({
 
   const { fields } = sub;
 
+  const { t: tdoc } = useTranslation('account-disable-2fa-documents');
+
   return (
     <ul>
       {fields.map((field) => (
@@ -68,8 +70,8 @@ export const FormDocumentFieldList: FunctionComponent<Props> = ({
               multiple={field.multiple}
               value={value}
               onChange={(e) => onChange(e.files)}
-              fieldCode={field.field}
-              tooltipCount={field.tooltipCount}
+              label={tdoc(field.translateCode)}
+              tooltips={field.tooltips.map((tooltip) => tdoc(tooltip))}
             />
           )}
           name={field.field.replace('.', '')}
