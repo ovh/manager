@@ -91,25 +91,26 @@ export const getVrackVrackServicesList = async ({
 }: GetVrackVrackServicesListParams) =>
   apiClient.v6.get<string[]>(`/vrack/${vrack}/vrackServices`);
 
-export type GetVrackTaskParams = {
+export type GetVrackTaskWithIdParams = {
   /** The internal name of your vrack */
-  vrack?: string;
+  vrack: string;
   /** The task ID */
-  taskId?: number;
+  taskId: number;
 };
 
-export const getVrackTaskQueryKey = ({ vrack, taskId }: GetVrackTaskParams) => [
-  `get/vrack/task`,
-  { taskId, vrack },
-];
+export const getVrackTaskWithIdQueryKey = ({
+  vrack,
+  taskId,
+}: GetVrackTaskWithIdParams) => [`get/vrack/task`, { taskId, vrack }];
 
 /**
- * Retrieve all the vrack task or 1 particular task
+ * Retrieve a given vrack task
  * @param vrack the vrack id
- * @param taskId (optionnal) the task id
- * @returns an array of task id if no tadkId is given or the detail of the task
+ * @param taskId the task id
+ * @returns the detail of the task
  */
-export const getVrackTask = async ({ vrack, taskId }: GetVrackTaskParams) =>
-  taskId
-    ? apiClient.v6.get<VrackTask>(`/vrack/${vrack}/task/${taskId}`)
-    : apiClient.v6.get<string[]>(`/vrack/${vrack}/task`);
+export const getVrackTaskWithId = async ({
+  vrack,
+  taskId,
+}: GetVrackTaskWithIdParams) =>
+  apiClient.v6.get<VrackTask>(`/vrack/${vrack}/task/${taskId}`);

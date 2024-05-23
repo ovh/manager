@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import {
   dissociateVrackServices,
   dissociateVrackServicesQueryKey,
-  getVrackTask,
-  getVrackTaskQueryKey,
+  getVrackTaskWithId,
+  getVrackTaskWithIdQueryKey,
   associateVrackServices,
   associateVrackServicesQueryKey,
   Task,
@@ -67,12 +67,12 @@ export const useAssociateAnotherVrack = ({
    *  When the task is done, we get a 404 error and the polling end.
    * */
   const { isError: isVrackTaskError, error: vrackTaskError } = useQuery({
-    queryKey: getVrackTaskQueryKey({
+    queryKey: getVrackTaskWithIdQueryKey({
       vrack: taskInfo?.vrack,
       taskId: taskInfo?.id,
     }),
     queryFn: async () => {
-      const result = await getVrackTask({
+      const result = await getVrackTaskWithId({
         vrack: taskInfo.vrack,
         taskId: taskInfo.id,
       });
