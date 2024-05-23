@@ -10,9 +10,9 @@ type Props = {
   tooltips?: string[];
 };
 export const FileInputTooltip: FunctionComponent<Props> = ({ tooltips }) => {
-  if (!tooltips) return <></>;
+  if (!tooltips?.length) return <></>;
 
-  return tooltips?.length ? (
+  return (
     <ul>
       {tooltips.map((tooltip, index) => (
         <li key={index}>
@@ -26,7 +26,5 @@ export const FileInputTooltip: FunctionComponent<Props> = ({ tooltips }) => {
         </li>
       ))}
     </ul>
-  ) : (
-    <></>
   );
 };

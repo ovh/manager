@@ -17,8 +17,9 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 import { FieldValues, useForm } from 'react-hook-form';
-import { getCurrentUser } from '@/utils/userUtil';
+import { getCurrentUser } from '@/utils/user.util';
 import { FormDocumentFieldList } from './FormDocumentFields/FormDocumentFieldList';
+import { LegalFrom } from '@/types/user.type';
 
 const user = getCurrentUser();
 const flatFiles = (files: FieldValues) =>
@@ -34,7 +35,7 @@ const FormCreateRequest = () => {
   const { t } = useTranslation('account-disable-2fa');
   const { t: tdoc } = useTranslation('account-disable-2fa-documents');
 
-  const [selectedByFRLegalForm, setSelectedByFRLegalForm] = useState<string>(
+  const [selectedByFRLegalForm, setSelectedByFRLegalForm] = useState<LegalFrom>(
     null,
   );
 
@@ -45,23 +46,24 @@ const FormCreateRequest = () => {
     e: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
   ) => {
     reset();
-    setSelectedByFRLegalForm(e.target.value as string);
+    setSelectedByFRLegalForm(e.target.value as LegalFrom);
   };
 
   const isFROtherLegalForm =
     user.legalform === 'other' && user.subsidiary === 'FR';
   const legalForm = isFROtherLegalForm ? selectedByFRLegalForm : user.legalform;
+  const { subsidiary } = user;
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(flatFiles(data)))}>
-      {isFROtherLegalForm ? (
+    <form onSubmit={handleSubmit((data) => {})}>
+      {isFROtherLegalForm && (
         <div className="my-6">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             size={ODS_TEXT_SIZE._500}
           >
-            {tdoc('field-1')}
+            {tdoc('account-disable-2fa-create-form-field-select-type-account')}
           </OsdsText>
           <OsdsSelect
             onOdsValueChange={handleLegalFormChange}
@@ -70,16 +72,14 @@ const FormCreateRequest = () => {
             <span slot="placeholder">
               {t('account-disable-2fa-create-form-select-legalform-type')}
             </span>
-            <OsdsSelectOption value="association">
-              {t('account-disable-2fa-create-form-legalform-association')}
+            <OsdsSelectOption value="administration">
+              {t('account-disable-2fa-create-form-legalform-administration')}
             </OsdsSelectOption>
             <OsdsSelectOption value="other">
               {t('account-disable-2fa-create-form-legalform-other')}
             </OsdsSelectOption>
           </OsdsSelect>
         </div>
-      ) : (
-        <></>
       )}
 
       {legalForm && (
@@ -87,7 +87,7 @@ const FormCreateRequest = () => {
           <FormDocumentFieldList
             control={control}
             legalForm={legalForm}
-            subsidiary={user.subsidiary}
+            subsidiary={subsidiary}
           />
 
           <OsdsButton

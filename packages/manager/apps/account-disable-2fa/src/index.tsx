@@ -5,10 +5,10 @@ import { decodeToken, extractToken } from '@/utils/token';
 import initI18n from './i18n';
 import initAuthenticationInterceptor from '@/data/authentication.interceptor';
 import initInterceptor from './data/invisible-challenge.interceptor';
-
 import './global.css';
 import './index.scss';
 import UserProvider from '@/context/User/provider';
+
 
 const token = extractToken();
 const user = decodeToken(token);
