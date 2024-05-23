@@ -6,7 +6,7 @@ import 'angular-animate';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerCloudConnect from '@ovh-ux/manager-cloud-connect';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-
+import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -16,6 +16,7 @@ export default (containerEl, environment) => {
     .module(
       moduleName,
       [
+        ngOvhChart,
         ngUiRouterBreadcrumb,
         registerCoreModule(environment),
         ovhManagerCloudConnect,

@@ -1,7 +1,6 @@
 import angular from 'angular';
 
 import wucApi from './api';
-import wucChartjs from './chartjs';
 import wucConverter from './converter';
 import wucDuration from './duration';
 import wucEmailDomain from './email-domain';
@@ -20,7 +19,6 @@ const moduleName = 'ngOvhWebUniverseComponents';
 
 angular.module(moduleName, [
   wucApi,
-  wucChartjs,
   wucConverter,
   wucDuration,
   wucEmailDomain,

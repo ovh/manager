@@ -1,14 +1,14 @@
 import set from 'lodash/set';
 import uniqueId from 'lodash/uniqueId';
-import moment from 'moment';
-import Chart from 'chart.js/dist/Chart';
-
-import template from './chartjs.html';
+import Chart from 'chart.js/auto';
+import zoomPlugin from 'chartjs-plugin-zoom';
+import 'chartjs-adapter-date-fns';
+import template from './template.html';
 
 export default /* @ngInject */ () => ({
   restrict: 'A',
   scope: {
-    pciChartjs: '=',
+    chartjs: '=',
     utils: '=?',
     autoReload: '=?',
   },
@@ -17,38 +17,32 @@ export default /* @ngInject */ () => ({
   template,
   link(scope, element, attrs, controller) {
     const canvas = element.children().get(0);
-    canvas.id = uniqueId('pciChartjs');
+    canvas.id = uniqueId('chartjs');
     set(controller, 'ctx', canvas.getContext('2d'));
   },
-  controller: /* @ngInject */ function directiveController($scope, $translate) {
-    const lang = $translate.use();
-    let language;
-    if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
-      language = lang.toLowerCase().replace('_', '-');
-    } else {
-      [language] = lang.split('_');
-    }
-    moment.locale(language);
+  controller: /* @ngInject */ function directiveController($scope) {
+    Chart.register(zoomPlugin);
+
     this.createChart = function createChart(data) {
       if (this.chartInstance) {
         this.chartInstance.destroy();
       }
-      this.chartInstance = new Chart(this.ctx, data || this.pciChartjs);
+      this.chartInstance = new Chart(this.ctx, data || this.chartjs);
     };
 
     this.$onInit = function $onInit() {
       if (this.autoReload) {
-        $scope.$watch('$ctrl.pciChartjs', (data) => {
+        $scope.$watch('$ctrl.chartjs', (data) => {
           if (data) {
             this.utils.refresh();
           }
         });
 
-        $scope.$watchCollection('$ctrl.pciChartjs.data.datasets', () => {
+        $scope.$watchCollection('$ctrl.chartjs.data.datasets', () => {
           this.utils.refresh();
         });
 
-        $scope.$watchCollection('$ctrl.pciChartjs.data', () => {
+        $scope.$watchCollection('$ctrl.chartjs.data', () => {
           this.utils.refresh();
         });
       }
@@ -58,7 +52,7 @@ export default /* @ngInject */ () => ({
           if (this.chartInstance) {
             this.chartInstance.update();
           } else {
-            this.createChart(this.pciChartjs);
+            this.createChart(this.chartjs);
           }
         },
       };

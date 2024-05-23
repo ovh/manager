@@ -1,15 +1,17 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
 import 'script-loader!moment/min/moment.min.js';
-import 'script-loader!chart.js/dist/Chart.min.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
 import { isString, get } from 'lodash-es';
 
 import angular from 'angular';
+import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import { registerCoreModule } from '@ovh-ux/manager-core';
+import ovhManagerFilters from '@ovh-ux/manager-filters';
 import ovhManagerIplb from '@ovh-ux/manager-iplb';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
@@ -20,9 +22,12 @@ export default (containerEl, environment) => {
     .module(
       moduleName,
       [
+        ngOvhChart,
         ngOvhCloudUniverseComponents,
+        ngOvhFeatureFlipping,
         ngUiRouterBreadcrumb,
         registerCoreModule(environment),
+        ovhManagerFilters,
         ovhManagerIplb,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),

@@ -13,6 +13,7 @@ export default class LogsHomeCtrl {
     $state,
     $stateParams,
     $translate,
+    ChartFactory,
     CucControllerHelper,
     LogsAliasesService,
     LogsConstants,
@@ -28,6 +29,7 @@ export default class LogsHomeCtrl {
     this.serviceName = this.$stateParams.serviceName;
     this.$translate = $translate;
     this.bytes = $filter('bytes');
+    this.ChartFactory = ChartFactory;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsAliasesService = LogsAliasesService;
     this.LogsHomeService = LogsHomeService;
@@ -43,9 +45,15 @@ export default class LogsHomeCtrl {
     if (this.service.state === this.LogsConstants.SERVICE_STATE_TO_CONFIG) {
       this.goToAccountSetupPage();
     } else {
-      this.streamUsageGraphData = this.newChart('stream-axis');
-      this.archiveUsageGraphData = this.newChart('archive-axis');
-      this.indiceUsageGraphData = this.newChart('indice-axis');
+      this.streamUsageGraphData = new this.ChartFactory(
+        this.newChart('stream-axis'),
+      );
+      this.archiveUsageGraphData = new this.ChartFactory(
+        this.newChart('archive-axis'),
+      );
+      this.indiceUsageGraphData = new this.ChartFactory(
+        this.newChart('indice-axis'),
+      );
       this.prepareDataUsageGraphData();
       this.canAccessToElasticsearch =
         this.indexIds.length + this.aliasIds.length > 0;
@@ -63,26 +71,32 @@ export default class LogsHomeCtrl {
    */
   newChart(yAxis) {
     return {
+      data: {
+        datasets: [],
+      },
       options: {
-        tooltips: this.LogsConstants.CHART_SETTINGS.TOOLTIPS,
+        responsive: true,
+        elements: this.LogsConstants.CHART_SETTINGS.ELEMENTS,
+        plugins: {
+          tooltip: this.LogsConstants.CHART_SETTINGS.TOOLTIPS,
+          colors: this.LogsConstants.CHART_SETTINGS.COLORS,
+          legend: {
+            display: false,
+          },
+        },
         hover: this.LogsConstants.CHART_SETTINGS.HOVER,
         scales: {
-          xAxes: [
-            {
-              ticks: {
-                maxTicksLimit: this.LogsConstants.CHART_SETTINGS
-                  .MAX_TICKS_LIMIT,
-              },
+          x: {
+            ticks: {
+              maxTicksLimit: this.LogsConstants.CHART_SETTINGS.MAX_TICKS_LIMIT,
             },
-          ],
-          yAxes: [
-            {
-              id: yAxis,
-            },
-          ],
+          },
+          y: {
+            type: 'linear',
+            id: yAxis,
+          },
         },
       },
-      colors: this.LogsConstants.CHART_SETTINGS.COLORS,
     };
   }
 
@@ -138,26 +152,33 @@ export default class LogsHomeCtrl {
    */
   prepareUsageGraphData(metric, chart, label) {
     const updatedChart = chart;
-    updatedChart.labels = this.dataUsage[metric].timestamps.map((timestamp) =>
-      moment(timestamp).format('DD MMM YY'),
-    );
-    updatedChart.data = this.dataUsage[metric].usageData;
-    updatedChart.series = [this.$translate.instant(label)];
-    updatedChart.options.scales.yAxes[0].ticks = {
+    updatedChart.data.labels = this.dataUsage[
+      metric
+    ].timestamps.map((timestamp) => moment(timestamp).format('DD MMM YY'));
+
+    updatedChart.data.datasets.push({
+      label: this.$translate.instant(label),
+      data: this.dataUsage[metric].usageData[0],
+    });
+
+    updatedChart.options.scales.y.ticks = {
       suggestedMin: 0,
       suggestedMax: max(chart.data[0]) * 1.3 || 5,
-      callback: (value) => (value % 1 === 0 ? this.bytes(value, 2, true) : ''),
+      callback: (value) => {
+        return value % 1 === 0 ? this.bytes(value, 2, true) : '';
+      },
     };
-    updatedChart.options.tooltips.callbacks = {
-      label: (tooltipItem, data) => {
+
+    updatedChart.options.plugins.tooltip.callbacks = {
+      label: (tooltipItem) => {
         if (tooltipItem.datasetIndex > 1) {
           return '';
         }
-        let newLabel = data.datasets[tooltipItem.datasetIndex].label || '';
+        let newLabel = tooltipItem.dataset.label || '';
         if (newLabel) {
           newLabel += ': ';
         }
-        newLabel += this.bytes(tooltipItem.yLabel, 2, true);
+        newLabel += this.bytes(tooltipItem.parsed.y, 2, true);
         return newLabel;
       },
     };
