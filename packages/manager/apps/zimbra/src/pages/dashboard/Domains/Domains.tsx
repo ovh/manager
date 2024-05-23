@@ -30,7 +30,7 @@ const columns: DatagridColumn<DomainsItem>[] = [
     id: 'domains',
     cell: (item) => (
       <OsdsText
-        color={ODS_THEME_COLOR_INTENT.primary}
+        color={ODS_THEME_COLOR_INTENT.text}
         size={ODS_TEXT_SIZE._200}
         level={ODS_TEXT_LEVEL.body}
       >
