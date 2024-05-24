@@ -18,15 +18,11 @@ import { useNotifications } from '@ovhcloud/manager-components';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useDeleteGateway } from '@/api/hooks/useGateway';
-import { TOperation } from '@/api/data/operation';
-import { useOperation } from '@/api/hooks/operation';
 import queryClient from '@/queryClient';
-import { GatewayResponse } from '@/interface';
+import { Gateway } from '@/interface';
+import { checkOperation, TOperation } from '@/api/operation';
 
 export default function DeleteGateway() {
-  const [deleteOperationId, setDeleteOperationId] = useState<string | null>(
-    null,
-  );
   const { t: tDelete } = useTranslation('delete');
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
@@ -38,32 +34,7 @@ export default function DeleteGateway() {
   const onClose = () => {
     navigate('..');
   };
-
-  const { isPending: isDeleteOperationPending } = useOperation({
-    projectId,
-    operationId: deleteOperationId,
-    onSuccess: () => {
-      queryClient.setQueryData(
-        ['project', projectId, 'gateway'],
-        (old: GatewayResponse) => ({
-          ...old,
-          resources: old.resources.filter(({ id }) => id !== gatewayId),
-        }),
-      );
-
-      addSuccess(
-        <Translation ns="delete">
-          {(t) =>
-            t('pci_projects_project_public_gateway_delete_success', {
-              name,
-            })
-          }
-        </Translation>,
-        true,
-      );
-      onClose();
-    },
-  });
+  const [isOperationPending, setIsOperationPending] = useState(false);
 
   const { deleteGateway, isPending: isPendingDeleteGateway } = useDeleteGateway(
     {
@@ -84,24 +55,48 @@ export default function DeleteGateway() {
         onClose();
       },
       onSuccess: (op: TOperation) => {
-        console.log('op', op);
-        setDeleteOperationId(op.id);
-        // addSuccess(
-        //   <Translation ns="delete">
-        //     {(t) =>
-        //       t('pci_projects_project_public_gateway_delete_success', {
-        //         name,
-        //       })
-        //     }
-        //   </Translation>,
-        //   true,
-        // );
-        // onClose();
+        setIsOperationPending(true);
+        checkOperation({
+          projectId,
+          operationId: op.id,
+          callback: (operation, iteration) => {
+            if (['completed', 'created'].includes(operation.status)) {
+              queryClient.setQueryData(
+                ['project', projectId, 'gateway'],
+                (rows: Gateway[]) => rows.filter((row) => row.id !== gatewayId),
+              );
+
+              addSuccess(
+                <Translation ns="delete">
+                  {(t) =>
+                    t('pci_projects_project_public_gateway_delete_success', {
+                      name,
+                    })
+                  }
+                </Translation>,
+                true,
+              );
+              onClose();
+              setIsOperationPending(false);
+              return true;
+            }
+            if (
+              ['in-error', 'unknown'].includes(operation.status) ||
+              iteration === 10
+            ) {
+              onClose();
+              setIsOperationPending(false);
+              return true;
+            }
+
+            return false;
+          },
+        });
       },
     },
   );
 
-  const isPending = isPendingDeleteGateway || isDeleteOperationPending;
+  const isPending = isPendingDeleteGateway || isOperationPending;
   return (
     <OsdsModal
       headline={
