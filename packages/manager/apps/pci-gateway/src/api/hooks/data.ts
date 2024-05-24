@@ -59,7 +59,7 @@ export type TSizeItem = {
 };
 
 export const useData = (projectId: string) => {
-  const { t: tSelector } = useTranslation('catalog-selector');
+  const { i18n, t: tSelector } = useTranslation('catalog-selector');
   const { t: tRegion } = useTranslation('regions');
   const { data: cloudCatalog } = useCloudCatalog();
   const { data: availableGatewayPlans } = useAvailableGatewayPlans(projectId);
@@ -184,7 +184,12 @@ export const useData = (projectId: string) => {
 
       setSizes(newSizes?.sort((a, b) => a.monthlyPrice - b.monthlyPrice));
     }
-  }, [availableGatewayPlans, cloudCatalog, inactiveRegions]);
+  }, [
+    availableGatewayPlans,
+    cloudCatalog,
+    inactiveRegions,
+    i18n.resolvedLanguage,
+  ]);
 
   return sizes.reverse();
 };
