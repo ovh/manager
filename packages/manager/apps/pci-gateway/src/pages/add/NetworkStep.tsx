@@ -112,6 +112,7 @@ export const NetworkStep = (): JSX.Element => {
   });
 
   const create = async () => {
+    store.updateStep.lock(StepsEnum.NETWORK);
     if (store.form.network.id === 'new') {
       // create network with the gateway
       const newNetwork = {
