@@ -6,7 +6,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useHref, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -21,11 +21,13 @@ import {
   useProject,
 } from '@ovhcloud/manager-components';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { SizeStep } from '@/pages/add/SizeStep';
 import { LocationStep } from '@/pages/add/LocationStep';
 import { NetworkStep } from '@/pages/add/NetworkStep';
 import { useNewGatewayStore } from '@/pages/add/useStore';
 import { useProjectUrl } from '@/hooks/project-url';
+import { PUBLIC_GATEWAYS_READ_MORE_GUIDE } from '@/constants';
 
 export default function AddGatewayPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -36,6 +38,10 @@ export default function AddGatewayPage(): JSX.Element {
   const store = useNewGatewayStore();
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+  const learnMoreLink =
+    PUBLIC_GATEWAYS_READ_MORE_GUIDE.ALL_GUIDE[ovhSubsidiary] ||
+    PUBLIC_GATEWAYS_READ_MORE_GUIDE.ALL_GUIDE.DEFAULT;
 
   useEffect(() => {
     store.setProject({
@@ -116,7 +122,7 @@ export default function AddGatewayPage(): JSX.Element {
         >
           {tAdd('pci_projects_project_public_gateways_add_description3')}
         </OsdsText>
-        <OsdsLink color={ODS_THEME_COLOR_INTENT.primary}>
+        <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} href={learnMoreLink}>
           {tAdd('pci_projects_project_public_gateways_add_learn_more')}
           <OsdsIcon
             name={ODS_ICON_NAME.ARROW_RIGHT}
