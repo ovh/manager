@@ -5,6 +5,7 @@ export const links: UserLink[] = [
     key: 'user-account-menu-profile',
     hash: '#/useraccount/dashboard',
     i18nKey: 'user_account_menu_profile',
+    trackingHit: 'topnav::user_widget::go_to_profile',
   },
   {
     key: 'myInvoices',

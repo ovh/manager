@@ -53,9 +53,9 @@ const UserAccountMenu = ({
 
   const onLinkClick = (link: UserLink) => {
     closeAccountSidebar();
-    if (link.key === 'user-account-menu-profile') {
+    if (link.trackingHit) {
       trackingPlugin.trackClick({
-        name: 'topnav::user_widget::go_to_profile',
+        name: link.trackingHit,
         type: 'navigation',
       });
     }
