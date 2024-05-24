@@ -2,14 +2,13 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
 import uniqBy from 'lodash.uniqby';
-import queryClient from '@/queryClient';
 import {
   deleteGateway,
   GatewayOptions,
   getAllAggregatedGateway,
   paginateResults,
 } from '@/api/data/gateway';
-import { GatewayResponse } from '@/interface';
+import { TOperation } from '@/api/operation';
 
 export const useAllAggregatedGateway = (projectId: string) =>
   useQuery({
@@ -58,7 +57,7 @@ type RemoveGatewayProps = {
   gatewayId: string;
   region: string;
   onError: (cause: Error) => void;
-  onSuccess: () => void;
+  onSuccess: (op: TOperation) => void;
 };
 
 export const useDeleteGateway = ({
@@ -71,15 +70,8 @@ export const useDeleteGateway = ({
   const mutation = useMutation({
     mutationFn: async () => deleteGateway(projectId, region, gatewayId),
     onError,
-    onSuccess: async () => {
-      queryClient.setQueryData(
-        ['project', projectId, 'gateway'],
-        (old: GatewayResponse) => ({
-          ...old,
-          resources: old.resources.filter(({ id }) => id !== gatewayId),
-        }),
-      );
-      onSuccess();
+    onSuccess: async (op: TOperation) => {
+      onSuccess(op);
     },
   });
 
