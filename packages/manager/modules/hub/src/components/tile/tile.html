@@ -28,15 +28,14 @@
             data-ng-href="{{:: $ctrl.href }}"
             data-ng-click="$ctrl.onClick()"
             data-navi-id="display-all"
-            target="{{$ctrl.isHrefExternal ? '_blank' : '_top'}}"
+            target="_top"
         >
             <span
                 class="hub-button__text"
                 data-ng-bind="::$ctrl.buttonText"
             ></span>
             <span
-                class="oui-icon"
-                data-ng-class="{'oui-icon-arrow-right': !$ctrl.isHrefExternal, 'oui-icon-external-link': $ctrl.isHrefExternal}"
+                class="oui-icon oui-icon-arrow-right"
                 aria-hidden="true"
             ></span>
         </a>

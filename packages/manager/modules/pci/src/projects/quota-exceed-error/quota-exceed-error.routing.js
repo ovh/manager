@@ -19,8 +19,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       breadcrumb: () => null,
 
-      submitAction: /* @ngInject */ (submitLink) => () => {
-        window.open(submitLink, '_blank', 'noopener');
+      submitAction: /* @ngInject */ ($window, submitLink) => () => {
+        window.top.location.href = submitLink;
       },
 
       message: /* @ngInject */ ($transition$) =>

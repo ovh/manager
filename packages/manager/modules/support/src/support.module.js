@@ -14,6 +14,8 @@ import 'font-awesome/css/font-awesome.css';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
+import modalBetaHelpcenter from './modal';
+
 import './support.scss';
 
 const moduleName = 'ovhManagerSupport';
@@ -25,6 +27,7 @@ angular
     'oui',
     tickets,
     uiRouter,
+    modalBetaHelpcenter,
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {

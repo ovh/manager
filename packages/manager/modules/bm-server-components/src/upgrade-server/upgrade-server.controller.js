@@ -5,7 +5,6 @@ import {
   MIN_INTERVENTION_GAP,
   UPGRADE_MODE,
   DEFAULT_INTERVAL,
-  SUPPORT_TICKET_ID_URL,
 } from './upgrade-server.constants';
 
 export default class {
@@ -148,11 +147,17 @@ export default class {
         },
       )
       .then(() => {
-        const supportTicketLink = SUPPORT_TICKET_ID_URL.replace('{ticketId}');
+        const supportTicketLink = this.coreURLBuilder.buildURL(
+          'dedicated',
+          '#/support/tickets/:ticketId',
+          {
+            ticketId: this.upgradeTask.ticketReference,
+          },
+        );
         this.goBack(
           `${this.$translate.instant(
             'dedicated_server_dashboard_upgrade_intervention_success_message',
-          )} <a rel="noopener" target="_blank" href="${supportTicketLink}">${this.$translate.instant(
+          )} <a rel="noopener" href="${supportTicketLink}">${this.$translate.instant(
             'dedicated_server_dashboard_upgrade_intervention_success_message_ticket',
           )}</a>`,
         );

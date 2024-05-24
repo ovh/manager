@@ -23,11 +23,6 @@ export const ACCOUNT_INFORMATIONS = {
   IN: 'https://docs.ovh.com/asia/en/customer/',
 };
 
-export const SUPPORT_URLS = {
-  createTicket: 'https://help.ovhcloud.com/csm?id=csm_get_help',
-  viewTickets: 'https://help.ovhcloud.com/csm?id=csm_cases_requests',
-};
-
 export const GUIDES_LIST = {
   account_informations: {
     url: ACCOUNT_INFORMATIONS,
@@ -38,6 +33,4 @@ export const GUIDES_LIST = {
 
 export default {
   GUIDES_LIST,
-  SUPPORT_URLS,
-  ACCOUNT_INFORMATIONS,
 };

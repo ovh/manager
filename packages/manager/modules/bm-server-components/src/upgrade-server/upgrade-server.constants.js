@@ -8,9 +8,6 @@ export const UPGRADE_MODE = {
   NONE: 'none',
 };
 
-export const SUPPORT_TICKET_ID_URL =
-  'https://help.ovhcloud.com/csm?id=csm_ticket&table=sn_customerservice_case&number=CS{ticketId}&view=csp';
-
 export const DEFAULT_INTERVAL = 1;
 
 export default {
@@ -18,5 +15,4 @@ export default {
   DEFAULT_INTERVAL,
   MIN_INTERVENTION_GAP,
   UPGRADE_MODE,
-  SUPPORT_TICKET_ID_URL,
 };

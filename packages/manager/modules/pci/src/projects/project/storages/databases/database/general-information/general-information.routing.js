@@ -3,6 +3,7 @@ import {
   PLANS_WITHOUT_BACKUP,
   STATUS,
 } from '../../../../../../components/project/storages/databases/databases.constants';
+import { NEW_SUPPORT_TICKET_PARAMS } from './general-information.constants';
 import isFeatureActivated from '../../features.constants';
 import { RESTORE_MODES } from '../backups/fork/fork.constants';
 
@@ -126,6 +127,18 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToSupportPage: /* @ngInject */ (coreURLBuilder, database) => () => {
+        const url = coreURLBuilder.buildURL(
+          'dedicated',
+          '/support/tickets/new',
+          {
+            categoryName: NEW_SUPPORT_TICKET_PARAMS.CATEGORY_NAME,
+            serviceTypeName:
+              NEW_SUPPORT_TICKET_PARAMS.BASE_SERVICE_TYPE + database.engine,
+          },
+        );
+        window.location.replace(url);
+      },
       vRack: /* @ngInject */ (DatabaseService, projectId) =>
         DatabaseService.getVRack(projectId),
       vRackLink: /* @ngInject */ (vRack, coreURLBuilder) => {

@@ -4,7 +4,6 @@ import get from 'lodash/get';
 import {
   AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
   GDPR_AGREEMENTS_INFOS,
-  SUPPORT_URL,
 } from '../user-agreements.constant';
 
 export default /* @ngInject */ function UserAccountAgreementsDtailsController(
@@ -14,10 +13,11 @@ export default /* @ngInject */ function UserAccountAgreementsDtailsController(
   agreementId,
   $translate,
   coreConfig,
+  coreURLBuilder,
 ) {
   const CGV_AGREEMENT_ID = 1635;
 
-  this.SUPPORT_URL = SUPPORT_URL;
+  this.SUPPORT_URL = coreURLBuilder.buildURL('dedicated', '#/support');
 
   this.$ngInit = () => {
     this.accepted = false;
