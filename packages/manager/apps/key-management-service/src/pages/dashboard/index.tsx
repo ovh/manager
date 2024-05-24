@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useResolvedPath } from 'react-router-dom';
+import { useParams, useResolvedPath } from 'react-router-dom';
 import {
   OsdsBreadcrumb,
   OsdsDivider,
@@ -16,19 +16,30 @@ import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
 import { ROUTES_URLS } from '@/routes/routes.constants';
+import { useOKMSById } from '@/hooks/useOKMS';
 
 export default function DashboardPage() {
-  const { t } = useTranslation('key-management-service/dashboard');
+  const { t: tDashboard } = useTranslation('key-management-service/dashboard');
+  const { t: tListing } = useTranslation('key-management-service/listing');
+  const { okmsId } = useParams();
+  const { data: okms } = useOKMSById(okmsId);
+  const displayName = okms?.data?.iam?.displayName;
+
   const tabsList = [
     {
       name: 'general_infos',
-      title: t('general_informations'),
+      title: tDashboard('general_informations'),
       to: useResolvedPath('').pathname,
     },
     {
-      name: 'custom tab',
-      title: 'custom tab',
-      to: useResolvedPath('Tabs2').pathname,
+      name: 'encrypted_keys',
+      title: tDashboard('encrypted_keys'),
+      disabled: true,
+    },
+    {
+      name: 'certificates',
+      title: tDashboard('access_certificates'),
+      disabled: true,
     },
   ];
 
@@ -38,17 +49,23 @@ export default function DashboardPage() {
         items={[
           {
             href: ROUTES_URLS.listing,
-            label: t('key_management_service_dashboard_title'),
+            label: tListing('key_management_service_listing_title'),
+          },
+          {
+            href: ROUTES_URLS.dashboard,
+            label: okmsId,
           },
         ]}
       ></OsdsBreadcrumb>
-      <div className={'flex items-center justify-between mt-4'}>
+      <div className={'flex items-center justify-between mt-2'}>
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
           size={ODS_THEME_TYPOGRAPHY_SIZE._600}
           color={ODS_THEME_COLOR_INTENT.primary}
         >
-          {t('key_management_service_dashboard_title')}
+          {tDashboard('key_management_service_dashboard_title', {
+            okmsId: displayName,
+          })}
         </OsdsText>
         <KmsGuidesHeader />
       </div>

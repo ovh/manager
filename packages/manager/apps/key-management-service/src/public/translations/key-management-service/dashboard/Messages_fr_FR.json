@@ -1,9 +1,12 @@
 {
-  "key_management_service_dashboard_title": "Dashboard page",
+  "key_management_service_dashboard_title": "Mon KMS {{okmsId}}",
   "results": "résultats",
   "loading": "chargement",
   "error_service": "No services info",
   "general_informations": "Informations générales",
+  "encrypted_keys": "Clés de chiffrement",
+  "access_certificates": "Certificats d'accès",
+  "key_management_service_dashboard_tab_comming_soon": "prochainement",
   "key_management_service_dashboard_field_label_name": "Nom du KMS",
   "key_management_service_dashboard_field_label_id": "ID",
   "key_management_service_dashboard_field_label_urn": "URN",
