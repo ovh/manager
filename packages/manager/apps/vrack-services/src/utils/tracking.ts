@@ -11,6 +11,7 @@ export const getTrackingContext = (appName: string): TrackingContextParams => ({
 
 export enum PageName {
   associate = 'associate',
+  associateAnother = 'associate_another_vrack',
   dissociate = 'dissociate',
   createVrack = 'create-vrack',
   delete = 'delete_vrack-services',
@@ -43,4 +44,7 @@ export enum PageName {
   errorUpdateVrackServices = 'update_vrack-services_error',
   pendingDeleteVrackServices = 'delete_vrack-services_pending',
   errorDeleteVrackServices = 'delete_vrack-services_error',
+
+  successAssociateAnotherVrack = 'associate_another_vrack_success',
+  errorAssociateAnotherVrack = 'associate_another_vrack_error',
 }

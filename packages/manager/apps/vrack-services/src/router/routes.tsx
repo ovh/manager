@@ -139,7 +139,7 @@ export const getRoutes = (): RouteObject[] => {
                   currentPage: 'vrack-services.dashboard.associate-another',
                   tracking: {
                     pageType: PageType.popup,
-                    pageName: PageName.associate,
+                    pageName: PageName.associateAnother,
                   },
                 }),
               ],

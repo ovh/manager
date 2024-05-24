@@ -26,6 +26,7 @@ import {
   PageLocation,
   ButtonType,
   useOvhTracking,
+  PageType,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -36,6 +37,7 @@ import {
 } from '@/api';
 import { handleClick } from '@/utils/ods-utils';
 import { useAssociateAnotherVrack } from './AssociateAnotherVrack.hook';
+import { PageName } from '@/utils/tracking';
 
 export type AssociateAnotherVrackProps = {
   vrackServicesId: string;
@@ -53,7 +55,7 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
   const { t } = useTranslation('vrack-services/dashboard');
   const { t: listingTranslation } = useTranslation('vrack-services/listing');
   const [selectedVrack, setSelectedVrack] = React.useState('');
-  const { trackClick } = useOvhTracking();
+  const { trackClick, trackPage } = useOvhTracking();
   const navigate = useNavigate();
 
   const {
@@ -65,7 +67,17 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
     vrackServices: vrackServicesId,
     currentVrack,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: PageName.successAssociateAnotherVrack,
+      });
       navigate('..');
+    },
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PageName.errorAssociateAnotherVrack,
+      });
     },
   });
 
@@ -187,7 +199,7 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
               trackClick({
                 location: PageLocation.popup,
                 buttonType: ButtonType.button,
-                actions: ['associate-vrack', 'confirm'],
+                actions: ['associate-another-vrack', 'confirm'],
               });
               startAssociateToAnotherVrack({ newVrack: selectedVrack });
             })}

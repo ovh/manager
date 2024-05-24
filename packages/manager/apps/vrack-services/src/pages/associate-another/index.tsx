@@ -38,7 +38,7 @@ export default function AssociateAnother() {
       location: PageLocation.popup,
       buttonType: ButtonType.button,
       actionType: 'exit',
-      actions: ['associate-vrack', 'cancel'],
+      actions: ['associate-another-vrack', 'cancel'],
     });
     navigate('..');
   };

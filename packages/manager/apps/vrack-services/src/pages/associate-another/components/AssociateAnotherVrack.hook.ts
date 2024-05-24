@@ -42,7 +42,7 @@ export const useAssociateAnotherVrack = ({
   vrackServices: string;
   currentVrack: string;
   onSuccess?: () => void;
-  onError?: (result: ApiError) => void;
+  onError?: (result?: ApiError) => void;
 }) => {
   const queryClient = useQueryClient();
   // State to manage vrack task
@@ -104,7 +104,7 @@ export const useAssociateAnotherVrack = ({
         }
         setTaskInfo(null);
       } else {
-        onError?.(error);
+        onError?.();
         setLoadingState({ isLoading: false });
       }
       return false;
@@ -140,9 +140,9 @@ export const useAssociateAnotherVrack = ({
         vrack: currentVrack,
       });
     },
-    onError: (result: ApiError) => {
+    onError: () => {
       setLoadingState({ isLoading: false });
-      onError?.(result);
+      onError?.();
     },
   });
 
@@ -169,9 +169,9 @@ export const useAssociateAnotherVrack = ({
         vrack: vrackToAssociate,
       });
     },
-    onError: (result) => {
+    onError: () => {
       setLoadingState({ isLoading: false });
-      onError?.(result);
+      onError?.();
     },
   });
 
