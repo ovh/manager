@@ -1,5 +1,5 @@
 import React from 'react';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
@@ -10,17 +10,21 @@ import {
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ManagerButton } from '@ovhcloud/manager-components';
 import { handleClick } from '@/utils/ods-utils';
+import iamActions from '@/utils/iam.action';
 
 export type EditButtonProps = React.PropsWithChildren<{
   disabled?: boolean;
   onClick: () => void;
+  urn: string;
 }>;
 
 export const EditButton: React.FC<EditButtonProps> = ({
   children,
   disabled,
   onClick,
+  urn,
 }) => (
   <div className="flex items-center">
     <div className="grow">
@@ -33,7 +37,12 @@ export const EditButton: React.FC<EditButtonProps> = ({
       </OsdsText>
     </div>
     <div className="flex-none">
-      <OsdsButton
+      <ManagerButton
+        urn={urn}
+        iamActions={[
+          iamActions.account_services_edit,
+          iamActions.account_services_get,
+        ]}
         className="ml-2"
         inline
         circle
@@ -49,7 +58,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
           name={ODS_ICON_NAME.PEN}
           size={ODS_ICON_SIZE.xs}
         />
-      </OsdsButton>
+      </ManagerButton>
     </div>
   </div>
 );

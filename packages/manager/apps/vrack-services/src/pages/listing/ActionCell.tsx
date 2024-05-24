@@ -10,6 +10,7 @@ import { ActionMenu } from '@ovhcloud/manager-components';
 import { isEditable, VrackServicesWithIAM } from '@/api';
 import { urls } from '@/router/constants';
 import { useVrackMenuItems } from '@/components/vrack-id.component';
+import iamActions from '@/utils/iam.action';
 
 export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
         {
           id: 0,
           label: t('manage'),
+          disabled,
           onClick: () => {
             trackClick({
               location: PageLocation.datagrid,
@@ -40,6 +42,11 @@ export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
           id: 1,
           label: t('edit'),
           disabled,
+          urn: vs.iam.urn,
+          iamActions: [
+            iamActions.account_services_edit,
+            iamActions.account_services_get,
+          ],
           onClick: () => {
             trackClick({
               location: PageLocation.datagrid,
@@ -55,6 +62,11 @@ export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
           id: 2,
           label: t('delete'),
           disabled,
+          urn: vs.iam.urn,
+          iamActions: [
+            iamActions.account_services_terminate,
+            iamActions.account_services_get,
+          ],
           onClick: () => {
             trackClick({
               location: PageLocation.datagrid,

@@ -38,6 +38,7 @@ export const DisplayName: React.FC<VrackServicesWithIAM & {
   ) : (
     <EditButton
       disabled={!isEditable(vs)}
+      urn={vs.iam.urn}
       onClick={() => {
         trackClick({
           location: PageLocation.tile,

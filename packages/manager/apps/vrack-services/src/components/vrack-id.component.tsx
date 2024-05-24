@@ -16,6 +16,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { VrackServicesWithIAM, isEditable } from '@/api';
 import { urls } from '@/router/constants';
+import iamActions from '@/utils/iam.action';
 
 export const useVrackMenuItems = (
   vs: VrackServicesWithIAM,
@@ -34,6 +35,8 @@ export const useVrackMenuItems = (
       id: 4,
       label: t('associateVrackButtonLabel'),
       disabled,
+      urn: vs.iam.urn,
+      iamActions: [iamActions.vrack_services_vrack_attach],
       onClick: () => {
         trackClick({
           location: isListing ? PageLocation.datagrid : PageLocation.tile,
@@ -51,6 +54,8 @@ export const useVrackMenuItems = (
     },
     vrackId && {
       id: 5,
+      urn: vs.iam.urn,
+      iamActions: [iamActions.vrack_services_storage_net_app_detach],
       label: tDashboard('vrackActionDissociate'),
       disabled,
       onClick: () => {

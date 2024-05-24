@@ -1,7 +1,7 @@
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render } from '../../../utils/test.provider';
-import { DeleteModal } from './delete-modal.component';
+import { DeleteModal } from '../delete-modal/delete-modal.component';
 import '@testing-library/jest-dom';
 
 const sharedProps = {

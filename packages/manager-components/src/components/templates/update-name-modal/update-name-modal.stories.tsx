@@ -1,12 +1,13 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { DeleteModal } from './delete-modal.component';
+import { UpdateNameModal } from './update-name-modal.component';
+UpdateNameModal;
 
-export const Delete = (props) => <DeleteModal {...props} />;
+export const Delete = (props) => <UpdateNameModal {...props} />;
 
 const meta: Meta = {
-  title: 'Templates/Delete Modal',
-  component: DeleteModal,
+  title: 'Templates/Update Modal',
+  component: UpdateNameModal,
   argTypes: {
     isLoading: { control: 'boolean' },
     error: { control: 'text' },
