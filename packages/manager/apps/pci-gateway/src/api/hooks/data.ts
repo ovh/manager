@@ -163,7 +163,9 @@ export const useData = (projectId: string) => {
               continentCode: region.continentCode,
               enabled: region.enabled,
               active: isRegionActive(region),
-              macroName: getMacroRegion(region.name),
+              macroName: tRegion(
+                `manager_components_region_${getMacroRegion(region.name)}`,
+              ),
               microName: tRegion(
                 `manager_components_region_${getMacroRegion(
                   region.name,
