@@ -5,7 +5,7 @@ const config = {
 };
 
 module.exports = {
-  context: ['/engine/2api'],
+  context: ['/engine/2api/billing/services'],
   target: config.aapi.url,
   changeOrigin: true,
   pathRewrite: {

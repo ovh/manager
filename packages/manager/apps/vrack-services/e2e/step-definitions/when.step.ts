@@ -1,5 +1,5 @@
 import { When } from '@cucumber/cucumber';
-import { ICustomWorld, sleep } from '@playwright-helpers';
+import { ICustomWorld } from '@playwright-helpers';
 import { expect } from '@playwright/test';
 import { vrackList } from '../../mock/vrack/vrack';
 import { setupNetwork, getUrl } from '../utils';

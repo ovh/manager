@@ -28,7 +28,7 @@ import { CreateVrack } from './components/CreateVrack';
 import { handleClick } from '@/utils/ods-utils';
 
 export default function Associate() {
-  const { id, vrackId } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const { t } = useTranslation('vrack-services/listing');

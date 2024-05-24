@@ -4,18 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsButton,
-  OsdsMessage,
   OsdsSpinner,
   OsdsModal,
-  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_TYPE,
   ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   ButtonType,

@@ -20,8 +20,6 @@ import {
   OsdsButton,
   OsdsFormField,
 } from '@ovhcloud/ods-components/react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   PageLocation,
   ButtonType,
@@ -29,12 +27,6 @@ import {
   PageType,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import {
-  associateVrackServicesQueryKey,
-  associateVrackServices,
-  getVrackServicesResourceListQueryKey,
-  Task,
-} from '@/api';
 import { handleClick } from '@/utils/ods-utils';
 import { useAssociateAnotherVrack } from './AssociateAnotherVrack.hook';
 import { PageName } from '@/utils/tracking';

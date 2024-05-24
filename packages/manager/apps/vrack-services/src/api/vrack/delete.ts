@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { Task, VrackTask } from '../api.type';
+import { VrackTask } from '../api.type';
 
 export type DissociateVrackServicesParams = {
   /** The internal name of your vrack */

@@ -1,4 +1,4 @@
-import { ApiError, ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+import { apiClient } from '@ovh-ux/manager-core-api';
 import {
   AllowedServicesResponse,
   AllowedService,
