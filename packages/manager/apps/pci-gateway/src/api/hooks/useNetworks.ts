@@ -6,12 +6,13 @@ import {
   getPrivateNetworks,
   TNewNetworkWithGateway,
 } from '@/api/data/networks';
+import { TOperation } from '@/api/data/operation';
 
 export type TCreateNetworkWithGatewayParam = {
   projectId: string;
   regionName: string;
   onError: (error: string) => void;
-  onSuccess: () => void;
+  onSuccess: (op: TOperation) => void;
 };
 
 export const getNetworksQuery = (projectId: string, regionName: string) => ({
