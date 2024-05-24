@@ -29,6 +29,8 @@ type TStore = {
   };
   steps: Map<StepsEnum, TStep>;
 
+  reset: () => void;
+
   setProject: (project: { id: string; isDiscovery: boolean }) => void;
 
   updateForm: {
@@ -51,22 +53,8 @@ type TStore = {
   };
 };
 
-export const useNewGatewayStore = create<TStore>()((set) => ({
-  project: undefined,
-  form: {
-    name: undefined,
-    size: undefined,
-    regionName: undefined,
-    network: {
-      id: undefined,
-      subnetId: undefined,
-    },
-    newNetwork: {
-      name: undefined,
-      subnet: undefined,
-    },
-  },
-  steps: new Map([
+const getInitialSteps = () =>
+  new Map([
     [
       StepsEnum.SIZE,
       {
@@ -91,7 +79,33 @@ export const useNewGatewayStore = create<TStore>()((set) => ({
         isLocked: false,
       },
     ],
-  ]),
+  ]);
+
+const initialState = {
+  project: undefined,
+  form: {
+    name: undefined,
+    size: undefined,
+    regionName: undefined,
+    network: {
+      id: undefined,
+      subnetId: undefined,
+    },
+    newNetwork: {
+      name: undefined,
+      subnet: undefined,
+    },
+  },
+  steps: getInitialSteps(),
+};
+
+export const useNewGatewayStore = create<TStore>()((set) => ({
+  ...initialState,
+  reset: () =>
+    set({
+      ...initialState,
+      steps: getInitialSteps(),
+    }),
   setProject: (project: { id: string; isDiscovery: boolean }) => {
     set(() => ({
       project,

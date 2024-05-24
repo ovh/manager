@@ -5,7 +5,7 @@ import {
   OsdsLink,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useHref, useNavigate, useParams } from 'react-router-dom';
+import { useHref, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -28,7 +28,6 @@ import { useNewGatewayStore } from '@/pages/add/useStore';
 import { useProjectUrl } from '@/hooks/project-url';
 
 export default function AddGatewayPage(): JSX.Element {
-  const navigate = useNavigate();
   const { t } = useTranslation('common');
   const { t: tAdd } = useTranslation('add');
   const { t: tEdit } = useTranslation('edit');
@@ -37,6 +36,11 @@ export default function AddGatewayPage(): JSX.Element {
   const store = useNewGatewayStore();
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
+
+  // reset form on page load
+  useEffect(() => {
+    store.reset();
+  }, []);
 
   useEffect(() => {
     store.setProject({
