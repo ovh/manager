@@ -82,7 +82,7 @@ export const useData = (projectId: string) => {
         (plan) => plan.regions.length,
       );
 
-      gatewayPlansWithRegions
+      const newSizes = gatewayPlansWithRegions
         .reduce(
           (accumulator, currentValue) => {
             const addon = cloudCatalog.addons.find(
@@ -128,7 +128,7 @@ export const useData = (projectId: string) => {
             };
           }[],
         )
-        .forEach((product) => {
+        .map((product) => {
           const size: TSizeItem = {
             payload: getLitteralProductSize(product.name),
             label: `${tSelector(
@@ -177,9 +177,10 @@ export const useData = (projectId: string) => {
               ),
             })),
           };
-
-          setSizes((prev) => [...prev, size]);
+          return size;
         });
+
+      setSizes(newSizes?.sort((a, b) => a.monthlyPrice - b.monthlyPrice));
     }
   }, [availableGatewayPlans, cloudCatalog, inactiveRegions]);
 

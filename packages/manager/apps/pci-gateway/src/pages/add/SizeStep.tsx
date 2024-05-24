@@ -83,6 +83,7 @@ export const SizeStep = (): JSX.Element => {
       }}
     >
       <TilesInputComponent<TSizeItem, string, string>
+        id={(s) => s.payload}
         value={size}
         items={sizes}
         label={(item: TSizeItem) => (
