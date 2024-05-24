@@ -180,7 +180,6 @@ export default function EditGatewayPage(): JSX.Element {
               ),
               isDisabled: false,
             }}
-            edit={undefined}
           >
             <OsdsFormField
               error={state.name.length ? '' : t('common_field_error_required')}

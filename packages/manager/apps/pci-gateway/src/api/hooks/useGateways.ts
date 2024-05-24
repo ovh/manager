@@ -7,6 +7,7 @@ import {
   getGatewayUrl,
   updateGateway,
 } from '@/api/data/gateways';
+import { TOperation } from '@/api/data/operation';
 
 export type TCreateGatewayParam = {
   projectId: string;
@@ -14,7 +15,7 @@ export type TCreateGatewayParam = {
   networkId: string;
   subnetId: string;
   onError: (error: string) => void;
-  onSuccess: () => void;
+  onSuccess: (op: TOperation) => void;
 };
 
 export const useCreateGateway = ({
