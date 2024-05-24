@@ -177,6 +177,7 @@ export const LocationStep = () => {
             <OsdsLink
               color={ODS_THEME_COLOR_INTENT.primary}
               href={`${projectUrl}/regions`}
+              className="mx-3"
             >
               {tAdd(
                 'pci_projects_project_public_gateways_add_region_activate_line2',
