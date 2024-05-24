@@ -27,7 +27,7 @@ export default function AssociateAnother() {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const { t } = useTranslation('vrack-services/dashboard');
-  const { vrackList, isError, isLoading, error } = useVrackList();
+  const { vrackList, isError, isLoading } = useVrackList();
   const closeModal = () => {
     trackClick({
       location: PageLocation.popup,
