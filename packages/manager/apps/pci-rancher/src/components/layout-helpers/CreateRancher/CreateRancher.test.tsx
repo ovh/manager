@@ -1,11 +1,17 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { rancherPlan, rancherVersion } from '@/_mock_/rancher-resource';
 import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
 import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
-import { fireEvent, render, waitFor } from '../../../utils/test/test.provider';
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+} from '../../../utils/test/test.provider';
 import CreateRancher, { CreateRancherProps } from './CreateRancher';
-import { getOnboardingUrl, getRanchersUrl } from '@/utils/route';
+import { getRanchersUrl } from '@/utils/route';
 
 const onCreateRancher = jest.fn();
 const mockedUsedNavigate = jest.fn();
@@ -63,7 +69,9 @@ describe('CreateRancher', () => {
     const input = screen.getByLabelText('rancher-name-input');
     const button = screen.getByText(dashboardTranslation.createRancherCTA);
 
-    fireEvent.change(input, { target: { value: '12()34343:::' } });
+    await act(async () => {
+      fireEvent.change(input, { target: { value: '12()34343:::' } });
+    });
     await userEvent.click(button);
 
     expect(input).toHaveAttribute('color', 'error');
@@ -79,7 +87,9 @@ describe('CreateRancher', () => {
     );
 
     const NEW_NAME = 'myrancher';
-    fireEvent.change(input, { target: { value: NEW_NAME } });
+    await act(async () => {
+      fireEvent.change(input, { target: { value: NEW_NAME } });
+    });
     await userEvent.click(confirmButton);
 
     expect(onCreateRancher).toHaveBeenCalledWith({
@@ -144,7 +154,9 @@ describe('CreateRancher', () => {
         dashboardTranslation.createRancherCTA,
       );
 
-      fireEvent.change(input, { target: { value: 'MyRancher' } });
+      await act(async () => {
+        fireEvent.change(input, { target: { value: 'MyRancher' } });
+      });
       await userEvent.click(confirmButton);
 
       expect(onCreateRancher).not.toHaveBeenCalled();
@@ -160,6 +172,31 @@ describe('CreateRancher', () => {
       );
 
       expect(banner).not.toBeNull();
+    });
+  });
+
+  it('Given that I am typing the rancher name, I should see the helper text in the correct color based on the Rancher name validity', async () => {
+    const screen = await setupSpecTest();
+
+    const input = screen.getByLabelText('rancher-name-input');
+    const helperText = screen.getByText(
+      dashboardTranslation.createNameModaleHelperInput,
+    );
+
+    expect(helperText).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.text);
+
+    await act(async () => {
+      fireEvent.change(input, { target: { value: 'Invalid Name!' } });
+    });
+    await waitFor(() => {
+      expect(helperText).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.error);
+    });
+
+    await act(async () => {
+      fireEvent.change(input, { target: { value: 'valid-name' } });
+    });
+    await waitFor(() => {
+      expect(helperText).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.text);
     });
   });
 });
