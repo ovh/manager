@@ -18,6 +18,7 @@ import {
   Notifications,
   PciDiscoveryBanner,
   PciGuidesHeader,
+  useNotifications,
   useProject,
 } from '@ovhcloud/manager-components';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
@@ -33,6 +34,7 @@ export default function AddGatewayPage(): JSX.Element {
   const { t } = useTranslation('common');
   const { t: tAdd } = useTranslation('add');
   const { t: tEdit } = useTranslation('edit');
+  const { clearNotifications } = useNotifications();
   const { projectId } = useParams();
   const { data: project } = useProject(projectId || '');
   const store = useNewGatewayStore();
@@ -48,6 +50,7 @@ export default function AddGatewayPage(): JSX.Element {
       id: projectId,
       isDiscovery: isDiscoveryProject(project),
     });
+    clearNotifications();
   }, [project]);
 
   return (
