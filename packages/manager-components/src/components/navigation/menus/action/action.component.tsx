@@ -26,6 +26,7 @@ export interface ActionMenuItem {
   download?: string;
   href?: string;
   target?: OdsHTMLAnchorElementTarget;
+  color?: ODS_THEME_COLOR_INTENT;
   onClick?: () => void;
   label: ReactI18NextChild | Iterable<ReactI18NextChild>;
 }
@@ -33,10 +34,35 @@ export interface ActionMenuItem {
 export interface ActionMenuProps {
   items: ActionMenuItem[];
   isCompact?: boolean;
+  icon?: ODS_ICON_NAME;
 }
 
-export const ActionMenu: React.FC<ActionMenuProps> = ({ items, isCompact }) => {
+const computeOdsIconProps = (
+  isCompact: boolean,
+  icon?: ODS_ICON_NAME,
+): {
+  size: ODS_ICON_SIZE;
+  name: ODS_ICON_NAME;
+  color: ODS_THEME_COLOR_INTENT;
+} => {
+  const size = isCompact ? ODS_ICON_SIZE.xs : ODS_ICON_SIZE.xxs;
+  const color = ODS_THEME_COLOR_INTENT.primary;
+
+  const name =
+    icon ??
+    (isCompact ? ODS_ICON_NAME.ELLIPSIS : ODS_ICON_NAME.ARROW_DOWN_CONCEPT);
+
+  return { size, name, color };
+};
+
+export const ActionMenu: React.FC<ActionMenuProps> = ({
+  items,
+  isCompact,
+  icon,
+}) => {
   const { t } = useTranslation('buttons');
+  const odsIconProps = computeOdsIconProps(isCompact, icon);
+
   return (
     <OsdsMenu>
       <OsdsButton
@@ -50,16 +76,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ items, isCompact }) => {
       >
         {!isCompact && t('common_actions')}
         <span slot={!isCompact ? 'end' : undefined}>
-          <OsdsIcon
-            name={
-              isCompact
-                ? ODS_ICON_NAME.ELLIPSIS
-                : ODS_ICON_NAME.ARROW_DOWN_CONCEPT
-            }
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={isCompact ? ODS_ICON_SIZE.xs : ODS_ICON_SIZE.xxs}
-            data-testid="action-menu-icon"
-          />
+          <OsdsIcon {...odsIconProps} data-testid="action-menu-icon" />
         </span>
       </OsdsButton>
 
@@ -67,7 +84,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ items, isCompact }) => {
         <OsdsMenuItem key={item.id}>
           <OsdsButton
             size={ODS_BUTTON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
+            color={item.color ?? ODS_THEME_COLOR_INTENT.primary}
             variant={ODS_BUTTON_VARIANT.ghost}
             href={item.href}
             rel={item.rel}
