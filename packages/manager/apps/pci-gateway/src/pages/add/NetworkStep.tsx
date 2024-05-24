@@ -43,18 +43,19 @@ export const AVAILABLE_SUBNET = [
 type IState = {
   projectUrl: string;
   isModalVisible: boolean;
-  hasError: boolean;
 };
 
 export const NetworkStep = (): JSX.Element => {
   const [state, setState] = useState<IState>({
     projectUrl: '',
     isModalVisible: false,
-    hasError: false,
   });
+
+  const [isInputTouched, setIsInputTouched] = useState(false);
 
   const { addError, addSuccess } = useNotifications();
   const { t: tAdd } = useTranslation('add');
+  const { t: tGlobal } = useTranslation('global');
   const navigate = useNavigate();
   const store = useNewGatewayStore();
 
@@ -205,7 +206,14 @@ export const NetworkStep = (): JSX.Element => {
           'pci_projects_project_public_gateways_add_no_private_network_warning',
         )}
       </OsdsMessage>
-      <OsdsFormField inline={true}>
+      <OsdsFormField
+        inline={true}
+        error={
+          isInputTouched && !store.form.name
+            ? tGlobal('common_field_error_required')
+            : ''
+        }
+      >
         <OsdsText
           slot="label"
           color={ODS_THEME_COLOR_INTENT.text}
@@ -217,23 +225,15 @@ export const NetworkStep = (): JSX.Element => {
         </OsdsText>
         <OsdsInput
           value={store.form.name}
-          inline={true}
-          onOdsValueChange={(e) => store.updateForm.name(`${e.detail.value}`)}
+          inline
+          color={ODS_THEME_COLOR_INTENT.primary}
+          onOdsValueChange={(e) => {
+            setIsInputTouched(true);
+            store.updateForm.name(`${e.detail.value}`);
+          }}
           type={ODS_INPUT_TYPE.text}
-          color={
-            !state.hasError
-              ? ODS_THEME_COLOR_INTENT.primary
-              : ODS_THEME_COLOR_INTENT.error
-          }
-          error={state.hasError}
+          error={isInputTouched && !store.form.name}
           className="border"
-          style={
-            state.hasError
-              ? {
-                  borderColor: 'var(--ods-color-error-200)',
-                }
-              : {}
-          }
         />
       </OsdsFormField>
       <br />
