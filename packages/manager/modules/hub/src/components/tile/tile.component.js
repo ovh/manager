@@ -9,7 +9,6 @@ export default {
     onClick: '&?',
     hideAction: '<?',
     hideHeading: '<?',
-    isHrefExternal: '<?',
   },
   template,
   transclude: true,

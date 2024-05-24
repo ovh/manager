@@ -4,7 +4,6 @@
     data-heading="{{ ::'hub_support_title' | translate }}"
     data-hide-heading="$ctrl.tickets.length === 0"
     data-href="{{ ::$ctrl.SUPPORT_URL }}"
-    data-is-href-external="$ctrl.isSupportWithExternalLinks"
     data-on-click="$ctrl.onSeeMore()"
     data-navi-id="help-block"
 >
@@ -52,7 +51,7 @@
                                 data-track-name="{{:: $ctrl.trackingPrefix + '::activity::assistance::go-to-ticket' }}"
                                 data-track-type="navigation"
                                 data-navi-id="{{:: 'helpBlock-' + ticket.serviceName + '-go-to-ticket' }}"
-                                target="{{$ctrl.isSupportWithExternalLinks ? '_blank' : '_top'}}"
+                                target="_top"
                             >
                                 <span data-translate="hub_support_read"></span>
                             </a>

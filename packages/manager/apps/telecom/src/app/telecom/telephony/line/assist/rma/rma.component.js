@@ -8,6 +8,7 @@ export default {
     billingAccount: '<',
     serviceName: '<',
     reloadPage: '<',
+    urlNewTicket: '<',
     rmaTrackClick: '<',
   },
 };

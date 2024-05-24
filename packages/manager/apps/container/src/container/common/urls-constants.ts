@@ -2,13 +2,11 @@ import { Environment, Region } from '@ovh-ux/manager-config';
 
 const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '-home?id=csm_index';
-const support = `${helpRoot}?id=csm_cases_requests`;
 
 interface ContentURLS {
   help: {
     [key in string]: string;
   };
-  support?: string;
   status: string;
 }
 
@@ -32,7 +30,6 @@ const urls: URLLinks = {
       SN: `${helpRoot}/fr-sn${homeIndex}`,
       TN: `${helpRoot}/fr-tn${homeIndex}`,
     },
-    support,
     status: 'https://www.status-ovhcloud.com/',
   },
   CA: {
@@ -45,7 +42,6 @@ const urls: URLLinks = {
       WE: `${helpRoot}/en${homeIndex}`,
       WS: `${helpRoot}/es${homeIndex}`,
     },
-    support,
     status: 'https://www.status-ovhcloud.com/',
   },
   US: {

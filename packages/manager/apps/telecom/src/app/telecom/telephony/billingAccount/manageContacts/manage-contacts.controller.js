@@ -6,7 +6,6 @@ import pick from 'lodash/pick';
 import set from 'lodash/set';
 import startsWith from 'lodash/startsWith';
 import values from 'lodash/values';
-import { SUPPORT_URLS } from '../../../../app.constants';
 
 export default /* @ngInject */ function TelecomTelephonyBillingAccountManageContactsCtrl(
   $stateParams,
@@ -16,15 +15,17 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
   OvhApiTelephony,
   OvhApiMe,
   TelephonyMediator,
+  OvhApiPackXdslVoipLine,
   TucToast,
   TucToastError,
+  newSupportTicketLink,
 ) {
   const self = this;
 
   const contactAttributes = ['contactAdmin', 'contactBilling', 'contactTech'];
 
   self.hasAnyLimitedModifications = false;
-  self.newSupportTicketLink = SUPPORT_URLS.createTicket;
+  self.newSupportTicketLink = newSupportTicketLink;
 
   function getGroupContacts() {
     const { billingAccount } = $stateParams;

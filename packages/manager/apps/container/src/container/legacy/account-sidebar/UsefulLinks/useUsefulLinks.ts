@@ -23,8 +23,6 @@ const useUsefulLinks = (): UseUsefulLinks => {
   const user = environment.getUser();
   const { isLivechatEnabled, setChatbotReduced } = useContainer();
 
-  const isEUOrCA = ['EU', 'CA'].includes(region);
-
   const getUsefulLinks = (): UsefulLink[] => {
     const trackingPrefix = 'hub::sidebar::useful-links';
     return [
@@ -36,15 +34,15 @@ const useUsefulLinks = (): UseUsefulLinks => {
         icon: getOdsIcon(ODS_ICON_NAME.LIFEBUOY_CONCEPT),      },
       ...(isLivechatEnabled
         ? [
-          {
-            id: 'chatbot',
-            action: () => {
-              shell.getPlugin('ux').openLiveChat();
-              setChatbotReduced(false);
+            {
+              id: 'chatbot',
+              action: () => {
+                shell.getPlugin('ux').openLiveChat();
+                setChatbotReduced(false);
+              },
+              icon: getOdsIcon(ODS_ICON_NAME.SPEECH_BUBBLE_CONCEPT),
             },
-            icon: getOdsIcon(ODS_ICON_NAME.SPEECH_BUBBLE_CONCEPT),
-          },
-        ]
+          ]
         : []),
       {
         id: 'tasks',
@@ -55,17 +53,15 @@ const useUsefulLinks = (): UseUsefulLinks => {
       },
       {
         id: 'tickets',
-        external: isEUOrCA,
-        href: isEUOrCA ? constants[region].support.tickets : navigation.getURL('dedicated', '#/ticket'),
+        href: navigation.getURL('dedicated', '#/ticket'),
         tracking: `${trackingPrefix}::go-to-tickets`,
         icon: getOdsIcon(ODS_ICON_NAME.ENVELOP_CONCEPT),
       },
-      ...(isEUOrCA
+      ...(['EU', 'CA'].includes(region)
         ? [
             {
               id: 'createTicket',
-              external: true,
-              href: constants[region].support.createTicket,
+              href: navigation.getURL('dedicated', '#/support/tickets/new'),
               tracking: `${trackingPrefix}::go-to-create-ticket`,
               icon: getOdsIcon(ODS_ICON_NAME.USER_SUPPORT_CONCEPT),
             },

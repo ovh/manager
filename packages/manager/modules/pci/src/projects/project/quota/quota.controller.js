@@ -34,7 +34,7 @@ export default class {
 
     [this.paymentmeanUrl, this.supportUrl] = this.coreURLBuilder.buildURLs([
       { application: 'dedicated', path: '#/billing/mean' },
-      { application: 'dedicated', path: '#/ticket' },
+      { application: 'dedicated', path: '#/support' },
     ]);
 
     this.model = {

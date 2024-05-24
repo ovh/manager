@@ -1,5 +1,4 @@
 import remove from 'lodash/remove';
-import { SUPPORT_URLS } from '../../../../../app.constants';
 
 import { TEXT_FOR_MODAL, ACTION_TYPE, RMA_NEW_TYPE } from './rma.constants';
 
@@ -10,7 +9,6 @@ export default class TelecomTelephonyLineAssistRmaCtrl {
     this.lineAssistRmaService = lineAssistRmaService;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
-    this.SUPPORT_URL = SUPPORT_URLS.viewTickets;
   }
 
   $onInit() {
@@ -118,8 +116,7 @@ export default class TelecomTelephonyLineAssistRmaCtrl {
   }
 
   equipmentOutOfOrder() {
-    window.open(this.SUPPORT_URL, '_blank', 'noopener');
-    this.resetModalInfo();
+    window.location.href = this.urlNewTicket;
   }
 
   keepingLine(rma) {

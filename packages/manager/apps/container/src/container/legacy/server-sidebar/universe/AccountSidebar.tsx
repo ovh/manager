@@ -10,7 +10,6 @@ import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import { features } from './DedicatedSidebar';
-import constants from '../../account-sidebar/UsefulLinks/constants';
 
 export default function AccountSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
@@ -31,8 +30,6 @@ export default function AccountSidebar() {
     }
 
     const menu = [];
-
-    const isEUOrCA = ['EU', 'CA'].includes(region);
 
     menu.push({
       id: 'back-to-home',
@@ -55,7 +52,7 @@ export default function AccountSidebar() {
     );
     if (featureAvailability['identity-documents']) {
       const { status } = await reketInstance.get(`/me/procedure/identity`);
-      if (['required', 'open'].includes(status)) {
+      if (['required','open'].includes(status)) {
         menu.push({
           id: 'my-identity-documents',
           label: t('sidebar_account_identity_documents'),
@@ -104,7 +101,7 @@ export default function AccountSidebar() {
       });
     }
 
-    if (isEUOrCA) {
+    if (['EU', 'CA'].includes(region)) {
       menu.push({
         id: 'my-contacts',
         label: t('sidebar_account_contacts'),
@@ -125,9 +122,10 @@ export default function AccountSidebar() {
     menu.push({
       id: 'my-support-tickets',
       label: t('sidebar_assistance_tickets'),
-      isExternal: isEUOrCA,
-      
-      href: isEUOrCA ? constants[region].support.tickets : navigation.getURL('dedicated', '/ticket'),
+      href: navigation.getURL(
+        'dedicated',
+        region === 'US' ? '/ticket' : '/support',
+      ),
       routeMatcher: new RegExp('^/(ticket|support)'),
     });
 
