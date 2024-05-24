@@ -308,7 +308,7 @@
             <oui-action-menu-item
                 data-on-click="$ctrl.goToResiliateCancelation($row)"
                 aria-label="{{:: 'domains_action_per_line_resiliation_cancellation' | translate }}"
-                data-ng-if="$row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.CANCELLATION_REQUESTED"
+                data-ng-if="$row.contactAdmin.id === $ctrl.user.auth.account && $row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.CANCELLATION_REQUESTED"
                 top
             >
                 <span
