@@ -31,6 +31,101 @@ angular.module('services').service(
     }
 
     /**
+     * Request deletion of an attached domain
+     * @param {string} serviceName
+     * @param {string} domain
+     * @param {boolean} bypassDNSConfiguration
+     */
+    requestAttachedDomainDelete(serviceName, domain, bypassDNSConfiguration) {
+      return this.$http.delete(
+        `/hosting/web/${serviceName}/attachedDomain/${domain}?bypassDNSConfiguration=${bypassDNSConfiguration}`,
+      );
+    }
+
+    /**
+     * Request update of an attached domain
+     * @param {string} serviceName
+     * @param {string} domain
+     * @param {string} cdn
+     * @param {string} firewall
+     * @param {string|null} ownLog
+     * @param {string} path
+     * @param {string|null} runtimeId
+     * @param {boolean} ssl
+     * @param {boolean} bypassDNSConfiguration
+     * @param {string} ipLocation
+     */
+    requestAttachedDomainUpdate(
+      serviceName,
+      domain,
+      cdn,
+      firewall,
+      ownLog,
+      path,
+      runtimeId,
+      ssl,
+      bypassDNSConfiguration,
+      ipLocation,
+    ) {
+      const payload = {
+        cdn,
+        firewall,
+        ownLog,
+        path,
+        runtimeId,
+        ssl,
+        bypassDNSConfiguration,
+      };
+
+      if (ipLocation != null) {
+        payload.ipLocation = ipLocation;
+      }
+
+      return this.$http.put(
+        `/hosting/web/${serviceName}/attachedDomain/${domain}`,
+        payload,
+      );
+    }
+
+    /**
+     * Request creation of an attached domain
+     * @param {string} serviceName
+     * @param {string} domain
+     * @param {string} cdn
+     * @param {string} firewall
+     * @param ownLog
+     * @param path
+     * @param {string|null} runtimeId
+     * @param {boolean} ssl
+     * @param {boolean} bypassDNSConfiguration
+     * @param {string} ipLocation
+     */
+    requestAttachedDomainCreate(
+      serviceName,
+      domain,
+      cdn,
+      firewall,
+      ownLog,
+      path,
+      runtimeId,
+      ssl,
+      bypassDNSConfiguration,
+      ipLocation,
+    ) {
+      return this.$http.post(`/hosting/web/${serviceName}/attachedDomain`, {
+        cdn,
+        domain,
+        firewall,
+        ownLog,
+        path,
+        runtimeId,
+        ssl,
+        bypassDNSConfiguration,
+        ipLocation,
+      });
+    }
+
+    /**
      * Delete domain of domains tab
      * @param {string} serviceName
      * @param {string} domain
@@ -38,28 +133,25 @@ angular.module('services').service(
      * @param {boolean} autoconfigure
      */
     removeDomain(serviceName, domain, wwwNeeded, autoconfigure) {
-      return this.OvhHttp.delete(
-        `/sws/hosting/web/${serviceName}/domains-delete`,
-        {
-          rootPath: '2api',
-          params: {
-            domain,
-            wwwNeeded,
-            autoconfigure,
-          },
-        },
-      ).then((response) => {
-        if (response.state !== 'ERROR') {
-          this.getTaskIds({ fn: 'web/detachDomain' }, serviceName).then(
-            (taskIds) => {
-              this.pollRequest({
-                serviceName,
-                taskIds,
-                namespace: 'detachDomain',
-              });
-            },
-          );
-        }
+      const deleteDomain = this.requestAttachedDomainDelete(
+        serviceName,
+        domain,
+        !autoconfigure,
+      );
+
+      const promises = [deleteDomain];
+
+      if (wwwNeeded) {
+        const deleteDomainwww = this.requestAttachedDomainDelete(
+          serviceName,
+          `www.${domain}`,
+          !autoconfigure,
+        );
+
+        promises.push(deleteDomainwww);
+      }
+
+      return this.$q.all(promises).then(() => {
         this.Hosting.resetDomains();
         this.getTaskIds({ fn: 'attachedDomain/delete' }, serviceName).then(
           (taskIds) => {
@@ -79,10 +171,9 @@ angular.module('services').service(
      * @param {string} domainName
      * @param {string} home
      * @param {boolean} wwwNeeded
-     * @param {boolean} ipv6Needed
      * @param {boolean} autoconfigure
      * @param {string} cdn
-     * @param {string} countryIp
+     * @param {Object} countryIp
      * @param {string} firewall
      * @param ownLog
      * @param {boolean} ssl
@@ -94,7 +185,6 @@ angular.module('services').service(
       domainName,
       home,
       wwwNeeded,
-      ipv6Needed,
       autoconfigure,
       cdn,
       countryIp,
@@ -104,34 +194,56 @@ angular.module('services').service(
       runtimeId,
       serviceName,
     ) {
-      return this.$http
-        .put(`${this.aapiHostingPath}/${serviceName}/domains`, {
-          baseDomain,
-          domainName,
-          home,
-          wwwNeeded,
-          ipv6Needed,
-          autoconfigure,
-          cdn: cdn.toLowerCase(),
-          countryIp,
-          firewallNeeded: firewall.toLowerCase(),
+      const completeDomain = domainName
+        ? `${domainName}.${baseDomain}`
+        : baseDomain;
+
+      const ipLocation = countryIp?.country ? countryIp.country : null;
+
+      const addDomain = this.requestAttachedDomainCreate(
+        serviceName,
+        completeDomain,
+        cdn.toLowerCase(),
+        firewall.toLowerCase(),
+        ownLog,
+        home,
+        runtimeId,
+        ssl,
+        !autoconfigure,
+        ipLocation,
+      );
+
+      const promises = [addDomain];
+
+      if (wwwNeeded) {
+        const addDomainwww = this.requestAttachedDomainCreate(
+          serviceName,
+          `www.${completeDomain}`,
+          cdn.toLowerCase(),
+          firewall.toLowerCase(),
           ownLog,
-          ssl,
+          home,
           runtimeId,
-        })
-        .then((response) => {
-          this.Hosting.resetDomains();
-          this.getTaskIds({ fn: 'attachedDomain/create' }, serviceName).then(
-            (taskIds) => {
-              this.pollRequest({
-                serviceName,
-                taskIds,
-                namespace: 'modifyDomain',
-              });
-            },
-          );
-          return response.data;
-        });
+          ssl,
+          !autoconfigure,
+          ipLocation,
+        );
+
+        promises.push(addDomainwww);
+      }
+
+      return this.$q.all(promises).then(() => {
+        this.Hosting.resetDomains();
+        this.getTaskIds({ fn: 'attachedDomain/create' }, serviceName).then(
+          (taskIds) => {
+            this.pollRequest({
+              serviceName,
+              taskIds,
+              namespace: 'modifyDomain',
+            });
+          },
+        );
+      });
     }
 
     /**
@@ -139,9 +251,8 @@ angular.module('services').service(
      * @param {string} domain
      * @param {string} home
      * @param {boolean} wwwNeeded
-     * @param {boolean} ipv6Needed
      * @param {string} cdn
-     * @param {string} countryIp
+     * @param {Object} countryIp
      * @param {string} firewall
      * @param ownLog
      * @param {boolean} ssl
@@ -152,7 +263,6 @@ angular.module('services').service(
       domain,
       home,
       wwwNeeded,
-      ipv6Needed,
       cdn,
       countryIp,
       firewall,
@@ -161,48 +271,52 @@ angular.module('services').service(
       runtimeId,
       serviceName,
     ) {
-      return this.getZoneLinked(domain)
-        .then((urlSplitted) => {
-          let baseDomain;
-          let domainName;
+      const ipLocation = countryIp?.country ? countryIp.country : null;
 
-          if (urlSplitted.zone) {
-            baseDomain = urlSplitted.zone;
-            domainName = urlSplitted.subDomain;
-          } else {
-            baseDomain = domain;
-            domainName = null;
-          }
+      const updateDomain = this.requestAttachedDomainUpdate(
+        serviceName,
+        domain,
+        cdn.toLowerCase(),
+        firewall.toLowerCase(),
+        ownLog,
+        home,
+        runtimeId,
+        ssl,
+        false,
+        ipLocation,
+      );
 
-          return this.addDomain(
-            baseDomain,
-            domainName,
-            home,
-            wwwNeeded,
-            ipv6Needed,
-            !!urlSplitted.zone,
-            cdn.toLowerCase(),
-            countryIp,
-            firewall.toLowerCase(),
-            ownLog,
-            ssl,
-            runtimeId,
-            serviceName,
-          );
-        })
-        .then((response) => {
-          this.Hosting.resetDomains();
-          this.getTaskIds({ fn: 'attachedDomain/update' }, serviceName).then(
-            (taskIds) => {
-              this.pollRequest({
-                serviceName,
-                taskIds,
-                namespace: 'modifyDomain',
-              });
-            },
-          );
-          return response.data;
-        });
+      const promises = [updateDomain];
+
+      if (wwwNeeded) {
+        const updateDomainwww = this.requestAttachedDomainUpdate(
+          serviceName,
+          `www.${domain}`,
+          cdn.toLowerCase(),
+          firewall.toLowerCase(),
+          ownLog,
+          home,
+          runtimeId,
+          ssl,
+          false,
+          ipLocation,
+        );
+
+        promises.push(updateDomainwww);
+      }
+
+      return this.$q.all(promises).then(() => {
+        this.Hosting.resetDomains();
+        this.getTaskIds({ fn: 'attachedDomain/update' }, serviceName).then(
+          (taskIds) => {
+            this.pollRequest({
+              serviceName,
+              taskIds,
+              namespace: 'modifyDomain',
+            });
+          },
+        );
+      });
     }
 
     /**
@@ -359,33 +473,6 @@ angular.module('services').service(
       return this.$http
         .get(`/domain/zone/${zone}/serviceInfos`)
         .then(({ data }) => data);
-    }
-
-    /**
-     * Get zone linked
-     * @param {string} url
-     */
-    getZoneLinked(url) {
-      const zoneAssociated = {};
-
-      return this.getZones().then((zones) => {
-        const urlSplitted = url.split('.');
-
-        for (
-          let index = 0;
-          index < urlSplitted.length - 1 && !zoneAssociated.zone;
-          index += 1
-        ) {
-          const zoneIndex = zones.indexOf(urlSplitted.slice(index).join('.'));
-
-          if (zoneIndex !== -1) {
-            zoneAssociated.zone = zones[zoneIndex];
-            zoneAssociated.subDomain = urlSplitted.slice(0, index).join('.');
-          }
-        }
-
-        return zoneAssociated;
-      });
     }
 
     /**

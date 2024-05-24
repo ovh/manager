@@ -337,7 +337,6 @@ angular
           $scope.selected.domain.name,
           $scope.selected.pathFinal,
           $scope.selected.domainWwwNeeded,
-          $scope.selected.domain.ipV6Enabled,
           $scope.selected.domain.cdn,
           $scope.selected.domain.ipLocation,
           $scope.selected.domain.firewall,
