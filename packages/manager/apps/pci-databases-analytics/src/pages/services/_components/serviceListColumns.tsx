@@ -18,6 +18,8 @@ import { SortableHeader } from '@/components/ui/data-table';
 import FormattedDate from '@/components/table-date';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { Link } from '@/components/links';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
@@ -29,6 +31,7 @@ export const getColumns = ({
 }: ServiceListColumnsProps) => {
   const navigate = useNavigate();
   const { t } = useTranslation('pci-databases-analytics/services');
+  const track = useTrackAction();
   const { t: tRegions } = useTranslation('regions');
   const columns: ColumnDef<database.Service>[] = [
     {
@@ -38,7 +41,7 @@ export const getColumns = ({
       ),
       accessorFn: (row) => row.description,
       cell: ({ row }) => {
-        const { id, description, status } = row.original;
+        const { id, description, status, engine, nodes } = row.original;
         return (
           <div className="flex flex-col flex-nowrap text-left">
             {status === database.StatusEnum.DELETING ? (
@@ -51,7 +54,19 @@ export const getColumns = ({
                 variant="link"
                 className="justify-normal px-0 h-auto leading-4 font-semibold"
               >
-                <Link to={id}>{description}</Link>
+                <Link
+                  to={id}
+                  onClick={() =>
+                    track(
+                      TRACKING.servicesList.serviceLinkClick(
+                        engine,
+                        nodes[0].region,
+                      ),
+                    )
+                  }
+                >
+                  {description}
+                </Link>
               </Button>
             )}
             <span className="text-sm whitespace-nowrap">{id}</span>
@@ -239,6 +254,7 @@ export const getColumns = ({
               <DropdownMenuItem
                 variant="primary"
                 onClick={() => {
+                  track(TRACKING.servicesList.copyIdClick(service.engine));
                   navigator.clipboard.writeText(service.id);
                   toast.success('Service id saved in clipboard', {
                     dismissible: true,
