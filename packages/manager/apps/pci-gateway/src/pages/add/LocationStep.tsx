@@ -17,6 +17,7 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { clsx } from 'clsx';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { TAvailableRegion, useData } from '@/api/hooks/data';
@@ -82,6 +83,7 @@ export const LocationStep = () => {
           {tAdd('pci_projects_project_public_gateways_add_description3')}
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.primary}
+            target={OdsHTMLAnchorElementTarget._blank}
             href={
               'https://www.ovhcloud.com/en-ie/public-cloud/regions-availability'
             }
