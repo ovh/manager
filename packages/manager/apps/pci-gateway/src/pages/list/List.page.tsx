@@ -8,6 +8,7 @@ import {
   PciGuidesHeader,
   useColumnFilters,
   useDataGrid,
+  useNotifications,
   useProject,
 } from '@ovhcloud/manager-components';
 import {
@@ -46,6 +47,7 @@ import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 export default function ListingPage() {
   const { t } = useTranslation('common');
   const { t: tFilter } = useTranslation('filter');
+  const { clearNotifications } = useNotifications();
   const [projectUrl, setProjectUrl] = useState('');
   const [privateNetworkUrl, setPrivateNetworkUrl] = useState('');
 
@@ -75,6 +77,7 @@ export default function ListingPage() {
       .then((data) => {
         setPrivateNetworkUrl(data as string);
       });
+    clearNotifications();
   }, [projectId, navigation]);
 
   const columns = useDatagridColumn(projectId, privateNetworkUrl);
