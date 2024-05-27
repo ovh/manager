@@ -50,7 +50,7 @@ interface UpdateFlavorProps {
   onError?: (error: Error) => void;
 }
 
-const UpdateFlavor = ({
+const UpdateFlavorContent = ({
   controller,
   suggestions,
   availabilities,
@@ -268,21 +268,37 @@ const UpdateFlavor = ({
               <div className="flex items-center gap-2">
                 <Price
                   priceInUcents={
-                    oldPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].price
+                    oldPrice.servicePrice[showMonthly ? 'monthly' : 'hourly']
+                      .price
                   }
-                  taxInUcents={oldPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax}
+                  taxInUcents={
+                    oldPrice.servicePrice[showMonthly ? 'monthly' : 'hourly']
+                      .tax
+                  }
                   decimals={showMonthly ? 2 : 3}
                 />
-                <PricingDetails service={service} pricing={oldPrice} showMonthly={showMonthly} />
+                <PricingDetails
+                  service={service}
+                  pricing={oldPrice}
+                  showMonthly={showMonthly}
+                />
                 <ArrowRight className="size-4" />
                 <Price
                   priceInUcents={
-                    newPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].price
+                    newPrice.servicePrice[showMonthly ? 'monthly' : 'hourly']
+                      .price
                   }
-                  taxInUcents={newPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax}
+                  taxInUcents={
+                    newPrice.servicePrice[showMonthly ? 'monthly' : 'hourly']
+                      .tax
+                  }
                   decimals={showMonthly ? 2 : 3}
                 />
-                <PricingDetails service={service} pricing={newPrice} showMonthly={showMonthly} />
+                <PricingDetails
+                  service={service}
+                  pricing={newPrice}
+                  showMonthly={showMonthly}
+                />
               </div>
               <div className="flex gap-2">
                 <DialogClose asChild>
@@ -304,6 +320,11 @@ const UpdateFlavor = ({
       </DialogContent>
     </Dialog>
   );
+};
+
+const UpdateFlavor = ({ controller, ...otherProps }: UpdateFlavorProps) => {
+  if (!controller.open) return <></>;
+  return <UpdateFlavorContent controller={controller} {...otherProps} />;
 };
 
 export default UpdateFlavor;

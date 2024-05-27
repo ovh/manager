@@ -48,7 +48,7 @@ interface UpdatePlanProps {
   onError?: (error: Error) => void;
 }
 
-const UpdatePlan = ({
+const UpdatePlanContent = ({
   controller,
   suggestions,
   availabilities,
@@ -219,18 +219,34 @@ const UpdatePlan = ({
         <DialogFooter className="flex sm:justify-between px-6">
           <div className="flex items-center gap-2">
             <Price
-              priceInUcents={oldPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].price}
-              taxInUcents={oldPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax}
+              priceInUcents={
+                oldPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].price
+              }
+              taxInUcents={
+                oldPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax
+              }
               decimals={showMonthly ? 2 : 3}
             />
-            <PricingDetails service={service} pricing={oldPrice} showMonthly={showMonthly} />
+            <PricingDetails
+              service={service}
+              pricing={oldPrice}
+              showMonthly={showMonthly}
+            />
             <ArrowRight className="size-4" />
             <Price
-              priceInUcents={newPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].price}
-              taxInUcents={newPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax}
+              priceInUcents={
+                newPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].price
+              }
+              taxInUcents={
+                newPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax
+              }
               decimals={showMonthly ? 2 : 3}
             />
-            <PricingDetails service={service} pricing={newPrice} showMonthly={showMonthly} />
+            <PricingDetails
+              service={service}
+              pricing={newPrice}
+              showMonthly={showMonthly}
+            />
           </div>
           <div className="flex gap-2">
             <DialogClose asChild>
@@ -250,6 +266,11 @@ const UpdatePlan = ({
       </DialogContent>
     </Dialog>
   );
+};
+
+const UpdatePlan = ({ controller, ...otherProps }: UpdatePlanProps) => {
+  if (!controller.open) return <></>;
+  return <UpdatePlanContent controller={controller} {...otherProps} />;
 };
 
 export default UpdatePlan;
