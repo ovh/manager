@@ -52,7 +52,7 @@
   "dedicatedCloud_USER_right_resources_help": "Permiso para añadir recursos adicionales a través del plugin de OVHcloud en vSphere Client",
   "dedicatedCloud_USER_resource": "Añadir recursos",
   "dedicatedCloud_USER_VM_NETWORK_ROLE": "Acceso al VM Network",
-  "dedicatedCloud_USER_NETWORK_ROLE_EPCC": "Acceso a las V(x)LAN",
+  "dedicatedCloud_USER_NETWORK_ROLE_EPCC": "Acceso a V(x)LAN / GENEVE",
   "dedicatedCloud_USER_NETWORK_ROLE_MBM": "Acceso a las VLAN",
   "dedicatedCloud_USER_rights_management_by_datacenter_user": "Gestión de los permisos del usuario {{t0}} por datacenter",
   "dedicatedCloud_USER_rights_management_by_datacenter_group": "Gestión de los permisos del grupo {{t0}} por datacenter",
