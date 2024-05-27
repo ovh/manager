@@ -64,10 +64,11 @@ export const CountryInputComponent = ({
             >
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
-                className={clsx(value?.name === country.name && 'font-bold')}
                 size={ODS_THEME_TYPOGRAPHY_SIZE._600}
               >
-                {tCountries(`pci_additional_ips_country_${country.name}`)}
+                <span className={value?.name === country.name && 'font-bold'}>
+                  {tCountries(`pci_additional_ips_country_${country.name}`)}
+                </span>
               </OsdsText>
             </OsdsTile>
           </li>
