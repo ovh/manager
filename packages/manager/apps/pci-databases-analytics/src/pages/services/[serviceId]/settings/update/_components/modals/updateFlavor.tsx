@@ -38,6 +38,7 @@ import StorageConfig from '@/components/Order/cluster-config/storage-config';
 import { formatStorage } from '@/lib/bytesHelper';
 import PriceUnitSwitch from '@/components/price-unit-switch';
 import { Label } from '@/components/ui/label';
+import PricingDetails from '../pricingDetails';
 
 interface UpdateFlavorProps {
   controller: ModalController;
@@ -267,19 +268,21 @@ const UpdateFlavor = ({
               <div className="flex items-center gap-2">
                 <Price
                   priceInUcents={
-                    oldPrice[showMonthly ? 'monthly' : 'hourly'].price
+                    oldPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].price
                   }
-                  taxInUcents={oldPrice[showMonthly ? 'monthly' : 'hourly'].tax}
+                  taxInUcents={oldPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax}
                   decimals={showMonthly ? 2 : 3}
                 />
+                <PricingDetails service={service} pricing={oldPrice} showMonthly={showMonthly} />
                 <ArrowRight className="size-4" />
                 <Price
                   priceInUcents={
-                    newPrice[showMonthly ? 'monthly' : 'hourly'].price
+                    newPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].price
                   }
-                  taxInUcents={newPrice[showMonthly ? 'monthly' : 'hourly'].tax}
+                  taxInUcents={newPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax}
                   decimals={showMonthly ? 2 : 3}
                 />
+                <PricingDetails service={service} pricing={newPrice} showMonthly={showMonthly} />
               </div>
               <div className="flex gap-2">
                 <DialogClose asChild>

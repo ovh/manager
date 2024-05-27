@@ -18,7 +18,7 @@ import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
 import { useVrack } from '@/hooks/useVrack';
 import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
-import { computeServicePrice } from '@/lib/pricingHelper';
+import { Pricing, computeServicePrice } from '@/lib/pricingHelper';
 
 const getSuggestedItemOrDefault = (
   suggestion: database.Suggestion,
@@ -115,7 +115,7 @@ export function useOrderFunnel(
 
   const networksData = useVrack(projectId, region, network.networkId);
 
-  const [price, setPrice] = useState({
+  const [price, setPrice] = useState<Pricing>({
     hourly: { price: 0, tax: 0 },
     monthly: { price: 0, tax: 0 },
   });
@@ -212,7 +212,7 @@ export function useOrderFunnel(
         storagePricing: flavorObject.storage?.pricing,
         additionalStorage,
         storageMode: engineObject.storageMode,
-      }),
+      }).servicePrice,
     );
   }, [availability, nbNodes, additionalStorage, engineObject]);
 

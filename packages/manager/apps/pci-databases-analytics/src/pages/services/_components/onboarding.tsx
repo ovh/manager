@@ -7,7 +7,6 @@ import { Link } from '@/components/links';
 
 const Onboarding = () => {
   const { t } = useTranslation('pci-databases-analytics/services/onboarding');
-  console.log('in onboarding');
   return (
     <div
       data-testid="onbaording-container"

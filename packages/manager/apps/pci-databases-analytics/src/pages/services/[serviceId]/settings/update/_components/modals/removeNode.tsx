@@ -15,7 +15,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
 import { useDeleteNode } from '@/hooks/api/nodes.api.hooks';
 import { ModalController } from '@/hooks/useModale';
-import { ServicePricing } from '@/lib/pricingHelper';
+import { Pricing } from '@/lib/pricingHelper';
 import { order } from '@/models/catalog';
 import { useServiceData } from '@/pages/services/[serviceId]/layout';
 
@@ -61,7 +61,7 @@ const DeleteNode = ({
     },
   });
 
-  const price: ServicePricing = useMemo(() => {
+  const price: Pricing = useMemo(() => {
     const prefix = `databases.${service.engine.toLowerCase()}-${service.plan}-${
       service.flavor
     }`;

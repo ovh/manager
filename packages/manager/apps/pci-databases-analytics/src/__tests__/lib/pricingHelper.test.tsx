@@ -21,7 +21,7 @@ describe('pricingHelper', () => {
       storageMode:
         database.capabilities.engine.storage.StrategyEnum.distributed,
     };
-    const pricing = computeServicePrice(mockedDistributedPricing);
+    const pricing = computeServicePrice(mockedDistributedPricing).servicePrice;
     expect(pricing).toStrictEqual({
       hourly: { price: 4, tax: 4 },
       monthly: { price: 120, tax: 4 },
@@ -33,7 +33,7 @@ describe('pricingHelper', () => {
       ...mockedPricingHelper,
       storageMode: database.capabilities.engine.storage.StrategyEnum.replicated,
     };
-    const pricing = computeServicePrice(mockedReplicatedPricing);
+    const pricing = computeServicePrice(mockedReplicatedPricing).servicePrice;
     expect(pricing).toStrictEqual({
       hourly: { price: 6, tax: 6 },
       monthly: { price: 180, tax: 6 },
