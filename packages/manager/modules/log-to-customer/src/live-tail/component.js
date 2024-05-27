@@ -5,7 +5,6 @@ export default {
   controller,
   template,
   transclude: {
-    tileDescription: '?tileDescription',
     mainDescription: '?mainDescription',
   },
   bindings: {
