@@ -216,7 +216,7 @@ const UpdateFlavorContent = ({
                 control={form.control}
                 name="flavor"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="max-w-sm sm:max-w-full">
                     <FormLabel>{t('updateFlavorInputLabel')}</FormLabel>
                     <FormControl>
                       <FlavorsSelect
