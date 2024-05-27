@@ -1,4 +1,4 @@
-import { useTranslation, Translation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import {
   ODS_BUTTON_VARIANT,
   ODS_SPINNER_SIZE,
@@ -20,7 +20,7 @@ import { useState } from 'react';
 import { useDeleteGateway } from '@/api/hooks/useGateway';
 import queryClient from '@/queryClient';
 import { Gateway } from '@/interface';
-import { checkOperation, TOperation } from '@/api/operation';
+import { checkOperation, TOperation } from '@/api/data/operation';
 
 export default function DeleteGateway() {
   const { t: tDelete } = useTranslation('delete');
