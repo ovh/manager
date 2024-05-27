@@ -38,7 +38,6 @@ const UserActions = ({
             variant="menu"
             size="menu"
             data-testid="user-action-trigger"
-            onClick={() => console.log('trigger')}
           >
             <span className="sr-only">Open menu</span>
             <MoreHorizontal className="h-4 w-4" />
