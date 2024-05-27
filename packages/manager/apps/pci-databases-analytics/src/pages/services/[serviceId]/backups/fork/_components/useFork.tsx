@@ -19,7 +19,7 @@ import { useVrack } from '@/hooks/useVrack';
 import { useServiceData } from '../../../layout';
 import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
 import { ForkInitialValue } from '..';
-import { computeServicePrice } from '@/lib/pricingHelper';
+import { Pricing, computeServicePrice } from '@/lib/pricingHelper';
 
 const getSuggestedItemOrDefault = (
   suggestion: database.Suggestion,
@@ -172,7 +172,7 @@ export function useFork(
 
   const networksData = useVrack(projectId, region, network.networkId);
 
-  const [price, setPrice] = useState({
+  const [price, setPrice] = useState<Pricing>({
     hourly: { price: 0, tax: 0 },
     monthly: { price: 0, tax: 0 },
   });
@@ -269,7 +269,7 @@ export function useFork(
         storagePricing: flavorObject.storage?.pricing,
         additionalStorage,
         storageMode: engineObject.storageMode,
-      }),
+      }).servicePrice,
     );
   }, [availability, nbNodes, additionalStorage, engineObject]);
 

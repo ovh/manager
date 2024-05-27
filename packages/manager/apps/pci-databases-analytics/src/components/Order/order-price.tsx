@@ -1,18 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import Price from '@/components/price';
+import { Pricing } from '@/lib/pricingHelper';
 
 interface OrderPriceProps {
   showMonthly: boolean;
-  prices: {
-    hourly: {
-      price: number;
-      tax: number;
-    };
-    monthly: {
-      price: number;
-      tax: number;
-    };
-  };
+  prices: Pricing;
 }
 const OrderPrice = ({ showMonthly, prices }: OrderPriceProps) => {
   const { t } = useTranslation('pricing');
