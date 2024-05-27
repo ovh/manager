@@ -51,5 +51,8 @@
   "deleteNodeToastSuccessDescription": "Votre demande de suppression de nœud a bien été prise en compte et sera effective dans quelques minutes.",
   "deleteNodeToastErrorTitle": "Une erreur est survenue lors de la suppression d'un nœud",
   "deleteNodeCancelButton": "Annuler",
-  "deleteNodeSubmitButton": "Valider"
+  "deleteNodeSubmitButton": "Valider",
+  "pricingDetailsNodes": "Nœuds :",
+  "pricingDetailsFlavor": "Flavor :",
+  "pricingDetailsStorage": "Stockage :"
 }

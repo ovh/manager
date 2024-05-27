@@ -37,7 +37,6 @@ export default function ServicesList({
     },
   });
 
-  console.log(services[0].capabilities);
   return (
     <>
       <DataTable columns={columns} data={services} pageSize={25} />

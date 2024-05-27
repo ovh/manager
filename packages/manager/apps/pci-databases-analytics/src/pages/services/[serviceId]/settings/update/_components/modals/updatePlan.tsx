@@ -36,6 +36,7 @@ import { computeServicePrice } from '@/lib/pricingHelper';
 import Price from '@/components/price';
 import PriceUnitSwitch from '@/components/price-unit-switch';
 import { Label } from '@/components/ui/label';
+import PricingDetails from '../pricingDetails';
 
 interface UpdatePlanProps {
   controller: ModalController;
@@ -218,16 +219,18 @@ const UpdatePlan = ({
         <DialogFooter className="flex sm:justify-between px-6">
           <div className="flex items-center gap-2">
             <Price
-              priceInUcents={oldPrice[showMonthly ? 'monthly' : 'hourly'].price}
-              taxInUcents={oldPrice[showMonthly ? 'monthly' : 'hourly'].tax}
+              priceInUcents={oldPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].price}
+              taxInUcents={oldPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax}
               decimals={showMonthly ? 2 : 3}
             />
+            <PricingDetails service={service} pricing={oldPrice} showMonthly={showMonthly} />
             <ArrowRight className="size-4" />
             <Price
-              priceInUcents={newPrice[showMonthly ? 'monthly' : 'hourly'].price}
-              taxInUcents={newPrice[showMonthly ? 'monthly' : 'hourly'].tax}
+              priceInUcents={newPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].price}
+              taxInUcents={newPrice.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax}
               decimals={showMonthly ? 2 : 3}
             />
+            <PricingDetails service={service} pricing={newPrice} showMonthly={showMonthly} />
           </div>
           <div className="flex gap-2">
             <DialogClose asChild>
