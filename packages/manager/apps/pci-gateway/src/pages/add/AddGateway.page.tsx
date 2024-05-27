@@ -23,6 +23,7 @@ import {
 } from '@ovhcloud/manager-components';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { SizeStep } from '@/pages/add/SizeStep';
 import { LocationStep } from '@/pages/add/LocationStep';
 import { NetworkStep } from '@/pages/add/NetworkStep';
@@ -62,6 +63,7 @@ export default function AddGatewayPage(): JSX.Element {
     <>
       {project && (
         <OsdsBreadcrumb
+          onClick={() => clearNotifications()}
           items={[
             {
               href: projectUrl,
@@ -84,6 +86,7 @@ export default function AddGatewayPage(): JSX.Element {
         className="mt-6 mb-3"
         color={ODS_THEME_COLOR_INTENT.primary}
         href={backHref}
+        onClick={() => clearNotifications()}
       >
         <OsdsIcon
           className="mr-2"
@@ -130,7 +133,11 @@ export default function AddGatewayPage(): JSX.Element {
         >
           {tAdd('pci_projects_project_public_gateways_add_description3')}
         </OsdsText>
-        <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} href={learnMoreLink}>
+        <OsdsLink
+          color={ODS_THEME_COLOR_INTENT.primary}
+          href={learnMoreLink}
+          target={OdsHTMLAnchorElementTarget._blank}
+        >
           {tAdd('pci_projects_project_public_gateways_add_learn_more')}
           <OsdsIcon
             name={ODS_ICON_NAME.ARROW_RIGHT}

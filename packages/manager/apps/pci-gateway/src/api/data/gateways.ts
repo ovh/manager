@@ -26,8 +26,6 @@ export const createGateway = async (
   }
 };
 
-/// ////////
-
 export type TGateway = {
   id: string;
   name: string;

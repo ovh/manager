@@ -2,9 +2,9 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import queryClient from '@ovh-ux/manager-pci-users-app/src/queryClient';
 import {
   createGateway,
-  TNewGateway,
   getGateway,
   getGatewayUrl,
+  TNewGateway,
   updateGateway,
 } from '@/api/data/gateways';
 import { TOperation } from '@/api/data/operation';

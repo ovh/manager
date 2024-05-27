@@ -8,7 +8,7 @@ import {
   getAllAggregatedGateway,
   paginateResults,
 } from '@/api/data/gateway';
-import { TOperation } from '@/api/operation';
+import { TOperation } from '@/api/data/operation';
 
 export const useAllAggregatedGateway = (projectId: string) =>
   useQuery({
