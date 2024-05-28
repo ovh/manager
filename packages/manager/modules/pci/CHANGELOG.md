@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.40.0...@ovh-ux/manager-pci@6.41.0) (2024-05-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3011] ([4fa081e](https://github.com/ovh/manager/commit/4fa081e7105710d0ccf28aa2543ae2e6a06cab95))
+* **pci.project:** enable asian users to activate discovery project ([#11628](https://github.com/ovh/manager/issues/11628)) ([2f64526](https://github.com/ovh/manager/commit/2f645262a2430a8365b8a37af3d73249886e9528))
+
+
+### Features
+
+* create ng-ovh-chart component ([#11356](https://github.com/ovh/manager/issues/11356)) ([dde7809](https://github.com/ovh/manager/commit/dde780945145ef49f9280a037cb00683b5aa31db))
+
+
+
+
+
 # [6.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.39.0...@ovh-ux/manager-pci@6.40.0) (2024-05-23)
 
 

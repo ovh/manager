@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.14.0...@ovh-ux/manager-overthebox@6.15.0) (2024-05-28)
+
+
+### Features
+
+* create ng-ovh-chart component ([#11356](https://github.com/ovh/manager/issues/11356)) ([dde7809](https://github.com/ovh/manager/commit/dde780945145ef49f9280a037cb00683b5aa31db))
+
+
+
+
+
 # [6.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.13.1...@ovh-ux/manager-overthebox@6.14.0) (2024-05-21)
 
 

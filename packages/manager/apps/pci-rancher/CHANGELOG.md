@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.4.1...@ovh-ux/manager-pci-rancher-app@1.5.0) (2024-05-28)
+
+
+### Bug Fixes
+
+* **rancher:** disable refetch pooling on create page ([#11361](https://github.com/ovh/manager/issues/11361)) ([d414f36](https://github.com/ovh/manager/commit/d414f3644c88ae26e7ed194597b4449878dcb0b5))
+
+
+### Features
+
+* **pci-rancher:** add request tagger on each request ([#11282](https://github.com/ovh/manager/issues/11282)) ([4af99f8](https://github.com/ovh/manager/commit/4af99f86dc9e2219f2a1e6df840cb20a9ad27f97))
+
+
+
+
+
 ## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.4.0...@ovh-ux/manager-pci-rancher-app@1.4.1) (2024-05-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

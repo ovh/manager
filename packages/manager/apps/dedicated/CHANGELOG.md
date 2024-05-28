@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.36.0...@ovh-ux/manager-dedicated@19.37.0) (2024-05-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3007] ([1bc1a65](https://github.com/ovh/manager/commit/1bc1a656d53d3266c448e8227544c5b0f96c666a))
+
+
+### Features
+
+* create ng-ovh-chart component ([#11356](https://github.com/ovh/manager/issues/11356)) ([dde7809](https://github.com/ovh/manager/commit/dde780945145ef49f9280a037cb00683b5aa31db))
+* **dedicated.vmware:** onboarding page updates ([#11611](https://github.com/ovh/manager/issues/11611)) ([d5cadb5](https://github.com/ovh/manager/commit/d5cadb56a5365855fc3ce00ac0bbc75de3a57429))
+* **dedicated:** missing guidance to reduce kyc upload issues ([#11155](https://github.com/ovh/manager/issues/11155)) ([759a310](https://github.com/ovh/manager/commit/759a310773a6bb0d49814d8dd205f22696553411))
+
+
+
+
+
 # [19.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.35.1...@ovh-ux/manager-dedicated@19.36.0) (2024-05-21)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.14.0...@ovh-ux/manager-telecom@15.15.0) (2024-05-28)
+
+
+### Bug Fixes
+
+* **pack:** set previous title to correct value for meetings ([b58e85e](https://github.com/ovh/manager/commit/b58e85eb66ac62c0000b7f649bb07f5e3c21894b))
+
+
+### Features
+
+* create ng-ovh-chart component ([#11356](https://github.com/ovh/manager/issues/11356)) ([dde7809](https://github.com/ovh/manager/commit/dde780945145ef49f9280a037cb00683b5aa31db))
+
+
+
+
+
 # [15.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.13.4...@ovh-ux/manager-telecom@15.14.0) (2024-05-21)
 
 
