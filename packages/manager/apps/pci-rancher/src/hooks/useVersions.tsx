@@ -1,14 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
 import {
-  getVersions,
+  getRancherVersion,
   getpublicCloudReferenceRancherVersionListQueryKey,
 } from '../api/apiv2/services';
 
 const useVersions = () => {
+  const { projectId } = useParams();
   return useQuery({
     queryKey: getpublicCloudReferenceRancherVersionListQueryKey,
-    queryFn: () => getVersions(),
+    queryFn: () => getRancherVersion(projectId),
   });
 };
 

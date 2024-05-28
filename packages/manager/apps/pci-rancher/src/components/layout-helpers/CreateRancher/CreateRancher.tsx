@@ -21,7 +21,7 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { getRanchersUrl } from '@/utils/route';
@@ -33,8 +33,9 @@ import {
   RancherPlan,
   RancherVersion,
 } from '@/api/api.type';
-import { useSimpleTrackingAction } from '../../../hooks/useTrackingPage';
+
 import { useTranslate } from '@/utils/translation';
+import { useSimpleTrackingAction } from '../../../hooks/useTrackingPage';
 
 const TileSection: React.FC<{
   name: string;

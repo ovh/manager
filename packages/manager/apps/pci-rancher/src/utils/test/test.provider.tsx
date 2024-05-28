@@ -11,6 +11,7 @@ import updateSoftwareTranslation from '../../public/translations/pci-rancher/upd
 import queryClient from '../../query.client';
 
 const ns = [
+  'pci-rancher/onboarding',
   'pci-rancher/listing',
   'pci-rancher/dashboard',
   'pci-rancher/updateSoftware',

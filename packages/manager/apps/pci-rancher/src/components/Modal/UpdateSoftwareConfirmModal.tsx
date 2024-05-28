@@ -15,8 +15,9 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React from 'react';
 
-import { RancherVersion } from '@/api/api.type';
+import { useRancherVersionsCapabilities } from '@/hooks/useRancher';
 import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
+import { getVersionInfoByName } from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { useTranslate } from '@/utils/translation';
 import LinkIcon from '../LinkIcon/LinkIcon';
@@ -25,16 +26,19 @@ import Modal from './Modal';
 interface UpdateSoftwareModalProps {
   onClose: () => void;
   onConfirmUpdated: () => void;
-  version: RancherVersion;
+  selectedVersion: string;
   isUpdatePending: boolean;
 }
 
 const UpdateSoftwareModal = ({
   onClose,
   onConfirmUpdated,
-  version,
+  selectedVersion,
   isUpdatePending,
 }: UpdateSoftwareModalProps) => {
+  const { data } = useRancherVersionsCapabilities();
+
+  const selectedVersionInfo = getVersionInfoByName(selectedVersion, data);
   const { t } = useTranslate('pci-rancher/updateSoftware');
   useTrackingPage(TrackingPageView.UpdateSoftware);
   const trackAction = useTrackingAction();
@@ -68,7 +72,7 @@ const UpdateSoftwareModal = ({
             </OsdsText>
             <LinkIcon
               iconName={ODS_ICON_NAME.EXTERNAL_LINK}
-              href={version?.changelogUrl}
+              href={selectedVersionInfo?.changelogUrl}
               text={t('updateSoftwareRancherChangelog')}
               target={OdsHTMLAnchorElementTarget._blank}
             />

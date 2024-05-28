@@ -7,7 +7,20 @@ export const getVersion = (rancher?: RancherService) => {
   return rancher?.currentState.version;
 };
 
-export const getLatestVersionsAvailable = (
+export const getVersionInfoByName = (
+  version: string,
+  versions?: RancherVersion[],
+) => versions?.find((v) => v.name === version);
+
+export const getCurrentVersionInfo = (
+  rancher: RancherService,
+  versions?: RancherVersion[],
+) => {
+  const currentVersion = getVersion(rancher);
+  return getVersionInfoByName(currentVersion, versions);
+};
+
+export const getLatestVersions = (
   rancher?: RancherService,
   versions?: RancherVersion[],
 ): RancherVersion[] | null => {
@@ -18,18 +31,17 @@ export const getLatestVersionsAvailable = (
   }
 
   const sortedVersions = [...versions].sort((a, b) => {
-    if (a.name < b.name) {
+    if (a.name > b.name) {
       return 1;
     }
-    if (a.name > b.name) {
+    if (a.name < b.name) {
       return -1;
     }
     return 0;
   });
 
   const latestVersionsAvailable = sortedVersions.filter(
-    (version) =>
-      version.status === 'AVAILABLE' && version.name > currentVersion,
+    (version) => version.name > currentVersion,
   );
 
   return latestVersionsAvailable ?? null;
@@ -39,4 +51,10 @@ export const getLatestVersionAvailable = (
   rancher?: RancherService,
   versions?: RancherVersion[],
 ): RancherVersion | null =>
-  getLatestVersionsAvailable(rancher, versions)?.[0] ?? null;
+  getLatestVersions(rancher, versions)
+    ?.filter((v) => v.status === 'AVAILABLE')
+    ?.slice(-1)[0] ?? null;
+
+export const isVersionDeprecated = (version: RancherVersion) => {
+  return version.status === 'UNAVAILABLE' && version.cause === 'DEPRECATED';
+};

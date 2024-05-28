@@ -40,6 +40,7 @@ export const getByRancherIdProjectId = async (
   );
   return response.data;
 };
+
 export const getProject = async (projectId: string): Promise<PciProject> => {
   const response = await apiClient.v6.get(`/cloud/project/${projectId}`);
   return response.data;
@@ -65,10 +66,12 @@ export const createRancherServiceQueryKey = () => ['post/rancher/resource'];
 export const getRancherPlan = async (projectId: string) =>
   apiClient.v2.get<RancherPlan[]>(getReferenceRancherInfo(projectId, 'plan'));
 
-export const getRancherVersion = async (projectId: string) =>
-  apiClient.v2.get<RancherVersion[]>(
+export const getRancherVersion = async (projectId: string) => {
+  const response = await apiClient.v2.get<RancherVersion[]>(
     getReferenceRancherInfo(projectId, 'version'),
   );
+  return response.data;
+};
 
 export const createRancherService = async ({
   projectId,
@@ -136,13 +139,18 @@ export const getpublicCloudReferenceRancherVersionListQueryKey = [
   'get/publicCloud/reference/rancher/version',
 ];
 
-export const getVersions = async (): Promise<RancherVersion[]> => {
+export const getRancherVersionCapabilities = async (
+  projectId: string,
+  rancherId: string,
+): Promise<RancherVersion[]> => {
   const response = await apiClient.v2.get(
-    '/publicCloud/reference/rancher/version',
+    `${getByRancherIdProjectIdQueryKey(
+      projectId,
+      rancherId,
+    )}/capabilities/version`,
   );
   return response.data;
 };
-
 /**
  *  Get listing with iceberg
  */

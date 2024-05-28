@@ -18,7 +18,7 @@ const setupSpecTest = async () =>
     render(
       <UpdateSoftwareModal
         onClose={onClose}
-        version={versionsMocked[1]}
+        selectedVersion={versionsMocked[1].name}
         onConfirmUpdated={onConfirmUpdated}
         isUpdatePending={false}
       />,
