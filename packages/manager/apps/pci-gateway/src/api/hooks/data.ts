@@ -191,5 +191,5 @@ export const useData = (projectId: string) => {
     i18n.resolvedLanguage,
   ]);
 
-  return sizes.reverse();
+  return sizes;
 };
