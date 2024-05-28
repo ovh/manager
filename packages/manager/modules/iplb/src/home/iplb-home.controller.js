@@ -22,6 +22,7 @@ export default class IpLoadBalancerHomeCtrl {
     $translate,
     coreConfig,
     coreURLBuilder,
+    ChartFactory,
     CucControllerHelper,
     CucCloudMessage,
     CucFeatureAvailabilityService,
@@ -43,6 +44,7 @@ export default class IpLoadBalancerHomeCtrl {
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
+    this.ChartFactory = ChartFactory;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
@@ -320,17 +322,25 @@ export default class IpLoadBalancerHomeCtrl {
   initGraph() {
     this.metricsList = this.IpLoadBalancerConstant.graphs;
     this.metric = head(this.metricsList);
-    this.options = {
-      scales: {
-        xAxes: [
-          {
-            gridLines: {
+    this.graph = new this.ChartFactory({
+      data: {
+        datasets: [],
+        labels: [],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          x: {
+            grid: {
               display: false,
             },
           },
-        ],
-        yAxes: [
-          {
+          y: {
             id: 'y-axis-1',
             type: 'linear',
             ticks: {
@@ -339,19 +349,20 @@ export default class IpLoadBalancerHomeCtrl {
               beginAtZero: true,
             },
           },
-        ],
-      },
-      elements: {
-        line: {
-          fill: false,
-          borderColor: '#3DD1F0',
-          borderWidth: 4,
         },
-        point: {
-          radius: 0,
+        elements: {
+          line: {
+            fill: false,
+            borderColor: '#3DD1F0',
+            borderWidth: 4,
+            tension: 0.5,
+          },
+          point: {
+            radius: 0,
+          },
         },
       },
-    };
+    });
     this.loadGraph();
   }
 
@@ -365,10 +376,11 @@ export default class IpLoadBalancerHomeCtrl {
       .then((data) => {
         if (data.length && data[0].dps) {
           this.data = values(data[0].dps);
-          this.labels = [];
+          this.graph.data.labels = [];
           this.data.forEach((value, index) => {
-            this.labels.unshift(`${index * 5}m`);
+            this.graph.data.labels.unshift(`${index * 5}m`);
           });
+          this.graph.data.datasets = [{ data: values(data[0].dps) }];
         }
       })
       .finally(() => {

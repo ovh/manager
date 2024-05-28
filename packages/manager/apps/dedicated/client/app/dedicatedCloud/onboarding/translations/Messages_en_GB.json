@@ -16,5 +16,6 @@
   "dedicated_clouds_onboarding_us_guide2_description": "To enhance the security of your vSphere infrastructure, you can restrict and manage access to vCenter.",
   "dedicated_clouds_onboarding_us_guide3_title": "Find out how to authorise IP addresses to connect to vCenter.",
   "dedicated_clouds_onboarding_us_guide3_description": "By default, access to your vCenter is restricted. You will therefore need to add the IPs that will be authorised to connect to the service.",
-  "dedicated_clouds_onboarding_description4": "You also get high-performance cloud services, with options like NSX, vSAN, and Veeam Backup (for your backups) — as well as Zerto (for your disaster recovery plan)."
+  "dedicated_clouds_onboarding_description4": "You also get high-performance cloud services, with options like NSX, vSAN, and Veeam Backup (for your backups) — as well as Zerto (for your disaster recovery plan).",
+  "dedicated_clouds_onboarding_subtitle": "VMware on OVHcloud"
 }

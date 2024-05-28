@@ -20,9 +20,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "@playwright-helpers": ["../../../../playwright-helpers/index"],
       "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
     }
   },
-  "include": ["src"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist", "types", "src/__tests__"]
 }

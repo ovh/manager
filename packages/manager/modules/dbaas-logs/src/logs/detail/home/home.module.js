@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
+import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@uirouter/angularjs';
 import 'angular-translate';
@@ -27,6 +28,7 @@ angular
     account,
     aliases,
     formatsports,
+    ngOvhChart,
   ])
   .config(routing)
   .service('LogsHomeService', service)

@@ -452,7 +452,7 @@ angular.module('services').service(
         params: {
           recordsCount,
           offset,
-          search,
+          search: search?.toLowerCase(),
           searchedType,
         },
         returnSuccessKey: '',

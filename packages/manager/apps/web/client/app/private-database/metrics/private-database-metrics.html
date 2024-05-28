@@ -22,7 +22,9 @@
                 data-ng-if="chart.hasData"
                 class="chart-container"
                 style="height: 320px;"
-                data-wuc-chartjs="chart.data"
+                data-chart
+                data-chartjs="chart.data"
+                data-auto-reload="true"
             ></div>
 
             <oui-message data-ng-if="!chart.hasData" data-type="warning">

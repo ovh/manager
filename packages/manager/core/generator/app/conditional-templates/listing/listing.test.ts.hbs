@@ -1,6 +1,0 @@
-import { expect, test } from '@playwright/test';
-import '@playwright-helpers/login';
-
-test('Listing page should contain Services list', async ({ page }) => {
-  await expect(page.locator('h2')).toContainText('Services list');
-});

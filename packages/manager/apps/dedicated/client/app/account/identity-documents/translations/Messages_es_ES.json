@@ -2,7 +2,7 @@
   "user_account_identity_documents": "Mis documentos de identidad",
   "user_account_identity_documents_title": "Es necesario verificar los documentos",
   "user_account_identity_documents_sub_title": "Añada sus documentos",
-  "user_account_identity_documents_intro": "Ha creado su cuenta y quiere realizar un pedido desde nuestro sitio web en India. Según la normativa vigente, es necesario verificar su identidad para poder realizar un pedido.",
+  "user_account_identity_documents_intro": "Ha creado una cuenta. Para realizar un pedido en nuestro sitio web, es necesario realizar comprobaciones de acuerdo con la legislación india.",
   "user_account_identity_documents_intro_kyc_reminder": "Asegúrese de que sus datos personales coinciden con el nombre y la dirección que aparecen en sus documentos oficiales.",
   "user_account_identity_documents_list_for_particular": "Como particular, los documentos que deben presentarse de manera obligatoria son los siguientes:",
   "user_account_identity_documents_list_for_enterprise": "Como empresa, los documentos que deben presentarse de manera obligatoria son los siguientes:",
@@ -24,5 +24,8 @@
   "user_account_identity_documents_legal_info1": "OVH SAS es el responsable del tratamiento de sus datos personales. Los datos recopilados a través de este formulario son tratados en cumplimiento de las <a href=\"{{ link1 }}\" target=\"_blank\">Directrices de Ciberseguridad del 28/04/2022</a> publicadas por el CERT-In en virtud de las disposiciones de la subsección (6) del <a href=\"{{ link2 }}\" target=\"_blank\">artículo 70-B</a> de la Information Technology (IT) Act, 2000.",
   "user_account_identity_documents_legal_info2": "Para más información sobre el tratamiento de sus datos y sus derechos, consulte la <a href=\"{{ link }}\" target=\"_blank\">Política de uso de datos personales de OVHcloud</a>.",
   "user_account_identity_documents_verification_in_progress_info": "Nuestro equipo está analizando el tratamiento de sus documentos.",
-  "user_account_identity_documents_verification_waiting_info": "Su solicitud ha sido analizada, pero es necesaria información adicional. Consulte su tíquet de soporte."
+  "user_account_identity_documents_verification_waiting_info": "Su solicitud ha sido analizada, pero es necesaria información adicional. Consulte su tíquet de soporte.",
+  "user_account_identity_documents_upload": "Añada sus documentos",
+  "user_account_identity_documents_intro_others": "Si es un particular, los justificantes de identidad y de dirección a continuación son suficientes. En este caso, no es necesario presentar la declaración jurada ni el justificante de IVA.",
+  "user_account_identity_documents_legal_info3": "Los documentos se conservarán durante 5 años una vez finalizado el contrato."
 }

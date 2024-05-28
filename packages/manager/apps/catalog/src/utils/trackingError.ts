@@ -1,7 +1,7 @@
-import { useShell } from '@ovh-ux/manager-react-core-application';
+import React from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useLocation } from 'react-router-dom';
 import { ErrorMessage, TRACKING_LABELS } from '@ovhcloud/manager-components';
-import { Environment } from '@ovh-ux/manager-config/dist/types';
 import { ErrorObject } from '@/components/Error/Errors';
 
 export function getTypology(error: ErrorMessage) {
@@ -13,22 +13,22 @@ export function getTypology(error: ErrorMessage) {
   return TRACKING_LABELS.PAGE_LOAD;
 }
 
-export function sendErrorTracking({ error }: ErrorObject) {
-  const shell = useShell();
+export function useSendErrorTracking({ error }: ErrorObject) {
+  const { shell } = React.useContext(ShellContext);
   const location = useLocation();
   const { tracking, environment } = shell;
   const env = environment.getEnvironment();
 
-  env.then((response: Environment) => {
-    const { applicationName } = response;
-    const name = `errors::${getTypology(
-      error as ErrorMessage,
-    )}::${applicationName}`;
-    tracking.trackPage({
-      name,
-      level2: '81',
-      type: 'navigation',
-      page_category: location.pathname,
+  React.useEffect(() => {
+    env.then((response: any) => {
+      const { applicationName } = response;
+      const name = `errors::${getTypology(error as ErrorMessage)}::${applicationName}`;
+      tracking.trackPage({
+        name,
+        level2: '81',
+        type: 'navigation',
+        page_category: location.pathname,
+      });
     });
-  });
+  }, []);
 }

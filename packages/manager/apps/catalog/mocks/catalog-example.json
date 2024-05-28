@@ -1,0 +1,720 @@
+[
+  {
+    "id": 20374,
+    "name": "Block Storage",
+    "description": "Créez vos volumes de stockage, utilisables comme des disques supplémentaires et sécurisés via une triple réplication des données",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Storage and Backup",
+      "Block Storage"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "US", "CA"],
+    "productName": "BLOCK_STORAGE",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/block-storage",
+    "universe": "Public Cloud",
+    "category": "Storage and Backup"
+  },
+  {
+    "id": 20375,
+    "name": "Cloud Archive",
+    "description": "Archivez vos données sur le long terme dans un espace de stockage cloud, accessible par des protocoles standards.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Storage and Backup",
+      "Cloud Archive"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "US", "CA"],
+    "productName": "CLOUD_ARCHIVE",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/cloud-archive",
+    "universe": "Public Cloud",
+    "category": "Storage and Backup"
+  },
+  {
+    "id": 20379,
+    "name": "Data Processing",
+    "description": "Lancez vos travaux de calcul Apache Spark rapidement et facilement",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Data Analytics",
+      "Data Processing"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "US", "CA"],
+    "productName": "DATA_PROCESSING",
+    "featureAvailability": "data-processing",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/data-processing",
+    "universe": "Public Cloud",
+    "category": "Data Analytics"
+  },
+  {
+    "id": 20385,
+    "name": "E-mail Pro",
+    "description": "Le compte e-mail professionnel pour démarrer votre activité au prix le plus juste.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Hébergements web & Domaines",
+      "Solutions E-mails",
+      "E-mail Pro"
+    ],
+    "url": "https://ovhcloud.com/fr/emails/email-pro/",
+    "regionTags": ["EU"],
+    "productName": "EMAIL_PRO",
+    "order": "https://www.ovh.com/fr/emails/email-pro/",
+    "regions": ["EU"],
+    "featureAvailability": "email-pro",
+    "universe": "Hébergements web & Domaines",
+    "category": "Solutions E-mails"
+  },
+  {
+    "id": 20390,
+    "name": "Instance Backup",
+    "description": "Profitez d'un service de sauvegarde de vos instances",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Storage and Backup",
+      "Instance Backup"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "US", "CA"],
+    "productName": "INSTANCES_BACKUP",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/instance-backup",
+    "universe": "Public Cloud",
+    "category": "Storage and Backup"
+  },
+  {
+    "id": 20394,
+    "name": "Microsoft 365",
+    "description": "Travaillez de manière optimale en consultant et en éditant vos documents où que vous soyez et en toute sécurité.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Hébergements web & Domaines",
+      "Solutions collaboratives",
+      "Microsoft 365"
+    ],
+    "url": "https://ovhcloud.com/fr/collaborative-tools/microsoft-365/",
+    "regionTags": ["EU"],
+    "productName": "LICENSE_OFFICE",
+    "order": "https://www.ovh.com/fr/office-365/",
+    "featureAvailability": "office",
+    "universe": "Hébergements web & Domaines",
+    "category": "Solutions collaboratives"
+  },
+  {
+    "id": 20398,
+    "name": "Managed Kubernetes Service",
+    "description": "Orchestrez vos applications conteneurisées avec un cluster Kubernetes certifié CNCF",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Containers and orchestration",
+      "Managed Kubernetes Service"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "MANAGED_KUBERNETES",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/kubernetes",
+    "featureAvailability": "kubernetes",
+    "universe": "Public Cloud",
+    "category": "Containers and orchestration"
+  },
+  {
+    "id": 20399,
+    "name": "Managed Private Registry",
+    "description": "Gérez un dépôt pour vos briques logicielles, sous la forme d'images Docker ou de charts Helm",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Containers and orchestration",
+      "Managed Private Registry"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "MANAGED_PRIVATE_REGISTRY",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/managed-private-registry",
+    "universe": "Public Cloud",
+    "category": "Containers and orchestration"
+  },
+  {
+    "id": 20407,
+    "name": "Object Storage",
+    "description": "Profitez du stockage illimité à la demande, accessible par API, compatible S3",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Storage and Backup",
+      "Object Storage"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "US", "CA"],
+    "productName": "OBJECT_STORAGE",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/object-storage",
+    "universe": "Public Cloud",
+    "category": "Storage and Backup"
+  },
+  {
+    "id": 20414,
+    "name": "VMware on OVHcloud",
+    "description": "VMware on OVHcloud est une solution unique sur le marché offrant l'évolutivité du cloud sur une infrastructure hardware 100 % dédiée. La virtualisation de votre infrastructure est réalisée grâce à la technologie VMware et entièrement gérée par OVHcloud.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Hosted Private Cloud",
+      "Plateforme",
+      "VMware on OVHCloud",
+      "VMware on OVHcloud"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "US", "CA"],
+    "productName": "PRIVATE_CLOUD",
+    "order": "https://www.ovhcloud.com/fr/enterprise/products/hosted-private-cloud/prices/",
+    "highlight": true,
+    "featureAvailability": "dedicated-cloud:order",
+    "universe": "Hosted Private Cloud",
+    "category": "Plateforme"
+  },
+  {
+    "id": 20415,
+    "name": "Base de données SQL privé",
+    "description": "Des bases de données privées, conçues pour étendre les capacités des hébergements web, offrir davantage de performances et de liberté de configuration.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Hébergements web & Domaines",
+      "Databases",
+      "Base de données SQL privé"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "PRIVATE_DATABASE",
+    "order": "https://www.ovh.com/fr/hebergement-web/options-sql.xml",
+    "featureAvailability": "private-database",
+    "universe": "Hébergements web & Domaines",
+    "category": "Databases"
+  },
+  {
+    "id": 20418,
+    "name": "Shared Content Delivery Network (CDN)",
+    "description": "Optimisez le trafic de votre site web avec l'option Shared CDN pour une expérience utilisateur optimale.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Hébergements web & Domaines",
+      "Options Hébergement Web",
+      "Shared Content Delivery Network (CDN)"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "SHARED_CDN",
+    "order": "https://www.ovh.com/fr/hebergement-web/cdn.xml",
+    "featureAvailability": "hosting:shared-cdn",
+    "universe": "Hébergements web & Domaines",
+    "category": "Options Hébergement Web"
+  },
+  {
+    "id": 20425,
+    "name": "Visibilité Pro",
+    "description": "Référencez votre activité partout où votre clientèle vous cherche. Recevez des alertes et répondez rapidement aux avis de vos clientes et clients. ",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Hébergements web & Domaines",
+      "Options Hébergement Web",
+      "Visibilité Pro"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU"],
+    "productName": "VISIBILITY_PRO",
+    "order": "https://www.ovh.com/fr/hebergement-web/referencement-local.xml",
+    "universe": "Hébergements web & Domaines",
+    "category": "Options Hébergement Web"
+  },
+  {
+    "id": 20426,
+    "name": "Volume Snapshot",
+    "description": "Déclenchez un snapshot sur vos volumes Block Storage",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Storage and Backup",
+      "Volume Snapshot"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "US", "CA"],
+    "productName": "VOLUME_SNAPSHOT",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/volume-snapshot",
+    "universe": "Public Cloud",
+    "category": "Storage and Backup"
+  },
+  {
+    "id": 20430,
+    "name": "Web PaaS Powered by Platform.sh",
+    "description": "La plateforme de développement pensée pour les développeurs et leurs équipes, afin de concevoir, déployer et exécuter des applications web.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Hébergements web & Domaines",
+      "Web PaaS",
+      "Web PaaS Powered by Platform.sh"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU"],
+    "productName": "WEB_PAAS",
+    "order": "https://www.ovh.com/manager/#/web/paas/webpaas/new",
+    "featureAvailability": "web-paas",
+    "universe": "Hébergements web & Domaines",
+    "category": "Web PaaS"
+  },
+  {
+    "id": 20431,
+    "name": "Workflow Management",
+    "description": "Automatisez vos tâches pour manipuler vos ressources cloud, en vous basant sur votre logique métier, afin de répondre à chaque situation",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Containers and orchestration",
+      "Workflow Management"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "WORKFLOW_MANAGEMENT",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/orchestration",
+    "universe": "Public Cloud",
+    "category": "Containers and orchestration"
+  },
+  {
+    "id": 20447,
+    "name": "Nutanix on OVHcloud",
+    "description": "La solution Nutanix on OVHcloud associe les licences de la Nutanix Cloud Platform et les infrastructures Hosted Private Cloud d'OVHcloud dédiées et qualifiées Nutanix, pour pré-déployer un environnement hyperconvergé (HCI) Nutanix en quelques heures.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Hosted Private Cloud",
+      "Plateforme",
+      "Nutanix on OVHcloud"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "NUTANIX",
+    "order": "https://www.ovhcloud.com/fr/lp/nutanix/",
+    "excludeSubsidiaries": ["ASIA", "AU", "SG"],
+    "featureAvailability": "nutanix",
+    "universe": "Hosted Private Cloud",
+    "category": "Plateforme"
+  },
+  {
+    "id": 20449,
+    "name": "Compute",
+    "description": "Choisissez des instances parmi une large gamme de modèles, déployez-les et profitez de la flexibilité du cloud pour vous développer selon vos besoins.",
+    "lang": "fr_FR",
+    "categories": ["Catalogs", "Public Cloud", "Compute"],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU"],
+    "productName": "PCI_INSTANCES",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/",
+    "universe": "Public Cloud",
+    "category": "Compute"
+  },
+  {
+    "id": 20466,
+    "name": "Databases",
+    "description": "Exploitez la puissance de vos données en gardant le contrôle de vos ressources.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Storage and Backup",
+      "Databases"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "DATABASES",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/databases",
+    "featureAvailability": "databases",
+    "universe": "Public Cloud",
+    "category": "Storage and Backup"
+  },
+  {
+    "id": 20470,
+    "name": "AI Notebooks",
+    "description": "Démarrez vos notebooks Jupyter ou VS Code dans le cloud, simplement et rapidement",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "AI & machine learning",
+      "AI Notebooks"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "NOTEBOOKS",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/ai-notebooks",
+    "featureAvailability": "notebooks",
+    "universe": "Public Cloud",
+    "category": "AI & machine learning"
+  },
+  {
+    "id": 20473,
+    "name": "AI Training",
+    "description": "Entraînez efficacement et simplement vos modèles d'intelligence artificielle, de machine learning et de deep learning et optimisez vos usages GPU.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "AI & machine learning",
+      "AI Training"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "AI_TRAINING",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/ai-training/",
+    "universe": "Public Cloud",
+    "category": "AI & machine learning"
+  },
+  {
+    "id": 20633,
+    "name": "Horizon",
+    "description": "Retrouvez l'interface web originale d'OpenStack, afin d'administrer facilement vos ressources cloud",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Management Interfaces",
+      "Horizon"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "HORIZON",
+    "order": "https://docs.ovh.com/fr/public-cloud/presentation-dhorizon/",
+    "universe": "Public Cloud",
+    "category": "Management Interfaces"
+  },
+  {
+    "id": 20804,
+    "name": "Serveurs dédiés",
+    "description": "Choisissez l’infrastructure la plus adaptée à vos applications métier. Nous vous proposons différentes gammes de serveurs dédiés performants et adaptés aux besoins les plus exigeants de toutes les entreprises.",
+    "lang": "fr_FR",
+    "categories": ["Catalogs", "Bare Metal Cloud", "Serveurs dédiés"],
+    "url": "https://ovhcloud.com/fr/bare-metal",
+    "regionTags": ["EU", "US", "CA"],
+    "productName": "DEDICATED_SERVER",
+    "order": "https://www.ovhcloud.com/fr/bare-metal/prices/",
+    "highlight": true,
+    "featureAvailability": "dedicated-server:order",
+    "universe": "Bare Metal Cloud",
+    "category": "Serveurs dédiés"
+  },
+  {
+    "id": 20817,
+    "name": "Serveurs privés virtuels",
+    "description": "Un serveur privé virtuel (VPS) est un serveur dédié virtualisé. Contrairement à un hébergement web mutualisé où la gestion technique est prise en charge par OVHcloud, c’est vous qui administrez complètement votre VPS.",
+    "lang": "fr_FR",
+    "categories": ["Catalogs", "Bare Metal Cloud", "Serveurs privés virtuels"],
+    "url": "https://ovhcloud.com/fr/vps",
+    "regionTags": ["EU", "US", "CA"],
+    "productName": "VPS",
+    "order": "https://www.ovh.com/fr/vps/",
+    "highlight": true,
+    "featureAvailability": "vps",
+    "universe": "Bare Metal Cloud",
+    "category": "Serveurs privés virtuels"
+  },
+  {
+    "id": 20820,
+    "name": "Managed Bare Metal",
+    "description": "Votre cloud dédié évolutif, hébergé et supervisé par OVHcloud, disponible en 90 minutes. Avec la gamme Essentials, choisissez la virtualisation VMware hautement disponible et restez concentré sur votre métier.",
+    "lang": "fr_FR",
+    "categories": ["Catalogs", "Bare Metal Cloud", "Managed Bare Metal"],
+    "url": "https://ovhcloud.com/fr/managed-bare-metal/",
+    "regionTags": ["EU", "US", "CA"],
+    "productName": "ESSENTIALS",
+    "order": "https://www.ovhcloud.com/fr/managed-bare-metal/",
+    "highlight": true,
+    "featureAvailability": "managed-bare-metal",
+    "universe": "Bare Metal Cloud",
+    "category": "Managed Bare Metal"
+  },
+  {
+    "id": 20825,
+    "name": "Enterprise File Storage",
+    "description": "Enterprise File Storage, powered by NetApp. Connectez toutes vos solutions OVHcloud à un service de stockage de fichiers hautement performant, pour vos applications professionnelles les plus critiques.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Bare Metal Cloud",
+      "Storage and Backup",
+      "Enterprise File Storage"
+    ],
+    "url": "https://ovhcloud.com/fr/storage-solutions/enterprise-file-storage/",
+    "regionTags": ["EU", "CA"],
+    "productName": "NETAPP",
+    "order": "https://www.ovh.com/manager/#/dedicated/netapp/new",
+    "highlight": true,
+    "featureAvailability": "netapp",
+    "universe": "Bare Metal Cloud",
+    "category": "Storage and Backup"
+  },
+  {
+    "id": 20837,
+    "name": "OVHcloud Load Balancer",
+    "description": "Scalez votre activité sans contraintes avec nos produits cloud, dans tous nos datacenters. L'OVHcloud Load Balancer répartit la charge entre vos différents services dans nos centres de données.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Network",
+      "Services réseau",
+      "OVHcloud Load Balancer"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "IP_LOAD_BALANCER",
+    "order": "https://www.ovh.com/fr/solutions/load-balancer/",
+    "featureAvailability": "ip-load-balancer",
+    "universe": "Network",
+    "category": "Services réseau"
+  },
+  {
+    "id": 20838,
+    "name": "vRack",
+    "description": "La technologie vRack (baie virtuelle) permet de connecter, d’isoler ou de répartir vos produits OVHcloud compatibles au sein d’un ou plusieurs réseaux privés.",
+    "lang": "fr_FR",
+    "categories": ["Catalogs", "Network", "Services réseau", "vRack"],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "US", "CA"],
+    "productName": "VRACK",
+    "order": "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+    "universe": "Network",
+    "category": "Services réseau"
+  },
+  {
+    "id": 20839,
+    "name": "OVHcloud Connect",
+    "description": "Notre solution de connexion hybride, OVHcloud Connect, vous permet de relier votre réseau d'entreprise à votre réseau privé OVHcloud vRack, de manière sécurisée et performante.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Network",
+      "Services réseau",
+      "OVHcloud Connect"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "OVH_CLOUD_CONNECT",
+    "order": "https://www.ovhcloud.com/fr/network-security/ovhcloud-connect/",
+    "featureAvailability": "cloud-connect",
+    "universe": "Network",
+    "category": "Services réseau"
+  },
+  {
+    "id": 20847,
+    "name": "Veeam Cloud Connect",
+    "description": "Externalisez facilement et automatiquement vos sauvegardes dans le cloud sécurisé d’OVHcloud. Depuis Veeam Availability Suite, assurez la réplication de vos données dans nos datacenters.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Bare Metal Cloud",
+      "Storage and Backup",
+      "Veeam Cloud Connect"
+    ],
+    "url": "https://ovhcloud.com/fr/storage-solutions/veeam-cloud-connect",
+    "regionTags": ["EU", "CA"],
+    "productName": "VEEAM_CLOUD_CONNECT",
+    "order": "https://www.ovh.com/fr/storage-solutions/veeam-cloud-connect/",
+    "featureAvailability": "veeam-cloud-connect",
+    "universe": "Bare Metal Cloud",
+    "category": "Storage and Backup"
+  },
+  {
+    "id": 20854,
+    "name": "Veeam Enterprise",
+    "description": "Accédez à la puissance de Veeam Backup & Replication en toute simplicité. OVHcloud vous permet de déployer votre solution et de configurer vos sauvegardes en toute liberté.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Hosted Private Cloud",
+      "Storage and Backup",
+      "Veeam Enterprise"
+    ],
+    "url": "https://ovhcloud.com/fr/storage-solutions/veeam-enterprise",
+    "regionTags": ["EU", "CA"],
+    "productName": "VEEAM_ENTERPRISE",
+    "order": "https://www.ovh.com/fr/storage-solutions/veeam-enterprise.xml",
+    "featureAvailability": "veeam-enterprise:order",
+    "universe": "Hosted Private Cloud",
+    "category": "Storage and Backup"
+  },
+  {
+    "id": 20872,
+    "name": "Logs Data Platform",
+    "description": "Indexez et analysez vos logs en temps réel. Soyez alertés en cas de dysfonctionnement. Partagez vos données avec vos collaborateurs.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Data Analytics",
+      "Logs Data Platform"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU"],
+    "productName": "ANALYTICS_DATA_PLATFORM",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/big-data-hadoop/",
+    "universe": "Public Cloud",
+    "category": "Data Analytics"
+  },
+  {
+    "id": 20895,
+    "name": "Réseau privé",
+    "description": "Déployez des réseaux privés pour implémenter des switchs virtuels capables de raccorder les instances de votre projet instantanément, à chaud et sans interruption.",
+    "lang": "fr_FR",
+    "categories": ["Catalogs", "Network", "Services réseau", "Réseau privé"],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU"],
+    "productName": "PRIVATE_NETWORK",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/private-network",
+    "universe": "Network",
+    "category": "Services réseau"
+  },
+  {
+    "id": 21197,
+    "name": "Cold Archive",
+    "description": "Bénéficiez de notre classe de stockage la plus économique pour l’archivage de vos données sur le long terme, dans une infrastructure s’appuyant sur des bandes magnétiques.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Storage and Backup",
+      "Cold Archive"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU"],
+    "productName": "COLD_ARCHIVE",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/cold-archive/",
+    "universe": "Public Cloud",
+    "category": "Storage and Backup"
+  },
+  {
+    "id": 21227,
+    "name": "Volume Backup",
+    "description": "Effectuez un backup de vos volumes Block Storage. Les données sauvegardées sont stockées sur notre service Object Storage.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Storage and Backup",
+      "Volume Backup"
+    ],
+    "url": "https://www.ovhcloud.com/fr/public-cloud/volume-backup/",
+    "regionTags": ["EU", "CA", "US"],
+    "productName": "VOLUME_BACKUP",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/volume-backup/",
+    "universe": "Public Cloud",
+    "category": "Storage and Backup"
+  },
+  {
+    "id": 21429,
+    "name": "AI Deploy",
+    "description": "Déployez des modèles et des applications de machine learning en production simplement, créez vos points d'accès API sans effort et réalisez des prédictions efficaces.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "AI & machine learning",
+      "AI Deploy"
+    ],
+    "url": "https://www.ovhcloud.com/fr/public-cloud/ai-deploy/",
+    "regionTags": ["EU", "CA"],
+    "productName": "AI_DEPLOY",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/ai-deploy/",
+    "universe": "Public Cloud",
+    "category": "AI & machine learning"
+  },
+  {
+    "id": 21725,
+    "name": "SAP HANA on Private Cloud",
+    "description": "Cette nouvelle plateforme combine des serveurs HCI certifiés SAP HANA avec notre infrastructure VMware on OVHcloud. Elle permet l’hébergement sécurisé et le déploiement facilité de vos environnements SAP les plus critiques dans un cloud souverain.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Hosted Private Cloud",
+      "Plateforme",
+      "SAP HANA on Private Cloud",
+      "SAP HANA on Private Cloud"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "SAP_HANA",
+    "order": "https://www.ovhcloud.com/fr/hosted-private-cloud/sap-hana/",
+    "highlight": true,
+    "featureAvailability": "dedicated-cloud:sapHanaOrder",
+    "universe": "Hosted Private Cloud",
+    "category": "Plateforme"
+  },
+  {
+    "id": 21763,
+    "name": "Kubernetes Load Balancer",
+    "description": "Distribution automatique du trafic sur la solution Managed Kubernetes Service",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Containers and orchestration",
+      "Kubernetes Load Balancer"
+    ],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "KUBERNETES_LOAD_BALANCER",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/kubernetes",
+    "featureAvailability": "kubernetes",
+    "universe": "Public Cloud",
+    "category": "Containers and orchestration"
+  },
+  {
+    "id": 21764,
+    "name": "Load Balancer",
+    "description": "Répartition automatique du trafic sur les ressources Public Cloud",
+    "lang": "fr_FR",
+    "categories": ["Catalogs", "Network", "Services réseau", "Load Balancer"],
+    "url": "https://mockup.url.com",
+    "regionTags": ["EU", "CA"],
+    "productName": "OCTAVIA_LOAD_BALANCER",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/private-network",
+    "featureAvailability": "octavia-load-balancer",
+    "universe": "Network",
+    "category": "Services réseau"
+  },
+  {
+    "id": 100001,
+    "name": "Managed Rancher Service",
+    "description": "Déployez et gérez vos applications conteneurisées de manière transparente dans un environnement Kubernetes multicluster, avec une approche multicloud ou cloud hybride.",
+    "lang": "fr_FR",
+    "categories": [
+      "Catalogs",
+      "Public Cloud",
+      "Containers and orchestration",
+      "Containers and orchestration"
+    ],
+    "url": "https://www.ovhcloud.com/fr/public-cloud/managed-rancher-service/",
+    "regionTags": ["EU", "CA"],
+    "productName": "MANAGED_RANCHER_SERVICE",
+    "order": "https://www.ovhcloud.com/fr/public-cloud/rancher",
+    "featureAvailability": "pci-rancher",
+    "universe": "Public Cloud",
+    "category": "Containers and orchestration"
+  }
+]

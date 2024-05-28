@@ -1,1 +1,1 @@
-export * from './GET/aapi/service';
+export * from './catalog';

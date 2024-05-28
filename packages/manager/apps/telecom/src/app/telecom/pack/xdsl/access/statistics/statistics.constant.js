@@ -10,49 +10,51 @@ export const PACK_XDSL_STATISTICS = {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      legend: {
-        position: 'bottom',
-        display: true,
-      },
       elements: {
+        line: {
+          tension: 0.5,
+        },
         point: {
           radius: 0,
         },
       },
-      tooltips: {
-        mode: 'label',
-        intersect: false,
-        callbacks: {
-          title(data) {
-            const timestamp = moment(get(head(data), 'xLabel'));
-            return timestamp.fromNow();
+      plugins: {
+        legend: {
+          position: 'bottom',
+          display: true,
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+            title(data) {
+              const timestamp = moment(get(head(data), 'xLabel'));
+              return timestamp.fromNow();
+            },
           },
         },
       },
       scales: {
-        yAxes: [
-          {
+        y: {
+          display: true,
+          position: 'left',
+          title: {
             display: true,
-            position: 'left',
-            scaleLabel: {
-              display: true,
-            },
-            gridLines: {
-              drawBorder: true,
-              display: false,
-            },
           },
-        ],
-        xAxes: [
-          {
-            type: 'time',
-            position: 'bottom',
-            gridLines: {
-              drawBorder: true,
-              display: true,
-            },
+          grid: {
+            drawBorder: true,
+            display: false,
           },
-        ],
+        },
+
+        x: {
+          type: 'time',
+          position: 'bottom',
+          grid: {
+            drawBorder: true,
+            display: true,
+          },
+        },
       },
     },
   },

@@ -4,7 +4,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 import 'angular-ui-bootstrap';
-import 'angular-chart.js';
 
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -44,7 +43,6 @@ const moduleName = 'ovhManagerIplb';
 
 angular
   .module(moduleName, [
-    'chart.js',
     'pascalprecht.translate',
     'ui.router',
     'ovh-api-services',

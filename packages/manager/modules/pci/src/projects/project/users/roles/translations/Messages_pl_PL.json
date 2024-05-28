@@ -1,7 +1,0 @@
-{
-  "pci_projects_project_users_roles": "Edytuj role",
-  "pci_projects_project_users_roles_cancel": "Anuluj",
-  "pci_projects_project_users_roles_edit": "Zatwierdź",
-  "pci_projects_project_users_roles_edit_success": "Zmodyfikowałeś uprawnienia użytkownika. Zmiany nie są widoczne natychmiast i mogą zająć 10 minut.",
-  "pci_projects_project_users_roles_edit_error": "Wystąpił błąd podczas aktualizacji ról użytkownika {{ message }} "
-}

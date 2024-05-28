@@ -54,6 +54,7 @@ export default class MoveMeetingCtrl {
                 slots,
               });
               slots = [];
+              prevTitle = title;
             }
             slots.push({
               id: index,

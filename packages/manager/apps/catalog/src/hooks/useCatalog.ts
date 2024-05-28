@@ -1,6 +1,6 @@
-import { AxiosError, AxiosResponse } from 'axios';
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   getManagerCatalogList,
   getManagerCatalogListQueryKey,
@@ -22,21 +22,22 @@ export const useCatalog = ({
   const [products, setProducts] = useState<Product[]>([]); // full list of products
   const [results, setResults] = useState<Product[]>([]); // the filtered list of products
 
-  const service = useQuery<AxiosResponse<Product[]>, AxiosError>({
+  const { error, isLoading, isSuccess, data } = useQuery<
+    ApiResponse<Product[]>,
+    ApiError
+  >({
     queryKey: getManagerCatalogListQueryKey,
-    queryFn: () => getManagerCatalogList(),
+    queryFn: getManagerCatalogList,
     staleTime: Infinity,
   });
 
-  const { error } = service;
-
   useEffect(() => {
-    if (service?.data?.status === 200) {
-      const response: Product[] = service.data?.data;
+    if (data?.status === 200) {
+      const response: Product[] = data?.data;
       setProducts(response);
       setResults(response);
     }
-  }, [service.isSuccess, service.data]);
+  }, [isSuccess, data]);
 
   useEffect(() => {
     setResults(filterProducts(products, categories, universes, searchText));
@@ -45,7 +46,7 @@ export const useCatalog = ({
   return {
     products,
     results,
-    isLoading: service.isLoading,
+    isLoading,
     error,
   };
 };

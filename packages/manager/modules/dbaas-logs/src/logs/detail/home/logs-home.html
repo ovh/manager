@@ -180,18 +180,13 @@
                         <oui-tabs-item
                             data-heading="{{ ::'logs_home_tab_stream' | translate }}"
                         >
-                            <canvas
-                                id="stream"
+                            <div
                                 class="chart chart-line"
-                                data-ng-if="ctrl.streamUsageGraphData.data.length>0"
-                                chart-data="ctrl.streamUsageGraphData.data"
-                                chart-labels="ctrl.streamUsageGraphData.labels"
-                                chart-series="ctrl.streamUsageGraphData.series"
-                                chart-colors="ctrl.streamUsageGraphData.colors"
-                                chart-dataset-override="ctrl.streamUsageGraphData.datasetOverride"
-                                chart-options="ctrl.streamUsageGraphData.options"
-                            >
-                            </canvas>
+                                data-chart
+                                data-chartjs="ctrl.streamUsageGraphData"
+                                data-auto-reload="true"
+                            ></div>
+
                             <span
                                 data-ng-if="ctrl.streamUsageGraphData.data.length===0"
                                 data-translate="logs_home_no_usage_known"
@@ -200,18 +195,13 @@
                         <oui-tabs-item
                             data-heading="{{ ::'streams_archives_title' | translate }}"
                         >
-                            <canvas
-                                id="archive"
+                            <div
                                 class="chart chart-line"
-                                data-ng-if="ctrl.archiveUsageGraphData.data.length>0"
-                                chart-data="ctrl.archiveUsageGraphData.data"
-                                chart-labels="ctrl.archiveUsageGraphData.labels"
-                                chart-series="ctrl.archiveUsageGraphData.series"
-                                chart-colors="ctrl.archiveUsageGraphData.colors"
-                                chart-dataset-override="ctrl.archiveUsageGraphData.datasetOverride"
-                                chart-options="ctrl.archiveUsageGraphData.options"
-                            >
-                            </canvas>
+                                data-chart
+                                data-chartjs="ctrl.archiveUsageGraphData"
+                                data-auto-reload="true"
+                            ></div>
+
                             <span
                                 data-ng-if="ctrl.archiveUsageGraphData.data.length===0"
                                 data-translate="logs_home_no_usage_known"
@@ -220,18 +210,13 @@
                         <oui-tabs-item
                             data-heading="{{ ::'logs_tab_indices' | translate }}"
                         >
-                            <canvas
-                                id="indice"
+                            <div
                                 class="chart chart-line"
-                                data-ng-if="ctrl.indiceUsageGraphData.data.length>0"
-                                chart-data="ctrl.indiceUsageGraphData.data"
-                                chart-labels="ctrl.indiceUsageGraphData.labels"
-                                chart-series="ctrl.indiceUsageGraphData.series"
-                                chart-colors="ctrl.indiceUsageGraphData.colors"
-                                chart-dataset-override="ctrl.indiceUsageGraphData.datasetOverride"
-                                chart-options="ctrl.indiceUsageGraphData.options"
-                            >
-                            </canvas>
+                                data-chart
+                                data-chartjs="ctrl.indiceUsageGraphData"
+                                data-auto-reload="true"
+                            ></div>
+
                             <span
                                 data-ng-if="ctrl.indiceUsageGraphData.data.length===0"
                                 data-translate="logs_home_no_usage_known"
