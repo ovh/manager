@@ -152,9 +152,9 @@ export const LocationStep = () => {
                   'whitespace-nowrap px-2 text-lg',
                 )}
               >
-                {regions.length === state.regions.length
+                {regions?.length === state.regions?.length
                   ? tRegionsList('pci_project_regions_list_continent_all')
-                  : regions[0]?.continent}
+                  : regions?.[0]?.continent}
               </div>
             </OsdsText>
           ),
