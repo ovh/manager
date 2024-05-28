@@ -38,6 +38,7 @@ export const getByRancherIdProjectId = async (
   );
   return response.data;
 };
+
 export const getProject = async (projectId: string): Promise<PciProject> => {
   const response = await apiClient.v6.get(`/cloud/project/${projectId}`);
   return response.data;
@@ -139,6 +140,18 @@ export const getVersions = async (): Promise<RancherVersion[]> => {
   return response.data;
 };
 
+export const getRancherVersionCapabilities = async (
+  projectId: string,
+  rancherId: string,
+): Promise<RancherVersion[]> => {
+  const response = await apiClient.v2.get(
+    `${getByRancherIdProjectIdQueryKey(
+      projectId,
+      rancherId,
+    )}/capabilities/version`,
+  );
+  return response.data;
+};
 /**
  *  Get listing with iceberg
  */

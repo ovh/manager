@@ -17,22 +17,22 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { isValidRancherName } from '@/utils/rancher';
-import { getRanchersUrl } from '@/utils/route';
-import Title, { Subtitle } from '@/components/Title/Title';
-import Block from '@/components/Block/Block';
 import {
   CreateRancherPayload,
   RancherPlan,
   RancherVersion,
 } from '@/api/api.type';
+import Block from '@/components/Block/Block';
+import Title, { Subtitle } from '@/components/Title/Title';
 import { useActivatePciProjectURL } from '@/hooks/useActivatePciProjectURL';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
+import { isValidRancherName } from '@/utils/rancher';
+import { getRanchersUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import { useSimpleTrackingAction } from '../../../hooks/useTrackingPage';
 import { useTranslate } from '@/utils/translation';
+import { useSimpleTrackingAction } from '../../../hooks/useTrackingPage';
 
 const TileSection: React.FC<{
   name: string;

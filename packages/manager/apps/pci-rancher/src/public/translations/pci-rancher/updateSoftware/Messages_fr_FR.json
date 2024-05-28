@@ -1,5 +1,7 @@
 {
-  "updateSoftwareRancherTitle": "Update Software",
+  "updateSoftwareRancherTitle": "Mise(s) à jour disponible(s)",
+  "updateSoftwareRancherDescription": "Sélectionner une version plus récente de votre service et consulter le changelog pour en savoir plus sur les changements inclus.",
+  "updateSoftwareRancherTableVersion": "Version",
   "updateSoftwareRancherPreviousButton": "Retour a la page précedente",
   "updateSoftwareRancherBreadcrumb": "Mise a jour de Rancher",
   "updateSoftwareRancherCurrentVersion": "Version courante",
@@ -11,6 +13,7 @@
   "updateSoftwareAvailableUpdate": "Mise(s) à jour disponible(s)",
   "updateSoftwareBannerAvailableUpdate": "Une nouvelle version du software est disponible",
   "updateSoftwareBannerUpdateLoading": " La version de votre Managed Rancher Service est en cours de mise à jour. Merci de patienter, cela peut prendre quelques minutes.",
+  "updateSoftwareBannerDeprecated": "La version de votre Rancher n'est plus supportée. Veuillez évoluer vers une version plus récente.",
   "updateSoftwareBannerError": "Une erreur est survenue lors de la mise a jour de votre Managed Rancher Service",
   "updateSoftwareModalTitle": "Mettre à jour votre Managed Rancher Service",
   "updateSoftwareModalDescription": " En confirmant la mise à jour, vous confirmez avoir pris connaissance du changelog de la version selectionnée et des impacts potentiels sur vos clusters, applicatifs et usages spécifiques.",

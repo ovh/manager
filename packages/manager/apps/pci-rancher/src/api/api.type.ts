@@ -106,4 +106,5 @@ export interface RancherVersion {
   name: string;
   status: RancherReferenceStatus;
   changelogUrl: string;
+  cause?: 'CANNOT_UPGRADE_MULTIPLE_VERSIONS' | 'DEPRECATED' | 'DISABLED';
 }

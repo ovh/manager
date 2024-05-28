@@ -1,6 +1,7 @@
 import { rancherMocked } from '@/_mock_/rancher';
 import {
   getLatestVersionAvailable,
+  getLatestVersions,
   getVersion,
   isValidRancherName,
 } from './rancher';
@@ -77,5 +78,43 @@ describe('Rancher version', () => {
         },
       ]),
     ).toBe(null);
+  });
+
+  it('Should return sorted versions by oldest to latest', () => {
+    expect(
+      getLatestVersions(rancherMocked, [
+        {
+          name: '2.8.8',
+          status: 'AVAILABLE',
+          changelogUrl: 'https://www.ovh.com',
+        },
+        {
+          name: '2.9.9',
+          status: 'AVAILABLE',
+          changelogUrl: 'https://www.ovh.com',
+        },
+        {
+          name: '2.8.0',
+          status: 'AVAILABLE',
+          changelogUrl: 'https://www.ovh.com',
+        },
+      ]),
+    ).toStrictEqual([
+      {
+        changelogUrl: 'https://www.ovh.com',
+        name: '2.8.0',
+        status: 'AVAILABLE',
+      },
+      {
+        changelogUrl: 'https://www.ovh.com',
+        name: '2.8.8',
+        status: 'AVAILABLE',
+      },
+      {
+        changelogUrl: 'https://www.ovh.com',
+        name: '2.9.9',
+        status: 'AVAILABLE',
+      },
+    ]);
   });
 });

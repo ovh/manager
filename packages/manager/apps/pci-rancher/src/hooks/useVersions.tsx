@@ -5,11 +5,10 @@ import {
   getpublicCloudReferenceRancherVersionListQueryKey,
 } from '../api/apiv2/services';
 
-const useVersions = () => {
-  return useQuery({
+const useVersions = () =>
+  useQuery({
     queryKey: getpublicCloudReferenceRancherVersionListQueryKey,
-    queryFn: () => getVersions(),
+    queryFn: getVersions,
   });
-};
 
 export default useVersions;

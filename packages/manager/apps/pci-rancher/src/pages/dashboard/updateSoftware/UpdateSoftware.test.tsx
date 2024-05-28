@@ -32,6 +32,7 @@ const defaultProps: UpdateSoftwareProps = {
   versions: versionsMocked,
   isUpdatePending: false,
   onClickUpdate: jest.fn(),
+  currentVersionDetails: versionsMocked[0],
 };
 
 afterEach(() => {
@@ -66,14 +67,19 @@ describe('UpdateSoftware', () => {
       expect(radio3).toHaveAttribute('checked');
     });
 
-    it('should not see the unavailable version', async () => {
-      const { queryByText } = await setupSpecTest();
+    it('should see the unavailable version as disabled and not clickable', async () => {
+      const { getByText } = await setupSpecTest();
 
-      const notAvailableVersion = queryByText(
+      const notAvailableVersion = getByText(
         `Version ${versionsMocked[2].name}`,
       );
 
-      expect(notAvailableVersion).not.toBeInTheDocument();
+      const radio = notAvailableVersion.closest('osds-radio-button');
+      expect(radio).toHaveAttribute('disabled');
+
+      fireEvent.click(radio);
+
+      expect(radio).not.toHaveAttribute('checked');
     });
 
     it('Given i click on other version i should change selected version', async () => {
@@ -108,6 +114,35 @@ describe('UpdateSoftware', () => {
       fireEvent.click(radio);
 
       expect(radio).not.toHaveAttribute('checked');
+    });
+
+    describe('Changelog url', () => {
+      it('should open the changelog url', async () => {
+        const { getAllByText } = await setupSpecTest();
+
+        const newVersion1 = getAllByText(
+          updateTranslation.updateSoftwareRancherChangelog,
+        );
+
+        const changeLogLink = newVersion1[0].closest('osds-link');
+        expect(changeLogLink).toBeInTheDocument();
+      });
+
+      it('should not display changelog if there is no url', async () => {
+        const { queryByText } = await setupSpecTest({
+          ...defaultProps,
+          versions: [
+            ...versionsMocked.slice(0, 1),
+            { ...versionsMocked[1], changelogUrl: undefined },
+          ],
+        });
+
+        const newVersion1 = queryByText(
+          updateTranslation.updateSoftwareRancherChangelog,
+        );
+
+        expect(newVersion1).not.toBeInTheDocument();
+      });
     });
   });
 });

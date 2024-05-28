@@ -16,7 +16,7 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-rancher-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-rancher-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-rancher-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "jest --coverage -u",
+    "test": "jest --coverage -u --collectCoverageFrom='src/**/*.{ts,tsx}'",
     "test:e2e": "tsc && npx playwright test --headed"
   },
   "dependencies": {
@@ -27,10 +27,10 @@
     "@ovh-ux/request-tagger": "^0.2.0",
     "@ovh-ux/shell": "^3.6.0",
     "@ovhcloud/manager-components": "^1.14.0",
-    "@ovhcloud/ods-common-core": "17.2.1",
-    "@ovhcloud/ods-common-theming": "17.2.1",
-    "@ovhcloud/ods-components": "17.2.1",
-    "@ovhcloud/ods-theme-blue-jeans": "17.2.1",
+    "@ovhcloud/ods-common-core": "17.2.2",
+    "@ovhcloud/ods-common-theming": "17.2.2",
+    "@ovhcloud/ods-components": "17.2.2",
+    "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
     "@tanstack/react-query": "^5.8.3",
     "@tanstack/react-table": "^8.11.6",
     "clsx": "^1.2.1",

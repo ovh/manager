@@ -7,15 +7,14 @@ import { patchRancherServiceQueryKey, postRancherServiceQueryKey } from '@/api';
 import { RancherService } from '@/api/api.type';
 import { EditAction, EditMutationVariables } from '@/hooks/useEditRancher';
 import { useTrackingPage } from '@/hooks/useTrackingPage';
-import useVersions from '@/hooks/useVersions';
 import { COMMON_PATH } from '@/routes';
-import { getLatestVersionAvailable } from '@/utils/rancher';
 import { TrackingPageView } from '@/utils/tracking';
 import Title from '../../Title/Title';
 import RancherDetail from './RancherDetail';
 import TabBar from './TabBar';
 import { useTranslate } from '@/utils/translation';
 import LinkIcon from '@/components/LinkIcon/LinkIcon';
+import useVersions from '@/hooks/useVersions';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -44,13 +43,12 @@ const getResponseStatusByEditAction = (
     : null;
 
 const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
-  const { projectId } = useParams();
+  const { projectId, rancherId } = useParams();
+  const { data: versions } = useVersions();
   const { t } = useTranslate('pci-rancher/dashboard');
   useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
-  const { data: versions } = useVersions();
 
-  const latestVersionAvailable = getLatestVersionAvailable(rancher, versions);
   const mutationEditRancherState = useMutationState<{
     variables: {
       editAction: EditAction;
@@ -58,12 +56,12 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
     };
     status: MutationStatus;
   }>({
-    filters: { mutationKey: patchRancherServiceQueryKey('').slice(0, 1) },
+    filters: { mutationKey: patchRancherServiceQueryKey(rancherId) },
   });
 
   const mutationGenerateAccessState = useMutationState({
     filters: {
-      mutationKey: postRancherServiceQueryKey('').slice(0, 1),
+      mutationKey: postRancherServiceQueryKey(rancherId),
       status: 'error',
     },
   });
@@ -71,6 +69,11 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const editNameResponseType = getResponseStatusByEditAction(
     mutationEditRancherState,
     EditAction.EditName,
+  );
+
+  const updateSoftwareResponseType = getResponseStatusByEditAction(
+    mutationEditRancherState,
+    EditAction.UpdateSoftware,
   );
 
   let editNameBannerType = null;
@@ -83,29 +86,22 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
     editNameBannerType = ODS_MESSAGE_TYPE.success;
   }
 
-  const updateSoftwareResponseType = getResponseStatusByEditAction(
-    mutationEditRancherState,
-    EditAction.UpdateSoftware,
-  );
-
   return (
     <>
       <div className="py-4 overflow-hidden text-ellipsis">
         <Title>{rancher.currentState.name}</Title>
       </div>
-      <div className="my-4">
-        <LinkIcon
-          href={hrefPrevious}
-          text={t('see_all_rancher')}
-          iconName={ODS_ICON_NAME.ARROW_LEFT}
-          slot="start"
-        />
-      </div>
-
+      <LinkIcon
+        href={hrefPrevious}
+        text={t('see_all_rancher')}
+        iconName={ODS_ICON_NAME.ARROW_LEFT}
+        slot="start"
+        className="my-4"
+      />
       <TabBar tabs={tabs} />
       <RancherDetail
-        latestVersionAvailable={latestVersionAvailable}
         rancher={rancher}
+        versions={versions}
         editNameResponseType={editNameBannerType}
         updateSoftwareResponseType={updateSoftwareResponseType}
         hasErrorAccessDetail={mutationGenerateAccessState.length > 0}

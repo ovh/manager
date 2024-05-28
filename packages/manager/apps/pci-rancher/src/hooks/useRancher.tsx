@@ -7,8 +7,9 @@ import {
   deleteRancherServiceQueryKey,
   getByRancherIdProjectId,
   getRancherProjectById,
+  getRancherVersionCapabilities,
 } from '@/api';
-import { ErrorResponse, RancherService } from '@/api/api.type';
+import { ErrorResponse, RancherService, RancherVersion } from '@/api/api.type';
 
 export const useRancher = ({
   refetchInterval,
@@ -63,4 +64,19 @@ export const useDeleteRancher = () => {
     setDeleteRancherResponse,
     deleteRancherResponse,
   };
+};
+
+export const useRancherVersionsCapabilities = () => {
+  const { projectId, rancherId } = useParams();
+  return useQuery<RancherVersion[], ErrorResponse>({
+    queryKey: [
+      'project',
+      projectId,
+      'rancher',
+      rancherId,
+      'version',
+      'capabilities',
+    ],
+    queryFn: () => getRancherVersionCapabilities(projectId, rancherId),
+  });
 };

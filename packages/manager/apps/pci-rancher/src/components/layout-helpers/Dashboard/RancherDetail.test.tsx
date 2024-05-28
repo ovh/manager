@@ -16,7 +16,7 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
 }));
 
 const defaultProps: RancherDetailProps = {
-  latestVersionAvailable: null,
+  versions: versionsMocked,
   rancher: rancherMocked,
   editNameResponseType: null,
   hasErrorAccessDetail: false,
@@ -58,15 +58,34 @@ describe('RancherDetail', () => {
     expect(rancherVersionValue).not.toBeNull();
   });
 
-  it('Given that I can edit the name, I should be able to click on edit icon to get the right to change the name', async () => {
-    const screen = await setupSpecTest();
+  describe('Edit name', () => {
+    it('Given that I can edit the name, I should be able to click on edit icon to get the right to change the name', async () => {
+      const { getAllByText } = await setupSpecTest();
 
-    const rancherName = screen.getByLabelText('edit');
-    await fireEvent.click(rancherName);
+      const rancherName = getAllByText(rancherMocked.currentState.name);
+      await fireEvent.click(rancherName[0]);
 
-    expect(rancherName).not.toBeNull();
+      expect(rancherName).not.toBeNull();
+      const link = rancherName[0].closest('osds-link');
 
-    expect(screen.getByLabelText('edit-link')).toHaveAttribute('href', '/edit');
+      expect(link).toHaveAttribute('href', '/edit');
+      expect(link).not.toHaveAttribute('disabled');
+    });
+
+    it('Given that rancher is not ready i should not be able to edit the name', async () => {
+      const { getAllByText } = await setupSpecTest({
+        ...defaultProps,
+        rancher: {
+          ...rancherMocked,
+          resourceStatus: ResourceStatus.UPDATING,
+        },
+      });
+
+      const rancherName = getAllByText(rancherMocked.currentState.name);
+
+      const link = rancherName[0].closest('osds-link');
+      expect(link).toHaveAttribute('disabled');
+    });
   });
 
   it('Given that the Consumption tile is displayed, it should contain the offer I configured, the nb of CPUs orchestrated and the last update date', async () => {
@@ -103,7 +122,6 @@ describe('RancherDetail', () => {
     it('Given that the update software is displayed, it should contain the version of the software and the button to update', async () => {
       const screen = await setupSpecTest({
         ...defaultProps,
-        latestVersionAvailable: versionsMocked[1],
       });
 
       const updateSoftwareLabel = screen.getByText(
@@ -122,7 +140,6 @@ describe('RancherDetail', () => {
       const screen = await setupSpecTest({
         ...defaultProps,
         updateSoftwareResponseType: 'pending',
-        latestVersionAvailable: versionsMocked[1],
       });
 
       const updateSoftwareLabel = screen.queryByText(
@@ -146,7 +163,6 @@ describe('RancherDetail', () => {
           ...rancherMocked,
           resourceStatus: ResourceStatus.UPDATING,
         },
-        latestVersionAvailable: versionsMocked[1],
       });
 
       const updateSoftwareLabel = screen.queryByText(

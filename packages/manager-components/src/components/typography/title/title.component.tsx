@@ -7,9 +7,11 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 
-export const CommonTitle: React.FC<React.PropsWithChildren & {
-  typoSize: ODS_THEME_TYPOGRAPHY_SIZE;
-}> = ({ children, typoSize }) => {
+export const CommonTitle: React.FC<
+  React.PropsWithChildren & {
+    typoSize: ODS_THEME_TYPOGRAPHY_SIZE;
+  }
+> = ({ children, typoSize }) => {
   return (
     <OsdsText
       level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}

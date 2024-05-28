@@ -15,7 +15,6 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React, { useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { RancherService } from '@/api/api.type';
 import { isValidRancherName } from '@/utils/rancher';
 import Modal from './Modal';
