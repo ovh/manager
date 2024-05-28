@@ -309,75 +309,72 @@ export const NetworkStep = (): JSX.Element => {
         />
       </OsdsFormField>
       <br />
-      <div className="flex">
-        <div className="pr-4 min-w-64">
-          <OsdsFormField inline={true} className="w-full">
+      <div className="sm:flex sm:flex-wrap-reverse sm:justify-start">
+        <OsdsFormField className={'pr-4 flex justify-between'} inline={true}>
+          <OsdsText
+            slot="label"
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="mt-4"
+          >
+            {tAdd(
+              'pci_projects_project_public_gateways_add_select_private_network',
+            )}
+          </OsdsText>
+          <OsdsSelect
+            value={store.form.network.id}
+            inline={true}
+            onOdsValueChange={(event) => {
+              store.updateForm.network(
+                event.detail.value as string,
+                store.form.network.subnetId,
+              );
+            }}
+          >
             <OsdsText
-              slot="label"
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               color={ODS_THEME_COLOR_INTENT.text}
-              className="mt-4"
+              slot="placeholder"
             >
               {tAdd(
                 'pci_projects_project_public_gateways_add_select_private_network',
               )}
             </OsdsText>
-            <OsdsSelect
-              value={store.form.network.id}
-              inline={true}
-              onOdsValueChange={(event) => {
-                store.updateForm.network(
-                  event.detail.value as string,
-                  store.form.network.subnetId,
-                );
-              }}
-            >
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-                slot="placeholder"
-              >
-                {tAdd(
-                  'pci_projects_project_public_gateways_add_select_private_network',
-                )}
-              </OsdsText>
-              {store.form.newNetwork.name && store.form.newNetwork.subnet && (
-                <OsdsSelectOption key={'new'} value={'new'}>
-                  {store.form.newNetwork.name}
-                </OsdsSelectOption>
-              )}
-              {privateNetworks ? (
-                privateNetworks
-                  .filter((network) => network.name !== '')
-                  .map((network) => (
-                    <OsdsSelectOption key={network.id} value={network.id}>
-                      {network.name}
-                    </OsdsSelectOption>
-                  ))
-              ) : (
-                <></>
-              )}
-            </OsdsSelect>
-          </OsdsFormField>
-        </div>
-        <div className="pl-4 flex flex-col justify-end">
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            inline={true}
-            variant={ODS_BUTTON_VARIANT.stroked}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => {
-              setState({
-                ...state,
-                isModalVisible: true,
-              });
-            }}
-          >
-            {tAdd(
-              'pci_projects_project_public_gateways_add_private_network_add_action',
+            {store.form.newNetwork.name && store.form.newNetwork.subnet && (
+              <OsdsSelectOption key={'new'} value={'new'}>
+                {store.form.newNetwork.name}
+              </OsdsSelectOption>
             )}
-          </OsdsButton>
-        </div>
+            {privateNetworks ? (
+              privateNetworks
+                .filter((network) => network.name !== '')
+                .map((network) => (
+                  <OsdsSelectOption key={network.id} value={network.id}>
+                    {network.name}
+                  </OsdsSelectOption>
+                ))
+            ) : (
+              <></>
+            )}
+          </OsdsSelect>
+        </OsdsFormField>
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          inline={true}
+          variant={ODS_BUTTON_VARIANT.stroked}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          className={'xs:mt-2 sm:mt-0 w-fit h-fit'}
+          onClick={() => {
+            setState({
+              ...state,
+              isModalVisible: true,
+            });
+          }}
+        >
+          {tAdd(
+            'pci_projects_project_public_gateways_add_private_network_add_action',
+          )}
+        </OsdsButton>
       </div>
 
       <br />
