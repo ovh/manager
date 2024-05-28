@@ -35,10 +35,37 @@ const getNewIframeElement = (
 export const loadIframe = (payload: IframeLoaderPayload): Promise<unknown> => {
   const iframe = getNewIframeElement(payload);
   const promise = new Promise((resolve, reject) => {
-    iframe.onload = resolve;
+    // Hack: sometimes onload is not triggered
+    // with this timeout we ensure we never infinitely wait for promise resolution / rejection
+    const timeoutId = setTimeout(() => {
+      const iframes = window.document.getElementsByTagName('iframe');
+      for (
+        let iframeIndex = 0;
+        iframeIndex < iframes.length;
+        iframeIndex += 1
+      ) {
+        const iframeElement = iframes[iframeIndex];
+        if (iframeElement.src === payload.src) {
+          resolve({ target: iframeElement });
+          return;
+        }
+      }
+      reject();
+    }, 1000);
+    iframe.onload = (args) => {
+      resolve(args);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
     // The following code is never called
     // see: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#error_and_load_event_behavior
-    iframe.onerror = reject;
+    iframe.onerror = () => {
+      reject();
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   });
 
   document.body.appendChild(iframe);

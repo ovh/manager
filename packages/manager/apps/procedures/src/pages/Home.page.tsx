@@ -2,13 +2,19 @@ import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import ovhCloudLogo from '@/assets/logo-ovhcloud.png';
-import { Status2faStrategies } from '@/types/status.type';
+import { Status2fa } from '@/types/status.type';
 import { useFetch2faStatus } from '@/data/hooks/useStatus';
-import { createRoutePath, seeRoutePath } from '@/routes/home.constants';
+import {
+  createRoutePath,
+  seeRoutePath,
+  errorRoutePath,
+} from '@/routes/home.constants';
+import { rootRoute } from '@/routes/routes';
 
-const redirectStrategies: Status2faStrategies = {
-  open: `/account-disable-2fa/${seeRoutePath}`,
-  creationAuthorized: `/account-disable-2fa/${createRoutePath}`,
+const redirectStrategies: Record<Status2fa['status'] | 'error', string> = {
+  open: `${rootRoute}/${seeRoutePath}`,
+  creationAuthorized: `${rootRoute}/${createRoutePath}`,
+  error: `${rootRoute}/${errorRoutePath}`,
 };
 
 const checkIfCreationIsAllowed = (error: AxiosError<any>) =>
@@ -19,16 +25,25 @@ export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { data, error, isSuccess, isFetched } = useFetch2faStatus();
-
-  useEffect(() => {
-    const route = redirectStrategies[data?.status];
-
-    if (isSuccess && route !== location.pathname) {
-      navigate(route, { replace: true });
+  const navigateTo = (url: string): void => {
+    if (location.pathname !== url) {
+      // To avoid redirecting user to the login page after navigating to another view,
+      // we append the location.search value to keep the token in the url
+      // This could be handled by storing the token and removing it from the url (but it will to be done later)
+      navigate(`${url}${location.search}`, { replace: true });
     }
-    if (checkIfCreationIsAllowed(error as AxiosError)) {
-      navigate(redirectStrategies.creationAuthorized, { replace: true });
+  };
+  const { data, error, isSuccess, isFetched, isError } = useFetch2faStatus();
+  const route = redirectStrategies[data?.status];
+  useEffect(() => {
+    if (isFetched) {
+      if (isSuccess) {
+        navigateTo(route);
+      } else if (checkIfCreationIsAllowed(error as AxiosError)) {
+        navigateTo(redirectStrategies.creationAuthorized);
+      } else {
+        navigateTo(redirectStrategies.error);
+      }
     }
   }, [isFetched]);
 
