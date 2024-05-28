@@ -91,6 +91,17 @@ export default class VrackMoveDialogCtrl {
 
     this.modals = {
       move: null,
+      select: {
+        open: false,
+        target: null,
+        confirm: () => {
+          this.form.servicesToAdd = [this.modals.select.target];
+          this.modals.select.open = false;
+        },
+        cancel: () => {
+          this.modals.select.open = false;
+        },
+      },
     };
 
     this.messages = [];
@@ -587,6 +598,13 @@ export default class VrackMoveDialogCtrl {
       const toAdd = { type: serviceType, id: serviceId };
       if (find(this.form.servicesToAdd, toAdd)) {
         this.form.servicesToAdd = reject(this.form.servicesToAdd, toAdd);
+      } else if (
+        this.form.servicesToAdd[0] &&
+        (this.constructor.isIPv6(toAdd) ||
+          this.constructor.isIPv6(this.form.servicesToAdd[0]))
+      ) {
+        this.modals.select.target = toAdd;
+        this.modals.select.open = true;
       } else {
         this.form.servicesToAdd.push(toAdd);
       }
