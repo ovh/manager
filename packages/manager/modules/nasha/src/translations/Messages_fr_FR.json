@@ -9,6 +9,7 @@
   "nasha_datacenter_prg": "Prague",
   "nasha_datacenter_ams": "Amsterdam",
   "nasha_datacenter_mil": "Milan",
+  "nasha_datacenter_zrh": "Zurich",
   "nasha_error": "Une erreur est survenue: {{ message }}",
   "nasha_snapshot_type_day-1": "Tous les jours",
   "nasha_snapshot_type_day-2": "Tous les 2 jours",
