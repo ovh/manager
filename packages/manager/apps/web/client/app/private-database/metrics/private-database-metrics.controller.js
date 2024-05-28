@@ -15,18 +15,12 @@ import { STATUS_OVHCLOUD_URL } from '../../constants';
 angular.module('App').controller(
   'PrivateDatabaseMetricsCtrl',
   class PrivateDatabaseMetricsCtrl {
-    constructor(
-      $scope,
-      $translate,
-      Alerter,
-      WucChartjsFactory,
-      PrivateDatabase,
-    ) {
+    constructor($scope, $translate, Alerter, ChartFactory, PrivateDatabase) {
       this.$scope = $scope;
       this.$translate = $translate;
 
       this.Alerter = Alerter;
-      this.WucChartjsFactory = WucChartjsFactory;
+      this.ChartFactory = ChartFactory;
       this.PrivateDatabase = PrivateDatabase;
       this.STATUS_OVHCLOUD_URL = STATUS_OVHCLOUD_URL;
       this.PRIVATE_DATABASE_METRICS = {
@@ -38,13 +32,15 @@ angular.module('App').controller(
           options: {
             responsive: true,
             maintainAspectRatio: false,
-            legend: {
-              position: 'bottom',
-              display: true,
-            },
             elements: {
               point: {
                 radius: 0,
+              },
+            },
+            plugins: {
+              legend: {
+                position: 'bottom',
+                display: true,
               },
             },
           },
@@ -61,50 +57,49 @@ angular.module('App').controller(
             chartName: 'memoryUsages',
             dataFromAPIIndex: 0,
             options: {
-              tooltips: {
-                mode: 'label',
-                intersect: false,
-                callbacks: {
-                  title: (items) => get(head(items), 'xLabel'),
-                  label: (item) => `${Math.round(item.yLabel / 1024 / 1024)}Mb`,
+              plugins: {
+                tooltip: {
+                  mode: 'index',
+                  intersect: false,
+                  callbacks: {
+                    title: (items) => get(head(items), 'xLabel'),
+                    label: (item) =>
+                      `${Math.round(item.parsed.y / 1024 / 1024)}Mb`,
+                  },
                 },
               },
               scales: {
-                yAxes: [
-                  {
-                    type: 'linear',
+                y: {
+                  type: 'linear',
+                  display: true,
+                  position: 'left',
+                  beginAtZero: true,
+                  title: {
                     display: true,
-                    position: 'left',
-                    scaleLabel: {
-                      display: true,
-                    },
-                    gridLines: {
-                      drawBorder: true,
-                      display: true,
-                    },
-                    ticks: {
-                      suggestedMin: 0,
-                      suggestedMax: 100,
-                      callback: (label) =>
-                        `${Math.round(label / 1024 / 1024)}Mb`,
+                  },
+                  grid: {
+                    drawBorder: true,
+                    display: true,
+                  },
+                  ticks: {
+                    suggestedMin: 0,
+                    suggestedMax: 100,
+                    callback: (label) => `${Math.round(label / 1024 / 1024)}Mb`,
+                  },
+                },
+                x: {
+                  type: 'time',
+                  position: 'bottom',
+                  grid: {
+                    drawBorder: true,
+                    display: false,
+                  },
+                  time: {
+                    displayFormats: {
+                      hour: 'H:mm a',
                     },
                   },
-                ],
-                xAxes: [
-                  {
-                    type: 'time',
-                    position: 'bottom',
-                    gridLines: {
-                      drawBorder: true,
-                      display: false,
-                    },
-                    time: {
-                      displayFormats: {
-                        hour: 'LT',
-                      },
-                    },
-                  },
-                ],
+                },
               },
             },
           },
@@ -112,48 +107,47 @@ angular.module('App').controller(
             chartName: 'activeConnections',
             dataFromAPIIndex: 1,
             options: {
-              tooltips: {
-                mode: 'label',
-                intersect: false,
-                callbacks: {
-                  title: (items) => get(head(items), 'xLabel'),
-                  label: (item) => `${item.yLabel}`,
+              plugins: {
+                tooltip: {
+                  mode: 'index',
+                  intersect: false,
+                  callbacks: {
+                    title: (items) => get(head(items), 'xLabel'),
+                    label: (item) => `${item.formattedValue}`,
+                  },
                 },
               },
               scales: {
-                yAxes: [
-                  {
-                    type: 'linear',
+                y: {
+                  type: 'linear',
+                  display: true,
+                  position: 'left',
+                  beginAtZero: true,
+                  title: {
                     display: true,
-                    position: 'left',
-                    scaleLabel: {
-                      display: true,
-                    },
-                    gridLines: {
-                      drawBorder: true,
-                      display: true,
-                    },
-                    ticks: {
-                      suggestedMin: 0,
-                      stepSize: 1,
+                  },
+                  grid: {
+                    drawBorder: true,
+                    display: true,
+                  },
+                  ticks: {
+                    suggestedMin: 0,
+                    stepSize: 1,
+                  },
+                },
+                x: {
+                  type: 'time',
+                  position: 'bottom',
+                  grid: {
+                    drawBorder: true,
+                    display: false,
+                  },
+                  time: {
+                    displayFormats: {
+                      hour: 'H:mm a',
                     },
                   },
-                ],
-                xAxes: [
-                  {
-                    type: 'time',
-                    position: 'bottom',
-                    gridLines: {
-                      drawBorder: true,
-                      display: false,
-                    },
-                    time: {
-                      displayFormats: {
-                        hour: 'LT',
-                      },
-                    },
-                  },
-                ],
+                },
               },
             },
           },
@@ -210,9 +204,7 @@ angular.module('App').controller(
                   settingsForAllCharts,
                   currentChartSettings,
                 );
-                const chart = new this.WucChartjsFactory(
-                  settingsForCurrentChart,
-                );
+                const chart = new this.ChartFactory(settingsForCurrentChart);
                 const serieName = this.$translate.instant(
                   `privateDatabase_metrics_${chartName}_graph_${currentChartData.metric.replace(
                     /\./g,

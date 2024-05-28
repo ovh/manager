@@ -1,6 +1,6 @@
 import React, { useState, useEffect, } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate, {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
+import { {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { OsdsButton, OsdsLink } from '@ovhcloud/ods-components/react';
@@ -20,6 +20,7 @@ import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 import appConfig from '@/{{appName}}.config';
+import { urls } from '@/routes/routes.constant';
 
 export default function Listing() {
   const { t } = useTranslation('listing');
@@ -44,6 +45,7 @@ export default function Listing() {
     queryKey: [`servicesListingIceberg`],
     queryFn: ({ pageParam }) => getListingIcebergV2({ {{#if isPCI }}projectId, {{/if}}pageSize, cursor: pageParam }),
     staleTime: Infinity,
+    retry: false,
     getNextPageParam: (lastPage) => lastPage.cursorNext as any,
   });
 
@@ -54,7 +56,9 @@ export default function Listing() {
   };
 
   useEffect(() => {
-    if (status === 'success' && data?.pages.length > 0 && !flattenData) {
+    if (status === 'success' && data?.pages[0].data.length === 0) {
+      navigate(urls.onboarding);
+    } else if (status === 'success' && data?.pages.length > 0 && !flattenData) {
       const tmp = Object.keys(data?.pages[0].data[0])
         .filter((element) => element !== 'iam')
         .map((element) => ({
@@ -97,8 +101,6 @@ export default function Listing() {
   if (isLoading && !flattenData) {
     return (<div><Loading/></div>)
   }
-
-  if (data?.length === 0) return <Navigate to="onboarding" />;
 
   return (
     <>

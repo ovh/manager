@@ -6,7 +6,7 @@
   "pci_additional_ips_failoverip_imports_importIp": "Import this Additional IP",
   "pci_additional_ips_failoverip_imports_import_title": "Confirmation",
   "pci_additional_ips_failoverip_imports_import_submit_label": "Import",
-  "pci_additional_ips_failoverip_imports_import_cancel_label": "Exit",
+  "pci_additional_ips_failoverip_imports_import_cancel_label": "Cancel",
   "pci_additional_ips_failoverip_imports_import_description": "Are you sure you want to import this Additional IP?",
   "pci_additional_ips_imports_import_success": "The Additional IP {{ip}} will be imported into your project in a few moments.",
   "pci_additional_ips_imports_import_error": "An error has occurred importing the {{ip}} IP ({{error}})."

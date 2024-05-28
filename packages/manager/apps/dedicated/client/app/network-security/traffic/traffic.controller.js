@@ -8,9 +8,10 @@ import {
 
 export default class TrafficController {
   /* @ngInject */
-  constructor($translate, Alerter, networkSecurityService) {
+  constructor($translate, Alerter, ChartFactory, networkSecurityService) {
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.ChartFactory = ChartFactory;
     this.networkSecurityService = networkSecurityService;
 
     this.TRAFFIC_PERIODS = TRAFFIC_PERIODS;
@@ -59,9 +60,9 @@ export default class TrafficController {
 
     this.units = this.CHART.units;
     this.colors = this.CHART.colors;
-    this.options = {
+    this.chart = new this.ChartFactory({
       ...this.CHART.options,
-    };
+    });
     this.isSubnetValid = true;
 
     // Retrieve time zone offset to initialize value of UTC
@@ -300,23 +301,15 @@ export default class TrafficController {
     if (isPPs !== undefined) {
       this.isPPs = isPPs;
     }
-    this.series = [];
-    this.data = [];
 
     if (this.isStackable) {
-      this.options.scales.yAxes[0].stacked = true;
+      this.chart.options.scales.y.stacked = true;
     } else {
-      delete this.options.scales.yAxes[0].stacked;
+      delete this.chart.options.scales.y.stacked;
     }
 
-    this.labels = this.results?.timestamps?.map((value) => value);
+    this.chart.data.labels = this.results?.timestamps?.map((value) => value);
 
-    this.series.push(
-      this.$translate.instant('network_security_dashboard_legend_green'),
-    );
-    this.series.push(
-      this.$translate.instant('network_security_dashboard_legend_red'),
-    );
     if (!this.isPPs) {
       // Get unit from max value from table
       let maxPassedValue = 0;
@@ -339,29 +332,57 @@ export default class TrafficController {
       }
 
       // Display unit label
-      this.options.scales.yAxes[0].scaleLabel.labelString = this.$translate.instant(
+      this.chart.options.scales.y.title.text = this.$translate.instant(
         `network_security_dashboard_unit_${this.units[
           unitIndex
         ].toLowerCase()}_ps`,
       );
 
-      this.data.push(
-        this.results?.bps.passed?.map((value) =>
-          TrafficController.formatBits(parseInt(value, 10), unitIndex),
-        ),
-      );
-      this.data.push(
-        this.results?.bps.dropped?.map((value) =>
-          TrafficController.formatBits(parseInt(value, 10), unitIndex),
-        ),
-      );
+      this.chart.data.datasets = [
+        {
+          label: this.$translate.instant(
+            'network_security_dashboard_legend_green',
+          ),
+          data: this.results?.bps.passed?.map((value) =>
+            TrafficController.formatBits(parseInt(value, 10), unitIndex),
+          ),
+          backgroundColor: this.colors[0].backgroundColor,
+          borderColor: this.colors[0].borderColor,
+        },
+        {
+          label: this.$translate.instant(
+            'network_security_dashboard_legend_red',
+          ),
+          data: this.results?.bps.dropped?.map((value) =>
+            TrafficController.formatBits(parseInt(value, 10), unitIndex),
+          ),
+          backgroundColor: this.colors[1].backgroundColor,
+          borderColor: this.colors[1].borderColor,
+        },
+      ];
     } else {
-      this.options.scales.yAxes[0].scaleLabel.labelString = this.$translate.instant(
+      this.chart.options.scales.y.title.text = this.$translate.instant(
         'network_security_dashboard_pps',
       );
 
-      this.data.push(this.results?.pps.passed?.map((value) => value));
-      this.data.push(this.results?.pps.dropped?.map((value) => value));
+      this.chart.data.datasets = [
+        {
+          label: this.$translate.instant(
+            'network_security_dashboard_legend_green',
+          ),
+          data: this.results?.pps.passed?.map((value) => value),
+          backgroundColor: this.colors[0].backgroundColor,
+          borderColor: this.colors[0].borderColor,
+        },
+        {
+          label: this.$translate.instant(
+            'network_security_dashboard_legend_red',
+          ),
+          data: this.results?.pps.dropped?.map((value) => value),
+          backgroundColor: this.colors[1].backgroundColor,
+          borderColor: this.colors[1].borderColor,
+        },
+      ];
     }
   }
 

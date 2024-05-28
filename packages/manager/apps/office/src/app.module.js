@@ -1,13 +1,27 @@
-import 'script-loader!moment/min/moment.min.js';// eslint-disable-line
+import 'script-loader!moment/min/moment.min.js'; // eslint-disable-line
 
 import { isString, get } from 'lodash-es';
 
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import { registerCoreModule } from '@ovh-ux/manager-core';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import * as dateFnsLocales from 'date-fns/locale';
 
 import Office from '@ovh-ux/manager-office';
+
+const getDateFnsLocale = (language) => {
+  if (language === 'en_GB') {
+    return 'enGB';
+  }
+  if (language === 'fr_CA') {
+    return 'frCA';
+  }
+  const [locale] = language.split('_');
+  return locale;
+};
 
 export default (containerEl, environment) => {
   const moduleName = 'OfficeApp';
@@ -17,6 +31,8 @@ export default (containerEl, environment) => {
       moduleName,
       [
         registerCoreModule(environment),
+        ngAtInternet,
+        ngOvhChart,
         ngUiRouterBreadcrumb,
         uiRouter,
         Office,
@@ -42,6 +58,11 @@ export default (containerEl, environment) => {
         });
       },
     )
+    .constant(
+      'DATEFNS_LOCALE',
+      dateFnsLocales[getDateFnsLocale(environment.userLocale)],
+    )
+
     .run(
       /* @ngInject */ ($translate) => {
         let lang = $translate.use();

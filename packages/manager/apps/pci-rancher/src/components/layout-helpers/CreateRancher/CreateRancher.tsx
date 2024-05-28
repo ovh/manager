@@ -20,7 +20,7 @@ import React, { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { isValidRancherName } from '@/utils/rancher';
-import { getOnboardingUrl, getRanchersUrl } from '@/utils/route';
+import { getRanchersUrl } from '@/utils/route';
 import Title, { Subtitle } from '@/components/Title/Title';
 import Block from '@/components/Block/Block';
 import {
@@ -101,7 +101,6 @@ export interface CreateRancherProps {
   hasRancherCreationError: boolean;
   onCreateRancher: (payload: CreateRancherPayload) => void;
   isProjectDiscoveryMode?: boolean;
-  hasSomeRancher: boolean;
   isCreateRancherLoading: boolean;
 }
 
@@ -112,7 +111,6 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   hasRancherCreationError,
   projectId,
   isProjectDiscoveryMode,
-  hasSomeRancher,
   isCreateRancherLoading,
 }) => {
   const [rancherName, setRancherName] = useState(null);
@@ -152,9 +150,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
 
   const onCancelClick = () => {
     trackAction(TrackingPageView.CreateRancher, TrackingEvent.cancel);
-    navigate(
-      hasSomeRancher ? getRanchersUrl(projectId) : getOnboardingUrl(projectId),
-    );
+    navigate(getRanchersUrl(projectId));
   };
 
   return (

@@ -93,11 +93,11 @@ export default (plop) => {
         validate: (apiPaths) => apiPaths.length > 0,
       },
       {
-        type: 'checkbox',
-        name: 'templates',
-        message: 'Which templates do you want to generate?',
-        choices: ['listing', 'dashboard', 'onboarding'],
+        type: 'list',
+        name: 'listingEndpoint',
+        message: 'What is the listing endpoint?',
         when: async (data) => {
+          data.templates = ['listing', 'onboarding', 'dashboard'];
           data.apiPathsByApiVersion = data.apiPaths.reduce(
             (res, path) => {
               res[isV2Endpoint(path) ? 'v2' : 'v6'].push(path);
@@ -113,19 +113,12 @@ export default (plop) => {
           );
           return true;
         },
-      },
-      {
-        type: 'list',
-        name: 'listingEndpoint',
-        message: 'What is the listing endpoint?',
-        when: (data) => data.templates.includes('listing'),
         choices: getApiV2AndV6GetEndpointsChoices,
       },
       {
         type: 'list',
         name: 'dashboardEndpoint',
         message: 'What is the dashboard endpoint?',
-        when: (data) => data.templates.includes('dashboard'),
         choices: getApiV2AndV6GetEndpointsChoices,
       },
       {
@@ -133,58 +126,40 @@ export default (plop) => {
         name: 'serviceKey',
         message: 'What is the service key ?',
         when: (data) => {
-          // Add variables for templates
-
           data.isPCI = data.appName.indexOf('pci') > -1;
           if (data.isPCI) {
             data.pciName = data.appName.split('pci-')[1];
           }
-          data.hasListing = data.templates.includes('listing');
-          data.hasDashboard = data.templates.includes('dashboard');
-          data.hasOnboarding = data.templates.includes('onboarding');
-
           data.isApiV6 = data.apiV6Endpoints.get?.operationList.length > 0;
           data.isApiV2 = data.apiV2Endpoints.get?.operationList.length > 0;
 
-          if (data.hasListing) {
-            const [listingPath, listingFn] =
-              data.listingEndpoint?.split('-') || [];
-            data.listingEndpointPath = listingPath;
-            data.listingEndpointFn = listingFn;
-            data.mainApiPath = listingPath;
-            data.mainApiPathApiVersion = data.apiV2Endpoints.get?.operationList
-              .map(({ apiPath }) => apiPath)
-              .includes(data.mainApiPath)
-              ? 'v2'
-              : 'v6';
+          const [listingPath, listingFn] =
+            data.listingEndpoint?.split('-') || [];
+          data.listingEndpointPath = listingPath;
+          data.listingEndpointFn = listingFn;
+          data.mainApiPath = listingPath;
+          data.mainApiPathApiVersion = data.apiV2Endpoints.get?.operationList
+            .map(({ apiPath }) => apiPath)
+            .includes(data.mainApiPath)
+            ? 'v2'
+            : 'v6';
 
-            if (data.isPCI) {
-              if (data.isApiV2) {
-                data.mainApiPathPci = listingPath.replace(
-                  '{projectId}',
-                  '${projectId}',
-                );
-              }
-              if (data.isApiV6) {
-                data.mainApiPathPci = listingPath.replace(
-                  '{serviceName}',
-                  '${projectId}',
-                );
-              }
-            }
+          if (data.isPCI) {
+            data.mainApiPathPci = listingPath.replace(
+              data.isApiV2 ? '{projectId}' : '{serviceName}',
+              '${projectId}',
+            );
           }
-          if (data.hasDashboard) {
-            const [dashboardPath, dashboardFn] =
-              data.dashboardEndpoint?.split('-') || [];
-            data.dashboardEndpointPath = dashboardPath;
-            data.dashboardEndpointFn = dashboardFn;
-          }
+          const [dashboardPath, dashboardFn] =
+            data.dashboardEndpoint?.split('-') || [];
+          data.dashboardEndpointPath = dashboardPath;
+          data.dashboardEndpointFn = dashboardFn;
 
           const { apiV2Computed, apiV6Computed } = apiComputed(data);
           data.apiV2Computed = apiV2Computed;
           data.apiV6Computed = apiV6Computed;
 
-          return data.hasListing;
+          return true;
         },
         validate: (input) => input.length > 0,
       },
@@ -192,14 +167,6 @@ export default (plop) => {
         type: 'input',
         name: 'serviceKey',
         message: 'What is the service key in listing page ?',
-        when: (data) => {
-          // Add variables for templates
-          data.hasListing = data.templates.includes('listing');
-          data.hasDashboard = data.templates.includes('dashboard');
-          data.hasOnboarding = data.templates.includes('onboarding');
-
-          return data.templates.includes('listing');
-        },
         validate: (input) => input.length > 0,
       },
       {

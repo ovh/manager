@@ -74,49 +74,53 @@ export const STATISTICS = {
   options: {
     responsive: true,
     maintainAspectRatio: false,
-    legend: {
-      position: 'bottom',
-      display: true,
+    data: {
+      datasets: [],
     },
-    elements: {
-      line: {
-        fill: false,
-        tension: 0,
-        borderWidth: 1,
-      },
-      point: {
-        radius: 0,
-      },
-    },
-    tooltips: {
-      mode: 'label',
-      intersect: false,
-    },
-    scales: {
-      yAxes: [
-        {
+    options: {
+      plugins: {
+        legend: {
+          position: 'bottom',
           display: true,
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+        },
+      },
+      elements: {
+        line: {
+          fill: false,
+          tension: 0,
+          borderWidth: 1,
+        },
+        point: {
+          radius: 0,
+        },
+      },
+      scales: {
+        y: {
+          display: true,
+          beginAtZero: true,
           type: 'linear',
           position: 'left',
-          scaleLabel: {
+          title: {
             display: true,
           },
-          gridLines: {
+          grid: {
             drawBorder: true,
             display: false,
           },
         },
-      ],
-      xAxes: [
-        {
+        x: {
           type: 'time',
           position: 'bottom',
-          gridLines: {
+          grid: {
             drawBorder: true,
             display: false,
           },
         },
-      ],
+      },
     },
   },
 };

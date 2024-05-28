@@ -21,20 +21,20 @@ export const useRancher = () => {
 export const ranchersQueryKey = (projectId: string) => ['project', projectId];
 
 export const useRanchers = ({
-  disablePolling,
+  shouldDisableRefetch = false,
 }: {
-  disablePolling?: boolean;
+  shouldDisableRefetch?: boolean;
 }) => {
   const { projectId } = useParams();
   return useQuery<RancherService[], ErrorResponse>({
     queryKey: ranchersQueryKey(projectId),
     queryFn: () => getRancherProjectById(projectId),
-    refetchInterval: disablePolling ? false : 5000,
+    refetchInterval: shouldDisableRefetch ? false : 5000,
   });
 };
 
 export const useDeleteRancher = () => {
-  const { refetch } = useRanchers({ disablePolling: true });
+  const { refetch } = useRanchers({ shouldDisableRefetch: true });
   const { data } = useRancher();
   const [
     deleteRancherResponse,

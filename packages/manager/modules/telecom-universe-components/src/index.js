@@ -1,6 +1,5 @@
 import angular from 'angular';
 
-import tucChartjs from './chartjs';
 import tucCsvParser from './csv-parser';
 import tucCustomAsterisk from './custom-asterisk';
 import tucDebounce from './debounce';
@@ -40,7 +39,6 @@ import tucTelephonyProcedure from './telephony-procedure';
 const moduleName = 'ngOvhTelecomUniverseComponents';
 
 angular.module(moduleName, [
-  tucChartjs,
   tucCsvParser,
   tucCustomAsterisk,
   tucDebounce,

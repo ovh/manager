@@ -2,7 +2,7 @@
   "user_account_identity_documents": "My identity documents",
   "user_account_identity_documents_title": "Verification of documents required",
   "user_account_identity_documents_sub_title": "Upload your documents",
-  "user_account_identity_documents_intro": "You have created your account and you want to order from our Indian site. The regulations in force require that you verify your identity before ordering.",
+  "user_account_identity_documents_intro": "Your account has been created. To place an order on our website, you will need to check that the order is being processed in accordance with Indian law.",
   "user_account_identity_documents_intro_kyc_reminder": "Please ensure that your personal data matches the name and address in your official documents.",
   "user_account_identity_documents_list_for_particular": "If you are an individual, the mandatory documents to provide are:",
   "user_account_identity_documents_list_for_enterprise": "If you are a company, the mandatory documents to provide are:",
@@ -24,5 +24,8 @@
   "user_account_identity_documents_legal_info1": "OVH S.A.S is responsible for processing your personal data. The data collected through this form is processed in order to comply with the <a href=\"{{ link1 }}\" target=\"_blank\">Cybersecurity Guidelines of 28 April 2022</a>, published by CERT-IN, pursuant to the provisions of subsection (6) of <a href=\"{{ link2 }}\" target=\"_blank\">section 70B</a> of the Information Technology (IT) Act, 2000.",
   "user_account_identity_documents_legal_info2": "To find out more about how your data is processed, along with your rights, please refer to our <a href=\"{{ link }}\" target=\"_blank\">Policy on the Use of Personal Data.</a>",
   "user_account_identity_documents_verification_in_progress_info": "Your documents are currently being processed by our team.",
-  "user_account_identity_documents_verification_waiting_info": "Your request has been processed but we require additional documents. Please consult your support ticket."
+  "user_account_identity_documents_verification_waiting_info": "Your request has been processed but we require additional documents. Please consult your support ticket.",
+  "user_account_identity_documents_upload": "Download your documents",
+  "user_account_identity_documents_intro_others": "If you are an Individual, you only need to submit the required proof of identity and address. In this case, a sworn statement and proof of VAT aren’t required.",
+  "user_account_identity_documents_legal_info3": "The documents will be retained for 5 years after the end of the contract."
 }

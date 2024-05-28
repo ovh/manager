@@ -1,7 +1,7 @@
 {
   "pci_additional_ips_failoverip_order": "Buy Additional IPs",
   "pci_additional_ips_failoverip_order_generate": "Generate purchase order",
-  "pci_additional_ips_failoverip_order_cancel": "Exit",
+  "pci_additional_ips_failoverip_order_cancel": "Cancel",
   "pci_additional_ips_failoverip_order_description": "Additional IP addresses can be transferred from one server to another within the same cloud project, and the same continent.",
   "pci_additional_ips_failoverip_order_quantity": "Number of Additional IPs",
   "pci_additional_ips_failoverip_order_instance": "Instance to attach",

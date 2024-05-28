@@ -46,11 +46,6 @@ export default function Catalog() {
     }
   }, [searchText, categories, universes, products, isRouterInitialized]);
 
-  const getResultsNumber = () => {
-    if (isLoading) return '';
-    return `(${results.length})`;
-  };
-
   if (!isLoading && error) return <Errors error={error} />;
 
   return (
@@ -63,7 +58,8 @@ export default function Catalog() {
         color={ODS_THEME_COLOR_INTENT.text}
         className="mb-3"
       >
-        {`${t('title')} ${getResultsNumber()}`}
+        {t('title')}
+        {isLoading ? '' : ` (${results.length})`}
       </OsdsText>
       <SearchBar
         products={products}

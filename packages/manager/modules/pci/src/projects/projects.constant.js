@@ -163,7 +163,6 @@ export const PCI_FEATURES_STATES = {
     ADD: 'pci.projects.project.data-processing.jobs.submit-job',
   },
   PROJECT_MANAGEMENT: {
-    USERS_ROLES: 'pci.projects.project.users',
     QUOTA_AND_REGIONS: 'pci.projects.project.quota',
     SSH_KEYS: 'pci.projects.project.sshKeys',
     BILLING_CONTROL: 'pci.projects.project.billing',

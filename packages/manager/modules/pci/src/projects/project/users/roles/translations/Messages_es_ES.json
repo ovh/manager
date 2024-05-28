@@ -1,7 +1,0 @@
-{
- "pci_projects_project_users_roles": "Editar los roles",
- "pci_projects_project_users_roles_cancel": "Cancelar",
- "pci_projects_project_users_roles_edit": "Aceptar",
- "pci_projects_project_users_roles_edit_success": "Los permisos del usuario se han modificado correctamente. Los cambios no son instantáneos y pueden tardar hasta 10 minutos en guardarse.",
- "pci_projects_project_users_roles_edit_error": "Se ha producido un error al actualizar los roles del usuario {{ message }}."
-}

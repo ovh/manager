@@ -9,11 +9,14 @@ import { isString, get } from 'lodash-es';
 
 import angular from 'angular';
 import cloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ngOvhChart from '@ovh-ux/ng-ovh-chart';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
+
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerVps from '@ovh-ux/manager-vps';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
-
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
@@ -27,6 +30,9 @@ export default (containerEl, environment) => {
         ngUiRouterBreadcrumb,
         registerCoreModule(environment),
         ovhManagerVps,
+        ngAtInternet,
+        ngOvhChart,
+        ngOvhFeatureFlipping,
         ngOvhPaymentMethod,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),

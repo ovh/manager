@@ -1,6 +1,0 @@
-import { expect, test } from '@playwright/test';
-import '@playwright-helpers/login';
-
-test('Start your application text by default', async ({ page }) => {
-  await expect(page.locator('body')).toContainText('Start your application');
-});

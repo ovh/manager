@@ -2,7 +2,7 @@
   "user_account_identity_documents": "Meine Ausweisdokumente",
   "user_account_identity_documents_title": "Überprüfung der Dokumente erforderlich",
   "user_account_identity_documents_sub_title": "Dokumente einreichen",
-  "user_account_identity_documents_intro": "Sie haben Ihren Account erstellt und möchten eine Bestellung über unsere indische Website aufgeben. Aufgrund der geltenden Vorschriften muss vor der Bestellung Ihre Identität überprüft werden.",
+  "user_account_identity_documents_intro": "Sie haben ein Konto erstellt. Um eine Bestellung über unsere Website durchzuführen, sind Kontrollen in Übereinstimmung mit den indischen Gesetzen erforderlich.",
   "user_account_identity_documents_intro_kyc_reminder": "Vergewissern Sie sich, dass Ihre persönlichen Daten mit dem Namen und der Adresse auf Ihren offiziellen Dokumenten übereinstimmen.",
   "user_account_identity_documents_list_for_particular": "Als Privatperson müsse Sie folgende Dokumente bereitstellen:",
   "user_account_identity_documents_list_for_enterprise": "Als Unternehmen müssen Sie folgende Dokumente bereitstellen:",
@@ -24,5 +24,8 @@
   "user_account_identity_documents_legal_info1": "OVH S.A.S ist für die Verarbeitung Ihrer personenbezogenen Daten verantwortlich. Die über dieses Formular erhobenen Daten werden verarbeitet, um den <a href=\"{{ link1 }}\" target=\"_blank\">Richtlinien zur Cybersicherheit vom 28.04.2022</a> Rechnung zu tragen, die das CERT-IN gemäß den Bestimmungen des Unterabschnitts (6) von <a href=\"{{ link2 }}\" target=\"_blank\">Artikel 70B</a> des Information Technology (IT) Act von 2000 veröffentlicht hat.",
   "user_account_identity_documents_legal_info2": "Weitere Informationen zur Verarbeitung Ihrer Daten und zu Ihren Rechten finden Sie in unseren <a href=\"{{ link }}\" target=\"_blank\">Richtlinien zur Nutzung personenbezogener Daten.</a>",
   "user_account_identity_documents_verification_in_progress_info": "Die Verarbeitung Ihrer Dokumente wird derzeit von unserem Team analysiert.",
-  "user_account_identity_documents_verification_waiting_info": "Ihre Anfrage wurde analysiert, es werden jedoch weitere Dokumente benötigt. Bitte sehen Sie sich Ihr Support-Ticket an."
+  "user_account_identity_documents_verification_waiting_info": "Ihre Anfrage wurde analysiert, es werden jedoch weitere Dokumente benötigt. Bitte sehen Sie sich Ihr Support-Ticket an.",
+  "user_account_identity_documents_upload": "Laden Sie Ihre Dokumente herunter",
+  "user_account_identity_documents_intro_others": "Wenn Sie eine Privatperson sind, sind die folgenden Identitäts- und Adressnachweise ausreichend. In diesem Fall ist es nicht erforderlich, die ehrenwörtliche Erklärung oder den Mehrwertsteuernachweis vorzulegen.",
+  "user_account_identity_documents_legal_info3": "Die Dokumente werden nach Vertragsende noch 5 Jahre aufbewahrt."
 }

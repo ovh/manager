@@ -20,14 +20,11 @@
             <h2 data-translate="iplb_graph_connections_title"></h2>
         </div>
         <div class="cui-panel__body">
-            <canvas
-                id="line"
-                class="chart chart-line"
-                data-chart-data="ctrl.connLoader.data.data"
-                data-chart-labels="ctrl.connLoader.data.labels"
-                data-chart-options="ctrl.options"
-            >
-            </canvas>
+            <div
+                data-chart
+                data-chartjs="ctrl.connChart"
+                data-auto-reload="true"
+            ></div>
         </div>
     </div>
 
@@ -36,14 +33,11 @@
             <h2 data-translate="iplb_graph_rqpersec_title"></h2>
         </div>
         <div class="cui-panel__body">
-            <canvas
-                id="line2"
-                class="chart chart-line"
-                data-chart-data="ctrl.reqmLoader.data.data"
-                data-chart-labels="ctrl.reqmLoader.data.labels"
-                data-chart-options="ctrl.options"
-            >
-            </canvas>
+            <div
+                data-chart
+                data-chartjs="ctrl.reqmChart"
+                data-auto-reload="true"
+            ></div>
         </div>
     </div>
 </section>

@@ -27,7 +27,7 @@
   "pci_additional_ip_create_step_select_region_floating_ip": "Wählen Sie eine Region für Ihre neue Floating IP aus.",
   "pci_additional_ip_create_step_select_region_description_floating_ip": "Ist die gewünschte Region nicht in der Liste? Weitere Informationen zu den verfügbaren Produkten jeder Region <a href=\"{{ guideLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">finden Sie hier.</a>",
   "pci_additional_ip_create_step_attach_instance_description_floating_ip": "Es werden nur Instanzen mit privaten Netzwerken angezeigt",
-  "pci_additional_ip_create_no_instance_message_floating_ip": "In der ausgewählten Region wurde keine Instanz mit privatem Netzwerk gefunden. Bitte erstellen Sie eine IP-Adresse, bevor Sie eine Floating IP anhängen.",
+  "pci_additional_ip_create_no_instance_message_floating_ip": "In der ausgewählten Region wurde keine Instanz mit privatem Netzwerk gefunden. Ein solches muss erstellt werden, bevor Sie eine Floating IP anhängen.",
   "pci_additional_ip_create_summary_step_missing_components_description": "Es fehlen Komponenten.",
   "pci_additional_ip_create_summary_step_gateway_name": "Im Rechenzentrum {{ region }} wird eine neue Gateway-Instanz erstellt.",
   "pci_additional_ip_create_summary_step_gateway_size_and_price": "Die gewählte Größe beträgt: {{ size }}",

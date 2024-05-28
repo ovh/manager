@@ -1,10 +1,13 @@
 import angular from 'angular';
 import isArray from 'lodash/isArray';
 import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import head from 'lodash/head';
 import map from 'lodash/map';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 import 'moment';
+import { formatDistanceToNow, parse } from 'date-fns';
 
 export default class OverTheBoxDetailsCtrl {
   /* @ngInject */
@@ -12,6 +15,8 @@ export default class OverTheBoxDetailsCtrl {
     $filter,
     $translate,
     $q,
+    ChartFactory,
+    DATEFNS_LOCALE,
     OVER_THE_BOX,
     OVERTHEBOX_DETAILS,
     OvhApiOverTheBox,
@@ -19,7 +24,6 @@ export default class OverTheBoxDetailsCtrl {
     OvhApiIpReverse,
     OverTheBoxGraphService,
     TucToast,
-    TucChartjsFactory,
   ) {
     this.$filter = $filter;
     this.$translate = $translate;
@@ -31,7 +35,8 @@ export default class OverTheBoxDetailsCtrl {
     this.OvhApiIpReverse = OvhApiIpReverse;
     this.OverTheBoxGraphService = OverTheBoxGraphService;
     this.TucToast = TucToast;
-    this.TucChartjsFactory = TucChartjsFactory;
+    this.TucChartjsFactory = ChartFactory;
+    this.DATEFNS_LOCALE = DATEFNS_LOCALE;
   }
 
   $onInit() {
@@ -266,14 +271,22 @@ export default class OverTheBoxDetailsCtrl {
         this.chartDown.setYLabel(
           this.$translate.instant('overTheBox_statistics_bits_per_sec_legend'),
         );
-        this.chartDown.setAxisOptions('yAxes', {
+        this.chartDown.setAxisOptions('y', {
           ticks: {
             callback: this.humanizeAxisDisplay.bind(this),
           },
         });
         this.chartDown.setTooltipCallback('label', (item) =>
-          this.displayBitrate(item.yLabel),
+          this.displayBitrate(item.parsed.y),
         );
+
+        this.chartDown.setTooltipCallback('title', (data) => {
+          const date = parse(get(head(data), 'label'), 'PPpp', new Date());
+          return formatDistanceToNow(date, {
+            addSuffix: true,
+            locale: this.DATEFNS_LOCALE,
+          });
+        });
 
         const downSeries = sortBy(
           map(filteredDown, (d) => ({
@@ -295,7 +308,7 @@ export default class OverTheBoxDetailsCtrl {
           });
         });
         if (!downSeries.length) {
-          this.chartDown.options.scales.xAxes = [];
+          this.chartDown.options.scales.x = {};
         }
 
         // Upload chart
@@ -305,13 +318,22 @@ export default class OverTheBoxDetailsCtrl {
         this.chartUp.setYLabel(
           this.$translate.instant('overTheBox_statistics_bits_per_sec_legend'),
         );
-        this.chartUp.setAxisOptions('yAxes', {
+        this.chartUp.setAxisOptions('y', {
           ticks: {
             callback: this.humanizeAxisDisplay.bind(this),
           },
         });
+
+        this.chartUp.setTooltipCallback('title', (data) => {
+          const date = parse(get(head(data), 'label'), 'PPpp', new Date());
+          return formatDistanceToNow(date, {
+            addSuffix: true,
+            locale: this.DATEFNS_LOCALE,
+          });
+        });
+
         this.chartUp.setTooltipCallback('label', (item) =>
-          this.displayBitrate(item.yLabel),
+          this.displayBitrate(item.parsed.y),
         );
 
         const upSeries = sortBy(
@@ -334,7 +356,7 @@ export default class OverTheBoxDetailsCtrl {
           });
         });
         if (!upSeries.length) {
-          this.chartUp.options.scales.xAxes = [];
+          this.chartUp.options.scales.x = {};
         }
         this.isLoading = false;
       })
@@ -504,12 +526,7 @@ export default class OverTheBoxDetailsCtrl {
       })
       .$promise.then((devices) => {
         this.device = devices;
-        this.kpiInterfaces = devices.networkInterfaces
-          .filter((netInterface) => netInterface.gateway != null)
-          .map((netInterface) =>
-            netInterface.device ? netInterface.device : netInterface.name,
-          );
-
+        this.kpiInterfaces = devices.networkInterfaces;
         this.checkPublicIP();
 
         if (this.device && this.device.publicIp) {
