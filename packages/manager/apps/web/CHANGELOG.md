@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.24.0...@ovh-ux/manager-web@18.25.0) (2024-05-28)
+
+
+### Bug Fixes
+
+* **web:** resolve subdomain record exist issue ([e13b754](https://github.com/ovh/manager/commit/e13b75424ae7df47fa2b582dd338341f235a2c4f))
+
+
+### Features
+
+* create ng-ovh-chart component ([#11356](https://github.com/ovh/manager/issues/11356)) ([dde7809](https://github.com/ovh/manager/commit/dde780945145ef49f9280a037cb00683b5aa31db))
+
+
+
+
+
 # [18.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.23.1...@ovh-ux/manager-web@18.24.0) (2024-05-21)
 
 

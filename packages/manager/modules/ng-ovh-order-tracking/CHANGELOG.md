@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@2.4.1...@ovh-ux/ng-ovh-order-tracking@2.5.0) (2024-05-28)
+
+
+### Features
+
+* **ovh-order-tracking:** remove info banner of bm delay ([ee6afa1](https://github.com/ovh/manager/commit/ee6afa1116d8c9420307c7cf03aa090f74be4f4b))
+
+
+
+
+
 ## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@2.4.0...@ovh-ux/ng-ovh-order-tracking@2.4.1) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-order-tracking

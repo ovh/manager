@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.14.1...@ovh-ux/manager-cloud-connect@1.15.0) (2024-05-28)
+
+
+### Features
+
+* create ng-ovh-chart component ([#11356](https://github.com/ovh/manager/issues/11356)) ([dde7809](https://github.com/ovh/manager/commit/dde780945145ef49f9280a037cb00683b5aa31db))
+
+
+
+
+
 ## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.14.0...@ovh-ux/manager-cloud-connect@1.14.1) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-cloud-connect

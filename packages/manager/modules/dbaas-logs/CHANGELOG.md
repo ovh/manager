@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.20.2...@ovh-ux/manager-dbaas-logs@1.21.0) (2024-05-28)
+
+
+### Features
+
+* create ng-ovh-chart component ([#11356](https://github.com/ovh/manager/issues/11356)) ([dde7809](https://github.com/ovh/manager/commit/dde780945145ef49f9280a037cb00683b5aa31db))
+
+
+
+
+
 ## [1.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.20.1...@ovh-ux/manager-dbaas-logs@1.20.2) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-dbaas-logs

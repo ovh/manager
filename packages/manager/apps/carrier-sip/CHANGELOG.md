@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@3.2.1...@ovh-ux/manager-carrier-sip-app@3.3.0) (2024-05-28)
+
+
+### Features
+
+* create ng-ovh-chart component ([#11356](https://github.com/ovh/manager/issues/11356)) ([dde7809](https://github.com/ovh/manager/commit/dde780945145ef49f9280a037cb00683b5aa31db))
+
+
+
+
+
 ## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@3.2.0...@ovh-ux/manager-carrier-sip-app@3.2.1) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-carrier-sip-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.10.3...@ovh-ux/manager-catalog-app@1.10.4) (2024-05-28)
+
+
+### Bug Fixes
+
+* **catalog:** migrate e2e tests to BDD tests ([f5bf926](https://github.com/ovh/manager/commit/f5bf92638d72228454ee395e02d8f0aa1791b2f8))
+
+
+
+
+
 ## [1.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.10.2...@ovh-ux/manager-catalog-app@1.10.3) (2024-05-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app
