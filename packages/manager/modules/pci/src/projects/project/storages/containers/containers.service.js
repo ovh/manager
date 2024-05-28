@@ -532,7 +532,6 @@ export default class PciStoragesContainersService {
     const config = {
       headers: {
         'Content-Type': file.type,
-        [X_AMZ_STORAGE_CLASS]: storageClass,
       },
       data: file,
     };
@@ -546,7 +545,11 @@ export default class PciStoragesContainersService {
           storageClass,
         },
       )
-      .then((res) => res.data)
+      .then((res) => {
+        config.headers[X_AMZ_STORAGE_CLASS] =
+          res?.data?.signedHeaders[X_AMZ_STORAGE_CLASS];
+        return res.data;
+      })
       .then(({ url }) => {
         return this.$http.put(url, config.data, {
           headers: {
