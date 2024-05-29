@@ -24,15 +24,15 @@ import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { useMutation } from '@tanstack/react-query';
 import { Translation, useTranslation } from 'react-i18next';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
+import { DEFAULT_CIDR, DEFAULT_IP, DEFAULT_VLAN_ID } from '@/constants';
+import { useProjectAvailableRegions } from '@/api/hooks/useRegions';
+import { TSubnet } from '@/api/data/subnets';
+import { TGateway } from '@/api/data/regions';
 import {
   associateGatewayToNetworkCall,
   createNetwork,
   enableSnatOnGatewayCall,
 } from '@/api/data/network';
-import { TGateway } from '@/api/data/regions';
-import { TSubnet } from '@/api/data/subnets';
-import { useProjectAvailableRegions } from '@/api/hooks/useRegions';
-import { DEFAULT_CIDR, DEFAULT_IP, DEFAULT_VLAN_ID } from '@/constants';
 import ConfigurationStep from './steps/ConfigurationStep';
 import GatewaySummaryStep from './steps/GatewaySummaryStep';
 import LocalizationStep, { TMappedRegion } from './steps/LocalizationStep';

@@ -24,26 +24,28 @@ export default function DeleteLocalZone() {
     networkId,
     onSuccess: () => {
       addSuccess(
-        <Translation>
+        <Translation ns="listing">
           {(t) =>
             t('pci_projects_project_network_private_delete_success', {
               name: networkId,
             })
           }
         </Translation>,
+        true,
       );
       onClose();
     },
     onError: (error: ApiError) => {
       onClose();
       addError(
-        <Translation>
+        <Translation ns="listing">
           {(t) =>
             t('pci_projects_project_network_private_delete_error', {
               message: error?.response?.data?.message || error?.message || null,
             })
           }
         </Translation>,
+        true,
       );
     },
   });

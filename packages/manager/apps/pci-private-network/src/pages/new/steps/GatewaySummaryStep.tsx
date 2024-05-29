@@ -1,5 +1,9 @@
 import { StepComponent } from '@ovhcloud/manager-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_CHECKBOX_BUTTON_SIZE,
   ODS_MESSAGE_TYPE,
@@ -20,11 +24,11 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGatewayCatalog } from '@/api/hooks/useGateway';
 import { TFormState } from '../New.page';
+import { useCatalogPrice } from '@/hooks/catalog-price';
 
-type TLocalizationStep = {
+type TGatewaySummaryStep = {
   isOpen: boolean;
   onNext?: () => void;
-  onEdit?: () => void;
   formState: TFormState;
   setFormState: (formState) => void;
   isLoading: boolean;
@@ -33,16 +37,20 @@ type TLocalizationStep = {
 export default function GatewaySummaryStep({
   isOpen,
   onNext,
-  onEdit,
   formState,
   setFormState,
   isLoading,
-}: Readonly<TLocalizationStep>): JSX.Element {
+}: Readonly<TGatewaySummaryStep>): JSX.Element {
   const { t } = useTranslation('new');
 
   const { ovhSubsidiary } = useEnvironment().getUser();
 
   const { data: gatewayCatalog } = useGatewayCatalog(ovhSubsidiary);
+
+  const {
+    getFormattedHourlyCatalogPrice,
+    getFormattedMonthlyCatalogPrice,
+  } = useCatalogPrice(4);
 
   useEffect(() => {
     if (gatewayCatalog) {
@@ -58,15 +66,15 @@ export default function GatewaySummaryStep({
       title={t(
         'pci_projects_project_network_private_create_summary_step_title',
       )}
-      next={{
-        action: isLoading ? undefined : onNext,
-        label: t('pci_projects_project_network_private_create_submit'),
-        isDisabled: false,
-      }}
-      edit={{
-        action: onEdit,
-        label: undefined,
-      }}
+      next={
+        isLoading
+          ? undefined
+          : {
+              action: onNext,
+              label: t('pci_projects_project_network_private_create_submit'),
+              isDisabled: false,
+            }
+      }
       order={3}
       isOpen={isOpen}
     >
@@ -124,13 +132,14 @@ export default function GatewaySummaryStep({
                   'pci_projects_project_network_private_create_summary_step_price',
                 )}
               </OsdsText>
-              {/* TODO: fix later with the rebase on updated manager-component */}
-              {/* <Price
-                value={gatewayCatalog?.pricePerMonth}
-                ovhSubsidiary={ovhSubsidiary as OvhSubsidiary}
-                intervalUnit={IntervalUnitType.month}
-                locale={}
-              /> */}
+
+              <OsdsText
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
+                {getFormattedMonthlyCatalogPrice(gatewayCatalog?.pricePerMonth)}
+              </OsdsText>
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
                 level={ODS_TEXT_LEVEL.body}
@@ -141,13 +150,13 @@ export default function GatewaySummaryStep({
                   'pci_projects_project_network_private_create_summary_step_that_is',
                 )}
               </OsdsText>
-              {/* TODO: fix later with the rebase on updated manager-component */}
-              {/* <Price
-                value={gatewayCatalog?.pricePerHour}
-                ovhSubsidiary={ovhSubsidiary as OvhSubsidiary}
-                intervalUnit={IntervalUnitType.month}
-                locale={}
-              /> */}
+              <OsdsText
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
+                {getFormattedHourlyCatalogPrice(gatewayCatalog?.pricePerHour)} (
+              </OsdsText>
             </div>
           </OsdsMessage>
         )}
