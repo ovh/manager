@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import initI18n from './i18n';
+import initInterceptor from './data/invisible-challenge.interceptor';
 
 import './global.css';
 import './index.scss';
@@ -17,6 +18,7 @@ const user = {
 const locale = user.language;
 
 initI18n(locale, [locale], user.subsidiary);
+initInterceptor();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
