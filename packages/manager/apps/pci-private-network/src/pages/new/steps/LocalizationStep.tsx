@@ -1,12 +1,17 @@
 import {
   StepComponent,
-  TileInputComponent,
+  TilesInputComponent,
 } from '@ovhcloud/manager-components';
 
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import clsx from 'clsx';
 import { TRegion } from '@/api/data/regions';
 import { TFormState } from '../New.page';
 import { RegionTile } from './RegionTile';
@@ -25,6 +30,8 @@ type TLocalizationStep = {
 export type TMappedRegion = {
   name: string;
   code: string;
+  macroName: string;
+  microName: string;
   continentCode: string;
   continent: string;
   isLocalZone: boolean;
@@ -47,17 +54,9 @@ export default function LocalizationStep({
 
   const [mappedRegions, setMappedRegions] = useState<TMappedRegion[]>([]);
 
-  const regionLabel = (region: TMappedRegion) => {
-    const stackedRegions = mappedRegions.filter(
-      ({ name }) => name === region.name,
-    ).length;
-    return stackedRegions === 1 ? <RegionTile region={region} /> : region.code;
-  };
-
-  const groupLabel = (groupedRegions: TMappedRegion[]) =>
-    groupedRegions.length === mappedRegions.length
-      ? tRegions('pci_project_regions_list_continent_all')
-      : groupedRegions[0]?.continent;
+  const [state, setState] = useState<{ selectedContinent: string }>({
+    selectedContinent: undefined,
+  });
 
   const getMacroRegion = (regionName: string) => {
     const localZonePattern = /^lz/i;
@@ -96,11 +95,24 @@ export default function LocalizationStep({
     return translatedRegionContinent || name;
   };
 
+  const getFirstRegionByMacroName = (macroName: string) =>
+    mappedRegions.find((region) => region.macroName === macroName);
+
+  const isRegionStandalone = (region: TMappedRegion) =>
+    mappedRegions.filter(
+      (regionItem) => regionItem.macroName === region.macroName,
+    ).length === 1;
+
   useEffect(() => {
     if (regions?.length > 0) {
       const result = regions.map((region) => ({
-        name: getTranslatedMacroRegion(region),
+        name: region.name,
         code: region.name,
+        macroName: getTranslatedMacroRegion(region),
+        microName: tRegion(
+          `manager_components_region_${getMacroRegion(region.name)}_micro`,
+          { micro: region.name },
+        ),
         continentCode: region.continentCode,
         continent: getTranslatedRegionContinent(region),
         isLocalZone: region.type === 'localzone',
@@ -113,14 +125,19 @@ export default function LocalizationStep({
   return (
     <StepComponent
       title={t('pci_projects_project_network_private_create_localisation')}
-      next={{
-        action: isLoading ? undefined : onNext,
-        label: t('pci_projects_project_network_private_create_next'),
-        isDisabled: mappedRegions.length === 0 || !formState.region,
-      }}
+      next={
+        isLoading
+          ? undefined
+          : {
+              action: onNext,
+              label: t('pci_projects_project_network_private_create_next'),
+              isDisabled: mappedRegions.length === 0 || !formState.region,
+            }
+      }
       edit={{
         action: onEdit,
         label: tCommon('common_stepper_modify_this_step'),
+        isDisabled: false,
       }}
       order={1}
       isOpen={isOpen}
@@ -128,25 +145,57 @@ export default function LocalizationStep({
     >
       <div className="my-8">
         {mappedRegions.length ? (
-          <TileInputComponent
+          <TilesInputComponent<TMappedRegion, string, string>
             value={formState.region}
             items={mappedRegions}
-            label={(region: TMappedRegion) => regionLabel(region)}
+            label={(region: TMappedRegion) =>
+              isRegionStandalone(region) ? (
+                <RegionTile region={region} formState={formState} />
+              ) : (
+                region.name
+              )
+            }
             onInput={(region) => {
               setFormState({ ...formState, region });
             }}
             group={{
               by: (region: TMappedRegion) => region.continent,
-              label: (groupedRegions: TMappedRegion[]) =>
-                groupLabel(groupedRegions),
+              label: (continent: string) => (
+                <OsdsText
+                  breakSpaces={false}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._600}
+                  color={
+                    continent === state.selectedContinent
+                      ? ODS_THEME_COLOR_INTENT.text
+                      : ODS_THEME_COLOR_INTENT.primary
+                  }
+                >
+                  <div
+                    className={clsx(
+                      continent === state.selectedContinent && 'font-bold',
+                      'whitespace-nowrap px-2 text-lg',
+                    )}
+                  >
+                    {undefined === continent
+                      ? tRegions('pci_project_regions_list_continent_all')
+                      : continent}
+                  </div>
+                </OsdsText>
+              ),
               showAllTab: true,
+              onChange: (continent: string) =>
+                setState((prev) => ({ ...prev, selectedContinent: continent })),
             }}
             stack={{
-              by: (region: TMappedRegion) => region.name,
-              label: (stackedRegion: TMappedRegion) => (
-                <RegionTile region={stackedRegion} type="stack" />
+              by: (region: TMappedRegion) => region?.macroName,
+              label: (macroName: string) => (
+                <RegionTile
+                  region={getFirstRegionByMacroName(macroName)}
+                  formState={formState}
+                  stack
+                />
               ),
-              title: tRegions('pci_project_regions_list_region'),
+              title: () => tRegions('pci_project_regions_list_region'),
             }}
           />
         ) : (

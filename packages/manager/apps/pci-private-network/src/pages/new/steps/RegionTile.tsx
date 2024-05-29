@@ -18,15 +18,19 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { URL_INFO } from '@/constants';
+import { TFormState } from '../New.page';
+import { TMappedRegion } from './LocalizationStep';
 
 type TRegionTile = {
-  region: any;
-  type?: string;
+  region: TMappedRegion;
+  stack?: boolean;
+  formState: TFormState;
 };
 
 export const RegionTile = ({
   region,
-  type = 'stack',
+  formState,
+  stack = false,
 }: Readonly<TRegionTile>) => {
   const { t: tRegions } = useTranslation('regions');
 
@@ -45,19 +49,24 @@ export const RegionTile = ({
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_TEXT_LEVEL.body}
-          size={ODS_TEXT_SIZE._400}
+          size={
+            region === formState?.region
+              ? ODS_TEXT_SIZE._500
+              : ODS_TEXT_SIZE._400
+          }
         >
-          {type === 'stack' ? region.name : `${region.name} (${region.code})`}
+          {stack ? region?.macroName : region?.microName}
         </OsdsText>
       </div>
       <hr className="w-full border-solid border-0 border-b border-b-[#85d9fd]" />
       <div>
-        {region.isLocalZone ? (
+        {region?.isLocalZone ? (
           <OsdsPopover>
             <span slot="popover-trigger">
               <OsdsChip
                 color={ODS_THEME_COLOR_INTENT.error}
                 size={ODS_CHIP_SIZE.sm}
+                onClick={(event) => event.stopPropagation()}
               >
                 <OsdsText
                   color={ODS_THEME_COLOR_INTENT.primary}
@@ -95,6 +104,7 @@ export const RegionTile = ({
               <OsdsChip
                 color={ODS_THEME_COLOR_INTENT.primary}
                 size={ODS_CHIP_SIZE.sm}
+                onClick={(event) => event.stopPropagation()}
               >
                 <OsdsText
                   color={ODS_THEME_COLOR_INTENT.primary}

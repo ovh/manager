@@ -8,7 +8,7 @@ import { TLocalZoneNetwork } from '@/api/hooks/useNetwork';
 import DeleteAction from '@/components/local-zones/DeleteAction.component';
 
 export const useDatagridColumn = (): DatagridColumn<TLocalZoneNetwork>[] => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('listing');
   return [
     {
       id: 'name',

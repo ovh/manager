@@ -32,7 +32,7 @@ export function OdsNotification({ notification }: OdsNotificationProps) {
     <OsdsMessage
       className="mb-2"
       type={getOdsMessageColor(notification.type)}
-      {...(notification.dismissable
+      {...(notification.dismissible
         ? {
             removable: true,
             onOdsRemoveClick: () => clearNotification(notification.uid),

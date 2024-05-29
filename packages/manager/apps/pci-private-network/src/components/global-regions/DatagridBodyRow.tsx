@@ -123,7 +123,7 @@ export default function DataGridBodyRow({
         )}
       </td>
       <td>{renderText(subnetDetail.allocatedIp)}</td>
-      <td className="text-right pr-6">
+      <td className="text-right pr-6 min-w-16">
         {subnetDetail.gatewayIp &&
           renderTooltipButton(
             ODS_ICON_NAME.SETTINGS,
