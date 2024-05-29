@@ -56,13 +56,13 @@ export default function Create() {
   });
 
   const { data: plans } = useQuery({
-    queryKey: [getReferenceRancherInfo('plan')],
-    queryFn: () => getRancherPlan(),
+    queryKey: [getReferenceRancherInfo(projectId, 'plan')],
+    queryFn: () => getRancherPlan(projectId),
   });
 
   const { data: versions } = useQuery({
-    queryKey: [getReferenceRancherInfo('version')],
-    queryFn: () => getRancherVersion(),
+    queryKey: [getReferenceRancherInfo(projectId, 'version')],
+    queryFn: () => getRancherVersion(projectId),
   });
 
   return (
