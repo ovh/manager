@@ -1,5 +1,4 @@
-import React, { useEffect, useState, FC } from 'react';
-import { useLocation } from 'react-router-dom';
+import { FC, useEffect } from 'react';
 import { OdsNotification } from './ods-notification';
 import { useNotifications } from './useNotifications';
 
@@ -20,14 +19,17 @@ interface NotificationProps {
 export const Notifications: FC<NotificationProps> = ({
   clearAfterRead = true,
 }) => {
-  const location = useLocation();
-  const [originLocation] = useState(location);
-  const { notifications, clearNotifications } = useNotifications();
+  const { notifications, clearNotification } = useNotifications();
 
   useEffect(() => {
-    if (clearAfterRead && originLocation.pathname !== location.pathname)
-      clearNotifications();
-  }, [clearAfterRead, location.pathname]);
+    const timer = setTimeout(() => {
+      notifications.forEach((notification) => {
+        clearNotification(notification.uid);
+      });
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [notifications, clearNotification]);
 
   return (
     <>
