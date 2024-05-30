@@ -71,7 +71,7 @@ export default class VrackAssignedIpCtrl {
         this.addSubnetModalContext.isOpenModal = false;
         this.CucCloudMessage.flushMessages('vrack');
         this.vrackAssignedIpv6Service
-          .creatIpVrackSubnet(this.serviceName, this.ip.niceName, {
+          .createSubnet(this.serviceName, this.ip.niceName, {
             routedSubrange,
             nexthop,
           })
@@ -131,7 +131,7 @@ export default class VrackAssignedIpCtrl {
         this.deleteSubnetModalContext.isOpenModal = false;
         this.CucCloudMessage.flushMessages('vrack');
         this.vrackAssignedIpv6Service
-          .deleteIpVrackSubnet(this.serviceName, this.ip.niceName, subnet)
+          .deleteSubnet(this.serviceName, this.ip.niceName, subnet)
           .then(({ data }) => {
             this.loader = true;
             this.watingTask(data.id, () => {
@@ -155,10 +155,20 @@ export default class VrackAssignedIpCtrl {
 
   loadSubnet() {
     this.vrackAssignedIpv6Service
-      .getIpVrackSubnet(this.serviceName, this.ip.niceName)
+      .fetchAllSubnets(this.serviceName, this.ip.niceName)
       .then(({ data }) => {
-        this.loader = false;
-        this.subnets = data;
+        this.$q
+          .all(
+            data.map((subnet) => {
+              return this.vrackAssignedIpv6Service
+                .getSubnet(this.serviceName, this.ip.niceName, subnet)
+                .then((res) => res.data);
+            }),
+          )
+          .then((subnets) => {
+            this.loader = false;
+            this.subnets = subnets;
+          });
       });
   }
 
