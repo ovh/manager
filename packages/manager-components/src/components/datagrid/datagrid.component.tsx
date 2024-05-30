@@ -11,16 +11,13 @@ import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
-import {
-  OsdsIcon,
-  OsdsPagination,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
+  ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { DataGridTextCell } from './text-cell.component';
@@ -61,22 +58,21 @@ export interface DatagridProps<T> {
   onSortChange?: (sorting: ColumnSort) => void;
   /** option to add custom CSS class */
   className?: string;
+
+  hasNextPage?: boolean;
+  fetchNextPage?: any;
 }
 
 export const Datagrid = <T extends unknown>({
   columns,
   items,
-  totalItems,
-  pagination,
   sorting,
   className,
-  onPaginationChange,
   onSortChange,
+  hasNextPage,
+  fetchNextPage,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
-  const pageCount = pagination
-    ? Math.ceil(totalItems / pagination.pageSize)
-    : 1;
 
   const table = useReactTable({
     columns: columns.map(
@@ -89,9 +85,7 @@ export const Datagrid = <T extends unknown>({
     ),
     data: items,
     manualPagination: true,
-    pageCount,
     state: {
-      pagination: { ...pagination },
       ...(sorting && {
         sorting: [sorting],
       }),
@@ -209,40 +203,16 @@ export const Datagrid = <T extends unknown>({
           </tbody>
         </table>
       </div>
-      {items?.length > 0 && pagination ? (
-        <OsdsPagination
-          defaultCurrentPage={pagination.pageIndex + 1}
-          className={'flex xs:justify-start md:justify-end'}
-          total-items={totalItems}
-          total-pages={pageCount}
-          default-items-per-page={pagination.pageSize}
-          onOdsPaginationChanged={({ detail }) => {
-            if (detail.current !== detail.oldCurrent) {
-              onPaginationChange({
-                ...pagination,
-                pageIndex: detail.current - 1,
-                pageSize: detail.itemPerPage,
-              });
-            }
-          }}
-          onOdsPaginationItemPerPageChanged={({ detail }) => {
-            if (detail.current !== pagination.pageSize)
-              onPaginationChange({
-                ...pagination,
-                pageSize: detail.current,
-                pageIndex: 0,
-              });
-          }}
-        >
-          <span slot="before-total-items" className="mr-3">
-            {t('common_pagination_of')}
-          </span>
-          <span slot="after-total-items" className="ml-3">
-            {t('common_pagination_results')}
-          </span>
-        </OsdsPagination>
-      ) : (
-        <div className="mb-6" aria-hidden="true"></div>
+      {hasNextPage && (
+        <div className="grid justify-items-center my-5">
+          <OsdsButton
+            color={ODS_THEME_COLOR_INTENT.info}
+            variant={ODS_BUTTON_VARIANT.stroked}
+            onClick={fetchNextPage}
+          >
+            Load more
+          </OsdsButton>
+        </div>
       )}
     </div>
   );

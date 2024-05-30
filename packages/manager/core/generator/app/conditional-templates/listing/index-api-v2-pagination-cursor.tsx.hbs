@@ -50,7 +50,7 @@ export default function Listing() {
   });
 
   const navigateToDashboard = (label: string) => {
-    let path =
+    const path =
       location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
     navigate(`${path}${label}`);
   };

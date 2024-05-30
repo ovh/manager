@@ -117,5 +117,9 @@ export async function fetchIcebergV6<T>({
   });
   const totalCount = parseInt(headers['x-pagination-elements'], 10) || 0;
 
-  return { data, totalCount, status };
+  return {
+    data,
+    totalCount,
+    status,
+  };
 }
