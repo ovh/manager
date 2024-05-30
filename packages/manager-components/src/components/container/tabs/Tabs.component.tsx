@@ -5,11 +5,12 @@ import { v4 as uuidV4 } from 'uuid';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { hashCode } from '../../../utils';
 
 type TProps<Item> = {
   id?: string;
   items?: Item[];
-  titleElement?: (item: Item, selected: boolean) => JSX.Element | string;
+  titleElement?: (item: Item) => JSX.Element | string;
   contentElement?: (item: Item) => JSX.Element;
   mobileBreakPoint?: number;
   className?: string;
@@ -17,34 +18,44 @@ type TProps<Item> = {
 };
 
 type TState<Item> = {
-  items: { payload: Item; isOpen: boolean }[];
+  items: Item[];
   selectedItem?: Item;
-};
-
-const hashCode = (s: string) => {
-  let h = 0;
-  const l = s?.length || 0;
-  let i = 0;
-  // eslint-disable-next-line
-  if (l > 0) while (i < l) h = ((h << 5) - h + s.charCodeAt(i++)) | 0;
-  return h;
 };
 
 export const TabsComponent = function TabsComponent<Item>({
   id = uuidV4(),
   items = [],
-  titleElement = (item, selected) => (
-    <div className={selected && 'selected'}>{`title ${item}`}</div>
-  ),
+  titleElement = (item) => <div>{`title ${item}`}</div>,
   contentElement = (item) => <div>{`content ${item}`}</div>,
   mobileBreakPoint,
   className,
   onChange,
 }: TProps<Item>): JSX.Element {
   const [state, setState] = useState<TState<Item>>({
+    items,
     selectedItem: undefined,
-    items: [],
   });
+
+  const setSelectedItem = (item: Item): void => {
+    setState((prev) => ({
+      ...prev,
+      selectedItem: item,
+    }));
+  };
+
+  useEffect(() => {
+    if (
+      Array.isArray(items) &&
+      items.length &&
+      (items.length !== state.items.length ||
+        items.some((item, index) => !Object.is(item, state.items[index])))
+    ) {
+      setState(() => ({
+        items,
+        selectedItem: items[0],
+      }));
+    }
+  }, [items]);
 
   useEffect(() => {
     if (typeof onChange === 'function') {
@@ -52,31 +63,7 @@ export const TabsComponent = function TabsComponent<Item>({
     }
   }, [state.selectedItem]);
 
-  const toggle = (index: number) => {
-    if (index >= 0 && index < state.items.length) {
-      setState((prev) => ({
-        ...prev,
-        items: prev.items.map((item, i) => ({
-          ...item,
-          isOpen: index === i ? !item.isOpen : item.isOpen,
-        })),
-      }));
-    }
-  };
-
   const isDesktop = useMedia(`(min-width: ${mobileBreakPoint || 760}px)`);
-
-  useEffect(() => {
-    if (Array.isArray(items) && items.length) {
-      setState((prev) => ({
-        ...prev,
-        items: items.map((item) => ({ payload: item, isOpen: false })),
-        selectedItem: items[0],
-      }));
-    } else {
-      setState({ selectedItem: undefined, items: [] });
-    }
-  }, [items]);
 
   return (
     <>
@@ -91,33 +78,20 @@ export const TabsComponent = function TabsComponent<Item>({
           >
             {state.items.map((item) => (
               <li
-                key={`tabs-${id}title-${hashCode(JSON.stringify(item))}`}
+                key={`tabs-${id}title-${hashCode(item)}`}
                 className={clsx(
                   'px-4 py-4 cursor-pointer border border-solid border-[#bef1ff] rounded-t-lg',
-                  item.payload === state.selectedItem
+                  item === state.selectedItem
                     ? 'border-b-0 bg-[#F5FEFF]'
                     : 'border-b bg-white',
                 )}
               >
                 <button
                   className="border-0 bg-transparent cursor-pointer w-full"
-                  onClick={() =>
-                    setState((prev) => ({
-                      ...prev,
-                      selectedItem: item.payload,
-                    }))
-                  }
-                  onKeyDown={() =>
-                    setState((prev) => ({
-                      ...prev,
-                      selectedItem: item.payload,
-                    }))
-                  }
+                  onClick={() => setSelectedItem(item)}
+                  onKeyDown={() => setSelectedItem(item)}
                 >
-                  {titleElement(
-                    item.payload,
-                    Object.is(item.payload, state.selectedItem),
-                  )}
+                  {titleElement(item)}
                 </button>
               </li>
             ))}
@@ -135,24 +109,19 @@ export const TabsComponent = function TabsComponent<Item>({
           className={clsx('grid gap-6 grid-cols-1', className)}
           data-testid="mobile"
         >
-          {state.items.map(($item, index) => (
+          {state.items.map((item) => (
             <div
-              key={`tabs-${id}title-${hashCode(JSON.stringify($item.payload))}`}
+              key={`tabs-${id}title-${hashCode(item)}`}
               className="px-2 bg-[#F5FEFF] border border-solid border-[#bef1ff] rounded-lg"
             >
               <button
                 className="flex cursor-pointer px-4 py-4 w-full border-0 bg-transparent"
-                onClick={() => toggle(index)}
-                onKeyDown={() => toggle(index)}
+                onClick={() => setSelectedItem(item)}
+                onKeyDown={() => setSelectedItem(item)}
               >
-                <div className="w-full">
-                  {titleElement(
-                    $item.payload,
-                    Object.is($item.payload, state.selectedItem),
-                  )}
-                </div>
+                <div className="w-full">{titleElement(item)}</div>
                 <div className="w-fit flex items-center">
-                  {!$item.isOpen ? (
+                  {!Object.is(state.selectedItem, item) ? (
                     <OsdsIcon
                       className=""
                       name={ODS_ICON_NAME.CHEVRON_DOWN}
@@ -169,7 +138,9 @@ export const TabsComponent = function TabsComponent<Item>({
                   )}
                 </div>
               </button>
-              {$item.isOpen && <div>{contentElement($item.payload)}</div>}
+              {Object.is(state.selectedItem, item) && (
+                <div>{contentElement(item)}</div>
+              )}
             </div>
           ))}
         </section>

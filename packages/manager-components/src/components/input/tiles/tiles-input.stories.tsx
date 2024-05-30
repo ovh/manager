@@ -120,7 +120,7 @@ export const DemoSimple = Template.bind({});
 const commonArgs = {
   items: allCountries,
   value: undefined,
-  label: (country: TCountry) => country.name,
+  label: (country: TCountry) => country?.name,
   tileClass: {
     active: 'font-bold text-red-500 bg-orange-100',
   },
@@ -136,10 +136,11 @@ DemoStack.args = {
   ...commonArgs,
   stack: {
     by: (country: TCountry) => country.language,
-    label: (countries: TCountry[]) => {
-      return `${countries[0].language} (${countries.length})`;
+    label: (language: string, countries: TCountry[]) => {
+      return `${language} (${countries.length})`;
     },
-    title: 'Countries',
+    title: (language: string, countries: TCountry[]) =>
+      `Countries of ${language}(${countries.length}):`,
   },
 };
 
@@ -149,7 +150,7 @@ DemoGroup.args = {
   ...commonArgs,
   group: {
     by: (country: TCountry) => country.continent,
-    label: (countries: TCountry[], selected: boolean) => (
+    label: (group: string, countries: TCountry[], selected: boolean) => (
       <OsdsText
         breakSpaces={false}
         size={ODS_THEME_TYPOGRAPHY_SIZE._600}
@@ -165,9 +166,7 @@ DemoGroup.args = {
             'whitespace-nowrap px-2 text-lg',
           )}
         >
-          {countries.length === allCountries.length
-            ? 'All countries'
-            : countries[0].continent}
+          {group === undefined ? 'All countries' : countries[0].continent}
         </div>
       </OsdsText>
     ),
@@ -181,7 +180,7 @@ DemoGroupStack.args = {
   ...commonArgs,
   group: {
     by: (country: TCountry) => country.continent,
-    label: (countries: TCountry[], selected: boolean) => (
+    label: (group: string, countries: TCountry[], selected: boolean) => (
       <OsdsText
         breakSpaces={false}
         size={ODS_THEME_TYPOGRAPHY_SIZE._600}
@@ -197,19 +196,18 @@ DemoGroupStack.args = {
             'whitespace-nowrap px-2 text-lg',
           )}
         >
-          {countries.length === allCountries.length
-            ? 'All countries'
-            : countries[0].continent}
+          {group === undefined ? 'All countries' : countries[0].continent}
         </div>
       </OsdsText>
     ),
     showAllTab: true,
   },
   stack: {
-    by: (country: TCountry) => country.language,
-    label: (countries: TCountry[]) => {
-      return `${countries[0].language} (${countries.length})`;
+    by: (country: TCountry) => country?.language,
+    label: (language: string, countries: TCountry[]) => {
+      return `${language} (${countries?.length})`;
     },
-    title: 'Countries',
+    title: (language: string, countries: TCountry[]) =>
+      `Countries of ${language}(${countries?.length}):`,
   },
 };
