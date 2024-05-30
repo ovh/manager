@@ -20,12 +20,10 @@ export const UserProvider = ({ children = null, user }: Props): JSX.Element => {
 
     window.location.assign(`${loginUrl}${subsidiaryParams}`);
   }
-  const memoizedUser = useMemo(() => user, []);
+  const memoizedUser = useMemo(() => ({ user }), []);
 
   return (
-    <userContext.Provider value={{ user: memoizedUser }}>
-      {children}
-    </userContext.Provider>
+    <userContext.Provider value={memoizedUser}>{children}</userContext.Provider>
   );
 };
 
