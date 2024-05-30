@@ -9,8 +9,8 @@ angular
   .component('vrackAddDialogModal', {
     template,
     bindings: {
-      onConfirm: '&',
-      onCancel: '&',
+      onConfirm: '<',
+      onCancel: '<',
       isOpenModal: '<',
       servicesToAdd: '<',
     },

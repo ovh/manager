@@ -9,8 +9,8 @@ angular
   .component('vrackDeleteDialogModal', {
     template,
     bindings: {
-      onConfirm: '&',
-      onCancel: '&',
+      onConfirm: '<',
+      onCancel: '<',
       isOpenModal: '<',
       servicesToDelete: '<',
     },
