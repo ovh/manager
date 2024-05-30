@@ -11,14 +11,13 @@ import {
   useDatagridSearchParams,
 } from '@ovhcloud/manager-components';
 
+import useResourcesIcebergV2 from '@ovhcloud/manager-components/src/hooks/datagrid/useIcebergV2';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 import appConfig from '@/a-vrack-services.config';
 import { urls } from '@/routes/routes.constant';
-
-import useResourcesIcebergV2 from '@/data/hooks/datagrid/useIcebergV2';
 
 export default function Listing() {
   const { t } = useTranslation('listing');

@@ -37,18 +37,13 @@ function useResourcesIcebergV6({
     isLoading,
     error,
     status,
-  }: any = useInfiniteQuery({
+  } = useInfiniteQuery({
     initialPageParam: null,
     queryKey: [queryKey],
-    queryFn: () =>
-      getResourcesIcebergV6({
-        route,
-        pageSize,
-        page: pageIndex,
-      }),
+    queryFn: () => getResourcesIcebergV6({ route, pageSize, page: pageIndex }),
     staleTime: Infinity,
     retry: false,
-    getNextPageParam: () => totalCount / 10 >= pageIndex,
+    getNextPageParam: () => totalCount / pageSize >= pageIndex,
   });
 
   useEffect(() => {
@@ -77,7 +72,7 @@ function useResourcesIcebergV6({
     flattenData,
     goNextPage,
     pageIndex,
-    hasNextPage: totalCount / 10 >= pageIndex,
+    hasNextPage: totalCount / pageSize > pageIndex,
     totalCount,
     isError,
     error,
