@@ -38,9 +38,8 @@ import {
   useColumnFilters,
   FilterList,
   FilterAdd,
-  useDataGrid,
 } from '@ovhcloud/manager-components';
-import { useUsers } from '@/api/hooks/useUser';
+import useResourcesIcebergV6 from '@ovhcloud/manager-components/src/hooks/datagrid/useIcebergV6';
 import useProject from '@/api/hooks/useProject';
 import { User } from '@/interface';
 import Roles from './Roles';
@@ -121,29 +120,27 @@ export default function ListingPage() {
     },
   ];
 
-  const { pagination, setPagination, sorting, setSorting } = useDataGrid();
-
-  const { error, data: users, isLoading } = useUsers(
-    projectId || '',
-    {
-      pagination,
-      sorting,
-    },
-    filters,
-  );
+  const {
+    flattenData,
+    pageIndex,
+    goNextPage,
+    totalCount,
+    hasNextPage,
+    error,
+    isLoading,
+  } = useResourcesIcebergV6({
+    route: `/cloud/project/${projectId}/user`,
+    queryKey: `project${projectId}users${filters.toString()}`,
+    pageSize: 5,
+  });
 
   const hrefAdd = useHref(`./new`);
 
   useEffect(() => {
-    if (
-      !isLoading &&
-      !filters.length &&
-      pagination.pageIndex === 0 &&
-      !users.totalRows
-    ) {
+    if (!isLoading && !filters.length && pageIndex === 0 && !totalCount) {
       navigate(`/pci/projects/${projectId}/users/onboarding`);
     }
-  }, [isLoading, users, navigate, filters, pagination]);
+  }, [isLoading, flattenData, navigate, filters]);
 
   return (
     <>
@@ -196,10 +193,6 @@ export default function ListingPage() {
             className={'w-[70%]'}
             value={searchField}
             onOdsSearchSubmit={({ detail }) => {
-              setPagination({
-                pageIndex: 0,
-                pageSize: pagination.pageSize,
-              });
               addFilter({
                 key: 'username',
                 value: detail.inputValue,
@@ -239,10 +232,6 @@ export default function ListingPage() {
                   },
                 ]}
                 onAddFilter={(addedFilter, column) => {
-                  setPagination({
-                    pageIndex: 0,
-                    pageSize: pagination.pageSize,
-                  });
                   addFilter({
                     ...addedFilter,
                     label: column.label,
@@ -267,12 +256,10 @@ export default function ListingPage() {
         <div>
           <Datagrid
             columns={columns}
-            items={users?.rows || []}
-            totalItems={users?.totalRows || 0}
-            pagination={pagination}
-            onPaginationChange={setPagination}
-            sorting={sorting}
-            onSortChange={setSorting}
+            items={flattenData || []}
+            totalItems={totalCount || 0}
+            fetchNextPage={goNextPage}
+            hasNextPage={hasNextPage}
           />
         </div>
       )}
