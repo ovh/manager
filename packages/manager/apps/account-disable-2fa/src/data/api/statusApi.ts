@@ -1,13 +1,6 @@
+import { v6 } from '@ovh-ux/manager-core-api';
 import { Status2fa } from '@/types/status.type';
 
-// TODO: Replace this mock with a real call 'me/procedure/2fa'
 export const get2faStatus: () => Promise<Status2fa> = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        status: 'creationAuthorized', // or 'open',
-        ticketId: '',
-      });
-    }, 300);
-  });
+  return v6.get('/me/procedure/2FA').then(({ data }) => data);
 };

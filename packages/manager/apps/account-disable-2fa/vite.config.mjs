@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import { getBaseConfig } from '@ovh-ux/manager-vite-config';
 
-const baseConfig = getBaseConfig({});
+const baseConfig = getBaseConfig({ isLABEU: true});
 
 export default defineConfig({
   ...baseConfig,
