@@ -28,12 +28,12 @@ Demo.args = {
   isChecked: false,
   isLocked: false,
   next: {
-    action: (id: string) => {},
+    action: (_id: string) => {},
     label: 'Next',
     isDisabled: false,
   },
   edit: {
-    action: (id: string) => {},
+    action: (_id: string) => {},
     label: 'Edit',
     isDisabled: false,
   },

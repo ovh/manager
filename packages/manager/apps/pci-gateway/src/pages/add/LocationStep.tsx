@@ -27,6 +27,8 @@ type IState = {
   regions: TAvailableRegion[];
   region: TAvailableRegion;
   regionsLink: string;
+  selectedContinent: string;
+  selectedMacroName: string;
 };
 
 /**
@@ -51,6 +53,8 @@ export const LocationStep = () => {
     region: undefined,
     regions: [],
     regionsLink: '',
+    selectedContinent: undefined,
+    selectedMacroName: undefined,
   });
 
   useEffect(() => {
@@ -130,35 +134,39 @@ export const LocationStep = () => {
           store.updateForm.regionName(region?.name);
         }}
         stack={{
-          by: (region) => region.macroName,
-          label: (regions) => regions[0]?.macroName,
-          title: tRegionsList('pci_project_regions_list_region'),
+          by: (region) => region?.macroName,
+          label: (macroName) => macroName,
+          title: () => tRegionsList('pci_project_regions_list_region'),
+          onChange: (language) =>
+            setState({ ...state, selectedMacroName: language }),
         }}
         group={{
           by: (region) => region.continent,
-          label: (regions, selected: boolean) => (
+          label: (continent) => (
             <OsdsText
               breakSpaces={false}
               size={ODS_THEME_TYPOGRAPHY_SIZE._600}
               color={
-                selected
+                continent === state.selectedContinent
                   ? ODS_THEME_COLOR_INTENT.text
                   : ODS_THEME_COLOR_INTENT.primary
               }
             >
               <div
                 className={clsx(
-                  selected && 'font-bold',
+                  continent === state.selectedContinent && 'font-bold',
                   'whitespace-nowrap px-2 text-lg',
                 )}
               >
-                {regions?.length === state.regions?.length
+                {undefined === continent
                   ? tRegionsList('pci_project_regions_list_continent_all')
-                  : regions?.[0]?.continent}
+                  : continent}
               </div>
             </OsdsText>
           ),
           showAllTab: true,
+          onChange: (continent) =>
+            setState({ ...state, selectedContinent: continent }),
         }}
       />
       {state.region && !state.region.active && (
