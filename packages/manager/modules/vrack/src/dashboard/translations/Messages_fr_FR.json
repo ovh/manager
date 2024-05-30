@@ -27,6 +27,7 @@
   "vrack_cloud_description_character_count": "Caractères utilisés : {{ count }} / {{ max }}",
   "vrack_private_cloud_vm_network_label": "vm-network",
   "vrack_common_cancel": "Annuler",
+  "vrack_common_confirm": "Confirmer",
   "vrack_common_move": "Déplacer",
   "vrack_common_add": "Ajouter",
   "vrack_common_remove": "Retirer",
@@ -44,5 +45,9 @@
   "vrack_service_type_ip": "IP",
   "vrack_service_type_cloudproject": "Projet Cloud",
   "vrack_service_type_iploadbalancing": "Load Balancer",
-  "vrack_select_dialog_modal_description": "Veuillez noter que les blocks IPv6 additionnels ne peuvent être ajoutés/supprimés qu'un seul à la fois."
+  "vrack_select_dialog_modal_description": "Veuillez noter que les blocks IPv6 additionnels ne peuvent être ajoutés/supprimés qu'un seul à la fois.",
+  "vrack_add_dialog_modal_title": "Ajouter un ou plusieurs services",
+  "vrack_add_dialog_modal_description": "Etes-vous sûr(e) de vouloir ajouter {{ services }} de votre vRack ?",
+  "vrack_delete_dialog_modal_title": "Retirer un ou plusieurs services",
+  "vrack_delete_dialog_modal_description": "Etes-vous sûr(e) de vouloir retirer {{ services }} de votre vRack ?"
 }

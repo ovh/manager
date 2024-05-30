@@ -26,6 +26,8 @@ import mappedPartials from '../partials/mapped.html';
 import routing from './vrack.routing';
 import vrackAdd from '../add';
 import vrackSelectDialog from '../select-dialog';
+import vrackAddDialog from '../add-dialog';
+import vrackDeleteDialog from '../delete-dialog';
 import vrackAssignedIp from '../vrack-associated-services/ipv6';
 import vrackMoveDialog from '../move-dialog/vrack-move-dialog.module';
 
@@ -52,6 +54,8 @@ angular
     IPv6SubnetDeleteModal,
     vrackAdd,
     vrackSelectDialog,
+    vrackAddDialog,
+    vrackDeleteDialog,
     vrackMoveDialog,
     vrackAddModal,
     vrackDeleteModal,

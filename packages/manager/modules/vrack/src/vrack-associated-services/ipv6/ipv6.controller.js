@@ -1,5 +1,5 @@
 import { POLLING_INTERVAL, SLAAC_VALUES } from '../../dashboard/vrack.constant';
-import { SLAAC_LABEL, SLAAC_GUIDES_LINK } from './ipv6.constant';
+import { SLAAC_LABEL, IPV6_GUIDES_LINK } from './ipv6.constant';
 
 export default class VrackAssignedIpCtrl {
   /* @ngInject */
@@ -22,7 +22,7 @@ export default class VrackAssignedIpCtrl {
     this.subnets = [];
     this.user = coreConfig.getUser();
     this.slaacGuidesLink =
-      SLAAC_GUIDES_LINK[this.user.ovhSubsidiary] || SLAAC_GUIDES_LINK.DEFAULT;
+      IPV6_GUIDES_LINK[this.user.ovhSubsidiary] || IPV6_GUIDES_LINK.DEFAULT;
     this.label = { SLAAC: SLAAC_LABEL };
   }
 
