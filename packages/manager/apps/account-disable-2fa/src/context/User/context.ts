@@ -16,6 +16,6 @@ export type UserContext = {
   user: User | null;
 };
 
-const userContext = createContext<UserContext>({} as UserContext);
+const userContext = createContext<UserContext>({ user: null });
 
 export default userContext;

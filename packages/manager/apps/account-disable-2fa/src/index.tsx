@@ -8,6 +8,7 @@ import initInterceptor from './data/invisible-challenge.interceptor';
 
 import './global.css';
 import './index.scss';
+import UserProvider from '@/context/User/provider';
 
 const token = extractToken();
 const user = decodeToken(token);
@@ -19,6 +20,8 @@ initInterceptor();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App user={user} />
+    <UserProvider user={user}>
+      <App />
+    </UserProvider>
   </React.StrictMode>,
 );
