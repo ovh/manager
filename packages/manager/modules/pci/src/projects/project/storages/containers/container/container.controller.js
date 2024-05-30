@@ -65,13 +65,12 @@ export default class PciStoragesContainersContainerController {
   }
 
   translateStorageClass() {
-    this.container.objects.map((object) => {
-      const updatedObject = object;
-      updatedObject.storageClass = this.$translate.instant(
+    this.container.objects.map((object) => ({
+      ...object,
+      storageClass: this.$translate.instant(
         `pci_projects_project_storages_containers_container_storage_class_${object.storageClass}`,
-      );
-      return updatedObject;
-    });
+      ),
+    }));
   }
 
   loadMessages() {
