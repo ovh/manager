@@ -43,5 +43,6 @@
   "vrack_service_type_managedbaremetaldatacenter": "Managed Bare Metal",
   "vrack_service_type_ip": "IP",
   "vrack_service_type_cloudproject": "Projet Cloud",
-  "vrack_service_type_iploadbalancing": "Load Balancer"
+  "vrack_service_type_iploadbalancing": "Load Balancer",
+  "vrack_select_dialog_modal_description": "Veuillez noter que les blocks IPv6 additionnels ne peuvent être ajoutés/supprimés qu'un seul à la fois."
 }
