@@ -1,4 +1,4 @@
-export const SLAAC_GUIDES_LINK = {
+export const IPV6_GUIDES_LINK = {
   DE:
     'https://help.ovhcloud.com/csm/de-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062832',
   ASIA:

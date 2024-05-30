@@ -39,7 +39,7 @@
             <li
                 class="vrack__service vrack__service_selectable d-flex"
                 data-ng-repeat="service in services | orderBy: service.niceName track by service.id"
-                data-ng-click="$ctrl.toggleDeleteService(service.trueServiceType, service.id)"
+                data-ng-click="$ctrl.toggleDeleteService(service.trueServiceType, service.id, service.niceName)"
                 data-ng-class="{ vrack__service_selected: $ctrl.isSelected(service.trueServiceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
             >
                 <span data-ng-bind="::service.niceName"></span>
@@ -57,7 +57,7 @@
             >
                 <li
                     class="vrack__service vrack__service_selectable d-flex"
-                    data-ng-click="$ctrl.toggleDeleteService(service.trueServiceType, service.id)"
+                    data-ng-click="$ctrl.toggleDeleteService(service.trueServiceType, service.id, service.niceName)"
                     data-ng-class="{ vrack__service_selected: $ctrl.isSelected(service.trueServiceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
                 >
                     <span data-ng-bind="::service.niceName"></span>
@@ -99,7 +99,7 @@
                 <ul class="vrack__service-list vrack__service-list_group">
                     <li
                         class="vrack__service vrack__service_selectable d-flex"
-                        data-ng-click="$ctrl.toggleDeleteService(serviceType, service.id)"
+                        data-ng-click="$ctrl.toggleDeleteService(serviceType, service.id, service.niceName)"
                         data-ng-class="{ vrack__service_selected: $ctrl.isSelected(serviceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
                     >
                         <span

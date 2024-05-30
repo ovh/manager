@@ -1,0 +1,25 @@
+<div data-ng-if="$ctrl.isOpenModal">
+    <div class="modal d-block">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{:: 'vrack_add_dialog_modal_title' | translate }}"
+                    data-primary-label="{{:: 'vrack_common_confirm' | translate }}"
+                    data-primary-action="$ctrl.onConfirm()"
+                    data-secondary-action="$ctrl.onCancel()"
+                    data-secondary-label="{{:: 'vrack_common_cancel' | translate }}"
+                    data-on-dismiss="$ctrl.onCancel()"
+                    class="ng-isolate-scope oui-modal oui-modal_shadow oui-modal_info"
+                >
+                    <p>
+                        <span
+                            data-translate="vrack_add_dialog_modal_description"
+                            data-translate-values="{ services: '<strong>' + $ctrl.servicesToAdd + '</strong>' }"
+                        ></span>
+                    </p>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>
