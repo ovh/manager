@@ -1,22 +1,27 @@
 import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
 
-enum ShareStatus {
+export enum ShareStatus {
   Available = 'available',
 }
 
-enum ShareProtocol {
+export enum ShareProtocol {
   NFS = 'nfs',
 }
 
-type ShareCapability = {
+export type ShareCapability = {
   name: string;
   enabled: boolean;
 };
 
-type Share = {
+export type ShareExportLocation = {
+  path: string;
+};
+
+export type Share = {
   capabilities: ShareCapability[];
   createdAt: Date;
   description: string;
+  exportLocations: ShareExportLocation[];
   id: string;
   isPublic: boolean;
   name: string;
@@ -36,16 +41,16 @@ function transformShare(share: Share): Share {
 }
 
 export const getShare = async ({
-  serviceName,
+  projectId,
   regionName,
-  id,
+  shareId,
 }: {
-  serviceName: string;
+  projectId: string;
   regionName: string;
-  id: string;
+  shareId: string;
 }): Promise<Share> => {
   const { data: shareObject } = await apiClient.v6.get<Share>(
-    `/cloud/project/${serviceName}/region/${regionName}/share/${id}`,
+    `/cloud/project/${projectId}/region/${regionName}/share/${shareId}`,
   );
   return transformShare(shareObject);
 };

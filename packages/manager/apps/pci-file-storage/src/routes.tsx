@@ -25,7 +25,7 @@ export const Routes: any = [
         ...lazyRouteConfig(() => import('@/pages/listing')),
       },
       {
-        path: ':serviceName',
+        path: ':regionName/:serviceName',
         ...lazyRouteConfig(() => import('@/pages/dashboard/_layout')),
         children: [
           {
