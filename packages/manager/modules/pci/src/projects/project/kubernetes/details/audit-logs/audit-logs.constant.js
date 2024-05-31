@@ -5,6 +5,20 @@ export const LOGS_INFO = {
     'https://help.ovhcloud.com/csm/en-gb-public-cloud-kubernetes-forwarding-audit-logs?id=kb_article_view&sysparm_article=KB0062280',
 };
 
+export const KUBERNETES_LOG_KINDS_KEYS = {
+  audit: [
+    'audit_verb',
+    'audit_authorizationDecision',
+    'audit_responseStatus',
+    'audit_user',
+    'audit_requestURI',
+    'audit_groups',
+    'audit_authorizationReason',
+    'audit_userAgent',
+    'audit_auditID',
+  ],
+};
+
 const TILE_TRACKING_PREFIX = `${TRACKING_PREFIX}::page::button`;
 
 export const LOG_TRACKING_HITS = {
