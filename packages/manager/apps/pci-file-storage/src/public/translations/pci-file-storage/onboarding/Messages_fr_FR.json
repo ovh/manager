@@ -1,8 +1,7 @@
 {
-  "title": "pci-file-storage",
-  "description": "Découvrez des services de stockage managés qui s’appuient sur le système de fichiers OpenZFS. Bénéficiez en quelques clics d’espaces de stockage centralisés pour entreposer ou sauvegarder vos données et fichiers.",
-  "orderButtonLabel": "Commander un pci-file-storage",
-  "orderButtonLink": "/#/dedicated/pci-file-storage/order",
+  "title": "File Storage",
+  "description": "Un système de fichiers NFS flexible, simple d’utilisation et performant pour vos applications. Des performances optimisées pour répondre à vos charges de travail les plus exigeantes.",
+  "orderButtonLabel": "Créer un partage de fichiers",
   "moreInfoButtonLabel": "En savoir plus sur pci-file-storage",
   "moreInfoButtonLink": "/#/dedicated/pci-file-storage/info",
   "guideCategory": "Tutoriel",
