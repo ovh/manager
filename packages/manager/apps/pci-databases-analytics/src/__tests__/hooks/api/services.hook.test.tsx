@@ -84,11 +84,7 @@ describe('useAddService', () => {
         engine: database.EngineEnum.mongodb,
         serviceInfo: mockedServiceCreation,
       });
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedService,
-        mockedServiceCreationWithEngine,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith(mockedService);
     });
   });
 });

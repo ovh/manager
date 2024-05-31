@@ -37,9 +37,12 @@ const IpsRestrictionsForm = React.forwardRef<
   const ipSchema = z.object({
     ip: z
       .string()
-      .regex(/^(?:\d{1,3}\.){3}\d{1,3}(\/\d{1,2})?$/, {
-        message: t('invalidIpError'),
-      })
+      .regex(
+        /^(?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)(\/(3[0-2]|[1-2]?\d))?$/,
+        {
+          message: t('invalidIpError'),
+        },
+      )
       .refine(
         (newIp) =>
           !value.some((existingIp) => existingIp.ip === formatIpMask(newIp)),

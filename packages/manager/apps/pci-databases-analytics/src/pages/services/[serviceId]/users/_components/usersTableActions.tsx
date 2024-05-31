@@ -34,11 +34,7 @@ const UserActions = ({
     <div className="w-full text-right pr-2">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="menu"
-            size="menu"
-            data-testid="user-action-trigger"
-          >
+          <Button variant="menu" size="menu" data-testid="user-action-trigger">
             <span className="sr-only">Open menu</span>
             <MoreHorizontal className="h-4 w-4" />
           </Button>
