@@ -221,6 +221,7 @@ describe('Settings page', () => {
 
 describe('Open modals', () => {
   beforeEach(async () => {
+    window.HTMLElement.prototype.scrollIntoView = vi.fn();
     vi.mocked(LayoutContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: mockedService,

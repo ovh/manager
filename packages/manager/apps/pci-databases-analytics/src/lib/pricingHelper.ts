@@ -26,14 +26,14 @@ interface ComputeServicePriceProps {
 }
 
 export interface ServicePricing {
-  flavorPrice: Pricing,
-  storagePrice: Pricing,
-  servicePrice: Pricing
+  flavorPrice: Pricing;
+  storagePrice: Pricing;
+  servicePrice: Pricing;
 }
 
 export const computeFlavorPrice = ({
   offerPricing,
-  nbNodes
+  nbNodes,
 }: ComputeFlavorPriceProps) => {
   return {
     hourly: {
@@ -52,16 +52,17 @@ export const computeStoragePrice = ({
   storageMode = database.capabilities.engine.storage.StrategyEnum.distributed,
   additionalStorage = 0,
 }: ComputeStoragePriceProps) => {
-  if (!storagePricing) return {
-    hourly: {
-      price: 0,
-      tax: 0,
-    },
-    monthly: {
-      price: 0,
-      tax: 0,
-    }
-  };
+  if (!storagePricing)
+    return {
+      hourly: {
+        price: 0,
+        tax: 0,
+      },
+      monthly: {
+        price: 0,
+        tax: 0,
+      },
+    };
   const storageFactor =
     storageMode ===
     database.capabilities.engine.storage.StrategyEnum.distributed
@@ -75,8 +76,7 @@ export const computeStoragePrice = ({
     monthly: {
       price: additionalStorage * storagePricing.monthly.price * storageFactor,
       tax: additionalStorage * storagePricing.monthly.tax * storageFactor,
-
-    }
+    },
   };
 };
 
@@ -87,8 +87,13 @@ export const computeServicePrice = ({
   storageMode = database.capabilities.engine.storage.StrategyEnum.distributed,
   additionalStorage = 0,
 }: ComputeServicePriceProps) => {
-  const flavorPrice = computeFlavorPrice({ offerPricing, nbNodes});
-  const storagePrice = computeStoragePrice({ storagePricing, storageMode, additionalStorage, nbNodes });
+  const flavorPrice = computeFlavorPrice({ offerPricing, nbNodes });
+  const storagePrice = computeStoragePrice({
+    storagePricing,
+    storageMode,
+    additionalStorage,
+    nbNodes,
+  });
   const servicePrice = {
     hourly: {
       price: flavorPrice.hourly.price + storagePrice.hourly.price,
