@@ -1,11 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
   ODS_TEXT_COLOR_HUE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -25,6 +23,7 @@ import { useOrganization, usePlatform } from '@/hooks';
 import LabelChip from '@/components/LabelChip';
 import guidesConstants from '@/guides.constants';
 import ActionButtonEmail from './ActionButtonEmail';
+import { convertOctets } from '@/utils';
 
 type EmailsItem = {
   id: string;
@@ -33,7 +32,47 @@ type EmailsItem = {
   used: number;
   available: number;
 };
-
+const columns: DatagridColumn<EmailsItem>[] = [
+  {
+    id: 'email account',
+    cell: (item) => (
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        size={ODS_TEXT_SIZE._200}
+        level={ODS_TEXT_LEVEL.body}
+      >
+        {item.email}
+      </OsdsText>
+    ),
+    label: 'zimbra_emails_datagrid_email_label',
+  },
+  {
+    id: 'organization',
+    cell: (item) =>
+      item.organizationLabel && (
+        <LabelChip id={item.id}>{item.organizationLabel}</LabelChip>
+      ),
+    label: 'zimbra_emails_datagrid_organization_label',
+  },
+  {
+    id: 'quota',
+    cell: (item) => (
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.primary}
+        size={ODS_TEXT_SIZE._200}
+        level={ODS_TEXT_LEVEL.body}
+      >
+        {convertOctets(item.used)} / {convertOctets(item.available)}
+      </OsdsText>
+    ),
+    label: 'zimbra_emails_datagrid_quota',
+  },
+  {
+    id: 'tooltip',
+    cell: () => <ActionButtonEmail />,
+    label: '',
+  },
+];
 export default function EmailAccounts() {
   const { t } = useTranslation('emails');
   const { platformId } = usePlatform();
@@ -52,70 +91,6 @@ export default function EmailAccounts() {
       available: item.targetSpec.quota.available,
     })) ?? [];
 
-  const formatQuota = (value: number) => {
-    if (value >= 1e12) {
-      return `${(value / 1e12).toFixed(1)} ${t(
-        'zimbra_emails_datagrid_quota_to',
-      )}`;
-    }
-    if (value >= 1e9) {
-      return `${(value / 1e9).toFixed(1)} ${t(
-        'zimbra_emails_datagrid_quota_go',
-      )}`;
-    }
-    if (value >= 1e6) {
-      return `${(value / 1e6).toFixed(1)} ${t(
-        'zimbra_emails_datagrid_quota_mo',
-      )}`;
-    }
-    if (value >= 1e3) {
-      return `${(value / 1e3).toFixed(1)} ${t(
-        'zimbra_emails_datagrid_quota_ko',
-      )}`;
-    }
-    return `${value} ${t('zimbra_emails_datagrid_quota_octets')}`;
-  };
-  const columns: DatagridColumn<EmailsItem>[] = [
-    {
-      id: 'email account',
-      cell: (item) => (
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_TEXT_SIZE._200}
-          level={ODS_TEXT_LEVEL.body}
-        >
-          {item.email}
-        </OsdsText>
-      ),
-      label: 'zimbra_emails_datagrid_email_label',
-    },
-    {
-      id: 'organization',
-      cell: (item) =>
-        item.organizationLabel && (
-          <LabelChip id={item.id}>{item.organizationLabel}</LabelChip>
-        ),
-      label: 'zimbra_emails_datagrid_organization_label',
-    },
-    {
-      id: 'quota',
-      cell: (item) => (
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.primary}
-          size={ODS_TEXT_SIZE._200}
-          level={ODS_TEXT_LEVEL.body}
-        >
-          {formatQuota(item.used)} / {formatQuota(item.available)}
-        </OsdsText>
-      ),
-      label: 'zimbra_emails_datagrid_quota',
-    },
-    {
-      id: 'tooltip',
-      cell: () => <ActionButtonEmail />,
-      label: '',
-    },
-  ];
   const webmailUrl = guidesConstants.GUIDES_LIST.webmail.url;
   return (
     <div className="py-6">
