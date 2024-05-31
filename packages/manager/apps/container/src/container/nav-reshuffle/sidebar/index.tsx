@@ -229,7 +229,7 @@ const Sidebar = (): JSX.Element => {
       <div className={style.sidebar_menu}>
         {(servicesCount || betaVersion === 1) && (
           <ul id="menu" onMouseOut={onSidebarLeave} onBlur={onSidebarLeave}>
-            <li className="px-3">
+            <li className="px-3 mb-3 mt-2">
               <h2 className={!open ? style.hidden : ''}>
                 {t(currentNavigationNode.translation)}
               </h2>
