@@ -7,9 +7,10 @@ import capitalize from 'lodash/capitalize';
 import omit from 'lodash/omit';
 import animateScrollTo from 'animated-scroll-to';
 import { ENGINE_LOGOS } from '../databases.constants';
-import { PRIVATE_NETWORK_GUIDE } from './add.constants';
+import { PRIVATE_NETWORK_GUIDE, URL_MODEL } from './add.constants';
 import { getOrderDataFromModel } from './add.utils';
 import { nameGenerator } from '../../../../../name-generator.constant';
+import { useURLModel } from '../../../project.utils';
 
 export default class {
   /* @ngInject */
@@ -37,12 +38,18 @@ export default class {
   }
 
   $onInit() {
+    const {
+      model: { engineName },
+    } = useURLModel(URL_MODEL);
+
     this.showMonthlyPrices = false;
     this.messageContainer = 'pci.projects.project.storages.databases.add';
     this.loadMessages();
     this.model = {
       engine:
-        find(this.availableEngines, 'isDefault') || this.availableEngines[0],
+        find(this.availableEngines, { name: engineName }) ||
+        find(this.availableEngines, 'isDefault') ||
+        this.availableEngines[0],
       plan: {
         name: null,
       },

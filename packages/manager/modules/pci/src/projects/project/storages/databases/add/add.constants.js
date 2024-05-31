@@ -39,6 +39,30 @@ export const PRIVATE_NETWORK_GUIDE = {
     'https://support.us.ovhcloud.com/hc/en-us/articles/360002093130-Configuring-vRack-for-Public-Cloud',
 };
 
+export const DATABASE_ENGINES = [
+  'cassandra',
+  'grafana',
+  'kafka',
+  'kafkaConnect',
+  'kafkaMirrorMaker',
+  'm3aggregator',
+  'm3db',
+  'mongodb',
+  'mysql',
+  'opensearch',
+  'postgresql',
+  'redis',
+];
+
+export const URL_MODEL = {
+  e: {
+    name: 'engineName',
+    type: String,
+    validate: (value) => DATABASE_ENGINES.includes(value),
+    value: null,
+  },
+};
+
 export default {
   NAME_PATTERN,
   MIN_NAME_LENGTH,
@@ -46,4 +70,6 @@ export default {
   ORDER_KEYS,
   ORDER_KEYS_TERRAFORM,
   PRIVATE_NETWORK_GUIDE,
+  DATABASE_ENGINES,
+  URL_MODEL,
 };
