@@ -9,12 +9,12 @@ import {
 import { Headers } from '@ovhcloud/manager-components';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { urls } from '@/routes/routes.constants';
 import { useOrganization } from '@/hooks';
 
 export type TabItemProps = {
   name: string;
   title: string;
+  pathMatchers?: RegExp[];
   to: string;
   hidden?: boolean;
 };
@@ -31,14 +31,23 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
   const { data } = useOrganization();
 
   useEffect(() => {
-    const activeTab = tabs.find((tab) => tab.to === location.pathname);
-    if (activeTab) {
-      setActivePanel(activeTab.name);
-    } else {
+    if (!location.pathname) {
       setActivePanel(tabs[0].name);
-      navigate(`${tabs[0].to}`);
+      navigate(tabs[0].to);
+    } else {
+      const activeTab = tabs.find(
+        (tab) =>
+          tab.to === location.pathname ||
+          tab.pathMatchers?.some((pathMatcher) =>
+            pathMatcher.test(location.pathname),
+          ),
+      );
+      if (activeTab) {
+        setActivePanel(activeTab.name);
+      }
     }
   }, [location.pathname]);
+
   return (
     <>
       {data && (

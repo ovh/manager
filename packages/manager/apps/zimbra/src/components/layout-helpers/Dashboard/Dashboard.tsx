@@ -1,5 +1,10 @@
 import React, { useContext } from 'react';
-import { Outlet, useResolvedPath, useLocation } from 'react-router-dom';
+import {
+  Outlet,
+  useResolvedPath,
+  useLocation,
+  useParams,
+} from 'react-router-dom';
 
 import {
   DashboardLayout,
@@ -13,10 +18,12 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import TabsPanel, { TabItemProps } from './TabsPanel';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { GUIDES_LIST } from '@/guides.constants';
+import { urls } from '@/routes/routes.constants';
 
 import './Dashboard.scss';
 
 export const Dashboard: React.FC<DashboardLayoutProps> = () => {
+  const { platformId } = useParams();
   const { t } = useTranslation('dashboard');
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
@@ -35,27 +42,39 @@ export const Dashboard: React.FC<DashboardLayoutProps> = () => {
 
   const params = new URLSearchParams(location.search);
   const selectedOrganizationId = params.get('organizationId');
+  function computePathMatchers(routes: string[]) {
+    return routes.map(
+      (path) => new RegExp(path.replace(':serviceName', platformId)),
+    );
+  }
   const tabsList: TabItemProps[] = [
     {
       name: 'general_informations',
       title: t('zimbra_dashboard_general_informations'),
       to: basePath,
+      pathMatchers: computePathMatchers([urls.dashboard]),
     },
     {
       name: 'organizations',
       title: t('zimbra_dashboard_organizations'),
       to: `${basePath}/organizations`,
+      pathMatchers: computePathMatchers([
+        urls.organizations,
+        urls.organizationsDelete,
+      ]),
       hidden: selectedOrganizationId !== null,
     },
     {
       name: 'domains',
       title: t('zimbra_dashboard_domains'),
       to: `${basePath}/domains`,
+      pathMatchers: computePathMatchers([urls.domains]),
     },
     {
       name: 'email_accounts',
       title: t('zimbra_dashboard_email_accounts'),
       to: `${basePath}/email_accounts`,
+      pathMatchers: computePathMatchers([urls.email_accounts]),
     },
   ];
 
