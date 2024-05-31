@@ -1,8 +1,8 @@
 export default {
   listing: {
     datagrid: {
-      serviceKey: 'id'
+      serviceKey: 'id',
     },
   },
-  rootLabel: 'pci-file-storage'
+  rootLabel: 'File Storage',
 };

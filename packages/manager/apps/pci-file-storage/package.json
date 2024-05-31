@@ -32,7 +32,6 @@
     "@ovhcloud/ods-common-theming": "17.2.1",
     "@ovhcloud/ods-components": "17.2.1",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.1",
-    "@ovh-ux/manager-react-core-application": "^0.8.2",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovhcloud/manager-components": "*",
     "i18next": "^20.4.0",

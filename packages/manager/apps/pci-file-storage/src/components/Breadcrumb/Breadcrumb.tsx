@@ -1,11 +1,8 @@
 import React from 'react';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import {
-  usePciBreadcrumb,
-  BreadcrumbItem,
-} from '@/hooks/useBreadcrumb';
-
 import { useParams } from 'react-router-dom';
+import { usePciBreadcrumb, BreadcrumbItem } from '@/hooks/useBreadcrumb';
+
 import { useProject } from '@/api/hooks/useProject';
 
 import appConfig from '@/pci-file-storage.config';
@@ -25,7 +22,10 @@ function Breadcrumb({ customRootLabel }: BreadcrumbProps): JSX.Element {
   const { project } = useProject({ projectId });
 
   if (project) {
-    const breadcrumbPci = usePciBreadcrumb({ projectId, appName: 'pci-file-storage' });
+    const breadcrumbPci = usePciBreadcrumb({
+      projectId,
+      appName: label,
+    });
     return <OsdsBreadcrumb items={breadcrumbPci} />;
   }
 }
