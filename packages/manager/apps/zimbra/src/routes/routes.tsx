@@ -42,6 +42,16 @@ export const Routes: any = [
             handle: {
               breadcrumb: (): string => i18next.t('dashboard:organization'),
             },
+            children: [
+              {
+                path: 'delete',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/Organizations/ModalDeleteOrganization'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'domains',
