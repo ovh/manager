@@ -750,5 +750,20 @@
   "ip_repricing_banner_list_item_2": "A partir del 1 de diciembre de 2022 para las direcciones existentes (contratadas antes del 6 de octubre de 2022).",
   "ip_repricing_banner_link": "Más información",
   "ip_unused_banner_text": "Tiene direcciones IP no utilizadas. Las direcciones IPv4 son un recurso cada vez más escaso, por lo que, si no las necesita, le recomendamos que las libere.",
-  "ip_unused_banner_link": "Ver mis direcciones IP no utilizadas."
+  "ip_unused_banner_link": "Ver mis direcciones IP no utilizadas.",
+  "ip_table_manage_byoip_slice": "Segmentar",
+  "ip_table_manage_byoip_aggregate": "Agregar",
+  "ip_table_manage_byoip_aggregate_success": "El bloque de IP va a añadirse. Por favor, actualice en unos minutos.",
+  "ip_table_manage_byoip_slice_success": "El bloque de IP va a segmentarse. Por favor, actualice en unos minutos.",
+  "ip_table_manage_byoip_close": "Cerrar",
+  "ip_table_manage_byoip_cancel": "Cancelar",
+  "ip_byoip_slice_block_title": "Segmentar el bloque",
+  "ip_byoip_slice_set_children_size": "Por favor, indique el tamaño deseado de los bloques secundarios",
+  "ip_byoip_slice_configuration": "Esta configuración conlleva la creación de los siguientes bloques:",
+  "ip_byoip_slicing_park_it_first_error_message": "Esta IP está enrutada hacia un servicio. Para segmentarla, deberá desvincularla primero (la IP apuntará al parking).",
+  "ip_byoip_aggregate_block_title": "Agregar el bloque",
+  "ip_byoip_aggregate_set_parent_size": "Por favor, indique el bloque primario deseado",
+  "ip_byoip_aggregate_configuration": "Esta configuración conlleva la creación del siguiente bloque primario:",
+  "ip_byoip_aggregate_slicing_not_available_error_message": "No hay ninguna configuración de segmentación/agregación disponible. Para más información, consulte nuestra guía <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">aquí</a>.",
+  "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Ya se ha realizado otra acción de segmentación o de agregación en esta dirección IP."
 }
