@@ -24,8 +24,8 @@ export const OngoingTasks: React.FC = () => {
 
   return (
     <div className="flex flex-col">
-      {tasksDiplayed?.map((task, index) => (
-        <span key={index}>{`${task.type} ${task.message}`}</span>
+      {tasksDiplayed?.map((task) => (
+        <span key={task.id}>{`${task.type} ${task.message}`}</span>
       ))}
       {data?.length > 5 && (
         <OsdsLink className="mt-5" onClick={() => setLoadMore(!loadMore)}>
