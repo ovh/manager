@@ -25,6 +25,12 @@ export default [
       {
         path: ROUTES_URLS.listing,
         ...lazyRouteConfig(() => import('@/pages/listing')),
+        children: [
+          {
+            path: `${ROUTES_URLS.terminateOkms}/:okmsId`,
+            ...lazyRouteConfig(() => import('@/pages/listing/TerminateKms')),
+          },
+        ],
       },
       {
         path: ROUTES_URLS.createKeyManagementService,

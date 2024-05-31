@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  useBreadcrumb,
   BreadcrumbProps,
+  useBreadcrumb,
 } from '@ovh-ux/manager-react-shell-client';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 
