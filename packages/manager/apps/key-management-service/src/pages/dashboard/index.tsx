@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useResolvedPath } from 'react-router-dom';
+import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import {
   OsdsBreadcrumb,
   OsdsDivider,
@@ -22,6 +22,7 @@ export default function DashboardPage() {
   const { t: tDashboard } = useTranslation('key-management-service/dashboard');
   const { t: tListing } = useTranslation('key-management-service/listing');
   const { okmsId } = useParams();
+  const navigate = useNavigate();
   const { data: okms } = useOKMSById(okmsId);
   const displayName = okms?.data?.iam?.displayName;
 
@@ -48,14 +49,14 @@ export default function DashboardPage() {
       <OsdsBreadcrumb
         items={[
           {
-            href: ROUTES_URLS.listing,
             label: tListing('key_management_service_listing_title'),
+            onClick: () => navigate(ROUTES_URLS.listing),
           },
           {
             href: `/${okmsId}`,
             label: okmsId,
           },
-        ]}
+        ].filter(Boolean)}
       ></OsdsBreadcrumb>
       <div className={'flex items-center justify-between mt-2'}>
         <OsdsText
