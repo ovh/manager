@@ -12,6 +12,7 @@ angular
       onConfirm: '&',
       onCancel: '&',
       isOpenModal: '<',
+      servicesToDeleteList: '<',
     },
   })
   .run(/* @ngTranslationsInject:json ./translations */);

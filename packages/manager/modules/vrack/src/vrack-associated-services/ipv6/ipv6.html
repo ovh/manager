@@ -19,7 +19,7 @@
                 data-ng-bind="::bridged.bridgedSubrange"
             ></span>
             <span>
-                {{:: $ctrl.label.SLAAC }}
+                <span data-ng-bind=":: $ctrl.label.SLAAC"></span>
                 <oui-switch
                     data-ng-hide="bridged.loading"
                     model="bridged.model"
@@ -35,27 +35,8 @@
                 data-oui-popover="{{:: 'vrack__assigned-ipv6__subrange_slaac_help' | translate }}"
                 data-oui-popover-placement="right"
                 data-oui-popover-scope="$ctrl"
-                data-oui-popover-template="vrack__assigned-ipv6__subrange_slaac_help.html"
+                data-oui-popover-template="slaac-help.html"
             ></button>
-            <script
-                type="text/ng-template"
-                id="vrack__assigned-ipv6__subrange_slaac_help.html"
-            >
-                <p
-                    data-translate="vrack__assigned-ipv6__subrange_slaac_help"
-                ></p>
-                <a
-                    class="oui-link_icon"
-                    aria-hidden="true"
-                    data-ng-href="{{$ctrl.slaacGuidesLink}}"
-                    target="_blank"
-                >
-                    <span class="oui-icon oui-icon-book ml-0" aria-hidden="true"></span>
-                    <span
-                    data-translate="vrack__assigned-ipv6__subrange_slaac_help_tooltip_link"
-                ></span>
-                </a>
-            </script>
         </li>
     </ul>
     <!-- subnet -->
@@ -67,7 +48,7 @@
             <div
                 class="vrack__assigned-ipv6__subnet__title col-md-10 col-lg-10 col-xs-10"
             >
-                <div>{{:: subnet.routedSubrange }}</div>
+                <div data-ng-bind=":: subnet.routedSubrange"></div>
                 <div
                     data-translate="vrack__assigned-ipv6_subnet_via"
                     data-translate-values="{ ip: subnet.nexthop }"

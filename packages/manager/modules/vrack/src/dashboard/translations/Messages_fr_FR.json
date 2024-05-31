@@ -27,6 +27,7 @@
   "vrack_cloud_description_character_count": "Caractères utilisés : {{ count }} / {{ max }}",
   "vrack_private_cloud_vm_network_label": "vm-network",
   "vrack_common_cancel": "Annuler",
+  "vrack_common_confirm": "Confirmer",
   "vrack_common_move": "Déplacer",
   "vrack_common_add": "Ajouter",
   "vrack_common_remove": "Retirer",
