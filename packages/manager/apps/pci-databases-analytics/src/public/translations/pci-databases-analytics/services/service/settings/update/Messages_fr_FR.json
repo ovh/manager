@@ -26,7 +26,7 @@
   "updateFlavorTitle": "Modifier la flavor",
   "updateFlavorInputLabel": "Choisissez une nouvelle flavor",
   "updateStorageInputLabel": "Stockage additionnel",
-  "updateStorageTotal": "Stockage additionnel",
+  "updateStorageTotal": "Stockage du service :",
   "updateFlavorCancelButton": "Annuler",
   "updateFlavorSubmitButton": "Modifier",
   "updateFlavorErrorSimilar": "Veuillez choisir une flavor différente de celle actuelle",

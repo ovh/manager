@@ -3,6 +3,7 @@ import {
   UseQueryResult,
   useQuery,
   useMutation,
+  useQueryClient,
 } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { database } from '@/models/database';
@@ -49,6 +50,7 @@ export interface ServiceCreationWithEngine extends database.ServiceCreation {
   engine: database.EngineEnum;
 }
 export function useAddService({ onError, onSuccess }: MutateServiceProps) {
+  const queryClient = useQueryClient();
   const { projectId } = useParams();
   const mutation = useMutation({
     mutationFn: (serviceAndEngine: ServiceCreationWithEngine) => {
@@ -56,7 +58,15 @@ export function useAddService({ onError, onSuccess }: MutateServiceProps) {
       return addService({ projectId, engine, serviceInfo });
     },
     onError,
-    onSuccess,
+    onSuccess: (data) => {
+      // invalidate services list to avoid displaying
+      // old list
+      queryClient.invalidateQueries({
+        queryKey: [projectId, 'database/service'],
+        refetchType: 'none',
+      });
+      onSuccess(data);
+    },
   });
 
   return {

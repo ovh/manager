@@ -41,7 +41,7 @@ interface UpdateVersionProps {
   onError?: (error: Error) => void;
 }
 
-const UpdateVersion = ({
+const UpdateVersionContent = ({
   controller,
   suggestions,
   availabilities,
@@ -163,6 +163,11 @@ const UpdateVersion = ({
       </DialogContent>
     </Dialog>
   );
+};
+
+const UpdateVersion = ({ controller, ...otherProps }: UpdateVersionProps) => {
+  if (!controller.open) return <></>;
+  return <UpdateVersionContent controller={controller} {...otherProps} />;
 };
 
 export default UpdateVersion;
