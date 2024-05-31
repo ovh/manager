@@ -7,6 +7,7 @@
   "key_management_service_listing_clipboard_error_label": "Erreur",
   "key_management_service_listing_add_kms_button": "Commander un KMS",
   "key_management_service_listing_title": "Mes KMS",
+  "key_management_service_listing_terminate": "Résilier",
   "key_management_service_listing_region_eu_west_par": "Europe (France - Paris)",
   "key_management_service_listing_region_eu_west_gra": "Europe (France - Gravelines)",
   "key_management_service_listing_region_eu_west_rbx": "Europe (France - Roubaix)",
