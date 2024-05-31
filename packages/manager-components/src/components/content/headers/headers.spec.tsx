@@ -7,8 +7,22 @@ import {
   headerWithActions,
 } from './headers.stories';
 import '@testing-library/jest-dom';
+import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
+import { useAuthorizationIam } from '../../../hooks/iam';
+
+jest.mock('../../../hooks/iam');
+
+const mockedHook = useAuthorizationIam as jest.Mock<IamAuthorizationResponse>;
 
 describe('Headers component', () => {
+  beforeEach(() => {
+    mockedHook.mockReturnValue({
+      isAuthorized: true,
+      isLoading: true,
+      isFetched: true,
+    });
+  });
+
   it('renders header correctly', async () => {
     render(header());
     waitFor(() => {
