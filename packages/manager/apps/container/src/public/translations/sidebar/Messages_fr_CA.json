@@ -86,6 +86,7 @@
   "sidebar_netapp": "Enterprise File Storage",
   "sidebar_cda": "Cloud Disk Array",
   "sidebar_veeamcc": "Veeam Cloud Connect",
+  "sidebar_databases": "Bases de données",
   "sidebar_pci_analytics_databases": "Databases",
   "sidebar_pci_analytics_data_streaming": "Data Streaming",
   "sidebar_pci_analytics_data_analysis": "Data Analysis",
