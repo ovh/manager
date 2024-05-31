@@ -750,5 +750,20 @@
   "ip_repricing_banner_list_item_2": "For IPs ordered before 06 October 2022, the change will come into effect from 01 December 2022 onwards.",
   "ip_repricing_banner_link": "More information",
   "ip_unused_banner_text": "You have unused IP addresses. Since IPv4 addresses are becoming increasingly scarce as a resource, please release them if you do not need them.",
-  "ip_unused_banner_link": "View unused IPs."
+  "ip_unused_banner_link": "View unused IPs.",
+  "ip_table_manage_byoip_slice": "Segment",
+  "ip_table_manage_byoip_aggregate": "Combine",
+  "ip_table_manage_byoip_aggregate_success": "Your IP block will be aggregated. Please refresh in a few minutes.",
+  "ip_table_manage_byoip_slice_success": "Your IP block will be segmented. Please refresh in a few minutes.",
+  "ip_table_manage_byoip_close": "Close",
+  "ip_table_manage_byoip_cancel": "Cancel",
+  "ip_byoip_slice_block_title": "Segment block",
+  "ip_byoip_slice_set_children_size": "Please specify the desired size of the child blocks",
+  "ip_byoip_slice_configuration": "This configuration will create the following blocks:",
+  "ip_byoip_slicing_park_it_first_error_message": "This IP is routed to a service. Please detach it first (the IP will land on the parking lot) and segment it.",
+  "ip_byoip_aggregate_block_title": "Aggregate block",
+  "ip_byoip_aggregate_set_parent_size": "Please specify the desired parent block",
+  "ip_byoip_aggregate_configuration": "This configuration will create the following parent block:",
+  "ip_byoip_aggregate_slicing_not_available_error_message": "No segmentation/aggregation configuration available. For more information, please refer to our guide: <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">here</a>",
+  "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Another segmentation or aggregation action has been performed for this IP address."
 }

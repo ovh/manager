@@ -750,5 +750,20 @@
   "ip_repricing_banner_list_item_2": "Od 1 grudnia 2022 r. ceny istniejących adresów (zamówionych przed 6 października 2022).",
   "ip_repricing_banner_link": "Więcej informacji",
   "ip_unused_banner_text": "Dysponujesz adresami IP, których nie używasz. Adresy IPv4 są zasobem deficytowym, zatem jeśli ich nie potrzebujesz, prosimy o ich zwolnienie.",
-  "ip_unused_banner_link": "Sprawdź nieużywane adresy IP."
+  "ip_unused_banner_link": "Sprawdź nieużywane adresy IP.",
+  "ip_table_manage_byoip_slice": "Segmentacja",
+  "ip_table_manage_byoip_aggregate": "Agregacja",
+  "ip_table_manage_byoip_aggregate_success": "Twój blok IP zostanie zagregowany. Odśwież stronę za kilka minut.",
+  "ip_table_manage_byoip_slice_success": "Twój blok IP zostanie podzielony na segmenty. Odśwież stronę za kilka minut.",
+  "ip_table_manage_byoip_close": "Zamknij",
+  "ip_table_manage_byoip_cancel": "Anuluj",
+  "ip_byoip_slice_block_title": "Podziel blok na segmenty",
+  "ip_byoip_slice_set_children_size": "Podaj rozmiar bloków podrzędnych",
+  "ip_byoip_slice_configuration": "Ta konfiguracja spowoduje utworzenie następujących bloków:",
+  "ip_byoip_slicing_park_it_first_error_message": "Ten adres IP jest kierowany do usługi. Przed podziałem na segmenty należy go najpierw odłączyć (adres IP zostanie zaparkowany).",
+  "ip_byoip_aggregate_block_title": "Zagreguj blok",
+  "ip_byoip_aggregate_set_parent_size": "Wskaż żądany blok nadrzędny",
+  "ip_byoip_aggregate_configuration": "Ta konfiguracja spowoduje utworzenie następującego bloku nadrzędnego:",
+  "ip_byoip_aggregate_slicing_not_available_error_message": "Brak dostępnej konfiguracji segmentacji/agregacji. Więcej informacji znajdziesz w przewodniku: <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">tutaj</a>",
+  "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Dla tego adresu IP wykonano inną operację segmentacji lub agregacji."
 }
