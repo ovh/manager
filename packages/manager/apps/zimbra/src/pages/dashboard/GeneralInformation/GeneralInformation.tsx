@@ -50,7 +50,6 @@ function GeneralInformation() {
         <OsdsTile>
           <div className="flex flex-col w-full">
             <Subtitle>{t('zimbra_dashboard_tile_status_title')}</Subtitle>
-            <OsdsDivider separator />
             {organisation && (
               <TileBlock
                 label={t('zimbra_dashboard_tile_status_serviceStatus')}
@@ -70,7 +69,6 @@ function GeneralInformation() {
             <Subtitle>
               {t('zimbra_dashboard_tile_serviceConsumption_title')}
             </Subtitle>
-            <OsdsDivider separator />
             <TileBlock
               label={t('zimbra_dashboard_tile_serviceConsumption_accountOffer')}
             >
