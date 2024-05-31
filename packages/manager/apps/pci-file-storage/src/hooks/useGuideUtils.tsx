@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { CountryCode } from '@ovh-ux/manager-config';
-import { useAuthentication } from '@ovh-ux/manager-react-core-application';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 const docUrl = 'https://docs.ovh.com/';
 
@@ -84,11 +84,12 @@ interface GuideLinkProps {
 }
 
 function useGuideUtils() {
-  const { subsidiary } = useAuthentication();
+  const { environment } = useContext(ShellContext);
+  const subsidiary = environment.getUser().ovhSubsidiary as CountryCode;
   const [linkTabs, setLinkTabs] = useState<GuideLinkProps>({});
 
   useEffect(() => {
-    setLinkTabs(getGuideListLink({ subsidiary: subsidiary as CountryCode }));
+    setLinkTabs(getGuideListLink({ subsidiary }));
   }, [subsidiary]);
 
   return linkTabs;
