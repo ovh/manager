@@ -67,7 +67,7 @@ const SubTree = ({
         });
       },
       select: (response) => {
-        return response && response.data && response.data.length
+        return response?.data?.length
           ? (response.data[0] as PciProject)
           : null;
       },
@@ -110,8 +110,8 @@ const SubTree = ({
   useEffect(() => {
     if (defaultPciProjectStatus === 'success') {
       setSelectedPciProject(defaultPciProject);
-    } else if (defaultPciProjectStatus === 'error') {
-      if (pciProjects.length) setSelectedPciProject(pciProjects[0]);
+    } else if (defaultPciProjectStatus === 'error' && pciProjects?.length) {
+      setSelectedPciProject(pciProjects[0]);
     }
   }, [defaultPciProject, defaultPciProjectStatus, pciProjects]);
 
