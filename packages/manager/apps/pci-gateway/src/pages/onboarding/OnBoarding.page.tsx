@@ -57,7 +57,7 @@ export default function OnBoardingPage() {
 
   const tileItems = [
     {
-      id: 'attach_pci_floating_ip_to_instance',
+      id: 'create_private_network_with_gateway',
       texts: {
         title: tOnBoarding(
           'pci_projects_project_public_gateways_onboarding_guides_create_private_network_with_gateway_title',
