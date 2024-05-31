@@ -9,7 +9,5 @@ export function breadcrumb() {
 export default function App({ children }: { children: React.ReactNode }) {
   useTranslation('pci-file-storage');
 
-  return (
-    <>{children}</>
-  );
+  return <>{children}</>;
 }
