@@ -6,6 +6,7 @@ import {
   useLocation,
   useNavigate,
   useParams,
+  useHref,
 } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -13,17 +14,25 @@ import {
   OsdsTabs,
   OsdsTabBar,
   OsdsTabBarItem,
+  OsdsChip,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 
 import { DashboardLayout, LinkType } from '@ovhcloud/manager-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+
+import { useShare } from '@/api/hooks/useShare';
 
 export type DashboardTabItemProps = {
   name: string;
   title: string;
   to: string;
+  disabled?: boolean;
+  badge?: string;
+  tooltip?: string;
 };
 
 export type DashboardLayoutProps = {
@@ -32,21 +41,34 @@ export type DashboardLayoutProps = {
 
 export default function DashboardPage() {
   const [panel, setActivePanel] = useState('');
-  const { serviceName } = useParams();
+  const { projectId, regionName, serviceName } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation('pci-file-storage/dashboard');
+  const { data }: any = useShare({
+    projectId,
+    regionName,
+    shareId: serviceName,
+  });
 
-  const tabsList = [
+  const tabsList: DashboardTabItemProps[] = [
     {
       name: 'general_informations',
-      title: 'Informations générales',
+      title: t('general_information'),
       to: useResolvedPath('').pathname,
     },
     {
-      name: 'Tab 2',
-      title: 'Tab 2',
-      to: useResolvedPath('Tab2').pathname,
+      name: 'snapshot',
+      title: t('snapshot'),
+      to: useResolvedPath('/na').pathname,
+      disabled: true,
+      badge: t('coming_soon'),
+      tooltip: t('coming_soon'),
+    },
+    {
+      name: 'acl',
+      title: t('acl'),
+      to: useResolvedPath('/na').pathname,
     },
   ];
 
@@ -60,43 +82,50 @@ export default function DashboardPage() {
     }
   }, [location.pathname]);
 
-  const header = {
-    description: 'Description du pci-file-storage',
-    title: serviceName,
-  };
-
-  const linkProps = {
-    label: t('manager_dashboard_back_link'),
-    href: '/',
-    target: OdsHTMLAnchorElementTarget._blank,
-    type: LinkType.back,
-  };
-
-  const onClickReturn = (href: string) => navigate(href);
-
   return (
-    <div>
-      <DashboardLayout
-        header={header}
-        tabs={
-          <OsdsTabs panel={panel}>
-            <OsdsTabBar slot="top">
-              {tabsList.map((tab: DashboardTabItemProps) => (
-                <OsdsTabBarItem
-                  key={`osds-tab-bar-item-${tab.name}`}
-                  panel={tab.name}
-                >
-                  <NavLink to={tab.to} className="no-underline">
-                    {tab.title}
-                  </NavLink>
-                </OsdsTabBarItem>
-              ))}
-            </OsdsTabBar>
-          </OsdsTabs>
-        }
-        breadcrumb={<Breadcrumb />}
-      />
-      <Outlet />
-    </div>
+    <React.Suspense>
+      {data && (
+        <div>
+          <DashboardLayout
+            header={{ title: data.name }}
+            backLinkLabel={t('back_link')}
+            onClickReturn={() => {}}
+            tabs={
+              <OsdsTabs panel={panel}>
+                <OsdsTabBar slot="top">
+                  {tabsList.map((tab: DashboardTabItemProps) => (
+                    <OsdsTabBarItem
+                      key={`osds-tab-bar-item-${tab.name}`}
+                      panel={tab.name}
+                      disabled={tab.disabled}
+                      className="flex items-center justify-center"
+                    >
+                      <NavLink to={tab.to} className="no-underline">
+                        <OsdsText
+                          color={ODS_THEME_COLOR_INTENT.primary}
+                          level={ODS_TEXT_LEVEL.heading}
+                        >
+                          {tab.title}
+                        </OsdsText>
+                      </NavLink>
+                      {tab.badge && (
+                        <OsdsChip
+                          className="ml-5"
+                          color={ODS_THEME_COLOR_INTENT.primary}
+                        >
+                          {tab.badge}
+                        </OsdsChip>
+                      )}
+                    </OsdsTabBarItem>
+                  ))}
+                </OsdsTabBar>
+              </OsdsTabs>
+            }
+            breadcrumb={<Breadcrumb items={[{ label: data?.name }]} />}
+          />
+          <Outlet />
+        </div>
+      )}
+    </React.Suspense>
   );
 }

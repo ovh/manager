@@ -1,6 +1,9 @@
 {
   "title": "Dashboard page",
   "error_service": "No services info",
-  "general_informations": "Informations générales",
-  "back_link": "Retour à la liste"
+  "general_information": "Informations générales",
+  "acl": "Access Control List (ACL)",
+  "snapshot": "Snapshots",
+  "back_link": "Retour à la liste",
+  "coming_soon": "Bientôt disponible"
 }
