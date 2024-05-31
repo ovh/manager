@@ -105,7 +105,9 @@ export default function AddGatewayPage(): JSX.Element {
         >
           {tAdd('pci_projects_project_public_gateways_add_title')}
         </OsdsText>
-        <PciGuidesHeader category="instances"></PciGuidesHeader>
+        <div className={'xs:w-32 sm:w-auto xs:pl-7 sm:pl-0'}>
+          <PciGuidesHeader category="instances"></PciGuidesHeader>
+        </div>
       </div>
       <p>
         <OsdsText
