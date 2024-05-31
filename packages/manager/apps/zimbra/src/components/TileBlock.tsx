@@ -12,6 +12,7 @@ export const TileBlock: React.FC<React.PropsWithChildren<TileBlockProps>> = ({
   children,
 }) => (
   <div className="flex flex-col mb-3">
+    <OsdsDivider separator />
     <OsdsText
       className="mb-2"
       size={ODS_TEXT_SIZE._200}
@@ -28,6 +29,5 @@ export const TileBlock: React.FC<React.PropsWithChildren<TileBlockProps>> = ({
     >
       {children}
     </OsdsText>
-    <OsdsDivider separator />
   </div>
 );

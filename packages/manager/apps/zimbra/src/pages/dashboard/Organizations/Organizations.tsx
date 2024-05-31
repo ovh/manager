@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-
+import { Outlet } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -10,7 +10,11 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { Datagrid, DatagridColumn } from '@ovhcloud/manager-components';
+import {
+  Datagrid,
+  DatagridColumn,
+  Notifications,
+} from '@ovhcloud/manager-components';
 import { useQuery } from '@tanstack/react-query';
 import { ResourceStatus } from '@/api/api.type';
 import {
@@ -18,35 +22,33 @@ import {
   getZimbraPlatformOrganizationQueryKey,
 } from '@/api';
 import { usePlatform } from '@/hooks';
-import ActionButtonOrganization from './ActionButtonOrganization';
+import { ActionButtonOrganization } from './ActionButtonOrganization';
 import IdLink from './IdLink';
 import LabelChip from '@/components/LabelChip';
 import { BadgeStatus } from '@/components/BadgeStatus';
 
-type OrganizationItem = {
+export type OrganizationItem = {
   id: string;
   name: string;
   label: string;
   account: string;
   status: string;
 };
-
 const columns: DatagridColumn<OrganizationItem>[] = [
   {
     id: 'name',
-    cell: (item) => <IdLink id={item.id}>{item.name}</IdLink>,
+    cell: (item: OrganizationItem) => <IdLink id={item.id}>{item.name}</IdLink>,
     label: 'zimbra_organization_name',
   },
-
   {
     id: 'label',
-    cell: (item) =>
+    cell: (item: OrganizationItem) =>
       item.label && <LabelChip id={item.id}>{item.label}</LabelChip>,
     label: 'zimbra_organization_label',
   },
   {
     id: 'account',
-    cell: (item) => (
+    cell: (item: OrganizationItem) => (
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         size={ODS_TEXT_SIZE._200}
@@ -59,18 +61,21 @@ const columns: DatagridColumn<OrganizationItem>[] = [
   },
   {
     id: 'status',
-    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
+    cell: (item: OrganizationItem) => (
+      <BadgeStatus itemStatus={item.status}></BadgeStatus>
+    ),
     label: 'zimbra_organization_status',
   },
   {
     id: 'tooltip',
-    cell: (item) =>
+    cell: (item: OrganizationItem) =>
       (item.status === ResourceStatus.READY ||
-        item.status === ResourceStatus.ERROR) && <ActionButtonOrganization />,
+        item.status === ResourceStatus.ERROR) && (
+        <ActionButtonOrganization organizationItem={item} />
+      ),
     label: '',
   },
 ];
-
 export default function Organizations() {
   const { t } = useTranslation('organisations');
   const { platformId } = usePlatform();
@@ -99,6 +104,8 @@ export default function Organizations() {
 
   return (
     <div className="py-6">
+      <Notifications />
+      <Outlet />
       <div className="flex items-center justify-between">
         <OsdsButton
           color={ODS_THEME_COLOR_INTENT.primary}
