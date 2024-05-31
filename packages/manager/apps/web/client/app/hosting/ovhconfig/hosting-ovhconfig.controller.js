@@ -77,6 +77,9 @@ angular.module('App').controller(
           this.apiStruct = {
             models: apiStruct.models,
           };
+
+          this.engineNames =
+            apiStruct.models['hosting.web.ovhConfig.EngineNameEnum'].enum;
         }),
       );
 
@@ -131,8 +134,24 @@ angular.module('App').controller(
       this.envExecutions = this.capabilities.find(({ version }) =>
         version.includes(this.model.engineVersion),
       ).containerImage;
-      if (this.envExecutions.length === 1) {
+      if (!this.envExecutions.includes(this.model.container)) {
         this.model = { ...this.model, container: this.envExecutions[0] };
+      }
+    }
+
+    updateEngineNamesAvailable() {
+      const allEngineNames = this.apiStruct.models[
+        'hosting.web.ovhConfig.EngineNameEnum'
+      ].enum;
+
+      if (this.model.container !== 'stable64') {
+        this.engineNames = allEngineNames;
+      } else {
+        this.engineNames = allEngineNames.filter((e) => e !== 'phpcgi');
+      }
+
+      if (!this.engineNames.includes(this.model.engineName)) {
+        this.model = { ...this.model, engineName: this.engineNames[0] };
       }
     }
 
@@ -145,6 +164,8 @@ angular.module('App').controller(
       }
 
       this.changeToConfig(this.selectedConfig);
+      this.updateEnvExecutionsAvailable();
+      this.updateEngineNamesAvailable();
     }
 
     changeToConfig(ovhConfig) {
@@ -165,6 +186,7 @@ angular.module('App').controller(
     updateSelectedConfig() {
       this.clearDisplayedError();
       this.updateEnvExecutionsAvailable();
+      this.updateEngineNamesAvailable();
       this.toggle.isConfigIsEdited = true;
       this.checkCohesion();
     }
