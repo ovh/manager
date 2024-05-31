@@ -18,7 +18,7 @@ export const useAllAggregatedGateway = (projectId: string) =>
     select: (data) =>
       data.map((row) => {
         const formattedIps =
-          row.externalInformation.ips.map((ip) => ip.ip).join(', ') || '';
+          row.externalInformation?.ips.map((ip) => ip.ip).join(', ') || '';
         return {
           ...row,
           model: row.model.toUpperCase(),
