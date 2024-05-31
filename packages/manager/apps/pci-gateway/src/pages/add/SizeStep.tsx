@@ -115,6 +115,7 @@ export const SizeStep = (): JSX.Element => {
               >
                 {getFormattedHourlyCatalogPrice(item.hourlyPrice)} (
                 {getFormattedMonthlyCatalogPrice(item.monthlyPrice)})
+                <span>*</span>
               </OsdsText>
             </div>
           </div>
