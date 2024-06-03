@@ -21,7 +21,6 @@ export default {
     regionsLink: '<',
     addPrivateNetworksLink: '<',
     addLocalPrivateNetworksLink: '<',
-    selectedCategory: '@?',
     getProductCatalog: '<',
     trackAddInstance: '<',
     hasGridscaleLocalzoneRegion: '<',

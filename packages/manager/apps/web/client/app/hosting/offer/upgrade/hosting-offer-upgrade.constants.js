@@ -28,6 +28,15 @@ export const OFFERS_WITHOUT_FREEDOM = [
   'CLOUDWEB_1',
   'CLOUDWEB_2',
   'CLOUDWEB_3',
+  'ITPERSO_2012',
+  'ITBUSINESS_2012',
+  'ITPREMIUM_2012',
+  'START_1_G',
+  'START_5_G',
+  'START_10_G',
+  '20_GP',
+  '60_GP',
+  '300_GP',
 ];
 
 export default {

@@ -1,12 +1,48 @@
-import { DEFAULT_PROJECT_KEY } from './index.constants';
+import { kebabCase } from 'lodash';
+import { LINK_PREFIX } from './index.constants';
+import { useDeepLinks } from './index.links';
+import links from './links.json';
 
-export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+export default /* @ngInject */ (
+  $stateProvider,
+  $urlRouterProvider,
+  ovhShell,
+) => {
   $stateProvider.state('app', {
     url: '/',
     redirectTo: 'app.redirect',
     resolve: {
       rootState: () => 'app',
     },
+  });
+
+  /* --------------------------- Deep linking set up -------------------------- */
+
+  useDeepLinks({ $stateProvider, ovhShell }).register({
+    links,
+    params: {
+      project: /* @ngInject */ ($q, publicCloud) => {
+        return $q
+          .all([
+            publicCloud.getDiscoveryProject(),
+            publicCloud.getDefaultProject(),
+            publicCloud.getUnpaidProjects(),
+          ])
+          .then(([discoveryProject, defaultProject, unPaidProjects]) => {
+            if (
+              unPaidProjects.length > 0 ||
+              (!discoveryProject && !defaultProject)
+            ) {
+              throw new Error();
+            }
+            return discoveryProject || defaultProject;
+          });
+      },
+    },
+    options: {
+      stateName: ({ link }) => kebabCase(`${LINK_PREFIX}-${link.public.path}`),
+    },
+    otherwise: 'app.redirect',
   });
 
   /**
@@ -24,50 +60,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     resolve: {
       redirect: /* @ngInject */ ($state) =>
         $state.go('pci.projects.onboarding'),
-    },
-  });
-
-  $stateProvider.state('redirect-kube', {
-    url: '/pci/projects/default/kubernetes/new',
-    redirectTo: (trans) => {
-      const ovhUserPref = trans.injector().get('ovhUserPref');
-      const publicCloud = trans.injector().get('publicCloud');
-
-      return publicCloud
-        .getProjects([
-          {
-            field: 'status',
-            comparator: 'in',
-            reference: ['creating', 'ok'],
-          },
-        ])
-        .then((projects) => {
-          if (projects.length > 0) {
-            return ovhUserPref
-              .getValue(DEFAULT_PROJECT_KEY)
-              .then(({ projectId }) => ({
-                state: 'pci.projects.project.kubernetes.add',
-                params: {
-                  projectId,
-                },
-              }))
-              .catch(({ status }) => {
-                if (status === 404) {
-                  // No project is defined as favorite
-                  // Go on the first one :)
-                  return {
-                    state: 'pci.projects.project.kubernetes.add',
-                    params: {
-                      projectId: projects[0].project_id,
-                    },
-                  };
-                }
-                // [TODO] Go to error page
-                return null;
-              });
-          }
-          return { state: 'pci.projects.onboarding' };
-        });
     },
   });
 

@@ -73,7 +73,7 @@ export default function viteOvhDevServerPlugin({ isContainerApp, envConfig }) {
       const v6Proxy = proxy.v6(region, envConfig);
       app.use(createProxyMiddleware(v6Proxy.context, v6Proxy));
 
-      if (envConfig.isLABEU) {
+      if (env.LABEU || envConfig.isLABEU) {
         app.use(createProxyMiddleware(proxy.lab.v2.context, proxy.lab.v2));
         app.use(createProxyMiddleware(proxy.lab.v6.context, proxy.lab.v6));
       }

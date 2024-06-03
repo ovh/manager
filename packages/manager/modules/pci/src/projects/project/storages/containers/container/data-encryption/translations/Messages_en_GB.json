@@ -2,6 +2,6 @@
   "pci_projects_project_storages_containers_data_encryption_title": "Encrypt your data",
   "pci_projects_project_storages_containers_data_encryption_description": "OVHcloud encrypts the data as it flows into the container.",
   "pci_projects_project_storages_containers_data_encryption_plaintext": "No encryption",
-  "pci_projects_project_storages_containers_data_encryption_aes256": "SSE-S3",
-  "pci_projects_project_storages_containers_data_encryption_aes256_tooltip": "Data is encrypted using an OVHcloud Managed Key (OMK) and secured in the OVHcloud KMS."
+  "pci_projects_project_storages_containers_data_encryption_aes256": "Server-side encryption with OVHcloud Managed Keys (SSE-S3)",
+  "pci_projects_project_storages_containers_data_encryption_aes256_tooltip": "OVHcloud Managed Keys are handled and used on your behalf via OVHcloud’s secure KMS-integrated service."
 }

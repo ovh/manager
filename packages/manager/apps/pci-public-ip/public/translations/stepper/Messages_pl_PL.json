@@ -1,7 +1,7 @@
 {
   "common_clipboard_copy_to_clipboard": "Skopiuj do schowka",
   "common_clipboard_copied": "Skopiowano",
-  "common_clipboard_not_supported": "Kopiowanie do schowka nie jest możliwe. Skopiuj tekst ręcznie.",
+  "common_clipboard_not_supported": "Kopiowanie do schowka nie jest obsługiwane. Skopiuj tekst ręcznie.",
   "common_criteria_adder_column_label": "Kolumna",
   "common_criteria_adder_operator_label": "Warunek",
   "common_criteria_adder_operator_boolean_is": "jest",
@@ -48,7 +48,7 @@
   "common_pagination_of": "z",
   "common_pagination_ofnresults": "z TOTAL_ITEMS wyników",
   "common_pagination_currentpageofpagecount": "Strona CURRENT_PAGE z PAGE_COUNT",
-  "common_pagination_results": "wyniki",
+  "common_pagination_results": "Wyniki",
   "common_pagination_next": "Następna strona",
   "common_pagination_previous": "Poprzednia strona",
   "common_choose": "Wybierz",

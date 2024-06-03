@@ -77,7 +77,6 @@ import ovhManagerTelecomTask from '@ovh-ux/manager-telecom-task';
 import '@ovh-ux/ng-at-internet';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
-import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
@@ -202,7 +201,6 @@ export default async (containerEl, shellClient) => {
         ngOvhUiConfirmModal,
         'ovh-api-services',
         'ovh-ng-input-password',
-        ovhManagerAccountMigration,
         ovhManagerBetaPreference,
         registerCoreModule(environment, coreCallbacks),
         ovhManagerDashboard,

@@ -53,6 +53,25 @@ export const FLAVORS_BAREMETAL = /baremetal/;
 export const PUBLIC_NETWORK = 'Ext-Net';
 export const PUBLIC_NETWORK_BAREMETAL = 'Ext-Net-Baremetal';
 
+export const FLAVOR_CATEGORIES = [
+  'balanced',
+  'cpu',
+  'ram',
+  'accelerated',
+  'discovery',
+  'iops',
+  'baremetal',
+];
+
+export const URL_MODEL = {
+  c: {
+    name: 'selectedCategory',
+    type: String,
+    validate: (value) => FLAVOR_CATEGORIES.includes(value),
+    value: null,
+  },
+};
+
 export default {
   BANDWIDTH_OUT,
   INSTANCE_MODES_ENUM,
@@ -62,4 +81,5 @@ export default {
   FLAVORS_BAREMETAL,
   PUBLIC_NETWORK,
   PUBLIC_NETWORK_BAREMETAL,
+  URL_MODEL,
 };

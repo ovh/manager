@@ -12,8 +12,15 @@ const runInContainer = process.env.CONTAINER;
 
 const getBaseConfig = (config) => {
   const envConfig = config || {};
-  if (envConfig.isLABEU) {
-    envConfig.host = 'www.build-ovh.com';
+
+  if (envConfig.isLABEU || process.env.LABEU) {
+    const labeuHost = process.env.LABEU_HOST;
+    if (!labeuHost) {
+      throw new Error(
+        'Please define the environment variable "LABEU_HOST=host" to use LABEU env',
+      );
+    }
+    envConfig.host = labeuHost;
   }
 
   return {

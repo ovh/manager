@@ -750,5 +750,20 @@
   "ip_repricing_banner_list_item_2": "Dal 1° dicembre 2022, per gli indirizzi esistenti (ordinati prima del 6 ottobre 2022).",
   "ip_repricing_banner_link": "Ulteriori informazioni",
   "ip_unused_banner_text": "Disponi di indirizzi IP non utilizzati. Gli indirizzi IPv4 sono una risorsa sempre più rara. Se non effettivamente necessari, consigliamo pertanto di liberarli.",
-  "ip_unused_banner_link": "Visualizza i miei IP non utilizzati"
+  "ip_unused_banner_link": "Visualizza i miei IP non utilizzati",
+  "ip_table_manage_byoip_slice": "Segmentare",
+  "ip_table_manage_byoip_aggregate": "Aggregare",
+  "ip_table_manage_byoip_aggregate_success": "Il tuo blocco IP verrà aggregato. Aggiorna tra qualche minuto.",
+  "ip_table_manage_byoip_slice_success": "Il tuo blocco IP verrà segmentato. Aggiorna tra qualche minuto.",
+  "ip_table_manage_byoip_close": "Chiudere",
+  "ip_table_manage_byoip_cancel": "Annullare",
+  "ip_byoip_slice_block_title": "Segmentare il blocco",
+  "ip_byoip_slice_set_children_size": "Indica la dimensione dei blocchi secondari desiderata",
+  "ip_byoip_slice_configuration": "Questa configurazione comporterà la creazione dei seguenti blocchi:",
+  "ip_byoip_slicing_park_it_first_error_message": "Questo IP è assegnato a un servizio, per segmentarlo è prima necessario disassociarlo (l'IP punterà al parking).",
+  "ip_byoip_aggregate_block_title": "Aggregare il blocco",
+  "ip_byoip_aggregate_set_parent_size": "Specifica il blocco principale desiderato",
+  "ip_byoip_aggregate_configuration": "Questa configurazione comporterà la creazione del seguente blocco principale:",
+  "ip_byoip_aggregate_slicing_not_available_error_message": "Nessuna configurazione di segmentazione/aggregazione disponibile. Per maggiori informazioni, consulta la nostra guida <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">qui</a>",
+  "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Su questo indirizzo IP è stata effettuata un'altra azione di segmentazione o aggregazione."
 }
