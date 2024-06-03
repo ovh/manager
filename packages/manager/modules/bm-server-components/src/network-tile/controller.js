@@ -11,6 +11,7 @@ export default class BmServerComponentsNetworkTileController {
 
   $onInit() {
     this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
+    this.hidePublicBandwidth = this.hidePublicBandwidth || false;
     this.manageIpUrl = this.coreURLBuilder.buildURL(
       'dedicated',
       '#/ip?serviceName=:serviceName',

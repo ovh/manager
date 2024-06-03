@@ -4,8 +4,9 @@ import template from './template.html';
 export default {
   bindings: {
     packType: '<',
-    hardwareInfo: '<',
+    license: '<',
     showPackType: '<',
+    isLegacyPack: '<',
   },
   controller,
   template,

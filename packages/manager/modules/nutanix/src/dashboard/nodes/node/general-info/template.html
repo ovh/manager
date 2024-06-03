@@ -1,6 +1,6 @@
 <div data-ui-view>
     <div class="row d-md-flex mb-5">
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
             <!-- GENERAL INFORMATIONS -->
             <oui-tile
                 class="h-100"
@@ -125,7 +125,7 @@
 
         <!-- TECHNICAL DETAILS -->
         <div
-            class="col-md-4"
+            class="col-md-4 mb-3"
             data-ng-if="$ctrl.technicalDetails && !$ctrl.isOldCluster"
         >
             <server-technical-details
@@ -134,7 +134,7 @@
         </div>
 
         <!-- SUPPORT TICKET -->
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
             <server-support
                 service-name="{{$ctrl.serviceName}}"
                 travaux-url="{{$ctrl.TRAVAUX_LINK}}"
@@ -152,6 +152,7 @@
                 data-order-private-bandwidth-link="$ctrl.orderPrivateBandwidthLink"
                 data-is-old-cluster="$ctrl.isOldCluster"
                 data-service-infos="$ctrl.serviceInfos"
+                data-hide-public-bandwidth="$ctrl.hidePublicBandwidth"
             >
             </server-network>
         </div>
