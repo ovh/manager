@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   StepComponent,
@@ -11,6 +11,7 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useParams } from 'react-router-dom';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { TSizeItem, useData } from '@/api/hooks/data';
 import { useCatalogPrice } from '@/hooks/catalog-price';
@@ -24,6 +25,7 @@ export const SizeStep = (): JSX.Element => {
   const sizes = useData(projectId);
   const [size, setSize] = useState<TSizeItem>(undefined);
 
+  const { tracking } = useContext(ShellContext).shell;
   const store = useNewGatewayStore();
 
   const {
@@ -61,6 +63,10 @@ export const SizeStep = (): JSX.Element => {
               store.updateStep.check(id as StepsEnum);
               store.updateStep.lock(id as StepsEnum);
               store.updateStep.open(StepsEnum.LOCATION);
+              tracking.trackClick({
+                name: 'public-gateway_add_select-type',
+                type: 'action',
+              });
             }
           : undefined,
         label: tStepper('common_stepper_next_button_label'),

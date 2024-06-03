@@ -30,6 +30,7 @@ import { NetworkStep } from '@/pages/add/NetworkStep';
 import { useNewGatewayStore } from '@/pages/add/useStore';
 import { useProjectUrl } from '@/hooks/project-url';
 import { PUBLIC_GATEWAYS_READ_MORE_GUIDE } from '@/constants';
+import { ACTION_PREFIX } from '@/tracking.constants';
 
 export default function AddGatewayPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -42,6 +43,7 @@ export default function AddGatewayPage(): JSX.Element {
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+  const { tracking } = useContext(ShellContext).shell;
   const learnMoreLink =
     PUBLIC_GATEWAYS_READ_MORE_GUIDE.ALL_GUIDE[ovhSubsidiary] ||
     PUBLIC_GATEWAYS_READ_MORE_GUIDE.ALL_GUIDE.DEFAULT;
@@ -86,7 +88,13 @@ export default function AddGatewayPage(): JSX.Element {
         className="mt-6 mb-3"
         color={ODS_THEME_COLOR_INTENT.primary}
         href={backHref}
-        onClick={() => clearNotifications()}
+        onClick={() => {
+          clearNotifications();
+          tracking.trackClick({
+            name: `${ACTION_PREFIX}::add:back`,
+            type: 'action',
+          });
+        }}
       >
         <OsdsIcon
           className="mr-2"
