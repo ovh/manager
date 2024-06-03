@@ -8,11 +8,13 @@ export default function ListGuard({
   projectId: string;
   children: JSX.Element;
 }): JSX.Element {
-  const { data: aggregatedGateways, isPending } = useAllAggregatedGateway(
-    projectId,
-  );
+  const {
+    data: aggregatedGateways,
+    isPending,
+    isFetching,
+  } = useAllAggregatedGateway(projectId);
 
-  if (isPending) {
+  if (isPending || isFetching) {
     return null;
   }
 
