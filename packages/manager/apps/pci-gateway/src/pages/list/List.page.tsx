@@ -51,7 +51,7 @@ export default function ListingPage() {
 
   const hrefAdd = useHref(`./new`);
 
-  const { navigation } = useContext(ShellContext).shell;
+  const { navigation, tracking } = useContext(ShellContext).shell;
   const { projectId } = useParams();
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject(projectId || '');
@@ -154,6 +154,12 @@ export default function ListingPage() {
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0"
             href={hrefAdd}
+            onClick={() => {
+              tracking.trackClick({
+                name: 'PCI_PROJECTS_PUBLIC_GATEWAY_ADD',
+                type: 'action',
+              });
+            }}
           >
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}

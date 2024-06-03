@@ -3,7 +3,7 @@ import {
   TilesInputComponent,
 } from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   OsdsIcon,
@@ -18,6 +18,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { clsx } from 'clsx';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { TAvailableRegion, useData } from '@/api/hooks/data';
@@ -43,6 +44,7 @@ export const LocationStep = () => {
   const { t: tAdd } = useTranslation('add');
   const { t: tRegionsList } = useTranslation('regions-list');
   const { projectId } = useParams();
+  const { tracking } = useContext(ShellContext).shell;
   const store = useNewGatewayStore();
 
   const projectUrl = useProjectUrl('public-cloud');
@@ -115,6 +117,10 @@ export const LocationStep = () => {
               store.updateStep.check(id as StepsEnum);
               store.updateStep.lock(id as StepsEnum);
               store.updateStep.open(StepsEnum.NETWORK);
+              tracking.trackClick({
+                name: 'public-gateway_add_select-region',
+                type: 'action',
+              });
             }
           : undefined,
         label: tStepper('Next'),
