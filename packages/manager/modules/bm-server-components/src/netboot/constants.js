@@ -28,7 +28,10 @@ export const NETBOOT_GUIDES = {
   DEFAULT: 'https://docs.ovh.com/us/en/dedicated/hardware-diagnostics',
 };
 
-export const UNSUPPORTED_SSH_KEY_RESCUES = ['WinRescue', 'WiRe'];
+export const UNSUPPORTED_SSH_KEY_RESCUES = [
+  'WinRescue',
+  'rescue-customer-windows',
+];
 export const SSH_KEY = {
   pattern: /^(ssh-rsa|ecdsa-sha\d+-nistp\d+|ssh-ed\d+)\s+(AAAA[a-zA-Z0-9/=+]+)(\s+(\S{1,128}))*$/,
   placeholder:
