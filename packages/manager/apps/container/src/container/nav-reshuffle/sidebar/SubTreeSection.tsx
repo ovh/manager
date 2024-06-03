@@ -44,7 +44,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
   return (
     <>
       {node.children ? (
-        <ul className={`mt-3 ${style.subtree_section}`}>
+        <ul className={`mt-3 pb-2 ${style.subtree_section}`}>
           <li>
             <h2 className={style.subtree_section_title}>
               {t(node.translation)}

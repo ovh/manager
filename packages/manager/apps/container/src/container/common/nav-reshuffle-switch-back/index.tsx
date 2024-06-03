@@ -60,7 +60,7 @@ function NavReshuffleSwitchBack(): JSX.Element {
           className="mr-1"
         >
           <OsdsRadioButton
-            size={ODS_RADIO_BUTTON_SIZE.sm}
+            size={ODS_RADIO_BUTTON_SIZE.xs}
             color={ODS_THEME_COLOR_INTENT.primary}
           >
             <span slot="end">
@@ -81,7 +81,7 @@ function NavReshuffleSwitchBack(): JSX.Element {
           checked={useBeta}
         >
           <OsdsRadioButton
-            size={ODS_RADIO_BUTTON_SIZE.sm}
+            size={ODS_RADIO_BUTTON_SIZE.xs}
             color={ODS_THEME_COLOR_INTENT.primary}
           >
             <span slot="end">

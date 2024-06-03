@@ -67,7 +67,9 @@ const SubTree = ({
         });
       },
       select: (response) => {
-        return response.data[0] as PciProject;
+        return response?.data?.length
+          ? (response.data[0] as PciProject)
+          : null;
       },
       enabled: rootNode.id === 'pci' && !selectedPciProject,
       retry: false,
@@ -108,14 +110,18 @@ const SubTree = ({
   useEffect(() => {
     if (defaultPciProjectStatus === 'success') {
       setSelectedPciProject(defaultPciProject);
-    } else if (defaultPciProjectStatus === 'error') {
+    } else if (defaultPciProjectStatus === 'error' && pciProjects?.length) {
       setSelectedPciProject(pciProjects[0]);
     }
   }, [defaultPciProject, defaultPciProjectStatus, pciProjects]);
 
   return (
     <div className={style.subtree}>
-      <div className={style.subtree_content} onMouseOver={() => handleOnMouseOver(rootNode)} onMouseLeave={handleBackNavigation}>
+      <div
+        className={style.subtree_content}
+        onMouseOver={() => handleOnMouseOver(rootNode)}
+        onMouseLeave={handleBackNavigation}
+      >
         <button
           className={style.subtree_back_btn}
           onClick={handleBackNavigation}
@@ -123,24 +129,25 @@ const SubTree = ({
           <span
             className={`oui-icon oui-icon-arrow-left mx-2`}
             aria-hidden="true"
-          ></span>Retour au menu
+          ></span>
+          {t('sidebar_back_menu')}
         </button>
         {rootNode.illustration && (
-        <div
-          aria-label={t(rootNode.translation)}
-          className={`d-block py-3 ${style.subtree_illustration}`}
-        >
-          <img
-            src={rootNode.illustration}
-            alt={t(rootNode.translation)}
-            aria-hidden="true"
-          />
-        </div>
+          <div
+            aria-label={t(rootNode.translation)}
+            className={`d-block py-3 ${style.subtree_illustration}`}
+          >
+            <img
+              src={rootNode.illustration}
+              alt={t(rootNode.translation)}
+              aria-hidden="true"
+            />
+          </div>
         )}
 
         <div className={rootNode.illustration ? '' : 'pt-4'}>
           <ul className={`${style.subtree_list} mx-3`}>
-            <li>
+            <li className="mb-4">
               <h2>{t(rootNode.translation)}</h2>
             </li>
 
@@ -195,7 +202,7 @@ const SubTree = ({
                     </span>
 
                     <span
-                      className={`oui-icon oui-icon-copy px-1 mx-1  ml-auto ${style.sidebar_clipboard_copy}`}
+                      className={`oui-icon oui-icon-copy px-1 mx-1 ml-auto ${style.sidebar_clipboard_copy}`}
                     ></span>
                   </button>
                 )}
@@ -203,7 +210,11 @@ const SubTree = ({
             )}
             {(rootNode.id !== 'pci' || selectedPciProject !== null) &&
               rootNode.children?.map((node, index) => (
-                <li key={node.id} id={node.id} className={style.sidebar_pciEntry}>
+                <li
+                  key={node.id}
+                  id={node.id}
+                  className={style.sidebar_pciEntry}
+                >
                   {!shouldHideElement(node, 1, 2) && (
                     <SubTreeSection
                       node={node}
