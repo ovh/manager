@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.15.0...@ovh-ux/manager-telecom@15.15.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* remove useless account migration module ([#11592](https://github.com/ovh/manager/issues/11592)) ([78b628d](https://github.com/ovh/manager/commit/78b628dfda554215c930bdc401ade39ecd963ed1))
+
+
+
+
+
 # [15.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.14.0...@ovh-ux/manager-telecom@15.15.0) (2024-05-28)
 
 

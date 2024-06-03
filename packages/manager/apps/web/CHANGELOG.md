@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.25.0...@ovh-ux/manager-web@18.26.0) (2024-06-03)
+
+
+### Bug Fixes
+
+* remove useless account migration module ([#11592](https://github.com/ovh/manager/issues/11592)) ([78b628d](https://github.com/ovh/manager/commit/78b628dfda554215c930bdc401ade39ecd963ed1))
+* **web.hosting:** change exclusion list remove freedom ([#11853](https://github.com/ovh/manager/issues/11853)) ([c4cfb1d](https://github.com/ovh/manager/commit/c4cfb1d078c7b5594752c3598c3d1f1f64e636a4))
+
+
+### Features
+
+* **web:** remove sortable and column and back btn ([#11044](https://github.com/ovh/manager/issues/11044)) ([b13ab37](https://github.com/ovh/manager/commit/b13ab37d00096ae0436cadd8482b7eb3bc1aa668))
+
+
+
+
+
 # [18.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.24.0...@ovh-ux/manager-web@18.25.0) (2024-05-28)
 
 

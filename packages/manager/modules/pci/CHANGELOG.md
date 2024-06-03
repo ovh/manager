@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.41.0...@ovh-ux/manager-pci@6.42.0) (2024-06-03)
+
+
+### Bug Fixes
+
+* **pci:** fix onboarding create vRack duplicated translation key ([#11790](https://github.com/ovh/manager/issues/11790)) ([cd26372](https://github.com/ovh/manager/commit/cd263721ca36d281018e9287dfa90f0dfb701950))
+* remove useless account migration module ([#11592](https://github.com/ovh/manager/issues/11592)) ([78b628d](https://github.com/ovh/manager/commit/78b628dfda554215c930bdc401ade39ecd963ed1))
+
+
+### Features
+
+* **pci.storage:** change label for sse-s3 ([#11597](https://github.com/ovh/manager/issues/11597)) ([6e80e90](https://github.com/ovh/manager/commit/6e80e904030418e4e63c9ffa41bee0324f00d188))
+* **pci:** deep links ([#11321](https://github.com/ovh/manager/issues/11321)) ([73ab3ee](https://github.com/ovh/manager/commit/73ab3ee0f3380b4307e5728ffcd21de4ae2e05db))
+
+
+
+
+
 # [6.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.40.0...@ovh-ux/manager-pci@6.41.0) (2024-05-28)
 
 
