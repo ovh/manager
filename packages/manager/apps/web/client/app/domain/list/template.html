@@ -316,20 +316,18 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-href="{{:: $ctrl.ENABLE_AUTO_RENEW_LINK + $row.serviceId }}"
+                data-on-click="$ctrl.goToRenewManagementEnable($row)"
                 aria-label="{{:: 'domains_action_per_line_autorenew_activate' | translate }}"
                 data-ng-if="$row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.MANUAL_RENEW"
-                top
             >
                 <span
                     data-translate="domains_action_per_line_autorenew_activate"
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-href="{{:: $ctrl.DISABLE_AUTO_RENEW_LINK + $row.serviceId }}"
+                data-on-click="$ctrl.goToRenewManagementDisable($row)"
                 aria-label="{{:: 'domains_action_per_line_autorenew_deactivate' | translate }}"
                 data-ng-if="$row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.AUTOMATIC_RENEW"
-                top
             >
                 <span
                     data-translate="domains_action_per_line_autorenew_deactivate"

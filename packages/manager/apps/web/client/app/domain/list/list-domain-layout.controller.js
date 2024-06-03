@@ -115,16 +115,6 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       '#/billing/autorenew/delete?serviceId=',
     );
 
-    this.ENABLE_AUTO_RENEW_LINK = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/billing/autorenew/enable?selectedType=DOMAIN&services=',
-    );
-
-    this.DISABLE_AUTO_RENEW_LINK = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/billing/autorenew/disable?selectedType=DOMAIN&services=',
-    );
-
     this.USER_ACCOUNT_INFOS_LINK = this.coreURLBuilder.buildURL(
       'dedicated',
       '#/useraccount/infos',
@@ -145,6 +135,20 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.$scope.$on('domain.csv.export.error', () => {
       this.loading.domainsExportCsv = false;
     });
+  }
+
+  goToRenewManagementEnable({ domain, serviceId }) {
+    this.$window.top.location.href = this.coreURLBuilder.buildURL(
+      'dedicated',
+      `#/billing/autorenew/enable?selectedType=DOMAIN&searchText=${domain}&services=${serviceId}`,
+    );
+  }
+
+  goToRenewManagementDisable({ domain, serviceId }) {
+    this.$window.top.location.href = this.coreURLBuilder.buildURL(
+      'dedicated',
+      `#/billing/autorenew/disable?selectedType=DOMAIN&searchText=${domain}&services=${serviceId}`,
+    );
   }
 
   goToContactManagementEdit(domain) {
