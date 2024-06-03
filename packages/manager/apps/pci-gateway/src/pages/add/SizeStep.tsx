@@ -33,10 +33,13 @@ export const SizeStep = (): JSX.Element => {
 
   useEffect(() => {
     if (sizes.length) {
-      setSize(sizes[0]);
       store.updateForm.size(sizes[0].payload);
     }
   }, [sizes]);
+
+  useEffect(() => {
+    setSize(sizes.find(($size) => $size.payload === store.form.size));
+  }, [store.form.size, sizes]);
 
   return (
     <StepComponent
@@ -71,12 +74,14 @@ export const SizeStep = (): JSX.Element => {
           store.updateStep.unCheck(id as StepsEnum);
           store.updateStep.unlock(id as StepsEnum);
 
-          store.updateStep.close(StepsEnum.LOCATION);
-          store.updateStep.close(StepsEnum.NETWORK);
-
           store.updateForm.regionName(undefined);
+          store.updateStep.close(StepsEnum.LOCATION);
+          store.updateStep.unCheck(StepsEnum.LOCATION);
+          store.updateStep.unlock(StepsEnum.LOCATION);
+
           store.updateForm.name(undefined);
           store.updateForm.network(undefined, undefined);
+          store.updateStep.close(StepsEnum.NETWORK);
         },
         label: tStepper('common_stepper_modify_this_step'),
         isDisabled: false,
@@ -121,7 +126,6 @@ export const SizeStep = (): JSX.Element => {
           </div>
         )}
         onInput={(item) => {
-          setSize(item);
           store.updateForm.size(item.payload);
         }}
       />
