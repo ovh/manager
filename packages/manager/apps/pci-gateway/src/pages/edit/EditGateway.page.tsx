@@ -5,21 +5,21 @@ import {
   useProject,
 } from '@ovhcloud/manager-components';
 import {
-  OsdsFormField,
-  OsdsText,
-  OsdsInput,
-  OsdsSpinner,
-  OsdsIcon,
-  OsdsDivider,
   OsdsBreadcrumb,
+  OsdsDivider,
+  OsdsFormField,
+  OsdsIcon,
+  OsdsInput,
   OsdsLink,
+  OsdsSpinner,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_ICON_NAME,
@@ -33,7 +33,7 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useEditGateway, useGateway } from '@/api/hooks/useGateways';
 import { TSizeItem, useData } from '@/api/hooks/data';
 import { SizeLabelComponent } from '@/pages/edit/SizeLabel.component';
@@ -44,13 +44,13 @@ type TState = {
 };
 
 export default function EditGatewayPage(): JSX.Element {
-  const navigation = useNavigation();
+  const { navigation } = useContext(ShellContext).shell;
   const { t: tEdit } = useTranslation('edit');
   const { t } = useTranslation('global');
   const { t: tCommon } = useTranslation('common');
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
-  const { addError, addSuccess } = useNotifications();
+  const { addError, addSuccess, clearNotifications } = useNotifications();
   const navigate = useNavigate();
 
   const goBack = () => navigate('..');
@@ -77,18 +77,22 @@ export default function EditGatewayPage(): JSX.Element {
     regionName: searchParams.get('region'),
     gatewayId: searchParams.get('gatewayId'),
     onSuccess: () => {
+      clearNotifications();
       addSuccess(
         tEdit('pci_projects_project_public_gateway_edit_success', {
           name: state.name,
         }),
+        true,
       );
       goBack();
     },
     onError: () => {
+      clearNotifications();
       addError(
         tEdit('pci_projects_project_public_gateway_edit_error', {
           name: state.name,
         }),
+        true,
       );
       goBack();
     },
@@ -142,11 +146,19 @@ export default function EditGatewayPage(): JSX.Element {
         {tEdit('pci_projects_project_public_gateway_edit_go_back')}
       </OsdsLink>
       {isGatewayLoading ? (
-        <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
+        <OsdsSpinner
+          inline={true}
+          size={ODS_SPINNER_SIZE.md}
+          className={'block mt-4 text-center'}
+        />
       ) : (
         <>
           {isGatewayUpdating && (
-            <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
+            <OsdsSpinner
+              inline={true}
+              size={ODS_SPINNER_SIZE.md}
+              className={'block mt-4 text-center'}
+            />
           )}
           <OsdsDivider></OsdsDivider>
           <StepComponent

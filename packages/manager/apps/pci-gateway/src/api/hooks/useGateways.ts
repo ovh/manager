@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import queryClient from '@ovh-ux/manager-pci-users-app/src/queryClient';
+import queryClient from '@/queryClient';
 import {
   createGateway,
   getGateway,
@@ -8,6 +8,7 @@ import {
   updateGateway,
 } from '@/api/data/gateways';
 import { TOperation } from '@/api/data/operation';
+import { Gateway } from '@/interface';
 
 export type TCreateGatewayParam = {
   projectId: string;
@@ -39,7 +40,6 @@ export const useCreateGateway = ({
   };
 };
 
-/// /////
 export const getGatewayQuery = (
   projectId: string,
   regionName: string,
@@ -77,10 +77,22 @@ export const useEditGateway = ({
     mutationFn: ({ name, model }: { name: string; model: string }) =>
       updateGateway(projectId, regionName, gatewayId, name, model),
     onError,
-    onSuccess: async () => {
+    onSuccess: async (data) => {
       await queryClient.invalidateQueries({
         queryKey: [getGatewayUrl(projectId, regionName, gatewayId)],
       });
+      queryClient.setQueryData(
+        ['project', projectId, 'gateway'],
+        (rows: Gateway[]) =>
+          rows.map((gateway) => {
+            const isChangedGateway = data.id === gateway.id;
+            return {
+              ...gateway,
+              name: isChangedGateway ? data.name : gateway.name,
+              model: isChangedGateway ? data.model : gateway.model,
+            };
+          }),
+      );
       onSuccess();
     },
   });
