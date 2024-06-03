@@ -70,6 +70,15 @@ export const LocationStep = () => {
     setState((prev) => ({ ...prev, regionsLink: `${projectId}/regions` }));
   }, [projectId]);
 
+  useEffect(() => {
+    setState((prev) => ({
+      ...prev,
+      region: state.regions.find(
+        (region) => region.name === store.form.regionName,
+      ),
+    }));
+  }, [store.form.regionName]);
+
   return (
     <StepComponent
       id={StepsEnum.LOCATION}
@@ -130,7 +139,6 @@ export const LocationStep = () => {
         items={state.regions}
         label={(region) => region.microName}
         onInput={(region) => {
-          setState({ ...state, region });
           store.updateForm.regionName(region?.name);
         }}
         stack={{
