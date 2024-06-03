@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         ),
       server: /* @ngInject */ (node) => node,
+      hidePublicBandwidth: () => true,
       trackingPrefix: /* @ngInject */ () =>
         'hpc::nutanix::cluster::node::dashboard',
       goToNodeNameEdit: /* @ngInject */ ($state) => () =>

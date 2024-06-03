@@ -7,6 +7,7 @@ import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import {
   serverSupport,
   serverTechnicalDetails,
+  serverBandwidthTile,
 } from '@ovh-ux/manager-bm-server-components';
 import { region } from '@ovh-ux/manager-components';
 import nutanixNetworkTile from '../component/network-tile/network-tile.module';
@@ -28,6 +29,7 @@ angular
     ovhManagerBillingComponents,
     serverSupport,
     serverTechnicalDetails,
+    serverBandwidthTile,
     nutanixNetworkTile,
     privateBandwidthUpgrade,
     region,
