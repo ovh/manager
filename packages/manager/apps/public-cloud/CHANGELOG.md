@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.5.0...@ovh-ux/manager-public-cloud@6.6.0) (2024-06-03)
+
+
+### Bug Fixes
+
+* remove useless account migration module ([#11592](https://github.com/ovh/manager/issues/11592)) ([78b628d](https://github.com/ovh/manager/commit/78b628dfda554215c930bdc401ade39ecd963ed1))
+
+
+### Features
+
+* **pci:** deep links ([#11321](https://github.com/ovh/manager/issues/11321)) ([73ab3ee](https://github.com/ovh/manager/commit/73ab3ee0f3380b4307e5728ffcd21de4ae2e05db))
+
+
+
+
+
 # [6.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.4.7...@ovh-ux/manager-public-cloud@6.5.0) (2024-05-28)
 
 

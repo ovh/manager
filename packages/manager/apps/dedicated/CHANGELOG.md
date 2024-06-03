@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.37.0...@ovh-ux/manager-dedicated@19.38.0) (2024-06-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3028] ([eefb5e5](https://github.com/ovh/manager/commit/eefb5e5480c69c6cef74a473452d986d71ec149d))
+* **i18n:** add missing translations [CDS 3032] ([2b42986](https://github.com/ovh/manager/commit/2b4298684b201731bead285e0c9fe8adc05a1668))
+* remove useless account migration module ([#11592](https://github.com/ovh/manager/issues/11592)) ([78b628d](https://github.com/ovh/manager/commit/78b628dfda554215c930bdc401ade39ecd963ed1))
+
+
+### Features
+
+* add localzone futur regions ([#11830](https://github.com/ovh/manager/issues/11830)) ([b925c5e](https://github.com/ovh/manager/commit/b925c5e1881f74f9a39318fdd70114171af5459a))
+* **dedicated.vmware:** change a text ([#11584](https://github.com/ovh/manager/issues/11584)) ([0fe7768](https://github.com/ovh/manager/commit/0fe77689252392f8828d00753be468ea210448ed))
+* **dedicated:** allow options in ssh authorized keys ([#11627](https://github.com/ovh/manager/issues/11627)) ([0b8f838](https://github.com/ovh/manager/commit/0b8f838ba6e41c89d4a05f9ca6246fdf42332892))
+* **dedicated:** BYOIP range slicing ([#10592](https://github.com/ovh/manager/issues/10592)) ([b5be2a8](https://github.com/ovh/manager/commit/b5be2a8d4b4827281189a4dc1064287a1298a9eb))
+
+
+
+
+
 # [19.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.36.0...@ovh-ux/manager-dedicated@19.37.0) (2024-05-28)
 
 

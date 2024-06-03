@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.21.0...@ovh-ux/manager-bm-server-components@1.22.0) (2024-06-03)
+
+
+### Features
+
+* **dedicated:** allow options in ssh authorized keys ([#11627](https://github.com/ovh/manager/issues/11627)) ([0b8f838](https://github.com/ovh/manager/commit/0b8f838ba6e41c89d4a05f9ca6246fdf42332892))
+
+
+
+
+
 # [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.20.0...@ovh-ux/manager-bm-server-components@1.21.0) (2024-05-28)
 
 

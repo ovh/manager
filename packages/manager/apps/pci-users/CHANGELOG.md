@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.3.1...@ovh-ux/manager-pci-users-app@0.4.0) (2024-06-03)
+
+
+### Features
+
+* add localzone futur regions ([#11830](https://github.com/ovh/manager/issues/11830)) ([b925c5e](https://github.com/ovh/manager/commit/b925c5e1881f74f9a39318fdd70114171af5459a))
+
+
+
+
+
 ## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.3.0...@ovh-ux/manager-pci-users-app@0.3.1) (2024-05-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-users-app

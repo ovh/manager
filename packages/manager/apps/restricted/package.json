@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-restricted-app",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "private": true,
   "description": "OVHcloud Manager Restricted Access App.",
   "repository": {
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^7.3.1",
-    "@ovh-ux/manager-vite-config": "^0.6.1",
+    "@ovh-ux/manager-vite-config": "^0.6.2",
     "@ovh-ux/request-tagger": "^0.2.0",
     "@ovh-ux/ui-kit": "^6.10.0",
     "bootstrap": "4.6.0",

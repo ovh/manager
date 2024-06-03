@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.14.0...@ovhcloud/manager-components@1.15.0) (2024-06-03)
+
+### Features
+
+- **manager-components:** add compact vertical ellipsis action menu ([#11815](https://github.com/ovh/manager/issues/11815)) ([ba1ea4b](https://github.com/ovh/manager/commit/ba1ea4bde0c7526e43a26621d73c20c8092f61f1))
+- **manager-components:** add iam react hook ([#11727](https://github.com/ovh/manager/issues/11727)) ([38debf0](https://github.com/ovh/manager/commit/38debf0fc4434f2e5c062ac21f5a86a63a6cb42e))
+
 # [1.14.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.13.0...@ovhcloud/manager-components@1.14.0) (2024-05-23)
 
 ### Features

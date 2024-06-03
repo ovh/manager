@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.17.0...@ovh-ux/manager-components@1.18.0) (2024-06-03)
+
+
+### Features
+
+* add localzone futur regions ([#11830](https://github.com/ovh/manager/issues/11830)) ([b925c5e](https://github.com/ovh/manager/commit/b925c5e1881f74f9a39318fdd70114171af5459a))
+
+
+
+
+
 # [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.16.0...@ovh-ux/manager-components@1.17.0) (2024-05-28)
 
 
