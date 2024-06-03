@@ -135,6 +135,7 @@ export default function AddGatewayPage(): JSX.Element {
         >
           {tAdd('pci_projects_project_public_gateways_add_description3')}
         </OsdsText>
+        &nbsp;
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}
           href={learnMoreLink}
