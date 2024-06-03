@@ -39,7 +39,6 @@ export const useCreateGateway = ({
   };
 };
 
-/// /////
 export const getGatewayQuery = (
   projectId: string,
   regionName: string,

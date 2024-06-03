@@ -176,6 +176,7 @@ export const NetworkStep = (): JSX.Element => {
           message: error,
         }),
       );
+      store.updateStep.unlock(StepsEnum.NETWORK);
     },
   });
 
@@ -330,16 +331,11 @@ export const NetworkStep = (): JSX.Element => {
               );
             }}
           >
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-              slot="placeholder"
-            >
+            <span slot="placeholder">
               {tAdd(
                 'pci_projects_project_public_gateways_add_select_private_network',
               )}
-            </OsdsText>
+            </span>
             {store.form.newNetwork.name && store.form.newNetwork.subnet && (
               <OsdsSelectOption key={'new'} value={'new'}>
                 {store.form.newNetwork.name}
