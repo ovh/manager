@@ -31,6 +31,7 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
+import { LINK_PREFIX } from './index.constants';
 import { initAtInternet } from './components/at-internet';
 
 import './assets/theme/default/index.less';
@@ -47,6 +48,9 @@ const getEnvironment = (shellClient) => {
 const getLocale = (shellClient) => {
   return shellClient.i18n.getLocale();
 };
+
+const shouldHidePreloader = (transition) =>
+  !transition.to().name.startsWith(LINK_PREFIX);
 
 export default async (containerEl, shellClient) => {
   const moduleName = 'ovhPublicCloudApp';
@@ -191,9 +195,11 @@ export default async (containerEl, shellClient) => {
             }
           });
 
-          $transitions.onSuccess({}, () => {
-            shellClient.ux.stopProgress();
-            shellClient.ux.hidePreloader();
+          $transitions.onSuccess({}, (transition) => {
+            if (shouldHidePreloader(transition)) {
+              shellClient.ux.stopProgress();
+              shellClient.ux.hidePreloader();
+            }
           });
 
           $transitions.onError({}, (transition) => {
@@ -206,8 +212,8 @@ export default async (containerEl, shellClient) => {
     )
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
-        const unregisterHook = $transitions.onSuccess({}, () => {
-          if (!isTopLevelApplication()) {
+        const unregisterHook = $transitions.onSuccess({}, (transition) => {
+          if (!isTopLevelApplication() && shouldHidePreloader(transition)) {
             shellClient.ux.hidePreloader();
           }
           $rootScope.$broadcast('app:started');

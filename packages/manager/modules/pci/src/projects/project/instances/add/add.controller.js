@@ -27,9 +27,11 @@ import {
   FLAVORS_BAREMETAL,
   PUBLIC_NETWORK,
   PUBLIC_NETWORK_BAREMETAL,
+  URL_MODEL,
 } from './add.constants';
 
 import { INSTANCE_PRICING_LINKS } from '../instances.constants';
+import { useURLModel } from '../../project.utils';
 
 export default class PciInstancesAddController {
   /* @ngInject */
@@ -75,6 +77,10 @@ export default class PciInstancesAddController {
   }
 
   $onInit() {
+    const {
+      model: { selectedCategory },
+    } = useURLModel(URL_MODEL);
+
     this.instance = new Instance({
       monthlyBilling: false,
     });
@@ -105,7 +111,7 @@ export default class PciInstancesAddController {
       isInstanceFlex: false,
     };
     this.osTypes = [];
-    this.selectedCategory = null;
+    this.selectedCategory = selectedCategory;
 
     this.instanceNamePattern = PATTERN;
 

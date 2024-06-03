@@ -14,7 +14,6 @@ import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-
 import '@ovh-ux/ng-q-allsettled';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
-import '@ovh-ux/manager-account-migration';
 import '@ovh-ux/ng-pagination-front';
 import 'angular-ui-bootstrap';
 import '@ovh-ux/manager-banner';
@@ -71,7 +70,6 @@ angular
     'ngAtInternet',
     'ngPaginationFront',
     'ngQAllSettled',
-    'ovhManagerAccountMigration',
     'ovh-api-services',
     'oui',
     'ui.bootstrap',

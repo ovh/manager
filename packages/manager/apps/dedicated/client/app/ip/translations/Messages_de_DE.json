@@ -750,5 +750,20 @@
   "ip_repricing_banner_list_item_2": "Ab dem 1. Dezember 2022 für Ihre bestehenden Adressen, die vor dem 6. Oktober 2022 bestellt wurden.",
   "ip_repricing_banner_link": "Mehr Informationen",
   "ip_unused_banner_text": "Nicht alle Ihrer IP-Adressen werden derzeit genutzt. IPv4-Adressen werden zu einer immer knapperen Ressource. Wenn Sie sie also nicht benötigen, möchten wir Sie bitten, sie freizugeben.",
-  "ip_unused_banner_link": "Meine nicht genutzten IPs anzeigen."
+  "ip_unused_banner_link": "Meine nicht genutzten IPs anzeigen.",
+  "ip_table_manage_byoip_slice": "Segmentieren",
+  "ip_table_manage_byoip_aggregate": "Aggregieren",
+  "ip_table_manage_byoip_aggregate_success": "Ihr IP-Block wird aggregiert. Bitte aktualisieren Sie in einigen Minuten.",
+  "ip_table_manage_byoip_slice_success": "Ihr IP-Block wird segmentiert. Bitte aktualisieren Sie in einigen Minuten.",
+  "ip_table_manage_byoip_close": "Schließen",
+  "ip_table_manage_byoip_cancel": "Abbrechen",
+  "ip_byoip_slice_block_title": "Block segmentieren",
+  "ip_byoip_slice_set_children_size": "Bitte geben Sie die gewünschte Größe für die untergeordneten Blöcke an.",
+  "ip_byoip_slice_configuration": "Mit dieser Konfiguration werden die folgenden Blöcke erstellt:",
+  "ip_byoip_slicing_park_it_first_error_message": "Diese IP wird zu einem Dienst geroutet. Sie muss zunächst getrennt werden (die IP wird geparkt), um sie segmentieren zu können.",
+  "ip_byoip_aggregate_block_title": "Block aggregieren",
+  "ip_byoip_aggregate_set_parent_size": "Bitte geben Sie den gewünschten übergeordneten Block an.",
+  "ip_byoip_aggregate_configuration": "Mit dieser Konfiguration wird der folgende übergeordnete Block erstellt:",
+  "ip_byoip_aggregate_slicing_not_available_error_message": "Es ist keine Segmentierungs-/Aggregationskonfiguration verfügbar. Weitere Informationen finden Sie in unserer Anleitung: <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">hier</a>",
+  "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Für diese IP-Adresse wurde eine andere Segmentierungs- oder Aggregationsaktion ausgeführt."
 }

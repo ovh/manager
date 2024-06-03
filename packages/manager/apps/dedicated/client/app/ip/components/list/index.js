@@ -5,6 +5,7 @@ import antispam from './antispam/antispam.module';
 import arp from './arp/arp.module';
 import associateIpBloc from './associate-ip-bloc/associate-ip-bloc.module';
 import block from './block/block.module';
+import byoip from './byoip/byoip.module';
 import exportCsv from './export-csv/export-csv.module';
 import firewall from './firewall/firewall.module';
 import mitigation from './mitigation/mitigation.module';
@@ -26,6 +27,7 @@ angular
     arp,
     associateIpBloc,
     block,
+    byoip,
     exportCsv,
     firewall,
     mitigation,
