@@ -16,22 +16,31 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { useNotifications } from '@ovhcloud/manager-components';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useState } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useContext, useState } from 'react';
 import { useDeleteGateway } from '@/api/hooks/useGateway';
 import queryClient from '@/queryClient';
 import { Gateway } from '@/interface';
 import { checkOperation, TOperation } from '@/api/data/operation';
+import { ACTION_PREFIX } from '@/tracking.constants';
 
 export default function DeleteGateway() {
   const { t: tDelete } = useTranslation('delete');
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
   const { addError, addSuccess } = useNotifications();
+  const { tracking } = useContext(ShellContext)?.shell || {};
   const gatewayId = searchParams.get('id');
   const name = searchParams.get('name');
   const region = searchParams.get('region');
   const navigate = useNavigate();
-  const onClose = () => {
+  const onClose = (isCanceled = false) => {
+    if (isCanceled) {
+      tracking?.trackClick({
+        name: `${ACTION_PREFIX}::delete::cancel'`,
+        type: 'action',
+      });
+    }
     navigate('..');
   };
   const [isOperationPending, setIsOperationPending] = useState(false);
@@ -102,7 +111,7 @@ export default function DeleteGateway() {
       headline={
         !isPending ? tDelete('pci_projects_project_public_gateway_delete') : ''
       }
-      onOdsModalClose={onClose}
+      onOdsModalClose={() => onClose(true)}
     >
       <slot name="content">
         {!isPending ? (
@@ -132,7 +141,7 @@ export default function DeleteGateway() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={onClose}
+        onClick={() => onClose(true)}
         data-testid="deleteGateway-button_cancel"
       >
         {tDelete('pci_projects_project_public_gateway_delete_cancel')}
@@ -140,7 +149,13 @@ export default function DeleteGateway() {
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={deleteGateway}
+        onClick={() => {
+          deleteGateway();
+          tracking?.trackClick({
+            name: `${ACTION_PREFIX}::delete::confirm'`,
+            type: 'action',
+          });
+        }}
         {...(isPending ? { disabled: true } : {})}
         data-testid="deleteGateway-button_submit"
       >

@@ -6,16 +6,19 @@ import {
   UseMutationResult,
 } from '@tanstack/react-query';
 import { OsdsButton } from '@ovhcloud/ods-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import DeleteGateway from '@/pages/delete/DeleteGateway.page';
 import * as useGatewayModule from '@/api/hooks/useGateway';
 
 const renderDeleteGatewayPage = () => {
   const queryClient = new QueryClient();
-
   return render(
-    <QueryClientProvider client={queryClient}>
-      <DeleteGateway />
-    </QueryClientProvider>,
+    <ShellContext.Provider value={undefined}>
+      <QueryClientProvider client={queryClient}>
+        <DeleteGateway />
+      </QueryClientProvider>
+      ,
+    </ShellContext.Provider>,
   );
 };
 
