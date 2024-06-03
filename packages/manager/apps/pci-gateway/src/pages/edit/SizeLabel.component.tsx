@@ -41,7 +41,7 @@ export const SizeLabelComponent = ({ item }: { item: TSizeItem }) => {
           color={ODS_THEME_COLOR_INTENT.text}
         >
           {getFormattedHourlyCatalogPrice(item.hourlyPrice)} (
-          {getFormattedMonthlyCatalogPrice(item.monthlyPrice)})
+          {getFormattedMonthlyCatalogPrice(item.monthlyPrice)})<span>*</span>
         </OsdsText>
       </div>
     </div>
