@@ -94,6 +94,7 @@ export const NetworkStep = (): JSX.Element => {
             navigate('..');
             addSuccess(
               tAdd('pci_projects_project_public_gateways_add_success'),
+              true,
             );
             setState((prev) => ({ ...prev, isOperationPending: false }));
             return true;
@@ -107,6 +108,7 @@ export const NetworkStep = (): JSX.Element => {
                 'pci_projects_project_public_gateways_add_modal_add_private_network_error',
                 { message: '' },
               ),
+              true,
             );
             setState((prev) => ({ ...prev, isOperationPending: false }));
             return true;
@@ -143,6 +145,7 @@ export const NetworkStep = (): JSX.Element => {
             navigate('..');
             addSuccess(
               tAdd('pci_projects_project_public_gateways_add_success'),
+              true,
             );
             setState((prev) => ({ ...prev, isOperationPending: false }));
             return true;
@@ -155,6 +158,7 @@ export const NetworkStep = (): JSX.Element => {
               tAdd('pci_projects_project_public_gateways_add_error', {
                 message: '',
               }),
+              true,
             );
             setState((prev) => ({ ...prev, isOperationPending: false }));
             return true;

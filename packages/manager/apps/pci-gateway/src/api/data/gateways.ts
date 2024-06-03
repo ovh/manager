@@ -55,7 +55,7 @@ export const updateGateway = async (
   gatewayId: string,
   name: string,
   model: string,
-) => {
+): Promise<TGateway> => {
   const url = `/cloud/project/${projectId}/region/${regionName}/gateway/${gatewayId}`;
   const payload = {
     model,
