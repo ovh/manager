@@ -14,7 +14,7 @@ import {
   acceptFile,
   maxFileSize,
   maxFiles,
-} from './formDocumentFieldValidationConstants';
+} from './formDocumentFieldValidation.constants';
 
 type Props = {
   label: string;

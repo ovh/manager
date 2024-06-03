@@ -24,10 +24,12 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => mockedUseTranslation(),
 }));
 
-vi.mock('@/utils/userUtil', () => ({
-  getCurrentUser: () => ({
-    legalform: 'other',
-    subsidiary: 'FR',
+vi.mock('@/context/User/useUser', () => ({
+  default: () => ({
+    user: {
+      legalForm: 'other',
+      subsidiary: 'FR',
+    },
   }),
 }));
 

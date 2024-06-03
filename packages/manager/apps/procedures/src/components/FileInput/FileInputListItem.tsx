@@ -2,13 +2,13 @@ import React, { FunctionComponent, MouseEvent } from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+import { FileWithError } from './FileInputContainer';
 
 type FileInputListItemProps = {
-  file: File;
+  file: FileWithError;
   deleteFile: (
     e: MouseEvent<HTMLOsdsIconElement, globalThis.MouseEvent>,
-    file: File,
+    file: FileWithError,
   ) => void;
   accept: string;
   maxSize: number;
@@ -17,11 +17,7 @@ type FileInputListItemProps = {
 export const FileInputListItem: FunctionComponent<FileInputListItemProps> = ({
   file,
   deleteFile,
-  accept,
-  maxSize,
 }) => {
-  const { t } = useTranslation('account-disable-2fa');
-
   const bytesToSize = (bytes: number): string => {
     if (bytes < 1024 * 1024) {
       return `${(bytes / 1024).toFixed(0)} KB`;
@@ -29,29 +25,7 @@ export const FileInputListItem: FunctionComponent<FileInputListItemProps> = ({
     return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
   };
 
-  const parseContentTypes = (inputString: string) => {
-    const typesArray = inputString.split(',').map((type) => type.trim());
-    const extensions = typesArray.map((type) => type.split('/')[1]);
-    const lastType = extensions.pop();
-    return { types: extensions.join(', '), lastType };
-  };
-
-  const errorMessages: string[] = [];
-  if (!accept.includes(file.type)) {
-    const { types, lastType } = parseContentTypes(accept);
-    errorMessages.push(
-      t('account-disable-2fa-file-input-type-file-error', {
-        types,
-        lastType,
-      }),
-    );
-  }
-
-  if (file.size > maxSize) {
-    errorMessages.push(t('account-disable-2fa-file-input-size-file-error'));
-  }
-
-  const hasError = Boolean(errorMessages.length);
+  const hasError = Boolean(file.errors.length);
 
   return (
     <div
@@ -72,8 +46,10 @@ export const FileInputListItem: FunctionComponent<FileInputListItemProps> = ({
       />
       <p className="text-sm truncate">
         {file.name} {`(${bytesToSize(file.size)})`}
-        {errorMessages.map((error, index) => (
-          <p key={index}>{error}</p>
+        {file.errors.map((error, index) => (
+          <span className="block" key={index}>
+            {error}
+          </span>
         ))}
       </p>
 

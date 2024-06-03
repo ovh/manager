@@ -1,10 +1,11 @@
 import { createContext } from 'react';
+import { LegalFrom, Subsidiary } from '@/types/user.type';
 
 export type User = {
-  legalForm: string;
+  legalForm: LegalFrom;
   email: string;
   language: string;
-  subsidiary: string;
+  subsidiary: Subsidiary;
   iss: string;
   sub: string;
   exp: number;

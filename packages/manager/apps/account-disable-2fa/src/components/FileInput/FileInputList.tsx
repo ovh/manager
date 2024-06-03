@@ -23,7 +23,7 @@ export const FileInputList: FunctionComponent<Props> = ({ className }) => {
     file: File,
   ) => onChange?.({ files: value.filter((f) => f.name !== file.name), e });
 
-  return value?.length ? (
+  return value.length ? (
     <div className={className}>
       {multiple && (
         <label className="text-sky-900 text-xs font-semibold">

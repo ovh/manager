@@ -2,6 +2,27 @@
   "account-disable-2fa-see-title": "Vous avez déjà demandé la désactivation de la double authentification.",
   "account-disable-2fa-see-description1": "Veuillez répondre sur l'échange e-mail initial ou attendre sa clôture avant de soumettre une nouvelle demande.",
   "account-disable-2fa-see-description2": "Vous n'avez reçu aucun e-mail ? Veuillez nous contacter à l'aide des informations ci-dessous :",
+
+  "account-disable-2fa-create-title": "La vérification de votre identité est une étape essentielle de sécurisation de votre compte.",
+  "account-disable-2fa-create-intro": "Pour ce faire, nous vous invitons à nous communiquer les documents précisés ci-dessous, en prenant soin de :",
+  "account-disable-2fa-create-intro-sensitive-info": "masquer ou effacer toute information sensible comme votre numéro de compte ou les numéros d’identification ;",
+  "account-disable-2fa-create-intro-document-visibility": "vérifier que votre nom et votre adresse, ainsi que l’autorité émettrice du document (ex. pays, région) sont clairement visibles.",
+  "account-disable-2fa-create-title-sub": "Déposez vos documents",
+  "account-disable-2fa-create-attention-readable-doc": "Attention, veuillez-vous assurer que tous vos documents sont corrects et lisibles avant envoi.",
+  "account-disable-2fa-create-attention-no-valid-doc": "En cas de documents non valides, cette procédure sera annulée et vous devrez en effectuer une nouvelle.",
+  "account-disable-2fa-create-delay": "Dans un délai de 72 heures, vous recevrez la confirmation de la désactivation de la double authentification par e-mail à l’adresse suivante : {{mail}} .",
+  "account-disable-2fa-create-reactivate-info": "Si besoin, vous pourrez ensuite la réactiver à tout moment depuis votre espace client.",
+  "account-disable-2fa-create-file-format": "Format: jpg, jpeg, pdf, png. La taille maximale du fichier pour chaque document est de 10 Mo.",
+
+  "account-disable-2fa-create-form-select-legalform-type": "Sélectionnez votre type de compte",
+  "account-disable-2fa-create-form-legalform-association": "Association",
+  "account-disable-2fa-create-form-legalform-corporation": "Entreprise",
+  "account-disable-2fa-create-form-legalform-administration": "Administration",
+  "account-disable-2fa-create-form-legalform-individual": "Individuel",
+  "account-disable-2fa-create-form-legalform-other": "Autre",
+
+  "account-disable-2fa-create-form-submit": "Envoyer mes documents",
+
   "account-disable-2fa-back-home": "Retour à la page d'accueil",
   "account-disable-2fa-file-input-select-file": "Sélectionner un fichier",
   "account-disable-2fa-file-input-select-files": "Sélectionner des fichiers...",
