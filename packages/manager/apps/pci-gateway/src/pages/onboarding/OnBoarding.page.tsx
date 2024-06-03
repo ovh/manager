@@ -25,13 +25,14 @@ import {
 import { PublicCloudProject } from '@ovhcloud/manager-components/src/hooks/pci-project-provider/publicCloudProject.interface';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from '@/pages/onboarding/OnBoardingGuard';
+import { ACTION_PREFIX } from '@/tracking.constants';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation();
   const { t: tOnBoarding } = useTranslation('onboarding');
   const { projectId } = useParams();
   const context = useContext(ShellContext);
-  const { navigation } = context.shell;
+  const { navigation, tracking } = context.shell;
   const { ovhSubsidiary } = context.environment.getUser();
   const project = useRouteLoaderData('public-gateway') as PublicCloudProject;
   const [urlProject, setUrlProject] = useState('');
@@ -93,6 +94,10 @@ export default function OnBoardingPage() {
 
   const createGateway = () => {
     navigate(`../new`);
+    tracking.trackClick({
+      name: `${ACTION_PREFIX}::onboarding::add`,
+      type: 'action',
+    });
   };
 
   return (

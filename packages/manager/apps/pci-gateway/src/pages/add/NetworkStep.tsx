@@ -10,7 +10,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -24,6 +24,7 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { useSubnets } from '@/api/hooks/useSubnets';
 import {
@@ -54,6 +55,7 @@ export const NetworkStep = (): JSX.Element => {
     isModalVisible: false,
     isOperationPending: false,
   });
+  const { tracking } = useContext(ShellContext).shell;
 
   const [isInputTouched, setIsInputTouched] = useState(false);
 
@@ -74,14 +76,6 @@ export const NetworkStep = (): JSX.Element => {
     store.form.regionName,
   );
 
-  const isNextButtonDisabled =
-    !store.form.name ||
-    !store.form.size ||
-    !store.form.regionName ||
-    !store.form.network.id ||
-    store.project?.isDiscovery;
-
-  // <editor-fold desc="create">
   const {
     createNetworkWithGateway,
     isPending: isCreatingNetworkWithGateway,
@@ -207,6 +201,10 @@ export const NetworkStep = (): JSX.Element => {
 
       createGateway(newGateway);
     }
+    tracking.trackClick({
+      name: `confirm-add-public-gateway::${store.form.size}::${store.form.regionName}`,
+      type: 'action',
+    });
   };
 
   const isCreating =
@@ -214,13 +212,20 @@ export const NetworkStep = (): JSX.Element => {
     isCreatingNetworkWithGateway ||
     isCreatingGateway ||
     state.isOperationPending;
-  // </editor-fold>
 
   const { data: subnets, isPending: isSubnetsLoading } = useSubnets(
     store.project?.id,
     store.form.regionName,
     store.form.network.id,
   );
+
+  const isNextButtonDisabled =
+    isSubnetsLoading ||
+    !store.form.name ||
+    !store.form.size ||
+    !store.form.regionName ||
+    !store.form.network.id ||
+    store.project?.isDiscovery;
 
   useEffect(() => {
     const subnetId =
@@ -379,16 +384,23 @@ export const NetworkStep = (): JSX.Element => {
 
       <br />
       {!isCreating ? (
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.md}
-          inline={true}
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          {...(isNextButtonDisabled ? { disabled: true } : {})}
-          onClick={() => create()}
-        >
-          {tAdd('pci_projects_project_public_gateways_add_submit_label')}
-        </OsdsButton>
+        <div className="h-20">
+          {store.form.network?.id && isSubnetsLoading && (
+            <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
+          )}
+          {(!store.form.network?.id || !isSubnetsLoading) && (
+            <OsdsButton
+              size={ODS_BUTTON_SIZE.md}
+              inline={true}
+              variant={ODS_BUTTON_VARIANT.flat}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              {...(isNextButtonDisabled ? { disabled: true } : {})}
+              onClick={() => create()}
+            >
+              {tAdd('pci_projects_project_public_gateways_add_submit_label')}
+            </OsdsButton>
+          )}
+        </div>
       ) : (
         <p>
           <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
