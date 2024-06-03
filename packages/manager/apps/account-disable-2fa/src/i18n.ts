@@ -20,11 +20,7 @@ export default function initI18n(
       lng: locale,
       fallbackLng: 'fr_FR',
       supportedLngs: availablesLocales,
-      ns: [
-        'account-disable-2fa',
-        'account-disable-2fa-sub',
-        'account-disable-2fa-documents',
-      ], // namespaces to load by default
+      ns: ['account-disable-2fa', 'account-disable-2fa-sub'], // namespaces to load by default
       backend: {
         loadPath: (lngs: string[], namespaces: string[], ...d: []) => {
           const namespace: string = namespaces[0];
