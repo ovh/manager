@@ -6,24 +6,19 @@ import React, {
 } from 'react';
 import { FileInputList } from './FileInputList';
 import { FileInput } from './FileInput';
-import { FileInputTooltip } from './FileInputTooltip';
-
-export type FileWithError = File & {
-  errors: string[];
-};
 
 type Event = {
-  files: FileWithError[];
+  files: File[];
   e: UIEvent | SyntheticEvent;
 };
 
-export type FileInputEventHandler = (e: Event) => void | undefined;
+export type EventHandler = (e: Event) => void | undefined;
 
 export type FileInputProps = {
   id?: string;
-  onChange?: FileInputEventHandler;
+  onChange?: EventHandler;
   multiple?: boolean;
-  value?: FileWithError[];
+  value?: File[];
   accept: string;
   maxSize: number;
   maxFiles: number;
@@ -46,5 +41,4 @@ const Container: FunctionComponent<FileInputProps> = (props) => {
 export const FileInputContainer = Object.assign(Container, {
   FileInput,
   FileList: FileInputList,
-  FileTooltip: FileInputTooltip,
 });

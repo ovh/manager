@@ -8,7 +8,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { FileInputContext, FileWithError } from './FileInputContainer';
+import { FileInputContext } from './FileInputContainer';
 
 type Props = {
   className?: string;
@@ -21,62 +21,24 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
       'The component <FileInput /> must be a child of FileInputContainer',
     );
   }
-  const { onChange, id, multiple, accept, value, maxFiles, maxSize } = context;
+  const { onChange, id, multiple, accept, value, maxFiles } = context;
 
   const { t } = useTranslation('account-disable-2fa');
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const parseContentTypes = (inputString: string) => {
-    const typesArray = inputString
-      .split(',')
-      .map((type) => type.trim().split('/')[1]);
-    const lastType = typesArray.pop();
-    return { types: typesArray.join(', '), lastType };
-  };
-
-  const mapToFilesWithError = (files: File[]): FileWithError[] => {
-    return files.map((fileItem) => {
-      const errorMessages: string[] = [];
-      if (!accept.includes(fileItem.type)) {
-        const { types, lastType } = parseContentTypes(accept);
-        errorMessages.push(
-          t('account-disable-2fa-file-input-type-file-error', {
-            types,
-            lastType,
-          }),
-        );
-      }
-
-      if (fileItem.size > maxSize) {
-        errorMessages.push(t('account-disable-2fa-file-input-size-file-error'));
-      }
-
-      const fileWithError = fileItem as FileWithError;
-      fileWithError.errors = errorMessages;
-
-      return fileWithError;
-    });
-  };
-
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
-
     if (!fileList) return;
-
-    const files = value || [];
-
     const newFiles: File[] = multiple
-      ? [...files, ...Array.from(fileList)]
+      ? [...value, ...Array.from(fileList)]
       : Array.from(fileList);
 
-    onChange?.({
-      files: mapToFilesWithError(newFiles.slice(0, maxFiles)),
-      e: event,
-    });
+    onChange?.({ files: newFiles.slice(0, maxFiles), e: event });
     fileInputRef.current.value = '';
   };
-  const disabled = value?.length >= maxFiles;
+
+  const disabled = value.length >= maxFiles;
   return (
     <>
       <input

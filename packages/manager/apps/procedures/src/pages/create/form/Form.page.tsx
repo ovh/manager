@@ -17,11 +17,10 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 import { FieldValues, useForm } from 'react-hook-form';
-import { getCurrentUser } from '@/utils/user.util';
 import { FormDocumentFieldList } from './FormDocumentFields/FormDocumentFieldList';
 import { LegalFrom } from '@/types/user.type';
+import useUser from '@/context/User/useUser';
 
-const user = getCurrentUser();
 const flatFiles = (files: FieldValues) =>
   Object.values(files)
     .flat()
@@ -49,14 +48,18 @@ const FormCreateRequest = () => {
     setSelectedByFRLegalForm(e.target.value as LegalFrom);
   };
 
-  const isFROtherLegalForm =
-    user.legalform === 'other' && user.subsidiary === 'FR';
-  const legalForm = isFROtherLegalForm ? selectedByFRLegalForm : user.legalform;
+  const { user } = useUser();
+
+  const isOtherLegalFormForFR =
+    user.legalForm === 'other' && user.subsidiary === 'FR';
+  const legalForm = isOtherLegalFormForFR
+    ? selectedByFRLegalForm
+    : user.legalForm;
   const { subsidiary } = user;
 
   return (
     <form onSubmit={handleSubmit((data) => {})}>
-      {isFROtherLegalForm && (
+      {isOtherLegalFormForFR && (
         <div className="my-6">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
