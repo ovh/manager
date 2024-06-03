@@ -6,8 +6,13 @@ import ApplicationContext from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import SidebarLink from './SidebarLink';
-import style from './style.module.scss';
 import useContainer from '@/core/container';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import {
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 const AssistanceSidebar: React.FC = (): JSX.Element => {
   const { t } = useTranslation('sidebar');
@@ -55,18 +60,21 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
   };
 
   return (
-    <ul className="mt-auto">
-      <li className="assistance_header px-3">
+    <ul className="mt-auto pb-3">
+      <li className="assistance_header px-3 mb-3">
         <h2 className="flex justify-between">
           <span>{t('sidebar_assistance_title')}</span>
         </h2>
       </li>
       {['EU'].includes(environment.getRegion()) && (
-        <li className="flex px-3">
-          <span
-            className={`oui-icon oui-icon-home mr-2 ${style.sidebar_action_icon}`}
-            aria-hidden="true"
-          ></span>
+        <li className="flex px-3 align-items-center">
+          <OsdsIcon
+            name={ODS_ICON_NAME.HOME}
+            className="mr-2"
+            size={ODS_ICON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            contrasted
+          />
           <SidebarLink
             node={{
               translation: 'sidebar_marketplace',
@@ -77,11 +85,14 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
           />
         </li>
       )}
-      <li className="flex px-3">
-        <span
-          className={`oui-icon oui-icon-help mr-2 ${style.sidebar_action_icon}`}
-          aria-hidden="true"
-        ></span>
+      <li className="flex px-3 align-items-center">
+        <OsdsIcon
+            name={ODS_ICON_NAME.HELP_CIRCLE}
+            className="mr-2"
+            size={ODS_ICON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            contrasted
+          />
         <SidebarLink
           node={{
             translation: 'sidebar_assistance_help_center',
@@ -92,11 +103,14 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
           onClick={() => trackNode('assistance_help_center')}
         />
       </li>
-      <li className="flex px-3">
-        <span
-          className={`oui-icon oui-icon-warning mr-2 ${style.sidebar_action_icon}`}
-          aria-hidden="true"
-        ></span>
+      <li className="flex px-3 align-items-center">
+        <OsdsIcon
+            name={ODS_ICON_NAME.WARNING}
+            className="mr-2"
+            size={ODS_ICON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            contrasted
+          />
         <SidebarLink
           node={{
             translation: 'sidebar_assistance_status',
@@ -108,11 +122,14 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
         />
       </li>
       {hasLiveChat && (
-        <li className="flex px-3">
-          <span
-            className={`oui-icon oui-icon-chat mr-2 ${style.sidebar_action_icon}`}
-            aria-hidden="true"
-          ></span>
+        <li className="flex px-3 align-items-center">
+          <OsdsIcon
+            name={ODS_ICON_NAME.CHAT}
+            className="mr-2"
+            size={ODS_ICON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            contrasted
+          />
           <SidebarLink
             node={{
               translation: 'sidebar_assistance_live_chat',
@@ -128,11 +145,14 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
         </li>
       )}
       {hasCarbonCalculator && (
-        <li className="flex px-3">
-          <span
-            className={`oui-icon oui-icon-truck invisible mr-2 ${style.sidebar_action_icon}`}
-            aria-hidden="true"
-          ></span>
+        <li className="flex px-3 align-items-center">
+          <OsdsIcon
+            name={ODS_ICON_NAME.LEAF_CONCEPT}
+            className="mr-2"
+            size={ODS_ICON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            contrasted
+          />
           <SidebarLink
             node={{
               translation: 'sidebar_assistance_carbon_calculator',

@@ -45,11 +45,11 @@ function Header({
               isOpen={isSidebarExpanded}
               onClick={onHamburgerMenuClick}
             />
-            <div className="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end">
-              <div className="oui-navbar-list__item">
+            <div className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end ${style.navbarList}`}>
+              <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <NavReshuffleSwitchBack />
               </div>
-              <div className="oui-navbar-list__item">
+              <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <LanguageMenu
                   setUserLocale={setUserLocale}
                   userLocale={userLocale}
@@ -59,10 +59,10 @@ function Header({
                   }}
                 ></LanguageMenu>
               </div>
-              <div className="oui-navbar-list__item">
+              <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <Notifications />
               </div>
-              <div className="oui-navbar-list__item">
+              <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <UserAccountMenu
                   onToggle={(show: boolean) => {
                     setIsDropdownOpen(show);

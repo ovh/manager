@@ -16,6 +16,12 @@ $z-index-sidebar: 700;
 .sidebar {
   height: 100vh;
   overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .navbar {

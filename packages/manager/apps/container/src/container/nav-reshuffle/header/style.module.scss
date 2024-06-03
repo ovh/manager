@@ -1,3 +1,14 @@
 .navbar {
   box-shadow: none !important;
+  width: 100%;
+
+  &List {
+    display: flex;
+    flex-wrap: wrap;
+    width: min-content;
+
+    &Item {
+      width: max-content;
+    }
+  }
 }

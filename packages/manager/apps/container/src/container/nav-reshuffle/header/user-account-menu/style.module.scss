@@ -30,6 +30,13 @@
       text-decoration: none;
     }
   }
+  
+  &Container {
+    height: fit-content;
+    max-height: calc(100vh - 2.75rem);
+    overflow-y: auto;
+    bottom: auto;
+  }
 }
 
 .feedback {

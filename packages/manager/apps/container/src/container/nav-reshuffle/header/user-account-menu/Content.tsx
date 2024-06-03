@@ -109,7 +109,7 @@ const UserAccountMenu = ({
   return (
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
       <div
-        className="oui-navbar-menu oui-navbar-menu_fixed oui-navbar-menu_end p-4"
+        className={`oui-navbar-menu oui-navbar-menu_fixed oui-navbar-menu_end p-4 ${style.menuContentContainer}`}
         data-navi-id="account-sidebar-block"
       >
         <div className="border-bottom pb-2 pt-2">
@@ -194,18 +194,19 @@ const UserAccountMenu = ({
             );
           })}
         </div>
-
-        <button
-          type="button"
-          role="button"
-          className="w-100 oui-button oui-button_link mt-3 center"
-          onClick={onLougoutBtnClick}
-          aria-label={t('user_account_menu_logout')}
-          title={t('user_account_menu_logout')}
-          data-navi-id="logout"
-        >
-          {t('user_account_menu_logout')}
-        </button>
+        <div>
+          <button
+            type="button"
+            role="button"
+            className="w-100 oui-button oui-button_link mt-3 center"
+            onClick={onLougoutBtnClick}
+            aria-label={t('user_account_menu_logout')}
+            title={t('user_account_menu_logout')}
+            data-navi-id="logout"
+          >
+            {t('user_account_menu_logout')}
+          </button>
+        </div>
       </div>
     </div>
   );
