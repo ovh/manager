@@ -369,6 +369,40 @@ export default class PciStoragesContainersService {
     );
   }
 
+  /**
+   * Temporary feature to check if the merge of the S3 endpoints is ongoing.
+   * @param projectId {String}: project id (serviceName)
+   * @param {string} region container region
+   * @returns boolean
+   */
+  hasOngoingOpenIOMigration(projectId, region) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/region/${region}/storage/openiomigrating`,
+      )
+      .then(({ data }) => data?.ismigrating)
+      .catch(() => false);
+  }
+
+  /**
+   * Create a S3 High Perf Standard Object
+   * Nota: later it will be used also to create S3 Standard Storage Object
+   * @param projectId {String}: project id (serviceName)
+   * @param container {Object}: container model
+   * @returns {Promise}: $http request promise
+   */
+  addS3HighPerfStandardContainer(projectId, container) {
+    const { region, name, ownerId, encryption } = container;
+
+    return this.$http
+      .post(`/cloud/project/${projectId}/region/${region.name}/storage`, {
+        name,
+        ownerId,
+        encryption,
+      })
+      .then(({ data }) => data);
+  }
+
   addContainer(projectId, containerModel) {
     const { containerType } = containerModel;
 
