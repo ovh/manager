@@ -39,7 +39,7 @@ export const useFilteredInstance = (
   } = useGatewayDetails(
     projectId,
     floatingIP?.region,
-    floatingIP?.associatedEntity.gatewayId,
+    floatingIP?.associatedEntity?.gatewayId,
   );
 
   const filteredInstances = useMemo(() => {
@@ -85,6 +85,6 @@ export const useFilteredInstance = (
       isPendingNetwork ||
       isPendingInstance ||
       isPendingAssociatedInstance ||
-      isPendingGatewayDetails,
+      (floatingIP?.associatedEntity?.gatewayId && isPendingGatewayDetails),
   };
 };
