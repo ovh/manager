@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.1.2...@ovh-ux/manager-pci-public-ip-app@0.1.3) (2024-06-04)
+
+
+### Bug Fixes
+
+* **pci-public-ip:** floating ip associated instance ([#11819](https://github.com/ovh/manager/issues/11819)) ([970f4ca](https://github.com/ovh/manager/commit/970f4caf8cb3ca95e539fbcfd82a5d41cbf57ab3))
+
+
+
+
+
 ## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.1.1...@ovh-ux/manager-pci-public-ip-app@0.1.2) (2024-06-03)
 
 
