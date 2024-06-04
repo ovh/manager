@@ -27,6 +27,8 @@ import {
 import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
 import { useUpdateService } from '@/hooks/api/services.api.hooks';
+import { useTrackAction, useTrackPage } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking';
 
 interface UpdateServiceNameModalProps {
   service: database.Service;
@@ -43,6 +45,8 @@ const RenameService = ({
 }: UpdateServiceNameModalProps) => {
   // import translations
   const { projectId } = useParams();
+  useTrackPage(TRACKING.renameService.page(service.engine));
+  const track = useTrackAction();
   const { t } = useTranslation('pci-databases-analytics/services/service');
   const toast = useToast();
   const { updateService, isPending } = useUpdateService({
@@ -93,6 +97,7 @@ const RenameService = ({
   }, [service, form]);
 
   const onSubmit = form.handleSubmit((formValues) => {
+    track(TRACKING.renameService.confirm(service.engine));
     updateService({
       serviceId: service.id,
       projectId,
@@ -138,6 +143,9 @@ const RenameService = ({
                   data-testid="rename-service-cancel-button"
                   type="button"
                   variant="outline"
+                  onClick={() =>
+                    track(TRACKING.renameService.cancel(service.engine))
+                  }
                 >
                   {t('renameServiceButtonCancel')}
                 </Button>

@@ -33,10 +33,14 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => {
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const mod = await importOriginal<
+    typeof import('@ovh-ux/manager-react-shell-client')
+  >();
   const navigateTo = vi.fn();
   const reload = vi.fn();
   return {
+    ...mod,
     useNavigation: () => ({
       navigateTo,
       reload,

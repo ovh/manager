@@ -20,8 +20,14 @@ interface GuidesProps {
   section?: string;
   engine?: database.EngineEnum;
   noEngineFilter?: boolean;
+  onGuideClick?: (guide: Guide) => void;
 }
-const Guides = ({ section, engine, noEngineFilter = false }: GuidesProps) => {
+const Guides = ({
+  section,
+  engine,
+  noEngineFilter = false,
+  onGuideClick,
+}: GuidesProps) => {
   const { t } = useTranslation('guides');
   const locale = useLocale();
   const [open, setOpen] = useState(false);
@@ -44,6 +50,9 @@ const Guides = ({ section, engine, noEngineFilter = false }: GuidesProps) => {
   }, []);
   // open a guide in a new tab
   const openGuide = (guide: Guide) => {
+    if (onGuideClick) {
+      onGuideClick(guide);
+    }
     const { url } = guide;
     if (url && /^(http|https):\/\//i.test(url)) {
       const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
