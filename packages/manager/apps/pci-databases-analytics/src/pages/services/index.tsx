@@ -12,9 +12,13 @@ import { Link } from '@/components/links';
 import { Button } from '@/components/ui/button';
 import Guides from '@/components/guides';
 import { GuideSections } from '@/models/guide';
+import { useTrackPage, useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
+  useTrackPage(TRACKING.servicesList.page());
+  const track = useTrackAction();
   const { projectId, category } = useParams();
   const servicesQuery = useGetServices(projectId, {
     refetchInterval: POLLING.SERVICES,
@@ -41,7 +45,13 @@ const Services = () => {
         className="flex justify-between w-full items-center"
       >
         <h2>{t('title')}</h2>
-        <Guides section={GuideSections.landing} noEngineFilter />
+        <Guides
+          section={GuideSections.landing}
+          noEngineFilter
+          onGuideClick={(guide) =>
+            track(TRACKING.servicesList.guideClick(guide.title))
+          }
+        />
       </div>
       <Button
         data-testid="create-service-button"
@@ -50,7 +60,11 @@ const Services = () => {
         className="text-base"
         asChild
       >
-        <Link to="./new" className="hover:no-underline">
+        <Link
+          to="./new"
+          className="hover:no-underline"
+          onClick={() => track(TRACKING.servicesList.createDatabaseClick())}
+        >
           <Plus className="w-4 h-4 mr-2" />
           {t('createNewService')}
         </Link>

@@ -23,6 +23,8 @@ import {
 } from '@/hooks/api/services.api.hooks';
 import { useGetIntegrations } from '@/hooks/api/integrations.api.hook';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useTrackAction, useTrackPage } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking';
 
 interface DeleteServiceModalProps {
   service: database.Service;
@@ -38,6 +40,10 @@ const DeleteService = ({
   onSuccess,
 }: DeleteServiceModalProps) => {
   const { projectId } = useParams();
+  useTrackPage(
+    TRACKING.deleteService.page(service.engine, service.nodes[0].region),
+  );
+  const track = useTrackAction();
   const { t } = useTranslation('pci-databases-analytics/services/service');
   const toast = useToast();
   const integrationsQuery = useGetIntegrations(
@@ -74,6 +80,9 @@ const DeleteService = ({
 
   const { deleteService, isPending } = useDeleteService({
     onError: (err) => {
+      track(
+        TRACKING.deleteService.failure(service.engine, service.nodes[0].region),
+      );
       toast.toast({
         title: t('deleteServiceToastErrorTitle'),
         variant: 'destructive',
@@ -84,6 +93,9 @@ const DeleteService = ({
       }
     },
     onSuccess: () => {
+      track(
+        TRACKING.deleteService.success(service.engine, service.nodes[0].region),
+      );
       toast.toast({
         title: t('deleteServiceToastSuccessTitle'),
         description: t('deleteServiceToastSuccessDescription', {
@@ -97,6 +109,9 @@ const DeleteService = ({
   });
 
   const handleDelete = () => {
+    track(
+      TRACKING.deleteService.confirm(service.engine, service.nodes[0].region),
+    );
     deleteService({
       serviceId: service.id,
       projectId,
@@ -145,6 +160,14 @@ const DeleteService = ({
               data-testid="delete-service-cancel-button"
               type="button"
               variant="outline"
+              onClick={() =>
+                track(
+                  TRACKING.deleteService.cancel(
+                    service.engine,
+                    service.nodes[0].region,
+                  ),
+                )
+              }
             >
               {t('deleteServiceButtonCancel')}
             </Button>
