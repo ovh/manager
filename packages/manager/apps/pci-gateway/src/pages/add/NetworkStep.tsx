@@ -237,7 +237,7 @@ export const NetworkStep = (): JSX.Element => {
       !isSubnetsLoading && subnets.length > 0 ? subnets[0].id : undefined;
 
     store.updateForm.network(store.form.network.id, subnetId);
-  }, [isSubnetsLoading]);
+  }, [isSubnetsLoading, subnets]);
 
   // Init gateway name randomly on region change
   useEffect(() => {
