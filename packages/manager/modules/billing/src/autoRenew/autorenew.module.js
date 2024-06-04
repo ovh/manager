@@ -24,6 +24,7 @@ import resiliation from './resiliation';
 import ssh from './ssh/ssh.module';
 import terminate from './actions/terminate/terminate.module';
 import terminateEmail from './actions/terminateEmail/email.module';
+import terminateAgoraService from './actions/terminate-agora-service';
 import terminateEnterpriseCloudDatabase from './actions/terminate-enterprise-cloud-database/terminate-enterprise-cloud-database.module';
 import terminateHostingWeb from './actions/terminateHostingWeb/hosting-web.module';
 import terminatePrivateDatabase from './actions/terminatePrivateDatabase/private-database.module';
@@ -64,6 +65,7 @@ angular
     ssh,
     terminate,
     terminateEmail,
+    terminateAgoraService,
     terminateEnterpriseCloudDatabase,
     terminateHostingWeb,
     terminatePrivateDatabase,
