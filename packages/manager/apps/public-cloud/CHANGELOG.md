@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.6.0...@ovh-ux/manager-public-cloud@6.6.1) (2024-06-04)
+
+
+### Reverts
+
+* Revert "fix(*): remove useless account migration module (#11592)" (#11878) ([5d6fa2d](https://github.com/ovh/manager/commit/5d6fa2da90aa1edaa940d08b52b7122e11f8e942)), closes [#11592](https://github.com/ovh/manager/issues/11592) [#11878](https://github.com/ovh/manager/issues/11878)
+
+
+
+
+
 # [6.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.5.0...@ovh-ux/manager-public-cloud@6.6.0) (2024-06-03)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.22.0...@ovh-ux/manager-bm-server-components@1.23.0) (2024-06-04)
+
+
+### Features
+
+* **dedicated.nutanix:** add nutanix packages v2 ([#11360](https://github.com/ovh/manager/issues/11360)) ([0036609](https://github.com/ovh/manager/commit/0036609cd0bfe76a9b9ac4fa661a1d774a1ba2b2))
+
+
+
+
+
 # [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.21.0...@ovh-ux/manager-bm-server-components@1.22.0) (2024-06-03)
 
 

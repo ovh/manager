@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.16.0...@ovh-ux/manager-nutanix@1.17.0) (2024-06-04)
+
+
+### Features
+
+* **dedicated.nutanix:** add nutanix packages v2 ([#11360](https://github.com/ovh/manager/issues/11360)) ([0036609](https://github.com/ovh/manager/commit/0036609cd0bfe76a9b9ac4fa661a1d774a1ba2b2))
+
+
+
+
+
 # [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.15.2...@ovh-ux/manager-nutanix@1.16.0) (2024-05-06)
 
 

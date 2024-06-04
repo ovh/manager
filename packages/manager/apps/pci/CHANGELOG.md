@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.4.1...@ovh-ux/manager-pci-app@4.4.2) (2024-06-04)
+
+
+### Reverts
+
+* Revert "fix(*): remove useless account migration module (#11592)" (#11878) ([5d6fa2d](https://github.com/ovh/manager/commit/5d6fa2da90aa1edaa940d08b52b7122e11f8e942)), closes [#11592](https://github.com/ovh/manager/issues/11592) [#11878](https://github.com/ovh/manager/issues/11878)
+
+
+
+
+
 ## [4.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.4.0...@ovh-ux/manager-pci-app@4.4.1) (2024-06-03)
 
 
