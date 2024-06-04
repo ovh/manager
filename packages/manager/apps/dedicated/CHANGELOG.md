@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.38.0...@ovh-ux/manager-dedicated@19.38.1) (2024-06-04)
+
+
+### Reverts
+
+* Revert "fix(*): remove useless account migration module (#11592)" (#11878) ([5d6fa2d](https://github.com/ovh/manager/commit/5d6fa2da90aa1edaa940d08b52b7122e11f8e942)), closes [#11592](https://github.com/ovh/manager/issues/11592) [#11878](https://github.com/ovh/manager/issues/11878)
+
+
+
+
+
 # [19.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.37.0...@ovh-ux/manager-dedicated@19.38.0) (2024-06-03)
 
 
