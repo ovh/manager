@@ -7,6 +7,7 @@ import map from 'lodash/map';
 import 'moment';
 import { RANGES } from '../upscale/upscale.constants';
 import {
+  ADD_DOMAIN_LINK,
   VPS_RANGE_COMPARE_LINKS,
   COMMIT_IMPRESSION_TRACKING_DATA,
   DASHBOARD_FEATURES,
@@ -47,6 +48,7 @@ export default class {
     this.VpsService = VpsService;
     this.VpsHelperService = VpsHelperService;
     this.VpsUpgradeService = VpsUpgradeService;
+    this.ADD_DOMAIN_LINK = ADD_DOMAIN_LINK;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
     this.SERVICE_TYPE = SERVICE_TYPE;
 

@@ -93,6 +93,8 @@
   "vps_dashboard_reverse_dns": "Reverse DNS",
   "vps_dashboard_reverse_dns_none": "Non configuré",
   "vps_dashboard_secondary_dns": "DNS secondaire",
+  "vps_dashboard_domain_link": "Ajouter un nom de domaine",
+  "vps_dashboard_domain_link_message": "Ajoutez un nom de domaine à votre VPS pour partager facilement votre projet avec le monde entier",
   "vps_dashboard_secondary_dns_count_0": "Aucun domaine configuré",
   "vps_dashboard_secondary_dns_count_x": "{{ count }} domaine(s) configuré(s)",
   "vps_dashboard_state_services": "Statut",
