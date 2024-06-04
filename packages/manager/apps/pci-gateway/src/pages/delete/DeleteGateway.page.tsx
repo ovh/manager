@@ -37,7 +37,7 @@ export default function DeleteGateway() {
   const onClose = (isCanceled = false) => {
     if (isCanceled) {
       tracking?.trackClick({
-        name: `${ACTION_PREFIX}::delete::cancel'`,
+        name: `${ACTION_PREFIX}::delete::cancel`,
         type: 'action',
       });
     }
@@ -152,7 +152,7 @@ export default function DeleteGateway() {
         onClick={() => {
           deleteGateway();
           tracking?.trackClick({
-            name: `${ACTION_PREFIX}::delete::confirm'`,
+            name: `${ACTION_PREFIX}::delete::confirm`,
             type: 'action',
           });
         }}
