@@ -95,12 +95,7 @@ export default function ServiceLayout() {
       <div className="space-y-2">
         <Outlet context={serviceLayoutContext} />
       </div>
-      <LegalMentions
-        showRedisMessage={
-          serviceQuery.data?.engine === database.EngineEnum.redis
-        }
-        className="mt-4"
-      />
+      <LegalMentions className="mt-4" />
     </>
   );
 }

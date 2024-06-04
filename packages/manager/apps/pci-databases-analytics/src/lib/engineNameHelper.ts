@@ -25,7 +25,7 @@ export function humanizeEngine(engine: database.EngineEnum) {
     case database.EngineEnum.postgresql:
       return 'PostgreSQL';
     case database.EngineEnum.redis:
-      return 'Redis™*';
+      return 'Caching';
     default:
       return engine;
   }
