@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-payment-method",
-  "version": "9.15.2",
+  "version": "9.16.0",
   "description": "Get payment methods from different OVHcloud APIs",
   "keywords": [
     "angularjs",
@@ -39,8 +39,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-payment-method' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/ovh-payment-method": "^0.5.0",
     "@adyen/adyen-web": "5.61.0",
+    "@ovh-ux/ovh-payment-method": "^0.5.0",
     "@ovh-ux/ovh-reket": "^2.1.1",
     "lodash-es": "^4.17.11",
     "validator": "^13.7.0"
