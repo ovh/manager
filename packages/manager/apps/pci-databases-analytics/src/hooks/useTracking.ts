@@ -27,7 +27,6 @@ export function useTrackAction() {
   const { trackClick } = shell.tracking;
 
   return (trackingName: string) => {
-    console.log('action', trackingName);
     trackClick({
       type: 'action',
       name: trackingName,
@@ -42,7 +41,6 @@ export function useTrackPage(pageTracking: string) {
   const { shell } = useContext(ShellContext);
   const { trackPage } = shell.tracking;
   useEffect(() => {
-    console.log('page', pageTracking);
     trackPage({
       name: pageTracking,
       level2: PCI_LEVEL2,
