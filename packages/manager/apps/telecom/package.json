@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "15.15.2",
+  "version": "15.15.3",
   "private": true,
   "description": "OVHcloud Telecom control panel.",
   "repository": {
@@ -50,7 +50,7 @@
     "@ovh-ux/ng-ovh-http": "^5.1.1",
     "@ovh-ux/ng-ovh-line-diagnostics": "^5.3.1",
     "@ovh-ux/ng-ovh-mondial-relay": "^8.8.1",
-    "@ovh-ux/ng-ovh-payment-method": "^9.15.2",
+    "@ovh-ux/ng-ovh-payment-method": "^9.16.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.2",
     "@ovh-ux/ng-ovh-responsive-popover": "^6.1.1",

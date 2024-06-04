@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.16.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.15.2...@ovh-ux/ng-ovh-payment-method@9.16.0) (2024-06-04)
+
+
+### Features
+
+* **component:** level up versionning adyen ([#11711](https://github.com/ovh/manager/issues/11711)) ([#11891](https://github.com/ovh/manager/issues/11891)) ([7f150e4](https://github.com/ovh/manager/commit/7f150e49f00f4c358ed2d7e52aed7f3eaa99a94e))
+
+
+
+
+
 ## [9.15.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.15.1...@ovh-ux/ng-ovh-payment-method@9.15.2) (2024-05-21)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-payment-method
