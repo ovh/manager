@@ -69,6 +69,7 @@ import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
+import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
@@ -180,6 +181,7 @@ export default async (containerEl, shellClient) => {
         ngTailLogs,
         'ovh-api-services',
         ovhManagerAtInternetConfiguration,
+        ovhManagerAccountMigration,
         ovhManagerBanner,
         ovhManagerCatalogPrice,
         ovhManagerProductOffers,
