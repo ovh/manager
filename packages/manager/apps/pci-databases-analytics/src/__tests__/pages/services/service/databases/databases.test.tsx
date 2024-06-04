@@ -53,8 +53,12 @@ describe('Databases page', () => {
         serviceQuery: {} as UseQueryResult<database.Service, Error>,
       })),
     }));
-    vi.mock('@ovh-ux/manager-react-shell-client', () => {
+    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+      const mod = await importOriginal<
+        typeof import('@ovh-ux/manager-react-shell-client')
+      >();
       return {
+        ...mod,
         useShell: vi.fn(() => ({
           i18n: {
             getLocale: vi.fn(() => Locale.fr_FR),

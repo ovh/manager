@@ -7,6 +7,8 @@ import { getColumns } from './serviceListColumns';
 import { useModale } from '@/hooks/useModale';
 import RenameService from '../[serviceId]/_components/renameService';
 import DeleteService from '../[serviceId]/_components/deleteService';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking';
 
 interface ServicesListProps {
   services: database.Service[];
@@ -17,6 +19,7 @@ export default function ServicesList({
   services,
   refetchFn,
 }: ServicesListProps) {
+  const track = useTrackAction();
   const renameModale = useModale('rename');
   const deleteModale = useModale('delete');
   const editingService = useMemo(
@@ -30,9 +33,16 @@ export default function ServicesList({
 
   const columns: ColumnDef<database.Service>[] = getColumns({
     onRenameClicked: (service: database.Service) => {
+      track(TRACKING.servicesList.renameClick(service.engine));
       renameModale.open(service.id);
     },
     onDeleteClicked: (service: database.Service) => {
+      track(
+        TRACKING.servicesList.deleteClick(
+          service.engine,
+          service.nodes[0].region,
+        ),
+      );
       deleteModale.open(service.id);
     },
   });
