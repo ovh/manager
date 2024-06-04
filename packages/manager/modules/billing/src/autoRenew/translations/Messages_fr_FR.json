@@ -152,6 +152,7 @@
   "billing_autorenew_service_type_PACK_XDSL": "Packs xDSL",
   "billing_autorenew_service_type_VRACK": "vRacks",
   "billing_autorenew_service_type_NUTANIX": "Nutanix",
+  "billing_autorenew_service_type_OKMS_RESOURCE": "OVHcloud KMS",
   "billing_export_csv": "Exporter en CSV",
   "billing_common_link_new_window": "(nouvelle fenêtre)",
   "billing_autorenew_renew_action": "Renouveler",

@@ -1,6 +1,7 @@
 <oui-modal
     data-heading="{{ $ctrl.title }}"
     data-primary-action="$ctrl.terminate()"
+    data-primary-disabled="$ctrl.primaryDisabled"
     data-primary-label="{{:: 'autorenew_service_terminate' | translate }}"
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'autorenew_service_terminate_cancel' | translate }}"
