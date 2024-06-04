@@ -94,10 +94,9 @@
                 </oui-action-menu-item>
             </oui-action-menu>
         </oui-tile-definition>
-
         <server-bandwidth-dashboard
             data-ng-if="!!$ctrl.vrackInfos && $ctrl.specifications.vrack.bandwidth && $ctrl.specifications.vrack.bandwidth.value !== 0"
-            data-bandwidth-option="$ctrl.bandwidthInformations.bandwidthOption"
+            data-display-public-bandwidth="!$ctrl.hidePublicBandwidth"
             data-bandwidth-vrack-option="$ctrl.bandwidthInformations.bandwidthVrackOptions"
             data-bandwidth-vrack-order-option="$ctrl.bandwidthInformations.bandwidthVrackOrderOptions"
             data-order-private-link="$ctrl.orderPrivateBandwidthLink"
