@@ -1,5 +1,17 @@
 {
-  "title": "Databases as a Service pour vous concentrer sur la création d'applications",
-  "description": "Exploitez la puissance de vos informations en gardant le contrôle de vos ressources. Choisissez la base de données qui vous convient parmi une large gamme de moteurs open source et déployez-la as a Service. Vos développeurs pourront ainsi se concentrer sur la création d’applications. Nous gérons l'infrastructure et l'administration de vos bases de données. Vous économisez ainsi du temps et de l’argent, afin de créer et déployer des applications cloud permettant de vous démarquer.",
-  "create-service-button": "Créer une instance de base de données"
+  "title": "Avec nos bases de données managées, concentrez-vous sur vos applications",
+  "description1": "Exploitez la puissance de vos informations en gardant le contrôle de vos ressources.",
+  "description2": "Choisissez le moteur de base de données qui vous convient parmi une large gamme et déployez-le en quelques minutes. Nous gérons l'infrastructure et l'administration de vos services managés.",
+  "description3": "Vous économisez du temps, de l’argent, et êtes en mesure de vous concentrer sur vos développements et la valeur qu'apporte vos applications à vos clients.",
+  "createServiceButton": "Créer une base de données managée",
+  "cardGuidestitle": "Guides",
+  "cardGuidesDescription": "Documentation des bases de données",
+  "cardGuidesContent": "Retrouvez tous les guides et tutoriels de nos bases de données managées",
+  "cardQuickStartTitle": "Quick-Start",
+  "cardQuickStartDescription": "Déployez votre première base de données",
+  "cardQuickStartContent": "Apprenez comment installer rapidement votre première base de données managée",
+  "cardFreeTierTitle": "Free Tier",
+  "cardFreeTierTescription": "Essayez l'offre MongoDB gratuite",
+  "cardFreeTierContent": "Bénéficiez d'un cluster MongoDB managé 100% gratuit à vie",
+  "cardLink": "En savoir plus"
 }
