@@ -30,9 +30,6 @@ const Services = () => {
         category === database.CategoryEnum.all || service.category === category,
     );
   }, [servicesQuery.data, category]);
-  const hasRedisService =
-    filteredServices.filter((s) => s.engine === database.EngineEnum.redis)
-      .length > 0;
 
   if (servicesQuery.isLoading) return <ServicesList.Skeleton />;
   if (servicesQuery.isSuccess && filteredServices.length === 0) {
@@ -73,7 +70,7 @@ const Services = () => {
         services={filteredServices}
         refetchFn={servicesQuery.refetch}
       />
-      <LegalMentions showRedisMessage={hasRedisService} className="mt-4" />
+      <LegalMentions className="mt-4" />
     </>
   );
 };
