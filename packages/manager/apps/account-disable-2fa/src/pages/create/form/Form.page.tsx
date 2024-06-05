@@ -24,6 +24,7 @@ import useUser from '@/context/User/useUser';
 import { useUploadDocuments } from '@/data/hooks/useDocments';
 import { ConfirmModal } from './Modal/ConfirmModal';
 import { SuccessModal } from './Modal/SuccessModal';
+import { ovhHomePageHref } from './contants/form.constants';
 
 const flatFiles = (files: FieldValues) =>
   Object.values(files)
@@ -135,9 +136,7 @@ const FormCreateRequest = () => {
           }}
         />
       )}
-      {showSuccessModal && (
-        <SuccessModal ovhHomePageHref="https://ovhcloud.com" />
-      )}
+      {showSuccessModal && <SuccessModal ovhHomePageHref={ovhHomePageHref} />}
     </form>
   );
 };
