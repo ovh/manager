@@ -68,7 +68,7 @@ export default function DeleteGateway() {
         checkOperation({
           projectId,
           operationId: op.id,
-          callback: (operation, iteration) => {
+          callback: (operation) => {
             if (['completed', 'created'].includes(operation.status)) {
               queryClient.setQueryData(
                 ['project', projectId, 'gateway'],
@@ -89,10 +89,7 @@ export default function DeleteGateway() {
               setIsOperationPending(false);
               return true;
             }
-            if (
-              ['in-error', 'unknown'].includes(operation.status) ||
-              iteration === 10
-            ) {
+            if (['in-error', 'unknown'].includes(operation.status)) {
               onClose();
               setIsOperationPending(false);
               return true;
