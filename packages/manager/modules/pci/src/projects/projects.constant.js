@@ -139,9 +139,6 @@ export const PCI_FEATURES_STATES = {
     LIST: 'pci.projects.project.privateNetwork',
     ADD: 'pci.projects.project.privateNetwork.new',
   },
-  FAILOVER_IP: {
-    LIST: 'pci.projects.project.failover-ips',
-  },
   KUBERNETES: {
     LIST: 'pci.projects.project.kubernetes',
     ADD: 'pci.projects.project.kubernetes.add',
