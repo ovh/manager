@@ -14,6 +14,7 @@ import { ZimbraPlatform } from '@/api/api.type';
 export default function Layout() {
   const location = useLocation();
   const routing = useRouting();
+
   const { data, isLoading, isError, error } = useQuery<ZimbraPlatform[], Error>(
     {
       queryKey: ['get/zimbra/platform'],
