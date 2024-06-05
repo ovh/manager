@@ -40,7 +40,7 @@ export const DashboardLayout = ({
         />
       )}
       <div>{tabs}</div>
-      <div className="mt-8">{content}</div>
+      <div>{content}</div>
     </div>
   );
 };

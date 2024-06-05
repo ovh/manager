@@ -1,6 +1,5 @@
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
-import i18next from 'i18next';
 import NotFound from '@/pages/404';
 
 const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
@@ -18,7 +17,6 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
 export const Routes: any = [
   {
     path: '',
-    handle: { breadcrumb: (): string => 'Zimbra' },
     ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
@@ -30,18 +28,12 @@ export const Routes: any = [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/GeneralInformation/GeneralInformation'),
             ),
-            handle: {
-              breadcrumb: (): null => null,
-            },
           },
           {
             path: 'organizations',
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/Organizations/Organizations'),
             ),
-            handle: {
-              breadcrumb: (): string => i18next.t('dashboard:organization'),
-            },
             children: [
               {
                 path: 'delete',
@@ -55,21 +47,30 @@ export const Routes: any = [
           },
           {
             path: 'domains',
-            ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/Domains/Domains'),
-            ),
-            handle: {
-              breadcrumb: (): string => i18next.t('dashboard:domain'),
-            },
+            children: [
+              {
+                path: '',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/Domains'),
+                ),
+                data: { domains: 'domains' },
+                children: [
+                  {
+                    path: 'add-domain',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/dashboard/Domains/AddDomain'),
+                    ),
+                    handle: { isOverridePage: true },
+                  },
+                ],
+              },
+            ],
           },
           {
             path: 'email_accounts',
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/EmailAccounts/EmailAccounts'),
             ),
-            handle: {
-              breadcrumb: (): string => i18next.t('dashboard:email_accounts'),
-            },
           },
         ],
       },
