@@ -9,6 +9,17 @@ export default /* @ngInject */ ($stateProvider) => {
     atInternet: {
       rename: LOAD_BALANCER_LOGS_TRACKING_HITS.LOGS_PAGE,
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('isLogsToCustomerFeatureAvailable')
+        .then((isLogsToCustomerFeatureAvailable) =>
+          isLogsToCustomerFeatureAvailable
+            ? false
+            : {
+                state: 'octavia-load-balancer.loadbalancer.general-information',
+              },
+        ),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('octavia_load_balancer_logs_breadcrumb_label'),

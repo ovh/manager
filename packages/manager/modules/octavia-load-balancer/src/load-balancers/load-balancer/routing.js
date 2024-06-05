@@ -82,6 +82,14 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       discoverLink: () => DISCOVER_LINK,
       trackRoot: () => `${TRACKING_CHAPTER_1}::${TRACKING_NAME}`,
+      isLogsToCustomerFeatureAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('octavia-load-balancer:logs-to-customer')
+          .then((feature) =>
+            feature.isFeatureAvailable(
+              'octavia-load-balancer:logs-to-customer',
+            ),
+          ),
     },
     atInternet: {
       ignore: true,
