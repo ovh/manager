@@ -10,7 +10,8 @@ import {
 import { BetaVersion, ContainerContext } from './context';
 import { useShell } from '@/context';
 
-export const BETA = 1;
+export const BETA_V1 = 1;
+export const BETA_V2 = 2;
 
 export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const reketInstance = useReket();
@@ -26,7 +27,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   // true if we should we ask the user if he want to test beta version
   const [askBeta, setAskBeta] = useState(false);
 
-  // 1 for beta, otherwise null if not a beta tester
+  // 1 for beta1, 2 for beta2, otherwise null if not a beta tester
   const [betaVersion, setBetaVersion] = useState<BetaVersion>(null);
 
   // user choice about using or not the beta
@@ -36,21 +37,25 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
 
   const fetchFeatureAvailability = async () => {
     interface CurrentContextAvailability {
-      pnr: boolean;
+      'pnr:betaV1': boolean;
+      'pnr:betaV2': boolean;
       livechat: boolean;
     }
     const getBetaVersion = (value: CurrentContextAvailability) => {
       if (isBetaForced()) {
         return getBetaVersionFromLocalStorage();
       }
-      if (value['pnr']) {
-        return BETA;
+      if (value['pnr:betaV2']) {
+        return BETA_V2;
+      }
+      if (value['pnr:betaV1']) {
+        return BETA_V1;
       }
       return null;
     };
 
     return reketInstance
-      .get(`/feature/livechat,pnr/availability`, {
+      .get(`/feature/livechat,pnr:betaV1,pnr:betaV2/availability`, {
         requestType: 'aapi',
       })
       .then((value: CurrentContextAvailability) => ({
