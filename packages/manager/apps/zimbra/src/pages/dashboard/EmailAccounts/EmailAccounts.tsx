@@ -93,7 +93,7 @@ export default function EmailAccounts() {
 
   const webmailUrl = guidesConstants.GUIDES_LIST.webmail.url;
   return (
-    <div className="py-6">
+    <div className="py-6 mt-8">
       <div className="mb-4">
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}

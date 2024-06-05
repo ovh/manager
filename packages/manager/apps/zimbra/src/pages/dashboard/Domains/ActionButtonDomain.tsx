@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovhcloud/manager-components';
 
 const ActionButtonDomain: React.FC = () => {
-  const { t } = useTranslation('emails');
+  const { t } = useTranslation('domains');
   const actionItems = [
     {
       id: 1,

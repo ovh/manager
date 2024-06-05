@@ -5,6 +5,7 @@ export const urls = {
   overview: '/:serviceName',
   organizations: '/:serviceName/organizations',
   organizationsDelete: '/:serviceName/organizations/delete',
+  'add-domain': '/:serviceName/domains/add-domain',
   domains: '/:serviceName/domains',
   email_accounts: '/:serviceName/email_accounts',
 };
