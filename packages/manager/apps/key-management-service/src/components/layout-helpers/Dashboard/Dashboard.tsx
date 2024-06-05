@@ -44,36 +44,38 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
 
   return (
     <>
-      <div className="py-4">
-        <OsdsText
-          level={ODS_TEXT_LEVEL.heading}
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_TEXT_SIZE._600}
-        >
-          {location.pathname.split('/')[2]}
-        </OsdsText>
+      <div className="mb-6">
+        <div className="py-4">
+          <OsdsText
+            level={ODS_TEXT_LEVEL.heading}
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._600}
+          >
+            {location.pathname.split('/')[2]}
+          </OsdsText>
+        </div>
+        <OsdsTabs panel={panel}>
+          <OsdsTabBar slot="top">
+            {tabs.map((tab: DashboardTabItemProps) => (
+              <OsdsTabBarItem
+                key={`osds-tab-bar-item-${tab.name}`}
+                panel={tab.name}
+                disabled={tab.disabled}
+                className="flex items-center justify-center"
+              >
+                <NavLink to={tab.to} className="no-underline">
+                  {tab.title}
+                </NavLink>
+                {tab.disabled && (
+                  <OsdsChip size={ODS_CHIP_SIZE.sm} inline className="ml-2">
+                    {t('key_management_service_dashboard_tab_comming_soon')}
+                  </OsdsChip>
+                )}
+              </OsdsTabBarItem>
+            ))}
+          </OsdsTabBar>
+        </OsdsTabs>
       </div>
-      <OsdsTabs panel={panel}>
-        <OsdsTabBar slot="top">
-          {tabs.map((tab: DashboardTabItemProps) => (
-            <OsdsTabBarItem
-              key={`osds-tab-bar-item-${tab.name}`}
-              panel={tab.name}
-              disabled={tab.disabled}
-              className="flex items-center justify-center"
-            >
-              <NavLink to={tab.to} className="no-underline">
-                {tab.title}
-              </NavLink>
-              {tab.disabled && (
-                <OsdsChip size={ODS_CHIP_SIZE.sm} inline className="ml-2">
-                  {t('key_management_service_dashboard_tab_comming_soon')}
-                </OsdsChip>
-              )}
-            </OsdsTabBarItem>
-          ))}
-        </OsdsTabBar>
-      </OsdsTabs>
       <Outlet />
     </>
   );
