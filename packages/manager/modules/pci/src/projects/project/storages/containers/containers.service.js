@@ -344,12 +344,12 @@ export default class PciStoragesContainersService {
    * @returns {Promise}: $http request promise
    */
   addS3ObjectContainer(projectId, container) {
-    const { region, name, ownerId } = container;
-
+    const { region, name, ownerId, encryption } = container;
     return this.$http
       .post(`/cloud/project/${projectId}/region/${region.name}/storage`, {
         name,
         ownerId,
+        encryption,
       })
       .then(({ data }) => data);
   }
