@@ -15,13 +15,9 @@ import {
   DatagridColumn,
   Notifications,
 } from '@ovhcloud/manager-components';
-import { useQuery } from '@tanstack/react-query';
 import { ResourceStatus } from '@/api/api.type';
-import {
-  getZimbraPlatformOrganization,
-  getZimbraPlatformOrganizationQueryKey,
-} from '@/api';
-import { usePlatform } from '@/hooks';
+
+import { useOrganizationList, usePlatform } from '@/hooks';
 import { ActionButtonOrganization } from './ActionButtonOrganization';
 import IdLink from './IdLink';
 import LabelChip from '@/components/LabelChip';
@@ -79,14 +75,8 @@ const columns: DatagridColumn<OrganizationItem>[] = [
 export default function Organizations() {
   const { t } = useTranslation('organisations');
   const { platformId } = usePlatform();
-  const { data } = useQuery({
-    queryKey: platformId
-      ? getZimbraPlatformOrganizationQueryKey(platformId)
-      : null,
-    queryFn: () =>
-      platformId ? getZimbraPlatformOrganization(platformId) : null,
-    enabled: !!platformId,
-  });
+  const { data } = useOrganizationList();
+
   const items: OrganizationItem[] =
     data?.map((item) => ({
       id: item.id,
@@ -103,7 +93,7 @@ export default function Organizations() {
   };
 
   return (
-    <div className="py-6">
+    <div className="py-6 mt-8">
       <Notifications />
       <Outlet />
       <div className="flex items-center justify-between">
