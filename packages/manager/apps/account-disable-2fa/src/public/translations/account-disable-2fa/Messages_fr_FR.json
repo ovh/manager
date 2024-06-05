@@ -16,7 +16,7 @@
   "account-disable-2fa-create-form-confirm-modal-send-document-description-confirm": "Confirmez-vous avoir ajouté l'ensemble des documents demandés ?",
 
   "account-disable-2fa-create-form-success-modal-send-document-title": "Merci, nous avons bien reçu tous vos documents !",
-  "account-disable-2fa-create-form-success-modal-send-document-description": "Ils vont être soumis à notre équipe pour validation. Notre équipe support vous répond dans les 72 heures !  Vous serez notifié de leur validation par email, ou vous serez contacté si nous avons besoin de plus d'informations.",
+  "account-disable-2fa-create-form-success-modal-send-document-description": "Ils vont être soumis à notre équipe pour validation. Notre équipe support vous répond dans les 72 heures ! Vous serez notifié de leur validation par email, ou vous serez contacté si nous avons besoin de plus d'informations.",
   "account-disable-2fa-success-modal-back-home": "Retour à la page d'accueil",
   "account-disable-2fa-create-form-error-message-send-document": "Vos documents n’ont pas été correctement envoyés. Veuillez relancer l’envoi de vos documents."
 }
