@@ -88,7 +88,7 @@ export const NetworkStep = (): JSX.Element => {
       checkOperation({
         projectId: store.project?.id,
         operationId: op.id,
-        callback: (operation, iteration) => {
+        callback: (operation) => {
           if (['completed', 'created'].includes(operation.status)) {
             invalidateGatewaysList();
             navigate('..');
@@ -99,10 +99,7 @@ export const NetworkStep = (): JSX.Element => {
             setState((prev) => ({ ...prev, isOperationPending: false }));
             return true;
           }
-          if (
-            ['in-error', 'unknown'].includes(operation.status) ||
-            iteration === 10
-          ) {
+          if (['in-error', 'unknown'].includes(operation.status)) {
             addError(
               tAdd(
                 'pci_projects_project_public_gateways_add_modal_add_private_network_error',
@@ -139,7 +136,7 @@ export const NetworkStep = (): JSX.Element => {
       checkOperation({
         projectId: store.project?.id,
         operationId: op.id,
-        callback: (operation, iteration) => {
+        callback: (operation) => {
           if (['completed', 'created'].includes(operation.status)) {
             invalidateGatewaysList();
             navigate('..');
@@ -150,10 +147,7 @@ export const NetworkStep = (): JSX.Element => {
             setState((prev) => ({ ...prev, isOperationPending: false }));
             return true;
           }
-          if (
-            ['in-error', 'unknown'].includes(operation.status) ||
-            iteration === 10
-          ) {
+          if (['in-error', 'unknown'].includes(operation.status)) {
             addError(
               tAdd('pci_projects_project_public_gateways_add_error', {
                 message: '',
