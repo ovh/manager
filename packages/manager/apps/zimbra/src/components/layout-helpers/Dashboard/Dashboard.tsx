@@ -22,7 +22,7 @@ import { urls } from '@/routes/routes.constants';
 
 import './Dashboard.scss';
 
-export const Dashboard: React.FC<DashboardLayoutProps> = () => {
+export const Dashboard: React.FC = () => {
   const { platformId } = useParams();
   const { t } = useTranslation('dashboard');
   const context = useContext(ShellContext);
@@ -80,11 +80,11 @@ export const Dashboard: React.FC<DashboardLayoutProps> = () => {
 
   return (
     <DashboardLayout
+      breadcrumb={<Breadcrumb />}
       header={{
         title: 'Zimbra',
         headerButton: <GuideButton items={guideItems} />,
       }}
-      breadcrumb={<Breadcrumb />}
       tabs={<TabsPanel tabs={tabsList} />}
       content={<Outlet />}
     />

@@ -1,5 +1,8 @@
 {
-  "zimbra_domains_add_domain_cta": "Ajouter un domaine",
+  "zimbra_domains_add_domain_cta_back": "Retour vers les noms de domaine",
+  "zimbra_domains_add_domain_title": "Ajouter un domaine",
+  "zimbra_domains_add_domain_organization": "Organisation",
+  "zimbra_domains_add_domain_organization_select": "Selectionner une organisation",
   "zimbra_domains_datagrid_account_label": "Nombre de comptes",
   "zimbra_domains_datagrid_diagnostic_label": "Diagnostique",
   "zimbra_domains_datagrid_domain_label": "Domaine",
