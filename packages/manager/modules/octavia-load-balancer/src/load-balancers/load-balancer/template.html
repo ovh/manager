@@ -38,6 +38,7 @@
         ></span>
     </oui-header-tabs-item>
     <oui-header-tabs-item
+        data-ng-if=":: $ctrl.isLogsToCustomerFeatureAvailable"
         data-href="{{:: $ctrl.logsLink }}"
         data-active="$ctrl.currentActiveLink().startsWith($ctrl.logsLink)"
     >

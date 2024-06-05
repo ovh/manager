@@ -30,6 +30,7 @@
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.0",
     "@ovh-ux/ng-log-live-tail": "^2.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.1.1",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
     "@ovh-ux/ng-ovh-pci-universe-components": "^1.1.12",
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.2",

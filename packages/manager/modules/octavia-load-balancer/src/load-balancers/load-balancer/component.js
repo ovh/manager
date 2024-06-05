@@ -10,6 +10,7 @@ export default {
     statisticsLink: '<',
     certificatesLink: '<',
     logsLink: '<',
+    isLogsToCustomerFeatureAvailable: '<',
   },
   template,
 };
