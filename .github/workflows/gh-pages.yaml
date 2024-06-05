@@ -17,6 +17,7 @@ jobs:
         run: |
           yarn --version
           yarn install
+          yarn exec turbo -- run build --filter="./packages/manager/core/*"
           yarn workspace @ovh-ux/manager-documentation run docs:build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
