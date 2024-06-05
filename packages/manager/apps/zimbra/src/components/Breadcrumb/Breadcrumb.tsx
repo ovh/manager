@@ -22,28 +22,29 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     overviewUrl ||
     (serviceName ? urls.overview.replace(':serviceName', serviceName) : '/');
 
-  const activeTab = location.pathname.split('/')[2];
-  const activeTabTranslation = t(`zimbra_dashboard_${activeTab}`);
-  return (
-    <OsdsBreadcrumb
-      className="mb-4"
-      items={[
-        {
-          label: t('zimbra_dashboard_title'),
-          onClick: () => navigate(urls.root),
-        },
-        serviceName && {
-          label: serviceName,
-          onClick: () => navigate(overviewUrlValue),
-        },
-        activeTab && {
-          label: t(activeTabTranslation),
-          onClick: () => navigate(location.pathname),
-        },
-        ...items,
-      ].filter(Boolean)}
-    />
-  );
+  const pathParts = location.pathname.split('/').filter(Boolean);
+  const breadcrumbParts = pathParts.slice(1);
+  const breadcrumbItems = [
+    {
+      label: t('zimbra_dashboard_title'),
+      onClick: () => navigate(urls.root),
+    },
+    serviceName && {
+      label: serviceName,
+      onClick: () => navigate(overviewUrlValue),
+    },
+    ...breadcrumbParts.map((part, index) => {
+      const url = `/${pathParts.slice(0, index + 2).join('/')}`;
+      const label = t(`zimbra_dashboard_${part}`);
+      return {
+        label,
+        onClick: () => navigate(url),
+      };
+    }),
+    ...items,
+  ].filter(Boolean);
+
+  return <OsdsBreadcrumb className="mb-4" items={breadcrumbItems} />;
 };
 
 export default Breadcrumb;
