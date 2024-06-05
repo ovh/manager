@@ -96,6 +96,11 @@ export const API_EXCLUDED = {
     '/ip/loadbalancing',
     '/license/office',
     '/license/virtuozzo',
+    '/dedicated/nvmeof',
+    '/license/hycu',
+    '/license/officePrepaid',
+    '/products',
+    '/internalMonitoring',
   ],
 };
 
