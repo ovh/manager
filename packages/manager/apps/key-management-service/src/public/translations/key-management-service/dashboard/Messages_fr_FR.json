@@ -35,5 +35,16 @@
   "key_management_service_dashboard_region_ap_south_mum": "Asia Pacific (India - Mumbai)",
   "key_management_service_dashboard_region_labeu_west_1_preprod": "LABEU (France - Croix) (PREPROD)",
   "key_management_service_dashboard_region_labeu_west_1_dev_1": "LABEU (France - Croix) (DEV-1)",
-  "key_management_service_dashboard_region_labeu_west_1_dev_2": "LABEU (France - Croix) (DEV-2)"
+  "key_management_service_dashboard_region_labeu_west_1_dev_2": "LABEU (France - Croix) (DEV-2)",
+  "billing_informations": "Abonnement",
+  "key_management_service_dashboard_field_label_creation_date": "Date de création",
+  "key_management_service_dashboard_field_label_next_billing_date": "Prochaine échéance",
+  "key_management_service_dashboard_field_label_engagement": "Engagement",
+  "key_management_service_dashboard_field_label_contacts": "Contacts",
+  "key_management_service_dashboard_field_label_manage_contacts": "Gérer les contacts",
+  "key_management_service_dashboard_field_label_engagement_none": "Aucun",
+  "key_management_service_dashboard_field_label_engagement_renew_auto": "Renouv. Auto",
+  "key_management_service_dashboard_contact_type_administrator": "Administrateur",
+  "key_management_service_dashboard_contact_type_technical": "Technique",
+  "key_management_service_dashboard_contact_type_billing": "Facturation"
 }
