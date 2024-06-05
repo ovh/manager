@@ -113,7 +113,7 @@ const Service = () => {
           catalog={catalogQuery.data}
         />
       )}
-      <LegalMentions showRedisMessage={true} className="mt-4" />
+      <LegalMentions className="mt-4" />
     </>
   );
 };
