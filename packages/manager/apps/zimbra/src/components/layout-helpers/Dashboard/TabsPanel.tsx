@@ -9,7 +9,7 @@ import {
 import { Headers } from '@ovhcloud/manager-components';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useOrganization } from '@/hooks';
+import { useOverridePage, useOrganization } from '@/hooks';
 
 export type TabItemProps = {
   name: string;
@@ -27,9 +27,9 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
   const [activePanel, setActivePanel] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
-
   const { data } = useOrganization();
 
+  const isOverriddedPage = useOverridePage();
   useEffect(() => {
     if (!location.pathname) {
       setActivePanel(tabs[0].name);
@@ -66,24 +66,28 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
         </div>
       )}
 
-      <OsdsTabBar slot="top">
-        <OsdsTabs panel={activePanel}>
-          {tabs.map(
-            (tab: TabItemProps) =>
-              !tab.hidden && (
-                <NavLink
-                  key={`osds-tab-bar-item-${tab.name}`}
-                  to={
-                    data?.id ? `${tab.to}?organizationId=${data?.id}` : tab.to
-                  }
-                  className="no-underline"
-                >
-                  <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
-                </NavLink>
-              ),
-          )}
-        </OsdsTabs>
-      </OsdsTabBar>
+      {!isOverriddedPage && (
+        <OsdsTabBar slot="top">
+          <OsdsTabs panel={activePanel}>
+            {tabs.map(
+              (tab: TabItemProps) =>
+                !tab.hidden && (
+                  <NavLink
+                    key={`osds-tab-bar-item-${tab.name}`}
+                    to={
+                      data?.id ? `${tab.to}?organizationId=${data?.id}` : tab.to
+                    }
+                    className="no-underline"
+                  >
+                    <OsdsTabBarItem panel={tab.name}>
+                      {tab.title}
+                    </OsdsTabBarItem>
+                  </NavLink>
+                ),
+            )}
+          </OsdsTabs>
+        </OsdsTabBar>
+      )}
     </>
   );
 };

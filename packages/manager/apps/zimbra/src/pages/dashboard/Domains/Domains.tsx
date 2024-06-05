@@ -10,14 +10,12 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { Datagrid, DatagridColumn } from '@ovhcloud/manager-components';
-import { useQuery } from '@tanstack/react-query';
-import {
-  getZimbraPlatformDomains,
-  getZimbraPlatformDomainsQueryKey,
-} from '@/api';
-import { useOrganization, usePlatform } from '@/hooks';
+import { Outlet, useHref } from 'react-router-dom';
+
+import { useOverridePage, useOrganization } from '@/hooks';
 import ActionButtonDomain from './ActionButtonDomain';
 import LabelChip from '@/components/LabelChip';
+import { useDomains } from '@/hooks/useDomains';
 
 type DomainsItem = {
   id: string;
@@ -56,50 +54,55 @@ const columns: DatagridColumn<DomainsItem>[] = [
 
 export default function Domains() {
   const { t } = useTranslation('domains');
-  const { platformId } = usePlatform();
+  const { data } = useDomains();
   const { data: organization } = useOrganization();
-  const { data } = useQuery({
-    queryKey: getZimbraPlatformDomainsQueryKey(platformId, organization?.id),
-    queryFn: () => getZimbraPlatformDomains(platformId, organization?.id),
-  });
-  const handleAddDomain = () => {
-    console.log('Ajouter un nouveau domaine');
-  };
+  const isOverriddedPage = useOverridePage();
 
+  const hrefAddDomain = useHref(
+    `./add-domain${
+      organization?.id ? `?organizationId=${organization.id}` : ''
+    }`,
+  );
   const items: DomainsItem[] =
     data?.map((item) => ({
       name: item.targetSpec.name,
       id: item.targetSpec.organizationId,
       organizationLabel: item.targetSpec.organizationLabel,
     })) ?? [];
+
   return (
-    <div className="py-6">
-      <div className="flex items-center justify-between">
-        <OsdsButton
-          color={ODS_THEME_COLOR_INTENT.primary}
-          inline={true}
-          size={ODS_BUTTON_SIZE.sm}
-          onClick={handleAddDomain}
-        >
-          <span slot="start">
-            <OsdsIcon
-              name={ODS_ICON_NAME.PLUS}
-              size={ODS_ICON_SIZE.sm}
+    <>
+      {!isOverriddedPage && (
+        <div className="py-6 mt-8">
+          <div className="flex items-center justify-between">
+            <OsdsButton
               color={ODS_THEME_COLOR_INTENT.primary}
-              contrasted
-            ></OsdsIcon>
-          </span>
-          <span slot="end">{t('zimbra_domains_add_domain_cta')}</span>
-        </OsdsButton>
-      </div>
-      <Datagrid
-        columns={columns.map((column) => ({
-          ...column,
-          label: t(column.label),
-        }))}
-        items={items}
-        totalItems={items.length}
-      />
-    </div>
+              inline={true}
+              size={ODS_BUTTON_SIZE.sm}
+              href={hrefAddDomain}
+            >
+              <span slot="start">
+                <OsdsIcon
+                  name={ODS_ICON_NAME.PLUS}
+                  size={ODS_ICON_SIZE.sm}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  contrasted
+                ></OsdsIcon>
+              </span>
+              <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
+            </OsdsButton>
+          </div>
+          <Datagrid
+            columns={columns.map((column) => ({
+              ...column,
+              label: t(column.label),
+            }))}
+            items={items}
+            totalItems={items.length}
+          />
+        </div>
+      )}
+      <Outlet />
+    </>
   );
 }

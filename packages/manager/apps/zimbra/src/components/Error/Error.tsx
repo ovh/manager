@@ -23,6 +23,7 @@ function getTrackingTypology(error: ErrorMessage) {
 const Errors: React.FC<ErrorObject> = ({ error }) => {
   const navigate = useNavigate();
   const location = useLocation();
+
   const shell = useShell();
   const { tracking, environment } = shell;
   const env = environment.getEnvironment();
