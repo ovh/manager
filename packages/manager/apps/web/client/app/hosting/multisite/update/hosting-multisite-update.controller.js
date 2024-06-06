@@ -43,6 +43,8 @@ angular
       if ($scope.selected.domain.ownLog) {
         $scope.selected.ownLogDomain = {
           name: $scope.selected.domain.ownLog,
+          displayName: $scope.selected.domain.ownLog,
+          formattedName: $scope.selected.domain.ownLog,
         };
 
         $scope.selected.domain.ownLog = 'ACTIVE';
