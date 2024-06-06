@@ -36,7 +36,7 @@
   "createRancherVersion": "Versión del Rancher",
   "createRancherVersionDescription": "Este servicio se basa en SUSE Rancher. OVHcloud es compatible con las últimas versiones de Rancher. Le recomendamos que utilice la versión más reciente. De acuerdo con nuestra política de ciclo de vida del software, aplicamos regularmente parches de seguridad y ofrecemos nuevas versiones.",
   "createRancherCTA": "Crear un servicio Managed Rancher",
-  "createRancherError": "Se ha producido un error al crear el servicio Managed Rancher. Por favor, vuelva a intentarlo.",
+  "createRancherError": "Se ha producido un error al crear su Managed Rancher Service. {{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Versión recomendada",
   "createRancherOVHCloudPlanDescription": "Cree o gestione clústeres «downstream» Managed Kubernetes Service o autoadministrados en el cloud público de OVHcloud o en sus propias máquinas. También puede registrar clústeres externos (sin gestión cloud)",
   "createRancherStandardPlanDescription": "Cree o registre «downstream clusters» con cualquier cloud público compatible con Rancher o en un cloud privado automatizable (p. ej., VMware vSphere), incluyendo los escenarios compatibles con la versión OVHcloud Edition."
