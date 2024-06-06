@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.15.0...@ovhcloud/manager-components@1.16.0) (2024-06-06)
+
+### Features
+
+- **pci.gateway:** create pci gateway µapp ([#11900](https://github.com/ovh/manager/issues/11900)) ([a3bfde8](https://github.com/ovh/manager/commit/a3bfde86d090acdd3f73573abc70a260f406bc8a))
+
 # [1.15.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.14.0...@ovhcloud/manager-components@1.15.0) (2024-06-03)
 
 ### Features

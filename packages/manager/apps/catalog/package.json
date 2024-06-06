@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-catalog-app",
-  "version": "1.10.5",
+  "version": "1.10.6",
   "private": true,
   "description": "OVHcloud Catalog application",
   "repository": {
@@ -27,7 +27,7 @@
     "@ovh-ux/manager-core-utils": "^0.2.0",
     "@ovh-ux/manager-react-core-application": "^0.8.3",
     "@ovh-ux/manager-react-shell-client": "^0.6.0",
-    "@ovhcloud/manager-components": "^1.15.0",
+    "@ovhcloud/manager-components": "^1.16.0",
     "@ovhcloud/ods-common-core": "17.2.1",
     "@ovhcloud/ods-common-theming": "17.2.1",
     "@ovhcloud/ods-components": "17.2.1",
