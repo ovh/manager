@@ -32,7 +32,7 @@
   "pci_projects_project_public_gateways_add_modal_add_private_network_field_placeholder": "Enter a private network name",
   "pci_projects_project_public_gateways_add_modal_add_private_network_select_label": "Select a subnet",
   "pci_projects_project_public_gateways_add_modal_submit_label": "Add",
-  "pci_projects_project_public_gateways_add_modal_cancel_label": "Exit",
+  "pci_projects_project_public_gateways_add_modal_cancel_label": "Cancel",
   "pci_projects_project_public_gateways_add_modal_add_private_network_error": "An error has occurred modifying the private network: {{message}}",
   "pci_projects_project_public_gateways_add_success": "A new Gateway has been created.",
   "pci_projects_project_public_gateways_add_error": "An error has occurred creating the Gateway: {{message}}",

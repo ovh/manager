@@ -26,7 +26,7 @@
   "pci_projects_project_public_gateways_add_private_network_add_action": "Aggiungere una rete privata",
   "pci_projects_project_public_gateways_add_submit_label": "Creare Gateway",
   "pci_projects_project_public_gateways_add_no_private_network_warning": "Nella Region selezionata non sono presenti reti private. Creane una utilizzando una delle 3 seguenti sottoreti.",
-  "pci_projects_project_public_gateways_add_modal_title": "Creare una rete privata",
+  "pci_projects_project_public_gateways_add_modal_title": "Crea una rete privata",
   "pci_projects_project_public_gateways_add_modal_description": "Crea una rete privata con una sottorete in cui utilizzare il tuo Gateway.",
   "pci_projects_project_public_gateways_add_modal_add_private_network_field_label": "Nome della rete privata",
   "pci_projects_project_public_gateways_add_modal_add_private_network_field_placeholder": "Inserisci il nome della rete privata",
