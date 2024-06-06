@@ -72,9 +72,9 @@ function GeneralInformation() {
             <TileBlock
               label={t('zimbra_dashboard_tile_serviceConsumption_accountOffer')}
             >
-              {accountsStatistics?.map((stats, index) => (
+              {accountsStatistics?.map((stats) => (
                 <span
-                  key={index}
+                  key={stats.offer}
                 >{`${stats.configuredAccountsCount} ${stats.offer}`}</span>
               ))}
             </TileBlock>
