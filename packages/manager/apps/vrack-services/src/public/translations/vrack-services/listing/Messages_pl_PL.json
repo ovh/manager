@@ -31,5 +31,6 @@
   "modalConfirmVrackAssociationButtonLabel": "Przypisz vRack",
   "modalDeleteInputLabel": "Wpisz słowo „TERMINATE”, aby potwierdzić usunięcie vRack Services",
   "modalDeleteHeadline": "Usuń vRack Services",
-  "endpointTerminateServiceSuccess": "Rezygnacja z usługi {{vrackServices}} została zarejestrowana. Otrzymasz e-mail z potwierdzeniem"
+  "endpointTerminateServiceSuccess": "Rezygnacja z usługi {{vrackServices}} została zarejestrowana. Otrzymasz e-mail z potwierdzeniem",
+  "updateDisplayNameSuccess": "Zmiana nazwy dla {{vrackServices}} została zarejestrowana."
 }

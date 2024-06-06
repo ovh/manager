@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { PageLayout } from './PageLayout';
 import { OperationMessages } from '../OperationMessages';
 import { DashboardTabItemProps } from './layout-helpers.type';
+import { UpdateDisplayNameMessage } from '../UpdateDisplayNameMessages';
 
 export type DashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
@@ -69,6 +70,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
         </OsdsText>
         <OperationMessages id={id} />
       </div>
+      <UpdateDisplayNameMessage />
       <OsdsTabs panel={activePanel}>
         <OsdsTabBar slot="top">
           {tabs.map((tab: DashboardTabItemProps) => (
