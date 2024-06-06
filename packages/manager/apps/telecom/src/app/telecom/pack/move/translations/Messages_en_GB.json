@@ -285,5 +285,8 @@
   "pack_move_offers_debit_mention_1": "(1) Up to 92 Mb/s descending in VDSL and 22 Mb/s in ADSL, depending on eligibility.",
   "pack_move_offers_debit_mention_2": "(2) Up to 36 Mb/s VDSL and 1 Mb/s ADSL, depending on eligibility.",
   "pack_move_pto_reference_is_not_valid": "The PTO reference entered is invalid. The expected format is OO-XXXX-XXXX.",
-  "pack_move_no_meeting_available": "No appointment is available at the moment, you will be contacted by phone for planning."
+  "pack_move_no_meeting_available": "No appointment is available at the moment, you will be contacted by phone for planning.",
+  "pack_move_pto_multi_otp": "I have a box and I want to create an additional line",
+  "pack_move_pto_multi_otp_description": "A technician will install a second fiber termination point (FTP) socket during their intervention.",
+  "pack_move_pto_otp_not_mandatory": "This PTO reference is optional in this case."
 }

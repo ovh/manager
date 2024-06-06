@@ -5,7 +5,7 @@ import set from 'lodash/set';
 import values from 'lodash/values';
 import moment from 'moment';
 
-import { PROMO_DISPLAY, MODEM_LIST } from '../pack-move.constant';
+import { PROMO_DISPLAY, MODEM_LIST, DICTIONNARY } from '../pack-move.constant';
 
 export default class MoveResumeCtrl {
   /* @ngInject */
@@ -247,6 +247,12 @@ export default class MoveResumeCtrl {
             otpReference: this.offer.selected.buildingDetails.ptoReference,
           });
         }
+
+        // Installation type
+        assign(moveData, {
+          installationType:
+            DICTIONNARY[this.offer.selected.buildingDetails.selectedPto],
+        });
       } else {
         assign(moveData, {
           otp: false,

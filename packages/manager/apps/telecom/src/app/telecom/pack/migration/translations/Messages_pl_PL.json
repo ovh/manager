@@ -200,5 +200,8 @@
   "telecom_pack_migration_contract_meeting_contact": "Skontaktujemy się z nim przez technika, aby umówić się na spotkanie.",
   "telecom_pack_migration_meeting_error": "Ojej! Wystąpił błąd podczas pobierania dat dostępnych spotkań.",
   "telecom_pack_migration_pto_reference_is_not_valid": "Wprowadzony numer referencyjny PTO jest nieprawidłowy. Poprawny format to OO-XXXX-XXXX.",
-  "telecom_pack_migration_no_meeting_available": "W tej chwili nie są dostępne żadne terminy. Skontaktujemy się z Tobą telefonicznie w celu ustalenia terminu."
+  "telecom_pack_migration_no_meeting_available": "W tej chwili nie są dostępne żadne terminy. Skontaktujemy się z Tobą telefonicznie w celu ustalenia terminu.",
+  "telecom_pack_migration_pto_multi_otp": "Mam obudowę i chcę utworzyć dodatkową linię",
+  "telecom_pack_migration_pto_multi_otp_description": "Technik podczas interwencji zainstaluje drugie złącze optyczne (PTO).",
+  "telecom_pack_migration_pto_otp_not_mandatory": "W tym przypadku oznaczenie PTO jest opcjonalne."
 }
