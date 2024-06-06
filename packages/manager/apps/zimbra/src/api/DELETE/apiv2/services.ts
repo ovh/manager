@@ -4,13 +4,8 @@ export const deleteZimbraPlatformOrganization = async (
   platformId: string,
   organizationId: string,
 ) => {
-  try {
-    const response = await apiClient.v2.delete<void>(
-      `/zimbra/platform/${platformId}/organization/${organizationId}`,
-    );
-
-    return response.data;
-  } catch (error) {
-    return error;
-  }
+  const { data } = await apiClient.v2.delete(
+    `/zimbra/platform/${platformId}/organization/${organizationId}`,
+  );
+  return data;
 };

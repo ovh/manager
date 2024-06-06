@@ -36,6 +36,22 @@ export const Routes: any = [
             ),
             children: [
               {
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/Organizations/ModalAddAndEditOrganization'
+                  ),
+                ),
+              },
+              {
+                path: 'edit',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/Organizations/ModalAddAndEditOrganization'
+                  ),
+                ),
+              },
+              {
                 path: 'delete',
                 ...lazyRouteConfig(() =>
                   import(

@@ -1,0 +1,20 @@
+{
+  "zimbra_organization_add": "Confirmer",
+  "zimbra_organization_add_modal_title": "Ajouter une organisation",
+  "zimbra_organization_add_modal_content_part1": "L'organisation représente un groupement logique de domaines et de boites mails.",
+  "zimbra_organization_add_modal_content_part2": "Elle permet de définir des politiques de gestion groupées et définit l'isolation de vos boites mails (limite de l'annuaire d'entreprise).",
+  "zimbra_organization_edit_modal_title": "Modifier l'organisation",
+  "zimbra_organization_add_form_input_mandatory": "Les champs mentionnés avec un astérix * sont obligatoires",
+  "zimbra_organization_add_form_input_name_title": "Nom",
+  "zimbra_organization_add_form_input_name_placeholder": "nom",
+  "zimbra_organization_add_form_input_name_error": "Champs obligatoire. Doit être composé uniquement de caractères alphanumériques.",
+  "zimbra_organization_add_form_input_label_title": "Label de l'organisation",
+  "zimbra_organization_add_form_input_label_placeholder": "label",
+  "zimbra_organization_add_form_input_label_error": "Champs obligatoire. Doit être composé uniquement de caractères alphanumériques. Maximum {{ value }} caractères.",
+  "zimbra_organization_add_form_input_label_tooltip": "Le label est un texte court utilisé pour le filtrage et la navigation dans l'espace client.",
+  "zimbra_organization_add_form_input_label_helper": "{{ value }} caractères maximum.",
+  "zimbra_organization_add_success_message": "Votre demande d'ajout d'organisation a bien été prise en compte. Elle sera effective d'ici quelques instants.",
+  "zimbra_organization_add_error_message": "Votre demande d'ajout d'organisation n'a pas pu aboutir. {{ error }}",
+  "zimbra_organization_edit_success_message": "Votre demande de modification a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
+  "zimbra_organization_edit_error_message": "Votre demande de modification n'a pas pu aboutir. {{ error }}"
+}
