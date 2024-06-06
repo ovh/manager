@@ -14,7 +14,6 @@ import {
   modalConfirmVrackButtonLabel,
   modalNoVrackButtonLabel,
 } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
-import { displayNameInputName } from '../../src/pages/create/constants';
 import { vrackActionDissociate } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
 import {
   modalConfirmButton,
@@ -65,9 +64,6 @@ When(
     await this.page.goto(this.testContext.initialUrl || getUrl('root'), {
       waitUntil: 'load',
     });
-    await this.page
-      ?.locator(`input[name="${displayNameInputName}"]`)
-      .fill(this.testContext.data.displayName.toString());
     await this.page
       ?.locator(`osds-radio[id="${this.testContext.data.selectedRegion}"]`)
       .click();
