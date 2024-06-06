@@ -1,0 +1,13 @@
+{
+  "title": "hpc-vmware-managed-vcd",
+  "description": "Découvrez des services de stockage managés qui s’appuient sur le système de fichiers OpenZFS. Bénéficiez en quelques clics d’espaces de stockage centralisés pour entreposer ou sauvegarder vos données et fichiers.",
+  "orderButtonLabel": "Commander un hpc-vmware-managed-vcd",
+  "moreInfoButtonLabel": "En savoir plus sur hpc-vmware-managed-vcd",
+  "guideCategory": "Tutoriel",
+  "guide1Title": "Premiers pas avec un hpc-vmware-managed-vcd",
+  "guide1Description": "Découvrez comment gérer un NAS-HA depuis l'espace-client OVHcloud",
+  "guide2Title": "Monter votre NAS via un partage NFS",
+  "guide2Description": "Découvrez comment monter un NAS via un partage NFS",
+  "guide3Title": "Monter votre NAS sur Windows Server via CIFS",
+  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS"
+}
