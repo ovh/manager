@@ -33,7 +33,7 @@ Given('The service to {word} a vRack Services is {word}', function(
 ) {
   const isKo = okOrKo === 'KO';
   if (action === 'edit') {
-    this.handlersConfig.updateKo = isKo;
+    this.handlersConfig.servicesKo = isKo;
   } else if (action === 'associate') {
     this.handlersConfig.associationKo = isKo;
   }

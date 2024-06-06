@@ -14,7 +14,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import {
   ShellContext,
   useOvhTracking,
@@ -22,7 +22,7 @@ import {
   ButtonType,
 } from '@ovh-ux/manager-react-shell-client';
 import { ErrorPage } from '@/components/Error';
-import { useUpdateVrackServices, useVrackService } from '@/utils/vs-utils';
+import { useVrackService } from '@/utils/vs-utils';
 import { formatDateString } from '@/utils/date';
 import {
   ProductStatusCell,
@@ -31,6 +31,7 @@ import {
 } from '@/components/VrackServicesDataGridCells';
 import { TileBlock } from '@/components/TileBlock';
 import { urls } from '@/router/constants';
+import { useUpdateVrackServicesName } from '@/api';
 
 export default function OverviewTab() {
   const { t, i18n } = useTranslation('vrack-services/dashboard');
@@ -42,16 +43,15 @@ export default function OverviewTab() {
       navigation: { getURL },
     },
   } = React.useContext(ShellContext);
-  const { id } = useParams();
   const navigate = useNavigate();
   const { data: vrackServices, error, isLoading } = useVrackService();
   const {
-    updateVS,
+    updateVSName,
+    isPending,
+    error: updateNameError,
     isErrorVisible,
     hideError,
-    isPending,
-    updateError,
-  } = useUpdateVrackServices({ key: id });
+  } = useUpdateVrackServicesName({});
 
   React.useEffect(() => {
     getURL(
@@ -79,7 +79,7 @@ export default function OverviewTab() {
             color={ODS_THEME_COLOR_INTENT.text}
           >
             {tListing('updateError', {
-              error: updateError?.response.data.message,
+              error: updateNameError?.response.data.message,
             })}
           </OsdsText>
         </OsdsMessage>
@@ -103,8 +103,8 @@ export default function OverviewTab() {
                 <OsdsDivider separator />
                 <TileBlock label={t('displayName')}>
                   <DisplayNameCell
-                    updateVS={updateVS}
-                    cellData={vrackServices?.currentState?.displayName}
+                    updateVSName={updateVSName}
+                    cellData={vrackServices?.iam?.displayName}
                     rowData={vrackServices}
                     trackPage={trackPage}
                   />
