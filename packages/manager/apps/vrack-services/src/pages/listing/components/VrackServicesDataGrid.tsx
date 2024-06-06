@@ -29,27 +29,29 @@ import {
   RegionCell,
   ActionsCell,
 } from '@/components/VrackServicesDataGridCells';
-import { useUpdateVrackServices, useVrackServicesList } from '@/utils/vs-utils';
+import { useVrackServicesList } from '@/utils/vs-utils';
 import { urls } from '@/router/constants';
+import { useUpdateVrackServicesName } from '@/api';
 
 export const VrackServicesDatagrid: React.FC = () => {
   const { t, i18n } = useTranslation('vrack-services/listing');
   const { trackClick, trackPage } = useOvhTracking();
   const navigate = useNavigate();
+
   const {
-    updateVS,
+    updateVSName,
     isPending,
+    error: updateNameError,
     isErrorVisible,
-    updateError,
     hideError,
-  } = useUpdateVrackServices({ key: 'listing' });
+  } = useUpdateVrackServicesName({});
 
   const { data } = useVrackServicesList();
 
   const columns: OdsDatagridColumn[] = [
     {
       title: t('displayName'),
-      field: 'currentState.displayName',
+      field: 'iam.displayName',
       isSortable: true,
       formatter: reactFormatter(
         <DisplayNameCell
@@ -62,7 +64,7 @@ export const VrackServicesDatagrid: React.FC = () => {
             });
             navigate(`/${id}`);
           }}
-          updateVS={updateVS}
+          updateVSName={updateVSName}
           trackPage={trackPage}
         />,
       ),
@@ -140,7 +142,9 @@ export const VrackServicesDatagrid: React.FC = () => {
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {t('updateError', { error: updateError?.response.data.message })}
+            {t('updateError', {
+              error: updateNameError?.response.data.message,
+            })}
           </OsdsText>
         </OsdsMessage>
       )}

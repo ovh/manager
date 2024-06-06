@@ -1,7 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 
 export type DeleteVrackServicesParams = {
-  /** vrackServices service name */
+  /** vrackServices service id */
   serviceId: number;
 };
 

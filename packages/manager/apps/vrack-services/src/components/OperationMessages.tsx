@@ -64,7 +64,7 @@ const OperationMessage: React.FC<{ vs?: VrackServicesWithIAM }> = ({ vs }) => {
             ? 'vrackServicesInErrorMessage'
             : 'vrackServicesNotReadyInfoMessage',
           {
-            displayName: vs?.displayName || vs?.id,
+            displayName: vs?.iam?.displayName || vs?.id,
           },
         )}
         {subnetCreationMutations[0]?.status === 'success' &&
