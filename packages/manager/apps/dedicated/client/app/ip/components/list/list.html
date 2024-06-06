@@ -463,7 +463,7 @@
                 <td>
                     <span
                         data-ng-class="{
-                              'pl-5': ip.block
+                              'pl-5': ip.block || ipBlock.isAdditionalIpv6
                           }"
                         data-ng-bind="ip.ip"
                     ></span>
@@ -479,6 +479,9 @@
                     ></span>
                     <small
                         class="ip-description d-block text-truncate"
+                        data-ng-class="{
+                            'pl-5': ip.block || ipBlock.isAdditionalIpv6
+                        }"
                         data-ng-if="ipBlock.description"
                         data-ng-bind="ipBlock.description"
                         data-ng-attr-title="{{ ipBlock.description }}"
