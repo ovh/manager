@@ -1,6 +1,7 @@
 import {
   StepComponent,
   TilesInputComponent,
+  useProjectUrl,
 } from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
 import { useContext, useEffect, useState } from 'react';
@@ -22,7 +23,6 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { clsx } from 'clsx';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { TAvailableRegion, useData } from '@/api/hooks/data';
-import { useProjectUrl } from '@/hooks/project-url';
 
 type IState = {
   regions: TAvailableRegion[];

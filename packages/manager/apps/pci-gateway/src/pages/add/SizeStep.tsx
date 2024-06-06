@@ -4,6 +4,7 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   StepComponent,
   TilesInputComponent,
+  useCatalogPrice,
 } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -14,7 +15,6 @@ import { useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { TSizeItem, useData } from '@/api/hooks/data';
-import { useCatalogPrice } from '@/hooks/catalog-price';
 
 export const SizeStep = (): JSX.Element => {
   const { projectId } = useParams();

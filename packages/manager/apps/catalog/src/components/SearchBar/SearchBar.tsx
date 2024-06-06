@@ -102,8 +102,9 @@ const SearchBar: React.FC<SearchbarProps> = ({
               setShowFilters((filterState) => !filterState)
             }
             onClick={() => setShowFilters((filterState) => !filterState)}
-            data-tracking={`filter::${showFilters ? 'show-filter' : 'hide-filter'
-              }`}
+            data-tracking={`filter::${
+              showFilters ? 'show-filter' : 'hide-filter'
+            }`}
           >
             <OsdsIcon
               name={ODS_ICON_NAME.FILTER}

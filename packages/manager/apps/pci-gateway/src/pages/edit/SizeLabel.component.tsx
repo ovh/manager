@@ -4,8 +4,8 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { useCatalogPrice } from '@ovhcloud/manager-components';
 import { TSizeItem } from '@/api/hooks/data';
-import { useCatalogPrice } from '@/hooks/catalog-price';
 
 export const SizeLabelComponent = ({ item }: { item: TSizeItem }) => {
   const {

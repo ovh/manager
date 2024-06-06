@@ -1,10 +1,11 @@
-import { StepComponent } from '@ovhcloud/manager-components';
+import { StepComponent, useCatalogPrice } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import {
+  ODS_BUTTON_SIZE,
   ODS_CHECKBOX_BUTTON_SIZE,
   ODS_MESSAGE_TYPE,
   ODS_SPINNER_SIZE,
@@ -12,6 +13,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
+  OsdsButton,
   OsdsCheckbox,
   OsdsCheckboxButton,
   OsdsMessage,
@@ -20,27 +22,23 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGatewayCatalog } from '@/api/hooks/useGateway';
-import { TFormState } from '../New.page';
-import { useCatalogPrice } from '@/hooks/catalog-price';
-
-type TGatewaySummaryStep = {
-  isOpen: boolean;
-  onNext?: () => void;
-  formState: TFormState;
-  setFormState: (formState) => void;
-  isLoading: boolean;
-};
+import { StepsEnum, useNewNetworkStore } from '@/pages/new/store';
+import { useProjectAvailableRegions } from '@/api/hooks/useRegions';
 
 export default function GatewaySummaryStep({
-  isOpen,
-  onNext,
-  formState,
-  setFormState,
-  isLoading,
-}: Readonly<TGatewaySummaryStep>): JSX.Element {
+  onCreate,
+}: {
+  onCreate: () => void;
+}): JSX.Element {
+  const store = useNewNetworkStore();
+
+  const { isLoading: isRegionsLoading } = useProjectAvailableRegions(
+    store.project?.id,
+  );
+
   const { t } = useTranslation('new');
 
   const { ovhSubsidiary } = useEnvironment().getUser();
@@ -54,10 +52,7 @@ export default function GatewaySummaryStep({
 
   useEffect(() => {
     if (gatewayCatalog) {
-      setFormState((prevState) => ({
-        ...prevState,
-        gatewaySize: gatewayCatalog.size,
-      }));
+      store.setForm({ gatewaySize: gatewayCatalog.size });
     }
   }, [gatewayCatalog]);
 
@@ -66,17 +61,10 @@ export default function GatewaySummaryStep({
       title={t(
         'pci_projects_project_network_private_create_summary_step_title',
       )}
-      next={
-        isLoading
-          ? undefined
-          : {
-              action: onNext,
-              label: t('pci_projects_project_network_private_create_submit'),
-              isDisabled: false,
-            }
-      }
       order={3}
-      isOpen={isOpen}
+      isOpen={store.steps.get(StepsEnum.SUMMARY).isOpen}
+      isChecked={store.steps.get(StepsEnum.SUMMARY).isChecked}
+      isLocked={store.steps.get(StepsEnum.SUMMARY).isLocked}
     >
       <div className="my-8">
         <OsdsText
@@ -87,7 +75,7 @@ export default function GatewaySummaryStep({
           {t('pci_projects_project_network_private_create_summary_step')}
         </OsdsText>
 
-        {!formState.gateway && (
+        {!store.form.gateway && (
           <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.warning}>
             <div>
               <OsdsText
@@ -108,7 +96,7 @@ export default function GatewaySummaryStep({
               >
                 {t(
                   'pci_projects_project_network_private_create_summary_step_gateway_name',
-                  { region: formState.region?.code },
+                  { region: store.form.region?.code },
                 )}
               </OsdsText>
               <OsdsText
@@ -161,23 +149,20 @@ export default function GatewaySummaryStep({
           </OsdsMessage>
         )}
 
-        {formState.gateway && !formState.gateway.externalInformation && (
+        {store.form.gateway && !store.form.gateway.externalInformation && (
           <div data-ng-if="$ctrl.gateway && !$ctrl.gateway.externalInformation">
             <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.warning}>
               {t(
                 'pci_projects_project_network_private_create_summary_step_gateway_with_snat_disabled',
-                { gateway: formState.gateway?.name },
+                { gateway: store.form.gateway?.name },
               )}
             </OsdsMessage>
 
             <OsdsCheckbox
               name="enable-snat"
-              checked={formState.enableSNAT}
+              checked={store.form.enableSNAT}
               onOdsCheckedChange={(event: CustomEvent) => {
-                setFormState((prevState) => ({
-                  ...prevState,
-                  enableSNAT: event.detail.checked,
-                }));
+                store.setForm({ enableSNAT: event.detail.checked });
               }}
             >
               <OsdsCheckboxButton
@@ -194,7 +179,7 @@ export default function GatewaySummaryStep({
                   {t(
                     'pci_projects_project_network_private_create_summary_step_gateway_enable_snat',
                     {
-                      gateway: formState.gateway?.name,
+                      gateway: store.form.gateway?.name,
                     },
                   )}
                 </OsdsText>
@@ -203,16 +188,16 @@ export default function GatewaySummaryStep({
           </div>
         )}
 
-        {formState.gateway?.externalInformation && (
+        {store.form.gateway?.externalInformation && (
           <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.info}>
             {t(
               'pci_projects_project_network_private_create_summary_step_gateway_available',
-              { gateway: formState.gateway?.name },
+              { gateway: store.form.gateway?.name },
             )}
           </OsdsMessage>
         )}
 
-        {isLoading && (
+        {isRegionsLoading && (
           <div className="mt-5 gap-5 flex items-center">
             <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
             <OsdsText
@@ -224,6 +209,30 @@ export default function GatewaySummaryStep({
             </OsdsText>
           </div>
         )}
+
+        <div className="mt-8">
+          {!isRegionsLoading && !store.form.isCreating && (
+            <OsdsButton
+              data-testid="next-cta"
+              size={ODS_BUTTON_SIZE.md}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              onClick={() => {
+                onCreate();
+              }}
+              className="w-fit"
+            >
+              {t('pci_projects_project_network_private_create_submit')}
+            </OsdsButton>
+          )}
+          {store.form.isCreating && (
+            <div>
+              <OsdsSpinner size={ODS_SPINNER_SIZE.sm} inline={true} />
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="ml-6">
+                {t('pci_projects_project_network_private_create_loading')}
+              </OsdsText>
+            </div>
+          )}
+        </div>
       </div>
     </StepComponent>
   );

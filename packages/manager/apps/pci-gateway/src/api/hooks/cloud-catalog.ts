@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useMe } from '@/api/hooks/useMe';
+import { useMe } from '@ovhcloud/manager-components';
 import { getCloudCatalog, getCloudCatalogUrl } from '@/api/data/cloud-catalog';
 
 export const getCloudCatalogQuery = (ovhSubsidiary: string) => ({
