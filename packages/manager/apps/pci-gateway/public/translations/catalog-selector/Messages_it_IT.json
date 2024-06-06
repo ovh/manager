@@ -2,7 +2,7 @@
   "pci_projects_project_gateways_model_selector_catalog_publiccloud-gateway-s_size": "Taglia S",
   "pci_projects_project_gateways_model_selector_catalog_publiccloud-gateway-m_size": "Taglia M",
   "pci_projects_project_gateways_model_selector_catalog_publiccloud-gateway-l_size": "Taglia L",
-  "pci_projects_project_gateways_model_selector_size": "Dimensione",
+  "pci_projects_project_gateways_model_selector_size": "Taglia",
   "pci_projects_project_gateways_model_selector_bandwidth": "Fino a {{bandwidth}}",
   "pci_projects_project_gateways_model_selector_catalog_price": "Prezzo:",
   "pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps": " Mbps",

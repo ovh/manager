@@ -13,6 +13,6 @@
   "pci_projects_project_public_gateway_status": "Stato",
   "pci_projects_project_public_gateway_modify": "Modificare il tuo Gateway",
   "pci_projects_project_public_gateway_go_to_private_networks": "Visualizza la tua rete privata",
-  "pci_projects_project_public_gateway_delete": "Eliminare",
+  "pci_projects_project_public_gateway_delete": "Elimina",
   "pci_projects_project_public_gateway_no_data": "Nessun dato disponibile"
 }
