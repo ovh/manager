@@ -245,7 +245,7 @@
   "pack_move_building_details_title": "Référence des bâtiments pour les offres FTTH",
   "pack_move_pto_title": "Boîtier Fibre PTO (Point de Terminaison Optique)",
   "pack_move_pto_description": "Disposez-vous déjà d'un boitier fibre à l'adresse d'installation ? (prise optique murale)",
-  "pack_move_pto_yes": "J'ai un boîtier avec la réfèrence suivante :",
+  "pack_move_pto_yes": "J'ai un boîtier avec la réfèrence suivante",
   "pack_move_pto_yes_description": "Nous procéderons à l'écrasement de la prise optique (PTO) existante.",
   "pack_move_pto_no": "Non je ne dispose pas d'un boîter PTO",
   "pack_move_pto_no_description": "Un technicien procèdera à l'installation d'une prise optique (PTO) lors de son intervention.",
@@ -285,5 +285,8 @@
   "pack_move_offers_debit_mention_1": "(1) Jusqu'à 92 Mb/s descendant en VDSL et 22 Mb/s en ADSL, selon éligibilité.",
   "pack_move_offers_debit_mention_2": "(2) Jusqu'à 36 Mb/s montant en VDSL et 1 Mb/s en ADSL, selon éligibilité.",
   "pack_move_pto_reference_is_not_valid": "La référence PTO saisie est invalide. Le format attendu est OO-XXXX-XXXX.",
-  "pack_move_no_meeting_available": "Aucun RDV n'est disponible pour le moment, vous serez recontacté par téléphone pour la planification."
+  "pack_move_no_meeting_available": "Aucun RDV n'est disponible pour le moment, vous serez recontacté par téléphone pour la planification.",
+  "pack_move_pto_multi_otp": "J'ai un boîtier et je souhaite la création d'une ligne supplémentaire",
+  "pack_move_pto_multi_otp_description": "Un technicien procèdera à l'installation d'une seconde prise optique (PTO) lors de son intervention.",
+  "pack_move_pto_otp_not_mandatory": "Cette référence PTO est optionnelle dans le cas présent."
 }
