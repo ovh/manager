@@ -43,6 +43,7 @@ export const Loader = async ({ params }: ServiceLayoutProps) => {
 
 function ServiceName() {
   const { projectId, serviceId } = useParams();
+  console.log(serviceId);
   if (!serviceId) return '';
   const serviceQuery = useGetService(projectId, serviceId);
   return serviceQuery.isSuccess ? (
