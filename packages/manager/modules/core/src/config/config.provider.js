@@ -16,6 +16,11 @@ export default class CoreConfig {
     return this.environment.getUser();
   }
 
+  updateUser(userUpdate) {
+    const user = this.environment.getUser();
+    this.environment.setUser({ ...user, ...userUpdate });
+  }
+
   getUserLocale() {
     return this.environment.getUserLocale();
   }
@@ -91,6 +96,7 @@ export default class CoreConfig {
       isRegion: (region) => this.isRegion(region),
 
       getUser: () => this.getUser(),
+      updateUser: (userUpdate) => this.updateUser(userUpdate),
 
       getUserLocale: () => this.getUserLocale(),
       setUserLocale: (locale) => this.setUserLocale(locale),
