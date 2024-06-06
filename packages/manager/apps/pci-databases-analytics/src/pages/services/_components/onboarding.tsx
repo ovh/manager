@@ -42,7 +42,7 @@ const Onboarding = () => {
           to="new"
           className="hover:no-underline hover:text-primary-foreground"
         >
-          {t('createServiceButton')}{' '}
+          {t('createServiceButton')}
         </Link>
       </Button>
       <div className="flex flex-col md:grid md:grid-cols-3 gap-2">
