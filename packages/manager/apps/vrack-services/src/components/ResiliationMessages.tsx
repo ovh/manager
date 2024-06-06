@@ -36,7 +36,7 @@ const ResiliationMessage: React.FC<{ vs?: VrackServicesWithIAM }> = ({
             color={ODS_THEME_COLOR_INTENT.text}
           >
             {t('endpointTerminateServiceSuccess', {
-              vrackServices: vs.currentState?.displayName || vs.id,
+              vrackServices: vs.iam?.displayName || vs.id,
             })}
           </OsdsText>
         </OsdsMessage>

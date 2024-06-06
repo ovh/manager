@@ -71,7 +71,7 @@ export type VrackServices = {
   updatedAt: string;
 };
 
-export type VrackServicesWithIAM = VrackServices & IamMetadata;
+export type VrackServicesWithIAM = VrackServices & { iam: IamMetadata };
 
 export type UpdateVrackServicesParams = {
   checksum: string;
