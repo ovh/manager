@@ -30,6 +30,7 @@ module.exports = {
         '/apps/pci-public-ip',
         '/apps/pci-gateway/',
         '/apps/pci-private-network',
+        '/apps/pci-block-storage/',
       ],
       moduleNameMapper: {
         '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
