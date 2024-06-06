@@ -15,11 +15,14 @@ export const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> =
   const hrefDeleteOrganization = useHref(
     `./delete?deleteOrganizationId=${organizationItem.id}`,
   );
+  const hrefEditOrganization = useHref(
+    `./edit?editOrganizationId=${organizationItem.id}`,
+  );
 
   const actionItems = [
     {
       id: 1,
-      href: 'https://ovhcloud.com',
+      href: hrefEditOrganization,
       label: t('zimbra_organization_edit'),
     },
     {
