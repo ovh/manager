@@ -1,7 +1,7 @@
 {
   "name": "@ovhcloud/manager-components",
   "private": true,
-  "version": "1.15.0",
+  "version": "1.16.0",
   "main": "src/lib.ts",
   "repository": {
     "type": "git",

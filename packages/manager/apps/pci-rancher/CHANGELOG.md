@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.5.1...@ovh-ux/manager-pci-rancher-app@1.6.0) (2024-06-06)
+
+
+### Features
+
+* **pci.gateway:** create pci gateway µapp ([#11900](https://github.com/ovh/manager/issues/11900)) ([a3bfde8](https://github.com/ovh/manager/commit/a3bfde86d090acdd3f73573abc70a260f406bc8a))
+
+
+
+
+
 ## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.5.0...@ovh-ux/manager-pci-rancher-app@1.5.1) (2024-06-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
