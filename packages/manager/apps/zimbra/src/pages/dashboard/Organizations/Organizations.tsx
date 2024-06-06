@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useHref } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -72,6 +72,7 @@ const columns: DatagridColumn<OrganizationItem>[] = [
     label: '',
   },
 ];
+
 export default function Organizations() {
   const { t } = useTranslation('organisations');
   const { platformId } = usePlatform();
@@ -88,9 +89,7 @@ export default function Organizations() {
       status: item.resourceStatus || '',
     })) ?? [];
 
-  const handleAddOrganisation = () => {
-    console.log('Ajouter une nouvelle organisation');
-  };
+  const hrefAddOrganization = useHref('./add');
 
   return (
     <div className="py-6 mt-8">
@@ -101,7 +100,7 @@ export default function Organizations() {
           color={ODS_THEME_COLOR_INTENT.primary}
           inline={true}
           size={ODS_BUTTON_SIZE.sm}
-          onClick={handleAddOrganisation}
+          href={hrefAddOrganization}
         >
           <span slot="start">
             <OsdsIcon
