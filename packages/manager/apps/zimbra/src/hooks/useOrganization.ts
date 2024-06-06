@@ -7,7 +7,7 @@ import {
   getZimbraPlatformOrganizationDetailsQueryKey,
 } from '@/api';
 
-export const useOrganization = () => {
+export const useOrganization = (organizationId?: string, noCache?: boolean) => {
   const { platformId } = usePlatform();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -15,11 +15,15 @@ export const useOrganization = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: getZimbraPlatformOrganizationDetailsQueryKey(
       platformId,
-      selectedOrganizationId,
+      organizationId || selectedOrganizationId,
     ),
     queryFn: () =>
-      getZimbraPlatformOrganizationDetails(platformId, selectedOrganizationId),
-    enabled: !!selectedOrganizationId,
+      getZimbraPlatformOrganizationDetails(
+        platformId,
+        organizationId || selectedOrganizationId,
+      ),
+    enabled: !!organizationId || !!selectedOrganizationId,
+    gcTime: noCache ? 0 : 5000,
   });
 
   return {
