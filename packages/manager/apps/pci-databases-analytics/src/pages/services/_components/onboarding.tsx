@@ -15,11 +15,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import OnboardingTile from './onboardingTile';
 
 const Onboarding = () => {
   const { t } = useTranslation('pci-databases-analytics/services/onboarding');
   useTrackPage(TRACKING.onboarding.page());
   const track = useTrackAction();
+
   return (
     <div
       data-testid="onbaording-container"
@@ -35,7 +37,11 @@ const Onboarding = () => {
         />
       </div>
       <h2>{t('title')}</h2>
-      <img src={onboardingImgSrc} className="max-h-[250px]" />
+      <img
+        src={onboardingImgSrc}
+        className="max-h-[250px]"
+        alt="managed database service"
+      />
       <p>{t('description1')}</p>
       <p className="font-bold">{t('description2')}</p>
       <p>{t('description3')}</p>
@@ -49,69 +55,27 @@ const Onboarding = () => {
         </Link>
       </Button>
       <div className="flex flex-col md:grid md:grid-cols-3 gap-2">
-        <Card className="flex flex-col justify-between">
-          <CardHeader>
-            <CardTitle>{t('cardGuidestitle')}</CardTitle>
-            <CardDescription>{t('cardGuidesDescription')}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p>{t('cardGuidesContent')}</p>
-          </CardContent>
-          <CardFooter>
-            <A
-              href="https://docs.ovh.com/gb/en/publiccloud/databases/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="inline-flex items-center gap-2">
-                <span>{t('cardLink')}</span>
-                <ExternalLink className="size-4" />
-              </div>
-            </A>
-          </CardFooter>
-        </Card>
-        <Card className="flex flex-col justify-between">
-          <CardHeader>
-            <CardTitle>{t('cardQuickStartTitle')}</CardTitle>
-            <CardDescription>{t('cardQuickStartDescription')}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p>{t('cardQuickStartContent')}</p>
-          </CardContent>
-          <CardFooter>
-            <A
-              href="https://docs.ovh.com/gb/en/publiccloud/databases/getting-started"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="inline-flex items-center gap-2">
-                <span>{t('cardLink')}</span>
-                <ExternalLink className="size-4" />
-              </div>
-            </A>
-          </CardFooter>
-        </Card>
-        <Card className="flex flex-col justify-between">
-          <CardHeader>
-            <CardTitle>{t('cardFreeTierTitle')}</CardTitle>
-            <CardDescription>{t('cardFreeTierTescription')}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p>{t('cardFreeTierContent')}</p>
-          </CardContent>
-          <CardFooter>
-            <A
-              href="https://help.ovhcloud.com/csm/en-gb-public-cloud-databases-mongodb-getting-started?id=kb_article_view&sysparm_article=KB0061254"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="inline-flex items-center gap-2">
-                <span>{t('cardLink')}</span>
-                <ExternalLink className="size-4" />
-              </div>
-            </A>
-          </CardFooter>
-        </Card>
+        <OnboardingTile
+          title={t('cardGuidestitle')}
+          description={t('cardGuidesDescription')}
+          content={t('cardGuidesContent')}
+          href="https://docs.ovh.com/gb/en/publiccloud/databases/"
+          linkName={t('cardLink')}
+        />
+        <OnboardingTile
+          title={t('cardQuickStartTitle')}
+          description={t('cardQuickStartDescription')}
+          content={t('cardQuickStartContent')}
+          href="https://docs.ovh.com/gb/en/publiccloud/databases/getting-started"
+          linkName={t('cardLink')}
+        />
+        <OnboardingTile
+          title={t('cardFreeTierTitle')}
+          description={t('cardFreeTierTescription')}
+          content={t('cardFreeTierContent')}
+          href="https://help.ovhcloud.com/csm/en-gb-public-cloud-databases-mongodb-getting-started?id=kb_article_view&sysparm_article=KB0061254"
+          linkName={t('cardLink')}
+        />
       </div>
     </div>
   );
