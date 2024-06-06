@@ -33,14 +33,31 @@ export default function ModalDeleteOrganization() {
     deleteZimbraPlatformOrganization(platformId, deleteOrganizationId)
       .then(() => {
         onClose();
-        addSuccess(t('zimbra_organization_delete_success_message'), true);
+        addSuccess(
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            hue={ODS_THEME_COLOR_HUE._500}
+          >
+            {t('zimbra_organization_delete_success_message')}
+          </OsdsText>,
+          true,
+        );
       })
-      .catch((error) => {
+      .catch(({ response }) => {
         onClose();
         addError(
-          t('zimbra_organization_delete_error_message', {
-            error: error?.message,
-          }),
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            hue={ODS_THEME_COLOR_HUE._500}
+          >
+            {t('zimbra_organization_delete_error_message', {
+              error: response.data.message,
+            })}
+          </OsdsText>,
           true,
         );
       });
