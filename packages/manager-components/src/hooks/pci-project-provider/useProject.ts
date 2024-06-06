@@ -25,9 +25,16 @@ export interface ResponseAPIError {
 export const getProject = async (
   projectId: string,
 ): Promise<PublicCloudProject> => {
-  const { data } = await v6.get(`/cloud/project/${projectId}`);
-  return data as PublicCloudProject;
+  const { data } = await v6.get<PublicCloudProject>(
+    `/cloud/project/${projectId}`,
+  );
+  return data;
 };
+
+export const getProjectQuery = (projectId: string) => ({
+  queryKey: ['project', projectId],
+  queryFn: () => getProject(projectId),
+});
 
 export const useProject = (
   projectId?: string,
@@ -35,8 +42,7 @@ export const useProject = (
 ) => {
   const { projectId: defaultProjectId } = useParams();
   return useQuery({
-    queryKey: ['project', projectId],
-    queryFn: () => getProject(projectId || defaultProjectId),
+    ...getProjectQuery(projectId || defaultProjectId),
     ...opt,
   });
 };
