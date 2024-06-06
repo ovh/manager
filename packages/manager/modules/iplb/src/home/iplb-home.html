@@ -18,6 +18,7 @@
                 </oui-tile-definition>
                 <div data-ng-if="!$ctrl.iplbStatus.loading">
                     <oui-tile-definition
+                        class="text-break"
                         data-term="{{ ::statusInfo.displayName }}"
                         data-ng-repeat="statusInfo in $ctrl.iplbStatus.data | orderBy: 'weight' track by $index"
                     >
