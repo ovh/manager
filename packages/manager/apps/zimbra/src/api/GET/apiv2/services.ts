@@ -10,15 +10,8 @@ import {
 export const getZimbraPlatformListQueryKey = ['get/zimbra/platform'];
 
 export const getZimbraPlatformList = async () => {
-  try {
-    const response = await apiClient.v2.get<ZimbraPlatform[]>(
-      '/zimbra/platform',
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching Zimbra platform list:', error);
-    throw error;
-  }
+  const { data } = await apiClient.v2.get<ZimbraPlatform[]>('/zimbra/platform');
+  return data;
 };
 
 export const getZimbraPlatformOrganizationQueryKey = (platformId: string) => [
@@ -26,15 +19,10 @@ export const getZimbraPlatformOrganizationQueryKey = (platformId: string) => [
 ];
 
 export const getZimbraPlatformOrganization = async (platformId: string) => {
-  try {
-    const response = await apiClient.v2.get<Organization[]>(
-      `/zimbra/platform/${platformId}/organization`,
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching Zimbra organization list:', error);
-    throw error;
-  }
+  const { data } = await apiClient.v2.get<Organization[]>(
+    `/zimbra/platform/${platformId}/organization`,
+  );
+  return data;
 };
 
 export const getZimbraPlatformDomainsQueryKey = (
@@ -48,18 +36,14 @@ export const getZimbraPlatformDomains = async (
   platformId: string,
   organizationId?: string,
 ) => {
-  try {
-    const response = await apiClient.v2.get<Domain[]>(
-      `/zimbra/platform/${platformId}/domain${
-        organizationId ? `?organizationId=${organizationId}` : ''
-      }`,
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching Zimbra domain list:', error);
-    throw error;
-  }
+  const { data } = await apiClient.v2.get<Domain[]>(
+    `/zimbra/platform/${platformId}/domain${
+      organizationId ? `?organizationId=${organizationId}` : ''
+    }`,
+  );
+  return data;
 };
+
 export const getZimbraPlatformOrganizationDetailsQueryKey = (
   platformId: string,
   organizationId: string,
@@ -69,15 +53,10 @@ export const getZimbraPlatformOrganizationDetails = async (
   platformId: string,
   organizationId: string,
 ) => {
-  try {
-    const response = await apiClient.v2.get(
-      `/zimbra/platform/${platformId}/organization/${organizationId}`,
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching Zimbra organization details id', error);
-    throw error;
-  }
+  const { data } = await apiClient.v2.get(
+    `/zimbra/platform/${platformId}/organization/${organizationId}`,
+  );
+  return data;
 };
 
 export const getZimbraPlatformTaskQueryKey = (
@@ -91,18 +70,14 @@ export const getZimbraPlatformTask = async (
   platformId: string,
   organizationId?: string,
 ) => {
-  try {
-    const response = await apiClient.v2.get<Task[]>(
-      `/zimbra/platform/${platformId}/task${
-        organizationId ? `?organizationId=${organizationId}` : ''
-      }`,
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching Zimbra organization list:', error);
-    throw error;
-  }
+  const { data } = await apiClient.v2.get<Task[]>(
+    `/zimbra/platform/${platformId}/task${
+      organizationId ? `?organizationId=${organizationId}` : ''
+    }`,
+  );
+  return data;
 };
+
 export const getZimbraPlatformEmailsQueryKey = (
   platformId: string,
   organizationId?: string,
@@ -114,15 +89,10 @@ export const getZimbraPlatformEmails = async (
   platformId: string,
   organizationId?: string,
 ) => {
-  try {
-    const response = await apiClient.v2.get<Email[]>(
-      `/zimbra/platform/${platformId}/account${
-        organizationId ? `?organizationId=${organizationId}` : ''
-      }`,
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching Zimbra organization list:', error);
-    throw error;
-  }
+  const { data } = await apiClient.v2.get<Email[]>(
+    `/zimbra/platform/${platformId}/account${
+      organizationId ? `?organizationId=${organizationId}` : ''
+    }`,
+  );
+  return data;
 };

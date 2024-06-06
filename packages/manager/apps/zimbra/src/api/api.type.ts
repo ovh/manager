@@ -64,6 +64,12 @@ export type Organization = {
   currentTasks: Task[];
 };
 
+export type OrganizationBodyParams = {
+  description?: string;
+  label?: string;
+  name?: string;
+};
+
 export type Domain = {
   checksum: string;
   currentState: {
