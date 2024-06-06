@@ -20,6 +20,7 @@ import {
   PciGuidesHeader,
   useNotifications,
   useProject,
+  useProjectUrl,
 } from '@ovhcloud/manager-components';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -28,7 +29,6 @@ import { SizeStep } from '@/pages/add/SizeStep';
 import { LocationStep } from '@/pages/add/LocationStep';
 import { NetworkStep } from '@/pages/add/NetworkStep';
 import { useNewGatewayStore } from '@/pages/add/useStore';
-import { useProjectUrl } from '@/hooks/project-url';
 import { PUBLIC_GATEWAYS_READ_MORE_GUIDE } from '@/constants';
 import { ACTION_PREFIX } from '@/tracking.constants';
 

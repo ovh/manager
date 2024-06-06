@@ -16,9 +16,7 @@ interface NotificationProps {
  * It replicates the current behavior of public cloud notifications for
  * actions (success / errors / etc)
  */
-export const Notifications: FC<NotificationProps> = ({
-  clearAfterRead = true,
-}) => {
+export const Notifications: FC<NotificationProps> = () => {
   const { notifications, clearNotification } = useNotifications();
 
   useEffect(() => {

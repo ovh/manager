@@ -1,4 +1,4 @@
-import { StepComponent } from '@ovhcloud/manager-components';
+import { StepComponent, useCatalogPrice } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -24,7 +24,6 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGatewayCatalog } from '@/api/hooks/useGateway';
 import { TFormState } from '../New.page';
-import { useCatalogPrice } from '@/hooks/catalog-price';
 
 type TGatewaySummaryStep = {
   isOpen: boolean;
