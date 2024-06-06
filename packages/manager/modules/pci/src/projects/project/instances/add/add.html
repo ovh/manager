@@ -69,7 +69,7 @@
                                 data-variant="light"
                                 data-picture="{{ ::datacenters[0].icon }}"
                                 data-model="$ctrl.model.datacenter"
-                                data-on-change="$ctrl.model.location = location"
+                                data-on-change="$ctrl.updateLocation(location)"
                                 data-match="name"
                                 data-values="datacenters"
                             >
@@ -476,10 +476,6 @@
             data-ng-if="!$ctrl.isLocalZone()"
             class="font-weight-bold"
             data-translate="pci_projects_project_instances_add_privateNetwork_sub_title"
-        ></p>
-        <p
-            data-ng-if="!$ctrl.isLocalZone()"
-            data-translate="pci_projects_project_instances_add_privateNetwork_info1"
         ></p>
         <p
             data-ng-if="$ctrl.isLocalZone()"
