@@ -151,7 +151,7 @@
   "billing_autorenew_service_type_MS_SERVICES_SHAREPOINT": "Microsoft SharePoint",
   "billing_autorenew_service_type_PACK_XDSL": "Packs xDSL",
   "billing_autorenew_service_type_VRACK": "vRacks",
-  "billing_autorenew_service_type_VRACK_SERVICES_RESOURCE": "vRacks Services",
+  "billing_autorenew_service_type_VRACK_SERVICES_RESOURCE": "vRack Services",
   "billing_autorenew_service_type_NUTANIX": "Nutanix",
   "billing_export_csv": "Exporter en CSV",
   "billing_common_link_new_window": "(nouvelle fenêtre)",
