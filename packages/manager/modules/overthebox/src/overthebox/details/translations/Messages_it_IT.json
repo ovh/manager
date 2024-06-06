@@ -88,5 +88,6 @@
   "overTheBox_service_id": "Identificativo del servizio:",
   "overTheBox_authorize_autoupgrade": "Consenti aggiornamenti automatici notturni",
   "overTheBox_change_auto_upgrade_success": "La sostituzione delle puntate automatiche notturne è stata effettuata correttamente.",
-  "overTheBox_change_auto_upgrade_error": "Non è stato possibile effettuare la modifica delle puntate automatiche di notte: {{errorMessage}}"
+  "overTheBox_change_auto_upgrade_error": "Non è stato possibile effettuare la modifica delle puntate automatiche di notte: {{errorMessage}}",
+  "overTheBox_available_update": "È disponibile un aggiornamento per il dispositivo."
 }

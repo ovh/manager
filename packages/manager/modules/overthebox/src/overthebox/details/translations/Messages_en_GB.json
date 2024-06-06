@@ -88,5 +88,6 @@
   "overTheBox_service_id": "Service ID:",
   "overTheBox_authorize_autoupgrade": "Allow automatic updates at night",
   "overTheBox_change_auto_upgrade_success": "The automatic bets have been changed at night.",
-  "overTheBox_change_auto_upgrade_error": "We were unable to change your automatic payments at night: {{errorMessage}}"
+  "overTheBox_change_auto_upgrade_error": "We were unable to change your automatic payments at night: {{errorMessage}}",
+  "overTheBox_available_update": "An update is available for your device."
 }
