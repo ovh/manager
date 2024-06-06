@@ -13,14 +13,13 @@ Given('User has {word} vRack Services', function(
   this.handlersConfig.nbVs = Number(nbVsStr);
 });
 
-Given(
-  'User wants to create a vRack Services with name {string} and region {word}',
-  function(this: ICustomWorld<ConfigParams>, name: string, region: string) {
-    this.testContext.data.displayName = name;
-    this.testContext.data.selectedRegion = region;
-    this.testContext.initialUrl = getUrl('createVrackServices');
-  },
-);
+Given('User wants to create a vRack Services with region {word}', function(
+  this: ICustomWorld<ConfigParams>,
+  region: string,
+) {
+  this.testContext.data.selectedRegion = region;
+  this.testContext.initialUrl = getUrl('createVrackServices');
+});
 
 Given('User has a vRack Services order delivering', function(
   this: ICustomWorld<ConfigParams>,

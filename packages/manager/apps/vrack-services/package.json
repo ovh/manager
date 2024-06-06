@@ -35,6 +35,7 @@
     "@ovhcloud/ods-theme-blue-jeans": "17.2.1",
     "@tanstack/react-query": "5.29.2",
     "@tanstack/react-query-devtools": "5.29.2",
+    "axios": "^1.1.2",
     "i18next": "^20.4.0",
     "i18next-http-backend": "^2.4.2",
     "react": "^18.2.0",
