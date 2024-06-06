@@ -1,20 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import { ExternalLink } from 'lucide-react';
 import onboardingImgSrc from '../../../public/assets/onboarding-image.png';
 import Guides from '@/components/guides';
 import { GuideSections } from '@/models/guide';
 import { Button } from '@/components/ui/button';
-import { A, Link } from '@/components/links';
+import { Link } from '@/components/links';
 import { useTrackPage, useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
 import OnboardingTile from './onboardingTile';
 
 const Onboarding = () => {
