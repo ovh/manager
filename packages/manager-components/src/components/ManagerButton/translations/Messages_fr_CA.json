@@ -1,0 +1,4 @@
+{
+  "common_iam_get_message": "Vous ne disposez pas des permissions nécessaires pour afficher les données de cette ressource. Veuillez contacter votre administrateur.",
+  "common_iam_actions_message": "Vous ne disposez pas des permissions nécessaires pour effectuer cette action, veuillez contacter votre administrateur"
+}

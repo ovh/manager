@@ -24,5 +24,6 @@
   "server_consumption_current_period_remaining": "Pozostało {{t0}}",
   "dedicated_server_bandwidth_public": "Przepustowość do sieci publicznej",
   "dedicated_server_bandwidth_private": "Przepustowość do sieci prywatnej",
-  "dedicated_cluster_bandwidth_public": "Przepustowość do sieci publicznej klastra"
+  "dedicated_cluster_bandwidth_public": "Przepustowość do sieci publicznej klastra",
+  "dedicated_cluster_bandwidth_private": "Przepustowość do sieci prywatnej klastra"
 }
