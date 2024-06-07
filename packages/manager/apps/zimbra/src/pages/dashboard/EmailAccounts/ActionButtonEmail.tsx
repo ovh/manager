@@ -1,9 +1,26 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovhcloud/manager-components';
+import { useHref } from 'react-router-dom';
+import { EmailsItem } from './EmailAccounts';
+import { useOrganization } from '@/hooks';
 
-const ActionButtonEmail: React.FC = () => {
+interface ActionButtonEmailAccountProps {
+  emailsItem: EmailsItem;
+}
+
+const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
+  emailsItem,
+}) => {
   const { t } = useTranslation('emails');
+  const { data: organization } = useOrganization();
+
+  const hrefDeleteEmailAccount = useHref(
+    `./delete?deleteEmailAccountId=${emailsItem.id}${
+      organization?.id ? `&organizationId=${organization.id}` : ''
+    }`,
+  );
+
   const actionItems = [
     {
       id: 1,
@@ -12,7 +29,7 @@ const ActionButtonEmail: React.FC = () => {
     },
     {
       id: 2,
-      onClick: () => window.open('https://ovhcloud.com', '_blank', 'noopener'),
+      href: hrefDeleteEmailAccount,
       label: t('zimbra_emails_datagrid_tooltip_delete'),
     },
   ];
