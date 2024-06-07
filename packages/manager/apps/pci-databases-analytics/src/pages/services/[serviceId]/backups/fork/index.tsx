@@ -16,9 +16,15 @@ import { useVrack } from '@/hooks/useVrack';
 import { Network } from '@/models/network';
 import { ForkSource, ForkSourceType } from '@/models/order-funnel';
 import { updateTags } from '@/lib/tagsHelper';
+import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 
 export function breadcrumb() {
-  return 'Fork';
+  return (
+    <BreadcrumbItem
+      translationKey={`breadcrumb`}
+      namespace="pci-databases-analytics/services/service/backups/fork"
+    />
+  );
 }
 
 export interface ForkInitialValue extends database.Suggestion {
@@ -122,7 +128,7 @@ const Fork = () => {
       <p>{t('description')}</p>
 
       {loading ? (
-        <Skeleton className="h-4 w-32" />
+        <Skeleton data-testid="fork-skeleton" className="h-4 w-32" />
       ) : (
         <ForkForm
           availabilities={availabilitiesQuery.data}

@@ -97,7 +97,6 @@ const OrderFunnel = ({
 
   const onSubmit = model.form.handleSubmit(
     (data) => {
-      console.log('in On Submit');
       // data has been validated, create payload and submit post request
       const serviceInfos: ServiceCreationWithEngine = {
         description: data.name,

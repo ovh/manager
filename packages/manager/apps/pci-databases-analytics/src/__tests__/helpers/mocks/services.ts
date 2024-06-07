@@ -173,6 +173,11 @@ export const mockedServiceInte: database.Service = {
   version: 'version',
 };
 
+export const mockedForkService: database.Service = {
+  ...mockedService,
+  id: 'serviceIdWith36caractèresForForkings',
+};
+
 export const mockedServiceCreation: database.ServiceCreation = {
   description: 'description',
   ipRestrictions: [

@@ -14,7 +14,7 @@ export const mockedNetworks: Network[] = [
     regions: [
       {
         region: 'GRA',
-        openstackId: '123456',
+        openstackId: 'networkId',
         status: NetworkRegionStatusEnum.ACTIVE,
       },
     ],
@@ -40,3 +40,20 @@ export const mockedVrack: Vrack = {
   id: 'vrackId',
   name: 'vrackName',
 };
+
+export const mockedNetworksFork: Network[] = [
+  {
+    id: 'id1',
+    name: 'network1',
+    regions: [
+      {
+        region: 'region',
+        openstackId: 'networkId',
+        status: NetworkRegionStatusEnum.ACTIVE,
+      },
+    ],
+    vlanId: 0,
+    status: NetworkStatusEnum.ACTIVE,
+    type: NetworkTypeEnum.private,
+  },
+];
