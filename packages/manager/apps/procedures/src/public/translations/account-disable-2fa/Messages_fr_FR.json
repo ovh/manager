@@ -31,5 +31,12 @@
   "account-disable-2fa-file-input-attachments": "Fichier(s) joint(s)",
 
   "account-disable-2fa-create-form-legal-info": "Les données indiquées comme facultatives ne sont pas strictement nécessaires à l'authentification, toutefois la non fourniture des autres données empêche l'authentification et donnera lieu à l'annulation automatique de votre demande. OVH S.A.S traite les données à caractère personnel transmises via ce formulaire en qualité de responsable du traitement aux fins de prévention de la fraude et d'authentification.",
-  "account-disable-2fa-create-form-legal-info-policy": "Pour en savoir plus, sur le traitement de vos données personnelles et connaître vos droits, vous pouvez consulter notre <a style='color:#2563eb; font-weight: 700;' href='{{legalPolicyLink}}' target='_blank'>Politique d'utilisation de données à caractère personnel OVHcloud.</a>"
+  "account-disable-2fa-create-form-legal-info-policy": "Pour en savoir plus, sur le traitement de vos données personnelles et connaître vos droits, vous pouvez consulter notre <a style='color:#2563eb; font-weight: 700;' href='{{legalPolicyLink}}' target='_blank'>Politique d'utilisation de données à caractère personnel OVHcloud.</a>",
+
+  "account-disable-2fa-session-modal-expired-title": "Vous avez été déconnecté.",
+  "account-disable-2fa-session-modal-expired-message": "Merci de vous identifier à nouveau.",
+  "account-disable-2fa-session-modal-expired-auth-button": "Retour à l'authentification",
+
+  "account-disable-2fa-session-modal-warning-message": "Votre session va bientôt expirer",
+  "account-disable-2fa-session-modal-warning-ok-button": "Ok"
 }
