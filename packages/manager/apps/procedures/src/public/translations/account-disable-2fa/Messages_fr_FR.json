@@ -1,0 +1,11 @@
+{
+  "account-disable-2fa-see-title": "Vous avez déjà demandé la désactivation de la double authentification.",
+  "account-disable-2fa-see-description1": "Veuillez répondre sur l'échange e-mail initial ou attendre sa clôture avant de soumettre une nouvelle demande.",
+  "account-disable-2fa-see-description2": "Vous n'avez reçu aucun e-mail ? Veuillez nous contacter à l'aide des informations ci-dessous :",
+  "account-disable-2fa-back-home": "Retour à la page d'accueil",
+  "account-disable-2fa-file-input-select-file": "Sélectionner un fichier",
+  "account-disable-2fa-file-input-select-files": "Sélectionner des fichiers...",
+  "account-disable-2fa-file-input-type-file-error": "Format de fichier non pris en charge. Veuillez utiliser l'un des formats acceptés : {{types}} et {{lastType}}.",
+  "account-disable-2fa-file-input-size-file-error": "Le fichier dépasse la taille limite.",
+  "account-disable-2fa-file-input-attachments": "Fichier(s) joint(s)"
+}
