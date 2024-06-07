@@ -19,6 +19,10 @@ export default /* @ngInject */ ($stateProvider) => {
         featureAvailability.isFeatureAvailable(
           'dedicated-cloud:canAddVirtualDatacenter',
         ),
+      goToDeleteDatacenter: /* @ngInject */ ($state) => (datacenterId) =>
+        $state.go('app.dedicatedCloud.details.datacenter.delete-datacenter', {
+          datacenterId,
+        }),
       migrationBannerAvailable: /* @ngInject */ (featureAvailability) =>
         featureAvailability.isFeatureAvailable(
           'dedicated-cloud:migrationBanner',
