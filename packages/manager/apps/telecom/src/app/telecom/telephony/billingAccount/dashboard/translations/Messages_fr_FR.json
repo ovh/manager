@@ -38,7 +38,7 @@
   "telephony_group_billing_dashboard_RMA_title": "RMA",
   "telephony_group_billing_dashboard_calls": "Appels",
   "telephony_group_line_softphone_apply_theme_globally": "Appliquer un thème Softphone",
-  "telephony_group_line_softphone_upload_logo": "Upload logo",
+  "telephony_group_line_softphone_upload_logo": "Ajouter un logo",
   "telephony_group_line_softphone_your_logo": "Votre logo",
   "telephony_group_line_softphone_apply_theme_error": "Votre thème n'a pas pu être appliqué: {{errorMessage}}",
   "telephony_group_line_softphone_btn_apply_theme": "Appliquer un thème et un logo",

@@ -6,6 +6,7 @@ import component from './softphone.component';
 import themeComponent from './theme/theme.component';
 import softphoneService from './softphone.service';
 import addDeviceModule from './addDevice';
+import sendLinkModule from './sendLinkByMail';
 import deleteDeviceModule from './deleteDevice';
 import './softphone.scss';
 
@@ -14,6 +15,7 @@ const moduleName = 'ovhManagerTelecomTelephonyLineSoftphone';
 angular
   .module(moduleName, [
     addDeviceModule,
+    sendLinkModule,
     deleteDeviceModule,
     ngOvhTelecomUniverseComponents,
     'ngTranslateAsyncLoader',
