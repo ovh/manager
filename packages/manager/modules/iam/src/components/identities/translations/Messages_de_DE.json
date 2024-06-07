@@ -1,0 +1,6 @@
+{
+  "iam_identities_title": "Identitäten",
+  "iam_identities_description": "Wählen Sie die Identitäten aus, die Sie dieser Richtlinie zuordnen möchten.",
+  "iam_identities_delete": "Aus Richtlinie entfernen",
+  "iam_identities_urn": "Identität"
+}

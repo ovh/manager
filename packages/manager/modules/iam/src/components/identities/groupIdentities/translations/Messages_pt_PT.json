@@ -1,0 +1,12 @@
+{
+  "iam_identities_groups_title": "Grupos de utilizadores",
+  "iam_identities_groups_empty": "Nenhum grupo de utilizadores",
+  "iam_identities_groups_group": "Nome",
+  "iam_identities_groups_role": "Função",
+  "iam_identities_groups_description": "Descrição",
+  "iam_identities_groups_add": "Adicionar grupos de utilizadores",
+  "iam_identities_groups_modal_title": "Adicionar grupos de utilizadores",
+  "iam_identities_groups_modal_empty_state": "Nenhum grupo de utilizadores para adicionar",
+  "iam_identities_groups_modal_search_placeholder": "Procurar por nome",
+  "iam_identities_groups_load_error": "Ocorreu um erro ao obter os seus grupos de utilizadores: {{ message }}"
+}

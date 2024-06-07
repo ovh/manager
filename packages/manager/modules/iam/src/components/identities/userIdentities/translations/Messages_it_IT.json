@@ -1,0 +1,17 @@
+{
+  "iam_identities_users_title": "Utenti locali",
+  "iam_identities_users_empty": "Nessun utente locale",
+  "iam_identities_users_user": "Nome",
+  "iam_identities_users_group": "Gruppo",
+  "iam_identities_users_email": "Email",
+  "iam_identities_users_status": "Stato",
+  "iam_identities_users_description": "Descrizione",
+  "iam_identities_users_status_OK": "Attivato",
+  "iam_identities_users_status_DISABLED": "Disattivato",
+  "iam_identities_users_status_PASSWORD_CHANGE_REQUIRED": "Modifica della password necessaria",
+  "iam_identities_users_add": "Aggiungere utenti",
+  "iam_identities_users_modal_title": "Aggiungere utenti locali",
+  "iam_identities_users_modal_empty_state": "Nessun utente locale da aggiungere",
+  "iam_identities_users_modal_search_placeholder": "Cercare per nome o email",
+  "iam_identities_users_load_error": "Si è verificato un errore durante il recupero degli utenti locali: {{ message }}"
+}

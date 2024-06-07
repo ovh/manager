@@ -1,0 +1,12 @@
+{
+  "iam_identities_groups_title": "Nutzergruppen",
+  "iam_identities_groups_empty": "Keine Nutzergruppen",
+  "iam_identities_groups_group": "Name",
+  "iam_identities_groups_role": "Rolle",
+  "iam_identities_groups_description": "Beschreibung",
+  "iam_identities_groups_add": "Nutzergruppen hinzufügen",
+  "iam_identities_groups_modal_title": "Nutzergruppen hinzufügen",
+  "iam_identities_groups_modal_empty_state": "Keine Nutzergruppen zum Hinzufügen vorhanden",
+  "iam_identities_groups_modal_search_placeholder": "Nach Name suchen",
+  "iam_identities_groups_load_error": "Beim Abrufen Ihrer Nutzergruppen ist ein Fehler aufgetreten: {{ message }}"
+}
