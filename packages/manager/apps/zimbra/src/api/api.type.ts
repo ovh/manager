@@ -81,6 +81,7 @@ export type Domain = {
     organizationLabel: string;
     status: ResourceStatus;
     updatedAt: string;
+    accountsStatistics: AccountStatistics[];
   };
   currentTasks: Array<{
     id: string;
@@ -99,8 +100,10 @@ export type Domain = {
     organizationLabel: string;
     status: ResourceStatus;
     updatedAt: string;
+    accountsStatistics: AccountStatistics[];
   };
 };
+
 export type TaskErrorMessage = {
   message: string;
 };
@@ -131,6 +134,7 @@ export enum ResourceStatus {
   READY = 'READY',
   UPDATING = 'UPDATING',
 }
+
 export type Email = {
   checksum: string;
   currentState: {
@@ -163,6 +167,7 @@ export type Email = {
     lastName: string;
     organizationId: string;
     organizationLabel: string;
+    offer: string;
     password: string;
     quota: {
       available: number;
@@ -209,6 +214,7 @@ export type Email = {
     lastName: string;
     organizationId: string;
     organizationLabel: string;
+    offer: string;
     password: string;
     quota: {
       available: number;

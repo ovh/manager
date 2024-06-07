@@ -96,3 +96,18 @@ export const getZimbraPlatformEmails = async (
   );
   return data;
 };
+
+export const getZimbraPlatformEmailsDetailQueryKey = (
+  platformId: string,
+  accountId?: string,
+) => [`get/zimbra/platform/${platformId}/account/${accountId}`];
+
+export const getZimbraPlatformEmailsDetail = async (
+  platformId: string,
+  accountId: string,
+) => {
+  const { data } = await apiClient.v2.get<Email>(
+    `/zimbra/platform/${platformId}/account/${accountId}`,
+  );
+  return data;
+};
