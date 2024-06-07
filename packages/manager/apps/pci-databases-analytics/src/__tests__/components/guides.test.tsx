@@ -7,9 +7,6 @@ import {
   waitFor,
 } from '@testing-library/react';
 
-import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/layout';
-
 import Guides from '@/components/guides';
 
 import { Locale } from '@/hooks/useLocale';

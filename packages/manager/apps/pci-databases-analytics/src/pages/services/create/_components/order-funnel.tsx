@@ -97,6 +97,7 @@ const OrderFunnel = ({
 
   const onSubmit = model.form.handleSubmit(
     (data) => {
+      console.log('in On Submit');
       // data has been validated, create payload and submit post request
       const serviceInfos: ServiceCreationWithEngine = {
         description: data.name,
@@ -149,7 +150,10 @@ const OrderFunnel = ({
       {isProjectDiscoveryMode && (
         <Alert variant="warning">
           <AlertDescription className="text-base">
-            <div className="flex flex-col items-stretch  md:flex-row md:items-center justify-between gap-4">
+            <div
+              data-testid="discovery-container"
+              className="flex flex-col items-stretch  md:flex-row md:items-center justify-between gap-4"
+            >
               <div className="flex flex-row gap-5 items-center">
                 <AlertCircle className="h-6 w-6" />
                 <p>{t('discoveryMode')}</p>
@@ -173,7 +177,10 @@ const OrderFunnel = ({
           className="grid grid-cols-1 lg:grid-cols-4 gap-4"
           onSubmit={onSubmit}
         >
-          <div className="col-span-1 md:col-span-3 divide-y-[1rem] divide-transparent">
+          <div
+            data-testid="order-funnel-container"
+            className="col-span-1 md:col-span-3 divide-y-[1rem] divide-transparent"
+          >
             <section id="engine">
               <FormField
                 control={model.form.control}
@@ -417,6 +424,7 @@ const OrderFunnel = ({
             </CardContent>
             <CardFooter className="flex justify-between">
               <Button
+                data-testid="order-submit-button"
                 className="w-full"
                 disabled={isPendingAddService || isProjectDiscoveryMode}
               >

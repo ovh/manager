@@ -6,6 +6,8 @@ export const mockedBasicOrderFunnelFlavor: Flavor = {
   name: 'flavorName',
   order: 1,
   default: true,
+  vcores: 2,
+  ram: { unit: 'GB', value: 40 },
   tags: [database.capabilities.Tags.current],
   pricing: {
     hourly: {

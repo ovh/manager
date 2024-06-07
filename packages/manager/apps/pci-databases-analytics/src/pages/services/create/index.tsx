@@ -88,7 +88,10 @@ const Service = () => {
         ></Trans>
       </p>
       {loading ? (
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+        <div
+          data-testid="order-funnel-skeleton"
+          className="grid grid-cols-1 lg:grid-cols-4 gap-4"
+        >
           <div className="col-span-1 md:col-span-3 divide-y-[1rem] divide-transparent">
             <Skeleton className="w-80 h-8" />
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
