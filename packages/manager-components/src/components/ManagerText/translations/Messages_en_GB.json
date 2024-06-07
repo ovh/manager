@@ -1,0 +1,5 @@
+{
+  "iam_hidden_text": "Hidden",
+  "common_iam_get_message": "You do not have the necessary permissions to view data for this resource. Please contact your administrator.",
+  "common_iam_actions_message": "You do not have the necessary permissions to perform this action, please contact your administrator"
+}
