@@ -8,7 +8,12 @@ export default /* @ngInject */ ($stateProvider) => {
           component: 'softphoneAddDevice',
         },
       },
+      params: {
+        deviceId: null,
+      },
       resolve: {
+        deviceId: /* @ngInject */ ($transition$) =>
+          $transition$.params().deviceId,
         angularQr: /* @ngInject */ ($ocLazyLoad) =>
           import('angular-qr').then((module) =>
             $ocLazyLoad.inject(module.default || module),
