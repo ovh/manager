@@ -1,3 +1,4 @@
+import { redirect } from 'react-router-dom';
 import { getProjectQuery } from '@ovhcloud/manager-components';
 import queryClient from '@/queryClient';
 
@@ -17,7 +18,7 @@ export interface RouteHandle {
 }
 
 const ROUTE_PATHS = {
-  root: '',
+  root: '/pci/projects/:projectId/storages/blocks',
 };
 
 export default [
@@ -26,12 +27,41 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/Layout')),
   },
   {
-    id: '',
+    id: 'pci-block-storage',
     path: ROUTE_PATHS.root,
     loader: async ({ params }) =>
       queryClient.fetchQuery(getProjectQuery(params.projectId)),
     ...lazyRouteConfig(() => import('@/pages/Layout')),
-    children: [],
+    children: [
+      {
+        path: '',
+        ...lazyRouteConfig(() => import('@/pages/list/List.page')),
+        children: [
+          {
+            path: 'delete',
+            loader: ({ params, request }) => {
+              // this redirection is added to be iso with angularJS app URLs
+              const storageId = new URL(request.url).searchParams.get(
+                'storageId',
+              );
+              return redirect(
+                `/pci/projects/${params.projectId}/storages/blocks/delete/${storageId}`,
+              );
+            },
+          },
+          {
+            path: 'delete/:volumeId',
+            ...lazyRouteConfig(() =>
+              import('@/pages/delete/DeleteStorage.page'),
+            ),
+            handle: {
+              tracking: 'delete',
+            },
+            children: [],
+          },
+        ],
+      },
+    ],
   },
   {
     path: '*',
