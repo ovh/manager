@@ -1,11 +1,7 @@
 import { set } from 'lodash';
 import capitalize from 'lodash/capitalize';
 import { getCriteria } from '../../project.utils';
-import {
-  ENGINE_LOGOS,
-  DATABASE_TYPES,
-  NODES_PER_ROW,
-} from './databases.constants';
+import { ENGINE_LOGOS, NODES_PER_ROW } from './databases.constants';
 import isFeatureActivated from './features.constants';
 import Database from '../../../../components/project/storages/databases/database.class';
 
@@ -76,10 +72,6 @@ export default class {
       );
       return enrichedDatabase;
     });
-  }
-
-  hasTypeRedis() {
-    return this.databases.find((elm) => elm.engine === DATABASE_TYPES.REDIS);
   }
 
   loadMessages() {
