@@ -6,7 +6,7 @@ import {
 
 export default class SoftphoneController {
   /* @ngInject */
-  constructor(softphoneService, $stateParams, $translate, $q, TucToast) {
+  constructor(softphoneService, $translate, $q, TucToast) {
     this.acceptedFormats = LOGO_FILE_FORMATS;
     this.acceptedFormatsDesc = LOGO_FILE_FORMATS.map((format) =>
       ['image/', format].join(''),
@@ -19,7 +19,7 @@ export default class SoftphoneController {
   }
 
   $onInit() {
-    this.constructor.getMobileOperatingSystem();
+    this.getMobileOperatingSystem();
     this.MOBILE_OS = MOBILE_OS;
     this.guide = {
       title: 'mocked_title',
@@ -29,7 +29,7 @@ export default class SoftphoneController {
     };
   }
 
-  static getMobileOperatingSystem() {
+  getMobileOperatingSystem() {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
     // Windows Phone must come first because its UA also contains "Android"
     if (/windows phone/i.test(userAgent)) {
