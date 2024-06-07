@@ -1,0 +1,36 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-heading="{{ ::'telephony_line_softphone_button_email_link' | translate }}"
+    data-primary-action="$ctrl.sendMail()"
+    data-primary-label="{{ :: 'telephony_line_softphone_confirm_button' | translate }}"
+    data-primary-disabled="!$ctrl.model.email || $ctrl.sendLinkByMail.$invalid"
+>
+    <p data-translate="telephony_line_softphone_send_mail_description"></p>
+    <div
+        class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-between"
+    >
+        <form class="form-inline" name="$ctrl.sendLinkByMail">
+            <div class="row">
+                <oui-field
+                    class="col-md-12"
+                    data-error-messages="{required: ('telephony_line_softphone_send_link_warning' | translate )}"
+                    data-label="{{ ::'telephony_line_softphone_send_link_label' | translate }}"
+                >
+                    <div class="oui-input-group oui-input-group_inline">
+                        <input
+                            type="text"
+                            id="email"
+                            name="email"
+                            class="oui-input mr-2"
+                            data-ui-validate="'$ctrl.validator.isEmail($value)'"
+                            data-ng-model="$ctrl.model.email"
+                            data-ng-class="{'oui-field_error': $ctrl.softphoneAddDeviceForm.input_name.$invalid}"
+                            placeholder="{{'telephony_line_softphone_send_link_placeholder'  | translate : {example: $ctrl.currentUserEmail} }}"
+                            required
+                        />
+                    </div>
+                </oui-field>
+            </div>
+        </form>
+    </div>
+</oui-modal>

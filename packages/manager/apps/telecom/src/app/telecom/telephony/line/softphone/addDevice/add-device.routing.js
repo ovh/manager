@@ -13,6 +13,11 @@ export default /* @ngInject */ ($stateProvider) => {
           import('angular-qr').then((module) =>
             $ocLazyLoad.inject(module.default || module),
           ),
+        goToSendLinkByMailModal: /* @ngInject */ ($state) => (deviceId) =>
+          $state.go(
+            'telecom.telephony.billingAccount.line.dashboard.softphone.mail',
+            { deviceId },
+          ),
         goBack: /* @ngInject */ ($state) => (reload) =>
           $state.go('^', {}, { reload }),
       },
