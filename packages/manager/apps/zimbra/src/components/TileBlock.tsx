@@ -23,9 +23,9 @@ export const TileBlock: React.FC<React.PropsWithChildren<TileBlockProps>> = ({
     </OsdsText>
     <OsdsText
       className="mb-2"
-      size={ODS_TEXT_SIZE._400}
+      size={ODS_TEXT_SIZE._100}
       level={ODS_TEXT_LEVEL.body}
-      color={ODS_THEME_COLOR_INTENT.default}
+      color={ODS_THEME_COLOR_INTENT.text}
     >
       {children}
     </OsdsText>

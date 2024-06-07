@@ -27,9 +27,10 @@ export type OrganizationItem = {
   id: string;
   name: string;
   label: string;
-  account: string;
+  account: number;
   status: string;
 };
+
 const columns: DatagridColumn<OrganizationItem>[] = [
   {
     id: 'name',
@@ -47,7 +48,7 @@ const columns: DatagridColumn<OrganizationItem>[] = [
     cell: (item: OrganizationItem) => (
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._200}
+        size={ODS_TEXT_SIZE._100}
         level={ODS_TEXT_LEVEL.body}
       >
         {item.account}
@@ -83,9 +84,10 @@ export default function Organizations() {
       id: item.id,
       name: item.targetSpec.name,
       label: item.targetSpec.label,
-      account:
-        item.targetSpec.accountsStatistics[0]?.configuredAccountsCount?.toString() ||
-        '',
+      account: item.targetSpec.accountsStatistics.reduce(
+        (acc, current) => acc + current.configuredAccountsCount,
+        0,
+      ),
       status: item.resourceStatus || '',
     })) ?? [];
 

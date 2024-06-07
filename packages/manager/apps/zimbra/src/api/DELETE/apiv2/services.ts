@@ -9,3 +9,13 @@ export const deleteZimbraPlatformOrganization = async (
   );
   return data;
 };
+
+export const deleteZimbraPlatformAccount = async (
+  platformId: string,
+  accountId: string,
+) => {
+  const { data } = await apiClient.v2.delete(
+    `/zimbra/platform/${platformId}/account/${accountId}`,
+  );
+  return data;
+};

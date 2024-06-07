@@ -1,0 +1,11 @@
+{
+  "zimbra_emails_delete_modal_title": "Supprimer la boite mail",
+  "zimbra_emails_delete_modal_content_step1": "Vous êtes sur le point de supprimer la boîte mail du serveur Zimbra.",
+  "zimbra_emails_delete_modal_mail_label": "Boîte mail :",
+  "zimbra_emails_delete_modal_content_step2": "Êtes-vous sûr de vouloir supprimer la boite mail du serveur Zimbra ?",
+  "zimbra_emails_delete_modal_warn_message": "Attention cette action est irréversible et entraîne la suppression des données.",
+  "zimbra_emails_delete_button_delete": "Supprimer",
+  "zimbra_emails_delete_button_cancel": "Annuler",
+  "zimbra_emails_delete_success_message": "Votre demande de suppression a bien été prise en compte.",
+  "zimbra_emails_delete_error_message": "Votre demande de suppression n'a pas pu aboutir. {{ error }}"
+}

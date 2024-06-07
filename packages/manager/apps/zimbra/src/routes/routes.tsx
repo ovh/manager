@@ -87,6 +87,16 @@ export const Routes: any = [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/EmailAccounts/EmailAccounts'),
             ),
+            children: [
+              {
+                path: 'delete',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/ModalDeleteEmailAccount'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },
