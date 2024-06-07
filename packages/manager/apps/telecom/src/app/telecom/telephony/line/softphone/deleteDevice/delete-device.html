@@ -1,7 +1,8 @@
 <oui-modal
+    type="warning"
     data-on-dismiss="$ctrl.goBack()"
-    data-secondary-action="$ctrl.deleteDevice()"
-    data-secondary-label="{{:: 'telephony_line_softphone_btn_delete' | translate }}"
+    data-primary-action="$ctrl.deleteDevice()"
+    data-primary-label="{{:: 'telephony_line_softphone_btn_delete' | translate }}"
     data-heading="{{ ::'telephony_line_softphone_delete_device_modal_title' | translate }}"
 >
     <p>
