@@ -5,6 +5,11 @@ import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
 import { isMobile } from '@/container/nav-reshuffle/sidebar/utils';
 import StaticLink from '@/container/nav-reshuffle/sidebar/StaticLink';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import {
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 
 type SidebarLinkProps = {
   count?: number | boolean;
@@ -49,7 +54,14 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       id={id}
     >
       <span> {t(isShortText ? node.shortTranslation : node.translation)}</span>
-      <div>
+      <div className='flex align-items-center'>
+        {!isShortText && (count as number) > 0 && (
+          <OsdsIcon
+            name={ODS_ICON_NAME.SHAPE_DOT}
+            size={ODS_ICON_SIZE.xs}
+            className={style.sidebarLinkTag}
+          />
+        )}
         {!isShortText && node.children ? (
           <span
             className={`oui-icon oui-icon-chevron-right ${style.sidebar_arrow}`}
@@ -57,13 +69,6 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
           ></span>
         ) : null}
         {!isShortText && <SidebarLinkTag node={node} />}
-        {!isShortText && (count as number) > 0 && (
-          <span
-            className={`oui-badge oui-badge_s oui-badge_new ml-1 ${style.sidebar_chip}`}
-          >
-            {count}
-          </span>
-        )}
       </div>
     </button>
   );
