@@ -4,7 +4,6 @@ import 'oclazyload';
 
 import service from './billingAccount.service';
 import softphoneService from '../line/softphone/softphone.service';
-import themeComponent from '../line/softphone/theme/theme.component';
 
 const moduleName = 'ovhManagerTelecomTelephonyBillingAccountLazyLoading';
 
@@ -24,7 +23,6 @@ angular
     },
   )
   .service('telecomBillingAccount', service)
-  .component('themePicker', themeComponent)
   .service('softphoneService', softphoneService);
 
 export default moduleName;

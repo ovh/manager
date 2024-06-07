@@ -1,9 +1,9 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import routing from './delete-device.routing';
-import component from './delete-device.component';
+import routing from './send-link.routing';
+import component from './send-link.component';
 
-const moduleName = 'ovhManagerTelecomTelephonyLineSoftphoneDeleteDevice';
+const moduleName = 'ovhManagerTelecomTelephonyLineSoftphoneSendLink';
 
 angular
   .module(moduleName, [
@@ -11,7 +11,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
   ])
-  .component('softphoneDeleteDevice', component)
+  .component('softphoneSendLinkByMail', component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

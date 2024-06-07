@@ -44,6 +44,17 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
+  sendProvisioningToken(billingAccount, serviceName, deviceId, email) {
+    return this.$http
+      .post(
+        `/telephony/${billingAccount}/line/${serviceName}/devices/${deviceId}/sendProvisioningToken`,
+        {
+          email,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
   getStoreLinks() {
     return this.$http
       .get('/telephony/softphone/storeLinks')
