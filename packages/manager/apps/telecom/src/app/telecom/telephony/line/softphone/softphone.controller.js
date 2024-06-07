@@ -80,12 +80,23 @@ export default class SoftphoneController {
         });
     }
 
-    promise.catch((error) =>
-      this.TucToast.error(
-        this.$translate.instant('telephony_line_softphone_apply_theme_error', {
-          errorMessage: error.message,
-        }),
-      ),
-    );
+    promise
+      .then(() =>
+        this.TucToast.success(
+          this.$translate.instant(
+            'telephony_line_softphone_apply_theme_success',
+          ),
+        ),
+      )
+      .catch((error) =>
+        this.TucToast.error(
+          this.$translate.instant(
+            'telephony_line_softphone_apply_theme_error',
+            {
+              errorMessage: error.message,
+            },
+          ),
+        ),
+      );
   }
 }
