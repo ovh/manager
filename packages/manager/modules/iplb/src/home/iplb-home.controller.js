@@ -12,6 +12,7 @@ import {
   INFO_LINK,
   MESSAGE_DISPLAY_DATE,
   LB_TEMPORARY_WARNING_BANNER_FEATURE,
+  LB_DISPLAY_USE_SECTION_FEATURE,
 } from './iplb-home.constants';
 
 export default class IpLoadBalancerHomeCtrl {
@@ -99,6 +100,14 @@ export default class IpLoadBalancerHomeCtrl {
       callback: () => this.$state.go('iplb.detail.server-farm'),
       isAvailable: () => true,
     };
+
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability(LB_DISPLAY_USE_SECTION_FEATURE)
+      .then((ipDisplayUseSectionFeatureResult) => {
+        this.isIplbUsageAvailable = ipDisplayUseSectionFeatureResult.isFeatureAvailable(
+          LB_DISPLAY_USE_SECTION_FEATURE,
+        );
+      });
   }
 
   initLoaders() {

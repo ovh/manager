@@ -26,8 +26,11 @@ export const MESSAGE_DISPLAY_DATE = '2023-04-01';
 export const LB_TEMPORARY_WARNING_BANNER_FEATURE =
   'ip-load-balancer:lb-temporary-warning-banner';
 
+export const LB_DISPLAY_USE_SECTION_FEATURE = 'ip-load-balancer:lb-usage';
+
 export default {
   INFO_LINK,
   MESSAGE_DISPLAY_DATE,
   LB_TEMPORARY_WARNING_BANNER_FEATURE,
+  LB_DISPLAY_USE_SECTION_FEATURE,
 };
