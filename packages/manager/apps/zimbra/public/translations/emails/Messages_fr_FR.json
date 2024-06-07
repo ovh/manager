@@ -1,6 +1,7 @@
 {
   "zimbra_emails_datagrid_email_label": "Comptes email",
   "zimbra_emails_datagrid_organization_label": "Organisation",
+  "zimbra_emails_datagrid_offer_label": "Offre",
   "zimbra_emails_datagrid_webmail_label": "Webmail :",
   "zimbra_emails_datagrid_quota": "Taille",
   "zimbra_emails_datagrid_quota_octets": "Octets",

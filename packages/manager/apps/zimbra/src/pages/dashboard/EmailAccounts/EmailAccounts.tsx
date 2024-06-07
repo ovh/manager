@@ -13,7 +13,9 @@ import {
   DatagridColumn,
   Links,
   LinkType,
+  Notifications,
 } from '@ovhcloud/manager-components';
+import { Outlet } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
   getZimbraPlatformEmails,
@@ -25,20 +27,23 @@ import guidesConstants from '@/guides.constants';
 import ActionButtonEmail from './ActionButtonEmail';
 import { convertOctets } from '@/utils';
 
-type EmailsItem = {
+export type EmailsItem = {
   id: string;
   email: string;
+  offer: string;
+  organizationId: string;
   organizationLabel: string;
   used: number;
   available: number;
 };
+
 const columns: DatagridColumn<EmailsItem>[] = [
   {
     id: 'email account',
     cell: (item) => (
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._200}
+        size={ODS_TEXT_SIZE._100}
         level={ODS_TEXT_LEVEL.body}
       >
         {item.email}
@@ -50,16 +55,30 @@ const columns: DatagridColumn<EmailsItem>[] = [
     id: 'organization',
     cell: (item) =>
       item.organizationLabel && (
-        <LabelChip id={item.id}>{item.organizationLabel}</LabelChip>
+        <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
       ),
     label: 'zimbra_emails_datagrid_organization_label',
+  },
+  {
+    id: 'offer',
+    cell: (item) =>
+      item.offer && (
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_TEXT_SIZE._100}
+          level={ODS_TEXT_LEVEL.body}
+        >
+          {item.offer}
+        </OsdsText>
+      ),
+    label: 'zimbra_emails_datagrid_offer_label',
   },
   {
     id: 'quota',
     cell: (item) => (
       <OsdsText
-        color={ODS_THEME_COLOR_INTENT.primary}
-        size={ODS_TEXT_SIZE._200}
+        color={ODS_THEME_COLOR_INTENT.text}
+        size={ODS_TEXT_SIZE._100}
         level={ODS_TEXT_LEVEL.body}
       >
         {convertOctets(item.used)} / {convertOctets(item.available)}
@@ -69,10 +88,11 @@ const columns: DatagridColumn<EmailsItem>[] = [
   },
   {
     id: 'tooltip',
-    cell: () => <ActionButtonEmail />,
+    cell: (item: EmailsItem) => <ActionButtonEmail emailsItem={item} />,
     label: '',
   },
 ];
+
 export default function EmailAccounts() {
   const { t } = useTranslation('emails');
   const { platformId } = usePlatform();
@@ -80,12 +100,15 @@ export default function EmailAccounts() {
   const { data } = useQuery({
     queryKey: getZimbraPlatformEmailsQueryKey(platformId, organization?.id),
     queryFn: () => getZimbraPlatformEmails(platformId, organization?.id),
+    enabled: !!platformId,
   });
 
   const items: EmailsItem[] =
     data?.map((item) => ({
-      id: item.targetSpec.organizationId,
+      id: item.id,
       email: item.currentState.email,
+      offer: item.currentState.offer,
+      organizationId: item.targetSpec.organizationId,
       organizationLabel: item.targetSpec.organizationLabel,
       used: item.targetSpec.quota.used,
       available: item.targetSpec.quota.available,
@@ -94,6 +117,8 @@ export default function EmailAccounts() {
   const webmailUrl = guidesConstants.GUIDES_LIST.webmail.url;
   return (
     <div className="py-6 mt-8">
+      <Notifications />
+      <Outlet />
       <div className="mb-4">
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}

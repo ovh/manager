@@ -63,7 +63,7 @@ const Modal: React.FC<ModalProps> = ({
           {...(secondaryButton.disabled || isLoading ? { disabled: true } : {})}
           variant={secondaryButton.variant ?? ODS_BUTTON_VARIANT.stroked}
         >
-          {primaryButton.label}
+          {secondaryButton.label}
         </OsdsButton>
       )}
       {primaryButton && (

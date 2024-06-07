@@ -21,6 +21,7 @@ type DomainsItem = {
   id: string;
   name: string;
   organizationLabel: string;
+  account: number;
 };
 
 const columns: DatagridColumn<DomainsItem>[] = [
@@ -29,7 +30,7 @@ const columns: DatagridColumn<DomainsItem>[] = [
     cell: (item) => (
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._200}
+        size={ODS_TEXT_SIZE._100}
         level={ODS_TEXT_LEVEL.body}
       >
         {item.name}
@@ -44,6 +45,20 @@ const columns: DatagridColumn<DomainsItem>[] = [
         <LabelChip id={item.id}>{item.organizationLabel}</LabelChip>
       ),
     label: 'zimbra_domains_datagrid_organization_label',
+  },
+  {
+    id: 'account',
+    cell: (item) =>
+      item.account && (
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_TEXT_SIZE._100}
+          level={ODS_TEXT_LEVEL.body}
+        >
+          {item.account}
+        </OsdsText>
+      ),
+    label: 'zimbra_domains_datagrid_account_number',
   },
   {
     id: 'tooltip',
@@ -68,6 +83,10 @@ export default function Domains() {
       name: item.targetSpec.name,
       id: item.targetSpec.organizationId,
       organizationLabel: item.targetSpec.organizationLabel,
+      account: item.targetSpec.accountsStatistics.reduce(
+        (acc, current) => acc + current.configuredAccountsCount,
+        0,
+      ),
     })) ?? [];
 
   return (
