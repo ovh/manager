@@ -1,7 +1,12 @@
 import find from 'lodash/find';
 
 import { ALERT_ID, DASHBOARD_STATE_NAME } from '../ip-ip-agoraOrder.constant';
-import { FLAGS, EMPTY_CHOICE } from './ipv6.constant';
+import {
+  FLAGS,
+  EMPTY_CHOICE,
+  DEDICATED_IP_ORDER_TRACKING_PREFIX,
+  ACTIONS_SUFFIX,
+} from './ipv6.constant';
 
 export default class AgoraIpV6OrderController {
   /* @ngInject */
@@ -13,6 +18,7 @@ export default class AgoraIpV6OrderController {
     Alerter,
     IpAgoraOrder,
     IpAgoraV6Order,
+    atInternet,
     User,
     coreConfig,
   ) {
@@ -23,6 +29,7 @@ export default class AgoraIpV6OrderController {
     this.Alerter = Alerter;
     this.IpAgoraOrder = IpAgoraOrder;
     this.IpAgoraV6Order = IpAgoraV6Order;
+    this.atInternet = atInternet;
     this.User = User;
     this.ALERT_ID = ALERT_ID;
     this.region = coreConfig.getRegion();
@@ -43,6 +50,9 @@ export default class AgoraIpV6OrderController {
     this.ipv6RegionsWithPlan = this.getIpv6RegionsWithPlan();
     this.canOrderIpv6 = true;
     this.regionState = {};
+
+    this.trackClick();
+
     this.IpAgoraV6Order.fetchIpv6Services().then(({ data }) => {
       if (data.length < this.getIpv6OrderableNumber()) {
         this.IpAgoraV6Order.fetchIpv6ServicesWithDetails().then((ips) => {
@@ -69,6 +79,7 @@ export default class AgoraIpV6OrderController {
   }
 
   loadServices() {
+    this.trackClick('ipv6-additonal-option');
     this.loading.services = true;
     return this.$q
       .all({
@@ -121,6 +132,8 @@ export default class AgoraIpV6OrderController {
   }
 
   loadRegions() {
+    this.trackClick('next-step-2');
+
     this.catalogByLocation = this.ipv6RegionsWithPlan.map(
       ({ regionId, plan }) => {
         const countryCode = this.constructor.getMacroRegion(regionId);
@@ -164,6 +177,7 @@ export default class AgoraIpV6OrderController {
   }
 
   redirectToPaymentPage() {
+    let trakingService = '';
     const { planCode, regionId } = this.model.selectedPlan;
     const productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
       productId: 'ip',
@@ -176,7 +190,13 @@ export default class AgoraIpV6OrderController {
 
     if (this.model.selectedService !== EMPTY_CHOICE) {
       productToOrder.destination = this.model.selectedService;
+      trakingService = `_${this.model.selectedService}`;
     }
+
+    this.atInternet.trackClick({
+      name: `order::confirm_ipv6${trakingService}_${regionId}`,
+      type: ACTIONS_SUFFIX,
+    });
 
     return this.User.getUrlOf('express_order')
       .then((url) => {
@@ -205,5 +225,18 @@ export default class AgoraIpV6OrderController {
 
   goToDashboard() {
     return this.$state.go(DASHBOARD_STATE_NAME);
+  }
+
+  trackClick(hit) {
+    const composit = [DEDICATED_IP_ORDER_TRACKING_PREFIX];
+
+    if (hit) {
+      composit.push(hit);
+    }
+
+    this.atInternet.trackClick({
+      name: composit.join('::'),
+      type: ACTIONS_SUFFIX,
+    });
   }
 }
