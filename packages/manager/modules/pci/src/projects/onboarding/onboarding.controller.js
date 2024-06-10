@@ -30,11 +30,21 @@ export default class {
       'dedicated',
       '#/support/tickets',
     );
+    this.isItSubsidiary = this.coreConfig.getUser().ovhSubsidiary === 'IT';
   }
 
   isKycValidationUnderVerification() {
     const { kycValidated, ovhSubsidiary } = this.coreConfig.getUser();
     return !kycValidated && ovhSubsidiary === 'IN';
+  }
+
+  isProjectCreationButtonDisabled() {
+    if (this.isItSubsidiary) {
+      return (
+        !this.model.agreements || !this.model.italyAgreement || this.isLoading
+      );
+    }
+    return !this.model.agreements || this.isLoading;
   }
 
   onCreateDiscoveryProjectClick() {
