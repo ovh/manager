@@ -39,7 +39,8 @@ export default class UserAccountSupportLevelCtrl {
       .filter((level) => this.isLevelActive(level))
       .filter(({ name }) =>
         this.supportAvailability.isFeatureAvailable(`support:${name}`),
-      );
+      )
+      .sort((a, b) => this.getLevelOrder(a) - this.getLevelOrder(b));
   }
 
   getSubscriptionUrl(supportLevel) {
@@ -84,4 +85,19 @@ export default class UserAccountSupportLevelCtrl {
   shouldSubscribe(supportLevel) {
     return supportLevel.name === this.partnerLevel.requiredSupportLevel;
   }
+
+  getLevelOrder = (supportLevel) => {
+    switch (true) {
+      case supportLevel.isStandard():
+        return 1;
+      case supportLevel.isPremium():
+        return 2;
+      case supportLevel.isBusiness():
+        return 3;
+      case supportLevel.isEnterprise():
+        return 4;
+      default:
+        return 5;
+    }
+  };
 }
