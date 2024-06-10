@@ -17,7 +17,6 @@ import {
   CONTAINER_DEFAULT_PASSWORD,
   CONTAINER_DEFAULT_PASSWORD_TENANTNAME,
   CONTAINER_DEFAULT_PASSWORD_USERNAME,
-  OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_OFFER_SWIFT,
   OBJECT_CONTAINER_TYPE_PUBLIC,
@@ -69,12 +68,10 @@ export default class PciStoragesContainersService {
         }));
     }
 
-    const s3Type =
-      s3StorageType === 'storage'
-        ? OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE
-        : OBJECT_CONTAINER_OFFER_STORAGE_STANDARD;
     return this.getRegions(projectId, selectedRegion).then((region) => {
-      const regionDetails = region.services.find(({ name }) => name === s3Type);
+      const regionDetails = region.services.find(
+        ({ name }) => name === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
+      );
       return {
         endpoints: { [selectedRegion.toLowerCase()]: regionDetails.endpoint },
       };
