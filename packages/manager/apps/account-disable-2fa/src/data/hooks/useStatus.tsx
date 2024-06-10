@@ -5,5 +5,4 @@ export const useFetch2faStatus = () =>
   useQuery({
     queryKey: ['get2faStatus'],
     queryFn: get2faStatus,
-    retry: 0,
   });

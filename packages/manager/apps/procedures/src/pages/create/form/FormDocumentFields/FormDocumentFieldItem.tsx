@@ -48,7 +48,7 @@ export const FormDocumentFieldItem: FunctionComponent<Props> = ({
       >
         <li className="my-3 ml-6 list-disc">{label}</li>
       </OsdsText>
-      <FileInputContainer.FileInput className="w-1/3" />
+      <FileInputContainer.FileInput />
       <FileInputContainer.FileTooltip tooltips={tooltips} />
       <FileInputContainer.FileList className="w-5/5" />
     </FileInputContainer>

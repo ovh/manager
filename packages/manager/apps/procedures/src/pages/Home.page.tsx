@@ -1,27 +1,36 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import ovhCloudLogo from '@/assets/logo-ovhcloud.png';
 import { Status2faStrategies } from '@/types/status.type';
 import { useFetch2faStatus } from '@/data/hooks/useStatus';
 import { createRoutePath, seeRoutePath } from '@/routes/home.constants';
 
 const redirectStrategies: Status2faStrategies = {
-  open: `/${seeRoutePath}`,
-  creationAuthorized: `/${createRoutePath}`,
+  open: `/account-disable-2fa/${seeRoutePath}`,
+  creationAuthorized: `/account-disable-2fa/${createRoutePath}`,
 };
+
+const checkIfCreationIsAllowed = (error: AxiosError<any>) =>
+  error?.response?.status === 404 &&
+  error?.response?.data?.class === 'Client::ErrNotFound::ErrNotFound';
 
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { data, isFetched } = useFetch2faStatus();
+  const { data, error, isSuccess, isFetched } = useFetch2faStatus();
 
   useEffect(() => {
     const route = redirectStrategies[data?.status];
-    if (isFetched && route !== location.pathname) {
+
+    if (isSuccess && route !== location.pathname) {
       navigate(route, { replace: true });
     }
-  }, [isFetched, location]);
+    if (checkIfCreationIsAllowed(error as AxiosError)) {
+      navigate(redirectStrategies.creationAuthorized, { replace: true });
+    }
+  }, [isFetched]);
 
   return (
     <div className="sm:container mx-auto px-5">
