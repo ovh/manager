@@ -27,7 +27,7 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/Layout')),
   },
   {
-    id: 'pci-block-storage',
+    id: 'blocks',
     path: ROUTE_PATHS.root,
     loader: async ({ params }) =>
       queryClient.fetchQuery(getProjectQuery(params.projectId)),
@@ -35,6 +35,9 @@ export default [
     children: [
       {
         path: '',
+        handle: {
+          tracking: 'blocks',
+        },
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
         children: [
           {
