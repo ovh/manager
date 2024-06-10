@@ -99,6 +99,7 @@ export interface CreateRancherProps {
   plans: RancherPlan[];
   versions: RancherVersion[];
   hasRancherCreationError: boolean;
+  rancherCreationErrorMessage?: string | null;
   onCreateRancher: (payload: CreateRancherPayload) => void;
   isProjectDiscoveryMode?: boolean;
   isCreateRancherLoading: boolean;
@@ -109,6 +110,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   versions,
   onCreateRancher,
   hasRancherCreationError,
+  rancherCreationErrorMessage,
   projectId,
   isProjectDiscoveryMode,
   isCreateRancherLoading,
@@ -135,7 +137,19 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
     }
 
     if (selectedVersion === null && versions?.length) {
-      setSelectedVersion(versions?.filter((v) => v.status === 'AVAILABLE')[0]);
+      const availableVersions = versions.filter(
+        (version) => version.status === 'AVAILABLE',
+      );
+      const versionToBeSelected = availableVersions.reduce(
+        (maxVersion, currentVersion) => {
+          return currentVersion.name > maxVersion.name
+            ? currentVersion
+            : maxVersion;
+        },
+        availableVersions[0],
+      );
+      versionToBeSelected.description = t('createRancherRecomendedVersion');
+      setSelectedVersion(versionToBeSelected);
     }
   }, [versions, plans]);
 
@@ -152,6 +166,10 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
     trackAction(TrackingPageView.CreateRancher, TrackingEvent.cancel);
     navigate(getRanchersUrl(projectId));
   };
+
+  const sortedVersions: RancherVersion[] = versions?.sort((a, b) =>
+    b.name.localeCompare(a.name),
+  );
 
   return (
     <div>
@@ -197,8 +215,14 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
           type={ODS_MESSAGE_TYPE.error}
           className="my-6"
         >
-          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-            {t('createRancherError')} <br />
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            data-testid="errorBanner"
+          >
+            {t('createRancherError', {
+              rancherCreationErrorMessage,
+            })}
+            <br />
           </OsdsText>
         </OsdsMessage>
       )}
@@ -265,16 +289,12 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
           </div>
         </Block>
         <div className="flex my-5">
-          {versions?.map((version) => (
+          {sortedVersions?.map((version) => (
             <TileSection
               key={version.name}
               isActive={version.name === selectedVersion?.name}
               name={version.name}
-              description={
-                version.name === selectedVersion?.name
-                  ? t('createRancherRecomendedVersion')
-                  : undefined
-              }
+              description={version.description}
               isDisabled={version.status !== 'AVAILABLE'}
               onClick={() => setSelectedVersion(version)}
             />

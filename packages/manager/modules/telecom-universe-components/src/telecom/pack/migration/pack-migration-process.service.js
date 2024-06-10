@@ -8,7 +8,7 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import values from 'lodash/values';
 
-import { OPTION_NAME } from './pack-migration-process.constant';
+import { OPTION_NAME, DICTIONNARY } from './pack-migration-process.constant';
 
 /**
  *  Service used to share data between differents steps of the pack migration process.
@@ -166,6 +166,14 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
     ) {
       assign(postParams, {
         otpReference: migrationProcess.selectedOffer.ptoReference,
+      });
+    }
+
+    // Installation type post params
+    if (migrationProcess.selectedOffer.pto) {
+      assign(postParams, {
+        installationType:
+          DICTIONNARY[migrationProcess.selectedOffer.selectedPto],
       });
     }
 

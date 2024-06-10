@@ -88,5 +88,6 @@
   "overTheBox_service_id": "Identyfikator usługi:",
   "overTheBox_authorize_autoupgrade": "Zezwalaj na automatyczne aktualizacje w nocy",
   "overTheBox_change_auto_upgrade_success": "Zmiana automatycznych aktualizacji w nocy została wykonana.",
-  "overTheBox_change_auto_upgrade_error": "Nie mogliśmy zmienić ustawień automatycznych w nocy: {{errorMessage}}"
+  "overTheBox_change_auto_upgrade_error": "Nie mogliśmy zmienić ustawień automatycznych w nocy: {{errorMessage}}",
+  "overTheBox_available_update": "Dostępna jest aktualizacja urządzenia."
 }

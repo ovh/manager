@@ -1,7 +1,7 @@
 {
   "user_account_identity_documents_requirements_identity": "Identitätsnachweis: ",
-  "user_account_identity_documents_requirements_identity_list": "Personalausweis, Reisepass, Führerschein, Wählerausweis, Aadhaar-Karte oder Nachweis des Besitzes der Aadhaar-Nummer des gesetzlichen Vertreters, Betriebsleiters oder eines in der GST genannten Kontakts.",
-  "user_account_identity_documents_requirements_identity_list_individual": "Personalausweis, Reisepass, Führerschein, Wählerausweis, Aadhaar-Karte oder Nachweis des Besitzes der Aadhaar-Nummer.",
+  "user_account_identity_documents_requirements_identity_list": "Personalausweis, Reisepass, Führerschein, Wählerkarte, Aadhaar-Karte oder Nachweis des Besitzes der Aadhaar-Nummer des gesetzlichen Vertreters, Betriebsleiters oder eines in der GST genannten Kontakts.",
+  "user_account_identity_documents_requirements_identity_list_individual": "Personalausweis, Reisepass, Führerschein, Wählerkarte, Aadhaar-Karte oder Nachweis der Aadhaar-Nummer.",
   "user_account_identity_documents_requirements_acceptance_criteria": "Annahmebedingungen:",
   "user_account_identity_documents_requirements_identity_acceptance_criteria_individual": "Der Vor- und Nachname müssen mit der Identität des Kundenkontos übereinstimmen.",
   "user_account_identity_documents_requirements_identity_acceptance_criteria_1": "Gültigkeit des Dokuments",

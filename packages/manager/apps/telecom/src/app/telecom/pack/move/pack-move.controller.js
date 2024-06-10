@@ -123,6 +123,13 @@ export default class PackMoveCtrl {
       this.offer.selected.product = this.offersEligible[0].product;
       this.offer.selected.isOfferFTTH = this.isOfferFTTH;
       if (this.isOfferFTTH) {
+        // Retrieve multi OTP flag
+        const selectedLineOffer = this.selectedLine.offers.filter(
+          (offer) => offer.product.code === this.offer.selected.product.code,
+        )[0];
+        this.offer.selected.isMultiOtp = selectedLineOffer.eligibility.multiOtp;
+      }
+      if (this.isOfferFTTH) {
         this.moveStep = STEPS.saveNumber;
         this.offer.selected.productCode = this.offersEligible[0].product.code;
         this.offer.selected.eligibilityReference = this.eligibilityReferenceFiber;
@@ -150,6 +157,7 @@ export default class PackMoveCtrl {
           this.moveStep = STEPS.resume;
         }
       } else {
+        this.isMultiOtpAvailable = this.offer.selected.isMultiOtp;
         this.building = this.offer.selected.building;
         this.moveStep = STEPS.buildingDetails;
       }

@@ -88,5 +88,6 @@
   "overTheBox_service_id": "Kennung des Dienstes:",
   "overTheBox_authorize_autoupgrade": "Automatische Updates nachts zulassen",
   "overTheBox_change_auto_upgrade_success": "Der Wechsel der automatischen Nachteinsätze wurde erfolgreich durchgeführt.",
-  "overTheBox_change_auto_upgrade_error": "Der Wechsel der automatischen Einsätze konnte nachts nicht durchgeführt werden: {{errorMessage}}"
+  "overTheBox_change_auto_upgrade_error": "Der Wechsel der automatischen Einsätze konnte nachts nicht durchgeführt werden: {{errorMessage}}",
+  "overTheBox_available_update": "Für Ihr Gerät ist ein Update verfügbar."
 }

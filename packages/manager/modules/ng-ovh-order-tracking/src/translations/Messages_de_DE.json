@@ -42,6 +42,5 @@
   "order_tracking_status": "Bestellverlauf",
   "order_tracking_status_more": "Weiteren Verlauf anzeigen",
   "order_tracking_error": "Beim Abrufen der Bestellung ist ein Fehler aufgetreten.",
-  "order_tracking_try_again": "Erneut versuchen",
-  "order_tracking_bare_metal_delivery_delay": "Aufgrund der aktuellen Nachfrage können die Lieferzeiten für unsere Bare-Metal-Dienste länger als gewöhnlich ausfallen. Unsere Teams setzen alles daran, Sie schnellstmöglich zu beliefern."
+  "order_tracking_try_again": "Erneut versuchen"
 }

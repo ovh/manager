@@ -9,8 +9,10 @@ import {
 
 type RancherInfo = 'plan' | 'version';
 
-export const getReferenceRancherInfo = (rancherInfo: RancherInfo) =>
-  `/publicCloud/reference/rancher/${rancherInfo}`;
+export const getReferenceRancherInfo = (
+  projectId: string,
+  rancherInfo: RancherInfo,
+) => `publicCloud/project/${projectId}/reference/rancher/${rancherInfo}`;
 
 const getRancherByProjectIdQueryKey = (projectId: string) =>
   `/publicCloud/project/${projectId}/rancher`;
@@ -57,11 +59,13 @@ export const postRancherServiceQueryKey = (rancherId: string) => [
 
 export const createRancherServiceQueryKey = () => ['post/rancher/resource'];
 
-export const getRancherPlan = async () =>
-  apiClient.v2.get<RancherPlan[]>(getReferenceRancherInfo('plan'));
+export const getRancherPlan = async (projectId: string) =>
+  apiClient.v2.get<RancherPlan[]>(getReferenceRancherInfo(projectId, 'plan'));
 
-export const getRancherVersion = async () =>
-  apiClient.v2.get<RancherVersion[]>(getReferenceRancherInfo('version'));
+export const getRancherVersion = async (projectId: string) =>
+  apiClient.v2.get<RancherVersion[]>(
+    getReferenceRancherInfo(projectId, 'version'),
+  );
 
 export const createRancherService = async ({
   projectId,
@@ -127,10 +131,6 @@ export type GetpublicCloudProjectProjectIdParams = {
 export const getpublicCloudProjectProjectIdQueryKey = (
   params: GetpublicCloudProjectProjectIdParams,
 ) => [`get/publicCloud/project/${params.projectId}/rancher`];
-
-export const getpublicCloudReferenceRancherVersionListQueryKey = [
-  'get/publicCloud/reference/rancher/version',
-];
 
 /**
  *  Get listing with iceberg

@@ -1,5 +1,13 @@
 <div class="overthebox">
-    <header>
+    <oui-message
+        type="info"
+        data-ng-if="$ctrl.device.availableUpdate"
+        class="m-2"
+    >
+        <span data-translate="overTheBox_available_update"></span>
+    </oui-message>
+
+    <header class="mb-2">
         <oui-dropdown data-placement="start">
             <oui-dropdown-trigger
                 text="{{::'overTheBox_action_update_label' | translate}}"
