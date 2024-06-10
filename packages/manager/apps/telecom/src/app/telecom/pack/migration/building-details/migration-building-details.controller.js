@@ -38,6 +38,7 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
     this.FIBER_PTO = FIBER_PTO;
 
     this.process = this.TucPackMigrationProcess.getMigrationProcess();
+    this.isMultiOtpAvailable = this.process.selectedOffer.multiOtp;
 
     const building = this.process.selectedBuilding;
 
@@ -82,7 +83,9 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
     this.process.selectedOffer.pto = [
       FIBER_PTO.FIBER_PTO_YES,
       FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN,
+      FIBER_PTO.FIBER_PTO_MULTI_OTP,
     ].includes(this.model.pto);
+    this.process.selectedOffer.selectedPto = this.model.pto;
     this.process.selectedOffer.ptoReference =
       this.model.pto === FIBER_PTO.FIBER_PTO_YES
         ? this.model.ptoReference
@@ -101,9 +104,16 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
 
   /* Check OTP reference value is valid */
   isOtpRegexValid() {
-    this.otpReferenceValid = this.model.ptoReference?.match(
-      /^[A-Z]{2}-[A-Z\d]{4}-[A-Z\d]{4}$/,
-    );
+    this.otpReferenceValid = true;
+    if (
+      this.model.pto === FIBER_PTO.FIBER_PTO_YES ||
+      (this.model.pto === FIBER_PTO.FIBER_PTO_MULTI_OTP &&
+        this.model.ptoReference)
+    ) {
+      this.otpReferenceValid = this.model.ptoReference?.match(
+        /^[A-Z]{2}-[A-Z\d]{4}-[A-Z\d]{4}$/,
+      );
+    }
   }
 
   isValidSelection() {
@@ -119,6 +129,7 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
         [
           FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN,
           FIBER_PTO.FIBER_PTO_NO,
+          FIBER_PTO.FIBER_PTO_MULTI_OTP,
         ].includes(this.model.pto)
       );
     }
@@ -126,7 +137,10 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
   }
 
   isPto() {
-    return this.model.pto === FIBER_PTO.FIBER_PTO_YES;
+    this.isOtpRegexValid();
+    return [FIBER_PTO.FIBER_PTO_YES, FIBER_PTO.FIBER_PTO_MULTI_OTP].includes(
+      this.model.pto,
+    );
   }
 
   convertStairs(stair) {

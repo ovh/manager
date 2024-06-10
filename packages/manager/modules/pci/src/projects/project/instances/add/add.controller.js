@@ -166,6 +166,12 @@ export default class PciInstancesAddController {
     this.isIpLoading = false;
   }
 
+  updateLocation(location) {
+    this.model.location = location;
+    this.selectedMode = this.isLocalZone() ? this.modes[2] : this.modes[0];
+    return null;
+  }
+
   getSmallestGatewayInfo() {
     return this.PciPublicGatewaysService.getSmallestGatewayInfo(
       this.user.ovhSubsidiary,

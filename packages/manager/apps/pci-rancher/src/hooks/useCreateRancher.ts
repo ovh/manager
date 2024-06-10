@@ -22,7 +22,7 @@ const useCreateRancher = ({
 }: {
   projectId: string;
   onSuccess: (data: { data: RancherService }) => void;
-  onError: () => void;
+  onError: (error: ErrorResponse) => void;
   onMutate: () => void;
 }) =>
   useMutation<{ data: RancherService }, ErrorResponse, CreateRancherPayload>({

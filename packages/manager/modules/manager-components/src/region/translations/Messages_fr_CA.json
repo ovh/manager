@@ -45,7 +45,7 @@
   "manager_components_region_DAL_micro": "Dallas ({{ micro }})",
   "manager_components_region_PRG": "Prague",
   "manager_components_region_PRG_micro": "Prague ({{ micro }})",
-  "manager_components_region_continent_PRG": "Europe Centrale",
+  "manager_components_region_continent_PRG": "Europe centrale",
   "manager_components_region_AMS": "Amsterdam",
   "manager_components_region_AMS_micro": "Amsterdam ({{ micro }})",
   "manager_components_region_continent_AMS": "Europe de l'Ouest",

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -28,9 +28,11 @@ import queryClient from '@/query.client';
 export default function Create() {
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const [hasRancherCreationError, setHasRancherCreationError] = React.useState(
-    false,
-  );
+  const [hasRancherCreationError, setHasRancherCreationError] = useState(false);
+  const [
+    rancherCreationErrorMessage,
+    setRancherCreationErrorMessage,
+  ] = useState<string | null>(null);
   useTrackingPage(TrackingPageView.CreateRancher);
   const trackingPage = useSimpleTrackingPage();
 
@@ -49,9 +51,12 @@ export default function Create() {
       trackingPage(`${TRACKING_PATH}::${TrackingEvent.add}-success`);
       navigate(getRanchersUrl(projectId));
     },
-    onError: () => {
+    onError: (error) => {
       trackingPage(`${TRACKING_PATH}::${TrackingEvent.add}-error`);
       setHasRancherCreationError(true);
+      if (error?.response?.data?.message) {
+        setRancherCreationErrorMessage(error.response.data.message);
+      }
     },
   });
 
@@ -72,6 +77,7 @@ export default function Create() {
         isCreateRancherLoading={isPending}
         projectId={projectId}
         hasRancherCreationError={hasRancherCreationError}
+        rancherCreationErrorMessage={rancherCreationErrorMessage}
         onCreateRancher={createRancher}
         versions={versions?.data.filter((v) => v.status === 'AVAILABLE')}
         plans={plans?.data}

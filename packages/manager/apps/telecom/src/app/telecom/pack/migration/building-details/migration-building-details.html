@@ -110,6 +110,24 @@
                         </oui-radio>
                     </div>
                 </div>
+                <div class="form-inline" data-ng-if="$ctrl.isMultiOtpAvailable">
+                    <div class="form-group">
+                        <oui-radio
+                            data-name="radioPto"
+                            data-model="$ctrl.model.pto"
+                            data-value="$ctrl.FIBER_PTO.FIBER_PTO_MULTI_OTP"
+                        >
+                            <span
+                                data-translate="telecom_pack_migration_pto_multi_otp"
+                            ></span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                data-oui-popover="{{'telecom_pack_migration_pto_multi_otp_description' | translate}}"
+                            ></button>
+                        </oui-radio>
+                    </div>
+                </div>
             </div>
             <div class="form-inline" data-ng-if="$ctrl.isPto()">
                 <div class="form-group">
@@ -142,6 +160,10 @@
                     ></strong>
                     <div
                         data-translate="telecom_pack_migration_pto_where_description"
+                    ></div>
+                    <div
+                        data-translate="telecom_pack_migration_pto_otp_not_mandatory"
+                        data-ng-if="$ctrl.model.pto === $ctrl.FIBER_PTO.FIBER_PTO_MULTI_OTP"
                     ></div>
                 </div>
             </div>

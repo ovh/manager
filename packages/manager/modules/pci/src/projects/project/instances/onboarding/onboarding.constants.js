@@ -1,22 +1,129 @@
 export const GUIDES = [
   {
     id: 'create-instance',
-    link:
-      'https://docs.ovh.com/gb/en/public-cloud/create_an_instance_in_your_ovh_customer_account/',
+    links: {
+      DEFAULT:
+        'https://help.ovhcloud.com/csm/en-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051009',
+      DE:
+        'https://help.ovhcloud.com/csm/de-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051002',
+      ASIA:
+        'https://help.ovhcloud.com/csm/asia-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0038732',
+      AU:
+        'https://help.ovhcloud.com/csm/en-au-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051007',
+      CA:
+        'https://help.ovhcloud.com/csm/en-ca-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051008',
+      GB:
+        'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051017',
+      IE:
+        'https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051014',
+      SG:
+        'https://help.ovhcloud.com/csm/en-sg-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051004',
+      ES:
+        'https://help.ovhcloud.com/csm/es-es-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051005',
+      WS:
+        'https://help.ovhcloud.com/csm/es-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051006',
+      QC:
+        'https://help.ovhcloud.com/csm/fr-ca-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051013',
+      FR:
+        'https://help.ovhcloud.com/csm/fr-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051011',
+      IT:
+        'https://help.ovhcloud.com/csm/it-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051025',
+      PL:
+        'https://help.ovhcloud.com/csm/pl-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051024',
+      PT:
+        'https://help.ovhcloud.com/csm/pt-public-cloud-compute-getting-started?id=kb_article_view&sysparm_article=KB0051015',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/360002245164-How-to-Create-and-Connect-a-Public-Cloud-Instance',
+    },
   },
   {
     id: 'post-install-script',
-    link:
-      'https://docs.ovh.com/gb/en/public-cloud/launch-a-script-when-instance-is-created/',
+    links: {
+      ASIA:
+        'https://help.ovhcloud.com/csm/asia-public-cloud-compute-launch-script-at-instance-creation?id=kb_article_view&sysparm_article=KB0050910',
+      AU:
+        'https://help.ovhcloud.com/csm/en-au-public-cloud-compute-launch-script-at-instance-creation?id=kb_article_view&sysparm_article=KB0038632',
+      CA:
+        'https://help.ovhcloud.com/csm/en-ca-public-cloud-compute-launch-script-at-instance-creation?id=kb_article_view&sysparm_article=KB0050911',
+      GB:
+        'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-launch-script-at-instance-creation?id=kb_article_view&sysparm_article=KB0050914',
+      SG:
+        'https://help.ovhcloud.com/csm/en-sg-public-cloud-compute-launch-script-at-instance-creation?id=kb_article_view&sysparm_article=KB0050913',
+      DEFAULT:
+        'https://help.ovhcloud.com/csm/en-public-cloud-compute-launch-script-at-instance-creation?id=kb_article_view&sysparm_article=KB0050912',
+      QC:
+        'https://help.ovhcloud.com/csm/fr-ca-public-cloud-compute-launch-script-at-instance-creation?id=kb_article_view&sysparm_article=KB0050923',
+      FR:
+        'https://help.ovhcloud.com/csm/fr-public-cloud-compute-launch-script-at-instance-creation?id=kb_article_view&sysparm_article=KB0050924',
+      IT:
+        'https://help.ovhcloud.com/csm/it-public-cloud-compute-launch-script-at-instance-creation?id=kb_article_view&sysparm_article=KB0050916',
+      PL:
+        'https://help.ovhcloud.com/csm/pl-public-cloud-compute-launch-script-at-instance-creation?id=kb_article_view&sysparm_article=KB0050919',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/19905625883923-Getting-Started-with-the-OpenStack-API',
+    },
   },
   {
     id: 'back-up-instance',
-    link: 'https://docs.ovh.com/gb/en/public-cloud/back-up-instance/',
+    links: {
+      DE:
+        'https://help.ovhcloud.com/csm/de-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051161',
+      ASIA:
+        'https://help.ovhcloud.com/csm/asia-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051147',
+      AU:
+        'https://help.ovhcloud.com/csm/en-au-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051148',
+      CA:
+        'https://help.ovhcloud.com/csm/en-ca-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051149',
+      GB:
+        'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0038893',
+      IE:
+        'https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051157',
+      SG:
+        'https://help.ovhcloud.com/csm/en-sg-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051158',
+      DEFAULT:
+        'https://help.ovhcloud.com/csm/en-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051162',
+      ES:
+        'https://help.ovhcloud.com/csm/es-es-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051152',
+      WS:
+        'https://help.ovhcloud.com/csm/es-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051153',
+      QC:
+        'https://help.ovhcloud.com/csm/fr-ca-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051154',
+      FR:
+        'https://help.ovhcloud.com/csm/fr-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051155',
+      IT:
+        'https://help.ovhcloud.com/csm/it-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051165',
+      PL:
+        'https://help.ovhcloud.com/csm/pl-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051167',
+      PT:
+        'https://help.ovhcloud.com/csm/pt-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051159',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/4460743125395-How-to-Back-Up-a-Public-Cloud-Instance',
+    },
   },
   {
     id: 'instance-introduction',
-    link:
-      'https://docs.ovh.com/gb/en/public-cloud/introduction-to-instances-and-other-cloud-based-terms/',
+    links: {
+      ASIA:
+        'https://help.ovhcloud.com/csm/asia-public-cloud-compute-glossary?id=kb_article_view&sysparm_article=KB0050909',
+      AU:
+        'https://help.ovhcloud.com/csm/en-au-public-cloud-compute-glossary?id=kb_article_view&sysparm_article=KB0050907',
+      CA:
+        'https://help.ovhcloud.com/csm/en-ca-public-cloud-compute-glossary?id=kb_article_view&sysparm_article=KB0050908',
+      GB:
+        'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-glossary?id=kb_article_view&sysparm_article=KB0038620',
+      IE:
+        'https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-glossary?id=kb_article_view&sysparm_article=KB0050902',
+      SG:
+        'https://help.ovhcloud.com/csm/en-sg-public-cloud-compute-glossary?id=kb_article_view&sysparm_article=KB0050899',
+      DEFAULT:
+        'https://help.ovhcloud.com/csm/en-public-cloud-compute-glossary?id=kb_article_view&sysparm_article=KB0050915',
+      QC:
+        'https://help.ovhcloud.com/csm/fr-ca-public-cloud-compute-glossary?id=kb_article_view&sysparm_article=KB0050917',
+      FR:
+        'https://help.ovhcloud.com/csm/fr-public-cloud-compute-glossary?id=kb_article_view&sysparm_article=KB0050903',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/21740390395283-Public-Cloud-Glossary',
+    },
   },
 ];
 
