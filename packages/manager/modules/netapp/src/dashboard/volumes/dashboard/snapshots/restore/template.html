@@ -1,0 +1,28 @@
+<oui-modal
+    data-heading="{{ ::'netapp_volumes_snapshots_restore_title' | translate }}"
+    data-primary-label="{{ ::'netapp_volumes_snapshots_restore_confirm' | translate }}"
+    data-primary-action="$ctrl.restoreVolume()"
+    data-secondary-label="{{ ::'netapp_volumes_snapshots_restore_cancel' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+    data-type="warning"
+>
+    <p
+        data-translate="netapp_volumes_snapshots_restore_description"
+    ></p>
+
+    <!-- Volume ID -->
+    <p
+        class="oui-heading_6 mb-1"
+        data-translate="netapp_volumes_snapshots_restore_volume_label"
+    ></p>
+    <p data-ng-bind="$ctrl.volume.name || $ctrl.volumeId"></p>
+
+    <!-- Snapshot Name -->
+    <p
+        class="oui-heading_6 mb-1"
+        data-translate="netapp_volumes_snapshots_restore_snapshot_label"
+    ></p>
+    <p data-ng-bind="$ctrl.snapshots[0].name || $ctrl.snapshots[0].id"></p>
+</oui-modal>

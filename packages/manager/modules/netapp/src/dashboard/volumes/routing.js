@@ -61,6 +61,13 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick('create-volume');
         return $state.go('netapp.dashboard.volumes.create');
       },
+      goToRestoreSnapshot: /* @ngInject */ ($state, serviceName, trackClick) => (volumeId) => {
+        trackClick('restore-snapshot');
+        return $state.go('netapp.dashboard.volumes.dashboard.snapshots.restore', {
+          serviceName,
+          volumeId,
+        });
+      },
       goToVolumeDetails: /* @ngInject */ ($state, serviceName, trackClick) => (
         volume,
       ) => {
