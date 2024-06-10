@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { OdsNotification } from './ods-notification';
 import { useNotifications } from './useNotifications';
 

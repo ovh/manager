@@ -13,19 +13,9 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import clsx from 'clsx';
 import { TRegion } from '@/api/data/regions';
-import { TFormState } from '../New.page';
 import { RegionTile } from './RegionTile';
-
-type TLocalizationStep = {
-  regions: TRegion[];
-  isOpen: boolean;
-  isChecked: boolean;
-  onNext?: () => void;
-  onEdit?: () => void;
-  formState: TFormState;
-  setFormState: (state: TFormState) => void;
-  isLoading: boolean;
-};
+import { useProjectAvailableRegions } from '@/api/hooks/useRegions';
+import { StepsEnum, useNewNetworkStore } from '@/pages/new/store';
 
 export type TMappedRegion = {
   name: string;
@@ -37,20 +27,18 @@ export type TMappedRegion = {
   isLocalZone: boolean;
 };
 
-export default function LocalizationStep({
-  regions,
-  isOpen,
-  isChecked,
-  onNext,
-  onEdit,
-  formState,
-  setFormState,
-  isLoading,
-}: Readonly<TLocalizationStep>): JSX.Element {
+export default function LocalizationStep(): JSX.Element {
+  const store = useNewNetworkStore();
+
   const { t } = useTranslation('new');
   const { t: tCommon } = useTranslation('common');
   const { t: tRegion } = useTranslation('region');
   const { t: tRegions } = useTranslation('regions');
+
+  const {
+    data: regions,
+    isLoading: isRegionsLoading,
+  } = useProjectAvailableRegions(store.project?.id);
 
   const [mappedRegions, setMappedRegions] = useState<TMappedRegion[]>([]);
 
@@ -60,7 +48,7 @@ export default function LocalizationStep({
 
   const getMacroRegion = (regionName: string) => {
     const localZonePattern = /^lz/i;
-    let macro;
+    let macro: RegExpExecArray;
     if (
       localZonePattern.test(
         regionName
@@ -69,14 +57,14 @@ export default function LocalizationStep({
           ?.join('-'),
       )
     ) {
-      macro = /[\D]{2,3}/.exec(
+      macro = /\D{2,3}/.exec(
         regionName
           .split('-')
           ?.slice(3)
           ?.join('-'),
       );
     } else {
-      macro = /[\D]{2,3}/.exec(regionName);
+      macro = /\D{2,3}/.exec(regionName);
     }
     return macro ? macro[0].replace('-', '').toUpperCase() : '';
   };
@@ -126,37 +114,54 @@ export default function LocalizationStep({
     <StepComponent
       title={t('pci_projects_project_network_private_create_localisation')}
       next={
-        isLoading
+        isRegionsLoading
           ? undefined
           : {
-              action: onNext,
+              action: () => {
+                store.updateStep.check(StepsEnum.LOCALIZATION);
+                store.updateStep.lock(StepsEnum.LOCALIZATION);
+
+                store.updateStep.open(StepsEnum.CONFIGURATION);
+              },
               label: t('pci_projects_project_network_private_create_next'),
-              isDisabled: mappedRegions.length === 0 || !formState.region,
+              isDisabled: mappedRegions.length === 0 || !store.form.region,
             }
       }
       edit={{
-        action: onEdit,
+        action: () => {
+          store.updateStep.unCheck(StepsEnum.LOCALIZATION);
+          store.updateStep.unlock(StepsEnum.LOCALIZATION);
+
+          store.updateStep.close(StepsEnum.CONFIGURATION);
+          store.updateStep.unCheck(StepsEnum.CONFIGURATION);
+          store.updateStep.unlock(StepsEnum.CONFIGURATION);
+
+          store.updateStep.close(StepsEnum.SUMMARY);
+
+          store.setForm({ ...store.form, createGateway: false });
+        },
         label: tCommon('common_stepper_modify_this_step'),
         isDisabled: false,
       }}
       order={1}
-      isOpen={isOpen}
-      isChecked={isChecked}
+      isOpen={store.steps.get(StepsEnum.LOCALIZATION)?.isOpen}
+      isChecked={store.steps.get(StepsEnum.LOCALIZATION)?.isChecked}
+      isLocked={store.steps.get(StepsEnum.LOCALIZATION)?.isLocked}
     >
       <div className="my-8">
         {mappedRegions.length ? (
           <TilesInputComponent<TMappedRegion, string, string>
-            value={formState.region}
+            value={store.form.region}
             items={mappedRegions}
             label={(region: TMappedRegion) =>
               isRegionStandalone(region) ? (
-                <RegionTile region={region} formState={formState} />
+                <RegionTile region={region} />
               ) : (
                 region.name
               )
             }
             onInput={(region) => {
-              setFormState({ ...formState, region });
+              store.setForm({ ...store.form, region });
             }}
             group={{
               by: (region: TMappedRegion) => region.continent,
@@ -191,7 +196,6 @@ export default function LocalizationStep({
               label: (macroName: string) => (
                 <RegionTile
                   region={getFirstRegionByMacroName(macroName)}
-                  formState={formState}
                   stack
                 />
               ),
