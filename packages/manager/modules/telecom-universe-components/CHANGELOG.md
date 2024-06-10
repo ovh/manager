@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.27.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.26.0...@ovh-ux/ng-ovh-telecom-universe-components@7.27.0) (2024-06-10)
+
+
+### Features
+
+* **telecom.pack:** add multi otp choice on move and migrate ([#11795](https://github.com/ovh/manager/issues/11795)) ([7e13c55](https://github.com/ovh/manager/commit/7e13c55c8aa81c1cf6059c533dcf7441dd1f4219))
+
+
+
+
+
 # [7.26.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.25.1...@ovh-ux/ng-ovh-telecom-universe-components@7.26.0) (2024-05-28)
 
 

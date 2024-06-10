@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.15.0...@ovh-ux/manager-overthebox@6.16.0) (2024-06-10)
+
+
+### Features
+
+* **overthebox:** add banner upgrade availability banner ([#11539](https://github.com/ovh/manager/issues/11539)) ([d138b2d](https://github.com/ovh/manager/commit/d138b2d2efdac0476bc5cfd5147f802dbf40ef0d))
+
+
+
+
+
 # [6.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.14.0...@ovh-ux/manager-overthebox@6.15.0) (2024-05-28)
 
 

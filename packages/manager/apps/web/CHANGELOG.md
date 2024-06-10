@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.26.2...@ovh-ux/manager-web@18.27.0) (2024-06-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2994] ([#11692](https://github.com/ovh/manager/issues/11692)) ([4750cf9](https://github.com/ovh/manager/commit/4750cf905874ef08e956d313ac8018f5419f604c))
+
+
+### Features
+
+* **web:** save dashboard domain columns ([#11659](https://github.com/ovh/manager/issues/11659)) ([827b650](https://github.com/ovh/manager/commit/827b6502abd87bb8f17f27db0f44f2656106c995))
+
+
+
+
+
 ## [18.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.26.1...@ovh-ux/manager-web@18.26.2) (2024-06-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
