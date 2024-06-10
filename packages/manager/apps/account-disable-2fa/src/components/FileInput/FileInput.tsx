@@ -56,13 +56,11 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
         type={ODS_BUTTON_TYPE.button}
         size={ODS_BUTTON_SIZE.sm}
         className={className}
-        inline
         disabled={disabled || undefined}
         onClick={() => fileInputRef.current.click()}
       >
-        <span slot="start">
+        <span slot="start" className="mr-4">
           <OsdsIcon
-            className="mr-3"
             name={ODS_ICON_NAME.FOLDER}
             size={ODS_ICON_SIZE.xs}
             contrasted
