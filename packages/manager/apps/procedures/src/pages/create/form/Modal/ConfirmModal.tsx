@@ -33,7 +33,7 @@ export const ConfirmModal: FunctionComponent<Props> = ({
 
   return (
     <OsdsModal
-      dismissible
+      dismissible={false}
       onOdsModalClose={onClose}
       headline={t(
         'account-disable-2fa-create-form-confirm-modal-send-document-title',
@@ -73,26 +73,29 @@ export const ConfirmModal: FunctionComponent<Props> = ({
           </OsdsText>
         </div>
       </div>
-      <OsdsButton
-        slot="actions"
-        variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={onClose}
-      >
-        {t('account-disable-2fa-confirm-modal-no')}
-      </OsdsButton>
+
       {isPending ? (
         <OsdsSpinner slot="actions" inline size={ODS_SPINNER_SIZE.md} />
       ) : (
-        <OsdsButton
-          slot="actions"
-          onClick={onValidate}
-          disabled={isPending || undefined}
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        >
-          {t('account-disable-2fa-confirm-modal-yes')}
-        </OsdsButton>
+        <>
+          <OsdsButton
+            slot="actions"
+            variant={ODS_BUTTON_VARIANT.ghost}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            onClick={onClose}
+          >
+            {t('account-disable-2fa-confirm-modal-no')}
+          </OsdsButton>
+          <OsdsButton
+            slot="actions"
+            onClick={onValidate}
+            disabled={isPending || undefined}
+            variant={ODS_BUTTON_VARIANT.flat}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          >
+            {t('account-disable-2fa-confirm-modal-yes')}
+          </OsdsButton>
+        </>
       )}
     </OsdsModal>
   );

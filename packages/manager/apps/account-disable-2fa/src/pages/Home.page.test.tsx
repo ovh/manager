@@ -8,10 +8,8 @@ const mockedUsedLocation = vi.fn();
 
 const fetch2faStatusFakeResponse = {
   data: { status: 'open' },
-  isFetched: false,
+  isFetched: true,
   isLoading: false,
-  isSuccess: false,
-  error: {},
 };
 
 vi.mock('react-router-dom', () => ({
@@ -31,10 +29,6 @@ vi.mock('@/data/hooks/useStatus', () => ({
 describe('Home.page', () => {
   it('should navigate to see page when status is open', async () => {
     fetch2faStatusFakeResponse.data.status = 'open';
-    fetch2faStatusFakeResponse.isLoading = false;
-    fetch2faStatusFakeResponse.isFetched = true;
-    fetch2faStatusFakeResponse.isSuccess = true;
-    fetch2faStatusFakeResponse.error = undefined;
 
     render(<Home />);
 
@@ -42,15 +36,7 @@ describe('Home.page', () => {
   });
 
   it('should navigate to create page when status is creationAuthorized', async () => {
-    fetch2faStatusFakeResponse.isFetched = true;
-    fetch2faStatusFakeResponse.error = {
-      response: {
-        status: 404,
-        data: {
-          class: 'Client::ErrNotFound::ErrNotFound',
-        },
-      },
-    };
+    fetch2faStatusFakeResponse.data.status = 'creationAuthorized';
 
     render(<Home />);
 
@@ -62,8 +48,6 @@ describe('Home.page', () => {
   it('should render outlet component when isFetched is true', async () => {
     fetch2faStatusFakeResponse.isLoading = false;
     fetch2faStatusFakeResponse.isFetched = true;
-    fetch2faStatusFakeResponse.isSuccess = true;
-    fetch2faStatusFakeResponse.error = undefined;
 
     render(<Home />);
 

@@ -7,16 +7,5 @@
   "account-disable-2fa-file-input-select-files": "Sélectionner des fichiers...",
   "account-disable-2fa-file-input-type-file-error": "Format de fichier non pris en charge. Veuillez utiliser l'un des formats acceptés : {{types}} et {{lastType}}.",
   "account-disable-2fa-file-input-size-file-error": "Le fichier dépasse la taille limite.",
-  "account-disable-2fa-file-input-attachments": "Fichier(s) joint(s)",
-
-  "account-disable-2fa-confirm-modal-yes": "Oui",
-  "account-disable-2fa-confirm-modal-no": "Non",
-  "account-disable-2fa-create-form-confirm-modal-send-document-title": "Envoyer mes documents",
-  "account-disable-2fa-create-form-confirm-modal-send-document-description-insure": "Veuillez-vous assurer que tous vos documents sont corrects et lisibles avant envoi. En cas de documents non valides, cette procédure sera annulée et vous devrez en effectuer une nouvelle.",
-  "account-disable-2fa-create-form-confirm-modal-send-document-description-confirm": "Confirmez-vous avoir ajouté l'ensemble des documents demandés ?",
-
-  "account-disable-2fa-create-form-success-modal-send-document-title": "Merci, nous avons bien reçu tous vos documents !",
-  "account-disable-2fa-create-form-success-modal-send-document-description": "Ils vont être soumis à notre équipe pour validation. Notre équipe support vous répond dans les 72 heures ! Vous serez notifié de leur validation par email, ou vous serez contacté si nous avons besoin de plus d'informations.",
-  "account-disable-2fa-success-modal-back-home": "Retour à la page d'accueil",
-  "account-disable-2fa-create-form-error-message-send-document": "Vos documents n’ont pas été correctement envoyés. Veuillez relancer l’envoi de vos documents."
+  "account-disable-2fa-file-input-attachments": "Fichier(s) joint(s)"
 }
