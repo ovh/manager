@@ -1,0 +1,10 @@
+{
+  "netapp_volumes_snapshots_restore_title": "Restaurer un snapshot",
+  "netapp_volumes_snapshots_restore_description": "Êtes-vous sûr de vouloir restaurer le volume suivant ?",
+  "netapp_volumes_snapshots_restore_volume_label": "Volume",
+  "netapp_volumes_snapshots_restore_snapshot_label": "Snapshot name",
+  "netapp_volumes_snapshots_restore_confirm": "Restaurer un volume",
+  "netapp_volumes_snapshots_restore_cancel": "Annuler",
+  "netapp_volumes_snapshots_restore_success": "La restauration de votre volume a été réalisée avec succès.",
+  "netapp_volumes_snapshots_restore_error": "Votre volume n'a pas pu être restauré : <br> {{message}}<br> request_id: {{requestId}}"
+}
