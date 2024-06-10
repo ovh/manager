@@ -42,7 +42,10 @@ export default /* @ngInject */ (
     options: {
       stateName: ({ link }) => kebabCase(`${LINK_PREFIX}-${link.public.path}`),
     },
-    otherwise: 'app.redirect',
+    otherwise: ({ stateName }) => ({
+      state: 'app.redirect',
+      params: { redirectState: stateName },
+    }),
   });
 
   /**
@@ -56,10 +59,10 @@ export default /* @ngInject */ (
    * This state shouldn't have sub states or you should override `redirect` resolve.
    */
   $stateProvider.state('app.redirect', {
-    url: '?onboarding',
+    url: '?onboarding&redirectState',
     resolve: {
-      redirect: /* @ngInject */ ($state) =>
-        $state.go('pci.projects.onboarding'),
+      redirect: /* @ngInject */ ($state, $stateParams) =>
+        $state.go('pci.projects.onboarding', $stateParams),
     },
   });
 
