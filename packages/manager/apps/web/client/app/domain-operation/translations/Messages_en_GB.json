@@ -61,8 +61,8 @@
   "domain_operations_statusOperation_cancelled": "Cancelled",
   "domain_operations_statusOperation_doing": "In progress",
   "domain_operations_statusOperation_done": "Closed",
-  "domain_operations_statusOperation_error": "Error",
-  "domain_operations_statusOperation_todo": "To do",
+  "domain_operations_statusOperation_error": "To be processed",
+  "domain_operations_statusOperation_todo": "Scheduled",
   "domain_operations_update_title": "Operation data",
   "domain_operations_update": "Modify operation data",
   "domain_operations_update_info": "You can modify the <strong>\"{{t0}}\"</strong> operation data on the <strong>{{t1}} domain</strong>",
@@ -126,5 +126,7 @@
   "domain_operations_progress_instructions_7": "You can contact your domain’s current service provider to get their approval.",
   "operation_tab_DOMAIN": "Domain",
   "domain_operations_nicOperation_ContactControlAcknowledge": "Contact confirmation",
-  "domain_operations_nicOperation_ContactControlCorrect": "Contact correction"
+  "domain_operations_nicOperation_ContactControlCorrect": "Contact correction",
+  "domain_operations_table_header_creationDate": "Created on",
+  "domain_operations_statusOperation_problem": "Failed"
 }
