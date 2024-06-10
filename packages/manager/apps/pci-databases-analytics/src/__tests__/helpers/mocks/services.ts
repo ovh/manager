@@ -198,3 +198,103 @@ export const mockedServiceCreationWithEngine: ServiceCreationWithEngine = {
   ...mockedServiceCreation,
   engine: database.EngineEnum.mongodb,
 };
+
+/// / Used for Add integration test
+export const mockedServiceInteBase: database.Service = {
+  backupTime: 'backupTime',
+  capabilities: {
+    [database.service.CapabilityEnum.integrations]: {
+      create: database.service.capability.StateEnum.enabled,
+      update: database.service.capability.StateEnum.enabled,
+      delete: database.service.capability.StateEnum.enabled,
+      read: database.service.capability.StateEnum.enabled,
+    },
+  },
+  category: database.CategoryEnum.all,
+  createdAt: 'createdAt',
+  description: 'description',
+  disk: {
+    size: 1,
+    type: 'type',
+  },
+  endpoints: [
+    {
+      component: database.service.endpoint.ComponentEnum.grafana,
+      domain: 'domain',
+      path: 'path',
+      port: 1,
+      scheme: 'scheme',
+      ssl: true,
+      sslMode: 'sslMode',
+      uri: 'uri',
+    },
+  ],
+  engine: database.EngineEnum.grafana,
+  flavor: 'flavor',
+  id: 'serviceBaseIdGrafanawith36caracteres',
+  ipRestrictions: [
+    {
+      description: 'description',
+      ip: 'ip',
+      status: database.StatusEnum.READY,
+    },
+  ],
+  maintenanceTime: 'maintenanceTime',
+  networkId: 'networkId',
+  networkType: database.NetworkTypeEnum.public,
+  nodeNumber: 2,
+  nodes: [mockedNode],
+  plan: 'plan',
+  region: 'region',
+  status: database.StatusEnum.READY,
+  storage: {
+    size: {
+      unit: 'unit',
+      value: 3,
+    },
+    type: 'type',
+  },
+  subnetId: 'subnetId',
+  version: 'version',
+};
+
+export const mockedServiceInteGraf: database.Service = {
+  ...mockedServiceInteBase,
+  id: 'serviceGrafBiswith36caracteres123456',
+};
+
+export const mockedServiceInteMySQL: database.Service = {
+  ...mockedServiceInteBase,
+  id: 'serviceMySQLWith36caracteres12345678',
+  engine: database.EngineEnum.mysql,
+  endpoints: [
+    {
+      component: database.service.endpoint.ComponentEnum.mysql,
+      domain: 'domain',
+      path: 'path',
+      port: 1,
+      scheme: 'scheme',
+      ssl: true,
+      sslMode: 'sslMode',
+      uri: 'uri',
+    },
+  ],
+};
+
+export const mockedServiceInteM3DB: database.Service = {
+  ...mockedServiceInteBase,
+  id: 'serviceM3DBwith36caracteres123456789',
+  engine: database.EngineEnum.m3db,
+  endpoints: [
+    {
+      component: database.service.endpoint.ComponentEnum.m3coordinator,
+      domain: 'domain',
+      path: 'path',
+      port: 1,
+      scheme: 'scheme',
+      ssl: true,
+      sslMode: 'sslMode',
+      uri: 'uri',
+    },
+  ],
+};

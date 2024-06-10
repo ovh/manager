@@ -14,6 +14,26 @@ export const mockedCapabilitiesIntegrations: database.capabilities.Integration =
   type: database.service.integration.TypeEnum.kafkaMirrorMaker,
 };
 
+// used for Add integration test///
+export const mockedCapaInteGrafDash: database.capabilities.Integration = {
+  destinationEngine: database.EngineEnum.grafana,
+  sourceEngine: database.EngineEnum.m3db,
+  type: database.service.integration.TypeEnum.grafanaDashboard,
+};
+
+export const mockedCapaInteGrafData: database.capabilities.Integration = {
+  destinationEngine: database.EngineEnum.mysql,
+  sourceEngine: database.EngineEnum.grafana,
+  type: database.service.integration.TypeEnum.grafanaDatasource,
+};
+
+export const mockedCapaInteGrafOpen: database.capabilities.Integration = {
+  destinationEngine: database.EngineEnum.grafana,
+  sourceEngine: database.EngineEnum.grafana,
+  type: database.service.integration.TypeEnum.opensearchLogs,
+};
+/// /////////////////////////////////////
+
 export const mockedAddIntegrations: Omit<
   database.service.Integration,
   'id' | 'status'

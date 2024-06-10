@@ -20,6 +20,8 @@ import {
   mockedService as mockedServiceOrig,
 } from '@/__tests__/helpers/mocks/services';
 import { mockedIntegrations } from '@/__tests__/helpers/mocks/integrations';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
+import { useToast } from '@/components/ui/use-toast';
 
 // Override mock to add capabilities
 const mockedNewService = {
@@ -72,6 +74,15 @@ describe('Integrations page', () => {
             onLocaleChange: vi.fn(),
             setLocale: vi.fn(),
           },
+        })),
+      };
+    });
+
+    vi.mock('@/components/ui/use-toast', () => {
+      const toastMock = vi.fn();
+      return {
+        useToast: vi.fn(() => ({
+          toast: toastMock,
         })),
       };
     });
@@ -229,6 +240,31 @@ describe('Open modals', () => {
       ).not.toBeInTheDocument();
     });
   });
+
+  it('delete integrations on error trigger toast', async () => {
+    const errorMsg = {
+      description: 'api error message',
+      title: 'deleteIntegrationToastErrorTitle',
+      variant: 'destructive',
+    };
+    vi.mocked(integrationApi.deleteIntegration).mockImplementationOnce(() => {
+      throw apiErrorMock;
+    });
+    await openButtonInMenu('integrations-action-delete-button');
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('delete-integrations-modal'),
+      ).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('delete-integrations-submit-button'));
+    });
+    await waitFor(() => {
+      expect(integrationApi.deleteIntegration).toHaveBeenCalled();
+      expect(useToast().toast).toHaveBeenCalledWith(errorMsg);
+    });
+  });
+
   it('refetch data on delete integrations success', async () => {
     await openButtonInMenu('integrations-action-delete-button');
     await waitFor(() => {

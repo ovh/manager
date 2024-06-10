@@ -108,7 +108,6 @@ const AddIntegration = ({
     }
     return messages;
   }, [model.form.formState.errors]);
-
   return (
     <Dialog {...controller}>
       <DialogContent>
@@ -170,17 +169,22 @@ const AddIntegration = ({
                       disabled={model.lists.capabilities.length < 2}
                     >
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger data-testid="select-trigger">
                           <SelectValue
+                            data-testid="select-value"
                             placeholder={t(
                               'addIntegrationInputTypePlaceholder',
                             )}
                           />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent data-testid="select-content">
                         {model.lists.capabilities.map((c) => (
-                          <SelectItem value={c.type} key={c.type}>
+                          <SelectItem
+                            data-testid="select-item"
+                            value={c.type}
+                            key={c.type}
+                          >
                             <div className="flex flex-col items-start">
                               <span>{c.type}</span>
                               <span className="text-xs">
@@ -297,7 +301,11 @@ const AddIntegration = ({
               ))}
             </div>
             <DialogFooter className="flex justify-end">
-              <Button type="submit" disabled={isPending}>
+              <Button
+                data-testid="integration-submit-button"
+                type="submit"
+                disabled={isPending}
+              >
                 {t('addIntegrationButtonAdd')}
               </Button>
             </DialogFooter>
