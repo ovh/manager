@@ -7,11 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import userEvent from '@testing-library/user-event';
-import * as LayoutContext from '@/pages/services/[serviceId]/layout';
-import Integrations, {
-  breadcrumb as Breadcrumb,
-} from '@/pages/services/[serviceId]/integrations';
+import Integrations from '@/pages/services/[serviceId]/integrations';
 import { database } from '@/models/database';
 import { Locale } from '@/hooks/useLocale';
 import * as integrationApi from '@/api/databases/integrations';
@@ -21,19 +17,20 @@ import {
   mockedCapaInteGrafDash,
   mockedCapaInteGrafData,
   mockedCapaInteGrafOpen,
-  mockedIntegrations,
 } from '@/__tests__/helpers/mocks/integrations';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
-import { useToast } from '@/components/ui/use-toast';
 import {
   mockedServiceInteBase,
   mockedServiceInteGraf,
   mockedServiceInteM3DB,
   mockedServiceInteMySQL,
 } from '@/__tests__/helpers/mocks/services';
+import { handleSelectOption } from '@/__tests__/helpers/selectHelper';
 
 describe('Integrations page', () => {
   beforeEach(() => {
+    // Mock scroll html function
+    const mockScrollIntoView = vi.fn();
+    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
     // Mock necessary hooks and dependencies
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
@@ -41,7 +38,7 @@ describe('Integrations page', () => {
       }),
     }));
     vi.mock('@/api/databases/integrations', () => ({
-      // getServiceIntegrations: vi.fn(() => []),
+      getServiceIntegrations: vi.fn(() => []),
       getServiceCapabilitiesIntegrations: vi.fn(() => [
         mockedCapaInteGrafDash,
         mockedCapaInteGrafData,
@@ -98,7 +95,6 @@ describe('Integrations page', () => {
   });
 
   it('open and close add integrations modal', async () => {
-    const { rerender } = render(<Integrations />);
     render(<Integrations />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.click(screen.getByTestId('integrations-add-button'));
@@ -106,51 +102,28 @@ describe('Integrations page', () => {
     await waitFor(() => {
       expect(screen.getByTestId('add-integrations-modal')).toBeInTheDocument();
       expect(screen.getByTestId('add-integrations-modal')).toBeVisible();
-      expect(screen.getByTestId('select-type-button')).toBeInTheDocument();
-      expect(screen.getByTestId('select-type-button')).not.toBeDisabled();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('select-type-button'));
-      rerender(<Integrations />);
-    });
-
-    expect(screen.getByTestId('select-type-button')).not.toHaveAttribute(
-      'data-state',
-      'closed',
-    );
-    await waitFor(() => {
       expect(
-        screen.getByText(
-          'grafanaDashboardintegrationTypeDescription-grafanaDashboard',
-        ),
+        screen.getByTestId('select-integration-trigger'),
       ).toBeInTheDocument();
       expect(
-        screen.getByText(
-          'grafanaDatasourceintegrationTypeDescription-grafanaDatasource',
-        ),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(
-          'opensearchLogsintegrationTypeDescription-opensearchLogs',
-        ),
-      ).toBeInTheDocument();
+        screen.getByTestId('select-integration-trigger'),
+      ).not.toBeDisabled();
     });
-
-    const option = screen.getByText(
-      'grafanaDatasourceintegrationTypeDescription-grafanaDatasource',
+    // open select and chose option
+    await handleSelectOption(
+      'select-integration-trigger',
+      [
+        'integrationTypeDescription-grafanaDashboard',
+        'integrationTypeDescription-grafanaDatasource',
+        'integrationTypeDescription-opensearchLogs',
+      ],
+      'integrationTypeDescription-grafanaDatasource',
     );
-    fireEvent.click(option);
-    screen.debug();
-    expect(option).toBeInTheDocument();
-    expect(option).toHaveAttribute('value', 'grafanaDatasource');
-
-    // await userEvent.click(screen.getByText('grafanaDatasourceintegrationTypeDescription-grafanaDatasource'));
-    expect(screen.getByTestId('select-type-button')).toHaveTextContent(
-      'grafanaDatasourceintegrationTypeDescription-grafanaDatasource',
-    );
+    // Submit the form
     act(() => {
       fireEvent.click(screen.getByTestId('integration-submit-button'));
     });
+    // Check if integration is being added
     await waitFor(() => {
       expect(integrationApi.addIntegration).toHaveBeenCalled();
     });

@@ -169,7 +169,7 @@ const AddIntegration = ({
                       disabled={model.lists.capabilities.length < 2}
                     >
                       <FormControl>
-                        <SelectTrigger data-testid="select-trigger">
+                        <SelectTrigger data-testid="select-integration-trigger">
                           <SelectValue
                             data-testid="select-value"
                             placeholder={t(
