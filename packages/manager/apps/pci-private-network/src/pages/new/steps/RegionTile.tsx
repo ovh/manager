@@ -18,21 +18,21 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { URL_INFO } from '@/constants';
-import { TFormState } from '../New.page';
 import { TMappedRegion } from './LocalizationStep';
+import { useNewNetworkStore } from '@/pages/new/store';
 
 type TRegionTile = {
   region: TMappedRegion;
   stack?: boolean;
-  formState: TFormState;
 };
 
 export const RegionTile = ({
   region,
-  formState,
   stack = false,
 }: Readonly<TRegionTile>) => {
   const { t: tRegions } = useTranslation('regions');
+
+  const store = useNewNetworkStore();
 
   const { ovhSubsidiary } = useEnvironment().getUser();
 
@@ -50,7 +50,7 @@ export const RegionTile = ({
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_TEXT_LEVEL.body}
           size={
-            region === formState?.region
+            region === store.form?.region
               ? ODS_TEXT_SIZE._500
               : ODS_TEXT_SIZE._400
           }
