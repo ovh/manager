@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@2.5.0...@ovh-ux/ng-ovh-order-tracking@2.5.1) (2024-06-10)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([28df688](https://github.com/ovh/manager/commit/28df68862f889728a1533b6e563d431f3516ee59))
+
+
+
+
+
 # [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@2.4.1...@ovh-ux/ng-ovh-order-tracking@2.5.0) (2024-05-28)
 
 

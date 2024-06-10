@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.41.0...@ovh-ux/manager-vps@2.41.1) (2024-06-10)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** impossible to cancel additional disks ([#11636](https://github.com/ovh/manager/issues/11636)) ([7e5c2ff](https://github.com/ovh/manager/commit/7e5c2ff60906cd5cc411fc4fb7f8cf3029292e3c))
+
+
+
+
+
 # [2.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.40.4...@ovh-ux/manager-vps@2.41.0) (2024-05-28)
 
 

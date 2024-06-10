@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.18.0...@ovh-ux/manager-components@1.18.1) (2024-06-10)
+
+
+### Bug Fixes
+
+* **pci:** club region under right continent ([#11788](https://github.com/ovh/manager/issues/11788)) ([33a27bf](https://github.com/ovh/manager/commit/33a27bfde2fa8bbc8848c6da0f770cfefb11f662))
+
+
+
+
+
 # [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.17.0...@ovh-ux/manager-components@1.18.0) (2024-06-03)
 
 

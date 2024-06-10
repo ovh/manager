@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.6.0...@ovh-ux/manager-pci-rancher-app@1.7.0) (2024-06-10)
+
+
+### Features
+
+* **pci-rancher:** define version of a rancher ([#11666](https://github.com/ovh/manager/issues/11666)) ([eba6664](https://github.com/ovh/manager/commit/eba6664808f939369675b0f7e844856153d87240))
+* **pci-rancher:** display error msg in banner as per api ([#11702](https://github.com/ovh/manager/issues/11702)) ([a74c84a](https://github.com/ovh/manager/commit/a74c84a45a24ed922438192e99a8e7119a7116f8))
+* **pci-rancher:** update version and plan route([#11838](https://github.com/ovh/manager/issues/11838)) ([dcab265](https://github.com/ovh/manager/commit/dcab2653d4f673b001ed01f47ebacf9d0dace4ec))
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.5.1...@ovh-ux/manager-pci-rancher-app@1.6.0) (2024-06-06)
 
 

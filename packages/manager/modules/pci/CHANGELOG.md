@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.43.0...@ovh-ux/manager-pci@6.44.0) (2024-06-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3043] ([be06989](https://github.com/ovh/manager/commit/be069896ae122c5e2bd59278d4fba8ca29585732))
+* **pci.project:** update US onboarding page links ([#11582](https://github.com/ovh/manager/issues/11582)) ([1e6d302](https://github.com/ovh/manager/commit/1e6d302c1430b829d0a3bbc65fc4738f9144db97))
+* remove unused translations [CDS] ([28df688](https://github.com/ovh/manager/commit/28df68862f889728a1533b6e563d431f3516ee59))
+
+
+### Features
+
+* **pci.instance:** change network mode selection order ([#11560](https://github.com/ovh/manager/issues/11560)) ([97d4145](https://github.com/ovh/manager/commit/97d41453de3d46dc80fa6c4b5e6e549198bf1b2d))
+
+
+
+
+
 # [6.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.42.1...@ovh-ux/manager-pci@6.43.0) (2024-06-06)
 
 

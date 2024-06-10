@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.15.3...@ovh-ux/manager-telecom@15.16.0) (2024-06-10)
+
+
+### Features
+
+* **telecom.pack:** add multi otp choice on move and migrate ([#11795](https://github.com/ovh/manager/issues/11795)) ([7e13c55](https://github.com/ovh/manager/commit/7e13c55c8aa81c1cf6059c533dcf7441dd1f4219))
+
+
+
+
+
 ## [15.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.15.2...@ovh-ux/manager-telecom@15.15.3) (2024-06-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
