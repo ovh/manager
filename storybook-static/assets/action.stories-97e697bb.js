@@ -1,0 +1,7 @@
+import{O as a}from"./ods-html-anchor-element-target-36ff34f6.js";import{A as s}from"./action.component-81e1b8b3.js";import"./jsx-runtime-ffb262ed.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./ods-theme-typography-size-da089dcf.js";import"./index-bfec29a3.js";import"./index-9bd3787b.js";import"./index-da03a860.js";import"./translation-76cc2d7b.js";import"./i18next-65ce221f.js";import"./setPrototypeOf-24bea416.js";import"./ManagerButton-21d9ed94.js";import"./useOvhIam-1fd93ebf.js";import"./QueryClientProvider-5f9a1569.js";import"./useTranslation-756c8576.js";const n=[{id:1,href:"https://ovhcloud.com",target:a._blank,label:"Action 1",urn:"urn:v9:eu:resource:manager-components:vrz-a878-dsflkds-fdsfsd",iamActions:["vrackServices:apiovh:iam/resource/tag/remove"]},{id:2,onClick:()=>window.open("https://ovhcloud.com","_blank","noopener"),label:"Action 2",urn:"urn:v9:eu:resource:manager-components:vrz-a878-dsflkds-fdsfsd",iamActions:["vrackServices:apiovh:iam/resource/tag/remove"]}],o={args:{items:n,isCompact:!1}},_={title:"Navigation/Menus",component:s};var r,t,e;o.parameters={...o.parameters,docs:{...(r=o.parameters)==null?void 0:r.docs,source:{originalSource:`{
+  args: {
+    items: actionItems,
+    isCompact: false
+  }
+}`,...(e=(t=o.parameters)==null?void 0:t.docs)==null?void 0:e.source}}};const C=["actionMenuStandard"];export{C as __namedExportsOrder,o as actionMenuStandard,_ as default};
+//# sourceMappingURL=action.stories-97e697bb.js.map
