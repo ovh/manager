@@ -8,7 +8,7 @@ import {
 import { describe, it, vi } from 'vitest';
 import RadioTile from '@/components/radio-tile';
 
-describe('RadioTile component', () => {
+describe('Radio tile component', () => {
   it('should display the radio tile', async () => {
     render(
       <RadioTile>

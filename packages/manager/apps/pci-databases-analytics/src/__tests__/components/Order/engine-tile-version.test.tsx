@@ -3,7 +3,7 @@ import { describe, it, vi } from 'vitest';
 import VersionSelector from '@/components/Order/engine/engine-tile-version';
 import { mockedEngineVersion } from '@/__tests__/helpers/mocks/order-funnel';
 
-describe('Engine-tile-version component', () => {
+describe('Engine tile version component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

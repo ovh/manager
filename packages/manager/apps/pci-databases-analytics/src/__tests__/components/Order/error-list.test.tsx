@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import ErrorList from '@/components/Order/error-list';
 
-describe('ErrorList component', () => {
+describe('Error list component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

@@ -6,10 +6,8 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import { UseQueryResult } from '@tanstack/react-query';
 import Services from '@/pages/services';
 import { database } from '@/models/database';
-import * as LayoutContext from '@/pages/services/[serviceId]/layout';
 import { Locale } from '@/hooks/useLocale';
 import * as serviceApi from '@/api/databases/service';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';

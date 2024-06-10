@@ -34,7 +34,7 @@ const mockedService = {
   },
 };
 
-describe('Settings page', () => {
+describe('Maintenance in settings page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
@@ -139,7 +139,7 @@ describe('Settings page', () => {
     });
   });
 
-  it('does not display advanced config if capability is absent', async () => {
+  it('disable apply maintenance button if capability is absent', async () => {
     vi.mocked(LayoutContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {

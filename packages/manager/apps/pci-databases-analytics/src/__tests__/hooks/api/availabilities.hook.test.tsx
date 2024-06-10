@@ -1,7 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import * as databaseAPI from '@/api/databases/availabilities';
-import { database } from '@/models/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import {
   useGetAvailabilities,

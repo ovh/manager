@@ -22,7 +22,7 @@ vi.mock('@ovh-ux/manager-core-api', () => {
   };
 });
 
-describe('database api functions', () => {
+describe('availabilities api functions', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

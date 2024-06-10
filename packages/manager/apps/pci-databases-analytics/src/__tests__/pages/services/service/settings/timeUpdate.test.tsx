@@ -8,7 +8,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { Locale } from '@/hooks/useLocale';
 
 const mockedOnSubmit = vi.fn();
-describe('Time Update component', () => {
+describe('Time update component', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
 

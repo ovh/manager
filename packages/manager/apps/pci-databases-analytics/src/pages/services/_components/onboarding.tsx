@@ -36,7 +36,7 @@ const Onboarding = () => {
       <p>{t('description1')}</p>
       <p className="font-bold">{t('description2')}</p>
       <p>{t('description3')}</p>
-      <Button asChild>
+      <Button data-testid="create-service-link" asChild>
         <Link
           onClick={() => track(TRACKING.onboarding.createDatabaseClick())}
           to="new"

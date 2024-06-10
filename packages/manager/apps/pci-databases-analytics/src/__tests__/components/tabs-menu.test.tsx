@@ -10,7 +10,7 @@ function setup(tabs: Tab[] = []) {
   });
 }
 
-describe('TabsMenu', () => {
+describe('Tabs menu', () => {
   beforeEach(() => {
     const ResizeObserverMock = vi.fn(() => ({
       observe: vi.fn(),

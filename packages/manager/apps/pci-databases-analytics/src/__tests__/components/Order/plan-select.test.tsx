@@ -9,12 +9,12 @@ import { describe, it, vi } from 'vitest';
 import PlansSelect from '@/components/Order/plan/plan-select';
 import { mockedBasicOrderFunnelPlan } from '@/__tests__/helpers/mocks/order-funnel';
 
-describe('PlanSelect component', () => {
+describe('Plan select component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
 
-  it('should display the PlanTile', async () => {
+  it('should display the plan tile', async () => {
     const onChange = vi.fn();
     render(
       <PlansSelect

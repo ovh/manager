@@ -10,12 +10,12 @@ import { PlanTile } from '@/components/Order/plan/plan-tile';
 import { mockedBasicOrderFunnelPlan } from '@/__tests__/helpers/mocks/order-funnel';
 import { Plan } from '@/models/order-funnel';
 
-describe('PlanTile component', () => {
+describe('Plan tile component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
 
-  it('should display the PlanTile With all element', async () => {
+  it('should display plan tile With all element', async () => {
     const onChange = vi.fn();
     const fullPlan: Plan = {
       ...mockedBasicOrderFunnelPlan,
@@ -52,7 +52,7 @@ describe('PlanTile component', () => {
     });
   });
 
-  it('Ram, CPU, Storage, Nodes should not be displayed', async () => {
+  it('Ram, cpu, storage, nodes should not be displayed', async () => {
     const onChange = vi.fn();
     const noNodesPlan: Plan = {
       ...mockedBasicOrderFunnelPlan,
@@ -77,7 +77,7 @@ describe('PlanTile component', () => {
     });
   });
 
-  it('Should displayed CPU, Storage, Ram, Node in spec and not range', async () => {
+  it('Should displayed cpu, storage, ram, node in spec and not range', async () => {
     const onChange = vi.fn();
     const noRangePlan: Plan = {
       ...mockedBasicOrderFunnelPlan,

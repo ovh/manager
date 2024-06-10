@@ -32,7 +32,7 @@ const mockedService = {
   },
 };
 
-describe('ConnectionPools page', () => {
+describe('Backups page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies

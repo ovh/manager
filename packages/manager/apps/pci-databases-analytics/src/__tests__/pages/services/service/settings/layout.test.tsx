@@ -9,7 +9,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { database } from '@/models/database';
 
-describe('Services Settings Layout', () => {
+describe('Service settings layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     vi.mock('@/pages/services/[serviceId]/layout', () => ({
@@ -34,7 +34,7 @@ describe('Services Settings Layout', () => {
     });
   });
 
-  it('renders the BackupLayout component', async () => {
+  it('renders the service layout component', async () => {
     render(<BackupLayout />, {
       wrapper: RouterWithQueryClientWrapper,
     });

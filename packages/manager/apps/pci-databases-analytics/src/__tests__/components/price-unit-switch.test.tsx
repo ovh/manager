@@ -9,7 +9,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-describe('PriceUnitSwitch', () => {
+describe('Price unit switch', () => {
   it('renders hourly button', () => {
     render(<PriceUnitSwitch showMonthly={false} onChange={() => {}} />);
     const hourlyButton = screen.getByTestId('pricing_button_hourly');

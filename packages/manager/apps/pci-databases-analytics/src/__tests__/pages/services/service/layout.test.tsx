@@ -1,7 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
-
-import { UseQueryResult } from '@tanstack/react-query';
 import ServiceLayout, {
   breadcrumb as Breadcrumb,
   Loader,
@@ -20,7 +18,7 @@ const loaderParam = {
   request: new Request('https://my-api.com/endpoint'),
 };
 
-describe('Services serviceID Layout', () => {
+describe('Service Layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
 

@@ -11,7 +11,7 @@ vi.mock('react-i18next', () => ({
   Trans: ({ children }: { children: React.ReactNode }) => children,
 }));
 
-describe('PriceComponentRenders', () => {
+describe('Price component renders', () => {
   it('should display the 2 span', () => {
     render(
       <Price priceInUcents={1000000000} taxInUcents={2000000} decimals={2} />,
@@ -21,7 +21,7 @@ describe('PriceComponentRenders', () => {
   });
 });
 
-describe('PriceComponentValue', () => {
+describe('Price component value', () => {
   it('should display price with tax', () => {
     render(
       <Price priceInUcents={1000000000} taxInUcents={200000000} decimals={2} />,

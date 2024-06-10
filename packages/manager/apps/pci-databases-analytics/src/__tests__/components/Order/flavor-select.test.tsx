@@ -10,7 +10,7 @@ import FlavorsSelect from '@/components/Order/flavor/flavor-select';
 import { mockedBasicOrderFunnelFlavor } from '@/__tests__/helpers/mocks/order-funnel';
 import { Flavor } from '@/models/order-funnel';
 
-describe('FlavorSelect component', () => {
+describe('Flavor select component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

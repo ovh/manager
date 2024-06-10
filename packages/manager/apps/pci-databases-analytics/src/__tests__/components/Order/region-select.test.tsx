@@ -8,17 +8,14 @@ import {
 import { describe, it, vi } from 'vitest';
 
 import RegionSelect from '@/components/Order/region/region-select';
-import {
-  mockedOrderFunnelRegion,
-  mockedOrderFunnelRegionBis,
-} from '@/__tests__/helpers/mocks/order-funnel';
+import { mockedOrderFunnelRegion } from '@/__tests__/helpers/mocks/order-funnel';
 
-describe('FlavorSelect component', () => {
+describe('Region select component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
 
-  it('should display the Flavor-Select table', async () => {
+  it('should display the region select table', async () => {
     const onChange = vi.fn();
 
     render(

@@ -9,7 +9,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { database } from '@/models/database';
 
-describe('Services backups Layout', () => {
+describe('Service backups Layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     vi.mock('@/pages/services/[serviceId]/layout', () => ({

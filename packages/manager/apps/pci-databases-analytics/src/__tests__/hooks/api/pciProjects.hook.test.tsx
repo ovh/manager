@@ -1,7 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import * as API from '@/api/projects';
-import { database } from '@/models/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import usePciProject from '@/hooks/api/pciProjects.api.hooks';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/pciProjects';

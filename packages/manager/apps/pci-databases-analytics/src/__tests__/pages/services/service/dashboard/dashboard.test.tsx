@@ -236,7 +236,7 @@ describe('Maintenance section', () => {
   });
 });
 
-describe('ConnectionDetails Page', () => {
+describe('Connection details page', () => {
   beforeEach(() => {
     // Mock necessary hooks and dependencies
     vi.mock('react-i18next', () => ({

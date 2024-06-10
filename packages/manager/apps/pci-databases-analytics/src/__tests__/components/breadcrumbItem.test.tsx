@@ -8,11 +8,11 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-describe('Breadcrumb component', () => {
+describe('Breadcrumb item component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
-  it('should display the breadcrumb component', async () => {
+  it('should display the breadcrumb item component', async () => {
     const translationKey = 'testKey';
     render(
       <BreadcrumbItem translationKey={translationKey} namespace="namespace" />,

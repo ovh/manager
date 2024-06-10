@@ -2,7 +2,7 @@ import { act, render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import ProgressLoader from '@/components/Loading/ProgressLoader';
 
-describe('ProgressLoader component', () => {
+describe('Progress loader component', () => {
   beforeEach(() => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
   });

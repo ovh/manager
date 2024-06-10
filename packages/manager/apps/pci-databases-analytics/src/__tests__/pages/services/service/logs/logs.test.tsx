@@ -74,7 +74,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => {
     })),
   };
 });
-describe('Logs component', () => {
+describe('Logs page', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

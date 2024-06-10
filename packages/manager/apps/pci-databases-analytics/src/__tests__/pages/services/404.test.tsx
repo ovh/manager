@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import NotFound from '@/pages/404';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 
-describe('NotFound page', () => {
+describe('404 NotFound page', () => {
   it('should display Not Found pages', async () => {
     render(<NotFound />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
