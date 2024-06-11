@@ -1,7 +1,9 @@
 import {
+  GUIDE_URL,
   LOGO_FILE_FORMATS,
   MAX_SIZE_LOGO_FILE,
   MOBILE_OS,
+  STATUS_SOFTPHONE,
 } from './softphone.constants';
 
 export default class SoftphoneController {
@@ -16,17 +18,63 @@ export default class SoftphoneController {
     this.$translate = $translate;
     this.TucToast = TucToast;
     this.$q = $q;
+    this.showEditFormSoftphoneName = {};
+    this.model = {};
+    this.softphoneNameForm = {};
+    this.STATUS_SOFTPHONE = STATUS_SOFTPHONE;
   }
 
   $onInit() {
     this.getMobileOperatingSystem();
     this.MOBILE_OS = MOBILE_OS;
     this.guide = {
-      title: 'mocked_title',
-      url: 'mocked_url',
-      external: 'mocked_external',
-      name: 'mocked_name',
+      title: 'telephony_line_softphone_configure_title',
+      url: GUIDE_URL,
+      external: true,
     };
+    this.isLoading = true;
+    this.softphoneService
+      .getDevicesInfos(this.billingAccount, this.serviceName)
+      .then((devices) => {
+        this.devices = devices;
+        this.isLoading = false;
+      });
+  }
+
+  saveSoftphoneName(deviceId) {
+    this.showEditFormSoftphoneName[deviceId] = false;
+    this.softphoneService
+      .modifyDevice(
+        this.billingAccount,
+        this.serviceName,
+        this.model[deviceId].name,
+        deviceId,
+      )
+      .then(() => {
+        this.isLoading = true;
+        this.softphoneService
+          .getDevicesInfos(this.billingAccount, this.serviceName)
+          .then((devices) => {
+            this.isLoading = false;
+            this.devices = devices;
+          });
+      })
+      .catch((error) =>
+        this.TucToast.error(
+          this.$translate.instant(
+            'telephony_line_softphone_change_name_error',
+            {
+              errorMessage: error.message,
+            },
+          ),
+        ),
+      );
+  }
+
+  toggleEditSoftphoneName(deviceId) {
+    this.showEditFormSoftphoneName[deviceId] = !this.showEditFormSoftphoneName[
+      deviceId
+    ];
   }
 
   getMobileOperatingSystem() {
