@@ -7,7 +7,10 @@ interface LegalMentionsProps {
 const LegalMentions = ({ className }: LegalMentionsProps) => {
   const { t } = useTranslation('pci-databases-analytics');
   return (
-    <div className={cn('border border-primary-100 p-4 rounded-md', className)}>
+    <div
+      data-testid="legal-mentions-container"
+      className={cn('border border-primary-100 p-4 rounded-md', className)}
+    >
       <p>{t('legal-general')}</p>
     </div>
   );

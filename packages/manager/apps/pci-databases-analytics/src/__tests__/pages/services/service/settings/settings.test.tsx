@@ -18,7 +18,6 @@ import {
   mockedCapabilities,
   mockedEngineCapabilities,
   mockedRegionCapabilities,
-  mockedSuggestions,
 } from '@/__tests__/helpers/mocks/availabilities';
 import { mockedMaintenance } from '@/__tests__/helpers/mocks/maintenances';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';

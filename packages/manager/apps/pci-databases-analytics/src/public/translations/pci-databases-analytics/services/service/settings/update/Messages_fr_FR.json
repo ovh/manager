@@ -44,7 +44,7 @@
   "addNodeCancelButton": "Annuler",
   "addNodeSubmitButton": "Valider",
   "deleteNodeTitle": "Supprimer un nœud",
-  "deleteNodeDescription": "Vous disposez actuellement de {{nbNodes}} nœud(s). Voulez-vous vraiment en supprimer un ? Vous résuirez votre facture de <price/> par {{unit}}.",
+  "deleteNodeDescription": "Vous disposez actuellement de {{nbNodes}} nœud(s). Voulez-vous vraiment en supprimer un ? Vous réduirez votre facture de <price/> par {{unit}}.",
   "deleteNodeDescriptionUnitHour": "heure",
   "deleteNodeDescriptionUnitMonth": "mois",
   "deleteNodeToastSuccessTitle": "Succès",

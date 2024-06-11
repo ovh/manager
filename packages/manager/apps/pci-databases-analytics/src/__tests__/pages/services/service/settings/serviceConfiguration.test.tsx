@@ -57,7 +57,7 @@ const mockedService = {
   },
 };
 
-describe('serviceConfiguration page', () => {
+describe('Service configuration page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies

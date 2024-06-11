@@ -36,7 +36,10 @@ const MeanMetric = ({
       {value ? (
         `${value.toFixed(2)}%`
       ) : (
-        <Skeleton className="h-4 w-16 inline ml-2" />
+        <Skeleton
+          data-testid="mean-metric-skeleton"
+          className="h-4 w-16 inline ml-2"
+        />
       )}
     </div>
   );

@@ -52,7 +52,7 @@ describe('ErrorBoundary component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
-  it('should display the errorBoundary component', async () => {
+  it('should display the error boundary component', async () => {
     render(<ErrorBoundary />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText('Test error')).toBeInTheDocument();

@@ -58,7 +58,7 @@ const mockCapabilities: database.capabilities.advancedConfiguration.Property[] =
   },
 ];
 
-describe('Settings page', () => {
+describe('Update table in settings page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
