@@ -1,10 +1,16 @@
 export const BANDWIDTH_OUT = 'bandwidth_instance_out.consumption';
 export const FILTER_PRIVATE_NETWORK_BAREMETAL = 'ovh.baremetal';
 
+export const PUBLIC_NETWORK_MODE = 'public_mode';
+
+export const PRIVATE_NETWORK_MODE = 'private_mode';
+
+export const LOCAL_PRIVATE_NETWORK_MODE = 'local_private_mode';
+
 export const INSTANCE_MODES_ENUM = [
-  { mode: 'private_mode' },
-  { mode: 'public_mode' },
-  { mode: 'local_private_mode' },
+  { mode: PRIVATE_NETWORK_MODE },
+  { mode: PUBLIC_NETWORK_MODE },
+  { mode: LOCAL_PRIVATE_NETWORK_MODE },
 ];
 
 export const AVAILABLE_SUBNET = [

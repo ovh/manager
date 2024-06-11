@@ -28,6 +28,8 @@ import {
   PUBLIC_NETWORK,
   PUBLIC_NETWORK_BAREMETAL,
   URL_MODEL,
+  PRIVATE_NETWORK_MODE,
+  LOCAL_PRIVATE_NETWORK_MODE,
 } from './add.constants';
 
 import { INSTANCE_PRICING_LINKS } from '../instances.constants';
@@ -658,11 +660,11 @@ export default class PciInstancesAddController {
   }
 
   isPrivateMode() {
-    return this.selectedMode.name === this.instanceModeEnum[1].mode;
+    return this.selectedMode.name === PRIVATE_NETWORK_MODE;
   }
 
   isLocalPrivateMode() {
-    return this.selectedMode.name === this.instanceModeEnum[2].mode;
+    return this.selectedMode.name === LOCAL_PRIVATE_NETWORK_MODE;
   }
 
   isLocalZone() {
@@ -709,7 +711,7 @@ export default class PciInstancesAddController {
     if (
       modelValue &&
       modelValue.subnet &&
-      this.selectedMode.name !== this.instanceModeEnum[1].mode &&
+      this.selectedMode.name !== PRIVATE_NETWORK_MODE &&
       !this.isLocalZone()
     ) {
       this.getSubnetGateways(modelValue.subnet[0].id)
