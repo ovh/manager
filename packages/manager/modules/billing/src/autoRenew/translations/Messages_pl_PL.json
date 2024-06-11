@@ -151,5 +151,6 @@
   "billing_autorenew_service_activate_alert": "Posiadasz co najmniej jedną usługę w trybie automatycznego odnowienia, ale nie zatwierdziłeś jeszcze tej opcji.",
   "autorenew_service_autorenew_day_tooltip_autorenew_2016": "Jeśli posiadasz usługi z opcją automatycznego odnowienia, możesz wybrać dzień ich odnowienia (opcja niekompatybilna z produktami Bare Metal i VPS, dla których domyślną datą odnowienia jest 1. dzień miesiąca).",
   "billing_autorenew_service_activate_alert_renew2016": "Ta wiadomość nie dotyczy usług Bare Metal i VPS.",
-  "billing_autorenew_service_type_DEDICATED_CLUSTER": "Region 3-AZ"
+  "billing_autorenew_service_type_DEDICATED_CLUSTER": "Region 3-AZ",
+  "billing_autorenew_service_type_VRACK_SERVICES_RESOURCE": "vRack Services"
 }

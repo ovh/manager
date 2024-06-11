@@ -151,5 +151,6 @@
   "billing_autorenew_service_activate_alert": "Ha configurado la renovación automática en al menos un servicio, pero todavía no ha autorizado esta opción.",
   "autorenew_service_autorenew_day_tooltip_autorenew_2016": "Si tiene servicios con renovación automática, podrá elegir el día de renovación (opción no compatible con los productos Bare Metal y VPS cuya fecha de renovación está fijada por defecto el día 1 de cada mes).",
   "billing_autorenew_service_activate_alert_renew2016": "Este mensaje no se aplica a los servicios Bare Metal y VPS.",
-  "billing_autorenew_service_type_DEDICATED_CLUSTER": "Región 3-AZ"
+  "billing_autorenew_service_type_DEDICATED_CLUSTER": "Región 3-AZ",
+  "billing_autorenew_service_type_VRACK_SERVICES_RESOURCE": "vRack Services"
 }
