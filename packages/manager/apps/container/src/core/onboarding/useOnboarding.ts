@@ -75,6 +75,9 @@ export const useOnboarding = () => {
         throw error;
       })
       .then((parsedValue: LocalStorageStatus) => {
+        // Remove that line for PNR v2 béta
+        parsedValue.status = ONBOARDING_STATUS_ENUM.DISPLAYED;
+        
         return parsedValue.status;
       });
   };

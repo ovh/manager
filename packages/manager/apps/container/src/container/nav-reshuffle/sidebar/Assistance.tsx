@@ -60,7 +60,7 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
   };
 
   return (
-    <ul className="mt-auto pb-3">
+    <ul className="mt-auto pb-3" id="useful-links">
       <li className="assistance_header px-3 mb-3">
         <h2 className="flex justify-between">
           <span>{t('sidebar_assistance_title')}</span>

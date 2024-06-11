@@ -14,6 +14,7 @@ import {
 import { ODS_RADIO_BUTTON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import NavReshuffleSwitchBackModal from '@/container/common/nav-reshuffle-switch-back/Modal';
+import useOnboarding from '@/core/onboarding';
 
 function NavReshuffleSwitchBack(): JSX.Element {
   const { t } = useTranslation('beta-modal');
@@ -24,6 +25,7 @@ function NavReshuffleSwitchBack(): JSX.Element {
     query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
   });
   const [confirm, setConfirm] = useState<boolean>(false);
+  const onboarding = useOnboarding();
 
   if (!betaVersion || isSmallDevice) {
     return <></>;
@@ -36,6 +38,7 @@ function NavReshuffleSwitchBack(): JSX.Element {
       type: 'navigation',
     });
     updateBetaChoice(value === 'beta');
+    onboarding.init();
   };
 
   const switchBack = (openSurvey = false) => {
