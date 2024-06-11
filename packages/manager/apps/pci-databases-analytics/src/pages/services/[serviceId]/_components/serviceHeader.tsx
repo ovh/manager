@@ -9,7 +9,10 @@ import { humanizeEngine } from '@/lib/engineNameHelper';
 export const ServiceHeader = ({ service }: { service: database.Service }) => {
   const { t } = useTranslation('regions');
   return (
-    <div className="flex gap-2 items-center mt-4 mb-6">
+    <div
+      data-testid="service-header-container"
+      className="flex gap-2 items-center mt-4 mb-6"
+    >
       <div className="rounded-full bg-gradient-to-tr from-primary to-slate-50 text-white p-2">
         <Database width={40} height={40} />
       </div>

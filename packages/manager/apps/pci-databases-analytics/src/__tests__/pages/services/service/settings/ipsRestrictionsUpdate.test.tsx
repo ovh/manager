@@ -60,7 +60,7 @@ const mockCapabilities: database.capabilities.advancedConfiguration.Property[] =
   },
 ];
 
-describe('Settings page', () => {
+describe('Ips restrictions update in settings page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies

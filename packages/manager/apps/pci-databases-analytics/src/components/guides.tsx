@@ -59,11 +59,13 @@ const Guides = ({
       if (newWindow) newWindow.opener = null;
     }
   };
-  if (guidesQuery.isFetching) return <Skeleton className="w-40 h-4" />;
+  if (guidesQuery.isFetching)
+    return <Skeleton data-testid="guide-skeleton" className="w-40 h-4" />;
   if (guidesQuery.data?.length === 0) return <></>;
   return (
     <>
       <Button
+        data-testid="guide-open-button"
         // variant="ghost"
         onClick={() => setOpen((prevValue) => !prevValue)}
         // className="text-primary-500 font-semibold"
@@ -81,11 +83,12 @@ const Guides = ({
         <CommandInput placeholder={t('searchBarPlaceholder')} />
         <CommandList>
           <CommandEmpty>{t('noResult')}</CommandEmpty>
-          <CommandGroup heading={t('listHeading')}>
+          <CommandGroup data-testid="guide-header" heading={t('listHeading')}>
             {guidesQuery.data
               ?.sort((a, b) => a.title.localeCompare(b.title))
               .map((guide) => (
                 <CommandItem
+                  data-testid={guide.url}
                   key={guide.url}
                   onSelect={() => openGuide(guide)}
                   className="cursor-pointer flex-col items-start"

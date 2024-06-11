@@ -43,6 +43,7 @@ const TimeUpdate = ({
     <></>
   ) : (
     <Button
+      data-testid="edit-time-update-button"
       variant="ghost"
       size="table"
       className="py-0 h-auto"
@@ -74,6 +75,7 @@ const TimeUpdate = ({
         {isUpdate ? (
           <div className="flex gap-2 justify-end">
             <Button
+              data-testid="submit-time-update-button"
               variant="ghost"
               size="table"
               className="py-0 h-auto"
@@ -82,6 +84,7 @@ const TimeUpdate = ({
               <Check />
             </Button>
             <Button
+              data-testid="cancel-time-update-button"
               variant="ghost"
               type="reset"
               size="table"

@@ -8,7 +8,7 @@ import { QueryClientWrapper } from '../helpers/wrappers/QueryClientWrapper';
 vi.mock('@/api/databases/metrics', () => ({
   getMetric: vi.fn(() => mockMetric),
 }));
-describe('useVrack', () => {
+describe('useMeanMetric', () => {
   it('should compute the mean of a metric', async () => {
     const { result } = renderHook(
       () =>

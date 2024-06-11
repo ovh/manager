@@ -68,6 +68,7 @@ const EngineDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
+          data-testid="engine-section-button"
           variant={'link'}
           size={'link'}
           type="button"
@@ -107,6 +108,7 @@ const PlanDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex items-center gap-2">
       <Button
+        data-testid="plan-section-button"
         variant={'link'}
         size={'link'}
         type="button"
@@ -129,6 +131,7 @@ const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex items-center gap-2">
       <Button
+        data-testid="region-section-button"
         variant={'link'}
         size={'link'}
         type="button"
@@ -155,6 +158,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
+          data-testid="flavor-section-button"
           variant={'link'}
           size={'link'}
           type="button"
@@ -205,6 +209,7 @@ const ClusterDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex items-start flex-col gap-2">
       <Button
+        data-testid="cluster-section-button"
         variant={'link'}
         size={'link'}
         type="button"
@@ -241,12 +246,13 @@ const ClusterDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
-const NetworkrDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+const NetworkDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   return (
     <div className="flex items-start flex-col gap-2">
       <div className="divide-x-[0.5rem] divide-transparent">
         <Button
+          data-testid="network-section-button"
           variant={'link'}
           size={'link'}
           type="button"
@@ -291,6 +297,7 @@ const IpsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex items-center gap-2">
       <Button
+        data-testid="ips-section-button"
         variant={'link'}
         size={'link'}
         type="button"
@@ -318,7 +325,7 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <RegionDetails order={order} onSectionClicked={onSectionClicked} />
       <FlavorDetails order={order} onSectionClicked={onSectionClicked} />
       <ClusterDetails order={order} onSectionClicked={onSectionClicked} />
-      <NetworkrDetails order={order} onSectionClicked={onSectionClicked} />
+      <NetworkDetails order={order} onSectionClicked={onSectionClicked} />
       <IpsDetails order={order} onSectionClicked={onSectionClicked} />
     </div>
   );

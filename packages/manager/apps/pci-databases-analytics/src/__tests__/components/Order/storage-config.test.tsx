@@ -5,7 +5,6 @@ import {
   mockedAvailabilities,
   mockedAvailabilitiesUpdate,
 } from '@/__tests__/helpers/mocks/availabilities';
-import { database } from '@/models/database';
 
 const ResizeObserverMock = vi.fn(() => ({
   observe: vi.fn(),

@@ -18,7 +18,6 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import {
   mockedQueries,
-  mockedQueryStatistics,
   mockedQueryStatisticsPG,
 } from '@/__tests__/helpers/mocks/queries';
 
@@ -107,7 +106,7 @@ describe('Queries page', () => {
     });
   });
 
-  it('renders and shows users table', async () => {
+  it('renders and shows queries table', async () => {
     render(<Queries />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(

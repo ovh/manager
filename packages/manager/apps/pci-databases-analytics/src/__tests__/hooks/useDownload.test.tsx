@@ -1,5 +1,5 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach, afterEach, Mock } from 'vitest';
+import { describe, it, expect, vi, Mock } from 'vitest';
 import useDownload from '@/hooks/useDownload'; // Adjust the import path as necessary
 
 describe('useDownload', () => {

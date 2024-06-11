@@ -1,14 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import { mock } from 'node:test';
-import * as LayoutContext from '@/pages/services/[serviceId]/layout';
 import Metrics, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/metrics';
@@ -23,7 +15,7 @@ import {
   mockMetricMem,
 } from '@/__tests__/helpers/mocks/metrics';
 
-describe('Queries page', () => {
+describe('Metrics page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
 
@@ -96,7 +88,7 @@ describe('Queries page', () => {
     });
   });
 
-  it('renders and shows users table', async () => {
+  it('renders and shows metrics table', async () => {
     render(<Metrics />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(

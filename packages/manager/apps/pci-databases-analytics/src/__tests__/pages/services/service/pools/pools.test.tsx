@@ -36,7 +36,7 @@ const mockedService = {
 };
 const mockCertificate = { ca: 'certificateCA' };
 
-describe('ConnectionPools page', () => {
+describe('Connection pool page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
@@ -108,7 +108,7 @@ describe('ConnectionPools page', () => {
     });
   });
 
-  it('renders and shows connectionPools table', async () => {
+  it('renders and shows connection pool table', async () => {
     render(<Pools />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText(mockedConnectionPool.name)).toBeInTheDocument();
@@ -211,7 +211,7 @@ describe('Open modals', () => {
     vi.clearAllMocks();
   });
 
-  it('open and close add pools modal', async () => {
+  it('open and close add pool modal', async () => {
     act(() => {
       fireEvent.click(screen.getByTestId('pools-add-button'));
     });
@@ -227,7 +227,7 @@ describe('Open modals', () => {
       ).not.toBeInTheDocument();
     });
   });
-  it('refetch data on add pools success', async () => {
+  it('refetch data on add pool success', async () => {
     act(() => {
       fireEvent.click(screen.getByTestId('pools-add-button'));
     });
@@ -256,14 +256,14 @@ describe('Open modals', () => {
     });
   });
 
-  it('shows edit pools modal', async () => {
+  it('shows edit pool modal', async () => {
     await openButtonInMenu('pools-action-edit-button');
     await waitFor(() => {
       expect(screen.getByTestId('add-edit-pools-modal')).toBeInTheDocument();
     });
   });
 
-  it('refetch data on edit pools success', async () => {
+  it('refetch data on edit pool success', async () => {
     await openButtonInMenu('pools-action-edit-button');
     await waitFor(() => {
       expect(screen.getByTestId('add-edit-pools-modal')).toBeInTheDocument();
@@ -285,13 +285,13 @@ describe('Open modals', () => {
     });
   });
 
-  it('shows delete pools modal', async () => {
+  it('shows delete pool modal', async () => {
     await openButtonInMenu('pools-action-delete-button');
     await waitFor(() => {
       expect(screen.getByTestId('delete-pools-modal')).toBeInTheDocument();
     });
   });
-  it('closes delete pools modal', async () => {
+  it('closes delete pool modal', async () => {
     await openButtonInMenu('pools-action-delete-button');
     await waitFor(() => {
       expect(screen.getByTestId('delete-pools-modal')).toBeInTheDocument();
@@ -305,7 +305,7 @@ describe('Open modals', () => {
       ).not.toBeInTheDocument();
     });
   });
-  it('refetch data on delete pools success', async () => {
+  it('refetch data on delete pool success', async () => {
     await openButtonInMenu('pools-action-delete-button');
     await waitFor(() => {
       expect(screen.getByTestId('delete-pools-modal')).toBeInTheDocument();
@@ -322,7 +322,7 @@ describe('Open modals', () => {
     });
   });
 
-  it('shows info pools modal and button to copy info are working', async () => {
+  it('shows info pool modal and button to copy info are working', async () => {
     Object.assign(window.navigator, {
       clipboard: {
         writeText: vi.fn().mockImplementation(() => Promise.resolve()),
@@ -351,7 +351,7 @@ describe('Open modals', () => {
     });
   });
 
-  it('closes info pools modal', async () => {
+  it('closes info pool modal', async () => {
     await openButtonInMenu('pools-action-info-button');
     await waitFor(() => {
       expect(screen.getByTestId('info-pools-modal')).toBeInTheDocument();

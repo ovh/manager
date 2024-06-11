@@ -65,6 +65,7 @@ const SourceDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
+          data-testid="source-section-button"
           variant={'link'}
           size={'link'}
           type="button"
@@ -164,6 +165,7 @@ const PlanDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
   return (
     <div className="flex items-center gap-2">
       <Button
+        data-testid="plan-section-button"
         variant={'link'}
         size={'link'}
         type="button"
@@ -186,6 +188,7 @@ const RegionDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
   return (
     <div className="flex items-center gap-2">
       <Button
+        data-testid="region-section-button"
         variant={'link'}
         size={'link'}
         type="button"
@@ -212,6 +215,7 @@ const FlavorDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
+          data-testid="flavor-section-button"
           variant={'link'}
           size={'link'}
           type="button"
@@ -262,6 +266,7 @@ const ClusterDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
   return (
     <div className="flex items-start flex-col gap-2">
       <Button
+        data-testid="cluster-section-button"
         variant={'link'}
         size={'link'}
         type="button"
@@ -304,6 +309,7 @@ const NetworkrDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
     <div className="flex items-start flex-col gap-2">
       <div className="divide-x-[0.5rem] divide-transparent">
         <Button
+          data-testid="network-section-button"
           variant={'link'}
           size={'link'}
           type="button"
@@ -348,6 +354,7 @@ const IpsDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
   return (
     <div className="flex items-center gap-2">
       <Button
+        data-testid="ips-section-button"
         variant={'link'}
         size={'link'}
         type="button"

@@ -190,7 +190,10 @@ const ForkForm = ({
         className="grid grid-cols-1 lg:grid-cols-4 gap-4"
         onSubmit={onSubmit}
       >
-        <div className="col-span-1 md:col-span-3 divide-y-[1rem] divide-transparent">
+        <div
+          data-testid="fork-form-container"
+          className="col-span-1 md:col-span-3 divide-y-[1rem] divide-transparent"
+        >
           <section id="source" className="divide-y-[1rem] divide-transparent">
             <FormField
               control={model.form.control}
@@ -212,6 +215,7 @@ const ForkForm = ({
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
                           <RadioGroupItem
+                            data-testid="radio-button-now"
                             value={ForkSourceType.now}
                             disabled={!model.result.canUsePit}
                           />
@@ -223,6 +227,7 @@ const ForkForm = ({
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
                           <RadioGroupItem
+                            data-testid="radio-button-pitr"
                             value={ForkSourceType.pit}
                             disabled={!model.result.canUsePit}
                           />
@@ -233,7 +238,10 @@ const ForkForm = ({
                       </FormItem>
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
-                          <RadioGroupItem value={ForkSourceType.backup} />
+                          <RadioGroupItem
+                            data-testid="radio-button-backup"
+                            value={ForkSourceType.backup}
+                          />
                         </FormControl>
                         <FormLabel className="font-normal">
                           {t('inputTypeValueBackup')}
@@ -293,7 +301,10 @@ const ForkForm = ({
                 name="forkFrom.pointInTime"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={cn(classNameLabel, 'text-lg')}>
+                    <FormLabel
+                      data-testid="pitr-form-label"
+                      className={cn(classNameLabel, 'text-lg')}
+                    >
                       {t('inputSourcePITPlaceholder')}
                     </FormLabel>
                     <FormControl>
@@ -559,7 +570,11 @@ const ForkForm = ({
             />
           </CardContent>
           <CardFooter className="flex justify-between">
-            <Button className="w-full" disabled={isPendingAddService}>
+            <Button
+              data-testid="fork-submit-button"
+              className="w-full"
+              disabled={isPendingAddService}
+            >
               {t('orderButton')}
             </Button>
           </CardFooter>

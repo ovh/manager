@@ -16,7 +16,6 @@ import { Locale } from '@/hooks/useLocale';
 import * as namespaceApi from '@/api/databases/namespaces';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { mockedNamespaces } from '@/__tests__/helpers/mocks/namespaces';
 
 // Override mock to add capabilities
