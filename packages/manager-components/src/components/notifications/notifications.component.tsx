@@ -1,4 +1,5 @@
-import React, { FC, useEffect } from 'react';
+import React, { useEffect, useState, FC } from 'react';
+import { useLocation } from 'react-router-dom';
 import { OdsNotification } from './ods-notification';
 import { useNotifications } from './useNotifications';
 
@@ -16,18 +17,17 @@ interface NotificationProps {
  * It replicates the current behavior of public cloud notifications for
  * actions (success / errors / etc)
  */
-export const Notifications: FC<NotificationProps> = () => {
-  const { notifications, clearNotification } = useNotifications();
+export const Notifications: FC<NotificationProps> = ({
+  clearAfterRead = true,
+}) => {
+  const location = useLocation();
+  const [originLocation] = useState(location);
+  const { notifications, clearNotifications } = useNotifications();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      notifications.forEach((notification) => {
-        clearNotification(notification.uid);
-      });
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, [notifications, clearNotification]);
+    if (clearAfterRead && originLocation.pathname !== location.pathname)
+      clearNotifications();
+  }, [clearAfterRead, location.pathname]);
 
   return (
     <>
