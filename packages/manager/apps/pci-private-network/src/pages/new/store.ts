@@ -7,6 +7,7 @@ import {
   createNetwork,
   enableSnatOnGatewayCall,
 } from '@/api/data/network';
+import queryClient from '@/queryClient';
 
 export enum StepsEnum {
   CONFIGURATION = 'CONFIGURATION',
@@ -240,5 +241,9 @@ export const useNewNetworkStore = create<TStore>()((set, get) => ({
         subnetResponse[0].id,
       );
     }
+
+    await queryClient.invalidateQueries({
+      queryKey: ['aggregated-network', get().project?.id],
+    });
   },
 }));
