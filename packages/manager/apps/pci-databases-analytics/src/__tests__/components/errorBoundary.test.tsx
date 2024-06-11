@@ -48,7 +48,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
-describe('Error boundary component', () => {
+describe('ErrorBoundary component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

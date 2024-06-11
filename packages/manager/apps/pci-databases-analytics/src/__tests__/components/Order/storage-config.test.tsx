@@ -15,7 +15,7 @@ const ResizeObserverMock = vi.fn(() => ({
 // Stub the global ResizeObserver
 vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 
-describe('Storage config component', () => {
+describe('StorageConfig component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

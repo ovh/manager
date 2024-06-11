@@ -34,7 +34,7 @@ const { result: resultSubnet } = renderHook(
   },
 );
 
-describe('Network options component', () => {
+describe('NetworkOptions component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

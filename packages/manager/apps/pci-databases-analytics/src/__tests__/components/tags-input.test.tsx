@@ -8,7 +8,7 @@ import {
 import { vi } from 'vitest';
 import TagsInput from '@/components/tags-input';
 
-describe('Tags input component', () => {
+describe('TagsInput component', () => {
   it('should render correctly with initial tags', () => {
     const handleChange = vi.fn();
     render(

@@ -8,7 +8,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-describe('Breadcrumb item component', () => {
+describe('BreadcrumbItem component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

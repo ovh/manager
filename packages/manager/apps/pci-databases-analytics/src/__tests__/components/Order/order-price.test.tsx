@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import OrderPrice from '@/components/Order/order-price';
 
-describe('Order price component', () => {
+describe('OrderPrice component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

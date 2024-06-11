@@ -10,7 +10,7 @@ import { PlanTile } from '@/components/Order/plan/plan-tile';
 import { mockedBasicOrderFunnelPlan } from '@/__tests__/helpers/mocks/order-funnel';
 import { Plan } from '@/models/order-funnel';
 
-describe('Plan tile component', () => {
+describe('PlanTile component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

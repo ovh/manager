@@ -9,7 +9,7 @@ import { describe, it, vi } from 'vitest';
 import PlansSelect from '@/components/Order/plan/plan-select';
 import { mockedBasicOrderFunnelPlan } from '@/__tests__/helpers/mocks/order-funnel';
 
-describe('Plan select component', () => {
+describe('PlansSelect component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

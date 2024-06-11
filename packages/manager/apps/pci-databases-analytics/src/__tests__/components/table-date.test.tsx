@@ -26,7 +26,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => {
   };
 });
 
-describe('Table date component', () => {
+describe('FormattedDate component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

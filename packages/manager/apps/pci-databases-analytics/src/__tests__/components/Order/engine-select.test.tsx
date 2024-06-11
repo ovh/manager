@@ -10,7 +10,7 @@ import EngineSelect from '@/components/Order/engine/engine-select';
 import { mockedOrderFunnelEngine } from '@/__tests__/helpers/mocks/order-funnel';
 import { Engine } from '@/models/order-funnel';
 
-describe('Engines select component', () => {
+describe('EngineSelect component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

@@ -12,7 +12,7 @@ import {
   mockedOrderFunnelEngine,
 } from '@/__tests__/helpers/mocks/order-funnel';
 
-describe('Engine tile component', () => {
+describe('EngineTile component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

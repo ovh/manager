@@ -10,7 +10,7 @@ import { describe, it, vi } from 'vitest';
 import RegionSelect from '@/components/Order/region/region-select';
 import { mockedOrderFunnelRegion } from '@/__tests__/helpers/mocks/order-funnel';
 
-describe('Region select component', () => {
+describe('RegionSelect component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

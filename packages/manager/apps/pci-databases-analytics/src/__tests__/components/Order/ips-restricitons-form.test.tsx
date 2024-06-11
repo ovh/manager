@@ -10,7 +10,7 @@ import IpsRestrictionsForm from '@/components/Order/cluster-options/ips-restrict
 import { mockedOrderFunnelIps } from '@/__tests__/helpers/mocks/order-funnel';
 import { database } from '@/models/database';
 
-describe('Ips restrictions form component', () => {
+describe('IpsRestrictionsForm component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });

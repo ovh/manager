@@ -8,7 +8,7 @@ import {
 import { describe, it, vi } from 'vitest';
 import NodesConfig from '@/components/Order/cluster-config/nodes-config';
 
-describe('Nodes config component', () => {
+describe('NodesConfig component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
