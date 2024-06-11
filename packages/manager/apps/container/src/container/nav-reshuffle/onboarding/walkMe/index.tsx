@@ -88,20 +88,20 @@ export const OnboardingWalkMe = () => {
       },
     },
     {
-      selector: '#user-account-menu-payment-method',
+      selector: 'services',
       placement: 'left-start',
       mobilePlacement: 'bottom-start',
       title: t('onboarding_walkme_popover_step3_title'),
       content: t('onboarding_walkme_popover_step3_content'),
-      trackingVariant: 'my_payment_method',
+      trackingVariant: 'my_services',
     },
     {
-      selector: 'services',
-      placement: 'right-start',
-      mobilePlacement: 'bottom-end',
+      selector: '#useful-links',
+      placement: 'top-start',
+      mobilePlacement: 'top-start',
       title: t('onboarding_walkme_popover_step4_title'),
       content: t('onboarding_walkme_popover_step4_content'),
-      trackingVariant: 'my_services',
+      trackingVariant: '',
       onBeforeEnter: async () => {
         closeAccountSidebar();
         const homeNode = findNodeById(navigationTree, 'home');
@@ -115,25 +115,6 @@ export const OnboardingWalkMe = () => {
         await delay(100);
       },
     },
-    ...(!user.enterprise
-      ? [
-        {
-          selector: '#sidebar-link-billing',
-          placement: 'right-start',
-          mobilePlacement: 'bottom-end',
-          title: t('onboarding_walkme_popover_step5_title'),
-          content: t('onboarding_walkme_popover_step5_content'),
-          trackingVariant: 'my_billing',
-          onBeforeEnter: async () => {
-            const homeNode = findNodeById(navigationTree, 'home');
-            setCurrentNavigationNode(homeNode);
-
-            // Waiting for DOM update
-            await delay(100);
-          },
-        },
-      ]
-      : []),
   ];
 
   const onHideBtnClick = (onboardingStatus?: string) => {
