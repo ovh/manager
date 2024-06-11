@@ -5,7 +5,7 @@ export const VOLUME_BACKUP_ROUTES = {
   ROOT: { STATE: VOLUME_BACKUP_ROOT_STATE, URL: '/volume-backup' },
   CREATE: {
     STATE: `${VOLUME_BACKUP_ROOT_STATE}.create`,
-    URL: '/create',
+    URL: '/create?volumeId',
     ROUTES: {
       DETACH_VOLUME: {
         STATE: `${VOLUME_BACKUP_ROOT_STATE}.create.detach-volume`,
