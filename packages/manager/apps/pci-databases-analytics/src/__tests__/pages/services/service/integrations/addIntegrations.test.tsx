@@ -119,6 +119,32 @@ describe('Integrations page', () => {
       ],
       'integrationTypeDescription-grafanaDatasource',
     );
+
+    const inputElement = screen.getByTestId(
+      `parameter-${mockedCapaInteGrafData.parameters[0].name}`,
+    );
+    act(() => {
+      fireEvent.input(inputElement, {
+        target: {
+          value: 'param',
+        },
+      });
+    });
+
+    const inputNumber = screen.getByTestId(
+      `parameter-${mockedCapaInteGrafData.parameters[1].name}`,
+    );
+    act(() => {
+      fireEvent.input(inputNumber, {
+        target: {
+          value: 7,
+        },
+      });
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('integration-submit-button'));
+    });
+
     // Submit the form
     act(() => {
       fireEvent.click(screen.getByTestId('integration-submit-button'));

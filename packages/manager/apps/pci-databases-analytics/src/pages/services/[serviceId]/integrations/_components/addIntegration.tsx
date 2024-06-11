@@ -285,6 +285,7 @@ const AddIntegration = ({
                     <FormItem>
                       <FormLabel>{parameter.name}</FormLabel>
                       <Input
+                        data-testid={`parameter-${parameter.name}`}
                         {...field}
                         type={
                           parameter.type ===
