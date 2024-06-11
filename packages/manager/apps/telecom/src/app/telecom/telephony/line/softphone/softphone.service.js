@@ -127,6 +127,16 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
+  getDevicesInfos(billingAccount, serviceName) {
+    return this.iceberg(
+      `/telephony/${billingAccount}/line/${serviceName}/devices`,
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => data);
+  }
+
   /*
    * TODO: this API is not testable inside LABEU
    * => Some tests will be needed for testing this in production
