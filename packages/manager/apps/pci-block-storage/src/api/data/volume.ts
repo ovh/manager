@@ -112,3 +112,39 @@ export const deleteVolume = async (
     throw new Error(e.response?.data?.message || e.message);
   }
 };
+
+export const attachVolume = async (
+  projectId: string,
+  volumeId: string,
+  instanceId: string,
+): Promise<TVolume> => {
+  try {
+    const { data } = await v6.post(
+      `/cloud/project/${projectId}/volume/${volumeId}/attach`,
+      {
+        instanceId,
+      },
+    );
+    return data;
+  } catch (e) {
+    throw new Error(e.response?.data?.message || e.message);
+  }
+};
+
+export const detachVolume = async (
+  projectId: string,
+  volumeId: string,
+  instanceId: string,
+): Promise<TVolume> => {
+  try {
+    const { data } = await v6.post(
+      `/cloud/project/${projectId}/volume/${volumeId}/detach`,
+      {
+        instanceId,
+      },
+    );
+    return data;
+  } catch (e) {
+    throw new Error(e.response?.data?.message || e.message);
+  }
+};
