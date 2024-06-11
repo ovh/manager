@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.44.0...@ovh-ux/manager-pci@6.44.1) (2024-06-11)
+
+
+### Bug Fixes
+
+* **pci.instances:** correct public/private mode seclection ([f117665](https://github.com/ovh/manager/commit/f1176658b86ea258228c78b80f87bf2039590c79))
+
+
+
+
+
 # [6.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.43.0...@ovh-ux/manager-pci@6.44.0) (2024-06-10)
 
 
