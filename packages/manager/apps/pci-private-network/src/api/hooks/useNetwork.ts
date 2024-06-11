@@ -1,6 +1,6 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovhcloud/manager-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import {
   deleteNetwork,
@@ -16,80 +16,51 @@ import {
 } from '@/api/utils/utils';
 import queryClient from '@/queryClient';
 
-const getDetailSubnets = async (
-  projectId: string,
-  network: TAggregatedNetwork,
-  gatewaySubnetObj: Record<string, string>,
-) => {
-  const subnetsData: TSubnet[] = await Promise.all(
-    network.subnets.map(({ region, networkId }) =>
-      getSubnets(projectId, networkId, region),
-    ),
-  );
-
-  return network.subnets.map((subnet, index) => {
-    const subnetData = subnetsData[index];
-
-    if (subnetData) {
-      return {
-        networkId: subnet.networkId,
-        region: subnet.region,
-        cidr: subnetData.cidr,
-        dhcpEnabled: subnetData.dhcpEnabled,
-        gatewayIp: subnetData.gatewayIp,
-        allocatedIp: subnetData.allocationPools
-          .map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
-          .join(' ,'),
-        gatewayName: gatewaySubnetObj[subnet.networkId],
-      };
-    }
-
-    return subnet;
+export const useAggregatedNetwork = (projectId: string) =>
+  useQuery({
+    queryKey: ['aggregated-network', projectId],
+    queryFn: () => getAggregatedNetwork(projectId),
   });
-};
-
-export const filterNonLocalPrivateNetworks = (
-  networks: TAggregatedNetwork[],
-  regions: TRegion[],
-): TAggregatedNetwork[] => {
-  const localZones = getLocalZoneRegions(regions);
-
-  const privateNetworks = {};
-
-  const externalNetworks = networks.filter(
-    (network) =>
-      network.visibility === 'private' &&
-      !isLocalZoneRegion(localZones, network.region),
-  );
-
-  externalNetworks.forEach((network) => {
-    const { id: networkId, region, vlanId, ...rest } = network;
-
-    if (!privateNetworks[vlanId]) {
-      privateNetworks[vlanId] = {
-        ...rest,
-        vlanId,
-        region,
-        subnets: [{ region, networkId }],
-      };
-    } else {
-      privateNetworks[vlanId].subnets.push({ region, networkId });
-    }
-  });
-
-  return Object.values(privateNetworks);
-};
 
 export const useAggregatedNonLocalNetworks = (
   projectId: string,
   regions: TRegion[],
-) =>
-  useQuery({
-    queryKey: [projectId, 'aggregated', 'network', regions],
-    queryFn: () => getAggregatedNetwork(projectId),
-    enabled: regions?.length > 0,
-    select: (data) => filterNonLocalPrivateNetworks(data, regions) || [],
-  });
+) => {
+  const localZones = getLocalZoneRegions(regions);
+  const query = useAggregatedNetwork(projectId);
+  const data = useMemo(() => {
+    if (query.isPending) return undefined;
+    return query.data
+      .filter((network) => network.visibility === 'private')
+      .filter((network) => !isLocalZoneRegion(localZones, network.region))
+      .filter((network) => network.vlanId)
+      .reduce((acc, network) => {
+        const n = acc.find((i) => i.vlanId === network.vlanId);
+        if (n) {
+          n.subnets.push({
+            region: network.region,
+            networkId: network.id,
+          });
+        } else {
+          acc.push({
+            ...network,
+            subnets: [
+              {
+                region: network.region,
+                networkId: network.id,
+              },
+            ],
+          });
+        }
+        return acc;
+      }, [])
+      .sort((a, b) => a.vlanId - b.vlanId);
+  }, [query.data, localZones]);
+  return {
+    ...query,
+    data,
+  };
+};
 
 export const useAggregatedNonLocalNetworksRegions = (
   projectId: string,
@@ -120,44 +91,66 @@ export const useGlobalRegionsNetworks = (
   gateways: TGateway[],
   pagination: PaginationState,
   filters: Filter[],
-) =>
-  useQuery({
-    queryKey: [projectId, 'private-network', 'global-regions'],
-    queryFn: () => {
-      const gatewaySubnetObj = gateways.reduce((acc, gatewayItem: TGateway) => {
-        gatewayItem.interfaces.forEach(({ networkId }) => {
-          acc[networkId] = gatewayItem.name;
-        });
-        return acc;
-      }, {});
-
-      return Promise.all(
-        networks.map(async (network) => {
-          const detailSubnets = await getDetailSubnets(
-            projectId,
-            network,
-            gatewaySubnetObj,
-          );
-          return {
-            ...network,
-            subnets: detailSubnets,
-          };
-        }),
-      );
-    },
-    enabled: networks.length > 0 && gateways.length > 0,
-    select: (result) => {
-      const mappedData = result.map((network) => ({
-        ...network,
-        search: `${network.vlanId} ${network.name}`,
-      })) as TAggregatedNetwork[];
-
-      return paginateResults(
-        applyFilters(mappedData || [], filters),
-        pagination,
-      );
-    },
+) => {
+  const networkSubnets = networks.reduce(
+    (acc, n) =>
+      acc.concat(
+        n.subnets.map((sub) => ({
+          network: n,
+          subnet: sub,
+        })),
+      ),
+    [],
+  );
+  const subnetQueries = useQueries({
+    queries: networkSubnets?.map(({ network, subnet }) => ({
+      queryKey: ['subnet', projectId, subnet.networkId, subnet.region],
+      queryFn: () => getSubnets(projectId, subnet.networkId, subnet.region),
+      select: (subnetDetails: TSubnet) => ({
+        network,
+        subnet: {
+          ...subnet,
+          ...subnetDetails,
+          region: network.region,
+          allocatedIp: subnetDetails.allocationPools
+            ?.map((i) => `${i.start} - ${i.end}`)
+            .join(' ,'),
+          gatewayName: gateways.find((g) =>
+            g.interfaces.find((i) => i.networkId === subnet.networkId),
+          )?.name,
+        },
+      }),
+    })),
   });
+
+  const isPending = subnetQueries.some((q) => q.isPending);
+  const isFetching = subnetQueries.some((q) => q.isFetching);
+  const data = useMemo(() => {
+    if (isFetching || isPending) return undefined;
+    return paginateResults(
+      applyFilters(
+        networks?.map((n) => ({
+          ...n,
+          search: `${n.name} ${n.vlanId} ${n.region}`,
+          subnets: subnetQueries
+            .map((q) => q.data)
+            .filter((i) => i)
+            .filter(({ network }) => network.id === n.id)
+            .map(({ subnet }) => subnet),
+        })),
+        filters,
+      ),
+      pagination,
+    );
+  }, [isFetching, isPending, networks, pagination, filters]);
+
+  return {
+    isPending,
+    isFetching,
+    data,
+    error: subnetQueries.map((q) => q.error).some((e) => e),
+  };
+};
 
 export const filterLocalPrivateNetworks = (
   networks: TAggregatedNetwork[],
@@ -175,13 +168,15 @@ export const filterLocalPrivateNetworks = (
 export const useAggregatedLocalNetworks = (
   projectId: string,
   regions: TRegion[],
-) =>
-  useQuery({
-    queryKey: [projectId, 'aggregated', 'local', 'network'],
-    queryFn: () => getAggregatedNetwork(projectId),
-    enabled: regions?.length > 0,
-    select: (data) => filterLocalPrivateNetworks(data, regions) || [],
-  });
+) => {
+  const query = useAggregatedNetwork(projectId);
+  return {
+    ...query,
+    data: query.isPending
+      ? undefined
+      : filterLocalPrivateNetworks(query.data, regions),
+  };
+};
 
 export type TLocalZoneNetwork = {
   id: string;
@@ -194,52 +189,49 @@ export type TLocalZoneNetwork = {
   search?: string;
 };
 
-const getLocalZoneRegionsQueryKey = (projectId: string) => [
-  projectId,
-  'private-network',
-  'local-zones',
-];
-
 export const useLocalZoneNetworks = (
   projectId: string,
   networks: TAggregatedNetwork[],
   pagination: PaginationState,
   filters: Filter[] = [],
-) =>
-  useQuery({
-    queryKey: getLocalZoneRegionsQueryKey(projectId),
-    queryFn: () =>
-      Promise.all(
-        networks.map(async (network) => {
-          const detailSubnet = await getSubnets(
-            projectId,
-            network.id,
-            network.region,
-          );
-
-          return {
-            ...network,
-            ...detailSubnet,
-            id: network.id,
-            name: network.name,
-            allocatedIp: detailSubnet.allocationPools
-              .map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
-              .join(' ,'),
-          };
-        }),
-      ),
-    select: (result) => {
-      const mappedData = result.map((network) => ({
-        ...network,
-        search: `${network.name} ${network.region} ${network.dhcpEnabled} ${network.cidr} ${network.allocatedIp}`,
-      }));
-
-      return paginateResults(
-        applyFilters(mappedData || [], filters),
-        pagination,
-      );
-    },
+) => {
+  const subnetQueries = useQueries({
+    queries: networks?.map((n) => ({
+      queryKey: ['subnet', projectId, n.id, n.region],
+      queryFn: () => getSubnets(projectId, n.id, n.region),
+      select: (subnet: TSubnet) => {
+        const network = networks.find((net) => net.id === n.id);
+        const ips = subnet.allocationPools
+          ?.map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
+          .join(' ,');
+        return {
+          ...subnet,
+          ...network,
+          allocatedIp: ips,
+          search: `${network.id} ${network.name} ${network.region} ${subnet.cidr} ${subnet.gatewayIp} ${ips}`,
+        };
+      },
+    })),
   });
+  const isPending = subnetQueries.some((q) => q.isPending);
+  const isFetching = subnetQueries.some((q) => q.isFetching);
+  const data = useMemo(() => {
+    if (isFetching || isPending) return undefined;
+    return paginateResults(
+      applyFilters(
+        subnetQueries.map((q) => q.data).filter((i) => i),
+        filters,
+      ),
+      pagination,
+    );
+  }, [isFetching, isPending, subnetQueries, pagination, filters]);
+  return {
+    isPending,
+    isFetching,
+    data,
+    error: subnetQueries.map((q) => q.error).some((e) => e),
+  };
+};
 
 type TDeleteNetwork = {
   projectId: string;
@@ -261,7 +253,7 @@ export const useDeleteNetwork = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getLocalZoneRegionsQueryKey(projectId),
+        queryKey: ['aggregated-network', projectId],
       });
       return onSuccess();
     },

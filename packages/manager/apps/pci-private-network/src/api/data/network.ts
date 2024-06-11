@@ -131,12 +131,11 @@ const waitForNetworkCreation = async (projectId: string, networkId: string) => {
   }
 
   if (response.status !== 'completed') {
-    return waitFor(1000).then(() =>
-      waitForNetworkCreation(projectId, networkId),
-    );
+    await waitFor(1000);
+    return waitForNetworkCreation(projectId, networkId);
   }
 
-  return Promise.resolve(response);
+  return response;
 };
 
 export const createNetwork = async ({

@@ -31,7 +31,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGatewayByRegion } from '@/api/hooks/useGateway';
 import { useAggregatedNonLocalNetworks } from '@/api/hooks/useNetwork';
@@ -154,7 +154,11 @@ export default function ConfigurationStep({
         });
       }
     }
-  }, [gateways, store.form?.region, store.form?.region?.name]);
+  }, [
+    gateways?.map((g) => g.id).join(','),
+    store.form?.region,
+    store.form?.region?.name,
+  ]);
 
   useEffect(() => {
     if (
@@ -190,7 +194,7 @@ export default function ConfigurationStep({
         address,
       });
     }
-  }, [networks]);
+  }, [networks?.map((n) => n.id).join(',')]);
 
   const onCreateGatewayChange = (checked: boolean) => {
     store.setForm({
