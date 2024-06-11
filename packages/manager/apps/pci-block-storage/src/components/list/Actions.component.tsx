@@ -22,10 +22,15 @@ import { TVolume } from '@/api/data/volume';
 
 type ActionsProps = {
   volume: TVolume;
+  projectUrl: string;
 };
-export default function ActionsComponent({ volume }: Readonly<ActionsProps>) {
+export default function ActionsComponent({
+  volume,
+  projectUrl,
+}: Readonly<ActionsProps>) {
   const { t } = useTranslation();
   const hrefRemove = useHref(`./delete/${volume.id}`);
+  const hrefCreateBackup = `${projectUrl}/storages/volume-backup/create?volume=${volume.id}`;
 
   return (
     <OsdsMenu>
@@ -41,6 +46,23 @@ export default function ActionsComponent({ volume }: Readonly<ActionsProps>) {
           size={ODS_ICON_SIZE.xxs}
         ></OsdsIcon>
       </OsdsButton>
+      <OsdsMenuItem>
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          href={hrefCreateBackup}
+        >
+          <OsdsText
+            size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+            level={ODS_TEXT_LEVEL.button}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            slot={'start'}
+          >
+            {t('pci_projects_project_storages_blocks_create_backup_label')}
+          </OsdsText>
+        </OsdsButton>
+      </OsdsMenuItem>
       <OsdsMenuItem>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
