@@ -50,5 +50,11 @@
   "user_account_menu_role_connexion": "Połączenie",
   "user_account_menu_my_invoices": "Faktury",
   "user_account_menu_my_communication": "Połączenia",
-  "user_account_menu_my_contracts": "Regulaminy"
+  "user_account_menu_my_contracts": "Regulaminy",
+  "user_account_menu_my_services": "Moje usługi",
+  "user_account_menu_my_commands": "Moje zamówienia",
+  "user_account_menu_my_contacts": "Moje kontakty",
+  "user_account_menu_my_payment_methods": "Moje sposoby płatności",
+  "user_account_menu_my_identity_documents": "Moje dokumenty tożsamości",
+  "user_account_menu_my_assistance_tickets": "Moje zgłoszenia"
 }

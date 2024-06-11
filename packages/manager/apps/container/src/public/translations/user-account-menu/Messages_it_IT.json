@@ -50,5 +50,11 @@
   "user_account_menu_role_connexion": "Connessione",
   "user_account_menu_my_invoices": "Le mie fatture",
   "user_account_menu_my_communication": "Le mie comunicazioni",
-  "user_account_menu_my_contracts": "I miei contratti "
+  "user_account_menu_my_contracts": "I miei contratti ",
+  "user_account_menu_my_services": "I miei servizi",
+  "user_account_menu_my_commands": "I miei ordini",
+  "user_account_menu_my_contacts": "I miei contatti",
+  "user_account_menu_my_payment_methods": "I miei metodi di pagamento",
+  "user_account_menu_my_identity_documents": "I miei documenti d'identità",
+  "user_account_menu_my_assistance_tickets": "Le mie richieste di assistenza"
 }

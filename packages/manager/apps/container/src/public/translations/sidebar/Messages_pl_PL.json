@@ -189,5 +189,6 @@
   "sidebar_security_identity_operations_kms": "Key Management Service",
   "sidebar_security_identity_operations_iam": "Identity &amp; Access Management",
   "sidebar_security_identity_operations_logs": "Logs Data Platform",
-  "sidebar_assistance_carbon_calculator": "Mój ślad węglowy"
+  "sidebar_assistance_carbon_calculator": "Mój ślad węglowy",
+  "sidebar_back_menu": "Powrót do menu"
 }
