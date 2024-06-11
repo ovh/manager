@@ -2,6 +2,8 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
 import {
+  attachVolume,
+  detachVolume,
   deleteVolume,
   getAllVolumes,
   getVolume,
@@ -125,12 +127,68 @@ export const useDeleteVolume = ({
       queryClient.invalidateQueries({
         queryKey: getVolumeQueryKey(projectId, volumeId),
       });
-      // @TODO invalidate list of volumes
+      // @TODO update volume in cached list of volumes
       onSuccess();
     },
   });
   return {
     deleteVolume: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+interface AttachVolumeProps {
+  projectId: string;
+  volumeId: string;
+  instanceId: string;
+  onError: (cause: Error) => void;
+  onSuccess: (volume: TVolume) => void;
+}
+
+export const useAttachVolume = ({
+  projectId,
+  volumeId,
+  instanceId,
+  onError,
+  onSuccess,
+}: AttachVolumeProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => attachVolume(projectId, volumeId, instanceId),
+    onError,
+    onSuccess: (volume: TVolume) => {
+      queryClient.invalidateQueries({
+        queryKey: getVolumeQueryKey(projectId, volumeId),
+      });
+      // @TODO update volume in cached list of volumes
+      onSuccess(volume);
+    },
+  });
+  return {
+    attachVolume: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+export const useDetachVolume = ({
+  projectId,
+  volumeId,
+  instanceId,
+  onError,
+  onSuccess,
+}: AttachVolumeProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => detachVolume(projectId, volumeId, instanceId),
+    onError,
+    onSuccess: (volume: TVolume) => {
+      queryClient.invalidateQueries({
+        queryKey: getVolumeQueryKey(projectId, volumeId),
+      });
+      // @TODO update volume in cached list of volumes
+      onSuccess(volume);
+    },
+  });
+  return {
+    detachVolume: () => mutation.mutate(),
     ...mutation,
   };
 };
