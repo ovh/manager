@@ -4,7 +4,7 @@ import {
   FilterList,
   Notifications,
   useColumnFilters,
-  useDatagridSearchParams,
+  useDataGrid,
 } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -51,7 +51,7 @@ export default function GlobalRegionsComponent({
   const { t: tFilter } = useTranslation('filter');
 
   const [searchField, setSearchField] = useState('');
-  const { pagination, setPagination } = useDatagridSearchParams();
+  const { pagination, setPagination } = useDataGrid();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
   const navigate = useNavigate();
@@ -64,20 +64,13 @@ export default function GlobalRegionsComponent({
     regions,
   );
 
-  const {
-    data: networks,
-    error,
-    isLoading: networksLoading,
-    isPending: networksPending,
-  } = useGlobalRegionsNetworks(
+  const { data: networks, error, isFetching } = useGlobalRegionsNetworks(
     projectId,
     aggregatedNetworks || [],
     gateways || [],
     pagination,
     filters,
   );
-
-  const isLoading = networksLoading || networksPending;
 
   return (
     <div>
@@ -176,13 +169,13 @@ export default function GlobalRegionsComponent({
         </OsdsMessage>
       )}
 
-      {isLoading && !error && (
+      {isFetching && (
         <div className="text-center">
           <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
         </div>
       )}
 
-      {!error && !isLoading && (
+      {!isFetching && networks && (
         <div className="mt-8">
           <GlobalRegionsDatagrid
             projectUrl={projectUrl}

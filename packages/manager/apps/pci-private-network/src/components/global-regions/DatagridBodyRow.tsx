@@ -83,9 +83,6 @@ export default function DataGridBodyRow({
     <tr
       key={`${network.vlanId}-${index}`}
       className="text-center h-[3rem] border-solid border-[1px] border-[var(--ods-color-blue-200)]"
-      style={{
-        borderBottomWidth: index === network.subnets.length - 1 ? '2px' : '1px',
-      }}
     >
       {index === 0 && (
         <>

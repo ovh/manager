@@ -4,7 +4,7 @@ import {
   FilterList,
   Notifications,
   useColumnFilters,
-  useDatagridSearchParams,
+  useDataGrid,
 } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -49,7 +49,7 @@ export default function LocalZoneComponent({
   const { t: tError } = useTranslation('error');
 
   const [searchField, setSearchField] = useState('');
-  const { pagination, setPagination } = useDatagridSearchParams();
+  const { pagination, setPagination } = useDataGrid();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
   const navigate = useNavigate();
@@ -61,14 +61,12 @@ export default function LocalZoneComponent({
     regions,
   );
 
-  const {
-    data: localZoneNetworks,
-    isLoading: networksLoading,
-    isPending: networksPending,
-    error,
-  } = useLocalZoneNetworks(projectId, aggregatedNetworks, pagination, filters);
-
-  const isLoading = networksLoading || networksPending;
+  const { data: localZoneNetworks, isFetching, error } = useLocalZoneNetworks(
+    projectId,
+    aggregatedNetworks,
+    pagination,
+    filters,
+  );
 
   const columns = useDatagridColumn();
 
@@ -185,13 +183,13 @@ export default function LocalZoneComponent({
         </OsdsMessage>
       )}
 
-      {isLoading && !error && (
+      {isFetching && (
         <div className="text-center">
           <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
         </div>
       )}
 
-      {!error && !isLoading && (
+      {!isFetching && localZoneNetworks && (
         <div className="mt-8">
           <Datagrid
             columns={columns}
