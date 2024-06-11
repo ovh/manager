@@ -15,6 +15,7 @@ import NavReshuffleFeedbackWidget from './feedback';
 import Header from './header';
 import Sidebar from './sidebar';
 import NavReshuffleOnboardingWidget from './onboarding';
+import EloquantSurvey from './eloquantSurvey';
 
 import style from './template.module.scss';
 import Progress from '../common/Progress';
@@ -110,6 +111,9 @@ function NavReshuffleContainer(): JSX.Element {
         <Suspense fallback="">
           {!productNavReshuffle.isLoading && <NavReshuffleOnboardingWidget />}
           <NavReshuffleFeedbackWidget />
+        </Suspense>
+        <Suspense fallback="">
+          <EloquantSurvey />
         </Suspense>
       </div>
     </div>
