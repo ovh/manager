@@ -79,23 +79,84 @@
             <p
                 data-translate="telephony_line_softphone_configure_description"
             ></p>
-            <oui-guide-menu data-text="{{ ::$ctrl.guide.title }}">
+            <oui-guide-menu
+                data-text="{{ 'telephony_line_softphone_guide_title' | translate }}"
+            >
                 <oui-guide-menu-item
                     data-href="{{ ::$ctrl.guide.url }}"
                     data-external="$ctrl.guide.external"
-                    ><span data-ng-bind="::$ctrl.guide.name"></span>
+                    ><span data-translate="{{ $ctrl.guide.title }}"></span>
                 </oui-guide-menu-item>
             </oui-guide-menu>
         </div>
         <div
             class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-start"
         >
+            <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
             <oui-tile
-                data-ng-repeat="deviceId in ::$ctrl.softphoneDevices track by $index"
+                data-ng-if="!$ctrl.isLoading"
+                data-ng-repeat="device in ::$ctrl.devices track by $index"
                 class="m-2"
-                heading="{{ 'Paul Iphone' }}"
+                data-heading="{{ ::device.name }}"
             >
-                <oui-tile-definition term="Statut" description="Connecté">
+                <button
+                    data-ng-if="!$ctrl.showEditFormSoftphoneName[deviceId]"
+                    class="btn btn-icon btn-transparent pull-right mt-n5"
+                    data-ng-click="$ctrl.toggleEditSoftphoneName(device.deviceId)"
+                >
+                    <i class="oui-icon oui-icon-pen" aria-hidden="true"></i>
+                </button>
+                <div
+                    data-ng-if="$ctrl.showEditFormSoftphoneName[device.deviceId]"
+                >
+                    <form name="$ctrl.softphoneNameForm[device.deviceId]">
+                        <oui-field
+                            label="{{ 'telephony_line_softphone_edit_name_heading' | translate }}"
+                        >
+                            <div class="d-flex">
+                                <div
+                                    class="oui-input-overlay oui-input-overlay_inline"
+                                >
+                                    <input
+                                        id="edit_name_softphone_device_{{ device.deviceId }}"
+                                        class="oui-input"
+                                        name="editableSoftphoneNameInput{{ device.deviceId }}"
+                                        data-ng-model="$ctrl.model[device.deviceId].name"
+                                        data-ng-pattern="/[a-zA-Z0-9]/"
+                                        type="text"
+                                    />
+                                    <span
+                                        class="oui-icon oui-icon-success mr-4"
+                                        aria-hidden="true"
+                                        data-ng-click="$ctrl.saveSoftphoneName(device.deviceId)"
+                                        data-ng-disabled="!$ctrl.softphoneNameForm[device.deviceId].$valid && !$ctrl.softphoneNameForm[device.deviceId].$dirty"
+                                    ></span>
+                                    <span
+                                        data-ng-click="$ctrl.toggleEditSoftphoneName(device.deviceId)"
+                                        class="oui-icon oui-icon-close text-secondary"
+                                        aria-hidden="true"
+                                    ></span>
+                                </div>
+                            </div>
+                        </oui-field>
+                    </form>
+                </div>
+                <oui-tile-definition
+                    data-term="{{:: 'telephony_line_softphone_status' | translate}}"
+                >
+                    <oui-tile-description>
+                        <div class="mt-1">
+                            <span
+                                data-ng-class="{
+                                     'oui-badge_error': device.status === $ctrl.STATUS_SOFTPHONE.unregistered,
+                                     'oui-badge_success': device.status === $ctrl.STATUS_SOFTPHONE.registered
+                                     }"
+                                class="oui-badge"
+                                data-translate="{{ 'telephony_line_softphone_' + device.status }}"
+                            >
+                            </span>
+                        </div>
+                    </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition>
                     <oui-tile-actions>
