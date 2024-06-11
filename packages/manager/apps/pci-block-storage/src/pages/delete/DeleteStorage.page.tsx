@@ -111,7 +111,6 @@ export default function DeleteStorage() {
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={() => onClose()}
-        data-testid="deleteGateway-button_cancel"
       >
         {t('pci_projects_project_storages_blocks_block_delete_cancel_label')}
       </OsdsButton>
@@ -120,7 +119,6 @@ export default function DeleteStorage() {
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => canDelete && deleteVolume()}
         {...(canDelete ? {} : { disabled: true })}
-        data-testid="deleteGateway-button_submit"
       >
         {t('pci_projects_project_storages_blocks_block_delete_submit_label')}
       </OsdsButton>
