@@ -11,7 +11,6 @@ export default {
     serviceName: '<',
     themes: '<',
     storeLinks: '<',
-    softphoneDevices: '<',
     goToDeleteDevice: '<',
   },
 };
