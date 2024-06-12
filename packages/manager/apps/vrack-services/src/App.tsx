@@ -5,8 +5,8 @@ import { odsSetup } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import '@ovhcloud/ods-theme-blue-jeans';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { getRoutes } from '@/router/routes';
-import { MessagesContext } from './components/Messages/Messages.context';
+import { getRoutes } from '@/routes/routes';
+import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 
 const queryClient = new QueryClient({
   defaultOptions: {

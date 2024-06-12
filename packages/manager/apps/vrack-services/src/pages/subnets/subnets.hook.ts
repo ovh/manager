@@ -4,7 +4,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { urls } from '@/router/constants';
+import { urls } from '@/routes/routes.constants';
 
 export const useNavigateToCreateSubnetPage = () => {
   const { trackClick } = useOvhTracking();
