@@ -43,7 +43,7 @@ export default function Create() {
       </div>
       <OsdsText
         level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._800}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._100}
         color={ODS_THEME_COLOR_INTENT.text}
       >
         {t('key_management_service_create_subtitle')}
