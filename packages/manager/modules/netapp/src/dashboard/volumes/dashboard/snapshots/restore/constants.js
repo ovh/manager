@@ -17,7 +17,7 @@ export const SNAPSHOT_STATUS = {
   UNMANAGE_STARTING: 'unmanage_starting'
 }
 
-export const FETCH_INTERVAL = 5000;
+export const FETCH_INTERVAL = 1000;
 
 export default {
   SNAPSHOT_TYPE,
