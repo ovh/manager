@@ -1,0 +1,18 @@
+{
+  "pci_projects_project_storages_containers_container_object_add_archive_title": "Ajouter des archives",
+  "pci_projects_project_storages_containers_container_object_add_object_title": "Ajouter des objets",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label": "Sélectionnez la classe de stockage",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description": "En savoir plus sur les classes de stockage et les tarifs. ",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link": "Voir les prix",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_standard": "Standard",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance",
+  "pci_projects_project_storages_containers_container_object_add_submit_label": "Importer",
+  "pci_projects_project_storages_containers_container_object_add_cancel_label": "Annuler",
+  "pci_projects_project_storages_containers_container_object_add_prefix_label": "Préfixe",
+  "pci_projects_project_storages_containers_container_object_add_files_label": "Importer des fichiers",
+
+  "pci_projects_project_storages_containers_container_object_add_archive_success_message": "Les archives ont été importées.",
+  "pci_projects_project_storages_containers_container_object_add_object_success_message": "Les objets ont été importés.",
+  "pci_projects_project_storages_containers_container_object_add_archive_error_delete": "Une erreur est survenue lors de l'import des archives : {{ message }}.",
+  "pci_projects_project_storages_containers_container_object_add_object_error_delete": "Une erreur est survenue lors de l'import des objets {{ object }} : {{ message }}."
+}

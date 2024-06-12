@@ -39,5 +39,8 @@
   "pci_projects_project_storages_containers_container_back_button_label": "Meine Container",
   "pci_projects_project_storages_containers_container_object_info_s3_staticUrl_help": "Stellen Sie Ihre Container und Objekte im Web bereit, indem Sie die Zugriffsrechte für jedes Objekt konfigurieren und so einen öffentlichen Zugang ermöglichen. Sie sind dann über die Virtual Hosted Style-Adresse verfügbar.",
   "pci_projects_project_storages_containers_container_info_data_encryption_enabled": "Verschlüsselung: <strong>SSE-S3</strong>",
-  "pci_projects_project_storages_containers_container_info_data_encryption_disabled": "Verschlüsselung: <strong>Keine</strong>"
+  "pci_projects_project_storages_containers_container_info_data_encryption_disabled": "Verschlüsselung: <strong>Keine</strong>",
+  "pci_projects_project_storages_containers_container_storage_class_label": "Speicherklasse",
+  "pci_projects_project_storages_containers_container_storage_class_STANDARD": "Standard",
+  "pci_projects_project_storages_containers_container_storage_class_HIGH_PERF": "High Performance"
 }
