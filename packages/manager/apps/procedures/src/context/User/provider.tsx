@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import userContext, { User } from '@/context/User/context';
-import { ExpiredSessionModal } from '../../../../procedures/src/context/User/modals/ExpiredSessionModal';
-import { WarningSessionModal } from '../../../../procedures/src/context/User/modals/WarningSessionModal';
+import { ExpiredSessionModal } from '@/context/User/modals/ExpiredSessionModal';
+import { WarningSessionModal } from '@/context/User/modals/WarningSessionModal';
 import { useSessionModal } from './useSessionModal';
 import { getRedirectLoginUrl } from '@/utils/url-builder';
 
