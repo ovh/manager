@@ -7,14 +7,14 @@ import { useTerminateOKms } from '@/api/hooks/useTerminateOKms';
 export default function TerminateKms() {
   const { t } = useTranslation('key-management-service/terminate');
   const navigate = useNavigate();
-  const { kmsId } = useParams();
+  const { okmsId } = useParams();
 
   const closeModal = () => {
     navigate('..');
   };
 
   const { terminateKms, isErrorVisible, error } = useTerminateOKms({
-    kmsId,
+    okmsId,
     onSuccess: closeModal,
   });
 
