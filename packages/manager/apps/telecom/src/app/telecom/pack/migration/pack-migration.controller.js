@@ -36,6 +36,8 @@ export default class TelecomPackMigrationCtrl {
     this.loading.init = true;
     this.process = this.TucPackMigrationProcess.init(this.packName);
 
+    this.PROCESS_STEP = PROCESS_STEP;
+
     return this.TucPackMigrationProcess.checkForPendingMigration()
       .then((pendingTasks) => {
         if (pendingTasks && pendingTasks.length === 1) {
