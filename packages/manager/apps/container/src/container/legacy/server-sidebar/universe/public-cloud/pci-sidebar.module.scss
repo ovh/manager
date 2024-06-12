@@ -53,11 +53,13 @@
 }
 
 .menuTitle {
+  display: flex;
   font-size: 1.125rem;
   line-height: 2.25rem;
   font-weight: 700;
   color: #00185e;
   border-bottom: 1px solid #85d9fd;
+  justify-content: space-between;
 }
 .menuUl{
   list-style-type: none;

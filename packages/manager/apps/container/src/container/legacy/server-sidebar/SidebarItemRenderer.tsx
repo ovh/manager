@@ -116,6 +116,7 @@ export default function ServerSidebarItemRenderer({
           <span className="pl-2 align-middle" aria-hidden="true">
             {item.icon}
             <span className="pl-2">{item.depth === 0 ? (
+              <>
               <OsdsText
                 level={ODS_TEXT_LEVEL.heading}
                 color={ODS_THEME_COLOR_INTENT.text}
@@ -123,6 +124,14 @@ export default function ServerSidebarItemRenderer({
               >
                 {item.label}
               </OsdsText>
+              {item?.badge && (
+                <span
+               className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+              >
+               {item.badge}
+                 </span>
+               )}
+             </>
             ) : (
               <>
                 <OsdsText

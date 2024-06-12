@@ -212,7 +212,15 @@ export default function PublicCloudSidebar() {
 
         {menu.map((item) => (
           <div className="m-2" key={item.id}>
-            <h2 className={style.menuTitle}>{item.title}</h2>
+            <h2 className={style.menuTitle}>
+             {item.title}                     
+             {item.badge && (
+                        <span
+                          className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+                        >
+                          {item.badge}
+                        </span>
+                      )}</h2>
             {item.subItems?.length > 0 && (
               <ul className={style.menuUl}>
                 {item.subItems.map((subItem) => (
