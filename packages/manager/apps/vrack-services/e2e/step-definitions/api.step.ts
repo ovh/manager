@@ -1,10 +1,10 @@
 import { Given } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers';
-import { vsUpdateErrorMessage } from '../../mock/vrack-services/vrack-services';
+import { vsUpdateErrorMessage } from '../../mocks/vrack-services/vrack-services';
 import { servicesMockErrors } from '../../../../../manager-components/src/hooks/services/mocks/services.mock';
 import { labels } from '../utils';
-import { ConfigParams } from '../../mock/handlers';
-import vrackServicesList from '../../mock/vrack-services/get-vrack-services.json';
+import { ConfigParams } from '../../mocks/handlers';
+import vrackServicesList from '../../mocks/vrack-services/get-vrack-services.json';
 
 Given('The vRack task service is {word}', function(
   this: ICustomWorld<ConfigParams>,

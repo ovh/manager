@@ -2,9 +2,9 @@ import { Given } from '@cucumber/cucumber';
 import { OrderStatus } from '@ovh-ux/manager-module-order';
 import { ICustomWorld } from '@playwright-helpers';
 import { getUrl } from '../utils';
-import { ConfigParams } from '../../mock/handlers';
-import { ProductStatus, ResourceStatus } from '@/api';
-import vrackServicesList from '../../mock/vrack-services/get-vrack-services.json';
+import { ConfigParams } from '../../mocks/handlers';
+import { ProductStatus, ResourceStatus } from '@/data';
+import vrackServicesList from '../../mocks/vrack-services/get-vrack-services.json';
 
 Given('User has {word} vRack Services', function(
   this: ICustomWorld<ConfigParams>,

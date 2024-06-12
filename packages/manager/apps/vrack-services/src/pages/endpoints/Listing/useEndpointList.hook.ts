@@ -1,4 +1,4 @@
-import { useVrackService } from '@/api';
+import { useVrackService } from '@/data';
 
 export type EndpointItem = {
   description: string;
