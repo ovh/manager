@@ -3,6 +3,7 @@ import userContext, { User } from '@/context/User/context';
 import { ExpiredSessionModal } from '../../../../procedures/src/context/User/modals/ExpiredSessionModal';
 import { WarningSessionModal } from '../../../../procedures/src/context/User/modals/WarningSessionModal';
 import { useSessionModal } from './useSessionModal';
+import { getRedirectLoginUrl } from '@/utils/url-builder';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -19,16 +20,8 @@ export const UserProvider = ({ children = null, user }: Props): JSX.Element => {
 
   const handleCloseExpiredModal = useCallback(() => {
     setShowExpiredModal(false);
-    const loginUrl =
-      window.location.host === 'www.ovhtelecom.fr'
-        ? 'https://www.ovh.com/auth/'
-        : '/auth';
-
-    const subsidiaryParams = user?.subsidiary
-      ? `?ovhSubsidiary=${user.subsidiary}`
-      : '';
-
-    window.location.assign(`${loginUrl}${subsidiaryParams}`);
+    const redirectUrl = getRedirectLoginUrl(user);
+    window.location.assign(redirectUrl);
   }, [user]);
 
   const handleCloseWarningModal = () => setShowWarningModal(false);
