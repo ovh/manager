@@ -25,11 +25,11 @@ export default function AccountSidebar() {
   const isEnterprise = environment.getUser()?.enterprise;
 
   const getAccountSidebar = async (availability: Record<string, string> | null) => {
-    if (!availability) {
-      return [];
-    }
+    const menu: SidebarMenuItem[] = [];
 
-    const menu = [];
+    if (!availability) {
+      return menu;
+    }
 
     menu.push({
       id: 'back-to-home',
@@ -137,7 +137,6 @@ export default function AccountSidebar() {
         pathMatcher: new RegExp('^/iam'),
       });
     }
-
     return menu;
   };
 
