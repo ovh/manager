@@ -18,6 +18,7 @@ import veeamBackupLogo from '@/assets/images/sidebar/veeam-backup-logo.png';
 
 const features = [
   'dedicated-cloud',
+  'hpc-vmware-managed-vcd',
   'dedicated-cloud:sapHanaOrder',
   'nutanix',
   'veeam-enterprise',
@@ -66,7 +67,7 @@ export default function HostedPrivateCloudSidebar() {
     if (feature['dedicated-cloud']) {
       menu.push({
         id: 'hpc-dedicated-cloud',
-        label: t('sidebar_vmware'),
+        label: t('sidebar_vmware_vsphere'),
         icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
         routeMatcher: new RegExp(`^(/configuration)?/dedicated_cloud`),
         async loader() {
@@ -91,6 +92,31 @@ export default function HostedPrivateCloudSidebar() {
                   'EPCC',
                 );
               },
+            })),
+          ];
+        },
+      });
+    }
+
+    if (feature['hpc-vmware-managed-vcd']) {
+      menu.push({
+        id: 'hpc-vcd',
+        label: t('sidebar_vmware_vcd'),
+        icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
+        routeMatcher: new RegExp(`^hpc-vmware-managed-vcd`),
+        async loader() {
+          const services = await loadServices('/vmwareCloudDirector');
+          const icon = getIcon('ovh-font ovh-font-dedicatedCloud');
+          return [
+            {
+              id: 'dedicated-vmware-vcd-all',
+              label: t('sidebar_vmware_all'),
+              href: navigation.getURL('hpc-vmware-managed-vcd', '/'),
+              icon,
+            },
+            ...services.map((service) => ({
+              ...service,
+              icon,
             })),
           ];
         },
