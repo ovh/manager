@@ -13,6 +13,7 @@ import addUser from './addUser';
 import object from './object';
 import component from './container.component';
 import emptyUser from './emptyUser';
+import updateVersioning from './update-versioning';
 
 const moduleName = 'ovhManagerPciStoragesContainersContainer';
 
@@ -22,6 +23,7 @@ angular
     emptyUser,
     addUser,
     object,
+    updateVersioning,
     'ngTranslateAsyncLoader',
     'oui',
     'ovh-api-services',

@@ -25,6 +25,7 @@ export default class Container {
     state,
     storageGateway,
     encryption,
+    versioning,
   }) {
     Object.assign(this, {
       name,
@@ -43,6 +44,7 @@ export default class Container {
       s3StorageType,
       ...(publicUrl && { publicUrl }),
       ...(virtualHost && { virtualHost }),
+      ...(versioning && { versioning }),
       state,
       storageGateway,
       encryption,

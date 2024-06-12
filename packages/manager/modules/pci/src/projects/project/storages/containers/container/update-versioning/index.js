@@ -7,17 +7,14 @@ import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 import 'angular-ui-bootstrap';
 
-import regionsList from '../../../../../components/project/regions-list';
-import associateUserToContainer from './components/associate-user-to-container';
-import dataEncryption from '../container/data-encryption';
-import bucketVersioning from '../container/bucket-versioning';
+import enableVersioning from './enable';
 
-import component from './add.component';
-
-const moduleName = 'ovhManagerPciStoragesContainersAdd';
+const moduleName = 'ovhManagerPciStoragesContainersContainerUpdateVersioning';
 
 angular
   .module(moduleName, [
+    enableVersioning,
+
     'ngTranslateAsyncLoader',
     'oui',
     'ovh-api-services',
@@ -25,12 +22,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ui.bootstrap',
-    regionsList,
-    associateUserToContainer,
-    dataEncryption,
-    bucketVersioning,
   ])
-  .component('pciProjectStorageContainersAdd', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

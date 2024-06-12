@@ -95,6 +95,38 @@
                         data-ng-click="$ctrl.trackEncryptionAction('TOOLTIP_AES256')"
                     ></button>
                 </p>
+
+                <!-- bucket versioning -->
+                <p ng-if="$ctrl.isRightOffer()">
+                    <span
+                        data-translate="pci_projects_project_storages_containers_update_versioning_versioning"
+                    ></span>
+                    <span
+                        class="oui-badge"
+                        data-ng-class="{
+                        'oui-badge_success': ($ctrl.container.versioning.status === 'enabled'),
+                        'oui-badge_warning': ($ctrl.container.versioning.status === 'suspended'),
+                        'oui-badge_error': ($ctrl.container.versioning.status === 'disabled')
+                        }"
+                        data-translate="{{ 'pci_projects_project_storages_containers_update_versioning_' + $ctrl.container.versioning.status + '_label'}}"
+                    >
+                    </span>
+                </p>
+                <p ng-if="$ctrl.isRightOffer()">
+                    <button
+                        class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                        data-ng-if="$ctrl.container.versioning.status === 'suspended' || $ctrl.container.versioning.status === 'disabled'"
+                        data-ng-click="$ctrl.enableVersioning()"
+                    >
+                        <span
+                            data-translate="pci_projects_project_storages_containers_update_versioning_title"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-arrow-right ml-1"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                </p>
             </div>
 
             <!--Container clipboards fields-->
