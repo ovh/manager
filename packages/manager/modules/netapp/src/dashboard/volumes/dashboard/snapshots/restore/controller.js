@@ -1,17 +1,17 @@
+import { SNAPSHOT_TYPE } from "./constants";
+
 export default class NetAppVolumesDashboardSnapshotsRestoreController {
   /* @ngInject */
-  constructor($http, $translate) {
-    this.$http = $http;
+  constructor($translate, NetAppRestoreVolumeService) {
     this.$translate = $translate;
+    this.NetAppRestoreVolumeService = NetAppRestoreVolumeService;
   }
 
-  /**
-   * Work In Progress
-   * TODO:
-   * - Define which snapshot will be the one to revert to
-   * - Make the revert on click to confirm
-   * */
   $onInit() {
+    this.isLoading = true;
+    this.snapshotToRevertTo = this.snapshots
+      .filter((snapshot) => snapshot.type !== SNAPSHOT_TYPE.SYSTEM)
+      .reduce((current, mostRecent) => current.createdAt > mostRecent.createdAt ? current : mostRecent);
     this.isLoading = false;
   }
 
@@ -21,7 +21,25 @@ export default class NetAppVolumesDashboardSnapshotsRestoreController {
   }
 
   restoreVolume() {
+    this.isLoading = true;
     this.trackClick('restore::confirm');
-    return;
+    this.NetAppRestoreVolumeService.restoreVolume(this.serviceName, this.volumeId, this.snapshotToRevertTo)
+    .then(() =>
+      this.goToSnapshots(
+        this.$translate.instant('netapp_volumes_snapshots_restore_success'),
+      ),
+    )
+    .catch((error) =>
+      this.goToSnapshots(
+        this.$translate.instant('netapp_volumes_snapshots_restore_error', {
+          message: error.data?.message,
+          requestId: error.headers('X-Ovh-Queryid')
+        }),
+        'error',
+      ),
+    )
+    .finally(() => {
+      this.isLoading = false;
+    });
   }
 }
