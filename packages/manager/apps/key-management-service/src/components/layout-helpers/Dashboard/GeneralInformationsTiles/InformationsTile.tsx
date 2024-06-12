@@ -25,6 +25,25 @@ type InformationTileProps = {
   okmsData?: OKMS;
 };
 
+const Clipboard = ({ value }: { value: string }) => {
+  const { t } = useTranslation('key-management-service/common');
+
+  return (
+    <OsdsClipboard className="mb-2" value={value}>
+      <span slot="success-message">
+        <OsdsText color={ODS_THEME_COLOR_INTENT.success}>
+          {t('clipboard_copy_success')}
+        </OsdsText>
+      </span>
+      <span slot="error-message">
+        <OsdsText color={ODS_THEME_COLOR_INTENT.error}>
+          {t('clipboard_copy_error')}
+        </OsdsText>
+      </span>
+    </OsdsClipboard>
+  );
+};
+
 const InformationsTile = ({ okmsData }: InformationTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
   const [editModalDisplayed, setEditModalDisplayed] = useState(false);
@@ -86,7 +105,7 @@ const InformationsTile = ({ okmsData }: InformationTileProps) => {
           >
             {t('key_management_service_dashboard_field_label_id')}
           </OsdsText>
-          <OsdsClipboard className="mb-2" value={okmsData?.id}></OsdsClipboard>
+          <Clipboard value={okmsData?.id} />
           <OsdsDivider separator />
           <OsdsText
             className="mb-4"
@@ -96,10 +115,7 @@ const InformationsTile = ({ okmsData }: InformationTileProps) => {
           >
             {t('key_management_service_dashboard_field_label_urn')}
           </OsdsText>
-          <OsdsClipboard
-            className="mb-2"
-            value={okmsData?.iam.urn}
-          ></OsdsClipboard>
+          <Clipboard value={okmsData?.iam.urn} />
           <OsdsDivider separator />
           <OsdsText
             className="mb-4"
@@ -128,16 +144,7 @@ const InformationsTile = ({ okmsData }: InformationTileProps) => {
           >
             {t('key_management_service_dashboard_field_label_restApi')}
           </OsdsText>
-          <OsdsLink
-            href={okmsData?.restEndpoint}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            target={OdsHTMLAnchorElementTarget._blank}
-            referrerpolicy={
-              ODS_LINK_REFERRER_POLICY.strictOriginWhenCrossOrigin
-            }
-          >
-            {okmsData?.restEndpoint}
-          </OsdsLink>
+          <Clipboard value={okmsData?.restEndpoint} />
           <OsdsDivider separator />
           <OsdsText
             className="mb-4"
@@ -147,10 +154,26 @@ const InformationsTile = ({ okmsData }: InformationTileProps) => {
           >
             {t('key_management_service_dashboard_field_label_kmip')}
           </OsdsText>
-          <OsdsClipboard
-            className="mb-2"
-            value={okmsData?.kmipEndpoint}
-          ></OsdsClipboard>
+          <Clipboard value={okmsData?.kmipEndpoint} />
+          <OsdsDivider separator />
+          <OsdsText
+            className="mb-4"
+            size={ODS_TEXT_SIZE._200}
+            level={ODS_TEXT_LEVEL.heading}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('key_management_service_dashboard_field_label_swagger')}
+          </OsdsText>
+          <OsdsLink
+            href={okmsData?.swaggerEndpoint}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            target={OdsHTMLAnchorElementTarget._blank}
+            referrerpolicy={
+              ODS_LINK_REFERRER_POLICY.strictOriginWhenCrossOrigin
+            }
+          >
+            {okmsData?.swaggerEndpoint}
+          </OsdsLink>
         </div>
       </div>
     </OsdsTile>

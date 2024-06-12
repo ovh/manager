@@ -3,6 +3,7 @@ export type OKMS = {
   region: string;
   kmipEndpoint: string;
   restEndpoint: string;
+  swaggerEndpoint: string;
   iam: IAM;
 };
 
