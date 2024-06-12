@@ -62,7 +62,7 @@
     "vitest": "^1.2.0"
   },
   "msw": {
-    "workerDirectory": "src/public"
+    "workerDirectory": "./public"
   },
   "regions": [
     "CA",
