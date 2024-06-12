@@ -1,7 +1,7 @@
 import { When } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers';
 import { expect } from '@playwright/test';
-import { vrackList } from '../../mock/vrack/vrack';
+import { vrackList } from '../../mocks/vrack/vrack';
 import {
   setupNetwork,
   getUrl,
@@ -10,7 +10,7 @@ import {
   labels,
   managerComponentsLabels,
 } from '../utils';
-import { ConfigParams } from '../../mock/handlers';
+import { ConfigParams } from '../../mocks/handlers';
 
 When('User clicks on the vRack Services configuration button', async function(
   this: ICustomWorld<ConfigParams>,
