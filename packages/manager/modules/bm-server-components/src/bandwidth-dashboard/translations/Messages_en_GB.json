@@ -24,5 +24,6 @@
   "server_consumption_current_period_remaining": "{{t0}} remaining",
   "dedicated_server_bandwidth_public": "Public bandwidth",
   "dedicated_server_bandwidth_private": "Private bandwidth",
-  "dedicated_cluster_bandwidth_public": "Cluster public bandwidth"
+  "dedicated_cluster_bandwidth_public": "Cluster public bandwidth",
+  "dedicated_cluster_bandwidth_private": "Cluster private bandwidth"
 }
