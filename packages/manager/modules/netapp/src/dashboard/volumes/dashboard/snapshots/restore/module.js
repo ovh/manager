@@ -8,6 +8,7 @@ import 'angular-translate';
 
 import component from './component';
 import routing from './routing';
+import service from './service';
 
 const moduleName = 'ovhManagerNetAppVolumesDashboardSnapshotsRestore';
 
@@ -22,6 +23,7 @@ angular
   ])
   .config(routing)
   .component('ovhManagerNetAppVolumesDashboardSnapshotsRestoreComponent', component)
+  .service('NetAppRestoreVolumeService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
