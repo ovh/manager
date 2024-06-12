@@ -1,7 +1,6 @@
 import { Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { ICustomWorld } from '@playwright-helpers';
-import { modalDescriptionLine1 } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
 import {
   AppRoute,
   getActionMenu,
@@ -9,8 +8,8 @@ import {
   getUrl,
   labels,
 } from '../utils';
-import { ConfigParams } from '../../mock/handlers';
-import { Subnet } from '@/api';
+import { ConfigParams } from '../../mocks/handlers';
+import { Subnet } from '@/data';
 
 Then('User sees the create a vRack Services button {word}', async function(
   this: ICustomWorld<ConfigParams>,
@@ -30,7 +29,7 @@ Then(
   'A modal appear to ask if the user wants to create a new vRack',
   async function(this: ICustomWorld<ConfigParams>) {
     const modalDescriptionLine = await this.page?.locator('osds-text', {
-      hasText: modalDescriptionLine1,
+      hasText: labels.modalDescriptionLine1,
     });
     await expect(modalDescriptionLine).toBeVisible();
   },
