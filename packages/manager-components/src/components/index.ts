@@ -1,4 +1,5 @@
 export * from './action-banner';
+export * from './redirection-guard';
 
 export * from './container';
 export * from './input';
