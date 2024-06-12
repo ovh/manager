@@ -46,5 +46,6 @@
   "key_management_service_dashboard_field_label_engagement_renew_auto": "Renouv. Auto",
   "key_management_service_dashboard_contact_type_administrator": "Administrateur",
   "key_management_service_dashboard_contact_type_technical": "Technique",
-  "key_management_service_dashboard_contact_type_billing": "Facturation"
+  "key_management_service_dashboard_contact_type_billing": "Facturation",
+  "key_management_service_dashboard_action_billing_terminate": "Résilier"
 }
