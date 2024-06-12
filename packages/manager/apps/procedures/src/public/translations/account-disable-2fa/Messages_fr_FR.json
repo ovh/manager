@@ -28,5 +28,8 @@
   "account-disable-2fa-file-input-select-files": "Sélectionner des fichiers...",
   "account-disable-2fa-file-input-type-file-error": "Format de fichier non pris en charge. Veuillez utiliser l'un des formats acceptés : {{types}} et {{lastType}}.",
   "account-disable-2fa-file-input-size-file-error": "Le fichier dépasse la taille limite.",
-  "account-disable-2fa-file-input-attachments": "Fichier(s) joint(s)"
+  "account-disable-2fa-file-input-attachments": "Fichier(s) joint(s)",
+
+  "account-disable-2fa-create-form-legal-info": "Les données indiquées comme facultatives ne sont pas strictement nécessaires à l'authentification, toutefois la non fourniture des autres données empêche l'authentification et donnera lieu à l'annulation automatique de votre demande. OVH S.A.S traite les données à caractère personnel transmises via ce formulaire en qualité de responsable du traitement aux fins de prévention de la fraude et d'authentification.",
+  "account-disable-2fa-create-form-legal-info-policy": "Pour en savoir plus, sur le traitement de vos données personnelles et connaître vos droits, vous pouvez consulter notre <a style='color:#2563eb; font-weight: 700;' href='{{legalPolicyLink}}' target='_blank'>Politique d'utilisation de données à caractère personnel OVHcloud.</a>"
 }

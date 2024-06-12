@@ -8,10 +8,15 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import useUser from '@/context/User/useUser';
+import { LegalPolicyLinkBySubsidiary } from './create.constants';
 
 export default function CreateRequest() {
   const { t } = useTranslation('account-disable-2fa');
   const { user } = useUser();
+
+  const legalPolicyLink =
+    (LegalPolicyLinkBySubsidiary as any)[user.subsidiary] ||
+    LegalPolicyLinkBySubsidiary.OTHERS;
 
   return (
     <div className="lg:px-10 sm:px-3 lg:py-5 sm:py-3 flex flex-col gap-4">
@@ -66,6 +71,31 @@ export default function CreateRequest() {
       </OsdsText>
 
       <Outlet />
+      <div className="pt-6">
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          className="block"
+          size={ODS_TEXT_SIZE._100}
+        >
+          {t('account-disable-2fa-create-form-legal-info')}
+        </OsdsText>
+
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          className="block"
+          size={ODS_TEXT_SIZE._100}
+        >
+          <span
+            dangerouslySetInnerHTML={{
+              __html: t('account-disable-2fa-create-form-legal-info-policy', {
+                legalPolicyLink,
+              }),
+            }}
+          ></span>
+        </OsdsText>
+      </div>
     </div>
   );
 }
