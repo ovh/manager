@@ -108,17 +108,17 @@
                 >
                     <oui-checkbox-label class="d-block pl-2">
                         <span
-                            data-translate="pci_projects_onboarding_italy_agreements_label"
+                            data-translate="{{:: $ctrl.ITALY_AGREEMENT_TEXT.TITLE }}"
                         ></span>
                     </oui-checkbox-label>
                 </oui-checkbox>
                 <oui-collapsible
-                    heading="{{:: 'pci_projects_onboarding_italy_agreements_collapsible_title' | translate}}"
+                    heading="{{:: $ctrl.ITALY_AGREEMENT_TEXT.LINK | translate}}"
                     class="ml-4 w-90"
                 >
                     <div>
                         <span
-                            data-translate="pci_projects_onboarding_italy_agreements_collapsible_description"
+                            data-translate="{{:: $ctrl.ITALY_AGREEMENT_TEXT.DETAILS }}"
                         >
                         </span>
                     </div>
