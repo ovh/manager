@@ -1,6 +1,6 @@
 {
   "*.html": [
-    "htmlhint --ignore \"**/dist/**,**/www/**,**/screenshot/**,**/docs-api/**,**/coverage/**,**/storybook-static/**,**/playwright-report/**\" \"packages/**/*.html\"",
+    "htmlhint --ignore \"**/dist/**,**/www/**,**/screenshot/**,**/docs-api/**,**/coverage/**,**/storybook-static/**,**/playwright-report/**,**/e2e/**\" \"packages/**/*.html\"",
     "prettier --write"
   ],
   "*.{tsx,ts}": [

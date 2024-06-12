@@ -1,4 +1,4 @@
-import { urls } from '../../src/router/constants';
+import { urls } from '../../src/routes/routes.constants';
 
 export const appUrl = 'http://localhost:9001/app/';
 

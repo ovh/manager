@@ -1,7 +1,7 @@
 import { BrowserContext } from '@playwright/test';
 import { ICustomWorld } from '@playwright-helpers';
 import { toPlaywrightMockHandler } from '../../../../../../playwright-helpers';
-import { getConfig, ConfigParams } from '../../mock/handlers';
+import { getConfig, ConfigParams } from '../../mocks/handlers';
 
 export const setupNetwork = async (world: ICustomWorld) =>
   Promise.all(
