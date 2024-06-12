@@ -39,6 +39,7 @@ export default function DeleteModal({
               inline
               size={ODS_SPINNER_SIZE.md}
               className="block text-center"
+              data-testid="deleteModal-spinner"
             />
           ) : (
             <OsdsText
@@ -58,6 +59,7 @@ export default function DeleteModal({
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={onClose}
+        data-testid="deleteModal-button_cancel"
       >
         {t('pci_projects_project_network_private_delete_cancel')}
       </OsdsButton>
@@ -66,6 +68,7 @@ export default function DeleteModal({
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={onConfirm}
         disabled={isPending || undefined}
+        data-testid="deleteModal-button_confirm"
       >
         {t('pci_projects_project_network_private_delete_confirm')}
       </OsdsButton>
