@@ -7,6 +7,7 @@ import '@ovh-ux/ng-ovh-contracts';
 
 import routing from './routing';
 import component from './component';
+import './style.less';
 
 import components from './components';
 

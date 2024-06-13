@@ -56,6 +56,9 @@ export default /* @ngInject */ ($stateProvider) => {
       projectsLink: /* @ngInject */ ($state) => () =>
         $state.href('pci.projects'),
 
+      isItSubsidiary: /* @ngInject */ (coreConfig) =>
+        coreConfig.getUser().ovhSubsidiary === 'IT',
+
       hds: /* @ngInject */ (
         hdsAddonOption,
         isHdsAvailable,
