@@ -30,7 +30,7 @@
   "createRancherInfoMessage": "Der Dienst ist während der Betaphase kostenlos. Danach wird Ihre Nutzung allerdings stündlich abgerechnet, je nach Gesamtzahl der vCPUs jedes Worker-Nodes Ihrer Ranche-Downstream-Cluster, wobei <strong>mindestens 20 vCPUs abgerechnet werden.</strong>",
   "createRancherName": "Name",
   "createRancherDescription": "Innerhalb dieses Dienstes können Sie mehrere „Downstream-Cluster“ verwalten.",
-  "createRancherPlaceholder": "Name des Rancher",
+  "createRancherPlaceholder": "meine_ranchen",
   "createRancherServiceLevel": "Wahl des Angebots",
   "createRancherServiceLevelDescription": " Mit beiden Angeboten stehen sämtliche Funktionen von Rancher zur Verfügung. Das Angebot OVHcloud Edition erlaubt nur die Erstellung von „Downstream-Clustern“ in der OVHcloud Public Cloud. Die selbstverwalteten Nodes werden einzeln hinzugefügt. Das Standard Angebot ist ideal für Anwendungen wie Private Cloud, Multicloud oder Edge. Sie können jederzeit zum Standard Angebot migrieren.",
   "createRancherVersion": "Rancher-Version",
@@ -39,5 +39,6 @@
   "createRancherError": "Bei der Erstellung Ihres Managed Rancher Service ist ein Fehler aufgetreten. Bitte versuchen Sie es noch einmal.",
   "createRancherRecomendedVersion": "Empfohlene Version",
   "createRancherOVHCloudPlanDescription": "Erstellen oder verwalten Sie Managed Kubernetes Service oder „selbstverwaltete“ Downstream-Cluster in der OVHcloud Public Cloud oder auf Ihren eigenen Maschinen. Sie können auch externe Cluster registrieren (ohne Cloud-Verwaltung).",
-  "createRancherStandardPlanDescription": "Erstellen oder registrieren Sie „Downstream-Cluster“ mit jeder von Rancher unterstützten Public Cloud oder einer automatisierbaren Private Cloud (z. B. VMware vSphere), einschließlich der vom OVHcloud Edition Angebot unterstützten Szenarien."
+  "createRancherStandardPlanDescription": "Erstellen oder registrieren Sie „Downstream-Cluster“ mit jeder von Rancher unterstützten Public Cloud oder einer automatisierbaren Private Cloud (z. B. VMware vSphere), einschließlich der vom OVHcloud Edition Angebot unterstützten Szenarien.",
+  "createNameModaleHelperInput": "Der Name des Dienstes muss zwischen 3 und 63 Zeichen lang sein. Er muss mit alphanumerischen Kleinbuchstaben beginnen und enden (von a bis z und von 0 bis 9) und kann die Satzzeichen „_“, „.“ und „-“ enthalten."
 }

@@ -30,7 +30,7 @@
   "createRancherInfoMessage": "Il servizio è gratuito durante la fase Beta, ma in seguito l’utilizzo verrà fatturato all'ora, in base al numero totale di vCPU di ciascun nodo di lavoro (worker node) dei tuoi \"downstream cluster\" Rancher, considerando un <strong>minimo di 20 vCPU fatturate.</strong>",
   "createRancherName": "Nome",
   "createRancherDescription": "Potrai gestire diversi \"downstream cluster\" all'interno di questo servizio.",
-  "createRancherPlaceholder": "Nome di Rancher",
+  "createRancherPlaceholder": "mio_rancher",
   "createRancherServiceLevel": "Scelta del piano",
   "createRancherServiceLevelDescription": " Entrambi i piani offrono tutte le funzionalità di Rancher. Il piano OVHcloud Edition permette esclusivamente la creazione di \"downstream cluster\" sul Cloud pubblico di OVHcloud, con nodi autogestiti aggiunti uno per uno. Il piano Standard è ideale per utilizzi di tipo Cloud privato, multicloud o Edge. È possibile migrare al piano Standard in qualsiasi momento.",
   "createRancherVersion": "Versione di Rancher",
@@ -39,5 +39,6 @@
   "createRancherError": "Si è verificato un errore durante la creazione del tuo Managed Rancher Service. Ti chiediamo di riprovare.",
   "createRancherRecomendedVersion": "Versione consigliata",
   "createRancherOVHCloudPlanDescription": "Crea e gestisci \"downstream cluster\" Managed Kubernetes o autogestiti nel Cloud pubblico di OVHcloud o sulle tue macchine. Puoi anche registrare cluster esterni (senza gestione Cloud)",
-  "createRancherStandardPlanDescription": "Crea o registra \"downstream clusters\" con qualsiasi Cloud pubblico supportato da Rancher o su un Cloud privato automatizzabile (per es. VMware vSphere), inclusi gli scenari compatibili con il piano OVHcloud Edition."
+  "createRancherStandardPlanDescription": "Crea o registra \"downstream clusters\" con qualsiasi Cloud pubblico supportato da Rancher o su un Cloud privato automatizzabile (per es. VMware vSphere), inclusi gli scenari compatibili con il piano OVHcloud Edition.",
+  "createNameModaleHelperInput": "Il nome del servizio deve contenere da 3 a 63 caratteri, iniziare e terminare con caratteri alfanumerici minuscoli (da a a z e da 0 a 9) e può contenere i seguenti segni di punteggiatura: '_', '.' e '-'."
 }
