@@ -17,6 +17,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { URL_INFO } from '@/constants';
 import { TMappedRegion } from './LocalizationStep';
 import { useNewNetworkStore } from '@/pages/new/store';
@@ -94,6 +95,7 @@ export const RegionTile = ({
                 tab-index="-1"
                 label={tRegions('pci_project_flavors_zone_tooltip_link')}
                 type={LinkType.external}
+                target={OdsHTMLAnchorElementTarget._blank}
                 href={getDocumentUrl('LOCAL_ZONE')}
               />
             </OsdsPopoverContent>
@@ -132,6 +134,7 @@ export const RegionTile = ({
                 tab-index="-1"
                 label={tRegions('pci_project_flavors_zone_tooltip_link')}
                 type={LinkType.external}
+                target={OdsHTMLAnchorElementTarget._blank}
                 href={getDocumentUrl('GLOBAL_REGIONS')}
               />
             </OsdsPopoverContent>
