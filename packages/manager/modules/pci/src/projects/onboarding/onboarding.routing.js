@@ -6,7 +6,7 @@ import { PCI_HDS_ADDON } from '../project/project.constants';
 export default /* @ngInject */ ($stateProvider) => {
   const stateName = 'pci.projects.onboarding';
   $stateProvider.state(stateName, {
-    url: '/onboarding',
+    url: '/onboarding?redirectState',
     component: 'pciProjectsOnboarding',
     atInternet: {
       ignore: true, // this tell AtInternet to not track this state
@@ -41,7 +41,6 @@ export default /* @ngInject */ ($stateProvider) => {
             if (onBoardingStateName !== stateName) {
               return onBoardingStateName;
             }
-
             return false;
           },
         );
@@ -82,7 +81,7 @@ export default /* @ngInject */ ($stateProvider) => {
       setCartProjectItem: /* @ngInject */ (model, cart, pciProjectNew) => () =>
         pciProjectNew.setCartProjectItemDescription(cart, model.description),
 
-      onCartFinalized: /* @ngInject */ ($state, cart) => (
+      onCartFinalized: /* @ngInject */ ($state, cart, redirectState) => (
         { orderId },
         isDiscoveryProject,
       ) => {
@@ -90,6 +89,7 @@ export default /* @ngInject */ ($stateProvider) => {
           orderId,
           voucherCode: cart?.projectItem?.voucherConfiguration?.value || '',
           isDiscoveryProject,
+          redirectState,
         });
       },
 
@@ -121,6 +121,9 @@ export default /* @ngInject */ ($stateProvider) => {
               PCI_HDS_ADDON.planCode,
             )
           : null,
+
+      redirectState: /* @ngInject */ ($transition$) =>
+        $transition$.params().redirectState,
     },
   });
 };

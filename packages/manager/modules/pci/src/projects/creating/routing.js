@@ -7,7 +7,7 @@ import { DISCOVERY_PROJECT_PLANCODE } from '../project/project.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.creating', {
-    url: '/creating/:orderId/:voucherCode',
+    url: '/creating/:orderId/:voucherCode?redirectState',
     views: {
       '@pci': component.name,
     },
@@ -43,6 +43,7 @@ export default /* @ngInject */ ($stateProvider) => {
         getTargetedState,
         goToState,
         isCreatingDiscoveryProject,
+        redirectState,
       ) => (projectId) => {
         atInternet.setPciProjectMode({
           isDiscoveryProject: isCreatingDiscoveryProject,
@@ -55,6 +56,10 @@ export default /* @ngInject */ ($stateProvider) => {
           ...(voucherCode ? { voucherCode } : {}),
           pciCreationNumProjects3: numProjects,
         });
+
+        if (redirectState) {
+          return goToState({ state: redirectState });
+        }
 
         // Used in redirection case to a specific page
         if (isRedirectRequired) {
@@ -106,6 +111,9 @@ export default /* @ngInject */ ($stateProvider) => {
             (item) => item.order?.plan.code === DISCOVERY_PROJECT_PLANCODE,
           ),
         ),
+
+      redirectState: /* @ngInject */ ($transition$) =>
+        $transition$.params().redirectState,
     },
   });
 };
