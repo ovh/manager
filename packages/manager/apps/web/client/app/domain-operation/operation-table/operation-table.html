@@ -52,11 +52,21 @@
         data-filterable
         data-sortable
     >
+        <span style="white-space: wrap;" data-ng-bind="$row.comment"></span>
     </oui-datagrid-column>
-
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_creationDate' | translate"
+        data-property="creationDate"
+        data-type="date"
+        data-sortable
+        data-filterable
+    >
+        <span data-ng-bind="$row.creationDate | date:'short'"> </span>
+    </oui-datagrid-column>
     <oui-datagrid-column
         data-title="::'domain_operations_table_header_todoDate' | translate"
         data-property="todoDate"
+        data-type="date"
     >
         <span data-ng-bind="$row.todoDate | date:'short'"> </span>
     </oui-datagrid-column>
@@ -80,7 +90,8 @@
             class="oui-badge"
             data-ng-class="{
                 'oui-badge_info': $row.status === 'todo' || $row.status === 'doing' || $row.status === 'cancelled',
-                'oui-badge_error': $row.status === 'error',
+                'oui-badge_error': $row.status === 'problem',
+                'oui-badge_warning': $row.status === 'error',
                 'oui-badge_success': $row.status === 'done'
               }"
             data-ng-bind="'domain_operations_statusOperation_' +  $row.status | translate"
@@ -157,10 +168,19 @@
         data-sortable
     >
     </oui-datagrid-column>
-
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_creationDate' | translate"
+        data-property="creationDate"
+        data-type="date"
+        data-sortable
+        data-filterable
+    >
+        <span data-ng-bind="$row.creationDate | date:'short'"> </span>
+    </oui-datagrid-column>
     <oui-datagrid-column
         data-title="::'domain_operations_table_header_todoDate' | translate"
         data-property="todoDate"
+        data-type="date"
     >
         <span data-ng-bind="$row.todoDate | date:'short'"> </span>
     </oui-datagrid-column>
@@ -184,7 +204,8 @@
             class="oui-badge"
             data-ng-class="{
                 'oui-badge_info': $row.status === 'todo' || $row.status === 'doing' || $row.status === 'cancelled',
-                'oui-badge_error': $row.status === 'error',
+                'oui-badge_error': $row.status === 'problem',
+                'oui-badge_warning': $row.status === 'error',
                 'oui-badge_success': $row.status === 'done'
               }"
             data-ng-bind="'domain_operations_statusOperation_' +  $row.status | translate"

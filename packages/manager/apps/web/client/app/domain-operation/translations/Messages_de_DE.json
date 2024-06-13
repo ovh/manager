@@ -61,8 +61,8 @@
   "domain_operations_statusOperation_cancelled": "Abgebrochen",
   "domain_operations_statusOperation_doing": "Wird ausgeführt",
   "domain_operations_statusOperation_done": "Abgeschlossen",
-  "domain_operations_statusOperation_error": "Fehler",
-  "domain_operations_statusOperation_todo": "Zu erledigen",
+  "domain_operations_statusOperation_error": "Zu bearbeiten",
+  "domain_operations_statusOperation_todo": "Geplant",
   "domain_operations_update_title": "Daten des Vorgangs",
   "domain_operations_update": "Daten des Vorgangs ändern",
   "domain_operations_update_info": "Sie können die Daten in Zusammenhang mit dem Vorgang <strong>„{{t0}}“</strong> für die Domain <strong>{{t1}}</strong> ändern.",
@@ -126,5 +126,7 @@
   "domain_operations_progress_instructions_7": "Sie können sich mit dem derzeitigen Anbieter Ihrer Domain in Verbindung setzen, um dessen Zustimmung zu erhalten.",
   "operation_tab_DOMAIN": "Domain",
   "domain_operations_nicOperation_ContactControlAcknowledge": "Bestätigung des Kontakts",
-  "domain_operations_nicOperation_ContactControlCorrect": "Korrektur des Kontakts"
+  "domain_operations_nicOperation_ContactControlCorrect": "Korrektur des Kontakts",
+  "domain_operations_table_header_creationDate": "Erstellungsdatum",
+  "domain_operations_statusOperation_problem": "Abgebrochen"
 }

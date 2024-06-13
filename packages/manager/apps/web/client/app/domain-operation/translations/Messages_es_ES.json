@@ -61,8 +61,8 @@
   "domain_operations_statusOperation_cancelled": "Cancelada",
   "domain_operations_statusOperation_doing": "En curso",
   "domain_operations_statusOperation_done": "Finalizada",
-  "domain_operations_statusOperation_error": "Error",
-  "domain_operations_statusOperation_todo": "Pendiente",
+  "domain_operations_statusOperation_error": "Por tratar",
+  "domain_operations_statusOperation_todo": "Planificada",
   "domain_operations_update_title": "Datos de la operación",
   "domain_operations_update": "Modificar los datos de la operación",
   "domain_operations_update_info": "Puede modificar los datos relativos a la operación <strong>«{{t0}}»</strong> en el dominio <strong>{{t1}}</strong>",
@@ -126,5 +126,7 @@
   "domain_operations_progress_instructions_7": "Puede ponerse en contacto con el proveedor actual del dominio para solicitar su consentimiento.",
   "operation_tab_DOMAIN": "Dominio",
   "domain_operations_nicOperation_ContactControlAcknowledge": "Confirmación del contacto",
-  "domain_operations_nicOperation_ContactControlCorrect": "Corrección del contacto"
+  "domain_operations_nicOperation_ContactControlCorrect": "Corrección del contacto",
+  "domain_operations_table_header_creationDate": "Fecha de creación",
+  "domain_operations_statusOperation_problem": "Fallida"
 }
