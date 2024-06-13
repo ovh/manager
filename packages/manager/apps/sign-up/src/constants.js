@@ -25,11 +25,6 @@ export const HOME_PAGE = {
 
 export const INDIAN_SUBSIDIARY = 'IN';
 
-export const SUBSIDIARIES_LABEL_SUFFIX = {
-  [INDIAN_SUBSIDIARY]: '_kyc_reminder',
-  DEFAULT: '',
-};
-
 const LOGO_CONFIG = {
   default: 'assets/img/logo/logo-ovhcloud.png',
   set:
@@ -60,6 +55,5 @@ export default {
   LOGO_SRC,
   SANITIZATION,
   FEATURES,
-  SUBSIDIARIES_LABEL_SUFFIX,
   INDIAN_SUBSIDIARY,
 };

@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import some from 'lodash/some';
-import { SUBSIDIARIES_LABEL_SUFFIX } from '../constants';
+import { INDIAN_SUBSIDIARY } from '../constants';
 
 export default class SignUpFormAppCtrl {
   /* @ngInject */
@@ -104,9 +104,7 @@ export default class SignUpFormAppCtrl {
     this.saveError = null;
     this.loading.init = true;
 
-    this.subsidiaryLabelSuffix =
-      SUBSIDIARIES_LABEL_SUFFIX[this.subsidiary] ||
-      SUBSIDIARIES_LABEL_SUFFIX.DEFAULT;
+    this.isIndiaSubsidiary = this.subsidiary === INDIAN_SUBSIDIARY;
 
     if (this.me.state === 'incomplete') {
       this.me.legalform = null;
