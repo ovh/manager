@@ -20,7 +20,7 @@
   "telephony_line_mgcp_banner_link": "Kliknij tutaj.",
   "telephony_line_mgcp_banner_description": "Użyty terminal MGCP jest przestarzały: prosimy o wymianę terminala.",
   "telephony_line_tab_softphone": "Softphone",
-  "telephony_line_tab_beta_softphone_description": "Skonfiguruj tutaj opcję Softphone. Pamiętaj, że w fazie beta, jeśli zdecydujesz się na aktywację Softphone'a na Twojej linii, będziemy mogli go uruchomić gdzieś indziej tylko w naszych aplikacjach Softphone, \"Softcall\" (a więc nie na terminalu stacjonarnym czy innym oprogramowaniu Softphone)",
+  "telephony_line_tab_beta_softphone_description": "Skonfiguruj tutaj opcję Softphone. Pamiętaj, że w fazie beta, jeśli wybierzesz opcję włączenia Softphone'a w swojej linii, będziesz mógł korzystać z niego gdzieś indziej niż z naszych aplikacji Softphone, \"Softcall\" (a zatem nie na terminalu stacjonarnym czy na innym wybranym przez Ciebie softphonie (zoiper, itp.)).",
   "telephony_line_tab_beta_softphone_active_description": "Jeśli przełącznik jest aktywny, linia ta może być używana we wszystkich Twoich aplikacjach \"Softcall\": mobilnej i komputerowej.",
   "telephony_line_tab_beta_softphone_email_message_success": "Zlecenie ponownego wygenerowania e-maila konfiguracyjnego zostało przyjęte.",
   "telephony_line_tab_beta_softphone_email_message_error": "Ponowne wygenerowanie e-maila konfiguracyjnego nie powiodło się.",
