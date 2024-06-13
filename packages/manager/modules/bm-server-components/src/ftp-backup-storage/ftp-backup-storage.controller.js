@@ -1,5 +1,6 @@
 import head from 'lodash/head';
 import {
+  FTP_BACKUP_DOCUMENTATION_LINK,
   FTP_BACKUP_STORAGE_ALERT,
   FTP_BACK_UP_USAGE_LIMIT,
 } from './ftp-backup.constants';
@@ -13,6 +14,7 @@ export default class FtpBackupStorageController {
     $translate,
     $state,
     Alerter,
+    coreConfig,
     DedicatedServerFeatureAvailability,
     Polling,
     Server,
@@ -23,6 +25,7 @@ export default class FtpBackupStorageController {
     this.$translate = $translate;
     this.$state = $state;
     this.Alerter = Alerter;
+    this.coreConfig = coreConfig;
     this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
     this.Polling = Polling;
     this.Server = Server;
@@ -31,6 +34,10 @@ export default class FtpBackupStorageController {
   }
 
   $onInit() {
+    this.guideLink =
+      FTP_BACKUP_DOCUMENTATION_LINK[this.coreConfig.getUser().ovhSubsidiary] ||
+      FTP_BACKUP_DOCUMENTATION_LINK.DEFAULT;
+
     this.ftpBackup = {
       model: null,
       use: 0,
