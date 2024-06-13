@@ -1,21 +1,35 @@
 <div class="nasha-dashboard">
     <header class="oui-header" role="banner">
-        <div class="d-flex pt-4">
-            <h1
-                class="word-break mb-0 oui-header-2"
-                data-ng-bind="$ctrl.name"
-            ></h1>
-            <button
-                type="button"
-                class="btn btn-icon my-auto ml-2"
-                data-translate-attr="{ title: 'nasha_dashboard_edit' }"
-                data-ng-click="$ctrl.goToEditName()"
+        <div class="d-flex flex-row justify-content-between">
+            <div class="d-flex pt-4">
+                <h1
+                    class="word-break mb-0 oui-header-2"
+                    data-ng-bind="$ctrl.name"
+                ></h1>
+                <button
+                    type="button"
+                    class="btn btn-icon my-auto ml-2"
+                    data-translate-attr="{ title: 'nasha_dashboard_edit' }"
+                    data-ng-click="$ctrl.goToEditName()"
+                >
+                    <span
+                        class="oui-icon oui-icon_small oui-icon-pen_concept"
+                        aria-hidden="true"
+                    ></span>
+                </button>
+            </div>
+            <!-- <Guide> -->
+            <oui-guide-menu
+                data-text="{{:: 'nasha_dashboard_guides_header' | translate }}"
             >
-                <span
-                    class="oui-icon oui-icon_small oui-icon-pen_concept"
-                    aria-hidden="true"
-                ></span>
-            </button>
+                <oui-guide-menu-item
+                    href="{{ $ctrl.nashaGuidesUrl }}"
+                    data-external
+                >
+                    <span data-translate="nasha_dashboard_guides_title"></span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
+            <!-- </Guide> -->
         </div>
         <p data-ng-bind="$ctrl.serviceName"></p>
 
