@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.6.5...@ovh-ux/manager-public-cloud@6.7.0) (2024-06-13)
+
+
+### Features
+
+* **pci:** handle deep links for new accounts ([#11938](https://github.com/ovh/manager/issues/11938)) ([69a669f](https://github.com/ovh/manager/commit/69a669f7489bfef236802ce8ee84d24ec617b0fd))
+
+
+
+
+
 ## [6.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.6.4...@ovh-ux/manager-public-cloud@6.6.5) (2024-06-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud
