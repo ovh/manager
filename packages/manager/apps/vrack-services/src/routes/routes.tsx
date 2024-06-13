@@ -215,7 +215,9 @@ export const getRoutes = (): RouteObject[] => {
                 }),
                 routeConfig({
                   pageImport: () =>
-                    import('@/pages/subnets/listing/SubnetsListing.page'),
+                    import(
+                      '@/pages/subnets/subnets-listing/SubnetsListing.page'
+                    ),
                   path: urls.subnetsListing,
                   currentPage: 'vrack-services.subnets.listing',
                   tracking: {
@@ -277,7 +279,9 @@ export const getRoutes = (): RouteObject[] => {
                 }),
                 routeConfig({
                   pageImport: () =>
-                    import('@/pages/endpoints/listing/EndpointsListing.page'),
+                    import(
+                      '@/pages/endpoints/endpoints-listing/EndpointsListing.page'
+                    ),
                   path: urls.endpointsListing,
                   currentPage: 'vrack-services.endpoints.listing',
                   tracking: {
