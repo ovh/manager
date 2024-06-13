@@ -1,4 +1,4 @@
-import { SNAPSHOT_TYPE } from "./constants";
+import { SNAPSHOT_STATUS, SNAPSHOT_TYPE } from "./constants";
 
 export default class NetAppVolumesDashboardSnapshotsRestoreController {
   /* @ngInject */
@@ -29,15 +29,18 @@ export default class NetAppVolumesDashboardSnapshotsRestoreController {
         this.$translate.instant('netapp_volumes_snapshots_restore_success'),
       ),
     )
-    .catch((error) =>
-      this.goToSnapshots(
+    .catch((error) => {
+      const message = error.status === SNAPSHOT_STATUS.MANAGE_ERROR
+        ? this.$translate.instant('netapp_volumes_snapshots_hold_error')
+        : error.data?.message;
+      return this.goToSnapshots(
         this.$translate.instant('netapp_volumes_snapshots_restore_error', {
-          message: error.data?.message,
-          requestId: error.headers('X-Ovh-Queryid')
+          message,
+          requestId: error.headers?.('X-Ovh-Queryid') || null
         }),
         'error',
-      ),
-    )
+      );
+    })
     .finally(() => {
       this.isLoading = false;
     });

@@ -6,5 +6,6 @@
   "netapp_volumes_snapshots_restore_confirm": "Restaurer un volume",
   "netapp_volumes_snapshots_restore_cancel": "Annuler",
   "netapp_volumes_snapshots_restore_success": "La restauration de votre volume a été réalisée avec succès.",
-  "netapp_volumes_snapshots_restore_error": "Votre volume n'a pas pu être restauré : <br> {{message}}<br> request_id: {{requestId}}"
+  "netapp_volumes_snapshots_restore_error": "Votre volume n'a pas pu être restauré : <br> {{message}}<br> request_id: {{requestId}}",
+  "netapp_volumes_snapshots_hold_error": "Un problème est survenu lors de la transformation de votre Snapshot en type manuel"
 }

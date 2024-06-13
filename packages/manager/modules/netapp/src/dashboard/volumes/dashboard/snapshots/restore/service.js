@@ -52,9 +52,12 @@ export default class NetAppRestoreVolumeService {
       {
         namespace: `snapshot_${serviceName}_${volumeId}_${snapshotId}`,
         interval: FETCH_INTERVAL,
+        retryMaxAttempts: 0,
         method: 'get',
         successRule: (data) =>
-            data.status === SNAPSHOT_STATUS.AVAILABLE,
+          data.status === SNAPSHOT_STATUS.AVAILABLE,
+        errorRule: (data) =>
+          data.status === SNAPSHOT_STATUS.MANAGE_ERROR
       },
     );
   }
