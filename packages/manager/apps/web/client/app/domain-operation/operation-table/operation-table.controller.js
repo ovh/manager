@@ -30,6 +30,7 @@ export default class OperationTableController extends ListLayoutHelper.ListLayou
       },
       { name: 'function', sortable: this.getSorting('function') },
       { name: 'comment', sortable: this.getSorting('comment') },
+      { name: 'creationDate', sortable: this.getSorting('creationDate') },
       { name: 'todoDate', sortable: this.getSorting('todoDate') },
       { name: 'lastUpdate', sortable: this.getSorting('lastUpdate') },
       { name: 'doneDate', sortable: this.getSorting('doneDate') },
