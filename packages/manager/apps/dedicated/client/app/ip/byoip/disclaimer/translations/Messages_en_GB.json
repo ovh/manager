@@ -5,5 +5,6 @@
   "ip_byoip_disclaimer_description_point_2": " - I agree to ensure that the IP address range entered is not announced on the internet by several networks simultaneously (multi-homing).",
   "ip_byoip_disclaimer_description_point_3": " - This IP address range has a healthy reputation.",
   "ip_byoip_disclaimer_confirm_text": "Confirm",
-  "ip_byoip_disclaimer_cancel_text": "Cancel"
+  "ip_byoip_disclaimer_cancel_text": "Cancel",
+  "ip_byoip_disclaimer_ordering_delay_message": "Please note that this process may take up to two weeks. We apologize for the inconvenience."
 }
