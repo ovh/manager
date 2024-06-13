@@ -16,7 +16,7 @@ export const ENGINES_NAMES = {
   mongodb: 'MongoDB',
   postgresql: 'PostgreSQL',
   kafka: 'Kafka',
-  redis: 'Redis™*',
+  redis: 'Caching',
   opensearch: 'OpenSearch',
   kafkaMirrorMaker: 'Kafka MirrorMaker',
   kafkaConnect: 'Kafka Connect',
