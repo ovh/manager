@@ -6,11 +6,11 @@ import { getOkmsServiceId, getOkmsServiceIdQueryKey } from '../services/get';
 import { getOkmsServicesResourceListQueryKey } from '../GET/apiv2/services';
 
 export const useTerminateOKms = ({
-  kmsId,
+  okmsId,
   onSuccess,
   onError,
 }: {
-  kmsId: string;
+  okmsId: string;
   onSuccess?: () => void;
   onError?: (result: ApiError) => void;
 }) => {
@@ -22,13 +22,13 @@ export const useTerminateOKms = ({
     isPending,
     error: terminateKmsError,
   } = useMutation({
-    mutationKey: terminateOKmsQueryKey(kmsId),
+    mutationKey: terminateOKmsQueryKey(okmsId),
     mutationFn: async () => {
       const { data: servicesId } = await queryClient.fetchQuery<
         ApiResponse<number[]>
       >({
-        queryKey: getOkmsServiceIdQueryKey({ okms: kmsId }),
-        queryFn: () => getOkmsServiceId({ okms: kmsId }),
+        queryKey: getOkmsServiceIdQueryKey({ okms: okmsId }),
+        queryFn: () => getOkmsServiceId({ okms: okmsId }),
       });
       return terminateOKms({ serviceId: servicesId[0] });
     },
