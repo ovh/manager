@@ -11,5 +11,7 @@
   "nasha_dashboard_information_name": "Nombre",
   "nasha_dashboard_information_title": "Información",
   "nasha_dashboard_tab_general_information": "Información general",
-  "nasha_dashboard_tab_partitions": "Particiones"
+  "nasha_dashboard_tab_partitions": "Particiones",
+  "nasha_dashboard_guides_header": "Guías",
+  "nasha_dashboard_guides_title": "Documentación general"
 }
