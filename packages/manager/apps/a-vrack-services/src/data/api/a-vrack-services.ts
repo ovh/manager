@@ -71,7 +71,7 @@ export const getListingVpsIcebergV6 = async ({
   cursor?: string;
   page: number;
 }) => {
-  const { data, status, cursorNext, totalCount } = await fetchIcebergV6({
+  const { data, status, totalCount } = await fetchIcebergV6({
     route: `/vps`,
     pageSize,
     page,
@@ -79,5 +79,5 @@ export const getListingVpsIcebergV6 = async ({
   if (status > 400) {
     throw new Error();
   }
-  return { data, status, cursorNext, totalCount };
+  return { data, status, totalCount };
 };

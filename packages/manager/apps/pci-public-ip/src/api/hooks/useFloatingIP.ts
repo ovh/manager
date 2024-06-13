@@ -72,15 +72,16 @@ export const useFloatingIP = (projectId: string, ipId: string): FloatingIP => {
 };
 
 export const useFloatingIPs = (
+  floatingIPData,
   projectId: string,
   { pagination }: FloatingIPOptions,
   filters: Filter[] = [],
 ) => {
-  const {
-    data: floatingIPData,
-    error: floatingIPError,
-    isLoading: floatingIPLoading,
-  } = useAllFloatingIP(projectId);
+  // const {
+  //   data: floatingIPData,
+  //   error: floatingIPError,
+  //   isLoading: floatingIPLoading,
+  // } = useAllFloatingIP(projectId);
 
   const {
     data: instanceData,
@@ -88,9 +89,12 @@ export const useFloatingIPs = (
     isLoading: instanceLoading,
   } = useAllInstance(projectId);
 
-  const error = floatingIPError || instanceError;
-  const isLoading = floatingIPLoading || instanceLoading;
+  // const error = floatingIPError || instanceError;
+  // const isLoading = floatingIPLoading || instanceLoading;
+  const error = instanceError;
+  const isLoading = instanceLoading;
 
+  console.info('useFloatingIP floatingIPData : ', floatingIPData);
   return useMemo(() => {
     return {
       isLoading,
@@ -105,8 +109,8 @@ export const useFloatingIPs = (
     };
   }, [
     floatingIPData,
-    floatingIPError,
-    floatingIPLoading,
+    // floatingIPError,
+    // floatingIPLoading,
     instanceData,
     instanceError,
     instanceLoading,

@@ -31,8 +31,9 @@ import {
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useResourcesIcebergV6 } from '@ovhcloud/manager-components/src/hooks/datagrid/useIcebergV6';
 import { FloatingIP } from '@/interface';
 import { useFloatingIPs } from '@/api/hooks/useFloatingIP';
 import FloatingIPActions from './FloatingIPActions.component';
@@ -63,7 +64,19 @@ export default function FloatingIPComponent({
     featureAvailabilityData[pciAnnouncementBannerId] &&
     !isFeatureAvailabilityLoading;
 
+  const [customFlattenData, setCustomFlatternData] = useState([]);
+  const {
+    flattenData,
+    goNextPage,
+    totalCount,
+    hasNextPage,
+  } = useResourcesIcebergV6({
+    route: `/cloud/project/${projectId}/aggregated/floatingip`,
+    queryKey: `project${projectId}floatingip${filters.toString()}`,
+    pageSize: 2,
+  });
   const { error, data: floatingIPs, isLoading } = useFloatingIPs(
+    customFlattenData,
     projectId || '',
     { pagination },
     filters,
@@ -121,6 +134,19 @@ export default function FloatingIPComponent({
     },
   ];
 
+  useEffect(() => {
+    if (flattenData?.length > 0) {
+      const flatten = flattenData
+        ?.map((page: any) => {
+          return page;
+        })
+        .flat();
+      setCustomFlatternData(flatten);
+    }
+  }, [flattenData]);
+
+  console.info('customFlattenData : ', customFlattenData);
+
   return (
     <>
       <Notifications />
@@ -151,10 +177,6 @@ export default function FloatingIPComponent({
             className={'w-[70%]'}
             value={searchField}
             onOdsSearchSubmit={({ detail }) => {
-              setPagination({
-                pageIndex: 0,
-                pageSize: pagination.pageSize,
-              });
               addFilter({
                 key: 'search',
                 value: detail.inputValue,
@@ -208,10 +230,6 @@ export default function FloatingIPComponent({
                   },
                 ]}
                 onAddFilter={(addedFilter, column) => {
-                  setPagination({
-                    pageIndex: 0,
-                    pageSize: pagination.pageSize,
-                  });
                   addFilter({
                     ...addedFilter,
                     label: column.label,
@@ -250,10 +268,10 @@ export default function FloatingIPComponent({
         <div className="mt-8">
           <Datagrid
             columns={columns}
-            items={floatingIPs.rows || []}
-            totalItems={floatingIPs.totalRows || 0}
-            pagination={pagination}
-            onPaginationChange={setPagination}
+            items={customFlattenData || []}
+            totalItems={totalCount || 0}
+            hasNextPage={hasNextPage}
+            fetchNextPage={goNextPage}
           />
         </div>
       )}

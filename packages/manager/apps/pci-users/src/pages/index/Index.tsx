@@ -39,7 +39,7 @@ import {
   FilterList,
   FilterAdd,
 } from '@ovhcloud/manager-components';
-import useResourcesIcebergV6 from '@ovhcloud/manager-components/src/hooks/datagrid/useIcebergV6';
+import { useResourcesIcebergV6 } from '@ovhcloud/manager-components/src/hooks/datagrid/useIcebergV6';
 import useProject from '@/api/hooks/useProject';
 import { User } from '@/interface';
 import Roles from './Roles';

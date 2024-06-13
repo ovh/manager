@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { IcebergFetchParamsV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import {
+  useInfiniteQuery,
+  useQueryClient,
+  useQuery,
+} from '@tanstack/react-query';
 
 interface IcebergV6Hook {
   queryKey: string;
@@ -10,11 +14,15 @@ export const getResourcesIcebergV6 = async ({
   route,
   pageSize,
   page,
+  sortBy,
+  sortReverse,
 }: IcebergFetchParamsV6) => {
   const { data, status, totalCount } = await fetchIcebergV6({
     route,
     pageSize,
     page,
+    sortBy,
+    sortReverse,
   });
   if (status > 400) {
     throw new Error();
@@ -30,6 +38,19 @@ function useResourcesIcebergV6({
   const [pageIndex, setPageIndex] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [flattenData, setFlattenData] = useState([]);
+  const [sorting, setSorting] = useState<any>({});
+  const queryClient = useQueryClient();
+
+  // console.info('useResourcesIcebergV6 sorting : ', sorting);
+
+  const resetInfiniteQuery = () => {
+    // Invalidate the query to refetch the data
+    queryClient.invalidateQueries({
+      queryKey: [queryKey],
+      refetchType: 'none',
+    });
+  };
+
   const {
     data,
     fetchNextPage,
@@ -40,7 +61,14 @@ function useResourcesIcebergV6({
   } = useInfiniteQuery({
     initialPageParam: null,
     queryKey: [queryKey],
-    queryFn: () => getResourcesIcebergV6({ route, pageSize, page: pageIndex }),
+    queryFn: () =>
+      getResourcesIcebergV6({
+        route,
+        pageSize,
+        page: pageIndex,
+        sortBy: sorting?.id,
+        sortReverse: sorting?.desc || null,
+      }),
     staleTime: Infinity,
     retry: false,
     getNextPageParam: () => totalCount / pageSize >= pageIndex,
@@ -62,10 +90,16 @@ function useResourcesIcebergV6({
   }, [data]);
 
   useEffect(() => {
-    if (pageIndex > 1) {
+    if (pageIndex > 0) {
+      // console.info('entre dans la condition 1 !');
       fetchNextPage();
     }
   }, [pageIndex]);
+
+  useEffect(() => {
+    setPageIndex(1);
+    resetInfiniteQuery();
+  }, [sorting]);
 
   return {
     data,
@@ -78,7 +112,72 @@ function useResourcesIcebergV6({
     error,
     isLoading,
     status,
+    sorting,
+    setSorting,
   };
 }
 
-export default useResourcesIcebergV6;
+function useResourcesIcebergV62({
+  route,
+  pageSize = 10,
+  queryKey,
+}: IcebergFetchParamsV6 & IcebergV6Hook) {
+  const [pageIndex, setPageIndex] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const [flattenData, setFlattenData] = useState([]);
+  const [sorting, setSorting] = useState<any>({});
+
+  const { data, isError, isLoading, error, status } = useQuery({
+    queryKey: [queryKey, pageIndex, sorting],
+    queryFn: () =>
+      getResourcesIcebergV6({
+        route,
+        pageSize,
+        page: pageIndex,
+        sortBy: sorting?.id,
+        sortReverse: sorting?.desc || null,
+      }),
+    // staleTime: Infinity,
+    retry: false,
+  });
+
+  useEffect(() => {
+    setFlattenData([]);
+    setPageIndex(1);
+  }, [sorting]);
+
+  useEffect(() => {
+    if (data && data?.totalCount) {
+      setTotalCount(data.totalCount);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (data && data?.totalCount) {
+      setFlattenData((dataPrevious) => [...dataPrevious, ...data.data]);
+    }
+  }, [data]);
+
+  const onFetchNextPage = () => {
+    console.info('onFetchNextPage !');
+    setPageIndex(pageIndex + 1);
+  };
+
+  return {
+    data,
+    onFetchNextPage,
+    setFlattenData,
+    flattenData,
+    pageIndex,
+    hasNextPage: totalCount / pageSize > pageIndex,
+    totalCount,
+    isError,
+    error,
+    isLoading,
+    status,
+    sorting,
+    setSorting,
+  };
+}
+
+export { useResourcesIcebergV62, useResourcesIcebergV6 };

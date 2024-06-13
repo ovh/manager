@@ -22,7 +22,9 @@ export function useSendErrorTracking({ error }: ErrorObject) {
   React.useEffect(() => {
     env.then((response: any) => {
       const { applicationName } = response;
-      const name = `errors::${getTypology(error as ErrorMessage)}::${applicationName}`;
+      const name = `errors::${getTypology(
+        error as ErrorMessage,
+      )}::${applicationName}`;
       tracking.trackPage({
         name,
         level2: '81',

@@ -5,13 +5,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
-import {
-  Datagrid,
-  DataGridTextCell,
-  useDatagridSearchParams,
-} from '@ovhcloud/manager-components';
+import { Datagrid, DataGridTextCell } from '@ovhcloud/manager-components';
 
-import useResourcesIcebergV6 from '@ovhcloud/manager-components/src/hooks/datagrid/useIcebergV6';
+import { useResourcesIcebergV62 } from '@ovhcloud/manager-components/src/hooks/datagrid/useIcebergV6';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
@@ -26,20 +22,21 @@ export default function Vps() {
   const [columns, setColumns] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const { sorting, setSorting } = useDatagridSearchParams();
 
   const {
     data,
     flattenData,
+    onFetchNextPage,
     pageIndex,
-    goNextPage,
     totalCount,
     hasNextPage,
     isError,
     error,
     isLoading,
     status,
-  } = useResourcesIcebergV6({
+    sorting,
+    setSorting,
+  } = useResourcesIcebergV62({
     route: '/vps',
     queryKey: 'servicesListingIcebergVPS',
   });
@@ -51,11 +48,20 @@ export default function Vps() {
   };
 
   useEffect(() => {
-    if (status === 'success' && data?.pages[0].data.length === 0) {
+    if (status === 'success' && data?.data.length === 0) {
       navigate(urls.onboarding);
-    } else if (status === 'success' && data?.pages.length > 0 && !flattenData) {
-      const tmp = Object.keys(data?.pages[0].data[0])
+    } else if (
+      status === 'success' &&
+      data?.data.length > 0 &&
+      columns.length === 0
+    ) {
+      const tmp = Object.keys(data?.data[0])
         .filter((element) => element !== 'iam')
+        .filter((element) => element !== 'keymap')
+        .filter((element) => element !== 'slaMonitoring')
+        .filter((element) => element !== 'monitoringIpBlocks')
+        .filter((element) => element !== 'model')
+        .filter((element) => element !== 'cluster')
         .map((element) => ({
           id: element,
           header: element,
@@ -85,7 +91,7 @@ export default function Vps() {
   }, [data]);
 
   if (isError) {
-    return <ErrorBanner error={error.response} />;
+    return <ErrorBanner error={error} />;
   }
 
   if (isLoading && !flattenData) {
@@ -100,22 +106,25 @@ export default function Vps() {
     <>
       <div className="pt-5 pb-10">
         <Breadcrumb />
-        <h2>a-iam</h2>
-        <div>{t('title')}</div>
+        <h2>/VPS</h2>
         <React.Suspense>
-          {columns && flattenData && (
+          {columns && (
             <Datagrid
               columns={columns}
               items={flattenData || []}
               totalItems={totalCount}
               sorting={sorting}
-              pagination={{ pageIndex, pageSize: 10 }}
               onSortChange={setSorting}
-              fetchNextPage={goNextPage}
+              pagination={{ pageIndex, pageSize: 10 }}
+              fetchNextPage={onFetchNextPage}
               hasNextPage={hasNextPage}
             />
           )}
         </React.Suspense>
+
+        <div>
+          <OsdsLink onClick={() => navigate('/')}>Go Home</OsdsLink>
+        </div>
       </div>
     </>
   );
