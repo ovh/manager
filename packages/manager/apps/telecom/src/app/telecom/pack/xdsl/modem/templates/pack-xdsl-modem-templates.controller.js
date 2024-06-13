@@ -92,6 +92,9 @@ export default class XdslModemTemplateCtrl {
           type: 'error',
           detail: errorMessage,
         };
+        if (err.data?.message.includes(this.TEMPLATE_CONSTANT.errors.modemWifi) || err.data?.message.includes(this.TEMPLATE_CONSTANT.errors.serviceNotFound)) {
+          this.message.reason = err.data?.message;
+        }
       });
   }
 
