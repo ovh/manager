@@ -47,6 +47,31 @@
     >
     </ovh-contracts-summary>
 
+    <div data-ng-if="$ctrl.isItSubsidiary" class="text-left">
+        <oui-checkbox
+            class=""
+            data-model="$ctrl.model.italyAgreement"
+            data-name="italy-agreement"
+        >
+            <oui-checkbox-label class="d-block pl-2">
+                <span
+                    data-translate="{{:: $ctrl.ITALY_AGREEMENT_TEXT.TITLE }}"
+                ></span>
+            </oui-checkbox-label>
+        </oui-checkbox>
+        <oui-collapsible
+            heading="{{:: $ctrl.ITALY_AGREEMENT_TEXT.LINK | translate}}"
+            class="ml-4 w-90"
+        >
+            <div>
+                <span
+                    data-translate="{{:: $ctrl.ITALY_AGREEMENT_TEXT.DETAILS }}"
+                >
+                </span>
+            </div>
+        </oui-collapsible>
+    </div>
+
     <!-- footer -->
     <div
         class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3"
@@ -56,7 +81,7 @@
             class="oui-button oui-button_primary oui-button_icon-right no-transition"
             type="submit"
             form="projectConfigForm"
-            data-ng-disabled="!$ctrl.model.agreements || $ctrl.hds.isInprogressRequest"
+            data-ng-disabled="$ctrl.isProjectCreationButtonDisabled()"
         >
             <span data-translate="pci_project_new_config_btn_continue"></span>
             <span class="oui-icon oui-icon-chevron-right" aria-hidden="true">

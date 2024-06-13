@@ -100,13 +100,37 @@
                 data-tracking-prefix="'PublicCloud::pci::projects::onboarding'"
             >
             </ovh-contracts-summary>
+            <div data-ng-if="$ctrl.isItSubsidiary" class="text-left">
+                <oui-checkbox
+                    class=""
+                    data-model="$ctrl.model.italyAgreement"
+                    data-name="italy-agreement"
+                >
+                    <oui-checkbox-label class="d-block pl-2">
+                        <span
+                            data-translate="{{:: $ctrl.ITALY_AGREEMENT_TEXT.TITLE }}"
+                        ></span>
+                    </oui-checkbox-label>
+                </oui-checkbox>
+                <oui-collapsible
+                    heading="{{:: $ctrl.ITALY_AGREEMENT_TEXT.LINK | translate}}"
+                    class="ml-4 w-90"
+                >
+                    <div>
+                        <span
+                            data-translate="{{:: $ctrl.ITALY_AGREEMENT_TEXT.DETAILS }}"
+                        >
+                        </span>
+                    </div>
+                </oui-collapsible>
+            </div>
 
             <!--Create a project-->
             <oui-button
                 variant="primary"
                 data-ng-if="!$ctrl.isTrustedZone"
                 data-on-click="$ctrl.onCreateDiscoveryProjectClick()"
-                data-disabled="!$ctrl.model.agreements || $ctrl.isLoading"
+                data-disabled="$ctrl.isProjectCreationButtonDisabled()"
             >
                 <span
                     data-translate="pci_projects_onboarding_create_project"

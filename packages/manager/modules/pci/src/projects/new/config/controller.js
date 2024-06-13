@@ -1,5 +1,6 @@
 import map from 'lodash/map';
 import template from 'lodash/template';
+import { ITALY_AGREEMENT_TEXT } from '../../projects.constant';
 
 export default class PciProjectNewConfigCtrl {
   /* @ngInject */
@@ -7,6 +8,7 @@ export default class PciProjectNewConfigCtrl {
     this.$q = $q;
     this.orderCart = orderCart;
     this.pciProjectNew = pciProjectNew;
+    this.ITALY_AGREEMENT_TEXT = ITALY_AGREEMENT_TEXT;
   }
 
   /* ==============================
@@ -47,6 +49,17 @@ export default class PciProjectNewConfigCtrl {
     }
 
     return this.$q.when();
+  }
+
+  isProjectCreationButtonDisabled() {
+    if (this.isItSubsidiary) {
+      return (
+        !this.model.agreements ||
+        this.hds.isInprogressRequest ||
+        !this.model.italyAgreement
+      );
+    }
+    return !this.model.agreements || this.hds.isInprogressRequest;
   }
 
   sendTracking() {
