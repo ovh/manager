@@ -26,12 +26,13 @@ export const EndpointDatagrid: React.FC = () => {
     iamResourcesError,
     serviceListError,
   } = useServiceList(id);
-  const endpointList = useEndpointsList();
 
   const { sorting, setSorting } = useDataGrid({
     id: 'managedServiceURN',
     desc: false,
   });
+
+  const endpointList = useEndpointsList(sorting);
 
   const columns: DatagridColumn<EndpointItem>[] = [
     {
@@ -71,6 +72,7 @@ export const EndpointDatagrid: React.FC = () => {
     {
       id: 'actions',
       label: t('endpointDatagridActionsLabel'),
+      isSortable: false,
       cell: (endpoint) => <ActionCell vs={vs} endpoint={endpoint} />,
     },
   ];
