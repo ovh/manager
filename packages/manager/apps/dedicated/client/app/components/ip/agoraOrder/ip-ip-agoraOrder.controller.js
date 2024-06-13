@@ -79,6 +79,11 @@ export default class AgoraIpOrderCtrl {
   }
 
   goToIpv6Order() {
+    this.atInternet.trackClick({
+      name: `dedicated::ip::dashboard::order`,
+      type: 'action',
+    });
+
     this.$state.go('app.ip.agora-order.ipv6');
   }
 

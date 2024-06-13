@@ -51,8 +51,6 @@ export default class AgoraIpV6OrderController {
     this.canOrderIpv6 = true;
     this.regionState = {};
 
-    this.trackClick();
-
     this.IpAgoraV6Order.fetchIpv6Services().then(({ data }) => {
       if (data.length < this.getIpv6OrderableNumber()) {
         this.IpAgoraV6Order.fetchIpv6ServicesWithDetails().then((ips) => {
@@ -228,14 +226,10 @@ export default class AgoraIpV6OrderController {
   }
 
   trackClick(hit) {
-    const composit = [DEDICATED_IP_ORDER_TRACKING_PREFIX];
-
-    if (hit) {
-      composit.push(hit);
-    }
-
     this.atInternet.trackClick({
-      name: composit.join('::'),
+      name: hit
+        ? `${DEDICATED_IP_ORDER_TRACKING_PREFIX}::${hit}`
+        : DEDICATED_IP_ORDER_TRACKING_PREFIX,
       type: ACTIONS_SUFFIX,
     });
   }
