@@ -24,5 +24,6 @@
   "server_consumption_current_period_remaining": "{{t0}} restantes",
   "dedicated_server_bandwidth_public": "Largura de banda pública",
   "dedicated_server_bandwidth_private": "Largura de banda privada",
-  "dedicated_cluster_bandwidth_public": "Largura de banda pública do cluster"
+  "dedicated_cluster_bandwidth_public": "Largura de banda pública do cluster",
+  "dedicated_cluster_bandwidth_private": "Largura de banda privada do cluster"
 }

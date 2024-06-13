@@ -21,7 +21,7 @@ export const useDeepLinks = ({ $stateProvider, ovhShell }) => ({
    * - An array of {@link Link} objects
    * - Each link object must contain a `public` description of the public URL, and a `redirect` description of the deep app link
    * - The `redirect.path` key can contain parameters, these parameters must be enclosed by `{}`
-   * @param {string} arg1.otherwise
+   * @param {(arg1: { stateName: string }) => any} arg1.otherwise
    * - Fallbacks to this state name if the router is unable to resolve the deep link. Default to `"app"`
    * @param {LinkParams} arg1.params
    * - Each key of this `params` object must be a state resolvable
@@ -32,7 +32,8 @@ export const useDeepLinks = ({ $stateProvider, ovhShell }) => ({
    */
   register: ({ links, otherwise, params, options }) => {
     links.forEach((link) => {
-      $stateProvider.state(options.stateName({ link }), {
+      const stateName = options.stateName({ link });
+      $stateProvider.state(stateName, {
         url: link.public.path,
         redirectTo: (transition) => {
           const injector = transition.injector();
@@ -49,7 +50,7 @@ export const useDeepLinks = ({ $stateProvider, ovhShell }) => ({
             .then((path) => {
               ovhShell.navigation.navigateTo(link.redirect.application, path);
             })
-            .catch(() => otherwise);
+            .catch(() => otherwise({ stateName }));
         },
         resolve: {
           ...params,
