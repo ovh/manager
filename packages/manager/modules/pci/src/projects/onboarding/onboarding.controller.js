@@ -1,5 +1,6 @@
 import illustration from './assets/onboarding.png';
 import illustrationUs from './assets/onboarding-us.png';
+import { ITALY_AGREEMENT_TEXT } from '../projects.constant';
 
 export default class {
   /* @ngInject */
@@ -19,6 +20,7 @@ export default class {
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
+    this.ITALY_AGREEMENT_TEXT = ITALY_AGREEMENT_TEXT;
   }
 
   $onInit() {
@@ -30,11 +32,21 @@ export default class {
       'dedicated',
       '#/support/tickets',
     );
+    this.isItSubsidiary = this.coreConfig.getUser().ovhSubsidiary === 'IT';
   }
 
   isKycValidationUnderVerification() {
     const { kycValidated, ovhSubsidiary } = this.coreConfig.getUser();
     return !kycValidated && ovhSubsidiary === 'IN';
+  }
+
+  isProjectCreationButtonDisabled() {
+    if (this.isItSubsidiary) {
+      return (
+        !this.model.agreements || !this.model.italyAgreement || this.isLoading
+      );
+    }
+    return !this.model.agreements || this.isLoading;
   }
 
   onCreateDiscoveryProjectClick() {

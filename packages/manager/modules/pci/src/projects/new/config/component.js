@@ -19,5 +19,6 @@ export default {
     projectsLink: '<',
     setCartProjectItem: '<',
     onProgressStepClick: '<',
+    isItSubsidiary: '<',
   },
 };
