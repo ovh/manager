@@ -20,7 +20,6 @@ export default function Layout() {
         <ShellRoutingSync />
         {isSuccess && (
           <>
-            <HidePreloader />
             <Outlet />
           </>
         )}
