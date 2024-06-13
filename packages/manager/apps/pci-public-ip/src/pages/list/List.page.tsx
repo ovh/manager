@@ -23,6 +23,7 @@ import { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import HidePreloader from '@/core/HidePreloader';
 import useProject from '@/api/hooks/useProject';
 import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
 import FloatingIPComponent from '@/components/list/FloatingIP.component';
@@ -74,6 +75,7 @@ export default function ListingPage(): JSX.Element {
   return (
     <ListGuard projectId={projectId}>
       <>
+        <HidePreloader />
         {project && (
           <OsdsBreadcrumb
             items={[
