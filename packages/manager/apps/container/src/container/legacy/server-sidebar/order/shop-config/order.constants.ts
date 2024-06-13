@@ -564,6 +564,9 @@ export const ORDER_URLS: Record<
     dedicated_cloud: {
       US: 'https://us.ovhcloud.com/hosted-private-cloud/vmware/',
     },
+    dedicatedNutanixOrder: {
+      US: 'https://us.ovhcloud.com/hosted-private-cloud/nutanix/',
+    },
     managed_bare_metal: {
       US: 'https://us.ovhcloud.com/managed-bare-metal/',
     },
