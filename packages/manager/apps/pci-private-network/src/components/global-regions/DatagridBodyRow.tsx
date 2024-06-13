@@ -65,6 +65,7 @@ export default function DataGridBodyRow({
         size={ODS_BUTTON_SIZE.sm}
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
+        data-testid="dataGridBodyRow-delete_button"
         href={href}
       >
         <OsdsIcon
