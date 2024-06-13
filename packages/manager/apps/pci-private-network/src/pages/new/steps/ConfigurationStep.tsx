@@ -634,7 +634,10 @@ export default function ConfigurationStep({
                   }
                 }}
                 className="w-fit"
-                {...(!store.form.privateNetworkName ? { disabled: true } : {})}
+                {...(!store.form.privateNetworkName ||
+                (!store.form.createGateway && store.project.isDiscovery)
+                  ? { disabled: true }
+                  : {})}
               >
                 {t(
                   store.form.createGateway

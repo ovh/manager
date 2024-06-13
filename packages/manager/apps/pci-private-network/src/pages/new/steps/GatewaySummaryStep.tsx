@@ -220,6 +220,7 @@ export default function GatewaySummaryStep({
                 onCreate();
               }}
               className="w-fit"
+              {...(store.project.isDiscovery ? { disabled: true } : {})}
             >
               {t('pci_projects_project_network_private_create_submit')}
             </OsdsButton>
