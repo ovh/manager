@@ -45,6 +45,8 @@ const constants = {
         faqVps: 'https://www.ovh.cz/vps/pomoc-faq.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/en-ie/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-ie/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/en-ie/bare-metal/prices/?display=list&use_cases=multi-az',
         iplbOrder: 'https://www.ovh.cz/reseni/load-balancer/',
       },
       DE: {
@@ -81,6 +83,8 @@ const constants = {
         faqVps: 'https://www.ovh.de/virtual_server/faq-hilfe.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/de/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/de/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/de/bare-metal/prices/?display=list&use_cases=multi-az',
         iplbOrder: 'https://www.ovh.de/loesungen/load-balancer/',
       },
       ES: {
@@ -115,6 +119,8 @@ const constants = {
         faqVps: 'https://www.ovh.es/vps/ayuda-faq.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/es-es/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/es-es/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/es-es/bare-metal/prices/?display=list&use_cases=multi-az',
         iplbOrder: 'https://www.ovh.es/soluciones/load-balancer/',
       },
       FI: {
@@ -155,6 +161,8 @@ const constants = {
         faqVps: 'https://www.ovh-hosting.fi/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/en-ie/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-ie/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/en-ie/bare-metal/prices/?display=list&use_cases=multi-az',
         iplbOrder: 'https://www.ovh-hosting.fi/ratkaisut/load-balancer/',
       },
       FR: {
@@ -208,6 +216,8 @@ const constants = {
           'https://pccdocs.ovh.net/pages/viewpage.action?pageId=7766169',
         dedicatedOrder: 'https://www.ovhcloud.com/fr/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/fr/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/fr/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
           'https://www.ovh.com/manager/cloud/#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/fr/solutions/load-balancer/',
@@ -255,6 +265,8 @@ const constants = {
         faqVps: 'https://www.ovh.co.uk/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/en-gb/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-gb/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/en-gb/bare-metal/prices/?display=list&use_cases=multi-az',
         iplbOrder: 'https://www.ovh.co.uk/solutions/load-balancer/',
       },
       IT: {
@@ -294,6 +306,8 @@ const constants = {
         faqVps: 'https://www.ovh.it/vps/aiuto-faq.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/it/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/it/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/it/bare-metal/prices/?display=list&use_cases=multi-az',
         iplbOrder: 'https://www.ovh.it/soluzioni/load-balancer/',
       },
       LT: {
@@ -333,6 +347,8 @@ const constants = {
         faqVps: 'https://www.ovh.lt/vps/pagalba-duk.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/en-ie/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-ie/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/en-ie/bare-metal/prices/?display=list&use_cases=multi-az',
         iplbOrder: 'https://www.ovh.lt/sprendimai/load-balancer/',
       },
       NL: {
@@ -370,6 +386,8 @@ const constants = {
         faqVps: 'https://www.ovh.nl/vps/hulp-faq.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/nl/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/nl/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/nl/bare-metal/prices/?display=list&use_cases=multi-az',
         iplbOrder: 'https://www.ovh.nl/oplossing/load-balancer/',
       },
       PL: {
@@ -409,6 +427,8 @@ const constants = {
         faqVps: 'https://www.ovh.pl/vps/pomoc-faq.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/pl/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/pl/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/pl/bare-metal/prices/?display=list&use_cases=multi-az',
         iplbOrder: 'https://www.ovh.pl/rozwiazania/ip-load-balancing/',
       },
       PT: {
@@ -448,6 +468,8 @@ const constants = {
         faqVps: 'https://www.ovh.pt/vps/vps-ssd.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/pt/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-ie/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/pt/bare-metal/prices/?display=list&use_cases=multi-az',
         iplbOrder: 'https://www.ovh.pt/solucoes/load-balancer/',
       },
       IE: {
@@ -487,6 +509,8 @@ const constants = {
         faqVps: 'https://www.ovh.ie/vps/vps-ssd.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/en-ie/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-ie/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/en-ie/bare-metal/prices/?display=list&use_cases=multi-az',
         iplbOrder: 'https://www.ovh.ie/solutions/load-balancer/',
       },
     },
@@ -1338,6 +1362,8 @@ const constants = {
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/asia/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/asia/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/asia/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
@@ -1374,6 +1400,8 @@ const constants = {
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/en-in/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.static.ovh.net/en-in/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/en-in/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
@@ -1410,6 +1438,8 @@ const constants = {
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/en-au/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-au/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/en-au/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
@@ -1447,6 +1477,8 @@ const constants = {
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/en-ca/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-ca/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/en-ca/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/ca/en/solutions/load-balancer/',
@@ -1484,6 +1516,8 @@ const constants = {
         faqVps: 'https://www.ovh.com/ca/fr/vps/aide-faq.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/fr-ca/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/fr-ca/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/fr-ca/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/ca/fr/solutions/load-balancer/',
@@ -1519,6 +1553,8 @@ const constants = {
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/en-sg/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-sg/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/en-sg/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
@@ -1554,6 +1590,8 @@ const constants = {
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/en/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/en/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
@@ -1589,6 +1627,8 @@ const constants = {
         faqVps: 'https://www.ovh.com/us/es/vps/ayuda-faq.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/es/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en/',
+        threeAZClusterOrder:
+          'https://www.ovhcloud.com/es/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/es/soluciones/load-balancer/',
@@ -2001,6 +2041,8 @@ const constants = {
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',
         dedicatedOrder: 'https://us.ovhcloud.com/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.us.ovhcloud.com/',
+        threeAZClusterOrder:
+          'https://us.ovhcloud.com/bare-metal/prices/?display=list&use_cases=multi-az',
         vrackOrder:
           "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
         cloudProjectOrder:
