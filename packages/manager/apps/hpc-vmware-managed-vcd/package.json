@@ -2,7 +2,7 @@
   "name": "@ovh-ux/manager-hpc-vmware-managed-vcd-app",
   "version": "0.0.0",
   "private": true,
-  "description": "New managed VMware cloud director offers",
+  "description": "New managed VMware Cloud Director offers",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

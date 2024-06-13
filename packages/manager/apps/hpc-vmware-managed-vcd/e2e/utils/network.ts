@@ -4,18 +4,11 @@ import {
   toPlaywrightMockHandler,
   Handler,
 } from '../../../../../../playwright-helpers';
-import {
-  GetAuthenticationMocks,
-  getAuthenticationMocks,
-} from '../../../../../../playwright-helpers/mocks/auth';
-import { getUUIDMocks, GetUUIDMocksParams } from '../../mocks';
+import { GetAuthenticationMocks } from '../../../../../../playwright-helpers/mocks/auth';
 
-export type ConfigParams = GetAuthenticationMocks & GetUUIDMocksParams;
+export type ConfigParams = GetAuthenticationMocks;
 
-export const getConfig = (params: ConfigParams): Handler[] =>
-  [getAuthenticationMocks, getUUIDMocks].flatMap((getMocks) =>
-    getMocks(params),
-  );
+export const getConfig = (params: ConfigParams): Handler[] => [];
 
 export const setupNetwork = async (world: ICustomWorld) =>
   Promise.all(
