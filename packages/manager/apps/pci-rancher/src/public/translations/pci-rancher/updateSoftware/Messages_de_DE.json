@@ -1,0 +1,22 @@
+{
+  "updateSoftwareRancherTitle": "Update(s) verfügbar",
+  "updateSoftwareRancherDescription": "Wählen Sie eine neuere Version Ihres Dienstes aus und sehen Sie sich das Changelog an, um mehr über die enthaltenen Änderungen zu erfahren.",
+  "updateSoftwareRancherTableVersion": "Version",
+  "updateSoftwareRancherTableUnavailable": "Nicht verfügbar",
+  "updateSoftwareRancherPreviousButton": "Zurück zur vorherigen Seite",
+  "updateSoftwareRancherBreadcrumb": "Rancher-Update",
+  "updateSoftwareRancherCurrentVersion": "Aktuelle Version",
+  "updateSoftwareRancherDurationInfo": "Die durchschnittliche Dauer von Versionsupdates wird auf 1 Stunde geschätzt. Verschiedene Komponenten Ihrer Control Plane werden per Rolling-Update (schrittweise Aktualisierung) aktualisiert und bleiben während der Aktualisierung verfügbar (sofern im zugehörigen Changelog nicht anders angegeben).",
+  "updateSoftwareRancherImpact": "Von Rancher verwaltete Cluster (Downstream-Cluster) werden durch das Update nicht beeinträchtigt.",
+  "updateSoftwareRancherUpgradeInfo": "Nach dem Update Ihrer Control Plane können neue Updates über den Bereich „Upgrades“ des Dashboards Ihres Rancher-Interface angewendet werden. Sie können diese nach Belieben auf jeden „Downstream-Cluster“ anwenden.",
+  "updateSoftwareRancherChangelog": "Changelog einsehen",
+  "updateSoftwareRancherCta": "Aktualisieren",
+  "updateSoftwareAvailableUpdate": "Aktualisieren",
+  "updateSoftwareBannerAvailableUpdate": "Es ist ein neues Update für Ihren Managed Rancher Service verfügbar.",
+  "updateSoftwareBannerUpdateLoading": " Die Version Ihres Managed Rancher Service wird aktualisiert. Bitte gedulden Sie sich einen Augenblick.",
+  "updateSoftwareBannerDeprecated": "Die Version Ihres Rancher wird nicht mehr unterstützt. Bitte aktualisieren Sie auf eine neuere Version.",
+  "updateSoftwareBannerError": "Bei der Aktualisierung Ihres Managed Rancher Service ist ein Fehler aufgetreten",
+  "updateSoftwareModalTitle": "Managed Rancher Service aktualisieren",
+  "updateSoftwareModalDescription": " Mit der Bestätigung des Updates bestätigen Sie, dass Sie das Changelog der gewählten Version und die möglichen Auswirkungen auf Ihre Cluster, Anwendungen und spezifischen Use Cases zur Kenntnis genommen haben.",
+  "updateSoftwareModalCTAConfirm": "Bestätigen"
+}

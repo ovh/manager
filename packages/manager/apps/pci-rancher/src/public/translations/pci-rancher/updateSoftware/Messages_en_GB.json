@@ -1,0 +1,22 @@
+{
+  "updateSoftwareRancherTitle": "Available update(s)",
+  "updateSoftwareRancherDescription": "Choose a newer version of your service and read the changelog for details on the included changes.",
+  "updateSoftwareRancherTableVersion": "Version",
+  "updateSoftwareRancherTableUnavailable": "Unavailable",
+  "updateSoftwareRancherPreviousButton": "Back to previous page",
+  "updateSoftwareRancherBreadcrumb": "Rancher update",
+  "updateSoftwareRancherCurrentVersion": "Current version",
+  "updateSoftwareRancherDurationInfo": "Updates usually take around 1 hour. Different components of your control plane are updated via a rolling update procedure, and remain available during the update (unless otherwise specified in the associated changelog).",
+  "updateSoftwareRancherImpact": "This update does not impact Rancher-managed clusters (downstream clusters).",
+  "updateSoftwareRancherUpgradeInfo": "After updating your control plane, new updates may be applicable via the “Upgrades” section on the dashboard of the Rancher interface. You can apply them to each downstream cluster at your own pace.",
+  "updateSoftwareRancherChangelog": "View the changelog",
+  "updateSoftwareRancherCta": "Update",
+  "updateSoftwareAvailableUpdate": "Update",
+  "updateSoftwareBannerAvailableUpdate": "A new Managed Rancher Service update is now available.",
+  "updateSoftwareBannerUpdateLoading": " Updating your Managed Rancher Service... Please wait... This may take a few minutes.",
+  "updateSoftwareBannerDeprecated": "Your version of Rancher is no longer supported. Please upgrade to a newer version.",
+  "updateSoftwareBannerError": "An error has occurred updating your Managed Rancher Service",
+  "updateSoftwareModalTitle": "Update your Managed Rancher Service",
+  "updateSoftwareModalDescription": " By confirming the update, you acknowledge that you have read the changelog for the selected version, and are aware of the potential effects on your clusters, applications, and specific use cases.",
+  "updateSoftwareModalCTAConfirm": "Confirm"
+}
