@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.45.0...@ovh-ux/manager-pci@6.46.0) (2024-06-13)
+
+
+### Features
+
+* **pci:** add agreement conditions ([#11935](https://github.com/ovh/manager/issues/11935)) ([2d20f3c](https://github.com/ovh/manager/commit/2d20f3cd77c643c0b3996f9fd483c08844f6a2e2))
+
+
+
+
+
 # [6.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.44.1...@ovh-ux/manager-pci@6.45.0) (2024-06-13)
 
 
