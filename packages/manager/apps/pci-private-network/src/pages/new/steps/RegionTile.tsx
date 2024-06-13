@@ -90,6 +90,7 @@ export const RegionTile = ({
               >
                 {tRegions('pci_project_flavors_zone_localzone_tooltip')}
               </OsdsText>
+              &nbsp;
               <Links
                 tab-index="-1"
                 label={tRegions('pci_project_flavors_zone_tooltip_link')}
@@ -128,6 +129,7 @@ export const RegionTile = ({
               >
                 {tRegions('pci_project_flavors_zone_globalregions_tooltip')}
               </OsdsText>
+              &nbsp;
               <Links
                 tab-index="-1"
                 label={tRegions('pci_project_flavors_zone_tooltip_link')}
