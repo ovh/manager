@@ -22,6 +22,8 @@ export const GTR_NONE = 'none';
 export const OFFER_XDSL = 'xdsl';
 export const OFFER_FIBER = 'fiber';
 
+export const GRT = 'grt';
+
 export default {
   PROMO_DISPLAY,
   PROCESS_STEP,
@@ -31,4 +33,5 @@ export default {
   GTR_NONE,
   OFFER_XDSL,
   OFFER_FIBER,
+  GRT,
 };
