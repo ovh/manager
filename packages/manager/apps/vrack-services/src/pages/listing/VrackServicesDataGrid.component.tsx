@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
 import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
 import {
+  ColumnSort,
   DataGridTextCell,
   Datagrid,
   DatagridColumn,
@@ -10,9 +11,42 @@ import {
 } from '@ovhcloud/manager-components';
 import { DisplayName } from '@/components/display-name/DisplayName.component';
 import { VrackId } from '@/components/vrack-id/VrackId.component';
-import { useVrackServicesList, VrackServicesWithIAM } from '@/data';
+import {
+  getDisplayName,
+  useVrackServicesList,
+  VrackServicesWithIAM,
+} from '@/data';
 import { ProductStatusChip } from '@/components/ProductStatusChip.component';
 import { ActionCell } from './ActionCell.component';
+
+const sortVrackServicesListing = (
+  sorting: ColumnSort,
+  originalList: VrackServicesWithIAM[] = [],
+) => {
+  const vsList = [...originalList];
+  vsList.sort((vs1, vs2) => {
+    switch (sorting.id) {
+      case 'displayName':
+        return getDisplayName(vs1)?.localeCompare(getDisplayName(vs2));
+      case 'createdAt':
+        return vs1.createdAt?.localeCompare(vs2.createdAt);
+      case 'productStatus':
+        return vs1.currentState.productStatus?.localeCompare(
+          vs2.currentState.productStatus,
+        );
+      case 'region':
+        return vs1.currentState.region?.localeCompare(vs2.currentState.region);
+      case 'vrackId':
+        return vs1.currentState.vrackId?.localeCompare(
+          vs2.currentState.vrackId,
+        );
+      default:
+        return 0;
+    }
+  });
+
+  return sorting.desc ? vsList.reverse() : vsList;
+};
 
 export const VrackServicesDatagrid: React.FC = () => {
   const { t, i18n } = useTranslation('vrack-services/listing');
@@ -65,6 +99,7 @@ export const VrackServicesDatagrid: React.FC = () => {
     {
       id: 'actions',
       label: t('actions'),
+      isSortable: false,
       cell: (vs) => <ActionCell {...vs} />,
     },
   ];
@@ -78,7 +113,7 @@ export const VrackServicesDatagrid: React.FC = () => {
         sorting={sorting}
         onSortChange={setSorting}
         columns={columns}
-        items={data?.data}
+        items={sortVrackServicesListing(sorting, data?.data)}
         totalItems={data?.data.length}
         noResultLabel={t('vrackServicesEmptyDataGridMessage')}
       />
