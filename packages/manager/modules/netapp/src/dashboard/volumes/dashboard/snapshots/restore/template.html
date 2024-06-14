@@ -4,6 +4,7 @@
     data-primary-action="$ctrl.restoreVolume()"
     data-secondary-label="{{ ::'netapp_volumes_snapshots_restore_cancel' | translate }}"
     data-secondary-action="$ctrl.goBack()"
+    data-primary-disabled="!$ctrl.volumeNameValidated"
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isLoading"
     data-type="warning"
@@ -25,4 +26,20 @@
         data-translate="netapp_volumes_snapshots_restore_snapshot_label"
     ></p>
     <p data-ng-bind="$ctrl.snapshotToRevertTo.name || $ctrl.snapshotToRevertTo.id"></p>
+
+    <!-- Confirmation -->
+    <oui-message type="warning" class="mt-2 mb-1">
+        <span data-translate="netapp_volumes_snapshots_restore_confirm_description"></span>
+    </oui-message>
+    <oui-field
+            label="{{:: 'netapp_volumes_snapshots_restore_confirm_volume_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="volumeName"
+                type="text"
+                data-ng-model="$ctrl.volumeName"
+                data-ng-change="$ctrl.validateVolumeName()"
+            />
+        </oui-field>
 </oui-modal>
