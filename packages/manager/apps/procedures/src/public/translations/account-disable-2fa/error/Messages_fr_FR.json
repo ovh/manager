@@ -1,8 +1,5 @@
 {
-  "manager_error_page_title": "Oops …!",
-  "manager_error_page_button_cancel": "Annuler",
-  "manager_error_page_detail_code": "Code d'erreur : ",
-  "manager_error_page_action_reload_label": "Réessayer",
-  "manager_error_page_action_home_label": "Retour à la page d'accueil",
-  "manager_error_page_default": "Une erreur est survenue lors du chargement de la page."
+  "account-disable-2fa-error-validation": "Nous avons des difficultés à valider que vous n'êtes pas un robot.",
+  "account-disable-2fa-error-verification": "Veuillez vérifier que vous n'avez pas bloqué les iframes, que vous n'avez pas empêché l'exécution de Javascript ou que vous avez appliqué une exécution stricte de Javascript dans votre navigateur.",
+  "account-disable-2fa-error-suggestion": "En cas de problème, vous pouvez tester à nouveau votre demande avec un nouveau navigateur sans paramètres personnalisés ni extensions."
 }

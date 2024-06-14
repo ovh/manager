@@ -21,7 +21,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { FormDocumentFieldList } from './FormDocumentFields/FormDocumentFieldList';
 import { LegalFrom } from '@/types/user.type';
 import useUser from '@/context/User/useUser';
-import { useUploadDocuments } from '@/data/hooks/useDocments';
+import { useUploadDocuments } from '@/data/hooks/useDocuments';
 import { ConfirmModal } from './Modal/ConfirmModal';
 import { SuccessModal } from './Modal/SuccessModal';
 import { ovhHomePageHref } from './contants/form.constants';
