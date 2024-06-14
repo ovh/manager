@@ -6,6 +6,7 @@ export default {
   controller,
   bindings: {
     goBack: '<',
+    deleteAllDevices: '<',
     billingAccount: '<',
     serviceName: '<',
     deviceId: '<',

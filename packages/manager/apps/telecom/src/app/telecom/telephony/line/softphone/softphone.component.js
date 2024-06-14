@@ -6,6 +6,7 @@ export default {
   controller,
   bindings: {
     openAddDeviceModal: '<',
+    deleteAllDevices: '<',
     currentTheme: '<',
     billingAccount: '<',
     serviceName: '<',
