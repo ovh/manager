@@ -1,4 +1,4 @@
-import { StepComponent } from '@ovhcloud/manager-components';
+import { StepComponent, useNotifications } from '@ovhcloud/manager-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
@@ -82,6 +82,7 @@ export default function ConfigurationStep({
   onCreate: () => void;
 }): JSX.Element {
   const store = useNewNetworkStore();
+  const { clearNotifications } = useNotifications();
 
   const { t } = useTranslation('new');
   const { t: tCommon } = useTranslation('common');
@@ -629,6 +630,7 @@ export default function ConfigurationStep({
                 size={ODS_BUTTON_SIZE.md}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 onClick={() => {
+                  clearNotifications();
                   if (store.form.createGateway) {
                     store.updateStep.check(StepsEnum.CONFIGURATION);
                     store.updateStep.lock(StepsEnum.CONFIGURATION);
