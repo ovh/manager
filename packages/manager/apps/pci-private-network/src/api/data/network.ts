@@ -98,8 +98,16 @@ export const createNetworkCall = async (
   projectId: string,
   region: string,
   privateNetworkName: string,
-  subnet,
-  gateway,
+  subnet: {
+    cidr: string;
+    enableDhcp: boolean;
+    enableGatewayIp: boolean;
+    ipVersion: number;
+  },
+  gateway: {
+    model: string;
+    name: string;
+  },
   vlanId = null,
 ) => {
   const { data } = await v6.post<TNetworkCreationResponse>(
@@ -121,21 +129,28 @@ const waitForNetworkCreation = async (projectId: string, networkId: string) => {
       setTimeout(resolve, ms);
     });
 
-  const response: TNetworkCreationResponse = await checkPrivateNetworkCreationStatus(
-    projectId,
-    networkId,
-  );
+  try {
+    const response: TNetworkCreationResponse = await checkPrivateNetworkCreationStatus(
+      projectId,
+      networkId,
+    );
+    if (response.status === 'in-error') {
+      return Promise.reject(response);
+    }
 
-  if (response.status === 'in-error') {
-    return Promise.reject(response);
+    if (response.status !== 'completed') {
+      await waitFor(1000);
+      return waitForNetworkCreation(projectId, networkId);
+    }
+    return response;
+  } catch (e) {
+    if (e?.response?.status === 500) {
+      // sometimes operation fetching fails, retry later
+      await waitFor(3000);
+      return waitForNetworkCreation(projectId, networkId);
+    }
+    return Promise.reject(e);
   }
-
-  if (response.status !== 'completed') {
-    await waitFor(1000);
-    return waitForNetworkCreation(projectId, networkId);
-  }
-
-  return response;
 };
 
 export const createNetwork = async ({
@@ -157,8 +172,8 @@ export const createNetwork = async ({
   };
   vlanId: number | null;
   gateway?: {
-    gatewayName: string;
-    gatewaySize: string;
+    model: string;
+    name: string;
   };
 }) => {
   const networkCreationResponse: TNetworkCreationResponse = await createNetworkCall(

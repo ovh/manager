@@ -111,14 +111,24 @@ describe('Network API', () => {
 
   it('should create network call successfully', async () => {
     const mockData = { status: 'created' };
+    const subnet = {
+      cidr: 'mocked_cidr',
+      ipVersion: 4,
+      enableDhcp: true,
+      enableGatewayIp: true,
+    };
+    const gateway = {
+      model: 'mocked_gatewayName',
+      name: 'mocked_gatewaySize',
+    };
     vi.mocked(v6.post).mockResolvedValue({ data: mockData });
 
     const result = await createNetworkCall(
       'mocked_projectId',
       'mocked_region',
       'mocked_privateNetworkName',
-      {},
-      {},
+      subnet,
+      gateway,
       1,
     );
     expect(result).toEqual(mockData);
@@ -126,8 +136,8 @@ describe('Network API', () => {
       '/cloud/project/mocked_projectId/region/mocked_region/network',
       {
         name: 'mocked_privateNetworkName',
-        subnet: {},
-        gateway: {},
+        subnet,
+        gateway,
         vlanId: 1,
       },
     );
@@ -150,8 +160,8 @@ describe('Network API', () => {
         },
         vlanId: 1,
         gateway: {
-          gatewayName: 'mocked_gatewayName',
-          gatewaySize: 'mocked_gatewaySize',
+          model: 'mocked_gatewayName',
+          name: 'mocked_gatewaySize',
         },
       }),
     ).rejects.toThrow(mockError);
@@ -166,8 +176,8 @@ describe('Network API', () => {
           enableGatewayIp: true,
         },
         gateway: {
-          gatewayName: 'mocked_gatewayName',
-          gatewaySize: 'mocked_gatewaySize',
+          model: 'mocked_gatewayName',
+          name: 'mocked_gatewaySize',
         },
         vlanId: 1,
       },
