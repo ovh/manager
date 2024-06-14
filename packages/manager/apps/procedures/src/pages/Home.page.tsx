@@ -12,6 +12,8 @@ import {
 import { rootRoute } from '@/routes/routes';
 import Loading from '@/components/Loading/Loading';
 import { SkeletonLoading } from '@/components/Loading/SkeletonLoading';
+import useUser from '@/context/User/useUser';
+import { User } from '@/types/user.type';
 
 const redirectStrategies: Record<Status2fa['status'] | 'error', string> = {
   open: `${rootRoute}/${seeRoutePath}`,
@@ -26,6 +28,8 @@ const checkIfCreationIsAllowed = (error: AxiosError<any>) =>
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user } = useUser();
+  console.log(user);
 
   const navigateTo = (url: string): void => {
     if (location.pathname !== url) {
@@ -35,7 +39,7 @@ export default function Home() {
       navigate(`${url}${location.search || ''}`, { replace: true });
     }
   };
-  const { data, error, isSuccess, isFetched, isLoading } = useFetch2faStatus();
+  const { data, error, isSuccess, isFetched, isLoading } = useFetch2faStatus((user as User & { getStatusResult: string }).getStatusResult);
   const route = redirectStrategies[data?.status];
   useEffect(() => {
     if (isFetched) {
