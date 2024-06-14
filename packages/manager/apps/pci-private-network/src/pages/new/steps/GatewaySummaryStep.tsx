@@ -22,7 +22,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGatewayCatalog } from '@/api/hooks/useGateway';
 import { StepsEnum, useNewNetworkStore } from '@/pages/new/store';
@@ -105,10 +105,17 @@ export default function GatewaySummaryStep({
                 size={ODS_TEXT_SIZE._400}
                 className="ml-2"
               >
-                {t(
-                  'pci_projects_project_network_private_create_summary_step_gateway_size_and_price',
-                  { size: gatewayCatalog?.size.toUpperCase() },
-                )}
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t(
+                      'pci_projects_project_network_private_create_summary_step_gateway_size_and_price',
+                      {
+                        size: `<strong>${gatewayCatalog?.size.toUpperCase()}</strong>`,
+                        interpolation: { escapeValue: false },
+                      },
+                    ),
+                  }}
+                ></span>
               </OsdsText>
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
@@ -116,34 +123,44 @@ export default function GatewaySummaryStep({
                 size={ODS_TEXT_SIZE._400}
                 className="ml-2"
               >
+                <span className="px-2">(</span>
                 {t(
                   'pci_projects_project_network_private_create_summary_step_price',
                 )}
               </OsdsText>
 
               <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {getFormattedMonthlyCatalogPrice(gatewayCatalog?.pricePerMonth)}
+                {' '}
+                <span className="font-bold">
+                  {getFormattedMonthlyCatalogPrice(
+                    gatewayCatalog?.pricePerMonth,
+                  )}
+                </span>
               </OsdsText>
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
                 level={ODS_TEXT_LEVEL.body}
                 size={ODS_TEXT_SIZE._400}
-                className="ml-2"
+                className="px-3"
               >
                 {t(
                   'pci_projects_project_network_private_create_summary_step_that_is',
                 )}
               </OsdsText>
               <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {getFormattedHourlyCatalogPrice(gatewayCatalog?.pricePerHour)} (
+                {' '}
+                <span className="font-bold">
+                  {getFormattedHourlyCatalogPrice(gatewayCatalog?.pricePerHour)}{' '}
+                </span>
+                <span>).</span>
               </OsdsText>
             </div>
           </OsdsMessage>
