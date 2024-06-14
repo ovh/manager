@@ -1,5 +1,4 @@
 import { fireEvent, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { GuidesHeader, GuidesHeaderProps } from './guides-header.component';
 import { render } from '../../utils/test.provider';
 

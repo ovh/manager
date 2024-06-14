@@ -1,6 +1,5 @@
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { fireEvent, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import {
   isDiscoveryProject,
   PciDiscoveryBanner,

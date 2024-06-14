@@ -6,7 +6,6 @@ import {
   headerWithGuides,
   headerWithActions,
 } from './headers.stories';
-import '@testing-library/jest-dom';
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
 import { useAuthorizationIam } from '../../../hooks/iam';
 
