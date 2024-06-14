@@ -19,6 +19,7 @@
                     <oui-action-menu-item
                         aria-label="{{:: 'netapp_volumes_restore_snapshot' | translate }}"
                         data-on-click="$ctrl.goToRestoreSnapshot($ctrl.volumeId)"
+                        data-disabled="$ctrl.hasOnlySystemSnapshot"
                     >
                         <span
                             data-translate="netapp_volumes_restore_snapshot"
