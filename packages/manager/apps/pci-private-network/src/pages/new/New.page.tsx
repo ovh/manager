@@ -75,7 +75,7 @@ export default function NewPage(): JSX.Element {
         true,
       );
       navigate('..');
-    } catch (e) {
+    } catch (error) {
       addError(
         <Translation ns="new">
           {(translate) => (
@@ -84,7 +84,7 @@ export default function NewPage(): JSX.Element {
                 __html: translate(
                   'pci_projects_project_network_private_create_error',
                   {
-                    message: e?.message,
+                    message: error.response?.data?.message || error.message,
                   },
                 ),
               }}
