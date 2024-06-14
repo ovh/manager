@@ -110,6 +110,7 @@ export default class VrackMoveDialogCtrl {
         open: false,
         servicesToAdd: null,
         confirm: () => {
+          this.trackClick('add');
           this.addSelectedServices();
           this.modals.add.open = false;
         },
@@ -122,6 +123,7 @@ export default class VrackMoveDialogCtrl {
         open: false,
         servicesToDelete: null,
         confirm: () => {
+          this.trackClick('remove');
           this.deleteSelectedServices();
           this.modals.delete.open = false;
         },

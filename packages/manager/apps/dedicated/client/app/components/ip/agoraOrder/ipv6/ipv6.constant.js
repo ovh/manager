@@ -40,7 +40,13 @@ export const FLAGS = {
 
 export const EMPTY_CHOICE = '-';
 
+export const DEDICATED_IP_ORDER_TRACKING_PREFIX =
+  'dedicated::ip::dashboard::order';
+export const ACTIONS_SUFFIX = 'action';
+
 export default {
+  DEDICATED_IP_ORDER_TRACKING_PREFIX,
+  ACTIONS_SUFFIX,
   PRODUCT_TYPES,
   TRACKING_PREFIX,
   ALERT_ID,

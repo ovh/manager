@@ -1,4 +1,9 @@
-import { POLLING_INTERVAL, SLAAC_VALUES } from '../../dashboard/vrack.constant';
+import {
+  POLLING_INTERVAL,
+  SLAAC_VALUES,
+  VRACK_DASHBOARD_TRACKING_PREFIX,
+  VRACK_ACTIONS_SUFFIX,
+} from '../../dashboard/vrack.constant';
 import { SLAAC_LABEL, IPV6_GUIDES_LINK } from './ipv6.constant';
 
 export default class VrackAssignedIpCtrl {
@@ -9,6 +14,7 @@ export default class VrackAssignedIpCtrl {
     CucCloudMessage,
     vrackAssignedIpv6Service,
     $translate,
+    atInternet,
     OvhApiVrack,
     coreConfig,
   ) {
@@ -20,6 +26,7 @@ export default class VrackAssignedIpCtrl {
     this.$timeout = $timeout;
     this.loading = false;
     this.subnets = [];
+    this.atInternet = atInternet;
     this.user = coreConfig.getUser();
     this.slaacGuidesLink =
       IPV6_GUIDES_LINK[this.user.ovhSubsidiary] || IPV6_GUIDES_LINK.DEFAULT;
@@ -68,6 +75,7 @@ export default class VrackAssignedIpCtrl {
           subnet: routedSubrange,
           address: nexthop,
         } = this.addSubnetModalContext.data;
+        this.trackClick('add-subnet');
         this.addSubnetModalContext.isOpenModal = false;
         this.CucCloudMessage.flushMessages('vrack');
         this.vrackAssignedIpv6Service
@@ -97,6 +105,7 @@ export default class VrackAssignedIpCtrl {
   }
 
   toggleSubrange(bridgedSubrange) {
+    this.trackClick('enable-ip-auto-config');
     const bridged = bridgedSubrange;
     bridged.loading = true;
     const targetValue = !bridged.model;
@@ -128,6 +137,7 @@ export default class VrackAssignedIpCtrl {
     this.deleteSubnetModalContext = {
       isOpenModal: true,
       onConfirm: () => {
+        this.trackClick('remove-subnet');
         this.deleteSubnetModalContext.isOpenModal = false;
         this.CucCloudMessage.flushMessages('vrack');
         this.vrackAssignedIpv6Service
@@ -186,5 +196,14 @@ export default class VrackAssignedIpCtrl {
       .catch(() => {
         if (callback) callback();
       });
+  }
+
+  trackClick(hit, action = true) {
+    this.atInternet.trackClick({
+      name: `${VRACK_DASHBOARD_TRACKING_PREFIX}${
+        action ? `::${VRACK_ACTIONS_SUFFIX}` : ''
+      }::${hit}`,
+      type: VRACK_ACTIONS_SUFFIX,
+    });
   }
 }
