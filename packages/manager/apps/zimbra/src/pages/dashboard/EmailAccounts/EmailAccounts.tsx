@@ -19,16 +19,12 @@ import {
   Notifications,
 } from '@ovhcloud/manager-components';
 import { Outlet } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import {
-  getZimbraPlatformEmails,
-  getZimbraPlatformEmailsQueryKey,
-} from '@/api';
+
 import {
   useOrganization,
-  usePlatform,
   useOverridePage,
   useGenerateUrl,
+  useAccountList,
 } from '@/hooks';
 import LabelChip from '@/components/LabelChip';
 import guidesConstants from '@/guides.constants';
@@ -103,12 +99,9 @@ const columns: DatagridColumn<EmailsItem>[] = [
 
 export default function EmailAccounts() {
   const { t } = useTranslation('emails');
-  const { platformId } = usePlatform();
   const { data: organization } = useOrganization();
-  const { data } = useQuery({
-    queryKey: getZimbraPlatformEmailsQueryKey(platformId, organization?.id),
-    queryFn: () => getZimbraPlatformEmails(platformId, organization?.id),
-    enabled: !!platformId,
+  const { data } = useAccountList({
+    organizationId: organization?.id,
   });
   const isOverriddedPage = useOverridePage();
 
