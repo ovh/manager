@@ -1,7 +1,7 @@
 export default {
   listing: {
     datagrid: {
-      serviceKey: 'hpc-vcd',
+      serviceKey: 'id',
     },
   },
   rootLabel: 'hpc-vmware-managed-vcd',
