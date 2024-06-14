@@ -143,8 +143,7 @@ export default /* @ngInject */ function VpsService(
               }),
         );
         return result.data;
-      })
-      .catch(CucServiceHelper.errorHandler('vps_dashboard_loading_error'));
+      });
   };
 
   /*
