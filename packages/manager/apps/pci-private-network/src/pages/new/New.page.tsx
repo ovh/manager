@@ -39,6 +39,7 @@ export default function NewPage(): JSX.Element {
   const { projectId } = useParams();
   const { data: project } = useProject(projectId || '');
   const projectUrl = useProjectUrl('public-cloud');
+  const backHref = useHref('..');
 
   useEffect(() => {
     store.reset();
@@ -107,7 +108,7 @@ export default function NewPage(): JSX.Element {
               label: project.description,
             },
             {
-              href: `${projectUrl}/private-networks`,
+              href: backHref,
               label: tListing('pci_projects_project_network_private'),
             },
             {
