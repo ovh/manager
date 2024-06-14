@@ -192,6 +192,17 @@
     >
         <span data-translate="telephony_line_softphone_add_device"></span>
     </oui-button>
+    <oui-button
+        class="ml-3 mt-3"
+        data-ng-if="$ctrl.softphoneDevices.length===3"
+        data-variant="light"
+        data-on-click="$ctrl.deleteAllDevices()"
+    >
+        <span
+            class="text-danger"
+            data-translate="telephony_line_softphone_btn_delete_all"
+        ></span>
+    </oui-button>
 </oui-collapsible>
 <oui-collapsible
     class="custom-collapsible-no-click mt-3"

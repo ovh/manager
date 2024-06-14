@@ -22,6 +22,10 @@ export default /* @ngInject */ ($stateProvider) => {
             'telecom.telephony.billingAccount.line.dashboard.softphone.add',
             { deviceId },
           ),
+        deleteAllDevices: /* @ngInject */ ($state) => () =>
+          $state.go(
+            'telecom.telephony.billingAccount.line.dashboard.softphone.delete-all',
+          ),
         goToDeleteDevice: /* @ngInject */ ($state) => (deviceId) =>
           $state.go(
             'telecom.telephony.billingAccount.line.dashboard.softphone.delete',
