@@ -106,6 +106,19 @@ export default function LocalizationStep(): JSX.Element {
         isLocalZone: region.type === 'localzone',
       }));
 
+      // sort regions
+      // ex : ['GRA11', 'GRA7', 'GRA9'] => ['GRA7', 'GRA9', 'GRA11']
+      result.sort(({ code: a }, { code: b }) => {
+        const regionA = a.replace(/[\d]+/, '');
+        const regionB = b.replace(/[\d]+/, '');
+        if (regionA === regionB) {
+          const regionIdA = parseInt(a.replace(/[^\d]+/, ''), 10) || 0;
+          const regionIdB = parseInt(b.replace(/[^\d]+/, ''), 10) || 0;
+          return regionIdA - regionIdB;
+        }
+        return regionA.localeCompare(regionB);
+      });
+
       setMappedRegions(result);
     }
   }, [regions]);
