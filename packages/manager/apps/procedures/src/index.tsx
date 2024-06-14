@@ -15,8 +15,8 @@ if (window.location.hash === '') {
     language: '',
     legalForm: '',
     getStatusResult: '0',
-    iat: Date.now(),
-    exp: Date.now() + 100000,
+    iat: Date.now() / 1000,
+    exp: Date.now() + 60 * 60,
   };
 }
 
