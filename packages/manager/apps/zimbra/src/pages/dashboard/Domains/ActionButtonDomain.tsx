@@ -1,13 +1,25 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovhcloud/manager-components';
+import { DomainsItem } from './Domains';
+import { useGenerateUrl } from '@/hooks';
 
-const ActionButtonDomain: React.FC = () => {
+interface ActionButtonDomainProps {
+  domainItem: DomainsItem;
+}
+const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
+  domainItem,
+}) => {
   const { t } = useTranslation('domains');
+
+  const hrefDeleteDomain = useGenerateUrl('./delete', 'href', {
+    deleteDomainId: domainItem.id,
+  });
+
   const actionItems = [
     {
       id: 2,
-      onClick: () => window.open('https://ovhcloud.com', '_blank', 'noopener'),
+      href: hrefDeleteDomain,
       label: t('zimbra_domains_tooltip_delete'),
     },
   ];

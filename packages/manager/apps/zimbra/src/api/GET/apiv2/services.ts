@@ -80,20 +80,30 @@ export const getZimbraPlatformTask = async (
 
 export const getZimbraPlatformEmailsQueryKey = (
   platformId: string,
-  organizationId?: string,
-) => [
-  `get/zimbra/platform/${platformId}/account?organizationId=${organizationId}`,
-];
+  queryParameters?: {
+    organizationId?: string;
+    domainId?: string;
+  },
+) => {
+  const params = new URLSearchParams(queryParameters).toString();
+  const queryString = params ? `?${params}` : '';
+  return [`get/zimbra/platform/${platformId}/account${queryString}`];
+};
 
 export const getZimbraPlatformEmails = async (
   platformId: string,
-  organizationId?: string,
+  queryParameters?: {
+    organizationId?: string;
+    domainId?: string;
+  },
 ) => {
+  const params = new URLSearchParams(queryParameters).toString();
+  const queryString = params ? `?${params}` : '';
+
   const { data } = await apiClient.v2.get<Email[]>(
-    `/zimbra/platform/${platformId}/account${
-      organizationId ? `?organizationId=${organizationId}` : ''
-    }`,
+    `/zimbra/platform/${platformId}/account${queryString}`,
   );
+
   return data;
 };
 
