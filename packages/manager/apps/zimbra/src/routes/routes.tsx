@@ -74,6 +74,12 @@ export const Routes: any = [
                 ),
                 handle: { isOverridePage: true },
               },
+              {
+                path: 'delete',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/ModalDeleteDomain'),
+                ),
+              },
             ],
           },
           {
