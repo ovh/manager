@@ -23,6 +23,19 @@ export const useOnboarding = () => {
     window.localStorage.setItem(preferenceKey, JSON.stringify(value));
   };
 
+  // Onboarding forced only for PNR V2 alpha; to remove for the beta.
+  const forceOnboardingDisplayed = (value: boolean) => {
+    value
+      ? window.localStorage.setItem(
+          preferenceKey,
+          JSON.stringify({ status: ONBOARDING_STATUS_ENUM.DISPLAYED }),
+        )
+      : window.localStorage.setItem(
+          preferenceKey,
+          JSON.stringify({ status: ONBOARDING_STATUS_ENUM.DONE }),
+        );
+  };
+
   const createPreference = () => {
     const value = { status: ONBOARDING_STATUS_ENUM.DISPLAYED };
 
@@ -47,18 +60,33 @@ export const useOnboarding = () => {
   };
 
   const init = async () => {
-    const getPreferencesPromise: Promise<{ value: string }> = isBetaForced()
-      ? new Promise((resolve, reject) => {
-          const localStorageValue = getOnboardingFromLocalStorage();
-          if (localStorageValue) {
-            resolve({ value: localStorageValue });
-          } else {
-            const error = new Error();
-            error.status = 404;
-            reject(error);
-          }
-        })
-      : reketInstance.get(`/me/preferences/manager/${preferenceKey}`);
+    const getPreferencesPromise: Promise<{ value: string }> = new Promise(
+      (resolve, reject) => {
+        const localStorageValue = getOnboardingFromLocalStorage();
+        if (localStorageValue) {
+          resolve({ value: localStorageValue });
+        } else {
+          const error = new Error();
+          error.status = 404;
+          reject(error);
+        }
+      },
+    );
+
+    // Uncomment for PNR V2 beta to check the api and not only the local storage.
+
+    // const getPreferencesPromise: Promise<{ value: string }> = isBetaForced()
+    // ? new Promise((resolve, reject) => {
+    //     const localStorageValue = getOnboardingFromLocalStorage();
+    //     if (localStorageValue) {
+    //       resolve({ value: localStorageValue });
+    //     } else {
+    //       const error = new Error();
+    //       error.status = 404;
+    //       reject(error);
+    //     }
+    //   })
+    // : reketInstance.get(`/me/preferences/manager/${preferenceKey}`);
 
     return getPreferencesPromise
       .then(({ value }: { value: string }) => {
@@ -75,9 +103,6 @@ export const useOnboarding = () => {
         throw error;
       })
       .then((parsedValue: LocalStorageStatus) => {
-        // Remove that line for PNR v2 béta
-        parsedValue.status = ONBOARDING_STATUS_ENUM.DISPLAYED;
-        
         return parsedValue.status;
       });
   };
@@ -104,6 +129,7 @@ export const useOnboarding = () => {
     getOpenedStateFromStatus,
     hasStarted,
     getNextOpenedState,
+    forceOnboardingDisplayed,
   };
 };
 
