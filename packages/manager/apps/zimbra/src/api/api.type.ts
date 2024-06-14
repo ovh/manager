@@ -70,6 +70,12 @@ export type OrganizationBodyParams = {
   name?: string;
 };
 
+export type DomainBodyParams = {
+  authoritative?: boolean;
+  organizationId?: string;
+  name?: string;
+};
+
 export type Domain = {
   checksum: string;
   currentState: {
