@@ -286,15 +286,19 @@ export const NetworkStep = (): JSX.Element => {
           )}
         </OsdsText>
       </p>
-      <OsdsMessage
-        type={ODS_MESSAGE_TYPE.warning}
-        color={ODS_THEME_COLOR_INTENT.warning}
-        className={'my-6 flex-row'}
-      >
-        {tAdd(
-          'pci_projects_project_public_gateways_add_no_private_network_warning',
-        )}
-      </OsdsMessage>
+
+      {privateNetworks?.length === 0 && (
+        <OsdsMessage
+          type={ODS_MESSAGE_TYPE.warning}
+          color={ODS_THEME_COLOR_INTENT.warning}
+          className="my-6 flex-row"
+        >
+          {tAdd(
+            'pci_projects_project_public_gateways_add_no_private_network_warning',
+          )}
+        </OsdsMessage>
+      )}
+
       <OsdsFormField
         inline={true}
         error={
