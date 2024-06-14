@@ -48,7 +48,7 @@ export const useDatagridColumn = (): DatagridColumn<TLocalZoneNetwork>[] => {
             color={ODS_THEME_COLOR_INTENT.warning}
             size={ODS_CHIP_SIZE.sm}
           >
-            {t('pci_projects_project_network_private_dhcp_disabled')},
+            {t('pci_projects_project_network_private_dhcp_disabled')}
           </OsdsChip>
         ),
       label: PRIVATE_NETWORK_LIST.DHCP,
