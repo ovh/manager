@@ -1,4 +1,8 @@
-import { StepComponent, useCatalogPrice } from '@ovhcloud/manager-components';
+import {
+  StepComponent,
+  useCatalogPrice,
+  useNotifications,
+} from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -21,8 +25,8 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 
-import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
-import { useEffect } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGatewayCatalog } from '@/api/hooks/useGateway';
 import { StepsEnum, useNewNetworkStore } from '@/pages/new/store';
@@ -34,6 +38,7 @@ export default function GatewaySummaryStep({
   onCreate: () => void;
 }): JSX.Element {
   const store = useNewNetworkStore();
+  const { clearNotifications } = useNotifications();
 
   const { isLoading: isRegionsLoading } = useProjectAvailableRegions(
     store.project?.id,
@@ -41,7 +46,7 @@ export default function GatewaySummaryStep({
 
   const { t } = useTranslation('new');
 
-  const { ovhSubsidiary } = useEnvironment().getUser();
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const { data: gatewayCatalog } = useGatewayCatalog(ovhSubsidiary);
 
@@ -234,6 +239,7 @@ export default function GatewaySummaryStep({
               size={ODS_BUTTON_SIZE.md}
               color={ODS_THEME_COLOR_INTENT.primary}
               onClick={() => {
+                clearNotifications();
                 onCreate();
               }}
               className="w-fit"

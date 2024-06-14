@@ -33,6 +33,7 @@ export default function NewPage(): JSX.Element {
   const { t } = useTranslation('common');
   const { t: tListing } = useTranslation('listing');
   const { t: tNew } = useTranslation('new');
+  const { clearNotifications } = useNotifications();
   // </editor-fold>
 
   // <editor-fold desc="project">
@@ -49,6 +50,7 @@ export default function NewPage(): JSX.Element {
         isDiscovery: isDiscoveryProject(project),
       });
     }
+    clearNotifications();
   }, [project]);
   // </editor-fold>
 
@@ -122,6 +124,7 @@ export default function NewPage(): JSX.Element {
           color={ODS_THEME_COLOR_INTENT.primary}
           className="mt-10"
           href={backLink}
+          onClick={() => clearNotifications()}
         >
           <OsdsIcon
             slot="start"
