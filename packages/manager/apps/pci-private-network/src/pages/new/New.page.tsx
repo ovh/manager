@@ -75,7 +75,7 @@ export default function NewPage(): JSX.Element {
         true,
       );
       navigate('..');
-    } catch (error) {
+    } catch (e) {
       addError(
         <Translation ns="new">
           {(translate) => (
@@ -84,7 +84,7 @@ export default function NewPage(): JSX.Element {
                 __html: translate(
                   'pci_projects_project_network_private_create_error',
                   {
-                    message: error.response?.data?.message || error.message,
+                    message: e?.response?.data?.message || e?.message,
                   },
                 ),
               }}
@@ -94,7 +94,7 @@ export default function NewPage(): JSX.Element {
         true,
       );
     } finally {
-      store.setForm({ isCreating: true });
+      store.setForm({ isCreating: false });
     }
   };
 
