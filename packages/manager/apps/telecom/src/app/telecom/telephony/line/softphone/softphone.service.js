@@ -2,8 +2,9 @@ import { SOFTPHONE_TYPE } from './softphone.constants';
 
 export default class SofpthoneService {
   /* @ngInject */
-  constructor($http, $window, iceberg) {
+  constructor($http, $q, $window, iceberg) {
     this.$http = $http;
+    this.$q = $q;
     this.$window = $window;
     this.iceberg = iceberg;
   }
@@ -16,6 +17,20 @@ export default class SofpthoneService {
           name,
         },
       )
+      .then(({ data }) => data);
+  }
+
+  deleteAllDevices(billingAccount, serviceName) {
+    this.getDevicesInfos(billingAccount, serviceName)
+      .then((devices) => {
+        this.$q.all(
+          devices.map((device) =>
+            this.$http.delete(
+              `/telephony/${billingAccount}/line/${serviceName}/devices/${device.deviceId}`,
+            ),
+          ),
+        );
+      })
       .then(({ data }) => data);
   }
 
