@@ -23,7 +23,7 @@ export const ProductStatusCell: React.FC<DataGridCellProps<ResourceStatus> & {
 
   return cellData ? (
     <OsdsChip inline color={colorByProductStatus[cellData]}>
-      {t(cellData)}
+      {t(cellData) as string}
     </OsdsChip>
   ) : (
     <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />
