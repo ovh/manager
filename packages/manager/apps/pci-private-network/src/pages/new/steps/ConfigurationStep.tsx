@@ -153,6 +153,12 @@ export default function ConfigurationStep({
           gatewayName: generatedName,
         });
       }
+    } else {
+      store.setForm({
+        gateway: undefined,
+        gatewayName: undefined,
+        gatewaySize: undefined,
+      });
     }
   }, [
     gateways?.map((g) => g.id).join(','),
