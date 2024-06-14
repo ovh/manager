@@ -1,6 +1,10 @@
 import React from 'react';
 import NotFound from '../pages/404';
-import { createRoutePath, seeRoutePath } from '@/routes/home.constants';
+import {
+  createRoutePath,
+  errorRoutePath,
+  seeRoutePath,
+} from '@/routes/home.constants';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -15,13 +19,15 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
   };
 };
 
+export const rootRoute = '/account-disable-2fa';
+
 export const Routes: any = [
   {
-    path: '/account-disable-2fa',
+    path: rootRoute,
     ...lazyRouteConfig(() => import('@/pages/Home.page')),
     children: [
       {
-        path: createRoutePath,
+        path: `${rootRoute}/${createRoutePath}`,
         ...lazyRouteConfig(() => import('@/pages/create/Create.page')),
         children: [
           {
@@ -37,8 +43,12 @@ export const Routes: any = [
         ],
       },
       {
-        path: seeRoutePath,
+        path: `${rootRoute}/${seeRoutePath}`,
         ...lazyRouteConfig(() => import('@/pages/see/See.page')),
+      },
+      {
+        path: `${rootRoute}/${errorRoutePath}`,
+        ...lazyRouteConfig(() => import('@/pages/error/Error.page')),
       },
     ],
   },

@@ -22,6 +22,7 @@ export default function initI18n(
       supportedLngs: availablesLocales,
       ns: [
         'account-disable-2fa',
+        'account-disable-2fa/error',
         'account-disable-2fa-sub',
         'account-disable-2fa-documents',
       ], // namespaces to load by default

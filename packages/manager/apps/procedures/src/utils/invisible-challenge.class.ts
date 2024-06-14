@@ -79,17 +79,21 @@ export class ChallengeApiInterceptor {
       title: 'Security Challenge - API - Interceptor',
     };
 
-    loadIframe(payload).then((loadEvent: Event) => {
-      this.iframe = loadEvent.target as HTMLIFrameElement;
+    loadIframe(payload)
+      .then((loadEvent: Event) => {
+        this.iframe = loadEvent.target as HTMLIFrameElement;
 
-      if (!this.iframe) {
-        this.iframe = document.getElementById(
-          CHALLENGE_IFRAME_ID,
-        ) as HTMLIFrameElement;
-      }
+        if (!this.iframe) {
+          this.iframe = document.getElementById(
+            CHALLENGE_IFRAME_ID,
+          ) as HTMLIFrameElement;
+        }
 
-      this.onIframeLoaded();
-    });
+        this.onIframeLoaded();
+      })
+      .catch(() =>
+        this.deferWaitingChallenge.reject(ChallengeFailureReasons.NoIframe),
+      );
 
     return this.deferWaitingChallenge.promise;
   }
