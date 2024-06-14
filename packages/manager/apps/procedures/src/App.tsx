@@ -23,26 +23,27 @@ const token = extractToken();
 const user = decodeToken(token);
 const { language: locale, subsidiary } = user || {};
 
-if (!user) {
-  const redirectUrl = getRedirectLoginUrl(user);
-  window.location.assign(redirectUrl);
-} else {
-  initI18n(
-    locale || 'en_GB',
-    [locale || 'en_GB'],
-    getSubsidiary(subsidiary, locale),
-  );
-  initAuthenticationInterceptor(token);
-  initInterceptor();
+initI18n(
+  locale || 'en_GB',
+  [locale || 'en_GB'],
+  getSubsidiary(subsidiary, locale),
+);
+initAuthenticationInterceptor(token);
+initInterceptor();
 
-  odsSetup();
-}
+odsSetup();
 
 const router = createHashRouter(Routes);
 
 const Router = () => <RouterProvider router={router} />;
 
 export default function App() {
+  if (!user) {
+    const redirectUrl = getRedirectLoginUrl(user);
+    window.location.assign(redirectUrl);
+    return;
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <UserProvider user={user}>
