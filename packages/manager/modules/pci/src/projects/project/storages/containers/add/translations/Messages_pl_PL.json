@@ -18,19 +18,20 @@
   "pci_projects_project_storages_containers_add_archive_title": "Utwórz kontener Cloud Archive",
   "pci_projects_project_storages_containers_add_type_price": "{{price}} netto/m-c/GB",
   "pci_projects_project_storages_containers_add_offer_title": "Wybierz Twoje rozwiązanie",
-  "pci_projects_project_storages_containers_add_offer_storage": "Standard Object Storage - Swift API",
+  "pci_projects_project_storages_containers_add_offer_storage": "API Swift",
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf": "High Performance Object Storage - S3 API",
   "pci_projects_project_storages_containers_add_offer_storage_description": "Podstawowe rozwiązanie do przechowywania danych bez specyficznych potrzeb w zakresie wydajności. Jest to przestrzeń do przechowywania obiektów od OpenStack, z interfejsami API Swift.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf_description": "Rozwiązanie dostosowane do najbardziej wymagających projektów, w przypadku których konieczna jest wysoka wydajność operacji odczytu i zapisu.",
   "pci_projects_project_storages_containers_add_pattern_help_storage-s3-high-perf": "Nazwa kontenera musi zawierać od 3 do 63 znaków, musi zaczynać się i kończyć małym znakiem alfanumerycznym (od „a” do „z” i od 0 do 9) i może zawierać następujące znaki interpunkcyjne: „.” oraz „-”.",
   "pci_projects_project_storages_containers_add_description": "Hostuj katalog danych w naszym rozwiązaniu Object Storage. Danymi możesz zarządzać z poziomu swojej aplikacji za pomocą API S3.",
   "pci_projects_project_storages_containers_add_description_link": "Sprawdź ceny",
-  "pci_projects_project_storages_containers_add_offer_storage-s3-standard": "Standard Object Storage - S3 API",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-standard": "API S3 ",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_description": "Idealne rozwiązanie do przechowywania dużych ilości danych w najlepszej cenie. Wraz z rozwiązaniem dostępna jest szeroka gama interfejsów API S3.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_label": "Nowość",
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf_label": "Nowość",
   "pci_projects_project_storages_containers_add_create_or_linked_user_title": "Przypisz użytkownika",
   "pci_projects_project_storages_containers_add_create_or_linked_user_success_field_secret_key": "Tajny klucz S3:",
   "pci_projects_project_storages_containers_add_create_or_linked_user_description": "Możesz przyznać dostęp do kontenera jednemu ze wstępnie skonfigurowanych użytkowników Openstack z rolą „Administrator” lub „Object Storage Operator” albo utworzyć nowego użytkownika.",
-  "pci_projects_project_storages_containers_add_success_message_with_user_creation": "Kontener {{container}} został utworzony. Użytkownik S3 {{userName}} jest administratorem tego kontenera."
+  "pci_projects_project_storages_containers_add_success_message_with_user_creation": "Kontener {{container}} został utworzony. Użytkownik S3 {{userName}} jest administratorem tego kontenera.",
+  "pci_projects_project_storages_containers_add_pattern_help_storage-s3": "Nazwa kontenera musi zawierać od 3 do 63 znaków, musi zaczynać się i kończyć małym znakiem alfanumerycznym (od „a” do „z” i od 0 do 9) i może zawierać następujące znaki interpunkcyjne: „.” oraz „-”."
 }

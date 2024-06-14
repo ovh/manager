@@ -42,6 +42,7 @@ export default class PciStoragesContainersContainerController {
   }
 
   $onInit() {
+    this.translateStorageClass();
     this.columnsParameters = [
       {
         name: 'retrievalState',
@@ -51,12 +52,26 @@ export default class PciStoragesContainersContainerController {
         name: 'contentType',
         hidden: this.container.s3StorageType,
       },
+      {
+        name: 'storageClass',
+        hidden: !this.container.s3StorageType,
+      },
     ];
     this.displayEncryptionData =
       this.encryptionAvailable &&
       this.container.s3StorageType !== null &&
       !this.archive;
     this.loadMessages();
+    this.checkFileUploadState();
+  }
+
+  translateStorageClass() {
+    this.container.objects = this.container.objects.map((object) => ({
+      ...object,
+      storageClass: this.$translate.instant(
+        `pci_projects_project_storages_containers_container_storage_class_${object.storageClass}`,
+      ),
+    }));
   }
 
   loadMessages() {
@@ -97,6 +112,18 @@ export default class PciStoragesContainersContainerController {
         this.$window.top.location = url;
       })
       .catch((err) => this.handleDownloadError(err));
+  }
+
+  checkFileUploadState() {
+    if (!this.container.s3StorageType) {
+      return false;
+    }
+    return this.PciProjectStorageContainersService.hasOngoingOpenIOMigration(
+      this.projectId,
+      this.container.region,
+    ).then((ismigrating) => {
+      this.isFileUploadDisabled = ismigrating;
+    });
   }
 
   downloadStandardS3Object(serviceName, regionName, containerName, object) {

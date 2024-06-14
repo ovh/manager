@@ -1,17 +1,31 @@
 import get from 'lodash/get';
+import {
+  STORAGE_PRICES_LINK,
+  OBJECT_CONTAINER_STORAGE_CLASS,
+} from '../../../containers.constants';
 
 export default class PciBlockStorageContainersContainerObjectAddController {
   /* @ngInject */
-  constructor($translate, atInternet, PciProjectStorageContainersService) {
+  constructor(
+    $translate,
+    atInternet,
+    coreConfig,
+    PciProjectStorageContainersService,
+  ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
+    this.OBJECT_CONTAINER_STORAGE_CLASS = OBJECT_CONTAINER_STORAGE_CLASS;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
   }
 
   $onInit() {
     this.trackClick('add');
     this.isLoading = false;
-
+    this.priceLink =
+      STORAGE_PRICES_LINK[this.coreConfig.getUser().ovhSubsidiary] ||
+      STORAGE_PRICES_LINK.DEFAULT;
+    this.storageClass = OBJECT_CONTAINER_STORAGE_CLASS.STANDARD;
     this.prefix = '/';
     this.files = [];
   }
@@ -28,6 +42,7 @@ export default class PciBlockStorageContainersContainerObjectAddController {
         this.prefix,
         this.files,
         this.container.s3StorageType,
+        this.storageClass,
       );
     } else {
       addPromise = this.PciProjectStorageContainersService.addObjects(
@@ -72,6 +87,7 @@ export default class PciBlockStorageContainersContainerObjectAddController {
     prefix,
     files,
     s3StorageType,
+    storageClass,
   ) {
     return this.PciProjectStorageContainersService.addHighPerfObjects(
       serviceName,
@@ -80,6 +96,7 @@ export default class PciBlockStorageContainersContainerObjectAddController {
       prefix,
       files,
       s3StorageType,
+      storageClass,
     );
   }
 
