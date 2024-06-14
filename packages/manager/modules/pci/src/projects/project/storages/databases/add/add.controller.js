@@ -194,7 +194,7 @@ export default class {
   updateEngine(engine) {
     this.model.engine = engine;
     this.model.plan = this.getSyncPlan(engine);
-    this.model.name = this.nameGenerator(`${engine.name}-`);
+    this.model.name = this.nameGenerator();
     this.updatePlan(this.model.plan);
   }
 
