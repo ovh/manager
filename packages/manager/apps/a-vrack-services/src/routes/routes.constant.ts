@@ -3,6 +3,7 @@ export const urls = {
   onboarding: '/onboarding',
   listing: '/',
   vps: '/vps',
+  ip: '/ip',
   dashboard: '/:serviceName',
   tab2: 'Tab2',
 };

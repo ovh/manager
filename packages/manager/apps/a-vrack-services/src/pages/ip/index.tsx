@@ -37,7 +37,7 @@ export default function Vps() {
     sorting,
     setSorting,
   } = useResourcesIcebergV62({
-    route: '/vps',
+    route: '/ip',
     queryKey: 'servicesListingIcebergVPS',
   });
 
@@ -57,11 +57,15 @@ export default function Vps() {
     ) {
       const tmp = Object.keys(data?.data[0])
         .filter((element) => element !== 'iam')
-        .filter((element) => element !== 'keymap')
-        .filter((element) => element !== 'slaMonitoring')
-        .filter((element) => element !== 'monitoringIpBlocks')
-        .filter((element) => element !== 'model')
-        .filter((element) => element !== 'cluster')
+        .filter((element) => element !== 'rir')
+        .filter((element) => element !== 'country')
+        .filter((element) => element !== 'regions')
+        .filter((element) => element !== 'description')
+        .filter((element) => element !== 'routedTo')
+        .filter((element) => element !== 'bringYourOwnIp')
+        .filter((element) => element !== 'isAdditionalIp')
+        .filter((element) => element !== 'organisationId')
+        .filter((element) => element !== 'canBeTerminated')
         .map((element) => ({
           id: element,
           header: element,
@@ -106,8 +110,8 @@ export default function Vps() {
     <>
       <div className="pt-5 pb-10">
         <Breadcrumb />
-        <h2>/VPS</h2>
-        <h3>V6 ENDPOINT WITH ICEBERG</h3>
+        <h2>/IP</h2>
+        <h3>V6 ENDPOINT WITHOUT ICEBERG</h3>
         <React.Suspense>
           {columns && (
             <Datagrid

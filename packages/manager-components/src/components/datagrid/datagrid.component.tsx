@@ -57,16 +57,19 @@ export interface DatagridProps<T> {
   /** state of pagination (optional if no pagination is required) */
   pagination?: PaginationState;
   /** state of column sorting (optional if column sorting is not required) */
-  sorting?: ColumnSort;
+  sorting?: any;
   /** callback to handle pagination change events (optional if no pagination is required) */
   onPaginationChange?: (pagination: PaginationState) => void;
   /** callback to handle column sorting change events (optional if column sorting is not required) */
-  onSortChange?: (sorting: ColumnSort) => void;
+  onSortChange?: any;
   /** option to add custom CSS class */
   className?: string;
 
   hasNextPage?: boolean;
   fetchNextPage?: any;
+  manualSorting?: boolean;
+  manualPagination?: boolean;
+  setSorting?: any;
 }
 
 export const Datagrid = <T extends unknown>({
@@ -77,6 +80,9 @@ export const Datagrid = <T extends unknown>({
   onSortChange,
   hasNextPage,
   fetchNextPage,
+  setSorting,
+  manualSorting = true,
+  manualPagination = true,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
 
@@ -90,27 +96,35 @@ export const Datagrid = <T extends unknown>({
       }),
     ),
     data: items,
-    manualPagination: true,
-    state: {
-      ...(sorting && {
-        sorting: [sorting],
-      }),
-    },
-    enableSortingRemoval: false,
-    manualSorting: true,
+    manualPagination,
+    manualSorting,
+    enableSortingRemoval: true,
     sortDescFirst: false,
-    onStateChange: (updater) => {
-      if (typeof updater === 'function') {
-        const state = updater({ ...table.getState(), ...sorting });
-        if (onSortChange) onSortChange(state.sorting[0]);
-      } else if (onSortChange) {
-        onSortChange(updater.sorting[0]);
-      }
-    },
     getCoreRowModel: getCoreRowModel(),
-  });
+    ...(!manualSorting && {
+      onSortingChange: setSorting,
+      state: {
+        sorting,
+      },
+      getSortedRowModel: getSortedRowModel(),
+    }),
 
-  console.info('sorting : ', sorting);
+    ...(manualSorting && {
+      state: {
+        ...(sorting && {
+          sorting: [sorting],
+        }),
+      },
+      onStateChange: (updater) => {
+        if (typeof updater === 'function') {
+          const state = updater({ ...table.getState(), ...sorting });
+          if (onSortChange) onSortChange(state.sorting[0]);
+        } else if (onSortChange) {
+          onSortChange(updater.sorting[0]);
+        }
+      },
+    }),
+  });
 
   return (
     <div>
@@ -118,7 +132,7 @@ export const Datagrid = <T extends unknown>({
         <OsdsTable>
           <table className="w-full border-collapse">
             <thead>
-              {table.getHeaderGroups().map((headerGroup) => (
+              {table?.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
                     <th
@@ -127,15 +141,12 @@ export const Datagrid = <T extends unknown>({
                     >
                       {header.isPlaceholder ? null : (
                         <div
-                          {...{
-                            className:
-                              onSortChange && header.column.getCanSort()
-                                ? 'cursor-pointer select-none'
-                                : '',
-                            ...(onSortChange && {
-                              onClick: header.column.getToggleSortingHandler(),
-                            }),
-                          }}
+                          className={
+                            onSortChange && header.column.getCanSort()
+                              ? 'cursor-pointer select-none'
+                              : ''
+                          }
+                          onClick={header.column.getToggleSortingHandler()}
                           data-testid={`header-${header.id}`}
                         >
                           <OsdsText
@@ -180,7 +191,7 @@ export const Datagrid = <T extends unknown>({
               ))}
             </thead>
             <tbody>
-              {table.getRowModel().rows.map((row) => (
+              {table?.getRowModel()?.rows?.map((row) => (
                 <tr
                   key={row.id}
                   className="text-center border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]"

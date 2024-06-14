@@ -30,6 +30,7 @@ import {
 } from '@ovhcloud/manager-components';
 
 import useResourcesIcebergV2 from '@ovhcloud/manager-components/src/hooks/datagrid/useIcebergV2';
+import { SortingState } from '@tanstack/react-table';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
@@ -46,6 +47,7 @@ export default function Listing() {
   const [columns, setColumns] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const {
     data,
@@ -175,6 +177,7 @@ export default function Listing() {
         id: 'actions',
         header: 'actions',
         label: 'actions',
+        isSortable: false,
         accessorKey: 'actions',
         cell: () => (
           <div>
@@ -183,8 +186,6 @@ export default function Listing() {
         ),
       };
       tmp.push(actionCell);
-      console.info('tmp : ', tmp);
-      // tmp.push(actionCell);
       setColumns(tmp);
     }
   }, [data]);
@@ -213,13 +214,12 @@ export default function Listing() {
               columns={columns}
               items={flattenData || []}
               totalItems={0}
-              // sorting={sorting}
-              // onSortChange={setSorting}
+              sorting={sorting}
+              onSortChange={setSorting}
               fetchNextPage={fetchNextPage}
-              onSortChange={() => {
-                console.info('onSortChange !');
-              }}
+              setSorting={setSorting}
               hasNextPage={hasNextPage}
+              manualSorting={false}
             />
           )}
         </React.Suspense>
