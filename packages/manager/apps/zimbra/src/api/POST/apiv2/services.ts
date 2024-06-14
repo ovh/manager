@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { OrganizationBodyParams } from '@/api/api.type';
+import { OrganizationBodyParams, DomainBodyParams } from '@/api/api.type';
 
 export const postZimbraPlatformOrganization = async (
   platformId: string,
@@ -7,6 +7,17 @@ export const postZimbraPlatformOrganization = async (
 ) => {
   const { data } = await apiClient.v2.post(
     `/zimbra/platform/${platformId}/organization`,
+    params,
+  );
+  return data;
+};
+
+export const postZimbraDomain = async (
+  platformId: string,
+  params: DomainBodyParams,
+) => {
+  const { data } = await apiClient.v2.post(
+    `/zimbra/platform/${platformId}/domain`,
     params,
   );
   return data;
