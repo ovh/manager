@@ -12,14 +12,11 @@ export default class NetAppRestoreVolumeService {
   restoreVolume(serviceName, volumeId, snapshot) {
     if (snapshot.type === SNAPSHOT_TYPE.MANUAL) {
       return this.revertVolume(serviceName, volumeId, snapshot.id);
-    }
-
-    if (snapshot.type === SNAPSHOT_TYPE.AUTOMATIC) {
+    } else {
       return this.holdSnapshot(serviceName, volumeId, snapshot.id)
         .then(({data}) => {
           return this.startSnapshotPolling(serviceName, volumeId, data.id)
             .then((data) => {
-              console.log("POLLING", data);
               return this.revertVolume(serviceName, volumeId, data.id);
             });
         })
