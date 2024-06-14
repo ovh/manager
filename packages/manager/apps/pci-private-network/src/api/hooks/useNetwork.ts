@@ -111,7 +111,7 @@ export const useGlobalRegionsNetworks = (
         subnet: {
           ...subnet,
           ...subnetDetails,
-          region: network.region,
+          region: subnet.region,
           allocatedIp: subnetDetails.allocationPools
             ?.map((i) => `${i.start} - ${i.end}`)
             .join(' ,'),
