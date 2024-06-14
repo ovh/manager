@@ -20,11 +20,13 @@ import { useOverridePage, useDomains, useGenerateUrl } from '@/hooks';
 import ActionButtonDomain from './ActionButtonDomain';
 import LabelChip from '@/components/LabelChip';
 
-type DomainsItem = {
+export type DomainsItem = {
   id: string;
   name: string;
   organizationLabel: string;
   account: number;
+  authoritative: boolean;
+  configuredAccountsCount: number;
 };
 
 const columns: DatagridColumn<DomainsItem>[] = [
@@ -65,7 +67,7 @@ const columns: DatagridColumn<DomainsItem>[] = [
   },
   {
     id: 'tooltip',
-    cell: () => <ActionButtonDomain />,
+    cell: (item: DomainsItem) => <ActionButtonDomain domainItem={item} />,
     label: '',
   },
 ];
@@ -80,9 +82,12 @@ export default function Domains() {
   const items: DomainsItem[] =
     data?.map((item) => ({
       name: item.targetSpec.name,
-      id: item.targetSpec.organizationId,
+      id: item.currentState.organizationId,
       organizationLabel: item.targetSpec.organizationLabel,
-      account: item.targetSpec.accountsStatistics.reduce(
+      configuredAccountsCount:
+        item.currentState.accountsStatistics[0].configuredAccountsCount,
+      authoritative: item.currentState.authoritative,
+      account: item.currentState.accountsStatistics.reduce(
         (acc, current) => acc + current.configuredAccountsCount,
         0,
       ),

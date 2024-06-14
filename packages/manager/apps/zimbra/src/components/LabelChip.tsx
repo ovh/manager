@@ -15,7 +15,6 @@ const LabelChip: React.FC<LabelChipProps> = ({ id, children }) => {
   const handleLinkClick = () => {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set('organizationId', id);
-
     if (location.pathname.includes('organization')) {
       navigate(`..?organizationId=${id}`);
     } else {
