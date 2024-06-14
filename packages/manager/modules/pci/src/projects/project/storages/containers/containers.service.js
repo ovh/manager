@@ -17,7 +17,6 @@ import {
   CONTAINER_DEFAULT_PASSWORD,
   CONTAINER_DEFAULT_PASSWORD_TENANTNAME,
   CONTAINER_DEFAULT_PASSWORD_USERNAME,
-  OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_OFFER_SWIFT,
   OBJECT_CONTAINER_TYPE_PUBLIC,
@@ -31,6 +30,7 @@ import {
   X_CONTAINER_HEADERS_REGEX,
   X_CONTAINER_READ,
   X_CONTAINER_READ_PUBLIC_VALUE,
+  X_AMZ_STORAGE_CLASS,
 } from './containers.constants';
 
 export default class PciStoragesContainersService {
@@ -68,12 +68,10 @@ export default class PciStoragesContainersService {
         }));
     }
 
-    const s3Type =
-      s3StorageType === 'storage'
-        ? OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE
-        : OBJECT_CONTAINER_OFFER_STORAGE_STANDARD;
     return this.getRegions(projectId, selectedRegion).then((region) => {
-      const regionDetails = region.services.find(({ name }) => name === s3Type);
+      const regionDetails = region.services.find(
+        ({ name }) => name === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
+      );
       return {
         endpoints: { [selectedRegion.toLowerCase()]: regionDetails.endpoint },
       };
@@ -307,10 +305,7 @@ export default class PciStoragesContainersService {
         return this.addSwiftStandardObjectContainer(projectId, container);
 
       case OBJECT_CONTAINER_OFFER_STORAGE_STANDARD:
-        return this.addS3StandardObjectContainer(projectId, container);
-
-      case OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE:
-        return this.addS3HighPerfStandardContainer(projectId, container);
+        return this.addS3ObjectContainer(projectId, container);
 
       default:
         return this.$q.reject({
@@ -340,25 +335,19 @@ export default class PciStoragesContainersService {
   }
 
   /**
-   * Create a S3 Standard Storage Object
-   * Nota: used temporary time to have a full support from
-   * /cloud/project/{projectId}/region/{region}/storage
+   * Create a S3 Storage Object
    * @param projectId {String}: project id (serviceName)
    * @param container {Object}: container model
    * @returns {Promise}: $http request promise
    */
-  addS3StandardObjectContainer(projectId, container) {
+  addS3ObjectContainer(projectId, container) {
     const { region, name, ownerId, encryption } = container;
-
     return this.$http
-      .post(
-        `/cloud/project/${projectId}/region/${region.name}/storageStandard`,
-        {
-          name,
-          ownerId,
-          encryption,
-        },
-      )
+      .post(`/cloud/project/${projectId}/region/${region.name}/storage`, {
+        name,
+        ownerId,
+        encryption,
+      })
       .then(({ data }) => data);
   }
 
@@ -375,6 +364,21 @@ export default class PciStoragesContainersService {
         containerType: container.state ? 'private' : 'public',
       },
     );
+  }
+
+  /**
+   * Temporary feature to check if the merge of the S3 endpoints is ongoing.
+   * @param projectId {String}: project id (serviceName)
+   * @param {string} region container region
+   * @returns boolean
+   */
+  hasOngoingOpenIOMigration(projectId, region) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/region/${region}/storage/openiomigrating`,
+      )
+      .then(({ data }) => data?.ismigrating)
+      .catch(() => false);
   }
 
   /**
@@ -530,6 +534,7 @@ export default class PciStoragesContainersService {
     prefix,
     files,
     s3StorageType,
+    storageClass,
   ) {
     return this.$q.all(
       map(files, (file) =>
@@ -540,6 +545,7 @@ export default class PciStoragesContainersService {
           prefix,
           file,
           s3StorageType,
+          storageClass,
         ),
       ),
     );
@@ -552,6 +558,7 @@ export default class PciStoragesContainersService {
     prefix,
     file,
     s3StorageType,
+    storageClass,
   ) {
     const config = {
       headers: {
@@ -566,9 +573,14 @@ export default class PciStoragesContainersService {
           expire: OPENIO_PRESIGN_EXPIRE,
           method: 'PUT',
           object: PciStoragesContainersService.getFilePath(prefix, file),
+          storageClass,
         },
       )
-      .then((res) => res.data)
+      .then((res) => {
+        config.headers[X_AMZ_STORAGE_CLASS] =
+          res?.data?.signedHeaders[X_AMZ_STORAGE_CLASS];
+        return res.data;
+      })
       .then(({ url }) => {
         return this.$http.put(url, config.data, {
           headers: {

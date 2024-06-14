@@ -1,12 +1,17 @@
 {
- "pci_projects_project_storages_containers_container_object_add_archive_title": "Dodaj archiwa",
- "pci_projects_project_storages_containers_container_object_add_object_title": "Dodaj obiekty",
- "pci_projects_project_storages_containers_container_object_add_submit_label": "Importuj",
- "pci_projects_project_storages_containers_container_object_add_cancel_label": "Anuluj",
- "pci_projects_project_storages_containers_container_object_add_prefix_label": "Prefiks",
- "pci_projects_project_storages_containers_container_object_add_files_label": "Importuj pliki",
- "pci_projects_project_storages_containers_container_object_add_archive_success_message": "Pliki zostały zaimportowane.",
- "pci_projects_project_storages_containers_container_object_add_object_success_message": "Obiekty zostały zaimportowane.",
- "pci_projects_project_storages_containers_container_object_add_archive_error_delete": "Wystąpił błąd podczas importu archiwów: {{message}}.",
- "pci_projects_project_storages_containers_container_object_add_object_error_delete": "Wystąpił błąd podczas importu obiektów {{object}}: {{message}}."
+  "pci_projects_project_storages_containers_container_object_add_archive_title": "Dodaj archiwa",
+  "pci_projects_project_storages_containers_container_object_add_object_title": "Dodaj obiekty",
+  "pci_projects_project_storages_containers_container_object_add_submit_label": "Importuj",
+  "pci_projects_project_storages_containers_container_object_add_cancel_label": "Anuluj",
+  "pci_projects_project_storages_containers_container_object_add_prefix_label": "Prefiks",
+  "pci_projects_project_storages_containers_container_object_add_files_label": "Importuj pliki",
+  "pci_projects_project_storages_containers_container_object_add_archive_success_message": "Pliki zostały zaimportowane.",
+  "pci_projects_project_storages_containers_container_object_add_object_success_message": "Obiekty zostały zaimportowane.",
+  "pci_projects_project_storages_containers_container_object_add_archive_error_delete": "Wystąpił błąd podczas importu archiwów: {{message}}.",
+  "pci_projects_project_storages_containers_container_object_add_object_error_delete": "Wystąpił błąd podczas importu obiektów {{object}}: {{message}}.",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label": "Wybierz klasę przestrzeni dyskowej",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description": "Dowiedz się więcej o klasach przestrzeni dyskowej i sprawdź cennik. ",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link": "Sprawdź ceny",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_standard": "Standard",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance"
 }

@@ -39,5 +39,9 @@
   "pci_projects_project_storages_containers_container_back_button_label": "Mis contenedores",
   "pci_projects_project_storages_containers_container_object_info_s3_staticUrl_help": "Exponga sus contenedores y sus objetos en la red configurando los permisos de acceso (por objeto) y proporcionando acceso público. A continuación, podrá acceder a ellos desde la dirección Virtual Hosted-Style.",
   "pci_projects_project_storages_containers_container_info_data_encryption_enabled": "Cifrado: <strong>SSE-S3</strong>",
-  "pci_projects_project_storages_containers_container_info_data_encryption_disabled": "Cifrado: <strong>Ninguno</strong>"
+  "pci_projects_project_storages_containers_container_info_data_encryption_disabled": "Cifrado: <strong>Ninguno</strong>",
+  "pci_projects_project_storages_containers_container_storage_class_label": "Tipo de almacenamiento",
+  "pci_projects_project_storages_containers_container_storage_class_STANDARD": "Standard",
+  "pci_projects_project_storages_containers_container_storage_class_HIGH_PERF": "High Performance",
+  "pci_projects_project_storages_containers_container_maintenance_message": "Estamos realizando una operación de mantenimiento para fusionar los endpoints S3. No es posible añadir objetos de manera temporal."
 }

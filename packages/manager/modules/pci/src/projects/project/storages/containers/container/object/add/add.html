@@ -9,6 +9,24 @@
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isLoading"
     >
+        <p data-ng-if="$ctrl.container.s3StorageType">
+            <span
+                data-translate="pci_projects_project_storages_containers_container_object_add_storage_class_label_description"
+            ></span>
+            <a
+                data-ng-href="{{$ctrl.priceLink}}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link"
+                ></span>
+                <i
+                    aria-hidden="true"
+                    class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                ></i>
+            </a>
+        </p>
         <oui-field
             data-label="{{:: 'pci_projects_project_storages_containers_container_object_add_prefix_label' | translate }}"
             data-size="xl"
@@ -22,6 +40,27 @@
                 required
                 maxlength="32"
             />
+        </oui-field>
+        <oui-field
+            data-ng-if="$ctrl.container.s3StorageType"
+            data-label="{{:: 'pci_projects_project_storages_containers_container_object_add_storage_class_label' | translate }}"
+        >
+            <oui-radio-group data-model="$ctrl.storageClass">
+                <oui-radio
+                    data-value="$ctrl.OBJECT_CONTAINER_STORAGE_CLASS.STANDARD"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_object_add_storage_class_standard"
+                    ></span>
+                </oui-radio>
+                <oui-radio
+                    data-value="$ctrl.OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_object_add_storage_class_high_perf"
+                    ></span>
+                </oui-radio>
+            </oui-radio-group>
         </oui-field>
 
         <oui-field

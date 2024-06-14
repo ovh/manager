@@ -18,19 +18,20 @@
   "pci_projects_project_storages_containers_add_archive_title": "Crea un container archivio",
   "pci_projects_project_storages_containers_add_type_price": "{{ price }} +IVA/mese/GB",
   "pci_projects_project_storages_containers_add_offer_title": "Seleziona la tua offerta",
-  "pci_projects_project_storages_containers_add_offer_storage": "Standard Object Storage - Swift API",
+  "pci_projects_project_storages_containers_add_offer_storage": "API Swift",
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf": "High Performance Object Storage - S3 API",
   "pci_projects_project_storages_containers_add_offer_storage_description": "Soluzione di base per lo storage senza particolari esigenze in termini di performance. Si tratta dell’object storage nativo di OpenStack, con le API Swift.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf_description": "Soluzione adatta alle più alte esigenze sia in termini di storage che di prestazioni elevate in lettura e scrittura.",
   "pci_projects_project_storages_containers_add_pattern_help_storage-s3-high-perf": "Il nome del container deve avere tra 3 e 63 caratteri. Deve iniziare e terminare con caratteri alfanumerici minuscoli (da “a” a “z” e da 0 a 9) e può includere i segni di punteggiatura “.” e “-”.",
   "pci_projects_project_storages_containers_add_description": "Ospita il tuo catalogo di dati nella nostra soluzione Object Storage. Grazie alle API S3 è possibile gestire questi dati dalla tua applicazione.",
   "pci_projects_project_storages_containers_add_description_link": "Consulta le tariffe",
-  "pci_projects_project_storages_containers_add_offer_storage-s3-standard": "Standard Object Storage - S3 API",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-standard": "API S3",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_description": "Soluzione di storage ideale per archiviare grandi volumi di dati al miglior prezzo. Questa soluzione include un'ampia gamma di API S3.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_label": "Nuovo",
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf_label": "Nuovo",
   "pci_projects_project_storages_containers_add_create_or_linked_user_title": "Associare un utente",
   "pci_projects_project_storages_containers_add_create_or_linked_user_success_field_secret_key": "La tua chiave segreta S3:",
   "pci_projects_project_storages_containers_add_create_or_linked_user_description": "È possibile consentire l'accesso al container a uno degli utenti OpenStack preconfigurati con un ruolo \"Amministratore\" o \"Operatore Object Storage\" oppure creare un nuovo utente.",
-  "pci_projects_project_storages_containers_add_success_message_with_user_creation": "Il container {{container}} è stato creato correttamente. L'utente S3 {{ userName }} è l'amministratore di questo container."
+  "pci_projects_project_storages_containers_add_success_message_with_user_creation": "Il container {{container}} è stato creato correttamente. L'utente S3 {{ userName }} è l'amministratore di questo container.",
+  "pci_projects_project_storages_containers_add_pattern_help_storage-s3": "Il nome del container deve avere tra 3 e 63 caratteri. Deve iniziare e terminare con caratteri alfanumerici minuscoli (da “a” a “z” e da 0 a 9) e può includere i segni di punteggiatura “.” e “-”."
 }

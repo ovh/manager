@@ -44,6 +44,11 @@
         <cui-message-container
             data-messages="$ctrl.messages"
         ></cui-message-container>
+        <oui-message type="warning" data-ng-if="$ctrl.isFileUploadDisabled">
+            <span
+                data-translate="pci_projects_project_storages_containers_container_maintenance_message"
+            ></span>
+        </oui-message>
     </section>
 
     <div data-ng-if="$ctrl.container">
@@ -178,6 +183,15 @@
                 <span data-ng-bind="$value | date:'medium'"></span>
             </oui-datagrid-column>
             <oui-datagrid-column
+                data-title=":: 'pci_projects_project_storages_containers_container_storage_class_label' | translate"
+                data-property="storageClass"
+                data-type="string"
+                data-searchable
+                data-sortable="asc"
+                data-filterable
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_container_size_label' | translate"
                 data-property="size"
                 data-type="number"
@@ -242,7 +256,10 @@
             </oui-action-menu>
 
             <oui-datagrid-topbar>
-                <oui-button data-on-click="$ctrl.addObject()">
+                <oui-button
+                    data-on-click="$ctrl.addObject()"
+                    data-disabled="$ctrl.isFileUploadDisabled"
+                >
                     <span
                         class="oui-icon oui-icon-add pr-1"
                         aria-hidden="true"
