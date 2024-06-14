@@ -20,6 +20,11 @@ export default class NetAppVolumesDashboardSnapshotsRestoreController {
     return this.goToSnapshots();
   }
 
+  validateVolumeName() {
+    this.volumeNameValidated =
+      (this.volumeName === this.volume.name) || (this.volumeName === this.volumeId);
+  }
+
   restoreVolume() {
     this.isLoading = true;
     this.trackClick('restore::confirm');
