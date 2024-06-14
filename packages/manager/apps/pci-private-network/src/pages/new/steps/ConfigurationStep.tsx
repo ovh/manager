@@ -213,6 +213,9 @@ export default function ConfigurationStep({
     });
   };
 
+  const missingNameError =
+    isNetworkNameInputTouched && !store.form.privateNetworkName.length;
+
   return (
     <StepComponent
       title={t('pci_projects_project_network_private_create_configure')}
@@ -235,9 +238,7 @@ export default function ConfigurationStep({
         <div className="my-8">
           <OsdsFormField
             error={
-              isNetworkNameInputTouched && !store.form.privateNetworkName.length
-                ? tCommon('common_field_error_required')
-                : ''
+              missingNameError ? tCommon('common_field_error_required') : ''
             }
           >
             <OsdsText color={ODS_THEME_COLOR_INTENT.text} slot="label">
@@ -248,16 +249,19 @@ export default function ConfigurationStep({
               class="md:w-2/5"
               name="privateNetworkName"
               type={ODS_INPUT_TYPE.text}
-              color={ODS_THEME_COLOR_INTENT.primary}
               defaultValue={DEFAULT_FORM_STATE.privateNetworkName}
               value={store.form.privateNetworkName}
-              error={
-                isNetworkNameInputTouched &&
-                !store.form.privateNetworkName.length
+              color={
+                missingNameError
+                  ? ODS_THEME_COLOR_INTENT.error
+                  : ODS_THEME_COLOR_INTENT.primary
               }
+              error={missingNameError}
+              onOdsInputBlur={() => {
+                setIsNetworkNameInputTouched(true);
+              }}
               onOdsValueChange={(event) => {
                 setIsNetworkNameInputTouched(true);
-
                 store.setForm({ privateNetworkName: `${event.target.value}` });
               }}
             />
