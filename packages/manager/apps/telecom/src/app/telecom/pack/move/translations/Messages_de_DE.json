@@ -256,7 +256,7 @@
   "pack_move_building_details_title": "Gebäudereferenz für FTTH-Angebote",
   "pack_move_pto_title": "PTO-Fasergehäuse (optischer Endpunkt)",
   "pack_move_pto_description": "Verfügen Sie bereits über ein Glasfasergehäuse mit der Installationsadresse? (optische Steckdose)",
-  "pack_move_pto_yes": "Ich habe ein Gehäuse mit folgendem Hinweis:",
+  "pack_move_pto_yes": "Ich habe ein Gehäuse mit der folgenden Referenz",
   "pack_move_pto_yes_description": "Wir werden die bestehende Steckdose (PTO) überschreiben.",
   "pack_move_pto_no": "Nein, ich habe keine PTO Box",
   "pack_move_pto_no_description": "Ein Techniker installiert bei seinem Eingriff eine optische Steckdose (PTO).",
