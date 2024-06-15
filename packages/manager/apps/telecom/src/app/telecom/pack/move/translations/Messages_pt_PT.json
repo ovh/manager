@@ -256,7 +256,7 @@
   "pack_move_building_details_title": "Referência dos edifícios para as ofertas FTTH",
   "pack_move_pto_title": "Caixa De Fibra PTO (Ponto De Terminação Óptica)",
   "pack_move_pto_description": "Já tem uma caixa de fibra no endereço da instalação? (tomada óptica mural)",
-  "pack_move_pto_yes": "Tenho uma caixa com a seguinte referência:",
+  "pack_move_pto_yes": "Tenho uma caixa com a seguinte referência",
   "pack_move_pto_yes_description": "Iremos eliminar a atual tomada óptica (PTO).",
   "pack_move_pto_no": "Não, não tenho uma caixa PTO",
   "pack_move_pto_no_description": "Um técnico procederá à instalação de uma tomada óptica (PTO) aquando da sua intervenção.",

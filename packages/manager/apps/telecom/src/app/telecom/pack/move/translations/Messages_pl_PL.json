@@ -245,7 +245,7 @@
   "pack_move_building_details_title": "Referencyjne budynki dla ofert FTTH",
   "pack_move_pto_title": "Obudowa Włókna PTO (Optyczny Punkt Terminacji)",
   "pack_move_pto_description": "Czy korzystasz już z obudowy światłowodu pod adresem instalacji? (gniazdo optyczne ścienne)",
-  "pack_move_pto_yes": "Mam obudowę z następującym odniesieniem:",
+  "pack_move_pto_yes": "Mam obudowę z następującym identyfikatorem",
   "pack_move_pto_yes_description": "Zmiażdżymy istniejące gniazdo optyczne (PTO).",
   "pack_move_pto_no": "Nie mam aparatu PTO",
   "pack_move_pto_no_description": "Technik przeprowadzi instalację gniazdka optycznego (PTO) podczas interwencji.",
