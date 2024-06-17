@@ -1,6 +1,7 @@
 import { DashboardLayout, Subtitle, Title } from '@ovhcloud/manager-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useTranslation } from 'react-i18next';
 import {
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
@@ -22,7 +23,6 @@ import LinkIcon from '@/components/LinkIcon/LinkIcon';
 import UpdateSoftwareModal from '@/components/Modal/UpdateSoftwareConfirmModal';
 import { getLatestVersions } from '@/utils/rancher';
 import { getRancherByIdUrl } from '@/utils/route';
-import { useTranslate } from '@/utils/translation';
 
 interface VersionTableProps {
   versions: RancherVersion[];
@@ -37,7 +37,7 @@ const VersionTable = ({
   setSelectedVersion,
   currentVersion,
 }: VersionTableProps) => {
-  const { t } = useTranslate([
+  const { t } = useTranslation([
     'pci-rancher/updateSoftware',
     'pci-rancher/dashboard',
   ]);
@@ -77,11 +77,12 @@ const VersionTable = ({
                       {currentVersion.name === version.name &&
                         ` (${t('updateSoftwareRancherCurrentVersion')})`}
                     </OsdsText>
-                    {version.status === 'UNAVAILABLE' && (
-                      <OsdsChip className="ml-2">
-                        {t('updateSoftwareRancherTableUnavailable')}
-                      </OsdsChip>
-                    )}
+                    {version.status === 'UNAVAILABLE' &&
+                      currentVersion.name !== version.name && (
+                        <OsdsChip className="ml-2">
+                          {t('updateSoftwareRancherTableUnavailable')}
+                        </OsdsChip>
+                      )}
                   </span>
                 </OsdsRadioButton>
                 {currentVersion.name !== version.name &&
@@ -119,7 +120,7 @@ const UpdateSoftware: FC<UpdateSoftwareProps> = ({
 }) => {
   const { projectId } = useParams();
 
-  const { t } = useTranslate('pci-rancher/updateSoftware');
+  const { t } = useTranslation('pci-rancher/updateSoftware');
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const hrefRancherById = useHref(getRancherByIdUrl(projectId, rancher?.id));
   const [selectedVersion, setSelectedVersion] = useState('');

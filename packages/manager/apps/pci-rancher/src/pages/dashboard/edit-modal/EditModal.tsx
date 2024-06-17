@@ -25,8 +25,7 @@ export default function EditModal() {
         onEditRancher={(r: RancherService) =>
           editRancherName({ rancher: r, editAction: EditAction.EditName })
         }
-        onClose={() => navigate('..')}
-      />
+        onClose={() => navigate('..')}      />
     </div>
   );
 }

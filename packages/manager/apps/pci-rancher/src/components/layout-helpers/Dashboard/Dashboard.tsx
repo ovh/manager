@@ -1,6 +1,7 @@
 import { ODS_MESSAGE_TYPE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import React from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Title } from '@ovhcloud/manager-components';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
@@ -12,7 +13,6 @@ import { COMMON_PATH } from '@/routes';
 import { TrackingPageView } from '@/utils/tracking';
 import RancherDetail from './RancherDetail';
 import TabBar from './TabBar';
-import { useTranslate } from '@/utils/translation';
 import LinkIcon from '@/components/LinkIcon/LinkIcon';
 import useVersions from '@/hooks/useVersions';
 
@@ -45,7 +45,7 @@ const getResponseStatusByEditAction = (
 const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const { projectId, rancherId } = useParams();
   const { data: versions } = useVersions();
-  const { t } = useTranslate('pci-rancher/dashboard');
+  const { t } = useTranslation('pci-rancher/dashboard');
   useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
 

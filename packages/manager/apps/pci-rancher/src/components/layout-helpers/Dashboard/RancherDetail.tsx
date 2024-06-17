@@ -18,8 +18,9 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
-
 import { useHref } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import { MutationStatus } from '@tanstack/react-query';
 import { RancherService, RancherVersion, ResourceStatus } from '@/api/api.type';
 import LinkIcon from '@/components/LinkIcon/LinkIcon';
@@ -29,7 +30,6 @@ import UpdateVersionBanner from '@/components/UpdateRancherVersionBanner/UpdateV
 import { useTrackingAction } from '@/hooks/useTrackingPage';
 import { getLatestVersionAvailable } from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import { useTranslate } from '@/utils/translation';
 
 export interface RancherDetailProps {
   rancher: RancherService;
@@ -46,7 +46,7 @@ const RancherDetail = ({
   hasErrorAccessDetail,
   versions,
 }: RancherDetailProps) => {
-  const { t } = useTranslate([
+  const { t } = useTranslation([
     'pci-rancher/dashboard',
     'pci-rancher/updateSoftware',
     'pci-rancher/listing',

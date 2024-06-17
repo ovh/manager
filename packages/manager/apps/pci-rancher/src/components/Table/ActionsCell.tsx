@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   OsdsButton,
   OsdsMenu,
@@ -16,7 +17,6 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ResourceStatus } from '@/api/api.type';
 import { RancherActionsCell } from './Table.type';
 import './Table.scss';
-import { useTranslate } from '@/utils/translation';
 
 export default function ActionsCell({
   row,
@@ -24,7 +24,7 @@ export default function ActionsCell({
   onClickManage,
 }: Readonly<RancherActionsCell>) {
   const editable = true;
-  const { t } = useTranslate('pci-rancher/listing');
+  const { t } = useTranslation('pci-rancher/listing');
 
   const NOT_EDITABLE_STATUS: ResourceStatus[] = [
     ResourceStatus.CREATING,

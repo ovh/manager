@@ -14,13 +14,13 @@ import {
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { RancherService } from '@/api/api.type';
 import { isValidRancherName } from '@/utils/rancher';
 import Modal from './Modal';
 import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import { useTranslate } from '@/utils/translation';
 
 interface DeleteModalProps {
   rancher: RancherService;
@@ -33,7 +33,7 @@ const EditNameModal = ({
   onEditRancher,
   onClose,
 }: DeleteModalProps) => {
-  const { t } = useTranslate('pci-rancher/listing');
+  const { t } = useTranslation('pci-rancher/listing');
   const trackAction = useTrackingAction();
   useTrackingPage(TrackingPageView.EditNameModal);
   const [newName, setNewName] = useState(rancher.currentState?.name || '');

@@ -6,7 +6,7 @@ import { ODS_ICON_NAME, ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useHref } from 'react-router-dom';
-import { useTranslate } from '@/utils/translation';
+import { useTranslation } from 'react-i18next';
 import {
   getCurrentVersionInfo,
   getLatestVersionAvailable,
@@ -66,7 +66,7 @@ const UpdateVersionBanner = ({
   const isVersionDeprecied =
     currentVersionInfo && isVersionDeprecated(currentVersionInfo);
 
-  const { t } = useTranslate('pci-rancher/updateSoftware');
+  const { t } = useTranslation('pci-rancher/updateSoftware');
   const hrefUpdateSoftware = useHref('./update-software');
 
   const shouldDisplayUpdateSoftware =

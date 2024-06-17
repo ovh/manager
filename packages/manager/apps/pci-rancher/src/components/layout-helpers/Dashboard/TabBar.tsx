@@ -9,11 +9,11 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React, { FC, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { useTranslate } from '@/utils/translation';
+import { useTranslation } from 'react-i18next';
 import { DashboardTabItemProps } from './Dashboard';
 
 const TabBar: FC<{ tabs: DashboardTabItemProps[] }> = ({ tabs }) => {
-  const { t } = useTranslate('pci-rancher/dashboard');
+  const { t } = useTranslation('pci-rancher/dashboard');
 
   const location = useLocation();
 

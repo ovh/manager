@@ -6,15 +6,16 @@ import {
   useParams,
   useResolvedPath,
 } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb';
 import Loading from '@/components/Loading/Loading';
-import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
+import Dashboard, {
+  DashboardTabItemProps,
+} from '@/components/layout-helpers/Dashboard/Dashboard';
 import { useRancher } from '@/hooks/useRancher';
 import { getRanchersUrl } from '@/utils/route';
-import { DashboardTabItemProps } from '../../components/layout-helpers/Dashboard/Dashboard';
-import { useTranslate } from '@/utils/translation';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
@@ -22,7 +23,7 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 
 export default function DashboardPage() {
   const { projectId } = useParams();
-  const { t } = useTranslate('pci-rancher/dashboard');
+  const { t } = useTranslation('pci-rancher/dashboard');
   const { data: rancher, error, isLoading } = useRancher({
     refetchInterval: 5000,
   });
