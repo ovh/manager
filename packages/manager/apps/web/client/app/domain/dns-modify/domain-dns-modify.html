@@ -1,0 +1,90 @@
+<div>
+    <div ng-if="$ctrl.isLoading" class="text-center">
+        <oui-spinner size="l" />
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <oui-back-button ng-if="!$ctrl.isLoading" on-click="$ctrl.goBack()">
+                <span>
+                    {{ ::"domain_dns_modify" | translate }}
+                </span>
+            </oui-back-button>
+
+            <oui-message ng-if="alerts.main" type="{{ alerts.main.type }}">
+                {{ alerts.main.message | translate:alerts.main.data }}
+                <a
+                    ng-if="alerts.main.link"
+                    ng-href="{{ alerts.main.link.href }}"
+                >
+                    {{ alerts.main.link.message | translate }}
+                </a>
+            </oui-message>
+
+            <div
+                ng-if="!$ctrl.isLoading && !$ctrl.isOperationOngoing && !alerts.main"
+            >
+                <p ng-if="$ctrl.dns.originalNames.length > 0">
+                    <span>
+                        {{ ::"domain_dns_currently_in_use" | translate }}
+                    </span>
+                    <strong>
+                        {{ ::$ctrl.dns.originalNames.join(", ") }}
+                    </strong>
+                </p>
+
+                <div ng-if="$ctrl.dns.original">
+                    <oui-message
+                        type="warning"
+                        dismissable
+                        aria-close-button-label="{{ ::'domain_dns_close_message_tooltip' | translate }}"
+                    >
+                        <p class="oui-message__body">
+                            {{ ::"domain_dns_warning_line1" | translate }}
+                        </p>
+                        <p class="oui-message__body">
+                            {{ ::"domain_dns_warning_line2" | translate }} {{ '
+                            ' }}
+                            <a
+                                href="https://help.ovhcloud.com/csm/fr-dns-servers-edit?id=kb_article_view&sysparm_article=KB0063455"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {{ ::"domain_dns_warning_line2_link" | translate
+                                }}
+                                <span
+                                    class="oui-icon oui-icon-external-link"
+                                    aria-hidden="true"
+                                ></span>
+                            </a>
+                        </p>
+                    </oui-message>
+
+                    <oui-radio-group
+                        model="$ctrl.selectedConfigurationType"
+                        class="mt-4"
+                    >
+                        <div
+                            ng-include="$ctrl.constants.COMPONENTS_PATH_PREFIX + 'internal-config-radio.html'"
+                        ></div>
+                        <hr />
+                        <div
+                            ng-include="$ctrl.constants.COMPONENTS_PATH_PREFIX + 'external-config-radio.html'"
+                        ></div>
+                        <hr />
+                        <div
+                            ng-include="$ctrl.constants.COMPONENTS_PATH_PREFIX + 'mixed-config-radio.html'"
+                        ></div>
+                    </oui-radio-group>
+                    <validation-modal
+                        ng-if="$ctrl.isValidationModalOpened"
+                        is-updating="$ctrl.isUpdating"
+                        modified-dns-list="$ctrl.modifiedDnsList"
+                        apply-configuration="$ctrl.applyConfiguration()"
+                        close-validation-modal="$ctrl.closeValidationModal()"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
