@@ -1,24 +1,29 @@
 import { useEffect, useState } from 'react';
 import { User } from '@/context/User/context';
+import { useFetchServerTime } from '@/data/hooks/useUtils';
+import { getRedirectLoginUrl } from '@/utils/url-builder';
 
 export const useSessionModal = (user: User, warningPercentage: number) => {
   const [showWarningModal, setShowWarningModal] = useState<boolean>(false);
   const [showExpiredModal, setShowExpiredModal] = useState<boolean>(false);
+  const { data: currentServerTime, isError, isFetched } = useFetchServerTime();
 
   useEffect(() => {
+    if (isError || !isFetched) return undefined;
     if (!user) return undefined;
 
     const { exp, iat } = user;
     const duration = exp - iat;
     const warningTime = duration * warningPercentage;
 
-    const currentTime = Math.floor(Date.now() / 1000);
-    const timeElapsed = currentTime - iat;
+    const timeElapsed = currentServerTime - iat;
     const remainingWarningTime = warningTime - timeElapsed;
-    const remainingExpireTime = exp - currentTime;
+    const remainingExpireTime = exp - currentServerTime;
 
     if (remainingExpireTime <= 0) {
       setShowExpiredModal(true);
+      const redirectUrl = getRedirectLoginUrl(user);
+      window.location.assign(redirectUrl);
       return undefined;
     }
 
@@ -46,7 +51,7 @@ export const useSessionModal = (user: User, warningPercentage: number) => {
       clearTimeout(expireTimerId);
       clearTimeout(warningTimerId);
     };
-  }, [user]);
+  }, [user, isFetched]);
 
   return {
     showExpiredModal,
