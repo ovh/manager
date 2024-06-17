@@ -1,5 +1,5 @@
-import controller from './domain-dns.controller';
 import template from './DNS.html';
+import controller from './domain-dns.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
   const state = {
