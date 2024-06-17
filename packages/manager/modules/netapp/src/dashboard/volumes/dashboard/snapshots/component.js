@@ -8,6 +8,7 @@ export default {
     editSnapshot: '<',
     serviceName: '<',
     snapshots: '<',
+    hasOnlySystemSnapshot: '<',
     totalSnapshots: '<',
     volumeId: '<',
     snapshotPolicies: '<',

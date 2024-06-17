@@ -1,4 +1,5 @@
 import Snapshot from './Snapshot.class';
+import { SNAPSHOT_TYPE } from './restore/constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard.volumes.dashboard.snapshots', {
@@ -74,7 +75,11 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((snapshots) =>
             snapshots.map((snapshot) => new Snapshot(snapshot)),
           ),
-
+      hasOnlySystemSnapshot: /* @ngInject */ (snapshots) => !snapshots.find(
+            (snapshot) =>
+              snapshot.type === SNAPSHOT_TYPE.AUTOMATIC
+              || snapshot.type === SNAPSHOT_TYPE.MANUAL
+          ),
       totalSnapshots: /* @ngInject */ ($http, $q, serviceName) =>
         $http
           .get(`/storage/netapp/${serviceName}/share`)
