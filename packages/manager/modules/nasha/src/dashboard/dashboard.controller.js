@@ -3,20 +3,12 @@ import {
   PREFIX_TRACKING_DASHBOARD,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
   COMMIT_IMPRESSION_TRACKING_DATA,
-  GUIDES_URL,
 } from './dashboard.constants';
 
 export default class NashaDashboardController {
-  /* @ngInject */
-  constructor(coreConfig) {
+  constructor() {
     this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
     this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
-    this.user = coreConfig.getUser();
-  }
-
-  $onInit() {
-    this.nashaGuidesUrl =
-      GUIDES_URL[this.user.ovhSubsidiary] || GUIDES_URL.DEFAULT;
   }
 
   get name() {

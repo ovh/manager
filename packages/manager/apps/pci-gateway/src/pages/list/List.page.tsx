@@ -42,7 +42,6 @@ import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useAggregatedGateway } from '@/api/hooks/useGateway';
 import ListGuard from '@/pages/list/ListGuard';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
-import HidePreloader from '@/core/HidePreloader';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -95,7 +94,6 @@ export default function ListingPage() {
   return (
     <ListGuard projectId={projectId}>
       <>
-        <HidePreloader />
         {project && (
           <OsdsBreadcrumb
             items={[

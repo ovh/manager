@@ -32,7 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
-      orderUrl: /* @ngInject */ (User) => User.getUrlOf('threeAZClusterOrder'),
+      orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
       getClusterDashboardLink: /* @ngInject */ ($state) => ({ id }) =>
         $state.href('app.dedicated-cluster.cluster', {
           clusterId: id,
