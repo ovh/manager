@@ -1,10 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OnboardingLayout } from '@ovhcloud/manager-components';
+import { OnboardingLayout, PageLayout } from '@ovhcloud/manager-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import onboardingImgSrc from '../../assets/onboarding-img.png';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
-import PageLayout from '@/components/PageLayout/PageLayout';
 import { getCreateRancherUrl } from '@/utils/route';
 import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';

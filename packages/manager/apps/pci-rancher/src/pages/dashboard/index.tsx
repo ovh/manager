@@ -1,3 +1,4 @@
+import { DashboardLayout, ErrorBanner } from '@ovhcloud/manager-components';
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -6,16 +7,14 @@ import {
   useParams,
   useResolvedPath,
 } from 'react-router-dom';
-import { ErrorBanner } from '@ovhcloud/manager-components';
 import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb';
 import Loading from '@/components/Loading/Loading';
 import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
-import { DashboardTabItemProps } from '../../components/layout-helpers/Dashboard/Dashboard';
 import { useRancher } from '@/hooks/useRancher';
-import PageLayout from '@/components/PageLayout/PageLayout';
 import { getRanchersUrl } from '@/utils/route';
+import { DashboardTabItemProps } from '../../components/layout-helpers/Dashboard/Dashboard';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
@@ -63,12 +62,16 @@ export default function DashboardPage() {
   }
 
   return (
-    <PageLayout>
-      <Suspense fallback={<Loading />}>
-        <Breadcrumb items={[{ label: data?.data.targetSpec.name }]} />
-        {data?.data && <Dashboard tabs={tabsList} rancher={data.data} />}
-      </Suspense>
+    <Suspense fallback={<Loading />}>
+      <DashboardLayout
+        breadcrumb={
+          <Breadcrumb items={[{ label: data?.data.targetSpec.name }]} />
+        }
+        content={
+          data?.data && <Dashboard tabs={tabsList} rancher={data.data} />
+        }
+      />
       <Outlet />
-    </PageLayout>
+    </Suspense>
   );
 }

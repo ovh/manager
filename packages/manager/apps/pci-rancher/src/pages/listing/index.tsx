@@ -14,9 +14,9 @@ import {
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
+import { Title } from '@ovhcloud/manager-components';
 import { RancherService } from '@/api/api.type';
 import TableContainer from '@/components/Table/TableContainer';
-import Title from '@/components/Title/Title';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
 import { getOnboardingUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';

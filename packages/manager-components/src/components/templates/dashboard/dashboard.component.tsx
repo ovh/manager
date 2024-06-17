@@ -3,6 +3,7 @@ import React from 'react';
 import { Headers, HeadersProps } from '../../content';
 
 import { Links, LinksProps } from '../../typography';
+import { PageLayout } from '../layout/layout.component';
 export interface DashboardLayoutProps {
   breadcrumb?: React.ReactElement;
   content?: React.ReactElement;
@@ -21,7 +22,7 @@ export const DashboardLayout = ({
   tabs,
 }: DashboardLayoutProps) => {
   return (
-    <div className="m-8">
+    <PageLayout>
       <div className="mb-3">{breadcrumb}</div>
       {header && (
         <Headers
@@ -41,6 +42,6 @@ export const DashboardLayout = ({
       )}
       <div>{tabs}</div>
       <div className="mt-8">{content}</div>
-    </div>
+    </PageLayout>
   );
 };
