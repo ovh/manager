@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.46.0...@ovh-ux/manager-pci@6.47.0) (2024-06-17)
+
+
+### Features
+
+* **pci:** change redis name for angularjs app ([#11939](https://github.com/ovh/manager/issues/11939)) ([#12009](https://github.com/ovh/manager/issues/12009)) ([a5d4017](https://github.com/ovh/manager/commit/a5d40171960444b4dcb215edc48e9eaec072744a))
+* **pci:** merge S3 standard & high-perf endpoints ([#11416](https://github.com/ovh/manager/issues/11416)) ([93b77db](https://github.com/ovh/manager/commit/93b77db9e2a11e3f81ac35ce5912ead3e89f8959))
+
+
+
+
+
 # [6.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.45.0...@ovh-ux/manager-pci@6.46.0) (2024-06-13)
 
 
