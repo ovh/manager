@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.57.7...@ovh-ux/manager-container-app@0.58.0) (2024-06-17)
+
+
+### Bug Fixes
+
+* **container:** visual bug on vmware sidebar item ([#11932](https://github.com/ovh/manager/issues/11932)) ([6e17277](https://github.com/ovh/manager/commit/6e172772a440f68cda416f48dadf1f16076ef11b))
+
+
+### Features
+
+* **dedicated.nutanix:** add nutanix in sidebar order ([#11761](https://github.com/ovh/manager/issues/11761)) ([80f1e8d](https://github.com/ovh/manager/commit/80f1e8d04f88aa08f1a6920445e81db873b0d020))
+
+
+
+
+
 ## [0.57.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.57.6...@ovh-ux/manager-container-app@0.57.7) (2024-06-17)
 
 

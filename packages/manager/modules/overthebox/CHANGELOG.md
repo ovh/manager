@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.16.2...@ovh-ux/manager-overthebox@6.17.0) (2024-06-17)
+
+
+### Features
+
+* **overthebox:** remove hardware version and change label ([#11875](https://github.com/ovh/manager/issues/11875)) ([23ff5c8](https://github.com/ovh/manager/commit/23ff5c830ce5f9947fdba44f924cfc5441b1fb0e))
+
+
+
+
+
 ## [6.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.16.1...@ovh-ux/manager-overthebox@6.16.2) (2024-06-17)
 
 

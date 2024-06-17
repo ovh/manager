@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.1.3...@ovh-ux/manager-pci-gateway-app@0.1.4) (2024-06-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3052] ([f98e68f](https://github.com/ovh/manager/commit/f98e68f4ce76f32a266e22e0ccc4e5507e727bfa))
+* **pci:** gateway & public-ip preloader ([#11929](https://github.com/ovh/manager/issues/11929)) ([7cb81e5](https://github.com/ovh/manager/commit/7cb81e55aed60824df719f9a5397500736bbbf1d))
+
+
+
+
+
 ## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.1.2...@ovh-ux/manager-pci-gateway-app@0.1.3) (2024-06-17)
 
 
