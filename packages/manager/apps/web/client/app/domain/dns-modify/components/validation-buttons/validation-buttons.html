@@ -1,0 +1,23 @@
+<div class="oui-button-group mt-2">
+    <button
+        class="oui-button oui-button oui-button_primary"
+        ng-disabled="!$ctrl.canSubmit"
+        ng-click="$ctrl.openValidationModal()"
+        ng-attr-title="{{ $ctrl.canSubmit ? 'domain_dns_validation_button_apply_configuration' : 'domain_dns_validation_button_apply_configuration_disabled' | translate }}"
+    >
+        <span>
+            {{ ::"domain_dns_validation_button_apply_configuration" | translate
+            }}
+        </span>
+    </button>
+    <button
+        ng-if="$ctrl.showCancelModificationsButton"
+        class="oui-button oui-button oui-button_secondary"
+        ng-click="$ctrl.cancelModifications()"
+    >
+        <span>
+            {{ ::"domain_dns_validation_button_cancel_modifications" | translate
+            }}
+        </span>
+    </button>
+</div>
