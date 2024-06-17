@@ -1,13 +1,12 @@
-import React, { Suspense } from 'react';
-import { ErrorBanner } from '@ovhcloud/manager-components';
 import { Outlet } from 'react-router-dom';
+import { ErrorBanner, PageLayout } from '@ovhcloud/manager-components';
+import React, { Suspense } from 'react';
 import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb';
 import Loading from '@/components/Loading/Loading';
-import Listing from './listing';
 import { useRanchers } from '@/hooks/useRancher';
-import PageLayout from '@/components/PageLayout/PageLayout';
+import Listing from './listing';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;

@@ -7,6 +7,7 @@ import { OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 
+import { Title } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useMutationState } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +16,6 @@ import { RancherService } from '@/api/api.type';
 import { useTrackingPage } from '@/hooks/useTrackingPage';
 import { COMMON_PATH } from '@/routes';
 import { TrackingPageView } from '@/utils/tracking';
-import Title from '../../Title/Title';
 import RancherDetail from './RancherDetail';
 import TabBar from './TabBar';
 
