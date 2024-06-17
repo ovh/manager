@@ -5,7 +5,7 @@ import {
 } from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import {
   OsdsIcon,
   OsdsLink,
@@ -44,6 +44,7 @@ export const LocationStep = () => {
   const { t: tAdd } = useTranslation('add');
   const { t: tRegionsList } = useTranslation('regions-list');
   const { projectId } = useParams();
+  const [searchParams] = useSearchParams();
   const { tracking } = useContext(ShellContext).shell;
   const store = useNewGatewayStore();
 
@@ -80,6 +81,22 @@ export const LocationStep = () => {
       ),
     }));
   }, [store.form.regionName]);
+
+  useEffect(() => {
+    const regionName = searchParams.get('region');
+    if (regionName) {
+      const targetRegion = state.regions.find(
+        (region) => region.name === regionName,
+      );
+      if (targetRegion) {
+        setState((prev) => ({
+          ...prev,
+          region: targetRegion,
+        }));
+        store.updateForm.regionName(targetRegion.name);
+      }
+    }
+  }, [searchParams, state.regions]);
 
   return (
     <StepComponent
