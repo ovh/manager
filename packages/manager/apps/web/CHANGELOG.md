@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.27.2...@ovh-ux/manager-web@18.28.0) (2024-06-17)
+
+
+### Bug Fixes
+
+* **web.domain:** fix dns zone restoration missing date ([#11954](https://github.com/ovh/manager/issues/11954)) ([f85fbd2](https://github.com/ovh/manager/commit/f85fbd2001c09b78b674e6398e4d6f1cd25c3722))
+* **web.domain:** fix params for renew management redirection ([#11873](https://github.com/ovh/manager/issues/11873)) ([9c009cf](https://github.com/ovh/manager/commit/9c009cfeeb1d1b76670ed4a19eeaf746fce7c31e))
+* **web:** fix owner display on dashboard ([#11672](https://github.com/ovh/manager/issues/11672)) ([b7e67f5](https://github.com/ovh/manager/commit/b7e67f5818703cfb37f1d452fcc2dd0d99960917))
+
+
+### Features
+
+* **web:** improve the user experience on "ongoing operations" ([#11602](https://github.com/ovh/manager/issues/11602)) ([73c32f9](https://github.com/ovh/manager/commit/73c32f9fa93c41632f7c7abbddbf50d3e3c56481))
+
+
+
+
+
 ## [18.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.27.1...@ovh-ux/manager-web@18.27.2) (2024-06-17)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.16.2...@ovh-ux/manager-telecom@15.17.0) (2024-06-17)
+
+
+### Bug Fixes
+
+* **xdsl.templates:** display error reason on template creation ([#11774](https://github.com/ovh/manager/issues/11774)) ([b258b04](https://github.com/ovh/manager/commit/b258b04e1d6f21548ac428927c565da52f0fb5cd))
+
+
+### Features
+
+* **pack:** add gtr default value for migration offer ([#11706](https://github.com/ovh/manager/issues/11706)) ([b681d6d](https://github.com/ovh/manager/commit/b681d6d22b394927b2474f74f848b34f0297dca7))
+
+
+
+
+
 ## [15.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.16.1...@ovh-ux/manager-telecom@15.16.2) (2024-06-17)
 
 

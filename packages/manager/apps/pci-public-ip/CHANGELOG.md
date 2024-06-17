@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.1.7...@ovh-ux/manager-pci-public-ip-app@0.1.8) (2024-06-17)
+
+
+### Bug Fixes
+
+* **pci:** gateway & public-ip preloader ([#11929](https://github.com/ovh/manager/issues/11929)) ([7cb81e5](https://github.com/ovh/manager/commit/7cb81e55aed60824df719f9a5397500736bbbf1d))
+
+
+
+
+
 ## [0.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.1.6...@ovh-ux/manager-pci-public-ip-app@0.1.7) (2024-06-17)
 
 

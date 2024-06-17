@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.14.2...@ovh-ux/manager-nasha@2.15.0) (2024-06-17)
+
+
+### Features
+
+* **nasha:** add guide links on dashbaord ([#11773](https://github.com/ovh/manager/issues/11773)) ([2335219](https://github.com/ovh/manager/commit/2335219c792cbba746c838da0f65f1c7c27e2e32))
+
+
+
+
+
 ## [2.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.14.1...@ovh-ux/manager-nasha@2.14.2) (2024-06-17)
 
 

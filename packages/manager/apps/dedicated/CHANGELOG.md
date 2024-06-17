@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.38.6...@ovh-ux/manager-dedicated@19.39.0) (2024-06-17)
+
+
+### Bug Fixes
+
+* **dedicated:** add translation for sql server 2022 ([#11678](https://github.com/ovh/manager/issues/11678)) ([6d5cad1](https://github.com/ovh/manager/commit/6d5cad17dba1d2a5eba69c3bdb679374e01e2ea4))
+* **i18n:** add missing translations [CDS 3052] ([f98e68f](https://github.com/ovh/manager/commit/f98e68f4ce76f32a266e22e0ccc4e5507e727bfa))
+
+
+### Features
+
+* **dedicated-cloud.federation:** removing federation ([#11677](https://github.com/ovh/manager/issues/11677)) ([e39252f](https://github.com/ovh/manager/commit/e39252ffbda3bb8cd0ecb1c264f43e5e1617f7cc))
+* **dedicated.vmware:** update first link in onboarding page ([#11921](https://github.com/ovh/manager/issues/11921)) ([d7635c9](https://github.com/ovh/manager/commit/d7635c98a8d1adac589de8e99b8dd76606e51197))
+* **dedicated:** add dedicated cta for cluster ([#11763](https://github.com/ovh/manager/issues/11763)) ([d0466bd](https://github.com/ovh/manager/commit/d0466bdd2de1ce7118de4ad783a5a851b602aca4))
+* **dedicated:** add information for ordering delay ([#11951](https://github.com/ovh/manager/issues/11951)) ([fd54f5e](https://github.com/ovh/manager/commit/fd54f5e8d2fd5f9bca10f2a925c7f42078286f42))
+
+
+
+
+
 ## [19.38.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.38.5...@ovh-ux/manager-dedicated@19.38.6) (2024-06-17)
 
 
