@@ -61,8 +61,8 @@
   "domain_operations_statusOperation_cancelled": "Annullata",
   "domain_operations_statusOperation_doing": "In corso",
   "domain_operations_statusOperation_done": "Completata",
-  "domain_operations_statusOperation_error": "Errore",
-  "domain_operations_statusOperation_todo": "Da fare",
+  "domain_operations_statusOperation_error": "Da elaborare",
+  "domain_operations_statusOperation_todo": "Pianificato",
   "domain_operations_update_title": "Dati operazione",
   "domain_operations_update": "Modificare i dati dell’operazione",
   "domain_operations_update_info": "È possibile modificare i dati relativi all'operazione <strong>\"{{t0}}\"</strong> sul dominio <strong>{{t1}}</strong>",
@@ -126,5 +126,7 @@
   "domain_operations_progress_instructions_7": "È possibile contattare l'attuale provider del dominio per richiedere la sua autorizzazione.",
   "operation_tab_DOMAIN": "Domini",
   "domain_operations_nicOperation_ContactControlAcknowledge": "Conferma del contatto",
-  "domain_operations_nicOperation_ContactControlCorrect": "Correzione del contatto"
+  "domain_operations_nicOperation_ContactControlCorrect": "Correzione del contatto",
+  "domain_operations_table_header_creationDate": "Data di creazione",
+  "domain_operations_statusOperation_problem": "Fallito"
 }

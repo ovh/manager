@@ -16,7 +16,6 @@ export default {
     productId: '<',
     setMessage: '<',
     goToUserIamRole: '<',
-    goToImportUser: '<',
     trackClick: '<',
     trackPage: '<',
   },
