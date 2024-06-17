@@ -483,8 +483,8 @@
   "domain_configuration_dns_entry_add_step3_info": "Va a añadir el siguiente registro a la zona DNS:",
   "domain_configuration_dns_entry_add_step3_alert": "La adición se realizará de forma inmediata en la zona DNS, pero deberá tener en cuenta el tiempo de propagación (máximo 24 horas).",
   "domain_configuration_dns_entry_add_step3_check_warning1": "Atención: Pueden producirse uno o más conflictos:",
-  "domain_configuration_dns_entry_add_step3_check_warning2": "Este subdominio ya utiliza un registro DNS. Por motivos de incompatibilidad, no es posible registrar un registro CNAME. Elimine los registros existentes de este subdominio para poder añadir un registro de tipo CNAME.",
-  "domain_configuration_dns_entry_add_step3_check_warning3": "Este subdominio ya está siendo utilizado por un registro CNAME. Los registros CNAME no pueden coexistir con otros registros en el mismo subdominio.",
+  "domain_configuration_dns_entry_add_step3_check_warning2": "Este subdominio no está siendo utilizado por un registro CNAME. Los registros CNAME no pueden coexistir con otros registros en el mismo subdominio.",
+  "domain_configuration_dns_entry_add_step3_check_warning3": "El registro CNAME no se ha añadido al dominio raíz. Le recordamos que el dominio raíz es el dominio de base que ha registrado.",
   "domain_configuration_dns_entry_add_success": "El registro se ha añadido a la zona DNS, pero deberá tener en cuenta el tiempo de propagación (máximo 24 horas).",
   "domain_configuration_dns_entry_add_fail": "Se ha producido un error al intentar añadir el registro a la zona DNS.",
   "domain_configuration_dns_importtext_title": "Introduzca a continuación el texto correspondiente a las zonas DNS que quiera importar:",
@@ -830,5 +830,6 @@
   "domain_dashboard_general_information_alldom_renewal_link": "Cancelar la baja del pack",
   "domain_dashboard_general_information_alldom_termination_warning_close": "Cerrar",
   "domain_dashboard_show_authinfo_warning_part_1": "Atención: Le informamos de que la transferencia de su dominio hacia otro registrador implica la eliminación de la zona DNS y de su contenido. Su sitio web y su servicio de correo electrónico podrían dejar de funcionar.",
-  "domain_dashboard_show_authinfo_warning_part_2": "Si solo quiere cambiar de proveedor de alojamiento web o de servicio de correo electrónico, puede conservar la gestión de su dominio con OVHcloud y, de este modo, seguir disfrutando de los mejores precios y de servicios gratuitos como el antispam, la anonimización de sus datos personales o la solución DNSSEC."
+  "domain_dashboard_show_authinfo_warning_part_2": "Si solo quiere cambiar de proveedor de alojamiento web o de servicio de correo electrónico, puede conservar la gestión de su dominio con OVHcloud y, de este modo, seguir disfrutando de los mejores precios y de servicios gratuitos como el antispam, la anonimización de sus datos personales o la solución DNSSEC.",
+  "domain_configuration_dns_entry_add_step3_check_warning_info": "Error: No es posible guardar la configuración DNS. Por favor, compruebe que:"
 }
