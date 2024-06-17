@@ -27,6 +27,7 @@ export default function ModalDeleteOrganization() {
   const { addError, addSuccess } = useNotifications();
   const [hasDomain, setHasDomain] = useState(false);
   const navigate = useNavigate();
+
   const onClose = () => navigate('..');
 
   const handleDeleteClick = () => {
