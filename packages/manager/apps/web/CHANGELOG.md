@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.27.1...@ovh-ux/manager-web@18.27.2) (2024-06-17)
+
+
+### Reverts
+
+* Revert "New release (#12002)" ([2acc2ea](https://github.com/ovh/manager/commit/2acc2ea66b30b1c5b6ba2f6c0244e057f3337b36)), closes [#12002](https://github.com/ovh/manager/issues/12002)
+
+
+
+
+
 ## [18.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.27.0...@ovh-ux/manager-web@18.27.1) (2024-06-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

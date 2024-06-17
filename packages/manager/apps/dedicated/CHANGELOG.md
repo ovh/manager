@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.38.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.38.5...@ovh-ux/manager-dedicated@19.38.6) (2024-06-17)
+
+
+### Reverts
+
+* Revert "New release (#12002)" ([2acc2ea](https://github.com/ovh/manager/commit/2acc2ea66b30b1c5b6ba2f6c0244e057f3337b36)), closes [#12002](https://github.com/ovh/manager/issues/12002)
+
+
+
+
+
 ## [19.38.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.38.4...@ovh-ux/manager-dedicated@19.38.5) (2024-06-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
