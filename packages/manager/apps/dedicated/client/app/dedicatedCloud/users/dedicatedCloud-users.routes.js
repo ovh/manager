@@ -80,20 +80,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicatedCloud.details.users.iam-toggle', {
           iamToggleState,
         }),
-      goToAddFederation: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedCloud.details.users.federation-add'),
-      goToDeleteFederation: /* @ngInject */ ($state) => (activeDirectory) =>
-        $state.go('app.dedicatedCloud.details.users.federation-delete', {
-          activeDirectory,
-        }),
-      goToEditFederation: /* @ngInject */ ($state) => (activeDirectory) =>
-        $state.go('app.dedicatedCloud.details.users.federation-edit', {
-          activeDirectory,
-        }),
       goToUserIamRole: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.users.iam-role'),
-      goToImportUser: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedCloud.details.users.import'),
       modifyUserRights: /* @ngInject */ ($state) => (userId) =>
         $state.go('app.dedicatedCloud.details.users.user.rights', {
           userId,

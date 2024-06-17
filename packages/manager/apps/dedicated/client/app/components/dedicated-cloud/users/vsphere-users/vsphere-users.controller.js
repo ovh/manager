@@ -23,14 +23,10 @@ export default class DedicatedCloudVsphereUsersCtrl {
   $onInit() {
     return this.$q
       .all({
-        federationStatus: this.DedicatedCloud.getFederationStatus(
-          this.productId,
-        ),
         iamStatus: this.DedicatedCloud.getIamStatus(this.productId),
         policy: this.DedicatedCloud.getPasswordPolicy(this.productId),
       })
       .then((response) => {
-        this.federationEnabled = response.federationStatus?.state === 'enabled';
         this.iamEnabled = response.iamStatus?.state === IAM_STATUS_ENABLED;
         this.passwordPolicy = response.policy;
       })
@@ -115,11 +111,6 @@ export default class DedicatedCloudVsphereUsersCtrl {
   onAddUserClick() {
     this.trackClick('add');
     return this.addUser(this.passwordPolicy);
-  }
-
-  onGoToImportUserClick() {
-    this.trackClick('import');
-    return this.goToImportUser();
   }
 
   onGoToUserIamRoleClick() {

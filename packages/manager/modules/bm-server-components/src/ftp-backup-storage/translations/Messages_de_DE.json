@@ -1,3 +1,4 @@
 {
-  "dedicated_server_ftp_backup": "Storage-Backup"
+  "dedicated_server_ftp_backup": "Storage-Backup",
+  "dedicated_server_ftp_backup_documentation": "Dokumentation"
 }
