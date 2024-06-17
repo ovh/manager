@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-import { Outlet, useHref } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -17,7 +17,7 @@ import {
 } from '@ovhcloud/manager-components';
 import { ResourceStatus } from '@/api/api.type';
 
-import { useOrganizationList, usePlatform } from '@/hooks';
+import { useOrganizationList, usePlatform, useGenerateUrl } from '@/hooks';
 import { ActionButtonOrganization } from './ActionButtonOrganization';
 import IdLink from './IdLink';
 import LabelChip from '@/components/LabelChip';
@@ -91,8 +91,7 @@ export default function Organizations() {
       status: item.resourceStatus || '',
     })) ?? [];
 
-  const hrefAddOrganization = useHref('./add');
-
+  const hrefAddOrganization = useGenerateUrl('./add', 'href');
   return (
     <div className="py-6 mt-8">
       <Notifications />

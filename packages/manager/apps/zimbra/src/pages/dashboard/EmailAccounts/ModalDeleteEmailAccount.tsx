@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -15,7 +15,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovhcloud/manager-components';
 import { useQuery } from '@tanstack/react-query';
-import { useOrganization, usePlatform } from '@/hooks';
+import { useGenerateUrl, usePlatform } from '@/hooks';
 import { deleteZimbraPlatformAccount } from '@/api/DELETE/apiv2/services';
 import Modal from '@/components/Modals/Modal';
 import {
@@ -28,15 +28,12 @@ export default function ModalDeleteOrganization() {
   const deleteEmailAccountId = searchParams.get('deleteEmailAccountId');
   const { t } = useTranslation('emails/delete');
   const { platformId } = usePlatform();
-  const { data: organization } = useOrganization();
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
-  const onClose = () => {
-    const organizationId = organization?.id
-      ? `?organizationId=${organization.id}`
-      : '';
-    return navigate(`..${organizationId}`);
-  };
+
+  const goBackUrl = useGenerateUrl('..', 'path');
+  const onClose = () => navigate(goBackUrl);
+
   const [step, setStep] = useState(1);
   const { data, isLoading } = useQuery({
     queryKey: getZimbraPlatformEmailsDetailQueryKey(

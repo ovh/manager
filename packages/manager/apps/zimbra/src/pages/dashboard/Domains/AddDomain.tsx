@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { LinkType, Links, Subtitle } from '@ovhcloud/manager-components';
+import {
+  LinkType,
+  Links,
+  Subtitle,
+  useNotifications,
+} from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -27,7 +32,12 @@ import {
 } from '@ovhcloud/ods-components';
 import { useQuery } from '@tanstack/react-query';
 
-import { useOrganization, useOrganizationList, usePlatform } from '@/hooks';
+import {
+  useOrganization,
+  useOrganizationList,
+  usePlatform,
+  useGenerateUrl,
+} from '@/hooks';
 import {
   getDomainsZoneList,
   getDomainsZoneListQueryKey,
@@ -39,11 +49,15 @@ export default function AddDomain() {
   const { platformId } = usePlatform();
 
   const { data, isLoading } = useOrganizationList();
+  const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
+
   const { data: organization } = useOrganization();
   const [selectedOrganization, setSelectedOrganization] = useState(
     organization?.id || '',
   );
+  const goBackUrl = useGenerateUrl('..', 'path');
+  const onClose = () => navigate(goBackUrl);
 
   const { data: domains } = useQuery({
     queryKey: getDomainsZoneListQueryKey,
@@ -65,15 +79,42 @@ export default function AddDomain() {
     setSelectedDomainName(event.detail.value);
   };
 
-  const handleSubmit = () => {
+  const handleAddDomainClick = () => {
     const formData = {
       organizationId: selectedOrganization,
       name: selectedDomainName,
     };
-    postZimbraDomain(platformId, formData);
+    postZimbraDomain(platformId, formData)
+      .then(() => {
+        onClose();
+        addSuccess(
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._100}
+            level={ODS_TEXT_LEVEL.body}
+          >
+            {t('zimbra_domains_add_domain_success_message')}
+          </OsdsText>,
+          true,
+        );
+      })
+      .catch(({ response }) => {
+        onClose();
+        addError(
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._100}
+            level={ODS_TEXT_LEVEL.body}
+          >
+            {t('zimbra_domains_add_domain_error_message', {
+              error: response.data.message,
+            })}
+          </OsdsText>,
+          true,
+        );
+      });
   };
 
-  console.log(selectedDomainName);
   return (
     <div className="flex flex-col items-start w-full md:w-3/4 space-y-4">
       <Links
@@ -82,7 +123,7 @@ export default function AddDomain() {
         label={t('zimbra_domains_add_domain_cta_back')}
       />
 
-      <Subtitle>{t('zimbra_domains_add_domain_title')}</Subtitle>
+      <Subtitle>{t('zimbra_domains_add_domain_title_select')}</Subtitle>
 
       {data?.length > 0 && (
         <>
@@ -157,49 +198,56 @@ export default function AddDomain() {
               </OsdsRadio>
             </OsdsRadioGroup>
           </OsdsFormField>
-
-          {selectedRadioDomain === 'ovhDomain' && (
+          {selectedRadioDomain && (
             <OsdsFormField className="w-full">
-              <OsdsSelect
-                className="w-1/2"
-                value={selectedDomainName}
-                onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
-                  setSelectedDomainName(e?.detail.value as string)
-                }
-              >
-                <span slot="placeholder">
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_TEXT_SIZE._100}
-                    level={ODS_TEXT_LEVEL.body}
-                  >
-                    {t('zimbra_domains_add_domain_select')}
-                  </OsdsText>
-                </span>
-                {domains.map((domain: string) => (
-                  <OsdsSelectOption key={domain} value={domain}>
-                    {domain}
-                  </OsdsSelectOption>
-                ))}
-              </OsdsSelect>
+              <div slot="label">
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  size={ODS_TEXT_SIZE._100}
+                  level={ODS_TEXT_LEVEL.heading}
+                >
+                  {t('zimbra_domains_add_domain_title')}
+                </OsdsText>
+              </div>
+              {selectedRadioDomain === 'ovhDomain' && (
+                <OsdsSelect
+                  className="w-1/2"
+                  value={selectedDomainName}
+                  onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
+                    setSelectedDomainName(e?.detail.value as string)
+                  }
+                >
+                  <span slot="placeholder">
+                    <OsdsText
+                      color={ODS_THEME_COLOR_INTENT.text}
+                      size={ODS_TEXT_SIZE._100}
+                      level={ODS_TEXT_LEVEL.body}
+                    >
+                      {t('zimbra_domains_add_domain_select')}
+                    </OsdsText>
+                  </span>
+                  {domains.map((domain: string) => (
+                    <OsdsSelectOption key={domain} value={domain}>
+                      {domain}
+                    </OsdsSelectOption>
+                  ))}
+                </OsdsSelect>
+              )}
+
+              {selectedRadioDomain === 'externalDomain' && (
+                <OsdsInput
+                  type={ODS_INPUT_TYPE.text}
+                  onOdsValueChange={handleInputChange}
+                  placeholder={t('zimbra_domains_add_domain_input')}
+                  className="w-1/2"
+                />
+              )}
             </OsdsFormField>
           )}
-
-          {selectedRadioDomain === 'externalDomain' && (
-            <OsdsFormField className="w-full">
-              <OsdsInput
-                type={ODS_INPUT_TYPE.text}
-                onOdsValueChange={handleInputChange}
-                placeholder={t('zimbra_domains_add_domain_input')}
-                className="w-1/2"
-              />
-            </OsdsFormField>
-          )}
-
           <OsdsFormField className="w-full">
             <OsdsButton
               color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={handleSubmit}
+              onClick={handleAddDomainClick}
               className="mt-8 w-1/2"
               {...(!selectedOrganization || !selectedDomainName
                 ? { disabled: true }

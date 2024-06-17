@@ -9,13 +9,16 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { Datagrid, DatagridColumn } from '@ovhcloud/manager-components';
-import { Outlet, useHref } from 'react-router-dom';
+import {
+  Datagrid,
+  DatagridColumn,
+  Notifications,
+} from '@ovhcloud/manager-components';
+import { Outlet } from 'react-router-dom';
 
-import { useOverridePage, useOrganization } from '@/hooks';
+import { useOverridePage, useDomains, useGenerateUrl } from '@/hooks';
 import ActionButtonDomain from './ActionButtonDomain';
 import LabelChip from '@/components/LabelChip';
-import { useDomains } from '@/hooks/useDomains';
 
 type DomainsItem = {
   id: string;
@@ -70,14 +73,9 @@ const columns: DatagridColumn<DomainsItem>[] = [
 export default function Domains() {
   const { t } = useTranslation('domains');
   const { data } = useDomains();
-  const { data: organization } = useOrganization();
   const isOverriddedPage = useOverridePage();
 
-  const hrefAddDomain = useHref(
-    `./add-domain${
-      organization?.id ? `?organizationId=${organization.id}` : ''
-    }`,
-  );
+  const hrefAddDomain = useGenerateUrl('./add-domain', 'href');
   const items: DomainsItem[] =
     data?.map((item) => ({
       name: item.targetSpec.name,
@@ -93,6 +91,7 @@ export default function Domains() {
     <>
       {!isOverriddedPage && (
         <div className="py-6 mt-8">
+          <Notifications />
           <div className="flex items-center justify-between">
             <OsdsButton
               color={ODS_THEME_COLOR_INTENT.primary}
