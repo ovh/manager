@@ -246,6 +246,14 @@ export const useNewNetworkStore = create<TStore>()((set, get) => ({
     }
 
     await queryClient.invalidateQueries({
+      queryKey: ['project', get().project?.id, 'gateway'],
+    });
+
+    await queryClient.invalidateQueries({
+      queryKey: ['subnet', get().project?.id],
+    });
+
+    await queryClient.invalidateQueries({
       queryKey: ['aggregated-network', get().project?.id],
     });
   },
