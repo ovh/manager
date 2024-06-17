@@ -142,7 +142,7 @@ export default function NewPage(): JSX.Element {
             size={ODS_THEME_TYPOGRAPHY_SIZE._600}
             color={ODS_THEME_COLOR_INTENT.primary}
           >
-            {tNew('Créer un réseau privé')}
+            {tNew('pci_projects_project_network_private_create')}
           </OsdsText>
 
           <Notifications />
