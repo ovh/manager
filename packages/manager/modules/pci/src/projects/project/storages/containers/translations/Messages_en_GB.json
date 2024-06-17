@@ -20,7 +20,7 @@
   "pci_projects_project_storages_containers_public_label": "Public",
   "pci_projects_project_storages_containers_view_add_user_label": "Add a user to a container",
   "pci_projects_project_storages_containers_offer_high_performance": "High Performance - S3",
-  "pci_projects_project_storages_containers_offer_swift": "Standard - Swift",
+  "pci_projects_project_storages_containers_offer_swift": "Swift",
   "pci_projects_project_storages_containers_toggle_public_succeed": "Your {{name}} container has been switched to Public status.",
   "pci_projects_project_storages_containers_toggle_private_succeed": "Public status has been disabled on the {{name}} container.",
   "pci_projects_project_storages_containers_toggle_fail": "An error has occurred: {{message}}",
