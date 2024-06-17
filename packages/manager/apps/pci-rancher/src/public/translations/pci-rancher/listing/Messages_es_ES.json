@@ -29,5 +29,6 @@
   "DELETING": "Eliminando",
   "CREATING": "Creando",
   "OVHCLOUD_EDITION": "OVHcloud Edition",
-  "STANDARD": "Standard"
+  "STANDARD": "Standard",
+  "DISABLED": "Disabled"
 }

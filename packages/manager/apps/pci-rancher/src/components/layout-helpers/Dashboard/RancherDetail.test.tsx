@@ -1,9 +1,12 @@
 import React from 'react';
-import RancherDetail from './RancherDetail';
-import { render, waitFor, fireEvent } from '../../../utils/test/test.provider';
-import { rancherMocked } from '../../../_mock_/rancher';
-import { RancherService } from '../../../api/api.type';
-import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
+import { versionsMocked } from '@/_mock_/version';
+import { rancherMocked } from '@/_mock_/rancher';
+import { ResourceStatus } from '@/api/api.type';
+import dashboardTranslation from '@/public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
+import updateTranslation from '@/public/translations/pci-rancher/updateSoftware/Messages_fr_FR.json';
+
+import { fireEvent, render, waitFor } from '@/utils/test/test.provider';
+import RancherDetail, { RancherDetailProps } from './RancherDetail';
 
 jest.mock('@ovh-ux/manager-react-shell-client', () => ({
   useTracking: jest.fn(() => ({
@@ -12,16 +15,15 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
   })),
 }));
 
-const setupSpecTest = async (rancherService: RancherService = rancherMocked) =>
-  waitFor(() =>
-    render(
-      <RancherDetail
-        rancher={rancherService}
-        editNameResponseType={null}
-        hasErrorAccessDetail={false}
-      />,
-    ),
-  );
+const defaultProps: RancherDetailProps = {
+  versions: versionsMocked,
+  rancher: rancherMocked,
+  editNameResponseType: null,
+  hasErrorAccessDetail: false,
+  updateSoftwareResponseType: null,
+};
+const setupSpecTest = async (props: RancherDetailProps = defaultProps) =>
+  waitFor(() => render(<RancherDetail {...props} />));
 
 describe('RancherDetail', () => {
   it("Given that I'm on the dashboard, I should see 3 tiles : General information, Consumption and Security and access.", async () => {
@@ -42,7 +44,7 @@ describe('RancherDetail', () => {
     const screen = await setupSpecTest();
 
     const descriptionLabel = screen.getByText(dashboardTranslation.description);
-    const rancherVersionLabel = screen.getByText(
+    const rancherVersionLabel = screen.getAllByText(
       dashboardTranslation.rancher_version,
     );
     const rancherName = screen.getByText(rancherMocked.targetSpec.name);
@@ -56,15 +58,34 @@ describe('RancherDetail', () => {
     expect(rancherVersionValue).not.toBeNull();
   });
 
-  it('Given that I can edit the name, I should be able to click on edit icon to get the right to change the name', async () => {
-    const screen = await setupSpecTest();
+  describe('Edit name', () => {
+    it('Given that I can edit the name, I should be able to click on edit icon to get the right to change the name', async () => {
+      const { getAllByText } = await setupSpecTest();
 
-    const rancherName = screen.getByLabelText('edit');
-    await fireEvent.click(rancherName);
+      const rancherName = getAllByText(rancherMocked.currentState.name);
+      await fireEvent.click(rancherName[0]);
 
-    expect(rancherName).not.toBeNull();
+      expect(rancherName).not.toBeNull();
+      const link = rancherName[0].closest('osds-link');
 
-    expect(screen.getByLabelText('edit-link')).toHaveAttribute('href', '/edit');
+      expect(link).toHaveAttribute('href', '/edit');
+      expect(link).not.toHaveAttribute('disabled');
+    });
+
+    it('Given that rancher is not ready i should not be able to edit the name', async () => {
+      const { getAllByText } = await setupSpecTest({
+        ...defaultProps,
+        rancher: {
+          ...rancherMocked,
+          resourceStatus: ResourceStatus.UPDATING,
+        },
+      });
+
+      const rancherName = getAllByText(rancherMocked.currentState.name);
+
+      const link = rancherName[0].closest('osds-link');
+      expect(link).toHaveAttribute('disabled');
+    });
   });
 
   it('Given that the Consumption tile is displayed, it should contain the offer I configured, the nb of CPUs orchestrated and the last update date', async () => {
@@ -95,5 +116,67 @@ describe('RancherDetail', () => {
       rancherMocked.currentState.url,
     );
     expect(rancherButtonAccess).not.toBeNull();
+  });
+
+  describe('Update software', () => {
+    it('Given that the update software is displayed, it should contain the version of the software and the button to update', async () => {
+      const screen = await setupSpecTest({
+        ...defaultProps,
+      });
+
+      const updateSoftwareLabel = screen.getByText(
+        updateTranslation.updateSoftwareBannerAvailableUpdate,
+      );
+
+      const updateSoftwareButton = screen.getAllByText(
+        updateTranslation.updateSoftwareAvailableUpdate,
+      );
+
+      expect(updateSoftwareLabel).not.toBeNull();
+      expect(updateSoftwareButton).not.toBeNull();
+    });
+
+    it('Given there is higher version but there is current update mutation, i should not see update  software banner', async () => {
+      const screen = await setupSpecTest({
+        ...defaultProps,
+        updateSoftwareResponseType: 'pending',
+      });
+
+      const updateSoftwareLabel = screen.queryByText(
+        updateTranslation.updateSoftwareBannerAvailableUpdate.replaceAll(
+          '{{version}}',
+          versionsMocked[1].name,
+        ),
+      );
+      const updateSoftwareButton = screen.queryByText(
+        updateTranslation.updateSoftwareAvailableUpdate,
+      );
+
+      expect(updateSoftwareLabel).toBeNull();
+      expect(updateSoftwareButton).toBeNull();
+    });
+
+    it('Given there is higher version but rancher status is not status ready, i should not see update  software banner', async () => {
+      const screen = await setupSpecTest({
+        ...defaultProps,
+        rancher: {
+          ...rancherMocked,
+          resourceStatus: ResourceStatus.UPDATING,
+        },
+      });
+
+      const updateSoftwareLabel = screen.queryByText(
+        updateTranslation.updateSoftwareBannerAvailableUpdate.replaceAll(
+          '{{version}}',
+          versionsMocked[1].name,
+        ),
+      );
+      const updateSoftwareButton = screen.queryByText(
+        updateTranslation.updateSoftwareAvailableUpdate,
+      );
+
+      expect(updateSoftwareLabel).toBeNull();
+      expect(updateSoftwareButton).toBeNull();
+    });
   });
 });

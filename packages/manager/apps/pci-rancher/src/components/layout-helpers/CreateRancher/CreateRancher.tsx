@@ -4,6 +4,7 @@ import {
   Title,
 } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
@@ -21,18 +22,18 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import { getRanchersUrl } from '@/utils/route';
-import { isValidRancherName } from '@/utils/rancher';
-import { useTrackingAction } from '@/hooks/useTrackingPage';
-import Block from '@/components/Block/Block';
+
 import {
   CreateRancherPayload,
   RancherPlan,
   RancherVersion,
 } from '@/api/api.type';
+import Block from '@/components/Block/Block';
+import { useTrackingAction } from '@/hooks/useTrackingPage';
+import { isValidRancherName } from '@/utils/rancher';
+import { getRanchersUrl } from '@/utils/route';
+import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { useSimpleTrackingAction } from '../../../hooks/useTrackingPage';
 
 const TileSection: React.FC<{
@@ -92,7 +93,7 @@ const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
     case 'OVHCLOUD_EDITION':
       return 'createRancherOVHCloudPlanDescription';
     default:
-      return '';
+      return null;
   }
 };
 
@@ -127,8 +128,10 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const hasInputError = rancherName !== '' && !isValidName;
   const isCreateRancherAllowed = isValidName && !isProjectDiscoveryMode;
 
-  const { t } = useTranslation('pci-rancher/dashboard');
-  const { t: tListing } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslation([
+    'pci-rancher/dashboard',
+    'pci-rancher/listing',
+  ]);
   const trackAction = useTrackingAction();
   const simpleTrackAction = useSimpleTrackingAction();
 
@@ -243,7 +246,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
               key={plan.name}
               isActive={plan.name === selectedPlan?.name}
               isDisabled={plan.status !== 'AVAILABLE'}
-              name={tListing(plan.name)}
+              name={t(plan.name)}
               description={t(getRancherPlanDescription(plan.name))}
               chipLabel={
                 plan.name === 'OVHCLOUD_EDITION' ? t('comingSoon') : ''

@@ -7,56 +7,97 @@ import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsClipboard,
   OsdsDivider,
-  OsdsIcon,
-  OsdsLink,
   OsdsMessage,
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHref } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { useHref } from 'react-router-dom';
-import { RancherService } from '@/api/api.type';
+import { MutationStatus } from '@tanstack/react-query';
+import { RancherService, RancherVersion, ResourceStatus } from '@/api/api.type';
+import LinkIcon from '@/components/LinkIcon/LinkIcon';
+import StatusChip from '@/components/StatusChip/StatusChip';
 import { TileBlock } from '@/components/TileBlock/TileBlock';
+import UpdateVersionBanner from '@/components/UpdateRancherVersionBanner/UpdateVersionBanner';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
+import { getLatestVersionAvailable } from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
-interface RancherDetailProps {
+export interface RancherDetailProps {
   rancher: RancherService;
   editNameResponseType: ODS_MESSAGE_TYPE | null;
+  updateSoftwareResponseType: MutationStatus;
   hasErrorAccessDetail: boolean;
+  versions: RancherVersion[];
 }
+
 const RancherDetail = ({
   rancher,
   editNameResponseType,
+  updateSoftwareResponseType,
   hasErrorAccessDetail,
+  versions,
 }: RancherDetailProps) => {
-  const { t } = useTranslation('pci-rancher/dashboard');
-  const { t: tListing } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslation([
+    'pci-rancher/dashboard',
+    'pci-rancher/updateSoftware',
+    'pci-rancher/listing',
+  ]);
   const trackAction = useTrackingAction();
-  const { name, version, plan, url } = rancher.currentState;
-  const dateUsage = rancher.currentState.usage
-    ? new Date(rancher.currentState.usage?.datetime)
+  const hrefEdit = useHref('./edit');
+  const hrefUpdateSoftware = useHref('./update-software');
+  const hrefGenerateAccess = useHref('./generate-access');
+  const [isPendingUpdate, setIsPendingUpdate] = useState(false);
+  const [hasTaskPending, setHasTaskPending] = useState(false);
+  const { resourceStatus, currentState, currentTasks } = rancher;
+
+  useEffect(() => {
+    if (updateSoftwareResponseType === 'pending') {
+      setIsPendingUpdate(true);
+    }
+  }, [updateSoftwareResponseType]);
+
+  useEffect(() => {
+    if (currentTasks.length) {
+      setHasTaskPending(true);
+    }
+  }, [currentTasks]);
+
+  useEffect(() => {
+    if (hasTaskPending && currentTasks.length === 0) {
+      setIsPendingUpdate(false);
+      setHasTaskPending(false);
+    }
+  }, [currentTasks]);
+
+  const computedStatus = isPendingUpdate
+    ? ResourceStatus.UPDATING
+    : resourceStatus;
+  const isReadyStatus = computedStatus === ResourceStatus.READY;
+
+  const { name, version, plan, url } = currentState;
+  const dateUsage = currentState.usage
+    ? new Date(currentState.usage?.datetime)
     : null;
 
   const onAccessRancherUrl = () =>
     trackAction(TrackingPageView.DetailRancher, TrackingEvent.accessUi);
 
-  const hrefEdit = useHref('./edit');
-  const hrefGenerateAccess = useHref('./generate-access');
+  const shouldDisplayUpdateSoftware =
+    getLatestVersionAvailable(rancher, versions) &&
+    isReadyStatus &&
+    !updateSoftwareResponseType;
 
   return (
-    <div>
+    <div className="max-w-4xl">
       {editNameResponseType && (
         <OsdsMessage type={editNameResponseType} className="my-4 p-3">
           <OsdsText
@@ -69,6 +110,11 @@ const RancherDetail = ({
           </OsdsText>
         </OsdsMessage>
       )}
+      <UpdateVersionBanner
+        rancher={rancher}
+        isPendingUpdateOperation={isPendingUpdate}
+        versions={versions}
+      />
       {hasErrorAccessDetail && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error} className="my-4 p-3">
           <OsdsText
@@ -79,42 +125,37 @@ const RancherDetail = ({
           </OsdsText>
         </OsdsMessage>
       )}
-      <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 py-6 max-w-3xl">
+      <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 py-6">
         <div className="p-3">
           <OsdsTile className="w-full h-full flex-col" inline rounded>
             <div className="flex flex-col w-full">
               <CommonTitle>{t('general_informations')}</CommonTitle>
               <OsdsDivider separator />
               <TileBlock label={t('description')}>
-                <OsdsLink
-                  className="flex flex-row"
+                <LinkIcon
+                  iconName={ODS_ICON_NAME.PEN}
                   href={hrefEdit}
-                  aria-label="edit-link"
-                >
-                  <OsdsText
-                    className="overflow-hidden text-ellipsis max-w-[300px]"
-                    level={ODS_TEXT_LEVEL.heading}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    size={ODS_TEXT_SIZE._200}
-                  >
-                    {name}
-                  </OsdsText>
-                  <span slot="end">
-                    <OsdsIcon
-                      aria-label="edit"
-                      className="ml-4 cursor-pointer"
-                      name={ODS_ICON_NAME.PEN}
-                      size={ODS_ICON_SIZE.xxs}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                    />
-                  </span>
-                </OsdsLink>
+                  text={name}
+                  isDisabled={!isReadyStatus}
+                />
               </TileBlock>
 
               <TileBlock label={t('rancher_version')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                   {version}
                 </OsdsText>
+                {shouldDisplayUpdateSoftware && (
+                  <LinkIcon
+                    iconName={ODS_ICON_NAME.ARROW_RIGHT}
+                    href={hrefUpdateSoftware}
+                    text={t('updateSoftwareAvailableUpdate')}
+                  />
+                )}
+              </TileBlock>
+              <TileBlock label={t('status')}>
+                <div>
+                  <StatusChip label={computedStatus} />
+                </div>
               </TileBlock>
             </div>
           </OsdsTile>
@@ -141,33 +182,12 @@ const RancherDetail = ({
                 >
                   {t('rancher_button_acces')}
                 </OsdsButton>
-                <OsdsLink
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  className="mt-3 flex flex-row items-center"
+                <LinkIcon
+                  iconName={ODS_ICON_NAME.ARROW_RIGHT}
                   href={hrefGenerateAccess}
-                  onClick={() => {
-                    trackAction(
-                      TrackingPageView.DetailRancher,
-                      TrackingEvent.generateAccess,
-                    );
-                  }}
-                >
-                  <OsdsText
-                    level={ODS_TEXT_LEVEL.heading}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    size={ODS_TEXT_SIZE._200}
-                  >
-                    {t('generate_access')}
-                  </OsdsText>
-                  <span slot="end">
-                    <OsdsIcon
-                      className="ml-4 cursor-pointer"
-                      name={ODS_ICON_NAME.ARROW_RIGHT}
-                      size={ODS_ICON_SIZE.xxs}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                    />
-                  </span>
-                </OsdsLink>
+                  text={t('generate_access')}
+                  isDisabled={!isReadyStatus}
+                />
               </TileBlock>
             </div>
           </OsdsTile>
@@ -179,7 +199,7 @@ const RancherDetail = ({
               <OsdsDivider separator />
               <TileBlock label={t('service_level')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {tListing(plan)}
+                  {t(plan)}
                 </OsdsText>
               </TileBlock>
               <TileBlock label={t('count_cpu_orchestrated')}>

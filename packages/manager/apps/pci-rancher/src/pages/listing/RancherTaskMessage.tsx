@@ -1,8 +1,8 @@
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { RancherTask, RancherTaskType } from '@/api/api.type';
 
 const RancherTaskMessage = ({ tasks }: { tasks: RancherTask[] }) => {

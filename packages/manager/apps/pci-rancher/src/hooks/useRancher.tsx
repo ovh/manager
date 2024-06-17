@@ -7,14 +7,20 @@ import {
   deleteRancherServiceQueryKey,
   getByRancherIdProjectId,
   getRancherProjectById,
+  getRancherVersionCapabilities,
 } from '@/api';
-import { ErrorResponse, RancherService } from '@/api/api.type';
+import { ErrorResponse, RancherService, RancherVersion } from '@/api/api.type';
 
-export const useRancher = () => {
+export const useRancher = ({
+  refetchInterval,
+}: {
+  refetchInterval?: number;
+} = {}) => {
   const { projectId, rancherId } = useParams();
-  return useQuery<{ data: RancherService }, ErrorResponse>({
+  return useQuery<RancherService, ErrorResponse>({
     queryKey: ['project', projectId, 'rancher', rancherId],
     queryFn: () => getByRancherIdProjectId(projectId, rancherId),
+    refetchInterval: refetchInterval ?? false,
   });
 };
 
@@ -35,13 +41,12 @@ export const useRanchers = ({
 
 export const useDeleteRancher = () => {
   const { refetch } = useRanchers({ shouldDisableRefetch: true });
-  const { data } = useRancher();
+  const { data: rancher } = useRancher();
   const [
     deleteRancherResponse,
     setDeleteRancherResponse,
   ] = useState<ODS_MESSAGE_TYPE.error | null>(null);
 
-  const rancher = data?.data;
   const { projectId } = useParams();
 
   const { mutate: deleteRancher } = useMutation({
@@ -59,4 +64,19 @@ export const useDeleteRancher = () => {
     setDeleteRancherResponse,
     deleteRancherResponse,
   };
+};
+
+export const useRancherVersionsCapabilities = () => {
+  const { projectId, rancherId } = useParams();
+  return useQuery<RancherVersion[], ErrorResponse>({
+    queryKey: [
+      'project',
+      projectId,
+      'rancher',
+      rancherId,
+      'version',
+      'capabilities',
+    ],
+    queryFn: () => getRancherVersionCapabilities(projectId, rancherId),
+  });
 };

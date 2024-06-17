@@ -62,7 +62,7 @@ export interface RancherService {
   currentState: {
     url: string;
     name: string;
-    plan: string;
+    plan: RancherPlan['name'];
     region: string;
     version: string;
     usage?: {
@@ -106,4 +106,6 @@ export interface RancherVersion {
   name: string;
   status: RancherReferenceStatus;
   description?: string;
+  changelogUrl?: string;
+  cause?: 'CANNOT_UPGRADE_MULTIPLE_VERSIONS' | 'DEPRECATED' | 'DISABLED';
 }

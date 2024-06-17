@@ -1,27 +1,27 @@
 import {
+  ODS_BUTTON_VARIANT,
+  ODS_INPUT_TYPE,
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  OdsInputValueChangeEventDetail,
+  OsdsInputCustomEvent,
+} from '@ovhcloud/ods-components';
+import {
   OsdsButton,
   OsdsInput,
   OsdsMessage,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  OsdsInputCustomEvent,
-  OdsInputValueChangeEventDetail,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React, { useState } from 'react';
-
 import { useTranslation } from 'react-i18next';
+
 import { RancherService } from '@/api/api.type';
-import Modal from './Modal';
 import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import Modal from './Modal';
 
 interface DeleteModalProps {
   onClose: () => void;

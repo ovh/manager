@@ -29,5 +29,6 @@
   "DELETING": "Wird gelöscht",
   "CREATING": "Wird erstellt",
   "OVHCLOUD_EDITION": "OVHcloud Edition",
-  "STANDARD": "Standard"
+  "STANDARD": "Standard",
+  "DISABLED": "Deaktiviert"
 }
