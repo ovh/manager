@@ -2,12 +2,18 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
 import onboarding from './onboarding';
 
 const moduleName = 'ovhManagerDomainsLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', onboarding])
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+    onboarding,
+    ApiV2ListHelper.moduleName,
+  ])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       $stateProvider

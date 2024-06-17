@@ -1,0 +1,60 @@
+<oui-message ng-if="!$ctrl.isZone" type="info">
+    <span>
+        {{ ::"domain_dns_mixed_config_activate_zone_message" | translate }}
+    </span>
+    <a ng-href="{{::$ctrl.links.zoneActivate}}">
+        {{ ::"domain_dns_config_activate_zone_message_link" | translate }}
+    </a>
+</oui-message>
+<oui-message ng-if="$ctrl.isInternalDnssecEnabled" type="info">
+    {{ ::"domain_dns_mixed_config_deactivate_dnssec_message" | translate }}
+</oui-message>
+
+<oui-radio
+    disabled="!$ctrl.isZone || $ctrl.isInternalDnssecEnabled"
+    name="dns_configuration_types"
+    value="::$ctrl.constants.CONFIGURATION_TYPES.MIXED"
+    model="$ctrl.selectedConfigurationType"
+    on-change="$ctrl.onConfigurationTypeChange()"
+>
+    <oui-radio-label>
+        <span>
+            {{ ::"domain_dns_use_my_own_and_ovh_name_servers_title" | translate
+            }}
+        </span>
+        <span
+            ng-if="$ctrl.currentConfigurationType !== $ctrl.constants.CONFIGURATION_TYPES.MIXED"
+            class="oui-badge oui-badge_warning oui-badge_s"
+        >
+            {{ ::"domain_dns_advanced_label" | translate }}
+        </span>
+        <span
+            ng-if="$ctrl.currentConfigurationType === $ctrl.constants.CONFIGURATION_TYPES.MIXED"
+            class="oui-badge oui-badge_success oui-badge_s"
+        >
+            {{ ::"domain_dns_active_label" | translate }}
+        </span>
+    </oui-radio-label>
+    <oui-radio-description>
+        <span>
+            {{ ::"domain_dns_use_my_own_and_ovh_name_servers_description" |
+            translate }}
+        </span>
+
+        <add-dns-forms
+            ng-if="$ctrl.selectedConfigurationType === $ctrl.constants.CONFIGURATION_TYPES.MIXED"
+            configuration-type="::$ctrl.constants.CONFIGURATION_TYPES.MIXED"
+            min-number-of-dns="::$ctrl.dns.registryConfiguration.minNumberOfDns"
+            max-number-of-dns="::$ctrl.dns.registryConfiguration.maxNumberOfDns"
+            modified-dns-list="$ctrl.modifiedDnsList"
+            update-error="alerts.update"
+            show-form="$ctrl.showAddForm"
+            can-submit="$ctrl.canSubmit"
+            show-cancel-modifications-button="$ctrl.showCancelModificationsButton"
+            open-validation-modal="$ctrl.openValidationModal()"
+            cancel-modifications="$ctrl.cancelModifications()"
+            on-submit="$ctrl.onSubmit(dnsEntry)"
+            on-remove="$ctrl.onRemove(index)"
+        />
+    </oui-radio-description>
+</oui-radio>
