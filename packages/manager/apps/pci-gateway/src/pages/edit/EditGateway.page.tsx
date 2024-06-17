@@ -37,7 +37,6 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useEditGateway, useGateway } from '@/api/hooks/useGateways';
 import { TSizeItem, useData } from '@/api/hooks/data';
 import { SizeLabelComponent } from '@/pages/edit/SizeLabel.component';
-import HidePreloader from '@/core/HidePreloader';
 
 type TState = {
   size: TSizeItem;
@@ -116,7 +115,6 @@ export default function EditGatewayPage(): JSX.Element {
 
   return (
     <>
-      <HidePreloader />
       {project && (
         <OsdsBreadcrumb
           items={[

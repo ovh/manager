@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useAllFailoverIPs } from '@/api/hooks/useFailoverIP';
 import { useAllFloatingIP } from '@/api/hooks/useFloatingIP';
 import { useOrderStore } from '../order/hooks/useStore';
@@ -47,9 +45,5 @@ export default function ListGuard({
     isFloatingIPsLoading,
   ]);
 
-  return isValid ? (
-    children
-  ) : (
-    <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
-  );
+  return isValid ? children : null;
 }

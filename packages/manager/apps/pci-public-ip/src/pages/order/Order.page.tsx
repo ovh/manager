@@ -19,7 +19,6 @@ import {
   useNavigation,
 } from '@ovh-ux/manager-react-shell-client';
 import useProject from '@/api/hooks/useProject';
-import HidePreloader from '@/core/HidePreloader';
 import { IpTypeStep } from '@/pages/order/steps/IpTypeStep';
 import { FailoverSteps } from '@/pages/order/steps/FailoverSteps';
 import { FloatingSteps } from '@/pages/order/steps/FloatingSteps';
@@ -57,7 +56,6 @@ export default function OrderPage(): JSX.Element {
 
   return (
     <>
-      <HidePreloader />
       {project && (
         <OsdsBreadcrumb
           items={[

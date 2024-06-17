@@ -589,7 +589,20 @@ class DedicatedCloudService {
       .then(({ data }) => data);
   }
 
-  /* ------- ICEBERG -------*/
+  /* ------- FEDERATION -------*/
+
+  getFederationStatus(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/federation`)
+      .then(({ data }) => data);
+  }
+
+  getActiveDirectories(serviceName, params = {}) {
+    return this.icebergQuery(
+      `/dedicatedCloud/${serviceName}/federation/activeDirectory`,
+      params,
+    );
+  }
 
   icebergQuery(url, params) {
     const {
@@ -625,6 +638,12 @@ class DedicatedCloudService {
       }));
   }
 
+  postActiveDirectories(serviceName, params) {
+    return this.$http
+      .post(`/dedicatedCloud/${serviceName}/federation/activeDirectory`, params)
+      .then(({ data }) => data);
+  }
+
   filterIceberg(request, filters) {
     let filterRequest = request;
     filters.forEach(({ field, comparator, reference }) => {
@@ -635,6 +654,32 @@ class DedicatedCloudService {
       );
     });
     return filterRequest;
+  }
+
+  grantActiveDirectory(serviceName, activeDirectoryId, params, type) {
+    return this.$http
+      .post(
+        `/dedicatedCloud/${serviceName}/federation/activeDirectory/${activeDirectoryId}/grantActiveDirectory${type}`,
+        params,
+      )
+      .then(({ data }) => data);
+  }
+
+  changePropertiesActiveDirectory(serviceName, activeDirectoryId, params) {
+    return this.$http
+      .post(
+        `/dedicatedCloud/${serviceName}/federation/activeDirectory/${activeDirectoryId}/changeProperties`,
+        params,
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteActiveDirectory(serviceName, activeDirectoryId) {
+    return this.$http
+      .delete(
+        `/dedicatedCloud/${serviceName}/federation/activeDirectory/${activeDirectoryId}`,
+      )
+      .then(({ data }) => data);
   }
 
   /* ------- USER -------*/

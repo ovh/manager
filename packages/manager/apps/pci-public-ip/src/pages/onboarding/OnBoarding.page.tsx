@@ -25,7 +25,6 @@ import {
   useRouteLoaderData,
 } from 'react-router-dom';
 import { Project } from '@/api/data/project';
-import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
 import OnBoardingGuard from './OnBoardingGuard';
@@ -104,7 +103,6 @@ export default function OnBoardingPage() {
   return (
     <OnBoardingGuard projectId={projectId}>
       <>
-        <HidePreloader />
         {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
         {isBannerVisible && <PciAnnouncementBanner projectId={projectId} />}

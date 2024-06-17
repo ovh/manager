@@ -1,6 +1,4 @@
 import { Navigate } from 'react-router-dom';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useAllAggregatedGateway } from '@/api/hooks/useGateway';
 
 export default function ListGuard({
@@ -17,7 +15,7 @@ export default function ListGuard({
   } = useAllAggregatedGateway(projectId);
 
   if (isPending || isFetching) {
-    return <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />;
+    return null;
   }
 
   return aggregatedGateways?.length > 0 ? (

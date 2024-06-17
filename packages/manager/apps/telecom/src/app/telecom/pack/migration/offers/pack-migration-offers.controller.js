@@ -10,7 +10,6 @@ import {
   GTR_NONE,
   OFFER_XDSL,
   OFFER_FIBER,
-  GRT,
 } from '../pack-migration.constant';
 
 export default class TelecomPackMigrationOffersCtrl {
@@ -42,7 +41,6 @@ export default class TelecomPackMigrationOffersCtrl {
     this.GTR_NONE = GTR_NONE;
     this.OFFER_XDSL = OFFER_XDSL;
     this.OFFER_FIBER = OFFER_FIBER;
-    this.GRT = GRT;
     this.process = null;
     this.loading = {
       init: true,
@@ -254,27 +252,8 @@ export default class TelecomPackMigrationOffersCtrl {
   }
 
   setGtrOptions() {
-    // Check if current offer has a GRT option set
-    this.isGrt = !!Object.keys(this.process.pack.options).find((value) =>
-      value.includes(this.GRT),
-    );
-
-    // Retrieve current offer technology: xdsl or fiber
-    this.currentOfferTechno = this.process.pack.offerDescription
-      .toLowerCase()
-      .includes(this.OFFER_XDSL)
-      ? this.OFFER_XDSL
-      : this.OFFER_FIBER;
-
     this.process.migrationOffers.result.offers = this.process.migrationOffers.result.offers.map(
       (offer) => {
-        // Retrieve offer technology: xdsl or fiber
-        const offerTechno = offer.offerName
-          .toLowerCase()
-          .includes(this.OFFER_XDSL)
-          ? this.OFFER_XDSL
-          : this.OFFER_FIBER;
-
         const gtr = Object.values(offer.options)
           .filter((el) => el.name.startsWith('gtr_'))
           .map((option) => ({
@@ -287,28 +266,16 @@ export default class TelecomPackMigrationOffersCtrl {
             ),
           }));
 
-        if (this.isGrt && this.currentOfferTechno === offerTechno) {
-          this.grtLabel = `telecom_pack_migration_${gtr[0].name}`;
-          this.grtLabelPrice = gtr[0].optionalPrice.text;
-
-          // Initialize GTR selected to first value
-          set(offer, 'gtrSelected', gtr[0].name);
-          this.updateOfferPriceAndGtr(offer);
-
-          // Update displayed price for current offer
-          const totalCurrentPrice =
-            offer.currentOfferPrice.value + gtr[0].optionalPrice.value;
-          this.process.pack.displayedCurrentPrice = this.TucPackMigrationProcess.getPriceStruct(
-            totalCurrentPrice,
-          );
-        } else if (gtr.length > 0) {
+        if (gtr.length > 0) {
           // Initialize GTR options with a none value
           gtr.unshift({
             name: this.GTR_NONE,
             label: this.$translate.instant('telecom_pack_migration_no_gtr'),
           });
         }
+
         set(offer, 'gtrOptions', gtr);
+
         return offer;
       },
     );

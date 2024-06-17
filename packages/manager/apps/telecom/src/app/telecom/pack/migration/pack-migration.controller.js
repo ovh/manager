@@ -60,7 +60,6 @@ export default class TelecomPackMigrationCtrl {
 
   // Retrieve services from pack
   getPackAccess() {
-    this.loading.init = true;
     return this.OvhApiPackXdslAccess.v6()
       .getServices({
         packId: this.process.pack.packName,
@@ -80,9 +79,6 @@ export default class TelecomPackMigrationCtrl {
           'telecom_pack_migration_pack_access_error',
         )} ${get(error, 'data.message', '')}`;
         this.TucToast.error(msgErr);
-      })
-      .finally(() => {
-        this.loading.init = false;
       });
   }
 
