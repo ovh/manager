@@ -25,7 +25,7 @@ function NavReshuffleBetaAccessModal(): JSX.Element {
       name: 'accessing_beta_popin::go_to_beta',
       type: 'action',
     });
-    onboarding.forceOnboardingToLocalStorage(true);
+    onboarding.forceOnboardingDisplayed(true);
     return createBetaChoice(true).then(() => window.location.reload());
   }
 
