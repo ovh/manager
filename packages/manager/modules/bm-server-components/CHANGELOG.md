@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.23.1...@ovh-ux/manager-bm-server-components@1.23.2) (2024-06-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
 ## [1.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.23.0...@ovh-ux/manager-bm-server-components@1.23.1) (2024-06-13)
 
 
