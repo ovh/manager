@@ -4798,7 +4798,6 @@
   version "17.2.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-17.2.2.tgz#5edea312cc65058f004d91816082d6de5ef63290"
   integrity sha512-ikMmqA1klHz7e01iEQYojAll2xD5327y24cWOO7z6KttDJJLsZAjmSZTd8sWFhK17MS2/4ACrvDgFz2u/KDCtQ==
-
   dependencies:
     "@ovhcloud/ods-common-core" "17.2.2"
     "@ovhcloud/ods-theme-blue-jeans" "17.2.2"
