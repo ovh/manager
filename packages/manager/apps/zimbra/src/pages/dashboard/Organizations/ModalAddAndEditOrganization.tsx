@@ -23,7 +23,7 @@ import {
   ODS_TOOLTIP_VARIANT,
 } from '@ovhcloud/ods-components';
 import { useNotifications } from '@ovhcloud/manager-components';
-import { useOrganization, usePlatform } from '@/hooks';
+import { useGenerateUrl, useOrganization, usePlatform } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
   postZimbraPlatformOrganization,
@@ -51,7 +51,8 @@ export default function ModalDeleteOrganization() {
   const editOrganizationId = searchParams.get('editOrganizationId');
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
-  const onClose = () => navigate('..');
+  const goBackUrl = useGenerateUrl('..', 'path');
+  const onClose = () => navigate(goBackUrl);
 
   const formInputRegex: FormInputRegexInterface = {
     name: /^[a-zA-Z0-9]+$/,
