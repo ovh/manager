@@ -23,16 +23,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       ...commonResolveForZoneHistory,
-      goToDnsData: /* @ngInject */ ($state) => (
-        url,
-        creationDate,
-        isCurrentDnsZone,
-      ) =>
-        $state.go('app.domain.product.zone-history.view', {
-          url,
-          creationDate,
-          isCurrentDnsZone,
-        }),
+      goToDnsData: /* @ngInject */ ($state) => (url) =>
+        $state.go('app.domain.product.zone-history.view', { url }),
       goToDnsRestore: /* @ngInject */ ($state) => (url, chosenDate) =>
         $state.go('app.domain.product.zone-history.restore', {
           url,
@@ -85,26 +77,15 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     params: {
-      isCurrentDnsZone: {
-        type: 'bool',
-        value: null,
-      },
       url: {
         type: 'string',
         value: null,
         description: 'url used to retrieve the zone data file',
       },
-      creationDate: {
-        type: 'string',
-        value: null,
-      },
     },
     resolve: {
       ...commonResolveForZoneHistory,
       url: /* @ngInject */ ($transition$) => $transition$.params().url,
-      isCurrentDnsZone: /* @ngInject */ ($stateParams) =>
-        $stateParams.isCurrentDnsZone,
-      creationDate: /* @ngInject */ ($stateParams) => $stateParams.creationDate,
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
       getDnsZoneData: /* @ngInject */ (DNSZoneService) => (url) =>
         DNSZoneService.getDnsFile(url),

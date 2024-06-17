@@ -196,7 +196,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.updateOwnerUrl = this.getUpdateOwnerUrl(this.domain);
 
     this.getRules();
-    this.loggedInUser = this.coreConfig.getUser()?.auth.account;
+    this.loggedInUser = this.coreConfig.getUser()?.nichandle;
 
     if (this.isAllDom) {
       this.getAllDomInfos(this.$stateParams.allDom);
@@ -670,7 +670,7 @@ export default class DomainTabGeneralInformationsCtrl {
   }
 
   canDisplayDomainOwner() {
-    return this.loggedInUser === this.domainInfos.contactAdmin.id;
+    return this.loggedInUser === this.domainInfos.contactAdmin;
   }
 
   getDomainOwnerInformation() {

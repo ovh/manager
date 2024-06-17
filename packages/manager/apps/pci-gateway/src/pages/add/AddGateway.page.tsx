@@ -31,7 +31,6 @@ import { useNewGatewayStore } from '@/pages/add/useStore';
 import { useProjectUrl } from '@/hooks/project-url';
 import { PUBLIC_GATEWAYS_READ_MORE_GUIDE } from '@/constants';
 import { ACTION_PREFIX } from '@/tracking.constants';
-import HidePreloader from '@/core/HidePreloader';
 
 export default function AddGatewayPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -64,7 +63,6 @@ export default function AddGatewayPage(): JSX.Element {
 
   return (
     <>
-      <HidePreloader />
       {project && (
         <OsdsBreadcrumb
           onClick={() => clearNotifications()}
