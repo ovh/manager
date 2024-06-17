@@ -23,6 +23,7 @@ import {
   useRouteLoaderData,
 } from 'react-router-dom';
 import { PublicCloudProject } from '@ovhcloud/manager-components/src/hooks/pci-project-provider/publicCloudProject.interface';
+import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from '@/pages/onboarding/OnBoardingGuard';
 import { ACTION_PREFIX } from '@/tracking.constants';
@@ -103,6 +104,7 @@ export default function OnBoardingPage() {
   return (
     <OnBoardingGuard projectId={projectId}>
       <>
+        <HidePreloader />
         {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
         {isDiscoveryProject(project) && (
