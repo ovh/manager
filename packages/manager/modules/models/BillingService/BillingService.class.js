@@ -291,6 +291,7 @@ export default class BillingService {
       'OVH_CLOUD_CONNECT',
       'PACK_XDSL',
       'XDSL',
+      'OKMS_RESOURCE',
       'VRACK_SERVICES_RESOURCE',
     ].includes(this.serviceType);
   }
