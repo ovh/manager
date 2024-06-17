@@ -17,18 +17,11 @@ const token = extractToken();
 const user = decodeToken(token);
 const { language: locale, subsidiary } = user || {};
 
-// If we don't have a user or the "session" is expired we redirect the user on the login page
-if (!user || user.exp * 1000 < Date.now()) {
-  const redirectUrl = getRedirectLoginUrl(user);
-  window.location.assign(redirectUrl);
-} else {
+initI18n(locale || 'en_GB', [locale || 'en_GB'], subsidiary);
+initAuthenticationInterceptor(token);
+initInterceptor();
 
-  initI18n(locale || 'en_GB', [locale || 'en_GB'], subsidiary);
-  initAuthenticationInterceptor(token);
-  initInterceptor();
-
-  odsSetup();
-}
+odsSetup();
 
 const router = createHashRouter(Routes);
 
