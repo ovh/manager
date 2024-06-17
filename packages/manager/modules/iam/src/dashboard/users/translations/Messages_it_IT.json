@@ -120,5 +120,10 @@
   "user_need_rights_message": "Non hai il diritto di effettuare questa operazione. Richiedi ai tuoi amministratori i seguenti diritti: ",
   "user_users_users_section_title": "Utenti",
   "user_users_sso_modal_group_local_users_to_enable": "Conservare gli utenti OVHcloud attivi",
-  "user_users_sso_modal_user_attribute_name": "Nome dell'attributo utente (userAttributeName, in genere indicato con “UPN”)"
+  "user_users_sso_modal_user_attribute_name": "Nome dell'attributo utente (userAttributeName, in genere indicato con “UPN”)",
+  "pagination_page": "Pagina {{current}} / {{ last }}",
+  "pagination_go": "OK",
+  "pagination_display": "Mostra",
+  "user_modal_confirm": "Confermare",
+  "user_modal_cancel": "Annullare"
 }

@@ -14,5 +14,7 @@
   "user_account_dashboard_profile_edit": "Editar o meu perfil",
   "user_account_dashboard_profile_support_level": "O meu nível de suporte:",
   "user_account_dashboard_customer_code": "Código cliente",
-  "user_account_dashboard_nichandle": "ID de cliente"
+  "user_account_dashboard_nichandle": "ID de cliente",
+  "user_account_dashboard_shortcut_MANAGE_USERS": "Gerir os meus utilizadores",
+  "user_account_dashboard_new": "Novidade!"
 }

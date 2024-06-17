@@ -14,5 +14,7 @@
   "user_account_dashboard_profile_edit": "Edit my profile",
   "user_account_dashboard_profile_support_level": "My level of support:",
   "user_account_dashboard_customer_code": "Customer code",
-  "user_account_dashboard_nichandle": "NIC handle "
+  "user_account_dashboard_nichandle": "NIC handle ",
+  "user_account_dashboard_shortcut_MANAGE_USERS": "Manage my users",
+  "user_account_dashboard_new": "New!"
 }
