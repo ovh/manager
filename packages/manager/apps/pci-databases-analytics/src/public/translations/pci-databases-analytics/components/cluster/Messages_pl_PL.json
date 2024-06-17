@@ -1,0 +1,6 @@
+{
+  "inputNodeLabel": "Wybierz liczbę węzłów klastra",
+  "inputStorageLabel": "Wybierz dodatkową przestrzeń dyskową klastra",
+  "inputStorageNoneValue": "Brak",
+  "storageFlavorDescription": "Twój model węzła {{flavor}} zawiera {{includedStorage}} przestrzeni dyskowej, do której możesz dodać do {{maxAdditionalStorage}}przestrzeni w przedziałach co {{step}}."
+}
