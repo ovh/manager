@@ -6,6 +6,7 @@ export default {
     serviceName: '<',
     volumeId: '<',
     volume: '<',
+    hasOnlySystemSnapshot: '<',
     snapshots: '<',
     trackClick: '<',
     goToSnapshots: '<',

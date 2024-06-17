@@ -9,9 +9,11 @@ export default class NetAppVolumesDashboardSnapshotsRestoreController {
 
   $onInit() {
     this.isLoading = true;
-    this.snapshotToRevertTo = this.snapshots
-      .filter((snapshot) => snapshot.type !== SNAPSHOT_TYPE.SYSTEM)
-      .reduce((current, mostRecent) => current.createdAt > mostRecent.createdAt ? current : mostRecent);
+    if (!this.hasOnlySystemSnapshot) {
+      this.snapshotToRevertTo = this.snapshots
+        .filter((snapshot) => snapshot.type !== SNAPSHOT_TYPE.SYSTEM)
+        .reduce((current, mostRecent) => current.createdAt > mostRecent.createdAt ? current : mostRecent);
+    }
     this.isLoading = false;
   }
 
