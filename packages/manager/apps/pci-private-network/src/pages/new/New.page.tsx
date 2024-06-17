@@ -17,7 +17,7 @@ import {
   OsdsLink,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { Translation, useTranslation } from 'react-i18next';
@@ -158,7 +158,9 @@ export default function NewPage(): JSX.Element {
       <div className="flex flex-col gap-4 mb-10">
         <LocalizationStep />
         <ConfigurationStep onCreate={create} />
-        {store.form.createGateway && <GatewaySummaryStep onCreate={create} />}
+        <Suspense>
+          {store.form.createGateway && <GatewaySummaryStep onCreate={create} />}
+        </Suspense>
       </div>
     </>
   );
