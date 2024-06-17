@@ -1,23 +1,20 @@
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_MESSAGE_TYPE,
-} from '@ovhcloud/ods-components';
-import { OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_TYPE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import React from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Title } from '@ovhcloud/manager-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useMutationState } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
+import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import { patchRancherServiceQueryKey, postRancherServiceQueryKey } from '@/api';
 import { RancherService } from '@/api/api.type';
+import { EditAction, EditMutationVariables } from '@/hooks/useEditRancher';
 import { useTrackingPage } from '@/hooks/useTrackingPage';
 import { COMMON_PATH } from '@/routes';
 import { TrackingPageView } from '@/utils/tracking';
 import RancherDetail from './RancherDetail';
 import TabBar from './TabBar';
+import LinkIcon from '@/components/LinkIcon/LinkIcon';
+import useVersions from '@/hooks/useVersions';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -32,34 +29,61 @@ export type DashboardLayoutProps = {
   rancher: RancherService;
 };
 
+type MutationStateReset = {
+  variables: EditMutationVariables;
+  status: MutationStatus;
+};
+
+const getResponseStatusByEditAction = (
+  mutationState: MutationStateReset[],
+  editAction: EditAction,
+) =>
+  mutationState.length && mutationState[0].variables.editAction === editAction
+    ? mutationState[0].status
+    : null;
+
 const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
+  const { projectId, rancherId } = useParams();
+  const { data: versions } = useVersions();
   const { t } = useTranslation('pci-rancher/dashboard');
-  const { projectId } = useParams();
   useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
 
-  const mutationEditNameState = useMutationState({
-    filters: { mutationKey: patchRancherServiceQueryKey('').slice(0, 1) },
+  const mutationEditRancherState = useMutationState<{
+    variables: {
+      editAction: EditAction;
+      rancher: RancherService;
+    };
+    status: MutationStatus;
+  }>({
+    filters: { mutationKey: patchRancherServiceQueryKey(rancherId) },
   });
 
   const mutationGenerateAccessState = useMutationState({
     filters: {
-      mutationKey: postRancherServiceQueryKey('').slice(0, 1),
+      mutationKey: postRancherServiceQueryKey(rancherId),
       status: 'error',
     },
   });
 
-  const editNameResponseStatus = mutationEditNameState.length
-    ? mutationEditNameState[0].status
-    : null;
-  let editNameResponseType = null;
+  const editNameResponseType = getResponseStatusByEditAction(
+    mutationEditRancherState,
+    EditAction.EditName,
+  );
 
-  if (editNameResponseStatus === 'error') {
-    editNameResponseType = ODS_MESSAGE_TYPE.error;
+  const updateSoftwareResponseType = getResponseStatusByEditAction(
+    mutationEditRancherState,
+    EditAction.UpdateSoftware,
+  );
+
+  let editNameBannerType = null;
+
+  if (editNameResponseType === 'error') {
+    editNameBannerType = ODS_MESSAGE_TYPE.error;
   }
 
-  if (editNameResponseStatus === 'success') {
-    editNameResponseType = ODS_MESSAGE_TYPE.success;
+  if (editNameResponseType === 'success') {
+    editNameBannerType = ODS_MESSAGE_TYPE.success;
   }
 
   return (
@@ -67,23 +91,19 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
       <div className="py-4 overflow-hidden text-ellipsis">
         <Title>{rancher.currentState.name}</Title>
       </div>
-      <OsdsLink
+      <LinkIcon
         href={hrefPrevious}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        className="flex items-center my-6"
-      >
-        <OsdsIcon
-          className="mr-4"
-          name={ODS_ICON_NAME.ARROW_LEFT}
-          size={ODS_ICON_SIZE.xxs}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        />
-        <span>{t('see_all_rancher')}</span>
-      </OsdsLink>
+        text={t('see_all_rancher')}
+        iconName={ODS_ICON_NAME.ARROW_LEFT}
+        slot="start"
+        className="my-4"
+      />
       <TabBar tabs={tabs} />
       <RancherDetail
         rancher={rancher}
-        editNameResponseType={editNameResponseType}
+        versions={versions}
+        editNameResponseType={editNameBannerType}
+        updateSoftwareResponseType={updateSoftwareResponseType}
         hasErrorAccessDetail={mutationGenerateAccessState.length > 0}
       />
       <Outlet />

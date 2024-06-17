@@ -5,9 +5,7 @@ import DeleteModal from '@/components/Modal/DeleteModal';
 import { useDeleteRancher, useRancher } from '@/hooks/useRancher';
 
 const DeleteRancherModal = () => {
-  const { data, isLoading } = useRancher();
-
-  const selectedRancher = data?.data;
+  const { data: selectedRancher, isLoading } = useRancher();
   const navigate = useNavigate();
   const { deleteRancher } = useDeleteRancher();
 

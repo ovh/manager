@@ -1,0 +1,22 @@
+{
+  "updateSoftwareRancherTitle": "Mise(s) à jour disponible(s)",
+  "updateSoftwareRancherDescription": "Sélectionner une version plus récente de votre service et consulter le changelog pour en savoir plus sur les changements inclus.",
+  "updateSoftwareRancherTableVersion": "Version",
+  "updateSoftwareRancherTableUnavailable": "Indisponible",
+  "updateSoftwareRancherPreviousButton": "Retour à la page précedente",
+  "updateSoftwareRancherBreadcrumb": "Mise à jour de Rancher",
+  "updateSoftwareRancherCurrentVersion": "Version actuelle",
+  "updateSoftwareRancherDurationInfo": "La durée moyenne de mise à jour de version est estimée à 1 heure. Différents composants de votre control plane sont mis à jour via une procédure de rolling update (mise à jour progressive) et restent disponibles pendant la mise à jour (sauf mention contraire indiquée dans le changelog associé).",
+  "updateSoftwareRancherImpact": "Les clusters gérés par Rancher (downstream clusters) ne sont pas impactées par cette mise à jour.",
+  "updateSoftwareRancherUpgradeInfo": "A l'issue de la mise à jour de votre control plane, de nouvelles mises à jour peuvent être applicables via la section « Upgrades » du dashboard de votre interface Rancher. Vous pourrez les appliquer à chaque « downstream cluster » au rythme de votre choix.",
+  "updateSoftwareRancherChangelog": "Consulter le changelog",
+  "updateSoftwareRancherCta": "Mettre à jour",
+  "updateSoftwareAvailableUpdate": "Mettre à jour",
+  "updateSoftwareBannerAvailableUpdate": "Une nouvelle mise à jour de votre Managed Rancher Service est disponible.",
+  "updateSoftwareBannerUpdateLoading": " La version de votre Managed Rancher Service est en cours de mise à jour. Merci de patienter, cela peut prendre quelques minutes.",
+  "updateSoftwareBannerDeprecated": "La version de votre Rancher n'est plus supportée. Veuillez évoluer vers une version plus récente.",
+  "updateSoftwareBannerError": "Une erreur est survenue lors de la mise à jour de votre Managed Rancher Service",
+  "updateSoftwareModalTitle": "Mettre à jour votre Managed Rancher Service",
+  "updateSoftwareModalDescription": " En confirmant la mise à jour, vous confirmez avoir pris connaissance du changelog de la version selectionnée et des impacts potentiels sur vos clusters, applicatifs et usages spécifiques.",
+  "updateSoftwareModalCTAConfirm": "Confirmer"
+}

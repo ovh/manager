@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PageLayout } from '@ovhcloud/manager-components';
-import {
-  getRancherPlan,
-  getRancherVersion,
-  getReferenceRancherInfo,
-} from '@/api';
+import { getRancherPlan, getReferenceRancherInfo } from '@/api';
 import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRancher';
 import useCreateRancher from '@/hooks/useCreateRancher';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
@@ -24,6 +20,7 @@ import {
   TrackingPageView,
 } from '../../utils/tracking';
 import queryClient from '@/query.client';
+import useVersions from '@/hooks/useVersions';
 
 export default function Create() {
   const { projectId } = useParams();
@@ -65,10 +62,7 @@ export default function Create() {
     queryFn: () => getRancherPlan(projectId),
   });
 
-  const { data: versions } = useQuery({
-    queryKey: [getReferenceRancherInfo(projectId, 'version')],
-    queryFn: () => getRancherVersion(projectId),
-  });
+  const { data: versions } = useVersions();
 
   return (
     <PageLayout>
@@ -79,7 +73,7 @@ export default function Create() {
         hasRancherCreationError={hasRancherCreationError}
         rancherCreationErrorMessage={rancherCreationErrorMessage}
         onCreateRancher={createRancher}
-        versions={versions?.data.filter((v) => v.status === 'AVAILABLE')}
+        versions={versions?.filter((v) => v.status === 'AVAILABLE')}
         plans={plans?.data}
         isProjectDiscoveryMode={
           project?.planCode === PciProjectPlanCode.DISCOVERY

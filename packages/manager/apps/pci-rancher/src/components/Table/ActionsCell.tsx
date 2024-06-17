@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   OsdsButton,
   OsdsMenu,
@@ -12,7 +13,6 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components/';
-import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ResourceStatus } from '@/api/api.type';
 import { RancherActionsCell } from './Table.type';
