@@ -11,6 +11,10 @@ import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import { features } from './DedicatedSidebar';
 
+const kycIndiaFeature = 'identity-documents';
+const kycFraudFeature = 'procedures:fraud';
+const kycFeatures = [kycIndiaFeature, kycFraudFeature]
+
 export default function AccountSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
   const [shopItems, setShopItems] = useState<ShopItem[]>([]);
@@ -44,13 +48,7 @@ export default function AccountSidebar() {
       routeMatcher: new RegExp('^/useraccount'),
     });
 
-    const featureAvailability = await reketInstance.get(
-      `/feature/identity-documents/availability`,
-      {
-        requestType: 'aapi',
-      },
-    );
-    if (featureAvailability['identity-documents']) {
+    if (availability[kycIndiaFeature]) {
       const { status } = await reketInstance.get(`/me/procedure/identity`);
       if (['required','open'].includes(status)) {
         menu.push({
@@ -62,14 +60,16 @@ export default function AccountSidebar() {
       }
     }
 
-    const { status } = await reketInstance.get(`/me/procedure/fraud`);
-    if (['required', 'open'].includes(status)) {
-      menu.push({
-        id: 'kyc-documents',
-        label: t('sidebar_account_kyc_documents'),
-        href: navigation.getURL('dedicated', '/documents'),
-        routeMatcher: new RegExp('^/documents'),
-      });
+    if (availability[kycFraudFeature]) {
+      const { status } = await reketInstance.get(`/me/procedure/fraud`);
+      if (['required', 'open'].includes(status)) {
+        menu.push({
+          id: 'kyc-documents',
+          label: t('sidebar_account_kyc_documents'),
+          href: navigation.getURL('dedicated', '/documents'),
+          routeMatcher: new RegExp('^/documents'),
+        });
+      }
     }
 
     if (!isEnterprise) {
@@ -152,7 +152,7 @@ export default function AccountSidebar() {
   };
 
   const getFeatures = (): Promise<Record<string, string>> =>
-    reketInstance.get(`/feature/${features.join(',')}/availability`, {
+    reketInstance.get(`/feature/${features.concat(kycFeatures).join(',')}/availability`, {
       requestType: 'aapi',
     });
 

@@ -63,6 +63,7 @@ const root: Node = {
             hash: '#/documents',
           },
           count: false,
+          features: ['procedures:fraud'],
         },
         {
           id: 'account_contacts',
