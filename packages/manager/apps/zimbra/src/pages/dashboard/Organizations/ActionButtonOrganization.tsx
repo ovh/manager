@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
 import { ActionMenu } from '@ovhcloud/manager-components';
 import { OrganizationItem } from './Organizations';
+import { useGenerateUrl } from '@/hooks';
 
 interface ActionButtonOrganizationProps {
   organizationItem: OrganizationItem;
@@ -12,13 +12,14 @@ export const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> =
   organizationItem,
 }) => {
   const { t } = useTranslation('organisations');
-  const hrefDeleteOrganization = useHref(
-    `./delete?deleteOrganizationId=${organizationItem.id}`,
-  );
-  const hrefEditOrganization = useHref(
-    `./edit?editOrganizationId=${organizationItem.id}`,
-  );
 
+  const hrefDeleteOrganization = useGenerateUrl('./delete', 'href', {
+    deleteOrganizationId: organizationItem.id,
+  });
+
+  const hrefEditOrganization = useGenerateUrl('./edit', 'href', {
+    editOrganizationId: organizationItem.id,
+  });
   const actionItems = [
     {
       id: 1,
