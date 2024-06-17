@@ -144,9 +144,9 @@ export const US_GUIDES = [
   {
     title: 'dedicated_clouds_onboarding_us_guide1_title',
     description: 'dedicated_clouds_onboarding_us_guide1_description',
-    id: 'how-to-access-the-nsx-interface',
+    id: 'getting-started-with-nsx',
     link:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/360015961459-How-to-Access-the-NSX-Interface',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/15874984215443-Getting-Started-with-NSX',
   },
   {
     title: 'dedicated_clouds_onboarding_us_guide2_title',

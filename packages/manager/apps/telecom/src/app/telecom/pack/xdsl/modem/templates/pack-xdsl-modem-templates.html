@@ -10,11 +10,16 @@
         <oui-message
             type="success"
             data-ng-if="$ctrl.message.type === 'success'"
-            >{{$ctrl.message.detail}}</oui-message
         >
-        <oui-message type="error" data-ng-if="$ctrl.message.type === 'error'"
-            >{{$ctrl.message.detail}}</oui-message
-        >
+            <span data-ng-bind="$ctrl.message.detail"></span>
+        </oui-message>
+        <oui-message type="error" data-ng-if="$ctrl.message.type === 'error'">
+            <div data-ng-bind="$ctrl.message.detail"></div>
+            <div
+                data-ng-if="$ctrl.message.reason"
+                data-ng-bind="$ctrl.message.reason"
+            ></div>
+        </oui-message>
     </div>
 
     <div class="my-3">

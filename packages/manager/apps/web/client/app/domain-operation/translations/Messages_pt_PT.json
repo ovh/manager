@@ -61,8 +61,8 @@
   "domain_operations_statusOperation_cancelled": "Anulada",
   "domain_operations_statusOperation_doing": "Em curso",
   "domain_operations_statusOperation_done": "Terminada",
-  "domain_operations_statusOperation_error": "Erro",
-  "domain_operations_statusOperation_todo": "Por realizar",
+  "domain_operations_statusOperation_error": "Por tratar",
+  "domain_operations_statusOperation_todo": "Planeada",
   "domain_operations_update_title": "Dados da operação",
   "domain_operations_update": "Modificar os dados da operação",
   "domain_operations_update_info": "Pode modificar os dados relativos à operação <strong>\"{{t0}}\"</strong> no domínio <strong>{{t1}}</strong>",
@@ -127,5 +127,7 @@
   "operation_tab_DOMAIN": "Domínio",
   "operation_tab_DNS": "Dns",
   "domain_operations_nicOperation_ContactControlAcknowledge": "Confirmação do contacto",
-  "domain_operations_nicOperation_ContactControlCorrect": "Correção do contacto"
+  "domain_operations_nicOperation_ContactControlCorrect": "Correção do contacto",
+  "domain_operations_table_header_creationDate": "Data de criação",
+  "domain_operations_statusOperation_problem": "Incompleta"
 }

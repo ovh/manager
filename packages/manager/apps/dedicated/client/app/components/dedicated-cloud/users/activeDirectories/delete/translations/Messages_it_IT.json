@@ -1,8 +1,0 @@
-{
-  "dedicatedCloud_USER_AD_delete_title": "Eliminare la tua Active Directory",
-  "dedicatedCloud_USER_AD_delete_available": "Vuoi davvero eliminare l'Active Directory {{ name }}?",
-  "dedicatedCloud_USER_AD_delete_unavailable": "Impossibile eliminare l'Active Directory {{ name }}. A questa Active Directory risultano associati {{ count }} utenti, assicurati di eliminarli prima di effettuare l’operazione.",
-  "dedicatedCloud_USER_AD_delete_button_close": "Chiudi",
-  "dedicatedCloud_USER_AD_delete_button_confirm": "Confermare",
-  "dedicatedCloud_USER_AD_delete_error": "Impossibile eliminare l'Active Directory."
-}

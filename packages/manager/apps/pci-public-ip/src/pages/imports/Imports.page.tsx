@@ -22,6 +22,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 
+import HidePreloader from '@/core/HidePreloader';
 import { ImportsIP } from '@/interface';
 import { ImportIPAction } from '@/components/imports/ImportIPAction';
 import useProject from '@/api/hooks/useProject';
@@ -89,6 +90,7 @@ export default function ImportsPage(): JSX.Element {
 
   return (
     <>
+      <HidePreloader />
       {project && (
         <OsdsBreadcrumb
           items={[
