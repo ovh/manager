@@ -1,0 +1,7 @@
+{
+  "autorenew_agora_terminate_service_OKMS_RESOURCE": "Dar de baja mi KMS",
+  "autorenew_agora_terminate_service_warning_OKMS_RESOURCE": "Confirme la baja de su KMS",
+  "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "La solicitud de baja de su KMS se ha enviado. Le hemos enviado el procedimiento por correo electrónico.",
+  "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Se ha producido un error al solicitar la baja del KMS. {{error}}",
+  "autorenew_agora_terminate_service_confirm_input": "Introduzca «TERMINATE» en el siguiente campo para confirmar la operación"
+}

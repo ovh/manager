@@ -1,0 +1,7 @@
+{
+  "autorenew_agora_terminate_service_OKMS_RESOURCE": "Résilier mon KMS",
+  "autorenew_agora_terminate_service_warning_OKMS_RESOURCE": "Veuillez confirmer la résiliation de votre KMS",
+  "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "Votre demande de résiliation de votre KMS a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
+  "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Une erreur est survenue lors de la demande de résiliation de votre KMS. {{error}}",
+  "autorenew_agora_terminate_service_confirm_input": "Entrez \"TERMINATE\" dans le champ ci-dessous pour confirmer"
+}

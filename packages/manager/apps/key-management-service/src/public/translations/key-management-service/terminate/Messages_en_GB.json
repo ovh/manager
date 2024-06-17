@@ -1,0 +1,7 @@
+{
+  "key_management_service_terminate_cancel": "Cancel",
+  "key_management_service_terminate_confirm": "Cancel",
+  "key_management_service_terminate_error": "An error has occurred. {{error}}",
+  "key_management_service_terminate_heading": "Cancel my KMS",
+  "key_management_service_terminate_description": "Please enter the word “TERMINATE” to confirm the cancelation of your KMS"
+}

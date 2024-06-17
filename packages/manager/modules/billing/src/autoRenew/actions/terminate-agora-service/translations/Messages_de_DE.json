@@ -1,0 +1,7 @@
+{
+  "autorenew_agora_terminate_service_OKMS_RESOURCE": "Meinen KMS kündigen",
+  "autorenew_agora_terminate_service_warning_OKMS_RESOURCE": "Bitte bestätigen Sie die Kündigung Ihres KMS",
+  "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "Ihre Anfrage zur Kündigung Ihres KMS wurde registriert. Eine E-Mail mit weiteren Informationen wurde an Sie versandt.",
+  "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Bei der Anfrage zur Kündigung Ihres KMS ist ein Fehler aufgetreten. {{error}}",
+  "autorenew_agora_terminate_service_confirm_input": "Geben Sie „TERMINATE“ in das unten stehende Feld ein, um zu bestätigen"
+}

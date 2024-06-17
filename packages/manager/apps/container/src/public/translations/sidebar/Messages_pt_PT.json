@@ -172,5 +172,7 @@
   "sidebar_all_vrack_services": "Todos os serviços",
   "sidebar_pci_analytics_data_platform": "Data Platform",
   "sidebar_domain_list": "Os meus nomes de domínio",
-  "sidebar_pci_ai_endpoints": "AI Endpoints"
+  "sidebar_pci_ai_endpoints": "AI Endpoints",
+  "sidebar_identity_security_operations": "Identidade, Segurança e Operações",
+  "sidebar_key-management-service": "Key Management Service"
 }

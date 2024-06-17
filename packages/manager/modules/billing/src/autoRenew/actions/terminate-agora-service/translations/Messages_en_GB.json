@@ -1,0 +1,7 @@
+{
+  "autorenew_agora_terminate_service_OKMS_RESOURCE": "Cancel my KMS",
+  "autorenew_agora_terminate_service_warning_OKMS_RESOURCE": "Please confirm the cancelation of your KMS",
+  "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "Your KMS cancelation request has been processed. You have been sent an email detailing the procedure to follow.",
+  "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "An error has occurred requesting to terminate your KMS. {{error}}",
+  "autorenew_agora_terminate_service_confirm_input": "Enter \"TERMINATE\" in the field below to confirm"
+}

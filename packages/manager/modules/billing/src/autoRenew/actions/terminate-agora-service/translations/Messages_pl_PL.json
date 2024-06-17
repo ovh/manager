@@ -1,0 +1,7 @@
+{
+  "autorenew_agora_terminate_service_OKMS_RESOURCE": "Rezygnacja z usługi KMS",
+  "autorenew_agora_terminate_service_warning_OKMS_RESOURCE": "Potwierdź rezygnację z usługi KMS",
+  "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "Zlecenie rezygnacji z usługi KMS zostało zarejestrowane. Informacje dotyczące procedury zostały wysłane na Twój adres e-mail.",
+  "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Wystąpił błąd podczas zlecania rezygnacji z serwera KMS. {{error}}",
+  "autorenew_agora_terminate_service_confirm_input": "Wprowadź \"TERMINATE\" w poniższym polu, aby potwierdzić operację"
+}
