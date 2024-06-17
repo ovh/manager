@@ -9,20 +9,27 @@ export const useSessionModal = (user: User, warningPercentage: number) => {
   const { data: currentServerTime, isError, isFetched } = useFetchServerTime();
 
   useEffect(() => {
-    if (isError || !isFetched) return undefined;
-    if (!user) return undefined;
+    if (!isFetched) return undefined;
+
+    const currentTime = isError
+      ? Math.floor(Date.now() / 1000)
+      : currentServerTime;
+    const redirectUrl = getRedirectLoginUrl(user);
+
+    if (!user) {
+      window.location.assign(redirectUrl);
+      return undefined;
+    }
 
     const { exp, iat } = user;
     const duration = exp - iat;
     const warningTime = duration * warningPercentage;
 
-    const timeElapsed = currentServerTime - iat;
+    const timeElapsed = currentTime - iat;
     const remainingWarningTime = warningTime - timeElapsed;
-    const remainingExpireTime = exp - currentServerTime;
+    const remainingExpireTime = exp - currentTime;
 
     if (remainingExpireTime <= 0) {
-      setShowExpiredModal(true);
-      const redirectUrl = getRedirectLoginUrl(user);
       window.location.assign(redirectUrl);
       return undefined;
     }

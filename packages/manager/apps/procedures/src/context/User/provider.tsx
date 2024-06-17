@@ -31,7 +31,7 @@ export const UserProvider = ({ children = null, user }: Props): JSX.Element => {
   return (
     <>
       <userContext.Provider value={memoizedUser}>
-        {children}
+        {user && children}
       </userContext.Provider>
       {showExpiredModal && (
         <ExpiredSessionModal onClose={handleCloseExpiredModal} />

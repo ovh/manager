@@ -13,15 +13,30 @@ import initInterceptor from './data/invisible-challenge.interceptor';
 import UserProvider from '@/context/User/provider';
 import { getRedirectLoginUrl } from '@/utils/url-builder';
 
+function getSubsidiary(subsidiary: string, locale: string) {
+  if (subsidiary?.trim()?.length === 0)
+    return locale?.trim()?.length === 0 ? 'IE' : locale.slice(-2);
+  return subsidiary;
+}
+
 const token = extractToken();
 const user = decodeToken(token);
 const { language: locale, subsidiary } = user || {};
 
-initI18n(locale || 'en_GB', [locale || 'en_GB'], subsidiary);
-initAuthenticationInterceptor(token);
-initInterceptor();
+if (!user) {
+  const redirectUrl = getRedirectLoginUrl(user);
+  window.location.assign(redirectUrl);
+} else {
+  initI18n(
+    locale || 'en_GB',
+    [locale || 'en_GB'],
+    getSubsidiary(subsidiary, locale),
+  );
+  initAuthenticationInterceptor(token);
+  initInterceptor();
 
-odsSetup();
+  odsSetup();
+}
 
 const router = createHashRouter(Routes);
 

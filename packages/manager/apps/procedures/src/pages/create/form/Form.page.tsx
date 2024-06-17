@@ -24,7 +24,7 @@ import useUser from '@/context/User/useUser';
 import { useUploadDocuments } from '@/data/hooks/useDocuments';
 import { ConfirmModal } from './Modal/ConfirmModal';
 import { SuccessModal } from './Modal/SuccessModal';
-import { ovhHomePageHref } from './contants/form.constants';
+import { ovhHomePageHref } from './constants/form.constants';
 
 const flatFiles = (files: FieldValues) =>
   Object.values(files)
@@ -104,7 +104,7 @@ const FormCreateRequest = () => {
         </div>
       )}
 
-      {legalForm && (
+      {(legalForm || legalForm?.trim()?.length === 0) && (
         <>
           <FormDocumentFieldList
             control={control}

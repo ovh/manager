@@ -6,4 +6,5 @@ export const useFetchServerTime = () =>
   useQuery<number, AxiosError>({
     queryKey: ['getServerTime'],
     queryFn: getServerTime,
+    retry: 1,
   });
