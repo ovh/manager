@@ -1,9 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
+  ODS_BUTTON_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_TEXT_COLOR_HUE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -21,7 +24,7 @@ import {
   getZimbraPlatformEmails,
   getZimbraPlatformEmailsQueryKey,
 } from '@/api';
-import { useOrganization, usePlatform } from '@/hooks';
+import { useOrganization, usePlatform, useOverridePage, useGenerateUrl } from '@/hooks';
 import LabelChip from '@/components/LabelChip';
 import guidesConstants from '@/guides.constants';
 import ActionButtonEmail from './ActionButtonEmail';
@@ -102,6 +105,7 @@ export default function EmailAccounts() {
     queryFn: () => getZimbraPlatformEmails(platformId, organization?.id),
     enabled: !!platformId,
   });
+  const isOverriddedPage = useOverridePage();
 
   const items: EmailsItem[] =
     data?.map((item) => ({
@@ -115,34 +119,59 @@ export default function EmailAccounts() {
     })) ?? [];
 
   const webmailUrl = guidesConstants.GUIDES_LIST.webmail.url;
+
+  const hrefAddEmailAccount = useGenerateUrl('./add', 'href');
+
   return (
-    <div className="py-6 mt-8">
-      <Notifications />
+    <>
       <Outlet />
-      <div className="mb-4">
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          hue={ODS_TEXT_COLOR_HUE._500}
-          size={ODS_TEXT_SIZE._200}
-          className="font-bold mr-4"
-        >
-          {t('zimbra_emails_datagrid_webmail_label')}
-        </OsdsText>
-        <Links
-          href={webmailUrl}
-          type={LinkType.external}
-          label={webmailUrl}
-          target={OdsHTMLAnchorElementTarget._blank}
-        ></Links>
+      <div className="py-6 mt-8">
+        <Notifications />
+        {!isOverriddedPage && (
+          <>
+            <div className="mb-8">
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                hue={ODS_TEXT_COLOR_HUE._500}
+                size={ODS_TEXT_SIZE._200}
+                className="font-bold mr-4"
+              >
+                {t('zimbra_emails_datagrid_webmail_label')}
+              </OsdsText>
+              <Links
+                href={webmailUrl}
+                type={LinkType.external}
+                label={webmailUrl}
+                target={OdsHTMLAnchorElementTarget._blank}
+              ></Links>
+            </div>
+            <OsdsButton
+              color={ODS_THEME_COLOR_INTENT.primary}
+              inline={true}
+              size={ODS_BUTTON_SIZE.sm}
+              href={hrefAddEmailAccount}
+            >
+              <span slot="start">
+                <OsdsIcon
+                  name={ODS_ICON_NAME.PLUS}
+                  size={ODS_ICON_SIZE.sm}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  contrasted
+                ></OsdsIcon>
+              </span>
+              <span slot="end">{t('zimbra_emails_account_add')}</span>
+            </OsdsButton>
+            <Datagrid
+              columns={columns.map((column) => ({
+                ...column,
+                label: t(column.label),
+              }))}
+              items={items}
+              totalItems={items.length}
+            />
+          </>
+        )}
       </div>
-      <Datagrid
-        columns={columns.map((column) => ({
-          ...column,
-          label: t(column.label),
-        }))}
-        items={items}
-        totalItems={items.length}
-      />
-    </div>
+    </>
   );
 }
