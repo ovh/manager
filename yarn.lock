@@ -4298,10 +4298,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^6.7.7":
-  version "6.7.7"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.7.tgz#661c47f8a37a37e93772db54167056beb1369f00"
-  integrity sha512-mp9Sk/Rs4cmW0xtMmLJJPmX+Sc0RrMeZ1NpBoQAmDekxR5Ax5AneH3qHDbGxxF3raSW/QxIN2FMiAeH5Bz/8zg==
+"@ovh-ux/ui-kit@^6.10.1":
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.10.1.tgz#2cdcdbf9a4d790190a3b80e142db24e4a996f3ad"
+  integrity sha512-Aovgen8GliIImqntZ5qW61waYoav5qpbeyKoqN8p/uBCEq845kFUQaHS5OTa/tUeRqwW+Qh/pnkVWxVS3IZ8zw==
 
 "@ovhcloud/ods-cdk@16.6.0":
   version "16.6.0"
