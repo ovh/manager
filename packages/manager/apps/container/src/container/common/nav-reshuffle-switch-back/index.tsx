@@ -38,7 +38,8 @@ function NavReshuffleSwitchBack(): JSX.Element {
       type: 'navigation',
     });
     updateBetaChoice(value === 'beta');
-    onboarding.init();
+    // Onboarding forced only for PNR V2 alpha; to remove for the beta.
+    if (value === 'beta') onboarding.forceOnboardingDisplayed(true);
   };
 
   const switchBack = (openSurvey = false) => {
