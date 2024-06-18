@@ -27,7 +27,7 @@ const init = async (
   await initI18n({
     context,
     reloadOnLocaleChange,
-    ns: ['common'],
+    ns: ['common', 'order-price'],
     defaultNS: 'common',
   });
 
