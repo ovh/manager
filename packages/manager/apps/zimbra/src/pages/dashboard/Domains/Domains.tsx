@@ -75,7 +75,8 @@ export default function Domains() {
   const { data } = useDomains();
   const isOverriddedPage = useOverridePage();
 
-  const hrefAddDomain = useGenerateUrl('./add-domain', 'href');
+  const hrefAddDomain = useGenerateUrl('./add', 'href');
+
   const items: DomainsItem[] =
     data?.map((item) => ({
       name: item.targetSpec.name,
