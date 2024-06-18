@@ -8,7 +8,6 @@ import {
 
 import {
   DashboardLayout,
-  DashboardLayoutProps,
   GuideButton,
   GuideItem,
 } from '@ovh-ux/manager-react-components';
