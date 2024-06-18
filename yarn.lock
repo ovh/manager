@@ -5061,10 +5061,15 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^6.10.0":
-  version "6.10.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.10.0.tgz#7299819d2150da5c1946b2199d1ecadd2013df51"
-  integrity sha512-ijZTINZPeeCfC/Zahpc8c7QPbmsRgLQ8VUl2TY/WVJQhFR13P+oPL1f7qeYDKHGd0XoKPs3Lkb40j2rECw85PQ==
+"@ovh-ux/ui-kit@^6.10.1":
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.10.1.tgz#2cdcdbf9a4d790190a3b80e142db24e4a996f3ad"
+  integrity sha512-Aovgen8GliIImqntZ5qW61waYoav5qpbeyKoqN8p/uBCEq845kFUQaHS5OTa/tUeRqwW+Qh/pnkVWxVS3IZ8zw==
+
+"@ovhcloud/ods-cdk@^14.1.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-cdk/-/ods-cdk-14.1.1.tgz#341ed0bfed7f599b253c2d087ba2f15a8915c436"
+  integrity sha512-reePwUvxbOXOdIzHGyeKFhBbMSWiApipNLSrMEBb6cl6Wdv/HOHbv3T+w7xfSACDFhJqLg8okEmtMIU4usvlaw==
 
 "@ovhcloud/ods-common-core@17.2.1":
   version "17.2.1"
@@ -5122,6 +5127,21 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
+"@ovhcloud/ods-core@^14.0.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-core/-/ods-core-14.1.1.tgz#dc4881af21e6e49fdd4d27340d96c1fa4439d6bb"
+  integrity sha512-xcLgJTJaiRDArm0uUXQSaBON3A8zVShulT2ChSbjNRW8BXE4dJql0DgVCFDCGnzKU3oKmdM+0wPtdNkWZ1mZyA==
+  dependencies:
+    "@ovhcloud/ods-cdk" "^14.1.1"
+
+"@ovhcloud/ods-stencil@^14.0.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-stencil/-/ods-stencil-14.1.1.tgz#c7b85531f2bf243a1b435bd577110a3b483b7ae7"
+  integrity sha512-SWCpMb9PH/w3XsskSNMqvoX1ZoEvwii+jUxRancQIv/ORiDZ0XrRhoe9DoNy9GgT2qdJEiD5znAaluHUB7595g==
+  dependencies:
+    "@ovhcloud/ods-theme-blue-jeans" "^14.1.1"
+    "@stencil/core" "~2.18.1"
+
 "@ovhcloud/ods-theme-blue-jeans@17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.1.tgz#6495afedce96505481f38ea072177d5be8ff4446"
@@ -5135,6 +5155,18 @@
   integrity sha512-0Fr6ZJ10btgkGAXJDun5tftlV1gYFevB7piQiYT4kFjfVXmxmpSw9A1nusPHiZfmV+Dnzv3/+SVxpYK/uccYXw==
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
+
+"@ovhcloud/ods-theme-blue-jeans@^14.1.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-14.1.1.tgz#fd004bd3be6b4ef99f5829a922205f61481becb4"
+  integrity sha512-OIoAuskxS5cabxQ4n7zmWaWfEKE+2DghmfUsNb/XmJoCVSc163le1MkUNqTz2LexSzUa/IS3LTxZBC0fB5TfOg==
+  dependencies:
+    "@ovhcloud/ods-theming" "^14.1.1"
+
+"@ovhcloud/ods-theming@^14.0.1", "@ovhcloud/ods-theming@^14.1.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theming/-/ods-theming-14.1.1.tgz#88e911595c682a9b58a0225e6ec780940e53acb6"
+  integrity sha512-on/UOG/Qj6KJ8x4SIyqETRRAn6906255QUyC71Z0J+AG5M3ljoerxquG2qr34iIkXLajgbRV1ekFPLACiKCPMw==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -6595,6 +6627,11 @@
   version "4.12.0"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.12.0.tgz#bd87f314ce1c98174077514a161f8bcd6e9f2fc0"
   integrity sha512-qAQcfNmp2sdxAh1DlyUhHfDmIUS7mhI+5LAhPphg74zK9sKgFL5vpLzgjs0wohpjlmI4msgJFYiRB8lxVPqjPg==
+
+"@stencil/core@~2.18.1":
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.18.1.tgz#f45e99b7abe2a0fa90d3141363601a68df5c08a7"
+  integrity sha512-/fXkh1lwZ+X9JQCw50mPjhBogzEHOBvVC5pLoDLZqodVYK0DGWILM2YLV4dcIUBNEK8/HMDpO/Rq81/rS3mNOw==
 
 "@storybook/addon-actions@7.5.3":
   version "7.5.3"
