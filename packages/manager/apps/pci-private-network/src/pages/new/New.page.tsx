@@ -43,7 +43,6 @@ export default function NewPage(): JSX.Element {
   const backHref = useHref('..');
 
   useEffect(() => {
-    store.reset();
     if (project) {
       store.setProject({
         id: project.project_id,
