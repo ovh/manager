@@ -1,19 +1,16 @@
 {
   "onboarding_button_text": "C'est parti !",
   "onboarding_introduction_popover_title": "{{userName}}, bienvenue sur votre espace client",
-  "onboarding_introduction_popover_content": "Retrouvez ici toutes les fonctionnalités nécessaires à la gestion de votre compte et de vos services.",
-  "onboarding_introduction_popover_extra": "Votre guide reste disponible et accessible depuis le menu de gauche.",
-  "onboarding_popover_follow_guide_button": "Suivez le guide",
-  "onboarding_popover_hide_button": "Masquer",
+  "onboarding_introduction_popover_content": "Souhaitez-vous voir la visite guidée ?",
+  "onboarding_popover_follow_guide_button": "Voir la visite guidée",
+  "onboarding_popover_hide_button": "Arrêter la visite",
   "onboarding_walkme_popover_next_step": "Suivant {{current}}/{{total}}",
   "onboarding_walkme_popover_step1_title": "Comment accéder à mon compte ?",
   "onboarding_walkme_popover_step1_content": "Accédez à votre compte à tout moment en cliquant sur votre nom.",
-  "onboarding_walkme_popover_step2_title": "Mon profil",
-  "onboarding_walkme_popover_step2_content": "Assurez la gestion de votre compte directement depuis votre profil.",
-  "onboarding_walkme_popover_step3_title": "Mes moyens de paiement",
-  "onboarding_walkme_popover_step3_content": "Ajoutez un ou plusieurs moyens de paiement. Configurez-en un « par défaut » pour vos services en renouvellement automatique.",
-  "onboarding_walkme_popover_step4_title": "Mes services",
-  "onboarding_walkme_popover_step4_content": "Naviguez simplement dans le menu des services proposés par OVHcloud et retrouvez facilement vos services actifs signalés par une pastille.",
-  "onboarding_walkme_popover_step5_title": "Mes factures",
-  "onboarding_walkme_popover_step5_content": "Retrouvez l’ensemble de vos factures, paiements en cours et avoirs dans cette rubrique."
+  "onboarding_walkme_popover_step2_title": "Comment gérer mon compte/mes informations ?",
+  "onboarding_walkme_popover_step2_content": "Mettez à jour votre profil, vos moyens de paiement et votre niveau de support. Accédez à vos factures, vos services et vos commandes. Consultez vos communications et vos contrats.",
+  "onboarding_walkme_popover_step3_title": "Catalogue de services.",
+  "onboarding_walkme_popover_step3_content": "Découvrez l’intégralité des services proposés par OVHcloud. Complétez aisément votre offre avec des services supplémentaires et adaptés.",
+  "onboarding_walkme_popover_step4_title": "Envie d’aller plus loin ?",
+  "onboarding_walkme_popover_step4_content": "Découvrez nos vendeurs partenaires sur notre Marketplace, restez informé de l’état de nos services en temps réel, estimez votre empreinte carbone. Besoin d’aide ? Accédez à nos guides pratique et ressources d’aide. Échangez via notre chat afin d’obtenir des solutions, des ressources supplémentaires et des réponses à vos questions."
 }
