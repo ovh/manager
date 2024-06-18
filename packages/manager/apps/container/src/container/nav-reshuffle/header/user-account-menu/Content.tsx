@@ -23,6 +23,7 @@ const UserAccountMenu = ({
   isLoading = false,
 }: Props): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
+  const sidebarTranslation = useTranslation('sidebar');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
   const environment = shell.getPlugin('environment').getEnvironment();
@@ -30,6 +31,9 @@ const UserAccountMenu = ({
   const { closeAccountSidebar } = useProductNavReshuffle();
   const [allLinks, setAllLinks] = useState<UserLink[]>(links);
   const reketInstance = useReket();
+  const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
+    false,
+  );
 
   const user = shell
     .getPlugin('environment')
@@ -66,41 +70,48 @@ const UserAccountMenu = ({
   const ssoLink = getUrl('dedicated', '#/useraccount/users');
   const supportLink = getUrl('dedicated', '#/useraccount/support/level');
 
-  const getAllLinks = useMemo(() => async () => {
-    let isIdentityDocumentsAvailable = false;
-    const featureAvailability = await reketInstance.get(
-      `/feature/identity-documents/availability`,
-      {
-        requestType: 'aapi',
-      },
-    );
-    if (featureAvailability['identity-documents']) {
-      const { status } = await reketInstance.get(`/me/procedure/identity`);
-      isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
-    }
+  const getAllLinks = useMemo(
+    () => async () => {
+      let isIdentityDocumentsAvailable = false;
+      const featureAvailability = await reketInstance.get(
+        `/feature/identity-documents,procedures:fraud/availability`,
+        {
+          requestType: 'aapi',
+        },
+      );
+      if (featureAvailability['identity-documents']) {
+        const { status } = await reketInstance.get(`/me/procedure/identity`);
+        isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
+      }
+      if (featureAvailability['procedures:fraud']) {
+        const { status } = await reketInstance.get(`/me/procedure/fraud`);
+        setIsDocumentsVisible(['required', 'open'].includes(status));
+      }
 
-    setAllLinks([
-      ...links,
-      ...(isIdentityDocumentsAvailable
-        ? [
-            {
-              key: 'myIdentityDocuments',
-              hash: '#/identity-documents',
-              i18nKey: 'user_account_menu_my_identity_documents',
-            },
-          ]
-        : []),
-      ...(region === 'US'
-        ? [
-            {
-              key: 'myAssistanceTickets',
-              hash: '#/ticket',
-              i18nKey: 'user_account_menu_my_assistance_tickets',
-            },
-          ]
-        : []),
-    ]);
-  }, []);
+      setAllLinks([
+        ...links,
+        ...(isIdentityDocumentsAvailable
+          ? [
+              {
+                key: 'myIdentityDocuments',
+                hash: '#/identity-documents',
+                i18nKey: 'user_account_menu_my_identity_documents',
+              },
+            ]
+          : []),
+        ...(region === 'US'
+          ? [
+              {
+                key: 'myAssistanceTickets',
+                hash: '#/ticket',
+                i18nKey: 'user_account_menu_my_assistance_tickets',
+              },
+            ]
+          : []),
+      ]);
+    },
+    [],
+  );
 
   useEffect(() => {
     getAllLinks();
@@ -194,6 +205,26 @@ const UserAccountMenu = ({
               </a>
             );
           })}
+          {isKycDocumentsVisible && (
+            <a
+              key={'account_kyc_documents'}
+              id={'account_kyc_documents'}
+              onClick={() => onLinkClick(
+                {
+                  key: 'account_kyc_documents',
+                  hash: '#/documents',
+                  i18nKey: 'sidebar_account_kyc_documents'
+                }
+              )}
+              className="d-block"
+              aria-label={sidebarTranslation.t('sidebar_account_kyc_documents')}
+              title={sidebarTranslation.t('sidebar_account_kyc_documents')}
+              href={getUrl('dedicated', '#/documents')}
+              target="_top"
+            >
+              {sidebarTranslation.t('sidebar_account_kyc_documents')}
+            </a>
+          )}
         </div>
         <div>
           <button
