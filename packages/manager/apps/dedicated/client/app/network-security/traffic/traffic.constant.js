@@ -82,6 +82,21 @@ export const CHART = {
             },
           },
         },
+        // Zoom option when user scroll the mouse wheel
+        zoom: {
+          limits: {
+            y: { min: 0, max: 'original' },
+          },
+          zoom: {
+            wheel: {
+              enabled: true,
+            },
+            pinch: {
+              enabled: true,
+            },
+            mode: 'xy',
+          },
+        },
       },
       scales: {
         y: {
