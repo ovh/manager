@@ -113,6 +113,32 @@ export const deleteVolume = async (
   }
 };
 
+export const updateVolume = async (
+  projectId: string,
+  { name, bootable, size }: TVolume,
+  originalVolume: TVolume,
+) => {
+  let promise1;
+  let promise2;
+  try {
+    if (originalVolume.name !== name || originalVolume.bootable !== bootable) {
+      promise1 = v6.put(
+        `/cloud/project/${projectId}/volume/${originalVolume.id}`,
+        { name, bootable },
+      );
+    }
+    if (size !== originalVolume.size) {
+      promise2 = v6.post(
+        `/cloud/project/${projectId}/volume/${originalVolume.id}/upsize`,
+        { size },
+      );
+    }
+    return await Promise.all([promise1, promise2]);
+  } catch (e) {
+    throw new Error(e.response?.data?.message || e.message);
+  }
+};
+
 export const attachVolume = async (
   projectId: string,
   volumeId: string,

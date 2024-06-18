@@ -1,3 +1,6 @@
+import { useContext, useEffect, useRef, useState } from 'react';
+import { Outlet, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Datagrid,
   FilterAdd,
@@ -30,10 +33,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useContext, useEffect, useRef, useState } from 'react';
-
-import { useTranslation } from 'react-i18next';
-import { Outlet, useParams } from 'react-router-dom';
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   ODS_BUTTON_SIZE,
@@ -42,11 +42,11 @@ import {
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { useAnnouncementBanner } from '@/hooks/useAnnouncementBanner';
+import { useDatagridColumn } from '@/hooks/useDatagridColumn';
+
 import HidePreloader from '@/core/HidePreloader';
 import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
-import { useDatagridColumn } from '@/hooks/useDatagridColumn';
-import { useAnnouncementBanner } from '@/hooks/useAnnouncementBanner';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -64,6 +64,7 @@ export default function ListingPage() {
   const filterPopoverRef = useRef(undefined);
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
+
 
   useEffect(() => {
     navigation
@@ -91,7 +92,9 @@ export default function ListingPage() {
     },
     filters,
   );
+
   const isLoading = isVolumesLoading || isVolumesPending;
+
   return (
     <RedirectionGuard
       isLoading={isLoadingAllVolumes || isPendingAllVolumes}
