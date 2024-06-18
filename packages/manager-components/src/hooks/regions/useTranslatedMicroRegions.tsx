@@ -30,7 +30,7 @@ export const getMacroRegion = (region: string): string => {
 };
 
 export const useTranslatedMicroRegions = () => {
-  const { t } = useTranslation('regions');
+  const { t } = useTranslation('region');
 
   return {
     translateRegion: (region: string) =>

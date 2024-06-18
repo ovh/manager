@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useMe } from './useMe';
 
@@ -63,6 +63,7 @@ export const useCatalogPrice = (maximumFractionDigits?: number) => {
     )}`;
 
   return {
+    getTextPrice,
     getFormattedCatalogPrice,
     getFormattedHourlyCatalogPrice,
     getFormattedMonthlyCatalogPrice,
