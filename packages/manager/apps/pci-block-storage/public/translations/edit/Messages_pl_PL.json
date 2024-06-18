@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_blocks_block_edit_title": "Edytuj wolumen",
+  "pci_projects_project_storages_blocks_block_edit_submit_label": "Zmodyfikuj wolumen",
+  "pci_projects_project_storages_blocks_block_edit_success_message": "Wolumen {{volume}} został zaktualizowany.",
+  "pci_projects_project_storages_blocks_block_edit_error_put": "Wystąpił błąd podczas aktualizacji wolumenu {{volume}}: {{message}}.",
+  "pci_projects_project_storages_blocks_block_edit_error_upsize": "Wystąpił błąd podczas zmiany pojemności wolumenu {{volume}}: {{message }}.",
+  "pci_projects_project_storages_blocks_block_edit_error_load": "Wystąpił błąd podczas ładowania wolumenu: {{message}}."
+}

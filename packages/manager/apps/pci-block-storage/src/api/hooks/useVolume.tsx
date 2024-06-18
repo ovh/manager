@@ -1,7 +1,12 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
-import { useTranslatedMicroRegions } from '@ovhcloud/manager-components';
+import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
+import {
+  useCatalogPrice,
+  useProject,
+  useTranslatedMicroRegions,
+} from '@ovhcloud/manager-components';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { TPricing } from '@/api/data/catalog';
 import {
   attachVolume,
   deleteVolume,
@@ -13,8 +18,11 @@ import {
   sortResults,
   TVolume,
   TVolumeSnapshot,
+  updateVolume,
   VolumeOptions,
 } from '@/api/data/volume';
+import { useCatalog } from '@/api/hooks/useCatalog';
+import { UCENTS_FACTOR } from '@/hooks/currency-constants';
 import queryClient from '@/queryClient';
 
 export const useAllVolumes = (projectId: string) => {
@@ -90,11 +98,13 @@ export const getVolumeQueryKey = (projectId: string, volumeId: string) => [
   volumeId,
 ];
 
+export const getVolumeQuery = (projectId: string, volumeId: string) => ({
+  queryKey: getVolumeQueryKey(projectId, volumeId),
+  queryFn: (): Promise<TVolume> => getVolume(projectId, volumeId),
+});
+
 export const useVolume = (projectId: string, volumeId: string) =>
-  useQuery({
-    queryKey: getVolumeQueryKey(projectId, volumeId),
-    queryFn: (): Promise<TVolume> => getVolume(projectId, volumeId),
-  });
+  useQuery({ ...getVolumeQuery(projectId, volumeId) });
 
 export const getVolumeSnapshotQueryKey = (projectId: string) => [
   'volume-snapshot',
@@ -123,11 +133,13 @@ export const useDeleteVolume = ({
   const mutation = useMutation({
     mutationFn: async () => deleteVolume(projectId, volumeId),
     onError,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getVolumeQueryKey(projectId, volumeId),
       });
-      // @TODO update volume in cached list of volumes
+      await queryClient.invalidateQueries({
+        queryKey: ['project', projectId, 'volumes'],
+      });
       onSuccess();
     },
   });
@@ -191,4 +203,106 @@ export const useDetachVolume = ({
     detachVolume: () => mutation.mutate(),
     ...mutation,
   };
+};
+
+export const convertUcentsToCurrency = (value: number, interval = 1) =>
+  value / interval / UCENTS_FACTOR;
+
+interface UpdateVolumeProps {
+  projectId: string;
+  volumeToEdit: TVolume;
+  originalVolume: TVolume;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}
+
+export const useUpdateVolume = ({
+  projectId,
+  volumeToEdit,
+  originalVolume,
+  onError,
+  onSuccess,
+}: UpdateVolumeProps) => {
+  const mutation = useMutation({
+    mutationFn: async () =>
+      updateVolume(projectId, volumeToEdit, originalVolume),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getVolumeQueryKey(projectId, originalVolume.id),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ['project', projectId, 'volumes'],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    updateVolume: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+export const usePriceTransformer = () => {
+  const { getFormattedCatalogPrice } = useCatalogPrice();
+  return (price: TPricing, currencyCode: string) => ({
+    ...price,
+    priceInUcents: price.price,
+    intervalUnit: price.interval,
+    price: {
+      currencyCode,
+      text: getFormattedCatalogPrice(price.price?.value),
+      value: convertUcentsToCurrency(price.price?.value),
+    },
+  });
+};
+
+export const useGetPrices = (projectId: string, volumeId: string) => {
+  const { data: project } = useProject(projectId);
+  const { data: catalog } = useCatalog();
+  const { data: volume } = useVolume(projectId, volumeId);
+
+  const priceFormatter = usePriceTransformer();
+
+  if (project && catalog) {
+    const projectPlan = catalog.plans.find(
+      (plan) => plan.planCode === project.planCode,
+    );
+
+    if (!projectPlan) {
+      throw new Error('Fail to get project plan');
+    }
+
+    const pricesMap = {};
+
+    projectPlan.addonFamilies.forEach((family) => {
+      family.addons.forEach((planCode) => {
+        const addon = catalog.addons.find(
+          (addonCatalog) => addonCatalog.planCode === planCode,
+        );
+
+        const pricing =
+          addon?.pricings.find(
+            ({ capacities }) =>
+              capacities.includes('renew') ||
+              capacities.includes('consumption'),
+          ) || ({} as TPricing);
+
+        pricesMap[planCode] = priceFormatter(
+          pricing,
+          catalog.locale.currencyCode,
+        );
+      });
+    });
+
+    if (volume) {
+      const relatedCatalog =
+        pricesMap[`volume.${volume.type}.consumption.${volume.region}`] ||
+        pricesMap[`volume.${volume.type}.consumption`];
+
+      return relatedCatalog;
+    }
+  }
+
+  return {};
 };

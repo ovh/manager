@@ -31,6 +31,7 @@ export default function ActionsComponent({
   const { t } = useTranslation();
   const hrefAttach = useHref(`./attach/${volume.id}`);
   const hrefDetach = useHref(`./detach/${volume.id}`);
+  const hrefEdit = useHref(`./${volume.id}/edit`);
   const hrefRemove = useHref(`./delete/${volume.id}`);
   const hrefCreateBackup = `${projectUrl}/storages/volume-backup/create?volume=${volume.id}`;
 
@@ -48,6 +49,24 @@ export default function ActionsComponent({
           size={ODS_ICON_SIZE.xxs}
         ></OsdsIcon>
       </OsdsButton>
+      <OsdsMenuItem>
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          data-testid={'actionComponent-edit-button'}
+          href={hrefEdit}
+        >
+          <OsdsText
+            size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+            level={ODS_TEXT_LEVEL.button}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            slot={'start'}
+          >
+            {t('pci_projects_project_storages_blocks_edit_label')}
+          </OsdsText>
+        </OsdsButton>
+      </OsdsMenuItem>
       <OsdsMenuItem>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
@@ -72,7 +91,6 @@ export default function ActionsComponent({
           variant={ODS_BUTTON_VARIANT.ghost}
           color={ODS_THEME_COLOR_INTENT.primary}
           href={volume.attachedTo?.length ? hrefDetach : hrefAttach}
-          data-testid={'actionComponent-attach-detach-button'}
         >
           <OsdsText
             size={ODS_THEME_TYPOGRAPHY_SIZE._500}
@@ -88,24 +106,22 @@ export default function ActionsComponent({
           </OsdsText>
         </OsdsButton>
       </OsdsMenuItem>
-      <OsdsMenuItem>
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.ghost}
+      <OsdsButton
+        size={ODS_BUTTON_SIZE.sm}
+        variant={ODS_BUTTON_VARIANT.ghost}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        data-testid={'actionComponent-remove-button'}
+        href={hrefRemove}
+      >
+        <OsdsText
+          size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+          level={ODS_TEXT_LEVEL.button}
           color={ODS_THEME_COLOR_INTENT.primary}
-          data-testid={'actionComponent-remove-button'}
-          href={hrefRemove}
+          slot={'start'}
         >
-          <OsdsText
-            size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-            level={ODS_TEXT_LEVEL.button}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            slot={'start'}
-          >
-            {t('pci_projects_project_storages_blocks_delete_label')}
-          </OsdsText>
-        </OsdsButton>
-      </OsdsMenuItem>
+          {t('pci_projects_project_storages_blocks_delete_label')}
+        </OsdsText>
+      </OsdsButton>
     </OsdsMenu>
   );
 }
