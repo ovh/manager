@@ -1,13 +1,17 @@
-import React from 'react';
-
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
-import icon from './assets/give_feedback.png';
 import UserDefaultPaymentMethod from './DefaultPaymentMethod';
 import style from './style.module.scss';
+import { links } from './constants';
 
 import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
+import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
+import { useReket } from '@ovh-ux/ovh-reket';
+import { UserLink } from './UserLink';
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -19,13 +23,17 @@ const UserAccountMenu = ({
   isLoading = false,
 }: Props): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
+  const sidebarTranslation = useTranslation('sidebar');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
   const environment = shell.getPlugin('environment').getEnvironment();
   const region = environment.getRegion();
-
-  const { getFeedbackUrl, closeAccountSidebar } = useProductNavReshuffle();
-  const feedbackUrl = getFeedbackUrl();
+  const { closeAccountSidebar } = useProductNavReshuffle();
+  const [allLinks, setAllLinks] = useState<UserLink[]>(links);
+  const reketInstance = useReket();
+  const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
+    false,
+  );
 
   const user = shell
     .getPlugin('environment')
@@ -36,7 +44,7 @@ const UserAccountMenu = ({
 
   const displayUserName = {
     userName: isSubUser ? user.auth.user : `${user.firstname} ${user.name}`,
-    className: `oui-heading_4 mb-1 ${isSubUser && 'text-truncate'}`
+    className: `oui-heading_4 mb-1 ${isSubUser && 'text-truncate'}`,
   };
 
   const onLougoutBtnClick = () => {
@@ -47,128 +55,190 @@ const UserAccountMenu = ({
     shell.getPlugin('auth').logout();
   };
 
-  const onGiveFeedbackLinkClick = () => {
+  const onLinkClick = (link: UserLink) => {
     closeAccountSidebar();
-    trackingPlugin.trackClick({
-      name: 'topnav::user_widget::give_feedback',
-      type: 'action',
-    });
+    if (link.trackingHit) {
+      trackingPlugin.trackClick({
+        name: link.trackingHit,
+        type: 'navigation',
+      });
+    }
   };
 
-  const onMyAccountLinkClick = () => {
-    closeAccountSidebar();
-    trackingPlugin.trackClick({
-      name: 'topnav::user_widget::go_to_profile',
-      type: 'navigation',
-    });
-  };
+  const getUrl = (key: string, hash: string) =>
+    shell.getPlugin('navigation').getURL(key, hash);
+  const ssoLink = getUrl('dedicated', '#/useraccount/users');
+  const supportLink = getUrl('dedicated', '#/useraccount/support/level');
 
-  const myAccountLink = shell
-    .getPlugin('navigation')
-    .getURL('dedicated', '#/useraccount/dashboard');
+  const getAllLinks = useMemo(
+    () => async () => {
+      let isIdentityDocumentsAvailable = false;
+      const featureAvailability = await reketInstance.get(
+        `/feature/identity-documents,procedures:fraud/availability`,
+        {
+          requestType: 'aapi',
+        },
+      );
+      if (featureAvailability['identity-documents']) {
+        const { status } = await reketInstance.get(`/me/procedure/identity`);
+        isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
+      }
+      if (featureAvailability['procedures:fraud']) {
+        const { status } = await reketInstance.get(`/me/procedure/fraud`);
+        setIsDocumentsVisible(['required', 'open'].includes(status));
+      }
+
+      setAllLinks([
+        ...links,
+        ...(isIdentityDocumentsAvailable
+          ? [
+              {
+                key: 'myIdentityDocuments',
+                hash: '#/identity-documents',
+                i18nKey: 'user_account_menu_my_identity_documents',
+              },
+            ]
+          : []),
+        ...(region === 'US'
+          ? [
+              {
+                key: 'myAssistanceTickets',
+                hash: '#/ticket',
+                i18nKey: 'user_account_menu_my_assistance_tickets',
+              },
+            ]
+          : []),
+      ]);
+    },
+    [],
+  );
+
+  useEffect(() => {
+    getAllLinks();
+  }, [getAllLinks]);
 
   return (
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
       <div
-        className="oui-navbar-menu oui-navbar-menu_fixed oui-navbar-menu_end p-3"
+        className={`oui-navbar-menu oui-navbar-menu_fixed oui-navbar-menu_end p-4 ${style.menuContentContainer}`}
+        id="user-account-menu-profile"
         data-navi-id="account-sidebar-block"
       >
-        <h1 className={displayUserName.className}>{displayUserName.userName}</h1>
-        {['EU', 'CA'].includes(region) && (
-          <p className="oui-chip mb-0">
-            <strong className={style.supportLevel}>
-              {t(
-                `user_account_menu_support_level_${user.supportLevel.level}${user.isTrusted ? '_trusted' : ''
-                }`,
-              )}
-            </strong>
-          </p>
-        )}
-        <p className="mb-0" data-navi-id="account-email">
-          <Trans
-            t={t}
-            i18nKey="user_account_menu_notification_email_strong"
-            values={{ email: user.email }}
+        <div className="border-bottom pb-2 pt-2">
+          <h1 className={displayUserName.className}>
+            {displayUserName.userName}
+          </h1>
+          <p
+            className={`${style.ellipsis} mb-0`}
+            data-navi-id="account-email"
+            title={user.email}
           >
-          </Trans>
-        </p>
-        {user.email !== user.nichandle && (
-          <p className="mb-0">
-            <Trans
-              t={t}
-              i18nKey="user_account_menu_user_id"
-              values={{ nichandle: user.nichandle }}
-            ></Trans>
+            {user.email}
           </p>
-        )}
-
-        <p className={`ml-0 oui-badge oui-badge_warning`} data-navi-id="account-auth-method">
-          <strong>{t(`user_account_menu_role_${user.auth.method}`)}</strong>
-        </p>
-
-        {!user.enterprise && (
-          <UserDefaultPaymentMethod
-            defaultPaymentMethod={defaultPaymentMethod}
-            isLoading={isLoading}
-          />
-        )}
-        <hr />
-        <a
-          href={feedbackUrl}
-          className={`${style.feedback} d-flex`}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={t('user_account_menu_beta_feedback')}
-          onClick={onGiveFeedbackLinkClick}
-        >
-          <span className="align-self-center">
-            <img src={icon} alt={t('user_account_menu_beta_feedback')} />
-          </span>
-          <span className="pl-2">
-            <span className={`${style.feedback_title} d-block oui-link_icon`}>
-              <span>{t('user_account_menu_beta_feedback')}</span>
-              <span
-                className="oui-icon oui-icon-arrow-right ml-2"
-                aria-hidden="true"
-              ></span>
-            </span>
-            <span className={`${style.feedback_text} d-block`}>
-              {t('user_account_menu_beta_feedback_text')}
-            </span>
-          </span>
-        </a>
-        <hr />
-        <a
-          onClick={onMyAccountLinkClick}
-          className="d-block oui-link_icon"
-          aria-label={t('user_account_menu_profile')}
-          title={t('user_account_menu_profile')}
-          href={myAccountLink}
-          target="_top"
-          id="user-account-menu-profile"
-          data-navi-id="profile"
-        >
-          {t('user_account_menu_profile')}
-          <span
-            className={`${style.myAccountIcon} oui-icon oui-icon-arrow-right`}
-            aria-hidden="true"
-          ></span>
-        </a>
-        <button
-          type="button"
-          role="button"
-          className="w-100 text-left oui-button oui-button_icon-right oui-button_link px-0"
-          onClick={onLougoutBtnClick}
-          aria-label={t('user_account_menu_logout')}
-          title={t('user_account_menu_logout')}
-          data-navi-id="logout"
-        >
-          {t('user_account_menu_logout')}
-          <span
-            className="oui-icon oui-icon-arrow-right"
-            aria-hidden="true"
-          ></span>
-        </button>
+          {user.email !== user.nichandle && (
+            <p className="mb-0">
+              <Trans
+                t={t}
+                i18nKey="user_account_menu_user_id"
+                values={{ nichandle: user.nichandle }}
+              ></Trans>
+            </p>
+          )}
+        </div>
+        <div className="border-bottom pb-2 pt-2">
+          <div
+            className={`d-flex justify-content-between ${style.menuContentRow}`}
+          >
+            <span>{t('user_account_menu_role_connexion')}</span>
+            <a href={ssoLink}>
+              <OsdsChip
+                color={ODS_THEME_COLOR_INTENT.success}
+                className={style.menuContentRowChip}
+                selectable={true}
+              >
+                {t(`user_account_menu_role_${user.auth.method}`)}
+              </OsdsChip>
+            </a>
+          </div>
+          {!user.enterprise && (
+            <UserDefaultPaymentMethod
+              defaultPaymentMethod={defaultPaymentMethod}
+              isLoading={isLoading}
+            />
+          )}
+          {['EU', 'CA'].includes(region) && (
+            <div
+              className={`d-flex mt-1 justify-content-between ${style.menuContentRow}`}
+            >
+              <span>{t('user_account_menu_support')}</span>
+              <a href={supportLink}>
+                <OsdsChip
+                  color={ODS_THEME_COLOR_INTENT.info}
+                  className={style.menuContentRowChip}
+                  selectable={true}
+                >
+                  {t(
+                    `user_account_menu_support_level_${
+                      user.supportLevel.level
+                    }${user.isTrusted ? '_trusted' : ''}`,
+                  )}
+                </OsdsChip>
+              </a>
+            </div>
+          )}
+        </div>
+        <div className="border-bottom pb-2 pt-2">
+          {allLinks.map((link: UserLink) => {
+            const { key, hash, i18nKey } = link;
+            return (
+              <a
+                key={key}
+                id={key}
+                onClick={() => onLinkClick(link)}
+                className="d-block"
+                aria-label={t(i18nKey)}
+                title={t(i18nKey)}
+                href={getUrl('dedicated', hash)}
+                target="_top"
+              >
+                {t(i18nKey)}
+              </a>
+            );
+          })}
+          {isKycDocumentsVisible && (
+            <a
+              key={'account_kyc_documents'}
+              id={'account_kyc_documents'}
+              onClick={() => onLinkClick(
+                {
+                  key: 'account_kyc_documents',
+                  hash: '#/documents',
+                  i18nKey: 'sidebar_account_kyc_documents'
+                }
+              )}
+              className="d-block"
+              aria-label={sidebarTranslation.t('sidebar_account_kyc_documents')}
+              title={sidebarTranslation.t('sidebar_account_kyc_documents')}
+              href={getUrl('dedicated', '#/documents')}
+              target="_top"
+            >
+              {sidebarTranslation.t('sidebar_account_kyc_documents')}
+            </a>
+          )}
+        </div>
+        <div>
+          <button
+            type="button"
+            role="button"
+            className="w-100 oui-button oui-button_link mt-3 center"
+            onClick={onLougoutBtnClick}
+            aria-label={t('user_account_menu_logout')}
+            title={t('user_account_menu_logout')}
+            data-navi-id="logout"
+          >
+            {t('user_account_menu_logout')}
+          </button>
+        </div>
       </div>
     </div>
   );
