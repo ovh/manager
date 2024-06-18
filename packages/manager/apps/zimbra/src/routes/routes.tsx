@@ -63,22 +63,16 @@ export const Routes: any = [
           },
           {
             path: 'domains',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/Domains/Domains'),
+            ),
             children: [
               {
-                path: '',
+                path: 'add',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/dashboard/Domains/Domains'),
+                  import('@/pages/dashboard/Domains/AddDomain'),
                 ),
-                data: { domains: 'domains' },
-                children: [
-                  {
-                    path: 'add-domain',
-                    ...lazyRouteConfig(() =>
-                      import('@/pages/dashboard/Domains/AddDomain'),
-                    ),
-                    handle: { isOverridePage: true },
-                  },
-                ],
+                handle: { isOverridePage: true },
               },
             ],
           },
@@ -88,6 +82,24 @@ export const Routes: any = [
               import('@/pages/dashboard/EmailAccounts/EmailAccounts'),
             ),
             children: [
+              {
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+              {
+                path: 'edit',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
               {
                 path: 'delete',
                 ...lazyRouteConfig(() =>
