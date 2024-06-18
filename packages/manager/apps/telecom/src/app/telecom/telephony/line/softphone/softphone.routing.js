@@ -27,11 +27,6 @@ export default /* @ngInject */ ($stateProvider) => {
             'telecom.telephony.billingAccount.line.dashboard.softphone.delete',
             { deviceId },
           ),
-        softphoneDevices: /* @ngInject */ (
-          softphoneService,
-          billingAccount,
-          serviceName,
-        ) => softphoneService.getSoftphoneDevices(billingAccount, serviceName),
         billingAccount: /* @ngInject */ ($stateParams) =>
           $stateParams.billingAccount,
         serviceName: /* @ngInject */ ($stateParams) => $stateParams.serviceName,

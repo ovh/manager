@@ -89,7 +89,7 @@ export default class SoftphoneController {
       return;
     }
     // iOS detection from: http://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    if (/iPad|iPhone|Macintosh|iPod/.test(userAgent) && !window.MSStream) {
       this.osName = MOBILE_OS.ios;
       return;
     }
