@@ -36,6 +36,7 @@ import {
 } from '@/api/hooks/useNetwork';
 import { useGateways } from '@/api/hooks/useGateway';
 import GlobalRegionsDatagrid from './GlobalRegionsDatagrid';
+import { useNewNetworkStore } from '@/pages/new/store';
 
 export type TGlobalRegions = {
   projectId: string;
@@ -57,6 +58,7 @@ export default function GlobalRegionsComponent({
   const navigate = useNavigate();
 
   const { data: regions } = useProjectRegions(projectId);
+  const store = useNewNetworkStore();
 
   const { data: gateways } = useGateways(projectId);
   const { data: aggregatedNetworks } = useAggregatedNonLocalNetworks(
@@ -84,7 +86,10 @@ export default function GlobalRegionsComponent({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => navigate('./new')}
+          onClick={() => {
+            store.reset();
+            navigate('./new');
+          }}
         >
           <OsdsIcon
             name={ODS_ICON_NAME.ADD}

@@ -195,7 +195,7 @@ export default function ConfigurationStep({
         address,
       });
     }
-  }, [store.form.configureVlanId, networks?.map((n) => n.id).join(',')]);
+  }, [networks?.map((n) => n.id).join(',')]);
 
   const onCreateGatewayChange = (checked: boolean) => {
     store.setForm({
