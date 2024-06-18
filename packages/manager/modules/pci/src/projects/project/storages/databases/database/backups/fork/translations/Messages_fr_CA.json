@@ -25,7 +25,6 @@
   "pci_databases_backups_fork_create_database_success": "Votre service a correctement été forké. Il est en cours de création et sera disponible dans quelques minutes.",
   "pci_databases_backups_fork_create_database_error": "Une erreur est survenue lors de la création de votre service. Veuillez retenter l’opération ultérieurement : {{message}}",
   "pci_databases_backups_fork_footer_part_1": "Tous les noms de produits, logos et marques sont la propriété de leurs propriétaires respectifs. Tous les noms d'entreprise, de produit et de service utilisés dans ce site Web sont à des fins d'identification seulement. L'utilisation de ces noms, logos et marques n'implique aucune approbation.",
-  "pci_databases_backups_fork_footer_part_2": "*Redis est une marque de Redis Ltd. Tous les droits qui y sont attachés sont réservés à Redis Ltd. Toute utilisation par OVH SAS est uniquement à titre de référence et n'indique aucun sponsoring, soutien ou affiliation entre Redis et OVH SAS.",
   "pci_databases_backups_fork_spec_heading": "Votre commande",
   "pci_databases_backups_fork_spec_name": "Nom :",
   "pci_databases_backups_fork_spec_restore_mode": "Point de restauration :",
