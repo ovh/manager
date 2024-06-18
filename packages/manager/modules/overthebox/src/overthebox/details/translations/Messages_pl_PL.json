@@ -77,7 +77,6 @@
   "overTheBox_release_channel_v0_8": "Wersja v0.8",
   "overTheBox_release_channel_v0_9": "Wersja v0.9",
   "overTheBox_release_channel_v1_0": "Wersja v1.0",
-  "overTheBox_version_device": "Wersja sprzętu",
   "overTheBox_version_system": "Wersja systemu",
   "overTheBox_last_seen": "Ostatni dostęp do sprzętu z serwerów programowania",
   "overTheBox_last_seen_few_seconds": "Kilka sekund temu",
@@ -86,8 +85,8 @@
   "overTheBox_detail_link_guide": "Przewodniki",
   "overthebox_detail_links": "Pomocne linki",
   "overTheBox_service_id": "Identyfikator usługi:",
+  "overTheBox_available_update": "Dostępna jest aktualizacja urządzenia.",
   "overTheBox_authorize_autoupgrade": "Zezwalaj na automatyczne aktualizacje w nocy",
   "overTheBox_change_auto_upgrade_success": "Zmiana automatycznych aktualizacji w nocy została wykonana.",
-  "overTheBox_change_auto_upgrade_error": "Nie mogliśmy zmienić ustawień automatycznych w nocy: {{errorMessage}}",
-  "overTheBox_available_update": "Dostępna jest aktualizacja urządzenia."
+  "overTheBox_change_auto_upgrade_error": "Nie mogliśmy zmienić ustawień automatycznych w nocy: {{errorMessage}}"
 }
