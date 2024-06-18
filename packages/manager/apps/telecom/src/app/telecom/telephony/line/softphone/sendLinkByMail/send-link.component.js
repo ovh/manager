@@ -7,6 +7,7 @@ export default {
   bindings: {
     goToSoftphoneDashboard: '<',
     goBack: '<',
+    deviceId: '<',
     currentUserEmail: '<',
   },
 };
