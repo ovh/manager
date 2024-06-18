@@ -63,6 +63,8 @@ export const ProductNavReshuffleProvider = ({
 
   const closeOnboarding = (onboardingStatus: string) => {
     setOnboardingOpenedState(ONBOARDING_OPENED_STATE_ENUM.CLOSED);
+    // Onboarding forced only for PNR V2 alpha; to remove for the beta.
+    onboardingHelper.forceOnboardingDisplayed(false);
 
     return onboardingHelper.updatePreference({
       status: onboardingStatus || ONBOARDING_STATUS_ENUM.CLOSED,
