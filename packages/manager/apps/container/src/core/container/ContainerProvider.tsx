@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { Application } from '@ovh-ux/manager-config';
 import {
   getBetaAvailabilityFromLocalStorage,
   setBetaAvailabilityToLocalStorage,
-  getBetaVersionFromLocalStorage,
   isBetaForced,
 } from './localStorage';
 import { BetaVersion, ContainerContext } from './context';
@@ -40,9 +39,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       livechat: boolean;
     }
     const getBetaVersion = (value: CurrentContextAvailability) => {
-      if (isBetaForced()) {
-        return getBetaVersionFromLocalStorage();
-      }
       if (value['pnr']) {
         return BETA;
       }
