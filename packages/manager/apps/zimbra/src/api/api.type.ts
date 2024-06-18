@@ -230,3 +230,28 @@ export type Email = {
     responder: string;
   };
 };
+
+export type AccountBodyParams = {
+  contactInformation?: {
+    city?: string;
+    company?: string;
+    country?: string;
+    faxNumber?: string;
+    mobileNumber?: string;
+    office?: string;
+    phoneNumber?: string;
+    postcode?: string;
+    profession?: string;
+    service?: string;
+    street?: string;
+  };
+  description?: string;
+  displayName?: string;
+  email: string;
+  firstName?: string;
+  forceChangePasswordAfterLogin?: boolean;
+  hideInGal?: boolean;
+  lastName?: string;
+  password?: string;
+  responder?: string;
+};

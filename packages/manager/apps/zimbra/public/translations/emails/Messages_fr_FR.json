@@ -10,5 +10,6 @@
   "zimbra_emails_datagrid_quota_go": "Go",
   "zimbra_emails_datagrid_quota_to": "To",
   "zimbra_emails_datagrid_tooltip_modification": "Modifier",
-  "zimbra_emails_datagrid_tooltip_delete": "Supprimer"
+  "zimbra_emails_datagrid_tooltip_delete": "Supprimer",
+  "zimbra_emails_account_add": "Créer un compte"
 }

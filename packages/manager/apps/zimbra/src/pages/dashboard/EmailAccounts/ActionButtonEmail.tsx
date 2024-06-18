@@ -13,13 +13,18 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
 }) => {
   const { t } = useTranslation('emails');
 
+  const hrefEditEmailAccount = useGenerateUrl('./edit', 'href', {
+    deleteEmailAccountId: emailsItem.id,
+  });
+
   const hrefDeleteEmailAccount = useGenerateUrl('./delete', 'href', {
     deleteEmailAccountId: emailsItem.id,
   });
+
   const actionItems = [
     {
       id: 1,
-      onClick: () => window.open('https://ovhcloud.com', '_blank', 'noopener'),
+      href: hrefEditEmailAccount,
       label: t('zimbra_emails_datagrid_tooltip_modification'),
     },
     {

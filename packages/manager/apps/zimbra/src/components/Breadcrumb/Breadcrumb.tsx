@@ -33,9 +33,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
       label: serviceName,
       onClick: () => navigate(overviewUrlValue),
     },
-    ...breadcrumbParts.map((part, index) => {
-      const url = `/${pathParts.slice(0, index + 2).join('/')}`;
-      const label = t(`zimbra_dashboard_${part}`);
+    ...breadcrumbParts.map((_, index) => {
+      const url = `/${pathParts
+        .slice(0, index + 2)
+        .join('/')}${location.search ?? ''}`;
+      const label = t(
+        `zimbra_dashboard_${breadcrumbParts.slice(0, index + 1).join('_')}`,
+      );
       return {
         label,
         onClick: () => navigate(url),

@@ -7,15 +7,23 @@ import {
   getZimbraPlatformDomainsQueryKey,
 } from '@/api';
 
-export const useDomains = () => {
+export const useDomains = (organizationId?: string, noCache?: boolean) => {
   const { platformId } = usePlatform();
   const { data: organization } = useOrganization();
-
-  const organizationId = organization?.id;
+  const selectedOrganizationId = organization?.id;
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: getZimbraPlatformDomainsQueryKey(platformId, organizationId),
-    queryFn: () => getZimbraPlatformDomains(platformId, organizationId),
+    queryKey: getZimbraPlatformDomainsQueryKey(
+      platformId,
+      organizationId || selectedOrganizationId,
+    ),
+    queryFn: () =>
+      getZimbraPlatformDomains(
+        platformId,
+        organizationId || selectedOrganizationId,
+      ),
+    enabled: !!platformId,
+    gcTime: noCache ? 0 : 5000,
   });
 
   return {
