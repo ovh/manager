@@ -30,7 +30,7 @@ export type Subnet = {
 
 export enum ProductStatus {
   ACTIVE = 'ACTIVE',
-  DISABLED = 'DISABLED',
+  SUSPENDED = 'SUSPENDED',
   DRAFT = 'DRAFT',
 }
 

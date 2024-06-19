@@ -7,7 +7,7 @@ import { ProductStatus } from '@/data';
 
 const colorByProductStatus = {
   [ProductStatus.ACTIVE]: ODS_THEME_COLOR_INTENT.success,
-  [ProductStatus.DISABLED]: ODS_THEME_COLOR_INTENT.error,
+  [ProductStatus.SUSPENDED]: ODS_THEME_COLOR_INTENT.default,
   [ProductStatus.DRAFT]: ODS_THEME_COLOR_INTENT.info,
 };
 
