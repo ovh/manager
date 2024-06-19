@@ -32,7 +32,7 @@ export const SubnetsActionCell: React.FC<SubnetsActionCellProps> = ({
       items={[
         {
           id: 1,
-          label: t('action-editSubnetDisplayName'),
+          label: t('action-editSubnet'),
           onClick: () => {
             trackClick({
               location: PageLocation.datagrid,

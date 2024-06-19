@@ -20,7 +20,7 @@ Feature: Listing page
     Given User has a vRack Services in DRAFT state
     Given The service to edit a vRack Services is <apiOk>
     When User navigates to vRack Services Listing page
-    And User updates the display name of a vrack-services
+    And User updates the display name of a vRack Services
     Then User sees <anyErrorMessage> error message
     And User sees <anySuccessMessage> success message
 

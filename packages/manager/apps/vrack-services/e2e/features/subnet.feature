@@ -53,7 +53,7 @@ Feature: Subnet page
     Given User has a vRack Services that "has" a subnet and a status READY
     Given The service to edit a subnet is <apiOk>
     When User navigates to subnets page
-    And User updates the display name of a subnet
+    And User updates the configuration of his first subnet
     Then User sees <anyErrorMessage> error message
     Then User sees <anySuccessMessage> success message
 

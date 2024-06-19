@@ -11,6 +11,10 @@ import {
   managerComponentsLabels,
 } from '../utils';
 import { ConfigParams } from '../../mocks/handlers';
+import {
+  defaultCidr,
+  defaultServiceRange,
+} from '../../src/pages/create-subnet/subnetCreate.constants';
 
 When('User clicks on the vRack Services configuration button', async function(
   this: ICustomWorld<ConfigParams>,
@@ -184,10 +188,10 @@ When('User fills the subnet form and clicks the submit button', async function(
     .getByRole('textbox', { name: labels.subnetNamePlaceholder })
     .fill(this.testContext.data.name);
   await this.page
-    .getByRole('textbox', { name: labels.cidrPlaceholder })
+    .getByRole('textbox', { name: defaultCidr })
     .fill(this.testContext.data.cidr);
   await this.page
-    .getByRole('textbox', { name: labels.serviceRangePlaceholder })
+    .getByRole('textbox', { name: defaultServiceRange })
     .fill(this.testContext.data.serviceRange);
 
   if (this.testContext.data.vlan) {
@@ -242,16 +246,12 @@ When(
   },
 );
 
-When('User updates the display name of a {word}', async function(
+When('User updates the display name of a vRack Services', async function(
   this: ICustomWorld<ConfigParams>,
-  page: 'subnet' | 'vrack-services',
 ) {
   await clickMenuButton({
     ctx: this,
-    label:
-      page === 'subnet'
-        ? labels['action-editSubnetDisplayName']
-        : labels['action-editDisplayName'],
+    label: labels['action-editDisplayName'],
   });
 
   const input = await this.page.locator('osds-form-field').locator('input');
@@ -282,10 +282,35 @@ When(
     await input.fill('test');
 
     await this.page
-      .getByText(managerComponentsLabels.updateModalConfirmButton)
+      .getByText(managerComponentsLabels.updateModalConfirmButton, {
+        exact: true,
+      })
       .click();
   },
 );
+
+When('User updates the configuration of his first subnet', async function(
+  this: ICustomWorld<ConfigParams>,
+) {
+  await clickMenuButton({
+    ctx: this,
+    label: labels['action-editSubnet'],
+  });
+
+  const input = await this.page.getByRole('textbox', {
+    name: labels.subnetNamePlaceholder,
+  });
+
+  await expect(input).toBeVisible();
+
+  await input.clear();
+
+  await input.fill('test');
+
+  await this.page
+    .getByText(labels.modalSubnetUpdateConfirmButton, { exact: true })
+    .click();
+});
 
 When('User opens {word} delete modal', async function(
   this: ICustomWorld<ConfigParams>,

@@ -227,9 +227,7 @@ export const getRoutes = (): RouteObject[] => {
                   children: [
                     routeConfig({
                       pageImport: () =>
-                        import(
-                          '@/pages/subnets/edit/EditSubnetDisplayNameModal.page'
-                        ),
+                        import('@/pages/subnets/edit/EditSubnetModal.page'),
                       path: urls.subnetsEdit,
                       currentPage: 'vrack-services.subnets.listing.edit',
                       tracking: {
