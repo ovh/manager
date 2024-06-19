@@ -11,7 +11,7 @@
   "createdAt": "Date de création",
   "actions": "",
   "ACTIVE": "Actif",
-  "DISABLED": "Inactif",
+  "SUSPENDED": "Inactif",
   "DRAFT": "A configurer",
   "LIM": "Allemagne, Limbourg (LIM)",
   "GRA": "France, Gravelines (GRA)",
