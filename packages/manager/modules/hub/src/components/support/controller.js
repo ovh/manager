@@ -28,7 +28,39 @@ export default class ManagerHubSupportCtrl {
     this.guideURL = this.RedirectionService.getURL('guides.home', {
       ovhSubsidiary: this.me.ovhSubsidiary,
     });
-    this.fetchTickets()
+    this.handleTicketsResponse(this.fetchTickets());
+  }
+
+  fetchTickets(cache = true) {
+    const params = {
+      serviceType: 'aapi',
+    };
+
+    if (!cache) {
+      params.headers = {
+        Pragma: 'no-cache',
+      };
+    }
+
+    return this.$http
+      .get('/hub/support', params)
+      .then(({ data }) => data)
+      .then((result) => get(result, 'data.support.data'));
+  }
+
+  refreshTickets() {
+    this.handleTicketsResponse(this.fetchTickets(false));
+  }
+
+  onSeeMore() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::activity::assistance::show-all`,
+      type: 'navigation',
+    });
+  }
+
+  handleTicketsResponse(response) {
+    response
       .then(({ data, count }) => {
         if (Array.isArray(data)) {
           this.tickets = data.slice(0, MAX_TICKETS_TO_DISPLAY).map(
@@ -53,24 +85,5 @@ export default class ManagerHubSupportCtrl {
       .finally(() => {
         this.isLoading = false;
       });
-  }
-
-  fetchTickets() {
-    return this.$http
-      .get('/hub/support', {
-        serviceType: 'aapi',
-        headers: {
-          Pragma: 'no-cache',
-        },
-      })
-      .then(({ data }) => data)
-      .then((result) => get(result, 'data.support.data'));
-  }
-
-  onSeeMore() {
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}::activity::assistance::show-all`,
-      type: 'navigation',
-    });
   }
 }
