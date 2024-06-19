@@ -67,6 +67,10 @@ export default function Vps() {
           header: element,
           label: element,
           accessorKey: element,
+          type:
+            element === 'vcore' || element === 'memoryLimit'
+              ? 'number'
+              : 'string',
           cell: (props: any) => {
             const label = props[element] as string;
             if (typeof label === 'string' || typeof label === 'number') {

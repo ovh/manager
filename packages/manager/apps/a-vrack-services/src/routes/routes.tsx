@@ -55,6 +55,17 @@ export const Routes: any = [
         },
       },
       {
+        id: 'ips',
+        path: urls.ips,
+        ...lazyRouteConfig(() => import('@/pages/ips')),
+        handle: {
+          tracking: {
+            pageName: 'ips',
+            pageType: PageType.listing,
+          },
+        },
+      },
+      {
         path: urls.dashboard,
         ...lazyRouteConfig(() => import('@/pages/dashboard')),
         children: [

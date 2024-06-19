@@ -26,7 +26,7 @@
     "@ovhcloud/ods-common-theming": "17.2.1",
     "@ovhcloud/ods-components": "17.2.1",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.1",
-    "@tanstack/react-table": "^8.11.6",
+    "@tanstack/react-table": "^8.17.3",
     "babel-preset-react-app": "^10.0.1",
     "react": "18.2.0",
     "sass": "1.71.0",

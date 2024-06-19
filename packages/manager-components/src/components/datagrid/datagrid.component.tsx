@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   ColumnDef,
+  Column,
   ColumnSort as TanstackColumnSort,
   PaginationState as TanstackPaginationState,
   flexRender,
   getCoreRowModel,
   useReactTable,
   getSortedRowModel,
+  getFilteredRowModel,
+  ColumnFilter,
 } from '@tanstack/react-table';
 import {
   ODS_THEME_COLOR_HUE,
@@ -28,6 +31,8 @@ import {
 import { useTranslation } from 'react-i18next';
 import { DataGridTextCell } from './text-cell.component';
 import './translations';
+import FiltersCascading from './Filters';
+import { string } from 'prop-types';
 
 export type ColumnSort = TanstackColumnSort;
 export type PaginationState = TanstackPaginationState;
@@ -72,6 +77,11 @@ export interface DatagridProps<T> {
   setSorting?: any;
 }
 
+// Extend the ColumnFilter type to include a custom condition
+interface CustomColumnFilter extends ColumnFilter {
+  condition?: string; // Add your custom condition attribute
+}
+
 export const Datagrid = <T extends unknown>({
   columns,
   items,
@@ -85,6 +95,52 @@ export const Datagrid = <T extends unknown>({
   manualPagination = true,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
+  const [columnFilters, setColumnFilters] = React.useState<
+    CustomColumnFilter[]
+  >([]);
+  const groupById = useMemo(() => {
+    return columnFilters.reduce((result: any, currentValue: any) => {
+      const groupKey = currentValue.id;
+      if (!result[groupKey]) {
+        result[groupKey] = [];
+      }
+      result[groupKey].push(currentValue);
+      return result;
+    }, {});
+  }, [columnFilters]);
+
+  const customFilterFunction = (rows: any, columnIds: string[]) => {
+    // @ts-ignore
+    const results = groupById[columnIds];
+    const stringToTest = rows?.getValue(columnIds);
+    const testTabs = results.map((element: any) => {
+      switch (element.condition) {
+        case 'INCLUDES':
+          return stringToTest.includes(element.value);
+        case 'DOESNT_INCLUDE':
+          return !stringToTest.includes(element.value);
+        case 'NB_EQUALS_TO':
+          return parseInt(stringToTest, 10) === parseInt(element.value, 10);
+        case 'SMALLER_THAN':
+          return parseInt(stringToTest, 10) < parseInt(element.value, 10);
+        case 'BIGGER_THAN':
+          return parseInt(stringToTest, 10) > parseInt(element.value, 10);
+        case 'EQUALS_TO':
+          return stringToTest === element.value;
+        case 'DATE_IS':
+          return stringToTest === element.value;
+        case 'DIFFERENT_FROM':
+          return stringToTest !== element.value;
+        case 'START_WITH':
+          return stringToTest.startsWith(element.value);
+        case 'ENDS_WITH':
+          return stringToTest.endsWith(element.value);
+        default:
+          return false;
+      }
+    });
+    return testTabs.includes(false) ? false : true;
+  };
 
   const table = useReactTable({
     columns: columns.map(
@@ -93,6 +149,10 @@ export const Datagrid = <T extends unknown>({
         cell: (props) => col.cell(props.row.original),
         header: col.label,
         enableSorting: col.isSortable !== false,
+        // filterFn: 'equalsString',
+        // @ts-ignore
+        filterFn: 'customFilter',
+        // @ts-ignore
       }),
     ),
     data: items,
@@ -105,15 +165,23 @@ export const Datagrid = <T extends unknown>({
       onSortingChange: setSorting,
       state: {
         sorting,
+        columnFilters,
       },
       getSortedRowModel: getSortedRowModel(),
     }),
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
+    filterFns: {
+      // @ts-ignore
+      customFilter: customFilterFunction,
+    },
 
     ...(manualSorting && {
       state: {
         ...(sorting && {
           sorting: [sorting],
         }),
+        columnFilters,
       },
       onStateChange: (updater) => {
         if (typeof updater === 'function') {
@@ -128,6 +196,13 @@ export const Datagrid = <T extends unknown>({
 
   return (
     <div>
+      {columns?.length > 0 && (
+        <div className="p-4 text-right">
+          <div>
+            <FiltersCascading table={table} columns={columns} />
+          </div>
+        </div>
+      )}
       <div className={`contents overflow-x-auto px-[1px] ${className || ''}`}>
         <OsdsTable>
           <table className="w-full border-collapse">
@@ -236,6 +311,13 @@ export const Datagrid = <T extends unknown>({
           </OsdsButton>
         </div>
       )}
+      <pre>
+        {JSON.stringify(
+          { columnFilters: table.getState().columnFilters },
+          null,
+          2,
+        )}
+      </pre>
     </div>
   );
 };

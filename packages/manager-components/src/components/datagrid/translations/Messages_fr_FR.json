@@ -1,5 +1,23 @@
 {
   "common_pagination_of": "sur",
   "common_pagination_results": "résultats",
-  "common_pagination_no_results": "Aucun résultat"
+  "common_pagination_no_results": "Aucun résultat",
+  "common_criteria_adder_filter_label": "Filtrer",
+  "common_criteria_adder_column_label": "Colonne",
+  "common_criteria_adder_operator_label": "Condition",
+  "common_criteria_adder_operator_boolean_is": "est",
+  "common_criteria_adder_operator_boolean_isNot": "est différent de",
+  "common_criteria_adder_operator_string_contains": "contient",
+  "common_criteria_adder_operator_string_containsNot": "ne contient pas",
+  "common_criteria_adder_operator_string_startsWith": "débute par",
+  "common_criteria_adder_operator_string_endsWith": "termine par",
+  "common_criteria_adder_operator_number_is": "est égal à",
+  "common_criteria_adder_operator_number_smaller": "est inférieur à",
+  "common_criteria_adder_operator_number_bigger": "est supérieur à",
+  "common_criteria_adder_submit_label": "Ajouter",
+  "common_criteria_adder_value_label": "valeur",
+  "common_none": "Aucun",
+  "common_criteria_adder_operator_date_is": "est",
+  "common_criteria_adder_operator_date_isBefore": "est avant",
+  "common_criteria_adder_operator_date_isAfter": "est après"
 }

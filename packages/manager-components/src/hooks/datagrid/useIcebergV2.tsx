@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { IcebergFetchParamsV2, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { SortingState } from '@tanstack/react-table';
 
 interface IcebergV2Hook {
   queryKey: string;
@@ -32,6 +33,7 @@ function useResourcesIcebergV2({
   queryKey,
 }: IcebergFetchParamsV2 & IcebergV2Hook) {
   const [flattenData, setFlattenData] = useState([]);
+  const [sorting, setSorting] = useState<SortingState>([]);
   const {
     data,
     fetchNextPage,
@@ -62,6 +64,8 @@ function useResourcesIcebergV2({
     flattenData,
     isError,
     isLoading,
+    setSorting,
+    sorting,
     error,
     status,
   };

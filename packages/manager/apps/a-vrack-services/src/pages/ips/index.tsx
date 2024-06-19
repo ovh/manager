@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { OsdsLink } from '@ovhcloud/ods-components/react';
@@ -7,7 +6,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import { Datagrid, DataGridTextCell } from '@ovhcloud/manager-components';
 
-import { useResourcesIcebergV62 } from '@ovhcloud/manager-components/src/hooks/datagrid/useIcebergV6';
+import useResourcesV6 from '@ovhcloud/manager-components/src/hooks/datagrid/useResourcesV6';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
@@ -15,8 +14,7 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import appConfig from '@/a-vrack-services.config';
 import { urls } from '@/routes/routes.constant';
 
-export default function Vps() {
-  const { t } = useTranslation('listing');
+export default function IpsWithoutIceberg() {
   const myConfig = appConfig;
   const serviceKey = myConfig.listing?.datagrid?.serviceKey;
   const [columns, setColumns] = useState([]);
@@ -27,18 +25,18 @@ export default function Vps() {
     data,
     flattenData,
     onFetchNextPage,
+    setSorting,
+    sorting,
     pageIndex,
-    totalCount,
     hasNextPage,
+    totalCount,
     isError,
     error,
     isLoading,
     status,
-    sorting,
-    setSorting,
-  } = useResourcesIcebergV62({
+  } = useResourcesV6({
     route: '/ip',
-    queryKey: 'servicesListingIcebergVPS',
+    queryKey: 'servicesListingIcebergVPS-without-iceberg',
   });
 
   const navigateToDashboard = (label: string) => {
@@ -60,8 +58,6 @@ export default function Vps() {
         .filter((element) => element !== 'rir')
         .filter((element) => element !== 'country')
         .filter((element) => element !== 'regions')
-        .filter((element) => element !== 'keymap')
-        .filter((element) => element !== 'cluster')
         .filter((element) => element !== 'description')
         .filter((element) => element !== 'routedTo')
         .filter((element) => element !== 'bringYourOwnIp')
@@ -114,7 +110,7 @@ export default function Vps() {
       <div className="pt-5 pb-10">
         <Breadcrumb />
         <h2>/IP</h2>
-        <h3>V6 ENDPOINT WITH ICEBERG</h3>
+        <h3>V6 ENDPOINT WITHOUT ICEBERG</h3>
         <React.Suspense>
           {columns && (
             <Datagrid
@@ -123,13 +119,14 @@ export default function Vps() {
               totalItems={totalCount}
               sorting={sorting}
               onSortChange={setSorting}
+              setSorting={setSorting}
+              manualSorting={false}
               pagination={{ pageIndex, pageSize: 10 }}
-              fetchNextPage={onFetchNextPage}
               hasNextPage={hasNextPage}
+              fetchNextPage={onFetchNextPage}
             />
           )}
         </React.Suspense>
-
         <div>
           <OsdsLink onClick={() => navigate('/')}>Go Home</OsdsLink>
         </div>

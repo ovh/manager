@@ -14,7 +14,6 @@ import {
   ODS_BUTTON_SIZE,
   ODS_ICON_SIZE,
   ODS_ICON_NAME,
-  ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
@@ -22,15 +21,9 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import {
-  Datagrid,
-  DataGridTextCell,
-  // useDatagridFilters,
-  useDatagridSearchParams,
-} from '@ovhcloud/manager-components';
+import { Datagrid, DataGridTextCell } from '@ovhcloud/manager-components';
 
 import useResourcesIcebergV2 from '@ovhcloud/manager-components/src/hooks/datagrid/useIcebergV2';
-import { SortingState } from '@tanstack/react-table';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
@@ -47,7 +40,6 @@ export default function Listing() {
   const [columns, setColumns] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const [sorting, setSorting] = useState<SortingState>([]);
 
   const {
     data,
@@ -55,6 +47,8 @@ export default function Listing() {
     hasNextPage,
     flattenData,
     isError,
+    sorting,
+    setSorting,
     isLoading,
     error,
     status,
@@ -154,6 +148,10 @@ export default function Listing() {
           header: element,
           label: element,
           accessorKey: element,
+          type:
+            element === 'createdAt' || element === 'updatedAt'
+              ? 'date'
+              : 'string',
           cell: (props: any) => {
             const label = props[element] as string;
             if (typeof label === 'string' || typeof label === 'number') {
@@ -185,6 +183,7 @@ export default function Listing() {
           </div>
         ),
       };
+      // @ts-ignore
       tmp.push(actionCell);
       setColumns(tmp);
     }
@@ -207,7 +206,6 @@ export default function Listing() {
       <div className="pt-5 pb-10">
         <Breadcrumb />
         <h2>a-iam</h2>
-        <div>{t('title')}</div>
         <React.Suspense>
           {columns && flattenData && (
             <Datagrid

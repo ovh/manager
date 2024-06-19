@@ -41,10 +41,7 @@ function useResourcesIcebergV6({
   const [sorting, setSorting] = useState<any>({});
   const queryClient = useQueryClient();
 
-  // console.info('useResourcesIcebergV6 sorting : ', sorting);
-
   const resetInfiniteQuery = () => {
-    // Invalidate the query to refetch the data
     queryClient.invalidateQueries({
       queryKey: [queryKey],
       refetchType: 'none',
@@ -91,7 +88,6 @@ function useResourcesIcebergV6({
 
   useEffect(() => {
     if (pageIndex > 0) {
-      // console.info('entre dans la condition 1 !');
       fetchNextPage();
     }
   }, [pageIndex]);
@@ -159,7 +155,6 @@ function useResourcesIcebergV62({
   }, [data]);
 
   const onFetchNextPage = () => {
-    console.info('onFetchNextPage !');
     setPageIndex(pageIndex + 1);
   };
 
