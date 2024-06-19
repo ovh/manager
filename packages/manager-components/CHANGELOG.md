@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.16.4...@ovhcloud/manager-components@1.17.0) (2024-06-19)
+
+### Features
+
+- **pci-private-network:** create µapp ([155f659](https://github.com/ovh/manager/commit/155f659fded08e2a788de45b5c2e748fe6b3c1a0))
+
 ## [1.16.4](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.16.3...@ovhcloud/manager-components@1.16.4) (2024-06-17)
 
 ### Bug Fixes
