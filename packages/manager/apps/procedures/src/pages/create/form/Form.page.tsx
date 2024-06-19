@@ -104,7 +104,7 @@ const FormCreateRequest = () => {
         </div>
       )}
 
-      {(legalForm || legalForm?.trim()?.length === 0) && (
+      {(!isOtherLegalFormForFR || legalForm) && (
         <>
           <FormDocumentFieldList
             control={control}
