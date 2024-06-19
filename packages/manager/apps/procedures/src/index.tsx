@@ -14,6 +14,7 @@ if (window.location.hash === '') {
     subsidiary: '',
     language: '',
     legalForm: '',
+    email: 'se***************@ov******.com',
     getStatusResult: '0',
     iat: Date.now() / 1000,
     exp: Date.now() + 60 * 60,
