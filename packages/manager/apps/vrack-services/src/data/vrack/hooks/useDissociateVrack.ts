@@ -56,8 +56,6 @@ export const useDissociateVrack = ({
     retry: (_, err) => err?.response?.status === 409,
   });
 
-  console.log({ isError, error, isTaskError, taskError });
-
   return {
     dissociateVs,
     isPending: isPending || isTaskPending,

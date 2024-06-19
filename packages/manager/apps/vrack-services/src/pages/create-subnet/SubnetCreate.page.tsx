@@ -24,6 +24,7 @@ import {
   getVrackServicesResourceQueryKey,
   useUpdateVrackServices,
   useVrackService,
+  isValidVlanNumber,
 } from '@/data';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import {
@@ -34,7 +35,6 @@ import {
   vlanNumberInputName,
   noVlanOptionValue,
   vlanNumberOptionValue,
-  isValidVlanNumber,
   defaultCidr,
   defaultServiceRange,
 } from './subnetCreate.constants';
