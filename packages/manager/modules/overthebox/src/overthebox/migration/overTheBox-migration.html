@@ -1,0 +1,28 @@
+<div class="overthebox">
+    <oui-back-button data-on-click="$ctrl.goBack()">
+        <span data-translate="overthebox_migration_title"></span>
+    </oui-back-button>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <!-- OFFER CHOICE STEP -->
+    <div data-ng-if="$ctrl.currentStep === $ctrl.steps.offers">
+        <overthebox-migration-offers
+            data-service-name="$ctrl.serviceName"
+        ></overthebox-migration-offers>
+    </div>
+
+    <!-- CONTACT STEP -->
+    <div data-ng-if="$ctrl.currentStep === $ctrl.steps.contact">
+        <overthebox-migration-contact></overthebox-migration-contact>
+    </div>
+
+    <!-- SUMMARY STEP -->
+    <div data-ng-if="$ctrl.currentStep === $ctrl.steps.summary">
+        <overthebox-migration-summary
+            data-service-name="$ctrl.serviceName"
+            data-contact="$ctrl.contactSelected"
+            data-offer="$ctrl.offerSelected"
+        ></overthebox-migration-summary>
+    </div>
+</div>

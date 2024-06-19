@@ -7,7 +7,7 @@ import ovhManagerOtbWarning from '../warning';
 
 import component from './overTheBox-details.component';
 import constant from './overTheBox-details.constant';
-import overTheBoxGraphService from './overTheBox-details.service';
+import overTheBoxDetailsService from './overTheBox-details.service';
 import routing from './overTheBox-details.routing';
 
 const moduleName = 'ovhManagerOtbDetails';
@@ -22,7 +22,7 @@ angular
   .component('overTheBoxDetails', component)
   .constant('OVERTHEBOX_DETAILS', constant)
   .config(routing)
-  .service('OverTheBoxGraphService', overTheBoxGraphService)
+  .service('OverTheBoxDetailsService', overTheBoxDetailsService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
