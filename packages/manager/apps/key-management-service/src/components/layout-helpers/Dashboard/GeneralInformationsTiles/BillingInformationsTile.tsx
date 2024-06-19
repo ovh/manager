@@ -150,11 +150,6 @@ const BillingInformationsTile = ({
                   )}
               </OsdsText>
               <div className="flex flex-row align-center gap-4">
-                <OsdsChip color={ODS_TEXT_COLOR_INTENT.success}>
-                  {t(
-                    'key_management_service_dashboard_field_label_engagement_renew_auto',
-                  )}
-                </OsdsChip>
                 <ActionMenu
                   items={items}
                   isCompact
