@@ -1,4 +1,4 @@
-export default class DeleteDeviceController {
+export default class DeleteModalController {
   /* @ngInject */
   constructor($translate, softphoneService, TucToast) {
     this.$translate = $translate;
