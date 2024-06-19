@@ -1,4 +1,4 @@
-import template from './delete-device.html';
+import template from './delete-all-device.html';
 
 export default {
   template,
