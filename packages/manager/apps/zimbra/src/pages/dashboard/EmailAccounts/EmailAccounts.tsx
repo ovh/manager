@@ -24,7 +24,12 @@ import {
   getZimbraPlatformEmails,
   getZimbraPlatformEmailsQueryKey,
 } from '@/api';
-import { useOrganization, usePlatform, useOverridePage, useGenerateUrl } from '@/hooks';
+import {
+  useOrganization,
+  usePlatform,
+  useOverridePage,
+  useGenerateUrl,
+} from '@/hooks';
 import LabelChip from '@/components/LabelChip';
 import guidesConstants from '@/guides.constants';
 import ActionButtonEmail from './ActionButtonEmail';
