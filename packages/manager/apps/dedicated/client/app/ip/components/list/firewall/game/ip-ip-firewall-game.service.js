@@ -167,6 +167,10 @@ export default /* @ngInject */ function IpGameFirewallService(
     );
   };
 
+  this.getIpGameProtocols = function getIpGameProtocols(ip) {
+    return $http.get(`/ip/${ip}/game/${ip}`).then(({ data }) => data);
+  };
+
   // Check if the new rule is not into other rules
   // for example:
   // newRule = {from: 4320, to: 4330},
