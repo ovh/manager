@@ -1,5 +1,9 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { OrganizationBodyParams, DomainBodyParams, AccountBodyParams } from '@/api/api.type';
+import {
+  OrganizationBodyParams,
+  DomainBodyParams,
+  AccountBodyParams,
+} from '@/api/api.type';
 
 export const postZimbraPlatformOrganization = async (
   platformId: string,
