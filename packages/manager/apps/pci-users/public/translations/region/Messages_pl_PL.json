@@ -254,5 +254,8 @@
   "manager_components_region_continent_IND": "Ameryka Północna",
   "manager_components_region_IST": "Stambuł",
   "manager_components_region_IST_micro": "Stambuł ({{ micro }})",
-  "manager_components_region_continent_IST": "Bliski Wschód"
+  "manager_components_region_continent_IST": "Bliski Wschód",
+  "manager_components_region_TOR": "Toronto",
+  "manager_components_region_TOR_micro": "Toronto ({{ micro }})",
+  "manager_components_region_continent_TOR": "Ameryka Północna"
 }

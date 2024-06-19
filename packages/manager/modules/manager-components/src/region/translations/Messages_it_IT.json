@@ -66,7 +66,7 @@
   "manager_components_region_DAL": "Dallas",
   "manager_components_region_DAL_micro": "Dallas ({{ micro }})",
   "manager_components_region_location_DAL": "Stati Uniti",
-  "manager_components_region_continent_DAL": "Stati Uniti",
+  "manager_components_region_continent_DAL": "Nord America",
   "manager_components_region_VIN": "Vint Hill",
   "manager_components_region_VIN_micro": "Vint Hill ({{ micro }})",
   "manager_components_region_HIL": "Hillsboro",
@@ -265,5 +265,17 @@
   "manager_components_region_continent_IND": "Nord America",
   "manager_components_region_IST": "Istanbul",
   "manager_components_region_IST_micro": "Istanbul ({{ micro }})",
-  "manager_components_region_continent_IST": "Medio Oriente"
+  "manager_components_region_continent_IST": "Medio Oriente",
+  "manager_components_region_continent_VIN": "Nord America",
+  "manager_components_region_continent_HIL": "Nord America",
+  "manager_components_region_OR": "Oregon",
+  "manager_components_region_continent_OR": "Nord America",
+  "manager_components_region_OR_micro": "Oregon ({{ micro }})",
+  "manager_components_region_VA": "Virginia",
+  "manager_components_region_VA_micro": "Virginia ({{ micro }})",
+  "manager_components_region_continent_VA": "Nord America",
+  "manager_components_region_TOR": "Toronto",
+  "manager_components_region_TOR_micro": "Toronto ({{ micro }})",
+  "manager_components_region_continent_TOR": "Nord America",
+  "manager_components_region_continent_CA": "Nord America"
 }
