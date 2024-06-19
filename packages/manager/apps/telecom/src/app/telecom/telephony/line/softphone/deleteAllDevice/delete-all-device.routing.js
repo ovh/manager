@@ -1,11 +1,11 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.line.dashboard.softphone.delete',
+    'telecom.telephony.billingAccount.line.dashboard.softphone.delete-all',
     {
-      url: '/delete/:deviceId',
+      url: '/delete-all',
       views: {
         modal: {
-          component: 'softphoneDeleteDevice',
+          component: 'softphoneDeleteAllDevice',
         },
       },
       layout: 'modal',
@@ -16,7 +16,6 @@ export default /* @ngInject */ ($stateProvider) => {
         billingAccount: /* @ngInject */ ($stateParams) =>
           $stateParams.billingAccount,
         serviceName: /* @ngInject */ ($stateParams) => $stateParams.serviceName,
-        deviceId: /* @ngInject */ ($stateParams) => $stateParams.deviceId,
       },
     },
   );
