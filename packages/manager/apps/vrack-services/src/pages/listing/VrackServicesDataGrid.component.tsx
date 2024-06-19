@@ -29,15 +29,17 @@ const sortVrackServicesListing = (
       case 'displayName':
         return getDisplayName(vs1)?.localeCompare(getDisplayName(vs2));
       case 'createdAt':
-        return vs1.createdAt?.localeCompare(vs2.createdAt);
+        return (vs1.createdAt || '').localeCompare(vs2.createdAt);
       case 'productStatus':
-        return vs1.currentState.productStatus?.localeCompare(
+        return (vs1.currentState.productStatus || '').localeCompare(
           vs2.currentState.productStatus,
         );
       case 'region':
-        return vs1.currentState.region?.localeCompare(vs2.currentState.region);
+        return (vs1.currentState.region || '').localeCompare(
+          vs2.currentState.region,
+        );
       case 'vrackId':
-        return vs1.currentState.vrackId?.localeCompare(
+        return (vs1.currentState.vrackId || '').localeCompare(
           vs2.currentState.vrackId,
         );
       default:
