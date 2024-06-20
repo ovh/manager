@@ -1,0 +1,8 @@
+{
+  "payment_modal_action_cancel": "En otro momento",
+  "payment_modal_action_validate": "Actualizar ahora",
+  "payment_modal_description_no_default": "Su tarjeta bancaria caduca próximamente y no podrá realizar pagos en su servicio.",
+  "payment_modal_description_expired": "Su tarjeta bancaria caduca próximamente y no podrá realizar pagos en su servicio.",
+  "payment_modal_description_sub": "Por favor, actualice su forma de pago para permitir que sus soluciones sigan funcionando correctamente y evitar posibles cortes en el servicio.",
+  "payment_modal_title": "Actualización de su forma de pago"
+}
