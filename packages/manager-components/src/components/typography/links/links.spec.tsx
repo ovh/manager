@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { Links, LinkType } from './links.component';
 import { render } from '../../../utils/test.provider';
