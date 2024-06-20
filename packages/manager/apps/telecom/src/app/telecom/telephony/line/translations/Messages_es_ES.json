@@ -20,7 +20,7 @@
   "telephony_line_mgcp_banner_link": "Haga clic aquí.",
   "telephony_line_mgcp_banner_description": "El terminal MGCP utilizado está obsoleto. Por favor, sustitúyalo.",
   "telephony_line_tab_softphone": "Softphone",
-  "telephony_line_tab_beta_softphone_description": "Configure aquí su opción Softphone. Tenga en cuenta que durante nuestra fase beta, si elige activar el Softphone en su linea, no podremos aprovisionarlo más que en nuestras aplicaciones de Softphone, «Softcall» (y por tanto no en un terminal de telefonía fija o en otro programa de Softphone)",
+  "telephony_line_tab_beta_softphone_description": "Configure aquí su opción Softphone. Tenga en cuenta que durante nuestra fase beta, si elige activar el Softphone en su línea, solo podrá aprovisionarla en otro lugar que en nuestras aplicaciones de Softphone, «Softcall» (y por tanto no en un terminal de telefonía fija o en otro softphone de su elección (zoiper, etc.).",
   "telephony_line_tab_beta_softphone_active_description": "Si el interruptor está activo, entonces esta línea se puede utilizar en todas sus aplicaciones «Softcall»: móvil y ordenador.",
   "telephony_line_tab_beta_softphone_email_message_success": "La solicitud de regeneración del email de configuración se ha enviado.",
   "telephony_line_tab_beta_softphone_email_message_error": "No se ha podido completar la solicitud de regeneración del email de configuración.",
