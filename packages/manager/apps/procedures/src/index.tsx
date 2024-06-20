@@ -17,7 +17,7 @@ if (window.location.hash === '') {
     email: 'se***************@ov******.com',
     getStatusResult: '0',
     iat: Date.now() / 1000,
-    exp: Date.now() + 60 * 60,
+    exp: Date.now() / 1000 + 60 * 60,
   };
 }
 
