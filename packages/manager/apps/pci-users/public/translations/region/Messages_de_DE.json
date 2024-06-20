@@ -254,5 +254,8 @@
   "manager_components_region_continent_IND": "Nordamerika",
   "manager_components_region_IST": "Istanbul",
   "manager_components_region_IST_micro": "Istanbul ({{ micro }})",
-  "manager_components_region_continent_IST": "Naher Osten"
+  "manager_components_region_continent_IST": "Naher Osten",
+  "manager_components_region_TOR": "Toronto",
+  "manager_components_region_TOR_micro": "Toronto ({{ micro }})",
+  "manager_components_region_continent_TOR": "Nordamerika"
 }

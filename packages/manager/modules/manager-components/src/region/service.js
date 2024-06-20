@@ -8,29 +8,32 @@ export default class ovhManagerRegionService {
   }
 
   static getMacroRegion(region) {
-    const localZonePattern = /^lz/i;
-    let macro;
-    if (
-      localZonePattern.test(
-        region
-          .split('-')
-          ?.slice(2)
-          ?.join('-'),
-      )
-    ) {
-      // The pattern for local zone is <geo_location>-LZ-<datacenter>-<letter>
-      // geo_location is EU-WEST, EU-SOUTH, maybe ASIA-WEST in the future
-      // datacenter: MAD, BRU
-      macro = /[\D]{2,3}/.exec(
-        region
-          .split('-')
-          ?.slice(3)
-          ?.join('-'),
-      );
-    } else {
-      macro = /[\D]{2,3}/.exec(region);
-    }
-    return macro ? macro[0].replace('-', '').toUpperCase() : '';
+    /*
+     * Examples for each possible case:
+     *
+     * region: GRA --> macroRegion: GRA
+     * region: GRA5 --> macroRegion: GRA
+     * region: GRA11 --> macroRegion: GRA
+     * region: RBX-ARCHIVE --> RBX
+     * region: CA-EAST-TOR --> macroRegion: TOR
+     * region: CA-EAST-TOR-A --> macroRegion: TOR
+     * region: EU-SOUTH-LZ-MAD --> macroRegion: MAD
+     * region: EU-SOUTH-LZ-MAD-A --> macroRegion: MAD
+     */
+
+    const regionSubStrings = region.split('-');
+
+    const macroRegionMap = {
+      1: regionSubStrings[0].split(/(\d)/)[0],
+      2: regionSubStrings[0],
+      3: regionSubStrings[2],
+      4:
+        regionSubStrings[2] === 'LZ'
+          ? regionSubStrings[3]
+          : regionSubStrings[2],
+      5: regionSubStrings[3],
+    };
+    return macroRegionMap[regionSubStrings.length] || 'Unknown_Macro_Region';
   }
 
   getMacroRegionLowercase(region) {
@@ -60,7 +63,7 @@ export default class ovhManagerRegionService {
       VIN: this.$translate.instant('manager_components_region_VIN'),
       HIL: this.$translate.instant('manager_components_region_HIL'),
       SGP: this.$translate.instant('manager_components_region_SGP'),
-      YYZ: this.$translate.instant('manager_components_region_YYZ'),
+      TOR: this.$translate.instant('manager_components_region_TOR'),
     };
   }
 
