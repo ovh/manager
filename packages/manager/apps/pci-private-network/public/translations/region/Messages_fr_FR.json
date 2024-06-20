@@ -76,5 +76,8 @@
   "manager_components_region_continent_DAL": "États-Unis",
   "manager_components_region_continent_SHA": "Europe de l'Ouest",
   "manager_components_region_continent_YYZ": "Amérique du Nord (Toronto)",
-  "manager_components_region_continent_MRS": "Europe de l'Ouest"
+  "manager_components_region_continent_MRS": "Europe de l'Ouest",
+  "manager_components_region_continent_ZRH": "Europe de l'Ouest",
+  "manager_components_region_ZRH_micro": "Zurich ({{ micro }})",
+  "manager_components_region_ZRH": "Zurich"
 }
