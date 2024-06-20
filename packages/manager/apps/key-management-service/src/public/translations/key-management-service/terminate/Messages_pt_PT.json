@@ -1,0 +1,7 @@
+{
+  "key_management_service_terminate_cancel": "Anular",
+  "key_management_service_terminate_confirm": "Rescindir",
+  "key_management_service_terminate_error": "Ocorreu um erro. {{error}}",
+  "key_management_service_terminate_heading": "Rescindir o meu KMS",
+  "key_management_service_terminate_description": "Introduza a palavra « TERMINATE » para confirmar a rescisão do seu KMS"
+}

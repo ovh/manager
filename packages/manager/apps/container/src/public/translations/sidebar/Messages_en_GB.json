@@ -191,5 +191,7 @@
   "sidebar_security_identity_operations_iam": "Identity &amp; Access Management",
   "sidebar_security_identity_operations_logs": "Logs Data Platform",
   "sidebar_assistance_carbon_calculator": "My carbon footprint",
-  "sidebar_back_menu": "Back to menu"
+  "sidebar_back_menu": "Back to menu",
+  "sidebar_identity_security_operations": "Identity, Security &amp; Operations",
+  "sidebar_key-management-service": "Key Management Service"
 }

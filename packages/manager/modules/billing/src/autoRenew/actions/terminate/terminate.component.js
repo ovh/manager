@@ -9,6 +9,7 @@ export default {
     serviceType: '@',
     terminateService: '&',
     title: '<',
+    primaryDisabled: '=',
   },
   controller,
   template,
