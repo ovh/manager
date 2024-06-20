@@ -1,0 +1,7 @@
+{
+  "key_management_service_terminate_cancel": "Anuluj",
+  "key_management_service_terminate_confirm": "Rezygnacja",
+  "key_management_service_terminate_error": "Wystąpił błąd. {{error}}",
+  "key_management_service_terminate_heading": "Rezygnacja z usługi KMS",
+  "key_management_service_terminate_description": "Wpisz słowo \"TERMINATE\", aby potwierdzić rezygnację z usługi KMS"
+}

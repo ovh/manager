@@ -10,6 +10,9 @@ import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import  getIcon  from './GetIcon';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 const features = [
   'dedicated-cloud',
@@ -39,6 +42,7 @@ const features = [
   'dedicated-server:ecoRangeOrder',
   'dedicated-server:nutanixOrder',
   'network-security',
+  'key-management-service'
 ];
 
 export default function HostedPrivateCloudSidebar() {
@@ -234,7 +238,25 @@ export default function HostedPrivateCloudSidebar() {
         ],
       });
     }
-
+    if (feature['key-management-service']) {
+      menu.push({
+        id: 'identity-security-operations',
+        label: t('sidebar_identity_security_operations'),
+        icon: <OsdsIcon name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.text}/>,
+        badge: 'new',
+        pathMatcher: new RegExp('^/key-management-service'),
+        subItems: [
+          {
+            id: 'key-management-service',
+            label: t('sidebar_key-management-service'),
+            href: navigation.getURL('key-management-service', '/'),
+            badge: 'beta',
+            pathMatcher: new RegExp('^/key-management-service'),
+            icon: <OsdsIcon name={ODS_ICON_NAME.KEY_CONCEPT} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.text}/>
+          },
+        ],
+      });
+    }
     return menu;
   };
 
