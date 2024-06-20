@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-ssh-keys-app",
-  "version": "0.2.17",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -19,7 +19,7 @@
     "@ovh-ux/manager-react-shell-client": "^0.6.0",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovh-ux/shell": "^3.6.0",
-    "@ovhcloud/manager-components": "^1.17.0",
+    "@ovhcloud/manager-components": "^1.18.0",
     "@ovhcloud/ods-common-core": "^17.2.2",
     "@ovhcloud/ods-common-theming": "^17.2.2",
     "@ovhcloud/ods-components": "^17.2.2",

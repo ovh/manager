@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.39.0...@ovh-ux/manager-dedicated@19.40.0) (2024-06-20)
+
+
+### Features
+
+* **dedicated.account:** set up kyc fraud feature ([5261bbf](https://github.com/ovh/manager/commit/5261bbf7d9e070660818d951661001001a302cb3))
+
+
+
+
+
 # [19.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.38.6...@ovh-ux/manager-dedicated@19.39.0) (2024-06-17)
 
 
