@@ -12,7 +12,7 @@ export const COUNTRIES = {
   VIN: 'US',
   HIL: 'US',
   SGP: 'SG',
-  TOR: 'TOR',
+  TOR: 'CA',
 };
 
 export default { COUNTRIES };
