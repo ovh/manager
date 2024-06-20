@@ -6,7 +6,7 @@
   "telephony_line_tab_call_management": "Gestion des appels",
   "telephony_line_tab_music_management": "Gestion des musiques",
   "telephony_line_tab_softphone": "Softphone",
-  "telephony_line_tab_beta_softphone_description": "Paramétrez ici votre option Softphone. A noter que pendant notre phase Bêta, si vous choisissez d'avtiver le Softphone sur votre ligne, nous ne pourrez plus la provisionner ailleurs que sur nos applications de Softphone, « Softcall » (et donc pas sur un terminal de téléphonie fixe ou sur un autre logiciel de Softphonie)",
+  "telephony_line_tab_beta_softphone_description": "Paramétrez ici votre option Softphone. A noter que pendant notre phase Bêta, si vous choisissez d'activer le Softphone sur votre ligne, vous ne pourrez plus la provisionner ailleurs que sur nos applications de Softphone, « Softcall » (et donc pas sur un terminal de téléphonie fixe ou sur un autre softphone de votre choix (zoiper, etc.)).",
   "telephony_line_tab_beta_softphone_active_description": "Si l'interrupteur est actif, alors cette ligne est utilisable sur l'ensemble de vos applications « Softcall » : mobile et ordinateur.",
   "telephony_line_tab_beta_softphone_email_message_success": "Votre demande de régénération d'email de configuration a bien été prise en compte.",
   "telephony_line_tab_beta_softphone_email_message_error": "Votre demande de régénération d'email de configuration n'a pas pu aboutir.",
