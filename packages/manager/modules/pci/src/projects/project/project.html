@@ -61,6 +61,10 @@
                                 data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.BILLING_CHANGE_MEDIATION_BANNER_2) && !$ctrl.isDiscoveryProject"
                             ></pci-billing-change-banner>
 
+                            <pci-free-local-zones-banner
+                                data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.FREE_LOCAL_ZONES_BANNER)"
+                            />
+
                             <oui-message
                                 data-type="warning"
                                 data-ng-if="$ctrl.projectQuotaAboveThreshold && !$ctrl.isDiscoveryProject"
