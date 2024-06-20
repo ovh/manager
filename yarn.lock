@@ -4866,6 +4866,13 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
 
+"@ovhcloud/ods-theme-blue-jeans@17.2.2":
+  version "17.2.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.2.tgz#12029b0e1c129f47a98ffd4f2002d7968182922a"
+  integrity sha512-0Fr6ZJ10btgkGAXJDun5tftlV1gYFevB7piQiYT4kFjfVXmxmpSw9A1nusPHiZfmV+Dnzv3/+SVxpYK/uccYXw==
+  dependencies:
+    "@ovhcloud/ods-common-theming" "17.2.2"
+
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/reket-axios-client/-/reket-axios-client-0.2.1.tgz#835997e9d3514a5855dc4d7ac867abe8b2c8638d"
