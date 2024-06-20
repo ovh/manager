@@ -1,7 +1,6 @@
 import { waitFor, screen } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import { Description, DescriptionProps } from './description.component';
-import '@testing-library/jest-dom';
 
 const setupSpecTest = async (customProps?: Partial<DescriptionProps>) =>
   waitFor(() => render(<Description {...customProps} />));
