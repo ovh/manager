@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-import { GUIDES } from './detail.constants';
+import { GUIDES, LOG_DATA_PLATFORM_GUIDES } from './detail.constants';
 
 export default class LogsHelperService {
   /* @ngInject */
@@ -12,6 +12,7 @@ export default class LogsHelperService {
     CucControllerModalHelper,
     LogsConstants,
     ovhDocUrl,
+    coreConfig,
   ) {
     this.$translate = $translate;
     this.$http = $http;
@@ -20,6 +21,7 @@ export default class LogsHelperService {
     this.CucControllerModalHelper = CucControllerModalHelper;
     this.LogsConstants = LogsConstants;
     this.ovhDocUrl = ovhDocUrl;
+    this.user = coreConfig.getUser();
     this.initGuides();
   }
 
@@ -100,21 +102,24 @@ export default class LogsHelperService {
   initGuides() {
     this.guides = {};
     this.guides.title = this.$translate.instant('logs_guides');
+    const url =
+      LOG_DATA_PLATFORM_GUIDES[this.user.ovhSubsidiary] ??
+      this.ovhDocUrl.getDocUrl(this.LogsConstants.LOGS_DOCS_NAME);
     this.guides.list = [
       {
         name: this.$translate.instant('logs_guides_title'),
-        url: this.ovhDocUrl.getDocUrl(this.LogsConstants.LOGS_DOCS_NAME),
+        url,
         external: true,
       },
     ];
   }
 
-  getGuides(subsidiary) {
+  getGuides() {
     return {
       ...this.guides,
       footer: {
         name: this.$translate.instant('logs_guides_footer'),
-        url: GUIDES[subsidiary] || GUIDES.FR,
+        url: GUIDES[this.user.ovhSubsidiary] || GUIDES.FR,
         external: true,
       },
     };
