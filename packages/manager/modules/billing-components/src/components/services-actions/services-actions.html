@@ -209,7 +209,7 @@
     <!-- /Service with termination asked by the customer -->
 
     <oui-action-menu-item
-        ng-if="$ctrl.service.url"
+        ng-if="$ctrl.service.url && !$ctrl.service.isByoipService()"
         href="{{:: $ctrl.service.url }}"
         on-click="$ctrl.trackAction('go-to-service')"
         data-navi-id="go-to-service"
