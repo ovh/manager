@@ -14,5 +14,7 @@
   "user_account_dashboard_profile_edit": "Mein Profil bearbeiten",
   "user_account_dashboard_profile_support_level": "Mein Support-Level:",
   "user_account_dashboard_customer_code": "Kundencode",
-  "user_account_dashboard_nichandle": "NIC handle"
+  "user_account_dashboard_nichandle": "NIC handle",
+  "user_account_dashboard_shortcut_MANAGE_USERS": "Meine Benutzer verwalten",
+  "user_account_dashboard_new": "Neu!"
 }
