@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.7.8...@ovh-ux/manager-hub-app@5.8.0) (2024-06-20)
+
+
+### Features
+
+* **dedicated.account:** set up kyc fraud feature ([5261bbf](https://github.com/ovh/manager/commit/5261bbf7d9e070660818d951661001001a302cb3))
+
+
+
+
+
 ## [5.7.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.7.7...@ovh-ux/manager-hub-app@5.7.8) (2024-06-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app
