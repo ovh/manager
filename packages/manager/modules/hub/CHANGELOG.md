@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.11.0...@ovh-ux/manager-hub@3.12.0) (2024-06-21)
+
+
+### Features
+
+* **hub:** delete a warning pop up on manager dashboard ([#12061](https://github.com/ovh/manager/issues/12061)) ([76da253](https://github.com/ovh/manager/commit/76da2531e6ba9e0e96d8180db094d2d99c7f2f0c))
+
+
+
+
+
 # [3.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.10.3...@ovh-ux/manager-hub@3.11.0) (2024-06-20)
 
 
