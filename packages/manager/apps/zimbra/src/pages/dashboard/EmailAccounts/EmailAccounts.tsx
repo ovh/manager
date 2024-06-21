@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
@@ -16,6 +16,7 @@ import {
   DatagridColumn,
   Links,
   LinkType,
+  ManagerButton,
   Notifications,
 } from '@ovhcloud/manager-components';
 import { Outlet } from 'react-router-dom';
@@ -25,6 +26,7 @@ import {
   useOverridePage,
   useGenerateUrl,
   useAccountList,
+  usePlatform,
 } from '@/hooks';
 import LabelChip from '@/components/LabelChip';
 import guidesConstants from '@/guides.constants';
@@ -99,6 +101,7 @@ const columns: DatagridColumn<EmailsItem>[] = [
 
 export default function EmailAccounts() {
   const { t } = useTranslation('emails');
+  const { platformUrn } = usePlatform();
   const { data: organization } = useOrganization();
   const { data } = useAccountList({
     organizationId: organization?.id,
@@ -143,10 +146,12 @@ export default function EmailAccounts() {
                 target={OdsHTMLAnchorElementTarget._blank}
               ></Links>
             </div>
-            <OsdsButton
+            <ManagerButton
               color={ODS_THEME_COLOR_INTENT.primary}
               inline={true}
               size={ODS_BUTTON_SIZE.sm}
+              urn={platformUrn}
+              iamActions={['zimbra:apiovh:platform/account/create']}
               href={hrefAddEmailAccount}
             >
               <span slot="start">
@@ -158,7 +163,7 @@ export default function EmailAccounts() {
                 ></OsdsIcon>
               </span>
               <span slot="end">{t('zimbra_emails_account_add')}</span>
-            </OsdsButton>
+            </ManagerButton>
             <Datagrid
               columns={columns.map((column) => ({
                 ...column,
