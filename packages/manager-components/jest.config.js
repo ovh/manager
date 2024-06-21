@@ -8,7 +8,7 @@ module.exports = {
     'node_modules/(?!lodash-es|@ovh-ux|@ovhcloud|@stencil)',
   ],
   setupFilesAfterEnv: ['./jest.setup.ts'],
-  collectCoverageFrom: ['src/components/**/*.component.tsx'],
+  collectCoverageFrom: ['src/components/**/*.component.tsx', 'src/hooks/**/*'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
