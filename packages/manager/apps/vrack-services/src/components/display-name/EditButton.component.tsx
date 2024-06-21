@@ -26,7 +26,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
     <div className="grow">
       <OsdsText
         level={ODS_TEXT_LEVEL.body}
-        size={children ? ODS_TEXT_SIZE._800 : ODS_TEXT_SIZE._300}
+        size={children ? ODS_TEXT_SIZE._600 : ODS_TEXT_SIZE._300}
         color={ODS_THEME_COLOR_INTENT.text}
       >
         {children}

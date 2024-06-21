@@ -17,7 +17,7 @@ export function DataGridTextCell({
       level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
       size={
         children
-          ? ODS_THEME_TYPOGRAPHY_SIZE._800
+          ? ODS_THEME_TYPOGRAPHY_SIZE._600
           : ODS_THEME_TYPOGRAPHY_SIZE._300
       }
       color={ODS_THEME_COLOR_INTENT.text}
