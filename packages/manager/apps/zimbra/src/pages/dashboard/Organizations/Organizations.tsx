@@ -13,6 +13,7 @@ import {
 import {
   Datagrid,
   DatagridColumn,
+  ManagerButton,
   Notifications,
 } from '@ovhcloud/manager-components';
 import { ResourceStatus } from '@/api/api.type';
@@ -76,7 +77,7 @@ const columns: DatagridColumn<OrganizationItem>[] = [
 
 export default function Organizations() {
   const { t } = useTranslation('organisations');
-  const { platformId } = usePlatform();
+  const { platformId, platformUrn } = usePlatform();
   const { data } = useOrganizationList();
 
   const items: OrganizationItem[] =
@@ -97,11 +98,13 @@ export default function Organizations() {
       <Notifications />
       <Outlet />
       <div className="flex items-center justify-between">
-        <OsdsButton
+        <ManagerButton
           color={ODS_THEME_COLOR_INTENT.primary}
           inline={true}
           size={ODS_BUTTON_SIZE.sm}
           href={hrefAddOrganization}
+          urn={platformUrn}
+          iamActions={['zimbra:apiovh:platform/organization/create']}
         >
           <span slot="start">
             <OsdsIcon
@@ -112,7 +115,7 @@ export default function Organizations() {
             ></OsdsIcon>
           </span>
           <span slot="end">{t('zimbra_organization_cta')}</span>
-        </OsdsButton>
+        </ManagerButton>
       </div>
       <Datagrid
         columns={columns.map((column) => ({
