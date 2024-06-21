@@ -6,8 +6,10 @@ import {
   Notifications,
   PciDiscoveryBanner,
   PciGuidesHeader,
+  PciMaintenanceBanner,
   useColumnFilters,
   useDataGrid,
+  useProductMaintenance,
   useProject,
 } from '@ovhcloud/manager-components';
 import {
@@ -49,6 +51,7 @@ export default function ListingPage() {
 
   const { navigation } = useContext(ShellContext).shell;
   const { projectId } = useParams();
+  const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const columns = useDatagridColumn(projectId, projectUrl);
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject(projectId || '');
@@ -108,7 +111,15 @@ export default function ListingPage() {
       </div>
 
       <OsdsDivider></OsdsDivider>
+
+      {hasMaintenance && (
+        <PciMaintenanceBanner
+          maintenanceURL={maintenanceURL}
+          productName={t('pci_projects_project_storages_blocks_title')}
+        />
+      )}
       <Notifications />
+
       <div className="mb-5">
         {isDiscoveryProject(project) && (
           <PciDiscoveryBanner projectId={projectId} />
