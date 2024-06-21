@@ -5,6 +5,8 @@ import { useShell } from '@/context';
 import style from './style.module.scss';
 import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 
 interface StaticLinkProps {
   count?: number | boolean;
@@ -67,11 +69,11 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
       )}
       {!isShortText && <SidebarLinkTag node={node} />}
       {!isShortText && (count as number) > 0 && (
-        <span
-          className={`oui-badge oui-badge_s oui-badge_new ml-1 ${style.sidebar_chip}`}
-        >
-          {count}
-        </span>
+          <OsdsIcon
+            name={ODS_ICON_NAME.SHAPE_DOT}
+            size={ODS_ICON_SIZE.xs}
+            className={`ml-1 ${style.sidebarLinkTag}`}
+          />
       )}
     </a>
   );

@@ -59,6 +59,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
                     projectId: selectedPciProject,
                   }}
                   node={childNode}
+                  count={childNode.count}
                   handleNavigation={() => menuClickHandler(childNode)}
                   id={childNode.idAttr}
                 />
@@ -73,6 +74,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
             projectId: selectedPciProject,
           }}
           node={node}
+          count={node.count}
           handleNavigation={() => menuClickHandler(node)}
           id={node.idAttr}
         />
