@@ -211,6 +211,15 @@ export default /* @ngInject */ function Ip(
   this.getIpsForIpV6 = (ipBlock, serviceName) =>
     $q
       .all({
+        ips: $http
+          .get(`${aapiIpPath}/${window.encodeURIComponent(ipBlock)}`, {
+            serviceType: 'aapi',
+            params: {
+              serviceName,
+              serviceType: 'vrack',
+            },
+          })
+          .then((response) => getIpsSanitized(ipBlock, response.data)),
         bridgedSubrange: $http
           .get(
             `/vrack/${window.encodeURIComponent(
@@ -226,15 +235,21 @@ export default /* @ngInject */ function Ip(
           )
           .then(({ data }) => data),
       })
-      .then(({ bridgedSubrange, routedSubrange }) => {
-        return map([...bridgedSubrange, ...routedSubrange], (ip) => {
-          return {
-            ip,
-            version: IP_TYPE.V6,
-            type: 'SUBRANGE',
-            isUniq: true,
-          };
-        });
+      .then(({ ips, bridgedSubrange, routedSubrange }) => {
+        return [
+          ...map(ips, (ip) => {
+            set(ip, 'block', ipBlock);
+            return ip;
+          }),
+          ...map([...bridgedSubrange, ...routedSubrange], (ip) => {
+            return {
+              ip,
+              version: IP_TYPE.V6,
+              type: 'SUBRANGE',
+              isUniq: true,
+            };
+          }),
+        ];
       });
 
   let ipsListDeferredObjs = [];
