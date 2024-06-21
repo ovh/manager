@@ -12,7 +12,7 @@ body:
       value: Please make sure to check if similar component already exists.
   - type: checkboxes
     attributes:
-      label: Have you already checked if a similar item is present on [manager-components](https://ovh.github.io/manager/storybook-static)?
+      label: Have you already checked if a similar item is present on manager-components?
       description: Before to open a request on our GitHub repository, did you already check if the similar item is present on the manager-components storybook?
       options:
         - label: Yes, I have already checked the existing components/hooks/utils.
