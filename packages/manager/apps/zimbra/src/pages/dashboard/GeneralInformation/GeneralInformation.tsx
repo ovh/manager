@@ -2,7 +2,12 @@ import React, { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OsdsTile, OsdsDivider } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { LinkType, Links, Subtitle } from '@ovhcloud/manager-components';
+import {
+  LinkType,
+  Links,
+  ManagerText,
+  Subtitle,
+} from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
 import { AccountStatistics } from '@/api/api.type';
 import { TileBlock } from '@/components/TileBlock';
@@ -21,7 +26,7 @@ function GeneralInformation() {
   const { ovhSubsidiary } = context.environment.getUser();
   const webmail = GUIDES_LIST.webmail.url;
 
-  const { data: platform } = usePlatform();
+  const { data: platform, platformUrn } = usePlatform();
   const { data: organisation } = useOrganization();
 
   const guideLinks = (links: GuideLinks) => {
@@ -58,7 +63,15 @@ function GeneralInformation() {
               </TileBlock>
             )}
             <TileBlock label={t('zimbra_dashboard_tile_status_ongoingTask')}>
-              <OngoingTasks />
+              <ManagerText
+                urn={platformUrn}
+                iamActions={[
+                  'zimbra:apiovh:platform/task/get',
+                  'zimbra:apiovh:platform/get',
+                ]}
+              >
+                <OngoingTasks />
+              </ManagerText>
             </TileBlock>
           </div>
         </OsdsTile>
@@ -69,15 +82,22 @@ function GeneralInformation() {
             <Subtitle>
               {t('zimbra_dashboard_tile_serviceConsumption_title')}
             </Subtitle>
-            <TileBlock
-              label={t('zimbra_dashboard_tile_serviceConsumption_accountOffer')}
+            <ManagerText
+              urn={platformUrn}
+              iamActions={['zimbra:apiovh:platform/account/get']}
             >
-              {accountsStatistics?.map((stats) => (
-                <span
-                  key={stats.offer}
-                >{`${stats.configuredAccountsCount} ${stats.offer}`}</span>
-              ))}
-            </TileBlock>
+              <TileBlock
+                label={t(
+                  'zimbra_dashboard_tile_serviceConsumption_accountOffer',
+                )}
+              >
+                {accountsStatistics?.map((stats) => (
+                  <span
+                    key={stats.offer}
+                  >{`${stats.configuredAccountsCount} ${stats.offer}`}</span>
+                ))}
+              </TileBlock>
+            </ManagerText>
           </div>
         </OsdsTile>
       </div>

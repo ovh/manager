@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -12,11 +12,17 @@ import {
 import {
   Datagrid,
   DatagridColumn,
+  ManagerButton,
   Notifications,
 } from '@ovhcloud/manager-components';
 import { Outlet } from 'react-router-dom';
 
-import { useOverridePage, useDomains, useGenerateUrl } from '@/hooks';
+import {
+  useOverridePage,
+  useDomains,
+  useGenerateUrl,
+  usePlatform,
+} from '@/hooks';
 import ActionButtonDomain from './ActionButtonDomain';
 import LabelChip from '@/components/LabelChip';
 
@@ -74,6 +80,8 @@ const columns: DatagridColumn<DomainsItem>[] = [
 
 export default function Domains() {
   const { t } = useTranslation('domains');
+  const { platformUrn } = usePlatform();
+
   const { data } = useDomains();
   const isOverriddedPage = useOverridePage();
 
@@ -99,11 +107,13 @@ export default function Domains() {
         <div className="py-6 mt-8">
           <Notifications />
           <div className="flex items-center justify-between">
-            <OsdsButton
+            <ManagerButton
               color={ODS_THEME_COLOR_INTENT.primary}
               inline={true}
               size={ODS_BUTTON_SIZE.sm}
               href={hrefAddDomain}
+              urn={platformUrn}
+              iamActions={['zimbra:apiovh:platform/domain/create']}
             >
               <span slot="start">
                 <OsdsIcon
@@ -114,7 +124,7 @@ export default function Domains() {
                 ></OsdsIcon>
               </span>
               <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
-            </OsdsButton>
+            </ManagerButton>
           </div>
           <Datagrid
             columns={columns.map((column) => ({
