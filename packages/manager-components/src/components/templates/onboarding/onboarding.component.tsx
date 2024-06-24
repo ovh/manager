@@ -29,7 +29,6 @@ export type OnboardingLayoutProps = PropsWithChildren<{
   orderButtonLabel: string;
   orderHref?: string;
   description?: React.ReactNode;
-  additionalDescriptions?: string[];
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
   onOrderButtonClick?: () => void;
@@ -46,7 +45,6 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   hideHeadingSection,
   title,
   description,
-  additionalDescriptions,
   orderHref,
   orderButtonLabel,
   moreInfoHref,
@@ -83,25 +81,14 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           {description && (
             <OsdsText
               level={ODS_TEXT_LEVEL.body}
-              size={ODS_TEXT_SIZE._800}
+              size={ODS_TEXT_SIZE._400}
               color={ODS_TEXT_COLOR_INTENT.text}
-              className="block text-center mb-4"
+              className="block text-center mb-4 max-w-4xl"
             >
               {description}
             </OsdsText>
-          )}{' '}
-          {additionalDescriptions?.map((desc) => (
-            <OsdsText
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_TEXT_SIZE._800}
-              color={ODS_TEXT_COLOR_INTENT.text}
-              className="block text-center mb-4"
-              key={desc}
-            >
-              {desc}
-            </OsdsText>
-          ))}
-          <div className="flex  sm:py-8 xs:w-full xs:flex-col sm:items-center sm:flex-row w-full justify-center">
+          )}
+          <div className="flex sm:py-8 xs:w-full xs:flex-col sm:items-center sm:flex-row w-full justify-center">
             <OsdsButton
               inline
               color={ODS_THEME_COLOR_INTENT.primary}
