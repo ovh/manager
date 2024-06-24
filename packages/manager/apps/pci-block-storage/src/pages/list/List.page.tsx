@@ -4,6 +4,7 @@ import {
   FilterList,
   isDiscoveryProject,
   Notifications,
+  PciAnnouncementBanner,
   PciDiscoveryBanner,
   PciGuidesHeader,
   PciMaintenanceBanner,
@@ -43,6 +44,7 @@ import {
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useVolumes } from '@/api/hooks/useVolume';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
+import { useAnnouncementBanner } from '@/hooks/useAnnouncementBanner';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -52,6 +54,7 @@ export default function ListingPage() {
   const { navigation } = useContext(ShellContext).shell;
   const { projectId } = useParams();
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
+  const { isBannerVisible } = useAnnouncementBanner();
   const columns = useDatagridColumn(projectId, projectUrl);
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject(projectId || '');
@@ -111,13 +114,13 @@ export default function ListingPage() {
       </div>
 
       <OsdsDivider></OsdsDivider>
-
       {hasMaintenance && (
         <PciMaintenanceBanner
           maintenanceURL={maintenanceURL}
           productName={t('pci_projects_project_storages_blocks_title')}
         />
       )}
+      {isBannerVisible && <PciAnnouncementBanner />}
       <Notifications />
 
       <div className="mb-5">
