@@ -1,14 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
+import apiClient from '@ovh-ux/manager-core-api';
+
+import { OKMS, OKMSOptions } from '@/types/okms.type';
+import { ErrorResponse } from '@/types/api.type';
 import {
-  OKMSOptions,
-  sortOKMS,
   getListingIceberg,
-  ErrorResponse,
-  getOkmsServicesResourceListQueryKey,
   getOkmsResourceQueryKey,
-} from '@/api';
-import { getOKMSResource } from '@/api/hooks/useApiOkms';
-import { OKMS } from '@/interface';
+  getOkmsServicesResourceListQueryKey,
+  sortOKMS,
+} from '../api/okms';
+
+export const getOKMSResource = async (
+  okmsId: string,
+): Promise<{ data: OKMS }> => {
+  return apiClient.v2.get(`okms/resource/${okmsId}`);
+};
 
 export const useAllOKMS = () => {
   return useQuery({

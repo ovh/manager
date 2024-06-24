@@ -28,7 +28,9 @@ export default [
         children: [
           {
             path: `${ROUTES_URLS.terminateOkms}/:okmsId`,
-            ...lazyRouteConfig(() => import('@/pages/listing/TerminateKms')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/listing/terminate/TerminateKms'),
+            ),
           },
         ],
       },
@@ -47,12 +49,10 @@ export default [
           {
             path: '',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/tabs/GeneralInformations'),
+              import(
+                '@/pages/dashboard/generalInformations/GeneralInformations'
+              ),
             ),
-          },
-          {
-            path: 'Tabs2',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/tabs/Tabs2')),
           },
         ],
       },

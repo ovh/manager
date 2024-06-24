@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { TerminateModal } from '@/components/Modal/terminate/TerminateModal.component';
-import { useTerminateOKms } from '@/api/hooks/useTerminateOKms';
+import { useTerminateOKms } from '@/data/hooks/useTerminateOKms';
 
 export default function TerminateKms() {
   const { t } = useTranslation('key-management-service/terminate');
