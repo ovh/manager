@@ -213,14 +213,12 @@ const Sidebar = (): JSX.Element => {
  * Initialize menu items based on currentNavigationNode
  */
   useEffect(() => {
-    if (!currentNavigationNode?.children || !servicesCount) return;
-
     const count = {
-      total: servicesCount.total,
-      serviceTypes: { ...servicesCount.serviceTypes },
+      total: servicesCount?.total,
+      serviceTypes: { ...servicesCount?.serviceTypes },
     };
 
-    const updatedMenuItems = currentNavigationNode.children.map(node => ({
+    const updatedMenuItems = currentNavigationNode.children?.map(node => ({
       node: processNode(count, node),
       count: computeNodeCount(count, node),
     }));
