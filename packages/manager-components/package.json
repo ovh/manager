@@ -15,6 +15,7 @@
     "build:storybook": "storybook build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "jest --coverage -u",
+    "test:watch": "jest --watch",
     "test:cov": "vitest run --coverage",
     "test:e2e": "tsc && npx playwright test --ui --debug"
   },

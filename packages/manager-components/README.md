@@ -22,4 +22,5 @@ Always prepending yarn:
 
 - `start`: Run the storybook
 - `test:e2e`: Run e2e test using playwright
-- `test`: Runs testing using watch mode and coverage
+- `test`: Runs testing using coverage
+- `test:watch`: Runs test using watch mode
