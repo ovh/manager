@@ -17,9 +17,9 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { OKMS } from '@/interface';
+import { OKMS } from '@/types/okms.interface';
 import EditNameModal from '@/components/Modal/EditNameModal';
-import { useUpdateOkmsName } from '@/api/services';
+import { useUpdateOkmsName } from '@/api/hooks/useUpdateOkmsName';
 
 type InformationTileProps = {
   okmsData?: OKMS;

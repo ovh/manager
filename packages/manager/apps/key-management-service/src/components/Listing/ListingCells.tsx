@@ -7,7 +7,7 @@ import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_COLOR_INTENT } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { OKMS } from '@/interface';
+import { OKMS } from '@/types/okms.interface';
 import KmsActionMenu from '../menu/KmsActionMenu.component';
 
 export const DatagridCellName = (props: OKMS) => {

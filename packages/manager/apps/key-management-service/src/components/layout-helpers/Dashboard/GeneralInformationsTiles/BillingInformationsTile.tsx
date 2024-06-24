@@ -20,7 +20,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { parseISO } from 'date-fns';
-import { OKMS } from '@/interface';
+import { OKMS } from '@/types/okms.interface';
 import { useKMSServiceInfos } from '@/api/hooks/useKMSServiceInfos';
 import { TerminateModal } from '@/components/Modal/terminate/TerminateModal.component';
 import { useTerminateOKms } from '@/api/hooks/useTerminateOKms';

@@ -26,7 +26,7 @@ import {
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { ErrorBanner } from '@ovhcloud/manager-components';
-import { useOrderCatalogOKMS } from '@/hooks/useOrderCatalogOKMS';
+import { useOrderCatalogOKMS } from '@/api/hooks/useOrderCatalogOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 
 export type RegionSelectorProps = {

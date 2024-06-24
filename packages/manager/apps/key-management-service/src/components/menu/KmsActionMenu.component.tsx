@@ -4,7 +4,7 @@ import React from 'react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { OKMS } from '@/interface';
+import { OKMS } from '@/types/okms.interface';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 
 const KmsActionMenu: React.FC<OKMS> = ({ id }) => {

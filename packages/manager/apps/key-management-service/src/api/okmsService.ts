@@ -1,5 +1,20 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { KMSServiceInfos } from '../hooks/useKMSServiceInfos';
+import { KMSServiceInfos } from '@/types/okmsService.interface';
+
+export type UpdateOkmsNameParams = {
+  serviceId: number;
+  displayName: string;
+};
+
+export const updateOkmsNameQueryKey = () => [`put/services/displayName`];
+
+export const updateOkmsName = async ({
+  serviceId,
+  displayName,
+}: UpdateOkmsNameParams) =>
+  apiClient.v6.put(`/services/${serviceId}`, {
+    displayName,
+  });
 
 export type GetOkmsServiceIdParams = {
   /** Filter on a specific service family */
@@ -21,3 +36,15 @@ export const getServiceInfos = async ({ okms }: GetOkmsServiceIdParams) => {
   const serviceId = await getOkmsServiceId({ okms });
   return apiClient.v6.get<KMSServiceInfos>(`/services/${serviceId.data[0]}`);
 };
+
+export type TerminateKmsParams = {
+  serviceId: number;
+};
+
+export const terminateOKmsQueryKey = (kms: string) => [`terminateKms-${kms}`];
+
+/**
+ * Terminiate a kms
+ */
+export const terminateOKms = async ({ serviceId }: TerminateKmsParams) =>
+  apiClient.v6.post<{ message: string }>(`/services/${serviceId}/terminate`);

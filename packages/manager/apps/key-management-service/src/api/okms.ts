@@ -1,10 +1,10 @@
+import { ColumnSort } from '@ovhcloud/manager-components';
 import {
   fetchIcebergV2,
   fetchIcebergV6,
   apiClient,
 } from '@ovh-ux/manager-core-api';
-import { ColumnSort } from '@ovhcloud/manager-components';
-import { OKMS } from '@/interface';
+import { OKMS } from '@/types/okms.interface';
 import { defaultCompareFunction } from '@/api/utils';
 
 type Response = unknown;
@@ -92,14 +92,9 @@ export const getListingIcebergV2 = async ({
   }
 };
 
-export type OKMSOptions = {
-  sorting: ColumnSort;
-};
-
 /**
  *  Get okms listing with iceberg V2
  */
-
 export const getListingIceberg = async () => {
   try {
     const List = await fetchIcebergV2({
@@ -129,36 +124,5 @@ export const sortOKMS = (okms: OKMS[], sorting: ColumnSort): OKMS[] => {
     }
   }
 
-  return data;
-};
-
-type OKMSCatalogPlanConfiguration = {
-  isCustom: boolean;
-  isMandatory: boolean;
-  name: string;
-  values: string[];
-};
-
-type OKMSCatalogPlan = {
-  configurations: OKMSCatalogPlanConfiguration[];
-};
-
-export type ErrorResponse = {
-  response: {
-    status: number;
-    data: { message: string };
-  };
-};
-
-export type OKMSCatalog = {
-  plans: OKMSCatalogPlan[];
-};
-
-export const getOrderCatalogOKMS = async (
-  ovhSubsidiary: string,
-): Promise<OKMSCatalog> => {
-  const { data } = await apiClient.v6.get<OKMSCatalog>(
-    `/order/catalog/public/okms?ovhSubsidiary=${ovhSubsidiary}`,
-  );
   return data;
 };

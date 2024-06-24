@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { ErrorResponse, OKMSCatalog, getOrderCatalogOKMS } from '@/api';
+import { OKMSCatalog } from '@/types/orderCatalogOKMS.interface';
+import { ErrorResponse } from '@/types/api.interface';
+import { getOrderCatalogOKMS } from '../orderCatalogOKMS';
 
 export type OrderCatalogProps = {
   ovhSubsidiary: string;

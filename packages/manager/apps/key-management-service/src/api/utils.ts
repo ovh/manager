@@ -1,4 +1,4 @@
-import { OKMS } from '@/interface';
+import { OKMS } from '@/types/okms.interface';
 
 export const defaultCompareFunction = (key: keyof OKMS) => (
   a: OKMS,

@@ -1,9 +1,13 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
-import { updateOkmsName, updateOkmsNameQueryKey } from '../services/put';
-import { getOkmsServiceId, getOkmsServiceIdQueryKey } from '../services/get';
-import { getOkmsServicesResourceListQueryKey } from '../GET/apiv2/services';
+import { getOkmsServicesResourceListQueryKey } from '../okms';
+import {
+  updateOkmsNameQueryKey,
+  getOkmsServiceIdQueryKey,
+  getOkmsServiceId,
+  updateOkmsName,
+} from '../okmsService';
 
 export type UpdateOkmsNameMutationParams = {
   /** Okms service id */
