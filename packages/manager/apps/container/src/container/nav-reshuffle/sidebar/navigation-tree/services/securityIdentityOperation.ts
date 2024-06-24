@@ -9,21 +9,33 @@ export default {
   features: ['iam'],
   children: [
     {
-      id: 'security-identity-operation-iam',
-      translation: 'sidebar_security_identity_operations_iam',
-      routing: {
-        application: 'iam',
-        hash: '#/',
-      },
+      id: 'security_identity',
+      translation: 'sidebar_security_identity',
+      children: [
+        {
+          id: 'security-identity-operation-iam',
+          translation: 'sidebar_security_identity_operations_iam',
+          routing: {
+            application: 'iam',
+            hash: '#/',
+          },
+        },
+      ],
     },
     {
-      id: 'security-identity-operation-logs',
-      translation: 'sidebar_security_identity_operations_logs',
-      serviceType: 'DBAAS_LOGS',
-      routing: {
-        application: 'dedicated',
-        hash: '#/dbaas/logs',
-      },
+      id: 'operations',
+      translation: 'sidebar_operations',
+      children: [
+        {
+          id: 'security-identity-operation-logs',
+          translation: 'sidebar_security_identity_operations_logs',
+          serviceType: 'DBAAS_LOGS',
+          routing: {
+            application: 'dedicated',
+            hash: '#/dbaas/logs',
+          },
+        },
+      ],
     },
   ],
 };
