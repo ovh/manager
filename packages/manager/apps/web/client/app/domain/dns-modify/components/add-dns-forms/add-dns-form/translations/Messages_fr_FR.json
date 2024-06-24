@@ -1,0 +1,6 @@
+{
+  "domain_dns_add_dns_form_hostname_unique_error": "Ce serveur DNS est déjà utilisé",
+  "domain_dns_add_dns_form_hostname_pattern_error": "Veuillez saisir un nom d'hôte valide",
+  "domain_dns_add_dns_form_hostname_external_error": "Pour utiliser les DNS internes d'OVHcloud, veuillez sélectionner un autre type de configuration",
+  "domain_dns_add_dns_form_ip_pattern_error": "Veuillez saisir une IP valide"
+}

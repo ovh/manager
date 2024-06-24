@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useMediaQuery } from 'react-responsive';
 
-import useContainer from '@/core/container';
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
-import { useShell } from '@/context';
-import {
-  OsdsText,
-  OsdsRadioButton,
-  OsdsRadio,
-  OsdsRadioGroup,
-} from '@ovhcloud/ods-components/react';
-import { ODS_RADIO_BUTTON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import NavReshuffleSwitchBackModal from '@/container/common/nav-reshuffle-switch-back/Modal';
+import { useShell } from '@/context';
+import useContainer from '@/core/container';
 import useOnboarding from '@/core/onboarding';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_RADIO_BUTTON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import {
+    OsdsRadio,
+    OsdsRadioButton,
+    OsdsRadioGroup,
+    OsdsText,
+} from '@ovhcloud/ods-components/react';
 
 function NavReshuffleSwitchBack(): JSX.Element {
   const { t } = useTranslation('beta-modal');

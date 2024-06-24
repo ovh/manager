@@ -1,0 +1,5 @@
+{
+  "domain_dns_validation_button_apply_configuration": "Appliquer la configuration",
+  "domain_dns_validation_button_apply_configuration_disabled": "Le nombre de serveurs DNS saisis est invalide",
+  "domain_dns_validation_button_cancel_modifications": "Annuler les modifications"
+}

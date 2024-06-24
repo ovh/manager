@@ -1,4 +1,6 @@
 {
   "domain_dns": "Serveurs DNS",
-  "domain_dns_modify": "Modifier mes serveurs DNS"
+  "domain_dns_modify": "Modifier mes serveurs DNS",
+  "domain_dns_error_initializing": "Une erreur est survenue lors de la récupération des données DNS: {{message}}",
+  "domain_dns_update_success_message": "La mise à jour de vos DNS à été bien été prise en considération et sera traitée dans les meilleurs délais."
 }

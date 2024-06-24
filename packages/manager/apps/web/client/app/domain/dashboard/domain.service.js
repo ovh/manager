@@ -148,6 +148,19 @@ angular.module('services').service(
     }
 
     /**
+     * Update the APIv2 domain resource
+     * @param {string} serviceName
+     * @param {object} payload
+     */
+    updateResource(serviceName, payload) {
+      return this.Apiv2Service.httpApiv2({
+        method: 'put',
+        url: `${apiv2Prefix}/domain/name/${serviceName}`,
+        data: payload,
+      }).then(({ data: resource }) => resource);
+    }
+
+    /**
      * Get domains
      */
     getDomains(contactId = null) {

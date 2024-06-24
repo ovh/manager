@@ -1,0 +1,8 @@
+{
+  "domain_dns_modify_validation_modal_heading": "Appliquer la configuration",
+  "domain_dns_modify_validation_modal_message": "Après validation, les DNS utilisés seront les suivants :",
+  "domain_dns_modify_validation_modal_hostname": "Serveur DNS :",
+  "domain_dns_modify_validation_modal_ip": "IP associée :",
+  "domain_dns_modify_validation_modal_validate": "Appliquer",
+  "domain_dns_modify_validation_modal_cancel": "Annuler"
+}

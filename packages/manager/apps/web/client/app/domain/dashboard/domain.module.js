@@ -1,6 +1,5 @@
 import ovhManagerAdvices from '@ovh-ux/manager-advices';
 
-import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
 import generalInformationsState from '../general-informations/domain-general-informations.state';
 
 import dnsZone from '../../dns-zone';
@@ -41,7 +40,6 @@ angular
     webhostingEnable,
     zoneActivation,
     historyModule,
-    ApiV2ListHelper.moduleName,
   ])
   .config(routing)
   .config(generalInformationsState)

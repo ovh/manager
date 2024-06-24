@@ -1,0 +1,30 @@
+<oui-radio
+    name="dns_configuration_types"
+    value="::$ctrl.constants.CONFIGURATION_TYPES.EXTERNAL"
+    model="$ctrl.selectedConfigurationType"
+    on-change="$ctrl.onConfigurationTypeChange()"
+>
+    <oui-radio-label
+        data-translate="domain_dns_use_my_own_name_servers_title"
+    />
+    <oui-radio-description>
+        <span
+            data-translate="domain_dns_use_my_own_name_servers_description"
+        ></span>
+        <add-dns-forms
+            min-number-of-dns="::$ctrl.dns.registryConfiguration.minNumberOfDns"
+            max-number-of-dns="::$ctrl.dns.registryConfiguration.maxNumberOfDns"
+            modified-dns-list="$ctrl.modifiedDnsList"
+            configuration-type="::$ctrl.constants.CONFIGURATION_TYPES.EXTERNAL"
+            show-forms="$ctrl.selectedConfigurationType === $ctrl.constants.CONFIGURATION_TYPES.EXTERNAL"
+            show-form="$ctrl.showAddForm"
+            show-cancel-modifications-button="$ctrl.showCancelModificationsButton"
+            open-validation-modal="$ctrl.openValidationModal()"
+            cancel-modifications="$ctrl.cancelModifications()"
+            update-error="alerts.update"
+            can-submit="$ctrl.canSubmit"
+            on-submit="$ctrl.onSubmit(dnsEntry)"
+            on-remove="$ctrl.onRemove(index)"
+        />
+    </oui-radio-description>
+</oui-radio>

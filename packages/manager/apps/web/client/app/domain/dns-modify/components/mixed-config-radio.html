@@ -1,0 +1,50 @@
+<oui-message ng-if="!$ctrl.isZone" type="info">
+    <span data-translate="domain_dns_mixed_config_activate_zone_message"></span>
+    <a ng-href="{{::$ctrl.links.zoneActivate}}">
+        {{ 'domain_dns_config_activate_zone_message_link' | translate }}
+    </a>
+</oui-message>
+<oui-message ng-if="$ctrl.isInternalDnssecEnabled" type="info">
+    <span
+        data-translate="domain_dns_mixed_config_deactivate_dnssec_message"
+    ></span>
+</oui-message>
+
+<oui-radio
+    disabled="!$ctrl.isZone || $ctrl.isInternalDnssecEnabled"
+    name="dns_configuration_types"
+    value="::$ctrl.constants.CONFIGURATION_TYPES.MIXED"
+    model="$ctrl.selectedConfigurationType"
+    on-change="$ctrl.onConfigurationTypeChange()"
+>
+    <oui-radio-label>
+        <span
+            data-translate="domain_dns_use_my_own_and_ovh_name_servers_title"
+        ></span>
+        <span
+            class="oui-badge oui-badge_warning oui-badge_s"
+            data-translate="domain_dns_advanced_label"
+        ></span>
+    </oui-radio-label>
+    <oui-radio-description>
+        <span
+            data-translate="domain_dns_use_my_own_and_ovh_name_servers_description"
+        ></span>
+
+        <add-dns-forms
+            min-number-of-dns="::$ctrl.dns.registryConfiguration.minNumberOfDns"
+            max-number-of-dns="::$ctrl.dns.registryConfiguration.maxNumberOfDns"
+            modified-dns-list="$ctrl.modifiedDnsList"
+            configuration-type="::$ctrl.constants.CONFIGURATION_TYPES.MIXED"
+            show-forms="$ctrl.selectedConfigurationType === $ctrl.constants.CONFIGURATION_TYPES.MIXED"
+            show-form="$ctrl.showAddForm"
+            show-cancel-modifications-button="$ctrl.showCancelModificationsButton"
+            open-validation-modal="$ctrl.openValidationModal()"
+            cancel-modifications="$ctrl.cancelModifications()"
+            update-error="alerts.update"
+            can-submit="$ctrl.canSubmit"
+            on-submit="$ctrl.onSubmit(dnsEntry)"
+            on-remove="$ctrl.onRemove(index)"
+        />
+    </oui-radio-description>
+</oui-radio>

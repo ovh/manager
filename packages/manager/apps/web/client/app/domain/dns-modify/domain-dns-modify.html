@@ -1,3 +1,78 @@
 <div>
-    <p>Voici la page de modification</p>
+    <div data-ng-if="$ctrl.isLoading" class="text-center">
+        <oui-spinner data-size="l" />
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <oui-back-button
+                ng-if="!$ctrl.isLoading"
+                data-on-click="$ctrl.goBack()"
+            >
+                <span data-translate="domain_dns_modify"></span>
+            </oui-back-button>
+
+            <oui-message ng-if="alerts.main" type="{{ alerts.main.type }}">
+                {{ alerts.main.message | translate:alerts.main.data }}
+                <a
+                    ng-if="alerts.main.link"
+                    ng-href="{{ alerts.main.link.href }}"
+                    >{{ alerts.main.link.message | translate }}</a
+                >
+            </oui-message>
+
+            <div
+                ng-if="!$ctrl.isLoading && !$ctrl.isOperationOngoing && !alert.main"
+            >
+                <p data-ng-if="$ctrl.dns.originalNames.length > 0">
+                    <span
+                        data-translate="{{ 'domain_dns_currently_in_use' }}"
+                    ></span>
+                    <strong
+                        data-ng-bind="$ctrl.dns.originalNames.join(', ')"
+                    ></strong>
+                </p>
+
+                <div data-ng-if="$ctrl.dns.original">
+                    <oui-message
+                        type="warning"
+                        dismissable
+                        aria-close-button-label="{{::'domain_dns_close_message_tooltip' | translate}}"
+                    >
+                        <p
+                            class="oui-message__body"
+                            data-translate="domain_dns_warning_line1"
+                        ></p>
+                        <p
+                            class="oui-message__body"
+                            data-translate="domain_dns_warning_line2"
+                        ></p>
+                    </oui-message>
+
+                    <oui-radio-group
+                        model="$ctrl.selectedConfigurationType"
+                        class="mt-4"
+                    >
+                        <div
+                            data-ng-include="$ctrl.constants.COMPONENTS_PATH_PREFIX + 'internal-config-radio.html'"
+                        ></div>
+                        <hr />
+                        <div
+                            data-ng-include="$ctrl.constants.COMPONENTS_PATH_PREFIX + 'external-config-radio.html'"
+                        ></div>
+                        <hr />
+                        <div
+                            data-ng-include="$ctrl.constants.COMPONENTS_PATH_PREFIX + 'mixed-config-radio.html'"
+                        ></div>
+                    </oui-radio-group>
+                    <validation-modal
+                        is-validation-modal-opened="$ctrl.isValidationModalOpened"
+                        apply-configuration="$ctrl.applyConfiguration()"
+                        close-validation-modal="$ctrl.closeValidationModal()"
+                        modified-dns-list="$ctrl.modifiedDnsList"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

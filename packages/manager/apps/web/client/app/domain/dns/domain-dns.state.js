@@ -11,10 +11,15 @@ export default /* @ngInject */ ($stateProvider) => {
         template,
       },
     },
+    params: {
+      isSuccess: false,
+    },
     atInternet: {
       rename: 'DNS',
     },
     resolve: {
+      isSuccess: /* @ngInject */ ($transition$) =>
+        $transition$.params().isSuccess,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('domain_dns'),
     },

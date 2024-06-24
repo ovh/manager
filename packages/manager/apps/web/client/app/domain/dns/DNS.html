@@ -3,82 +3,90 @@
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
-    <div class="row" data-ng-show="!$ctrl.loading.all && $ctrl.dns.nameServers">
+    <oui-message ng-if="$ctrl.isSuccess" type="success">
+        {{ ::'domain_dns_update_success_message' | translate }}
+    </oui-message>
+
+    <div class="row">
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
 
-            <oui-message
-                type="success"
-                data-ng-if="$ctrl.displayPropagationInfo"
-            >
-                <span data-translate="domain_tab_DNS_update_success"></span>
-            </oui-message>
+            <div data-ng-if="!$ctrl.loading.all && $ctrl.dns.nameServers">
+                <oui-message
+                    type="success"
+                    data-ng-if="$ctrl.displayPropagationInfo"
+                >
+                    <span data-translate="domain_tab_DNS_update_success"></span>
+                </oui-message>
 
-            <div
-                class="alert alert-warning"
-                role="alert"
-                data-translate="domain_tab_DNS_warning_only_one_dns"
-                data-ng-if="!$ctrl.dns.isUpdatingNameServers && $ctrl.dns.nameServers.length === 1"
-            ></div>
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    data-translate="domain_tab_DNS_warning_only_one_dns"
+                    data-ng-if="!$ctrl.dns.isUpdatingNameServers && $ctrl.dns.nameServers.length === 1"
+                ></div>
 
-            <div
-                class="alert alert-info"
-                role="alert"
-                data-ng-if="$ctrl.allowModification"
-            >
-                <span
-                    data-translate="domain_tab_DNS_unlock_warning_manuel_check"
-                ></span>
-                <a
-                    data-ng-href="{{$ctrl.urls.zoneCheck}}"
-                    title="{{ ('domain_tab_DNS_unlock_warning_manuel_check_tool' | translate) + ' (' + ('core_new_window' | translate) + ')'}}"
-                    target="_blank"
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-ng-if="$ctrl.allowModification"
                 >
                     <span
-                        data-translate="domain_tab_DNS_unlock_warning_manuel_check2"
+                        data-translate="domain_tab_DNS_unlock_warning_manuel_check"
                     ></span>
-                    <span class="fa fa-external-link" aria-hidden="true"></span>
-                </a>
-            </div>
+                    <a
+                        data-ng-href="{{$ctrl.urls.zoneCheck}}"
+                        title="{{ ('domain_tab_DNS_unlock_warning_manuel_check_tool' | translate) + ' (' + ('core_new_window' | translate) + ')'}}"
+                        target="_blank"
+                    >
+                        <span
+                            data-translate="domain_tab_DNS_unlock_warning_manuel_check2"
+                        ></span>
+                        <span
+                            class="fa fa-external-link"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </div>
 
-            <oui-datagrid
-                page-size="8"
-                data-rows="$ctrl.dns.nameServers"
-                data-pagination-mode="arrows"
-            >
-                <oui-datagrid-column
-                    data-title="'domain_tab_DNS_name' | translate"
+                <oui-datagrid
+                    page-size="8"
+                    data-rows="$ctrl.dns.nameServers"
+                    data-pagination-mode="arrows"
                 >
-                    <span data-ng-bind="$row.name"></span>
-                </oui-datagrid-column>
-                <oui-datagrid-column
-                    data-title="'domain_tab_DNS_ip' | translate"
-                >
-                    <span data-ng-bind="$row.ip || '-'"></span>
-                </oui-datagrid-column>
-                <oui-datagrid-column
-                    data-title="'domain_tab_DNS_state' | translate"
-                >
-                    <span
-                        class="oui-badge"
-                        data-ng-class="{
+                    <oui-datagrid-column
+                        data-title="'domain_tab_DNS_name' | translate"
+                    >
+                        <span data-ng-bind="$row.name"></span>
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'domain_tab_DNS_ip' | translate"
+                    >
+                        <span data-ng-bind="$row.ip || '-'"></span>
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'domain_tab_DNS_state' | translate"
+                    >
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
                             'oui-badge_info': $row.status === $ctrl.constants.DNS_STATUS.ADDING,
                             'oui-badge_warning': $row.status === $ctrl.constants.DNS_STATUS.DELETING,
                             'oui-badge_success': $row.status === $ctrl.constants.DNS_STATUS.ACTIVATED
                         }"
-                        data-ng-bind="'domain_tab_DNS_state_' + $row.status | translate"
-                    ></span>
-                </oui-datagrid-column>
-            </oui-datagrid>
+                            data-ng-bind="'domain_tab_DNS_state_' + $row.status | translate"
+                        ></span>
+                    </oui-datagrid-column>
+                </oui-datagrid>
+            </div>
         </div>
 
         <div class="col-md-3 mt-5 mt-lg-0">
-            <div class="mb-5">
+            <div class="mb-5" data-ng-if="$ctrl.dns.nameServers">
                 <button
                     class="btn btn-block btn-default"
                     type="button"
                     data-ng-click="$ctrl.dns.isAnycastSubscribed ? $ctrl.goToTerminateAnycast() : $ctrl.goToDnsAnycast()"
-                    data-ng-if="$ctrl.allowModification"
                     data-track-on="click"
                     data-track-name="web::domain::server-dns::activation-dns-anycast"
                     data-track-click="action"
@@ -98,7 +106,7 @@
 
             <div
                 data-wuc-guides
-                data-wuc-guides-title="'guide_domain_subtitle' | translate"
+                data-wuc-guides-title="::'guide_domain_subtitle' | translate"
                 data-wuc-guides-list="'dns'"
                 data-tr="tr"
             ></div>

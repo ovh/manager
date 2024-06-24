@@ -7,10 +7,11 @@ const state = {
   },
   resolve: {
     previousState: /* @ngInject */ ($transition$) => $transition$.$from(),
-    goBack: /* @ngInject */ ($state, previousState) => () => {
-      return $state.go(
-        previousState.name ? previousState.name : 'app.domain.product.dns',
-      );
+    goBack: /* @ngInject */ ($state, previousState) => (options = {}) => {
+      // eslint-disable-next-line
+      options.isSuccess ??= false;
+
+      return $state.go(previousState.name || 'app.domain.product.dns', options);
     },
     breadcrumb: /* @ngInject */ ($translate) =>
       $translate.instant('domain_dns_modify'),

@@ -34,8 +34,6 @@ export default class DomainDnsCtrl {
 
   $onInit() {
     this.allowModification = false;
-    this.atLeastOneDns = true;
-    this.atLeastOneToRemove = true;
     this.dns = {
       original: null,
       nameServers: [],
@@ -49,6 +47,7 @@ export default class DomainDnsCtrl {
     this.urls = {
       zoneCheck: this.constants.urls.TOOLS.ZONE_CHECK,
     };
+    this.isSuccess = this.$stateParams.isSuccess;
 
     this.constants.DNS_STATUS = DNS_STATUS;
 
@@ -85,7 +84,6 @@ export default class DomainDnsCtrl {
 
   getDns() {
     this.loading.nameServers = true;
-    this.dns.nameServers = [];
 
     return this.Domain.getResource(this.$stateParams.productId).then(
       (resource) => {
@@ -95,7 +93,7 @@ export default class DomainDnsCtrl {
 
         const {
           nameServers: target = [],
-        } = resource.currentState?.dnsConfiguration;
+        } = resource.targetSpec?.dnsConfiguration;
 
         function isIncluded(dns, search) {
           return dns.some(
@@ -138,19 +136,18 @@ export default class DomainDnsCtrl {
         const activated = current
           .filter((x) => isIncluded(target, x))
           .map((x) => transform(x, DNS_STATUS.ACTIVATED));
-        const added = current
-          .filter((x) => !isIncluded(target, x))
-          .map((x) => transform(x, DNS_STATUS.ADDING));
-        const deleted = target
+        const adding = target
           .filter((x) => !isIncluded(current, x))
+          .map((x) => transform(x, DNS_STATUS.ADDING));
+        const deleting = current
+          .filter((x) => !isIncluded(target, x))
           .map((x) => transform(x, DNS_STATUS.DELETING));
 
-        this.dns.nameServers.push(...activated, ...added, ...deleted);
+        this.dns.nameServers.push(...activated, ...adding, ...deleting);
 
         // Check if there is a pending update of the name servers
-        this.dns.isUpdatingNameServers = this.dns.nameServers.some(
-          ({ status }) => status !== DNS_STATUS.ACTIVATED,
-        );
+        this.dns.isUpdatingNameServers =
+          adding.length >= 1 || deleting.length >= 1;
       },
     );
   }
