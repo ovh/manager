@@ -24,6 +24,7 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
+import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import { useAllVolumes } from '@/api/hooks/useVolume';
 
@@ -113,6 +114,7 @@ export default function OnBoardingPage() {
       condition={volumes?.length > 0}
     >
       <>
+        <HidePreloader />
         {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
         {isDiscoveryProject(project) && (
