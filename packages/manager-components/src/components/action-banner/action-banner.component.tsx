@@ -1,10 +1,12 @@
 import React from 'react';
 import {
   OsdsButton,
+  OsdsLink,
   OsdsMessage,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -14,7 +16,8 @@ export type ActionBannerProps = {
   message: string;
   cta: string;
   type?: ODS_MESSAGE_TYPE;
-  onClick: () => void;
+  onClick?: () => void;
+  href?: string;
 };
 
 export function ActionBanner({
@@ -22,11 +25,12 @@ export function ActionBanner({
   cta,
   type = ODS_MESSAGE_TYPE.info,
   onClick,
+  href,
 }: Readonly<ActionBannerProps>) {
   return (
     <OsdsMessage
       type={type}
-      color={(type as unknown) as ODS_THEME_COLOR_INTENT}
+      color={type as unknown as ODS_THEME_COLOR_INTENT}
       className={'mt-3 flex-row'}
       data-testid="actionBanner-message_container"
     >
@@ -41,15 +45,28 @@ export function ActionBanner({
             }}
           ></span>
         </OsdsText>
-        <OsdsButton
-          className="sm:mt-0 mt-4 sm:ml-4 ml-0"
-          data-testid="actionBanner-button"
-          size={ODS_BUTTON_SIZE.sm}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={onClick}
-        >
-          {cta}
-        </OsdsButton>
+        {onClick && (
+          <OsdsButton
+            className="sm:mt-0 mt-4 sm:ml-4 ml-0"
+            data-testid="actionBanner-button"
+            size={ODS_BUTTON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            onClick={onClick}
+          >
+            {cta}
+          </OsdsButton>
+        )}
+        {href && (
+          <OsdsLink
+            className="sm:mt-0 mt-4 sm:ml-4 ml-0"
+            color={ODS_THEME_COLOR_INTENT.primary}
+            onClick={() => onClick && onClick()}
+            href={href}
+            target={OdsHTMLAnchorElementTarget._blank}
+          >
+            {cta}
+          </OsdsLink>
+        )}
       </div>
     </OsdsMessage>
   );
