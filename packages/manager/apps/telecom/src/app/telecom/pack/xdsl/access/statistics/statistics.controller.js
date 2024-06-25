@@ -30,8 +30,6 @@ export default class XdslStatisticsCtrl {
   }
 
   $onInit() {
-    this.charts = {};
-
     this.periodOptions = this.XDSL.statisticsPeriodEnum;
 
     this.synchronization = {
@@ -231,6 +229,11 @@ export default class XdslStatisticsCtrl {
           },
         });
 
+        // Initialize series if it's already set
+        if (this.synchronization.chart.data.datasets) {
+          this.synchronization.chart.data.datasets = [];
+        }
+
         this.synchronization.chart.addSerie(
           this.$translate.instant('xdsl_statistics_download_label'),
           map(stats.downloads, (point) => ({
@@ -365,6 +368,11 @@ export default class XdslStatisticsCtrl {
         const trafficConfig = this.constructor.getConfigTime(period);
         this.traffic.chart.setAxisOptions('xAxes', trafficConfig);
 
+        // Initialize series if it's already set
+        if (this.traffic.chart.data.datasets) {
+          this.traffic.chart.data.datasets = [];
+        }
+
         this.traffic.chart.addSerie(
           this.$translate.instant('xdsl_statistics_download_label'),
           map(stats.downloads, (point) => ({
@@ -435,6 +443,11 @@ export default class XdslStatisticsCtrl {
         const pingConfig = this.constructor.getConfigTime(period);
         this.ping.chart.setAxisOptions('xAxes', pingConfig);
 
+        // Initialize series if it's already set
+        if (this.ping.chart.data.datasets) {
+          this.ping.chart.data.datasets = [];
+        }
+
         this.ping.chart.addSerie(
           this.$translate.instant('xdsl_statistics_ping_title'),
           map(statistics, (point) => ({
@@ -496,6 +509,11 @@ export default class XdslStatisticsCtrl {
 
         const snrConfig = this.constructor.getConfigTime(period);
         this.snr.chart.setAxisOptions('xAxes', snrConfig);
+
+        // Initialize series if it's already set
+        if (this.snr.chart.data.datasets) {
+          this.snr.chart.data.datasets = [];
+        }
 
         this.snr.chart.addSerie(
           this.$translate.instant('xdsl_statistics_download_label'),
@@ -572,6 +590,11 @@ export default class XdslStatisticsCtrl {
           type: 'linear',
         });
 
+        // Initialize series if it's already set
+        if (this.attenuation.chart.data.datasets) {
+          this.attenuation.chart.data.datasets = [];
+        }
+
         this.attenuation.chart.addSerie(
           this.$translate.instant('xdsl_statistics_download_label'),
           map(stats.downloads, (point) => ({
@@ -647,6 +670,11 @@ export default class XdslStatisticsCtrl {
         this.errors.chart.setAxisOptions('y', {
           type: 'linear',
         });
+
+        // Initialize series if it's already set
+        if (this.errors.chart.data.datasets) {
+          this.errors.chart.data.datasets = [];
+        }
 
         this.addErrorsSeries(stats.hec, 'xdsl_statistics_hec_label');
         this.addErrorsSeries(stats.fec, 'xdsl_statistics_fec_label');
