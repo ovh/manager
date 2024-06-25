@@ -21,5 +21,6 @@
   "account-disable-2fa-create-form-field-professional-identity-document-back": "Pièce d'identité du professionnel libéral (verso)",
   "account-disable-2fa-create-form-field-public-administrator-identity-document-front": "Pièce d'identité du responsable de l'administration publique (recto)",
   "account-disable-2fa-create-form-field-public-administrator-identity-document-back": "Pièce d'identité du responsable de l'administration publique (verso)",
-  "account-disable-2fa-create-form-field-other-useful-document": "Tout autre document que vous jugez utile à votre identification"
+  "account-disable-2fa-create-form-field-other-useful-document": "Tout autre document que vous jugez utile à votre identification",
+  "account-disable-2fa-create-form-tooltip-document-limitation": "Le nombre maximal de documents supporté est de {{maxFiles}}"
 }

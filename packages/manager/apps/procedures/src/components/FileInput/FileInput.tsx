@@ -76,7 +76,7 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
     });
     fileInputRef.current.value = '';
   };
-  const disabled = value?.length >= maxFiles;
+  const disabled = value?.length >= maxFiles && multiple;
   return (
     <>
       <input

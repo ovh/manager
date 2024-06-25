@@ -5,6 +5,11 @@ import { FormDocumentFieldItem } from './FormDocumentFieldItem';
 import documentsFieldRules from './documentFieldsConfiguration.json';
 import { FileWithError } from '@/components/FileInput/FileInputContainer';
 import { LegalFrom, Subsidiary } from '@/types/user.type';
+import {
+  acceptFile,
+  maxFileSize,
+  maxFiles,
+} from './formDocumentFieldValidation.constants';
 
 type Props = {
   legalForm: LegalFrom | 'default';
@@ -68,10 +73,15 @@ export const FormDocumentFieldList: FunctionComponent<Props> = ({
           render={({ field: { onChange, value } }) => (
             <FormDocumentFieldItem
               multiple={field.multiple}
+              maxFiles={field.multiple ? maxFiles : 1}
+              maxSize={maxFileSize}
+              accept={acceptFile}
               value={value}
               onChange={(e) => onChange(e.files)}
               label={tdoc(field.translateCode)}
-              tooltips={field.tooltips.map((tooltip) => tdoc(tooltip))}
+              tooltips={field.tooltips.map((tooltip) =>
+                tdoc(tooltip, { maxFiles }),
+              )}
             />
           )}
           name={field.field.replace('.', '')}
