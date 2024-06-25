@@ -1,5 +1,4 @@
 import { Outlet, useParams, useRouteError } from 'react-router-dom';
-
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Suspense, useContext } from 'react';
 import { ErrorBanner, useProject } from '@ovhcloud/manager-components';
@@ -19,7 +18,6 @@ export default function Layout() {
         <ShellRoutingSync />
         {isSuccess && (
           <>
-            <HidePreloader />
             <Outlet />
           </>
         )}
