@@ -14,6 +14,8 @@
   "hosting_multisite_git_association_title": "Configurer votre Git pour votre répertoire {{ path }}",
   "hosting_multisite_git_association_ssh_key": "Clé SSH",
   "hosting_multisite_git_association_ssh_url_repo_help": "Indiquer l'URL de votre dépôt Git ({{ httpsRepo }}) ou si SSH est activé ({{ sshRepo }})",
+  "hosting_multisite_git_association_ssh_key_internal_error_message": "La génération de votre clé SSH a échoué, veuillez ré-essayer ultérieurement ou contacter le support",
+  "hosting_multisite_git_association_ssh_key_success_message": "Git est en cours d’activation. Vous pouvez suivre son activation depuis les tâches en cours <a href=\"{{ href }}\">Tâches en cours</a>",
   "hosting_multisite_git_association_ssh_branches_names": "Indiquer le nom de la branche de votre dépôt qui sera répliqué ({{ branchesNames }})",
   "hosting_multisite_git_association_configure": "Configurer votre déploiement",
   "hosting_multisite_git_association_configure_auto": "Configurer votre déploiement automatique",

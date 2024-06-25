@@ -9,7 +9,8 @@ import {
 } from './hosting-multisite-git-association.constants';
 
 export default class HostingMultisiteGitAssociationController {
-  constructor(HostingMultisiteGitAssociationService) {
+  /* @ngInject */
+  constructor(HostingMultisiteGitAssociationService, coreURLBuilder) {
     this.REPOSITORY_PLACEHOLDER = REPOSITORY_PLACEHOLDER;
     this.EXAMPLE_BRANCHES_NAMES = EXAMPLE_BRANCHES_NAMES;
     this.EXAMPLE_HTTPS_REPOSITORY_URL = EXAMPLE_HTTPS_REPOSITORY_URL;
@@ -23,6 +24,15 @@ export default class HostingMultisiteGitAssociationController {
       branchName: null,
       webhookUrl: '',
     };
+    this.coreURLBuilder = coreURLBuilder;
+  }
+
+  $onInit() {
+    this.errorMessage = !this.sshKey;
+    this.ongoingTasksHref = this.coreURLBuilder.buildURL(
+      'web',
+      `#/hosting/${this.serviceName}/task`,
+    );
   }
 
   applyConfiguration() {
@@ -34,8 +44,8 @@ export default class HostingMultisiteGitAssociationController {
       .then(({ push }) => {
         this.model.webhookUrl = push;
       })
-      .catch(({ message }) => {
-        this.errorMessage = message;
+      .catch(({ status }) => {
+        this.statusCode = status;
       });
   }
 }

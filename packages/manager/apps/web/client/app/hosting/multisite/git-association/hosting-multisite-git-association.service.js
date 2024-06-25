@@ -14,7 +14,7 @@ export default class HostingMultisiteGitAssociationService {
     return this.$http
       .get(`/hosting/web/${serviceName}/key/ssh`)
       .catch((error) => {
-        if (error.status === 404) {
+        if (error.status === 404 || error.status === 403) {
           return this.$http.post(`/hosting/web/${serviceName}/key/ssh`);
         }
         throw error;
