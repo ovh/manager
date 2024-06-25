@@ -295,7 +295,6 @@
                 <!-- + -->
                 <th scope="row">
                     <button
-                        data-ng-if="!ipBlock.isIPv6Failover"
                         type="button"
                         class="btn btn-link pl-0"
                         data-ng-click="toggleIp(ipBlock)"
@@ -691,7 +690,7 @@
             </tr>
 
             <tr
-                data-ng-if="ipBlock.version === IP_TYPE.V6 && !ipBlock.isUniq && !ipBlock.collapsed && !(ipBlock.type === FAILOVER || ipBlock.type === VRACK) "
+                data-ng-if="ipBlock.version === IP_TYPE.V6 && !ipBlock.isUniq && !ipBlock.collapsed && ipBlock.type !== VRACK"
             >
                 <td class="text-center" colspan="42">
                     <button
