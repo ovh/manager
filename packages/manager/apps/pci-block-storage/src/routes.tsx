@@ -1,6 +1,4 @@
-import { redirect } from 'react-router-dom';
-import { getProjectQuery } from '@ovhcloud/manager-components';
-import queryClient from '@/queryClient';
+import { StorageActionRedirect } from '@/components/StorageActionRedirect';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
   lazy: async () => {
@@ -29,8 +27,6 @@ export default [
   {
     id: 'blocks',
     path: ROUTE_PATHS.root,
-    loader: async ({ params }) =>
-      queryClient.fetchQuery(getProjectQuery(params.projectId)),
     ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [
       {
@@ -42,15 +38,7 @@ export default [
         children: [
           {
             path: 'attach',
-            loader: ({ params, request }) => {
-              // this redirection is added to be iso with angularJS app URLs
-              const storageId = new URL(request.url).searchParams.get(
-                'storageId',
-              );
-              return redirect(
-                `/pci/projects/${params.projectId}/storages/blocks/attach/${storageId}`,
-              );
-            },
+            element: <StorageActionRedirect action="attach" />,
           },
           {
             path: 'attach/:volumeId',
@@ -64,15 +52,7 @@ export default [
           },
           {
             path: 'detach',
-            loader: ({ params, request }) => {
-              // this redirection is added to be iso with angularJS app URLs
-              const storageId = new URL(request.url).searchParams.get(
-                'storageId',
-              );
-              return redirect(
-                `/pci/projects/${params.projectId}/storages/blocks/detach/${storageId}`,
-              );
-            },
+            element: <StorageActionRedirect action="detach" />,
           },
           {
             path: 'detach/:volumeId',
@@ -86,15 +66,7 @@ export default [
           },
           {
             path: 'delete',
-            loader: ({ params, request }) => {
-              // this redirection is added to be iso with angularJS app URLs
-              const storageId = new URL(request.url).searchParams.get(
-                'storageId',
-              );
-              return redirect(
-                `/pci/projects/${params.projectId}/storages/blocks/delete/${storageId}`,
-              );
-            },
+            element: <StorageActionRedirect action="delete" />,
           },
           {
             path: 'delete/:volumeId',
