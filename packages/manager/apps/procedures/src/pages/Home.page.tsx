@@ -10,6 +10,7 @@ import {
   errorRoutePath,
 } from '@/routes/home.constants';
 import { rootRoute } from '@/routes/routes';
+import Loading from '@/components/Loading/Loading';
 
 const redirectStrategies: Record<Status2fa['status'] | 'error', string> = {
   open: `${rootRoute}/${seeRoutePath}`,
@@ -33,7 +34,7 @@ export default function Home() {
       navigate(`${url}${location.search}`, { replace: true });
     }
   };
-  const { data, error, isSuccess, isFetched, isError } = useFetch2faStatus();
+  const { data, error, isSuccess, isFetched, isLoading } = useFetch2faStatus();
   const route = redirectStrategies[data?.status];
   useEffect(() => {
     if (isFetched) {
@@ -55,7 +56,7 @@ export default function Home() {
             <img src={ovhCloudLogo} alt="ovh-cloud-logo" className="app-logo" />
           </div>
           <div className="flex justify-center app-content lg:w-8/12 mx-auto min-h-[500px] sm:shadow sm:shadow-[0_0_6px_0_rgba(40,89,192,0.2)] sm:border-none border-t-[1px] border-gray-300">
-            {isFetched && <Outlet />}
+            {isLoading ? <Loading /> : <Outlet />}
           </div>
         </div>
       </div>
