@@ -87,7 +87,6 @@ function LegacyContainer(): JSX.Element {
                   />
                 </Suspense>
               )}
-              {!isMfaEnrollmentVisible && (
                 <Preloader visible={preloaderVisible}>
                   <>
                     <IFrameAppRouter
@@ -102,7 +101,6 @@ function LegacyContainer(): JSX.Element {
                     ></iframe>
                   </>
                 </Preloader>
-              )}
             </div>
           </div>
         </div>
