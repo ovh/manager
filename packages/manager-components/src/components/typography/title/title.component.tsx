@@ -7,15 +7,18 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 
-export const CommonTitle: React.FC<React.PropsWithChildren & {
-  typoSize?: ODS_THEME_TYPOGRAPHY_SIZE;
-}> = ({ children, typoSize = ODS_THEME_TYPOGRAPHY_SIZE._400 }) => {
+export const CommonTitle: React.FC<
+  React.PropsWithChildren & {
+    typoSize?: ODS_THEME_TYPOGRAPHY_SIZE;
+  }
+> = ({ children, typoSize = ODS_THEME_TYPOGRAPHY_SIZE._400 }) => {
   return (
     <OsdsText
       level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
       size={typoSize}
-      color={ODS_THEME_COLOR_INTENT.text}
+      color={ODS_THEME_COLOR_INTENT.primary}
       hue={ODS_THEME_COLOR_HUE._800}
+      className="block mb-4"
     >
       {children}
     </OsdsText>
@@ -24,7 +27,7 @@ export const CommonTitle: React.FC<React.PropsWithChildren & {
 
 export const Title: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
-    <CommonTitle typoSize={ODS_THEME_TYPOGRAPHY_SIZE._700}>
+    <CommonTitle typoSize={ODS_THEME_TYPOGRAPHY_SIZE._800}>
       {children}
     </CommonTitle>
   );
