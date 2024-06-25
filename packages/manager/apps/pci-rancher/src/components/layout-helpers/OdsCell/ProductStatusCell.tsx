@@ -1,6 +1,6 @@
 import { OsdsChip, OsdsSpinner } from '@ovhcloud/ods-components/react';
 import React from 'react';
-import { TFunction } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ResourceStatus } from '@/api/api.type';
@@ -23,7 +23,7 @@ export const ProductStatusCell: React.FC<DataGridCellProps<ResourceStatus> & {
 
   return cellData ? (
     <OsdsChip inline color={colorByProductStatus[cellData]}>
-      {t(cellData)}
+      {t(cellData) as string}
     </OsdsChip>
   ) : (
     <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />

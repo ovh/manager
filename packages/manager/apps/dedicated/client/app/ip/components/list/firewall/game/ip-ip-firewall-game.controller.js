@@ -14,6 +14,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   $rootScope,
   $translate,
   getIp,
+  ipGameProtocol,
   goToDashboard,
   Ip,
   IpGameFirewall,
@@ -31,7 +32,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   self.constantes = {
     DELETE_RULE_PENDING: 'deleteRulePending',
     OK: 'ok',
-    MAX_RULES: 30,
+    MAX_RULES: ipGameProtocol.maxRules,
     PAGE_SIZE_MIN: 10,
     PAGE_SIZE_MAX: 30,
     PORT_MIN: 1,
@@ -59,7 +60,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   self.displayAddRuleLine = false;
 
   self.enums = {
-    protocols: [],
+    protocols: ipGameProtocol.supportedProtocols,
   };
 
   self.gameGuideLink =
@@ -80,23 +81,6 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
     return startCase(protocol);
   };
 
-  self.enums = {
-    protocols: [],
-  };
-
-  self.rule = {
-    protocol: null,
-    ports: {
-      to: null,
-      from: null,
-    },
-  };
-
-  self.loading = false;
-
-  self.getProtocoleText = function getProtocoleText(protocol) {
-    return startCase(protocol);
-  };
   function paginate(pageSize, offset) {
     self.rules = self.table.rules.slice(offset - 1, offset + pageSize - 1);
   }
@@ -375,31 +359,8 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
       },
     };
 
-    // Load protocol list
-    self.loadProtocols();
-
+    self.loading = false;
     self.displayAddRuleLine = true;
-  };
-
-  self.loadProtocols = () => {
-    // Load protocol list
-    Ip.getIpModels()
-      .then(
-        (model) => {
-          self.enums.protocols =
-            model['ip.GameMitigationRuleProtocolEnum'].enum;
-        },
-        () => {
-          Alerter.error(
-            $translate.instant('ip_game_mitigation_rule_add_init_error'),
-            alert,
-          );
-          self.loading = false;
-        },
-      )
-      .finally(() => {
-        self.loading = false;
-      });
   };
 
   self.addGameFirewallRule = function addGameFirewallRule() {

@@ -1,5 +1,4 @@
 import { fireEvent, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { ActionBanner, ActionBannerProps } from './action-banner.component';
 import { render } from '../../utils/test.provider';
 

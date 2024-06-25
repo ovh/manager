@@ -1,6 +1,11 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_BUTTON_SIZE,
+  PciDiscoveryBanner,
+  Subtitle,
+  Title,
+} from '@ovhcloud/manager-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { Trans, useTranslation } from 'react-i18next';
+import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_TYPE,
@@ -17,19 +22,17 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { isValidRancherName } from '@/utils/rancher';
-import { getRanchersUrl } from '@/utils/route';
-import Title, { Subtitle } from '@/components/Title/Title';
-import Block from '@/components/Block/Block';
+
 import {
   CreateRancherPayload,
   RancherPlan,
   RancherVersion,
 } from '@/api/api.type';
-import { useActivatePciProjectURL } from '@/hooks/useActivatePciProjectURL';
+import Block from '@/components/Block/Block';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
+import { isValidRancherName } from '@/utils/rancher';
+import { getRanchersUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { useSimpleTrackingAction } from '../../../hooks/useTrackingPage';
 
@@ -90,7 +93,7 @@ const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
     case 'OVHCLOUD_EDITION':
       return 'createRancherOVHCloudPlanDescription';
     default:
-      return '';
+      return null;
   }
 };
 
@@ -120,14 +123,15 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const [selectedVersion, setSelectedVersion] = useState(null);
 
   const navigate = useNavigate();
-  const activateProjectUrl = useActivatePciProjectURL(projectId);
 
   const isValidName = rancherName !== '' && isValidRancherName(rancherName);
   const hasInputError = rancherName !== '' && !isValidName;
   const isCreateRancherAllowed = isValidName && !isProjectDiscoveryMode;
 
-  const { t } = useTranslation('pci-rancher/dashboard');
-  const { t: tListing } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslation([
+    'pci-rancher/dashboard',
+    'pci-rancher/listing',
+  ]);
   const trackAction = useTrackingAction();
   const simpleTrackAction = useSimpleTrackingAction();
 
@@ -174,32 +178,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   return (
     <div>
       <Title>{t('createRancherTitle')}</Title>
-      {isProjectDiscoveryMode && (
-        <OsdsMessage
-          color={ODS_THEME_COLOR_INTENT.warning}
-          type={ODS_MESSAGE_TYPE.warning}
-          className="my-6"
-        >
-          <div className="flex items-center justify-between">
-            <div className="max-w-3xl">
-              <OsdsText color={ODS_THEME_COLOR_INTENT.warning}>
-                <Trans>
-                  {t('createRancherDiscoveryMode')} <br />
-                </Trans>
-              </OsdsText>
-            </div>
-            <div className="ml-4">
-              <OsdsButton
-                size={ODS_BUTTON_SIZE.sm}
-                href={activateProjectUrl}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              >
-                {t('createRancherDiscoveryModeActive')}
-              </OsdsButton>
-            </div>
-          </div>
-        </OsdsMessage>
-      )}
+      {isProjectDiscoveryMode && <PciDiscoveryBanner projectId={projectId} />}
       <OsdsMessage
         color={ODS_THEME_COLOR_INTENT.info}
         type={ODS_MESSAGE_TYPE.info}
@@ -251,6 +230,16 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
               e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
             ) => setRancherName(e.target.value as string)}
           />
+
+          <OsdsText
+            color={
+              hasInputError
+                ? ODS_THEME_COLOR_INTENT.error
+                : ODS_THEME_COLOR_INTENT.text
+            }
+          >
+            {t('createNameModaleHelperInput')}
+          </OsdsText>
         </div>
 
         <div className="my-3">
@@ -267,7 +256,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
               key={plan.name}
               isActive={plan.name === selectedPlan?.name}
               isDisabled={plan.status !== 'AVAILABLE'}
-              name={tListing(plan.name)}
+              name={t(plan.name)}
               description={t(getRancherPlanDescription(plan.name))}
               chipLabel={
                 plan.name === 'OVHCLOUD_EDITION' ? t('comingSoon') : ''

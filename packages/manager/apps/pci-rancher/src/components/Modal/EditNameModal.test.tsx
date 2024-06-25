@@ -64,8 +64,8 @@ describe('Edit Name Modal', () => {
 
     expect(onEditMocked).toHaveBeenCalledWith({
       ...rancherMocked,
-      currentState: {
-        ...rancherMocked.currentState,
+      targetSpec: {
+        ...rancherMocked.targetSpec,
         name: NEW_NAME,
       },
     });

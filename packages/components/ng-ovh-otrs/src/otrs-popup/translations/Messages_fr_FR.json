@@ -113,6 +113,8 @@
   "otrs_service_type_dbaas_queue": "Queues",
   "otrs_service_type_dbaas_timeseries": "Time series",
   "otrs_service_type_deskaas": "Bureau virtuel à distance",
+  "otrs_service_type_dedicated_cluster": "Cluster dédié",
+  "otrs_service_type_ovh_cloud_connect": "OVH Cloud Connect",
   "otrs_service_type_ssl": "SSL",
   "otrs_service_type_ssl_gateway": "SSL Gateway",
   "otrs_service_type_paas_timeseries": "PAAS Time series",

@@ -1,0 +1,7 @@
+{
+  "key_management_service_terminate_cancel": "Annuler",
+  "key_management_service_terminate_confirm": "Résilier",
+  "key_management_service_terminate_error": "Une erreur est survenue. {{error}}",
+  "key_management_service_terminate_heading": "Résilier mon KMS",
+  "key_management_service_terminate_description": "Veuillez entrer le mot « TERMINATE » pour confirmer la résiliation de votre KMS"
+}

@@ -344,6 +344,7 @@ export default class NewAccountFormController {
         if (result !== null) {
           return this.$q.reject(result);
         }
+        this.coreConfig.updateUser(model);
         return result;
       })
       .catch((error) => {

@@ -14,7 +14,6 @@ import ipRestriction from './ip/restriction/user-ip-restriction.module';
 import newAccountForm from './components/newAccountForm/new-account-form-component.module';
 import security from './security/user-security.module';
 import supportLevel from './support-level/support-level.module';
-import users from './users/users.module';
 
 import routing from './user.routes';
 
@@ -39,7 +38,6 @@ angular
     newAccountForm,
     security,
     supportLevel,
-    users,
   ])
   .config(routing)
   .controller(

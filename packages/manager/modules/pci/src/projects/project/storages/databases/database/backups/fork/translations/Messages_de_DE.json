@@ -2,6 +2,7 @@
   "pci_databases_backups_fork_title": "Datenbankdienst duplizieren (Fork)",
   "pci_databases_backups_fork_description": "Der Fork Ihres Backups wird auf einem neuen Cluster ausgeführt.",
   "pci_databases_backups_fork_plan_label": "Wählen Sie ein Angebot aus",
+  "pci_databases_backups_fork_region_label": "Wählen Sie einen Standort aus",
   "pci_databases_backups_fork_flavor_label": "Node-Typ",
   "pci_databases_backups_fork_cluster_label": "Cluster-Dimensionierung",
   "pci_databases_backups_fork_options_label": "Konfigurieren Sie Ihre Optionen",
@@ -24,7 +25,6 @@
   "pci_databases_backups_fork_create_database_success": "Ihr Dienst wurde erfolgreich geforkt. Er wird zurzeit erstellt und ist in wenigen Minuten verfügbar.",
   "pci_databases_backups_fork_create_database_error": "Bei der Erstellung Ihres Dienstes ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut: {{message}}",
   "pci_databases_backups_fork_footer_part_1": "Alle Produktnamen, Logos und Marken sind Besitz der jeweiligen Eigentümer. Alle auf dieser Website verwendeten Namen von Unternehmen, Produkten und Dienstleistungen dienen ausschließlich der Identifizierung. Die Verwendung dieser Namen, Logos und Marken bedeutet keine Genehmigung oder Bestätigung.",
-  "pci_databases_backups_fork_footer_part_2": "*Redis ist eine Marke von Redis Ltd. Alle damit verbundenen Rechte sind Redis Ltd vorbehalten. Jede Nutzung durch OVH SAS dient lediglich der Information. Es wird kein Sponsoring, keine Unterstützung oder Verbindung zwischen Redis und OVH SAS zum Ausdruck gebracht.",
   "pci_databases_backups_fork_spec_heading": "Ihre Bestellung",
   "pci_databases_backups_fork_spec_name": "Name:",
   "pci_databases_backups_fork_spec_restore_mode": "Wiederherstellungspunkt:",
@@ -37,6 +37,8 @@
   "pci_databases_backups_fork_spec_region": "Datacenter:",
   "pci_databases_backups_fork_spec_region_name": "{{region}} ({{alias}})",
   "pci_databases_backups_fork_spec_flavor": "Node-Modell:",
+  "pci_databases_backups_fork_spec_flavor_CPU_one": "{{cpu}} vCore",
+  "pci_databases_backups_fork_spec_flavor_CPU_many": "{{cpu}} vCores",
   "pci_databases_backups_fork_spec_flavor_RAM": "{{ram}} RAM",
   "pci_databases_backups_fork_spec_cluster": "Cluster:",
   "pci_databases_backups_fork_spec_network": "Netzwerktyp:",
@@ -60,8 +62,5 @@
   "pci_databases_backups_fork_price_unit_switch_label": "Preise pro Monat anzeigen",
   "pci_databases_backups_fork_restore_mode_title": "Wiederherstellungspunkt",
   "pci_databases_backups_fork_restore_mode_description": "Wählen Sie den Wiederherstellungspunkt aus, von dem aus der Dienst dupliziert wird.",
-  "pci_databases_backups_fork_spec_flavor_CPU_one": "{{cpu}} vCore",
-  "pci_databases_backups_fork_spec_flavor_CPU_many": "{{cpu}} vCores",
-  "pci_databases_backups_fork_show_command": "API-Äquivalent",
-  "pci_databases_backups_fork_region_label": "Wählen Sie einen Standort aus"
+  "pci_databases_backups_fork_show_command": "API-Äquivalent"
 }

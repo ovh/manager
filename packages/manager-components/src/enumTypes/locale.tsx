@@ -23,6 +23,8 @@ export enum OvhSubsidiary {
   US = 'US',
   WE = 'WE',
   WS = 'WS',
+  EU = 'EU',
+  DEFAULT = 'DEFAULT',
 }
 
 export enum CurrencyCode {
@@ -61,7 +63,9 @@ export const OVH_CURRENCY_BY_SUBSIDIARY: Record<OvhSubsidiary, CurrencyCode> = {
   SG: CurrencyCode.SGD,
   SN: CurrencyCode.XOF,
   TN: CurrencyCode.TND,
+  EU: CurrencyCode.EUR,
   US: CurrencyCode.USD,
   WE: CurrencyCode.USD,
   WS: CurrencyCode.USD,
+  DEFAULT: CurrencyCode.USD,
 };

@@ -58,7 +58,7 @@ export const GUIDES = [
       WS:
         'https://help.ovhcloud.com/csm/en-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044891',
       US:
-        'https://help.ovhcloud.com/csm/en-ie-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044886',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/29435448847507-Nutanix-OVHcloud-Packaged-Service-Included-Licenses',
     },
     tracking: 'available-services-documentation',
   },

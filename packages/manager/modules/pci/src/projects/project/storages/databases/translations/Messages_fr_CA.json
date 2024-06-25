@@ -29,6 +29,5 @@
   "pci_database_node_type_memory": "{{memorySize}} RAM",
   "pci_database_node_type_label": "Modèle de nœud",
   "pci_database_storage_label": "Stockage utile",
-  "pci_database_footer_part_1": "Tous les noms de produits, logos et marques sont la propriété de leurs propriétaires respectifs. Tous les noms d'entreprise, de produit et de service utilisés dans ce site Web sont à des fins d'identification seulement. L'utilisation de ces noms, logos et marques n'implique aucune approbation.",
-  "pci_database_footer_part_2": "*Redis est une marque de Redis Ltd. Tous les droits qui y sont attachés sont réservés à Redis Ltd. Toute utilisation par OVH SAS est uniquement à titre de référence et n'indique aucun sponsoring, soutien ou affiliation entre Redis et OVH SAS."
+  "pci_database_footer_part_1": "Tous les noms de produits, logos et marques sont la propriété de leurs propriétaires respectifs. Tous les noms d'entreprise, de produit et de service utilisés dans ce site Web sont à des fins d'identification seulement. L'utilisation de ces noms, logos et marques n'implique aucune approbation."
 }

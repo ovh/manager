@@ -17,5 +17,9 @@
   "sign_up_activity_field_companyNationalIdentificationNumber": "National identification number",
   "sign_up_activity_field_companyNationalIdentificationNumber_fr": "National identification number (SIRET)",
   "sign_up_activity_field_italian_sdi": "Recipient code for electronic billing (SDI)",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "A SIRET number is required to improve the electronic billing process (Chorus)"
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "A SIRET number is required to improve the electronic billing process (Chorus)",
+  "sign_up_activity_corporation_created_title": "My business has been set up",
+  "sign_up_activity_corporation_not_created_title": "My business is currently being set up",
+  "sign_up_activity_corporation_not_created_description": "I will enter this information when setting up my business",
+  "sign_up_activity_corporation_created_description": "I have a company registration (SIRET/SIREN) number"
 }

@@ -256,7 +256,7 @@
   "pack_move_building_details_title": "Riferimento degli edifici per le offerte FTTH",
   "pack_move_pto_title": "Scatola Fibre PTO (Terminazione Ottica)",
   "pack_move_pto_description": "Hai già una fibra ottica all'indirizzo di installazione? (presa ottica murale)",
-  "pack_move_pto_yes": "Ho un alloggiamento con questo riferimento:",
+  "pack_move_pto_yes": "Ho una custodia con il riferimento seguente",
   "pack_move_pto_yes_description": "Eseguiremo la spia ottica esistente (PTO).",
   "pack_move_pto_no": "No, non dispongo di un box PTO",
   "pack_move_pto_no_description": "Durante l'intervento, un tecnico installerà una presa ottica (PTO).",

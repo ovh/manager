@@ -2,7 +2,6 @@ import { waitFor, screen, fireEvent } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ActionMenu, ActionMenuProps } from './action.component';
 import { render } from '../../../../utils/test.provider';
-import '@testing-library/jest-dom';
 import { useAuthorizationIam } from '../../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../../hooks/iam/iam.interface';
 

@@ -1,20 +1,20 @@
+import { DashboardLayout, ErrorBanner } from '@ovhcloud/manager-components';
 import React, { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Outlet,
   useNavigate,
   useParams,
   useResolvedPath,
 } from 'react-router-dom';
-import { ErrorBanner } from '@ovhcloud/manager-components';
+import { useTranslation } from 'react-i18next';
 import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb';
 import Loading from '@/components/Loading/Loading';
-import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
-import { DashboardTabItemProps } from '../../components/layout-helpers/Dashboard/Dashboard';
+import Dashboard, {
+  DashboardTabItemProps,
+} from '@/components/layout-helpers/Dashboard/Dashboard';
 import { useRancher } from '@/hooks/useRancher';
-import PageLayout from '@/components/PageLayout/PageLayout';
 import { getRanchersUrl } from '@/utils/route';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
@@ -24,7 +24,9 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 export default function DashboardPage() {
   const { projectId } = useParams();
   const { t } = useTranslation('pci-rancher/dashboard');
-  const { data, error, isLoading } = useRancher();
+  const { data: rancher, error, isLoading } = useRancher({
+    refetchInterval: 5000,
+  });
   const navigate = useNavigate();
 
   const tabsList: DashboardTabItemProps[] = [
@@ -63,12 +65,12 @@ export default function DashboardPage() {
   }
 
   return (
-    <PageLayout>
-      <Suspense fallback={<Loading />}>
-        <Breadcrumb items={[{ label: data?.data.targetSpec.name }]} />
-        {data?.data && <Dashboard tabs={tabsList} rancher={data.data} />}
-      </Suspense>
+    <Suspense fallback={<Loading />}>
+      <DashboardLayout
+        breadcrumb={<Breadcrumb items={[{ label: rancher.targetSpec.name }]} />}
+        content={rancher && <Dashboard tabs={tabsList} rancher={rancher} />}
+      />
       <Outlet />
-    </PageLayout>
+    </Suspense>
   );
 }

@@ -1,8 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { Cell } from '@tanstack/react-table';
-import { useTranslation } from 'react-i18next';
 import { RancherService } from '@/api/api.type';
 import './Table.scss';
 
@@ -15,7 +15,7 @@ function DisplayCellText({ cell }: Readonly<DisplayCellInterface>) {
   const label = cell.renderValue() as string;
   return (
     <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-      {label ? t(label) : '-'}
+      {label ? t(label as string) : '-'}
     </OsdsText>
   );
 }

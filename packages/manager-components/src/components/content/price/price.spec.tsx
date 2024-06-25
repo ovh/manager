@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import Price from './price.component';
 import { render } from '../../../utils/test.provider';
 import { IntervalUnitType, OvhSubsidiary } from '../../../enumTypes';
