@@ -28,7 +28,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -54,7 +56,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -80,7 +84,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -108,7 +114,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -140,7 +148,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -172,7 +182,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -204,7 +216,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -236,7 +250,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -268,7 +284,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -300,7 +318,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -332,7 +352,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -364,7 +386,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -396,7 +420,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -428,7 +454,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -460,7 +488,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -492,7 +522,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -524,7 +556,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -556,7 +590,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -588,7 +624,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -620,7 +658,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -652,7 +692,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -684,7 +726,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -716,7 +760,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -748,7 +794,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -780,7 +828,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     }
@@ -817,7 +867,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -852,7 +904,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -887,7 +941,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -926,7 +982,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -961,7 +1019,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -996,7 +1056,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1031,7 +1093,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1066,7 +1130,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1101,7 +1167,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1136,7 +1204,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1171,7 +1241,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1206,7 +1278,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1241,7 +1315,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1276,7 +1352,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1311,7 +1389,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1346,7 +1426,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1381,7 +1463,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1416,7 +1500,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1451,7 +1537,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1485,7 +1573,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1519,7 +1609,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1553,7 +1645,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1587,7 +1681,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1622,7 +1718,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1657,7 +1755,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     }
@@ -1697,7 +1797,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1732,7 +1834,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1767,7 +1871,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1806,7 +1912,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1841,7 +1949,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1876,7 +1986,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1911,7 +2023,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1946,7 +2060,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -1981,7 +2097,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2016,7 +2134,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2051,7 +2171,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2086,7 +2208,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2121,7 +2245,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2156,7 +2282,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2191,7 +2319,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2226,7 +2356,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2261,7 +2393,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2296,7 +2430,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2331,7 +2467,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2365,7 +2503,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2399,7 +2539,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2433,7 +2575,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2467,7 +2611,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2502,7 +2648,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2537,7 +2685,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     }
@@ -2577,7 +2727,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2612,7 +2764,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2647,7 +2801,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2686,7 +2842,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2721,7 +2879,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2756,7 +2916,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2791,7 +2953,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2826,7 +2990,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2861,7 +3027,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2896,7 +3064,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2931,7 +3101,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -2966,7 +3138,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3001,7 +3175,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3042,7 +3218,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3083,7 +3261,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3124,7 +3304,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3165,7 +3347,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3206,7 +3390,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3247,7 +3433,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3287,7 +3475,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3327,7 +3517,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3367,7 +3559,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3407,7 +3601,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3448,7 +3644,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3489,7 +3687,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     }
@@ -3526,7 +3726,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3561,7 +3763,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3596,7 +3800,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3635,7 +3841,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3670,7 +3878,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3705,7 +3915,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3740,7 +3952,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3775,7 +3989,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3810,7 +4026,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3845,7 +4063,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3880,7 +4100,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3915,7 +4137,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3950,7 +4174,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -3985,7 +4211,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4020,7 +4248,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4055,7 +4285,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4090,7 +4322,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4125,7 +4359,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4160,7 +4396,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4194,7 +4432,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4228,7 +4468,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4262,7 +4504,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4296,7 +4540,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4331,7 +4577,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4366,7 +4614,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     }
@@ -4400,7 +4650,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4426,7 +4678,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4452,7 +4706,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4480,7 +4736,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4512,7 +4770,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4544,7 +4804,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4576,7 +4838,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4608,7 +4872,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4640,7 +4906,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4672,7 +4940,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4704,7 +4974,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4736,7 +5008,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4768,7 +5042,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4800,7 +5076,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4832,7 +5110,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4864,7 +5144,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4896,7 +5178,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4928,7 +5212,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4960,7 +5246,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -4992,7 +5280,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -5024,7 +5314,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -5056,7 +5348,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -5088,7 +5382,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -5120,7 +5416,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     },
@@ -5152,7 +5450,9 @@
           "field": "18",
           "translateCode": "account-disable-2fa-create-form-field-other-useful-document",
           "multiple": true,
-          "tooltips": []
+          "tooltips": [
+            "account-disable-2fa-create-form-tooltip-document-limitation"
+          ]
         }
       ]
     }

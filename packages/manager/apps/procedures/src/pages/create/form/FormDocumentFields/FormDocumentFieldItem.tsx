@@ -10,11 +10,6 @@ import {
   FileInputEventHandler,
   FileWithError,
 } from '@/components/FileInput/FileInputContainer';
-import {
-  acceptFile,
-  maxFileSize,
-  maxFiles,
-} from './formDocumentFieldValidation.constants';
 
 type Props = {
   label: string;
@@ -22,6 +17,9 @@ type Props = {
   onChange?: FileInputEventHandler;
   multiple?: boolean;
   value?: FileWithError[];
+  accept: string;
+  maxSize: number;
+  maxFiles: number;
 };
 
 export const FormDocumentFieldItem: FunctionComponent<Props> = ({
@@ -30,14 +28,17 @@ export const FormDocumentFieldItem: FunctionComponent<Props> = ({
   multiple,
   tooltips,
   label,
+  accept,
+  maxFiles,
+  maxSize,
 }) => {
   return (
     <FileInputContainer
-      accept={acceptFile}
+      accept={accept}
       maxFiles={maxFiles}
       value={value}
       onChange={onChange}
-      maxSize={maxFileSize}
+      maxSize={maxSize}
       multiple={multiple}
     >
       <OsdsText
