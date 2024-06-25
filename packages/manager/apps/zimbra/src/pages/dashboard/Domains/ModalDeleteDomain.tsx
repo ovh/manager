@@ -11,7 +11,7 @@ import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovhcloud/manager-components';
 import { useAccountList, useGenerateUrl, usePlatform } from '@/hooks';
-import { deleteZimbraPlatformDomain } from '@/api/DELETE/apiv2/services';
+import { deleteZimbraPlatformDomain } from '@/api/domain';
 import Modal from '@/components/Modals/Modal';
 
 export default function ModalDeleteDomain() {

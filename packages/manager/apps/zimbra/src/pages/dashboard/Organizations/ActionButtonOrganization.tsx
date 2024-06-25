@@ -11,7 +11,7 @@ interface ActionButtonOrganizationProps {
 export const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
   organizationItem,
 }) => {
-  const { t } = useTranslation('organisations');
+  const { t } = useTranslation('organizations');
   const { platformUrn } = usePlatform();
 
   const hrefDeleteOrganization = useGenerateUrl('./delete', 'href', {
