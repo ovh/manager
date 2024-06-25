@@ -219,7 +219,7 @@ export default /* @ngInject */ function Ip(
               serviceType: 'vrack',
             },
           })
-          .then((response) => getIpsSanitized(ipBlock, response.data)),
+          .then(({ data }) => getIpsSanitized(ipBlock, data)),
         bridgedSubrange: $http
           .get(
             `/vrack/${window.encodeURIComponent(
@@ -236,12 +236,13 @@ export default /* @ngInject */ function Ip(
           .then(({ data }) => data),
       })
       .then(({ ips, bridgedSubrange, routedSubrange }) => {
+        const subRanges = [...bridgedSubrange, ...routedSubrange];
         return [
-          ...map(ips, (ip) => {
+          ...ips.map((ip) => {
             set(ip, 'block', ipBlock);
             return ip;
           }),
-          ...map([...bridgedSubrange, ...routedSubrange], (ip) => {
+          ...subRanges.map((ip) => {
             return {
               ip,
               version: IP_TYPE.V6,
