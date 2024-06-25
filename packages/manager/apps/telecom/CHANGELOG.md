@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.17.0...@ovh-ux/manager-telecom@15.17.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3082] ([1362cce](https://github.com/ovh/manager/commit/1362cce23f7caeeb5efede051e7513935761c2e6))
+* **telecom:** french mistakes ([#11994](https://github.com/ovh/manager/issues/11994)) ([6d48068](https://github.com/ovh/manager/commit/6d480686425f2322ba81f5d8480d4a030494dbcd))
+
+
+
+
+
 # [15.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.16.2...@ovh-ux/manager-telecom@15.17.0) (2024-06-17)
 
 

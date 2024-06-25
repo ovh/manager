@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.2.0...@ovh-ux/manager-key-management-service-app@0.2.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* fix onboarding layout in manager component and kms ([#12112](https://github.com/ovh/manager/issues/12112)) ([3415206](https://github.com/ovh/manager/commit/341520648a498446464ae2779ab33ece20983a5f))
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.1.12...@ovh-ux/manager-key-management-service-app@0.2.0) (2024-06-20)
 
 

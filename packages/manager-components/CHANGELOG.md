@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.18.0...@ovhcloud/manager-components@1.19.0) (2024-06-25)
+
+### Bug Fixes
+
+- fix onboarding layout in manager component and kms ([#12112](https://github.com/ovh/manager/issues/12112)) ([3415206](https://github.com/ovh/manager/commit/341520648a498446464ae2779ab33ece20983a5f))
+- **manager-components:** useless test import ([#12034](https://github.com/ovh/manager/issues/12034)) ([ecaeabd](https://github.com/ovh/manager/commit/ecaeabd7225228897743f0450b0001b1c1f658e5))
+
+### Features
+
+- **pci-rancher:** onboarding page redirect user to guides ([#11736](https://github.com/ovh/manager/issues/11736)) ([54bd61b](https://github.com/ovh/manager/commit/54bd61ba972d1ec5687e72861a6edeacecf3a460))
+- **rancher:** replace with manager-components([#11668](https://github.com/ovh/manager/issues/11668)) ([aaec594](https://github.com/ovh/manager/commit/aaec594073ae9472380841cbb48544ddf5036447))
+
 # [1.18.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.17.0...@ovhcloud/manager-components@1.18.0) (2024-06-20)
 
 ### Features

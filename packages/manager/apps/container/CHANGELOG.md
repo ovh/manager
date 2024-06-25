@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.59.0...@ovh-ux/manager-container-app@0.60.0) (2024-06-25)
+
+
+### Bug Fixes
+
+* **container:** hide preloader when mfa enrollment is displayed ([#11924](https://github.com/ovh/manager/issues/11924)) ([95dd0ea](https://github.com/ovh/manager/commit/95dd0ea719d9876e382c58aa9ee45474b941e09c))
+
+
+### Features
+
+* **container:** add payment method warning popup ([#10732](https://github.com/ovh/manager/issues/10732)) ([1876db0](https://github.com/ovh/manager/commit/1876db0fefb7d8257142c2673b6e52930cb27bb2))
+
+
+
+
+
 # [0.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.58.1...@ovh-ux/manager-container-app@0.59.0) (2024-06-20)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.16.2...@ovh-ux/manager-core@12.16.3) (2024-06-25)
+
+
+### Bug Fixes
+
+* **dedicated:** update core config user after account update ([#11930](https://github.com/ovh/manager/issues/11930)) ([a21b667](https://github.com/ovh/manager/commit/a21b6675bb8b11948477415024bbcf209b897b70))
+
+
+
+
+
 ## [12.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.16.1...@ovh-ux/manager-core@12.16.2) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-core

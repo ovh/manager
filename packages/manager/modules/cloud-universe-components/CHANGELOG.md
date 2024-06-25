@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.13.2...@ovh-ux/ng-ovh-cloud-universe-components@2.14.0) (2024-06-25)
+
+
+### Features
+
+* **dedicated.dbaas:** fix ldp order redirection for us ([#11925](https://github.com/ovh/manager/issues/11925)) ([#12011](https://github.com/ovh/manager/issues/12011)) ([d70017e](https://github.com/ovh/manager/commit/d70017e13822fe079642beba67173db05b4739c5))
+
+
+
+
+
 ## [2.13.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.13.1...@ovh-ux/ng-ovh-cloud-universe-components@2.13.2) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components

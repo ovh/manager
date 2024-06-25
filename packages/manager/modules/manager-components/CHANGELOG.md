@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.18.1...@ovh-ux/manager-components@1.19.0) (2024-06-25)
+
+
+### Features
+
+* **pci:** add lz under right continent ([#11746](https://github.com/ovh/manager/issues/11746)) ([#12010](https://github.com/ovh/manager/issues/12010)) ([3e768e5](https://github.com/ovh/manager/commit/3e768e52f64d68af20f37f1831743f185855b46a))
+* **pci:** add region label for toronto ([#11848](https://github.com/ovh/manager/issues/11848)) ([a87f1a0](https://github.com/ovh/manager/commit/a87f1a0de01acdfd702755e3bfc45e7aba4d1821))
+
+
+
+
+
 ## [1.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.18.0...@ovh-ux/manager-components@1.18.1) (2024-06-10)
 
 
