@@ -3,8 +3,8 @@ import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 
 export default function Loading() {
   return (
-    <div className="flex justify-center">
-      <div>
+    <div className="flex justify-center items-center">
+      <div className="w-28">
         <OsdsSpinner />
       </div>
     </div>
