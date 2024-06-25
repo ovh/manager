@@ -1,0 +1,60 @@
+<oui-back-button data-on-click="$ctrl.goBack()">
+    <h2 data-translate="vrack_order_title"></h2>
+</oui-back-button>
+<oui-message
+    data-ng-if="$ctrl.error"
+    data-type="error"
+    class="mt-2 text-justify"
+>
+    <p
+        class="mb-0"
+        data-translate="vrack_order_error"
+        data-translate-values="{message: $ctrl.error.message, queryId: $ctrl.error.queryId}"
+    ></p>
+</oui-message>
+<p
+    data-ng-if="$ctrl.vrackContracts.prices.withTax.value !== 0"
+    data-translate="vrack_order_price"
+    data-translate-values="{price: $ctrl.vrackContracts.prices.withTax.text}"
+></p>
+<p
+    data-ng-if="$ctrl.vrackContracts.prices.withTax.value === 0"
+    data-translate="vrack_order_price_free"
+></p>
+<div data-ng-if="$ctrl.vrackContracts.contracts.length">
+    <h3 data-translate="vrack_order_contracts_title"></h3>
+    <p data-translate="vrack_order_contracts_description"></p>
+    <ul class="list-group">
+        <li
+            data-ng-repeat="contrat in $ctrl.vrackContracts.contracts track by $index"
+            class="list-group-item border-0 p-0"
+        >
+            <a target="_blank" rel="noopener" href="{{::contrat.url}}">
+                <span data-ng-bind="::contrat.name"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </li>
+    </ul>
+    <oui-checkbox data-model="$ctrl.contractAgreement">
+        <span
+            class="user-select-none"
+            data-translate="vrack_order_contracts_checkbox"
+        ></span>
+    </oui-checkbox>
+</div>
+<p
+    data-ng-if="!$ctrl.vrackContracts.contracts.length"
+    data-translate="vrack_order_contracts_agreed"
+></p>
+<oui-form-actions
+    data-submit-text="{{:: 'vrack_order_confirm_label' | translate}}"
+    data-cancel-text="{{:: 'vrack_order_cancel_label' | translate}}"
+    data-on-submit="$ctrl.orderVrack()"
+    data-on-cancel="$ctrl.goBack()"
+    data-disabled="!$ctrl.contractAgreement"
+    class="mt-4"
+>
+</oui-form-actions>

@@ -130,8 +130,8 @@ const dedicatedShopConfig = (
     ? {
         label: 'item_vrack',
         icon: VRACK_SVG,
-        url: getOrderURL('vrack', region, sub),
-        external: true,
+        url: navigation.getURL('dedicated', '#/vrack/order'),
+        external: false,
         tracking: 'dedicated::orders::vrack::order',
       }
     : null,
