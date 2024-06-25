@@ -1,7 +1,21 @@
 <oui-back-button data-on-click="$ctrl.goBack()"></oui-back-button>
 
 <oui-message data-type="error" data-ng-if="$ctrl.errorMessage">
-    <small data-ng-bind-html="$ctrl.errorMessage"></small>
+    <p
+        data-ng-if="$ctrl.statusCode===500"
+        data-translate="hosting_multisite_git_association_ssh_key_internal_error_message"
+    ></p>
+    <p
+        data-ng-if="$ctrl.statusCode!==500"
+        data-ng-bind-html="$ctrl.errorMessage"
+    ></p>
+</oui-message>
+
+<oui-message data-type="success" data-ng-if="!$ctrl.errorMessagee">
+    <p
+        data-translate="hosting_multisite_git_association_ssh_key_success_message"
+        data-translate-values="{href: $ctrl.ongoingTasksHref}"
+    ></p>
 </oui-message>
 
 <h1
@@ -125,7 +139,7 @@
 
 <oui-form-actions
     data-submit-text="{{ ::'hosting_multisite_git_association_apply_configuration' | translate}}"
-    data-disabled="$ctrl.gitAssociationForm.$pristine || $ctrl.gitAssociationForm.$invalid"
+    data-disabled="$ctrl.errorMessage || $ctrl.gitAssociationForm.$pristine || $ctrl.gitAssociationForm.$invalid"
     data-on-submit="$ctrl.applyConfiguration()"
 >
 </oui-form-actions>
