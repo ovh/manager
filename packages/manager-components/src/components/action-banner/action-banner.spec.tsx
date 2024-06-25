@@ -30,4 +30,17 @@ describe('ActionBanner tests', () => {
     fireEvent.click(cta);
     expect(onClick).toHaveBeenCalled();
   });
+
+  it('should have a link action', () => {
+    const href = 'www.ovhcloud.com';
+    const { container } = renderComponent({
+      message: 'hello world',
+      cta: 'custom action',
+      href,
+    });
+    const link = container.querySelector('osds-link');
+    expect(link).toBeDefined();
+    expect(link).toHaveAttribute('href', href);
+    expect(link).toHaveAttribute('target', '_blank');
+  });
 });
