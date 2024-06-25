@@ -14,6 +14,7 @@ import { useNotifications } from '@ovhcloud/manager-components';
 import { Instance } from '@/api/data/instance';
 import { useInstances } from '@/api/hooks/useInstance';
 import { useAttachVolume, useVolume } from '@/api/hooks/useVolume';
+import NoInstanceWarningMessage from './NoInstanceAvailableWarningMessage';
 
 export default function AttachStorage() {
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ export default function AttachStorage() {
   });
 
   const isPending = isInstancesPending || isAttachPending;
-  const canAttach = !isPending;
+  const canAttach = !isPending && selectedInstance?.id;
 
   return (
     <OsdsModal
@@ -94,14 +95,14 @@ export default function AttachStorage() {
       onOdsModalClose={onClose}
     >
       <slot name="content">
-        {isPending ? (
+        {isPending && (
           <OsdsSpinner
             inline
             size={ODS_SPINNER_SIZE.md}
             className="block text-center"
-            data-testid="deleteGateway-spinner"
           />
-        ) : (
+        )}
+        {!isPending && instances?.length > 0 && (
           <OsdsSelect
             value={selectedInstance?.id}
             inline={true}
@@ -120,6 +121,7 @@ export default function AttachStorage() {
             ))}
           </OsdsSelect>
         )}
+        {!isPending && !instances?.length && <NoInstanceWarningMessage />}
       </slot>
       <OsdsButton
         slot="actions"

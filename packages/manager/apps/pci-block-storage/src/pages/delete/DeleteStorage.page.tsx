@@ -84,7 +84,6 @@ export default function DeleteStorage() {
             inline
             size={ODS_SPINNER_SIZE.md}
             className="block text-center"
-            data-testid="deleteGateway-spinner"
           />
         ) : (
           <>
