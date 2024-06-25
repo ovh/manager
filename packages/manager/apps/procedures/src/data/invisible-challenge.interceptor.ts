@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { AxiosError } from 'axios';
 import {
   ChallengeApiInterceptor,
   ChallengeApiInterceptorChallengeResponse,
@@ -42,10 +43,13 @@ export const initInterceptor = () => {
             challenge,
           ),
         )
-        .catch((reason: ChallengeFailureReasons) => {
+        .catch((reason: AxiosError | ChallengeFailureReasons) => {
           console.warn(
             '[ChallengeApiInterceptor] Unable to get the API challenge.',
           );
+          if (reason instanceof AxiosError) {
+            return Promise.reject(reason);
+          }
           const fullError: Error = { ...error, reason };
           return Promise.reject(fullError);
         });
