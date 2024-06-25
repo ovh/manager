@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.8.12...@ovh-ux/manager-netapp-app@0.8.13) (2024-06-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp-app
+
+
+
+
+
 ## [0.8.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.8.11...@ovh-ux/manager-netapp-app@0.8.12) (2024-06-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp-app

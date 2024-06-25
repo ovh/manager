@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.40.0...@ovh-ux/manager-dedicated@19.41.0) (2024-06-25)
+
+
+### Bug Fixes
+
+* **dedicated:** fixed lint error on kyc fraud ([#12096](https://github.com/ovh/manager/issues/12096)) ([b471e65](https://github.com/ovh/manager/commit/b471e65e6d36e105f03a627fdc4f3c9f9073f34e))
+* **dedicated:** update core config user after account update ([#11930](https://github.com/ovh/manager/issues/11930)) ([a21b667](https://github.com/ovh/manager/commit/a21b6675bb8b11948477415024bbcf209b897b70))
+* **i18n:** add missing translations [CDS 3051] ([#11913](https://github.com/ovh/manager/issues/11913)) ([eed145e](https://github.com/ovh/manager/commit/eed145e67436d406744c0ec640dc3722dff93b26))
+* **i18n:** add missing translations [CDS 3094] ([b916662](https://github.com/ovh/manager/commit/b9166624c8b63b269a764bc350976a74be6d181c))
+
+
+### Features
+
+* **dedicated.ip:** get game protocol from api ([#12055](https://github.com/ovh/manager/issues/12055)) ([6b0b1d7](https://github.com/ovh/manager/commit/6b0b1d75dc279feb5e93021e6e85b1e28aa186a3))
+* **dedicated:** update insurance msg after uploaded In id doc ([#11502](https://github.com/ovh/manager/issues/11502)) ([f4c83e0](https://github.com/ovh/manager/commit/f4c83e0e522c4fe6ee9dcb37cdcd4c4af3839022))
+* move users management from account to iam ([#11391](https://github.com/ovh/manager/issues/11391)) ([0ffda6d](https://github.com/ovh/manager/commit/0ffda6d3f5f4c15fbe587ea4feb05b163371a66d))
+* **pci:** add region label for toronto ([#11848](https://github.com/ovh/manager/issues/11848)) ([a87f1a0](https://github.com/ovh/manager/commit/a87f1a0de01acdfd702755e3bfc45e7aba4d1821))
+
+
+
+
+
 # [19.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.39.0...@ovh-ux/manager-dedicated@19.40.0) (2024-06-20)
 
 

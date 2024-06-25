@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-zimbra-app",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "private": true,
   "description": "zimbra react app",
   "repository": {
@@ -21,15 +21,15 @@
     "test:e2e:script": "tsc && node ../../../../scripts/run-playwright.js"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.3.0",
+    "@ovh-ux/manager-config": "^7.3.2",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-react-core-application": "^0.8.3",
-    "@ovh-ux/manager-react-shell-client": "^0.6.0",
+    "@ovh-ux/manager-react-core-application": "^0.8.4",
+    "@ovh-ux/manager-react-shell-client": "^0.6.1",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "*",
-    "@ovh-ux/shell": "^3.6.0",
-    "@ovhcloud/manager-components": "^1.18.0",
+    "@ovh-ux/shell": "^3.6.1",
+    "@ovhcloud/manager-components": "^1.19.0",
     "@ovhcloud/ods-common-core": "17.1.0",
     "@ovhcloud/ods-common-theming": "^17.1.0",
     "@ovhcloud/ods-components": "^17.1.0",
