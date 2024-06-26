@@ -1,26 +1,10 @@
 <oui-back-button data-on-click="$ctrl.goBack()"></oui-back-button>
 
-<oui-message data-type="error" data-ng-if="$ctrl.errorMessage">
-    <p
-        data-ng-if="$ctrl.statusCode===500"
-        data-translate="hosting_multisite_git_association_ssh_key_internal_error_message"
-    ></p>
-    <p
-        data-ng-if="$ctrl.statusCode!==500"
-        data-ng-bind-html="$ctrl.errorMessage"
-    ></p>
-</oui-message>
-
-<oui-message data-type="success" data-ng-if="!$ctrl.errorMessagee">
-    <p
-        data-translate="hosting_multisite_git_association_ssh_key_success_message"
-        data-translate-values="{href: $ctrl.ongoingTasksHref}"
-    ></p>
-</oui-message>
+<div data-ovh-alert="git_association_alert"></div>
 
 <h1
     data-translate="hosting_multisite_git_association_title"
-    data-translate-value="{path: $ctrl.PATH_PREFIX}"
+    data-translate-value="{path: '[' + $ctrl.path + ']'}"
 ></h1>
 <p data-translate="hosting_multisite_git_association_configure_description"></p>
 
@@ -34,7 +18,10 @@
             class="col-md-4"
             data-label="{{ ::'hosting_multisite_git_association_ssh_key' | translate }}"
         >
-            <oui-clipboard data-model=":: $ctrl.sshKey"></oui-clipboard>
+            <oui-clipboard
+                name="sshKey"
+                data-model=":: $ctrl.sshKey"
+            ></oui-clipboard>
         </oui-field>
     </div>
     <h3 data-translate="hosting_multisite_git_association_configure"></h3>
@@ -72,6 +59,9 @@
         <oui-field
             class="col-md-4"
             data-label="{{ ::'hosting_multisite_git_association_repository' | translate }}"
+            data-error-messages="{
+                pattern: ('hosting_multisite_git_association_incorrect_url_format' | translate)
+            }"
         >
             <div class="d-flex oui-input-group oui-input-group_inline">
                 <input
@@ -132,7 +122,10 @@
             class="col-md-4"
             data-label="{{ ::'hosting_multisite_git_association_webhook_url' | translate }}"
         >
-            <oui-clipboard data-model="$ctrl.model.webhookUrl"></oui-clipboard>
+            <oui-clipboard
+                name="webhookUrl"
+                data-model="$ctrl.model.webhookUrl"
+            ></oui-clipboard>
         </oui-field>
     </div>
 </form>
