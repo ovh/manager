@@ -67,7 +67,7 @@ const UserAccountMenu = ({
 
   const getUrl = (key: string, hash: string) =>
     shell.getPlugin('navigation').getURL(key, hash);
-  const ssoLink = getUrl('dedicated', '#/useraccount/users');
+  const ssoLink = getUrl('iam', '#/dashboard/users');
   const supportLink = getUrl('dedicated', '#/useraccount/support/level');
 
   const getAllLinks = useMemo(
