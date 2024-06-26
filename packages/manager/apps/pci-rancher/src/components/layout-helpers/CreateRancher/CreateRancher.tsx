@@ -297,7 +297,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             slot="actions"
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => {
-              if (isCreateRancherAllowed || isCreateRancherLoading) {
+              if (isCreateRancherAllowed && !isCreateRancherLoading) {
                 onCreateClick({
                   name: rancherName,
                   version: selectedVersion.name,
