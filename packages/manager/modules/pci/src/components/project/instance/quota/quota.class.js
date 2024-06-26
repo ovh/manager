@@ -8,8 +8,8 @@ export default class InstanceQuota {
   getMaxNumberOfInstances(flavor) {
     return Math.min(
       this.getMaxNumberDependingOnInstances(),
-      this.getMaxNumberDependingOnRam(flavor.ram),
-      this.getMaxNumberDependingOnCores(flavor.vcpus),
+      this.getMaxNumberDependingOnRam(flavor?.ram),
+      this.getMaxNumberDependingOnCores(flavor?.vcpus),
     );
   }
 

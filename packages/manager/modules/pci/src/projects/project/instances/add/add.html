@@ -44,7 +44,7 @@
                     location: $ctrl.model.location
                 }
             }}"
-        data-valid="$ctrl.model.datacenter && $ctrl.isRegionAvailable($ctrl.model.datacenter)"
+        data-valid="$ctrl.model.datacenter"
         data-prevent-next="true"
         data-navigation="$ctrl.model.datacenter"
         data-on-focus="$ctrl.onRegionFocus()"
@@ -265,6 +265,7 @@
         data-on-focus="$ctrl.onImageFocus()"
         data-on-submit="$ctrl.onImageChange()"
         data-navigation="$ctrl.showImageNavigation()"
+        data-ng-if="$ctrl.readyForImages"
     >
         <pci-project-images-list
             data-ng-if="$ctrl.currentStep >= 2"
@@ -311,6 +312,7 @@
         data-editable="!$ctrl.isLoading"
         data-valid="$ctrl.automatedBackup.selected ? $ctrl.automatedBackup.schedule : true"
         name="instances_add_configuration"
+        data-ng-if="$ctrl.readyForImages"
     >
         <oui-field
             data-label="{{ 'pci_projects_project_instances_add_numInstances_label' | translate }}"
@@ -471,6 +473,7 @@
         data-valid="!$ctrl.isGatewayLoading"
         data-on-submit="$ctrl.onModeSubmit()"
         data-navigation="$ctrl.showNetworkNavigation()"
+        data-ng-if="$ctrl.readyForImages"
     >
         <p
             data-ng-if="!$ctrl.isLocalZone()"
