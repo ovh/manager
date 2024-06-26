@@ -1,0 +1,60 @@
+.cursor-pointer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.manager-table {
+  th {
+    text-align: center;
+    height: 52px;
+    padding: 0 1rem;
+    border-bottom: solid 1px var(--ods-color-blue-200);
+  }
+
+  tbody {
+    td {
+      text-align: center;
+      height: 52px;
+      padding: 0 1rem;
+      border-bottom: solid 1px var(--ods-color-blue-200);
+    }
+
+    tr:last-child {
+      border-bottom: solid 1px var(--ods-color-blue-200);
+    }
+
+    td:first-child {
+      border-left: solid 1px var(--ods-color-blue-200);
+    }
+
+    td:last-child {
+      border-right: solid 1px var(--ods-color-blue-200);
+    }
+  }
+}
+
+.resizer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  cursor: col-resize;
+  user-select: none;
+  touch-action: none;
+}
+
+.resizer.isResizing {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .resizer {
+    opacity: 0;
+  }
+
+  *:hover > .resizer {
+    opacity: 1;
+  }
+}
