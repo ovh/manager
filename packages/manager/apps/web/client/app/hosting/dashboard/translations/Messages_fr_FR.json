@@ -311,6 +311,7 @@
   "hosting_tab_DOMAINS_table_popover_delete": "Détacher le domaine",
   "hosting_tab_DOMAINS_table_popover_activate": "Activer le CDN",
   "hosting_tab_DOMAINS_table_popover_modify": "Modifier le domaine",
+  "hosting_tab_DOMAINS_table_git_association": "Associer Git",
   "hosting_tab_DOMAINS_table_popover_purge": "Purger le CDN",
   "hosting_tab_DOMAINS_table_popover_modify_cdn": "Modifier le CDN",
   "hosting_tab_DOMAINS_table_popover_refresh": "Recharger",

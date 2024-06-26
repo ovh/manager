@@ -35,6 +35,7 @@ angular
       $location,
       $rootScope,
       $translate,
+      $timeout,
       atInternet,
       Hosting,
       HOSTING,
@@ -233,6 +234,30 @@ angular
       $scope.modifyDomain = (domain) => {
         sendTrackClick('web::hosting::multisites::modify-domain');
         $scope.setAction('multisite/update/hosting-multisite-update', domain);
+      };
+
+      $scope.goToAssociateRepository = (domain) => {
+        const promise = $state.go('app.hosting.dashboard.git', {
+          alertId: $scope.alerts.main,
+          status: domain.status,
+          serviceName: $scope.hosting.serviceName,
+          path: domain.path,
+        });
+
+        if (domain.status === 'error') {
+          promise.then(() =>
+            $timeout(() =>
+              Alerter.set(
+                `alert-danger`,
+                $translate.instant(
+                  'hosting_multisite_git_association_apply_configuration_status_error',
+                ),
+                null,
+                'git_association_alert',
+              ),
+            ),
+          );
+        }
       };
 
       $scope.restartDomain = (domain) =>
