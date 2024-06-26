@@ -19,6 +19,30 @@ export default class HostingMultisiteGitAssociationService {
         }
         throw error;
       })
-      .then(({ data }) => data.publicKey);
+      .then(({ data }) => data.publicKey)
+      .catch((error) => {
+        if (error.status === 500) {
+          return null;
+        }
+        throw error;
+      });
+  }
+
+  getWebsitesAssociated(serviceName, path) {
+    return this.$http.put(`/hosting/web/${serviceName}/website?path=${path}`);
+  }
+
+  putWebsiteAssociated(serviceName, vcsBranch, id) {
+    return this.$http.put(`/hosting/web/${serviceName}/website/${id}`, {
+      vcsBranch,
+    });
+  }
+
+  postWebsiteAssociated(serviceName, path, vcsBranch, vcsUrl) {
+    return this.$http.post(`/hosting/web/${serviceName}/website`, {
+      path,
+      vcsBranch,
+      vcsUrl,
+    });
   }
 }
