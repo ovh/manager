@@ -160,6 +160,7 @@ export default function EditGatewayPage(): JSX.Element {
               inline={true}
               size={ODS_SPINNER_SIZE.md}
               className={'block mt-4 text-center'}
+              data-testid={'gatewayEdit-spinner'}
             />
           )}
           <OsdsDivider></OsdsDivider>
