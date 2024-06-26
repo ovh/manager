@@ -1,4 +1,22 @@
 {
   "title": "Savings Plan",
+  "createSavingsPlan": "Créer",
+  "name": "Nom",
+  "model": "Modèle",
+  "quantity": "Quantité",
+  "duration": "Durée",
+  "renew": "Renouvellement",
+  "reactivate": "Actif",
+  "terminate": "Inactif",
+  "startDate": "Date de démarrage",
+  "endDate": "Date de fin",
+  "status": "Status",
+  "active": "Actif",
+  "pending": "En attente",
+  "terminated": "Inactif",
+  "actions": "Actions",
+  "edit": "Editer",
+  "enableAutoRenew": "Activer le renouvellement automatique",
+  "disableAutoRenew": "Désactiver le renouvellement automatique",
   "listing_resultats": "résultats"
 }

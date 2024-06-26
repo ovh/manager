@@ -1,152 +1,86 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { useInfiniteQuery } from '@tanstack/react-query';
-
-import { OsdsButton, OsdsLink } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useParams, useNavigate, useLocation, useHref } from 'react-router-dom';
 
 import {
-  Datagrid,
-  DataGridTextCell,
-  useDatagridSearchParams,
-} from '@ovhcloud/manager-components';
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsLink, OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
-import { getListingIcebergV2 } from '@/data/api/pci-savings-plan';
+import { Title } from '@ovhcloud/manager-components';
 
-import Loading from '@/components/Loading/Loading';
-import ErrorBanner from '@/components/Error/Error';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 
-import appConfig from '@/pci-savings-plan.config';
-import { urls } from '@/routes/routes.constant';
 
-export default function Listing() {
+import { pciSavingsPlanListMocked} from '@/_mock_/savingsPlan'
+import TableContainer from '@/components/Table/TableContainer';
+import { getOnboardingUrl } from '@/utils/routes';
+
+export interface ListingProps {
+  data: any[];
+  refetchSavingsPlans: () => void;
+}
+const ListingTablePage: React.FC<ListingProps> = ({
+  data,
+  refetchSavingsPlans,
+}) => {
   const { t } = useTranslation('listing');
-  const myConfig = appConfig;
-  const serviceKey = myConfig.listing?.datagrid?.serviceKey;
-  const [columns, setColumns] = useState([]);
-  const [flattenData, setFlattenData] = useState([]);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const {
-    pagination,
-    setPagination,
-    sorting,
-    setSorting,
-  } = useDatagridSearchParams();
-  const { pageSize } = pagination;
-  const { projectId } = useParams();
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isError,
-    isLoading,
-    error,
-    status,
-  }: any = useInfiniteQuery({
-    initialPageParam: null,
-    queryKey: ['project', 'projectId', 'savings-plan'],
-    queryFn: ({ pageParam }) =>
-      getListingIcebergV2({ projectId, pageSize, cursor: pageParam }),
-    staleTime: Infinity,
-    retry: false,
-    getNextPageParam: (lastPage) => lastPage.cursorNext as any,
-  });
-
-  const navigateToDashboard = (label: string) => {
-    const path =
-      location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
-    navigate(`${path}${label}`);
-  };
-
-  useEffect(() => {
-    if (status === 'success' && data?.pages[0].data.length === 0) {
-      navigate(urls.onboarding);
-    } else if (status === 'success' && data?.pages.length > 0 && !flattenData) {
-      const tmp = Object.keys(data?.pages[0].data[0])
-        .filter((element) => element !== 'iam')
-        .map((element) => ({
-          id: element,
-          header: element,
-          label: element,
-          accessorKey: element,
-          cell: (props: any) => {
-            const label = props[element] as string;
-            if (typeof label === 'string' || typeof label === 'number') {
-              if (serviceKey === element)
-                return (
-                  <DataGridTextCell>
-                    <OsdsLink
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                      onClick={() => navigateToDashboard(label)}
-                    >
-                      {label}
-                    </OsdsLink>
-                  </DataGridTextCell>
-                );
-              return <DataGridTextCell>{label}</DataGridTextCell>;
-            }
-            return <div>-</div>;
-          },
-        }));
-      setColumns(tmp);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    const flatten = data?.pages.map((page: any) => page.data).flat();
-    setFlattenData(flatten);
-  }, [data]);
-
-  if (isError) {
-    return <ErrorBanner error={error.response} />;
-  }
-
-  if (isLoading && !flattenData) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  }
+  const hrefDashboard = useHref('');
+  const trackAction = useTrackingAction();
+  const trackClick = () =>
+    trackAction(TrackingPageView.ListingPage, TrackingEvent.add);
+  useTrackingPage();
 
   return (
     <>
+      <Title>{t('title')}</Title>
       <div className="pt-5 pb-10">
-        <Breadcrumb />
-        <h2>a-iam</h2>
-        <div>{t('title')}</div>
-        <React.Suspense>
-          {columns && flattenData && (
-            <Datagrid
-              columns={columns}
-              items={flattenData || []}
-              totalItems={0}
-              pagination={pagination}
-              onPaginationChange={setPagination}
-              sorting={sorting}
-              onSortChange={setSorting}
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.stroked}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          inline
+          onClick={trackClick}
+          href={`${hrefDashboard}/new`}
+        >
+          <span slot="start" className="flex justify-center items-center">
+            <OsdsIcon
+              name={ODS_ICON_NAME.ADD}
+              size={ODS_ICON_SIZE.xxs}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              className="mr-4"
             />
-          )}
-        </React.Suspense>
-        <div className="grid justify-items-center my-5">
-          {hasNextPage && (
-            <div>
-              <OsdsButton
-                color={ODS_THEME_COLOR_INTENT.info}
-                variant={ODS_BUTTON_VARIANT.stroked}
-                onClick={fetchNextPage}
-              >
-                Load more
-              </OsdsButton>
-            </div>
-          )}
-        </div>
+            <span>{t('createSavingsPlan')}</span>
+          </span>
+        </OsdsButton>
       </div>
+      <TableContainer data={data} refetchSavingsPlans={refetchSavingsPlans} />
+      
     </>
   );
 }
+
+const Listing: React.FC<ListingProps> = ({ data, refetchSavingsPlans }) => {
+  const navigate = useNavigate();
+  const { projectId } = useParams();
+  const Listingdata = pciSavingsPlanListMocked;
+  useEffect(() => {
+    if (Listingdata.length === 0) {
+      navigate(getOnboardingUrl(projectId));
+    }
+  }, [projectId, Listingdata.length]);
+
+  return Listingdata.length ? (
+    <ListingTablePage data={Listingdata} refetchSavingsPlans={refetchSavingsPlans} />
+  ) : (
+    <></>
+  );
+};
+
+export default Listing;
