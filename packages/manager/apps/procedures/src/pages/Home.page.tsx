@@ -39,7 +39,7 @@ export default function Home() {
       navigate(`${url}${location.search || ''}`, { replace: true });
     }
   };
-  const { data, error, isSuccess, isFetched, isLoading } = useFetch2faStatus((user as User & { getStatusResult: string }).getStatusResult);
+  const { data, error, isSuccess, isFetched, isLoading } = useFetch2faStatus((user as unknown as User & { getStatusResult: string }).getStatusResult);
   const route = redirectStrategies[data?.status];
   useEffect(() => {
     if (isFetched) {
