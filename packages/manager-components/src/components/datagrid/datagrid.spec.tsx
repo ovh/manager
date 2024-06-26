@@ -109,6 +109,7 @@ describe('Paginated datagrid component', () => {
           totalItems={0}
           pagination={{ pageIndex: 0, pageSize: 1 }}
           sorting={sorting}
+          manualSorting={true}
           onPaginationChange={() => {}}
           onSortChange={(c: ColumnSort) => {
             setSorting(c);
