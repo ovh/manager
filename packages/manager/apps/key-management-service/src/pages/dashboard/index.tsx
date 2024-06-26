@@ -1,11 +1,7 @@
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
-import {
-  OsdsBreadcrumb,
-  OsdsDivider,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { Outlet, useParams } from 'react-router-dom';
+import { OsdsDivider, OsdsText } from '@ovhcloud/ods-components/react';
 import { Notifications } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -13,51 +9,39 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
-import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
+import Dashboard, {
+  DashboardTabItemProps,
+} from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
-import { ROUTES_URLS } from '@/routes/routes.constants';
 import { useOKMSById } from '@/data/hooks/useOKMS';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import { ROUTES_URLS } from '@/routes/routes.constants';
 
 export default function DashboardPage() {
   const { t: tDashboard } = useTranslation('key-management-service/dashboard');
-  const { t: tListing } = useTranslation('key-management-service/listing');
   const { okmsId } = useParams();
-  const navigate = useNavigate();
   const { data: okms } = useOKMSById(okmsId);
   const displayName = okms?.data?.iam?.displayName;
 
-  const tabsList = [
+  const tabsList: DashboardTabItemProps[] = [
     {
-      name: 'general_infos',
+      url: '',
       title: tDashboard('general_informations'),
-      to: useResolvedPath('').pathname,
     },
     {
-      name: 'encrypted_keys',
+      url: ROUTES_URLS.keys,
       title: tDashboard('encrypted_keys'),
-      disabled: true,
     },
     {
-      name: 'certificates',
+      url: ROUTES_URLS.certificates,
       title: tDashboard('access_certificates'),
       disabled: true,
     },
   ];
 
   return (
-    <div>
-      <OsdsBreadcrumb
-        items={[
-          {
-            label: tListing('key_management_service_listing_title'),
-            onClick: () => navigate(ROUTES_URLS.listing),
-          },
-          {
-            href: `/${okmsId}`,
-            label: okmsId,
-          },
-        ].filter(Boolean)}
-      ></OsdsBreadcrumb>
+    <>
+      <Breadcrumb />
       <div className={'flex items-center justify-between mt-2'}>
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
@@ -74,7 +58,8 @@ export default function DashboardPage() {
       <Notifications />
       <Suspense fallback={<Loading />}>
         <Dashboard tabs={tabsList} />
+        <Outlet />
       </Suspense>
-    </div>
+    </>
   );
 }

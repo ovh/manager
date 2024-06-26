@@ -43,7 +43,7 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
       },
       {
-        path: '/:okmsId',
+        path: ROUTES_URLS.okmsId,
         ...lazyRouteConfig(() => import('@/pages/dashboard')),
         children: [
           {
@@ -53,6 +53,10 @@ export default [
                 '@/pages/dashboard/generalInformations/GeneralInformations'
               ),
             ),
+          },
+          {
+            path: `${ROUTES_URLS.okmsId}${ROUTES_URLS.keys}`,
+            ...lazyRouteConfig(() => import('@/pages/dashboard/keys')),
           },
         ],
       },
