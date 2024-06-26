@@ -1177,7 +1177,7 @@ export default class Server {
 
   getOrderables(productId, optionName) {
     return this.get(productId, `orderable/${optionName}`).catch((err) => {
-      if (err.status === 460) {
+      if (err.status === 460 || err.status === 500) {
         return {};
       }
 
