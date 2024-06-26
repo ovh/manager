@@ -46,11 +46,11 @@ describe('ListGuard', () => {
   it('should display nothing while the aggregated gateways list is not available', async () => {
     data = undefined;
     isPending = true;
-    const { container } = render(
+    const { getByTestId } = render(
       <ListGuard projectId="123">
         <span>child</span>
       </ListGuard>,
     );
-    expect(container.firstChild).toBe(null);
+    expect(getByTestId('ListGuard-spinner')).toBeInTheDocument();
   });
 });

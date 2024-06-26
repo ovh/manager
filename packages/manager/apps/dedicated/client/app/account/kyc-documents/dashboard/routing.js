@@ -1,4 +1,5 @@
 import { TRACKING } from './constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.kyc-documents.documents', {
     component: 'kycDocuments',

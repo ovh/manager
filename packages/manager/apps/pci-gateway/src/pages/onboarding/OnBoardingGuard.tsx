@@ -15,7 +15,13 @@ export default function OnBoardingGuard({
   );
 
   if (isPending) {
-    return <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />;
+    return (
+      <OsdsSpinner
+        inline={true}
+        size={ODS_SPINNER_SIZE.md}
+        data-testid={'OnBoardingGuard-spinner'}
+      />
+    );
   }
 
   return aggregatedGateways?.length > 0 ? (

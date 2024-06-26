@@ -92,7 +92,7 @@ export const useDatagridColumn = (
           <Actions projectId={projectId} gateway={props} />
         </div>
       ),
-      label: t(''),
+      label: '',
     },
   ];
   return columns;
