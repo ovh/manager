@@ -1,11 +1,5 @@
 import { {{#if this.isApiV2}}fetchIcebergV2, {{/if}}{{#if this.isApiV6}}fetchIcebergV6, {{/if}}apiClient } from '@ovh-ux/manager-core-api';
 
-
-{{!-- {{#if unknownTypeList}}
-{{#each unknownTypeList}}
-type {{this}} = unknown;
-{{/each}}
-{{/if}} --}}
 {{#each operationList}}
 
 {{#if this.params}}
@@ -43,24 +37,6 @@ export const getListingIcebergV6 = async ({ {{#if this.isPCI }}projectId, {{/if}
     throw new Error();
   }
   return { data, status, totalCount };
-};
-{{/if}}
-
-{{#if this.isApiV2}}
-/**
- *  Get listing with iceberg V2
- */
-
-export const getListingIcebergV2 = async ({ {{#if this.isPCI }}projectId, {{/if}}pageSize, cursor }: { {{#if this.isPCI }}projectId: string, {{/if}}pageSize: number, cursor?: string }) => {
-  const { data, status, cursorNext } = await fetchIcebergV2({
-    route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
-    pageSize,
-    cursor
-  });
-  if (status > 400) {
-    throw new Error();
-  }
-  return { data, status, cursorNext };
 };
 {{/if}}
 

@@ -1,19 +1,14 @@
 import React, { useState, useEffect, } from 'react';
 import { useTranslation } from 'react-i18next';
 import { {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
-import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { OsdsButton, OsdsLink } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-
+import { OsdsLink, OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
   Datagrid,
   DataGridTextCell,
-  useDatagridSearchParams,
+  useResourcesIcebergV2,
 } from '@ovhcloud/manager-components';
-
-import { getListingIcebergV2 } from '@/data/api/{{appName}}';
 
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
@@ -27,26 +22,25 @@ export default function Listing() {
   const myConfig = appConfig;
   const serviceKey = myConfig.listing?.datagrid?.serviceKey;
   const [columns, setColumns] = useState([]);
-  const [flattenData, setFlattenData] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const {
-    pagination,
-    setPagination,
-    sorting,
-    setSorting,
-  } = useDatagridSearchParams();
-  const { pageSize } = pagination;
   {{#if isPCI }}
   const { projectId } = useParams();
   {{/if}}
-  const { data, fetchNextPage, hasNextPage, isError, isLoading, error, status, }: any = useInfiniteQuery({
-    initialPageParam: null,
-    queryKey: [`servicesListingIceberg`],
-    queryFn: ({ pageParam }) => getListingIcebergV2({ {{#if isPCI }}projectId, {{/if}}pageSize, cursor: pageParam }),
-    staleTime: Infinity,
-    retry: false,
-    getNextPageParam: (lastPage) => lastPage.cursorNext as any,
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    flattenData,
+    isError,
+    isLoading,
+    sorting,
+    setSorting,
+    error,
+    status,
+  } = useResourcesIcebergV2({
+    route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
+    queryKey: ['{{appName}}', `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`],
   });
 
   const navigateToDashboard = (label: string) => {
@@ -63,9 +57,7 @@ export default function Listing() {
         .filter((element) => element !== 'iam')
         .map((element) => ({
           id: element,
-          header: element,
           label: element,
-          accessorKey: element,
           cell: (props: any) => {
             const label = props[element] as string;
             if (typeof label === 'string' || typeof label === 'number') {
@@ -89,13 +81,8 @@ export default function Listing() {
     }
   }, [data]);
 
-  useEffect(() => {
-    const flatten = data?.pages.map((page: any) => page.data).flat();
-    setFlattenData(flatten);
-  }, [data]);
-
   if (isError) {
-    return <ErrorBanner error={error.response} />;
+    return <ErrorBanner error={error} />;
   }
 
   if (isLoading && !flattenData) {
@@ -106,34 +93,34 @@ export default function Listing() {
     <>
       <div className="pt-5 pb-10">
         <Breadcrumb />
-        <h2>a-iam</h2>
+        <h2>{{appName}}</h2>
         <div>{t('title')}</div>
+        {isError && flattenData?.length > 0 && (
+          <div className="mb-4">
+            <OsdsMessage color={ODS_THEME_COLOR_INTENT.error}>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.error}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              >
+                {error?.message}
+              </OsdsText>
+            </OsdsMessage>
+          </div>
+        )}
         <React.Suspense>
           {columns && flattenData && (
             <Datagrid
               columns={columns}
               items={flattenData || []}
               totalItems={0}
-              pagination={pagination}
-              onPaginationChange={setPagination}
+              onFetchNextPage={fetchNextPage}
+              hasNextPage={hasNextPage && !isLoading}
               sorting={sorting}
               onSortChange={setSorting}
+              manualSorting={false}
             />
           )}
         </React.Suspense>
-        <div className="grid justify-items-center my-5">
-          {hasNextPage && (
-            <div>
-              <OsdsButton
-                color={ODS_THEME_COLOR_INTENT.info}
-                variant={ODS_BUTTON_VARIANT.stroked}
-                onClick={fetchNextPage}
-              >
-                Load more
-              </OsdsButton>
-            </div>
-          )}
-        </div>
       </div>
     </>
   );
