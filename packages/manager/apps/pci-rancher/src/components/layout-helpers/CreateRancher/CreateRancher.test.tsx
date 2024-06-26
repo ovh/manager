@@ -46,8 +46,8 @@ const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
         versions={rancherVersion}
         hasRancherCreationError={false}
         isProjectDiscoveryMode={false}
-        isCreateRancherLoading={false}
-        {...props}
+        isCreateRancherLoading={props?.isCreateRancherLoading || false}
+        {...(props && (({ isCreateRancherLoading, ...rest }) => rest)(props))}
       />,
     ),
   );
@@ -129,6 +129,17 @@ describe('CreateRancher', () => {
     const errorCreateBanner = screen.getByTestId('errorBanner');
 
     expect(errorCreateBanner).not.toBeNull();
+  });
+
+  it('Given that the request is in pending, the confirm button should be disable', async () => {
+    const screen = await setupSpecTest({ isCreateRancherLoading: true });
+    const confirmButton = screen.getByText(
+      dashboardTranslation.createRancherCTA,
+    );
+
+    await userEvent.click(confirmButton);
+
+    expect(onCreateRancher).not.toHaveBeenCalled();
   });
 
   describe('Cancel Click', () => {
