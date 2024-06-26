@@ -1,13 +1,13 @@
 import React from 'react';
-import {
-  BreadcrumbProps,
-  useBreadcrumb,
-} from '@ovh-ux/manager-react-shell-client';
+import { useBreadcrumb } from '@ovh-ux/manager-react-shell-client';
+import { useTranslation } from 'react-i18next';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 
-function Breadcrumb({ rootLabel }: BreadcrumbProps): JSX.Element {
+function Breadcrumb(): JSX.Element {
+  const { t } = useTranslation('key-management-service/listing');
+
   const breadcrumbItems = useBreadcrumb({
-    rootLabel,
+    rootLabel: t('key_management_service_listing_title'),
     appName: 'key-management-service',
   });
 
