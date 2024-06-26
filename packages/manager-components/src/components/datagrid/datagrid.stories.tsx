@@ -50,15 +50,11 @@ const DatagridStory = ({
   isSortable: boolean;
 }) => {
   const [searchParams] = useSearchParams();
-  const {
-    pagination,
-    setPagination,
-    sorting,
-    setSorting,
-  } = useDatagridSearchParams({
-    id: 'validityTo',
-    desc: false,
-  });
+  const { pagination, setPagination, sorting, setSorting } =
+    useDatagridSearchParams({
+      id: 'validityTo',
+      desc: false,
+    });
   const start = isPaginated ? pagination.pageIndex * pagination.pageSize : 0;
   const end = isPaginated ? start + pagination.pageSize : items.length;
   const paginationAttrs = isPaginated && {
@@ -125,7 +121,7 @@ export const Pagination = {
 };
 
 export default {
-  title: 'Components/Paginated datagrid',
+  title: 'Components/Datagrid Paginated',
   component: DatagridStory,
   decorators: [withRouter],
 };
