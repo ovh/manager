@@ -145,7 +145,7 @@ export default function ListingPage() {
         <OsdsDivider></OsdsDivider>
         <Notifications />
         <div className="mb-5">
-          {isDiscoveryProject(project) && (
+          {project && isDiscoveryProject(project) && (
             <PciDiscoveryBanner projectId={projectId} />
           )}
         </div>
