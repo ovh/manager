@@ -288,5 +288,10 @@
   "pack_move_no_meeting_available": "W tej chwili nie są dostępne żadne terminy. Skontaktujemy się z Tobą telefonicznie w celu ustalenia terminu.",
   "pack_move_pto_multi_otp": "Mam obudowę i chcę utworzyć dodatkową linię",
   "pack_move_pto_multi_otp_description": "Technik podczas interwencji zainstaluje drugie złącze optyczne (PTO).",
-  "pack_move_pto_otp_not_mandatory": "W tym przypadku oznaczenie PTO jest opcjonalne."
+  "pack_move_pto_otp_not_mandatory": "W tym przypadku oznaczenie PTO jest opcjonalne.",
+  "pack_move_ont_shipping_title": "Wybierz adres dostawy dla usługi ONT",
+  "pack_move_ont_shipping_explain": "ONT (Optical Network Termination) to urządzenie sieciowe, które pozwala na podłączenie modemu do PTO.",
+  "pack_move_ont_shipping_contact": "Kontakt dostawy",
+  "pack_move_ont_shipping_confirm": "Potwierdź ten kontakt wysyłkowy",
+  "pack_move_ont_shipping_addresses_error": "Wystąpił błąd podczas pobierania kontaktów. {{error}}"
 }

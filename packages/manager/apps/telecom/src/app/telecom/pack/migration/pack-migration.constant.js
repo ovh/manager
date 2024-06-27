@@ -10,6 +10,12 @@ export const PROCESS_STEP = {
   buildings: 'buildings',
   migration: 'migration',
   offers: 'offers',
+  buildingDetails: 'buildingDetails',
+  confirm: 'confirm',
+  shipping: 'shipping',
+  meeting: 'meeting',
+  ontShipping: 'ontShipping',
+  serviceDelete: 'serviceDelete',
 };
 
 export const QUANTITY = 1;
@@ -23,6 +29,10 @@ export const OFFER_XDSL = 'xdsl';
 export const OFFER_FIBER = 'fiber';
 
 export const GRT = 'grt';
+export const CONTEXT = {
+  migration: 'migration',
+  voipline: 'voipLine',
+};
 
 export default {
   PROMO_DISPLAY,
@@ -34,4 +44,5 @@ export default {
   OFFER_XDSL,
   OFFER_FIBER,
   GRT,
+  CONTEXT,
 };

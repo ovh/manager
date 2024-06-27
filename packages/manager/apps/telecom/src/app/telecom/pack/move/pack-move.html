@@ -105,6 +105,13 @@
                             data-sub-services-to-delete="$ctrl.offer.selected.offer.subServicesToDelete"
                         ></pack-move-service-delete>
                     </div>
+                    <div
+                        data-ng-if="$ctrl.moveStep === $ctrl.steps.ontShipping"
+                    >
+                        <pack-move-ont-shipping
+                            data-pack-name="$ctrl.packName"
+                        ></pack-move-ont-shipping>
+                    </div>
                     <div data-ng-if="$ctrl.moveStep === $ctrl.steps.shipping">
                         <pack-move-shipping
                             data-pack-name="$ctrl.packName"

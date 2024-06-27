@@ -8,7 +8,11 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import values from 'lodash/values';
 
-import { OPTION_NAME, DICTIONNARY } from './pack-migration-process.constant';
+import {
+  OPTION_NAME,
+  DICTIONNARY,
+  ONT_SHIPPING_CONTACT,
+} from './pack-migration-process.constant';
 
 /**
  *  Service used to share data between differents steps of the pack migration process.
@@ -102,6 +106,11 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
     assign(postParams, {
       productCode: migrationProcess.selectedOffer.productCode,
     });
+
+    // ONT shipping post params
+    if (migrationProcess.selectedOffer.customOntAddress) {
+      postParams.ontShippingContact = `${ONT_SHIPPING_CONTACT}${migrationProcess.ontShipping.address.id}`;
+    }
 
     // shipping post params
     if (
@@ -375,6 +384,8 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
       migrationProcess.currentStep = 'buildingDetails';
     } else if (migrationProcess.selectedOffer.totalSubServiceToDelete > 0) {
       migrationProcess.currentStep = 'serviceDelete';
+    } else if (migrationProcess.selectedOffer.customerOntAddress) {
+      migrationProcess.currencyStep = 'ontShipping';
     } else if (migrationProcess.selectedOffer.needNewModem) {
       migrationProcess.currentStep = 'shipping';
     } else if (migrationProcess.selectedOffer.needMeeting) {
