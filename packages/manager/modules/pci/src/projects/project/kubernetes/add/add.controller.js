@@ -193,6 +193,7 @@ export default class {
     const { region } = this.cluster;
     const { name, enabled } = region;
     this.displaySelectedRegion = true;
+    this.displaySelectedVersion = false;
 
     if (!enabled) {
       this.isAddingNewRegion = true;
