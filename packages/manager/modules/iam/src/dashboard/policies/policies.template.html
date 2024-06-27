@@ -41,11 +41,6 @@
 
         <!-- <Actions> -->
         <oui-action-menu data-compact data-placement="end">
-            <oui-action-menu-item data-on-click="$ctrl.editIdentities($row)">
-                <span
-                    data-translate="iam_policies_datagrid_action_{{ $row.readOnly ? 'read' : 'edit' }}_identities"
-                ></span>
-            </oui-action-menu-item>
             <oui-action-menu-item data-on-click="$ctrl.editPolicy($row)">
                 <span
                     data-translate="iam_policies_datagrid_action_{{ $row.readOnly ? 'read' : 'edit' }}_policy"

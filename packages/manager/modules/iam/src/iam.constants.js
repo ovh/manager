@@ -40,6 +40,13 @@ const ENTITY = {
 const ENTITY_NAME_PATTERN = /^[a-zA-Z0-9-/_+]*$/;
 const ENTITY_DESCRIPTION_PATTERN = /^[a-zA-Z0-9-/_+ ]*$/;
 
+const IDENTITY_TYPE = {
+  USER: 'user',
+  GROUP: 'group',
+  ACCOUNT: 'account',
+  SERVICE_ACCOUNT: 'credential',
+};
+
 const GUIDE = {
   IAM: {
     DEFAULT:
@@ -177,7 +184,6 @@ const TAG = {
     'dedicated::account::iam::add-group-ressources::remove-product-type',
 
   // Entities deletion
-  DELETE_IDENTITY: 'dedicated::account::iam::delete-identity',
   DELETE_POLICY: 'dedicated::account::iam::delete-policy',
   DELETE_POLICY__CANCEL: 'dedicated::account::iam::delete-policy::cancel',
   DELETE_POLICY__CONFIRM: 'dedicated::account::iam::delete-policy::confirm',
@@ -203,17 +209,6 @@ const TAG = {
   EDIT_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE:
     'dedicated::account::iam::edit-group-ressources::remove-product-type',
 
-  // Identities
-  IDENTITIES: 'dedicated::account::iam::manage-identities',
-  IDENTITIES__ADD: 'dedicated::account::iam::manage-identities::add',
-  IDENTITIES__CANCEL: 'dedicated::account::iam::manage-identities::cancel',
-  IDENTITIES__REMOVE_USER_CANCEL:
-    'dedicated::account::iam::manage-identities::remove-user-cancel',
-  IDENTITIES__REMOVE_USER_CONFIRM:
-    'dedicated::account::iam::manage-identities::remove-user-confirm',
-  IDENTITIES__REMOVE_USER:
-    'dedicated::account::iam::manage-identities::remove-user',
-
   // Onboarding
   ONBOARDING: 'dedicated::account::iam::onboarding',
   ONBOARDING__ADD_POLICY: 'dedicated::account::iam::onboarding::add-policy',
@@ -224,8 +219,6 @@ const TAG = {
   POLICIES__ADD: 'dedicated::account::iam::policies::add',
   POLICIES__DELETE: 'dedicated::account::iam::policies::delete',
   POLICIES__EDIT: 'dedicated::account::iam::policies::edit',
-  POLICIES__MANAGE_IDENTITIES:
-    'dedicated::account::iam::policies::manage-identities',
 
   // List of policies - banners
   POLICIES__CREATE_POLICY_CONFIRM_BANNER__ERROR:
@@ -240,10 +233,6 @@ const TAG = {
     'iam::policies::edit-policy-confirm-banner::error',
   POLICIES__EDIT_POLICY_CONFIRM_BANNER__SUCCESS:
     'iam::policies::edit-policy-confirm-banner::success',
-  POLICIES__IDENTITIES_CONFIRM_BANNER__ERROR:
-    'iam::policies::manage-identities-confirm-banner::error',
-  POLICIES__IDENTITIES_CONFIRM_BANNER__SUCCESS:
-    'iam::policies::manage-identities-confirm-banner::success',
 
   // List of resource groups
   RESOURCE_GROUPS: 'dedicated::account::iam::group-ressources',
@@ -294,6 +283,7 @@ export {
   ENTITY,
   ENTITY_DESCRIPTION_PATTERN,
   ENTITY_NAME_PATTERN,
+  IDENTITY_TYPE,
   FEATURE,
   GUIDE,
   OVH_MANAGED_PERMISSIONS_GROUP,

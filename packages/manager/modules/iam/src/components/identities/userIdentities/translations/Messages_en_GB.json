@@ -1,0 +1,17 @@
+{
+  "iam_identities_users_title": "Local users",
+  "iam_identities_users_empty": "No local user",
+  "iam_identities_users_user": "Name",
+  "iam_identities_users_group": "Group",
+  "iam_identities_users_email": "Email address",
+  "iam_identities_users_status": "Status",
+  "iam_identities_users_description": "Description",
+  "iam_identities_users_status_OK": "Enabled",
+  "iam_identities_users_status_DISABLED": "Disabled",
+  "iam_identities_users_status_PASSWORD_CHANGE_REQUIRED": "Password change required",
+  "iam_identities_users_add": "Add users",
+  "iam_identities_users_modal_title": "Add local users",
+  "iam_identities_users_modal_empty_state": "No local user to add",
+  "iam_identities_users_modal_search_placeholder": "Search by name or email",
+  "iam_identities_users_load_error": "An error has occurred retrieving your local users: {{ message }}"
+}
