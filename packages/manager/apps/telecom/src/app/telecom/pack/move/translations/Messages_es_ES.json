@@ -286,5 +286,10 @@
   "pack_move_no_meeting_available": "No hay ninguna cita disponible en este momento, se contactará por teléfono para la planificación.",
   "pack_move_pto_multi_otp": "Tengo una caja y quiero la creación de una línea adicional",
   "pack_move_pto_multi_otp_description": "Un técnico instalará una segunda toma óptica (PTO) durante su intervención.",
-  "pack_move_pto_otp_not_mandatory": "Esta referencia PTO es opcional en este caso."
+  "pack_move_pto_otp_not_mandatory": "Esta referencia PTO es opcional en este caso.",
+  "pack_move_ont_shipping_title": "Seleccione la dirección de entrega de su ONT",
+  "pack_move_ont_shipping_explain": "El ONT (Optical Network Termination) es un dispositivo de red que permite conectar el módem a la PTO.",
+  "pack_move_ont_shipping_contact": "Contacto de entrega",
+  "pack_move_ont_shipping_confirm": "Confirmar este contacto de entrega",
+  "pack_move_ont_shipping_addresses_error": "Se ha producido un error al cargar los contactos. {{error}}"
 }
