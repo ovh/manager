@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.60.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.60.0...@ovh-ux/manager-container-app@0.60.1) (2024-06-27)
+
+
+### Bug Fixes
+
+* **container:** fix issue with kms menu entry in pci menu ([#12137](https://github.com/ovh/manager/issues/12137)) ([c6677cb](https://github.com/ovh/manager/commit/c6677cb7d127a40843992cf74b2b4d4752524d08))
+
+
+
+
+
 # [0.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.59.0...@ovh-ux/manager-container-app@0.60.0) (2024-06-25)
 
 
