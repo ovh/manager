@@ -1,0 +1,6 @@
+{
+  "iam_identities_title": "Identities",
+  "iam_identities_description": "Select the identities you want to associate with this policy",
+  "iam_identities_delete": "Delete from policy",
+  "iam_identities_urn": "Identity"
+}

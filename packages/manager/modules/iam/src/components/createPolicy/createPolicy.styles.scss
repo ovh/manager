@@ -1,7 +1,21 @@
+@import '@ovh-ux/ui-kit/dist/scss/_tokens';
+
 .iam-create_policy {
   max-width: 40rem;
 
   oui-field.no-margin .oui-field {
     margin-bottom: 0 !important;
+  }
+
+  &--footer {
+    display: flex;
+    align-items: center;
+    gap: $base-spacing-small;
+    margin-bottom: $base-spacing-medium;
+    position: sticky;
+    padding: $base-spacing-medium 0;
+    bottom: 0;
+    z-index: $base-z-index-menu;
+    background-color: white;
   }
 }
