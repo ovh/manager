@@ -72,14 +72,10 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   // Also, i don't want to disable the option "noImplicitAny"
   // Because this is done under unique circumstances and should not impact the rest of the codebase
   const selectStyles = {
-    option: (provided: any) => ({
+    option: (provided, {isFocused}) => ({
       ...provided,
-      backgroundColor: '#FFFFFF',
-      color: '#1A53CF',
-      ':hover': {
-        backgroundColor: '#C8F0FD',
-        color: '#4E568E',
-      },
+      backgroundColor: isFocused ? '#C8F0FD' : '#FFFFFF',
+      color: isFocused ? '#1A53CF' : '#4E568E',
       cursor: 'pointer',
     }),
     control: (provided: any, state: any) => ({

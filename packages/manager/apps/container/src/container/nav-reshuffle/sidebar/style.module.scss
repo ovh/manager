@@ -49,7 +49,7 @@
     padding: 0.5rem;
     transition: all 0.3s ease-in-out;
 
-    &:hover {
+    &:hover, &:focus {
       background: $p-800;
     }
   }
@@ -93,7 +93,7 @@
       outline: none;
     }
 
-    a:hover {
+    a:hover, a:focus {
       text-decoration: underline !important;
     }
   }
@@ -119,7 +119,7 @@
       outline: none;
     }
 
-    a:hover {
+    a:hover, a:focus {
       text-decoration: none;
       background-color: $p-100;
     }

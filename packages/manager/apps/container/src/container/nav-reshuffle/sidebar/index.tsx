@@ -89,6 +89,13 @@ const Sidebar = (): JSX.Element => {
     clearTimeout(timer);
   };
 
+  const onEnter = (node: Node) => {
+    const getFirstChild = (node: Node): Node =>
+      !node.children ? node : getFirstChild(node.children[0]);
+    const firstElem = window.document.getElementById(getFirstChild(node)?.idAttr);
+    if (firstElem) firstElem.focus();
+  };
+
   /** Initialize navigation tree */
   useEffect(() => {
     let abort = false;
@@ -238,7 +245,11 @@ const Sidebar = (): JSX.Element => {
               <li
                 key={node.id}
                 id={node.id}
-                className={`${style.sidebar_menu_items} ${node.id === selectedNode?.id ? style.sidebar_menu_items_selected : ''}`}
+                className={`${style.sidebar_menu_items} ${
+                  node.id === selectedNode?.id
+                    ? style.sidebar_menu_items_selected
+                    : ''
+                }`}
               >
                 {!shouldHideElement(node, count, betaVersion) && (
                   <SidebarLink
@@ -247,6 +258,7 @@ const Sidebar = (): JSX.Element => {
                     handleNavigation={() => menuClickHandler(node)}
                     handleOnMouseOver={() => menuClickHandler(node)}
                     handleOnMouseLeave={() => setSelectedNode(null)}
+                    handleOnEnter={(node: Node) => onEnter(node)}
                     id={node.idAttr}
                     isShortText={!open}
                   />
@@ -284,7 +296,9 @@ const Sidebar = (): JSX.Element => {
       <button className={style.sidebar_toggle_btn} onClick={toggleSidebar}>
         {open && <span className="mr-2">Réduire</span>}
         <span
-          className={`${style.sidebar_toggle_btn_first_icon} oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
+          className={`${
+            style.sidebar_toggle_btn_first_icon
+          } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
           aria-hidden="true"
         ></span>
         <span

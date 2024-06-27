@@ -18,6 +18,7 @@ type SidebarLinkProps = {
   handleOnMouseOver?(): void;
   handleOnMouseLeave?(): void;
   handleNavigation?(): void;
+  handleOnEnter?(node: Node): void;
   id?: string;
   isShortText?: boolean;
 };
@@ -29,6 +30,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   handleOnMouseOver = () => {},
   handleOnMouseLeave = () => {},
   handleNavigation = () =>  {},
+  handleOnEnter = () => {},
   id = '',
   isShortText = false,
 }: SidebarLinkProps): JSX.Element => {
@@ -49,8 +51,13 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       className={style['button-as-div']}
       onMouseOver={!mobile ? handleOnMouseOver : null}
       onMouseLeave={!mobile ? handleOnMouseLeave : null}
-      onFocus={!mobile ? handleOnMouseOver : null}
+      onFocus={handleOnMouseOver}
       onTouchEnd={mobile ? handleNavigation : null}
+      onKeyUp={(e) => {
+        if (e.key === 'Enter') {
+          handleOnEnter(node);
+        }
+      }}
       id={id}
     >
       <span> {t(isShortText ? node.shortTranslation : node.translation)}</span>
