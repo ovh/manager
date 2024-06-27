@@ -43,5 +43,11 @@
   "vrack_service_type_cloudproject": "Proyecto cloud",
   "vrack_service_type_iploadbalancing": "Load Balancer",
   "vrack_service_type_managedbaremetal": "Managed Bare Metal",
-  "vrack_service_type_managedbaremetaldatacenter": "Managed Bare Metal"
+  "vrack_service_type_managedbaremetaldatacenter": "Managed Bare Metal",
+  "vrack_common_confirm": "Confirmar",
+  "vrack_select_dialog_modal_description": "Tenga en cuenta que los bloques de IPv6 adicionales solo pueden añadirse o eliminarse de uno en uno.",
+  "vrack_add_dialog_modal_title": "Añadir uno o varios servicios",
+  "vrack_add_dialog_modal_description": "¿Seguro que quiere añadir {{ services }} a su vRack?",
+  "vrack_delete_dialog_modal_title": "Eliminar uno o varios servicios",
+  "vrack_delete_dialog_modal_description": "¿Seguro que quiere eliminar {{ services }} de su vRack?"
 }

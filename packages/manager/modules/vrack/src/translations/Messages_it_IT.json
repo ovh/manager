@@ -1,4 +1,6 @@
 {
   "vrack_title": "Rete privata vRack",
-  "vrack_order": "Ordina"
+  "vrack_order": "Ordina",
+  "list_layout_like_this": "Ti piace?",
+  "list_layout_like_this_tooltip": "Ti piace questa pagina? Condividi con noi i tuoi commenti!"
 }
