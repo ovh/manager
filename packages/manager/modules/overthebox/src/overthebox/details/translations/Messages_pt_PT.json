@@ -77,7 +77,6 @@
   "overTheBox_release_channel_v0_8": "Versão v0.8",
   "overTheBox_release_channel_v0_9": "Versão v0.9",
   "overTheBox_release_channel_v1_0": "Versão v1.0",
-  "overTheBox_version_device": "Versão do material",
   "overTheBox_version_system": "Versão do sistema",
   "overTheBox_last_seen": "Último acesso do hardware a partir dos servidores de aprovisionamento",
   "overTheBox_last_seen_few_seconds": "Há alguns segundos",
@@ -86,8 +85,9 @@
   "overTheBox_detail_link_guide": "Manuais",
   "overthebox_detail_links": "Links",
   "overTheBox_service_id": "Identificador do serviço:",
+  "overTheBox_available_update": "Está disponível uma atualização para o seu dispositivo.",
   "overTheBox_authorize_autoupgrade": "Permitir atualizações automáticas durante a noite",
   "overTheBox_change_auto_upgrade_success": "A alteração das apostas automáticas durante a noite foi realizada com sucesso.",
   "overTheBox_change_auto_upgrade_error": "Não foi possível efetuar a alteração das apostas automáticas durante a noite: {{errorMessage}}",
-  "overTheBox_available_update": "Está disponível uma atualização para o seu dispositivo."
+  "overTheBox_version_device": "Versão do hardware"
 }

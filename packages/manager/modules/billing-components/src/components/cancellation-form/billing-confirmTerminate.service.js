@@ -35,22 +35,18 @@ export default class BillingTerminate {
   }
 
   confirmTermination(service, token) {
-    if (
-      SERVICE_WITH_AGORA_TERMINATION.includes(service.billing?.plan?.code || '')
-    )
-      return this.agoraTermination(service, token);
-
-    return this.productTermination(service, token);
+    const isAgoraService = SERVICE_WITH_AGORA_TERMINATION.includes(
+      service.billing?.plan?.code || '',
+    );
+    return isAgoraService
+      ? this.$http.post(`/services/${service.serviceId}/terminate/confirm`, {
+          token,
+        })
+      : this.$http.post(`${service.path}/confirmTermination`, { token });
   }
 
-  productTermination(service, token) {
-    return this.$http.post(`${service.path}/confirmTermination`, { token });
-  }
-
-  agoraTermination(service, token) {
-    return this.$http.post(`/services/${service.serviceId}/terminate/confirm`, {
-      token,
-    });
+  serviceTermination(serviceId) {
+    return this.$http.post(`/services/${serviceId}/terminate`);
   }
 
   getTerminationForm(serviceId) {

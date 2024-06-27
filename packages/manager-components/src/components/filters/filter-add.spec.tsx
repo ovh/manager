@@ -1,5 +1,3 @@
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
 import { FilterAdd, FilterAddProps } from './filter-add.component';
 import { render } from '../../utils/test.provider';
 

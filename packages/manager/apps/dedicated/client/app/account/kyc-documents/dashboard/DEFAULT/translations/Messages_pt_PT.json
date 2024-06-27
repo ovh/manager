@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_DEFAULT": "Uma cópia (frente e verso) de um documento de identificação emitido pelo governo (por exemplo, passaporte, bilhete de identidade nacional ou carta de condução).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_DEFAULT": "Um documento que comprove as suas informações de faturação (nome e endereço) com menos de 3 meses, tal como um extrato bancário ou uma fatura de serviços públicos (eletricidade, gás, etc.).",
+  "documents_dashboard_document_CORPORATE_ID_DEFAULT": "Um extrato do registo comercial, das empresas ou tributário, ou qualquer documento oficial que comprove a existência da entidade organizativa com menos de 3 meses.",
+  "documents_dashboard_document_ADMINISTRATION_ID_DEFAULT": "Um extrato do registo comercial, das empresas ou tributário, ou qualquer documento oficial que comprove a existência da entidade organizativa com menos de 3 meses.",
+  "documents_dashboard_document_ASSOCIATION_ID_DEFAULT": "Um extrato do registo comercial, das empresas ou tributário, ou qualquer documento oficial que comprove a existência da entidade organizativa com menos de 3 meses.",
+  "documents_dashboard_document_individual_OTHER_DEFAULT": "Qualquer documento útil para compreender a sua situação atual (alojamento, mudança, etc.).",
+  "documents_dashboard_document_corporation_OTHER_DEFAULT": "Se não estiver no registo da empresa, associação ou administração, pode anexar uma cópia do documento de identificação de alguém que se encontra na documentação oficial.",
+  "documents_dashboard_document_association_OTHER_DEFAULT": "Se não estiver no registo da empresa, associação ou administração, pode anexar uma cópia do documento de identificação de alguém que se encontra na documentação oficial.",
+  "documents_dashboard_document_administration_OTHER_DEFAULT": "Se não estiver no registo da empresa, associação ou administração, pode anexar uma cópia do documento de identificação de alguém que se encontra na documentação oficial.",
+  "documents_dashboard_document_other_OTHER_DEFAULT": "Qualquer documento útil para compreender a sua situação (alojamento, mudança, etc.)"
+}

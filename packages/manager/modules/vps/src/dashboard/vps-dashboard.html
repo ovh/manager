@@ -345,8 +345,31 @@
                     </oui-tile-definition>
                     <oui-tile-definition
                         data-term="{{ ::'vps_dashboard_secondary_dns' | translate }}"
-                        data-description="{{ ::$ctrl.vps.secondaryDns }}"
                     >
+                        <oui-tile-description>
+                            <p>
+                                {{ $ctrl.vps.secondaryDns }}
+                            </p>
+                            <div
+                                ng-if="$ctrl.vps.secondaryDns === ('vps_dashboard_secondary_dns_count_0' | translate)"
+                            >
+                                <p>
+                                    {{ ::'vps_dashboard_domain_link_message' |
+                                    translate}}
+                                </p>
+                                <a
+                                    class="oui-button oui-button_secondary"
+                                    data-ng-href="{{ $ctrl.ADD_DOMAIN_LINK }}"
+                                    data-track-on="click"
+                                    data-track-name="{{:: $ctrl.trackingPrefix + '::migrate-my-vps' }}"
+                                    target="_top"
+                                >
+                                    <span
+                                        data-translate="vps_dashboard_domain_link"
+                                    ></span>
+                                </a>
+                            </div>
+                        </oui-tile-description>
                     </oui-tile-definition>
                 </div>
             </oui-tile>

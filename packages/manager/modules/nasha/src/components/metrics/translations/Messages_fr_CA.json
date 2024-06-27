@@ -70,6 +70,7 @@
   "nasha_components_metrics_datacenter_stl": "Saint-Louis",
   "nasha_components_metrics_datacenter_ind": "Indianapolis",
   "nasha_components_metrics_datacenter_ist": "Istanbul",
+  "nasha_components_metrics_datacenter_tor": "Toronto",
   "nasha_components_metrics_datacenter": "Datacenter",
   "nasha_components_metrics_expiration_date": "Date d'expiration",
   "nasha_components_metrics_ip": "IP",

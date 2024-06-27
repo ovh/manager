@@ -1,10 +1,6 @@
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import { PciAnnouncementBanner } from './pci-announcement-banner.component';
-import '@testing-library/jest-dom';
-
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (str: string) => str }),
-}));
+import { render } from '../../../utils/test.provider';
 
 const mockNavigateTo = jest.fn();
 jest.mock('@ovh-ux/manager-react-shell-client', () => ({

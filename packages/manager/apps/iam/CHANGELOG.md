@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@2.2.6...@ovh-ux/manager-iam-app@2.3.0) (2024-06-25)
+
+
+### Features
+
+* move users management from account to iam ([#11391](https://github.com/ovh/manager/issues/11391)) ([0ffda6d](https://github.com/ovh/manager/commit/0ffda6d3f5f4c15fbe587ea4feb05b163371a66d))
+
+
+
+
+
 ## [2.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@2.2.5...@ovh-ux/manager-iam-app@2.2.6) (2024-05-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-iam-app

@@ -2,6 +2,7 @@
   "pci_databases_backups_fork_title": "Duplicar o serviço de base de dados (fork)",
   "pci_databases_backups_fork_description": "O fork do seu backup será efetuado num novo cluster.",
   "pci_databases_backups_fork_plan_label": "Selecione um plano",
+  "pci_databases_backups_fork_region_label": "Selecione uma localização",
   "pci_databases_backups_fork_flavor_label": "Tipo de nó",
   "pci_databases_backups_fork_cluster_label": "Dimensionamento do cluster",
   "pci_databases_backups_fork_options_label": "Configure as suas opções",
@@ -24,7 +25,6 @@
   "pci_databases_backups_fork_create_database_success": "O fork do seu serviço foi bem-sucedido. Está a ser criado e estará disponível dentro de alguns minutos.",
   "pci_databases_backups_fork_create_database_error": "Ocorreu um erro aquando da criação do serviço. Tente novamente mais tarde: {{message}}",
   "pci_databases_backups_fork_footer_part_1": "Todos os nomes de produtos, logótipos e marcas são propriedade dos respetivos proprietários. Todos os nomes de empresas, produtos e serviços utilizados neste website destinam-se apenas para efeitos de identificação. A utilização desses nomes, logótipos e marcas não implica qualquer aprovação.",
-  "pci_databases_backups_fork_footer_part_2": "*Redis é uma marca da Redis Ltd. Todos os direitos conexos são reservados à Redis Ltd. Qualquer utilização pela OVH SAS é unicamente a título de referência e não indica nenhum patrocínio, apoio ou filiação entre a Redis e a OVH SAS.",
   "pci_databases_backups_fork_spec_heading": "A sua encomenda",
   "pci_databases_backups_fork_spec_name": "Nome",
   "pci_databases_backups_fork_spec_restore_mode": "Ponto de restauro:",
@@ -37,6 +37,8 @@
   "pci_databases_backups_fork_spec_region": "Datacenter:",
   "pci_databases_backups_fork_spec_region_name": "{{region}} ({{alias}})",
   "pci_databases_backups_fork_spec_flavor": "Modelo de nó:",
+  "pci_databases_backups_fork_spec_flavor_CPU_one": "{{cpu}} vCore",
+  "pci_databases_backups_fork_spec_flavor_CPU_many": "{{cpu}} vCores",
   "pci_databases_backups_fork_spec_flavor_RAM": "{{ram}} RAM",
   "pci_databases_backups_fork_spec_cluster": "Cluster:",
   "pci_databases_backups_fork_spec_network": "Tipo de rede:",
@@ -60,8 +62,5 @@
   "pci_databases_backups_fork_price_unit_switch_label": "Mostrar os preços ao mês",
   "pci_databases_backups_fork_restore_mode_title": "Ponto de restauro",
   "pci_databases_backups_fork_restore_mode_description": "Escolha o ponto de restauro a partir do qual o serviço será duplicado.",
-  "pci_databases_backups_fork_spec_flavor_CPU_one": "{{cpu}} vCore",
-  "pci_databases_backups_fork_spec_flavor_CPU_many": "{{cpu}} vCores",
-  "pci_databases_backups_fork_show_command": "Equivalente API",
-  "pci_databases_backups_fork_region_label": "Selecione uma localização"
+  "pci_databases_backups_fork_show_command": "Equivalente API"
 }

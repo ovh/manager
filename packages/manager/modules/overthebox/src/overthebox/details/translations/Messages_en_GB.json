@@ -77,7 +77,6 @@
   "overTheBox_release_channel_v0_8": "Version v0.8",
   "overTheBox_release_channel_v0_9": "Version v0.9",
   "overTheBox_release_channel_v1_0": "Version v1.0",
-  "overTheBox_version_device": "Hardware version",
   "overTheBox_version_system": "System version",
   "overTheBox_last_seen": "Latest access to hardware from provisioning servers",
   "overTheBox_last_seen_few_seconds": "A few seconds ago",
@@ -86,8 +85,9 @@
   "overTheBox_detail_link_guide": "Guides",
   "overthebox_detail_links": "Links",
   "overTheBox_service_id": "Service ID:",
+  "overTheBox_available_update": "An update is available for your device.",
   "overTheBox_authorize_autoupgrade": "Allow automatic updates at night",
   "overTheBox_change_auto_upgrade_success": "The automatic bets have been changed at night.",
   "overTheBox_change_auto_upgrade_error": "We were unable to change your automatic payments at night: {{errorMessage}}",
-  "overTheBox_available_update": "An update is available for your device."
+  "overTheBox_version_device": "Hardware version"
 }

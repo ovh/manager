@@ -16,6 +16,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('ip_game_mitigation_title'),
       getIp: /* @ngInject */ ($state) => () => $state.params.ip,
+      ipGameProtocol: /* @ngInject */ (ip, IpGameFirewall) =>
+        IpGameFirewall.getIpGameProtocols(ip),
     },
   });
 };

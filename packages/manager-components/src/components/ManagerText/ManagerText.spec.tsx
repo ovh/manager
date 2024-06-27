@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { ManagerText, ManagerTextProps } from './ManagerText';
 import { render } from '../../utils/test.provider';
 import fr_FR from './translations/Messages_fr_FR.json';

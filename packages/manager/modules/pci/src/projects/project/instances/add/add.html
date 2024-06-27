@@ -10,6 +10,7 @@
     data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
     data-tracking-page-name="PublicCloud::pci::projects::project::instances::add"
 ></pci-activate-project-banner>
+<pci-free-local-zones-banner data-ng-if="$ctrl.areLocalZonesFree" />
 
 <oui-stepper data-current-index="$ctrl.currentStep">
     <oui-step-form
@@ -786,6 +787,10 @@
                 data-translate="pci_projects_project_instances_add_billing_gateway_DHCP_info"
             ></p>
         </oui-message>
+        <pci-free-local-zones-banner
+            data-ng-if="$ctrl.areLocalZonesFree && $ctrl.isLocalZoneSelected"
+            data-confirm-text="true"
+        />
         <oui-spinner
             data-size="s"
             data-ng-if="$ctrl.isLoadBillingStep && $ctrl.isPrivateMode()"

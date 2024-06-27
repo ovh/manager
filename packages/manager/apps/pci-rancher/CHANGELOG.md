@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.8.0...@ovh-ux/manager-pci-rancher-app@1.9.0) (2024-06-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3108] ([#12113](https://github.com/ovh/manager/issues/12113)) ([43b6b02](https://github.com/ovh/manager/commit/43b6b025fa01389d884f8abf237f966653448096))
+
+
+### Features
+
+* **pci-rancher:** name input improvement ([#11814](https://github.com/ovh/manager/issues/11814)) ([684035a](https://github.com/ovh/manager/commit/684035a36ae75970ff82f4db0e221acc494c086e))
+* **pci-rancher:** onboarding page redirect user to guides ([#11736](https://github.com/ovh/manager/issues/11736)) ([54bd61b](https://github.com/ovh/manager/commit/54bd61ba972d1ec5687e72861a6edeacecf3a460))
+* **rancher:** replace with manager-components([#11668](https://github.com/ovh/manager/issues/11668)) ([aaec594](https://github.com/ovh/manager/commit/aaec594073ae9472380841cbb48544ddf5036447))
+* **rancher:** update version page for rancher ([#11884](https://github.com/ovh/manager/issues/11884)) ([b7e586f](https://github.com/ovh/manager/commit/b7e586f92f46f9f8deb31c1c9b4382fbafefcf75))
+
+
+
+
+
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.7.5...@ovh-ux/manager-pci-rancher-app@1.8.0) (2024-06-20)
+
+
+### Features
+
+* **container:** pnr v2 ([#11723](https://github.com/ovh/manager/issues/11723)) ([39013c6](https://github.com/ovh/manager/commit/39013c6337714f47f98b034200b605c91a0229d1))
+
+
+
+
+
+## [1.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.7.4...@ovh-ux/manager-pci-rancher-app@1.7.5) (2024-06-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
 ## [1.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.7.3...@ovh-ux/manager-pci-rancher-app@1.7.4) (2024-06-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

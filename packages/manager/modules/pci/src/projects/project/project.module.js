@@ -35,6 +35,7 @@ import training from './training';
 import workflow from './workflow';
 import pciAnnouncementBanner from '../../components/pci-announcement-banner';
 import pciMaintenanceBanner from '../../components/pci-maintenance-banner';
+import pciFreeLocalZonesBanner from '../../components/pci-free-local-zones-banner';
 import aiDashboard from './ai-dashboard';
 import projectComponent from './project.component';
 import service from './project.service';
@@ -80,6 +81,7 @@ angular
     training,
     pciAnnouncementBanner,
     pciMaintenanceBanner,
+    pciFreeLocalZonesBanner,
     gateways,
     aiDashboard,
   ])
