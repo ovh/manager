@@ -23,10 +23,13 @@ export const DICTIONNARY = {
   [FIBER_PTO.FIBER_PTO_MULTI_OTP]: INSTALL_TYPE.multi_otp,
 };
 
+export const ONT_SHIPPING_CONTACT = '/me/contact/';
+
 export default {
   OPTION_NAME,
   MODEM_LIST,
   FIBER_PTO,
   INSTALL_TYPE,
   DICTIONNARY,
+  ONT_SHIPPING_CONTACT,
 };

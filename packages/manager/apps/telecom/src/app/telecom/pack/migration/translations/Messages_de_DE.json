@@ -202,5 +202,10 @@
   "telecom_pack_migration_no_meeting_available": "Derzeit ist kein Termin verfügbar, Sie werden telefonisch zur Planung kontaktiert.",
   "telecom_pack_migration_pto_multi_otp": "Ich habe ein Gehäuse und möchte eine zusätzliche Leitung erstellen",
   "telecom_pack_migration_pto_multi_otp_description": "Ein Techniker installiert während des Eingriffs eine zweite optische Steckdose (PTO).",
-  "telecom_pack_migration_pto_otp_not_mandatory": "Diese PTO-Referenz ist in diesem Fall optional."
+  "telecom_pack_migration_pto_otp_not_mandatory": "Diese PTO-Referenz ist in diesem Fall optional.",
+  "telecom_pack_migration_ont_shipping_title": "Wählen Sie die Lieferadresse Ihres NT aus",
+  "telecom_pack_migration_ont_shipping_explain": "Optical Network Termination (NT) ist ein Netzwerkgerät, mit dem Ihr Modem an die PTO angeschlossen werden kann.",
+  "telecom_pack_migration_ont_shipping_contact": "Lieferkontakt",
+  "telecom_pack_migration_ont_shipping_confirm": "Diesen Lieferkontakt bestätigen",
+  "telecom_pack_migration_ont_shipping_addresses_error": "Beim Laden Ihrer Kontakte ist ein Fehler aufgetreten. {{error}}"
 }
