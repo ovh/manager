@@ -44,11 +44,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ) || false,
       getServerDashboardLink: /* @ngInject */ ($state) => (server) =>
         $state.href('app.dedicated-server.server', { productId: server.name }),
-      noFiltersServers: /* @ngInject */ (iceberg) =>
-        iceberg('/dedicated/server')
-          .query()
-          .expand('CachedObjectList-Pages')
-          .execute(null, true).$promise,
+      noFiltersServers: /* @ngInject */ ($http) =>
+        $http.get('/dedicated/server'),
       dedicatedServers: /* @ngInject */ ($transition$, iceberg) => {
         const { filter, pageSize, sort, sortOrder } = $transition$.params();
         let { page } = $transition$.params();
