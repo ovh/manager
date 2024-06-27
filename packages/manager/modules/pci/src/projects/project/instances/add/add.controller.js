@@ -52,6 +52,7 @@ export default class PciInstancesAddController {
     PciProject,
     PciProjectFlavors,
     OvhApiCloudProjectRegion,
+    $state,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -81,6 +82,7 @@ export default class PciInstancesAddController {
       INSTANCE_PRICING_LINKS.DEFAULT;
     this.PciProjectFlavors = PciProjectFlavors;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
+    this.$state = $state;
   }
 
   $onInit() {
@@ -93,6 +95,7 @@ export default class PciInstancesAddController {
     });
 
     this.isLoading = false;
+
     this.defaultInstanceName = '';
 
     this.showUserData = false;
@@ -215,6 +218,7 @@ export default class PciInstancesAddController {
       const productRegionsAllowed = productCapability?.flatMap(
         ({ regions }) => regions,
       );
+
       Object.entries(this.regions).forEach(([continent, locationsMap]) => {
         // Create datacenters continent groups
         this.availableRegions[continent] = {};
@@ -320,41 +324,48 @@ export default class PciInstancesAddController {
   }
 
   onRegionFocus() {
+    this.readyForImages = false;
+
     this.displaySelectedRegion = false;
   }
 
   addRegions() {
     this.isLoading = true;
 
-    return this.OvhApiCloudProjectRegion.v6()
-      .addRegion(
-        { serviceName: this.projectId },
-        { region: this.model.datacenter.name },
-      )
-      .$promise.then(() =>
-        this.OvhApiCloudProjectRegion.AvailableRegions()
-          .v6()
-          .resetQueryCache(),
-      )
-      .then(() => this.$state.reload())
-      .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant(
-            'pci_projects_project_regions_add_region_success',
-            {
-              code: this.model.datacenter.name,
-            },
-          ),
-        );
-      })
-      .catch((error) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_regions_add_region_error',
-            { message: get(error, 'data.message') },
-          ),
-        );
-      });
+    return (
+      this.OvhApiCloudProjectRegion.v6()
+        .addRegion(
+          { serviceName: this.projectId },
+          { region: this.model.datacenter.name },
+        )
+        .$promise.then(() =>
+          this.OvhApiCloudProjectRegion.AvailableRegions()
+            .v6()
+            .resetQueryCache(),
+        )
+        // .then(() => this.$state.reload())
+        .then(() => {
+          this.CucCloudMessage.success(
+            this.$translate.instant(
+              'pci_projects_project_regions_add_region_success',
+              {
+                code: this.model.datacenter.name,
+              },
+              (this.isLoading = false),
+            ),
+          );
+        })
+        .catch((error) => {
+          this.CucCloudMessage.error(
+            this.$translate.instant(
+              'pci_projects_project_regions_add_region_error',
+              { message: get(error, 'data.message') },
+            ),
+          );
+
+          this.isLoading = false;
+        })
+    );
   }
 
   onRegionChange() {
@@ -368,80 +379,108 @@ export default class PciInstancesAddController {
           this.model.datacenter.name,
         ).then((data) => {
           this.model.datacenter.quota = data;
+          this.model.datacenter.available = true;
 
-          this.readyForImages = true;
-          return this.getImages();
+          this.displaySelectedRegion = true;
+          this.instance.region = this.model.datacenter.name;
+          // Retrieve list of os types availables for the selected region
+
+          if (!this.isRegionAvailable(this.model.datacenter)) {
+            this.model.flavorGroup.availableRegions.push(
+              this.model.datacenter.name,
+            );
+          }
+
+          this.PciProjectFlavors.getFlavors(
+            this.projectId,
+            this.model.datacenter.name,
+            DEFAULT_CATALOG_ENDPOINT,
+          ).then((res) => {
+            this.model.flavorGroup.flavors = res;
+
+            this.getFilteredRegions();
+            return this.getImages();
+          });
         });
       });
     } else {
-      this.readyForImages = true;
-      this.getImages();
+      this.displaySelectedRegion = true;
+      this.instance.region = this.model.datacenter.name;
+      this.PciProjectFlavors.getFlavors(
+        this.projectId,
+        this.model.datacenter.name,
+        DEFAULT_CATALOG_ENDPOINT,
+      ).then((res) => {
+        // to be removed !!!!
+        // data.forEach((updateEntry) => {
+        //   const index = this.model.flavorGroup.flavors.findIndex(
+        //     (originalEntry) => originalEntry.name === updateEntry.name,
+        //   );
+
+        //   if (index !== -1) {
+        //     this.model.flavorGroup.flavors[index] = {
+        //       ...this.model.flavorGroup.flavors[index],
+        //       ...updateEntry,
+        //     };
+        //   }
+        // });
+        this.model.flavorGroup.flavors = res;
+        this.getFilteredRegions();
+        return this.getImages();
+      });
     }
   }
 
   getImages() {
-    this.displaySelectedRegion = true;
-    this.instance.region = this.model.datacenter.name;
     // Retrieve list of os types availables for the selected region
-
-    this.model.flavorGroup.availableRegions.push(this.model.datacenter.name);
-
-    this.PciProjectFlavors.getFlavors(
-      this.projectId,
+    this.osTypes = this.model.flavorGroup.getOsTypesByRegion(
       this.model.datacenter.name,
-      DEFAULT_CATALOG_ENDPOINT,
-    ).then((data) => {
-      this.model.flavorGroup.flavors = data;
-
-      this.osTypes = this.model.flavorGroup.getOsTypesByRegion(
-        this.model.datacenter.name,
-      );
-      this.availablePrivateNetworks = [
-        this.defaultPrivateNetwork,
-        ...sortBy(
-          map(
-            filter(this.privateNetworks, (network) =>
-              find(network.regions, {
-                region: this.instance.region,
-                status: 'ACTIVE',
-              }) &&
-              // For metal instances we only have vlan 0 available
-              this.model.flavorGroup.type === FILTER_PRIVATE_NETWORK_BAREMETAL
-                ? network.vlanId === 0
-                : network.vlanId !== null,
-            ),
-            (privateNetwork) => {
-              return {
-                ...privateNetwork,
-                name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
-                  privateNetwork.name
-                }`,
-              };
-            },
+    );
+    this.availablePrivateNetworks = [
+      this.defaultPrivateNetwork,
+      ...sortBy(
+        map(
+          filter(this.privateNetworks, (network) =>
+            find(network.regions, {
+              region: this.instance.region,
+              status: 'ACTIVE',
+            }) &&
+            // For metal instances we only have vlan 0 available
+            this.model.flavorGroup.type === FILTER_PRIVATE_NETWORK_BAREMETAL
+              ? network.vlanId === 0
+              : network.vlanId !== null,
           ),
-          ['name'],
+          (privateNetwork) => {
+            return {
+              ...privateNetwork,
+              name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
+                privateNetwork.name
+              }`,
+            };
+          },
         ),
-      ];
-      if (
-        !includes(this.availablePrivateNetworks, this.selectedPrivateNetwork)
-      ) {
-        this.selectedPrivateNetwork = this.defaultPrivateNetwork;
-      }
-      this.getPrivateNetworkSubnet();
-      if (this.isLocalZone()) {
-        this.PciProjectsProjectInstanceService.getLocalPrivateNetworks(
-          this.projectId,
-          this.model.datacenter.name,
-        )
-          .then((network) => {
-            this.availableLocalPrivateNetworks = network;
-            this.getLocalPrivateNetworkSubnet();
-          })
-          .catch((error) =>
-            this.CucCloudMessage.error(get(error, 'data.message')),
-          );
-      }
-    });
+        ['name'],
+      ),
+    ];
+    if (!includes(this.availablePrivateNetworks, this.selectedPrivateNetwork)) {
+      this.selectedPrivateNetwork = this.defaultPrivateNetwork;
+    }
+    this.getPrivateNetworkSubnet();
+    if (this.isLocalZone()) {
+      this.PciProjectsProjectInstanceService.getLocalPrivateNetworks(
+        this.projectId,
+        this.model.datacenter.name,
+      )
+        .then((network) => {
+          this.availableLocalPrivateNetworks = network;
+          this.getLocalPrivateNetworkSubnet();
+        })
+        .catch((error) =>
+          this.CucCloudMessage.error(get(error, 'data.message')),
+        );
+    }
+
+    this.readyForImages = true;
   }
 
   getPrivateNetworkSubnet() {
@@ -533,6 +572,7 @@ export default class PciInstancesAddController {
     if (!isEmpty(this.model.datacenter)) {
       this.disableNetwork = this.isLocalZone();
       this.quota = new Quota(this.model.datacenter.quota.instance);
+      //
       this.generateInstanceName();
       if (
         this.PciProjectsProjectInstanceService.automatedBackupIsAvailable(

@@ -13,6 +13,7 @@
 
 <oui-stepper data-current-index="$ctrl.currentStep">
     <oui-step-form
+        data-position="0"
         id="flavor"
         name="instances_add_flavor"
         data-header="{{ $ctrl.displayFlavorSelectionHeader() }}"
@@ -36,6 +37,7 @@
     </oui-step-form>
 
     <oui-step-form
+        data-position="1"
         name="instances_add_region"
         data-header="{{
             (($ctrl.currentStep > 1)
@@ -258,6 +260,7 @@
     </oui-step-form>
 
     <oui-step-form
+        data-position="2"
         name="instances_add_image"
         data-header="{{:: 'pci_projects_project_instances_add_image_title' | translate }}"
         data-valid="$ctrl.model.image"
@@ -265,10 +268,9 @@
         data-on-focus="$ctrl.onImageFocus()"
         data-on-submit="$ctrl.onImageChange()"
         data-navigation="$ctrl.showImageNavigation()"
-        data-ng-if="$ctrl.readyForImages"
     >
         <pci-project-images-list
-            data-ng-if="$ctrl.currentStep >= 2"
+            data-ng-if="$ctrl.currentStep >= 2 && $ctrl.readyForImages"
             data-display-selected-image="$ctrl.displaySelectedImage"
             data-flavor-type="$ctrl.model.flavorGroup.name"
             data-os-types="$ctrl.osTypes"
@@ -298,7 +300,7 @@
         </pci-project-images-list>
 
         <pci-project-instance-ssh-keys
-            data-ng-if="$ctrl.isLinuxImageType()"
+            data-ng-if="$ctrl.isLinuxImageType() && $ctrl.readyForImages"
             data-region="$ctrl.model.datacenter.name"
             data-selected-key="$ctrl.model.sshKey"
             data-service-name="{{:: $ctrl.projectId }}"
@@ -307,12 +309,12 @@
     </oui-step-form>
 
     <oui-step-form
+        data-position="3"
         data-header="{{ :: 'pci_projects_project_instances_add_instance_title' | translate }}"
         data-on-focus="$ctrl.onInstanceFocus()"
-        data-editable="!$ctrl.isLoading"
+        data-editable="!$ctrl.isLoading && $ctrl.readyForImages"
         data-valid="$ctrl.automatedBackup.selected ? $ctrl.automatedBackup.schedule : true"
         name="instances_add_configuration"
-        data-ng-if="$ctrl.readyForImages"
     >
         <oui-field
             data-label="{{ 'pci_projects_project_instances_add_numInstances_label' | translate }}"
@@ -464,8 +466,9 @@
 
     <!-- private network starts here -->
     <oui-step-form
+        data-position="4"
         data-header="{{ :: 'pci_projects_project_instances_add_privateNetwork_title' | translate }}"
-        data-editable="!$ctrl.isLoading"
+        data-editable="!$ctrl.isLoading && $ctrl.readyForImages"
         name="instances_add_private_network_configuration"
         data-on-focus="$ctrl.onModeFocus()"
         data-on-change="$ctrl.onModeChange()"
@@ -473,7 +476,6 @@
         data-valid="!$ctrl.isGatewayLoading"
         data-on-submit="$ctrl.onModeSubmit()"
         data-navigation="$ctrl.showNetworkNavigation()"
-        data-ng-if="$ctrl.readyForImages"
     >
         <p
             data-ng-if="!$ctrl.isLocalZone()"
@@ -709,11 +711,12 @@
     </oui-step-form>
     <!-- private network ends here -->
     <oui-step-form
+        data-position="5"
         data-header="{{ :: 'pci_projects_project_instances_add_billing_title' | translate }}"
         data-submit-text="{{ :: 'pci_projects_project_instances_add_submit_label' | translate }}"
         data-cancel-text="{{ :: 'pci_projects_project_instances_add_cancel_label' | translate }}"
         data-on-cancel="$ctrl.cancel()"
-        data-editable="!$ctrl.isLoading"
+        data-editable="!$ctrl.isLoading && $ctrl.readyForImages"
         name="instances_add_billing"
         data-on-submit="$ctrl.onCreateFormStepperSubmit()"
         data-navigation="!$ctrl.isPrivateMode() || (!$ctrl.isLoadBillingStep && $ctrl.isPrivateMode())"

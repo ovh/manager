@@ -26,7 +26,6 @@ export default class SshKeysController {
       keys: false,
       isAdding: false,
     };
-
     this.key = null;
     this.addKeyMode = false;
 
@@ -40,8 +39,9 @@ export default class SshKeysController {
   }
 
   $onChanges(changes) {
-    if (this.sshKeys && has(changes, 'region')) {
-      this.getAvailableKeys(this.region);
+    if (has(changes, 'selectedKey') || has(changes, 'region')) {
+      this.OvhApiCloudProjectSshKey.v6().resetQueryCache();
+      this.$q.all([this.getGuideUrl(), this.getSshKeys()]);
     }
   }
 
@@ -106,6 +106,7 @@ export default class SshKeysController {
 
   addKey() {
     this.messages = [];
+    this.loaders.isAdding = true;
     return this.OvhApiCloudProjectSshKey.v6()
       .save({ serviceName: this.serviceName }, this.model)
       .$promise.then((sshKey) => {
