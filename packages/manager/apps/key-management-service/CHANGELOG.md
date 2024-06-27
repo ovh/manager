@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.2.0...@ovh-ux/manager-key-management-service-app@0.2.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* fix onboarding layout in manager component and kms ([#12112](https://github.com/ovh/manager/issues/12112)) ([3415206](https://github.com/ovh/manager/commit/341520648a498446464ae2779ab33ece20983a5f))
+
+
+
+
+
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.1.12...@ovh-ux/manager-key-management-service-app@0.2.0) (2024-06-20)
+
+
+### Features
+
+* **container:** pnr v2 ([#11723](https://github.com/ovh/manager/issues/11723)) ([39013c6](https://github.com/ovh/manager/commit/39013c6337714f47f98b034200b605c91a0229d1))
+
+
+
+
+
+## [0.1.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.1.11...@ovh-ux/manager-key-management-service-app@0.1.12) (2024-06-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
 ## [0.1.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.1.10...@ovh-ux/manager-key-management-service-app@0.1.11) (2024-06-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app

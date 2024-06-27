@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.4.0...@ovh-ux/ng-ovh-otrs@9.4.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* **dedicated:** untranslated keys in ticket creation ([#11904](https://github.com/ovh/manager/issues/11904)) ([149a0dd](https://github.com/ovh/manager/commit/149a0dd6f54c626ba5cb731e5977f77ea8482452))
+
+
+
+
+
 # [9.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.3.1...@ovh-ux/ng-ovh-otrs@9.4.0) (2024-01-29)
 
 

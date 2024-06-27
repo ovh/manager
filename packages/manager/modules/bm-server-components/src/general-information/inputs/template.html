@@ -62,6 +62,7 @@
             format="{{$ctrl.inputRules.date.format}}"
             placeholder="{{$ctrl.inputRules.date.placeholder}}"
             name="{{input.name}}"
+            data-tooltip="{{:: 'server_configuration_installation_inputs_item_tooltip' | translate:{ t0: 'date' } }}"
         >
         </oui-calendar>
         <!-- time -->
@@ -74,6 +75,7 @@
             format="{{$ctrl.inputRules.time.format}}"
             placeholder="{{$ctrl.inputRules.time.placeholder}}"
             name="{{input.name}}"
+            data-tooltip="{{:: 'server_configuration_installation_inputs_item_tooltip' | translate:{ t0: 'time' } }}"
         >
         </oui-timepicker>
         <!-- text -->
@@ -113,6 +115,9 @@
                 id="form"
                 on-add="$ctrl.keyValueAdd(form, input.name)"
                 on-remove="$ctrl.keyValueRemove(form, input.name)"
+                data-tooltip-add="{{:: 'server_configuration_installation_inputs_item_keyValue_add_tooltip' | translate }}"
+                data-tooltip-delete="{{:: 'server_configuration_installation_inputs_item_keyValue_remove_tooltip' | translate }}"
+                data-rows-limit="$ctrl.inputRules.keyValue.limit"
             >
                 <oui-inline-adder-row>
                     <oui-inline-adder-field>
@@ -154,6 +159,8 @@
             model="$ctrl.installation.input[input.name]"
             required="input.mandatory"
             name="{{input.name}}"
+            data-tooltip-increase="{{:: 'server_configuration_installation_inputs_item_number_increase_tooltip' | translate }}"
+            data-tooltip-decrease="{{:: 'server_configuration_installation_inputs_item_number_decrease_tooltip' | translate }}"
         >
         </oui-numeric>
         <!-- ip -->

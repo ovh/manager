@@ -218,6 +218,7 @@ export default class PciStoragesColdArchiveService {
     return this.$http
       .post(
         `/cloud/project/${serviceName}/region/${regionName}/coldArchive/${archiveName}/archive`,
+        {},
       )
       .then(({ data }) => data);
   }

@@ -897,5 +897,6 @@
   "server_datacenter_SLC": "Salt Lake City",
   "server_datacenter_STL": "Saint Louis",
   "server_datacenter_IND": "Indianapolis",
-  "server_datacenter_IST": "Istanbul"
+  "server_datacenter_IST": "Istanbul",
+  "server_datacenter_TOR": "Toronto"
 }

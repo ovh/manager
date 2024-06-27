@@ -11,6 +11,10 @@ import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import { features } from './DedicatedSidebar';
 
+const kycIndiaFeature = 'identity-documents';
+const kycFraudFeature = 'procedures:fraud';
+const kycFeatures = [kycIndiaFeature, kycFraudFeature]
+
 export default function AccountSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
   const [shopItems, setShopItems] = useState<ShopItem[]>([]);
@@ -25,11 +29,11 @@ export default function AccountSidebar() {
   const isEnterprise = environment.getUser()?.enterprise;
 
   const getAccountSidebar = async (availability: Record<string, string> | null) => {
-    if (!availability) {
-      return [];
-    }
+    const menu: SidebarMenuItem[] = [];
 
-    const menu = [];
+    if (!availability) {
+      return menu;
+    }
 
     menu.push({
       id: 'back-to-home',
@@ -44,13 +48,7 @@ export default function AccountSidebar() {
       routeMatcher: new RegExp('^/useraccount'),
     });
 
-    const featureAvailability = await reketInstance.get(
-      `/feature/identity-documents/availability`,
-      {
-        requestType: 'aapi',
-      },
-    );
-    if (featureAvailability['identity-documents']) {
+    if (availability[kycIndiaFeature]) {
       const { status } = await reketInstance.get(`/me/procedure/identity`);
       if (['required','open'].includes(status)) {
         menu.push({
@@ -58,6 +56,18 @@ export default function AccountSidebar() {
           label: t('sidebar_account_identity_documents'),
           href: navigation.getURL('dedicated', '/identity-documents'),
           routeMatcher: new RegExp('^/identity-documents'),
+        });
+      }
+    }
+
+    if (availability[kycFraudFeature]) {
+      const { status } = await reketInstance.get(`/me/procedure/fraud`);
+      if (['required', 'open'].includes(status)) {
+        menu.push({
+          id: 'kyc-documents',
+          label: t('sidebar_account_kyc_documents'),
+          href: navigation.getURL('dedicated', '/documents'),
+          routeMatcher: new RegExp('^/documents'),
         });
       }
     }
@@ -137,12 +147,11 @@ export default function AccountSidebar() {
         pathMatcher: new RegExp('^/iam'),
       });
     }
-
     return menu;
   };
 
   const getFeatures = (): Promise<Record<string, string>> =>
-    reketInstance.get(`/feature/${features.join(',')}/availability`, {
+    reketInstance.get(`/feature/${features.concat(kycFeatures).join(',')}/availability`, {
       requestType: 'aapi',
     });
 

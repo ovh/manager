@@ -1,5 +1,17 @@
 <div id="main-container">
     <div class="text-center py-5">
+        <a
+            data-ng-if="$ctrl.isOffersBannerActive"
+            target="_blank"
+            rel="noopener"
+            href="{{:: $ctrl.OVH_WEB_OFFERS_2024 }}"
+        >
+            <img
+                src="assets/images/banner/banner_offers.png"
+                alt="{{'common_offers_banner_alt' | translate}}"
+                class="img-responsive"
+            />
+        </a>
         <ovh-manager-banner class="d-block mb-4"></ovh-manager-banner>
         <h1 class="d-inline">
             <span data-translate="welcome_to_your_manager_1"></span>

@@ -87,20 +87,22 @@ function LegacyContainer(): JSX.Element {
                   />
                 </Suspense>
               )}
-              <Preloader visible={preloaderVisible}>
-                <>
-                  <IFrameAppRouter
-                    iframeRef={iframeRef}
-                    configuration={applications}
-                  />
-                  <iframe
-                    title="app"
-                    role="document"
-                    src="about:blank"
-                    ref={iframeRef}
-                  ></iframe>
-                </>
-              </Preloader>
+              {!isMfaEnrollmentVisible && (
+                <Preloader visible={preloaderVisible}>
+                  <>
+                    <IFrameAppRouter
+                      iframeRef={iframeRef}
+                      configuration={applications}
+                    />
+                    <iframe
+                      title="app"
+                      role="document"
+                      src="about:blank"
+                      ref={iframeRef}
+                    ></iframe>
+                  </>
+                </Preloader>
+              )}
             </div>
           </div>
         </div>

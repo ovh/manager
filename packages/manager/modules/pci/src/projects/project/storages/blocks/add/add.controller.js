@@ -4,6 +4,8 @@ import get from 'lodash/get';
 import BlockStorage from '../block.class';
 import Region from '../region.class';
 
+import { PCI_FEATURES } from '../../../project.constants';
+
 const VOLUMES_PLAN_CODE = {
   STANDARD: 'volume.classic.consumption',
   HIGH_SPEED: 'volume.high-speed.consumption',
@@ -91,6 +93,16 @@ export default class PciBlockStorageAddController {
       .finally(() => {
         this.loadings.regions = false;
       });
+  }
+
+  get areLocalZonesFree() {
+    return this.pciFeatures.isFeatureAvailable(
+      PCI_FEATURES.BANNERS.FREE_LOCAL_ZONES_BANNER,
+    );
+  }
+
+  get isLocalZoneSelected() {
+    return this.storage?.region?.isLocalZone === true;
   }
 
   loadMessages() {

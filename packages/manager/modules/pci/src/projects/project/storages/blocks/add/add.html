@@ -7,6 +7,7 @@
     data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
     data-tracking-page-name="PublicCloud::pci::projects::project::storages::blocks::add"
 ></pci-activate-project-banner>
+<pci-free-local-zones-banner data-ng-if="$ctrl.areLocalZonesFree" />
 
 <div>
     <oui-stepper data-on-finish="$ctrl.add()">
@@ -168,6 +169,10 @@
             data-editable="!$ctrl.loadings.save"
             name="block_storage_add_confirm"
         >
+            <pci-free-local-zones-banner
+                data-ng-if="$ctrl.areLocalZonesFree && $ctrl.isLocalZoneSelected"
+                data-confirm-text="true"
+            />
             <div
                 class="mb-3"
                 data-translate="pci_projects_project_storages_blocks_add_submit_price_text"

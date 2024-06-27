@@ -609,5 +609,6 @@
   "common_plan": "Plan",
   "common_upgrade_account": "Change solution",
   "common_automatic_renewal": "Automatic renewal",
-  "older_interface": "Old interface"
+  "older_interface": "Old interface",
+  "common_offers_banner_alt": "web offers 2024"
 }

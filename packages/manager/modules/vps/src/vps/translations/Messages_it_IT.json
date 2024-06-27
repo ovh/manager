@@ -541,5 +541,7 @@
   "vps_dashboard_snapshot_download_modal_snapshot_curl_info": "Copia il comando CURL qui sotto ed eseguilo sul tuo terminale. Per maggiori informazioni su CURL, <a href=\"{{curlDocumentationLink}}\" target=\"_blank\">clicca qui</a>.",
   "vps_dashboard_snapshot_download_modal_snapshot_button_label": "Generare il link di download",
   "vps_configuration_download_snapshot_title_button": "Scaricare lo Snapshot",
-  "vps_dashboard_snapshot_download_modal_snapshot_error_download_not_ready": "Lo Snapshot è in fase di creazione, ti preghiamo di riprovare più tardi al termine del processo."
+  "vps_dashboard_snapshot_download_modal_snapshot_error_download_not_ready": "Lo Snapshot è in fase di creazione, ti preghiamo di riprovare più tardi al termine del processo.",
+  "vps_dashboard_domain_link": "Aggiungi un dominio",
+  "vps_dashboard_domain_link_message": "Aggiungi un dominio al tuo VPS per condividere facilmente il tuo progetto con tutto il mondo"
 }

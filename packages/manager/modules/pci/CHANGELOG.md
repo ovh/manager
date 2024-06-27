@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.48.0...@ovh-ux/manager-pci@6.49.0) (2024-06-25)
+
+
+### Bug Fixes
+
+* **coldarchive:** breaking change of API for coldarchive ([#11646](https://github.com/ovh/manager/issues/11646)) ([420d2fb](https://github.com/ovh/manager/commit/420d2fb34f3a9f9699beebaf3d2a71b73c8a0518))
+* **i18n:** add missing translations [CDS 3087] ([1afaaa6](https://github.com/ovh/manager/commit/1afaaa676c473d6444f383c6ec15c2d1326ac4d3))
+* remove unused translations [CDS] ([20d761c](https://github.com/ovh/manager/commit/20d761cd867941c992b306606e51f640e3876c71))
+
+
+### Features
+
+* **pci:** free local zones banner ([#12084](https://github.com/ovh/manager/issues/12084)) ([c38a63a](https://github.com/ovh/manager/commit/c38a63a782606d121f3bedb4b6f1197250aa1a07))
+* **pci:** update project creation documentation links ([#11577](https://github.com/ovh/manager/issues/11577)) ([d451b96](https://github.com/ovh/manager/commit/d451b96dd5edc39b89dc2d9d92acfed6c57f542b))
+
+
+
+
+
+# [6.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.47.0...@ovh-ux/manager-pci@6.48.0) (2024-06-19)
+
+
+### Features
+
+* **pci-private-network:** create µapp ([155f659](https://github.com/ovh/manager/commit/155f659fded08e2a788de45b5c2e748fe6b3c1a0))
+
+
+
+
+
 # [6.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.46.0...@ovh-ux/manager-pci@6.47.0) (2024-06-17)
 
 
