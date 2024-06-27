@@ -34,7 +34,7 @@ export interface CardProps {
   img?: ImageDetails;
   texts: {
     title: string;
-    description: string;
+    description?: string;
     category: string;
   };
   badges?: Badge[];
@@ -114,15 +114,17 @@ export const Card: React.FC<CardProps> = ({
           >
             {title}
           </OsdsText>
-          <OsdsText
-            className="block mb-4"
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {description}
-          </OsdsText>
+          {description && (
+            <OsdsText
+              className="block mb-4"
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_TEXT_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+              hue={ODS_THEME_COLOR_HUE._500}
+            >
+              {description}
+            </OsdsText>
+          )}
 
           <Links
             tab-index="-1"

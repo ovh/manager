@@ -483,8 +483,8 @@
   "domain_configuration_dns_entry_add_step3_info": "Vai adicionar a seguinte entrada na sua zona DNS:",
   "domain_configuration_dns_entry_add_step3_alert": "A adição será imediata na zona DNS, mas tenha em conta o tempo de propagação (máximo 24h).",
   "domain_configuration_dns_entry_add_step3_check_warning1": "Atenção, podem ocorrer um ou vários conflitos:",
-  "domain_configuration_dns_entry_add_step3_check_warning2": "O subdomínio já utiliza um registo DNS. Por motivos de incompatibilidade, não é possível registar um registo CNAME. Elimine os registos existentes deste subdomínio para poder adicionar um registo de tipo CNAME.",
-  "domain_configuration_dns_entry_add_step3_check_warning3": "O subdomínio já está a ser utilizado por um registo CNAME. Um registo CNAME não pode coexistir com outros campos no mesmo subdomínio.",
+  "domain_configuration_dns_entry_add_step3_check_warning2": "O subdomínio não está já a ser utilizado por um registo CNAME. Um registo CNAME não pode coexistir com outros campos no mesmo subdomínio.",
+  "domain_configuration_dns_entry_add_step3_check_warning3": "O registo CNAME não foi adicionado ao domínio raiz. Relembramos que o domínio raiz é o domínio de base que registou.",
   "domain_configuration_dns_entry_add_success": "A entrada foi adicionada à zona DNS, mas tenha em conta o tempo de propagação (máximo 24h).",
   "domain_configuration_dns_entry_add_fail": "Ocorreu um erro na adição da entrada à zona DNS.",
   "domain_configuration_dns_importtext_title": "Introduza abaixo o texto correspondente às zonas DNS que deseja importar:",
@@ -830,5 +830,6 @@
   "domain_dashboard_general_information_alldom_renewal_link": "Anular a rescisão do pack",
   "domain_dashboard_general_information_alldom_termination_warning_close": "fechar",
   "domain_dashboard_show_authinfo_warning_part_1": "Atenção: informamos que a transferência do seu domínio para outro registrar leva à eliminação da zona dns e do seu conteúdo. O seu website e serviço de e-mail poderão já não estar operacionais.",
-  "domain_dashboard_show_authinfo_warning_part_2": "Se pretender mudar de alojamento web ou de serviço de mensagens, pode conservar o seu domínio em gestão na OVHcloud e continuar a beneficiar dos melhores preços, assim como dos nossos serviços gratuitos como o antisspam, a anonimização dos dados pessoais ou o DNSSEC."
+  "domain_dashboard_show_authinfo_warning_part_2": "Se pretender mudar de alojamento web ou de serviço de mensagens, pode conservar o seu domínio em gestão na OVHcloud e continuar a beneficiar dos melhores preços, assim como dos nossos serviços gratuitos como o antisspam, a anonimização dos dados pessoais ou o DNSSEC.",
+  "domain_configuration_dns_entry_add_step3_check_warning_info": "Erro: Não foi possível guardar a configuração DNS. Por favor, verifique que:"
 }

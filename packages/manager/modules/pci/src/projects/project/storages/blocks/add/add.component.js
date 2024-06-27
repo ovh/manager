@@ -15,5 +15,6 @@ export default {
     volumesAvailability: '<',
     isDiscoveryProject: '<',
     goToDiscoveryProjectActivationPage: '&',
+    pciFeatures: '<',
   },
 };

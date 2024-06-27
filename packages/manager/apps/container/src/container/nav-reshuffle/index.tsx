@@ -84,16 +84,6 @@ function NavReshuffleContainer(): JSX.Element {
           />
         </div>
         <div className={style.iframeContainer}>
-          <div
-            className={`${style.iframeOverlay} ${
-              isNavigationSidebarOpened || showOverlay
-                ? style.iframeOverlay_visible
-                : ''
-            }`}
-            onClick={() =>
-              isNavigationSidebarOpened && closeNavigationSidebar()
-            }
-          ></div>
           {isMfaEnrollmentVisible && (
             <Suspense fallback="">
               <MfaEnrollment

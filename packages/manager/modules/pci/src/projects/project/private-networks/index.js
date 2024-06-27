@@ -1,3 +1,7 @@
+/**
+ * deprecated replaced by "@ovh-ux/manager-pci-private-network-app" µapp
+ */
+
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';

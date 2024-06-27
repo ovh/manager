@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.41.1...@ovh-ux/manager-vps@2.42.0) (2024-06-25)
+
+
+### Features
+
+* **dedicated:** add button to buy domain in vps dashboard ([#11892](https://github.com/ovh/manager/issues/11892)) ([2354579](https://github.com/ovh/manager/commit/235457939ee5aa7ea4223682f5812e9ab6d59e13))
+
+
+
+
+
 ## [2.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.41.0...@ovh-ux/manager-vps@2.41.1) (2024-06-10)
 
 

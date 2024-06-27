@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.24.0...@ovh-ux/manager-bm-server-components@1.25.0) (2024-06-25)
+
+
+### Bug Fixes
+
+* **dedicated:** replace old windows rescue name by the new one ([#11864](https://github.com/ovh/manager/issues/11864)) ([8a97766](https://github.com/ovh/manager/commit/8a977662eeea6369d97fb68358aeaf7673aa239f))
+
+
+### Features
+
+* **dedicated:** limit keyvalue items and add tooltip to inputs ([#11615](https://github.com/ovh/manager/issues/11615)) ([69adabe](https://github.com/ovh/manager/commit/69adabed8cb27d95ed211049e8f7a7f33d1c6b40))
+
+
+
+
+
 # [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.23.3...@ovh-ux/manager-bm-server-components@1.24.0) (2024-06-17)
 
 

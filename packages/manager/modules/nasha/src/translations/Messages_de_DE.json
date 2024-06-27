@@ -94,5 +94,6 @@
   "nasha_datacenter_slc": "Salt Lake City",
   "nasha_datacenter_stl": "St. Louis",
   "nasha_datacenter_ind": "Indianapolis",
-  "nasha_datacenter_ist": "Istanbul"
+  "nasha_datacenter_ist": "Istanbul",
+  "nasha_datacenter_tor": "Toronto"
 }

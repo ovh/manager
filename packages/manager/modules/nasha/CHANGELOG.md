@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.15.0...@ovh-ux/manager-nasha@2.16.0) (2024-06-25)
+
+
+### Features
+
+* **pci:** add region label for toronto ([#11848](https://github.com/ovh/manager/issues/11848)) ([a87f1a0](https://github.com/ovh/manager/commit/a87f1a0de01acdfd702755e3bfc45e7aba4d1821))
+
+
+
+
+
 # [2.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.14.2...@ovh-ux/manager-nasha@2.15.0) (2024-06-17)
 
 
