@@ -373,7 +373,7 @@ export default class PciInstancesAddController {
       !this.isRegionAvailable(this.model.datacenter)
     ) {
       this.isAddingNewRegion = true;
-      this.addRegions().then(() => {
+      return this.addRegions().then(() => {
         return this.PciProjectsProjectInstanceService.getProjectQuota(
           this.projectId,
           this.model.datacenter.name,
