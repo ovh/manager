@@ -31,8 +31,11 @@ export default class BandwidthVrackOrderService extends BaseDedicatedService {
     this.Server = Server;
   }
 
-  getOrderableBandwidths(productId) {
-    return this.Server.getOrderables(productId, 'bandwidthvRack')
+  getOrderableBandwidths(server) {
+    if (!server.canOrderVrackBandwith) {
+      return this.$q.resolve(null);
+    }
+    return this.Server.getOrderables(server.name, 'bandwidthvRack')
       .then((response) =>
         super.acceptResponse(this.transformOrderableBandwidths(response.vrack)),
       )
