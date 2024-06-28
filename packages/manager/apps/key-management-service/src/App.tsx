@@ -1,10 +1,12 @@
 import React, { useEffect, useContext } from 'react';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { odsSetup } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { RouterProvider, createHashRouter } from 'react-router-dom';
 import appRoutes from './routes/routes';
+
+odsSetup();
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,19 +16,18 @@ const queryClient = new QueryClient({
   },
 });
 
-odsSetup();
-const router = createHashRouter(appRoutes);
-
 function App() {
-  const shellContext = useContext(ShellContext);
+  const { shell } = useContext(ShellContext);
+  const router = createHashRouter(appRoutes);
+
   useEffect(() => {
-    shellContext.shell.ux.hidePreloader();
+    shell.ux.hidePreloader();
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }
