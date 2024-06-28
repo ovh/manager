@@ -6,6 +6,7 @@ declare const __REGION__: string;
 declare global {
   interface Window {
     elqwebtrigger: any;
+    surveyLanguage: string;
   }
 }
 
