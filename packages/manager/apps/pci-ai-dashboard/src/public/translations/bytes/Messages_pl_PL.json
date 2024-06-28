@@ -1,0 +1,20 @@
+{
+  "unitShort-B": "B",
+  "unitShort-KB": "KB",
+  "unitShort-MB": "MB",
+  "unitShort-GB": "GB",
+  "unitShort-TB": "TB",
+  "unitShort-PB": "PB",
+  "unitLong-B_one": "bajt",
+  "unitLong-B_other": "bajty",
+  "unitLong-KB_one": "kilobajt",
+  "unitLong-KB_other": "kilobajty",
+  "unitLong-MB_one": "megabajt",
+  "unitLong-MB_other": "megabajty",
+  "unitLong-GB_one": "gigabajt",
+  "unitLong-GB_other": "gigabajty",
+  "unitLong-TB_one": "terabajt",
+  "unitLong-TB_other": "terabajty",
+  "unitLong-PB_one": "petabajt",
+  "unitLong-PB_other": "petabajty"
+}
