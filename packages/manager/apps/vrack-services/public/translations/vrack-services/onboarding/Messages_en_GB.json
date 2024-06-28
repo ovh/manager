@@ -13,5 +13,7 @@
   "guide2Title": "vRack Services: Introduction",
   "guide2Description": "Discover the vRack Services product and associated services",
   "guide2Link": "https://help.ovhcloud.com/csm/en-gb-public-cloud-storage-nas-nfs?id=kb_article_view&amp;sysparm_article=KB0046735",
-  "newBadgeText": "New"
+  "newBadgeText": "New features",
+  "onboardingPageTitle": "You have not yet activated vRack Services",
+  "onboardingPageDescription": "To benefit from the services, you must activate and configure vRack Services."
 }
