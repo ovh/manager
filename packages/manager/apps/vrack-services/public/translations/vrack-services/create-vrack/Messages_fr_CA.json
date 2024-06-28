@@ -1,0 +1,7 @@
+{
+  "modalVrackCreationDescriptionLine1": "Pour que vRack Services fonctionne, vous devez l'associer à l'un de vos vRacks existants. Actuellement, vous n'avez pas de vRack éligible.",
+  "modalVrackCreationDescriptionLine2": "Vous pouvez associer 1 seul vRack Services par région pour un vRack donné.",
+  "modalVrackCreationError": "L'erreur suivante est survenue : {{error}}.",
+  "modalVrackCreationCancel": "Annuler",
+  "modalCreateNewVrackButtonLabel": "Créer un vRack"
+}

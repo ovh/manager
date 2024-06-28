@@ -12,5 +12,6 @@
   "modalDescriptionLine3": "Cena sieci vRack: 0 PLN",
   "modalCancelButtonLabel": "Anuluj",
   "modalConfirmVrackButtonLabel": "Zamów vRack",
-  "modalNoVrackButtonLabel": "Nie, dziękuję, mam już vRack"
+  "modalNoVrackButtonLabel": "Nie, dziękuję, mam już vRack",
+  "createPageTitle": "Włącz vRack Services"
 }

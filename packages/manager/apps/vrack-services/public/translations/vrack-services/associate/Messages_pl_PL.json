@@ -1,0 +1,18 @@
+{
+  "modalVrackAssociationTitle": "Przypisz istniejącą sieć vRack do vRack Services",
+  "modalVrackAssociationDescription": "Aby usługa vRack Services mogła działać, należy przypisać ją do jednej z Twoich istniejących sieci vRack.",
+  "modalLoadingVrackList": "Pobieranie listy dostępnych sieci vRack",
+  "modalVrackListInError": "Następujące sieci vRack nie mogą być przypisane: {{list}}.",
+  "vrackServicesAssociateSuccess": "vRack Services {{vs}} zostały przypisane do Twojej usługi vRack {{vrack}}.",
+  "modalAssociateVrackWaitMessage": "Poczekaj, aż vRack Services zostaną przypisane do wybranego vRacka.",
+  "addVrackServicesToVrack": "Trwa przypisywanie...",
+  "vrackSelectPlaceholder": "Wybierz vRack",
+  "modalConfirmVrackAssociationButtonLabel": "Przypisz vRack",
+  "modalAssociateCancelButton": "Anuluj",
+  "modalVrackAssociationError": "Wystąpił następujący błąd: {{error}}.",
+  "modalAssociateAnotherVrackTitle": "Przypisz kolejnego vRacka do vRack Services",
+  "modalAssociateAnotherVrackDescription": "Aby vRack Services działały, przypisz je do jednego z istniejących vRacków.",
+  "modalAssociateAnotherVrackCurrentVrack": "Aktualny vRack",
+  "modalAssociateAnotherVrackSelect": "Wybierz inny vRack",
+  "modalAssociateAnotherVrackWaitMessage": "Poczekaj, aż vRack Services zostaną przypisane do nowego vRacka."
+}

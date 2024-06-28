@@ -32,5 +32,8 @@
   "modalDeleteInputLabel": "Wpisz słowo „TERMINATE”, aby potwierdzić usunięcie vRack Services",
   "modalDeleteHeadline": "Usuń vRack Services",
   "endpointTerminateServiceSuccess": "Rezygnacja z usługi {{vrackServices}} została zarejestrowana. Otrzymasz e-mail z potwierdzeniem",
-  "updateDisplayNameSuccess": "Zmiana nazwy dla {{vrackServices}} została zarejestrowana."
+  "updateDisplayNameSuccess": "Zmiana nazwy dla {{vrackServices}} została zarejestrowana.",
+  "listingTitle": "vRack Services",
+  "listingDescription": "Produkt vRack Services umożliwia korzystanie z usług sieciowych w sieci vRack. Tworząc Service Endpoint, możesz udostępnić, za pomocą prywatnego adresu IP, usługę zarządzaną przez OVHcloud w ramach Twojej sieci vRack.",
+  "vrackServicesEmptyDataGridMessage": "vRack Services nie są jeszcze gotowe"
 }
