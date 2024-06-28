@@ -12,5 +12,6 @@
   "modalDescriptionLine3": "Prezzo della vRack: 0€",
   "modalCancelButtonLabel": "Annullare",
   "modalConfirmVrackButtonLabel": "Ordinare una vRack",
-  "modalNoVrackButtonLabel": "No, grazie, possiedo già una vRack"
+  "modalNoVrackButtonLabel": "No, grazie, possiedo già una vRack",
+  "createPageTitle": "Attivare vRack Services"
 }

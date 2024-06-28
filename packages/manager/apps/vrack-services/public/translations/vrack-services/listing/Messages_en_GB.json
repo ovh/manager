@@ -8,7 +8,7 @@
   "productStatus": "Status",
   "region": "Region",
   "vrackId": "vRack",
-  "createdAt": "Creation date",
+  "createdAt": "Created on",
   "actions": "",
   "ACTIVE": "Active",
   "DISABLED": "Disabled",
@@ -32,5 +32,8 @@
   "modalDeleteInputLabel": "Please enter the word “TERMINATE” to confirm the deletion of vRack Services",
   "modalDeleteHeadline": "Delete vRack Services",
   "endpointTerminateServiceSuccess": "Your termination request for {{vrackServices}} has been processed. You will receive an email to confirm your request",
-  "updateDisplayNameSuccess": "The {{vrackServices}} name has been changed."
+  "updateDisplayNameSuccess": "The {{vrackServices}} name has been changed.",
+  "listingTitle": "vRack Services",
+  "listingDescription": "The vRack Services product allows you to benefit from network services on the vRack. By creating a Service Endpoint, you can expose a service managed by OVHcloud on your vRack using a private IP address.",
+  "vrackServicesEmptyDataGridMessage": "You do not have any vRack Services ready yet"
 }
