@@ -267,22 +267,36 @@ const pciNode: Node = {
     {
       id: 'pci-analytics',
       translation: 'sidebar_pci_analytics',
-      features: ['data-processing', 'logs-data-platform', 'databases'],
+      features: ['data-processing', 'logs-data-platform', 'databases-analysis', 'databases-operational', 'databases-streaming', 'pci-databases-analytics-analysis', 'pci-databases-analytics-operational', 'pci-databases-analytics-streaming'],
       forceVisibility: true,
       children: [
+        //Entry menu for PCI Databases for Angular
         {
-          id: 'pci-analytics-databases',
+          id: 'pci-databases-operational',
           translation: 'sidebar_pci_analytics_databases',
           serviceType: 'CLOUD_PROJECT_DATABASE',
           routing: {
             application: 'public-cloud',
             hash: '#/pci/projects/{projectId}/databases-analytics/operational/services',
           },
-          features: ['databases'],
+          features: ['databases-operational'],
           forceVisibility: true,
         },
+        //Entry menu for PCI Databases for React
         {
-          id: 'pci-analytics-data-streaming',
+          id: 'pci-databases-analytics-operational',
+          translation: 'sidebar_pci_analytics_databases',
+          serviceType: 'CLOUD_PROJECT_DATABASE',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/databases-analytics/operational/services',
+          },
+          features: ['pci-databases-analytics-operational'],
+          forceVisibility: true,
+        },
+        //Entry menu for PCI Data Streaming for Angular
+        {
+          id: 'pci-databases-streaming',
           translation: 'sidebar_pci_analytics_data_streaming',
           serviceType: 'CLOUD_PROJECT_DATABASE',
           routing: {
@@ -290,7 +304,19 @@ const pciNode: Node = {
             hash:
               '#/pci/projects/{projectId}/storages/databases-analytics/data-streaming',
           },
-          features: ['databases'],
+          features: ['databases-streaming'],
+          forceVisibility: true,
+        },
+        //Entry menu for PCI Data Streaming for React
+        {
+          id: 'pci-databases-analytics-streaming',
+          translation: 'sidebar_pci_analytics_data_streaming',
+          serviceType: 'CLOUD_PROJECT_DATABASE',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/databases-analytics/streaming/services',
+          },
+          features: ['pci-databases-analytics-streaming'],
           forceVisibility: true,
         },
         {
@@ -304,8 +330,9 @@ const pciNode: Node = {
           features: ['data-processing'],
           forceVisibility: true,
         },
+        //Entry menu for PCI Data Analysis for Angular
         {
-          id: 'pci-analytics-data-analysis',
+          id: 'pci-databases-analysis',
           translation: 'sidebar_pci_analytics_data_analysis',
           serviceType: 'CLOUD_PROJECT_DATABASE',
           routing: {
@@ -313,7 +340,19 @@ const pciNode: Node = {
             hash:
               '#/pci/projects/{projectId}/storages/databases-analytics/data-analysis',
           },
-          features: ['databases'],
+          features: ['databases-analysis'],
+          forceVisibility: true,
+        },
+        //Entry menu for PCI Data Analysis for React
+        {
+          id: 'pci-databases-analytics-analysis',
+          translation: 'sidebar_pci_analytics_data_analysis',
+          serviceType: 'CLOUD_PROJECT_DATABASE',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/databases-analytics/analysis/services',
+          },
+          features: ['pci-databases-analytics-analysis'],
           forceVisibility: true,
         },
         {
