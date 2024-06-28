@@ -48,6 +48,7 @@ export default class PciInstancesAddController {
     PciProjectAdditionalIpService,
     atInternet,
     PciProject,
+    OvhApiCloudProjectRegion,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -75,6 +76,7 @@ export default class PciInstancesAddController {
     this.instancePricesLink =
       INSTANCE_PRICING_LINKS[this.user.ovhSubsidiary] ||
       INSTANCE_PRICING_LINKS.DEFAULT;
+    this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
   }
 
   $onInit() {
@@ -165,6 +167,7 @@ export default class PciInstancesAddController {
     this.getSmallestGatewayInfo();
     this.defaultFloatingIp = this.getProductCatalog;
     this.isIpLoading = false;
+    this.isAddingRegionError = false;
   }
 
   get areLocalZonesFree() {
@@ -324,7 +327,76 @@ export default class PciInstancesAddController {
     this.displaySelectedRegion = false;
   }
 
+  addRegions() {
+    return this.OvhApiCloudProjectRegion.v6()
+      .addRegion(
+        { serviceName: this.projectId },
+        { region: this.model.datacenter.name },
+      )
+      .$promise.then(() => {
+        return this.OvhApiCloudProjectRegion.AvailableRegions()
+          .v6()
+          .resetQueryCache();
+      })
+      .then(() => {
+        this.CucCloudMessage.success(
+          this.$translate.instant(
+            'pci_projects_project_regions_add_region_success',
+            {
+              code: this.model.datacenter.name,
+            },
+          ),
+        );
+        this.isLoading = false;
+        this.isAddingRegionError = false;
+      })
+      .catch((error) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_regions_add_region_error',
+            {
+              message: get(error, 'data.message'),
+            },
+          ),
+        );
+        this.isLoading = false;
+        this.isAddingRegionError = true;
+      });
+  }
+
   onRegionChange() {
+    if (!this.model.datacenter || this.isAddingNewRegion) {
+      return null;
+    }
+
+    this.getFilteredRegions();
+
+    if (
+      !this.isAddingNewRegion &&
+      this.model.datacenter &&
+      !this.isRegionAvailable(this.model.datacenter)
+    ) {
+      this.isLoading = true;
+      this.isAddingNewRegion = true;
+      return this.addRegions().then(() => {
+        return this.PciProjectsProjectInstanceService.getProjectQuota(
+          this.projectId,
+          this.model.datacenter.name,
+        ).then((data) => {
+          this.model.datacenter.quota = data;
+          this.model.datacenter.available = true;
+
+          this.displaySelectedRegion = true;
+          this.instance.region = this.model.datacenter.name;
+          // Retrieve list of os types availables for the selected regio
+
+          this.isAddingNewRegion = false;
+          this.reloadFlavorList = true;
+          this.isLoading = false;
+        });
+      });
+    }
+
     this.displaySelectedRegion = true;
     this.instance.region = this.model.datacenter.name;
     // Retrieve list of os types availables for the selected region
@@ -375,6 +447,7 @@ export default class PciInstancesAddController {
           this.CucCloudMessage.error(get(error, 'data.message')),
         );
     }
+    return null;
   }
 
   getPrivateNetworkSubnet() {
@@ -408,6 +481,7 @@ export default class PciInstancesAddController {
 
   onImageFocus() {
     this.displaySelectedImage = false;
+    this.model.image = null;
   }
 
   onImageChange() {
@@ -544,8 +618,8 @@ export default class PciInstancesAddController {
 
   isRegionAvailable(datacenter) {
     return (
-      datacenter.isAvailable() &&
-      datacenter.hasEnoughQuotaForFlavors(this.model.flavorGroup)
+      datacenter?.isAvailable() &&
+      datacenter?.hasEnoughQuotaForFlavors(this.model.flavorGroup)
     );
   }
 
@@ -812,7 +886,9 @@ export default class PciInstancesAddController {
     }
 
     if (this.isLocalPrivateMode()) {
-      return this.selectedPrivateNetwork.id !== '';
+      return (
+        this.selectedPrivateNetwork.id !== '' || this.isAttachPublicNetwork
+      );
     }
 
     if (
@@ -897,7 +973,7 @@ export default class PciInstancesAddController {
       this.instance.userData = null;
     }
     if (this.isLocalPrivateMode()) {
-      const publicNetworkAlreadyExist = this.instance.networks.some(
+      const publicNetworkAlreadyExist = this.instance?.networks?.some(
         (instanceNetwork) => {
           return this.publicNetwork?.find(
             (network) => network.id === instanceNetwork.networkId,
@@ -907,7 +983,7 @@ export default class PciInstancesAddController {
       if (this.isAttachPublicNetwork && !publicNetworkAlreadyExist) {
         // if attach check box is ticked, add public network if not added one
         this.instance.networks = [
-          ...this.instance.networks,
+          ...(this.instance.networks || []),
           {
             networkId: this.publicNetwork?.find(
               (network) => network.name === PUBLIC_NETWORK,
@@ -917,7 +993,7 @@ export default class PciInstancesAddController {
       }
       if (!this.isAttachPublicNetwork && publicNetworkAlreadyExist) {
         // if attach check box is not ticked, remove public network if already added one
-        this.instance.networks = this.instance.networks.filter(
+        this.instance.networks = this.instance?.networks?.filter(
           (instanceNetwork) => {
             return !this.publicNetwork?.find(
               (network) => network.id === instanceNetwork.networkId,
@@ -1121,5 +1197,26 @@ export default class PciInstancesAddController {
     if (type === this.LOCAL_ZONE_REGION) return mode !== 'public_mode';
     if (type !== this.LOCAL_ZONE_REGION) return mode !== 'local_private_mode';
     return true;
+  }
+
+  onFlavorListLoadEnd() {
+    if (this.reloadFlavorList && this.currentStep === 2) {
+      this.reloadFlavorList = false;
+      if (!this.isAddingRegionError) {
+        this.onRegionChange();
+      }
+    }
+  }
+
+  isRegionValid() {
+    return (
+      this.model.datacenter &&
+      !this.isDiscoveryProject &&
+      (this.isRegionAvailable(this.model.datacenter) ||
+        (!this.model.datacenter.isAvailable() &&
+          !this.model.datacenter.hasEnoughQuotaForFlavors(
+            this.model.flavorGroup,
+          )))
+    );
   }
 }
