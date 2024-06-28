@@ -49,6 +49,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   ) : (
     <button
       className={style['button-as-div']}
+      title={t(isShortText ? node.shortTranslation : node.translation)}
       onMouseOver={!mobile ? handleOnMouseOver : null}
       onMouseLeave={!mobile ? handleOnMouseLeave : null}
       onFocus={handleOnMouseOver}
@@ -59,6 +60,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
         }
       }}
       id={id}
+      role="button"
     >
       <span> {t(isShortText ? node.shortTranslation : node.translation)}</span>
       <div className='flex align-items-center'>

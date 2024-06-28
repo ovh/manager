@@ -233,9 +233,9 @@ const Sidebar = (): JSX.Element => {
         />
       </a>
 
-      <div className={style.sidebar_menu}>
+      <div className={style.sidebar_menu} role="menubar">
         {(servicesCount || betaVersion === 1) && (
-          <ul id="menu" onMouseOut={onSidebarLeave} onBlur={onSidebarLeave}>
+          <ul id="menu" onMouseOut={onSidebarLeave} onBlur={onSidebarLeave} role="menu">
             <li className="px-3 mb-3 mt-2">
               <h2 className={!open ? style.hidden : ''}>
                 {t(currentNavigationNode.translation)}
@@ -250,6 +250,7 @@ const Sidebar = (): JSX.Element => {
                     ? style.sidebar_menu_items_selected
                     : ''
                 }`}
+                role="menuitem"
               >
                 {!shouldHideElement(node, count, betaVersion) && (
                   <SidebarLink
@@ -263,7 +264,7 @@ const Sidebar = (): JSX.Element => {
                     isShortText={!open}
                   />
                 )}
-                {node.separator && <hr />}
+                {node.separator && <hr role="separator" />}
               </li>
             ))}
           </ul>
@@ -277,6 +278,8 @@ const Sidebar = (): JSX.Element => {
               })
             }
             href={navigationPlugin.getURL('catalog', '/')}
+            role="link"
+            title={t('sidebar_service_add')}
           >
             <span
               className={`oui-icon oui-icon-cart ${style.sidebar_action_icon}`}
@@ -293,7 +296,7 @@ const Sidebar = (): JSX.Element => {
         </Suspense>
       )}
 
-      <button className={style.sidebar_toggle_btn} onClick={toggleSidebar}>
+      <button className={style.sidebar_toggle_btn} onClick={toggleSidebar} role="button">
         {open && <span className="mr-2">Réduire</span>}
         <span
           className={`${

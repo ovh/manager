@@ -125,6 +125,8 @@ const SubTree = ({
         <button
           className={style.subtree_back_btn}
           onClick={handleBackNavigation}
+          title={t('sidebar_back_menu')}
+          role="button"
         >
           <span
             className={`oui-icon oui-icon-arrow-left mx-2`}
@@ -135,6 +137,7 @@ const SubTree = ({
         {rootNode.illustration && (
           <div
             aria-label={t(rootNode.translation)}
+            role="img"
             className={`d-block py-3 ${style.subtree_illustration}`}
           >
             <img
@@ -146,7 +149,7 @@ const SubTree = ({
         )}
 
         <div className={rootNode.illustration ? '' : 'pt-4'}>
-          <ul className={`${style.subtree_list} mx-3`}>
+          <ul className={`${style.subtree_list} mx-3`} role="menu" aria-label={t(rootNode.translation)}>
             <li className="mb-4">
               <h2>{t(rootNode.translation)}</h2>
             </li>
@@ -182,6 +185,8 @@ const SubTree = ({
                   <button
                     className={style.sidebar_pci_refresh}
                     onClick={() => refetchPciProjects()}
+                    role="button"
+                    title={t('sidebar_pci_load_error')}
                   >
                     <span>{t('sidebar_pci_load_error')}</span>
                     <span className="oui-icon oui-icon-refresh"></span>
@@ -196,6 +201,7 @@ const SubTree = ({
                         selectedPciProject.project_id,
                       )
                     }
+                    role="button"
                   >
                     <span className={style.sidebar_clipboard_text}>
                       {selectedPciProject.project_id}
@@ -214,6 +220,7 @@ const SubTree = ({
                   key={node.id}
                   id={node.id}
                   className={style.sidebar_pciEntry}
+                  role="menuitem"
                 >
                   {!shouldHideElement(node, 1, 2) && (
                     <SubTreeSection
@@ -221,7 +228,7 @@ const SubTree = ({
                       selectedPciProject={selectedPciProject?.project_id}
                     />
                   )}
-                  {node.separator && <hr />}
+                  {node.separator && <hr role="separator"/>}
                 </li>
               ))}
           </ul>
