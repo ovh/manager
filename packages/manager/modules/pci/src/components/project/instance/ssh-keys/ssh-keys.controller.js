@@ -44,6 +44,11 @@ export default class SshKeysController {
     if (this.sshKeys && has(changes, 'region')) {
       this.getAvailableKeys(this.region);
     }
+    if (has(changes, 'addingRegion') && !this.addingRegion) {
+      this.OvhApiCloudProjectSshKey.v6().resetQueryCache();
+      return this.$q.all([this.getGuideUrl(), this.getSshKeys()]);
+    }
+    return undefined;
   }
 
   getGuideUrl() {
