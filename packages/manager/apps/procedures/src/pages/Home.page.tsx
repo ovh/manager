@@ -11,6 +11,7 @@ import {
 } from '@/routes/home.constants';
 import { rootRoute } from '@/routes/routes';
 import Loading from '@/components/Loading/Loading';
+import { SkeletonLoading } from '@/components/Loading/SkeletonLoading';
 
 const redirectStrategies: Record<Status2fa['status'] | 'error', string> = {
   open: `${rootRoute}/${seeRoutePath}`,
@@ -56,7 +57,7 @@ export default function Home() {
             <img src={ovhCloudLogo} alt="ovh-cloud-logo" className="app-logo" />
           </div>
           <div className="flex justify-center app-content lg:w-8/12 mx-auto min-h-[500px] sm:shadow sm:shadow-[0_0_6px_0_rgba(40,89,192,0.2)] sm:border-none border-t-[1px] border-gray-300">
-            {isLoading ? <Loading /> : <Outlet />}
+            {isLoading ? <SkeletonLoading /> : <Outlet />}
           </div>
         </div>
       </div>
