@@ -327,45 +327,42 @@ export default class PciInstancesAddController {
   }
 
   addRegions() {
-    return (
-      this.OvhApiCloudProjectRegion.v6()
-        .addRegion(
-          { serviceName: this.projectId },
-          { region: this.model.datacenter.name },
-        )
-        .$promise.then(() =>
-          this.OvhApiCloudProjectRegion.AvailableRegions()
-            .v6()
-            .resetQueryCache(),
-        )
-        // .then(() => this.$state.reload())
-        .then(() => {
-          this.CucCloudMessage.success(
-            this.$translate.instant(
-              'pci_projects_project_regions_add_region_success',
-              {
-                code: this.model.datacenter.name,
-              },
-              (this.isLoading = false),
-            ),
-          );
-        })
-        .catch((error) => {
-          this.CucCloudMessage.error(
-            this.$translate.instant(
-              'pci_projects_project_regions_add_region_error',
-              { message: get(error, 'data.message') },
-            ),
-          );
+    return this.OvhApiCloudProjectRegion.v6()
+      .addRegion(
+        { serviceName: this.projectId },
+        { region: this.model.datacenter.name },
+      )
+      .$promise.then(() =>
+        this.OvhApiCloudProjectRegion.AvailableRegions()
+          .v6()
+          .resetQueryCache(),
+      )
+      .then(() => {
+        this.CucCloudMessage.success(
+          this.$translate.instant(
+            'pci_projects_project_regions_add_region_success',
+            {
+              code: this.model.datacenter.name,
+            },
+            (this.isLoading = false),
+          ),
+        );
+      })
+      .catch((error) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_regions_add_region_error',
+            { message: get(error, 'data.message') },
+          ),
+        );
 
-          this.isLoading = false;
-        })
-    );
+        this.isLoading = false;
+      });
   }
 
   onRegionChange() {
     if (!this.model.datacenter || this.isAddingNewRegion) {
-      return
+      return;
     }
 
     this.getFilteredRegions();
@@ -376,7 +373,7 @@ export default class PciInstancesAddController {
       !this.isRegionAvailable(this.model.datacenter)
     ) {
       this.isAddingNewRegion = true;
-      return this.addRegions().then(() => {
+      this.addRegions().then(() => {
         return this.PciProjectsProjectInstanceService.getProjectQuota(
           this.projectId,
           this.model.datacenter.name,
@@ -881,7 +878,9 @@ export default class PciInstancesAddController {
     }
 
     if (this.isLocalPrivateMode()) {
-      return this.selectedPrivateNetwork.id !== '';
+      return (
+        this.selectedPrivateNetwork.id !== '' || this.isAttachPublicNetwork
+      );
     }
 
     if (
@@ -966,7 +965,7 @@ export default class PciInstancesAddController {
       this.instance.userData = null;
     }
     if (this.isLocalPrivateMode()) {
-      const publicNetworkAlreadyExist = this.instance.networks.some(
+      const publicNetworkAlreadyExist = this.instance?.networks?.some(
         (instanceNetwork) => {
           return this.publicNetwork?.find(
             (network) => network.id === instanceNetwork.networkId,
@@ -976,7 +975,7 @@ export default class PciInstancesAddController {
       if (this.isAttachPublicNetwork && !publicNetworkAlreadyExist) {
         // if attach check box is ticked, add public network if not added one
         this.instance.networks = [
-          ...this.instance.networks,
+          ...(this.instance.networks || []),
           {
             networkId: this.publicNetwork?.find(
               (network) => network.name === PUBLIC_NETWORK,
@@ -986,7 +985,7 @@ export default class PciInstancesAddController {
       }
       if (!this.isAttachPublicNetwork && publicNetworkAlreadyExist) {
         // if attach check box is not ticked, remove public network if already added one
-        this.instance.networks = this.instance.networks.filter(
+        this.instance.networks = this.instance?.networks?.filter(
           (instanceNetwork) => {
             return !this.publicNetwork?.find(
               (network) => network.id === instanceNetwork.networkId,
