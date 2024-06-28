@@ -900,5 +900,6 @@
   "server_datacenter_STL": "San Luis",
   "server_datacenter_IND": "Indianápolis",
   "server_datacenter_IST": "Estambul",
-  "server_datacenter_TOR": "Toronto"
+  "server_datacenter_TOR": "Toronto",
+  "server_datacenter_DAL": "Dallas"
 }
