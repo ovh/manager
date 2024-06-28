@@ -40,6 +40,12 @@ export default class ImagesListController {
       });
   }
 
+  $onChanges({ osTypes }) {
+    if (osTypes && this.images?.length) {
+      this.updateImages(this.images);
+    }
+  }
+
   getImages() {
     return this.PciProjectImages.getImages(this.serviceName, this.region).then(
       (images) => {

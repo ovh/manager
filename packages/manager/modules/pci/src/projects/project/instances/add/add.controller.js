@@ -48,6 +48,7 @@ export default class PciInstancesAddController {
     PciProjectAdditionalIpService,
     atInternet,
     PciProject,
+    OvhApiCloudProjectRegion,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -75,6 +76,7 @@ export default class PciInstancesAddController {
     this.instancePricesLink =
       INSTANCE_PRICING_LINKS[this.user.ovhSubsidiary] ||
       INSTANCE_PRICING_LINKS.DEFAULT;
+    this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
   }
 
   $onInit() {
@@ -324,7 +326,74 @@ export default class PciInstancesAddController {
     this.displaySelectedRegion = false;
   }
 
+  addRegions() {
+    return (
+      this.OvhApiCloudProjectRegion.v6()
+        .addRegion(
+          { serviceName: this.projectId },
+          { region: this.model.datacenter.name },
+        )
+        .$promise.then(() =>
+          this.OvhApiCloudProjectRegion.AvailableRegions()
+            .v6()
+            .resetQueryCache(),
+        )
+        // .then(() => this.$state.reload())
+        .then(() => {
+          this.CucCloudMessage.success(
+            this.$translate.instant(
+              'pci_projects_project_regions_add_region_success',
+              {
+                code: this.model.datacenter.name,
+              },
+              (this.isLoading = false),
+            ),
+          );
+        })
+        .catch((error) => {
+          this.CucCloudMessage.error(
+            this.$translate.instant(
+              'pci_projects_project_regions_add_region_error',
+              { message: get(error, 'data.message') },
+            ),
+          );
+
+          this.isLoading = false;
+        })
+    );
+  }
+
   onRegionChange() {
+    if (!this.model.datacenter || this.isAddingNewRegion) {
+      return
+    }
+
+    this.getFilteredRegions();
+
+    if (
+      !this.isAddingNewRegion &&
+      this.model.datacenter &&
+      !this.isRegionAvailable(this.model.datacenter)
+    ) {
+      this.isAddingNewRegion = true;
+      return this.addRegions().then(() => {
+        return this.PciProjectsProjectInstanceService.getProjectQuota(
+          this.projectId,
+          this.model.datacenter.name,
+        ).then((data) => {
+          this.model.datacenter.quota = data;
+          this.model.datacenter.available = true;
+
+          this.displaySelectedRegion = true;
+          this.instance.region = this.model.datacenter.name;
+          // Retrieve list of os types availables for the selected regio
+
+          this.isAddingNewRegion = false;
+          this.reloadFlavorList = true;
+        });
+      });
+    }
+
     this.displaySelectedRegion = true;
     this.instance.region = this.model.datacenter.name;
     // Retrieve list of os types availables for the selected region

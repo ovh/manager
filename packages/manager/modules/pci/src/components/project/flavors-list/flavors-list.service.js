@@ -54,7 +54,11 @@ export default class FlavorsList {
     serviceName,
     currentRegion,
     catalogEndpoint = DEFAULT_CATALOG_ENDPOINT,
+    noCache
   ) {
+    if (noCache) {
+      this.OvhApiCloudProjectFlavor.v6().resetQueryCache();
+    }
     return this.$q
       .all({
         flavors: this.OvhApiCloudProjectFlavor.v6().query({

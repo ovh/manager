@@ -32,6 +32,8 @@
             data-exclude-categories="$ctrl.excludeCategories"
             data-on-change="$ctrl.onFlavorCategorySelect(flavor, category)"
             data-catalog-endpoint="$ctrl.catalogEndpoint"
+            data-reload="$ctrl.reloadFlavorList"
+            data-load-end="$ctrl.onRegionChange()"
         >
         </pci-project-flavors-list>
     </oui-step-form>
@@ -45,7 +47,7 @@
                     location: $ctrl.model.location
                 }
             }}"
-        data-valid="$ctrl.model.datacenter && $ctrl.isRegionAvailable($ctrl.model.datacenter)"
+        data-valid="$ctrl.model.datacenter"
         data-prevent-next="true"
         data-navigation="$ctrl.model.datacenter"
         data-on-focus="$ctrl.onRegionFocus()"
@@ -268,7 +270,7 @@
         data-navigation="$ctrl.showImageNavigation()"
     >
         <pci-project-images-list
-            data-ng-if="$ctrl.currentStep >= 2"
+            data-ng-if="$ctrl.currentStep >= 2 && !$ctrl.isAddingNewRegion"
             data-display-selected-image="$ctrl.displaySelectedImage"
             data-flavor-type="$ctrl.model.flavorGroup.name"
             data-os-types="$ctrl.osTypes"
@@ -296,6 +298,7 @@
                 </button>
             </div>
         </pci-project-images-list>
+        <oui-spinner data-ng-if="$ctrl.isAddingNewRegion" data-size="s" />
 
         <pci-project-instance-ssh-keys
             data-ng-if="$ctrl.isLinuxImageType()"
