@@ -14,5 +14,20 @@
   "modalCancelButton": "Annulla",
   "modalConfirmButton": "Confermare",
   "modalDissociateHeadline": "Dissociare vRack Services dalla vRack",
-  "modalDissociateDescription": "Vuoi davvero dissociare questo vRack Services dalla tua vRack?"
+  "modalDissociateDescription": "Vuoi davvero dissociare questo vRack Services dalla tua vRack?",
+  "action-goDetails": "Andare ai dettagli",
+  "action-editDisplayName": "Modifica il nome",
+  "action-deleteVrackServices": "Eliminare",
+  "associateVrackButtonLabel": "Associare a una vRack",
+  "vrackActionDissociate": "Dissociare",
+  "vrackActionAssociateToAnother": "Associare a un’altra vRack",
+  "modalUpdateVrackServicesHeadline": "Modificare il nome del vRack Services {{id}}",
+  "modalUpdateVrackServicesDescription": "",
+  "updateVrackServicesDisplayNameInputLabel": "Nome del vRack Services",
+  "updateVrackServicesDisplayNameSuccess": "La modifica del nome per {{vrackServices}} è stata presa in carico.",
+  "terminateVrackServicesSuccess": "La richiesta di disattivazione per {{vrackServices}} è stata presa in carico, riceverai un’email per confermarla",
+  "modalDeleteVrackServicesInputLabel": "Inserisci la parola \"TERMINATE\" per confermare l'eliminazione di vRack Services",
+  "modalDeleteVrackServicesHeadline": "Eliminare vRack Services",
+  "vrackServicesNotReadyInfoMessage": "Operazione in corso su vRack Services {{displayName}",
+  "vrackServicesInErrorMessage": "vRack Services {{displayName}} è in errore"
 }

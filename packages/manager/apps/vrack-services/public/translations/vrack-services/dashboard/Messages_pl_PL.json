@@ -34,5 +34,7 @@
   "vrackServicesInErrorMessage": "Wystąpił błąd w vRack Services {{displayName}}",
   "subnetCreationOnGoing": " : Trwa tworzenie podsieci {{name}}",
   "endpointCreationOnGoing": " : Trwa tworzenie Service Endpoint",
-  "vrackActionDissociate": "Odłącz"
+  "vrackActionDissociate": "Odłącz",
+  "dashboardPageTitle": "vRack Services",
+  "dashboardPageDescription": "Produkt vRack Services umożliwia korzystanie z usług sieciowych w sieci vRack. Tworząc Service Endpoint, możesz udostępnić, za pomocą prywatnego adresu IP, usługę zarządzaną przez OVHcloud w ramach Twojej sieci vRack."
 }

@@ -9,7 +9,7 @@
   "productStatus": "Status",
   "region": "Region",
   "vrackId": "Private network (vRack)",
-  "createdAt": "Creation date",
+  "createdAt": "Created on",
   "ERI": "London (ERI)",
   "BHS": "Beauharnois (BHS)",
   "DC": "Beauharnois (DC)",
@@ -34,5 +34,7 @@
   "vrackServicesInErrorMessage": "vRack Services {{displayName}} has an error",
   "subnetCreationOnGoing": " : Creating subnet {{name}}:",
   "endpointCreationOnGoing": " : Creating Service Endpoint",
-  "vrackActionDissociate": "Detach"
+  "vrackActionDissociate": "Detach",
+  "dashboardPageTitle": "vRack Services",
+  "dashboardPageDescription": "The vRack Services product allows you to benefit from network services on the vRack. By creating a Service Endpoint, you can expose a service managed by OVHcloud on your vRack using a private IP address."
 }
