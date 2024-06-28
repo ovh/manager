@@ -6,7 +6,7 @@ import ProjectSelector, {
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
-import { shouldHideElement } from '@/container/nav-reshuffle/sidebar/utils';
+import { findNodeById, shouldHideElement, getLastElement } from '@/container/nav-reshuffle/sidebar/utils';
 import { Location, useLocation } from 'react-router-dom';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTreeSection';
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
@@ -39,6 +39,8 @@ const SubTree = ({
   const [selectedPciProject, setSelectedPciProject] = useState<PciProject>(
     null,
   );
+  const [focusOnLast, setFocusOnLast] = useState<boolean>(false);
+  const lastElement = getLastElement(rootNode);
 
   const {
     data: pciProjects,
@@ -121,6 +123,21 @@ const SubTree = ({
         className={style.subtree_content}
         onMouseOver={() => handleOnMouseOver(rootNode)}
         onMouseLeave={handleBackNavigation}
+        onBlur={(e : any) => {
+          const id = e.relatedTarget?.id.replace('-link', '');
+          if (id === lastElement.id) {
+            setFocusOnLast(true);
+            return
+          }
+          if (focusOnLast) {
+            const node = findNodeById(rootNode, id);
+            if (node) {
+              setFocusOnLast(false);
+              return
+            }
+            handleBackNavigation();
+          }
+        }}
       >
         <button
           className={style.subtree_back_btn}
