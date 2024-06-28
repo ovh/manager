@@ -72,7 +72,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   // Also, i don't want to disable the option "noImplicitAny"
   // Because this is done under unique circumstances and should not impact the rest of the codebase
   const selectStyles = {
-    option: (provided, {isFocused}) => ({
+    option: (provided: any, {isFocused} : {isFocused: boolean}) => ({
       ...provided,
       backgroundColor: isFocused ? '#C8F0FD' : '#FFFFFF',
       color: isFocused ? '#1A53CF' : '#4E568E',
