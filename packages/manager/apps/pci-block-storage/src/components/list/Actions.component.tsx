@@ -53,6 +53,7 @@ export default function ActionsComponent({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.ghost}
           color={ODS_THEME_COLOR_INTENT.primary}
+          data-testid={'actionComponent-create-backup-button'}
           href={hrefCreateBackup}
         >
           <OsdsText
@@ -71,6 +72,7 @@ export default function ActionsComponent({
           variant={ODS_BUTTON_VARIANT.ghost}
           color={ODS_THEME_COLOR_INTENT.primary}
           href={volume.attachedTo?.length ? hrefDetach : hrefAttach}
+          data-testid={'actionComponent-attach-detach-button'}
         >
           <OsdsText
             size={ODS_THEME_TYPOGRAPHY_SIZE._500}
@@ -91,6 +93,7 @@ export default function ActionsComponent({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.ghost}
           color={ODS_THEME_COLOR_INTENT.primary}
+          data-testid={'actionComponent-remove-button'}
           href={hrefRemove}
         >
           <OsdsText

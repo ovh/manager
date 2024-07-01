@@ -5,9 +5,9 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
+  ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
-  ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useEffect } from 'react';
@@ -90,6 +90,7 @@ export default function DetachStorage() {
             inline
             size={ODS_SPINNER_SIZE.md}
             className="block text-center"
+            data-testid="detachStorage-spinner"
           />
         ) : (
           <OsdsText

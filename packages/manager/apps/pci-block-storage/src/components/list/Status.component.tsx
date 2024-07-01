@@ -41,7 +41,11 @@ export default function StatusComponent({
     }
   }, [statusGroup]);
   return (
-    <OsdsChip {...chipAttribute} className={'w-fit'}>
+    <OsdsChip
+      {...chipAttribute}
+      className={'w-fit'}
+      data-testid={'StatusComponent_chip'}
+    >
       {status === statusGroup
         ? status
         : t(`pci_projects_project_storages_blocks_status_${statusGroup}`)}
