@@ -77,7 +77,7 @@
   "overTheBox_release_channel_v0_8": "Versión v0.8",
   "overTheBox_release_channel_v0_9": "Versión v0.9",
   "overTheBox_release_channel_v1_0": "Versión v1.0",
-  "overTheBox_version_system": "Versión del sistema",
+  "overTheBox_version_system": "Versión del sistema operativo",
   "overTheBox_last_seen": "Último acceso del hardware desde los servidores de aprovisionamiento",
   "overTheBox_last_seen_few_seconds": "Hace algunos segundos",
   "overTheBox_last_seen_minutes_ago": "Hace {{lastSeenDiff}} aproximadamente",
