@@ -8,8 +8,11 @@ export default class ServerOrderTrafficService {
     this.Server = Server;
   }
 
-  getOrderables(productId) {
-    return this.Server.getOrderables(productId, 'traffic')
+  getOrderables(server) {
+    if (!server.canOrderQuota) {
+      return this.$q.resolve(null);
+    }
+    return this.Server.getOrderables(server.name, 'traffic')
       .then((response) =>
         this.acceptResponse(this.transformOrderables(response.traffic)),
       )

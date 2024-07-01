@@ -1177,7 +1177,7 @@ export default class Server {
 
   getOrderables(productId, optionName) {
     return this.get(productId, `orderable/${optionName}`).catch((err) => {
-      if (err.status === 460) {
+      if (err.status === 460 || err.status === 500) {
         return {};
       }
 
@@ -1337,12 +1337,17 @@ export default class Server {
     });
   }
 
-  getUsbStorageInformations(productId) {
-    const orderable = this.get(productId, 'orderable/usbKey', {
-      proxypass: true,
-    });
+  getUsbStorageInformations(server) {
+    let orderable;
+    if (!server.canOrderUsbDisk) {
+      orderable = this.$q.resolve(null);
+    } else {
+      orderable = this.get(server.name, 'orderable/usbKey', {
+        proxypass: true,
+      });
+    }
 
-    const specification = this.get(productId, 'specifications/hardware', {
+    const specification = this.get(server.name, 'specifications/hardware', {
       proxypass: true,
     });
 
