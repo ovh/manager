@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.2.1...@ovh-ux/manager-key-management-service-app@0.2.2) (2024-07-01)
+
+
+### Bug Fixes
+
+* **kms:** fix loading screen on firefox ([1b7fc97](https://github.com/ovh/manager/commit/1b7fc97fe05c6773a29a946f3d8df8379b2f6f62))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.2.0...@ovh-ux/manager-key-management-service-app@0.2.1) (2024-06-25)
 
 

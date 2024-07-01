@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.41.0...@ovh-ux/manager-dedicated@19.41.1) (2024-07-01)
+
+
+### Bug Fixes
+
+* **dedicated.server:** dont call orderable endpoint if not orderable ([#12152](https://github.com/ovh/manager/issues/12152)) ([77fd8e8](https://github.com/ovh/manager/commit/77fd8e82f4d6aa0c8b10794882f2d3309301d810))
+
+
+
+
+
 # [19.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.40.0...@ovh-ux/manager-dedicated@19.41.0) (2024-06-25)
 
 
