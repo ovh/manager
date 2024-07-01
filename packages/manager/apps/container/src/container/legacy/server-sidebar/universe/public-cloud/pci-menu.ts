@@ -413,6 +413,12 @@ export function getPciProjectMenu(
           href: getURL('public-cloud', `#/pci/projects/${projectId}/vouchers`),
         },
         {
+          id: 'savings',
+          title: 'Savings Plan',
+          badge: 'new',
+          href: getURL('public-cloud', `#/pci/projects/${projectId}/savings-plan`),
+        },
+        {
           id: 'contacts',
           title: 'Contacts and Rights',
           feature: 'public-cloud:contacts',
