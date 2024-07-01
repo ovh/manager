@@ -513,6 +513,17 @@ const pciNode: Node = {
           features: ['public-cloud:vouchers'],
         },
         {
+          id: 'pci-savings-plan',
+          translation: 'sidebar_pci_savings_plan',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/savings-plan',
+          },
+          count: false,
+          tag: NodeTag.NEW,
+
+        },
+        {
           id: 'pci-contacts-rights',
           translation: 'sidebar_pci_contacts_rights',
           routing: {
