@@ -71,7 +71,7 @@ export default function DissociateModal() {
           vs: getDisplayName(vs),
           vrack: vrackId,
         }),
-        id,
+        { vrackServicesId: id },
       );
     },
     onError: () => {

@@ -1,13 +1,19 @@
 import React from 'react';
 
+export type MessageOptions = {
+  vrackServicesId?: string;
+  linkUrl?: string;
+  linkLabel?: string;
+};
+
 export type MessageData = {
   id: number;
-  vrackServicesId?: string;
+  options?: MessageOptions;
   message: string;
 };
 
 export type MessagesContextType = {
-  addSuccessMessage: (msg: string, vrackServicesId?: string) => void;
+  addSuccessMessage: (msg: string, options?: MessageOptions) => void;
   successMessages: MessageData[];
   hiddenMessages: number[];
   hideMessage: (id: number) => void;
