@@ -8,6 +8,7 @@ import {
   useProjectLocalRegions,
   useProjectQuota,
   useProjectUrl,
+  useTranslatedMicroRegions,
 } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -41,7 +42,6 @@ import {
   VOLUME_UNLIMITED_QUOTA,
 } from '@/constants';
 import ChipRegion from '@/components/edit/ChipRegion.component';
-import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import { TVolume } from '@/api/data/volume';
 import {
   useGetPrices,
@@ -248,7 +248,12 @@ export default function EditPage() {
       )}
 
       {isLoading || isUpdatePending ? (
-        <OsdsSpinner size={ODS_SPINNER_SIZE.md} inline className="mt-12" />
+        <OsdsSpinner
+          size={ODS_SPINNER_SIZE.md}
+          inline
+          className="mt-12"
+          data-testid="editPage-spinner"
+        />
       ) : (
         <>
           <div className="header mb-6 mt-8">
@@ -297,6 +302,7 @@ export default function EditPage() {
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             size={ODS_THEME_TYPOGRAPHY_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
+            data-testid="editPage-text_volumeType"
           >
             {volume.type}
           </OsdsText>
@@ -323,6 +329,7 @@ export default function EditPage() {
               onOdsValueChange={(event) =>
                 setFormState({ ...formState, name: event.detail.value })
               }
+              data-testid="editPage-input_volumeName"
             />
           </OsdsFormField>
 
@@ -375,6 +382,7 @@ export default function EditPage() {
                       },
                     });
                   }}
+                  data-testid="editPage-input_volumeSize"
                 />
 
                 <OsdsButton
@@ -471,6 +479,7 @@ export default function EditPage() {
               color={ODS_THEME_COLOR_INTENT.primary}
               onClick={() => onEdit()}
               slot="actions"
+              data-testid="editPage-button_submit"
             >
               {tEdit(
                 'pci_projects_project_storages_blocks_block_edit_submit_label',

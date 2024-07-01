@@ -44,6 +44,7 @@ const mockVolumeDetach: TVolume = {
 describe('ActionsComponent', () => {
   it('ActionsComponent renders correct button with correct links', () => {
     vi.mocked(useHref)
+      .mockReturnValueOnce('./edit/1')
       .mockReturnValueOnce('./attach/1')
       .mockReturnValueOnce('./detach/1')
       .mockReturnValueOnce('./delete/1');
@@ -69,6 +70,7 @@ describe('ActionsComponent', () => {
 
   it('ActionsComponent renders correct button with detach link', () => {
     vi.mocked(useHref)
+      .mockReturnValueOnce('./edit/1')
       .mockReturnValueOnce('./attach/1')
       .mockReturnValueOnce('./detach/1')
       .mockReturnValueOnce('./delete/1');
