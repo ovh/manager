@@ -1,10 +1,11 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
+import { useTranslatedMicroRegions } from '@ovhcloud/manager-components';
 import {
   attachVolume,
-  detachVolume,
   deleteVolume,
+  detachVolume,
   getAllVolumes,
   getVolume,
   getVolumeSnapshot,
@@ -15,7 +16,6 @@ import {
   VolumeOptions,
 } from '@/api/data/volume';
 import queryClient from '@/queryClient';
-import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 
 export const useAllVolumes = (projectId: string) => {
   const { translateRegion } = useTranslatedMicroRegions();

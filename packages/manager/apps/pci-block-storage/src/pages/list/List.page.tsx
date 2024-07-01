@@ -131,10 +131,13 @@ export default function ListingPage() {
         {hasMaintenance && (
           <PciMaintenanceBanner
             maintenanceURL={maintenanceURL}
+            data-testid="ListPage_maintenance-banner"
             productName={t('pci_projects_project_storages_blocks_title')}
           />
         )}
-        {isBannerVisible && <PciAnnouncementBanner />}
+        {isBannerVisible && (
+          <PciAnnouncementBanner data-testid={'ListPage_announcementBanner'} />
+        )}
         {isDiscoveryProject(project) && (
           <PciDiscoveryBanner projectId={projectId} />
         )}

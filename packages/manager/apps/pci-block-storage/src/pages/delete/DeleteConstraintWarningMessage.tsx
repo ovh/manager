@@ -30,6 +30,7 @@ export default function DeleteConstraintWarningMessage({
         level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
         size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         color={ODS_THEME_COLOR_INTENT.text}
+        data-testid="deleteConstraintWarningMessage-content"
       >
         {hasSnapshot &&
           !isAttached &&
