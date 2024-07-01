@@ -68,7 +68,9 @@ export default function EndpointCreatePage() {
         pageType: PageType.bannerSuccess,
       });
       navigate(dashboardUrl);
-      addSuccessMessage(t('endpointCreationSuccess', { id }), id);
+      addSuccessMessage(t('endpointCreationSuccess', { id }), {
+        vrackServicesId: id,
+      });
     },
     onError: () => {
       trackPage({

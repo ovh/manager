@@ -66,6 +66,17 @@ When('User {word}', async function(
     hasText: buttonLabel,
   });
   await button.click();
+
+  if (acceptOrDenyOrCancel !== 'cancel') {
+    const checkbox = await this.page.locator('osds-checkbox');
+    await checkbox.click();
+
+    const confirmButton = await this.page.locator('osds-button', {
+      hasText: labels.modalSubmitOrderButtonLabel,
+    });
+    await expect(confirmButton).toBeEnabled();
+    await confirmButton.click();
+  }
 });
 
 When('User clicks on the link to associate a vRack', async function(

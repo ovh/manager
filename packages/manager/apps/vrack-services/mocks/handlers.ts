@@ -1,5 +1,7 @@
 import { Handler } from '@playwright-helpers';
 import {
+  getCartMocks,
+  GetCartMocksParams,
   getOrderDetailsMocks,
   GetOrderDetailsMocksParams,
 } from '@ovh-ux/manager-module-order/mock';
@@ -26,7 +28,8 @@ export type ConfigParams = GetVrackServicesMocksParams &
   GetRegionMocksParams &
   GetVrackMocksParams &
   GetServicesMocksParams &
-  GetIamMocksParams;
+  GetIamMocksParams &
+  GetCartMocksParams;
 
 export const getConfig = (params: ConfigParams): Handler[] =>
   [
@@ -38,4 +41,5 @@ export const getConfig = (params: ConfigParams): Handler[] =>
     getServicesMocks,
     getIamMocks,
     getFeatureAvailabilityMock,
+    getCartMocks,
   ].flatMap((getMocks) => getMocks(params));

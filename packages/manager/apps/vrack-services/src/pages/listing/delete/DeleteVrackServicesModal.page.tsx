@@ -41,7 +41,7 @@ export default function DeleteVrackServicesModal() {
           t('terminateVrackServicesSuccess', {
             vrackServices: getDisplayName(vs),
           }),
-          id,
+          { vrackServicesId: id },
         );
       }}
       onError={() => {
