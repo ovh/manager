@@ -667,6 +667,18 @@ pciNode.children = [
         features: ['public-cloud:vouchers'],
       },
       {
+        id: 'pci-savings-plan',
+        idAttr: 'pci-savings-plan',
+        universe: pciNode.id,
+        translation: 'sidebar_pci_savings_plan',
+        routing: {
+          application: 'public-cloud',
+          hash: '#/pci/projects/{projectId}/savings-plan',
+        },
+        count: false,
+        tag: NodeTag.NEW,
+      },
+      {
         id: 'pci-contacts-rights',
         idAttr: 'pci-contacts-rights-link',
         universe: pciNode.id,
