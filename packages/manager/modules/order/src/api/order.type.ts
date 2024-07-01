@@ -52,12 +52,14 @@ export type Item<T = unknown> = {
   settings: T;
 };
 
+export type Contract = {
+  content: string;
+  name: string;
+  url: string;
+};
+
 export type Order = {
-  contracts: {
-    content: string;
-    name: string;
-    url: string;
-  }[];
+  contracts: Contract[];
   details: {
     cartItemID: number | null;
     description: string;

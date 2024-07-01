@@ -9,7 +9,6 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   OsdsText,
   OsdsSpinner,
@@ -17,19 +16,32 @@ import {
   OsdsMessage,
 } from '@ovhcloud/ods-components/react';
 import {
+  CreateCartResult,
   OrderDescription,
+  getDeliveringOrderQueryKey,
   useOrderPollingStatus,
-  useOrderURL,
 } from '@ovh-ux/manager-module-order';
 import {
   ButtonType,
   PageLocation,
+  ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { handleClick } from '@ovhcloud/manager-components';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { getVrackListQueryKey } from '@/data';
 import { DeliveringMessages } from '@/components/DeliveringMessages.component';
+import { MessagesContext } from './feedback-messages/Messages.context';
+import { LoadingText } from './LoadingText.component';
+import { OrderSubmitModalContent } from './OrderSubmitModalContent.component';
+import { createVrackOnlyCart } from '@/utils/cart';
+
+const trackingParams = {
+  location: PageLocation.popup,
+  buttonType: ButtonType.button,
+};
 
 export type CreateVrackProps = {
   closeModal: () => void;
@@ -37,9 +49,18 @@ export type CreateVrackProps = {
 
 export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
   const { t } = useTranslation('vrack-services/create-vrack');
-  const vrackOrderUrl = useOrderURL('vrack');
+  const queryClient = useQueryClient();
+  const { addSuccessMessage } = React.useContext(MessagesContext);
+  const { environment } = React.useContext(ShellContext);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
+
+  const { mutate: createCart, data, error, isError, isPending } = useMutation<
+    CreateCartResult,
+    ApiError
+  >({
+    mutationFn: () => createVrackOnlyCart(environment.user.ovhSubsidiary),
+  });
 
   const {
     data: vrackDeliveringOrders,
@@ -76,14 +97,19 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
         messageKey="deliveringVrackMessage"
         orders={vrackDeliveringOrders}
       />
-      {isVrackOrdersError && (
+      {isPending && (
+        <LoadingText title={t('modalVrackCreationOrderWaitMessage')} />
+      )}
+      {(isVrackOrdersError || isError) && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
           <OsdsText
             level={ODS_TEXT_LEVEL.body}
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {t('modalVrackCreationError', { error: vrackOrdersError })}
+            {isVrackOrdersError
+              ? t('modalVrackCreationError', { error: vrackOrdersError })
+              : error?.response?.data?.message}
           </OsdsText>
         </OsdsMessage>
       )}
@@ -96,30 +122,46 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
       >
         {t('modalVrackCreationCancel')}
       </OsdsButton>
-      <OsdsButton
-        slot="actions"
-        type={ODS_BUTTON_TYPE.button}
-        variant={ODS_BUTTON_VARIANT.flat}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        disabled={
-          areVrackOrdersLoading ||
-          vrackDeliveringOrders.length > 0 ||
-          isVrackOrdersError ||
-          undefined
-        }
-        target={OdsHTMLAnchorElementTarget._blank}
-        href={vrackOrderUrl}
-        {...handleClick(() => {
-          trackClick({
-            location: PageLocation.popup,
-            buttonType: ButtonType.button,
-            actions: ['create-vrack', 'confirm'],
-          });
-          navigate('..');
-        })}
-      >
-        {t('modalCreateNewVrackButtonLabel')}
-      </OsdsButton>
+      {data?.contractList?.length > 0 ? (
+        <OrderSubmitModalContent
+          submitButtonLabel={t('modalVrackCreationSubmitOrderButtonLabel')}
+          cartId={data?.cartId}
+          contractList={data?.contractList}
+          onSuccess={async (orderResponse) => {
+            await queryClient.invalidateQueries({
+              queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
+            });
+            navigate('..');
+            addSuccessMessage(t('vrackCreationSuccess'), {
+              linkLabel: t('vrackOrderLinkLabel'),
+              linkUrl: orderResponse.data.url,
+            });
+          }}
+        />
+      ) : (
+        <OsdsButton
+          slot="actions"
+          type={ODS_BUTTON_TYPE.button}
+          variant={ODS_BUTTON_VARIANT.flat}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          disabled={
+            areVrackOrdersLoading ||
+            vrackDeliveringOrders.length > 0 ||
+            isVrackOrdersError ||
+            isPending ||
+            undefined
+          }
+          {...handleClick(async () => {
+            trackClick({
+              ...trackingParams,
+              actions: ['create-vrack', 'confirm'],
+            });
+            createCart();
+          })}
+        >
+          {t('modalCreateNewVrackButtonLabel')}
+        </OsdsButton>
+      )}
     </>
   );
 };

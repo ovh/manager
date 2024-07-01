@@ -6,7 +6,10 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import '@ovhcloud/ods-theme-blue-jeans';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { getRoutes } from '@/routes/routes';
-import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import {
+  MessageOptions,
+  MessagesContext,
+} from '@/components/feedback-messages/Messages.context';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,24 +32,25 @@ export const App: React.FC = () => {
     shell.ux.hidePreloader();
   }, []);
 
+  const messageContext = React.useMemo(
+    () => ({
+      successMessages,
+      hiddenMessages,
+      addSuccessMessage: (msg: string, options: MessageOptions) => {
+        setSuccessMessages((msgList) =>
+          msgList.concat({ id: Date.now(), message: msg, options }),
+        );
+      },
+      hideMessage: (id: number) => {
+        setHiddenMessages((hiddenMessage) => hiddenMessage.concat(id));
+      },
+    }),
+    [successMessages, hiddenMessages],
+  );
+
   return (
     <QueryClientProvider client={queryClient}>
-      <MessagesContext.Provider
-        value={{
-          successMessages,
-          hiddenMessages,
-          addSuccessMessage: (msg: string, vrackServicesId?: string) => {
-            setSuccessMessages((msgList) =>
-              msgList.concat({ id: Date.now(), message: msg, vrackServicesId }),
-            );
-          },
-          hideMessage: (submittedAt: number) => {
-            setHiddenMessages((hiddenMessage) =>
-              hiddenMessage.concat(submittedAt),
-            );
-          },
-        }}
-      >
+      <MessagesContext.Provider value={messageContext}>
         <RouterProvider router={router} />
       </MessagesContext.Provider>
       <ReactQueryDevtools />

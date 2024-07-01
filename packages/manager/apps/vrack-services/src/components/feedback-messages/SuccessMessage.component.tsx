@@ -1,10 +1,15 @@
 import React from 'react';
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsLink,
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_MESSAGE_TYPE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { MessageData, MessagesContext } from './Messages.context';
 import { useVrackServicesList } from '@/data';
@@ -12,6 +17,7 @@ import { useVrackServicesList } from '@/data';
 export const SuccessMessage: React.FC<Partial<MessageData>> = ({
   id,
   message,
+  options,
 }) => {
   const { hideMessage } = React.useContext(MessagesContext);
   return (
@@ -22,12 +28,23 @@ export const SuccessMessage: React.FC<Partial<MessageData>> = ({
       onOdsRemoveClick={() => id && hideMessage(id)}
     >
       <OsdsText
+        className="block"
         level={ODS_TEXT_LEVEL.body}
         size={ODS_TEXT_SIZE._400}
         color={ODS_THEME_COLOR_INTENT.text}
       >
         {message}
       </OsdsText>
+      {options?.linkLabel && options?.linkUrl && (
+        <OsdsLink
+          color={ODS_THEME_COLOR_INTENT.primary}
+          href={options.linkUrl}
+          className="ml-3"
+          target={OdsHTMLAnchorElementTarget._blank}
+        >
+          {options.linkLabel}
+        </OsdsLink>
+      )}
     </OsdsMessage>
   );
 };
@@ -44,9 +61,9 @@ export const SuccessMessages: React.FC<{ id?: string }> = ({ id }) => {
     <>
       {successMessages
         .filter(
-          ({ id: messageId, vrackServicesId }) =>
+          ({ id: messageId, options }) =>
             !hiddenMessages.includes(messageId) &&
-            (!id || vrackServicesId === id),
+            (!id || options?.vrackServicesId === id),
         )
         .map((msg) => (
           <SuccessMessage key={msg.id} {...msg} />
