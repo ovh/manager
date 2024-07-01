@@ -242,7 +242,7 @@ export function getPciProjectMenu(
           feature: 'databases-operational',
           href: getURL(
             'public-cloud',
-            `#/pci/projects/${projectId}/databases-analytics/operational/services`,
+            `#/pci/projects/${projectId}/storages/databases-analytics/databases`,
           ),
         },
         //Entry menu for PCI Databases for React
