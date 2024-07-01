@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -16,6 +16,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
 import {
   getvrackServicesReferenceRegionList,
   getvrackServicesReferenceRegionListQueryKey,
@@ -32,6 +33,15 @@ export default function CreationPage() {
   const [displayName, setDisplayName] = React.useState('');
   const { t } = useTranslation('vrack-services/create');
   const navigate = useNavigate();
+  const { data: features, isSuccess } = useFeatureAvailability([
+    'vrack-services:order',
+  ]);
+
+  useEffect(() => {
+    if (isSuccess && !features['vrack-services:order']) {
+      navigate(urls.listing);
+    }
+  }, [isSuccess]);
 
   const {
     isLoading: isRegionLoading,
