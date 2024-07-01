@@ -100,6 +100,7 @@ export default function AttachStorage() {
             inline
             size={ODS_SPINNER_SIZE.md}
             className="block text-center"
+            data-testid={'attach-storage-spinner'}
           />
         )}
         {!isPending && instances?.length > 0 && (
@@ -121,7 +122,11 @@ export default function AttachStorage() {
             ))}
           </OsdsSelect>
         )}
-        {!isPending && !instances?.length && <NoInstanceWarningMessage />}
+        {!isPending && !instances?.length && (
+          <NoInstanceWarningMessage
+            data-testid={'AttachStorage-NoInstanceWarningMessage'}
+          />
+        )}
       </slot>
       <OsdsButton
         slot="actions"
