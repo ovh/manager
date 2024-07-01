@@ -59,6 +59,7 @@ export function getPciProjectMenu(
 ): PciMenuItem[] {
   const pciMenu: PciMenuItem[] = [];
 
+  console.log({featureAvailabilities})
   const isFeaturesAvailable = (...features: string[]): boolean =>
     features.some((feature: string) => featureAvailabilities[feature]);
 
@@ -441,6 +442,7 @@ export function getPciProjectMenu(
       'public-cloud:vouchers',
       'public-cloud:contacts',
       'public-cloud:project-settings',
+      'pci-savings-plan'
     )
   ) {
     pciMenu.push({
@@ -471,6 +473,12 @@ export function getPciProjectMenu(
           id: 'vouchers',
           title: 'Credit and Vouchers',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/vouchers`),
+        },
+        isFeaturesAvailable('pci-savings-plan') && {
+          id: 'savings',
+          title: 'Savings Plan',
+          badge: 'new',
+          href: getURL('public-cloud', `#/pci/projects/${projectId}/savings-plan`),
         },
         isFeaturesAvailable('public-cloud:contacts') && {
           id: 'contacts',
