@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.60.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.60.1...@ovh-ux/manager-container-app@0.60.2) (2024-07-01)
+
+
+### Bug Fixes
+
+* **container.2fa:** fix issue with iframe and router if 2fa needed ([e0d6255](https://github.com/ovh/manager/commit/e0d6255822043bf061787e8ee2e003e7df21997e))
+
+
+
+
+
 ## [0.60.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.60.0...@ovh-ux/manager-container-app@0.60.1) (2024-06-27)
 
 
