@@ -311,7 +311,7 @@ export default function DedicatedSidebar() {
             badge: 'beta',
             label: t('sidebar_vrack_services'),
             icon: getIcon('oui-icon oui-icon-vRack-services_concept'),
-            href: navigation.getURL('dedicated', '#/vrack-services'),
+            href: navigation.getURL('vrack-services', '/'),
             pathMatcher: new RegExp('^/vrack-services'),
             async loader() {
               const appId = 'vrack-services';
