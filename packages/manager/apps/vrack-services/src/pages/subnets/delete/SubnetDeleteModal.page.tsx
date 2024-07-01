@@ -58,7 +58,7 @@ export default function SubnetDeleteModal() {
           id: getDisplayName(vs),
           cidr: cidrToDelete,
         }),
-        id,
+        { vrackServicesId: id },
       );
     },
     onError: () => {

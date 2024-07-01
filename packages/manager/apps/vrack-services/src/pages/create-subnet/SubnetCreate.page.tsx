@@ -82,7 +82,7 @@ export default function SubnetCreate() {
       navigate(dashboardUrl);
       addSuccessMessage(
         t('subnetCreationSuccess', { id: getDisplayName(vrackServices?.data) }),
-        id,
+        { vrackServicesId: id },
       );
     },
     onError: () => {

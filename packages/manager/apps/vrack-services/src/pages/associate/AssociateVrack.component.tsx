@@ -70,7 +70,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
           vs: getDisplayName(vs),
           vrack: selectedVrack,
         }),
-        id,
+        { vrackServicesId: id },
       );
     },
     onError: () => {

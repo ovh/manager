@@ -53,7 +53,9 @@ export default function EndpointsDeleteModal() {
       queryClient.invalidateQueries({
         queryKey: getEligibleManagedServiceListQueryKey(id),
       });
-      addSuccessMessage(t('endpointDeleteSuccess', { id }), id);
+      addSuccessMessage(t('endpointDeleteSuccess', { id }), {
+        vrackServicesId: id,
+      });
     },
     onError: () => {
       trackPage({

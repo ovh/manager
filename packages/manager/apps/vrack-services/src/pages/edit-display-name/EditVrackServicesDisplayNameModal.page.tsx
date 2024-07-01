@@ -54,7 +54,7 @@ export default function EditVrackServicesDisplayNameModal() {
           t('updateVrackServicesDisplayNameSuccess', {
             vrackServices: id,
           }),
-          id,
+          { vrackServicesId: id },
         );
         setTimeout(() => {
           queryClient.invalidateQueries({

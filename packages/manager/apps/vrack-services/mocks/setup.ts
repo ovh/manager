@@ -8,7 +8,7 @@ export const setupMocks = async () =>
       getConfig({
         nbVs: 19,
         delayedOrders: true,
-        deliveringVrackServicesOrders: true,
+        deliveringVrackServicesOrders: false,
         deliveringVrackOrders: false,
         isAuthMocked: true,
         updateServicesKo: true,

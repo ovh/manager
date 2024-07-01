@@ -62,7 +62,7 @@ export default function EditEndpointDisplayName() {
           t('endpointUpdateDisplayNameSuccess', {
             name: resource?.name,
           }),
-          id,
+          { vrackServicesId: id },
         );
         setTimeout(() => {
           refetchIamResources();
