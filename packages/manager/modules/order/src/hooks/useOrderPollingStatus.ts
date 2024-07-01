@@ -5,8 +5,10 @@ import {
   getOrderDetailsList,
   getOrderList,
   getOrderData,
-} from './services';
-import { OrderDetail, OrderStatus, OrderData } from './order.type';
+  OrderDetail,
+  OrderStatus,
+  OrderData,
+} from '../api';
 
 export type DetailedOrder = OrderData & {
   status: OrderStatus;

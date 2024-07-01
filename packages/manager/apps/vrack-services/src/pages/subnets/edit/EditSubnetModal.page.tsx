@@ -79,10 +79,9 @@ export default function EditSubnetModal() {
         pageName: PageName.successUpdateSubnet,
       });
       navigate('..');
-      addSuccessMessage(
-        t('subnetUpdateSuccess', { id: getDisplayName(vs) }),
-        id,
-      );
+      addSuccessMessage(t('subnetUpdateSuccess', { id: getDisplayName(vs) }), {
+        vrackServicesId: id,
+      });
     },
     onError: () => {
       trackPage({
