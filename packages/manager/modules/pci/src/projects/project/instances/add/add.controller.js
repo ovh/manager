@@ -372,6 +372,7 @@ export default class PciInstancesAddController {
       this.model.datacenter &&
       !this.isRegionAvailable(this.model.datacenter)
     ) {
+      this.isLoading = true;
       this.isAddingNewRegion = true;
       return this.addRegions().then(() => {
         return this.PciProjectsProjectInstanceService.getProjectQuota(
@@ -387,6 +388,7 @@ export default class PciInstancesAddController {
 
           this.isAddingNewRegion = false;
           this.reloadFlavorList = true;
+          this.isLoading = false;
         });
       });
     }
@@ -474,6 +476,7 @@ export default class PciInstancesAddController {
 
   onImageFocus() {
     this.displaySelectedImage = false;
+    this.model.image = null;
   }
 
   onImageChange() {

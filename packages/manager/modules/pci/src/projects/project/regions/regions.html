@@ -124,7 +124,7 @@
             data-variant="primary"
             data-type="button"
             data-on-click="$ctrl.addRegions()"
-            data-disabled="$ctrl.regionToAdd === null"
+            data-disabled="$ctrl.regionToAdd === null || $ctrl.isDiscoveryProject"
             data-ng-if="!$ctrl.isLoading"
         >
             <span
