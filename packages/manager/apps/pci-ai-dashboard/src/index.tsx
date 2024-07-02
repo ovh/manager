@@ -49,4 +49,4 @@ const init = async (
   );
 };
 
-init('pci-databases-analytics');
+init('pci-ai-dashboard');
