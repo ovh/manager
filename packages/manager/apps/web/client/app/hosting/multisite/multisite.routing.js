@@ -37,6 +37,12 @@ export default /* @ngInject */ ($stateProvider) => {
           path: domain.path,
         });
       },
+      goToRemoveRepository: /* @ngInject */ ($state) => (serviceName, path) => {
+        return $state.go('app.hosting.dashboard.multisite.git-removal', {
+          serviceName,
+          path,
+        });
+      },
       goToAssociateRepository: /* @ngInject */ (
         $state,
         $translate,

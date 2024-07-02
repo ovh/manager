@@ -2,10 +2,12 @@ export default class HostingMultisiteGitDeploymentController {
   /* @ngInject */
   constructor(
     HostingMultisiteGitDeploymentService,
+    HostingDomain,
     coreURLBuilder,
     $translate,
   ) {
     this.HostingMultisiteGitDeploymentService = HostingMultisiteGitDeploymentService;
+    this.HostingDomain = HostingDomain;
     this.coreURLBuilder = coreURLBuilder;
     this.$translate = $translate;
     this.gitForcePush = false;
@@ -13,10 +15,7 @@ export default class HostingMultisiteGitDeploymentController {
 
   $onInit() {
     this.isLoading = true;
-    this.HostingMultisiteGitDeploymentService.getWebsitesAssociated(
-      this.serviceName,
-      this.path,
-    )
+    this.HostingDomain.getWebsitesAssociated(this.serviceName, this.path)
       .then((websiteIds) => {
         [this.websiteId] = websiteIds;
       })

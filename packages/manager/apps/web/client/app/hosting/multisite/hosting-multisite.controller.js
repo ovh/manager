@@ -305,6 +305,12 @@ angular
         $scope.setAction('multisite/update/hosting-multisite-update', domain);
       };
 
+      $scope.goToRemoveRepository = (domain) =>
+        $scope.$resolve.goToRemoveRepository(
+          $scope.hosting.serviceName,
+          domain.path,
+        );
+
       $scope.goToAssociateRepository = (domain) =>
         $scope.$resolve.goToAssociateRepository(
           $scope.hosting.serviceName,
