@@ -173,7 +173,6 @@ const SubTree = ({
           />
         </div>
       )}
-
       <div className={rootNode.illustration ? '' : 'pt-4'}>
         <ul className={`${style.subtree_list}`}>
           <li className="mb-4 px-3">
@@ -189,6 +188,10 @@ const SubTree = ({
                 onProjectChange={(option: typeof selectedPciProject) => {
                   if (selectedPciProject !== option) {
                     setSelectedPciProject(option);
+                    navigationPlugin.navigateTo(
+                      'public-cloud',
+                      `#/pci/projects/${option.project_id}`,
+                    );
                   }
                 }}
                 onProjectCreate={() => {
