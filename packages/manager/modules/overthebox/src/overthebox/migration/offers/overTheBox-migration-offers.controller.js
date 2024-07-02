@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+import set from 'lodash/set';
+
+>>>>>>> 1da911c016 (feat(overthebox): add change offer component - offer list)
 export default class OverTheBoxMigrationOffersCtrl {
   /* @ngInject */
   constructor($q, $scope, $translate, TucToast, OverTheBoxMigrationService) {
@@ -40,7 +45,10 @@ export default class OverTheBoxMigrationOffersCtrl {
 
         // Build hardware options list
         this.offers = this.offers.map((offer) => {
+<<<<<<< HEAD
           const updateOffer = offer;
+=======
+>>>>>>> 1da911c016 (feat(overthebox): add change offer component - offer list)
           const hardwareOptions = [];
 
           // Set hardware option return by API
