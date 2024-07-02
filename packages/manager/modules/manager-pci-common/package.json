@@ -1,0 +1,31 @@
+{
+  "name": "@ovh-ux/manager-pci-common",
+  "version": "0.0.0",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json && vite build",
+    "coverage": "vitest run --coverage",
+    "dev": "vite build --watch",
+    "lint": "eslint ./src",
+    "prepare": "yarn build",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-core-api": "^0.7.1",
+    "@tanstack/react-query": "^5.40.1",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^1.2.2",
+    "eslint": "^8.56.0",
+    "prettier": "3.0.1",
+    "typescript": "^5.3.3",
+    "vite": "^3.2.8",
+    "vite-plugin-dts": "^3.9.1",
+    "vitest": "^1.2.2"
+  }
+}
