@@ -162,7 +162,7 @@
   "sidebar_sunrise_contact_center": "Contact Center Solution",
   "sidebar_sunrise_office": "Office 365 Revendeurs",
   "sidebar_sunrise_ssl_gateway": "SSL Gateway",
-  "sidebar_security_identity_operations": "Sécurité, Identité & Opérations",
+  "sidebar_security_identity_operations": "Identité, Securité & Opérations",
   "sidebar_security_identity_operations_short": "SIO",
   "sidebar_security_identity_operations_kms": "Key Management Service",
   "sidebar_security_identity_operations_iam": "Identity & Access Management",
@@ -186,5 +186,6 @@
   "sidebar_access_dashboard": "Accéder au tableau de bord",
   "sidebar_network_security": "Network Security Dashboard",
   "sidebar_identity_security_operations": "Identité, Sécurité & Opérations",
-  "sidebar_key-management-service": "Key Management Service"
+  "sidebar_key-management-service": "Key Management Service",
+  "sidebar_reduce": "Réduire"
 }

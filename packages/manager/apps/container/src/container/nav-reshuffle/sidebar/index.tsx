@@ -363,7 +363,7 @@ const Sidebar = (): JSX.Element => {
           onClick={toggleSidebar}
           role="button"
         >
-          {open && <span className="mr-2">Réduire</span>}
+          {open && <span className="mr-2">{t('sidebar_reduce')}</span>}
           <span
             className={`${
               style.sidebar_toggle_btn_first_icon
