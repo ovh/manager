@@ -1,12 +1,12 @@
 
-export interface PCIData {
+export interface PCIAI {
   projectId: string;
 }
-export interface ServiceData extends PCIData {
+export interface DashboardData extends PCIAI {
   serviceId: string;
 }
 
-export class CdbError extends Error {
+export class AIError extends Error {
   code: string;
 
   request: XMLHttpRequest;
