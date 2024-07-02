@@ -274,7 +274,7 @@
                                 <!-- action menu -->
                                 <oui-action-menu
                                     placement="bottom-end"
-                                    data-disabled="domain.status === HOSTING_STATUS.UPDATING"
+                                    data-disabled="isUpdateDomainDisabled(hosting, domain)"
                                     compact
                                 >
                                     <oui-action-menu-item
