@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { uploadDcouments } from '../api/documentsApi';
+import { uploadDocuments } from '../api/documentsApi';
 
 type UploadDocumentsProps = {
   files: File[];
@@ -14,7 +14,7 @@ export const useUploadDocuments = ({
 }) =>
   useMutation({
     mutationFn: ({ files }: UploadDocumentsProps) => {
-      return uploadDcouments(files);
+      return uploadDocuments(files);
     },
     onSuccess: () => {
       onSuccess?.();
