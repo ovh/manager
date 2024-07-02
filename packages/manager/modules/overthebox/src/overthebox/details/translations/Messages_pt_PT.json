@@ -88,6 +88,5 @@
   "overTheBox_available_update": "Está disponível uma atualização para o seu dispositivo.",
   "overTheBox_authorize_autoupgrade": "Permitir atualizações automáticas durante a noite",
   "overTheBox_change_auto_upgrade_success": "A alteração das apostas automáticas durante a noite foi realizada com sucesso.",
-  "overTheBox_change_auto_upgrade_error": "Não foi possível efetuar a alteração das apostas automáticas durante a noite: {{errorMessage}}",
-  "overTheBox_version_device": "Versão do hardware"
+  "overTheBox_change_auto_upgrade_error": "Não foi possível efetuar a alteração das apostas automáticas durante a noite: {{errorMessage}}"
 }
