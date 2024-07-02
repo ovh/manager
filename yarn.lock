@@ -24003,11 +24003,6 @@ react-element-to-jsx-string@^15.0.0:
     is-plain-object "5.0.0"
     react-is "18.1.0"
 
-react-hook-form@^7.47.0:
-  version "7.51.0"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.51.0.tgz#757ae71b37c26e00590bd3788508287dcc5ecdaf"
-  integrity sha512-BggOy5j58RdhdMzzRUHGOYhSz1oeylFAv6jUSG86OvCIvlAvS7KvnRY7yoAf2pfEiPN7BesnR0xx73nEk3qIiw==
-
 react-hook-form@^7.50.1:
   version "7.50.1"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.50.1.tgz#f6aeb17a863327e5a0252de8b35b4fc8990377ed"
@@ -25295,7 +25290,7 @@ rollup@^4.13.0, rollup@^4.18.0:
     "@rollup/rollup-win32-x64-msvc" "4.18.0"
     fsevents "~2.3.2"
 
-rollup@^4.2.0, rollup@^4.4.0, rollup@^4.9.6:
+rollup@^4.2.0, rollup@^4.9.6:
   version "4.16.4"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-4.16.4.tgz#fe328eb41293f20c9593a095ec23bdc4b5d93317"
   integrity sha512-kuaTJSUbz+Wsb2ATGvEknkI12XV40vIiHmLuFlejoo7HtDok/O5eDDD0UpCVY5bBX5U5RYo8wWP83H7ZsqVEnA==
@@ -26922,7 +26917,7 @@ tailwindcss@3.3.3, tailwindcss@^3.3.3:
     resolve "^1.22.2"
     sucrase "^3.32.0"
 
-tailwindcss@^3.4.0, tailwindcss@^3.4.1:
+tailwindcss@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.4.1.tgz#f512ca5d1dd4c9503c7d3d28a968f1ad8f5c839d"
   integrity sha512-qAYmXRfk3ENzuPBakNK0SRrUDipP8NQnEY6772uDhflcQz5EhRdD7JNZxyrFHVQNCwULPBn6FNPp9brpO7ctcA==

@@ -1,6 +1,9 @@
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
-import { ColumnSort, PaginationState } from '@ovhcloud/manager-components';
-import { Voucher } from '@/interface';
+import {
+  ColumnSort,
+  PaginationState,
+} from '../../../../../../manager-components/src/lib';
+import { TVoucher } from '@/interface';
 import {
   creditComparator,
   defaultCompareFunction,
@@ -12,8 +15,10 @@ export type VouchersOptions = {
   sorting: ColumnSort;
 };
 
-export const getAllVouchers = async (projectId: string): Promise<Voucher[]> => {
-  const { data } = await fetchIcebergV6<Voucher>({
+export const getAllVouchers = async (
+  projectId: string,
+): Promise<TVoucher[]> => {
+  const { data } = await fetchIcebergV6<TVoucher>({
     route: `/cloud/project/${projectId}/credit`,
     disableCache: true,
   });
@@ -22,23 +27,21 @@ export const getAllVouchers = async (projectId: string): Promise<Voucher[]> => {
 };
 
 export const paginateResults = (
-  items: Voucher[],
+  items: TVoucher[],
   pagination: PaginationState,
-) => {
-  return {
-    rows: items.slice(
-      pagination.pageIndex * pagination.pageSize,
-      (pagination.pageIndex + 1) * pagination.pageSize,
-    ),
-    pageCount: Math.ceil(items.length / pagination.pageSize),
-    totalRows: items.length,
-  };
-};
+) => ({
+  rows: items.slice(
+    pagination.pageIndex * pagination.pageSize,
+    (pagination.pageIndex + 1) * pagination.pageSize,
+  ),
+  pageCount: Math.ceil(items.length / pagination.pageSize),
+  totalRows: items.length,
+});
 
 export const filterVouchers = (
-  vouchers: Voucher[],
+  vouchers: TVoucher[],
   sorting: ColumnSort,
-): Voucher[] => {
+): TVoucher[] => {
   const data = [...vouchers];
 
   if (sorting) {
@@ -53,7 +56,7 @@ export const filterVouchers = (
     } else if (sortKey === 'validityTo') {
       data.sort(validityComparator('to'));
     } else {
-      data.sort(defaultCompareFunction(sortKey as keyof Voucher));
+      data.sort(defaultCompareFunction(sortKey as keyof TVoucher));
     }
     if (desc) {
       data.reverse();

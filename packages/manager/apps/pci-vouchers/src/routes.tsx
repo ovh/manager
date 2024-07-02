@@ -1,15 +1,13 @@
-const lazyRouteConfig = (importFn: CallableFunction) => {
-  return {
-    lazy: async () => {
-      const { default: moduleDefault, ...moduleExports } = await importFn();
+const lazyRouteConfig = (importFn: CallableFunction) => ({
+  lazy: async () => {
+    const { default: moduleDefault, ...moduleExports } = await importFn();
 
-      return {
-        Component: moduleDefault,
-        ...moduleExports,
-      };
-    },
-  };
-};
+    return {
+      Component: moduleDefault,
+      ...moduleExports,
+    };
+  },
+});
 
 export default [
   {

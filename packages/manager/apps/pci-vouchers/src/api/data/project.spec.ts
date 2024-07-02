@@ -1,11 +1,9 @@
 import { describe, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
-import { getProject } from '@/data/project';
+import { getProject } from '@/api/data/project';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
+  const get = vi.fn(() => Promise.resolve({ data: null }));
   return {
     v6: {
       get,

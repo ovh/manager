@@ -2,10 +2,9 @@ import { Outlet, useParams, useRouteError } from 'react-router-dom';
 
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { Suspense } from 'react';
-import BreadCrumbs from '@/components/BreadCrumbs';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 import HidePreloader from '@/core/HidePreloader';
-import useProject, { ResponseAPIError } from '@/hooks/useProject';
+import useProject, { ResponseAPIError } from '@/api/hooks/useProject';
 
 import ErrorPage from '@/components/error-page/ErrorPage';
 
@@ -20,7 +19,6 @@ export default function Layout() {
   return (
     <div className="application">
       <Suspense>
-        <BreadCrumbs />
         <ShellRoutingSync />
         {isSuccess && (
           <>

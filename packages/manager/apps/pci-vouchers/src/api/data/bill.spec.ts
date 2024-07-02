@@ -1,11 +1,9 @@
 import { describe, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
-import { getBill } from '@/data/bill';
+import { getBill } from '@/api/data/bill';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: {} });
-  });
+  const get = vi.fn(() => Promise.resolve({ data: {} }));
   return {
     v6: {
       get,

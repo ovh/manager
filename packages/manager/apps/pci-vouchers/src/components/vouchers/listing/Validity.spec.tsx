@@ -8,21 +8,17 @@ import '@testing-library/jest-dom';
 
 import Validity from '@/components/vouchers/listing/Validity';
 
-const mocks = vi.hoisted(() => {
-  return {
-    useTranslation: vi.fn(),
-  };
-});
+const mocks = vi.hoisted(() => ({
+  useTranslation: vi.fn(),
+}));
 
-vi.mock('react-i18next', () => {
-  return {
-    useTranslation: mocks.useTranslation,
-    initReactI18next: {
-      type: '3rdParty',
-      init: () => {},
-    },
-  };
-});
+vi.mock('react-i18next', () => ({
+  useTranslation: mocks.useTranslation,
+  initReactI18next: {
+    type: '3rdParty',
+    init: () => {},
+  },
+}));
 
 vi.mock('date-fns', () => {
   const formatMock = vi.fn(() => 'formattedDate');
@@ -48,7 +44,7 @@ describe('Datagrid Validity Cell', () => {
     expect(useTranslation).not.toHaveBeenCalled();
     expect(format).not.toHaveBeenCalled();
 
-    render(<Validity date={'2007-01-09T09:41:00+00:00'}></Validity>);
+    render(<Validity date="2007-01-09T09:41:00+00:00"></Validity>);
 
     const formattedDate = screen.getByText('formattedDate');
 
@@ -71,7 +67,7 @@ describe('Datagrid Validity Cell', () => {
       },
     }));
 
-    render(<Validity date={'2007-01-09T09:41:00+00:00'}></Validity>);
+    render(<Validity date="2007-01-09T09:41:00+00:00"></Validity>);
 
     const formattedDate2 = screen.getByText('formattedDate');
 

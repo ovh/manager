@@ -3,7 +3,7 @@ import {
   creditComparator,
   defaultCompareFunction,
   validityComparator,
-} from '@/data/utils';
+} from '@/api/data/utils';
 
 const voucherA = {
   id: 1,
