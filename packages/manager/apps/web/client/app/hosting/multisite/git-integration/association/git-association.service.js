@@ -28,10 +28,6 @@ export default class HostingMultisiteGitAssociationService {
       });
   }
 
-  getWebsitesAssociated(serviceName, path) {
-    return this.$http.get(`/hosting/web/${serviceName}/website?path=${path}`);
-  }
-
   putWebsiteAssociated(serviceName, vcsBranch, id) {
     return this.$http.put(`/hosting/web/${serviceName}/website/${id}`, {
       vcsBranch,
