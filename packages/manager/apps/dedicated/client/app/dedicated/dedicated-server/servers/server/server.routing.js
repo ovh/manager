@@ -60,6 +60,10 @@ export default /* @ngInject */ ($stateProvider) => {
           ...serviceInfo,
           serviceType: SERVICE_TYPE,
         })),
+      backupIsOrderable: /* @ngInject */ (Server, serverName) =>
+        Server.getOrderables(serverName, 'backupStorage').then(
+          ({ orderable }) => orderable,
+        ),
       specifications: /* @ngInject */ (serverName, Server) =>
         Server.getBandwidth(serverName),
       user: /* @ngInject */ (currentUser) => currentUser,
