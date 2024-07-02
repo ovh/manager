@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import { useOKMSById } from '@/hooks/useOKMS';
+import { useOKMSById } from '@/data/hooks/useOKMS';
 import Loading from '@/components/Loading/Loading';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import InformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/InformationsTile';

@@ -18,7 +18,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { isValidOkmsName } from '@/utils';
 import Modal from './Modal';
-import { OKMS } from '@/interface';
+import { OKMS } from '@/types/okms.type';
 
 interface DeleteModalProps {
   okms: OKMS;

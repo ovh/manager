@@ -25,7 +25,7 @@ import {
   Notifications,
   useDatagridSearchParams,
 } from '@ovhcloud/manager-components';
-import { useOKMS } from '@/hooks/useOKMS';
+import { useOKMS } from '@/data/hooks/useOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import {
   DatagridActionMenu,

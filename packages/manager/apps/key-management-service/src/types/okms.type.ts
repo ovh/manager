@@ -1,3 +1,5 @@
+import { ColumnSort } from '@ovhcloud/manager-components';
+
 export type OKMS = {
   id: string;
   region: string;
@@ -11,4 +13,8 @@ export type IAM = {
   displayName: string;
   id: string;
   urn: string;
+};
+
+export type OKMSOptions = {
+  sorting: ColumnSort;
 };

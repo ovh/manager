@@ -1,9 +1,13 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
-import { terminateOKmsQueryKey, terminateOKms } from '../services/post';
-import { getOkmsServiceId, getOkmsServiceIdQueryKey } from '../services/get';
-import { getOkmsServicesResourceListQueryKey } from '../GET/apiv2/services';
+import {
+  getOkmsServiceId,
+  getOkmsServiceIdQueryKey,
+  terminateOKms,
+  terminateOKmsQueryKey,
+} from '../api/okmsService';
+import { getOkmsServicesResourceListQueryKey } from '../api/okms';
 
 export const useTerminateOKms = ({
   okmsId,
