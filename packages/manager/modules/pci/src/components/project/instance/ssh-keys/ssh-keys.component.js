@@ -8,6 +8,5 @@ export default {
     region: '<',
     selectedKey: '=',
     serviceName: '@',
-    addingRegion: '<',
   },
 };
