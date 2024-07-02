@@ -7,6 +7,23 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           component: 'dedicatedServerFtpBackupStorage',
         },
       },
+      redirectTo: (transition) => {
+        const injector = transition.injector();
+        const backupIAvailablePromise = injector.getAsync(
+          'backupStorageAvailable',
+        );
+        const serverNamePromise = injector.getAsync('serverName');
+
+        return Promise.all([backupIAvailablePromise, serverNamePromise]).then(
+          ([backupIsAvailable, serverName]) =>
+            backupIsAvailable
+              ? null
+              : {
+                  state: 'app.dedicated-server.server.dashboard',
+                  params: { productId: serverName },
+                },
+        );
+      },
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('dedicated_server_ftp_backup'),
