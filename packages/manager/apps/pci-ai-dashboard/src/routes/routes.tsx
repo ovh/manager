@@ -24,7 +24,7 @@ export const COMMON_PATH = '/pci/projects';
 export default [
   {
     path: '/pci/projects/:projectId/ai/dashbaord',
-    ...lazyRouteConfig(() => import('@/pages/layout')),
+    ...lazyRouteConfig(() => import('@/pages')),
     children: [
       {
         path: '',
