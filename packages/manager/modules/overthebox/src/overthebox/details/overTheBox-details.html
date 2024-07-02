@@ -124,6 +124,13 @@
                                     class="oui-tile__description d-block mb-2"
                                     data-ng-bind="$ctrl.offerName"
                                 ></div>
+                                <button
+                                    class="btn btn-default"
+                                    data-translate="overTheBox_change_offer"
+                                    title="{{$ctrl.service.customerDescription}} : {{::'overTheBox_change_offer' | translate}}"
+                                    type="button"
+                                    data-ng-click="$ctrl.changeOffer()"
+                                ></button>
                             </div>
                         </div>
                         <div class="oui-tile__item">

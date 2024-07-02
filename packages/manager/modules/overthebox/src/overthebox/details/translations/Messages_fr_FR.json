@@ -92,5 +92,6 @@
   "overthebox_caracteristics": "Caractéristiques",
   "overTheBox_model_device": "Modèle du périphérique",
   "overTheBox_detail_bandwidth": "Bande passante maximum",
-  "overTheBox_model_device_unknown": "Inconnu"
+  "overTheBox_model_device_unknown": "Inconnu",
+  "overTheBox_change_offer": "Changer d'offre"
 }

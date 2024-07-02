@@ -1,0 +1,17 @@
+<div class="overthebox">
+    <oui-back-button data-on-click="$ctrl.goBack()">
+        <span data-translate="overthebox_migration_title"></span>
+    </oui-back-button>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <!-- OFFER CHOICE STEP -->
+    <div data-ng-if="$ctrl.currentStep === $ctrl.steps.offers">
+        <overthebox-migration-offers
+            data-service-name="$ctrl.serviceName"
+        ></overthebox-migration-offers>
+    </div>
+
+    <!-- SHIPPING STEP -->
+    <div data-ng-if="$ctrl.currentStep === $ctrl.steps.contact"></div>
+</div>
