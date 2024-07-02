@@ -34,6 +34,7 @@ const getBaseConfig = (config) => {
       },
       dedupe: [
         '@ovh-ux/manager-react-shell-client',
+        '@tanstack/react-query',
         'i18next',
         'react',
         'react-dom',
