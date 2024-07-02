@@ -1,10 +1,13 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import axios from 'axios';
 
 type UploadLink = {
   link: string;
   method: string;
   headers: any;
 };
+
+const s3AxiosInstance = axios.create({});
 
 const getUploadDocumentsLinks = (
   numberOfDocuments: number,
@@ -24,14 +27,14 @@ const uploadDocument: (link: UploadLink, file: File) => Promise<void> = (
   link,
   file,
 ) => {
-  return v6.put(link.link, file, {
+  return s3AxiosInstance.put(link.link, file, {
     headers: {
       ...link.headers,
     },
   });
 };
 
-export const uploadDcouments: (files: File[]) => Promise<void> = async (
+export const uploadDocuments: (files: File[]) => Promise<void> = async (
   files,
 ) => {
   const links = await getUploadDocumentsLinks(files.length);
