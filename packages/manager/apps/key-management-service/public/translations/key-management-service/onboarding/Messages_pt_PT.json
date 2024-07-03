@@ -15,5 +15,5 @@
   "guide3Title": "Configure o seu NAS-HA no Windows Server através do CIFS",
   "guide3Description": "Saiba como montar um NAS no Windows Server através do protocolo CIFS",
   "guide3Link": "https://help.ovhcloud.com/csm/pt-public-cloud-storage-nas-cifs?id=kb_article_view&amp;sysparm_article=KB0046676",
-  "description_secondary": "O OVHcloud KMS é o serviço centralizado de encriptação totalmente gerido, destinado a proteger os dados nas aplicações e serviços da OVHcloud"
+  "description_secondary": "O OVHcloud KMS é um serviço centralizado de encriptação totalmente gerido, destinado a proteger os seus dados nas aplicações e serviços da OVHcloud"
 }

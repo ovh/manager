@@ -3,7 +3,7 @@
   "description": "Zachowaj kontrolę nad szyfrowaniem wrażliwych danych.",
   "orderButtonLabel": "Zamów KMS",
   "orderButtonLink": "/#/dedicated/key-management-service/order",
-  "moreInfoButtonLabel": "Dowiedz się więcej",
+  "moreInfoButtonLabel": "Dowiedz się więcej",
   "moreInfoButtonLink": "/#/dedicated/key-management-service/info",
   "guideCategory": "Tutoriale",
   "guide1Title": "Pierwsze kroki z key-management-service",

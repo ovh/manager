@@ -15,5 +15,5 @@
   "guide3Title": "Mounting a NAS solution on Windows Server via CIFS",
   "guide3Description": "Find out how to mount a NAS on Windows Server via CIFS",
   "guide3Link": "https://help.ovhcloud.com/csm/en-gb-public-cloud-storage-nas-cifs?id=kb_article_view&amp;sysparm_article=KB0046664",
-  "description_secondary": "OVHcloud KMS is the centralized, fully-managed encryption service to secure your data in your OVHcloud applications and services"
+  "description_secondary": "OVHcloud KMS is a centralised, fully-managed service that encrypts and secures the data in your OVHcloud applications and services."
 }
