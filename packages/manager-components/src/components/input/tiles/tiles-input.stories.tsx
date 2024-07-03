@@ -8,6 +8,10 @@ import {
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { clsx } from 'clsx';
 import TilesInputComponent from './TilesInput.component';
+import {
+  countries as allCountries,
+  TCountry,
+} from '../../../_mock_/tiles-input';
 
 export default {
   title: 'Components/TilesInput',
@@ -20,89 +24,6 @@ export default {
     },
   },
 } as Meta;
-
-enum LanguagesEnum {
-  AR = 'ARABIC',
-  FR = 'FRENCH',
-  EN = 'ENGLISH',
-  MN = 'MANDARIN',
-}
-
-enum ContinentsEnum {
-  AFRICA = 'AFRICA',
-  EUROPE = 'EUROPE',
-  AMERICA = 'AMERICA',
-  ASIA = 'ASIA',
-}
-
-type TCountry = {
-  name: string;
-  continent: ContinentsEnum;
-  language: LanguagesEnum;
-};
-
-const allCountries = [
-  {
-    name: 'Morocco',
-    continent: ContinentsEnum.AFRICA,
-    language: LanguagesEnum.AR,
-  },
-  {
-    name: 'Algeria',
-    continent: ContinentsEnum.AFRICA,
-    language: LanguagesEnum.AR,
-  },
-  {
-    name: 'Tunisia',
-    continent: ContinentsEnum.AFRICA,
-    language: LanguagesEnum.AR,
-  },
-  {
-    name: 'Cameron',
-    continent: ContinentsEnum.AFRICA,
-    language: LanguagesEnum.FR,
-  },
-  {
-    name: 'South Africa',
-    continent: ContinentsEnum.AFRICA,
-    language: LanguagesEnum.EN,
-  },
-  {
-    name: 'France',
-    continent: ContinentsEnum.EUROPE,
-    language: LanguagesEnum.FR,
-  },
-  {
-    name: 'Luxembourg',
-    continent: ContinentsEnum.EUROPE,
-    language: LanguagesEnum.FR,
-  },
-  {
-    name: 'England',
-    continent: ContinentsEnum.EUROPE,
-    language: LanguagesEnum.EN,
-  },
-  {
-    name: 'Saoudi Arabia',
-    continent: ContinentsEnum.ASIA,
-    language: LanguagesEnum.AR,
-  },
-  {
-    name: 'Palestine',
-    continent: ContinentsEnum.ASIA,
-    language: LanguagesEnum.AR,
-  },
-  {
-    name: 'United states',
-    continent: ContinentsEnum.AMERICA,
-    language: LanguagesEnum.EN,
-  },
-  {
-    name: 'China',
-    continent: ContinentsEnum.ASIA,
-    language: LanguagesEnum.MN,
-  },
-];
 
 const Template: Story<any> = (args) => {
   const [, updateArgs] = useArgs();
