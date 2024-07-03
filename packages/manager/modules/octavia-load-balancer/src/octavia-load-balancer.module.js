@@ -3,6 +3,7 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@uirouter/angularjs';
 import 'angular-translate';
+import '@ovh-ux/ng-ovh-feature-flipping';
 
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
@@ -22,6 +23,7 @@ const moduleName = 'ovhManagerOctaviaLoadBalancer';
 
 angular
   .module(moduleName, [
+    'ngOvhFeatureFlipping',
     'ngUiRouterBreadcrumb',
     'ovhManagerCore',
     'pascalprecht.translate',

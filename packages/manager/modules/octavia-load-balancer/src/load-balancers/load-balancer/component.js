@@ -9,6 +9,8 @@ export default {
     poolsLink: '<',
     statisticsLink: '<',
     certificatesLink: '<',
+    logsLink: '<',
+    isLogsToCustomerFeatureAvailable: '<',
   },
   template,
 };
