@@ -25,11 +25,13 @@ export const DashboardLayout = ({
     <PageLayout>
       <div className="mb-3">{breadcrumb}</div>
       {header && (
-        <Headers
-          title={header.title}
-          description={header.description}
-          headerButton={header.headerButton}
-        />
+        <div className="ml-5">
+          <Headers
+            title={header.title}
+            description={header.description}
+            headerButton={header.headerButton}
+          />
+        </div>
       )}
       {linkProps && (
         <Links
