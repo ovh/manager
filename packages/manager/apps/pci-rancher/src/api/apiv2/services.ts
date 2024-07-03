@@ -81,8 +81,7 @@ export const createRancherService = async ({
   data: CreateRancherPayload;
 }) => {
   return apiClient.v2.post(getRancherByProjectIdQueryKey(projectId), {
-    ...data,
-    ipRestrictions: [],
+    targetSpec: data,
   });
 };
 
