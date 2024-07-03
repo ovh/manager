@@ -21,5 +21,6 @@ export default {
     flavorCount: '<?',
     reload: '<',
     loadEnd: '&',
+    currentStep: '<?',
   },
 };

@@ -33,7 +33,8 @@
             data-on-change="$ctrl.onFlavorCategorySelect(flavor, category)"
             data-catalog-endpoint="$ctrl.catalogEndpoint"
             data-reload="$ctrl.reloadFlavorList"
-            data-load-end="$ctrl.onRegionChange()"
+            data-load-end="$ctrl.onFlavorListLoadEnd()"
+            data-current-step="$ctrl.currentStep"
         >
         </pci-project-flavors-list>
     </oui-step-form>
@@ -47,7 +48,7 @@
                     location: $ctrl.model.location
                 }
             }}"
-        data-valid="$ctrl.model.datacenter && !$ctrl.isDiscoveryProject"
+        data-valid="$ctrl.isRegionValid()"
         data-prevent-next="true"
         data-navigation="$ctrl.model.datacenter"
         data-on-focus="$ctrl.onRegionFocus()"
@@ -229,7 +230,7 @@
                             </div>
                         </div>
                         <div
-                            data-ng-if="$ctrl.model.datacenter && !$ctrl.isRegionAvailable($ctrl.model.datacenter) "
+                            data-ng-if="$ctrl.model.datacenter && !$ctrl.isRegionAvailable($ctrl.model.datacenter)"
                             data-ng-switch="$ctrl.getUnavailabilityReason($ctrl.model.datacenter)"
                         >
                             <p
@@ -248,14 +249,13 @@
                                 }"
                                 data-ng-if="!$ctrl.isDiscoveryProject"
                             ></p>
-
+                        </div>
+                        <div data-ng-if="$ctrl.isDiscoveryProject ">
                             <p
                                 class="warning-text"
-                                data-ng-switch-default
                                 data-ng-bind-html="'pci_project_instances_instance_activate_project_banner_message' | translate: {
                                     goToDiscoveryProjectActivationPage: $ctrl.goToDiscoveryProjectActivationPage
                                 }"
-                                data-ng-if="$ctrl.isDiscoveryProject"
                             ></p>
                         </div>
                     </div>

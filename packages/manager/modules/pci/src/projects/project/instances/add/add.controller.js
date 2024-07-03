@@ -613,8 +613,8 @@ export default class PciInstancesAddController {
 
   isRegionAvailable(datacenter) {
     return (
-      datacenter.isAvailable() &&
-      datacenter.hasEnoughQuotaForFlavors(this.model.flavorGroup)
+      datacenter?.isAvailable() &&
+      datacenter?.hasEnoughQuotaForFlavors(this.model.flavorGroup)
     );
   }
 
@@ -1192,5 +1192,24 @@ export default class PciInstancesAddController {
     if (type === this.LOCAL_ZONE_REGION) return mode !== 'public_mode';
     if (type !== this.LOCAL_ZONE_REGION) return mode !== 'local_private_mode';
     return true;
+  }
+
+  onFlavorListLoadEnd() {
+    if (this.reloadFlavorList && this.currentStep === 2) {
+      this.reloadFlavorList = false;
+      this.onRegionChange();
+    }
+  }
+
+  isRegionValid() {
+    return (
+      this.model.datacenter &&
+      !this.isDiscoveryProject &&
+      (this.isRegionAvailable(this.model.datacenter) ||
+        (!this.model.datacenter.isAvailable() &&
+          !this.model.datacenter.hasEnoughQuotaForFlavors(
+            this.model.flavorGroup,
+          )))
+    );
   }
 }
