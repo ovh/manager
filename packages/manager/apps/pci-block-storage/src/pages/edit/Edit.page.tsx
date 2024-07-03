@@ -90,7 +90,7 @@ export default function EditPage() {
   const projectUrl = useProjectUrl('public-cloud');
   const { data: project } = useProject(projectId || '');
   const catalogPrice = useGetPrices(projectId, volumeId);
-  const { translateRegion } = useTranslatedMicroRegions();
+  const { translateMicroRegion } = useTranslatedMicroRegions();
 
   const { getTextPrice } = useCatalogPrice(3);
 
@@ -284,7 +284,7 @@ export default function EditPage() {
               color={ODS_THEME_COLOR_INTENT.text}
               className="mr-4"
             >
-              {translateRegion(volume?.region)}
+              {translateMicroRegion(volume?.region)}
             </OsdsText>
             <ChipRegion region={volume?.region} localRegions={localRegions} />
           </div>

@@ -21,26 +21,3 @@ export const getProjectRegions = async (
   });
   return data;
 };
-
-export const getMacroRegion = (regionName: string) => {
-  const localZonePattern = /^lz/i;
-  let macro: RegExpExecArray;
-  if (
-    localZonePattern.test(
-      regionName
-        .split('-')
-        ?.slice(2)
-        ?.join('-'),
-    )
-  ) {
-    macro = /\D{2,3}/.exec(
-      regionName
-        .split('-')
-        ?.slice(3)
-        ?.join('-'),
-    );
-  } else {
-    macro = /\D{2,3}/.exec(regionName);
-  }
-  return macro ? macro[0].replace('-', '').toUpperCase() : '';
-};
