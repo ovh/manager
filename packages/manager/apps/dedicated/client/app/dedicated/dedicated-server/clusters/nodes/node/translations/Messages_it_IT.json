@@ -898,5 +898,6 @@
   "server_datacenter_STL": "Saint-Louis",
   "server_datacenter_IND": "Indianapolis",
   "server_datacenter_IST": "Istanbul",
-  "server_datacenter_TOR": "Toronto"
+  "server_datacenter_TOR": "Toronto",
+  "server_datacenter_DAL": "Dallas"
 }
