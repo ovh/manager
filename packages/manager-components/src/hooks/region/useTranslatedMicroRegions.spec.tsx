@@ -6,7 +6,10 @@ import {
 } from './useTranslatedMicroRegions';
 
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (key: string) => key }),
+  useTranslation: () => ({
+    t: (key: string) => key,
+    i18n: { exists: () => true },
+  }),
 }));
 
 describe('getMacroRegion', () => {
@@ -38,7 +41,7 @@ describe('getMacroRegion', () => {
 describe('useTranslatedMicroRegions', () => {
   it('returns translated region', () => {
     const { result } = renderHook(() => useTranslatedMicroRegions());
-    expect(result.current.translateRegion('WES-1')).toBe(
+    expect(result.current.translateMicroRegion('WES-1')).toBe(
       'manager_components_region_WES_micro',
     );
   });

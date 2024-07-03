@@ -1,6 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { TRegion, getMacroRegion, getProjectRegions } from '@/api/data/regions';
+import {
+  getMacroRegion,
+  useTranslatedMicroRegions,
+} from '@ovhcloud/manager-components';
+import { TRegion, getProjectRegions } from '@/api/data/regions';
 
 export const useProjectRegions = (projectId: string) =>
   useQuery({
@@ -29,29 +33,12 @@ export interface ProjectLocalisation {
 }
 
 export const useProjectLocalisation = (projectId: string) => {
-  const { i18n, t: tRegion } = useTranslation('region');
   const { t: tLoc } = useTranslation('localisation');
-
-  const getTranslatedMicroRegion = (macro: string, micro: string) => {
-    if (i18n.exists(`region:manager_components_region_${macro}_micro`)) {
-      return tRegion(`manager_components_region_${macro}_micro`, { micro });
-    }
-    return null;
-  };
-
-  const getTranslatedMacroRegion = (macro: string) => {
-    if (i18n.exists(`region:manager_components_region_${macro}`)) {
-      return tRegion(`manager_components_region_${macro}`);
-    }
-    return null;
-  };
-
-  const getTranslatedRegionContinent = (macro: string) => {
-    if (i18n.exists(`region:manager_components_region_continent_${macro}`)) {
-      return tRegion(`manager_components_region_continent_${macro}`);
-    }
-    return null;
-  };
+  const {
+    translateMicroRegion,
+    translateMacroRegion,
+    translateContinentRegion,
+  } = useTranslatedMicroRegions();
 
   return useQuery({
     queryKey: ['project', projectId, 'localisation'],
@@ -64,10 +51,9 @@ export const useProjectLocalisation = (projectId: string) => {
             ...region,
             isMacro: region.name === macro,
             macro,
-            macroLabel: getTranslatedMacroRegion(macro) || macro,
-            microLabel:
-              getTranslatedMicroRegion(macro, region.name) || region.name,
-            continentLabel: getTranslatedRegionContinent(macro) || macro,
+            macroLabel: translateMacroRegion(region.name) || macro,
+            microLabel: translateMicroRegion(region.name) || region.name,
+            continentLabel: translateContinentRegion(region.name) || macro,
             isLocalZone: region.type === 'localzone',
           };
         })

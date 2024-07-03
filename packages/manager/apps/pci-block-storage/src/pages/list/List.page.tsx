@@ -136,12 +136,6 @@ export default function ListingPage() {
           <PciDiscoveryBanner projectId={projectId} />
         )}
         <Notifications />
-
-        <div className="mb-5">
-          {isDiscoveryProject(project) && (
-            <PciDiscoveryBanner projectId={projectId} />
-          )}
-        </div>
         <div className={'sm:flex items-center justify-between mt-4'}>
           <OsdsButton
             size={ODS_BUTTON_SIZE.sm}
