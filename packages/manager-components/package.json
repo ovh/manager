@@ -11,7 +11,7 @@
   "scripts": {
     "start": "storybook dev -p 6006",
     "dev": "tsc",
-    "build": "tsc",
+    "build": "echo build",
     "build:storybook": "storybook build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "jest --coverage -u",
@@ -29,7 +29,6 @@
     "@tanstack/react-table": "^8.11.6",
     "babel-preset-react-app": "^10.0.1",
     "clsx": "^2.1.1",
-    "react": "18.2.0",
     "react-use": "^17.5.0",
     "sass": "1.71.0",
     "tailwindcss": "3.3.3",
@@ -87,7 +86,8 @@
     "vite": "4.4.9",
     "vite-plugin-dts": "3.5.1",
     "vitest": "0.34.1",
-    "zustand": "^4.5.0"
+    "zustand": "^4.5.0",
+    "@ovh-ux/manager-vite-config": "^0.6.2"
   },
   "optionalDependencies": {
     "i18next": "^20.4.0",
