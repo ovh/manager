@@ -7,8 +7,8 @@ import './translations/discovery';
 
 const DISCOVERY_PROJECT_PLANCODE = 'project.discovery';
 
-export const isDiscoveryProject = ({ planCode }: { planCode: string }) => {
-  return planCode === DISCOVERY_PROJECT_PLANCODE;
+export const isDiscoveryProject = (project: { planCode: string }) => {
+  return project?.planCode === DISCOVERY_PROJECT_PLANCODE;
 };
 
 export interface PciDiscoveryBannerProps {
