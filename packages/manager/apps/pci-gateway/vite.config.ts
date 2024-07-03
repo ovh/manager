@@ -14,13 +14,5 @@ export default defineConfig({
   },
   resolve: {
     ...baseConfig.resolve,
-    dedupe: [
-      'i18next',
-      'react',
-      'react-dom',
-      'react-i18next',
-      'react-router-dom',
-      'zustand',
-    ],
   },
 });

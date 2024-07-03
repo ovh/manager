@@ -14,15 +14,5 @@ export default defineConfig({
   },
   resolve: {
     ...baseConfig.resolve,
-    dedupe: [
-      '@ovh-ux/manager-react-shell-client',
-      '@tanstack/react-query',
-      'i18next',
-      'react',
-      'react-dom',
-      'react-i18next',
-      'react-router-dom',
-      'zustand',
-    ],
   },
 });

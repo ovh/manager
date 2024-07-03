@@ -184,12 +184,7 @@ export const useData = (projectId: string) => {
 
       setSizes(newSizes?.sort((a, b) => a.monthlyPrice - b.monthlyPrice));
     }
-  }, [
-    availableGatewayPlans,
-    cloudCatalog,
-    inactiveRegions,
-    i18n.resolvedLanguage,
-  ]);
+  }, [availableGatewayPlans, cloudCatalog, inactiveRegions, i18n]);
 
   return sizes;
 };
