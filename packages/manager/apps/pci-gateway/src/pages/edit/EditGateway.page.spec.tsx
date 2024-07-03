@@ -81,7 +81,7 @@ describe('EditGatewayPage', () => {
       updateGateway: mockGatewayUpdate,
       isPending: false,
     } as unknown) as UseEditGatewayReturnType);
-    const { getByTestId, container, debug } = render(<EditGatewayPage />, {
+    const { getByTestId } = render(<EditGatewayPage />, {
       wrapper,
     });
     waitFor(() => {

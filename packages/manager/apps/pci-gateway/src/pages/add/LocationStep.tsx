@@ -116,9 +116,7 @@ export const LocationStep = () => {
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.primary}
             target={OdsHTMLAnchorElementTarget._blank}
-            href={
-              'https://www.ovhcloud.com/en-ie/public-cloud/regions-availability'
-            }
+            href="https://www.ovhcloud.com/en-ie/public-cloud/regions-availability"
           >
             <OsdsIcon
               name={ODS_ICON_NAME.INFO_CIRCLE}
