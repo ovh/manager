@@ -9,7 +9,7 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { clsx } from 'clsx';
 
-type TStepProps = {
+export type TStepProps = {
   id?: string;
   title?: string | JSX.Element;
   subtitle?: string | JSX.Element;
