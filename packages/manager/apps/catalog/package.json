@@ -50,9 +50,7 @@
     "@ovh-ux/manager-vite-config": "^0.7.0",
     "@playwright/test": "^1.41.2",
     "@types/jest": "^29.5.5",
-    "ts-jest": "^29.1.1",
-    "typescript": "^4.3.2",
-    "vite": "^3.0.2"
+    "ts-jest": "^29.1.1"
   },
   "regions": [
     "CA",

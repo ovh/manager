@@ -25,6 +25,7 @@
     "@ovh-ux/manager-config": "^7.3.2",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-module-order": "^0.3.1",
+    "@ovh-ux/manager-react-core-application": "^0.9.0",
     "@ovh-ux/manager-react-shell-client": "^0.6.1",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "*",
@@ -35,12 +36,8 @@
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
     "@tanstack/react-query": "5.29.2",
     "@tanstack/react-query-devtools": "5.29.2",
-    "i18next": "^20.4.0",
-    "i18next-http-backend": "^2.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-i18next": "^11.18.1",
-    "react-router-dom": "^6.3.0",
     "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
@@ -55,10 +52,15 @@
     "msw": "2.1.7",
     "ts-jest": "27.x",
     "ts-loader": "^9.5.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.7.0",
-    "vite": "^3.0.2",
-    "vitest": "^1.2.0"
+    "ts-node": "^10.9.1"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-i18next": "*",
+    "react-router-dom": "*",
+    "vite": "*",
+    "vitest": "*"
   },
   "msw": {
     "workerDirectory": "src/public"
