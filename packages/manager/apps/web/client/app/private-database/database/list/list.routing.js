@@ -5,6 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '',
     template,
     controller: 'PrivateDatabaseBDDsListCtrl',
+    controllerAs: 'listCtrl',
     resolve: {
       breadcrumb: () => null,
     },

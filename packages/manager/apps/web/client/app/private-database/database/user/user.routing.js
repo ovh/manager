@@ -7,6 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/user',
       template,
       controller: 'PrivateDatabaseUserDatabaseCtrl',
+      controllerAs: 'privateDatabaseUserDatabaseCtrl',
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('private_database_database_user'),

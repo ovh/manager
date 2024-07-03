@@ -278,6 +278,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/change-offer',
     templateUrl: 'hosting/offer/upgrade/hosting-offer-upgrade.html',
     controller: 'HostingUpgradeOfferCtrl',
+    controllerAs: '$ctrl',
     reloadOnSearch: false,
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
