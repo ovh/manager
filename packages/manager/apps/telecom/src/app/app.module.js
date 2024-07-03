@@ -107,6 +107,7 @@ import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-confi
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
 import pack from './telecom/pack';
+import accessList from './telecom/pack/access-list';
 import telephony from './telecom/telephony';
 import telephonyComponents from '../components/telecom/telephony';
 import popoverUtils from '../components/popover';
@@ -231,6 +232,7 @@ export default async (containerEl, shellClient) => {
         telephonyComponents,
         searchPage,
         ngOvhFeatureFlipping,
+        accessList,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )

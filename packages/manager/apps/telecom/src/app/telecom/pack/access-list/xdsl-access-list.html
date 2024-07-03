@@ -1,0 +1,96 @@
+<div class="m-4">
+    <header class="widget-presentation-header">
+        <h2
+            class="widget-presentation-title"
+            data-translate="xdsl_access_list_title"
+        ></h2>
+    </header>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <oui-message data-type="info">
+        <a
+            data-ng-href="{{ $ctrl.links.copperClosureMore }}"
+            data-translate-attr="{ 'title': 'xlds_access_list_copper_closure_info' }"
+            target="_blank"
+            rel="noopener"
+        >
+            <span data-translate="xlds_access_list_copper_closure_info"></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
+
+    <oui-datagrid
+        data-rows="$ctrl.services"
+        data-page-size="{{$ctrl.pageSize}}"
+    >
+        <oui-datagrid-column
+            data-title="'xdsl_access_list_service_name' | translate"
+            data-property="accessName"
+            data-sortable="desc"
+        >
+            <div>
+                <a data-ng-href="{{ $row.accessLink }}">
+                    <span data-ng-bind="$row.accessName"></span>
+                </a>
+            </div>
+            <div data-ng-bind="$row.description"></div>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'xdsl_access_list_service' | translate"
+            data-property="accessType"
+            data-sortable
+        >
+            <span
+                data-translate="{{$row.accessType ===  $ctrl.ACCESS_TYPE.ftth ? 'xdsl_access_list_fiber' : 'xdsl_access_list_copper'}}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'xdsl_access_list_migration' | translate"
+            data-property="migrationAvailable"
+            data-sortable
+        >
+            <span
+                class="oui-badge oui-badge_success"
+                data-translate="{{'xdsl_access_list_' + $row.migrationAvailable}}"
+                data-ng-if="$row.migrationAvailable === $ctrl.ELIGIBILITY.eligible"
+            ></span>
+            <span
+                data-translate="{{'xdsl_access_list_' + $row.migrationAvailable}}"
+                data-ng-if="$row.migrationAvailable != $ctrl.ELIGIBILITY.eligible"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'xdsl_access_list_copper_closure_date' | translate"
+        >
+            <span
+                data-ng-if="$row.migrationAvailable === $ctrl.ELIGIBILITY.eligible && $row.copperGridClosureTrajectory.technicalClosureDate"
+                data-ng-bind="$row.copperGridClosureTrajectory.technicalClosureDate | date:'shortDate'"
+            >
+            </span>
+            <span
+                data-ng-if="$row.migrationAvailable === $ctrl.ELIGIBILITY.eligible && !$row.copperGridClosureTrajectory.technicalClosureDate"
+                data-translate="xdsl_access_list_not_available"
+            ></span>
+            <span
+                data-ng-if="$row.migrationAvailable != $ctrl.ELIGIBILITY.eligible"
+                data-translate="xdsl_access_list_not_concerned"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'xdsl_access_list_actions' | translate"
+        >
+            <a
+                class="oui-button oui-button_secondary"
+                data-ng-href="{{$row.migrationLink}}"
+                data-ng-if="$row.migrationAvailable === $ctrl.ELIGIBILITY.eligible && $row.accessType !== $ctrl.ACCESS_TYPE.sdsl"
+                data-translate-attr="{'title': 'xdsl_access_list_migrate'}"
+            >
+                <span data-translate="xdsl_access_list_migrate"></span>
+            </a>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>

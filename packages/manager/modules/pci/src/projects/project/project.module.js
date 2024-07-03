@@ -16,7 +16,6 @@ import dataProcessing from './data-processing';
 import edit from './edit';
 import activate from './activate';
 import components from './components';
-import additionalIps from './additional-ips';
 import inactive from './inactive';
 import instances from './instances';
 import kubernetes from './kubernetes';
@@ -58,7 +57,6 @@ angular
     edit,
     activate,
     components,
-    additionalIps,
     inactive,
     instances,
     loadBalancer,
