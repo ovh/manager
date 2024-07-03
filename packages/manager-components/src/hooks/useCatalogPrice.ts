@@ -19,7 +19,14 @@ const FRENCH_FORMAT = [
   'TN',
 ];
 
-export const useCatalogPrice = (maximumFractionDigits?: number) => {
+export interface CatalogPriceOptions {
+  hideTaxLabel?: boolean;
+}
+
+export const useCatalogPrice = (
+  maximumFractionDigits?: number,
+  options?: CatalogPriceOptions,
+) => {
   const { t } = useTranslation('order-price');
   const { me } = useMe();
 
@@ -38,14 +45,14 @@ export const useCatalogPrice = (maximumFractionDigits?: number) => {
     return me
       ? new Intl.NumberFormat(
           locale.replace('_', '-'),
-          numberFormatOptions,
+          numberFormatOptions as Parameters<typeof Intl.NumberFormat>[1],
         ).format(priceToFormat)
       : '';
   };
 
   const getFormattedCatalogPrice = (price: number): string =>
     `${
-      isTaxExcl
+      isTaxExcl && !options?.hideTaxLabel
         ? t('order_catalog_price_tax_excl_label', {
             price: getTextPrice(price),
           })
