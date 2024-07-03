@@ -34,22 +34,21 @@
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
-    "@tanstack/react-query": "^5.12.2",
-    "@tanstack/react-query-devtools": "^5.13.3",
-    "@tanstack/react-table": "^8.11.6",
-    "i18next": "^20.4.0",
+    "@tanstack/react-query": "^5.51.21",
+    "@tanstack/react-table": "^8.20.1",
+    "i18next": "^23.8.2",
     "i18next-http-backend": "2.5.0",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
-    "react-i18next": "^11.18.1",
+    "react-i18next": "^14.0.5",
     "react-router-dom": "^6.3.0",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
     "@ovh-ux/manager-vite-config": "^0.7.0",
     "@playwright/test": "^1.34.3",
-    "typescript": "^4.3.2",
-    "vite": "^4.5.0"
+    "@tanstack/react-query-devtools": "^5.51.21",
+    "vite": "^5.2.13"
   },
   "regions": [
     "CA",
