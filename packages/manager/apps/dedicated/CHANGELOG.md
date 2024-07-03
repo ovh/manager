@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.41.1...@ovh-ux/manager-dedicated@19.42.0) (2024-07-03)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing translations for multi-AZ cluster servers ([#11722](https://github.com/ovh/manager/issues/11722)) ([ea45a11](https://github.com/ovh/manager/commit/ea45a11903dd34276fc83b93b59c24d814aa73f7))
+* **i18n:** add missing translations [CDS 3094] ([e8a1fc8](https://github.com/ovh/manager/commit/e8a1fc801219be65466501772f0aa710fc85f634))
+* **i18n:** add missing translations [CDS 3111] ([c6f9bde](https://github.com/ovh/manager/commit/c6f9bde68455fe13190c1ac5bf28786c638fe05b))
+* remove unused translations [CDS] ([7dc535a](https://github.com/ovh/manager/commit/7dc535a9077da3d16de9a4cf91a58b84be9dd1c8))
+
+
+### Features
+
+* **dedicated.ip:** get game protocol from api ([#12055](https://github.com/ovh/manager/issues/12055)) ([c0240d5](https://github.com/ovh/manager/commit/c0240d506b9d371d938ef9071adafddc27e1c1dd))
+* **dedicated.support:** add order support level ([#11953](https://github.com/ovh/manager/issues/11953)) ([388a33b](https://github.com/ovh/manager/commit/388a33bfb3eaee9055fd846e5f586908ef78467d))
+* **dedicated:** modify aggregate configuration content ([#12060](https://github.com/ovh/manager/issues/12060)) ([492702c](https://github.com/ovh/manager/commit/492702c4eb79927ce540680a4a2218d955286e16))
+
+
+### Performance Improvements
+
+* **dedicated.server:** fetch server list without details ([#12088](https://github.com/ovh/manager/issues/12088)) ([5ed064b](https://github.com/ovh/manager/commit/5ed064b3d78f9bc20a4a6b428cf4a1aad5237da7))
+
+
+
+
+
 ## [19.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.41.0...@ovh-ux/manager-dedicated@19.41.1) (2024-07-01)
 
 

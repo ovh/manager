@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.25.1...@ovh-ux/manager-bm-server-components@1.25.2) (2024-07-03)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing translations for multi-AZ cluster servers ([#11722](https://github.com/ovh/manager/issues/11722)) ([ea45a11](https://github.com/ovh/manager/commit/ea45a11903dd34276fc83b93b59c24d814aa73f7))
+
+
+
+
+
 ## [1.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.25.0...@ovh-ux/manager-bm-server-components@1.25.1) (2024-07-01)
 
 

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.49.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.49.0...@ovh-ux/manager-pci@6.49.1) (2024-07-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3087] ([358e236](https://github.com/ovh/manager/commit/358e236a97ddd1366d57504c0b6c874db18e752c))
+* **pci.kube:** fix disappearing version step next button ([#11350](https://github.com/ovh/manager/issues/11350)) ([e669cf5](https://github.com/ovh/manager/commit/e669cf5697dc25884b2b27ceae598fdf192c133e))
+* remove unused translations [CDS] ([873b7cc](https://github.com/ovh/manager/commit/873b7cc3c32fa7ea1bf47f34e826b2208516a04e))
+
+
+
+
+
 # [6.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.48.0...@ovh-ux/manager-pci@6.49.0) (2024-06-25)
 
 

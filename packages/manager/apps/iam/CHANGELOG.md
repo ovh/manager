@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@2.3.0...@ovh-ux/manager-iam-app@2.3.1) (2024-07-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@2.2.6...@ovh-ux/manager-iam-app@2.3.0) (2024-06-25)
 
 

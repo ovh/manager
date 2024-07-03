@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.38](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.37...@ovh-ux/manager-billing@0.20.0-alpha.38) (2024-07-03)
+
+
+### Features
+
+* **dedicated.support:** add auto renewal link for US account ([#12076](https://github.com/ovh/manager/issues/12076)) ([5fbfbcd](https://github.com/ovh/manager/commit/5fbfbcdc41a7e275566984cb98f9f0c16439cc0e))
+
+
+
+
+
 # [0.20.0-alpha.37](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.36...@ovh-ux/manager-billing@0.20.0-alpha.37) (2024-06-25)
 
 

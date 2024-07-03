@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-documentation@0.4.0...@ovh-ux/manager-documentation@0.4.1) (2024-07-03)
+
+
+### Bug Fixes
+
+* **manager-components:** build storybook ([#12199](https://github.com/ovh/manager/issues/12199)) ([a1a7e20](https://github.com/ovh/manager/commit/a1a7e2081898c8d14c3fbca847f1de8b8e0f9813))
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-documentation@0.3.2...@ovh-ux/manager-documentation@0.4.0) (2024-04-04)
 
 

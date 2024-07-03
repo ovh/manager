@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.9.0...@ovh-ux/manager-pci-rancher-app@1.10.0) (2024-07-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3111] ([c6f9bde](https://github.com/ovh/manager/commit/c6f9bde68455fe13190c1ac5bf28786c638fe05b))
+
+
+### Features
+
+* **rancher:** replace with manager-components([#11668](https://github.com/ovh/manager/issues/11668)) ([9a35455](https://github.com/ovh/manager/commit/9a3545519c07d1afb728ffdd29943df0fbf88480))
+* **rancher:** update version page for rancher ([#11884](https://github.com/ovh/manager/issues/11884)) ([784747e](https://github.com/ovh/manager/commit/784747e7ace709da4e3af52c918ed69097ce72d6))
+* **web:** eol sharepoint ([#11976](https://github.com/ovh/manager/issues/11976)) ([83c130a](https://github.com/ovh/manager/commit/83c130a569e9b9355120f935e85cf396dfde0f86))
+
+
+
+
+
 # [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.8.0...@ovh-ux/manager-pci-rancher-app@1.9.0) (2024-06-25)
 
 
