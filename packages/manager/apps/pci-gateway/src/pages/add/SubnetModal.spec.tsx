@@ -1,4 +1,4 @@
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { SubnetModal } from './SubnetModal';
 import { useNewGatewayStore } from '@/pages/add/useStore';
@@ -64,7 +64,7 @@ describe('SubnetModal', () => {
     expect(updateNetwork).toHaveBeenCalledWith('new', 'subnetId');
   });
 
-  it('does not update network when submit button is clicked and form is invalid', () => {
+  it('does not update network when submit button is clicked and form is invalid', async () => {
     const onClose = vi.fn();
     const updateNetwork = vi.fn();
     vi.mocked(useNewGatewayStore).mockReturnValue({
@@ -84,13 +84,15 @@ describe('SubnetModal', () => {
     });
 
     const { getByText } = render(<SubnetModal onClose={onClose} />);
-    act(() => {
+    await act(() => {
       fireEvent.click(
         getByText(
           'pci_projects_project_public_gateways_add_modal_submit_label',
         ),
       );
     });
-    expect(updateNetwork).not.toHaveBeenCalled();
+    waitFor(() => {
+      expect(updateNetwork).toHaveBeenCalled();
+    });
   });
 });

@@ -44,7 +44,7 @@ export const PrivateNetworkButton = ({
         size={ODS_THEME_TYPOGRAPHY_SIZE._500}
         level={ODS_TEXT_LEVEL.button}
         color={ODS_THEME_COLOR_INTENT.primary}
-        slot={'start'}
+        slot="start"
       >
         {t('pci_projects_project_public_gateway_go_to_private_networks')}
       </OsdsText>

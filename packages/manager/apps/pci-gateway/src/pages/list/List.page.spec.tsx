@@ -10,8 +10,8 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import * as useProjectModule from '@ovhcloud/manager-components';
-import { PublicCloudProject } from '@ovhcloud/manager-components';
+import * as pciCommonModule from '@ovh-ux/manager-pci-common';
+import { TProject } from '@ovh-ux/manager-pci-common';
 import ListingPage from './List.page';
 
 vi.mock('react-router-dom');
@@ -39,13 +39,13 @@ const wrapper = ({ children }) => (
 );
 describe('ListingPage', () => {
   it('ListingPage renders without crashing', () => {
-    vi.spyOn(useProjectModule, 'useProject').mockResolvedValue({
+    vi.spyOn(pciCommonModule, 'useProject').mockResolvedValue({
       data: {
         project_id: '123',
         planCode: 'project.discovery',
         description: 'description',
       },
-    } as UseQueryResult<PublicCloudProject, null>);
+    } as UseQueryResult<TProject, null>);
     const { environment, shell } = shellContext;
     environment.getUser.mockResolvedValue({
       ovhSubsidiary: 'foo',

@@ -39,7 +39,7 @@ describe('Actions', () => {
 
   it('navigates to correct URL on edit button click', async () => {
     vi.mocked(useHref).mockReturnValue('hrefEdit');
-    const { getByTestId, debug, container } = render(
+    const { getByTestId } = render(
       <Actions
         projectId="test"
         gateway={{ id: '1', name: 'test', region: 'test' } as Gateway}

@@ -109,7 +109,7 @@ export default function AddGatewayPage(): JSX.Element {
         />
         {tEdit('pci_projects_project_public_gateway_edit_go_back')}
       </OsdsLink>
-      <div className={'flex items-center justify-between mt-4'}>
+      <div className="flex items-center justify-between mt-4">
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
           size={ODS_THEME_TYPOGRAPHY_SIZE._600}
@@ -117,7 +117,7 @@ export default function AddGatewayPage(): JSX.Element {
         >
           {tAdd('pci_projects_project_public_gateways_add_title')}
         </OsdsText>
-        <div className={'xs:w-32 sm:w-auto xs:pl-7 sm:pl-0'}>
+        <div className="xs:w-32 sm:w-auto xs:pl-7 sm:pl-0">
           <PciGuidesHeader category="instances"></PciGuidesHeader>
         </div>
       </div>

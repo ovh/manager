@@ -10,8 +10,8 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import * as useProjectModule from '@ovhcloud/manager-components';
-import { PublicCloudProject } from '@ovhcloud/manager-components';
+import * as pciCommonModule from '@ovh-ux/manager-pci-common';
+import { TProject } from '@ovh-ux/manager-pci-common';
 import EditGatewayPage from './EditGateway.page';
 import * as useGatewayModule from '@/api/hooks/useGateways';
 import { TGateway } from '@/api/data/gateways';
@@ -70,18 +70,18 @@ const wrapper = ({ children }) => (
 
 describe('EditGatewayPage', () => {
   it('renders without crashing', () => {
-    vi.spyOn(useProjectModule, 'useProject').mockResolvedValue({
+    vi.spyOn(pciCommonModule, 'useProject').mockResolvedValue({
       data: {
         project_id: '123',
         planCode: 'project.discovery',
         description: 'description',
       },
-    } as UseQueryResult<PublicCloudProject, null>);
+    } as UseQueryResult<TProject, null>);
     vi.spyOn(useGatewayModule, 'useEditGateway').mockReturnValue(({
       updateGateway: mockGatewayUpdate,
       isPending: false,
     } as unknown) as UseEditGatewayReturnType);
-    const { getByTestId, container, debug } = render(<EditGatewayPage />, {
+    const { getByTestId } = render(<EditGatewayPage />, {
       wrapper,
     });
     waitFor(() => {
