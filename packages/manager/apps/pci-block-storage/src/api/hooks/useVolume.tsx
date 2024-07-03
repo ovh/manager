@@ -28,7 +28,7 @@ import { UCENTS_FACTOR } from '@/hooks/currency-constants';
 import queryClient from '@/queryClient';
 
 export const useAllVolumes = (projectId: string) => {
-  const { translateRegion } = useTranslatedMicroRegions();
+  const { translateMicroRegion } = useTranslatedMicroRegions();
   return useQuery({
     queryKey: ['project', projectId, 'volumes'],
     queryFn: () => getAllVolumes(projectId),
@@ -65,7 +65,7 @@ export const useAllVolumes = (projectId: string) => {
         return {
           ...volume,
           statusGroup,
-          regionName: translateRegion(volume.region),
+          regionName: translateMicroRegion(volume.region),
         };
       }),
   });

@@ -37,14 +37,11 @@ vi.mock('@ovhcloud/manager-components', async (importOriginal) => {
     useProjectLocalRegions: vi.fn().mockReturnValue({ data: [] }),
     useProjectQuota: vi.fn().mockReturnValue({ data: [] }),
     useProjectUrl: vi.fn().mockReturnValue('/project-url'),
+    useTranslatedMicroRegions: vi
+      .fn()
+      .mockReturnValue({ translateMicroRegion: vi.fn().mockReturnValue('EU') }),
   };
 });
-
-vi.mock('@/hooks/useTranslatedMicroRegions', () => ({
-  useTranslatedMicroRegions: vi
-    .fn()
-    .mockReturnValue({ translateRegion: vi.fn().mockReturnValue('EU') }),
-}));
 
 const shellContext = {
   environment: {

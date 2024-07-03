@@ -30,12 +30,29 @@ export const getMacroRegion = (region: string): string => {
 };
 
 export const useTranslatedMicroRegions = () => {
-  const { t } = useTranslation('region');
+  const { i18n, t } = useTranslation('region');
 
   return {
-    translateRegion: (region: string) =>
-      t(`manager_components_region_${getMacroRegion(region)}_micro`, {
-        micro: region,
-      }),
+    translateMicroRegion: (region: string) => {
+      const macro = getMacroRegion(region);
+      if (i18n.exists(`region:manager_components_region_${macro}_micro`)) {
+        return t(`manager_components_region_${macro}_micro`, { micro: region });
+      }
+      return '';
+    },
+    translateMacroRegion: (region: string) => {
+      const macro = getMacroRegion(region);
+      if (i18n.exists(`region:manager_components_region_${macro}`)) {
+        return t(`manager_components_region_${macro}`);
+      }
+      return '';
+    },
+    translateContinentRegion: (region: string) => {
+      const macro = getMacroRegion(region);
+      if (i18n.exists(`region:manager_components_region_continent_${macro}`)) {
+        return t(`manager_components_region_continent_${macro}`);
+      }
+      return '';
+    },
   };
 };
