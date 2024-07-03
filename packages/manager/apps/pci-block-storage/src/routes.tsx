@@ -86,20 +86,20 @@ export default [
         children: [],
       },
       {
-        path: 'onboarding-list',
-        ...lazyRouteConfig(() =>
-          import('@/pages/onboarding/OnBoardingList.page'),
-        ),
-        children: [],
-      },
-      {
         path: ':volumeId/edit',
         id: 'edit',
         ...lazyRouteConfig(() => import('@/pages/edit/Edit.page')),
         handle: {
           tracking: 'edit',
         },
-      }
+      },
+      {
+        path: 'new',
+        ...lazyRouteConfig(() => import('@/pages/new/New.page')),
+        handle: {
+          tracking: 'new',
+        },
+      },
     ],
   },
   {

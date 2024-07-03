@@ -1,6 +1,19 @@
-import { describe, it } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import StatusComponent from '@/components/list/Status.component';
+
+vi.mock('react-i18next', async (importOrig) => {
+  const orig = await importOrig<typeof import('react-i18next')>();
+  return {
+    ...orig,
+    useTranslation: () => ({
+      ...orig.useTranslation(),
+      i18n: {
+        exists: () => true,
+      },
+    }),
+  };
+});
 
 describe('StatusComponent', () => {
   it('renders correct color for ACTIVE status', () => {
@@ -42,6 +55,7 @@ describe('StatusComponent', () => {
       'info',
     );
   });
+
   it('renders correct translation when status and statusGroup are different', () => {
     const { getByText } = render(
       <StatusComponent statusGroup="ACTIVE" status="PENDING" />,
