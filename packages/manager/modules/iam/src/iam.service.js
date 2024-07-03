@@ -4,6 +4,7 @@ export const URL = {
   ACTION: '/engine/api/v2/iam/reference/action',
   IDENTITY_GROUP: '/me/identity/group',
   IDENTITY_USER: '/me/identity/user',
+  SERVICE_ACCOUNT: '/me/api/oauth2/client',
   PREFERENCES: '/me/preferences/manager',
   POLICY: '/engine/api/v2/iam/policy',
   RESOURCE: '/engine/api/v2/iam/resource',
@@ -93,22 +94,66 @@ export default class IAMService {
   }
 
   // **********************************************************************************************
-  // Identity
+  // Users
 
   /**
-   * Get the list of identity groups
-   * @returns {Promise<string[]>}
+   * Get user list
+   * @returns {Promise<object[]>}
    */
-  getIdentityGroups() {
-    return this.$http.get(URL.IDENTITY_GROUP).then(({ data }) => data);
+  getUserList() {
+    return this.$http
+      .get(URL.IDENTITY_USER)
+      .then(({ data }) =>
+        this.$q.all(data.map((userId) => this.getUser(userId))),
+      );
   }
 
   /**
-   * Get the list of identity users
-   * @returns {Promise<string[]>}
+   * Get one User
+   * @returns {Promise<Object>}
    */
-  getIdentityUsers() {
-    return this.$http.get(URL.IDENTITY_USER).then(({ data }) => data);
+  getUser(userId) {
+    return this.$http
+      .get(`${URL.IDENTITY_USER}/${userId}`)
+      .then(({ data }) => data);
+  }
+
+  // **********************************************************************************************
+  // User Groups
+
+  /**
+   * Get user group list
+   * @returns {Promise<object[]>}
+   */
+  getGroupList() {
+    return this.$http
+      .get(URL.IDENTITY_GROUP)
+      .then(({ data }) =>
+        this.$q.all(data.map((groupId) => this.getGroup(groupId))),
+      );
+  }
+
+  /**
+   * Get one User Group
+   * @returns {Promise<Object>}
+   */
+  getGroup(groupId) {
+    return this.$http
+      .get(`${URL.IDENTITY_GROUP}/${groupId}`)
+      .then(({ data }) => data);
+  }
+
+  // **********************************************************************************************
+  // Service Accounts
+
+  /**
+   * Get one Service Account
+   * @returns {Promise<Object>}
+   */
+  getServiceAccount(serviceAccountId) {
+    return this.$http
+      .get(`${URL.SERVICE_ACCOUNT}/${serviceAccountId}`)
+      .then(({ data }) => data);
   }
 
   // **********************************************************************************************

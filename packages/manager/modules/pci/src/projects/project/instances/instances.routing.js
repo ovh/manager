@@ -10,7 +10,6 @@ import {
 } from './instances.constants';
 import Instance from '../../../components/project/instance/instance.class';
 import { PCI_FEATURES } from '../../projects.constant';
-import { FLOATING_IP_HOURLY_PLAN_CODE } from '../additional-ips/additional-ips.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances', {
@@ -141,7 +140,7 @@ export default /* @ngInject */ ($stateProvider) => {
         coreConfig,
         projectId,
       ) => (region) => {
-        const planCode = FLOATING_IP_HOURLY_PLAN_CODE;
+        const planCode = 'floatingip.floatingip.hour.consumption';
         return $http
           .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
             params: {

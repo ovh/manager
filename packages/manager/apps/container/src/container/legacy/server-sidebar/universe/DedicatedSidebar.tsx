@@ -284,6 +284,7 @@ export default function DedicatedSidebar() {
             id: 'ip-loadbalancer',
             label: t('sidebar_pci_load_balancer'),
             icon: getIcon('ovh-font ovh-font-iplb'),
+            href: navigation.getURL('dedicated', '#/iplb'),
             routeMatcher: new RegExp('^(/network)?/iplb'),
             async loader() {
               const iplb = await loadServices('/ipLoadbalancing');
@@ -299,6 +300,7 @@ export default function DedicatedSidebar() {
             id: 'dedicated-vrack',
             label: t('sidebar_vrack'),
             icon: getIcon('ovh-font ovh-font-vRack'),
+            href: navigation.getURL('dedicated', '#/vrack'),
             routeMatcher: new RegExp('^/vrack'),
             async loader() {
               return loadServices('/vrack');
@@ -309,36 +311,22 @@ export default function DedicatedSidebar() {
             badge: 'beta',
             label: t('sidebar_vrack_services'),
             icon: getIcon('oui-icon oui-icon-vRack-services_concept'),
+            href: navigation.getURL('vrack-services', '/'),
             pathMatcher: new RegExp('^/vrack-services'),
             async loader() {
               const appId = 'vrack-services';
-              const items = await loadServices('/vrackServices/resource', undefined, appId);
-
-              return [
-                {
-                  id: 'vrack_services-all',
-                  label: t('sidebar_all_vrack_services'),
-                  href: navigation.getURL(appId, '#/'),
-                  ignoreSearch: true,
-                },
-                ...items
-              ];
+              return loadServices('/vrackServices/resource', undefined, appId);
             },
           },
           feature['cloud-connect'] && {
             id: 'dedicated-ovhcloudconnect',
             label: t('sidebar_cloud_connect'),
             icon: getIcon('oui-icon oui-icon-line-communicating_concept'),
+            href: navigation.getURL('dedicated', '#/cloud-connect'),
             routeMatcher: new RegExp('^/cloud-connect'),
             async loader() {
               const services = await loadServices('/ovhCloudConnect');
               return [
-                {
-                  id: 'cloud-connect-all',
-                  label: t('sidebar_service_all'),
-                  href: navigation.getURL('dedicated', '#/cloud-connect'),
-                  ignoreSearch: true,
-                },
                 ...services.map((service) => ({
                   ...service,
                   href: navigation.getURL(

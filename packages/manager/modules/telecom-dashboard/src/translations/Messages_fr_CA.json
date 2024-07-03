@@ -38,5 +38,21 @@
   "telecom_dashboard_common_vip": "Statut VIP",
   "telecom_dashboard_common_newtab": "(nouvel onglet)",
   "telecom_dashboard_identity_check_message_info": "Pensez à valider votre identifiant pour la téléphonie dès maintenant.",
-  "telecom_dashboard_identity_check_message_link": "Lien vers le formulaire"
+  "telecom_dashboard_identity_check_message_link": "Lien vers le formulaire",
+  "telecom_dashboard_ftth_eligibility_title": "Mes 5 premiers services",
+  "telecom_dashboard_ftth_eligibility_copper_closure_info": "En savoir plus sur la fermeture du cuivre.",
+  "telecom_dashboard_ftth_eligibility_service_name": "Nom du service",
+  "telecom_dashboard_ftth_eligibility_service": "Service",
+  "telecom_dashboard_ftth_eligibility_migration": "Migration fibre",
+  "telecom_dashboard_ftth_eligibility_copper_closure_date": "Date de fermeture du cuivre",
+  "telecom_dashboard_ftth_eligibility_actions": "Actions",
+  "telecom_dashboard_ftth_eligibility_copper": "Ligne xDSL",
+  "telecom_dashboard_ftth_eligibility_fiber": "Ligne FTTH",
+  "telecom_dashboard_ftth_eligibility_not_eligible": "Non éligible",
+  "telecom_dashboard_ftth_eligibility_no_building": "Pas de bâtiment",
+  "telecom_dashboard_ftth_eligibility_eligible": "Eligible",
+  "telecom_dashboard_ftth_eligibility_not_concerned": "Non concerné",
+  "telecom_dashboard_ftth_eligibility_not_available": "Non disponible",
+  "telecom_dashboard_ftth_eligibility_migrate": "Migrer vers la fibre",
+  "telecom_dashboard_ftth_eligibility_access_more": "Voir plus d'accès"
 }

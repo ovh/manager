@@ -133,7 +133,7 @@ export default {
     {
       id: 'microsoft',
       translation: 'sidebar_microsoft',
-      features: ['office', 'exchange', 'sharepoint'],
+      features: ['office', 'exchange'],
       children: [
         {
           id: 'office',
@@ -154,17 +154,7 @@ export default {
             hash: '#/exchange',
           },
           features: ['exchange'],
-        },
-        {
-          id: 'sharepoint',
-          translation: 'sidebar_sharepoint',
-          serviceType: 'MSSERVICES_SHAREPOINT',
-          routing: {
-            application: 'web',
-            hash: '#/sharepoint',
-          },
-          features: ['sharepoint'],
-        },
+        }
       ],
     },
   ],

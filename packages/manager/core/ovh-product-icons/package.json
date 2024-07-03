@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@ovhcloud/ods-common-core": "^17.1.0",
-    "@ovhcloud/ods-common-testing": "^17.1.0",
     "@ovhcloud/ods-common-theming": "^17.1.0",
     "@ovhcloud/ods-components": "^17.1.0",
     "@ovhcloud/ods-theme-blue-jeans": "^17.1.0",
