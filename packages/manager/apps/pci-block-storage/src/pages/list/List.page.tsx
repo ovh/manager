@@ -1,10 +1,11 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Datagrid,
   FilterAdd,
   FilterList,
+  Headers,
   isDiscoveryProject,
   Notifications,
   PciAnnouncementBanner,
@@ -17,11 +18,7 @@ import {
   useProductMaintenance,
   useProject,
 } from '@ovhcloud/manager-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsBreadcrumb,
   OsdsButton,
@@ -31,7 +28,6 @@ import {
   OsdsPopoverContent,
   OsdsSearchBar,
   OsdsSpinner,
-  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -54,6 +50,7 @@ export default function ListingPage() {
   const [projectUrl, setProjectUrl] = useState('');
 
   const { navigation } = useContext(ShellContext).shell;
+  const navigate = useNavigate();
   const { projectId } = useParams();
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const { isBannerVisible } = useAnnouncementBanner();
@@ -64,7 +61,6 @@ export default function ListingPage() {
   const filterPopoverRef = useRef(undefined);
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
-
 
   useEffect(() => {
     navigation
@@ -116,17 +112,12 @@ export default function ListingPage() {
             ]}
           />
         )}
+
         <div className="header mb-6 mt-8">
-          <div className="flex items-center justify-between">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            >
-              {t('pci_projects_project_storages_blocks_title')}
-            </OsdsText>
-            <PciGuidesHeader category="instances"></PciGuidesHeader>
-          </div>
+          <Headers
+            title={t('pci_projects_project_storages_blocks_title')}
+            headerButton={<PciGuidesHeader category="instances" />}
+          />
         </div>
 
         <OsdsDivider></OsdsDivider>
@@ -157,6 +148,7 @@ export default function ListingPage() {
             variant={ODS_BUTTON_VARIANT.stroked}
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0"
+            onClick={() => navigate('./new')}
           >
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}

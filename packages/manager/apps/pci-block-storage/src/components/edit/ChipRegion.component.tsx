@@ -17,8 +17,8 @@ import {
 import { Links, LinkType, TRegion } from '@ovhcloud/manager-components';
 import { useContext, useEffect, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { URL_INFO } from '@ovh-ux/manager-pci-private-network-app/src/constants';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { URL_INFO } from '@/constants';
 
 export type TChipRegionsProps = {
   region: string;
@@ -28,7 +28,7 @@ export default function ChipRegion({
   region,
   localRegions,
 }: Readonly<TChipRegionsProps>) {
-  const { t: tRegions } = useTranslation('regions');
+  const { t } = useTranslation('flavors');
   const [isLocalZone, setIsLocalZone] = useState(false);
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
@@ -57,8 +57,8 @@ export default function ChipRegion({
             size={ODS_TEXT_SIZE._500}
           >
             {isLocalZone
-              ? tRegions('pci_project_flavors_zone_localzone')
-              : tRegions('pci_project_flavors_zone_global_region')}
+              ? t('pci_project_flavors_zone_localzone')
+              : t('pci_project_flavors_zone_global_region')}
           </OsdsText>
           <OsdsIcon
             name={ODS_ICON_NAME.HELP}
@@ -74,13 +74,13 @@ export default function ChipRegion({
           level={ODS_TEXT_LEVEL.body}
         >
           {isLocalZone
-            ? tRegions('pci_project_flavors_zone_localzone_tooltip')
-            : tRegions('pci_project_flavors_zone_globalregions_tooltip')}
+            ? t('pci_project_flavors_zone_localzone_tooltip')
+            : t('pci_project_flavors_zone_globalregions_tooltip')}
         </OsdsText>
         &nbsp;
         <Links
           tab-index="-1"
-          label={tRegions('pci_project_flavors_zone_tooltip_link')}
+          label={t('pci_project_flavors_zone_tooltip_link')}
           type={LinkType.external}
           target={OdsHTMLAnchorElementTarget._blank}
           href={

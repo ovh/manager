@@ -1,0 +1,8 @@
+{
+  "common_stepper_optional_label": "(opcional)",
+  "common_stepper_modify_this_step": "Editar este passo",
+  "common_stepper_skip_this_step": "Ignorar este passo",
+  "common_stepper_next_button_label": "Seguinte",
+  "common_stepper_submit_button_label": "Enviar",
+  "common_stepper_cancel_button_label": "Anular"
+}

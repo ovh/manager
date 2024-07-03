@@ -34,15 +34,6 @@ export default function AttachStorage() {
     setSelectedInstance((instance) => instance || instances?.[0]);
   }, [setSelectedInstance, instances]);
 
-  // redirect to detach if volume is already attached
-  useEffect(() => {
-    if (volume?.attachedTo?.length > 0) {
-      navigate(
-        `/pci/projects/${projectId}/storages/blocks/detach/${volume?.id}`,
-      );
-    }
-  }, [navigate, projectId, volume]);
-
   const { attachVolume, isPending: isAttachPending } = useAttachVolume({
     projectId,
     volumeId,
@@ -88,6 +79,15 @@ export default function AttachStorage() {
 
   const isPending = isInstancesPending || isAttachPending;
   const canAttach = !isPending && selectedInstance?.id;
+
+  // redirect to detach if volume is already attached
+  useEffect(() => {
+    if (!isPending && volume?.attachedTo?.length > 0) {
+      navigate(
+        `/pci/projects/${projectId}/storages/blocks/detach/${volume?.id}`,
+      );
+    }
+  }, [navigate, projectId, volume, isPending]);
 
   return (
     <OsdsModal
