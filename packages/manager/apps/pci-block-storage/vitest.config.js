@@ -23,8 +23,6 @@ export default defineConfig({
         'src/main.tsx',
         'src/routes.tsx',
         'src/queryClient.ts',
-        'src/layout.ts',
-        'src/pages/Layout.tsx',
       ],
     },
   },

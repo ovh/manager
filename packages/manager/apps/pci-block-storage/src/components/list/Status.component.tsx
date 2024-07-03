@@ -12,7 +12,7 @@ export default function StatusComponent({
   statusGroup,
   status,
 }: Readonly<StatusComponentProps>) {
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [chipAttribute, setChipAttribute] = useState<OdsChipAttribute>({
     color: ODS_THEME_COLOR_INTENT.success,
   });
@@ -41,15 +41,18 @@ export default function StatusComponent({
     }
   }, [statusGroup]);
 
+  const getStatusLabel = (st: string) =>
+    i18n.exists(`common:pci_projects_project_storages_blocks_status_${st}`)
+      ? t(`pci_projects_project_storages_blocks_status_${st}`)
+      : '';
+
   return (
     <OsdsChip
       {...chipAttribute}
       className={'w-fit'}
       data-testid={'StatusComponent_chip'}
     >
-      {status === statusGroup
-        ? status
-        : t(`pci_projects_project_storages_blocks_status_${statusGroup}`)}
+      {status === statusGroup ? status : getStatusLabel(statusGroup)}
     </OsdsChip>
   );
 }

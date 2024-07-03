@@ -174,3 +174,28 @@ export const detachVolume = async (
     throw new Error(e.response?.data?.message || e.message);
   }
 };
+
+export interface AddVolumeProps {
+  name: string;
+  projectId: string;
+  regionName: string;
+  volumeCapacity: number;
+  volumeType: string;
+}
+
+export const addVolume = async ({
+  name,
+  projectId,
+  regionName,
+  volumeCapacity,
+  volumeType,
+}: AddVolumeProps): Promise<void> => {
+  const { data } = await v6.post<void>(`/cloud/project/${projectId}/volume`, {
+    name,
+    region: regionName,
+    size: volumeCapacity,
+    type: volumeType,
+  });
+
+  return data;
+};
