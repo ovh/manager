@@ -31,7 +31,6 @@ export default class HostingMultisiteGitAssociationController {
       `#/hosting/${this.serviceName}/task`,
     );
     this.model = {
-      webHookUrl: this.webHookUrl,
       repositoryUrl: null,
       branchName: null,
     };
@@ -40,7 +39,7 @@ export default class HostingMultisiteGitAssociationController {
   applyConfiguration() {
     this.HostingMultisiteGitAssociationService.postWebsiteAssociated(
       this.serviceName,
-      this.path, // www for instance
+      this.path,
       this.model.branchName,
       this.model.repositoryUrl,
     )

@@ -4,7 +4,7 @@
 
 <h1
     data-translate="hosting_multisite_git_association_title"
-    data-translate-value="{path: '[' + $ctrl.path + ']'}"
+    data-translate-values="{path: $ctrl.path}"
 ></h1>
 <p data-translate="hosting_multisite_git_association_configure_description"></p>
 
@@ -64,14 +64,14 @@
             }"
         >
             <div class="d-flex oui-input-group oui-input-group_inline">
+                <!-- type "text" and not "url" because the browsers consider urls starting with git@ to be false. -->
                 <input
-                    type="url"
+                    type="text"
                     id="repository_url"
                     name="repository_url"
                     class="oui-input mr-2"
                     data-ng-pattern="$ctrl.REGEX_GIT_REPO"
                     data-ng-model="$ctrl.model.repositoryUrl"
-                    data-ng-class="{'oui-field_error': $ctrl.gitAssociationForm.repository_url.$invalid}"
                     placeholder="{{ $ctrl.REPOSITORY_PLACEHOLDER }}"
                     required
                 />
@@ -99,7 +99,6 @@
                     required
                     class="oui-input mr-2"
                     data-ng-model="$ctrl.model.branchName"
-                    data-ui-validate="$ctrl.gitAssociationForm.branch.$valid"
                     placeholder="{{ 'hosting_multisite_git_association_branch' | translate }}"
                 />
             </div>
@@ -124,7 +123,7 @@
         >
             <oui-clipboard
                 name="webhookUrl"
-                data-model="$ctrl.model.webhookUrl"
+                data-model="$ctrl.webHookUrl"
             ></oui-clipboard>
         </oui-field>
     </div>
