@@ -16,7 +16,7 @@ export const Headers: React.FC<HeadersProps> = ({
   headerButton,
 }) => {
   return (
-    <div className="pl-5 flex items-center justify-between">
+    <div className="flex items-center justify-between">
       <div>
         {title && <Title>{title}</Title>}
         {subtitle && <Subtitle>{subtitle}</Subtitle>}
