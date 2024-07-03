@@ -257,5 +257,8 @@
   "manager_components_region_continent_IST": "Oriente Medio",
   "manager_components_region_TOR": "Toronto",
   "manager_components_region_TOR_micro": "Toronto ({{ micro }})",
-  "manager_components_region_continent_TOR": "Norteamérica"
+  "manager_components_region_continent_TOR": "Norteamérica",
+  "manager_components_region_DAL": "Dallas",
+  "manager_components_region_DAL_micro": "Dallas ({{ micro }})",
+  "manager_components_region_continent_DAL": "Norteamérica"
 }
