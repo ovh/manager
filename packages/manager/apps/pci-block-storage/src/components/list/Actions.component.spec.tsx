@@ -78,8 +78,6 @@ describe('ActionsComponent', () => {
       <ActionsComponent volume={mockVolumeDetach} projectUrl="/project" />,
     );
 
-    console.log(debug(container));
-
     expect(getByTestId('actionComponent-attach-detach-button')).toHaveAttribute(
       'href',
       './detach/1',
