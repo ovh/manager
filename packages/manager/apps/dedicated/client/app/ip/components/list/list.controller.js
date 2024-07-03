@@ -22,6 +22,7 @@ import {
   PAGE_SIZE_MAX,
   FILTER_OPTIONS,
   TRACKING_OPTIONS,
+  ADMIN_ROLE,
 } from './list.constant';
 
 export default class IpListController {
@@ -130,6 +131,7 @@ export default class IpListController {
         self.serviceType || $location.search().serviceType || null;
       $scope.params = self.params || null;
       $scope.isAdditionalIp = self.isAdditionalIp;
+      $scope.isAdmin = coreConfig.getUser().auth?.roles?.includes(ADMIN_ROLE);
 
       $scope.tracking = {
         'enable-permanent-mitigation': `${TRACKING_PREFIX}::enable-permanent-mitigation`,
