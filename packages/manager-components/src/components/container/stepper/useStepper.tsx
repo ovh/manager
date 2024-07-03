@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 
-import React, { useEffect, useState } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -179,6 +179,10 @@ export const useStepper = function useStepper<T, S = void>({
 
     const [is, setIs] = useState<Map<T, TIs>>(new Map());
 
+    const [scrollTargets, setScrollTargets] = useState(
+      new Map<T, React.MutableRefObject<HTMLDivElement>>(),
+    );
+
     useEffect(() => {
       if (steps) {
         const nextIs = new Map(
@@ -192,6 +196,12 @@ export const useStepper = function useStepper<T, S = void>({
           ]),
         );
         setIs(nextIs);
+
+        const nextScrollTargets = new Map(
+          [...steps.keys()].map((key) => [key, createRef<HTMLDivElement>()]),
+        );
+
+        setScrollTargets(nextScrollTargets);
       }
     }, []);
 
@@ -200,6 +210,7 @@ export const useStepper = function useStepper<T, S = void>({
         const newIs = new Map(is);
         if (newIs.has(step) && newIs.get(step).open === false) {
           newIs.get(step).open = true;
+          scrollTargets.get(step).current.scrollIntoView();
           setIs(newIs);
           if (on && on.open) {
             on.open(step, {
@@ -301,6 +312,7 @@ export const useStepper = function useStepper<T, S = void>({
           {[...steps.keys()].map((key, index) => (
             <div
               key={hashCode(key)}
+              ref={scrollTargets.get(key)}
               className="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5"
             >
               <div className="basis-[40px]">
