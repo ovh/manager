@@ -8,6 +8,8 @@ import {
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { TPricing } from '@/api/data/catalog';
 import {
+  addVolume,
+  AddVolumeProps,
   attachVolume,
   deleteVolume,
   detachVolume,
@@ -137,9 +139,10 @@ export const useDeleteVolume = ({
       await queryClient.invalidateQueries({
         queryKey: getVolumeQueryKey(projectId, volumeId),
       });
-      await queryClient.invalidateQueries({
-        queryKey: ['project', projectId, 'volumes'],
-      });
+      queryClient.setQueryData(
+        ['project', projectId, 'volumes'],
+        (data: { id: string }[]) => data.filter((v) => v.id !== volumeId),
+      );
       onSuccess();
     },
   });
@@ -168,10 +171,20 @@ export const useAttachVolume = ({
     mutationFn: async () => attachVolume(projectId, volumeId, instanceId),
     onError,
     onSuccess: (volume: TVolume) => {
-      queryClient.invalidateQueries({
-        queryKey: getVolumeQueryKey(projectId, volumeId),
-      });
-      // @TODO update volume in cached list of volumes
+      queryClient.setQueryData(
+        ['project', projectId, 'volumes'],
+        (data: { id: string }[]) =>
+          data.map((v) =>
+            v.id === volumeId ? { ...v, attachedTo: [instanceId] } : v,
+          ),
+      );
+      queryClient.setQueryData(
+        getVolumeQueryKey(projectId, volumeId),
+        (data: { attachedTo: string[] }) => ({
+          ...data,
+          attachedTo: [instanceId],
+        }),
+      );
       onSuccess(volume);
     },
   });
@@ -192,10 +205,20 @@ export const useDetachVolume = ({
     mutationFn: async () => detachVolume(projectId, volumeId, instanceId),
     onError,
     onSuccess: (volume: TVolume) => {
-      queryClient.invalidateQueries({
-        queryKey: getVolumeQueryKey(projectId, volumeId),
-      });
-      // @TODO update volume in cached list of volumes
+      queryClient.setQueryData(
+        ['project', projectId, 'volumes'],
+        (data: { id: string; attachedTo: string }[]) =>
+          data.map((v) => {
+            if (v.attachedTo && v.id === volumeId) {
+              return { ...v, attachedTo: [] };
+            }
+            return v;
+          }),
+      );
+      queryClient.setQueryData(
+        getVolumeQueryKey(projectId, volumeId),
+        (data: { attachedTo: string[] }) => ({ ...data, attachedTo: [] }),
+      );
       onSuccess(volume);
     },
   });
@@ -289,7 +312,7 @@ export const useGetPrices = (projectId: string, volumeId: string) => {
           ) || ({} as TPricing);
 
         pricesMap[planCode] = priceFormatter(
-          pricing,
+          pricing as TPricing,
           catalog.locale.currencyCode,
         );
       });
@@ -305,4 +328,42 @@ export const useGetPrices = (projectId: string, volumeId: string) => {
   }
 
   return {};
+};
+
+type UseAddVolumeProps = AddVolumeProps & {
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useAddVolume = ({
+  name,
+  projectId,
+  regionName,
+  volumeCapacity,
+  volumeType,
+  onError,
+  onSuccess,
+}: UseAddVolumeProps) => {
+  const mutation = useMutation({
+    mutationFn: async () =>
+      addVolume({
+        name,
+        projectId,
+        regionName,
+        volumeCapacity,
+        volumeType,
+      }),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['project', projectId, 'volumes'],
+      });
+      return onSuccess();
+    },
+  });
+
+  return {
+    addVolume: () => mutation.mutate(),
+    ...mutation,
+  };
 };

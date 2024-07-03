@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
 import {
   useCatalogPrice,
@@ -73,6 +73,7 @@ export default function EditPage() {
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const onClose = () => navigate('..');
+  const backHref = useHref('..');
 
   const [errorState, setErrorState] = useState({
     isMinError: false,
@@ -232,10 +233,10 @@ export default function EditPage() {
             },
             {
               label: t('pci_projects_project_storages_blocks_title'),
-              href: `${projectUrl}/storages/blocks`,
+              href: backHref,
             },
             {
-              label: volume?.name,
+              label: volume?.name || '…',
               disabled: true,
             },
             {

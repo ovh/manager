@@ -1,16 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-export type TAddon = {
-  product: string;
-  pricings: TPricing[];
-  planCode: string;
-  invoiceName: string;
-  pricingType: string;
-  blobs: {
-    technical: { bandwidth: { level: number } };
-  };
-};
-
 export type TPricing = {
   capacities: string[];
   mode: string;
@@ -48,7 +37,7 @@ export type TAddonFamily = {
   mandatory: boolean;
 };
 
-type TPlan = {
+export type TPlan = {
   planCode: string;
   invoiceName: string;
   product: string;
@@ -58,7 +47,7 @@ type TPlan = {
   addonFamilies: TAddonFamily[];
 };
 
-type TCatalog = {
+export type TCatalog = {
   catalogId: string;
   locale: {
     currencyCode: string;
@@ -69,9 +58,43 @@ type TCatalog = {
   addons: TAddon[];
 };
 
+export type TAddon = {
+  planCode: string;
+  blobs: {
+    technical: {
+      bandwidth: {
+        guaranteed: boolean;
+        level: number;
+        max: number;
+        unit: string;
+        unlimited: boolean;
+      };
+      volume: {
+        iops: {
+          level: number;
+          max: number;
+          guaranteed: boolean;
+          unit: string;
+          maxUnit: string;
+        };
+        capacity: {
+          max: number;
+        };
+      };
+      name: string;
+    };
+  };
+  pricings: {
+    price: number;
+    type: string;
+    capacities: string[];
+  }[];
+};
+
 export const getCatalog = async (ovhSubsidiary: string): Promise<TCatalog> => {
   const { data } = await v6.get<TCatalog>(
-    `/order/catalog/public/cloud?ovhSubsidiary=${ovhSubsidiary}&productName=cloud`,
+    `/order/catalog/public/cloud?ovhSubsidiary=${ovhSubsidiary}`,
   );
+
   return data;
 };

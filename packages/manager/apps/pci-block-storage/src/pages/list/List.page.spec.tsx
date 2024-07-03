@@ -17,11 +17,15 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import * as useVolumeModule from '@/api/hooks/useVolume';
-import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
 import ListingPage from './List.page';
 import * as useAnnouncementBannerModule from '@/hooks/useAnnouncementBanner';
-import { useAnnouncementBanner } from '@/hooks/useAnnouncementBanner';
 import { TVolume } from '@/api/data/volume';
+
+vi.mock('react-router-dom', () => ({
+  useNavigate: vi.fn().mockReturnValue(() => ''),
+  useParams: vi.fn().mockReturnValue({}),
+  Outlet: vi.fn().mockReturnValue(<div></div>),
+}));
 
 vi.mock('@ovhcloud/manager-components', () => ({
   useProject: vi.fn(),
@@ -35,6 +39,7 @@ vi.mock('@ovhcloud/manager-components', () => ({
     .mockReturnValue(<div>Product is under maintenance</div>),
   FilterAdd: vi.fn().mockReturnValue(<div></div>),
   FilterList: vi.fn().mockReturnValue(<div></div>),
+  Headers: vi.fn().mockReturnValue(<div></div>),
   Datagrid: vi.fn(),
   Notifications: vi.fn().mockReturnValue(<div></div>),
   useColumnFilters: vi.fn().mockReturnValue({
