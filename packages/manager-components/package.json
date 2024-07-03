@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@ovh-ux/manager-react-core-application": "^0.8.3",
     "@ovh-ux/manager-core-api": "^0.7.1",
     "@ovh-ux/manager-react-shell-client": "^0.6.0",
     "@ovhcloud/ods-common-core": "17.2.1",
@@ -29,6 +30,8 @@
     "@tanstack/react-table": "^8.11.6",
     "babel-preset-react-app": "^10.0.1",
     "clsx": "^2.1.1",
+    "lodash.isequal": "^4.5.0",
+    "@types/lodash.isequal": "^4.5.0",
     "react": "18.2.0",
     "react-use": "^17.5.0",
     "sass": "1.71.0",

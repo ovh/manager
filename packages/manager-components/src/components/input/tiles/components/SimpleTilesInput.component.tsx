@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import { clsx } from 'clsx';
+import isEqual from 'lodash.isequal';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -31,7 +32,7 @@ const stackItems = function stackItems<I, U>(
     uniques.forEach((unique) => {
       const key = cb(unique);
       stacks.set(key, []);
-      stacks.get(key).push(...items.filter((item) => Object.is(key, cb(item))));
+      stacks.get(key).push(...items.filter((item) => isEqual(key, cb(item))));
     });
   } else {
     stacks.set(undefined, items);
@@ -68,7 +69,7 @@ type IState<T, S> = {
 
 export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
   T,
-  S
+  S,
 >({
   items,
   value,
@@ -97,13 +98,14 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
       checked: useCallback(
         (s: S) =>
           state.stacks?.get(s)?.length > 1
-            ? Object.is(state.selectedStack, s)
-            : Object.is(state.stacks.get(s)[0], value),
+            ? isEqual(state.selectedStack, s)
+            : isEqual(state.stacks.get(s)[0], value),
         [state.stacks, state.selectedStack, value],
       ),
-      singleton: useCallback((s: S) => state.stacks.get(s)?.length === 1, [
-        state.stacks,
-      ]),
+      singleton: useCallback(
+        (s: S) => state.stacks.get(s)?.length === 1,
+        [state.stacks],
+      ),
     },
   };
 
@@ -142,7 +144,7 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
     if (
       stack &&
       state.stacks.get(state.selectedStack)?.length &&
-      !Object.is(state.selectedStack, stack.by(value))
+      !isEqual(state.selectedStack, stack.by(value))
     ) {
       set.value(state.stacks.get(state.selectedStack)[0]);
     }
@@ -176,10 +178,10 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
           : items.map((item: T) => (
               <li className="w-full px-1" key={hashCode(item)}>
                 <OsdsTile
-                  checked={Object.is(value, item)}
+                  checked={isEqual(value, item)}
                   onClick={() => set.value(item)}
                   className={clsx(
-                    Object.is(value, item)
+                    isEqual(value, item)
                       ? state.activeClass
                       : state.inactiveClass,
                   )}

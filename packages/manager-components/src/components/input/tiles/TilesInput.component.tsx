@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import isEqual from 'lodash.isequal';
 import { TabsComponent } from '../../container/tabs/Tabs.component';
 import {
   SimpleTilesInputComponent,
@@ -15,13 +16,16 @@ type TProps<T, S = void, G = void> = TSimpleProps<T, S> & {
   };
 };
 
-type TState<T, S, G> = {
-  groups: Map<G, T[]>;
+type TState<S, G> = {
   selectedGroup: G;
   selectedStack: S;
 };
 
-export const TilesInputComponent = function TilesInputComponent<T, S, G>({
+export const TilesInputComponent = function TilesInputComponent<
+  T,
+  S = void,
+  G = void,
+>({
   id,
   items,
   value,
@@ -31,49 +35,40 @@ export const TilesInputComponent = function TilesInputComponent<T, S, G>({
   stack,
   group,
 }: TProps<T, S, G>): JSX.Element {
-  const [state, setState] = useState<TState<T, S, G>>({
-    groups: new Map<G, T[]>(),
+  const [state, setState] = useState<TState<S, G>>({
     selectedGroup: group?.value,
     selectedStack: stack?.value,
   });
 
-  useEffect(() => {
+  const groups = useMemo(() => {
+    const newGroups = new Map<G, T[]>();
     if (group && typeof group.by === 'function') {
-      const groups = new Map<G, T[]>();
-
       if (group.showAllTab) {
-        groups.set(undefined, [...items]);
+        newGroups.set(undefined, [...items]);
       }
 
       items.forEach((item) => {
         const groupId = group.by(item);
-        if (!groups.has(groupId)) {
-          groups.set(groupId, []);
+        if (!newGroups.has(groupId)) {
+          newGroups.set(groupId, []);
         }
-        groups.get(groupId).push(item);
+        newGroups.get(groupId).push(item);
       });
-
-      setState((prev) => ({ ...prev, groups }));
     }
+
+    return newGroups;
   }, [items, group]);
-
-  useEffect(() => {
-    if (group && group.onChange) {
-      group.onChange(state.selectedGroup);
-    }
-  }, [state.selectedGroup]);
 
   return (
     <>
       {group ? (
         <TabsComponent<G>
-          id={'t'}
-          items={[...state.groups?.keys()]}
-          titleElement={(key) => group.label(key, state.groups.get(key))}
+          items={[...groups?.keys()]}
+          titleElement={(key) => group.label(key, groups.get(key))}
           contentElement={(item: G) => (
             <SimpleTilesInputComponent
               id={id}
-              items={state.groups.get(item) || []}
+              items={groups.get(item) || []}
               value={value}
               onInput={onInput}
               label={label}
@@ -93,6 +88,8 @@ export const TilesInputComponent = function TilesInputComponent<T, S, G>({
           )}
           onChange={(g) => {
             setState((prev) => ({ ...prev, selectedGroup: g }));
+            if (group.onChange && !isEqual(state.selectedGroup, g))
+              group.onChange(g);
           }}
         />
       ) : (
