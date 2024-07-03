@@ -14,9 +14,9 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.3.2",
     "@ovh-ux/manager-core-api": "^0.7.1",
     "@ovh-ux/manager-core-utils": "^0.2.0",
+    "@ovh-ux/manager-react-core-application": "^0.8.4",
     "@ovh-ux/manager-react-shell-client": "^0.6.1",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovh-ux/shell": "^3.6.1",
@@ -29,10 +29,7 @@
     "@tanstack/react-query": "^5.25.0",
     "@tanstack/react-query-devtools": "^5.25.0",
     "@tanstack/react-table": "^8.11.8",
-    "date-fns": "^3.3.1",
     "file-saver": "^2.0.5",
-    "i18next": "^23.8.2",
-    "i18next-http-backend": "^2.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.50.1",
@@ -59,10 +56,18 @@
     "eslint": "^8.56.0",
     "postcss": "^8.4.35",
     "rollup": "^4.9.6",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3",
-    "vite": "^3.2.8",
-    "vitest": "^1.2.2"
+    "tailwindcss": "^3.4.1"
+  },
+  "peerDependencies": {
+    "date-fns": "workspace:*",
+    "i18next": "workspace:*",
+    "i18next-http-backend": "workspace:*",
+    "react": "workspace:*",
+    "react-dom": "workspace:*",
+    "react-i18next": "workspace:*",
+    "react-router-dom": "workspace:*",
+    "vite": "workspace:*",
+    "vitest": "workspace:*"
   },
   "regions": [
     "CA",
