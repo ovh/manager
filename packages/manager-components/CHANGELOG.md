@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.19.0...@ovhcloud/manager-components@1.20.0) (2024-07-03)
+
+### Bug Fixes
+
+- **manager-components:** build storybook ([#12199](https://github.com/ovh/manager/issues/12199)) ([a1a7e20](https://github.com/ovh/manager/commit/a1a7e2081898c8d14c3fbca847f1de8b8e0f9813))
+- **manager-components:** useless test import ([#12034](https://github.com/ovh/manager/issues/12034)) ([7e33a9d](https://github.com/ovh/manager/commit/7e33a9dbb5c0c540af2bd01e218a3c24c4cbc59f))
+
+### Features
+
+- **rancher:** replace with manager-components([#11668](https://github.com/ovh/manager/issues/11668)) ([9a35455](https://github.com/ovh/manager/commit/9a3545519c07d1afb728ffdd29943df0fbf88480))
+
 # [1.19.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.18.0...@ovhcloud/manager-components@1.19.0) (2024-06-25)
 
 ### Bug Fixes

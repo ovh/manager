@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.60.2...@ovh-ux/manager-container-app@0.61.0) (2024-07-03)
+
+
+### Features
+
+* **container:** load listing page onclick of parent item ([#12067](https://github.com/ovh/manager/issues/12067)) ([282dd9b](https://github.com/ovh/manager/commit/282dd9bc09c7ecca26d0bfbc7b7c12779e632be2))
+* **container:** load vrackservice listing page ([#12174](https://github.com/ovh/manager/issues/12174)) ([2d512bf](https://github.com/ovh/manager/commit/2d512bffd8db43a7ad0af5c70dfc865b2e131553))
+* **web:** eol sharepoint ([#11976](https://github.com/ovh/manager/issues/11976)) ([83c130a](https://github.com/ovh/manager/commit/83c130a569e9b9355120f935e85cf396dfde0f86))
+
+
+
+
+
 ## [0.60.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.60.1...@ovh-ux/manager-container-app@0.60.2) (2024-07-01)
 
 

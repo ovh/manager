@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.29.0...@ovh-ux/manager-web@18.30.0) (2024-07-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3094] ([e8a1fc8](https://github.com/ovh/manager/commit/e8a1fc801219be65466501772f0aa710fc85f634))
+* **web:** check if is admin for resiliation ([#11812](https://github.com/ovh/manager/issues/11812)) ([010974d](https://github.com/ovh/manager/commit/010974deb44f085be5d46fabcf6c52938df157cb))
+
+
+### Features
+
+* **web:** eol sharepoint ([#11976](https://github.com/ovh/manager/issues/11976)) ([83c130a](https://github.com/ovh/manager/commit/83c130a569e9b9355120f935e85cf396dfde0f86))
+
+
+
+
+
 # [18.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.28.0...@ovh-ux/manager-web@18.29.0) (2024-06-25)
 
 

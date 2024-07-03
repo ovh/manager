@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.17.1...@ovh-ux/manager-telecom@15.18.0) (2024-07-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3082] ([d63fdf8](https://github.com/ovh/manager/commit/d63fdf8bc9c1d8a095c18be7381e5a1e3e0d6296))
+
+
+### Features
+
+* **telecom.dashboard:** add ftth eligibilities list ([#11855](https://github.com/ovh/manager/issues/11855)) ([cdcad03](https://github.com/ovh/manager/commit/cdcad035e25e9dfa0fc48704c77b6c67996362f1))
+* **telecom:** add ont shipping address on move and migrate steps ([#11974](https://github.com/ovh/manager/issues/11974)) ([3729132](https://github.com/ovh/manager/commit/3729132425f717e2c9ebf7e25b358795b0797415))
+
+
+
+
+
 ## [15.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.17.0...@ovh-ux/manager-telecom@15.17.1) (2024-06-25)
 
 
