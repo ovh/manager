@@ -10,7 +10,8 @@ import { hashCode } from '../../../utils';
 type TProps<Item> = {
   id?: string;
   items?: Item[];
-  titleElement?: (item: Item) => JSX.Element | string;
+  itemKey?: (item: Item) => string;
+  titleElement?: (item: Item, isSelected?: boolean) => JSX.Element | string;
   contentElement?: (item: Item) => JSX.Element;
   mobileBreakPoint?: number;
   className?: string;
@@ -22,9 +23,10 @@ type TState<Item> = {
   selectedItem?: Item;
 };
 
-export const TabsComponent = function TabsComponent<Item>({
+export function TabsComponent<Item>({
   id = uuidV4(),
   items = [],
+  itemKey,
   titleElement = (item) => <div>{`title ${item}`}</div>,
   contentElement = (item) => <div>{`content ${item}`}</div>,
   mobileBreakPoint,
@@ -33,7 +35,7 @@ export const TabsComponent = function TabsComponent<Item>({
 }: TProps<Item>): JSX.Element {
   const [state, setState] = useState<TState<Item>>({
     items,
-    selectedItem: undefined,
+    selectedItem: items?.[0],
   });
 
   const setSelectedItem = (item: Item): void => {
@@ -42,6 +44,9 @@ export const TabsComponent = function TabsComponent<Item>({
       selectedItem: item,
     }));
   };
+
+  const uniqKey = (item: Item): string =>
+    itemKey ? itemKey(item) : `${hashCode(item)}`;
 
   useEffect(() => {
     if (
@@ -78,7 +83,7 @@ export const TabsComponent = function TabsComponent<Item>({
           >
             {state.items.map((item) => (
               <li
-                key={`tabs-${id}title-${hashCode(item)}`}
+                key={`tabs-${id}title-${uniqKey(item)}`}
                 className={clsx(
                   'px-4 py-4 cursor-pointer border border-solid border-[#bef1ff] rounded-t-lg',
                   item === state.selectedItem
@@ -91,7 +96,7 @@ export const TabsComponent = function TabsComponent<Item>({
                   onClick={() => setSelectedItem(item)}
                   onKeyDown={() => setSelectedItem(item)}
                 >
-                  {titleElement(item)}
+                  {titleElement(item, item === state.selectedItem)}
                 </button>
               </li>
             ))}
@@ -111,7 +116,7 @@ export const TabsComponent = function TabsComponent<Item>({
         >
           {state.items.map((item) => (
             <div
-              key={`tabs-${id}title-${hashCode(item)}`}
+              key={`tabs-${id}title-${uniqKey(item)}`}
               className="px-2 bg-[#F5FEFF] border border-solid border-[#bef1ff] rounded-lg"
             >
               <button
@@ -119,7 +124,9 @@ export const TabsComponent = function TabsComponent<Item>({
                 onClick={() => setSelectedItem(item)}
                 onKeyDown={() => setSelectedItem(item)}
               >
-                <div className="w-full">{titleElement(item)}</div>
+                <div className="w-full">
+                  {titleElement(item, item === state.selectedItem)}
+                </div>
                 <div className="w-fit flex items-center">
                   {!Object.is(state.selectedItem, item) ? (
                     <OsdsIcon
@@ -147,6 +154,6 @@ export const TabsComponent = function TabsComponent<Item>({
       )}
     </>
   );
-};
+}
 
 export default TabsComponent;
