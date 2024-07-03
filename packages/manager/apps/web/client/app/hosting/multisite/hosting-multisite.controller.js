@@ -8,11 +8,13 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import union from 'lodash/union';
-
 import {
   CDN_STATUS,
   CDN_VERSION,
   HOSTING_OFFER,
+  GIT_BADGES_STATUS,
+  GIT_STATUS_WITH_TOOLTIP,
+  GIT_STATUS,
 } from './hosting-multisite.constants';
 
 const CDN_STATISTICS_PERIOD = {
@@ -63,6 +65,7 @@ angular
       $scope.HOSTING_STATUS = HOSTING_STATUS;
       $scope.CDN_STATUS = CDN_STATUS;
       $scope.CDN_VERSION = CDN_VERSION;
+      $scope.GIT_BADGES_STATUS = GIT_BADGES_STATUS;
       $scope.showGuidesStatus = false;
       $scope.search = {
         text: null,
@@ -89,6 +92,13 @@ angular
           type: 'action',
         });
       }
+
+      HostingDomain.websiteCreationCapabilities(
+        $scope.hosting.serviceName,
+      ).then(({ allowedWebsites, existingWebsites }) => {
+        $scope.allowedWebsites = allowedWebsites;
+        $scope.existingWebsites = existingWebsites;
+      });
 
       $scope.loadDomains = function loadDomains(count, offset) {
         $scope.loading.domains = true;
@@ -215,6 +225,58 @@ angular
           domain.status !== HOSTING_STATUS.CREATING &&
           $scope.cdnProperties.version === 'cdn-hosting'
         );
+      };
+
+      $scope.gitStatusTooltip = function gitStatusTooltip({ vcsStatus }) {
+        const allowedWebsites =
+          $scope.allowedWebsites === -1 ? 'unlimitedPath' : 'limitedPath';
+        return GIT_STATUS_WITH_TOOLTIP[allowedWebsites][vcsStatus]
+          ? $translate.instant(
+              `hosting_tab_DOMAINS_table_git_state_tooltip_${GIT_STATUS_WITH_TOOLTIP[allowedWebsites][vcsStatus]}`,
+            )
+          : '';
+      };
+
+      $scope.canAssociateGit = function canAssociateGit({ vcsStatus }) {
+        return (
+          ($scope.existingWebsites < $scope.allowedWebsites ||
+            $scope.allowedWebsites === -1 ||
+            vcsStatus === GIT_STATUS.initialError) &&
+          !$scope.canConfigureGit({ vcsStatus }) &&
+          vcsStatus !== GIT_STATUS.creating
+        );
+      };
+
+      $scope.canConfigureGit = function canConfigureGit({ vcsStatus }) {
+        return [
+          GIT_STATUS.created,
+          GIT_STATUS.error,
+          GIT_STATUS.deploying,
+        ].includes(vcsStatus);
+      };
+
+      $scope.canDeployGit = function canDeployGit({ vcsStatus }) {
+        return [GIT_STATUS.created, GIT_STATUS.error].includes(vcsStatus);
+      };
+
+      $scope.canViewLastDeloymentGit = function canViewLastDeloymentGit({
+        vcsStatus,
+      }) {
+        return [
+          GIT_STATUS.created,
+          GIT_STATUS.error,
+          GIT_STATUS.initialError,
+          GIT_STATUS.deploying,
+          GIT_STATUS.deleting,
+        ].includes(vcsStatus);
+      };
+
+      $scope.canDeleteGit = function canDeleteGit({ vcsStatus }) {
+        return [
+          GIT_STATUS.created,
+          GIT_STATUS.error,
+          GIT_STATUS.deploying,
+        ].includes(vcsStatus);
       };
 
       $scope.detachDomain = (domain) => {
