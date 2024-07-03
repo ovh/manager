@@ -5,8 +5,8 @@ import {
   useProject,
   useProjectUrl,
   useStepper,
+  isDiscoveryProject,
   PciDiscoveryBanner,
-  useIsDiscoveryProject,
   PciFreeLocalzonesBanner,
   useMe,
 } from '@ovhcloud/manager-components';
@@ -51,7 +51,7 @@ export default function NewPage(): JSX.Element {
   return (
     <>
       <div className="mb-5">
-        {useIsDiscoveryProject(projectId) && (
+        {isDiscoveryProject(project) && (
           <PciDiscoveryBanner projectId={projectId} />
         )}
       </div>
