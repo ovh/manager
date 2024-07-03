@@ -765,5 +765,6 @@
   "ip_byoip_aggregate_set_parent_size": "Please specify the desired parent block",
   "ip_byoip_aggregate_configuration": "This configuration will create the following parent block:",
   "ip_byoip_aggregate_slicing_not_available_error_message": "No segmentation/aggregation configuration available. For more information, please refer to our guide: <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">here</a>",
-  "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Another segmentation or aggregation action has been performed for this IP address."
+  "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Another segmentation or aggregation action has been performed for this IP address.",
+  "ip_table_manage_subnets": "Manage IPv6 subnets in the vRack"
 }
