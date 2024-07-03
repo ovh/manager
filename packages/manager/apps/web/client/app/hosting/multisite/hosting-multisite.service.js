@@ -516,5 +516,16 @@ angular.module('services').service(
         },
       );
     }
+
+    /**
+     * Get capability to create git association
+     *
+     * @param serviceName
+     */
+    websiteCreationCapabilities(serviceName) {
+      return this.$http
+        .get(`/hosting/web/${serviceName}/websiteCreationCapabilities`)
+        .then(({ data }) => data);
+    }
   },
 );

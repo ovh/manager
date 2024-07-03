@@ -2,11 +2,12 @@ import { GITHUB_VCS } from './hosting-multisite-git-association.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.dashboard.git', {
-    url: '/multisite/git-association',
+    url: '/multisite/git-association?path',
     component: 'hostingMultisiteGitAssociationComponent',
     params: {
       status: null,
       alertId: null,
+      path: null,
     },
     resolve: {
       goBack: /* @ngInject */ ($transition$, $state, $timeout, setMessage) => (
@@ -58,10 +59,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().productId,
       status: /* @ngInject */ ($transition$) => $transition$.params().status,
       alertId: /* @ngInject */ ($transition$) => $transition$.params().alertId,
-      path: /* @ngInject */ (Hosting, serviceName) =>
-        Hosting.getSelected(serviceName, true).then(
-          (hosting) => hosting.displayName,
-        ),
+      path: /* @ngInject */ ($transition$) => $transition$.params().path,
       sshKey: /* @ngInject */ (
         HostingMultisiteGitAssociationService,
         serviceName,
