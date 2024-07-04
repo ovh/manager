@@ -167,8 +167,10 @@ export default /* @ngInject */ function IpGameFirewallService(
     );
   };
 
-  this.getIpGameProtocols = function getIpGameProtocols(ip) {
-    return $http.get(`/ip/${ip}/game/${ip}`).then(({ data }) => data);
+  this.getIpGameProtocols = function getIpGameProtocols(ipBlock, ip) {
+    return $http
+      .get(`/ip/${window.encodeURIComponent(ipBlock)}/game/${ip}`)
+      .then(({ data }) => data);
   };
 
   // Check if the new rule is not into other rules
