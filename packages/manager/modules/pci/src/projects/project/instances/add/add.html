@@ -243,11 +243,17 @@
                             <p
                                 class="warning-text"
                                 data-ng-switch-default
-                                data-ng-bind-html="'pci_project_instances_instance_add_region_quota' | translate: {
-                                    quotaLink: $ctrl.quotaLink
-                                }"
                                 data-ng-if="!$ctrl.isDiscoveryProject"
-                            ></p>
+                            >
+                                <span
+                                    data-ng-bind="'pci_project_instances_instance_add_region_quota' | translate"
+                                ></span>
+                                <a
+                                    data-ng-href="{{ $ctrl.quotaLink }}"
+                                    data-translate="pci_project_instances_instance_add_region_quota_link_text"
+                                >
+                                </a>
+                            </p>
                         </div>
                         <div data-ng-if="$ctrl.isDiscoveryProject">
                             <p class="warning-text">
