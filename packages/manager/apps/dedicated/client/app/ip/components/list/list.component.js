@@ -19,6 +19,7 @@ export default {
     trackPage: '<',
     trackingData: '<',
     goToStatistics: '<',
+    isDeleteByoipServiceAvailable: '<',
   },
   transclude: {
     actions: '?ipListActions',

@@ -42,9 +42,12 @@ export const BYOIP_USAGE_GUIDE_URL = {
     'https://help.ovhcloud.com/csm/en-gb-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044849',
 };
 
+export const US_API_CONSOLE_LINK = 'https://api.us.ovhcloud.com/console/';
+
 export default {
   TRACKING_PREFIX_SLICE,
   TRACKING_PREFIX_AGGREGATE,
   BYOIP_SLICE_PARK_IT_FIRST_ERROR_REGEX,
   BYOIP_USAGE_GUIDE_URL,
+  US_API_CONSOLE_LINK,
 };
