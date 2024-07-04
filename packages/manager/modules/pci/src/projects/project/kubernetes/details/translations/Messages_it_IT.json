@@ -8,5 +8,6 @@
   "kube_containers_and_services": "Container e servizi",
   "kube_node_pools": "Pool di nodi",
   "kube_restrictions": "Accesso APIServer",
-  "kube_logs_tab_title": "Log"
+  "kube_logs_tab_title": "Log",
+  "kube_logs_tab_title_beta_status": "Beta"
 }

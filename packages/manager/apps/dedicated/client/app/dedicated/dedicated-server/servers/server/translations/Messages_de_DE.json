@@ -869,6 +869,7 @@
   "server_datacenter_STL": "St. Louis",
   "server_datacenter_IND": "Indianapolis",
   "server_datacenter_IST": "Istanbul",
+  "server_datacenter_DAL": "Dallas",
   "server_usage_chart_yaxis_label": "Nutzung (in %)",
   "server_duration_upto": "Bis zum {{t0}}",
   "server_error_ola_activation": "Bei der Aktivierung Ihres Dienstes ist ein Fehler aufgetreten: {{error}}",

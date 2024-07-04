@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.16.0...@ovh-ux/manager-nasha@2.16.1) (2024-07-04)
+
+
+### Bug Fixes
+
+* add Dallas region ([#12157](https://github.com/ovh/manager/issues/12157)) ([3b41966](https://github.com/ovh/manager/commit/3b41966a2a5b684c62e2e4b1ec14f5050705857f))
+
+
+
+
+
 # [2.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.15.0...@ovh-ux/manager-nasha@2.16.0) (2024-06-25)
 
 
