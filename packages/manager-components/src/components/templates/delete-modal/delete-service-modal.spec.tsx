@@ -45,7 +45,12 @@ describe('Delete service modal', () => {
   it('Triggers delete service on confirm', async () => {
     const { input, onConfirm, button } = setupTest({});
 
-    fireEvent.change(input, { target: { value: terminateValue } });
+    const event = new CustomEvent('odsValueChange', {
+      detail: { value: terminateValue },
+    });
+    fireEvent(input, event);
+
+    await waitFor(() => expect(button).toBeEnabled());
     await userEvent.click(button);
 
     await waitFor(() => {
@@ -57,7 +62,12 @@ describe('Delete service modal', () => {
   it('Displays an error if the service is KO', async () => {
     const { input, onConfirm, button } = setupTest({ deleteServicesKo: true });
 
-    fireEvent.change(input, { target: { value: terminateValue } });
+    const event = new CustomEvent('odsValueChange', {
+      detail: { value: terminateValue },
+    });
+    fireEvent(input, event);
+
+    await waitFor(() => expect(button).toBeEnabled());
     await userEvent.click(button);
 
     await waitFor(

@@ -76,7 +76,11 @@ describe('Update Name Modal component', () => {
 
     const input = screen.getByLabelText('update-input');
 
-    fireEvent.change(input, { target: { value: 'Test' } });
+    const event = new CustomEvent('odsValueChange', {
+      detail: { value: 'Test' },
+    });
+    fireEvent(input, event);
+
     await userEvent.click(button);
 
     await waitFor(() => {

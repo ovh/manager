@@ -77,7 +77,14 @@ describe('Delete Modal component', () => {
 
     const input = screen.getByLabelText('delete-input');
 
-    fireEvent.change(input, { target: { value: 'TERMINATE' } });
+    const event = new CustomEvent('odsValueChange', {
+      detail: { value: 'TERMINATE' },
+    });
+
+    fireEvent(input, event);
+
+    await waitFor(() => expect(button).toBeEnabled());
+
     await userEvent.click(button);
 
     await waitFor(() => {
