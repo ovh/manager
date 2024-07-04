@@ -15,10 +15,10 @@
     "start": "plop"
   },
   "dependencies": {
-    "@ovhcloud/ods-common-core": "^17.1.0",
-    "@ovhcloud/ods-common-theming": "^17.1.0",
-    "@ovhcloud/ods-components": "^17.1.0",
-    "@ovhcloud/ods-theme-blue-jeans": "^17.1.0",
+    "@ovhcloud/ods-common-core": "17.2.2",
+    "@ovhcloud/ods-common-theming": "17.2.2",
+    "@ovhcloud/ods-components": "17.2.2",
+    "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
     "react": "^18.2.0"
   },
   "preferGlobal": true
