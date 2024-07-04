@@ -1,4 +1,8 @@
-import { LOGS_INFO, LOG_TRACKING_HITS } from './audit-logs.constant';
+import {
+  LOGS_INFO,
+  LOG_TRACKING_HITS,
+  KUBERNETES_LOG_KINDS_KEYS,
+} from './audit-logs.constant';
 
 export default class KubernetesLogsCtrl {
   /* @ngInject */
@@ -12,5 +16,6 @@ export default class KubernetesLogsCtrl {
     this.logSubscriptionUrl = `/cloud/project/${this.projectId}/kube/${this.kubeId}/log/subscription`;
     this.logServiceGuideLink =
       LOGS_INFO[this.user.ovhSubsidiary] || LOGS_INFO.DEFAULT;
+    this.logKindsKeys = KUBERNETES_LOG_KINDS_KEYS;
   }
 }

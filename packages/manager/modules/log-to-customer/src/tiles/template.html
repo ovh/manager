@@ -97,7 +97,7 @@
     <div data-ng-if="$ctrl.streamSubscriptions.length === 0">
         <h5 class="text-primary" data-translate="log_tile_section_title"></h5>
         <oui-tile data-heading="{{:: 'log_tile_title' | translate }}">
-            <div data-ng-transclude="tileDescription"></div>
+            <div data-translate="log_tile_empty_state_description"></div>
 
             <span
                 data-ng-if="$ctrl.logAccountStreams.length === 0"
