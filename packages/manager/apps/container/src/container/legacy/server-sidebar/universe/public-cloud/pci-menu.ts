@@ -44,7 +44,8 @@ export const features = [
   'public-cloud:project-settings',
   'ai-dashboard',
   'data-platform',
-  'ai-endpoints'
+  'ai-endpoints',
+  'pci-ai-notebooks'
 ];
 
 export function getPciProjectMenu(
@@ -297,8 +298,8 @@ export function getPciProjectMenu(
         {
           id: 'notebooks',
           title: 'AI Notebooks',
-          feature: 'notebooks',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/notebooks`),
+          feature: 'pci-ai-notebooks',
+          href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/notebooks`),
         },
         {
           id: 'training',
