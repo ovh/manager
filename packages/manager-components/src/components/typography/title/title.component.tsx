@@ -7,14 +7,18 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 
-export const CommonTitle: React.FC<React.PropsWithChildren & {
-  typoSize?: ODS_THEME_TYPOGRAPHY_SIZE;
-}> = ({ children, typoSize = ODS_THEME_TYPOGRAPHY_SIZE._400 }) => {
+export const CommonTitle: React.FC<
+  React.PropsWithChildren<{
+    className?: string;
+    typoSize?: ODS_THEME_TYPOGRAPHY_SIZE;
+  }>
+> = ({ className, children, typoSize = ODS_THEME_TYPOGRAPHY_SIZE._400 }) => {
   return (
     <OsdsText
+      className={className}
       level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
       size={typoSize}
-      color={ODS_THEME_COLOR_INTENT.text}
+      color={ODS_THEME_COLOR_INTENT.primary}
       hue={ODS_THEME_COLOR_HUE._800}
     >
       {children}
@@ -22,17 +26,27 @@ export const CommonTitle: React.FC<React.PropsWithChildren & {
   );
 };
 
-export const Title: React.FC<React.PropsWithChildren> = ({ children }) => {
+export const Title: React.FC<
+  React.PropsWithChildren<{ className?: string }>
+> = ({ children, className }) => {
   return (
-    <CommonTitle typoSize={ODS_THEME_TYPOGRAPHY_SIZE._700}>
+    <CommonTitle
+      className={className}
+      typoSize={ODS_THEME_TYPOGRAPHY_SIZE._700}
+    >
       {children}
     </CommonTitle>
   );
 };
 
-export const Subtitle: React.FC<React.PropsWithChildren> = ({ children }) => {
+export const Subtitle: React.FC<
+  React.PropsWithChildren<{ className?: string }>
+> = ({ children, className }) => {
   return (
-    <CommonTitle typoSize={ODS_THEME_TYPOGRAPHY_SIZE._500}>
+    <CommonTitle
+      className={className}
+      typoSize={ODS_THEME_TYPOGRAPHY_SIZE._500}
+    >
       {children}
     </CommonTitle>
   );
