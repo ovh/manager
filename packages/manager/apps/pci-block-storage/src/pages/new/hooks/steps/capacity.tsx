@@ -114,7 +114,7 @@ export const useCapacityStep = (
       }, [isLoading]);
 
       if (isLoading) {
-        return <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />;
+        return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
       }
 
       return (

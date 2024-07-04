@@ -14,7 +14,7 @@ export default function NoInstanceWarningMessage() {
       level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
       color={ODS_THEME_COLOR_INTENT.text}
       size={ODS_TEXT_SIZE._400}
-      className={'block mt-6'}
+      className="block mt-6"
     >
       <OsdsMessage
         color={ODS_THEME_COLOR_INTENT.warning}
