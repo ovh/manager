@@ -1,6 +1,6 @@
 <oui-spinner
     data-size="s"
-    data-ng-if="$ctrl.isLoading && $ctrl.displayLoader"
+    data-ng-if="$ctrl.hasOwnProperty('displayLoader') ? ($ctrl.isLoading && $ctrl.displayLoader) : $ctrl.isLoading"
 ></oui-spinner>
 
 <div class="flavors-list" data-ng-if="!$ctrl.isLoading">
