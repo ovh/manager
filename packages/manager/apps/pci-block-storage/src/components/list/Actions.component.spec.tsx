@@ -54,7 +54,7 @@ describe('ActionsComponent', () => {
 
     expect(getByTestId('actionComponent-create-backup-button')).toHaveAttribute(
       'href',
-      '/project/storages/volume-backup/create?volume=1',
+      '/project/storages/volume-backup/create?volumeId=1',
     );
 
     expect(getByTestId('actionComponent-remove-button')).toHaveAttribute(
@@ -74,7 +74,7 @@ describe('ActionsComponent', () => {
       .mockReturnValueOnce('./attach/1')
       .mockReturnValueOnce('./detach/1')
       .mockReturnValueOnce('./delete/1');
-    const { getByTestId, container, debug } = render(
+    const { getByTestId } = render(
       <ActionsComponent volume={mockVolumeDetach} projectUrl="/project" />,
     );
 
