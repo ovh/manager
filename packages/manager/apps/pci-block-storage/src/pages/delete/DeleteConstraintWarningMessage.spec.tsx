@@ -11,7 +11,7 @@ describe('DeleteConstraintWarningMessage', () => {
 
   it('renders snapshot error message when hasSnapshot is true and isAttached is false', () => {
     const { getByText } = render(
-      <DeleteConstraintWarningMessage hasSnapshot={true} isAttached={false} />,
+      <DeleteConstraintWarningMessage hasSnapshot isAttached={false} />,
     );
     expect(
       getByText(
@@ -22,7 +22,7 @@ describe('DeleteConstraintWarningMessage', () => {
 
   it('renders detach error message when hasSnapshot is false and isAttached is true', () => {
     const { getByText } = render(
-      <DeleteConstraintWarningMessage hasSnapshot={false} isAttached={true} />,
+      <DeleteConstraintWarningMessage hasSnapshot={false} isAttached />,
     );
     expect(
       getByText(
@@ -33,7 +33,7 @@ describe('DeleteConstraintWarningMessage', () => {
 
   it('renders multiple error messages when hasSnapshot and isAttached are true', () => {
     const { getByText } = render(
-      <DeleteConstraintWarningMessage hasSnapshot={true} isAttached={true} />,
+      <DeleteConstraintWarningMessage hasSnapshot isAttached />,
     );
     expect(
       getByText(

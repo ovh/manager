@@ -63,7 +63,7 @@ export const useNameStep = (): TStep<StepsEnum, TFormState> => {
       setStepperState: React.Dispatch<React.SetStateAction<TFormState>>;
     }) => (
       <div>
-        <OsdsFormField error={''}>
+        <OsdsFormField error="">
           <OsdsText color={ODS_THEME_COLOR_INTENT.text} slot="label">
             {t('pci_projects_project_storages_blocks_add_name_title')}
           </OsdsText>

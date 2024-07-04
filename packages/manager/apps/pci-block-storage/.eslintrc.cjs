@@ -17,5 +17,7 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     'arrow-body-style': ['error', 'as-needed'],
     'prefer-const': 'error',
+    'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
+    'react/jsx-boolean-value': ['error', 'never'],
   },
 };
