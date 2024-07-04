@@ -50,6 +50,7 @@ export const features = [
   'ai-endpoints',
   'key-management-service',
   'pci-savings-plan',
+  'pci-ai-notebooks'
 ];
 
 export function getPciProjectMenu(
@@ -371,7 +372,7 @@ export function getPciProjectMenu(
         isFeaturesAvailable('notebooks') && {
           id: 'notebooks',
           title: 'AI Notebooks',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/notebooks`),
+          href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/notebooks`),
         },
         isFeaturesAvailable('training') && {
           id: 'training',

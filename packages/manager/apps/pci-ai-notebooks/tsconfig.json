@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "es2020", "ESNext"],
+    "noEmit": true,
+    "target": "ESNext",
+    "types": ["vite/client", "node", "jest", "@testing-library/jest-dom"],
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "removeComments": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    // "strictNullChecks": true,
+    // "exactOptionalPropertyTypes": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "types"]
+}
