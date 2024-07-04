@@ -52,11 +52,14 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
 }) => {
   const { t } = useTranslation('delete-modal');
   const [deleteInput, setDeleteInput] = React.useState('');
+  const isDisabled = isLoading || deleteInput !== terminateValue || undefined;
 
-  const close = () => {
+  console.log({ isDisabled, deleteInput });
+
+  const close = React.useCallback(() => {
     setDeleteInput('');
     closeModal();
-  };
+  }, []);
 
   return (
     <OsdsModal
@@ -120,7 +123,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
         {cancelButtonLabel || t('deleteModalCancelButton')}
       </OsdsButton>
       <OsdsButton
-        disabled={isLoading || deleteInput !== terminateValue || undefined}
+        disabled={isDisabled}
         slot="actions"
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.flat}

@@ -43,7 +43,10 @@ describe('Update IAM name', () => {
   it('Triggers update service name on confirm', async () => {
     const { input, onConfirm, button } = setupTest({});
 
-    fireEvent.change(input, { target: { value: 'new name' } });
+    const event = new CustomEvent('odsValueChange', {
+      detail: { value: 'new name' },
+    });
+    fireEvent(input, event);
     await userEvent.click(button);
 
     await waitFor(() => {
@@ -55,7 +58,10 @@ describe('Update IAM name', () => {
   it('Displays an error if the service is KO', async () => {
     const { input, onConfirm, button } = setupTest({ updateServicesKo: true });
 
-    fireEvent.change(input, { target: { value: 'new name' } });
+    const event = new CustomEvent('odsValueChange', {
+      detail: { value: 'new name' },
+    });
+    fireEvent(input, event);
     await userEvent.click(button);
 
     await waitFor(
