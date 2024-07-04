@@ -39,7 +39,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
-      goToDiscoveryProjectActivationPage: /* @ngInject */ ($state, projectId) =>
+      projectActivationPageHref: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.activate', {
           projectId,
         }),
