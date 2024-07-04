@@ -175,16 +175,13 @@ export const useAttachVolume = ({
         ['project', projectId, 'volumes'],
         (data: { id: string }[]) =>
           data.map((v) =>
-            v.id === volumeId ? { ...v, attachedTo: [instanceId] } : v,
+            v.id === volumeId ? { ...volume, attachedTo: [instanceId] } : v,
           ),
       );
-      queryClient.setQueryData(
-        getVolumeQueryKey(projectId, volumeId),
-        (data: { attachedTo: string[] }) => ({
-          ...data,
-          attachedTo: [instanceId],
-        }),
-      );
+      queryClient.setQueryData(getVolumeQueryKey(projectId, volumeId), () => ({
+        ...volume,
+        attachedTo: [instanceId],
+      }));
       onSuccess(volume);
     },
   });
@@ -210,15 +207,15 @@ export const useDetachVolume = ({
         (data: { id: string; attachedTo: string }[]) =>
           data.map((v) => {
             if (v.attachedTo && v.id === volumeId) {
-              return { ...v, attachedTo: [] };
+              return { ...volume, attachedTo: [] };
             }
             return v;
           }),
       );
-      queryClient.setQueryData(
-        getVolumeQueryKey(projectId, volumeId),
-        (data: { attachedTo: string[] }) => ({ ...data, attachedTo: [] }),
-      );
+      queryClient.setQueryData(getVolumeQueryKey(projectId, volumeId), () => ({
+        ...volume,
+        attachedTo: [],
+      }));
       onSuccess(volume);
     },
   });
