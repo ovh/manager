@@ -34,7 +34,7 @@
             data-catalog-endpoint="$ctrl.catalogEndpoint"
             data-reload="$ctrl.reloadFlavorList"
             data-load-end="$ctrl.onFlavorListLoadEnd()"
-            data-current-step="$ctrl.currentStep"
+            data-display-loader="$ctrl.currentStep < 2 ? true : false"
         >
         </pci-project-flavors-list>
     </oui-step-form>
