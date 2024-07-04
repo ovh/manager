@@ -6,7 +6,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useTranslation, Translation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import {
   PciTrustedZoneBanner,
   TStep,
@@ -36,7 +36,7 @@ export const useValidationStep = (
     ),
     content: ({ stepperState }: { stepperState: TFormState }) => {
       const navigate = useNavigate();
-      const { addSuccess, addError } = useNotifications();
+      const { addSuccess, addError, clearNotifications } = useNotifications();
       const { addVolume, isPending } = useAddVolume({
         projectId,
         name: stepperState.volumeName,
@@ -89,7 +89,10 @@ export const useValidationStep = (
               color={ODS_THEME_COLOR_INTENT.primary}
               {...(isPending ? { disabled: true } : {})}
               onClick={() => {
-                if (!isPending) addVolume();
+                clearNotifications();
+                if (!isPending) {
+                  addVolume();
+                }
               }}
             >
               {t('pci_projects_project_storages_blocks_add_submit_label')}
@@ -100,7 +103,10 @@ export const useValidationStep = (
               color={ODS_THEME_COLOR_INTENT.primary}
               variant={ODS_BUTTON_VARIANT.ghost}
               {...(isPending ? { disabled: true } : {})}
-              onClick={() => navigate('..')}
+              onClick={() => {
+                clearNotifications();
+                navigate('..');
+              }}
             >
               {t(
                 'pci_projects_project_storages_blocks_add_submit_cancel_label',
