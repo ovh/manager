@@ -145,6 +145,7 @@ export default class IpListController {
       $scope.params = self.params || null;
       $scope.isAdditionalIp = self.isAdditionalIp;
       $scope.isAdmin = coreConfig.getUser().auth?.roles?.includes(ADMIN_ROLE);
+      $scope.isDeleteByoipServiceAvailable = self.isDeleteByoipServiceAvailable;
 
       $scope.tracking = {
         'enable-permanent-mitigation': `${TRACKING_PREFIX}::enable-permanent-mitigation`,

@@ -5,8 +5,8 @@
         on-dismiss="$ctrl.cancelAction()"
     >
         <p
-            data-translate="ip_byoip_delete_block_description"
-            data-translate-values="{ link: $ctrl.serviceLink }"
+            data-translate="{{'ip_byoip_delete_block_description' + ($ctrl.data.isDeleteByoipServiceAvailable ? '_info1' : '_info2')}}"
+            data-translate-values="{ link: ($ctrl.data.isDeleteByoipServiceAvailable ? $ctrl.serviceLink : $ctrl.apiConsoleUrl) }"
         ></p>
     </oui-modal>
 </div>
