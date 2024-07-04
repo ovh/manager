@@ -3,15 +3,15 @@
 .vrack {
   &__assigned-ipv6 {
     &__sub-item {
-      display: flex;
-      justify-content: end;
-      flex-flow: wrap;
+      padding-left: 1rem;
+      text-align: end;
     }
 
     &__subnet,
     &__subrange {
+      text-align: left;
       list-style: none;
-      padding: 0.625rem;
+      padding: 0.625rem 0.2rem;
       border-width: 1px;
       border-style: solid;
       border-color: @vrack-service-border-color_selected;
@@ -24,6 +24,11 @@
       cursor: default;
       box-shadow: @vrack-service-box-shadow_selected;
       overflow: hidden;
+
+      &__via {
+        padding: 0 0.3rem;
+        font-weight: bold;
+      }
 
       &__title {
         text-overflow: ellipsis;
