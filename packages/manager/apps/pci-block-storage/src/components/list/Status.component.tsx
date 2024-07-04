@@ -52,7 +52,7 @@ export default function StatusComponent({
       className={'w-fit'}
       data-testid={'StatusComponent_chip'}
     >
-      {status === statusGroup ? status : getStatusLabel(statusGroup)}
+      {getStatusLabel(statusGroup) || status}
     </OsdsChip>
   );
 }
