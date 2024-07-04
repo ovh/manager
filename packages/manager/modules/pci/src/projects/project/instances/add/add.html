@@ -34,7 +34,7 @@
             data-catalog-endpoint="$ctrl.catalogEndpoint"
             data-reload="$ctrl.reloadFlavorList"
             data-load-end="$ctrl.onFlavorListLoadEnd()"
-            data-display-loader="$ctrl.currentStep < 2 ? true : false"
+            data-display-loader="$ctrl.currentStep < 2"
         >
         </pci-project-flavors-list>
     </oui-step-form>
@@ -236,7 +236,7 @@
                             <p
                                 class="warning-text"
                                 data-ng-switch-when="INACTIVE"
-                                data-ng-bind="'pci_project_instances_instance_add_region_activate' | translate"
+                                data-translate="pci_project_instances_instance_add_region_activate"
                                 data-ng-if="!$ctrl.isDiscoveryProject"
                             ></p>
 
@@ -246,7 +246,7 @@
                                 data-ng-if="!$ctrl.isDiscoveryProject"
                             >
                                 <span
-                                    data-ng-bind="'pci_project_instances_instance_add_region_quota' | translate"
+                                    data-translate="pci_project_instances_instance_add_region_quota"
                                 ></span>
                                 <a
                                     data-ng-href="{{ $ctrl.quotaLink }}"
@@ -258,7 +258,7 @@
                         <div data-ng-if="$ctrl.isDiscoveryProject">
                             <p class="warning-text">
                                 <span
-                                    data-ng-bind="'pci_project_instances_instance_activate_project_banner_message' | translate"
+                                    data-translate="pci_project_instances_instance_activate_project_banner_message"
                                 ></span>
                                 <a
                                     data-ng-href="{{ $ctrl.projectActivationPageHref }}"
