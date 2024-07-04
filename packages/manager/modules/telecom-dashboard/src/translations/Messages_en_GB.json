@@ -52,7 +52,7 @@
   "telecom_dashboard_ftth_eligibility_no_building": "No building",
   "telecom_dashboard_ftth_eligibility_eligible": "Eligible",
   "telecom_dashboard_ftth_eligibility_not_concerned": "Not applicable",
-  "telecom_dashboard_ftth_eligibility_not_available": "Not available ",
+  "telecom_dashboard_ftth_eligibility_not_available": "Not available",
   "telecom_dashboard_ftth_eligibility_migrate": "Migrate to fiber",
   "telecom_dashboard_ftth_eligibility_access_more": "See more access"
 }

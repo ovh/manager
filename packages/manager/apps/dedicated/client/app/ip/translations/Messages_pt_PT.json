@@ -763,7 +763,7 @@
   "ip_byoip_slicing_park_it_first_error_message": "Este IP é roteado para um serviço, queira em primeiro lugar desassociá-lo (o IP ficará no \"parking\") de forma a segmentá-lo.",
   "ip_byoip_aggregate_block_title": "Agregar o bloco",
   "ip_byoip_aggregate_set_parent_size": "Especifique o bloco principal desejado",
-  "ip_byoip_aggregate_configuration": "Esta configuração levará à criação do seguinte bloco principal:",
+  "ip_byoip_aggregate_configuration": "Esta ação agregará as seguintes sub-redes:",
   "ip_byoip_aggregate_slicing_not_available_error_message": "Nenhuma configuração de segmentação/agregação disponível. Para mais informações, consulte o nosso guia: <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">aqui</a>",
   "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Foi efetuada outra ação de segmentação ou agregação para este endereço IP."
 }
