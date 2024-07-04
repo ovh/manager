@@ -8,7 +8,7 @@ export const StorageActionRedirect = ({ action }: { action: string }) => {
       to={`/pci/projects/${projectId}/storages/blocks/${action}/${searchParams.get(
         'storageId',
       )}`}
-      replace={true}
+      replace
     />
   );
 };

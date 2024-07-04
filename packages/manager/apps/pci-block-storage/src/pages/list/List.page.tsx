@@ -130,13 +130,13 @@ export default function ListingPage() {
           />
         )}
         {isBannerVisible && (
-          <PciAnnouncementBanner data-testid={'ListPage_announcementBanner'} />
+          <PciAnnouncementBanner data-testid="ListPage_announcementBanner" />
         )}
         {isDiscoveryProject(project) && (
           <PciDiscoveryBanner projectId={projectId} />
         )}
         <Notifications />
-        <div className={'sm:flex items-center justify-between mt-4'}>
+        <div className="sm:flex items-center justify-between mt-4">
           <OsdsButton
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.stroked}
@@ -147,14 +147,14 @@ export default function ListingPage() {
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}
               name={ODS_ICON_NAME.PLUS}
-              className={'mr-2'}
+              className="mr-2"
               color={ODS_THEME_COLOR_INTENT.primary}
             />
             {t('pci_projects_project_storages_blocks_add_label')}
           </OsdsButton>
           <div className="justify-between flex">
             <OsdsSearchBar
-              className={'w-[70%]'}
+              className="w-[70%]"
               value={searchField}
               onOdsSearchSubmit={({ detail }) => {
                 setPagination({
@@ -180,7 +180,7 @@ export default function ListingPage() {
                 <OsdsIcon
                   name={ODS_ICON_NAME.FILTER}
                   size={ODS_ICON_SIZE.xs}
-                  className={'mr-2'}
+                  className="mr-2"
                   color={ODS_THEME_COLOR_INTENT.primary}
                 />
                 {tFilter('common_criteria_adder_filter_label')}
@@ -243,7 +243,7 @@ export default function ListingPage() {
         </div>
         {isLoading && (
           <div className="text-center">
-            <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
+            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
           </div>
         )}
 
@@ -255,7 +255,7 @@ export default function ListingPage() {
               totalItems={volumes?.totalRows || 0}
               pagination={pagination}
               onPaginationChange={setPagination}
-              className={'overflow-x-visible'}
+              className="overflow-x-visible"
               sorting={sorting}
               onSortChange={setSorting}
             />

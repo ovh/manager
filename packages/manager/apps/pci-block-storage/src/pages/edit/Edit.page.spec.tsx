@@ -144,7 +144,7 @@ describe('Edit volume page', () => {
     } as UseQueryResult<TVolume>);
     vi.spyOn(volumeHook, 'useUpdateVolume').mockReturnValue(({
       updateVolume: mockUpdateVolume,
-    } as unknown) as any);
+    } as unknown) as never);
 
     renderEditPage();
 

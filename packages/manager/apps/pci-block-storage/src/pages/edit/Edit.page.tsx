@@ -319,7 +319,7 @@ export default function EditPage() {
               level={ODS_TEXT_LEVEL.caption}
               size={ODS_THEME_TYPOGRAPHY_SIZE._100}
               color={ODS_THEME_COLOR_INTENT.text}
-              className={'font-bold'}
+              className="font-bold"
               slot="label"
             >
               {tVolumeEdit(
@@ -332,7 +332,7 @@ export default function EditPage() {
               default-value={volume?.name}
               value={formState.name}
               max={255}
-              className={'w-1/3'}
+              className="w-1/3"
               color={ODS_THEME_COLOR_INTENT.primary}
               onOdsValueChange={(event) =>
                 setFormState({ ...formState, name: event.detail.value })

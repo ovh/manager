@@ -18,10 +18,7 @@ export interface RegionSummaryProps {
 export function RegionSummary({ region }: Readonly<RegionSummaryProps>) {
   return (
     <div className={regionContainer}>
-      <OsdsTile
-        className={`${regionTile} ${regionTileSelected}`}
-        checked={true}
-      >
+      <OsdsTile className={`${regionTile} ${regionTileSelected}`} checked>
         <div className="w-full">
           <div className="border-solid border-0 border-b border-b-[#85d9fd] py-3">
             <OsdsText

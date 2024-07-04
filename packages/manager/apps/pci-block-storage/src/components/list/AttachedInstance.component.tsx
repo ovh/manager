@@ -18,12 +18,12 @@ export default function AttachedInstanceComponent({
     instanceId,
   );
   return isPending || isLoading ? (
-    <OsdsSkeleton data-testid={'AttachedInstanceComponent_skeleton'} />
+    <OsdsSkeleton data-testid="AttachedInstanceComponent_skeleton" />
   ) : (
     <OsdsLink
       color={ODS_THEME_COLOR_INTENT.primary}
       href={`${projectUrl}/instances/${instanceId}`}
-      data-testid={'AttachedInstanceComponent_link'}
+      data-testid="AttachedInstanceComponent_link"
     >
       {instance.name}
     </OsdsLink>
