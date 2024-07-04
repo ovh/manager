@@ -11,7 +11,7 @@ import * as useVolumeModule from '@/api/hooks/useVolume';
 import { TVolume, TVolumeSnapshot } from '@/api/data/volume';
 
 type UseDeleteVolumeReturnType = UseMutationResult<
-  any,
+  never,
   Error,
   void,
   unknown

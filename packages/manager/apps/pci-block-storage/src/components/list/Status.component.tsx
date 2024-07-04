@@ -49,8 +49,8 @@ export default function StatusComponent({
   return (
     <OsdsChip
       {...chipAttribute}
-      className={'w-fit'}
-      data-testid={'StatusComponent_chip'}
+      className="w-fit"
+      data-testid="StatusComponent_chip"
     >
       {getStatusLabel(statusGroup) || status}
     </OsdsChip>
