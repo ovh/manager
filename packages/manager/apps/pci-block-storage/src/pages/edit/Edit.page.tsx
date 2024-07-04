@@ -156,7 +156,9 @@ export default function EditPage() {
     },
   });
 
-  const { data: projectQuota } = useProjectQuota(projectId);
+  const { data: projectQuota, isPending: isPendingQuota } = useProjectQuota(
+    projectId,
+  );
 
   const availableQuotaByRegion = (region: string) => {
     if (projectQuota?.length > 0) {
@@ -187,7 +189,11 @@ export default function EditPage() {
   };
 
   const isLoading =
-    isLoadingVolume || isPendingVolume || isPendingLocal || isLoadingLocal;
+    isLoadingVolume ||
+    isPendingVolume ||
+    isPendingLocal ||
+    isLoadingLocal ||
+    isPendingQuota;
 
   useEffect(() => {
     if (volume) {
