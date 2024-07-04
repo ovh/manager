@@ -305,7 +305,7 @@ export default function EditPage() {
             color={ODS_THEME_COLOR_INTENT.text}
             data-testid="editPage-text_volumeType"
           >
-            {volume.type}
+            {volume?.type}
           </OsdsText>
 
           <OsdsFormField className="mt-8">
@@ -323,6 +323,7 @@ export default function EditPage() {
 
             <OsdsInput
               type={ODS_INPUT_TYPE.text}
+              default-value={volume?.name}
               value={formState.name}
               max={255}
               className={'w-1/3'}
