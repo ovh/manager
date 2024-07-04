@@ -5,7 +5,13 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { TAct, TIs, TStep } from '@ovhcloud/manager-components';
+import {
+  TAct,
+  TIs,
+  TStep,
+  isDiscoveryProject,
+  useProject,
+} from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { StepsEnum } from '@/pages/new/steps.enum';
@@ -19,11 +25,14 @@ export const useLocationStep = (
 ): TStep<StepsEnum, TFormState> => {
   const { t } = useTranslation('add');
   const { t: tStepper } = useTranslation('stepper');
+  const { data: project } = useProject(projectId || '');
+  const isDiscovery = isDiscoveryProject(project);
 
   return {
     order: 1,
     is: {
       open: true,
+      locked: isDiscovery,
     },
     title: ({
       act,
@@ -42,7 +51,7 @@ export const useLocationStep = (
         >
           {t('pci_projects_project_storages_blocks_add_region_title')}
         </OsdsText>
-        {stepIs.locked && (
+        {stepIs.locked && !isDiscovery && (
           <span className={style.linkContainer}>
             <a
               className="mx-3 float-right"
@@ -82,8 +91,10 @@ export const useLocationStep = (
       const hasRegion = !!stepperState.region;
       return (
         <>
-          {stepIs.locked && <RegionSummary region={stepperState.region} />}
-          {!stepIs.locked && (
+          {hasRegion && stepIs.locked && (
+            <RegionSummary region={stepperState.region} />
+          )}
+          {(!stepIs.locked || isDiscovery) && (
             <RegionSelector
               projectId={projectId}
               onSelectRegion={(region) => {
