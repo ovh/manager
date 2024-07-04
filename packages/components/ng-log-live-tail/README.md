@@ -4,7 +4,7 @@
 
 [![npm version](https://badgen.net/npm/v/@ovh-ux/ng-log-live-tail)](https://www.npmjs.com/package/@ovh-ux/ng-log-live-tail) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-log-live-tail)](https://npmjs.com/package/@ovh-ux/ng-log-live-tail) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-log-live-tail)](https://npmjs.com/package/@ovh-ux/ng-log-live-tail?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-log-live-tail)](https://npmjs.com/package/@ovh-ux/ng-tail-logs?activeTab=dependencies)
 
-Poll a log API for displaying messages
+Poll a log API for displaying messages.
 
 ## Install
 
@@ -41,9 +41,11 @@ angular.module('myApp', [ngLogToCustomer]).controller(
 ```html
 <div data-ng-controller="MyCtrl as $ctrl">
   <log-to-customer source="$ctrl.logSrcUrl" log-keys="$ctrl.logKeys">
-    
     <!--Optionnal : right tile transclude content-->
-    <right-tile>Content will be placed right to the live tail. Tail will be fullscreen if no content is passed.</right-tile>
+    <right-tile
+      >Content will be placed right to the live tail. Tail will be fullscreen if
+      no content is passed.</right-tile
+    >
   </log-to-customer>
 </div>
 ```
