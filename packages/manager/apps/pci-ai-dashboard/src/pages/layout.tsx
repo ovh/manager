@@ -14,7 +14,6 @@ interface DashboardLayoutProps {
 }
 // try to fetch the service data, redirect to service page if it fails
 export const Loader = async ({ params }: DashboardLayoutProps) => {
-  console.log('inLoader');
   const { projectId } = params;
   return queryClient
     .fetchQuery({
@@ -53,7 +52,6 @@ export function useDashboardData() {
 }
 
 export default function DashboardLayout() {
-  console.log('layout');
   return (
     <>
       <RoutingSynchronisation />
