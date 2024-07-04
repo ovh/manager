@@ -2,13 +2,14 @@ import { useTranslation } from 'react-i18next';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import {
   Headers,
-  useProject,
-  useProjectUrl,
-  useStepper,
   isDiscoveryProject,
   PciDiscoveryBanner,
   PciFreeLocalzonesBanner,
   useMe,
+  useNotifications,
+  useProject,
+  useProjectUrl,
+  useStepper,
 } from '@ovhcloud/manager-components';
 import { useHref, useParams } from 'react-router-dom';
 import { useTypeStep } from '@/pages/new/hooks/steps/type';
@@ -36,6 +37,7 @@ export default function NewPage(): JSX.Element {
   const LocationStep = useLocationStep(projectId);
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
+  const { clearNotifications } = useNotifications();
 
   const { Component: Stepper } = useStepper<StepsEnum, TFormState>({
     steps: new Map([
@@ -58,6 +60,7 @@ export default function NewPage(): JSX.Element {
       {project && (
         <OsdsBreadcrumb
           className="mb-8"
+          onClick={() => clearNotifications()}
           items={[
             {
               href: projectUrl,
