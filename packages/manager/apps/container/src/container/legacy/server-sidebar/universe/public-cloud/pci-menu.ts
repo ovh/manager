@@ -45,6 +45,7 @@ export const features = [
   'public-cloud:vouchers',
   'public-cloud:contacts',
   'public-cloud:project-settings',
+  'pci-ai-dashboard',
   'ai-dashboard',
   'data-platform',
   'ai-endpoints',
