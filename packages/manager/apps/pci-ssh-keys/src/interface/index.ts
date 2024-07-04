@@ -1,4 +1,4 @@
-export type SshKey = {
+export type TSshKey = {
   id?: string;
   name: string;
   publicKey: string;

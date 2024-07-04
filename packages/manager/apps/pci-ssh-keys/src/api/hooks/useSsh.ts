@@ -8,24 +8,24 @@ import {
   paginateResults,
   removeSshKey,
   SshKeysOptions,
-} from '@/data/ssh';
+} from '@/api/data/ssh';
 import queryClient from '@/queryClient';
-import { SshKey } from '@/interface';
+import { TSshKey } from '@/interface';
 
-type RemoveSshProps = {
+export type TRemoveSshProps = {
   projectId: string;
   sshId: string;
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
-type AddSshProps = {
+export type TAddSshProps = {
   projectId: string;
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
 
-export const useAllSshKeys = (projectId: string) => {
-  return useQuery({
+export const useAllSshKeys = (projectId: string) =>
+  useQuery({
     queryKey: ['project', projectId, 'sshkeys'],
     queryFn: () => getAllSshKeys(projectId),
     retry: false,
@@ -33,10 +33,9 @@ export const useAllSshKeys = (projectId: string) => {
       //    keepPreviousData: true,
     },
   });
-};
 
-export const useSshKey = (projectId: string, sshId: string) => {
-  return useQuery({
+export const useSshKey = (projectId: string, sshId: string) =>
+  useQuery({
     queryKey: ['project', projectId, 'sshkey', sshId],
     queryFn: () => getSshKey(projectId, sshId),
     retry: false,
@@ -44,7 +43,6 @@ export const useSshKey = (projectId: string, sshId: string) => {
       keepPreviousData: true,
     },
   });
-};
 
 export const useSshKeys = (
   projectId: string,
@@ -54,16 +52,17 @@ export const useSshKeys = (
   // retrieve All ssh keys from API
   const { data: sshkeys, error, isLoading } = useAllSshKeys(projectId);
 
-  return useMemo(() => {
-    return {
+  return useMemo(
+    () => ({
       isLoading,
       error,
       data: paginateResults(
         filterSshKeys(sshkeys || [], sorting, searchQueries),
         pagination,
       ),
-    };
-  }, [sshkeys, sorting, searchQueries]);
+    }),
+    [sshkeys, sorting, searchQueries],
+  );
 };
 
 export function useRemoveSsh({
@@ -71,16 +70,14 @@ export function useRemoveSsh({
   sshId,
   onError,
   onSuccess,
-}: RemoveSshProps) {
+}: TRemoveSshProps) {
   const mutation = useMutation({
-    mutationFn: () => {
-      return removeSshKey(`${projectId}`, `${sshId}`);
-    },
+    mutationFn: () => removeSshKey(`${projectId}`, `${sshId}`),
     onError,
     onSuccess: async () => {
       queryClient.setQueryData(
         ['project', projectId, 'sshkeys'],
-        (old: SshKey[]) => [...old.filter(({ id }) => id !== sshId)],
+        (old: TSshKey[]) => [...old.filter(({ id }) => id !== sshId)],
       );
 
       queryClient.invalidateQueries({
@@ -92,18 +89,15 @@ export function useRemoveSsh({
   });
 
   return {
-    remove: () => {
-      return mutation.mutate();
-    },
+    remove: () => mutation.mutate(),
     ...mutation,
   };
 }
 
-export function useAddSsh({ projectId, onError, onSuccess }: AddSshProps) {
+export function useAddSsh({ projectId, onError, onSuccess }: TAddSshProps) {
   const mutation = useMutation({
-    mutationFn: ({ name, publicKey }: { name: string; publicKey: string }) => {
-      return addSshKey(`${projectId}`, { name, publicKey });
-    },
+    mutationFn: ({ name, publicKey }: { name: string; publicKey: string }) =>
+      addSshKey(`${projectId}`, { name, publicKey }),
     onError,
     onSuccess: async () => {
       queryClient.invalidateQueries({
@@ -115,9 +109,8 @@ export function useAddSsh({ projectId, onError, onSuccess }: AddSshProps) {
   });
 
   return {
-    add: ({ name, publicKey }: { name: string; publicKey: string }) => {
-      return mutation.mutate({ name, publicKey });
-    },
+    add: ({ name, publicKey }: { name: string; publicKey: string }) =>
+      mutation.mutate({ name, publicKey }),
     ...mutation,
   };
 }

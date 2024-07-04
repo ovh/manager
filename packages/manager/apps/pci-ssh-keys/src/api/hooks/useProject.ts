@@ -1,5 +1,5 @@
 import { QueryOptions, useQuery } from '@tanstack/react-query';
-import { getProject, Project } from '@/data/project';
+import { getProject, Project } from '@/api/data/project';
 
 export interface ResponseAPIError {
   message: string;
