@@ -75,17 +75,21 @@ export const paginateResults = <T>(
 
 export const sortResults = (items: TVolume[], sorting: ColumnSort) => {
   let data = [...items];
-  if (sorting?.id === 'attachedTo') {
-    return data;
-  }
   switch (sorting?.id) {
-    case 'size':
-      data = [...items].sort((a, b) => (a.size > b.size ? 1 : 0));
-      break;
     case 'status':
       data = [...items].sort((a, b) => (a.statusGroup > b.statusGroup ? 1 : 0));
       break;
+    case 'attachedTo':
+      data = [...items].sort((a, b) => {
+        const aAttachedTo = a.attachedTo[0] || '';
+        const bAttachedTo = b.attachedTo[0] || '';
+        return aAttachedTo > bAttachedTo ? 1 : 0;
+      });
+      break;
     default:
+      data = [...items].sort((a, b) =>
+        a[sorting?.id] > b[sorting?.id] ? 1 : 0,
+      );
       break;
   }
 
