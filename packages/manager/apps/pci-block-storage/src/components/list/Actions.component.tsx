@@ -16,7 +16,7 @@ export default function ActionsComponent({
   const hrefAttach = useHref(`./attach/${volume.id}`);
   const hrefDetach = useHref(`./detach/${volume.id}`);
   const hrefRemove = useHref(`./delete/${volume.id}`);
-  const hrefCreateBackup = `${projectUrl}/storages/volume-backup/create?volume=${volume.id}`;
+  const hrefCreateBackup = `${projectUrl}/storages/volume-backup/create?volumeId=${volume.id}`;
 
   const items = [
     {
