@@ -9,7 +9,7 @@ import {
   regionContainer,
   regionTile,
   regionTileSelected,
-} from './style.constant';
+} from './style.constants';
 
 export interface RegionSummaryProps {
   region: TLocalisation;
