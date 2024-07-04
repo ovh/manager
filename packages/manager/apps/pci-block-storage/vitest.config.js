@@ -15,6 +15,7 @@ export default defineConfig({
         'src/interface',
         'src/__tests__',
         'src/**/*constants.ts',
+        'src/**/*enum.ts',
         'src/vite-*.ts',
         'src/App.tsx',
         'src/core/ShellRoutingSync.tsx',
