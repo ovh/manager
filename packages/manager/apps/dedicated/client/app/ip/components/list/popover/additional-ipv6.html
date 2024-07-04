@@ -24,12 +24,12 @@
             ></button>
         </li>
 
-        <li>
+        <li data-ng-if="!ipBlock.isUniq">
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="goToUpdateReverse(ipBlock, ipBlock)"
-                data-translate="ip_table_manage_reverse"
+                data-ng-click="setAction('ip/reverse/add/ip-ip-reverse-add', { ipBlock: ipBlock })"
+                data-translate="ip_table_manage_add_ipv6block"
             ></button>
         </li>
 
