@@ -5,3 +5,5 @@ custom-elements
 loader
 react
 vue
+packages/manager/apps/pci-ai-dashboard/src/components/ui
+packages/manager/apps/pci-ai-dashboard/src/lib/utils.ts
