@@ -7,7 +7,7 @@ describe('PciFreeLocalZonesBanner tests', () => {
   it.each(['FR', 'DE'])(
     'should give documentation link depending of subsidiary',
     (subsidiary) => {
-      const { container, debug } = render(
+      const { container } = render(
         <PciFreeLocalZonesBanner
           showConfirm={false}
           ovhSubsidiary={subsidiary}

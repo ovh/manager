@@ -1,10 +1,5 @@
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  Card,
-  isDiscoveryProject,
-  OnboardingLayout,
-  PciDiscoveryBanner,
-} from '@ovhcloud/manager-components';
+import { Card, OnboardingLayout } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -23,6 +18,7 @@ import {
   useRouteLoaderData,
 } from 'react-router-dom';
 import { PublicCloudProject } from '@ovhcloud/manager-components/src/hooks/pci-project-provider/publicCloudProject.interface';
+import { PciDiscoveryBanner } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from '@/pages/onboarding/OnBoardingGuard';
@@ -107,11 +103,10 @@ export default function OnBoardingPage() {
         <HidePreloader />
         {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
-        {isDiscoveryProject(project) && (
-          <div className="mb-8">
-            <PciDiscoveryBanner projectId={projectId} />
-          </div>
-        )}
+        <div className="mb-8">
+          <PciDiscoveryBanner project={project} />
+        </div>
+
         <OnboardingLayout
           title={tOnBoarding('pci_projects_project_public_gateways_onboarding')}
           description={
