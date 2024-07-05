@@ -13,6 +13,10 @@ import {
 import {
   isDiscoveryProject,
   PciDiscoveryBanner,
+} from '@ovh-ux/manager-pci-common';
+import {
+  isDiscoveryProject,
+  PciDiscoveryBanner,
   TProject,
 } from '@ovh-ux/manager-pci-common';
 import { useAllUsers } from '@/api/hooks/useUser';
