@@ -1,9 +1,6 @@
 {
   "title": "Savings Plan",
-  "description": "Ajouter une description.",
+  "description": "Maximisez vos économies dans le cloud avec des options d'engagement et bénéficiez de remises importantes sans coûts initiaux.",
   "orderButtonLabel": "Créer un Savings Plan",
-  "moreInfoButtonLabel": "En savoir plus sur Savings Plan",
-  "guideCategory": "Tutoriel",
-  "guide1Title": "Premiers pas avec un Savings Plan",
-  "guide1Description": "Description"
+  "moreInfoButtonLabel": "Plus d'information"
 }
