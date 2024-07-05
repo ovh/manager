@@ -23,6 +23,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^7.3.2",
     "@ovh-ux/manager-core-api": "^0.7.1",
+    "@ovh-ux/manager-pci-common": "^0.0.0",
     "@ovh-ux/manager-react-core-application": "^0.9.0",
     "@ovh-ux/manager-react-shell-client": "^0.6.1",
     "@ovh-ux/request-tagger": "^0.2.0",

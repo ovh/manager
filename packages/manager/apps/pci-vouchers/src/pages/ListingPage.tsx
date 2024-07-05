@@ -6,8 +6,6 @@ import {
   DataGridTextCell,
   useDatagridSearchParams,
   Notifications,
-  isDiscoveryProject,
-  PciDiscoveryBanner,
   PciGuidesHeader,
 } from '@ovhcloud/manager-components';
 
@@ -34,6 +32,10 @@ import {
 
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 
+import {
+  isDiscoveryProject,
+  PciDiscoveryBanner,
+} from '@ovh-ux/manager-pci-common';
 import { Voucher } from '@/interface';
 
 import useProject from '@/hooks/useProject';
@@ -50,6 +52,7 @@ export default function ListingPage() {
   const navigation = useNavigation();
   const { projectId } = useParams();
   const [urlProject, setUrlProject] = useState('');
+
   useEffect(() => {
     navigation
       .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
@@ -173,9 +176,7 @@ export default function ListingPage() {
         {t('cpb_vouchers_credit_comment')}
       </OsdsText>
 
-      {isDiscoveryProject(project) && (
-        <PciDiscoveryBanner projectId={projectId} />
-      )}
+      <PciDiscoveryBanner project={project} />
 
       <div className={'flex mb-3 mt-6'}>
         <OsdsButton

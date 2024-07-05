@@ -1,8 +1,4 @@
-import {
-  PciDiscoveryBanner,
-  Subtitle,
-  Title,
-} from '@ovhcloud/manager-components';
+import { Subtitle, Title, useProject } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Trans, useTranslation } from 'react-i18next';
 import {
@@ -24,6 +20,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { PciDiscoveryBanner } from '@ovh-ux/manager-pci-common';
 import {
   CreateRancherPayload,
   RancherPlan,
@@ -123,6 +120,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const [selectedVersion, setSelectedVersion] = useState(null);
 
   const navigate = useNavigate();
+  const { data: project } = useProject(projectId);
 
   const isValidName = rancherName !== '' && isValidRancherName(rancherName);
   const hasInputError = rancherName !== '' && !isValidName;
@@ -178,7 +176,9 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   return (
     <div>
       <Title>{t('createRancherTitle')}</Title>
-      {isProjectDiscoveryMode && <PciDiscoveryBanner projectId={projectId} />}
+
+      <PciDiscoveryBanner project={project} />
+
       <OsdsMessage
         color={ODS_THEME_COLOR_INTENT.info}
         type={ODS_MESSAGE_TYPE.info}
