@@ -77,7 +77,7 @@ export const useLocationStep = (
         )}
       </>
     ),
-    content: ({
+    Content: ({
       act,
       stepIs,
       stepperState,
