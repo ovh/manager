@@ -326,7 +326,6 @@ export default class PciInstancesAddController {
   onRegionFocus() {
     this.displaySelectedRegion = false;
   }
-  //
 
   addRegions() {
     return this.OvhApiCloudProjectRegion.v6()
