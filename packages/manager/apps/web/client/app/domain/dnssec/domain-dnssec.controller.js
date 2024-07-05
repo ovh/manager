@@ -31,7 +31,7 @@ angular.module('controllers').controller(
     $onInit() {
       this.const = {
         ALGORITHM_OPTIONS: this.constants.algorithm_options,
-        ALTERABLE_DNSSEC_SERVER_TYPE: 'EXTERNAL',
+        ALTERABLE_DNSSEC_SERVER_TYPE: ['EXTERNAL', 'MIXED'],
         FLAGS_OPTIONS: this.constants.flags_options,
         MAX_AMOUNT_DNSSEC: 4,
         PUBLIC_KEY_REGEX: null,
@@ -54,8 +54,9 @@ angular.module('controllers').controller(
         return false;
       }
       return (
-        this.product.nameServerType ===
-          this.const.ALTERABLE_DNSSEC_SERVER_TYPE &&
+        this.const.ALTERABLE_DNSSEC_SERVER_TYPE.includes(
+          this.product.nameServerType,
+        ) &&
         !this.product.managedByOvh &&
         !this.hasActiveTask
       );
@@ -66,8 +67,9 @@ angular.module('controllers').controller(
         return false;
       }
       return (
-        this.product.nameServerType ===
-          this.const.ALTERABLE_DNSSEC_SERVER_TYPE &&
+        this.const.ALTERABLE_DNSSEC_SERVER_TYPE.includes(
+          this.product.nameServerType,
+        ) &&
         !this.product.managedByOvh &&
         this.hasActiveTask &&
         this.product.dnssecSupported
