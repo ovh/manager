@@ -454,3 +454,15 @@ Then('User sees the create a {word} button {word}', async function(
     await expect(button).toHaveAttribute('disabled');
   }
 });
+
+Then('User {string} redirected to HUB', async function(
+  this: ICustomWorld<ConfigParams>,
+  isRedirected: 'is' | 'is not',
+) {
+  if (isRedirected === 'is') {
+    await expect(this.page).toHaveURL(/.*\/#\/hub/);
+  } else {
+    const description = await this.page.getByText(labels.listingDescription);
+    await expect(description).toBeVisible();
+  }
+});

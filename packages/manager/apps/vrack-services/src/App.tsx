@@ -3,13 +3,14 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { odsSetup } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import '@ovhcloud/ods-theme-blue-jeans';
+import { useFeatureAvailability } from '@ovhcloud/manager-components';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { getRoutes } from '@/routes/routes';
 import {
   MessageOptions,
   MessagesContext,
 } from '@/components/feedback-messages/Messages.context';
+import '@ovhcloud/ods-theme-blue-jeans';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,16 +22,35 @@ const queryClient = new QueryClient({
 
 odsSetup();
 
-export const App: React.FC = () => {
-  const [successMessages, setSuccessMessages] = React.useState([]);
-  const [hiddenMessages, setHiddenMessages] = React.useState([]);
+const Routes: React.FC = () => {
+  const { data, isLoading, isError } = useFeatureAvailability([
+    'vrack-services',
+  ]);
   const { shell } = React.useContext(ShellContext);
   const routes = getRoutes();
   const router = createHashRouter(routes);
+  const isAppAvailable = !!data?.['vrack-services'];
 
   React.useEffect(() => {
-    shell.ux.hidePreloader();
-  }, []);
+    if (isAppAvailable) {
+      shell.ux.hidePreloader();
+    } else if ((!isLoading || isError) && !isAppAvailable) {
+      shell.navigation
+        .getURL('hub', '/', {})
+        .then((url: string) => window.location.replace(url));
+    }
+  }, [isLoading, isError, isAppAvailable]);
+
+  if (isLoading || !isAppAvailable) {
+    return <></>;
+  }
+
+  return <RouterProvider router={router} />;
+};
+
+export const App: React.FC = () => {
+  const [successMessages, setSuccessMessages] = React.useState([]);
+  const [hiddenMessages, setHiddenMessages] = React.useState([]);
 
   const messageContext = React.useMemo(
     () => ({
@@ -51,7 +71,7 @@ export const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <MessagesContext.Provider value={messageContext}>
-        <RouterProvider router={router} />
+        <Routes />
       </MessagesContext.Provider>
       <ReactQueryDevtools />
     </QueryClientProvider>
