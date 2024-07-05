@@ -7,10 +7,16 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
+import { aapi } from '@ovh-ux/manager-core-api';
+import { useQuery } from '@tanstack/react-query';
 import './translations/trusted-zone';
 
 const TRUSTED_ZONE = 'public-cloud:trusted-zone';
+
+export async function fetchTrustedZoneFeature() {
+  const { data } = await aapi.get(`/feature/${TRUSTED_ZONE}/availability`);
+  return data;
+}
 
 export function PciTrustedZoneBanner() {
   const [t] = useTranslation('pci-trusted-zone-banner');
@@ -23,7 +29,10 @@ export function PciTrustedZoneBanner() {
   const {
     data: featureAvailabilityData,
     isLoading: isFeatureAvailabilityLoading,
-  } = useFeatureAvailability([TRUSTED_ZONE]);
+  } = useQuery<Record<string, boolean>>({
+    queryKey: ['feature', TRUSTED_ZONE],
+    queryFn: fetchTrustedZoneFeature,
+  });
 
   const isTrustedZone =
     featureAvailabilityData &&
