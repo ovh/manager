@@ -325,6 +325,7 @@ export default class PciInstancesAddController {
   onRegionFocus() {
     this.displaySelectedRegion = false;
   }
+  //
 
   addRegions() {
     return this.OvhApiCloudProjectRegion.v6()
@@ -362,7 +363,7 @@ export default class PciInstancesAddController {
 
   onRegionChange() {
     if (!this.model.datacenter || this.isAddingNewRegion) {
-      return;
+      return null;
     }
 
     this.getFilteredRegions();
@@ -443,6 +444,7 @@ export default class PciInstancesAddController {
           this.CucCloudMessage.error(get(error, 'data.message')),
         );
     }
+    return null;
   }
 
   getPrivateNetworkSubnet() {
