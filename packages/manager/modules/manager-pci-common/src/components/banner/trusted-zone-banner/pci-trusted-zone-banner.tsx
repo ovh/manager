@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_MESSAGE_TYPE,
@@ -6,20 +7,9 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
+import { useTrustedZoneBanner } from './useTrustedZoneBanner.hook';
 
 import './translations';
-
-export const pciTrustedZoneBannerId = 'public-cloud:trusted-zone';
-
-export const useTrustedZoneBanner = () => {
-  const { data, isLoading } = useFeatureAvailability([pciTrustedZoneBannerId]);
-
-  return {
-    isBannerVisible: data && !!data[pciTrustedZoneBannerId],
-    isLoading,
-  };
-};
 
 export function PciTrustedZoneBanner() {
   const { t } = useTranslation('pci-trusted-zone-banner');

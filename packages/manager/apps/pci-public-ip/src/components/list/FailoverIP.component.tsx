@@ -6,7 +6,6 @@ import {
   FilterAdd,
   FilterList,
   Notifications,
-  PciAnnouncementBanner,
   useColumnFilters,
   useDatagridSearchParams,
 } from '@ovh-ux/manager-react-components';
@@ -41,10 +40,10 @@ import {
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { PciAnnouncementBanner } from '@ovh-ux/manager-pci-common';
 import { FailoverIP } from '@/interface';
 import { useFailoverIPs } from '@/api/hooks/useFailoverIP';
 import FailoverIPActions from './FailoverIPActions.component';
-import { pciAnnouncementBannerId } from '@/constants';
 
 export type FailoverIPComponentProps = {
   projectId: string;
@@ -60,16 +59,6 @@ export default function FailoverIPComponent({
   const { pagination, setPagination } = useDatagridSearchParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const navigate = useNavigate();
-
-  const {
-    data: featureAvailabilityData,
-    isLoading: isFeatureAvailabilityLoading,
-  } = useFeatureAvailability([pciAnnouncementBannerId]);
-
-  const displayAnnouncementBanner =
-    featureAvailabilityData &&
-    featureAvailabilityData[pciAnnouncementBannerId] &&
-    !isFeatureAvailabilityLoading;
 
   const { error, data: failoverIPs, isLoading } = useFailoverIPs(
     projectId || '',
@@ -144,9 +133,7 @@ export default function FailoverIPComponent({
     <>
       <Notifications />
 
-      {displayAnnouncementBanner && (
-        <PciAnnouncementBanner projectId={projectId} />
-      )}
+      <PciAnnouncementBanner projectId={projectId} />
 
       <OsdsDivider />
       <div className="sm:flex items-center justify-between">

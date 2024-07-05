@@ -1,7 +1,5 @@
 import {
-  isDiscoveryProject,
   Notifications,
-  PciDiscoveryBanner,
   useNotifications,
   useProject,
   useProjectUrl,
@@ -22,6 +20,10 @@ import { Suspense, useEffect } from 'react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { Translation, useTranslation } from 'react-i18next';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
+import {
+  isDiscoveryProject,
+  PciDiscoveryBanner,
+} from '@ovh-ux/manager-pci-common';
 import ConfigurationStep from './steps/ConfigurationStep';
 import GatewaySummaryStep from './steps/GatewaySummaryStep';
 import LocalizationStep from './steps/LocalizationStep';
@@ -149,9 +151,7 @@ export default function NewPage(): JSX.Element {
       </div>
 
       <div className="mb-5">
-        {isDiscoveryProject(project) && (
-          <PciDiscoveryBanner projectId={projectId} />
-        )}
+        <PciDiscoveryBanner project={project} />
       </div>
 
       <div className="flex flex-col gap-4 mb-10">

@@ -1,16 +1,8 @@
 import { describe, vi } from 'vitest';
-import { act, fireEvent, render, renderHook } from '@testing-library/react';
-import * as coreApplication from '@ovh-ux/manager-react-core-application';
-import {
-  QueryClient,
-  QueryClientProvider,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import {
-  PciAnnouncementBanner,
-  pciAnnouncementBannerId,
-  useAnnouncementBanner,
-} from './pci-announcement-banner';
+import { act, fireEvent, render } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { PciAnnouncementBanner } from './pci-announcement-banner';
+import * as announcementBannerHook from './useAnnouncementBanner.hook';
 
 const mockNavigateTo = vi.fn();
 
@@ -19,10 +11,6 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
 }));
 
 const queryClient = new QueryClient();
-
-const wrapper = ({ children }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
 
 const renderComponent = () =>
   render(
@@ -33,6 +21,11 @@ const renderComponent = () =>
 
 describe('PciAnnouncementBanner component Tests', () => {
   it('should display the banner when component is rendered', () => {
+    vi.spyOn(announcementBannerHook, 'useAnnouncementBanner').mockReturnValue({
+      isBannerVisible: true,
+      isLoading: false,
+    });
+
     const { getByTestId } = renderComponent();
 
     expect(getByTestId('actionBanner-message_container')).toBeInTheDocument();
@@ -40,12 +33,17 @@ describe('PciAnnouncementBanner component Tests', () => {
   });
 
   it('should navigate to region on btn click', () => {
-    const { getByTestId } = renderComponent();
+    vi.spyOn(announcementBannerHook, 'useAnnouncementBanner').mockReturnValue({
+      isBannerVisible: true,
+      isLoading: false,
+    });
 
-    const actionButton = getByTestId('actionBanner-button');
+    const { container } = renderComponent();
+
+    const actionLink = container.querySelector('osds-link');
 
     act(() => {
-      fireEvent.click(actionButton);
+      fireEvent.click(actionLink);
     });
 
     expect(mockNavigateTo).toHaveBeenNthCalledWith(
@@ -54,43 +52,5 @@ describe('PciAnnouncementBanner component Tests', () => {
       '#/pci/projects/projectId/regions',
       {},
     );
-  });
-});
-
-describe('useAnnouncementBanner', () => {
-  it('should return banner visibility as true when feature is available', () => {
-    vi.spyOn(coreApplication, 'useFeatureAvailability').mockReturnValue({
-      data: { [pciAnnouncementBannerId]: true },
-      isLoading: false,
-    } as UseQueryResult<Record<string, boolean>, unknown>);
-
-    const { result } = renderHook(() => useAnnouncementBanner(), { wrapper });
-
-    expect(result.current.isBannerVisible).toBe(true);
-    expect(result.current.isLoading).toBe(false);
-  });
-
-  it('should return banner visibility as false when feature is not available', () => {
-    vi.spyOn(coreApplication, 'useFeatureAvailability').mockReturnValue({
-      data: { [pciAnnouncementBannerId]: false },
-      isLoading: false,
-    } as UseQueryResult<Record<string, boolean>, unknown>);
-
-    const { result } = renderHook(() => useAnnouncementBanner(), { wrapper });
-
-    expect(result.current.isBannerVisible).toBe(false);
-    expect(result.current.isLoading).toBe(false);
-  });
-
-  it('should return isLoading as true when feature availability is loading', () => {
-    vi.spyOn(coreApplication, 'useFeatureAvailability').mockReturnValue({
-      data: undefined,
-      isLoading: true,
-    } as UseQueryResult<Record<string, boolean>, unknown>);
-
-    const { result } = renderHook(() => useAnnouncementBanner(), { wrapper });
-
-    expect(result.current.isBannerVisible).toBeUndefined();
-    expect(result.current.isLoading).toBe(true);
   });
 });
