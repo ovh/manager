@@ -260,5 +260,5 @@
   "manager_components_region_continent_TOR": "Nord America",
   "manager_components_region_DAL": "Dallas",
   "manager_components_region_DAL_micro": "Dallas ({{ micro }})",
-  "manager_components_region_continent_DAL": "Nord America"
+  "manager_components_region_continent_DAL": "Nord America "
 }
