@@ -12,7 +12,7 @@ import {
 import { TAct, TIs, TStep } from '@ovhcloud/manager-components';
 import { ODS_BUTTON_SIZE, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import React from 'react';
+import React, { useState } from 'react';
 import { StepsEnum } from '@/pages/new/steps.enum';
 import { TFormState } from '@/pages/new/form.type';
 import style from '@/components/common.module.css';
@@ -61,46 +61,60 @@ export const useNameStep = (): TStep<StepsEnum, TFormState> => {
       stepIs: TIs;
       stepperState: TFormState;
       setStepperState: React.Dispatch<React.SetStateAction<TFormState>>;
-    }) => (
-      <div>
-        <OsdsFormField error="">
-          <OsdsText color={ODS_THEME_COLOR_INTENT.text} slot="label">
-            {t('pci_projects_project_storages_blocks_add_name_title')}
-          </OsdsText>
-          <OsdsInput
-            type={ODS_INPUT_TYPE.text}
-            defaultValue={stepperState.volumeName}
-            value={stepperState.volumeName}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            error={false}
-            onOdsValueChange={(event) => {
-              setStepperState((prev) => ({
-                ...prev,
-                volumeName: `${event.target.value}`,
-              }));
-            }}
-          />
-        </OsdsFormField>
-        <div className="mt-6">
-          {!stepIs.locked && (
-            <OsdsButton
-              className="w-fit"
-              size={ODS_BUTTON_SIZE.md}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              {...(!stepperState.volumeName ? { disabled: true } : {})}
-              onClick={() => {
-                if (stepperState.volumeName) {
-                  act.check(StepsEnum.VOLUME_NAME_STEP);
-                  act.lock(StepsEnum.VOLUME_NAME_STEP);
-                  act.open(StepsEnum.VALIDATION_STEP);
-                }
+    }) => {
+      const [isInputTouched, setIsInputTouched] = useState(false);
+      const missingNameError = isInputTouched && !stepperState.volumeName;
+      return (
+        <div>
+          <OsdsFormField
+            error={
+              missingNameError ? tStepper('common_field_error_required') : ''
+            }
+          >
+            <OsdsText color={ODS_THEME_COLOR_INTENT.text} slot="label">
+              {t('pci_projects_project_storages_blocks_add_name_title')}
+            </OsdsText>
+            <OsdsInput
+              type={ODS_INPUT_TYPE.text}
+              defaultValue={stepperState.volumeName}
+              value={stepperState.volumeName}
+              color={
+                missingNameError
+                  ? ODS_THEME_COLOR_INTENT.error
+                  : ODS_THEME_COLOR_INTENT.primary
+              }
+              error={missingNameError}
+              onOdsInputBlur={() => setIsInputTouched(true)}
+              onOdsValueChange={(event) => {
+                setIsInputTouched(true);
+                setStepperState((prev) => ({
+                  ...prev,
+                  volumeName: `${event.target.value}`,
+                }));
               }}
-            >
-              {tStepper('common_stepper_next_button_label')}
-            </OsdsButton>
-          )}
+            />
+          </OsdsFormField>
+          <div className="mt-6">
+            {!stepIs.locked && (
+              <OsdsButton
+                className="w-fit"
+                size={ODS_BUTTON_SIZE.md}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                {...(!stepperState.volumeName ? { disabled: true } : {})}
+                onClick={() => {
+                  if (stepperState.volumeName) {
+                    act.check(StepsEnum.VOLUME_NAME_STEP);
+                    act.lock(StepsEnum.VOLUME_NAME_STEP);
+                    act.open(StepsEnum.VALIDATION_STEP);
+                  }
+                }}
+              >
+                {tStepper('common_stepper_next_button_label')}
+              </OsdsButton>
+            )}
+          </div>
         </div>
-      </div>
-    ),
+      );
+    },
   };
 };

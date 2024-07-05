@@ -4,5 +4,6 @@
   "common_stepper_skip_this_step": "Pomiń ten krok",
   "common_stepper_next_button_label": "Dalej",
   "common_stepper_submit_button_label": "Wyślij",
-  "common_stepper_cancel_button_label": "Anuluj"
+  "common_stepper_cancel_button_label": "Anuluj",
+  "common_field_error_required": "Wypełnij to pole."
 }

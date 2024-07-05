@@ -4,5 +4,6 @@
   "common_stepper_skip_this_step": "Diesen Schritt überspringen",
   "common_stepper_next_button_label": "Weiter",
   "common_stepper_submit_button_label": "Absenden",
-  "common_stepper_cancel_button_label": "Abbrechen"
+  "common_stepper_cancel_button_label": "Abbrechen",
+  "common_field_error_required": "Bitte füllen Sie dieses Feld aus."
 }
