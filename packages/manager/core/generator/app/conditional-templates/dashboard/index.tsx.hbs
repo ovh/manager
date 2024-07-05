@@ -14,7 +14,7 @@ import {
   OsdsTabBarItem,
 } from '@ovhcloud/ods-components/react';
 
-import { DashboardLayout } from '@ovhcloud/manager-components';
+import { BaseLayout } from '@ovhcloud/manager-components';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
@@ -59,33 +59,32 @@ export default function DashboardPage() {
   }, [location.pathname]);
 
   const header = {
-    description: 'Description du {{appName}}',
-    title: serviceName,
+    title: t('title'),
   };
 
   return (
-    <div>
-      <DashboardLayout
-        header={header}
-        tabs={
-          <OsdsTabs panel={panel}>
-            <OsdsTabBar slot="top">
-              {tabsList.map((tab: DashboardTabItemProps) => (
-                <NavLink to={tab.to} className="no-underline">
-                  <OsdsTabBarItem
-                    key={`osds-tab-bar-item-${tab.name}`}
-                    panel={tab.name}
-                  >
-                      {tab.title}
-                  </OsdsTabBarItem>
-                </NavLink>
-              ))}
-            </OsdsTabBar>
-          </OsdsTabs>
-        }
-        breadcrumb={<Breadcrumb />}
-      />
+    <BaseLayout
+      breadcrumb={<Breadcrumb />}
+      header={header}
+      description="Description du {{appName}}"
+      tabs={
+        <OsdsTabs panel={panel}>
+          <OsdsTabBar slot="top">
+            {tabsList.map((tab: DashboardTabItemProps) => (
+              <NavLink to={tab.to} className="no-underline">
+                <OsdsTabBarItem
+                  key={`osds-tab-bar-item-${tab.name}`}
+                  panel={tab.name}
+                >
+                  {tab.title}
+                </OsdsTabBarItem>
+              </NavLink>
+            ))}
+          </OsdsTabBar>
+        </OsdsTabs>
+      }
+    >
       <Outlet />
-    </div>
+    </BaseLayout>
   );
 }
