@@ -10,6 +10,10 @@ import {
   getServicesMocks,
 } from '@ovhcloud/manager-components/src/hooks/services/mocks/services.mock';
 import {
+  getFeatureAvailabilityMocks,
+  GetFeatureAvailabilityMocksParams,
+} from '@ovhcloud/manager-components/src/hooks/feature-availability/mocks/feature-availability.mock';
+import {
   getVrackServicesMocks,
   GetVrackServicesMocksParams,
 } from './vrack-services/vrack-services';
@@ -20,7 +24,6 @@ import {
   GetAuthenticationMocks,
   getAuthenticationMocks,
 } from '../../../../../playwright-helpers/mocks/auth';
-import { getFeatureAvailabilityMock } from './feature-availability/feature-availability';
 
 export type ConfigParams = GetVrackServicesMocksParams &
   GetAuthenticationMocks &
@@ -29,9 +32,18 @@ export type ConfigParams = GetVrackServicesMocksParams &
   GetVrackMocksParams &
   GetServicesMocksParams &
   GetIamMocksParams &
-  GetCartMocksParams;
+  GetCartMocksParams &
+  Omit<GetFeatureAvailabilityMocksParams, 'featureAvailabilityResponse'> & {
+    isVrackServicesFeatureUnavailable?: boolean;
+    isVrackServicesOrderFeatureUnavailable?: boolean;
+  };
 
-export const getConfig = (params: ConfigParams): Handler[] =>
+export const getConfig = ({
+  isFeatureAvailabilityServiceKo,
+  isVrackServicesFeatureUnavailable,
+  isVrackServicesOrderFeatureUnavailable,
+  ...params
+}: ConfigParams): Handler[] =>
   [
     getAuthenticationMocks,
     getVrackServicesMocks,
@@ -40,6 +52,22 @@ export const getConfig = (params: ConfigParams): Handler[] =>
     getOrderDetailsMocks,
     getServicesMocks,
     getIamMocks,
-    getFeatureAvailabilityMock,
     getCartMocks,
-  ].flatMap((getMocks) => getMocks(params));
+  ]
+    .flatMap((getMocks) => getMocks(params))
+    .concat(
+      getFeatureAvailabilityMocks({
+        isFeatureAvailabilityServiceKo,
+        featureAvailabilityResponse: {
+          'vrack-services': !isVrackServicesFeatureUnavailable,
+        },
+      }),
+    )
+    .concat(
+      getFeatureAvailabilityMocks({
+        isFeatureAvailabilityServiceKo,
+        featureAvailabilityResponse: {
+          'vrack-services:order': !isVrackServicesOrderFeatureUnavailable,
+        },
+      }),
+    );
