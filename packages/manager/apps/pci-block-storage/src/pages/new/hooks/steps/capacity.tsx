@@ -73,7 +73,7 @@ export const useCapacityStep = (
         )}
       </>
     ),
-    content: ({
+    Content: ({
       act,
       stepIs,
       stepperState,

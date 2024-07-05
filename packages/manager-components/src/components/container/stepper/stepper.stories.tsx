@@ -89,7 +89,7 @@ const defaultSteps: Map<StepsEnum, TStep<StepsEnum, TDefaultState>> = new Map(
           </div>
         ),
         order: index + 1,
-        content: ({ stepIs, act }: { stepIs: TIs; act: TAct<StepsEnum> }) => {
+        Content: ({ stepIs, act }: { stepIs: TIs; act: TAct<StepsEnum> }) => {
           const stepsArr = Object.keys(StepsEnum).map((s) => s as StepsEnum);
           const [step, nextStep] = [
             key as StepsEnum,
@@ -163,7 +163,7 @@ const defaultSteps: Map<StepsEnum, TStep<StepsEnum, TDefaultState>> = new Map(
     open: true,
   },
   title: 'Logs',
-  content: ({
+  Content: ({
     stepperState,
     stepperIs,
   }: {
@@ -309,7 +309,7 @@ const inputSteps: Map<StepsEnum, TStep<StepsEnum, TInputState>> = new Map([
           )}
         </div>
       ),
-      content: ({
+      Content: ({
         act,
         stepperState,
         setStepperState,
@@ -388,7 +388,7 @@ const inputSteps: Map<StepsEnum, TStep<StepsEnum, TInputState>> = new Map([
           )}
         </div>
       ),
-      content: ({
+      Content: ({
         act,
         stepperState,
         setStepperState,
@@ -473,7 +473,7 @@ const inputSteps: Map<StepsEnum, TStep<StepsEnum, TInputState>> = new Map([
     {
       order: 3,
       title: <h2>Validate</h2>,
-      content: ({ stepperState }: { stepperState: TInputState }) => {
+      Content: ({ stepperState }: { stepperState: TInputState }) => {
         return (
           <>
             <div>State is:</div>

@@ -51,7 +51,7 @@ export const useNameStep = (): TStep<StepsEnum, TFormState> => {
         )}
       </>
     ),
-    content: ({
+    Content: ({
       act,
       stepIs,
       stepperState,

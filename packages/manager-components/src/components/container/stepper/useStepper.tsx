@@ -143,7 +143,7 @@ export type TStep<T, S = void> = {
         stepperState: S;
         setStepperState: React.Dispatch<React.SetStateAction<S>>;
       }) => string | JSX.Element);
-  content?:
+  Content?:
     | string
     | JSX.Element
     | JSX.Element[]
@@ -379,10 +379,10 @@ export const useStepper = function useStepper<T, S = void>({
                   )}
                 >
                   {(() => {
-                    const { content } = steps.get(key);
+                    const { Content } = steps.get(key);
 
-                    if (typeof content === 'function') {
-                      const ContentComponent = content as ({
+                    if (typeof Content === 'function') {
+                      const ContentComponent = Content as ({
                         stepIs,
                         stepperIs,
                         act,
@@ -407,7 +407,7 @@ export const useStepper = function useStepper<T, S = void>({
                         />
                       );
                     }
-                    return content;
+                    return Content;
                   })()}
                 </div>
               </div>

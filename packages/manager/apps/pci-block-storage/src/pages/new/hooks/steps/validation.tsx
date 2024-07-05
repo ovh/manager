@@ -34,7 +34,7 @@ export const useValidationStep = (
         {t('pci_projects_project_storages_blocks_add_submit_title')}
       </OsdsText>
     ),
-    content: ({ stepperState }: { stepperState: TFormState }) => {
+    Content: ({ stepperState }: { stepperState: TFormState }) => {
       const navigate = useNavigate();
       const { addSuccess, addError, clearNotifications } = useNotifications();
       const { addVolume, isPending } = useAddVolume({
