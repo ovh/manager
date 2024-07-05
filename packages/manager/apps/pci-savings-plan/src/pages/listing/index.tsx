@@ -49,7 +49,7 @@ export default function Listing() {
     status,
   }: any = useInfiniteQuery({
     initialPageParam: null,
-    queryKey: ['project', 'projectId', 'savings-plan'],
+    queryKey: ['project', projectId, 'savings-plan'],
     queryFn: ({ pageParam }) =>
       getListingIcebergV2({ projectId, pageSize, cursor: pageParam }),
     staleTime: Infinity,
@@ -107,18 +107,14 @@ export default function Listing() {
   }
 
   if (isLoading && !flattenData) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
     <>
       <div className="pt-5 pb-10">
         <Breadcrumb />
-        <h2>a-iam</h2>
+        <h2>Savings Plan</h2>
         <div>{t('title')}</div>
         <React.Suspense>
           {columns && flattenData && (
