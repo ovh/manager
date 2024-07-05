@@ -5,7 +5,7 @@ import {
   EXAMPLE_SSH_REPOSITORY_URL,
   GITHUB_VCS,
   REGEX_GIT_REPO,
-} from './hosting-multisite-git-association.constants';
+} from './git-association.constants';
 
 export default class HostingMultisiteGitAssociationController {
   /* @ngInject */
@@ -43,22 +43,24 @@ export default class HostingMultisiteGitAssociationController {
       this.model.branchName,
       this.model.repositoryUrl,
     )
-      .then(() => {
+      .then(() =>
         this.goBack(
           this.$translate.instant(
             'hosting_multisite_git_association_success_message',
             { href: this.ongoingTasksHref },
           ),
-        );
-      })
-      .catch(({ data: { message } }) => {
+          'success',
+          true,
+        ),
+      )
+      .catch(({ data: { message } }) =>
         this.goBack(
           this.$translate.instant(
             'hosting_multisite_git_association_error_message',
             { errorMessage: message },
           ),
-          'error',
-        );
-      });
+          'danger',
+        ),
+      );
   }
 }
