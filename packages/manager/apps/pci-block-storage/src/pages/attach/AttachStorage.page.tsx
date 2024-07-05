@@ -107,6 +107,7 @@ export default function AttachStorage() {
           <OsdsSelect
             value={selectedInstance?.id}
             inline
+            className="mt-5"
             onOdsValueChange={(event) => {
               setSelectedInstance(
                 instances.find(
