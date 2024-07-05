@@ -32,7 +32,7 @@ export default class FlavorsListController {
     this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
     this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
     this.flavorCount = this.flavorCount || 1;
-    return this.load();
+    return this.load({ force: true });
   }
 
   $onChanges(changesObj) {
