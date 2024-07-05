@@ -77,7 +77,7 @@ export const useTypeStep = (
         )}
       </>
     ),
-    content: ({
+    Content: ({
       act,
       stepIs,
       stepperState,
