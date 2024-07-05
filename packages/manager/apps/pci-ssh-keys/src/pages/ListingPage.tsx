@@ -35,10 +35,12 @@ import {
   Notifications,
   Datagrid,
   useDatagridSearchParams,
-  isDiscoveryProject,
-  PciDiscoveryBanner,
   PciGuidesHeader,
 } from '@ovhcloud/manager-components';
+import {
+  isDiscoveryProject,
+  PciDiscoveryBanner,
+} from '@ovh-ux/manager-pci-common';
 import { useSshKeys } from '@/hooks/useSsh';
 import { SshKey } from '@/interface';
 import Key from '@/components/ssh-keys/listing/Key';
@@ -133,9 +135,7 @@ export default function ListingPage() {
       <OsdsDivider></OsdsDivider>
       <Notifications />
 
-      {project && isDiscoveryProject(project) && (
-        <PciDiscoveryBanner projectId={projectId} />
-      )}
+      <PciDiscoveryBanner project={project} />
 
       <div className={'flex flex-col sm:flex-row justify-between mt-4'}>
         <OsdsButton

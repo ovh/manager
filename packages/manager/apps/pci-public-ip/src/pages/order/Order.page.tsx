@@ -1,11 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref, useParams } from 'react-router-dom';
-import {
-  isDiscoveryProject,
-  Notifications,
-  PciDiscoveryBanner,
-} from '@ovhcloud/manager-components';
+import { Notifications } from '@ovhcloud/manager-components';
 import {
   OsdsBreadcrumb,
   OsdsIcon,
@@ -18,6 +14,7 @@ import {
   ShellContext,
   useNavigation,
 } from '@ovh-ux/manager-react-shell-client';
+import { PciDiscoveryBanner } from '@ovh-ux/manager-pci-common';
 import useProject from '@/api/hooks/useProject';
 import HidePreloader from '@/core/HidePreloader';
 import { IpTypeStep } from '@/pages/order/steps/IpTypeStep';
@@ -100,9 +97,9 @@ export default function OrderPage(): JSX.Element {
       <p className="mb-3 font-sans text-base text-[#4d5592]">
         {tOrder('pci_additional_ip_create_description')}
       </p>
-      {isDiscoveryProject(project) && (
-        <PciDiscoveryBanner projectId={projectId} />
-      )}
+
+      <PciDiscoveryBanner project={project} />
+
       <div className="flex flex-col gap-y-4 mt-4">
         <IpTypeStep
           projectId={projectId}

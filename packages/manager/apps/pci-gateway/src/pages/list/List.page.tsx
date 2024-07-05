@@ -2,9 +2,7 @@ import {
   Datagrid,
   FilterAdd,
   FilterList,
-  isDiscoveryProject,
   Notifications,
-  PciDiscoveryBanner,
   PciGuidesHeader,
   useColumnFilters,
   useDataGrid,
@@ -39,6 +37,7 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { PciDiscoveryBanner } from '@ovh-ux/manager-pci-common';
 import { useAggregatedGateway } from '@/api/hooks/useGateway';
 import ListGuard from '@/pages/list/ListGuard';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
@@ -145,9 +144,7 @@ export default function ListingPage() {
         <OsdsDivider></OsdsDivider>
         <Notifications />
         <div className="mb-5">
-          {isDiscoveryProject(project) && (
-            <PciDiscoveryBanner projectId={projectId} />
-          )}
+          <PciDiscoveryBanner project={project} />
         </div>
         <div className={'sm:flex items-center justify-between mt-4'}>
           <OsdsButton
