@@ -1,6 +1,10 @@
 import React from 'react';
-import { OsdsMessage } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_COLOR_INTENT,
+} from '@ovhcloud/ods-components';
+import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
   Notification,
   NotificationType,
@@ -26,7 +30,24 @@ const getOdsMessageColor = (type: NotificationType) => {
   }
 };
 
-export function OdsNotification({ notification }: OdsNotificationProps) {
+const getOdsTextColor = (type: NotificationType) => {
+  switch (type) {
+    case NotificationType.Success:
+      return ODS_TEXT_COLOR_INTENT.success;
+    case NotificationType.Error:
+      return ODS_TEXT_COLOR_INTENT.error;
+    case NotificationType.Warning:
+      return ODS_TEXT_COLOR_INTENT.warning;
+    case NotificationType.Info:
+      return ODS_TEXT_COLOR_INTENT.info;
+    default:
+      return ODS_TEXT_COLOR_INTENT.info;
+  }
+};
+
+export const OdsNotification: React.FC<OdsNotificationProps> = ({
+  notification,
+}) => {
   const { clearNotification } = useNotifications();
   return (
     <OsdsMessage
@@ -39,9 +60,14 @@ export function OdsNotification({ notification }: OdsNotificationProps) {
           }
         : {})}
     >
-      {notification.content}
+      <OsdsText
+        color={getOdsTextColor(notification.type)}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+      >
+        {notification.content}
+      </OsdsText>
     </OsdsMessage>
   );
-}
+};
 
 export default OdsNotification;

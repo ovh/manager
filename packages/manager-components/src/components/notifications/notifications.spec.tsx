@@ -34,8 +34,8 @@ describe('notifications component', () => {
     render(<AddNotification />);
     container = render(<Notifications />).container;
     expect(container.children.length).toBe(2);
-    expect(container.children[0].innerHTML).toBe('Notification-1');
-    expect(container.children[1].innerHTML).toBe('Notification-2');
+    expect(container.children[0].children[0].innerHTML).toBe('Notification-1');
+    expect(container.children[1].children[0].innerHTML).toBe('Notification-2');
   });
   it('should clear notifications', async () => {
     let { container } = render(<Notifications />);
