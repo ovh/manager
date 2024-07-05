@@ -1,6 +1,5 @@
 import { describe, vi } from 'vitest';
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { fireEvent, screen, render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import {
   isDiscoveryProject,
   PciDiscoveryBanner,
@@ -21,13 +20,13 @@ const renderComponent = (props: PciDiscoveryBannerProps) =>
 
 describe('PciDiscoveryBanner tests', () => {
   it('should navigate to project activation when clicking on cta', () => {
-    renderComponent({
+    const { container } = renderComponent({
       project: { project_id: '123', planCode: 'project.discovery' } as TProject,
     });
 
-    const actionBtn = screen.queryByTestId('actionBanner-button');
+    const actionLink = container.querySelector('osds-link');
 
-    fireEvent.click(actionBtn);
+    fireEvent.click(actionLink);
 
     expect(mockNavigateTo).toHaveBeenCalledWith(
       'public-cloud',

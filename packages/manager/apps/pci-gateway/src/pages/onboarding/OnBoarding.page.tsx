@@ -18,6 +18,7 @@ import {
   useRouteLoaderData,
 } from 'react-router-dom';
 import { PciDiscoveryBanner, TProject } from '@ovh-ux/manager-pci-common';
+import { PciDiscoveryBanner } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from '@/pages/onboarding/OnBoardingGuard';
