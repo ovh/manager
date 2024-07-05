@@ -167,6 +167,7 @@ export default class PciInstancesAddController {
     this.getSmallestGatewayInfo();
     this.defaultFloatingIp = this.getProductCatalog;
     this.isIpLoading = false;
+    this.isAddingRegionError = false;
   }
 
   get areLocalZonesFree() {
@@ -332,11 +333,11 @@ export default class PciInstancesAddController {
         { serviceName: this.projectId },
         { region: this.model.datacenter.name },
       )
-      .$promise.then(() =>
-        this.OvhApiCloudProjectRegion.AvailableRegions()
+      .$promise.then(() => {
+        return this.OvhApiCloudProjectRegion.AvailableRegions()
           .v6()
-          .resetQueryCache(),
-      )
+          .resetQueryCache();
+      })
       .then(() => {
         this.CucCloudMessage.success(
           this.$translate.instant(
@@ -344,19 +345,22 @@ export default class PciInstancesAddController {
             {
               code: this.model.datacenter.name,
             },
-            (this.isLoading = false),
           ),
         );
+        this.isLoading = false;
+        this.isAddingRegionError = false;
       })
       .catch((error) => {
         this.CucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_regions_add_region_error',
-            { message: get(error, 'data.message') },
+            {
+              message: get(error, 'data.message'),
+            },
           ),
         );
-
         this.isLoading = false;
+        this.isAddingRegionError = true;
       });
   }
 
@@ -1198,7 +1202,9 @@ export default class PciInstancesAddController {
   onFlavorListLoadEnd() {
     if (this.reloadFlavorList && this.currentStep === 2) {
       this.reloadFlavorList = false;
-      this.onRegionChange();
+      if (!this.isAddingRegionError) {
+        this.onRegionChange();
+      }
     }
   }
 
