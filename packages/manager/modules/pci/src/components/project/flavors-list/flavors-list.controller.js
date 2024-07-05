@@ -9,7 +9,15 @@ import { TAGS_BLOB } from '../../../constants';
 
 export default class FlavorsListController {
   /* @ngInject */
-  constructor($filter, $q, $state, $timeout, coreConfig, PciProjectFlavors, PciProject) {
+  constructor(
+    $filter,
+    $q,
+    $state,
+    $timeout,
+    coreConfig,
+    PciProjectFlavors,
+    PciProject,
+  ) {
     this.$filter = $filter;
     this.$q = $q;
     this.$state = $state;
@@ -46,7 +54,10 @@ export default class FlavorsListController {
         this.onFlavorChange(this.flavor);
       }
     }
-    if(changesObj.reload?.currentValue === true && changesObj.reload?.previousValue !== true) {
+    if (
+      changesObj.reload?.currentValue === true &&
+      changesObj.reload?.previousValue !== true
+    ) {
       this.load({ force: true });
     }
   }
@@ -70,7 +81,9 @@ export default class FlavorsListController {
       })
       .finally(() => {
         this.isLoading = false;
-        this.$timeout(() => { this.loadEnd(); });
+        this.$timeout(() => {
+          this.loadEnd();
+        });
       });
   }
 
@@ -105,8 +118,8 @@ export default class FlavorsListController {
         this.selectedCategory || get(first(this.flavors), 'category');
       if (force && this.selectedFlavor && this.selectedCategory) {
         this.selectedFlavor = find(
-          this.flavors.map(({ flavors: flavorGroups }) => flavorGroups).flat(),
-          { name : this.selectedFlavor.name },
+          this.flavors.map(({ flavors: groups }) => groups).flat(),
+          { name: this.selectedFlavor.name },
         );
       }
       this.findFlavor();
