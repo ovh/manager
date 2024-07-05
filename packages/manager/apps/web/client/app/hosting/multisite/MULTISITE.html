@@ -1,4 +1,4 @@
-<div data-ng-controller="HostingTabDomainsCtrl">
+<div>
     <div class="text-center" data-ng-if="loading.init">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
@@ -360,9 +360,9 @@
                                             ></span
                                         ></oui-action-menu-item>
 
-                                        <!-- TODO: onClick in other ticket -->
                                         <oui-action-menu-item
                                             data-ng-if=":: canDeployGit(domain)"
+                                            data-on-click="goToDeployWebSite(domain)"
                                             ><span
                                                 data-translate="hosting_tab_DOMAINS_table_popover_git_deployment"
                                             ></span

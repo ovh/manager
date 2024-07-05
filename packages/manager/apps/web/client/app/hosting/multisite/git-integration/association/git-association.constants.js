@@ -1,7 +1,7 @@
 export const REPOSITORY_PLACEHOLDER =
   'https://github.com/username/repositoryname';
 export const EXAMPLE_HTTPS_REPOSITORY_URL =
-  'https://github.com/username/respositoryname';
+  'https://github.com/username/respositoryname.git';
 export const EXAMPLE_SSH_REPOSITORY_URL =
   'git@github.com:username/respositoryname.git';
 export const EXAMPLE_BRANCHES_NAMES = '"main", "master", ...';

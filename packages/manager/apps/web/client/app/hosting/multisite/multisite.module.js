@@ -1,7 +1,8 @@
 import cdnFlush from './cdn-flush';
 
 import statistics from './statistics/hosting-multisite-statistics.component';
-import hostingMultisiteGitAssociation from './git-association/index';
+import hostingMultisiteGitAssociation from './git-integration/association';
+import hostingMultisiteGitDeployment from './git-integration/deployment';
 import routing from './multisite.routing';
 
 const moduleName = 'ovhManagerHostingMultisite';
@@ -9,7 +10,8 @@ const moduleName = 'ovhManagerHostingMultisite';
 angular
   .module(moduleName, [
     cdnFlush,
-    hostingMultisiteGitAssociation
+    hostingMultisiteGitAssociation,
+    hostingMultisiteGitDeployment,
   ])
   .component('hostingMultisiteStatistics', statistics)
   .config(routing)
