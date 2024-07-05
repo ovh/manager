@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import onboardingImgSrc from '../../../public/assets/onboarding-image.png';
+import onboardingImgSrc from '@/../public/assets/onboarding-image.png';
 import Guides from '@/components/guides';
 import { GuideSections } from '@/models/guide';
 import { Button } from '@/components/ui/button';

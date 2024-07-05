@@ -1,7 +1,7 @@
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { useRouteError } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import errorImgSrc from '@/public/assets/oops.png';
+import errorImgSrc from '@/../public/assets/oops.png';
 import { Alert, AlertDescription } from './ui/alert';
 import { Button } from './ui/button';
 
