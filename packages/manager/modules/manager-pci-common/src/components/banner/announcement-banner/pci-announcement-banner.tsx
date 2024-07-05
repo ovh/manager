@@ -1,20 +1,10 @@
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
-import { ActionBanner } from '../action-banner.component';
+import { ActionBanner } from '@ovhcloud/manager-components';
+import { useAnnouncementBanner } from './useAnnouncementBanner.hook';
 
 import './translations';
-
-export const pciAnnouncementBannerId = 'public-cloud:pci-announcement-banner';
-
-export const useAnnouncementBanner = () => {
-  const { data, isLoading } = useFeatureAvailability([pciAnnouncementBannerId]);
-
-  return {
-    isBannerVisible: data && !!data[pciAnnouncementBannerId],
-    isLoading,
-  };
-};
 
 type PciAnnouncementBannerProps = {
   projectId?: string;
@@ -36,7 +26,7 @@ export function PciAnnouncementBanner({
     <>
       {isBannerVisible && (
         <ActionBanner
-          message={t('pci_projects_beta_public_cloud_banner_info')}
+          description={t('pci_projects_beta_public_cloud_banner_info')}
           cta={t('pci_projects_beta_public_cloud_banner_info_link')}
           onClick={onGoToRegion}
         />

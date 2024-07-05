@@ -1,8 +1,5 @@
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import {
-  isDiscoveryProject,
-  PciAnnouncementBanner,
-  PciDiscoveryBanner,
   PciGuidesHeader,
   useNotifications,
 } from '@ovhcloud/manager-components';
@@ -23,9 +20,12 @@ import { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  PciAnnouncementBanner,
+  PciDiscoveryBanner,
+} from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import useProject from '@/api/hooks/useProject';
-import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
 import FloatingIPComponent from '@/components/list/FloatingIP.component';
 import FailoverIPComponent from '@/components/list/FailoverIP.component';
 import { IPsTabName } from '@/constants';
@@ -51,7 +51,6 @@ export default function ListingPage(): JSX.Element {
   const { data: project } = useProject(projectId || '');
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const activeTab = getActiveTab(location.pathname);
-  const { isBannerVisible } = useAnnouncementBanner();
 
   const handlerTabChanged = (event: CustomEvent) => {
     clearNotifications();
@@ -116,12 +115,11 @@ export default function ListingPage(): JSX.Element {
           </div>
         </div>
 
-        {isBannerVisible && <PciAnnouncementBanner projectId={projectId} />}
+        <PciAnnouncementBanner projectId={projectId} />
 
         <div className="mb-5">
-          {isDiscoveryProject(project) && (
-            <PciDiscoveryBanner projectId={projectId} />
-          )}
+          <PciDiscoveryBanner project={project} />
+
           {hasMaintenance && (
             <div className="mt-5">
               <MaintenanceBanner maintenanceURL={maintenanceURL} />

@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ActionBanner } from '@ovhcloud/manager-components';
 
 import './translations';
-import { ActionBanner } from '../action-banner.component';
 
 export const URLs = {
   DEFAULT:
@@ -54,7 +54,7 @@ export function PciFreeLocalZonesBanner({
 
   return (
     <ActionBanner
-      message={t(
+      description={t(
         `pci_free_local_zones_banner_text${showConfirm ? '_confirm' : ''}`,
       )}
       cta={t('pci_free_local_zones_banner_link')}

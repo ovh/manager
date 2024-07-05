@@ -5,7 +5,6 @@ import {
   FilterAdd,
   FilterList,
   Notifications,
-  PciAnnouncementBanner,
   useColumnFilters,
   useDatagridSearchParams,
   useFeatureAvailability,
@@ -33,10 +32,10 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { PciAnnouncementBanner } from '@ovh-ux/manager-pci-common';
 import { FloatingIP } from '@/interface';
 import { useFloatingIPs } from '@/api/hooks/useFloatingIP';
 import FloatingIPActions from './FloatingIPActions.component';
-import { pciAnnouncementBannerId } from '@/constants';
 
 export type FloatingIPComponentProps = {
   projectId: string;
@@ -52,16 +51,6 @@ export default function FloatingIPComponent({
 
   const { pagination, setPagination } = useDatagridSearchParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
-
-  const {
-    data: featureAvailabilityData,
-    isLoading: isFeatureAvailabilityLoading,
-  } = useFeatureAvailability([pciAnnouncementBannerId]);
-
-  const displayAnnouncementBanner =
-    featureAvailabilityData &&
-    featureAvailabilityData[pciAnnouncementBannerId] &&
-    !isFeatureAvailabilityLoading;
 
   const { error, data: floatingIPs, isLoading } = useFloatingIPs(
     projectId || '',
@@ -125,9 +114,7 @@ export default function FloatingIPComponent({
     <>
       <Notifications />
 
-      {displayAnnouncementBanner && (
-        <PciAnnouncementBanner projectId={projectId} />
-      )}
+      <PciAnnouncementBanner projectId={projectId} />
 
       <OsdsDivider />
       <div className="sm:flex items-center justify-between">
