@@ -1,7 +1,7 @@
 import { createTree } from '@/lib/availabilitiesHelper';
-import { mockedAvailabilities } from './availabilitiesMock/availabilities';
-import { mockedCatalog } from './availabilitiesMock/catalog';
-import { mockedCapabilities } from './availabilitiesMock/capabilities';
+import { mockedAvailabilities } from '../__tests__/helpers/mocks/availabilitiesMock/availabilities';
+import { mockedCatalog } from '../__tests__/helpers/mocks/availabilitiesMock/catalog';
+import { mockedCapabilities } from '../__tests__/helpers/mocks/availabilitiesMock/capabilities';
 
 const mockedSuggestions = [
   {

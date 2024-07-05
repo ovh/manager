@@ -1,7 +1,7 @@
 import { describe, vi } from 'vitest';
 import { getTagVariant, updateTags } from '@/lib/tagsHelper';
 import { database } from '@/models/database';
-import { mockedFlavor } from '../helpers/mocks/availabilities';
+import { mockedFlavor } from '../__tests__/helpers/mocks/availabilities';
 
 describe('tagsHelper', () => {
   afterEach(() => {

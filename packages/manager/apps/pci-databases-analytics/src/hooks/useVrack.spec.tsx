@@ -1,8 +1,11 @@
 import { expect, describe, it, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { useVrack } from '@/hooks/useVrack';
-import { QueryClientWrapper } from '../helpers/wrappers/QueryClientWrapper';
-import { mockedNetworks, mockedSubnets } from '../helpers/mocks/network';
+import { QueryClientWrapper } from '../__tests__/helpers/wrappers/QueryClientWrapper';
+import {
+  mockedNetworks,
+  mockedSubnets,
+} from '../__tests__/helpers/mocks/network';
 
 vi.mock('@/api/network', () => ({
   networkApi: {

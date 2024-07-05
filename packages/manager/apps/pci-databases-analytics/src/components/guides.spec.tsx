@@ -10,8 +10,11 @@ import {
 import Guides from '@/components/guides';
 
 import { Locale } from '@/hooks/useLocale';
-import { RouterWithQueryClientWrapper } from '../helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedGuide, mockedGuideOnboarding } from '../helpers/mocks/guides';
+import { RouterWithQueryClientWrapper } from '../__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import {
+  mockedGuide,
+  mockedGuideOnboarding,
+} from '../__tests__/helpers/mocks/guides';
 
 describe('Guides component', () => {
   beforeEach(() => {

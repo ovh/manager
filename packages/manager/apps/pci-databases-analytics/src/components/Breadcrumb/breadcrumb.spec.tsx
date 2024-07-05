@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-import { RouterWithQueryClientWrapper } from '../helpers/wrappers/RouterWithQueryClientWrapper';
+import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 
 vi.mock('react-router-dom', async () => {
   const mod = await vi.importActual('react-router-dom');

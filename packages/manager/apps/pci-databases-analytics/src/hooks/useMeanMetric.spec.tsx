@@ -1,9 +1,9 @@
 import { describe, it, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
-import { mockMetric } from '../helpers/mocks/metrics';
+import { mockMetric } from '../__tests__/helpers/mocks/metrics';
 import { useMeanMetric } from '@/hooks/useMeanMetric';
 import { database } from '@/models/database';
-import { QueryClientWrapper } from '../helpers/wrappers/QueryClientWrapper';
+import { QueryClientWrapper } from '../__tests__/helpers/wrappers/QueryClientWrapper';
 
 vi.mock('@/api/databases/metrics', () => ({
   getMetric: vi.fn(() => mockMetric),

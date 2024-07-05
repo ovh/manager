@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import TabsMenu, { Tab } from '@/components/tabs-menu';
-import { RouterWithQueryClientWrapper } from '../helpers/wrappers/RouterWithQueryClientWrapper';
+import { RouterWithQueryClientWrapper } from '../__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 
 function setup(tabs: Tab[] = []) {
   return render(<TabsMenu tabs={tabs} />, {

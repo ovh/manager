@@ -2,7 +2,7 @@ import { vi } from 'vitest';
 import { renderHook, act, waitFor, screen } from '@testing-library/react';
 import * as ReactRouter from 'react-router-dom';
 import { useQueryState } from '@/hooks/useQueryState';
-import { RouterWithLocationWrapper } from '../helpers/wrappers/RouterWithLocationWrapper';
+import { RouterWithLocationWrapper } from '../__tests__/helpers/wrappers/RouterWithLocationWrapper';
 
 describe('useQueryState', () => {
   it('should set the state in the url', async () => {

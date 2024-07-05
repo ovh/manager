@@ -1,7 +1,7 @@
 import { describe, vi } from 'vitest';
 import { computeServicePrice } from '@/lib/pricingHelper';
 import { database } from '@/models/database';
-import { mockedPricing } from '../helpers/mocks/order-funnel';
+import { mockedPricing } from '../__tests__/helpers/mocks/order-funnel';
 
 const mockedPricingHelper = {
   offerPricing: mockedPricing,

@@ -9,7 +9,7 @@ import { describe, it, vi } from 'vitest';
 import * as RouterDom from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import ErrorBoundary from '@/components/errorBoundary';
-import { RouterWithQueryClientWrapper } from '../helpers/wrappers/RouterWithQueryClientWrapper';
+import { RouterWithQueryClientWrapper } from '../__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 
 vi.mock('react-router-dom', async () => {
   const mod = await vi.importActual<typeof RouterDom>('react-router-dom');
