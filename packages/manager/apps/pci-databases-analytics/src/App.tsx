@@ -7,10 +7,10 @@ import '@ovhcloud/ods-theme-blue-jeans';
 import './global.css';
 
 import queryClient from './query.client';
-import Router from './Router';
-import Loading from './components/Loading/Loading';
-import { useLoadingIndicatorContext } from './contexts/loadingIndicatorContext';
-import ProgressLoader from './components/Loading/ProgressLoader';
+import Router from './routes/Router';
+import Loading from './components/loading/Loading.component';
+import { useLoadingIndicatorContext } from './contexts/LoadingIndicator.context';
+import ProgressLoader from './components/loading/ProgressLoader.component';
 
 odsSetup();
 

@@ -1,4 +1,4 @@
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 
 export const mockedDatabase: database.service.Database = {
   default: true,

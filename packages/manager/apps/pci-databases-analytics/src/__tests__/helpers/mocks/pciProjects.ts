@@ -1,4 +1,4 @@
-import { PciProject, PciProjectPlanCode } from '@/models/project';
+import { PciProject, PciProjectPlanCode } from '@/interfaces/project';
 
 export const mockedPciProject: PciProject = {
   access: 'access',
