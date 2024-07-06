@@ -105,6 +105,17 @@ export default class {
       : this.fetchLegacyHostConsumption(hosts);
   }
 
+  fetchLocations(hosts) {
+    return this.$q.all(
+      hosts.map((host) => {
+        return this.dedicatedCloudDataCenterHostService
+          .getHostLocation(this.productId, this.datacenterId, host.hostId)
+          .then((location) => ({ ...host, location }))
+          .catch(() => host);
+      }),
+    );
+  }
+
   loadHosts({ offset, pageSize }) {
     return this.DedicatedCloud.getPaginatedHosts(
       this.productId,
@@ -113,12 +124,15 @@ export default class {
       offset - 1,
     ).then((result) =>
       this.chooseConsumptionFetchingMethod(result.list.results).then(
-        (hostsWithConsumption) => ({
-          data: hostsWithConsumption,
-          meta: {
-            totalCount: result.count,
-          },
-        }),
+        (hostsWithConsumption) =>
+          this.fetchLocations(hostsWithConsumption).then(
+            (hostsWithLocation) => ({
+              data: hostsWithLocation,
+              meta: {
+                totalCount: result.count,
+              },
+            }),
+          ),
       ),
     );
   }
