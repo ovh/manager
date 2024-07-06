@@ -49,6 +49,21 @@
         ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_location_datacenter' | translate"
+    >
+        <span data-ng-bind="$row.location.datacenter"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_location_room' | translate"
+    >
+        <span data-ng-bind="$row.location.room"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_location_rack' | translate"
+    >
+        <span data-ng-bind="$row.location.rack"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_consumption' | translate"
     >
         <span data-ng-if="$row.billing === $ctrl.RESOURCE_BILLING_TYPES.hourly">
