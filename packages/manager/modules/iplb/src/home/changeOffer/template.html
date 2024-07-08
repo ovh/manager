@@ -1,0 +1,82 @@
+<oui-back-button data-on-click=":: $ctrl.goBack()">
+    <span data-translate="ipbl_change_offer_title"></span>
+</oui-back-button>
+<oui-stepper data-on-finish="$ctrl.validateOffer()">
+    <oui-step-form
+        data-name="iplb_offer"
+        data-header="{{:: 'iplb_change_offer_choose_offer_title' | translate }}"
+        data-prevent-next="true"
+        data-valid="$ctrl.model.selectedOffer"
+    >
+        <oui-spinner data-ng-if="$ctrl.offerLoading"></oui-spinner>
+        <div class="container-fluid d-flex flex-wrap">
+            <oui-select-picker
+                data-ng-if="!$ctrl.offerLoading"
+                class="d-flex col-sm-12 col-md-6 col-xl-3 my-3"
+                data-ng-repeat="offer in $ctrl.offers | orderBy:'order.prices.withoutTax.value' track by $index"
+                data-label="{{:: 'iplb_change_offer_choose_offer_label' | translate:{offer: $ctrl.OFFERS_LABELS[offer.planCode]} }}"
+                data-model="$ctrl.model.selectedOffer"
+                data-variant="light"
+                data-values="[offer]"
+            >
+                <oui-select-picker-section>
+                    <div class="text-center">
+                        <ovh-manager-catalog-price
+                            data-price="offer.order.prices.withoutTax.value"
+                            data-tax="offer.order.prices.tax.value"
+                            data-convert-to-ucents="true"
+                            data-interval-unit="month"
+                            data-user="$ctrl.user"
+                        >
+                        </ovh-manager-catalog-price>
+                    </div>
+                </oui-select-picker-section>
+            </oui-select-picker>
+        </div>
+    </oui-step-form>
+    <oui-step-form
+        data-name="iplb_contracts"
+        data-on-focus="$ctrl.errorMessage = null"
+        data-header="{{:: 'iplb_change_offer_contracts_title' | translate }}"
+        data-prevent-next="true"
+        data-valid="$ctrl.model.contractAgreement"
+        data-on-cancel="$ctrl.goBack()"
+        data-submit-text="{{:: 'iplb_change_offer_contracts_submit' | translate }}"
+        data-loading="$ctrl.loadingOffer"
+    >
+        <div data-ng-if="$ctrl.model.selectedOffer.order.contracts.length">
+            <p data-translate="iplb_change_offer_contracts_description"></p>
+            <ul class="list-group">
+                <oui-checkbox data-model="$ctrl.model.contractAgreement">
+                    <span
+                        class="user-select-none"
+                        data-translate="iplb_change_offer_contracts_checkbox"
+                    ></span>
+                </oui-checkbox>
+                <li
+                    data-ng-repeat="contrat in $ctrl.model.selectedOffer.order.contracts track by $index"
+                    class="list-group-item border-0 p-0"
+                >
+                    <a target="_blank" rel="noopener" href="{{::contrat.url}}">
+                        <span data-ng-bind="::contrat.name"></span>
+                        <span
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <p
+            data-ng-if="!$ctrl.model.selectedOffer.order.contracts.length"
+            data-translate="iplb_change_offer_contracts_agreed"
+        ></p>
+        <oui-message
+            data-ng-if="$ctrl.errorMessage"
+            data-type="error"
+            data-aria-close-button-label="{{:: 'iplb_change_offer_contracts_close_error' | translate}}"
+        >
+            <span data-ng-bind-html="$ctrl.errorMessage"></span>
+        </oui-message>
+    </oui-step-form>
+</oui-stepper>

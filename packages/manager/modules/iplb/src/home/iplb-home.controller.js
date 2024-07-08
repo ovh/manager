@@ -39,6 +39,7 @@ export default class IpLoadBalancerHomeCtrl {
     ovhManagerRegionService,
     CucVrackService,
     ovhFeatureFlipping,
+    availableOffers,
   ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -63,6 +64,7 @@ export default class IpLoadBalancerHomeCtrl {
     this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.serviceName = this.$stateParams.serviceName;
+    this.availableOffers = availableOffers;
 
     this.initLoaders();
   }
@@ -243,7 +245,12 @@ export default class IpLoadBalancerHomeCtrl {
       changeOffer: {
         // TODO: Implementation of modal for changing offer
         text: this.$translate.instant('iplb_edit'),
-        isAvailable: () => false,
+        isAvailable: () => !!this.availableOffers.length,
+        callback: () => {
+          this.$state.go('iplb.detail.home.change-offer', {
+            serviceName: this.serviceName,
+          });
+        },
       },
       manageAutorenew: {
         text: this.$translate.instant('iplb_manage'),
