@@ -3,8 +3,9 @@ import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
 
 import { useEffect } from 'react';
 import queryClient from '@/query.client';
-import { getProject } from '@/data/api/projects';
+
 import { useLoadingIndicatorContext } from '@/contexts/loadingIndicatorContext';
+import { getProject } from '@/data/api/apiProjects';
 
 interface DashboardLayoutProps {
   params: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import NotFound from '@/pages/404';
-import ErrorBoundary from '@/components/errorBoundary/errorBoundary';
+import ErrorBoundary from '@/components/errorBoundary';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {

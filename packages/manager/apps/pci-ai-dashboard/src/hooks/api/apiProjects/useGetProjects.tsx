@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-
-import { getProject } from '@/data/api/projects';
+import { getProject } from '@/data/api/apiProjects';
 
 const usePciProject = () => {
   const { projectId } = useParams();
