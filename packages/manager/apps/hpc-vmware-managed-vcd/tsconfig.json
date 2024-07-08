@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "es2020"],
+    "lib": ["dom", "es2021"],
     "noEmit": true,
     "target": "es2020",
     "types": ["vite/client", "node"],
@@ -23,5 +23,5 @@
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "types", "src/__tests__"]
+  "exclude": ["node_modules", "dist", "types", "**/*.spec.ts*"]
 }
