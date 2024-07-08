@@ -3,6 +3,7 @@ node_modules
 cache
 dist
 !**/iam/**/types
+!**/apps/**/types
 .memsourcerc.yaml
 /docs/docs/public/assets/json/packages.json
 .extras*
