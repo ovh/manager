@@ -13,7 +13,7 @@ const sioUniverse : Node = {
     application: 'iam',
   },
   count: false,
-  features: ['iam', 'key-management-service'],
+  features: ['iam', 'key-management-service', 'logs-data-platform'],
 };
 
 sioUniverse.children = [
@@ -21,19 +21,22 @@ sioUniverse.children = [
     id: 'security-identity',
     idAttr: 'security-identity-link',
     translation: 'sidebar_security_identity',
+    features: ['iam', 'key-management-service'],
     children: [
       {
         id: 'security-identity-operation-iam',
         idAttr: 'security-identity-operation-iam-link',
         translation: 'sidebar_security_identity_operations_iam',
         universe: sioUniverse.id,
+        features: ['iam'],
         routing: {
           application: 'iam',
           hash: '#/',
         },
       },
       {
-        id: 'security_identity_operations_kms',
+        id: 'security-identity-operations-kms',
+        idAttr: 'security-identity-operations-kms-link',
         translation: 'sidebar_security_identity_operations_kms',
         universe: sioUniverse.id,
         features: ['key-management-service'],
@@ -48,13 +51,15 @@ sioUniverse.children = [
     id: 'security-operations',
     idAttr: 'security-operations-link',
     translation: 'sidebar_security_operations',
-    universe: sioUniverse.id,
+    features:['logs-data-platform'],
     children: [
       {
         id: 'security-identity-operation-logs',
         idAttr: 'security-identity-operation-logs-link',
         translation: 'sidebar_security_identity_operations_logs',
+        universe: sioUniverse.id,
         serviceType: 'DBAAS_LOGS',
+        features:['logs-data-platform'],
         routing: {
           application: 'dedicated',
           hash: '#/dbaas/logs',
