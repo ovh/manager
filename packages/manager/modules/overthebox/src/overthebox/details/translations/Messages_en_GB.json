@@ -88,5 +88,10 @@
   "overTheBox_available_update": "An update is available for your device.",
   "overTheBox_authorize_autoupgrade": "Allow automatic updates at night",
   "overTheBox_change_auto_upgrade_success": "The automatic bets have been changed at night.",
-  "overTheBox_change_auto_upgrade_error": "We were unable to change your automatic payments at night: {{errorMessage}}"
+  "overTheBox_change_auto_upgrade_error": "We were unable to change your automatic payments at night: {{errorMessage}}",
+  "overTheBox_deviceId_unlink": "Detach",
+  "overTheBox_cancel": "Cancel",
+  "overTheBox_confirm_unlink_device": "This device will no longer be able to connect to this service, are you sure?",
+  "overTheBox_unlink_device_error": "Unable to unlink the device: {{errorMessage}}",
+  "overTheBox_unlink_device_success": "Your device has been successfully detached."
 }

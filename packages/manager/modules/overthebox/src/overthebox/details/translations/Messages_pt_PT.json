@@ -88,5 +88,10 @@
   "overTheBox_available_update": "Está disponível uma atualização para o seu dispositivo.",
   "overTheBox_authorize_autoupgrade": "Permitir atualizações automáticas durante a noite",
   "overTheBox_change_auto_upgrade_success": "A alteração das apostas automáticas durante a noite foi realizada com sucesso.",
-  "overTheBox_change_auto_upgrade_error": "Não foi possível efetuar a alteração das apostas automáticas durante a noite: {{errorMessage}}"
+  "overTheBox_change_auto_upgrade_error": "Não foi possível efetuar a alteração das apostas automáticas durante a noite: {{errorMessage}}",
+  "overTheBox_deviceId_unlink": "Dissociar",
+  "overTheBox_cancel": "Anular",
+  "overTheBox_confirm_unlink_device": "Este dispositivo já não conseguirá estabelecer ligação, tem a certeza?",
+  "overTheBox_unlink_device_error": "Não foi possível desassociar o dispositivo: {{errorMessage}}",
+  "overTheBox_unlink_device_success": "O dispositivo foi dissociado com sucesso."
 }

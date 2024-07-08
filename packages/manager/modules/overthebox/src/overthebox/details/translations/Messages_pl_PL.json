@@ -88,5 +88,10 @@
   "overTheBox_available_update": "Dostępna jest aktualizacja urządzenia.",
   "overTheBox_authorize_autoupgrade": "Zezwalaj na automatyczne aktualizacje w nocy",
   "overTheBox_change_auto_upgrade_success": "Zmiana automatycznych aktualizacji w nocy została wykonana.",
-  "overTheBox_change_auto_upgrade_error": "Nie mogliśmy zmienić ustawień automatycznych w nocy: {{errorMessage}}"
+  "overTheBox_change_auto_upgrade_error": "Nie mogliśmy zmienić ustawień automatycznych w nocy: {{errorMessage}}",
+  "overTheBox_deviceId_unlink": "Odłącz",
+  "overTheBox_cancel": "Anuluj",
+  "overTheBox_confirm_unlink_device": "To urządzenie nie będzie już mogło łączyć się z tą usługą, czy na pewno?",
+  "overTheBox_unlink_device_error": "Nie można odłączyć urządzenia: {{errorMessage}}",
+  "overTheBox_unlink_device_success": "Urządzenie zostało pomyślnie odłączone."
 }

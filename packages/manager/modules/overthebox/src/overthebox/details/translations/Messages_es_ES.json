@@ -88,5 +88,10 @@
   "overTheBox_available_update": "Hay una actualización disponible para el dispositivo.",
   "overTheBox_authorize_autoupgrade": "Permitir actualizaciones automáticas por la noche",
   "overTheBox_change_auto_upgrade_success": "El cambio de apuestas automáticas por la noche se ha realizado correctamente.",
-  "overTheBox_change_auto_upgrade_error": "No se han podido cambiar las actualizaciones automáticas por la noche: {{errorMessage}}"
+  "overTheBox_change_auto_upgrade_error": "No se han podido cambiar las actualizaciones automáticas por la noche: {{errorMessage}}",
+  "overTheBox_deviceId_unlink": "Desvincular",
+  "overTheBox_cancel": "Cancelar",
+  "overTheBox_confirm_unlink_device": "Este dispositivo ya no podrá conectarse a este servicio, ¿está seguro?",
+  "overTheBox_unlink_device_error": "No se pudo desasociar el dispositivo: {{errorMessage}}",
+  "overTheBox_unlink_device_success": "El dispositivo se ha desvinculado correctamente."
 }
