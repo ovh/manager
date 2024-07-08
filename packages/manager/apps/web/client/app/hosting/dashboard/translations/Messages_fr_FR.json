@@ -525,6 +525,7 @@
   "hosting_tab_DOMAINS_configuration_remove_step1_autoconfigure": "Configuration automatique (recommandé)",
   "hosting_tab_DOMAINS_configuration_remove_step1_autoconfigure_text": "La configuration automatique correspond à la suppression des champs A et AAAA dans la zone DNS du domaine",
   "hosting_tab_DOMAINS_configuration_remove_step1_www": "Supprimer aussi le domaine <span class=\"bold\" translate=\"none\">{{t0}}</span>",
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Si vous voulez détacher votre nom de domaine, vous devez au préalable supprimer votre configuration Git pour prévenir d'éventuels problèmes de suivi des modifications et de gestion des déploiements.",
   "hosting_tab_DOMAINS_configuration_remove_success": "Le domaine va être détaché de votre hébergement mutualisé.",
   "hosting_tab_DOMAINS_configuration_remove_success_progress": "Le domaine est en cours de détachement de votre hébergement mutualisé ...",
   "hosting_tab_DOMAINS_configuration_remove_success_finish": "Le domaine a été détaché de votre hébergement mutualisé avec succès.",
