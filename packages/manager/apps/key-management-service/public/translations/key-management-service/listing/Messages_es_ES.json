@@ -8,7 +8,7 @@
   "key_management_service_listing_clipboard_success_label": "Copiado",
   "key_management_service_listing_clipboard_error_label": "Error",
   "key_management_service_listing_add_kms_button": "Contratar un KMS",
-  "key_management_service_listing_title": "Mis KMS",
+  "key_management_service_listing_title": "Key Management Service",
   "key_management_service_listing_terminate": "Dar de baja",
   "key_management_service_listing_region_eu_west_par": "Europa (Francia - París)",
   "key_management_service_listing_region_eu_west_gra": "Europa (Francia - Gravelines)",
