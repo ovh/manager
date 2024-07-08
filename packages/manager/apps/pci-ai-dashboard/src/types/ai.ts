@@ -847,13 +847,25 @@ export namespace ai {
       username?: string;
     }
     /** Docker registry update object */
-    export interface RegistryUpdateInput {
+    export interface RegistryEdition {
       /** Docker registry password */
       password?: string;
       /** Docker registry URL */
       url?: string;
       /** Docker registry username */
       username?: string;
+    }
+
+    /** Docker registry update object */
+    export interface RegistryCreation {
+      /** Docker registry password */
+      password: string;
+      /** Region where the registry is available */
+      region: string;
+      /** Docker registry URL */
+      url: string;
+      /** Docker registry username */
+      username: string;
     }
   }
   export namespace token {
@@ -1083,6 +1095,8 @@ export namespace ai {
   export interface DataStore {
     /** Data store alias */
     alias: string;
+    /** Data store endpoint URL */
+    endpoint: string;
     /** Owner type of the datastore */
     owner: ai.DataStoreOwnerEnum;
     /** Type of the datastore */
