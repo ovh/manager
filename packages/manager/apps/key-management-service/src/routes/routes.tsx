@@ -56,7 +56,9 @@ export default [
           },
           {
             path: `${ROUTES_URLS.okmsId}${ROUTES_URLS.keys}`,
-            ...lazyRouteConfig(() => import('@/pages/dashboard/keys')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/serviceKeyList/serviceKeyList.page'),
+            ),
           },
         ],
       },
