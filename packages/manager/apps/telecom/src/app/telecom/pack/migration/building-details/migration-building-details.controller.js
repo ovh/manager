@@ -93,6 +93,8 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
 
     if (this.process.selectedOffer.totalSubServiceToDelete > 0) {
       this.process.currentStep = 'serviceDelete';
+    } else if (this.process.selectedOffer.customOntAddress) {
+      this.process.currentStep = 'ontShipping';
     } else if (this.process.selectedOffer.needNewModem) {
       this.process.currentStep = 'shipping';
     } else if (this.process.selectedOffer.needMeeting) {
