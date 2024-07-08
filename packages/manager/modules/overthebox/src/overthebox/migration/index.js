@@ -8,6 +8,7 @@ import component from './overTheBox-migration.component';
 import routing from './overTheBox-migration.routing';
 
 import offers from './offers';
+import contact from './contact';
 
 import './overTheBox-migration.less';
 
@@ -19,6 +20,7 @@ angular
     uiRouter,
     angularTranslate,
     offers,
+    contact,
   ])
   .component('overtheboxMigration', component)
   .config(routing)

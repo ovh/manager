@@ -1,5 +1,6 @@
 {
   "overthebox_migration_title": "Changement d'offre",
+  "overthebox_migration_offers_title": "Choix de l'offre",
   "overthebox_migration_offers_error": "Une erreur s'est produite lors de la récupération des offres disponibles. {{error}}",
   "overthebox_migration_offers_no_offers": "Aucune offre n'est disponible.",
   "overthebox_migration_current_offer": "Offre actuelle : {{offerName}}",
@@ -7,5 +8,11 @@
   "overthebox_migration_hardware": "Boîtier",
   "overthebox_migration_hardware_yes": "Je souhaite prendre un nouveau boîtier ({{ price }} HT)",
   "overthebox_migration_hardware_no": "Je ne souhaite pas de boîtier",
-  "overthebox_migration_choose_offer_action": "Sélectionner"
+  "overthebox_migration_choose_offer_action": "Sélectionner",
+  "overthebox_migration_contact_title": "Livraison",
+  "overthebox_migration_contact_explain": "Vous avez choisi l'envoi d'un nouveau boîtier.",
+  "overthebox_migration_contact_explain2": "Veuillez choisir l'adresse de livraison de votre boîtier.",
+  "overthebox_migration_contact": "Contact de livraison",
+  "overthebox_migration_cancel": "Annuler le changement d'offre",
+  "overthebox_migration_contact_select": "Sélectionner le contact"
 }

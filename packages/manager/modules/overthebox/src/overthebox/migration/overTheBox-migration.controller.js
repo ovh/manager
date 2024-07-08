@@ -14,7 +14,16 @@ export default class OverTheBoxMigrationCtrl {
 
     this.$scope.$on('selectedOffer', (event, offer) => {
       this.offerSelected = offer;
-      this.currentStep = this.steps.contact;
+
+      if (this.offerSelected.selectedHardware !== 'no') {
+        this.currentStep = this.steps.contact;
+      } else {
+        this.currentStep = this.steps.resume;
+      }
+    });
+    this.$scope.$on('selectedContact', (event, contact) => {
+      this.contactSelected = contact;
+      this.currentStep = this.steps.resume;
     });
   }
 }
