@@ -305,7 +305,7 @@
   "ip_game_mitigation_title": "Configure GAME firewall",
   "ip_game_mitigation_description": "This is the page for configuring GAME DDoS protection for the selected IP. Multiple firewall rules can be configured to better protect all the applications hosted on the selected IP.",
   "ip_game_mitigation_description_tip": "Tip: You can choose “Other” protocol to allow any kind of traffic flow to one or more specific ports. We suggest applying the “Default Deny” policy, which will block all other (unspecified) ports, for enhanced security.",
-  "ip_game_mitigation_apply_policy": "Apply “Default Deny” policy ",
+  "ip_game_mitigation_apply_policy": "This applies \"Default Deny\" policy ",
   "ip_game_mitigation_policy_default_help": "Block all traffic that does not meet any of the following rules.",
   "ip_game_mitigation_table_protocol": "Game protocol",
   "ip_game_mitigation_table_start_port": "Start port (range)",
