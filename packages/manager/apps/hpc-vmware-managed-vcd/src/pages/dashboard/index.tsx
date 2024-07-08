@@ -16,7 +16,7 @@ import {
 
 import { DashboardLayout } from '@ovhcloud/manager-components';
 
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 
 export type DashboardTabItemProps = {
   name: string;

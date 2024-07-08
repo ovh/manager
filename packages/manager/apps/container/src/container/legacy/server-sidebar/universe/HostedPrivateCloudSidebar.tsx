@@ -100,23 +100,28 @@ export default function HostedPrivateCloudSidebar() {
 
     if (feature['hpc-vmware-managed-vcd']) {
       menu.push({
-        id: 'hpc-vcd',
+        id: 'hpc-managed-vcd',
         label: t('sidebar_vmware_vcd'),
         icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
-        routeMatcher: new RegExp(`^hpc-vmware-managed-vcd`),
+        pathMatcher: new RegExp(`^/hpc-vmware-managed-vcd`),
         async loader() {
-          const services = await loadServices('/vmwareCloudDirector');
+          const app = 'hpc-vmware-managed-vcd'
+          const services = await loadServices('/vmwareCloudDirector/organization', null, app);
           const icon = getIcon('ovh-font ovh-font-dedicatedCloud');
           return [
             {
               id: 'dedicated-vmware-vcd-all',
               label: t('sidebar_vmware_all'),
-              href: navigation.getURL('hpc-vmware-managed-vcd', '/'),
+              href: navigation.getURL(app, '/'),
               icon,
+              ignoreSearch: true,
             },
             ...services.map((service) => ({
               ...service,
               icon,
+              pathMatcher: new RegExp(
+                `^/hpc-vmware-managed-vcd/${service.serviceName}`,
+              ),
             })),
           ];
         },

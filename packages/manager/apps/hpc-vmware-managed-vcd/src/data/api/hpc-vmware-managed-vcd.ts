@@ -5,7 +5,9 @@ export type GetVcdProjectListParams = {
   iamTags: any;
 };
 
-export const getVcdProjectListQueryKey = ['get/vmwareCloudDirector/project'];
+export const getVcdProjectListQueryKey = [
+  'get/vmwareCloudDirector/organization',
+];
 
 /**
  * Operations about the VCD service : List VMware cloud director projects on OVHcloud infrastructures
@@ -13,24 +15,24 @@ export const getVcdProjectListQueryKey = ['get/vmwareCloudDirector/project'];
 export const getVcdProjectList = async (
   params: GetVcdProjectListParams,
 ): Promise<any> =>
-  apiClient.V2.get('/vmwareCloudDirector/project', { data: params });
+  apiClient.V2.get('/vmwareCloudDirector/organization', { data: params });
 
 export type GetVcdProjectServiceParams = {
   /** service name = project name */
   serviceName?: any;
 };
 
-export const getVcdProjectServiceQueryKey = (
+export const getVcdOrganizationServiceQueryKey = (
   params: GetVcdProjectServiceParams,
-) => [`get/dedicatedCloud/${params.serviceName}`];
+) => [`get/vmwareCloudDirector/organization/${params.serviceName}`];
 
 /**
  * VMware on OVHcloud : Get VMware on OVHcloud
  */
-export const getVcdProjectService = async (
+export const getVcdOrganizationService = async (
   params: GetVcdProjectServiceParams,
 ): Promise<any> =>
-  apiClient.V2.get(`/vmwareCloudDirector/project/${params.serviceName}`);
+  apiClient.V2.get(`/vmwareCloudDirector/organization/${params.serviceName}`);
 
 /**
  *  Get listing with iceberg V2
@@ -43,7 +45,7 @@ export const getListingIcebergV2 = async ({
   cursor: string;
 }) => {
   const { data, status, cursorNext } = await fetchIcebergV2({
-    route: `/vmwareCloudDirector/project`,
+    route: `/vmwareCloudDirector/organization`,
     pageSize,
     cursor,
   });
