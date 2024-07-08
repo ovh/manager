@@ -12,3 +12,11 @@ export const getUsers = async ({ projectId }: PCIAi) =>
       },
     })
     .then((res) => res.data as user.User[]);
+
+export interface AddUserProps extends PCIAi {
+  newUser: user.UserCreation;
+}
+export const addUser = async ({ projectId, newUser }: AddUserProps) =>
+  apiClient.v6
+    .post(`/cloud/project/${projectId}/user`, newUser)
+    .then((res) => res.data as user.User);

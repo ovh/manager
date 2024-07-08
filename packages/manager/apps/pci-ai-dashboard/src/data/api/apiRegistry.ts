@@ -12,3 +12,33 @@ export const getRegistries = async ({ projectId }: PCIAi) =>
       },
     })
     .then((res) => res.data as ai.registry.Registry[]);
+
+export interface AddRegistryProps extends PCIAi {
+  registry: ai.registry.RegistryCreation;
+}
+export const addRegistry = async ({ projectId, registry }: AddRegistryProps) =>
+  apiClient.v6
+    .post(`/cloud/project/${projectId}/ai/registry`, registry)
+    .then((res) => res.data as ai.registry.Registry);
+
+export interface EditRegistryProps extends PCIAi {
+  registryId: string;
+  registry: ai.registry.RegistryEdition;
+}
+export const editRegistry = async ({
+  projectId,
+  registryId,
+  registry,
+}: EditRegistryProps) =>
+  apiClient.v6
+    .put(`/cloud/project/${projectId}/ai/registry/${registryId}`, registry)
+    .then((res) => res.data as ai.registry.Registry);
+
+export interface DeleteRegistryProps extends PCIAi {
+  registryId: string;
+}
+export const deleteRegistry = async ({
+  projectId,
+  registryId,
+}: DeleteRegistryProps) =>
+  apiClient.v6.delete(`/cloud/project/${projectId}/ai/registry/${registryId}`);
