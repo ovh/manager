@@ -44,8 +44,6 @@ export default class SshKeysController {
     if (this.sshKeys && has(changes, 'region')) {
       this.getAvailableKeys(this.region);
     }
-
-    return undefined;
   }
 
   getGuideUrl() {

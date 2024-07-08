@@ -9,7 +9,7 @@
   "pci_projects_project_instances_add_region_datacenter_title": "Região",
   "pci_projects_project_instances_add_region_display_nonavailable": "Mostrar as localizações indisponíveis",
   "pci_project_instances_instance_add_region_error": "Ocorreu um erro ao obter as regiões disponíveis",
-  "pci_project_instances_instance_add_region_activate": "Esta região ainda não está ativa. Pode ativá-la no separador <a href='{{regionsLink}}'>Quota and Localisation</a> e voltar a criar a instância.",
+  "pci_project_instances_instance_add_region_activate": " A localização escolhida não está ativada. Clique em «Seguinte» para a adicionar ao seu projeto Public Cloud e continuar a criar instâncias.",
   "pci_project_instances_instance_add_region_quota": "Já não tem limite disponível para esta localização. Para continuar, <a href='{{quotaLink}}'>aumente o seu limite</a>.",
   "pci_project_instances_instance_add_region_unavailable": "Estas localizações estão disponíveis noutros modelos.",
   "pci_project_instances_instance_add_choose_model": "Mudar de modelo",
@@ -106,5 +106,8 @@
   "pci_projects_project_instances_add_modal_add_private_network_field_placeholder": "Inserir um nome de rede privada",
   "pci_projects_project_instances_add_private_network_select_subnet_label": "Escolha um subnet",
   "pci_projects_project_instances_add_modal_submit_label": "Adicionar",
-  "pci_projects_project_instances_add_modal_cancel_label": "Anular"
+  "pci_projects_project_instances_add_modal_cancel_label": "Anular",
+  "pci_projects_project_regions_add_region_success": "A localização escolhida foi adicionada com sucesso ao seu projeto.",
+  "pci_projects_project_regions_add_region_error": "Ocorreu um erro aquando da adição da localização. Atualize a página para tentar novamente.",
+  "pci_project_instances_instance_activate_project_banner_message": "Para aceder às etapas seguintes, deve ativar o seu projeto."
 }
