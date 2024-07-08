@@ -4,6 +4,7 @@ cache
 dist
 types
 !**/iam/**/types
+!**/apps/**/types
 .memsourcerc.yaml
 /docs/docs/public/assets/json/packages.json
 .extras*
