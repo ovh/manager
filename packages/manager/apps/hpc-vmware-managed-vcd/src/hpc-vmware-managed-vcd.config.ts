@@ -4,5 +4,5 @@ export default {
       serviceKey: 'id',
     },
   },
-  rootLabel: 'hpc-vmware-managed-vcd',
+  rootLabel: 'Managed VCD',
 };
