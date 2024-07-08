@@ -120,7 +120,12 @@
   "pci_projects_project_instances_add_private_network_select_subnet_label": "Sélectionnez un subnet",
   "pci_projects_project_instances_add_modal_submit_label": "Ajouter",
   "pci_projects_project_instances_add_modal_cancel_label": "Annuler",
-  "pci_projects_project_regions_add_region_success": "La localisation sélectionnée a bien été ajoutée à votre projet.",
-  "pci_projects_project_regions_add_region_error": "Une erreur est survenue lors de l’ajout de la localisation. Veuillez rafraîchir la page pour réessayer.",
-  "pci_project_instances_instance_activate_project_banner_message": "Pour accéder aux étapes suivantes, vous devez activer votre projet."
+  "pci_projects_project_regions_add_region_success": "La localisation {{ code }} a bien été ajoutée à votre projet.",
+  "pci_projects_project_regions_add_region_error": "Une erreur est survenue lors de l'ajout de la localisation : {{message}}",
+  "pci_project_instances_instance_activate_project_banner_message": "Pour accéder aux étapes suivantes, vous devez",
+  "pci_project_instances_instance_activate_project_banner_link_text": "activer votre projet.",
+  "pci_projects_project_instances_add_associate_to_existing_private_network": "Associer un réseau privé existant",
+  "pci_projects_project_instances_add_create_a_new_private_network": "Créer un réseau privé",
+  "pci_projects_project_network_private_create_enable_dhcp": "Activer DHCP pour ce réseau privé",
+  "pci_projects_project_network_private_create_name": "Nom du réseau privé"
 }
