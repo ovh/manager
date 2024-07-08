@@ -13,31 +13,53 @@ const sioUniverse : Node = {
     application: 'iam',
   },
   count: false,
-  features: ['iam'],
+  features: ['iam', 'key-management-service'],
 };
 
 sioUniverse.children = [
   {
-    id: 'security-identity-operation-iam',
-    idAttr: 'security-identity-operation-iam-link',
-    universe: sioUniverse.id,
-    translation: 'sidebar_security_identity_operations_iam',
-    routing: {
-      application: 'iam',
-      hash: '#/',
-    },
+    id: 'security-identity',
+    idAttr: 'security-identity-link',
+    translation: 'sidebar_security_identity',
+    children: [
+      {
+        id: 'security-identity-operation-iam',
+        idAttr: 'security-identity-operation-iam-link',
+        translation: 'sidebar_security_identity_operations_iam',
+        universe: sioUniverse.id,
+        routing: {
+          application: 'iam',
+          hash: '#/',
+        },
+      },
+      {
+        id: 'security_identity_operations_kms',
+        translation: 'sidebar_security_identity_operations_kms',
+        universe: sioUniverse.id,
+        features: ['key-management-service'],
+        routing: {
+          application: 'key-management-service',
+          hash: '#/',
+        },
+      },
+    ]
   },
   {
-    id: 'security-identity-operation-logs',
-    idAttr: 'security-identity-operation-logs-link',
+    id: 'security-operations',
+    idAttr: 'security-operations-link',
+    translation: 'sidebar_security_operations',
     universe: sioUniverse.id,
-    translation: 'sidebar_security_identity_operations_logs',
-    serviceType: 'DBAAS_LOGS',
-    routing: {
-      application: 'dedicated',
-      hash: '#/dbaas/logs',
-    },
-  },
+    children: [
+      {
+        id: 'security-identity-operation-logs',
+        idAttr: 'security-identity-operation-logs-link',
+        translation: 'sidebar_security_identity_operations_logs',
+        serviceType: 'DBAAS_LOGS',
+        routing: {
+          application: 'dedicated',
+          hash: '#/dbaas/logs',
+        },
+      }
+    ]
+  }
 ];
-
-export default sioUniverse;
