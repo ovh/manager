@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
@@ -22,6 +23,7 @@ export const useValidationStep = (
   projectId: string,
 ): TStep<StepsEnum, TFormState> => {
   const { t } = useTranslation('add');
+  const { addSuccess, addError } = useNotifications();
 
   return {
     order: 5,
@@ -36,7 +38,6 @@ export const useValidationStep = (
     ),
     Content: ({ stepperState }: { stepperState: TFormState }) => {
       const navigate = useNavigate();
-      const { addSuccess, addError, clearNotifications } = useNotifications();
       const { addVolume, isPending } = useAddVolume({
         projectId,
         name: stepperState.volumeName,
@@ -81,7 +82,6 @@ export const useValidationStep = (
           <div className="my-5">
             <PciTrustedZoneBanner />
           </div>
-
           <div className="flex flex-row">
             <OsdsButton
               className="mt-4 mr-4 w-fit"
@@ -89,7 +89,6 @@ export const useValidationStep = (
               color={ODS_THEME_COLOR_INTENT.primary}
               {...(isPending ? { disabled: true } : {})}
               onClick={() => {
-                clearNotifications();
                 if (!isPending) {
                   addVolume();
                 }
@@ -104,7 +103,6 @@ export const useValidationStep = (
               variant={ODS_BUTTON_VARIANT.ghost}
               {...(isPending ? { disabled: true } : {})}
               onClick={() => {
-                clearNotifications();
                 navigate('..');
               }}
             >

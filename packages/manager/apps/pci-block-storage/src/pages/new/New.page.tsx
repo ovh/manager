@@ -12,6 +12,7 @@ import {
   useStepper,
 } from '@ovhcloud/manager-components';
 import { useHref, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useTypeStep } from '@/pages/new/hooks/steps/type';
 import { useCapacityStep } from '@/pages/new/hooks/steps/capacity';
 import { useNameStep } from '@/pages/new/hooks/steps/name';
@@ -49,6 +50,10 @@ export default function NewPage(): JSX.Element {
     ]),
     state: DEFAULT_FORM_STATE,
   });
+
+  useEffect(() => {
+    clearNotifications();
+  }, []);
 
   return (
     <>
