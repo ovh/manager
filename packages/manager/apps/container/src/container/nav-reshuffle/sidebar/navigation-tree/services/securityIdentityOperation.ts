@@ -1,4 +1,3 @@
-import { Translation } from "react-i18next";
 
 export default {
   id: 'security-identity-operation',
@@ -8,15 +7,17 @@ export default {
     application: 'iam',
   },
   count: false,
-  features: ['iam', 'key-management-service'],
+  features: ['iam', 'key-management-service', 'logs-data-platform'],
   children: [
     {
       id: 'security-identity',
       translation: 'sidebar_security_identity',
+      features: ['iam', 'key-management-service'],
       children: [
         {
           id: 'security-identity-operation-iam',
           translation: 'sidebar_security_identity_operations_iam',
+          features: ['iam'],
           routing: {
             application: 'iam',
             hash: '#/',
@@ -36,11 +37,13 @@ export default {
     {
       id: 'security-operations',
       translation: 'sidebar_security_operations',
+      features:['logs-data-platform'],
       children: [
         {
           id: 'security-identity-operation-logs',
           translation: 'sidebar_security_identity_operations_logs',
           serviceType: 'DBAAS_LOGS',
+          features:['logs-data-platform'],
           routing: {
             application: 'dedicated',
             hash: '#/dbaas/logs',
