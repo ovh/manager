@@ -384,7 +384,7 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
       migrationProcess.currentStep = 'buildingDetails';
     } else if (migrationProcess.selectedOffer.totalSubServiceToDelete > 0) {
       migrationProcess.currentStep = 'serviceDelete';
-    } else if (migrationProcess.selectedOffer.customerOntAddress) {
+    } else if (migrationProcess.selectedOffer.customOntAddress) {
       migrationProcess.currencyStep = 'ontShipping';
     } else if (migrationProcess.selectedOffer.needNewModem) {
       migrationProcess.currentStep = 'shipping';
