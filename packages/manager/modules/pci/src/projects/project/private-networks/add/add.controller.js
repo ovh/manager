@@ -49,6 +49,7 @@ export default class PrivateNetworksAddCtrl {
       configStep: false,
       isSubmitting: false,
     };
+    //
     this.configuration = {
       region: null,
       createGateway: false,

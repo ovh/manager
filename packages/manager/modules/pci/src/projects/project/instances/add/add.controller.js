@@ -16,6 +16,11 @@ import { TAGS_BLOB } from '../../../../constants';
 import { LOCAL_ZONE_REGION, PCI_FEATURES } from '../../project.constants';
 
 import {
+  DEFAULT_VLAN_ID,
+  DEFAULT_CIDR,
+} from '../../private-networks/add/add.constants.js';
+
+import {
   AVAILABLE_SUBNET,
   BANDWIDTH_OUT,
   FILTER_PRIVATE_NETWORK_BAREMETAL,
@@ -49,6 +54,7 @@ export default class PciInstancesAddController {
     atInternet,
     PciProject,
     OvhApiCloudProjectRegion,
+    PciPrivateNetworksAdd,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -77,6 +83,7 @@ export default class PciInstancesAddController {
       INSTANCE_PRICING_LINKS[this.user.ovhSubsidiary] ||
       INSTANCE_PRICING_LINKS.DEFAULT;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
+    this.PciPrivateNetworksAdd = PciPrivateNetworksAdd;
   }
 
   $onInit() {
@@ -168,6 +175,17 @@ export default class PciInstancesAddController {
     this.defaultFloatingIp = this.getProductCatalog;
     this.isIpLoading = false;
     this.isAddingRegionError = false;
+    this.isCreatingNewPrivateNetwork = undefined;
+    this.configuration = {
+      region: null,
+      createGateway: false,
+      vlanId: DEFAULT_VLAN_ID,
+      cidr: DEFAULT_CIDR,
+      dhcp: true,
+      enableGatewayIp: true,
+    };
+    // this.regenerateNetworkAddress(DEFAULT_VLAN_ID);
+    this.isAddingPrivateNetwork = false;
   }
 
   get areLocalZonesFree() {
@@ -688,6 +706,10 @@ export default class PciInstancesAddController {
       if (!this.isFloatingIpAvailable) {
         this.isAttachFloatingIP = false;
       }
+
+      if (this.isLocalZone()) {
+        this.regenerateNetworkAddress(DEFAULT_VLAN_ID);
+      }
     });
   }
 
@@ -846,6 +868,10 @@ export default class PciInstancesAddController {
   }
 
   onModeSubmit() {
+    if (this.isLocalPrivateModeLocalZone && this.privateNetworkName) {
+      this.onCreatePrivateNetworkClick();
+    }
+
     this.addons = [];
     if (
       this.isPrivateMode() &&
@@ -853,6 +879,7 @@ export default class PciInstancesAddController {
       this.selectedPrivateNetwork
     ) {
       this.isLoadBillingStep = true;
+      //
       if (this.selectedPrivateNetwork.subnet?.[0]) {
         return this.getSubnetGateways(this.selectedPrivateNetwork.subnet[0].id)
           .then((data) => {
@@ -887,7 +914,9 @@ export default class PciInstancesAddController {
 
     if (this.isLocalPrivateMode()) {
       return (
-        this.selectedPrivateNetwork.id !== '' || this.isAttachPublicNetwork
+        this.selectedPrivateNetwork.id !== '' ||
+        (this.isAttachPublicNetwork && !this.isLocalPrivateModeLocalZone) ||
+        (this.isLocalPrivateModeLocalZone && this.privateNetworkName)
       );
     }
 
@@ -1218,5 +1247,74 @@ export default class PciInstancesAddController {
             this.model.flavorGroup,
           )))
     );
+  }
+
+  regenerateNetworkAddress(vlanId) {
+    this.configuration.address = this.PciPrivateNetworksAdd.constructor.generateNetworkAddress(
+      vlanId,
+    );
+  }
+
+  createPrivateNetwork() {
+    const subnet = {
+      cidr: `${this.configuration.address}/${this.configuration.cidr}`,
+      ipVersion: 4,
+      enableDhcp: this.configuration.dhcp,
+      enableGatewayIp: this.configuration.enableGatewayIp,
+    };
+    return this.PciPrivateNetworksAdd.create(
+      this.projectId,
+      this.instance.region,
+      this.privateNetworkName,
+      subnet,
+    );
+  }
+
+  associateNetworkToGateway(subnet) {
+    if (this.configuration.createGateway && this.gateway) {
+      return this.PciPrivateNetworksAdd.associateGatewayToNetwork(
+        this.projectId,
+        this.configuration.region?.name,
+        this.gateway.id,
+        subnet.id,
+      );
+    }
+    return this.$q.resolve();
+  }
+
+  onCreatePrivateNetworkClick() {
+    this.isAddingPrivateNetwork = true;
+    this.isLoading = true;
+
+    return this.createPrivateNetwork()
+      .then(([[subnetDetails]]) =>
+        this.associateNetworkToGateway(subnetDetails),
+      )
+      .then(() => {
+        this.CucCloudMessage.success(
+          this.$translate.instant(
+            'pci_projects_project_network_private_create_success',
+            {
+              code: this.model.datacenter.name,
+            },
+            ((this.isLoading = false), (this.isAddingPrivateNetwork = false)),
+          ),
+        );
+      })
+      .catch((error) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_network_private_create_error',
+            { message: get(error, 'data.message') },
+          ),
+        );
+
+        this.isLoading = false;
+        this.isAddingPrivateNetwork = false;
+      })
+      .finally(() => {
+        this.isAddingPrivateNetwork = false;
+        this.isLoading = false;
+      });
   }
 }
