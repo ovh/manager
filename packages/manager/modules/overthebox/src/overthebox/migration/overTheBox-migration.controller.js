@@ -1,4 +1,4 @@
-import { STEPS } from './overTheBox-migration.constant';
+import { STEPS, NO_HARDWARE } from './overTheBox-migration.constant';
 
 export default class OverTheBoxMigrationCtrl {
   /* @ngInject */
@@ -15,15 +15,15 @@ export default class OverTheBoxMigrationCtrl {
     this.$scope.$on('selectedOffer', (event, offer) => {
       this.offerSelected = offer;
 
-      if (this.offerSelected.selectedHardware !== 'no') {
+      if (this.offerSelected.selectedHardware !== NO_HARDWARE) {
         this.currentStep = this.steps.contact;
       } else {
-        this.currentStep = this.steps.resume;
+        this.currentStep = this.steps.summary;
       }
     });
     this.$scope.$on('selectedContact', (event, contact) => {
       this.contactSelected = contact;
-      this.currentStep = this.steps.resume;
+      this.currentStep = this.steps.summary;
     });
   }
 }

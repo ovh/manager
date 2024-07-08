@@ -76,7 +76,7 @@ export default class OverTheBoxMigrationOffersCtrl {
         const msg = error?.data?.message;
         this.TucToast.error(
           this.$translate.instant('overthebox_migration_offers_error', {
-            error: msg,
+            errorMsg: msg,
           }),
         );
       })
@@ -86,6 +86,12 @@ export default class OverTheBoxMigrationOffersCtrl {
   }
 
   selectOffer(offer) {
-    this.$scope.$emit('selectedOffer', offer);
+    const updateOffer = offer;
+    updateOffer.currentOffer = this.currentOffer;
+    updateOffer.offerQuantity = 1;
+    if (offer.selectedHardware) {
+      updateOffer.selectedHardwareQuantity = 1;
+    }
+    this.$scope.$emit('selectedOffer', updateOffer);
   }
 }
