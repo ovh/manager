@@ -279,7 +279,7 @@
                                 >
                                     <oui-action-menu-item
                                         data-on-click="modifyDomain(domain)"
-                                        data-disabled="domain.status !== HOSTING_STATUS.CREATED"
+                                        data-disabled="domain.status !== HOSTING_STATUS.CREATED || hasDoingGitAction(domain)"
                                         data-ng-if="excludeAttachedDomains.indexOf(domain.displayName) === -1"
                                         ><span
                                             data-translate="hosting_tab_DOMAINS_table_popover_modify"
@@ -309,7 +309,7 @@
 
                                     <oui-action-menu-item
                                         data-on-click="detachDomain(domain)"
-                                        data-disabled="domain.status !== HOSTING_STATUS.CREATED"
+                                        data-disabled="domain.status !== HOSTING_STATUS.CREATED || hasDoingGitAction(domain)"
                                         data-ng-if="excludeAttachedDomains.indexOf(domain.displayName) === -1 && hosting.offer !== HOSTING_OFFER.FREE_100_M"
                                         ><span
                                             data-translate="hosting_tab_DOMAINS_table_popover_delete"

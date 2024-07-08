@@ -278,6 +278,14 @@ angular
         ].includes(vcsStatus);
       };
 
+      $scope.hasDoingGitAction = function hasDoingGitAction({ vcsStatus }) {
+        return [
+          GIT_STATUS.creating,
+          GIT_STATUS.deleting,
+          GIT_STATUS.deploying,
+        ].includes(vcsStatus);
+      };
+
       $scope.detachDomain = (domain) => {
         sendTrackClick('web::hosting::multisites::detach-domain');
         $scope.setAction('multisite/delete/hosting-multisite-delete', domain);
