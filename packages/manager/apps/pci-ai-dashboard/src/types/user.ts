@@ -12,6 +12,11 @@ export namespace user {
     username: string;
   }
 
+  export interface UserCreation {
+    description?: string;
+    role: UserCreationEnum;
+  }
+
   export interface Role {
     description: string;
     id: string;
@@ -24,5 +29,10 @@ export namespace user {
     'DELETED' = 'DELETED',
     'DELETING' = 'DELETING',
     'OK' = 'OK',
+  }
+
+  export enum UserCreationEnum {
+    'ai_training_operator' = 'ai_training_operator',
+    'ai_training_read' = 'ai_training_read',
   }
 }
