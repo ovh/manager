@@ -369,6 +369,7 @@ export default class PciInstancesAddController {
   }
 
   onRegionChange() {
+    //
     if (
       this.model.datacenter &&
       !this.isRegionAvailable(this.model.datacenter)
