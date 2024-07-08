@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Params, useParams, useLocation, useMatches } from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import usePciProject from '@/data/hooks/pciProjects.api.hooks';
+
 import { Skeleton } from '../ui/skeleton';
 import { Link, A } from '../links';
+import usePciProject from '@/hooks/api/apiProjects/useGetProjects';
 
 export type BreadcrumbHandleParams = {
   data: unknown;
