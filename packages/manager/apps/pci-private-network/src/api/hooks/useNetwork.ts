@@ -33,7 +33,7 @@ export const useAggregatedNonLocalNetworks = (
     return query.data
       .filter((network) => network.visibility === 'private')
       .filter((network) => !isLocalZoneRegion(localZones, network.region))
-      .filter((network) => network.vlanId)
+      .filter((network) => typeof network.vlanId === 'number')
       .reduce((acc, network) => {
         const n = acc.find((i) => i.vlanId === network.vlanId);
         if (n) {
