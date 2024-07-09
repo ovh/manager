@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.19.0...@ovh-ux/manager-components@1.19.1) (2024-07-09)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([8fc5f2c](https://github.com/ovh/manager/commit/8fc5f2c4d09cb261832afa8051049a4fd3ebc65b))
+
+
+
+
+
 # [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.18.1...@ovh-ux/manager-components@1.19.0) (2024-06-25)
 
 

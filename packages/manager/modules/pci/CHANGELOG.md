@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.50.0...@ovh-ux/manager-pci@6.51.0) (2024-07-09)
+
+
+### Features
+
+* **pci.project:** edit project delete messages ([#11739](https://github.com/ovh/manager/issues/11739)) ([6f0f70d](https://github.com/ovh/manager/commit/6f0f70d00a6af297cdebad1c4ff40e1c8cc67a94))
+
+
+
+
+
 # [6.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.49.1...@ovh-ux/manager-pci@6.50.0) (2024-07-04)
 
 

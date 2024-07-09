@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.20.0...@ovhcloud/manager-components@1.21.0) (2024-07-09)
+
+### Features
+
+- **manager-components.notifications:** add text style for notification ([#11738](https://github.com/ovh/manager/issues/11738)) ([d36de38](https://github.com/ovh/manager/commit/d36de38982956d8592c37a3118db602adfb7131f))
+- **manager-components:** dashboard template update ([#12090](https://github.com/ovh/manager/issues/12090)) ([e044200](https://github.com/ovh/manager/commit/e04420063ed8d27051bb33b5d9e2672001fa69fb))
+
 # [1.20.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.19.0...@ovhcloud/manager-components@1.20.0) (2024-07-03)
 
 ### Bug Fixes
