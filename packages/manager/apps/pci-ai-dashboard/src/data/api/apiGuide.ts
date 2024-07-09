@@ -26,7 +26,7 @@ export const getGuides = async ({
     headers['X-Pagination-Filter'] = filters.join('&');
   }
   return apiClient.v6
-    .get(`cloud/project/${projectId}/ai/guides`, {
+    .get(`/cloud/project/${projectId}/ai/guides`, {
       headers,
     })
     .then((res) => res.data as Guide[]);

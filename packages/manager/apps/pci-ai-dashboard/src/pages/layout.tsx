@@ -6,6 +6,16 @@ import queryClient from '@/query.client';
 
 import { useLoadingIndicatorContext } from '@/contexts/loadingIndicatorContext';
 import { getProject } from '@/data/api/apiProjects';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
+import PageLayout from '@/components/PageLayout/PageLayout';
+import { Toaster } from '@/components/ui/toaster';
+
+export function breadcrumb() {
+  return (
+    <BreadcrumbItem translationKey={`test`} namespace="pci-ai-dashboard" />
+  );
+}
 
 interface DashboardLayoutProps {
   params: {
@@ -43,10 +53,6 @@ function RoutingSynchronisation() {
   return <></>;
 }
 
-export function breadcrumb() {
-  return 'ai-dashboard';
-}
-
 export function useDashboardData() {
   const { projectId } = useParams();
   return { projectId };
@@ -54,9 +60,11 @@ export function useDashboardData() {
 
 export default function DashboardLayout() {
   return (
-    <>
+    <PageLayout>
+      <Breadcrumb />
       <RoutingSynchronisation />
       <Outlet />
-    </>
+      <Toaster />
+    </PageLayout>
   );
 }
