@@ -1,12 +1,21 @@
 import React from 'react';
-import { OsdsButton, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsLink,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+  ODS_THEME_COLOR_INTENT,
+} from '@ovhcloud/ods-common-theming';
 import { v4 as uuidV4 } from 'uuid';
 import {
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { clsx } from 'clsx';
 
 export type TStepProps = {
@@ -20,12 +29,12 @@ export type TStepProps = {
   next?: {
     action: (id: string) => void;
     label: string | JSX.Element;
-    isDisabled: boolean;
+    isDisabled?: boolean;
   };
   edit?: {
     action: (id: string) => void;
     label: string | JSX.Element;
-    isDisabled: boolean;
+    isDisabled?: boolean;
   };
   children?: JSX.Element | JSX.Element[];
 };
@@ -43,7 +52,7 @@ export const StepComponent = ({
   edit,
 }: TStepProps): JSX.Element => {
   return (
-    <section className="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5">
+    <section className="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5 mb-5">
       <div className="basis-[40px]">
         {isChecked ? (
           <OsdsIcon
@@ -56,12 +65,20 @@ export const StepComponent = ({
           <div
             className={clsx(
               'flex justify-center items-center font-bold border-2 border-solid rounded-full h-10 w-10',
-              isOpen
-                ? 'border-[#0050d7] text-[#0050d7]'
-                : 'border-[grey] text-[grey]',
+              isOpen ? 'border-[#0050d7]' : 'border-[grey]',
             )}
           >
-            {order}
+            <OsdsText
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+              color={
+                isOpen
+                  ? ODS_THEME_COLOR_INTENT.text
+                  : ODS_THEME_COLOR_INTENT.default
+              }
+            >
+              {order}
+            </OsdsText>
           </div>
         )}
       </div>
@@ -69,7 +86,7 @@ export const StepComponent = ({
         <div className="flex flex-col md:flex-row">
           <div
             className={clsx(
-              'font-sans font-normal p-0 m-0 w-full md:w-5/6',
+              'font-sans font-normal p-0 m-0 w-full md:w-5/6 leading-10',
               isOpen
                 ? 'text-[1.625rem] text-[#00185e]'
                 : 'text-[1.25rem] text-[grey]',
@@ -85,7 +102,9 @@ export const StepComponent = ({
                 color={ODS_THEME_COLOR_INTENT.primary}
                 {...(edit.isDisabled ? { disabled: true } : {})}
                 onClick={() => {
-                  edit.action(id);
+                  if (!edit.isDisabled) {
+                    edit.action(id);
+                  }
                 }}
               >
                 {edit.label}
