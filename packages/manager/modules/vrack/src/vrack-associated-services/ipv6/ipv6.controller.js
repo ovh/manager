@@ -26,6 +26,7 @@ export default class VrackAssignedIpCtrl {
     this.$timeout = $timeout;
     this.loading = false;
     this.subnets = [];
+    this.bridgedSubranges = [];
     this.atInternet = atInternet;
     this.user = coreConfig.getUser();
     this.slaacGuidesLink =
@@ -133,7 +134,7 @@ export default class VrackAssignedIpCtrl {
       });
   }
 
-  openDeleteSubnetModal(subnet) {
+  openDeleteSubnetModal({ routedSubrange }) {
     this.deleteSubnetModalContext = {
       isOpenModal: true,
       onConfirm: () => {
@@ -141,7 +142,7 @@ export default class VrackAssignedIpCtrl {
         this.deleteSubnetModalContext.isOpenModal = false;
         this.CucCloudMessage.flushMessages('vrack');
         this.vrackAssignedIpv6Service
-          .deleteSubnet(this.serviceName, this.ip.niceName, subnet)
+          .deleteSubnet(this.serviceName, this.ip.niceName, routedSubrange)
           .then(({ data }) => {
             this.loader = true;
             this.watingTask(data.id, () => {
@@ -164,6 +165,7 @@ export default class VrackAssignedIpCtrl {
   }
 
   loadSubnet() {
+    this.subnets = [];
     this.vrackAssignedIpv6Service
       .fetchAllSubnets(this.serviceName, this.ip.niceName)
       .then(({ data }) => {
