@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.10.0...@ovh-ux/manager-pci-rancher-app@1.10.1) (2024-07-09)
+
+
+### Bug Fixes
+
+* **pci-rancher:** create rancher api standardisation ([#12194](https://github.com/ovh/manager/issues/12194)) ([440c2ba](https://github.com/ovh/manager/commit/440c2ba03164f1d7e835e8ef406ffb60564f070c))
+
+
+
+
+
 # [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.9.0...@ovh-ux/manager-pci-rancher-app@1.10.0) (2024-07-03)
 
 

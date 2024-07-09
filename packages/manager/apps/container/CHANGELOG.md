@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.61.0...@ovh-ux/manager-container-app@0.62.0) (2024-07-09)
+
+
+### Features
+
+* **dedicated.order:** update cloud project link in server sidebar ([#11818](https://github.com/ovh/manager/issues/11818)) ([d8feed0](https://github.com/ovh/manager/commit/d8feed062cbe2339a7a02f074e4c9007fe07d7eb))
+
+
+
+
+
 # [0.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.60.2...@ovh-ux/manager-container-app@0.61.0) (2024-07-03)
 
 
