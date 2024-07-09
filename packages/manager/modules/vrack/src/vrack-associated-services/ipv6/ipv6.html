@@ -14,29 +14,33 @@
             class="vrack__assigned-ipv6__subrange"
             data-ng-repeat="bridged in $ctrl.bridgedSubranges track by $index"
         >
-            <span
-                class="vrack__assigned-ipv6__subrange__title"
-                data-ng-bind="::bridged.bridgedSubrange"
-            ></span>
-            <span>
-                <span data-ng-bind=":: $ctrl.label.SLAAC"></span>
-                <oui-switch
-                    data-ng-hide="bridged.loading"
-                    model="bridged.model"
-                    on-change="$ctrl.toggleSubrange(bridged)"
-                >
-                </oui-switch>
-                <oui-spinner data-size="s" data-ng-show="bridged.loading">
-                </oui-spinner>
-            </span>
-            <button
-                type="button"
-                class="oui-popover-button"
-                data-oui-popover="{{:: 'vrack__assigned-ipv6__subrange_slaac_help' | translate }}"
-                data-oui-popover-placement="right"
-                data-oui-popover-scope="$ctrl"
-                data-oui-popover-template="slaac-help.html"
-            ></button>
+            <div class="col-md-6 col-lg-6 col-xs-6">
+                <span
+                    class="vrack__assigned-ipv6__subrange__title"
+                    data-ng-bind="::bridged.bridgedSubrange"
+                ></span>
+            </div>
+            <div class="col-md-2 col-lg-2 col-xs-2">
+                <span>
+                    <span data-ng-bind=":: $ctrl.label.SLAAC"></span>
+                    <oui-switch
+                        data-ng-hide="bridged.loading"
+                        model="bridged.model"
+                        on-change="$ctrl.toggleSubrange(bridged)"
+                    >
+                    </oui-switch>
+                    <oui-spinner data-size="s" data-ng-show="bridged.loading">
+                    </oui-spinner>
+                </span>
+                <button
+                    type="button"
+                    class="oui-popover-button"
+                    data-oui-popover="{{:: 'vrack__assigned-ipv6__subrange_slaac_help' | translate }}"
+                    data-oui-popover-placement="right"
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="slaac-help.html"
+                ></button>
+            </div>
         </li>
     </ul>
     <!-- subnet -->
@@ -49,10 +53,13 @@
                 class="vrack__assigned-ipv6__subnet__title col-md-10 col-lg-10 col-xs-10"
             >
                 <div data-ng-bind=":: subnet.routedSubrange"></div>
-                <div
-                    data-translate="vrack__assigned-ipv6_subnet_via"
-                    data-translate-values="{ ip: subnet.nexthop }"
-                ></div>
+                <div>
+                    <span
+                        class="vrack__assigned-ipv6__subnet__via"
+                        data-translate="vrack__assigned-ipv6_subnet_via"
+                    ></span>
+                    <span data-ng-bind=":: subnet.nexthop"></span>
+                </div>
             </div>
             <div class="col-md-2 col-lg-2 col-xs-2">
                 <oui-button

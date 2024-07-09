@@ -53,6 +53,7 @@
 
         <ul class="vrack__service-list" data-ng-if="serviceType === 'ip'">
             <ul
+                class="vrack__sub-service-list"
                 data-ng-repeat="service in services | orderBy: service.niceName track by service.id"
             >
                 <li
