@@ -1,12 +1,12 @@
-<div data-ng-controller="IpDeleteByoipCtrl">
+<div data-ng-controller="IpDeleteByoipCtrl as $ctrl">
     <oui-modal
         heading="{{:: 'ip_byoip_delete_block_title' | translate }}"
         type="warning"
-        on-dismiss="cancelAction()"
+        on-dismiss="$ctrl.cancelAction()"
     >
         <p
             data-translate="ip_byoip_delete_block_description"
-            data-translate-values="{ link: serviceLink }"
+            data-translate-values="{ link: $ctrl.serviceLink }"
         ></p>
     </oui-modal>
 </div>
