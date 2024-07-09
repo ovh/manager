@@ -39,6 +39,10 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
+      projectActivationPageHref: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.activate', {
+          projectId,
+        }),
       addPrivateNetworksLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.privateNetwork', {
           projectId,

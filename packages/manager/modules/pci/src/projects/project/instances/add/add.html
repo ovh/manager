@@ -32,6 +32,9 @@
             data-exclude-categories="$ctrl.excludeCategories"
             data-on-change="$ctrl.onFlavorCategorySelect(flavor, category)"
             data-catalog-endpoint="$ctrl.catalogEndpoint"
+            data-reload="$ctrl.reloadFlavorList"
+            data-load-end="$ctrl.onFlavorListLoadEnd()"
+            data-display-loader="$ctrl.currentStep < 2"
         >
         </pci-project-flavors-list>
     </oui-step-form>
@@ -45,7 +48,7 @@
                     location: $ctrl.model.location
                 }
             }}"
-        data-valid="$ctrl.model.datacenter && $ctrl.isRegionAvailable($ctrl.model.datacenter)"
+        data-valid="$ctrl.isRegionValid()"
         data-prevent-next="true"
         data-navigation="$ctrl.model.datacenter"
         data-on-focus="$ctrl.onRegionFocus()"
@@ -233,17 +236,25 @@
                             <p
                                 class="warning-text"
                                 data-ng-switch-when="INACTIVE"
-                                data-ng-bind-html="'pci_project_instances_instance_add_region_activate' | translate: {
-                                    regionsLink: $ctrl.regionsLink
-                                }"
+                                data-translate="pci_project_instances_instance_add_region_activate"
+                                data-ng-if="!$ctrl.isDiscoveryProject"
                             ></p>
+
                             <p
                                 class="warning-text"
                                 data-ng-switch-default
                                 data-ng-bind-html="'pci_project_instances_instance_add_region_quota' | translate: {
                                     quotaLink: $ctrl.quotaLink
                                 }"
+                                data-ng-if="!$ctrl.isDiscoveryProject"
                             ></p>
+                        </div>
+                        <div data-ng-if="$ctrl.isDiscoveryProject">
+                            <p class="warning-text">
+                                <span
+                                    data-translate="pci_project_instances_instance_activate_project_banner_message"
+                                ></span>
+                            </p>
                         </div>
                     </div>
                 </oui-tabs-item>
@@ -268,7 +279,7 @@
         data-navigation="$ctrl.showImageNavigation()"
     >
         <pci-project-images-list
-            data-ng-if="$ctrl.currentStep >= 2"
+            data-ng-if="$ctrl.currentStep >= 2 && !$ctrl.isAddingNewRegion"
             data-display-selected-image="$ctrl.displaySelectedImage"
             data-flavor-type="$ctrl.model.flavorGroup.name"
             data-os-types="$ctrl.osTypes"
@@ -296,9 +307,10 @@
                 </button>
             </div>
         </pci-project-images-list>
+        <oui-spinner data-ng-if="$ctrl.isAddingNewRegion" data-size="s" />
 
         <pci-project-instance-ssh-keys
-            data-ng-if="$ctrl.isLinuxImageType()"
+            data-ng-if="$ctrl.isLinuxImageType() && $ctrl.model.image"
             data-region="$ctrl.model.datacenter.name"
             data-selected-key="$ctrl.model.sshKey"
             data-service-name="{{:: $ctrl.projectId }}"
@@ -482,6 +494,21 @@
             data-ng-if="$ctrl.isLocalZone()"
             data-translate="pci_projects_project_instances_add_localPrivateNetwork_sub_title"
         ></p>
+
+        <div data-ng-if="$ctrl.isLocalPrivateMode() && $ctrl.isLocalZone()">
+            <oui-checkbox class="mb-3" data-model="$ctrl.isAttachPublicNetwork">
+                <oui-checkbox-label>
+                    <span
+                        data-translate="pci_projects_project_instances_add_localPrivateNetwork_add_public_network_checkbox_label"
+                    ></span>
+                </oui-checkbox-label>
+                <oui-checkbox-description>
+                    <span
+                        data-translate="pci_projects_project_instances_add_localPrivateNetwork_add_public_network_info"
+                    ></span>
+                </oui-checkbox-description>
+            </oui-checkbox>
+        </div>
         <div class="row mb-3">
             <oui-select-picker
                 data-ng-if="!$ctrl.loading && $ctrl.displayNetwork(mode.name, $ctrl.model.datacenter.type)"
@@ -663,20 +690,7 @@
                 </p>
             </oui-message>
         </div>
-        <div data-ng-if="$ctrl.isLocalPrivateMode() && $ctrl.isLocalZone()">
-            <oui-checkbox class="mb-3" data-model="$ctrl.isAttachPublicNetwork">
-                <oui-checkbox-label>
-                    <span
-                        data-translate="pci_projects_project_instances_add_localPrivateNetwork_add_public_network_checkbox_label"
-                    ></span>
-                </oui-checkbox-label>
-                <oui-checkbox-description>
-                    <span
-                        data-translate="pci_projects_project_instances_add_localPrivateNetwork_add_public_network_info"
-                    ></span>
-                </oui-checkbox-description>
-            </oui-checkbox>
-        </div>
+
         <div data-ng-if="$ctrl.isAttachFloatingIP && $ctrl.isPrivateMode()">
             <oui-spinner
                 data-size="s"
@@ -809,7 +823,7 @@
         </pci-trusted-zone-banner>
     </oui-step-form>
     <div
-        data-ng-if="$ctrl.isLoading && !$ctrl.isPrivateMode()"
+        data-ng-if="$ctrl.isLoading && !$ctrl.isPrivateMode()  && $ctrl.currentStep > 4"
         class="d-flex flex-wrap flex-md-nowrap align-items-center"
     >
         <oui-spinner></oui-spinner>
@@ -838,7 +852,7 @@
                     data-primary-disabled="$ctrl.isLoading"
                 >
                     <div
-                        data-ng-if="$ctrl.isLoading"
+                        data-ng-if="$ctrl.isLoading  && $ctrl.currentStep > 4"
                         class="d-flex flex-wrap flex-md-nowrap align-items-center"
                     >
                         <oui-spinner data-size="m"></oui-spinner>

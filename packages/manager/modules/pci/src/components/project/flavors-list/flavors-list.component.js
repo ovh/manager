@@ -19,5 +19,8 @@ export default {
     serviceName: '@',
     singleFlavorWarning: '@?',
     flavorCount: '<?',
+    reload: '<',
+    loadEnd: '&',
+    displayLoader: '<?',
   },
 };
