@@ -48,11 +48,7 @@ module.exports = {
       modulePathIgnorePatterns: [
         '/dist/',
         'packages/manager/apps/container/src/__tests__/navbar/navbar.spec.tsx',
-        'packages/manager/apps/pci-rancher/*',
-        'packages/manager-components/*',
       ],
     },
-    'packages/manager/apps/pci-rancher',
-    'packages/manager-components/',
   ],
 };
