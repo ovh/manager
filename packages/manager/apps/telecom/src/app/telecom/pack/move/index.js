@@ -13,6 +13,7 @@ import moveResume from './resume';
 import moveServiceDelete from './service-delete';
 import moveShipping from './shipping';
 import moveUnbundling from './unbundling';
+import moveOntShipping from './ont-shipping';
 
 import component from './pack-move.component';
 import routing from './pack-move.routing';
@@ -35,6 +36,7 @@ angular
     moveServiceDelete,
     moveShipping,
     moveUnbundling,
+    moveOntShipping,
   ])
   .component('packMove', component)
   .config(routing)

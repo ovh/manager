@@ -11,13 +11,14 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_DIVIDER_SIZE } from '@ovhcloud/ods-components';
+import { ODS_DIVIDER_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { Headers } from '../../content';
 import { DashboardLayout, DashboardLayoutProps } from './dashboard.component';
-import { LinkType } from '../../typography/links/links.component';
 import GuideButton, {
   GuideItem,
 } from '../../navigation/menus/guide/guide.component';
+import './dashboard.stories.css';
+import { DashboardGridLayout } from '../layout/layout.component';
 
 const guideItems: GuideItem[] = [
   {
@@ -36,18 +37,28 @@ const guideItems: GuideItem[] = [
 
 export const defaultProps: DashboardLayoutProps = {
   header: {
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     title: 'Vrack Services',
     headerButton: <GuideButton items={guideItems} />,
   },
-
-  linkProps: {
-    label: 'Back to the list',
-    href: 'https://www.ovhcloud.com',
-    target: OdsHTMLAnchorElementTarget._blank,
-    type: LinkType.back,
+  description:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  message: (
+    <OsdsMessage
+      icon={ODS_ICON_NAME.SUCCESS_CIRCLE}
+      removable
+      className="w-full"
+      color={ODS_THEME_COLOR_INTENT.success}
+    >
+      Votre service a été créé avec succès
+    </OsdsMessage>
+  ),
+  subtitle: 'Lorem ipsum',
+  backLinkLabel: 'Retour à la XXX',
+  onClickReturn: () => {
+    console.log('back link click');
   },
+  subdescription:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia rutrum interdum. Nullam tempor, mi eu imperdiet scelerisque, lorem nisl blandit ligula, eget sodales erat nulla a odio. Donec efficitur posuere quam. Maecenas metus sem, venenatis id mattis eget, sollicitudin sit amet nulla. Sed ac erat fermentum, porta ligula ac,',
   tabs: (
     <>
       <OsdsTabs>
@@ -67,43 +78,30 @@ export const defaultProps: DashboardLayoutProps = {
     </>
   ),
   content: (
-    <div className="w-full block">
-      <div>
-        <OsdsMessage
-          removable
-          className="mb-5 w-full"
-          color={ODS_THEME_COLOR_INTENT.success}
-        >
-          Votre service a été créé avec succès
-        </OsdsMessage>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-          <OsdsTile rounded>
-            <span slot="start">
-              <Headers subtitle="Tile 1" />
-            </span>
-          </OsdsTile>
-        </div>
-        <OsdsTile rounded>
-          <span slot="start">
-            <Headers subtitle="Tile 2" />
-          </span>
-        </OsdsTile>
-        <OsdsTile rounded>
-          <span slot="start">
-            <Headers subtitle="Tile 3" />
-          </span>
-        </OsdsTile>
-      </div>
-    </div>
+    <DashboardGridLayout>
+      <OsdsTile rounded>
+        <span slot="start">
+          <Headers subtitle="Tile 1" />
+        </span>
+      </OsdsTile>
+      <OsdsTile rounded>
+        <span slot="start">
+          <Headers subtitle="Tile 2" />
+        </span>
+      </OsdsTile>
+      <OsdsTile rounded>
+        <span slot="start">
+          <Headers subtitle="Tile 3" />
+        </span>
+      </OsdsTile>
+    </DashboardGridLayout>
   ),
   breadcrumb: (
     <OsdsBreadcrumb
       className="flex-start"
       items={[
-        { label: 'Network', href: '/Network' },
-        { label: 'vrackServices', href: '/vrackServices' },
+        { label: 'vRack Services', href: '/vrack-services' },
+        { label: 'vrs-abc-def-ghi', href: '/vrs-abc-def-ghi' },
       ]}
     />
   ),
@@ -111,7 +109,6 @@ export const defaultProps: DashboardLayoutProps = {
 
 const meta: Meta<typeof DashboardLayout> = {
   title: 'Templates/Dashboard',
-  decorators: [(story) => <div className="w-4/5">{story()}</div>],
   component: DashboardLayout,
   argTypes: {},
   args: defaultProps,

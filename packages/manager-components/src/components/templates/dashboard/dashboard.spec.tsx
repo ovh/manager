@@ -1,4 +1,4 @@
-import { waitFor, screen } from '@testing-library/react';
+import { waitFor, screen, fireEvent } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import { DashboardLayout } from './dashboard.component';
 import { defaultProps } from './dashboard.stories';
@@ -13,7 +13,23 @@ describe('DashboardLayout component', () => {
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         ),
       ).toBeInTheDocument();
-      expect(screen.getByText('Back to the list')).toBeInTheDocument();
     });
+  });
+
+  it('clicks on back link triggers return fn', async () => {
+    const backLinkLabel = 'back link';
+    const spy = jest.fn();
+
+    render(
+      <DashboardLayout
+        {...defaultProps}
+        backLinkLabel={backLinkLabel}
+        onClickReturn={spy}
+      />,
+    );
+
+    fireEvent.click(screen.getByText(backLinkLabel));
+
+    await waitFor(() => expect(spy).toHaveBeenCalled());
   });
 });

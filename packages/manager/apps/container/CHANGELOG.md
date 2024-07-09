@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.61.0...@ovh-ux/manager-container-app@0.62.0) (2024-07-09)
+
+
+### Features
+
+* **dedicated.order:** update cloud project link in server sidebar ([#11818](https://github.com/ovh/manager/issues/11818)) ([d8feed0](https://github.com/ovh/manager/commit/d8feed062cbe2339a7a02f074e4c9007fe07d7eb))
+
+
+
+
+
+# [0.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.60.2...@ovh-ux/manager-container-app@0.61.0) (2024-07-03)
+
+
+### Features
+
+* **container:** load listing page onclick of parent item ([#12067](https://github.com/ovh/manager/issues/12067)) ([282dd9b](https://github.com/ovh/manager/commit/282dd9bc09c7ecca26d0bfbc7b7c12779e632be2))
+* **container:** load vrackservice listing page ([#12174](https://github.com/ovh/manager/issues/12174)) ([2d512bf](https://github.com/ovh/manager/commit/2d512bffd8db43a7ad0af5c70dfc865b2e131553))
+* **web:** eol sharepoint ([#11976](https://github.com/ovh/manager/issues/11976)) ([83c130a](https://github.com/ovh/manager/commit/83c130a569e9b9355120f935e85cf396dfde0f86))
+
+
+
+
+
+## [0.60.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.60.1...@ovh-ux/manager-container-app@0.60.2) (2024-07-01)
+
+
+### Bug Fixes
+
+* **container.2fa:** fix issue with iframe and router if 2fa needed ([e0d6255](https://github.com/ovh/manager/commit/e0d6255822043bf061787e8ee2e003e7df21997e))
+
+
+
+
+
+## [0.60.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.60.0...@ovh-ux/manager-container-app@0.60.1) (2024-06-27)
+
+
+### Bug Fixes
+
+* **container:** fix issue with kms menu entry in pci menu ([#12137](https://github.com/ovh/manager/issues/12137)) ([c6677cb](https://github.com/ovh/manager/commit/c6677cb7d127a40843992cf74b2b4d4752524d08))
+
+
+
+
+
+# [0.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.59.0...@ovh-ux/manager-container-app@0.60.0) (2024-06-25)
+
+
+### Bug Fixes
+
+* **container:** hide preloader when mfa enrollment is displayed ([#11924](https://github.com/ovh/manager/issues/11924)) ([95dd0ea](https://github.com/ovh/manager/commit/95dd0ea719d9876e382c58aa9ee45474b941e09c))
+
+
+### Features
+
+* **container:** add payment method warning popup ([#10732](https://github.com/ovh/manager/issues/10732)) ([1876db0](https://github.com/ovh/manager/commit/1876db0fefb7d8257142c2673b6e52930cb27bb2))
+
+
+
+
+
+# [0.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.58.1...@ovh-ux/manager-container-app@0.59.0) (2024-06-20)
+
+
+### Features
+
+* **container:** pnr v2 ([#11723](https://github.com/ovh/manager/issues/11723)) ([39013c6](https://github.com/ovh/manager/commit/39013c6337714f47f98b034200b605c91a0229d1))
+* **dedicated.account:** set up kyc fraud feature ([5261bbf](https://github.com/ovh/manager/commit/5261bbf7d9e070660818d951661001001a302cb3))
+
+
+
+
+
+## [0.58.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.58.0...@ovh-ux/manager-container-app@0.58.1) (2024-06-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
 # [0.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.57.7...@ovh-ux/manager-container-app@0.58.0) (2024-06-17)
 
 

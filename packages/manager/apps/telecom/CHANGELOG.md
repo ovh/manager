@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.18.0...@ovh-ux/manager-telecom@15.18.1) (2024-07-09)
+
+
+### Bug Fixes
+
+* **access.statistics:** initialize graph data before adding new ([#12128](https://github.com/ovh/manager/issues/12128)) ([82cfd85](https://github.com/ovh/manager/commit/82cfd853ea8d7455047d09d9fcf0dbfcfa876cee))
+* **i18n:** add missing translations [CDS 3133] ([1a9d072](https://github.com/ovh/manager/commit/1a9d07200c1c9decaee2f2cf474c76a265a0115a))
+
+
+
+
+
+# [15.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.17.1...@ovh-ux/manager-telecom@15.18.0) (2024-07-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3082] ([d63fdf8](https://github.com/ovh/manager/commit/d63fdf8bc9c1d8a095c18be7381e5a1e3e0d6296))
+
+
+### Features
+
+* **telecom.dashboard:** add ftth eligibilities list ([#11855](https://github.com/ovh/manager/issues/11855)) ([cdcad03](https://github.com/ovh/manager/commit/cdcad035e25e9dfa0fc48704c77b6c67996362f1))
+* **telecom:** add ont shipping address on move and migrate steps ([#11974](https://github.com/ovh/manager/issues/11974)) ([3729132](https://github.com/ovh/manager/commit/3729132425f717e2c9ebf7e25b358795b0797415))
+
+
+
+
+
+## [15.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.17.0...@ovh-ux/manager-telecom@15.17.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3082] ([1362cce](https://github.com/ovh/manager/commit/1362cce23f7caeeb5efede051e7513935761c2e6))
+* **telecom:** french mistakes ([#11994](https://github.com/ovh/manager/issues/11994)) ([6d48068](https://github.com/ovh/manager/commit/6d480686425f2322ba81f5d8480d4a030494dbcd))
+
+
+
+
+
 # [15.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.16.2...@ovh-ux/manager-telecom@15.17.0) (2024-06-17)
 
 

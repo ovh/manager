@@ -1,59 +1,44 @@
+import { OnboardingLayout } from '@ovhcloud/manager-components';
 import React from 'react';
+import {
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  ODS_TEXT_COLOR_INTENT,
+} from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { Card, OnboardingLayout } from '@ovhcloud/manager-components';
+import { useNavigate } from 'react-router-dom';
+import useGuideUtils from '@/hooks/guide/useGuideUtils';
+import { ROUTES_URLS } from '@/routes/routes.constants';
 import onboardingImgSrc from './onboarding-img.png';
 
 export default function Onboarding() {
   const { t } = useTranslation('key-management-service/onboarding');
-
-  const tileList = [
-    {
-      id: 1,
-      texts: {
-        title: t('guide1Title'),
-        description: t('guide1Description'),
-        category: t('guideCategory'),
-      },
-      href: 'https://ovh/com/link/1',
-    },
-    {
-      id: 2,
-      texts: {
-        title: t('guide2Title'),
-        description: t('guide2Description'),
-        category: t('guideCategory'),
-      },
-      href: 'https://ovh/com/link/2',
-    },
-    {
-      id: 3,
-      texts: {
-        title: t('guide3Title'),
-        description: t('guide3Description'),
-        category: t('guideCategory'),
-      },
-      href: 'https://ovh/com/link/3',
-    },
-  ];
-
-  const title: string = t('title');
-  const description: string = t('description');
+  const navigate = useNavigate();
+  const guideLinks = useGuideUtils();
+  const descriptionsKeys = ['description', 'description_secondary'];
 
   return (
     <OnboardingLayout
-      title={title}
+      title={t('title')}
       img={{ src: onboardingImgSrc }}
-      description={description}
+      description={descriptionsKeys.map((descKey) => (
+        <OsdsText
+          level={ODS_TEXT_LEVEL.body}
+          size={ODS_TEXT_SIZE._800}
+          color={ODS_TEXT_COLOR_INTENT.text}
+          className="block text-center mb-4"
+          key={descKey}
+        >
+          {t(descKey)}
+        </OsdsText>
+      ))}
       orderButtonLabel={t('orderButtonLabel')}
-      orderHref={t('orderButtonLink')}
+      onOrderButtonClick={() =>
+        navigate(ROUTES_URLS.createKeyManagementService)
+      }
       moreInfoButtonLabel={t('moreInfoButtonLabel')}
-      moreInfoHref={t('moreInfoButtonLink')}
-    >
-      <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
-        {tileList.map((tile) => (
-          <Card key={tile.id} href={tile.href} texts={tile.texts} />
-        ))}
-      </aside>
-    </OnboardingLayout>
+      moreInfoHref={guideLinks?.quickStart}
+    ></OnboardingLayout>
   );
 }

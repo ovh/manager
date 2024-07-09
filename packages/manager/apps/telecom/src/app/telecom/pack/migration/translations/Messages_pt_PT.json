@@ -204,5 +204,10 @@
   "telecom_pack_migration_no_meeting_available": "Nenhum RDV está disponível no momento, você será contatado por telefone para o planejamento.",
   "telecom_pack_migration_pto_multi_otp": "Tenho uma caixa e desejo a criação de uma linha suplementar",
   "telecom_pack_migration_pto_multi_otp_description": "Um técnico irá instalar uma segunda tomada óptica (PTO) no momento da sua intervenção.",
-  "telecom_pack_migration_pto_otp_not_mandatory": "Esta referência PTO é opcional neste caso."
+  "telecom_pack_migration_pto_otp_not_mandatory": "Esta referência PTO é opcional neste caso.",
+  "telecom_pack_migration_ont_shipping_title": "Escolha o endereço de expedição do seu VPS",
+  "telecom_pack_migration_ont_shipping_explain": "O ONT (Optical Network Termination) é um equipamento de rede que permite ligar o seu modem à PTO.",
+  "telecom_pack_migration_ont_shipping_contact": "Contacto de entrega",
+  "telecom_pack_migration_ont_shipping_confirm": "Confirmar este contacto de entrega",
+  "telecom_pack_migration_ont_shipping_addresses_error": "Ocorreu um erro aquando do carregamento dos seus contactos. {{error}}"
 }

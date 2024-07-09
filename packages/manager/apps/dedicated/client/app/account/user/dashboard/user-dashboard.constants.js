@@ -35,6 +35,14 @@ export const USER_DASHBOARD_SHORTCUTS = [
     regions: ['EU', 'CA'],
   },
   {
+    key: 'MANAGE_USERS',
+    url: {
+      baseURL: 'iam',
+      path: '/dashboard/users',
+    },
+    new: true,
+  },
+  {
     key: 'ADD_CONTACT',
     state: 'app.account.contacts.services',
     regions: ['EU'],

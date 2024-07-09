@@ -1,0 +1,12 @@
+{
+  "iam_identities_groups_title": "User groups",
+  "iam_identities_groups_empty": "No user groups",
+  "iam_identities_groups_group": "Name",
+  "iam_identities_groups_role": "Role",
+  "iam_identities_groups_description": "Description",
+  "iam_identities_groups_add": "Add user groups",
+  "iam_identities_groups_modal_title": "Add user groups",
+  "iam_identities_groups_modal_empty_state": "No user groups to add",
+  "iam_identities_groups_modal_search_placeholder": "Search by name",
+  "iam_identities_groups_load_error": "An error has occurred retrieving your user groups: {{ message }}"
+}

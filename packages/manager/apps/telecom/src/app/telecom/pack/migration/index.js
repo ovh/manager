@@ -13,6 +13,7 @@ import confirm from './confirm';
 import meeting from './meeting';
 import migration from './migration';
 import offers from './offers';
+import ontShipping from './ont-shipping';
 import serviceDelete from './service-delete';
 import shipping from './shipping';
 
@@ -31,6 +32,7 @@ angular
     meeting,
     migration,
     offers,
+    ontShipping,
     serviceDelete,
     shipping,
   ])

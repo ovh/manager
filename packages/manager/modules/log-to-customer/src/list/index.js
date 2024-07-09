@@ -5,7 +5,6 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 import component from './component';
 
-import './index.less';
 import service from '../service';
 
 const moduleName = 'ovhLogToCustomerList';

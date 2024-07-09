@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.12.1...@ovh-ux/manager-hub@3.12.2) (2024-06-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub
+
+
+
+
+
+## [3.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.12.0...@ovh-ux/manager-hub@3.12.1) (2024-06-21)
+
+
+### Reverts
+
+* Revert "feat(hub): delete a warning pop up on manager dashboard (#12061)" (#12100) ([d0778f7](https://github.com/ovh/manager/commit/d0778f7b2183e220e1e5418de79537e86ec1e8fa)), closes [#12061](https://github.com/ovh/manager/issues/12061) [#12100](https://github.com/ovh/manager/issues/12100)
+
+
+
+
+
+# [3.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.11.0...@ovh-ux/manager-hub@3.12.0) (2024-06-21)
+
+
+### Features
+
+* **hub:** delete a warning pop up on manager dashboard ([#12061](https://github.com/ovh/manager/issues/12061)) ([76da253](https://github.com/ovh/manager/commit/76da2531e6ba9e0e96d8180db094d2d99c7f2f0c))
+
+
+
+
+
+# [3.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.10.3...@ovh-ux/manager-hub@3.11.0) (2024-06-20)
+
+
+### Features
+
+* **dedicated.account:** set up kyc fraud feature ([5261bbf](https://github.com/ovh/manager/commit/5261bbf7d9e070660818d951661001001a302cb3))
+
+
+
+
+
 ## [3.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.10.2...@ovh-ux/manager-hub@3.10.3) (2024-05-21)
 
 

@@ -86,6 +86,7 @@ export const PCI_FEATURES = {
       'public-cloud:project:billing-change-mediation-banner',
     BILLING_CHANGE_MEDIATION_BANNER_2:
       'public-cloud:project:billing-change-mediation-banner_2',
+    FREE_LOCAL_ZONES_BANNER: 'public-cloud:project:free-local-zones-banner',
   },
   OTHERS: {
     PUBLIC_CLOUD: 'public-cloud',
@@ -138,9 +139,6 @@ export const PCI_FEATURES_STATES = {
   PRIVATE_NETWORK: {
     LIST: 'pci.projects.project.privateNetwork',
     ADD: 'pci.projects.project.privateNetwork.new',
-  },
-  FAILOVER_IP: {
-    LIST: 'pci.projects.project.failover-ips',
   },
   KUBERNETES: {
     LIST: 'pci.projects.project.kubernetes',

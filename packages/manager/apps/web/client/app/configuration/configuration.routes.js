@@ -16,6 +16,12 @@ angular.module('App').config(($stateProvider) => {
         },
       ],
       hideBreadcrumb: () => true,
+      isOffersBannerActive: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('web:offers')
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable('web:offers'),
+          ),
     },
   });
 });

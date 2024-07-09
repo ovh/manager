@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash-es';
 
-import { ENTITY } from './iam.constants';
+import { ENTITY, IDENTITY_TYPE } from './iam.constants';
 
 /**
  * @description
@@ -12,42 +12,73 @@ import { ENTITY } from './iam.constants';
 
 const urnType = 'urn';
 const urnPattern = /urn:v[0-9]:(?:eu|ca|us|labeu):[a-z]+:.+/;
-const urnRegExp = /^urn:v([0-9]):(eu|ca|us|labeu):([a-z]+):(.+?)$/;
+const urnIdentityRegExp = /^urn:v([0-9]):(eu|ca|us|labeu):([a-z]+):([a-z]+):(.+?)$/;
 
 /**
- * Encode a urn object to a string
- * @param {Object} object
- * @returns {string}
+ * @typedef {Object} UrnIdentityObject
+ * @property {string} version - 1,2
+ * @property {string} region - eu, us, ca
+ * @property {string} entity - identity
+ * @property {string} type - user, account, group, credential
+ * @property {string} account - xx1111, xx11111-ovh
+ * @property {string} id - username, xx11111, usergroupname
+ * @property {string} urn - URN
  */
-const encodeUrn = (object) => {
-  const { version, region, entity, components } = object;
-  return [
-    'urn',
-    `v${version}`,
-    region.toLowerCase(),
-    entity,
-    ...components,
-  ].join(':');
-};
 
 /**
- * Decode a urn object from a string
- * @param {string} string
- * @returns {Object}
+ * Decode a urn identity object from a string
+ * @param {string} urn
+ * @returns {UrnIdentityObject}
  */
-const decodeUrn = (string) => {
-  const [match, version, region, entity, components] =
-    urnRegExp.exec(string) || [];
+const decodeIdentityUrn = (urn) => {
+  const [match, version, region, entity, type, value] =
+    urnIdentityRegExp.exec(urn) || [];
   if (!match) {
     return null;
   }
-  const splittedComponents = components.split(':');
+  let account;
+  let id;
+
+  switch (type) {
+    case IDENTITY_TYPE.USER:
+      {
+        const [acc, userId] = value.split('/');
+        account = acc;
+        id = userId;
+      }
+      break;
+    case IDENTITY_TYPE.GROUP:
+      {
+        const [acc, groupId] = value.split('/');
+        account = acc;
+        id = groupId;
+      }
+      break;
+    case IDENTITY_TYPE.ACCOUNT:
+      account = value;
+      id = value;
+      break;
+    case IDENTITY_TYPE.SERVICE_ACCOUNT:
+      {
+        const [acc, client] = value.split('/');
+        const index = client.indexOf('-');
+        const clientId = client.substring(index + 1);
+        account = acc;
+        id = clientId;
+      }
+      break;
+    default:
+      break;
+  }
+
   return {
     version: parseInt(version, 10),
-    region: region.toUpperCase(),
+    region,
     entity,
-    components: splittedComponents,
-    componentsString: splittedComponents.slice(1).join(':'),
+    type,
+    account,
+    id,
+    urn,
   };
 };
 
@@ -76,8 +107,6 @@ const isUrn = (object) => {
 const areUrnEquals = (urnA, urnB) => urnA === urnB || isEqual(urnA, urnB);
 
 const urn = {
-  decode: decodeUrn,
-  encode: encodeUrn,
   equals: areUrnEquals,
   is: isUrn,
   pattern: urnPattern,
@@ -106,7 +135,7 @@ const uuid = {
   type: uuidType,
 };
 
-export { decodeUrn, encodeUrn, uuidType, urnType };
+export { decodeIdentityUrn, uuidType, urnType };
 
 export default {
   urn,

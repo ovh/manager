@@ -75,5 +75,7 @@
   "nasha_components_metrics_datacenter_slc": "Salt Lake City",
   "nasha_components_metrics_datacenter_stl": "Saint-Louis",
   "nasha_components_metrics_datacenter_ind": "Indianapolis",
-  "nasha_components_metrics_datacenter_ist": "Istambul"
+  "nasha_components_metrics_datacenter_ist": "Istambul",
+  "nasha_components_metrics_datacenter_tor": "Toronto",
+  "nasha_components_metrics_datacenter_dal": "Dallas"
 }

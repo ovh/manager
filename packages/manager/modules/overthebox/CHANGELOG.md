@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.17.2...@ovh-ux/manager-overthebox@6.17.3) (2024-07-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3119] ([a33db00](https://github.com/ovh/manager/commit/a33db00a31047b1ea4d535ae4328e62eb04005b9))
+* **i18n:** add missing translations [CDS 3120] ([3eb7681](https://github.com/ovh/manager/commit/3eb7681a9c8efd61814eb1c424aff935d6ce2218))
+* **i18n:** add missing translations [CDS 3122] ([8963cbc](https://github.com/ovh/manager/commit/8963cbcc3981ee7a636276b1cc4433876673c3de))
+* **i18n:** add missing translations [CDS 3123] ([08abca5](https://github.com/ovh/manager/commit/08abca540f774fc9688483f95df2c8666c718291))
+* remove unused translations [CDS] ([8fc5f2c](https://github.com/ovh/manager/commit/8fc5f2c4d09cb261832afa8051049a4fd3ebc65b))
+
+
+
+
+
+## [6.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.17.1...@ovh-ux/manager-overthebox@6.17.2) (2024-07-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3094] ([e8a1fc8](https://github.com/ovh/manager/commit/e8a1fc801219be65466501772f0aa710fc85f634))
+* **i18n:** add missing translations [CDS 3111] ([c6f9bde](https://github.com/ovh/manager/commit/c6f9bde68455fe13190c1ac5bf28786c638fe05b))
+* remove unused translations [CDS] ([7dc535a](https://github.com/ovh/manager/commit/7dc535a9077da3d16de9a4cf91a58b84be9dd1c8))
+* remove unused translations [CDS] ([873b7cc](https://github.com/ovh/manager/commit/873b7cc3c32fa7ea1bf47f34e826b2208516a04e))
+
+
+
+
+
+## [6.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.17.0...@ovh-ux/manager-overthebox@6.17.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3094] ([b916662](https://github.com/ovh/manager/commit/b9166624c8b63b269a764bc350976a74be6d181c))
+* **overthebox:** display graph ([#11966](https://github.com/ovh/manager/issues/11966)) ([2c676c6](https://github.com/ovh/manager/commit/2c676c629877f26d05c0a77ecdc3f6843a06b13d))
+* remove unused translations [CDS] ([20d761c](https://github.com/ovh/manager/commit/20d761cd867941c992b306606e51f640e3876c71))
+
+
+
+
+
 # [6.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.16.2...@ovh-ux/manager-overthebox@6.17.0) (2024-06-17)
 
 

@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.20.0...@ovhcloud/manager-components@1.21.0) (2024-07-09)
+
+### Features
+
+- **manager-components.notifications:** add text style for notification ([#11738](https://github.com/ovh/manager/issues/11738)) ([d36de38](https://github.com/ovh/manager/commit/d36de38982956d8592c37a3118db602adfb7131f))
+- **manager-components:** dashboard template update ([#12090](https://github.com/ovh/manager/issues/12090)) ([e044200](https://github.com/ovh/manager/commit/e04420063ed8d27051bb33b5d9e2672001fa69fb))
+
+# [1.20.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.19.0...@ovhcloud/manager-components@1.20.0) (2024-07-03)
+
+### Bug Fixes
+
+- **manager-components:** build storybook ([#12199](https://github.com/ovh/manager/issues/12199)) ([a1a7e20](https://github.com/ovh/manager/commit/a1a7e2081898c8d14c3fbca847f1de8b8e0f9813))
+- **manager-components:** useless test import ([#12034](https://github.com/ovh/manager/issues/12034)) ([7e33a9d](https://github.com/ovh/manager/commit/7e33a9dbb5c0c540af2bd01e218a3c24c4cbc59f))
+
+### Features
+
+- **rancher:** replace with manager-components([#11668](https://github.com/ovh/manager/issues/11668)) ([9a35455](https://github.com/ovh/manager/commit/9a3545519c07d1afb728ffdd29943df0fbf88480))
+
+# [1.19.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.18.0...@ovhcloud/manager-components@1.19.0) (2024-06-25)
+
+### Bug Fixes
+
+- fix onboarding layout in manager component and kms ([#12112](https://github.com/ovh/manager/issues/12112)) ([3415206](https://github.com/ovh/manager/commit/341520648a498446464ae2779ab33ece20983a5f))
+- **manager-components:** useless test import ([#12034](https://github.com/ovh/manager/issues/12034)) ([ecaeabd](https://github.com/ovh/manager/commit/ecaeabd7225228897743f0450b0001b1c1f658e5))
+
+### Features
+
+- **pci-rancher:** onboarding page redirect user to guides ([#11736](https://github.com/ovh/manager/issues/11736)) ([54bd61b](https://github.com/ovh/manager/commit/54bd61ba972d1ec5687e72861a6edeacecf3a460))
+- **rancher:** replace with manager-components([#11668](https://github.com/ovh/manager/issues/11668)) ([aaec594](https://github.com/ovh/manager/commit/aaec594073ae9472380841cbb48544ddf5036447))
+
+# [1.18.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.17.0...@ovhcloud/manager-components@1.18.0) (2024-06-20)
+
+### Features
+
+- **container:** pnr v2 ([#11723](https://github.com/ovh/manager/issues/11723)) ([39013c6](https://github.com/ovh/manager/commit/39013c6337714f47f98b034200b605c91a0229d1))
+
+# [1.17.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.16.4...@ovhcloud/manager-components@1.17.0) (2024-06-19)
+
+### Features
+
+- **pci-private-network:** create µapp ([155f659](https://github.com/ovh/manager/commit/155f659fded08e2a788de45b5c2e748fe6b3c1a0))
+
 ## [1.16.4](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.16.3...@ovhcloud/manager-components@1.16.4) (2024-06-17)
 
 ### Bug Fixes

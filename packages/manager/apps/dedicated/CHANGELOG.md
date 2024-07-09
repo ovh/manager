@@ -3,6 +3,104 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.42.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.42.1...@ovh-ux/manager-dedicated@19.42.2) (2024-07-09)
+
+
+### Bug Fixes
+
+* **dedicated:** consider ipblock while fetching info ([#12203](https://github.com/ovh/manager/issues/12203)) ([d5b27b3](https://github.com/ovh/manager/commit/d5b27b3ea275e736686bd22df0b07848d7ba868b))
+* **i18n:** add missing translations [CDS 3119] ([a33db00](https://github.com/ovh/manager/commit/a33db00a31047b1ea4d535ae4328e62eb04005b9))
+* **i18n:** add missing translations [CDS 3120] ([3eb7681](https://github.com/ovh/manager/commit/3eb7681a9c8efd61814eb1c424aff935d6ce2218))
+* **i18n:** add missing translations [CDS 3122] ([8963cbc](https://github.com/ovh/manager/commit/8963cbcc3981ee7a636276b1cc4433876673c3de))
+* **i18n:** add missing translations [CDS 3123] ([08abca5](https://github.com/ovh/manager/commit/08abca540f774fc9688483f95df2c8666c718291))
+* **i18n:** add missing translations [CDS 3133] ([1a9d072](https://github.com/ovh/manager/commit/1a9d07200c1c9decaee2f2cf474c76a265a0115a))
+* remove unused translations [CDS] ([8fc5f2c](https://github.com/ovh/manager/commit/8fc5f2c4d09cb261832afa8051049a4fd3ebc65b))
+
+
+
+
+
+## [19.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.42.0...@ovh-ux/manager-dedicated@19.42.1) (2024-07-04)
+
+
+### Bug Fixes
+
+* add Dallas region ([#12157](https://github.com/ovh/manager/issues/12157)) ([3b41966](https://github.com/ovh/manager/commit/3b41966a2a5b684c62e2e4b1ec14f5050705857f))
+
+
+
+
+
+# [19.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.41.1...@ovh-ux/manager-dedicated@19.42.0) (2024-07-03)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing translations for multi-AZ cluster servers ([#11722](https://github.com/ovh/manager/issues/11722)) ([ea45a11](https://github.com/ovh/manager/commit/ea45a11903dd34276fc83b93b59c24d814aa73f7))
+* **i18n:** add missing translations [CDS 3094] ([e8a1fc8](https://github.com/ovh/manager/commit/e8a1fc801219be65466501772f0aa710fc85f634))
+* **i18n:** add missing translations [CDS 3111] ([c6f9bde](https://github.com/ovh/manager/commit/c6f9bde68455fe13190c1ac5bf28786c638fe05b))
+* remove unused translations [CDS] ([7dc535a](https://github.com/ovh/manager/commit/7dc535a9077da3d16de9a4cf91a58b84be9dd1c8))
+
+
+### Features
+
+* **dedicated.ip:** get game protocol from api ([#12055](https://github.com/ovh/manager/issues/12055)) ([c0240d5](https://github.com/ovh/manager/commit/c0240d506b9d371d938ef9071adafddc27e1c1dd))
+* **dedicated.support:** add order support level ([#11953](https://github.com/ovh/manager/issues/11953)) ([388a33b](https://github.com/ovh/manager/commit/388a33bfb3eaee9055fd846e5f586908ef78467d))
+* **dedicated:** modify aggregate configuration content ([#12060](https://github.com/ovh/manager/issues/12060)) ([492702c](https://github.com/ovh/manager/commit/492702c4eb79927ce540680a4a2218d955286e16))
+
+
+### Performance Improvements
+
+* **dedicated.server:** fetch server list without details ([#12088](https://github.com/ovh/manager/issues/12088)) ([5ed064b](https://github.com/ovh/manager/commit/5ed064b3d78f9bc20a4a6b428cf4a1aad5237da7))
+
+
+
+
+
+## [19.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.41.0...@ovh-ux/manager-dedicated@19.41.1) (2024-07-01)
+
+
+### Bug Fixes
+
+* **dedicated.server:** dont call orderable endpoint if not orderable ([#12152](https://github.com/ovh/manager/issues/12152)) ([77fd8e8](https://github.com/ovh/manager/commit/77fd8e82f4d6aa0c8b10794882f2d3309301d810))
+
+
+
+
+
+# [19.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.40.0...@ovh-ux/manager-dedicated@19.41.0) (2024-06-25)
+
+
+### Bug Fixes
+
+* **dedicated:** fixed lint error on kyc fraud ([#12096](https://github.com/ovh/manager/issues/12096)) ([b471e65](https://github.com/ovh/manager/commit/b471e65e6d36e105f03a627fdc4f3c9f9073f34e))
+* **dedicated:** update core config user after account update ([#11930](https://github.com/ovh/manager/issues/11930)) ([a21b667](https://github.com/ovh/manager/commit/a21b6675bb8b11948477415024bbcf209b897b70))
+* **i18n:** add missing translations [CDS 3051] ([#11913](https://github.com/ovh/manager/issues/11913)) ([eed145e](https://github.com/ovh/manager/commit/eed145e67436d406744c0ec640dc3722dff93b26))
+* **i18n:** add missing translations [CDS 3094] ([b916662](https://github.com/ovh/manager/commit/b9166624c8b63b269a764bc350976a74be6d181c))
+
+
+### Features
+
+* **dedicated.ip:** get game protocol from api ([#12055](https://github.com/ovh/manager/issues/12055)) ([6b0b1d7](https://github.com/ovh/manager/commit/6b0b1d75dc279feb5e93021e6e85b1e28aa186a3))
+* **dedicated:** update insurance msg after uploaded In id doc ([#11502](https://github.com/ovh/manager/issues/11502)) ([f4c83e0](https://github.com/ovh/manager/commit/f4c83e0e522c4fe6ee9dcb37cdcd4c4af3839022))
+* move users management from account to iam ([#11391](https://github.com/ovh/manager/issues/11391)) ([0ffda6d](https://github.com/ovh/manager/commit/0ffda6d3f5f4c15fbe587ea4feb05b163371a66d))
+* **pci:** add region label for toronto ([#11848](https://github.com/ovh/manager/issues/11848)) ([a87f1a0](https://github.com/ovh/manager/commit/a87f1a0de01acdfd702755e3bfc45e7aba4d1821))
+
+
+
+
+
+# [19.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.39.0...@ovh-ux/manager-dedicated@19.40.0) (2024-06-20)
+
+
+### Features
+
+* **dedicated.account:** set up kyc fraud feature ([5261bbf](https://github.com/ovh/manager/commit/5261bbf7d9e070660818d951661001001a302cb3))
+
+
+
+
+
 # [19.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.38.6...@ovh-ux/manager-dedicated@19.39.0) (2024-06-17)
 
 

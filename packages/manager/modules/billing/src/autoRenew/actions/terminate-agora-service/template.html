@@ -1,0 +1,27 @@
+<billing-autorenew-terminate
+    data-title=":: ('autorenew_agora_terminate_service_' + $ctrl.serviceType) | translate"
+    data-primary-disabled="!$ctrl.terminateConfirmation"
+    data-on-success="$ctrl.onSuccess()"
+    data-on-error="$ctrl.onError(error)"
+    data-service-type="$ctrl.serviceType"
+    data-terminate-service="$ctrl.terminate()"
+    data-go-back="$ctrl.goBack()"
+>
+    <oui-message data-type="warning">
+        <span
+            data-translate="{{:: 'autorenew_agora_terminate_service_warning_' + $ctrl.serviceType}}"
+        ></span>
+    </oui-message>
+    <oui-field
+        data-label="{{:: 'autorenew_agora_terminate_service_confirm_input' | translate }}"
+    >
+        <input
+            type="text"
+            class="oui-input"
+            name="terminateInput"
+            data-ng-model="$ctrl.terminateConfirmation"
+            data-ng-pattern="$ctrl.TERMINATE_PATTERN"
+            required
+        />
+    </oui-field>
+</billing-autorenew-terminate>

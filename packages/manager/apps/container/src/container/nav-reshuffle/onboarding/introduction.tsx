@@ -45,7 +45,7 @@ export const OnboardingIntroduction = () => {
     trackingPlugin.trackClickImpression({
       click: {
         ...commonTrackingOptions,
-        format: `[0-5]`,
+        format: '[0-4]',
         generalPlacement: '[next]',
       },
     });
@@ -58,7 +58,7 @@ export const OnboardingIntroduction = () => {
       click: {
         ...commonTrackingOptions,
         generalPlacement: '[hide]',
-        format: '[0-5]',
+        format: '[0-4]',
       },
     });
   };
@@ -73,12 +73,12 @@ export const OnboardingIntroduction = () => {
         trackingPlugin.trackImpression({
           ...commonTrackingOptions,
           generalPlacement: '[next]',
-          format: '[0-5]',
+          format: '[0-4]',
         });
         trackingPlugin.trackImpression({
           ...commonTrackingOptions,
           generalPlacement: '[hide]',
-          format: '[0-5]',
+          format: '[0-4]',
         });
       });
     }

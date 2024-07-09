@@ -79,20 +79,20 @@ function LegacyContainer(): JSX.Element {
             </Suspense>
             <div className={style.managerShell_content}>
               <SidebarOverlay />
-              {isMfaEnrollmentVisible && (
-                <Suspense fallback="">
-                  <MfaEnrollment
-                    forced={isMfaEnrollmentForced}
-                    onHide={hideMfaEnrollment}
-                  />
-                </Suspense>
-              )}
               <Preloader visible={preloaderVisible}>
                 <>
                   <IFrameAppRouter
                     iframeRef={iframeRef}
                     configuration={applications}
                   />
+                  {isMfaEnrollmentVisible && (
+                    <Suspense fallback="">
+                      <MfaEnrollment
+                        forced={isMfaEnrollmentForced}
+                        onHide={hideMfaEnrollment}
+                      />
+                    </Suspense>
+                  )}
                   <iframe
                     title="app"
                     role="document"

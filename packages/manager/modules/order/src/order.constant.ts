@@ -24,6 +24,15 @@ export const getVrackServicesProductSettings = ({
     ].filter(Boolean),
   });
 
+export const getKMSProductSettings = ({ region }: { region: string }) =>
+  JSURL.stringify({
+    productId: 'okms',
+    planCode: 'okms',
+    duration: 'P1M',
+    pricingMode: 'default',
+    configuration: [{ label: 'region', value: region }].filter(Boolean),
+  });
+
 export const ORDER_URLS = {
   EU: {
     DEDICATED: {

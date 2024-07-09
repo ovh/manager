@@ -44,7 +44,7 @@ export const features = [
   'public-cloud:project-settings',
   'ai-dashboard',
   'data-platform',
-  'ai-endpoints',
+  'ai-endpoints'
 ];
 
 export function getPciProjectMenu(

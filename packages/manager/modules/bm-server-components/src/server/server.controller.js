@@ -414,16 +414,16 @@ export default class ServerCtrl {
 
     this.$scope.$broadcast('dedicated.server.refreshTabs');
 
-    return this.Server.getUsbStorageInformations(
-      this.$stateParams.productId,
-    ).then((usbStorageInformations) => {
-      if (
-        isArray(usbStorageInformations) &&
-        usbStorageInformations[1].usbKeys
-      ) {
-        this.$scope.disable.usbStorageTab = true;
-      }
-    });
+    return this.Server.getUsbStorageInformations(this.server).then(
+      (usbStorageInformations) => {
+        if (
+          isArray(usbStorageInformations) &&
+          usbStorageInformations[1].usbKeys
+        ) {
+          this.$scope.disable.usbStorageTab = true;
+        }
+      },
+    );
   }
 
   getTaskInProgress() {

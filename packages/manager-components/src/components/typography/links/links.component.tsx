@@ -15,6 +15,7 @@ export enum LinkType {
 }
 
 export interface LinksProps {
+  className?: string;
   download?: string;
   label?: ReactI18NextChild | Iterable<ReactI18NextChild>;
   href?: string;
@@ -25,66 +26,46 @@ export interface LinksProps {
 }
 
 export const Links: React.FC<LinksProps> = ({
-  download,
   label,
-  href,
   onClickReturn,
-  target,
   type,
-  rel,
   ...props
-}: LinksProps) => {
-  let arrowIcon;
-  let arrowClass = '';
-
-  if (type === LinkType.back) {
-    arrowIcon = ODS_ICON_NAME.ARROW_LEFT;
-    arrowClass = 'mr-4';
-  } else if (type === LinkType.external) {
-    arrowIcon = ODS_ICON_NAME.EXTERNAL_LINK;
-    arrowClass = 'ml-4';
-  } else if (type === LinkType.next) {
-    arrowIcon = ODS_ICON_NAME.ARROW_RIGHT;
-    arrowClass = 'ml-4';
-  }
-
-  return (
-    <OsdsLink
-      color={ODS_THEME_COLOR_INTENT.primary}
-      download={download}
-      onClick={onClickReturn}
-      href={href}
-      target={target}
-      rel={rel}
-      {...props}
-    >
-      <span slot="start">
-        {type === LinkType.back && (
-          <OsdsIcon
-            className={`${arrowClass}`}
-            hoverable
-            name={arrowIcon}
-            size={ODS_ICON_SIZE.xxs}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          />
-        )}
-      </span>
-
-      {label}
-      {(type === LinkType.next || type === LinkType.external) && (
-        <span slot="end">
-          <OsdsIcon
-            aria-hidden="true"
-            className={`${arrowClass}`}
-            name={arrowIcon}
-            hoverable
-            size={ODS_ICON_SIZE.xxs}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          />
-        </span>
+}: LinksProps) => (
+  <OsdsLink
+    color={ODS_THEME_COLOR_INTENT.primary}
+    onClick={onClickReturn}
+    {...props}
+  >
+    <span slot="start">
+      {type === LinkType.back && (
+        <OsdsIcon
+          className="mr-4"
+          hoverable
+          name={ODS_ICON_NAME.ARROW_LEFT}
+          size={ODS_ICON_SIZE.xxs}
+          color={ODS_THEME_COLOR_INTENT.primary}
+        />
       )}
-    </OsdsLink>
-  );
-};
+    </span>
+
+    {label}
+    {[LinkType.next, LinkType.external].includes(type) && (
+      <span slot="end">
+        <OsdsIcon
+          aria-hidden="true"
+          className="ml-4"
+          name={
+            type === LinkType.external
+              ? ODS_ICON_NAME.EXTERNAL_LINK
+              : ODS_ICON_NAME.ARROW_RIGHT
+          }
+          hoverable
+          size={ODS_ICON_SIZE.xxs}
+          color={ODS_THEME_COLOR_INTENT.primary}
+        />
+      </span>
+    )}
+  </OsdsLink>
+);
 
 export default Links;

@@ -1,0 +1,8 @@
+{
+  "payment_modal_action_cancel": "Agora não",
+  "payment_modal_action_validate": "Atualizar",
+  "payment_modal_description_no_default": "O seu cartão de pagamento vai expirar brevemente e os seus pagamentos não poderão ser efetuados.",
+  "payment_modal_description_expired": "O seu cartão de pagamento vai expirar brevemente e os seus pagamentos não poderão ser efetuados.",
+  "payment_modal_description_sub": "Para permitir o funcionamento dos seus serviços e evitar possíveis cortes, recomendamos que atualize o seu método de pagamento.",
+  "payment_modal_title": "Atualização do seu método de pagamento"
+}

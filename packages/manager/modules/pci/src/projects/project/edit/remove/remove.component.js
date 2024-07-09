@@ -9,6 +9,7 @@ export default {
     unFavProject: '<',
     trackClick: '<',
     trackPage: '<',
+    isDiscoveryProject: '<',
   },
   controller,
   template,

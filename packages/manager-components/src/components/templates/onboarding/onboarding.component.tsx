@@ -1,12 +1,16 @@
 import React, { PropsWithChildren } from 'react';
 import {
   OsdsButton,
-  OsdsDivider,
+  OsdsIcon,
   OsdsText,
+  OsdsDivider,
 } from '@ovhcloud/ods-components/react';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_DIVIDER_SIZE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
@@ -28,6 +32,7 @@ export type OnboardingLayoutProps = PropsWithChildren<{
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
   onOrderButtonClick?: () => void;
+  onmoreInfoButtonClick?: () => void;
   img?: {
     src: string;
     width?: number;
@@ -46,6 +51,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   moreInfoButtonLabel,
   children,
   onOrderButtonClick,
+  onmoreInfoButtonClick,
   img,
   isActionDisabled,
 }) => {
@@ -72,37 +78,49 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             {title}
           </OsdsText>
           <OsdsDivider size={ODS_DIVIDER_SIZE.seven} />
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_TEXT_COLOR_INTENT.text}
-            className="block text-center max-w-4xl"
-          >
-            {description}
-          </OsdsText>
-          <div className="flex sm:py-6 xs:w-full xs:flex-col sm:items-center sm:w-fit sm:flex-row">
-            <div className="w-full xs:py-3 mt-2">
-              <OsdsButton
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_BUTTON_SIZE.md}
-                href={orderHref}
-                onClick={onOrderButtonClick}
-                {...(isActionDisabled && { disabled: true })}
-              >
-                {orderButtonLabel}
-              </OsdsButton>
-            </div>
+          {description && (
+            <OsdsText
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_TEXT_SIZE._400}
+              color={ODS_TEXT_COLOR_INTENT.text}
+              className="block text-center mb-4 max-w-4xl"
+            >
+              {description}
+            </OsdsText>
+          )}
+          <div className="flex sm:py-8 xs:w-full xs:flex-col sm:items-center sm:flex-row w-full justify-center">
+            <OsdsButton
+              inline
+              color={ODS_THEME_COLOR_INTENT.primary}
+              size={ODS_BUTTON_SIZE.md}
+              href={orderHref}
+              onClick={onOrderButtonClick}
+            >
+              {orderButtonLabel}
+            </OsdsButton>
+
             {moreInfoButtonLabel && moreInfoHref && (
-              <div className="w-full sm:m-2 xs:py-3 xs:mb-6">
-                <OsdsButton
-                  className="sm:ml-1"
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  variant={ODS_BUTTON_VARIANT.stroked}
-                  size={ODS_BUTTON_SIZE.md}
-                >
-                  {moreInfoButtonLabel}
-                </OsdsButton>
-              </div>
+              <OsdsButton
+                inline
+                className="sm:ml-1"
+                color={ODS_THEME_COLOR_INTENT.primary}
+                variant={ODS_BUTTON_VARIANT.stroked}
+                size={ODS_BUTTON_SIZE.md}
+                onClick={onmoreInfoButtonClick}
+                {...(isActionDisabled && { disabled: true })}
+                href={moreInfoHref}
+                target={OdsHTMLAnchorElementTarget._blank}
+              >
+                {moreInfoButtonLabel}
+                <span slot="end">
+                  <OsdsIcon
+                    className="ml-4 cursor-pointer"
+                    name={ODS_ICON_NAME.EXTERNAL_LINK}
+                    size={ODS_ICON_SIZE.xs}
+                    hoverable
+                  ></OsdsIcon>
+                </span>
+              </OsdsButton>
             )}
           </div>
         </section>

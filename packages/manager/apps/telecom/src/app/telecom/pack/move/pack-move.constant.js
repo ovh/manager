@@ -66,6 +66,13 @@ const DICTIONNARY = {
   [FIBER_PTO.FIBER_PTO_MULTI_OTP]: INSTALLATION_TYPE.multiOtp,
 };
 
+const CONTEXT = {
+  migration: 'migration',
+  voipLine: 'voipLine',
+};
+
+const ONT_SHIPPING_CONTACT = '/me/contact/';
+
 export {
   ELIGIBILITY_LINE_STATUS,
   LINE_STATUS,
@@ -79,4 +86,6 @@ export {
   FIBER_PTO,
   INSTALLATION_TYPE,
   DICTIONNARY,
+  ONT_SHIPPING_CONTACT,
+  CONTEXT,
 };

@@ -68,12 +68,14 @@
   "nasha_components_metrics_datacenter_vie": "Viena",
   "nasha_components_metrics_datacenter_dln": "Dublín",
   "nasha_components_metrics_datacenter_van": "Vancouver",
-  "nasha_components_metrics_datacenter_tlv": "Tel Aviv yafo",
+  "nasha_components_metrics_datacenter_tlv": "Tel Aviv-Yafo",
   "nasha_components_metrics_datacenter_mnc": "Manchester",
   "nasha_components_metrics_datacenter_clt": "Charlotte",
   "nasha_components_metrics_datacenter_bna": "Nashville",
   "nasha_components_metrics_datacenter_slc": "Salt Lake City",
   "nasha_components_metrics_datacenter_stl": "San Luis",
   "nasha_components_metrics_datacenter_ind": "Indianápolis",
-  "nasha_components_metrics_datacenter_ist": "Estambul"
+  "nasha_components_metrics_datacenter_ist": "Estambul",
+  "nasha_components_metrics_datacenter_tor": "Toronto",
+  "nasha_components_metrics_datacenter_dal": "Dallas"
 }

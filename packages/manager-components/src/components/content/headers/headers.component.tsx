@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Description, Title, Subtitle } from '../../typography';
 
 export interface HeadersProps {
@@ -16,13 +15,15 @@ export const Headers: React.FC<HeadersProps> = ({
   headerButton,
 }) => {
   return (
-    <div className="pl-5 flex items-center justify-between">
+    <div className="flex items-center justify-between">
       <div>
-        {title && <Title>{title}</Title>}
+        {title && <Title className="block mb-8">{title}</Title>}
         {subtitle && <Subtitle>{subtitle}</Subtitle>}
-        {description && <Description>{description}</Description>}
+        {description && (
+          <Description className="mb-6">{description}</Description>
+        )}
       </div>
-      <div>{headerButton}</div>
+      {headerButton && <div>{headerButton}</div>}
     </div>
   );
 };

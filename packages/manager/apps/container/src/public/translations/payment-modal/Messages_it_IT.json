@@ -1,0 +1,8 @@
+{
+  "payment_modal_action_cancel": "Non adesso",
+  "payment_modal_action_validate": "Aggiornare",
+  "payment_modal_description_no_default": "La tua carta bancaria sta per scadere e i pagamenti non potranno essere effettuati.",
+  "payment_modal_description_expired": "La tua carta bancaria sta per scadere e i pagamenti non potranno essere effettuati.",
+  "payment_modal_description_sub": "Per consentire il funzionamento dei servizi ed evitare qualsiasi interruzione, ti consigliamo di aggiornare il metodo di pagamento.",
+  "payment_modal_title": "Aggiornamento del metodo di pagamento"
+}
