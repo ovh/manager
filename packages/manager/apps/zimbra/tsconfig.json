@@ -29,6 +29,7 @@
     "dist",
     "types",
     "src/pages/dashboard/Organizations/__test__",
+    "src/pages/dashboard/Domains/__test__",
     "src/hook/__test__"
   ]
 }

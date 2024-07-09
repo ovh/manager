@@ -1,4 +1,4 @@
-import { ResourceStatus, TaskErrorMessage } from '../api.type';
+import { ResourceStatus } from '../api.type';
 
 export type AccountType = {
   checksum: string;
@@ -21,7 +21,7 @@ export type AccountType = {
     detailedStatus: {
       details: string;
       link: string;
-      status: TaskErrorMessage;
+      status: string;
     }[];
     displayName: string;
     domainId: string;
@@ -33,13 +33,11 @@ export type AccountType = {
     organizationId: string;
     organizationLabel: string;
     offer: string;
-    password: string;
     quota: {
       available: number;
       used: number;
     };
-    resourceName: string;
-    responder: string;
+    updatedAt: string;
   };
   currentTasks: {
     id: string;
@@ -48,7 +46,7 @@ export type AccountType = {
     type: string;
   }[];
   id: string;
-  resourceStatus: ResourceStatus;
+  resourceStatus: keyof typeof ResourceStatus;
   targetSpec: {
     contactInformation: {
       city: string;
@@ -80,13 +78,11 @@ export type AccountType = {
     organizationId: string;
     organizationLabel: string;
     offer: string;
-    password: string;
     quota: {
       available: number;
       used: number;
     };
-    resourceName: string;
-    responder: string;
+    updatedAt: string;
   };
 };
 
