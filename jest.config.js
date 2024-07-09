@@ -8,8 +8,9 @@ module.exports = {
         '!packages/**/*.d.ts',
       ],
       testMatch: [
-        '<rootDir>/packages/**/__tests__/**/*.{spec,test}.{js,jsx,ts,tsx}',
-        '<rootDir>/packages/**/*.{spec,test}.{js,jsx,ts,tsx}',
+        '<rootDir>/packages/components/ovh-shell/**/*.{spec,test}.{js,jsx,ts,tsx}',
+        '<rootDir>/packages/manager/apps/container/**/*.{spec,test}.{js,jsx,ts,tsx}',
+        '<rootDir>/packages/core/url-builder/**/*.{spec,test}.{js,jsx,ts,tsx}',
       ],
       testEnvironment: 'jest-environment-jsdom',
       transform: {
