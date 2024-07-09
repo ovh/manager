@@ -17,7 +17,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { URL_INFO } from '@/pages/new/constants';
+import { URL_INFO } from './constants';
 import { TLocalisation } from '@/api/hooks/useRegions';
 
 export interface RegionTileProps {
