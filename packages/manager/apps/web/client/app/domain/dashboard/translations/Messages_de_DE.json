@@ -483,8 +483,8 @@
   "domain_configuration_dns_entry_add_step3_info": "Sie sind im Begriff, folgenden Eintrag zu Ihrer DNS-Zone hinzuzufügen:",
   "domain_configuration_dns_entry_add_step3_alert": "Das Hinzufügen in der DNS-Zone erfolgt sofort. Bitte berücksichtigen Sie auch die Propagationszeit von höchstens 24 Stunden.",
   "domain_configuration_dns_entry_add_step3_check_warning1": "Achtung, es können einer oder mehrere Konflikte auftreten:",
-  "domain_configuration_dns_entry_add_step3_check_warning2": "Diese Subdomain verwendet bereits einen DNS-Eintrag. Sie können aufgrund mangelnder Kompatibilität kein Feld CNAME registrieren. Löschen Sie die bestehenden Einträge für diese Subdomain, um ein solches hinzufügen zu können.",
-  "domain_configuration_dns_entry_add_step3_check_warning3": "Diese Subdomain wird bereits von einem CNAME-Eintrag verwendet. Ein CNAME-Eintrag kann nicht gleichzeitig mit anderen Feldern für dieselbe Subdomain bestehen.",
+  "domain_configuration_dns_entry_add_step3_check_warning2": "die Subdomain noch nicht von einem CNAME-Eintrag verwendet wird. Ein CNAME-Eintrag kann nicht gleichzeitig mit anderen Feldern für dieselbe Subdomain bestehen.",
+  "domain_configuration_dns_entry_add_step3_check_warning3": "der CNAME-Eintrag nicht der Stammdomain hinzugefügt wird. Die Stammdomain ist die von Ihnen registrierte Basisdomain.",
   "domain_configuration_dns_entry_add_success": "Der Eintrag wurde in der DNS-Zone hinzugefügt. Bitte berücksichtigen Sie auch die Propagationszeit von höchstens 24 Stunden.",
   "domain_configuration_dns_entry_add_fail": "Beim Hinzufügen des Eintrags zur DNS-Zone ist ein Fehler aufgetreten.",
   "domain_configuration_dns_importtext_title": "Tragen Sie hier den entsprechenden Text für die DNS-Zonen ein, die Sie importieren möchten:",
@@ -830,5 +830,6 @@
   "domain_dashboard_general_information_alldom_renewal_link": "Kündigung des Pakets stornieren",
   "domain_dashboard_general_information_alldom_termination_warning_close": "Schließen",
   "domain_dashboard_show_authinfo_warning_part_1": "Hiermit möchten wir Sie darüber informieren, dass durch den Transfer Ihrer Domain zu einem anderen Registrar die DNS-Zone und deren Inhalt gelöscht werden. Ihre Website und Ihr E-Mail-Dienst funktionieren möglicherweise nicht mehr.",
-  "domain_dashboard_show_authinfo_warning_part_2": "Wenn Sie einfach nur den Webhoster oder den E-Mail-Dienst wechseln möchten, können Sie Ihren Domainnamen problemlos bei OVHcloud belassen und so weiterhin von den besten Preisen und von unseren kostenlosen Diensten wie Anti-Spam, Anonymisierung personenbezogener Daten oder DNSSEC profitieren."
+  "domain_dashboard_show_authinfo_warning_part_2": "Wenn Sie einfach nur den Webhoster oder den E-Mail-Dienst wechseln möchten, können Sie Ihren Domainnamen problemlos bei OVHcloud belassen und so weiterhin von den besten Preisen und von unseren kostenlosen Diensten wie Anti-Spam, Anonymisierung personenbezogener Daten oder DNSSEC profitieren.",
+  "domain_configuration_dns_entry_add_step3_check_warning_info": "Fehler: Die DNS-Konfiguration kann nicht gespeichert werden. Vergewissern Sie sich, dass:"
 }

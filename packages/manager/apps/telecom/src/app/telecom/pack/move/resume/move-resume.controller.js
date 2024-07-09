@@ -5,7 +5,12 @@ import set from 'lodash/set';
 import values from 'lodash/values';
 import moment from 'moment';
 
-import { PROMO_DISPLAY, MODEM_LIST, DICTIONNARY } from '../pack-move.constant';
+import {
+  PROMO_DISPLAY,
+  MODEM_LIST,
+  DICTIONNARY,
+  ONT_SHIPPING_CONTACT,
+} from '../pack-move.constant';
 
 export default class MoveResumeCtrl {
   /* @ngInject */
@@ -257,6 +262,11 @@ export default class MoveResumeCtrl {
         assign(moveData, {
           otp: false,
         });
+      }
+
+      // ont shipping post params
+      if (this.offer.selected.offer.customOntAddress) {
+        moveData.ontShippingContact = `${ONT_SHIPPING_CONTACT}${this.offer.selected.ontShipping.address.id}`;
       }
 
       // shipping post params

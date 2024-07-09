@@ -1,0 +1,108 @@
+<div class="widget-presentation clearfix">
+    <h2
+        class="widget-presentation-title"
+        data-translate="telecom_dashboard_ftth_eligibility_title"
+    ></h2>
+
+    <oui-message data-type="info">
+        <a
+            data-ng-href="{{ FtthEligibilityCtrl.links.copperClosureMore }}"
+            data-translate-attr="{ 'title': 'telecom_dashboard_ftth_eligibility_copper_closure_info' }"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="telecom_dashboard_ftth_eligibility_copper_closure_info"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
+
+    <oui-datagrid
+        data-rows="FtthEligibilityCtrl.services"
+        data-page-size="{{FtthEligibilityCtrl.amountServicesDisplayed}}"
+    >
+        <oui-datagrid-column
+            data-title="'telecom_dashboard_ftth_eligibility_service_name' | translate"
+            data-property="accessName"
+            data-sortable="desc"
+        >
+            <div>
+                <a data-ng-href="{{ $row.accessLink }}">
+                    <span data-ng-bind="$row.accessName"></span>
+                </a>
+            </div>
+            <div data-ng-bind="$row.description"></div>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'telecom_dashboard_ftth_eligibility_service' | translate"
+            data-property="accessType"
+            data-sortable
+        >
+            <span
+                data-translate="{{$row.accessType === FtthEligibilityCtrl.ACCESS_TYPE.ftth ? 'telecom_dashboard_ftth_eligibility_fiber' : 'telecom_dashboard_ftth_eligibility_copper'}}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'telecom_dashboard_ftth_eligibility_migration' | translate"
+            data-property="migrationAvailable"
+            data-sortable
+        >
+            <span
+                class="oui-badge oui-badge_success"
+                data-translate="{{'telecom_dashboard_ftth_eligibility_' + $row.migrationAvailable}}"
+                data-ng-if="$row.migrationAvailable === FtthEligibilityCtrl.ELIGIBILITY.eligible"
+            ></span>
+            <span
+                data-translate="{{'telecom_dashboard_ftth_eligibility_' + $row.migrationAvailable}}"
+                data-ng-if="$row.migrationAvailable != FtthEligibilityCtrl.ELIGIBILITY.eligible"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'telecom_dashboard_ftth_eligibility_copper_closure_date' | translate"
+        >
+            <span
+                data-ng-if="$row.migrationAvailable === FtthEligibilityCtrl.ELIGIBILITY.eligible && $row.copperGridClosureTrajectory.technicalClosureDate"
+                data-ng-bind="$row.copperGridClosureTrajectory.technicalClosureDate | date:'shortDate'"
+            ></span>
+            <span
+                data-ng-if="$row.migrationAvailable === FtthEligibilityCtrl.ELIGIBILITY.eligible && !$row.copperGridClosureTrajectory.technicalClosureDate"
+                data-translate="telecom_dashboard_ftth_eligibility_not_available"
+            ></span>
+            <span
+                data-ng-if="$row.migrationAvailable != FtthEligibilityCtrl.ELIGIBILITY.eligible"
+                data-translate="telecom_dashboard_ftth_eligibility_not_concerned"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'telecom_dashboard_ftth_eligibility_actions' | translate"
+        >
+            <a
+                class="oui-button oui-button_secondary"
+                data-ng-href="{{$row.migrationLink}}"
+                data-ng-if="$row.migrationAvailable === FtthEligibilityCtrl.ELIGIBILITY.eligible && $row.accessType !== FtthEligibilityCtrl.ACCESS_TYPE.sdsl"
+                data-translate-attr="{'title': 'telecom_dashboard_ftth_eligibility_migrate'}"
+            >
+                <span
+                    data-translate="telecom_dashboard_ftth_eligibility_migrate"
+                ></span>
+            </a>
+        </oui-datagrid-column>
+    </oui-datagrid>
+
+    <a
+        class="oui-button oui-button_icon-right float-right oui-button_ghost"
+        data-ng-if="FtthEligibilityCtrl.servicesLength > FtthEligibilityCtrl.amountServicesDisplayed"
+        data-ng-href="{{ FtthEligibilityCtrl.links.accessList }}"
+        data-translate-attr="{ 'title': 'telecom_dashboard_ftth_eligibility_access_more' }"
+        target="_top"
+    >
+        <span
+            data-translate="telecom_dashboard_ftth_eligibility_access_more"
+        ></span>
+        <i class="oui-icon oui-icon-chevron-right" aria-hidden="true"></i>
+    </a>
+</div>

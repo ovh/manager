@@ -5,7 +5,7 @@ import isNull from 'lodash/isNull';
 import snakeCase from 'lodash/snakeCase';
 import 'moment';
 
-import { DEBT_STATUS } from './billing-service.constants';
+import { DEBT_STATUS, BYOIP_SERVICE_PREFIX } from './billing-service.constants';
 
 export default class BillingService {
   constructor(service) {
@@ -286,9 +286,14 @@ export default class BillingService {
   }
 
   canHandleRenew() {
-    return !['VIP', 'OVH_CLOUD_CONNECT', 'PACK_XDSL', 'XDSL'].includes(
-      this.serviceType,
-    );
+    return ![
+      'VIP',
+      'OVH_CLOUD_CONNECT',
+      'PACK_XDSL',
+      'XDSL',
+      'OKMS_RESOURCE',
+      'VRACK_SERVICES_RESOURCE',
+    ].includes(this.serviceType);
   }
 
   isOneShot() {
@@ -344,6 +349,10 @@ export default class BillingService {
 
   isSuspended() {
     return DEBT_STATUS.includes(this.status) || this.isResiliated();
+  }
+
+  isByoipService() {
+    return this.domain?.startsWith(BYOIP_SERVICE_PREFIX);
   }
 
   hasPendingResiliation() {

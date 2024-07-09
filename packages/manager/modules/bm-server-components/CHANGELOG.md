@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.25.2...@ovh-ux/manager-bm-server-components@1.25.3) (2024-07-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3125] ([b8a1406](https://github.com/ovh/manager/commit/b8a14064c4de101119d3aebd66eb9447a4f93234))
+* **i18n:** add missing translations [CDS 3133] ([1a9d072](https://github.com/ovh/manager/commit/1a9d07200c1c9decaee2f2cf474c76a265a0115a))
+
+
+
+
+
+## [1.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.25.1...@ovh-ux/manager-bm-server-components@1.25.2) (2024-07-03)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing translations for multi-AZ cluster servers ([#11722](https://github.com/ovh/manager/issues/11722)) ([ea45a11](https://github.com/ovh/manager/commit/ea45a11903dd34276fc83b93b59c24d814aa73f7))
+
+
+
+
+
+## [1.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.25.0...@ovh-ux/manager-bm-server-components@1.25.1) (2024-07-01)
+
+
+### Bug Fixes
+
+* **dedicated.server:** dont call orderable endpoint if not orderable ([#12152](https://github.com/ovh/manager/issues/12152)) ([77fd8e8](https://github.com/ovh/manager/commit/77fd8e82f4d6aa0c8b10794882f2d3309301d810))
+
+
+
+
+
+# [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.24.0...@ovh-ux/manager-bm-server-components@1.25.0) (2024-06-25)
+
+
+### Bug Fixes
+
+* **dedicated:** replace old windows rescue name by the new one ([#11864](https://github.com/ovh/manager/issues/11864)) ([8a97766](https://github.com/ovh/manager/commit/8a977662eeea6369d97fb68358aeaf7673aa239f))
+
+
+### Features
+
+* **dedicated:** limit keyvalue items and add tooltip to inputs ([#11615](https://github.com/ovh/manager/issues/11615)) ([69adabe](https://github.com/ovh/manager/commit/69adabed8cb27d95ed211049e8f7a7f33d1c6b40))
+
+
+
+
+
 # [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.23.3...@ovh-ux/manager-bm-server-components@1.24.0) (2024-06-17)
 
 

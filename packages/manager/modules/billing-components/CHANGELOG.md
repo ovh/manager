@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.18.0...@ovh-ux/manager-billing-components@3.18.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* **dedicated:** disable view service details for byoip ([#12001](https://github.com/ovh/manager/issues/12001)) ([91872c0](https://github.com/ovh/manager/commit/91872c02804ef82ab71df5d49974688f10d8f886))
+
+
+
+
+
 # [3.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.17.2...@ovh-ux/manager-billing-components@3.18.0) (2024-05-13)
 
 

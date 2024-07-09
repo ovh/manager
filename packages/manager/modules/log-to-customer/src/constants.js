@@ -21,27 +21,11 @@ export const DATA_PLATFORM_GUIDE = {
   WW: 'https://www.ovhcloud.com/en/logs-data-platform',
 };
 
-export const LOG_KEYS = {
-  _id: 'message._id',
-  requestReceivedTimestamp: 'message.audit_requestReceivedTimestamp_date',
-  verb: 'message.audit_verb',
-  authorizationDecision: 'message.audit_authorizationDecision',
-  responseStatus: 'message.audit_responseStatus',
-  user: 'message.audit_user',
-  requestURI: 'message.audit_requestURI',
-  groups: 'message.audit_groups',
-  authorizationReason:
-    'message.message.annotations.authorization.k8s.io/reason',
-  userAgent: 'message.audit_userAgent',
-  auditID: 'message.audit_auditID',
-};
-
 export const RETENTION = {
   FORTY_FIVE_DAYS: 'P45D',
 };
 
 export default {
-  LOG_KEYS,
   DATA_PLATFORM_GUIDE,
   RETENTION,
 };

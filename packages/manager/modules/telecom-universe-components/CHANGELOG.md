@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.28.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.27.0...@ovh-ux/ng-ovh-telecom-universe-components@7.28.0) (2024-07-03)
+
+
+### Features
+
+* **telecom:** add ont shipping address on move and migrate steps ([#11974](https://github.com/ovh/manager/issues/11974)) ([3729132](https://github.com/ovh/manager/commit/3729132425f717e2c9ebf7e25b358795b0797415))
+
+
+
+
+
 # [7.27.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.26.0...@ovh-ux/ng-ovh-telecom-universe-components@7.27.0) (2024-06-10)
 
 

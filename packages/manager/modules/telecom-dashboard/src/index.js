@@ -36,6 +36,10 @@ import IdentityCheckForm from './identity-check/form';
 
 import identityCheckService from './identity-check/telecom-dashboard-identity-check.service';
 
+import ftthEligibilityCtrl from './ftth-eligibility/telecom-dashboard-ftth-eligibility.controller';
+import ftthEligibilityTemplate from './ftth-eligibility/telecom-dashboard-ftth-eligibility.html';
+import ftthEligibilityService from './ftth-eligibility/telecom-dashboard-ftth-eligibility.service';
+
 const moduleName = 'ovhManagerTelecomDashboard';
 
 angular
@@ -77,6 +81,11 @@ angular
             controller: IdentityCheckMessageCtrl,
             controllerAs: 'IdentityCheckMessageCtrl',
           },
+          'ftthEligibilityView@telecom-dashboard': {
+            template: ftthEligibilityTemplate,
+            controller: ftthEligibilityCtrl,
+            controllerAs: 'FtthEligibilityCtrl',
+          },
         },
         translations: {
           value: ['.'],
@@ -100,6 +109,7 @@ angular
     },
   )
   .service('BillsService', billsService)
-  .service('IdentityCheckService', identityCheckService);
+  .service('IdentityCheckService', identityCheckService)
+  .service('FtthEligibilityService', ftthEligibilityService);
 
 export default moduleName;

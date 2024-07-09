@@ -1,0 +1,17 @@
+{
+  "xdsl_access_list_title": "Mes services",
+  "xlds_access_list_copper_closure_info": "En savoir plus sur la fermeture du cuivre.",
+  "xdsl_access_list_service_name": "Nom du service",
+  "xdsl_access_list_service": "Service",
+  "xdsl_access_list_migration": "Migration fibre",
+  "xdsl_access_list_copper_closure_date": "Date de fermeture du cuivre",
+  "xdsl_access_list_actions": "Actions",
+  "xdsl_access_list_copper": "Ligne xDSL",
+  "xdsl_access_list_fiber": "Ligne FTTH",
+  "xdsl_access_list_not_eligible": "Non éligible",
+  "xdsl_access_list_no_building": "Pas de bâtiment",
+  "xdsl_access_list_eligible": "Eligible",
+  "xdsl_access_list_not_concerned": "Non concerné",
+  "xdsl_access_list_not_available": "Non disponible",
+  "xdsl_access_list_migrate": "Migrer vers la fibre"
+}

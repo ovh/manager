@@ -69,6 +69,8 @@
   "nasha_datacenter_stl": "Saint-Louis",
   "nasha_datacenter_ind": "Indianapolis",
   "nasha_datacenter_ist": "Istanbul",
+  "nasha_datacenter_tor": "Toronto",
+  "nasha_datacenter_dal": "Dallas",
   "nasha_error": "Une erreur est survenue: {{ message }}",
   "nasha_snapshot_type_day-1": "Tous les jours",
   "nasha_snapshot_type_day-2": "Tous les 2 jours",

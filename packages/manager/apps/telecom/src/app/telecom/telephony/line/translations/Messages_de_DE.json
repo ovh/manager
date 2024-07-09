@@ -20,7 +20,7 @@
   "telephony_line_mgcp_banner_link": "Klicken Sie hier.",
   "telephony_line_mgcp_banner_description": "Das verwendete MGCP-Terminal ist veraltet: Bitte ersetzen Sie das Terminal.",
   "telephony_line_tab_softphone": "Softphone",
-  "telephony_line_tab_beta_softphone_description": "Hier können Sie Ihre Softphone-Option einstellen. Bitte beachten Sie, dass wir während der Betaphase, wenn Sie das Softphone für Ihre Leitung aktivieren, dieses nur noch auf unseren Softphone-Apps „Softcall“ (und somit nicht auf einem Festnetztelefon oder einer anderen Softphone-Software) bereitstellen können",
+  "telephony_line_tab_beta_softphone_description": "Hier können Sie Ihre Softphone-Option einstellen. Bitte beachten Sie, dass Sie während der Betaphase, wenn Sie das Softphone auf Ihrer Leitung aktivieren, dieses nur noch auf unseren Softphone-Apps „Softcall“ (und somit nicht auf einem Festnetztelefon oder einem anderen Softphone Ihrer Wahl (Zoom usw.)) bereitstellen können.",
   "telephony_line_tab_beta_softphone_active_description": "Wenn der Schalter aktiv ist, dann kann diese Leitung für alle Ihre „Softcall“-Anwendungen verwendet werden: Mobil und Computer.",
   "telephony_line_tab_beta_softphone_email_message_success": "Ihre Anfrage zur Regenerierung der Konfigurations-E-Mail wurde registriert.",
   "telephony_line_tab_beta_softphone_email_message_error": "Ihre Anfrage zur Regenerierung der Konfigurations-E-Mail konnte nicht durchgeführt werden.",

@@ -1,0 +1,24 @@
+@import '@ovh-ux/ui-kit/dist/scss/_tokens';
+
+.selectModal {
+  &--container {
+    display: flex;
+    flex-direction: column;
+    gap: $base-spacing-small;
+    max-height: calc(100vh - 200px);
+  }
+
+  &--content {
+    flex-grow: 1;
+    overflow: scroll;
+  }
+
+  &--footer {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: $base-spacing-small;
+    position: sticky;
+    padding-top: $base-spacing-medium;
+  }
+}

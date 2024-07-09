@@ -890,12 +890,14 @@
   "server_datacenter_VIE": "Viena",
   "server_datacenter_DLN": "Dublín",
   "server_datacenter_VAN": "Vancouver",
-  "server_datacenter_TLV": "Tel Aviv yafo",
+  "server_datacenter_TLV": "Tel Aviv-Yafo",
   "server_datacenter_MNC": "Manchester",
   "server_datacenter_CLT": "Charlotte",
   "server_datacenter_BNA": "Nashville",
   "server_datacenter_SLC": "Salt Lake City",
   "server_datacenter_STL": "San Luis",
   "server_datacenter_IND": "Indianápolis",
-  "server_datacenter_IST": "Estambul"
+  "server_datacenter_IST": "Estambul",
+  "server_datacenter_TOR": "Toronto",
+  "server_datacenter_DAL": "Dallas"
 }

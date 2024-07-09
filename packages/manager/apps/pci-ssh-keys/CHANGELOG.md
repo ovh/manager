@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.3.2...@ovh-ux/manager-pci-ssh-keys-app@0.3.3) (2024-07-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app
+
+
+
+
+
+## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.3.1...@ovh-ux/manager-pci-ssh-keys-app@0.3.2) (2024-07-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app
+
+
+
+
+
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.3.0...@ovh-ux/manager-pci-ssh-keys-app@0.3.1) (2024-06-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.2.17...@ovh-ux/manager-pci-ssh-keys-app@0.3.0) (2024-06-20)
+
+
+### Features
+
+* **container:** pnr v2 ([#11723](https://github.com/ovh/manager/issues/11723)) ([39013c6](https://github.com/ovh/manager/commit/39013c6337714f47f98b034200b605c91a0229d1))
+
+
+
+
+
+## [0.2.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.2.16...@ovh-ux/manager-pci-ssh-keys-app@0.2.17) (2024-06-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app
+
+
+
+
+
 ## [0.2.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.2.15...@ovh-ux/manager-pci-ssh-keys-app@0.2.16) (2024-06-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app

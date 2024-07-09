@@ -107,16 +107,16 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
             seeAll: true,
             label: seeAllLabel,
           }
-        : null
+        : null,
     );
   }, [seeAllButton, seeAllLabel]);
 
   useEffect(() => {
     setOptions([
-      ...projects.map(({ project_id: projectId, description }) => ({
+      ...(projects ? projects.map(({ project_id: projectId, description }) => ({
         id: projectId,
         label: description || projectId,
-      })),
+      })) : []),
       ...(createProjectOption ? [createProjectOption] : []),
       ...(seeAllProjectsOption ? [seeAllProjectsOption] : []),
     ]);

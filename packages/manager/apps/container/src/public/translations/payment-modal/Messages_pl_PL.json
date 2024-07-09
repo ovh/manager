@@ -1,0 +1,8 @@
+{
+  "payment_modal_action_cancel": "Nie teraz",
+  "payment_modal_action_validate": "Aktualizuj",
+  "payment_modal_description_no_default": "Karta płatnicza wkrótce straci ważność i realizacja płatności nie będzie możliwa.",
+  "payment_modal_description_expired": "Karta płatnicza wkrótce straci ważność i realizacja płatności nie będzie możliwa.",
+  "payment_modal_description_sub": "Aby zapewnić prawidłowe działanie usług i uniknąć przerw, zaktualizuj sposób płatności.",
+  "payment_modal_title": "Aktualizacja sposobu płatności"
+}
