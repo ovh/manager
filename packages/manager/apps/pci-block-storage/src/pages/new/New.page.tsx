@@ -1,57 +1,79 @@
-import { useTranslation } from 'react-i18next';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import {
-  Headers,
+  StepComponent,
   isDiscoveryProject,
+  useProject,
+  Headers,
   PciDiscoveryBanner,
   PciFreeLocalzonesBanner,
   useMe,
   useNotifications,
-  useProject,
   useProjectUrl,
-  useStepper,
 } from '@ovhcloud/manager-components';
-import { useHref, useParams } from 'react-router-dom';
-import { useTypeStep } from '@/pages/new/hooks/steps/type';
-import { useCapacityStep } from '@/pages/new/hooks/steps/capacity';
-import { useNameStep } from '@/pages/new/hooks/steps/name';
-import { useValidationStep } from '@/pages/new/hooks/steps/validation';
-import { StepsEnum } from '@/pages/new/steps.enum';
-import { useLocationStep } from '@/pages/new/hooks/steps/location';
-import { TFormState } from '@/pages/new/form.type';
-
-export const DEFAULT_FORM_STATE: TFormState = {
-  step: StepsEnum.LOCATION_STEP,
-  region: undefined,
-  volumeType: undefined,
-  volumeName: '',
-  volumeCapacity: 10,
-};
+import { Translation, useTranslation } from 'react-i18next';
+import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useHref, useNavigate, useParams } from 'react-router-dom';
+import HidePreloader from '@/core/HidePreloader';
+import { VolumeTypeStep } from './components/VolumeTypeStep.component';
+import { CapacityStep } from './components/CapacityStep.component';
+import { VolumeNameStep } from './components/VolumeNameStep.component';
+import { ValidationStep } from './components/ValidationStep.component';
+import { LocationStep } from './components/LocationStep.component';
+import { useVolumeStepper } from './hooks/useVolumeStepper';
+import { useAddVolume } from '@/api/hooks/useVolume';
 
 export default function NewPage(): JSX.Element {
   const { t } = useTranslation('common');
   const { t: tAdd } = useTranslation('add');
+  const { t: tStepper } = useTranslation('stepper');
   const { projectId } = useParams();
   const { data: project } = useProject(projectId || '');
+  const navigate = useNavigate();
   const { me } = useMe();
-  const LocationStep = useLocationStep(projectId);
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
-  const { clearNotifications } = useNotifications();
+  const isDiscovery = isDiscoveryProject(project);
+  const { addError, addSuccess, clearNotifications } = useNotifications();
+  const stepper = useVolumeStepper();
 
-  const { Component: Stepper } = useStepper<StepsEnum, TFormState>({
-    steps: new Map([
-      [StepsEnum.LOCATION_STEP, LocationStep],
-      [StepsEnum.VOLUME_TYPE_STEP, useTypeStep(projectId)],
-      [StepsEnum.VOLUME_CAPACITY_STEP, useCapacityStep(projectId)],
-      [StepsEnum.VOLUME_NAME_STEP, useNameStep()],
-      [StepsEnum.VALIDATION_STEP, useValidationStep(projectId)],
-    ]),
-    state: DEFAULT_FORM_STATE,
+  const { addVolume } = useAddVolume({
+    projectId,
+    name: stepper.form.volumeName,
+    regionName: stepper.form.region?.name,
+    volumeCapacity: stepper.form.volumeCapacity,
+    volumeType: stepper.form.volumeType?.blobs.technical.name,
+    onSuccess: () => {
+      navigate('..');
+      addSuccess(
+        <Translation ns="add">
+          {(tr) =>
+            tr('pci_projects_project_storages_blocks_add_success_message', {
+              volume: stepper.form.volumeName,
+            })
+          }
+        </Translation>,
+        true,
+      );
+    },
+    onError: (err: ApiError) => {
+      navigate('..');
+      addError(
+        <Translation ns="add">
+          {(tr) =>
+            tr('pci_projects_project_storages_blocks_add_error_post', {
+              volume: stepper.form.volumeName,
+              message: err?.response?.data?.message || err?.message || null,
+            })
+          }
+        </Translation>,
+        true,
+      );
+    },
   });
 
   return (
     <>
+      <HidePreloader />
       <div className="mb-5">
         {isDiscoveryProject(project) && (
           <PciDiscoveryBanner projectId={projectId} />
@@ -84,7 +106,88 @@ export default function NewPage(): JSX.Element {
         />
       )}
       <div className="mt-8">
-        <Stepper />
+        <StepComponent
+          order={1}
+          {...stepper.location.step}
+          isLocked={stepper.location.step.isLocked || isDiscovery}
+          title={tAdd('pci_projects_project_storages_blocks_add_region_title')}
+          edit={{
+            action: stepper.location.edit,
+            label: tStepper('common_stepper_modify_this_step'),
+            isDisabled: isDiscovery || stepper.validation.step.isLocked,
+          }}
+        >
+          <LocationStep
+            projectId={projectId}
+            step={stepper.location.step}
+            onSubmit={stepper.location.submit}
+          />
+        </StepComponent>
+        <StepComponent
+          order={2}
+          {...stepper.volumeType.step}
+          title={tAdd('pci_projects_project_storages_blocks_add_type_title')}
+          edit={{
+            action: stepper.volumeType.edit,
+            label: tStepper('common_stepper_modify_this_step'),
+            isDisabled: stepper.validation.step.isLocked,
+          }}
+        >
+          <VolumeTypeStep
+            projectId={projectId}
+            region={stepper.form.region}
+            step={stepper.volumeType.step}
+            onSubmit={stepper.volumeType.submit}
+          />
+        </StepComponent>
+        <StepComponent
+          order={3}
+          {...stepper.capacity.step}
+          title={tAdd('pci_projects_project_storages_blocks_add_size_title')}
+          edit={{
+            action: stepper.capacity.edit,
+            label: tStepper('common_stepper_modify_this_step'),
+            isDisabled: stepper.validation.step.isLocked,
+          }}
+        >
+          <CapacityStep
+            projectId={projectId}
+            region={stepper.form.region}
+            volumeType={stepper.form.volumeType}
+            step={stepper.capacity.step}
+            onSubmit={stepper.capacity.submit}
+          />
+        </StepComponent>
+        <StepComponent
+          order={4}
+          {...stepper.volumeName.step}
+          title={tAdd('pci_projects_project_storages_blocks_add_name_title')}
+          edit={{
+            action: stepper.volumeName.edit,
+            label: tStepper('common_stepper_modify_this_step'),
+            isDisabled: stepper.validation.step.isLocked,
+          }}
+        >
+          <VolumeNameStep
+            projectId={projectId}
+            step={stepper.volumeName.step}
+            onSubmit={stepper.volumeName.submit}
+          />
+        </StepComponent>
+        <StepComponent
+          order={5}
+          {...stepper.validation.step}
+          title={tAdd('pci_projects_project_storages_blocks_add_submit_title')}
+        >
+          <ValidationStep
+            volumeCapacity={stepper.form.volumeCapacity}
+            volumeType={stepper.form.volumeType}
+            onSubmit={() => {
+              stepper.validation.submit();
+              addVolume();
+            }}
+          />
+        </StepComponent>
       </div>
     </>
   );
