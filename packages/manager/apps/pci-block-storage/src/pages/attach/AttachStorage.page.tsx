@@ -7,7 +7,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovhcloud/manager-components';
@@ -28,6 +28,23 @@ export default function AttachStorage() {
   );
   const [selectedInstance, setSelectedInstance] = useState<Instance>(null);
   const onClose = () => navigate('..');
+
+  const selectRef = useRef(null);
+
+  /**
+   * Workaround to solve ods select width on mobile
+   * TODO: solve on ods side
+   */
+  useEffect(() => {
+    if (
+      selectRef.current &&
+      !selectRef.current.shadowRoot.querySelector('style')
+    ) {
+      const style = document.createElement('style');
+      style.innerHTML = '.ocdk-surface--open {max-width: 100%;}';
+      selectRef.current.shadowRoot.appendChild(style);
+    }
+  }, [selectRef.current]);
 
   // select first instance available after loading
   useEffect(() => {
@@ -104,24 +121,27 @@ export default function AttachStorage() {
           />
         )}
         {!isPending && instances?.length > 0 && (
-          <OsdsSelect
-            value={selectedInstance?.id}
-            inline
-            className="mt-5"
-            onOdsValueChange={(event) => {
-              setSelectedInstance(
-                instances.find(
-                  (instance) => instance.id === event.detail.value,
-                ),
-              );
-            }}
-          >
-            {instances.map(({ id, name }) => (
-              <OsdsSelectOption key={id} value={id}>
-                {name}
-              </OsdsSelectOption>
-            ))}
-          </OsdsSelect>
+          <div>
+            <OsdsSelect
+              value={selectedInstance?.id}
+              ref={selectRef}
+              inline
+              className="mt-5 w-[100%]"
+              onOdsValueChange={(event) => {
+                setSelectedInstance(
+                  instances.find(
+                    (instance) => instance.id === event.detail.value,
+                  ),
+                );
+              }}
+            >
+              {instances.map(({ id, name }) => (
+                <OsdsSelectOption key={id} value={id}>
+                  {name}
+                </OsdsSelectOption>
+              ))}
+            </OsdsSelect>
+          </div>
         )}
         {!isPending && !instances?.length && (
           <NoInstanceWarningMessage data-testid="AttachStorage-NoInstanceWarningMessage" />
