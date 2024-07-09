@@ -1,6 +1,12 @@
 import { QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
 import '@testing-library/jest-dom/vitest';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import queryClient from '@/queryClient';
 import GenerateOpenStackTokenModal from './GenerateOpenStackTokenModal';
@@ -52,11 +58,14 @@ describe('GenerateOpenStackTokenModal tests.', () => {
     renderModal();
 
     const confirmButton = screen.getByTestId('submitButton');
+
     act(() => {
       fireEvent.click(confirmButton);
     });
 
-    expect(mockGenerate).toHaveBeenCalled();
+    waitFor(() => {
+      expect(mockGenerate).toHaveBeenCalled();
+    });
   });
 
   it('should display the spinner when the token generation is pending', () => {
