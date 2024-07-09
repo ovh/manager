@@ -29,7 +29,7 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "typescript": "^4.7.0"
+    "typescript": "^5.3.3"
   },
   "peerDependencies": {
     "@tanstack/react-query": "5.x",

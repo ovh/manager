@@ -48,6 +48,7 @@ const getBaseConfig = (config) => {
         'vite',
         'vitest',
         '@vitest',
+        'typescript',
       ],
     },
     define: {
