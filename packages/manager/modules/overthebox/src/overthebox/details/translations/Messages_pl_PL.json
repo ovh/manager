@@ -78,7 +78,7 @@
   "overTheBox_release_channel_v0_9": "Wersja v0.9",
   "overTheBox_release_channel_v1_0": "Wersja v1.0",
   "overTheBox_version_system": "Wersja systemu",
-  "overTheBox_last_seen": "Ostatni dostęp do sprzętu z serwerów programowania",
+  "overTheBox_last_seen": "Ostatnie połączenie urządzenia",
   "overTheBox_last_seen_few_seconds": "Kilka sekund temu",
   "overTheBox_last_seen_minutes_ago": "Około {{lastSeenDiff}}",
   "overTheBox_reverse_dns": "Rewers DNS",
@@ -88,5 +88,10 @@
   "overTheBox_available_update": "Dostępna jest aktualizacja urządzenia.",
   "overTheBox_authorize_autoupgrade": "Zezwalaj na automatyczne aktualizacje w nocy",
   "overTheBox_change_auto_upgrade_success": "Zmiana automatycznych aktualizacji w nocy została wykonana.",
-  "overTheBox_change_auto_upgrade_error": "Nie mogliśmy zmienić ustawień automatycznych w nocy: {{errorMessage}}"
+  "overTheBox_change_auto_upgrade_error": "Nie mogliśmy wykonać zmiany automatycznych aktualizacji w nocy: {{errorMessage}}",
+  "overTheBox_offer_name": "Oferta",
+  "overthebox_caracteristics": "Rozmiar węzłów",
+  "overTheBox_model_device": "Model urządzenia",
+  "overTheBox_detail_bandwidth": "Przepustowość maksymalna",
+  "overTheBox_model_device_unknown": "Nieznany"
 }
