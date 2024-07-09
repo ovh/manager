@@ -16,7 +16,7 @@ import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
 import { ROUTES_URLS } from '@/routes/routes.constants';
-import { useOKMSById } from '@/hooks/useOKMS';
+import { useOKMSById } from '@/data/hooks/useOKMS';
 
 export default function DashboardPage() {
   const { t: tDashboard } = useTranslation('key-management-service/dashboard');

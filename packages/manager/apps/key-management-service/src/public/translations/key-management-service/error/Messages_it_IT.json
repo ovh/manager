@@ -1,8 +1,0 @@
-{
-  "manager_error_page_title": "Ops!",
-  "manager_error_page_button_cancel": "Annulla",
-  "manager_error_page_detail_code": "Codice di errore: ",
-  "manager_error_page_action_reload_label": "Riprova",
-  "manager_error_page_action_home_label": "Torna alla home page",
-  "manager_error_page_default": "Si è verificato un errore durante il caricamento della pagina."
-}

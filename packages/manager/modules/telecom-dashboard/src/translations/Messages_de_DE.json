@@ -46,7 +46,7 @@
   "telecom_dashboard_ftth_eligibility_migration": "Glasfasermigration",
   "telecom_dashboard_ftth_eligibility_copper_closure_date": "Datum der Kupferabschaltung",
   "telecom_dashboard_ftth_eligibility_actions": "Aktionen",
-  "telecom_dashboard_ftth_eligibility_copper": "xDSL Leitung",
+  "telecom_dashboard_ftth_eligibility_copper": "xDSL-Leitung",
   "telecom_dashboard_ftth_eligibility_fiber": "FTTH-Leitung",
   "telecom_dashboard_ftth_eligibility_not_eligible": "Nicht wählbar",
   "telecom_dashboard_ftth_eligibility_no_building": "Kein Gebäude",

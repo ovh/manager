@@ -12,11 +12,6 @@ export default function DashboardPage() {
       title: t('general_informations'),
       to: useResolvedPath('').pathname,
     },
-    {
-      name: 'custom tab',
-      title: 'custom tab',
-      to: useResolvedPath('Tabs2').pathname,
-    },
   ];
 
   return (

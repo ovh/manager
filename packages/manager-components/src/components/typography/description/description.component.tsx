@@ -9,13 +9,15 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 
 export interface DescriptionProps {
   children?: string;
+  className?: string;
 }
 export const Description: React.FC<DescriptionProps> = ({
   children,
+  className,
 }: DescriptionProps) => {
   return (
     <OsdsText
-      className="block mb-6"
+      className={`block ${className}`}
       level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
       size={ODS_THEME_TYPOGRAPHY_SIZE._400}
       color={ODS_THEME_COLOR_INTENT.text}
