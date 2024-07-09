@@ -2,6 +2,7 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 /**
+ * @deprecated Use useFeatureAvailability from @ovhcloud/manager-components
  * @examples
  * const featureList = ['billing', 'webooo', 'web:microsoft'];
  *
