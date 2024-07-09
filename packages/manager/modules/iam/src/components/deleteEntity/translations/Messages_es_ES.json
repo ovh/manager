@@ -1,9 +1,4 @@
 {
-  "iam_delete_entity_identity_error": "Se ha producido un error al eliminar la identidad: {{ message }}",
-  "iam_delete_entity_identity_heading": "Eliminación de una identidad",
-  "iam_delete_entity_identity_name": "Eliminación de la identidad:",
-  "iam_delete_entity_identity_success": "La identidad se ha eliminado correctamente",
-  "iam_delete_entity_identity_warn": "¿Seguro que quiere eliminar la identidad asociada a esta política? No se elimina el usuario, solo su asociación con la política.",
   "iam_delete_entity_policy_error": "Se ha producido un error al eliminar la política: {{ message }}",
   "iam_delete_entity_policy_field": "Por favor, escriba la palabra «{{ statement }}» para eliminar su política",
   "iam_delete_entity_policy_heading": "Eliminación de una política",

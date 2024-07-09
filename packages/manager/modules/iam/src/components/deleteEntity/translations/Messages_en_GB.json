@@ -1,9 +1,4 @@
 {
-  "iam_delete_entity_identity_error": "An error occurred while deleting the identity: {{ message }}",
-  "iam_delete_entity_identity_heading": "Deleting an identity",
-  "iam_delete_entity_identity_name": "Deleting identity:",
-  "iam_delete_entity_identity_success": "Identity deleted",
-  "iam_delete_entity_identity_warn": "Are you sure you want to delete the identity linked to this policy? The user will not be deleted, only their link to the policy.",
   "iam_delete_entity_policy_error": "An error occurred while deleting the policy: {{ message }}",
   "iam_delete_entity_policy_field": "Please enter the word \"{{ statement }}\" to delete your policy",
   "iam_delete_entity_policy_heading": "Deleting a policy",
