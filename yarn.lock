@@ -8013,7 +8013,7 @@
     "@typescript-eslint/types" "6.21.0"
     eslint-visitor-keys "^3.4.1"
 
-"@uirouter/angularjs@1.0.23", "@uirouter/angularjs@^1.0.22", "@uirouter/angularjs@^1.0.23":
+"@uirouter/angularjs@1.0.23", "@uirouter/angularjs@^1.0.22", "@uirouter/angularjs@^1.0.23", "@uirouter/angularjs@^1.0.30":
   version "1.0.23"
   resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-1.0.23.tgz#aeec0f96b0c42187c5044ef244ba6ccb75a5d835"
   integrity sha512-r4hLSw7R3mwXGC5Sq7yxNlBK1sSzQUm/1MzigwwYRHoMO5uKcBPUhxFYx5U7kufP2Xl1165KeZvRsLCh0/Z1ng==
@@ -9901,6 +9901,15 @@ axios@^1.0.0, axios@^1.1.2:
     form-data "^4.0.0"
     proxy-from-env "^1.1.0"
 
+axios@^1.6.0:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.2.tgz#b625db8a7051fbea61c35a3cbb3a1daa7b9c7621"
+  integrity sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
 axios@^1.6.8:
   version "1.6.8"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.8.tgz#66d294951f5d988a00e87a0ffb955316a619ea66"
@@ -11020,10 +11029,10 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-chart.js@^4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-4.4.2.tgz#95962fa6430828ed325a480cc2d5f2b4e385ac31"
-  integrity sha512-6GD7iKwFpP5kbSD4MeRRRlTnQvxfQREy36uEtm1hzHzcOqwWx0YEHuspuoNlslu+nciLIB7fjjsHkUv/FzFcOg==
+chart.js@^4.4.2, chart.js@^4.4.3:
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-4.4.3.tgz#3b2e11e7010fefa99b07d0349236f5098e5226ad"
+  integrity sha512-qK1gkGSRYcJzqrrzdR6a+I0vQ4/R+SoODXyAjscQ/4mzuNzySaMCd+hyVxitSY1+L2fjPD1Gbn+ibNqRmwQeLw==
   dependencies:
     "@kurkle/color" "^0.3.0"
 
@@ -11031,6 +11040,14 @@ chartjs-adapter-date-fns@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/chartjs-adapter-date-fns/-/chartjs-adapter-date-fns-3.0.0.tgz#c25f63c7f317c1f96f9a7c44bd45eeedb8a478e5"
   integrity sha512-Rs3iEB3Q5pJ973J93OBTpnP7qoGwvq3nUnoMdtxO+9aoJof7UFcRbWcIDteXuYd1fgAvct/32T9qaLyLuZVwCg==
+
+chartjs-plugin-datasource-prometheus@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/chartjs-plugin-datasource-prometheus/-/chartjs-plugin-datasource-prometheus-2.1.3.tgz#01188c52838e19063313b3562c1ccace851e8fb8"
+  integrity sha512-GN/72tCSpjElST3rB6Sj1WWVI9xi4TVJgNxZ3ub8PX6KQssNCXbA/oGPz58YI8Y6BHB+geiAM7+MyAwvuYlSQA==
+  dependencies:
+    chartjs-adapter-date-fns "^3.0.0"
+    prometheus-query "^3.3.3"
 
 chartjs-plugin-zoom@^2.0.1:
   version "2.0.1"
@@ -23002,6 +23019,13 @@ progress@^2.0.0, progress@^2.0.1, progress@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
+
+prometheus-query@^3.3.3:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/prometheus-query/-/prometheus-query-3.4.0.tgz#2c8d2ab7e861d6c287285061ff4f64b99b709a68"
+  integrity sha512-PGNwYVjXxenfj2PR4FKEUv5O4XO8ciHT92GX83J5ZJm5ki3YzLLiv+TfbmQSUxvHcXofLg9PYH6CBCSplcvr9g==
+  dependencies:
+    axios "^1.6.0"
 
 promise-all-reject-late@^1.0.0:
   version "1.0.1"
