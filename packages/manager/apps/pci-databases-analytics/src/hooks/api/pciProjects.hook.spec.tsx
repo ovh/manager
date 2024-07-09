@@ -1,11 +1,11 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import * as API from '@/api/projects';
+import * as API from '@/data/api/projects';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import usePciProject from '@/hooks/api/pciProjects.api.hooks';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/pciProjects';
 
-vi.mock('@/api/projects', () => ({
+vi.mock('@/data/api/projects', () => ({
   getProject: vi.fn(),
 }));
 

@@ -7,7 +7,7 @@ import {
   mockedSubnets,
 } from '../__tests__/helpers/mocks/network';
 
-vi.mock('@/api/network', () => ({
+vi.mock('@/data/api/network', () => ({
   networkApi: {
     getPrivateNetworks: vi.fn(() => mockedNetworks),
     getSubnets: vi.fn(() => mockedSubnets),

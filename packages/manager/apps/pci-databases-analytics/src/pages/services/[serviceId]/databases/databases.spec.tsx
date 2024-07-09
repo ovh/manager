@@ -7,13 +7,13 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/layout';
+import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
 import Databases, {
   breadcrumb as Breadcrumb,
-} from '@/pages/services/[serviceId]/databases';
-import { database } from '@/models/database';
+} from '@/pages/services/[serviceId]/databases/Database.page';
+import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as databasesApi from '@/api/databases/databases';
+import * as databasesApi from '@/data/api/databases/databases';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
@@ -40,12 +40,12 @@ describe('Databases page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/api/databases/databases', () => ({
+    vi.mock('@/data/api/databases/databases', () => ({
       getServiceDatabases: vi.fn(() => [mockedDatabase]),
       addDatabase: vi.fn((user) => user),
       deleteDatabase: vi.fn(),
     }));
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

@@ -7,9 +7,9 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import Settings from '@/pages/services/[serviceId]/settings';
-import { database } from '@/models/database';
-import * as serviceApi from '@/api/databases/service';
+import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
+import { database } from '@/interfaces/database';
+import * as serviceApi from '@/data/api/databases/service';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
@@ -70,13 +70,13 @@ describe('Ips restrictions update in settings page', () => {
       }),
     }));
 
-    vi.mock('@/api/catalog', () => ({
+    vi.mock('@/data/api/catalog', () => ({
       catalogApi: {
         getCatalog: vi.fn(() => mockedCatalog),
       },
     }));
 
-    vi.mock('@/api/databases/availabilities', () => ({
+    vi.mock('@/data/api/databases/availabilities', () => ({
       getCapabilities: vi.fn(() => mockedCapabilities),
       getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
       getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
@@ -86,21 +86,21 @@ describe('Ips restrictions update in settings page', () => {
       ]),
     }));
 
-    vi.mock('@/api/databases/maintenances', () => ({
+    vi.mock('@/data/api/databases/maintenances', () => ({
       getMaintenances: vi.fn(() => [mockedMaintenance]),
       applyMaintenance: vi.fn((maintenance) => maintenance),
     }));
 
-    vi.mock('@/api/databases/advancedConfiguration', () => ({
+    vi.mock('@/data/api/databases/advancedConfiguration', () => ({
       getAdvancedConfiguration: vi.fn(() => mockAdvancedConfiguration),
       getAdvancedConfigurationCapabilities: vi.fn(() => mockCapabilities),
     }));
 
-    vi.mock('@/api/databases/service', () => ({
+    vi.mock('@/data/api/databases/service', () => ({
       updateService: vi.fn((service) => service),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

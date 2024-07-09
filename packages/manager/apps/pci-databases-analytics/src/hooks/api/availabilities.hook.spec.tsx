@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import * as databaseAPI from '@/api/databases/availabilities';
+import * as databaseAPI from '@/data/api/databases/availabilities';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import {
   useGetAvailabilities,
@@ -19,7 +19,7 @@ import {
   mockedSuggestions,
 } from '@/__tests__/helpers/mocks/availabilities';
 
-vi.mock('@/api/databases/availabilities', () => ({
+vi.mock('@/data/api/databases/availabilities', () => ({
   getAvailabilities: vi.fn(),
   getSuggestions: vi.fn(),
   getCapabilities: vi.fn(),

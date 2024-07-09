@@ -7,11 +7,11 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/layout';
-import { breadcrumb as Breadcrumb } from '@/pages/services/[serviceId]/backups/layout';
-import Backups from '@/pages/services/[serviceId]/backups';
-import * as backupsApi from '@/api/databases/backups';
-import { database } from '@/models/database';
+import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
+import { breadcrumb as Breadcrumb } from '@/pages/services/[serviceId]/backups/Backups.layout';
+import Backups from '@/pages/services/[serviceId]/backups/Backups.page';
+import * as backupsApi from '@/data/api/databases/backups';
+import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
@@ -41,12 +41,12 @@ describe('Backups page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/api/databases/backups', () => ({
+    vi.mock('@/data/api/databases/backups', () => ({
       getServiceBackups: vi.fn(() => [mockedBackup]),
       restoreBackup: vi.fn((backup) => backup),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

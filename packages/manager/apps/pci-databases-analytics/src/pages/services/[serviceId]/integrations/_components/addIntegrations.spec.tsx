@@ -7,10 +7,10 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import Integrations from '@/pages/services/[serviceId]/integrations';
-import { database } from '@/models/database';
+import Integrations from '@/pages/services/[serviceId]/integrations/Integrations.page';
+import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as integrationApi from '@/api/databases/integrations';
+import * as integrationApi from '@/data/api/databases/integrations';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 
 import {
@@ -37,7 +37,7 @@ describe('Integrations page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/api/databases/integrations', () => ({
+    vi.mock('@/data/api/databases/integrations', () => ({
       getServiceIntegrations: vi.fn(() => []),
       getServiceCapabilitiesIntegrations: vi.fn(() => [
         mockedCapaInteGrafDash,
@@ -48,7 +48,7 @@ describe('Integrations page', () => {
       deleteIntegration: vi.fn(),
     }));
 
-    vi.mock('@/api/databases/service', () => ({
+    vi.mock('@/data/api/databases/service', () => ({
       getServices: vi.fn(() => [
         mockedServiceInteBase,
         mockedServiceInteGraf,
@@ -57,7 +57,7 @@ describe('Integrations page', () => {
       ]),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedServiceInteBase,

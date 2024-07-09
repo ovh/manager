@@ -7,10 +7,10 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/layout';
-import Settings from '@/pages/services/[serviceId]/settings';
-import { database } from '@/models/database';
-import * as nodesApi from '@/api/databases/nodes';
+import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
+import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
+import { database } from '@/interfaces/database';
+import * as nodesApi from '@/data/api/databases/nodes';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
@@ -68,13 +68,13 @@ describe('Update table in settings page', () => {
       }),
     }));
 
-    vi.mock('@/api/catalog', () => ({
+    vi.mock('@/data/api/catalog', () => ({
       catalogApi: {
         getCatalog: vi.fn(() => mockedCatalog),
       },
     }));
 
-    vi.mock('@/api/databases/availabilities', () => ({
+    vi.mock('@/data/api/databases/availabilities', () => ({
       getCapabilities: vi.fn(() => mockedCapabilities),
       getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
       getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
@@ -84,26 +84,26 @@ describe('Update table in settings page', () => {
       ]),
     }));
 
-    vi.mock('@/api/databases/maintenances', () => ({
+    vi.mock('@/data/api/databases/maintenances', () => ({
       getMaintenances: vi.fn(() => [mockedMaintenance]),
       applyMaintenance: vi.fn((maintenance) => maintenance),
     }));
 
-    vi.mock('@/api/databases/advancedConfiguration', () => ({
+    vi.mock('@/data/api/databases/advancedConfiguration', () => ({
       getAdvancedConfiguration: vi.fn(() => mockAdvancedConfiguration),
       getAdvancedConfigurationCapabilities: vi.fn(() => mockCapabilities),
     }));
 
-    vi.mock('@/api/databases/service', () => ({
+    vi.mock('@/data/api/databases/service', () => ({
       updateService: vi.fn((service) => service),
     }));
 
-    vi.mock('@/api/databases/nodes', () => ({
+    vi.mock('@/data/api/databases/nodes', () => ({
       addNode: vi.fn((node) => node),
       deleteNode: vi.fn(),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

@@ -4,7 +4,7 @@ import {
   useMutation,
 } from '@tanstack/react-query';
 
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import {
   AddNamespaceProps,
   DeleteNamespaceProps,
@@ -13,8 +13,8 @@ import {
   deleteNamespace,
   editNamespace,
   getNamespaces,
-} from '@/api/databases/namespaces';
-import { CdbError } from '@/api/databases';
+} from '@/data/api/databases/namespaces';
+import { CdbError } from '@/data/api/databases';
 import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetNamespaces(

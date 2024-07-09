@@ -7,13 +7,13 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/layout';
+import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
 import Namespaces, {
   breadcrumb as Breadcrumb,
-} from '@/pages/services/[serviceId]/namespaces';
-import { database } from '@/models/database';
+} from '@/pages/services/[serviceId]/namespaces/Namespace.page';
+import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as namespaceApi from '@/api/databases/namespaces';
+import * as namespaceApi from '@/data/api/databases/namespaces';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedNamespaces } from '@/__tests__/helpers/mocks/namespaces';
@@ -46,13 +46,13 @@ describe('Namespaces page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/api/databases/namespaces', () => ({
+    vi.mock('@/data/api/databases/namespaces', () => ({
       getNamespaces: vi.fn(() => [mockedNamespaces]),
       addNamespace: vi.fn((namespace) => namespace),
       deleteNamespace: vi.fn(),
       editNamespace: vi.fn((namespace) => namespace),
     }));
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

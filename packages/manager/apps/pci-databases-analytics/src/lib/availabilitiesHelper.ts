@@ -1,7 +1,13 @@
 /* eslint-disable no-param-reassign */
-import { order } from '@/models/catalog';
-import { database } from '@/models/database';
-import { Engine, Flavor, Plan, Region, Version } from '@/models/order-funnel';
+import { order } from '@/interfaces/catalog';
+import { database } from '@/interfaces/database';
+import {
+  Engine,
+  Flavor,
+  Plan,
+  Region,
+  Version,
+} from '@/interfaces/order-funnel';
 import { compareStorage } from './bytesHelper';
 import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
 

@@ -7,13 +7,13 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/layout';
+import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
 import Pools, {
   breadcrumb as Breadcrumb,
-} from '@/pages/services/[serviceId]/pools';
-import { database } from '@/models/database';
+} from '@/pages/services/[serviceId]/pools/Pools.page';
+import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as connectionPoolApi from '@/api/databases/connectionPool';
+import * as connectionPoolApi from '@/data/api/databases/connectionPool';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedConnectionPool } from '@/__tests__/helpers/mocks/connectionPool';
@@ -45,27 +45,27 @@ describe('Connection pool page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/api/databases/connectionPool', () => ({
+    vi.mock('@/data/api/databases/connectionPool', () => ({
       getConnectionPools: vi.fn(() => [mockedConnectionPool]),
       addConnectionPool: vi.fn((connectionPool) => connectionPool),
       deleteConnectionPool: vi.fn(),
       editConnectionPool: vi.fn((connectionPool) => connectionPool),
     }));
 
-    vi.mock('@/api/databases/databases', () => ({
+    vi.mock('@/data/api/databases/databases', () => ({
       getServiceDatabases: vi.fn(() => [mockedDatabase]),
     }));
 
-    vi.mock('@/api/databases/users', () => ({
+    vi.mock('@/data/api/databases/users', () => ({
       getUsers: vi.fn(() => [mockedUser]),
     }));
 
-    vi.mock('@/api/databases/certificates', () => ({
+    vi.mock('@/data/api/databases/certificates', () => ({
       getCertificate: vi.fn(() => mockCertificate),
       // test
     }));
 
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

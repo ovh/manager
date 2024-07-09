@@ -1,6 +1,6 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-import { database } from '@/models/database';
-import { getMetric, getMetrics } from '@/api/databases/metrics';
+import { database } from '@/interfaces/database';
+import { getMetric, getMetrics } from '@/data/api/databases/metrics';
 import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetMetrics(

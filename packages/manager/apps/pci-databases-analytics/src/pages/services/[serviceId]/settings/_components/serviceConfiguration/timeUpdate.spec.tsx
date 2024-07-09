@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import { act } from 'react-dom/test-utils';
-import TimeUpdate from '@/pages/services/[serviceId]/settings/_components/serviceConfiguration/timeUpdate';
+import TimeUpdate from '@/pages/services/[serviceId]/settings/_components/serviceConfiguration/TimeUpdate.component';
 
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { Locale } from '@/hooks/useLocale';

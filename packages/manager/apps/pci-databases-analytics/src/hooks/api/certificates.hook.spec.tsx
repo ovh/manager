@@ -1,11 +1,11 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useGetCertificate } from '@/hooks/api/certificates.api.hooks';
-import * as databaseAPI from '@/api/databases/certificates';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/certificates';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 
-vi.mock('@/api/databases/certificates', () => ({
+vi.mock('@/data/api/databases/certificates', () => ({
   getCertificate: vi.fn(),
 }));
 

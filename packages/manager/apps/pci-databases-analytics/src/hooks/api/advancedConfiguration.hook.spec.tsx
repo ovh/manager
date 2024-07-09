@@ -5,11 +5,11 @@ import {
   useGetAdvancedConfigurationCapabilities,
   useUpdateAdvancedConfiguration,
 } from '@/hooks/api/advancedConfiguration.api.hook';
-import * as databaseAPI from '@/api/databases/advancedConfiguration';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/advancedConfiguration';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 // Mock the API functions
-vi.mock('@/api/databases/advancedConfiguration', () => ({
+vi.mock('@/data/api/databases/advancedConfiguration', () => ({
   getAdvancedConfiguration: vi.fn(),
   getAdvancedConfigurationCapabilities: vi.fn(),
   updateAdvancedConfiguration: vi.fn(),

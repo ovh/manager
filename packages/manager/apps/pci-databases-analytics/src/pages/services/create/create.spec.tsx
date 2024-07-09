@@ -9,9 +9,9 @@ import {
 
 import Service, {
   breadcrumb as Breadcrumb,
-} from '@/pages/services/create/index';
+} from '@/pages/services/create/Create.page';
 
-import OrderSummary from '@/pages/services/create/_components/order-summary';
+import OrderSummary from '@/pages/services/create/_components/OrderSummary.component';
 
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
@@ -24,7 +24,7 @@ import {
 } from '@/__tests__/helpers/mocks/availabilities';
 
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
 import {
   mockedBasicOrderFunnelFlavor,
@@ -37,11 +37,11 @@ import {
   NetworkRegionStatusEnum,
   NetworkStatusEnum,
   NetworkTypeEnum,
-} from '@/models/network';
+} from '@/interfaces/network';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/pciProjects';
-import * as ProjectAPI from '@/api/projects';
-import { PciProjectPlanCode } from '@/models/project';
-import * as ServiceAPI from '@/api/databases/service';
+import * as ProjectAPI from '@/data/api/projects';
+import { PciProjectPlanCode } from '@/interfaces/project';
+import * as ServiceAPI from '@/data/api/databases/service';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -129,13 +129,13 @@ describe('Order funnel page', () => {
       };
     });
 
-    vi.mock('@/api/projects', () => {
+    vi.mock('@/data/api/projects', () => {
       return {
         getProject: vi.fn(() => mockedPciProject),
       };
     });
 
-    vi.mock('@/api/databases/availabilities', () => ({
+    vi.mock('@/data/api/databases/availabilities', () => ({
       getAvailabilities: vi.fn(() => [mockedAvailabilities]),
       getSuggestions: vi.fn(() => [mockedSuggestions]),
       getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
@@ -143,13 +143,13 @@ describe('Order funnel page', () => {
       getCapabilities: vi.fn(() => mockedCapabilities),
     }));
 
-    vi.mock('@/api/catalog', () => ({
+    vi.mock('@/data/api/catalog', () => ({
       catalogApi: {
         getCatalog: vi.fn(() => mockedCatalog),
       },
     }));
 
-    vi.mock('@/api/databases/service', () => ({
+    vi.mock('@/data/api/databases/service', () => ({
       addService: vi.fn((service) => service),
     }));
 

@@ -1,14 +1,15 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import {
   getAvailabilities,
   getCapabilities,
   getEnginesCapabilities,
   getRegionsCapabilities,
   getSuggestions,
-} from '@/api/databases/availabilities';
-import { CdbError } from '@/api/databases';
+} from '@/data/api/databases/availabilities';
+import { CdbError } from '@/data/api/databases';
 import { useQueryImmediateRefetch } from './useImmediateRefetch';
+
 
 export function useGetAvailabilities(
   projectId: string,

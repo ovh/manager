@@ -1,5 +1,5 @@
 import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 
 const mockedLifecycle = {
   startDate: '',

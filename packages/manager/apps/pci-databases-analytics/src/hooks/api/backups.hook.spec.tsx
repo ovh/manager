@@ -2,12 +2,12 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useGetBackups, useRestoreBackup } from '@/hooks/api/backups.api.hooks';
 
-import * as databaseAPI from '@/api/databases/backups';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/backups';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import { mockedBackup } from '@/__tests__/helpers/mocks/backup';
 
-vi.mock('@/api/databases/backups', () => ({
+vi.mock('@/data/api/databases/backups', () => ({
   getServiceBackups: vi.fn(),
   restoreBackup: vi.fn(),
 }));

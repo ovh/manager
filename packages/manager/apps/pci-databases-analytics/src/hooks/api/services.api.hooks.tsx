@@ -5,7 +5,7 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import {
   UpdateServiceProps,
   addService,
@@ -13,8 +13,8 @@ import {
   getService,
   getServices,
   updateService,
-} from '@/api/databases/service';
-import { CdbError, ServiceData } from '@/api/databases';
+} from '@/data/api/databases/service';
+import { CdbError, ServiceData } from '@/data/api/databases';
 import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetService(

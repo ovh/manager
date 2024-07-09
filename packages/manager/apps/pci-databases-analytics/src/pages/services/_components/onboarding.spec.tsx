@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 
-import Onboarding from '@/pages/services/_components/onboarding';
+import Onboarding from '@/pages/services/_components/Onboarding.component';
 
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
@@ -43,7 +43,7 @@ describe('Onboarding page', () => {
     }));
     vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 
-    vi.mock('@/api/databases/guides', () => ({
+    vi.mock('@/data/api/databases/guides', () => ({
       getGuides: vi.fn(() => [mockedGuide, mockedGuideOnboarding]),
     }));
   });

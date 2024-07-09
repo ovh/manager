@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { NetworkTypeEnum } from '@/models/network';
+import { NetworkTypeEnum } from '@/interfaces/network';
 import { useGetNetwork, useGetSubnet } from './api/network.api.hooks';
 
 /**

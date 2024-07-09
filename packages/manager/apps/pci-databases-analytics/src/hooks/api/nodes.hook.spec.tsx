@@ -1,13 +1,13 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import * as databaseAPI from '@/api/databases/nodes';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/nodes';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import { useAddNode, useDeleteNode } from '@/hooks/api/nodes.api.hooks';
 import { mockedNode } from '@/__tests__/helpers/mocks/nodes';
 
-vi.mock('@/api/databases/nodes', () => ({
+vi.mock('@/data/api/databases/nodes', () => ({
   addNode: vi.fn(),
   deleteNode: vi.fn(),
 }));

@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import Loading from '@/components/Loading/Loading';
+import Loading from '@/components/loading/Loading.component';
 
 describe('Loading component', () => {
   it('should display the loading component', async () => {

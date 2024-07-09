@@ -3,14 +3,14 @@ import {
   UseQueryResult,
   useMutation,
 } from '@tanstack/react-query';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import {
   UpdateAdvancedConfigurationProps,
   getAdvancedConfiguration,
   getAdvancedConfigurationCapabilities,
   updateAdvancedConfiguration,
-} from '@/api/databases/advancedConfiguration';
-import { CdbError } from '@/api/databases';
+} from '@/data/api/databases/advancedConfiguration';
+import { CdbError } from '@/data/api/databases';
 import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetAdvancedConfiguration(

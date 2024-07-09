@@ -1,5 +1,5 @@
 import { BadgeProps } from '@/components/ui/badge';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 
 export const getTagVariant = (
   tag: database.capabilities.Tags,

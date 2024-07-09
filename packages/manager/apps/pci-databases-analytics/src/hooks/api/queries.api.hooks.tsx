@@ -3,7 +3,7 @@ import {
   UseQueryResult,
   useMutation,
 } from '@tanstack/react-query';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import {
   CancelQueryProps,
   QueryStatistics,
@@ -11,8 +11,8 @@ import {
   getCurrentQueries,
   getQueryStatistics,
   resetQueryStatistics,
-} from '@/api/databases/queries';
-import { CdbError, ServiceData } from '@/api/databases';
+} from '@/data/api/databases/queries';
+import { CdbError, ServiceData } from '@/data/api/databases';
 import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetCurrentQueries(

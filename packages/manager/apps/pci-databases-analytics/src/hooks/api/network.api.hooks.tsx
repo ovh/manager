@@ -1,6 +1,6 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-import { networkApi } from '@/api/network';
-import { Network, Subnet, Vrack } from '@/models/network';
+import { networkApi } from '@/data/api/network';
+import { Network, Subnet, Vrack } from '@/interfaces/network';
 import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetNetwork(

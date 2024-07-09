@@ -3,15 +3,15 @@ import {
   UseQueryResult,
   useMutation,
 } from '@tanstack/react-query';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import {
   AddDatabaseProps,
   DeleteDatabaseProps,
   addDatabase,
   deleteDatabase,
   getServiceDatabases,
-} from '@/api/databases/databases';
-import { CdbError } from '@/api/databases';
+} from '@/data/api/databases/databases';
+import { CdbError } from '@/data/api/databases';
 import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetDatabases(

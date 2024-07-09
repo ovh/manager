@@ -6,12 +6,12 @@ import {
   useDeleteDatabase,
 } from '@/hooks/api/databases.api.hook';
 
-import * as databaseAPI from '@/api/databases/databases';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/databases';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import { mockedDatabase } from '@/__tests__/helpers/mocks/databases';
 
-vi.mock('@/api/databases/databases', () => ({
+vi.mock('@/data/api/databases/databases', () => ({
   getServiceDatabases: vi.fn(),
   addDatabase: vi.fn(),
   deleteDatabase: vi.fn(),

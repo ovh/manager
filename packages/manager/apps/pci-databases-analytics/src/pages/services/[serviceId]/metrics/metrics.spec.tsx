@@ -3,8 +3,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import Metrics, {
   breadcrumb as Breadcrumb,
-} from '@/pages/services/[serviceId]/metrics';
-import { database } from '@/models/database';
+} from '@/pages/services/[serviceId]/metrics/Metrics.page';
+import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
@@ -26,7 +26,7 @@ describe('Metrics page', () => {
       }),
     }));
 
-    vi.mock('@/api/databases/metrics', () => ({
+    vi.mock('@/data/api/databases/metrics', () => ({
       getMetrics: vi.fn(() => [
         mockMetric.name,
         mockMetricCpu.name,
@@ -36,7 +36,7 @@ describe('Metrics page', () => {
       getMetric: vi.fn(() => mockMetric),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedServiceOrig,

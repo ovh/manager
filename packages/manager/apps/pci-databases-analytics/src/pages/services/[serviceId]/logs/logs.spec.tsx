@@ -4,8 +4,8 @@ import { UseQueryResult } from '@tanstack/react-query';
 import * as logsHook from '@/hooks/api/logs.api.hooks';
 import Logs, {
   breadcrumb as LogsBreadcrumb,
-} from '@/pages/services/[serviceId]/logs';
-import { database } from '@/models/database';
+} from '@/pages/services/[serviceId]/logs/Logs.page';
+import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 
@@ -51,7 +51,7 @@ vi.mock('@/hooks/api/logs.api.hooks', () => {
   };
 });
 
-vi.mock('@/pages/services/[serviceId]/layout', () => {
+vi.mock('@/pages/services/[serviceId]/service.layout', () => {
   const useServiceData = vi.fn(() => ({
     projectId: 'projectId',
     service: mockService,

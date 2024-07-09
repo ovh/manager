@@ -1,5 +1,5 @@
-import { order } from '@/models/catalog';
-import { database } from '@/models/database';
+import { order } from '@/interfaces/catalog';
+import { database } from '@/interfaces/database';
 
 type Price = Pick<order.publicOrder.Pricing, 'price' | 'tax'>;
 export interface Pricing {

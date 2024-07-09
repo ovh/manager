@@ -5,7 +5,7 @@ import {
   NetworkTypeEnum,
   Subnet,
   Vrack,
-} from '@/models/network';
+} from '@/interfaces/network';
 
 export const mockedNetworks: Network[] = [
   {

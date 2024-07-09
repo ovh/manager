@@ -1,5 +1,5 @@
-import { database } from '@/models/database';
-import { Guide, GuideSections } from '@/models/guide';
+import { database } from '@/interfaces/database';
+import { Guide, GuideSections } from '@/interfaces/guide';
 
 export const mockedGuide: Guide = {
   section: GuideSections.integrations,

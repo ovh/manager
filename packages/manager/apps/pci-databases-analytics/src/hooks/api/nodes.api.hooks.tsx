@@ -1,12 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
-import { CdbError } from '@/api/databases';
+import { CdbError } from '@/data/api/databases';
 import {
   AddNodeProps,
   DeleteNodeProps,
   addNode,
   deleteNode,
-} from '@/api/databases/nodes';
-import { database } from '@/models/database';
+} from '@/data/api/databases/nodes';
+import { database } from '@/interfaces/database';
 
 interface MutateNodeProps {
   onError: (cause: CdbError) => void;

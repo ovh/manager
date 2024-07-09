@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 
 type EngineTestCase = [database.EngineEnum | string, string];

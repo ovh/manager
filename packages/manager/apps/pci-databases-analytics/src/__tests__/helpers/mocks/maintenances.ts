@@ -1,4 +1,4 @@
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 
 export const mockedMaintenance: database.service.Maintenance = {
   description: 'maintenance description',

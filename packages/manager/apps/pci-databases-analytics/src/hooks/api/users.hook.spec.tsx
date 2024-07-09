@@ -1,8 +1,8 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import * as databaseAPI from '@/api/databases/users';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/users';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import {
   useGetUsers,
@@ -19,7 +19,7 @@ import {
   mockedDatabaseUserWithPassword,
 } from '@/__tests__/helpers/mocks/databaseUser';
 
-vi.mock('@/api/databases/users', () => ({
+vi.mock('@/data/api/databases/users', () => ({
   getUsers: vi.fn(),
   addUser: vi.fn(),
   deleteUser: vi.fn(),

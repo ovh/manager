@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import * as databaseAPI from '@/api/databases/queries';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/queries';
+import { database } from '@/interfaces/database';
 import {
   useGetQueryStatistics,
   useGetCurrentQueries,
@@ -14,7 +14,7 @@ import {
   mockedQueryStatistics,
 } from '@/__tests__/helpers/mocks/queries';
 
-vi.mock('@/api/databases/queries', () => ({
+vi.mock('@/data/api/databases/queries', () => ({
   getCurrentQueries: vi.fn(),
   cancelCurrentQuery: vi.fn(),
   getQueryStatistics: vi.fn(),

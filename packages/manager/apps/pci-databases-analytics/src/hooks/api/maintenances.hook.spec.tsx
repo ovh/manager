@@ -4,12 +4,12 @@ import {
   useGetMaintenances,
   useApplyMaintenance,
 } from '@/hooks/api/maintenances.api.hooks';
-import * as databaseAPI from '@/api/databases/maintenances';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/maintenances';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import { mockedMaintenance } from '@/__tests__/helpers/mocks/maintenances';
 
-vi.mock('@/api/databases/maintenances', () => ({
+vi.mock('@/data/api/databases/maintenances', () => ({
   getMaintenances: vi.fn(),
   applyMaintenance: vi.fn(),
 }));

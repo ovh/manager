@@ -3,13 +3,13 @@ import {
   UseQueryResult,
   useMutation,
 } from '@tanstack/react-query';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import {
   RestoreBackupProps,
   getServiceBackups,
   restoreBackup,
-} from '@/api/databases/backups';
-import { CdbError } from '@/api/databases';
+} from '@/data/api/databases/backups';
+import { CdbError } from '@/data/api/databases';
 import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetBackups(

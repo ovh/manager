@@ -7,8 +7,8 @@ import {
   useEditNamespace,
   useDeleteNamespace,
 } from '@/hooks/api/namespaces.api.hooks';
-import * as databaseAPI from '@/api/databases/namespaces';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/namespaces';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import {
   mockedAddNamespace,
@@ -16,7 +16,7 @@ import {
   mockedNamespaces,
 } from '@/__tests__/helpers/mocks/namespaces';
 
-vi.mock('@/api/databases/namespaces', () => ({
+vi.mock('@/data/api/databases/namespaces', () => ({
   getNamespaces: vi.fn(),
   addNamespace: vi.fn(),
   editNamespace: vi.fn(),

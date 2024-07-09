@@ -1,13 +1,13 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import * as API from '@/api/catalog';
+import * as API from '@/data/api/catalog';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 
-vi.mock('@/api/catalog', () => ({
+vi.mock('@/data/api/catalog', () => ({
   catalogApi: {
     getCatalog: vi.fn(),
   },

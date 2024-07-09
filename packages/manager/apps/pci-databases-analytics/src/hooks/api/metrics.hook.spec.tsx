@@ -1,12 +1,12 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useGetMetrics, useGetMetric } from '@/hooks/api/metrics.api.hooks';
-import * as databaseAPI from '@/api/databases/metrics';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/metrics';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import { mockMetric } from '@/__tests__/helpers/mocks/metrics';
 
-vi.mock('@/api/databases/metrics', () => ({
+vi.mock('@/data/api/databases/metrics', () => ({
   getMetrics: vi.fn(),
   getMetric: vi.fn(),
 }));

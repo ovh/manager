@@ -10,9 +10,9 @@ import {
 import { UseQueryResult } from '@tanstack/react-query';
 import Fork, {
   breadcrumb as Breadcrumb,
-} from '@/pages/services/[serviceId]/backups/fork/index';
+} from '@/pages/services/[serviceId]/backups/fork/Fork.page';
 
-import ForkSummary from '@/pages/services/[serviceId]/backups/fork/_components/fork-summary';
+import ForkSummary from '@/pages/services/[serviceId]/backups/fork/_components/ForkSummary.component';
 
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
@@ -24,7 +24,7 @@ import {
 } from '@/__tests__/helpers/mocks/availabilities';
 
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
 import { mockedForkService } from '@/__tests__/helpers/mocks/services';
 import {
@@ -35,7 +35,7 @@ import {
   mockedNetworksFork,
   mockedSubnets,
 } from '@/__tests__/helpers/mocks/network';
-import { ForkSourceType } from '@/models/order-funnel';
+import { ForkSourceType } from '@/interfaces/order-funnel';
 import {
   mockedBasicOrderFunnelFlavor,
   mockedBasicOrderFunnelPlan,
@@ -47,9 +47,9 @@ import {
   NetworkRegionStatusEnum,
   NetworkStatusEnum,
   NetworkTypeEnum,
-} from '@/models/network';
+} from '@/interfaces/network';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
-import * as ServiceAPI from '@/api/databases/service';
+import * as ServiceAPI from '@/data/api/databases/service';
 import { useToast } from '@/components/ui/use-toast';
 
 const mockedFork = {
@@ -131,7 +131,7 @@ describe('Fork funnel page', () => {
     }));
     vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedForkService,
@@ -140,31 +140,31 @@ describe('Fork funnel page', () => {
       })),
     }));
 
-    vi.mock('@/api/databases/availabilities', () => ({
+    vi.mock('@/data/api/databases/availabilities', () => ({
       getAvailabilities: vi.fn(() => [mockedAvailabilities]),
       getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
       getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
       getCapabilities: vi.fn(() => mockedCapabilities),
     }));
 
-    vi.mock('@/api/databases/backups', () => ({
+    vi.mock('@/data/api/databases/backups', () => ({
       getServiceBackups: vi.fn(() => [mockedBackup, mockedBackupBis]),
     }));
 
-    vi.mock('@/api/network', () => ({
+    vi.mock('@/data/api/network', () => ({
       networkApi: {
         getPrivateNetworks: vi.fn(() => mockedNetworksFork),
         getSubnets: vi.fn(() => mockedSubnets),
       },
     }));
 
-    vi.mock('@/api/catalog', () => ({
+    vi.mock('@/data/api/catalog', () => ({
       catalogApi: {
         getCatalog: vi.fn(() => mockedCatalog),
       },
     }));
 
-    vi.mock('@/api/databases/service', () => ({
+    vi.mock('@/data/api/databases/service', () => ({
       addService: vi.fn((service) => service),
     }));
 

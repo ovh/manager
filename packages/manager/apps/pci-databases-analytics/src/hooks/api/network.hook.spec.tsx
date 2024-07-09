@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import * as API from '@/api/network';
+import * as API from '@/data/api/network';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import {
   useGetVrack,
@@ -13,7 +13,7 @@ import {
   mockedVrack,
 } from '@/__tests__/helpers/mocks/network';
 
-vi.mock('@/api/network', () => ({
+vi.mock('@/data/api/network', () => ({
   networkApi: {
     getPrivateNetworks: vi.fn(),
     getSubnets: vi.fn(),

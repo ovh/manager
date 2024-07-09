@@ -7,8 +7,8 @@ import {
   useEditConnectionPool,
 } from '@/hooks/api/connectionPool.api.hooks';
 
-import * as databaseAPI from '@/api/databases/connectionPool';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/connectionPool';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import {
   mockedAddConnectionPool,
@@ -16,7 +16,7 @@ import {
   mockedEditConnectionPool,
 } from '@/__tests__/helpers/mocks/connectionPool';
 
-vi.mock('@/api/databases/connectionPool', () => ({
+vi.mock('@/data/api/databases/connectionPool', () => ({
   getConnectionPools: vi.fn(),
   addConnectionPool: vi.fn(),
   editConnectionPool: vi.fn(),

@@ -1,6 +1,6 @@
 import { describe, vi } from 'vitest';
 import { getTagVariant, updateTags } from '@/lib/tagsHelper';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import { mockedFlavor } from '../__tests__/helpers/mocks/availabilities';
 
 describe('tagsHelper', () => {

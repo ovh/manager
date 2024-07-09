@@ -7,11 +7,11 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import Dashboard from '@/pages/services/[serviceId]/dashboard';
-import * as metricApi from '@/api/databases/metrics';
-import { database } from '@/models/database';
+import Dashboard from '@/pages/services/[serviceId]/dashboard/Dashboard.page';
+import * as metricApi from '@/data/api/databases/metrics';
+import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as maintenanceApi from '@/api/databases/maintenances';
+import * as maintenanceApi from '@/data/api/databases/maintenances';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
@@ -37,7 +37,7 @@ describe('Dashboard page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/api/databases/metrics', () => ({
+    vi.mock('@/data/api/databases/metrics', () => ({
       getMetrics: vi.fn(() => [
         mockMetric.name,
         mockMetricCpu.name,
@@ -46,11 +46,11 @@ describe('Dashboard page', () => {
       ]),
     }));
 
-    vi.mock('@/api/databases/maintenances', () => ({
+    vi.mock('@/data/api/databases/maintenances', () => ({
       getMaintenances: vi.fn(() => [mockedMaintenance]),
     }));
 
-    vi.mock('@/api/network', () => ({
+    vi.mock('@/data/api/network', () => ({
       networkApi: {
         getVrack: vi.fn(() => [mockedVrack]),
       },
@@ -64,7 +64,7 @@ describe('Dashboard page', () => {
       Line: vi.fn(() => null),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedServiceOrig,
@@ -174,7 +174,7 @@ describe('Maintenance section', () => {
       }),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedServiceOrig,
@@ -245,7 +245,7 @@ describe('Connection details page', () => {
       }),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: {

@@ -7,13 +7,13 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/layout';
+import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
 import Users, {
   breadcrumb as Breadcrumb,
-} from '@/pages/services/[serviceId]/users';
-import { database } from '@/models/database';
+} from '@/pages/services/[serviceId]/users/Users.page';
+import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as usersApi from '@/api/databases/users';
+import * as usersApi from '@/data/api/databases/users';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedDatabaseUser } from '@/__tests__/helpers/mocks/databaseUser';
@@ -43,7 +43,7 @@ describe('Users page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/api/databases/users', () => ({
+    vi.mock('@/data/api/databases/users', () => ({
       getUsers: vi.fn(() => [mockedDatabaseUser]),
       addUser: vi.fn((user) => user),
       deleteUser: vi.fn(),
@@ -51,7 +51,7 @@ describe('Users page', () => {
       getRoles: vi.fn(() => []),
       editUser: vi.fn((user) => user),
     }));
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

@@ -2,15 +2,15 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import { act } from 'react-dom/test-utils';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as usersApi from '@/api/databases/users';
+import * as usersApi from '@/data/api/databases/users';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { useToast } from '@/components/ui/use-toast';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { mockedDatabaseUser } from '@/__tests__/helpers/mocks/databaseUser';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
-import AddEditUserModal from '@/pages/services/[serviceId]/users/_components/addEditUser';
+import AddEditUserModal from '@/pages/services/[serviceId]/users/_components/AddEditUser.component';
 
 describe('Edit user modal', () => {
   beforeEach(() => {
@@ -20,7 +20,7 @@ describe('Edit user modal', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/api/databases/users', () => ({
+    vi.mock('@/data/api/databases/users', () => ({
       getUsers: vi.fn(() => [mockedDatabaseUser]),
       addUser: vi.fn(),
       deleteUser: vi.fn(),
@@ -29,7 +29,7 @@ describe('Edit user modal', () => {
       editUser: vi.fn((user) => user),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

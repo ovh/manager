@@ -6,10 +6,10 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import Services from '@/pages/services';
-import { database } from '@/models/database';
+import Services from '@/pages/services/Services.page';
+import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as serviceApi from '@/api/databases/service';
+import * as serviceApi from '@/data/api/databases/service';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
@@ -46,7 +46,7 @@ describe('Services List page', () => {
       Trans: ({ children }: any) => children,
     }));
 
-    vi.mock('@/api/databases/service', () => ({
+    vi.mock('@/data/api/databases/service', () => ({
       getServices: vi.fn(() => [mockedService]),
       updateService: vi.fn((service) => service),
       deleteService: vi.fn(),

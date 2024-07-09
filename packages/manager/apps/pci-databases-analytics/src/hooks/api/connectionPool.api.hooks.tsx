@@ -12,10 +12,10 @@ import {
   deleteConnectionPool,
   editConnectionPool,
   getConnectionPools,
-} from '@/api/databases/connectionPool';
-import { database } from '@/models/database';
-import { CdbError } from '@/api/databases';
+} from '@/data/api/databases/connectionPool';
 import { useQueryImmediateRefetch } from './useImmediateRefetch';
+import { database } from '@/interfaces/database';
+import { CdbError } from '@/data/api/databases';
 
 export function useGetConnectionPools(
   projectId: string,

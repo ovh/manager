@@ -1,4 +1,4 @@
-import { nichandle, order } from '@/models/catalog';
+import { nichandle, order } from '@/interfaces/catalog';
 import { mockedAvailabilities } from './availabilities';
 
 const planCodes = mockedAvailabilities.reduce((acc, curr) => {

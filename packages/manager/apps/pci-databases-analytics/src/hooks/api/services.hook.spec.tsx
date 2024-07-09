@@ -8,8 +8,8 @@ import {
   useUpdateService,
   useDeleteService,
 } from '@/hooks/api/services.api.hooks';
-import * as databaseAPI from '@/api/databases/service';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/service';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import {
   mockedService,
@@ -17,7 +17,7 @@ import {
   mockedServiceCreationWithEngine,
 } from '@/__tests__/helpers/mocks/services';
 
-vi.mock('@/api/databases/service', () => ({
+vi.mock('@/data/api/databases/service', () => ({
   getServices: vi.fn(),
   getService: vi.fn(),
   addService: vi.fn(),

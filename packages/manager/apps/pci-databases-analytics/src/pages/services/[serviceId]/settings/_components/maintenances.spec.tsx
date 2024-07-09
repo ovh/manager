@@ -7,10 +7,10 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/layout';
-import Settings from '@/pages/services/[serviceId]/settings';
-import * as maintenanceApi from '@/api/databases/maintenances';
-import { database } from '@/models/database';
+import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
+import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
+import * as maintenanceApi from '@/data/api/databases/maintenances';
+import { database } from '@/interfaces/database';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
@@ -44,25 +44,25 @@ describe('Maintenance in settings page', () => {
       }),
     }));
 
-    vi.mock('@/api/catalog', () => ({
+    vi.mock('@/data/api/catalog', () => ({
       catalogApi: {
         getCatalog: vi.fn(() => mockedCatalog),
       },
     }));
 
-    vi.mock('@/api/databases/availabilities', () => ({
+    vi.mock('@/data/api/databases/availabilities', () => ({
       getCapabilities: vi.fn(() => mockedCapabilities),
       getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
       getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
       getAvailabilities: vi.fn(() => [mockedAvailabilities]),
     }));
 
-    vi.mock('@/api/databases/maintenances', () => ({
+    vi.mock('@/data/api/databases/maintenances', () => ({
       getMaintenances: vi.fn(() => [mockedMaintenanceTer]),
       applyMaintenance: vi.fn((maintenance) => maintenance),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

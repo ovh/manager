@@ -3,7 +3,7 @@ import {
   UseQueryResult,
   useMutation,
 } from '@tanstack/react-query';
-import { database } from '@/models/database';
+import { database } from '@/interfaces/database';
 import {
   AddIntegrationProps,
   DeleteIntegrationProps,
@@ -11,8 +11,8 @@ import {
   deleteIntegration,
   getServiceCapabilitiesIntegrations,
   getServiceIntegrations,
-} from '@/api/databases/integrations';
-import { CdbError } from '@/api/databases';
+} from '@/data/api/databases/integrations';
+import { CdbError } from '@/data/api/databases';
 import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetIntegrations(

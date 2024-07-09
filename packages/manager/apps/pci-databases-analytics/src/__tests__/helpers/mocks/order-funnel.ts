@@ -1,6 +1,12 @@
-import { order } from '@/models/catalog';
-import { database } from '@/models/database';
-import { Engine, Flavor, Plan, Region, Version } from '@/models/order-funnel';
+import { order } from '@/interfaces/catalog';
+import { database } from '@/interfaces/database';
+import {
+  Engine,
+  Flavor,
+  Plan,
+  Region,
+  Version,
+} from '@/interfaces/order-funnel';
 
 export const mockedBasicOrderFunnelFlavor: Flavor = {
   name: 'flavorName',

@@ -2,12 +2,12 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useGetServiceLogs } from '@/hooks/api/logs.api.hooks';
 
-import * as databaseAPI from '@/api/databases/logs';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/logs';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import { mockedLogs } from '@/__tests__/helpers/mocks/logs';
 
-vi.mock('@/api/databases/logs', () => ({
+vi.mock('@/data/api/databases/logs', () => ({
   getServiceLogs: vi.fn(),
 }));
 

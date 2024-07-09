@@ -4,13 +4,13 @@ import {
   useMutation,
 } from '@tanstack/react-query';
 
-import { database } from '@/models/database';
-import { CdbError } from '@/api/databases';
+import { database } from '@/interfaces/database';
+import { CdbError } from '@/data/api/databases';
 import {
   ApplyMaintenanceProps,
   applyMaintenance,
   getMaintenances,
-} from '@/api/databases/maintenances';
+} from '@/data/api/databases/maintenances';
 import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetMaintenances(

@@ -7,8 +7,8 @@ import {
   UseDeleteIntegration,
 } from '@/hooks/api/integrations.api.hook';
 
-import * as databaseAPI from '@/api/databases/integrations';
-import { database } from '@/models/database';
+import * as databaseAPI from '@/data/api/databases/integrations';
+import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import {
   mockedAddIntegrations,
@@ -16,7 +16,7 @@ import {
   mockedIntegrations,
 } from '@/__tests__/helpers/mocks/integrations';
 
-vi.mock('@/api/databases/integrations', () => ({
+vi.mock('@/data/api/databases/integrations', () => ({
   getServiceIntegrations: vi.fn(),
   getServiceCapabilitiesIntegrations: vi.fn(),
   addIntegration: vi.fn(),

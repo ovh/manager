@@ -1,6 +1,6 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import ProgressLoader from '@/components/Loading/ProgressLoader';
+import ProgressLoader from '@/components/loading/ProgressLoader.component';
 
 describe('ProgressLoader component', () => {
   beforeEach(() => {
