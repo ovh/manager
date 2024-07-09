@@ -193,15 +193,28 @@
             <oui-field
                 data-ng-attr-label="{{ $ctrl.dense ? ('kubernetes_network_form_load_balancers_subnet'|translate) : null }}"
             >
-                <oui-select
-                    data-name="loadBalancersSubnet"
-                    data-model="$ctrl.loadBalancersSubnet"
-                    data-items="$ctrl.subnets"
-                    data-match="id"
-                >
-                    <span data-ng-bind="$item.id"></span> -
-                    <span data-ng-bind="$item.cidr"></span>
-                </oui-select>
+                <label class="oui-select">
+                    <select
+                        id="loadBalancersSubnet"
+                        name="loadBalancersSubnet"
+                        class="oui-select__input"
+                        data-ng-model="$ctrl.loadBalancersSubnet"
+                    >
+                        <option
+                            data-ng-value="null"
+                            data-translate="kubernetes_network_form_load_balancers_subnet_none"
+                        ></option>
+                        <option
+                            data-ng-repeat="subnet in $ctrl.subnets"
+                            data-ng-value="subnet"
+                            data-ng-bind="subnet.id + ' - ' + subnet.cidr"
+                        ></option>
+                    </select>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
+                </label>
             </oui-field>
         </div>
     </div>
