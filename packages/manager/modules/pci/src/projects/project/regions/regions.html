@@ -20,7 +20,7 @@
         data-tracking-page-name="PublicCloud::pci::projects::project::regions"
     ></pci-activate-project-banner>
 
-    <oui-message data-type="info">
+    <oui-message data-type="info" data-ng-if="!$ctrl.isDiscoveryProject">
         <span data-translate="pci_projects_project_regions_info_message"></span>
     </oui-message>
 
@@ -124,7 +124,7 @@
             data-variant="primary"
             data-type="button"
             data-on-click="$ctrl.addRegions()"
-            data-disabled="$ctrl.regionToAdd === null"
+            data-disabled="$ctrl.regionToAdd === null || $ctrl.isDiscoveryProject"
             data-ng-if="!$ctrl.isLoading"
         >
             <span
