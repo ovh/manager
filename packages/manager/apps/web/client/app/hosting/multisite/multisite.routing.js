@@ -22,6 +22,15 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      goToViewLastDeploy: /* @ngInject */ ($state) => (serviceName, domain) => {
+        return $state.go(
+          'app.hosting.dashboard.multisite.git-view-last-deployment',
+          {
+            serviceName,
+            path: domain.path,
+          },
+        );
+      },
       goToDeployWebSite: /* @ngInject */ ($state) => (serviceName, domain) => {
         return $state.go('app.hosting.dashboard.multisite.git-deployment', {
           serviceName,

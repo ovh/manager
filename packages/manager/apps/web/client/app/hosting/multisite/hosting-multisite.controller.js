@@ -258,7 +258,7 @@ angular
         return [GIT_STATUS.created, GIT_STATUS.error].includes(vcsStatus);
       };
 
-      $scope.canViewLastDeloymentGit = function canViewLastDeloymentGit({
+      $scope.canViewLastDeploymentGit = function canViewLastDeploymentGit({
         vcsStatus,
       }) {
         return [
@@ -313,6 +313,9 @@ angular
 
       $scope.goToDeployWebSite = (domain) =>
         $scope.$resolve.goToDeployWebSite($scope.hosting.serviceName, domain);
+
+      $scope.goToViewLastDeploy = (domain) =>
+        $scope.$resolve.goToViewLastDeploy($scope.hosting.serviceName, domain);
 
       $scope.restartDomain = (domain) =>
         HostingDomain.restartVirtualHostOfAttachedDomain(
