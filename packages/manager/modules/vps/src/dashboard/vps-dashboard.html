@@ -344,6 +344,7 @@
                         </oui-action-menu>
                     </oui-tile-definition>
                     <oui-tile-definition
+                        data-ng-if="$ctrl.isSecondaryDnsAvailable"
                         data-term="{{ ::'vps_dashboard_secondary_dns' | translate }}"
                     >
                         <oui-tile-description>
