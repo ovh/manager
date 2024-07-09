@@ -12,7 +12,7 @@ export default defineConfig({
     coverage: {
       include: ['src'],
       exclude: [
-        'src/interfaces',
+        'src/types',
         'src/__tests__',
         'src/vite-*.ts',
         'src/App.tsx',
