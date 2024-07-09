@@ -7,6 +7,12 @@ angular.module('App').controller(
       this.$stateParams = $stateParams;
       this.TailLogs = TailLogs;
       this.privateDatabaseLogsService = PrivateDatabaseLogsService;
+
+      $scope.$on('$destroy', () => {
+        if (this.logger) {
+          this.logger.stop();
+        }
+      });
     }
 
     $onInit() {

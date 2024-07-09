@@ -13,21 +13,43 @@
             </span>
         </oui-message>
 
-        <div data-ng-repeat="chart in $ctrl.charts track by $index">
+        <div>
             <h2
-                data-ng-bind="'privateDatabase_metrics_' + chart.name  + '_title' | translate"
+                data-translate="privateDatabase_metrics_memoryUsages_title"
             ></h2>
 
             <div
-                data-ng-if="chart.hasData"
                 class="chart-container"
                 style="height: 320px;"
                 data-chart
-                data-chartjs="chart.data"
+                data-chartjs="$ctrl.chartMemoryUsage"
                 data-auto-reload="true"
             ></div>
 
-            <oui-message data-ng-if="!chart.hasData" data-type="warning">
+            <oui-message
+                data-ng-if="$ctrl.noMemoryUsageData"
+                data-type="warning"
+            >
+                <span data-translate="privateDatabase_metrics_no_data"></span>
+            </oui-message>
+        </div>
+        <div>
+            <h2
+                data-translate="privateDatabase_metrics_activeConnections_title"
+            ></h2>
+
+            <div
+                class="chart-container"
+                style="height: 320px;"
+                data-chart
+                data-chartjs="$ctrl.chartConnections"
+                data-auto-reload="true"
+            ></div>
+
+            <oui-message
+                data-ng-if="$ctrl.noActiveConnectionsData"
+                data-type="warning"
+            >
                 <span data-translate="privateDatabase_metrics_no_data"></span>
             </oui-message>
         </div>
