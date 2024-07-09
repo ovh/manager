@@ -18,6 +18,11 @@ export const getFeatureAvailabilityQueryKey = (featureList: string[]) => [
   `feature-availability-${featureList.join('-')}`,
 ];
 
+export type UseFeatureAvailabilityResult = UseQueryResult<
+  Record<string, boolean>,
+  ApiError
+>;
+
 /**
  * @examples
  * const featureList = ['billing', 'webooo', 'web:microsoft'];
@@ -29,7 +34,7 @@ export const getFeatureAvailabilityQueryKey = (featureList: string[]) => [
  */
 export const useFeatureAvailability = (
   featureList: string[],
-): UseQueryResult<Record<string, boolean>, ApiError> =>
+): UseFeatureAvailabilityResult =>
   useQuery<Record<string, boolean>, ApiError>({
     queryKey: getFeatureAvailabilityQueryKey(featureList),
     queryFn: () => fetchFeatureAvailabilityData(featureList),

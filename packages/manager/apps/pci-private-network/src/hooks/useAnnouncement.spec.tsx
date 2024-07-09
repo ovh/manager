@@ -1,6 +1,8 @@
 import { describe, vi } from 'vitest';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
-import { UseQueryResult } from '@tanstack/react-query';
+import {
+  useFeatureAvailability,
+  UseFeatureAvailabilityResult,
+} from '@ovhcloud/manager-components';
 import { renderHook } from '@testing-library/react';
 import { pciAnnouncementBannerId } from '@/constants';
 import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
@@ -14,7 +16,7 @@ describe('useAnnouncementBanner', () => {
     vi.mocked(useFeatureAvailability).mockReturnValue({
       data: { [pciAnnouncementBannerId]: true },
       isLoading: false,
-    } as UseQueryResult<Record<string, boolean>, unknown>);
+    } as UseFeatureAvailabilityResult);
 
     const { result } = renderHook(() => useAnnouncementBanner());
     expect(result.current.isBannerVisible).toBe(true);
@@ -25,7 +27,7 @@ describe('useAnnouncementBanner', () => {
     vi.mocked(useFeatureAvailability).mockReturnValue({
       data: { [pciAnnouncementBannerId]: false },
       isLoading: false,
-    } as UseQueryResult<Record<string, boolean>, unknown>);
+    } as UseFeatureAvailabilityResult);
 
     const { result } = renderHook(() => useAnnouncementBanner());
     expect(result.current.isBannerVisible).toBe(false);
@@ -36,7 +38,7 @@ describe('useAnnouncementBanner', () => {
     vi.mocked(useFeatureAvailability).mockReturnValue({
       data: undefined,
       isLoading: true,
-    } as UseQueryResult<Record<string, boolean>, unknown>);
+    } as UseFeatureAvailabilityResult);
 
     const { result } = renderHook(() => useAnnouncementBanner());
     expect(result.current.isBannerVisible).toBeUndefined();

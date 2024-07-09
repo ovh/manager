@@ -2,13 +2,13 @@
 import { waitFor, screen } from '@testing-library/react';
 import { SetupServer, setupServer } from 'msw/node';
 import { useFeatureAvailability } from './useFeatureAvailability';
-import { render } from '../../../utils/test.provider';
-import { toMswHandlers } from '../../../../../../playwright-helpers/msw';
+import { render } from '../../utils/test.provider';
+import { toMswHandlers } from '../../../../../playwright-helpers/msw';
 import '@testing-library/jest-dom';
 import {
   getFeatureAvailabilityMocks,
   featureAvailabilityError,
-} from '../mocks/feature-availability.mock';
+} from './mocks/feature-availability.mock';
 
 let server: SetupServer;
 
