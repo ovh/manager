@@ -16,6 +16,7 @@ export default class NetworkFormController {
     this.subnets = [];
     this.subnetsByRegion = [];
     this.subnetError = null;
+    this.loadBalancersSubnet = null;
   }
 
   get hasPrivateNetwork() {
