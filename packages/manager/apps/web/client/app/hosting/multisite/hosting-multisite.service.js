@@ -527,5 +527,11 @@ angular.module('services').service(
         .get(`/hosting/web/${serviceName}/websiteCreationCapabilities`)
         .then(({ data }) => data);
     }
+
+    getWebsitesAssociated(serviceName, path) {
+      return this.$http
+        .get(`/hosting/web/${serviceName}/website?path=${path}`)
+        .then(({ data }) => data);
+    }
   },
 );

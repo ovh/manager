@@ -1,0 +1,23 @@
+<oui-modal
+    data-heading="{{'hosting_multisite_git_association_git_last_deployment_title' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <oui-message data-ng-if="$ctrl.errorMessage" type="warning"
+        ><p
+            data-translate="hosting_multisite_git_association_git_last_deployment_logs_error"
+            data-translate-values="{errorMessage: $ctrl.errorMessage}"
+        ></p>
+    </oui-message>
+    <div data-ng-if="$ctrl.isLoading" class="text-center">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+    <div
+        data-ng-if="!$ctrl.isLoading"
+        class="pre-scrollable bg-dark text-white"
+    >
+        <div class="p-2" data-ng-repeat="log in $ctrl.logs track by $index">
+            <span data-ng-bind-html="log.date"></span>
+            <span data-ng-bind-html="log.message"></span>
+        </div>
+    </div>
+</oui-modal>
