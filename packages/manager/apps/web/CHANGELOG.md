@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.30.1...@ovh-ux/manager-web@18.30.2) (2024-07-09)
+
+
+### Bug Fixes
+
+* **web.domain:** updated ds records management restriction ([e52c011](https://github.com/ovh/manager/commit/e52c01173871cb8f4fa9501919b0568ce122459c))
+
+
+
+
+
 ## [18.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.30.0...@ovh-ux/manager-web@18.30.1) (2024-07-09)
 
 
