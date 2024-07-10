@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_IT": "Kopia obydwu stron ważnego dokumentu tożsamości (paszportu, dowodu osobistego).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_IT": "Dokument potwierdzający Twoje miejsce zamieszkania (np. faktura za prąd, gaz, etc.), nie starszy niż 3 miesiące, zawierający Twoje imię, nazwisko oraz adres podany w profilu.",
+  "documents_dashboard_document_CORPORATE_ID_IT": "Zaświadczenie o rejestracji firmy w Izbie Handlowej, nie starsze niż 3 miesiące, lub inny dokument o podobnym charakterze.",
+  "documents_dashboard_document_ADMINISTRATION_ID_IT": "Zaświadczenie o rejestracji firmy w Izbie Handlowej, nie starsze niż 3 miesiące, lub inny dokument o podobnym charakterze.",
+  "documents_dashboard_document_ASSOCIATION_ID_IT": "Kopia statutu stowarzyszenia lub dokumentu o podobnym charakterze.",
+  "documents_dashboard_document_individual_OTHER_IT": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacji (zakwaterowanie, przeprowadzka, etc.).",
+  "documents_dashboard_document_corporation_OTHER_IT": "Jeśli Twoje imię i nazwisko nie figurują w zaświadczeniu o rejestracji firmy w Izbie Handlowej ani w statucie stowarzyszenia, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_association_OTHER_IT": "Jeśli Twoje imię i nazwisko nie figurują w zaświadczeniu o rejestracji firmy w Izbie Handlowej ani w statucie stowarzyszenia, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_administration_OTHER_IT": "Jeśli Twoje imię i nazwisko nie figurują w zaświadczeniu o rejestracji firmy w Izbie Handlowej ani w statucie stowarzyszenia, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_other_OTHER_IT": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacje (zakwaterowanie, przeprowadzka, etc.)"
+}

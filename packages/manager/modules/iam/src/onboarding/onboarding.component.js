@@ -3,7 +3,6 @@ import template from './onboarding.template.html';
 
 export default {
   bindings: {
-    accountUsersURL: '<',
     advancedMode: '<',
     alert: '<',
     goTo: '<',

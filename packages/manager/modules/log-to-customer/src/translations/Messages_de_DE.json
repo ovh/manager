@@ -31,5 +31,7 @@
   "list_button_unsubscribe": "Abmelden",
   "streams_45_days": "45 Tage",
   "streams_disk_full": "Unzureichender Speicherplatz",
-  "error_message": "Ein Fehler ist aufgetreten: {{message}}"
+  "error_message": "Ein Fehler ist aufgetreten: {{message}}",
+  "log_tile_empty_state_description": "Wenn Sie diesen Feed abonnieren, können Sie Ihre Logs direkt auf die Logs Data Platform von OVHcloud übertragen, auf der Sie erweiterte Suchvorgänge durchführen, Alarme und Visualisierungen erstellen oder diese einfach archivieren können.",
+  "logs_list_title": "Streams"
 }

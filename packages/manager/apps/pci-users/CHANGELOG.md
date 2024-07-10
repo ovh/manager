@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.6.2...@ovh-ux/manager-pci-users-app@0.6.3) (2024-07-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-users-app
+
+
+
+
+
+## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.6.1...@ovh-ux/manager-pci-users-app@0.6.2) (2024-07-04)
+
+
+### Bug Fixes
+
+* add Dallas region ([#12157](https://github.com/ovh/manager/issues/12157)) ([3b41966](https://github.com/ovh/manager/commit/3b41966a2a5b684c62e2e4b1ec14f5050705857f))
+
+
+
+
+
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.6.0...@ovh-ux/manager-pci-users-app@0.6.1) (2024-07-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-users-app
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.5.0...@ovh-ux/manager-pci-users-app@0.6.0) (2024-06-25)
+
+
+### Features
+
+* **pci:** add lz under right continent ([#11746](https://github.com/ovh/manager/issues/11746)) ([#12010](https://github.com/ovh/manager/issues/12010)) ([3e768e5](https://github.com/ovh/manager/commit/3e768e52f64d68af20f37f1831743f185855b46a))
+* **pci:** add region label for toronto ([#11848](https://github.com/ovh/manager/issues/11848)) ([a87f1a0](https://github.com/ovh/manager/commit/a87f1a0de01acdfd702755e3bfc45e7aba4d1821))
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.4.7...@ovh-ux/manager-pci-users-app@0.5.0) (2024-06-20)
+
+
+### Features
+
+* **container:** pnr v2 ([#11723](https://github.com/ovh/manager/issues/11723)) ([39013c6](https://github.com/ovh/manager/commit/39013c6337714f47f98b034200b605c91a0229d1))
+
+
+
+
+
+## [0.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.4.6...@ovh-ux/manager-pci-users-app@0.4.7) (2024-06-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-users-app
+
+
+
+
+
 ## [0.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.4.5...@ovh-ux/manager-pci-users-app@0.4.6) (2024-06-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-users-app

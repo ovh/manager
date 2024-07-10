@@ -260,20 +260,7 @@ export default function WebSidebar() {
                 ...service,
               }));
             },
-          },
-          features.sharepoint && {
-            id: 'sharepoint',
-            label: t('sidebar_sharepoint'),
-            icon: getIcon('ms-Icon ms-Icon--SharepointLogo'),
-            routeMatcher: new RegExp(`/sharepoint`),
-            async loader() {
-              const services = await loadServices('/msServices/*/sharepoint');
-              return services.map((service) => ({
-                icon: getIcon('ms-Icon ms-Icon--SharepointLogo'),
-                ...service,
-              }));
-            },
-          },
+          }
         ],
       });
     }

@@ -483,8 +483,8 @@
   "domain_configuration_dns_entry_add_step3_info": "Stai per aggiungere questo record alla tua zona DNS:",
   "domain_configuration_dns_entry_add_step3_alert": "L’aggiunta sarà immediata nella zona DNS, ma la propagazione potrebbe richiedere fino a 24 ore.",
   "domain_configuration_dns_entry_add_step3_check_warning1": "Attenzione, possono verificarsi alcuni conflitti:",
-  "domain_configuration_dns_entry_add_step3_check_warning2": "Il sottodominio utilizza già un record DNS. A causa di un’incompatibilità non è possibile creare record CNAME. Per aggiungere un record di tipo CNAME è necessario eliminare i record esistenti per questo dominio.",
-  "domain_configuration_dns_entry_add_step3_check_warning3": "Il sottodominio è già utilizzato da un record CNAME. Il record CNAME non può coesistere con altri tipi di record sullo stesso sottodominio.",
+  "domain_configuration_dns_entry_add_step3_check_warning2": "Il sottodominio non sia già utilizzato da un record CNAME. Il record CNAME non può coesistere con altri tipi di record sullo stesso sottodominio.",
+  "domain_configuration_dns_entry_add_step3_check_warning3": "Il record CNAME non è aggiunto sul dominio radice. Ti ricordiamo che il dominio radice è il dominio principale che hai registrato.",
   "domain_configuration_dns_entry_add_success": "Il record è stato aggiunto nella zona DNS, ma la propagazione potrebbe richiedere fino a 24 ore.",
   "domain_configuration_dns_entry_add_fail": "Si è verificato un errore durante l'aggiunta del record alla zona DNS.",
   "domain_configuration_dns_importtext_title": "Inserisci qui sotto il nome delle zone DNS da importare:",
@@ -830,5 +830,6 @@
   "domain_dashboard_general_information_alldom_renewal_link": "Annulla la disattivazione del pack",
   "domain_dashboard_general_information_alldom_termination_warning_close": "Chiudi",
   "domain_dashboard_show_authinfo_warning_part_1": "Attenzione: il trasferimento del tuo dominio verso un altro Registrar comporta la cancellazione della zona DNS e del suo contenuto. Il tuo sito Web e servizio email potrebbero non funzionare più correttamente.",
-  "domain_dashboard_show_authinfo_warning_part_2": "Se vuoi semplicemente cambiare hosting provider o servizio di posta, puoi conservare la gestione del tuo dominio in OVHcloud e continuare così a usufruire delle migliori tariffe e di servizi gratuiti come anti-Spam, anonimizzazione dei dati personali e DNSSEC."
+  "domain_dashboard_show_authinfo_warning_part_2": "Se vuoi semplicemente cambiare hosting provider o servizio di posta, puoi conservare la gestione del tuo dominio in OVHcloud e continuare così a usufruire delle migliori tariffe e di servizi gratuiti come anti-Spam, anonimizzazione dei dati personali e DNSSEC.",
+  "domain_configuration_dns_entry_add_step3_check_warning_info": "Errore: Impossibile salvare la configurazione DNS. Ti chiediamo di verificare che:"
 }

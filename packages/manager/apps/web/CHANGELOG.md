@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.30.1...@ovh-ux/manager-web@18.30.2) (2024-07-09)
+
+
+### Bug Fixes
+
+* **web.domain:** updated ds records management restriction ([e52c011](https://github.com/ovh/manager/commit/e52c01173871cb8f4fa9501919b0568ce122459c))
+
+
+
+
+
+## [18.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.30.0...@ovh-ux/manager-web@18.30.1) (2024-07-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3119] ([a33db00](https://github.com/ovh/manager/commit/a33db00a31047b1ea4d535ae4328e62eb04005b9))
+* **i18n:** add missing translations [CDS 3122] ([8963cbc](https://github.com/ovh/manager/commit/8963cbcc3981ee7a636276b1cc4433876673c3de))
+* **i18n:** add missing translations [CDS 3123] ([08abca5](https://github.com/ovh/manager/commit/08abca540f774fc9688483f95df2c8666c718291))
+
+
+
+
+
+# [18.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.29.0...@ovh-ux/manager-web@18.30.0) (2024-07-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3094] ([e8a1fc8](https://github.com/ovh/manager/commit/e8a1fc801219be65466501772f0aa710fc85f634))
+* **web:** check if is admin for resiliation ([#11812](https://github.com/ovh/manager/issues/11812)) ([010974d](https://github.com/ovh/manager/commit/010974deb44f085be5d46fabcf6c52938df157cb))
+
+
+### Features
+
+* **web:** eol sharepoint ([#11976](https://github.com/ovh/manager/issues/11976)) ([83c130a](https://github.com/ovh/manager/commit/83c130a569e9b9355120f935e85cf396dfde0f86))
+
+
+
+
+
+# [18.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.28.0...@ovh-ux/manager-web@18.29.0) (2024-06-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3094] ([b916662](https://github.com/ovh/manager/commit/b9166624c8b63b269a764bc350976a74be6d181c))
+
+
+### Features
+
+* **web:** add offers banner ([#11524](https://github.com/ovh/manager/issues/11524)) ([a4ffea6](https://github.com/ovh/manager/commit/a4ffea6e96f437ef2959a8b3e148b6622719161e))
+* **web:** remove glue tab if hostsupported is false ([#11732](https://github.com/ovh/manager/issues/11732)) ([9129f83](https://github.com/ovh/manager/commit/9129f83d5f9c877f4e9db32de976b69e631fde85))
+* **web:** update cname error content ([#10828](https://github.com/ovh/manager/issues/10828)) ([2277fa3](https://github.com/ovh/manager/commit/2277fa375974ff77c3eb77805849488263ba60fc))
+
+
+
+
+
 # [18.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.27.2...@ovh-ux/manager-web@18.28.0) (2024-06-17)
 
 

@@ -111,6 +111,8 @@ export const AUTOMATIC_RENEWAL = {
   IE: 'https://docs.ovh.com/ie/en/billing/how-to-use-automatic-renewal-at-ovh/',
   DEFAULT:
     'https://docs.ovh.com/gb/en/billing/how-to-use-automatic-renewal-at-ovh/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/4406907355155-How-to-Manage-Your-Commitments-in-the-OVHcloud-Control-Panel',
   ASIA:
     'https://docs.ovh.com/asia/en/billing/how-to-use-automatic-renewal-at-ovh/',
   AU: 'https://docs.ovh.com/au/en/billing/how-to-use-automatic-renewal-at-ovh/',

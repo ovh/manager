@@ -112,6 +112,10 @@ export default class ServicesActionsCtrl {
           ? resiliationByEndRuleLink
           : `${this.autorenewLink}/delete-all-dom?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
         break;
+      case SERVICE_TYPE.OKMS:
+      case SERVICE_TYPE.VRACK_SERVICES:
+        this.resiliateLink = `${this.autorenewLink}/terminate-service?id=${this.service.id}${serviceTypeParam}`;
+        break;
       default:
         this.resiliateLink = this.service.canResiliateByEndRule()
           ? resiliationByEndRuleLink

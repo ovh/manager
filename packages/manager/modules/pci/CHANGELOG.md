@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.50.0...@ovh-ux/manager-pci@6.51.0) (2024-07-09)
+
+
+### Features
+
+* **pci.project:** edit project delete messages ([#11739](https://github.com/ovh/manager/issues/11739)) ([6f0f70d](https://github.com/ovh/manager/commit/6f0f70d00a6af297cdebad1c4ff40e1c8cc67a94))
+
+
+
+
+
+# [6.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.49.1...@ovh-ux/manager-pci@6.50.0) (2024-07-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3131] ([#12227](https://github.com/ovh/manager/issues/12227)) ([039bb75](https://github.com/ovh/manager/commit/039bb75a8a524e046cd1e8a1d69c7b18f7177730))
+
+
+### Features
+
+* add Logs to customer for Octavia Load Balancer ([#11860](https://github.com/ovh/manager/issues/11860)) ([0d66ac3](https://github.com/ovh/manager/commit/0d66ac3cbeccf4aa3c9464c08230077f1649c231))
+
+
+
+
+
+## [6.49.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.49.0...@ovh-ux/manager-pci@6.49.1) (2024-07-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3087] ([358e236](https://github.com/ovh/manager/commit/358e236a97ddd1366d57504c0b6c874db18e752c))
+* **pci.kube:** fix disappearing version step next button ([#11350](https://github.com/ovh/manager/issues/11350)) ([e669cf5](https://github.com/ovh/manager/commit/e669cf5697dc25884b2b27ceae598fdf192c133e))
+* remove unused translations [CDS] ([873b7cc](https://github.com/ovh/manager/commit/873b7cc3c32fa7ea1bf47f34e826b2208516a04e))
+
+
+
+
+
+# [6.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.48.0...@ovh-ux/manager-pci@6.49.0) (2024-06-25)
+
+
+### Bug Fixes
+
+* **coldarchive:** breaking change of API for coldarchive ([#11646](https://github.com/ovh/manager/issues/11646)) ([420d2fb](https://github.com/ovh/manager/commit/420d2fb34f3a9f9699beebaf3d2a71b73c8a0518))
+* **i18n:** add missing translations [CDS 3087] ([1afaaa6](https://github.com/ovh/manager/commit/1afaaa676c473d6444f383c6ec15c2d1326ac4d3))
+* remove unused translations [CDS] ([20d761c](https://github.com/ovh/manager/commit/20d761cd867941c992b306606e51f640e3876c71))
+
+
+### Features
+
+* **pci:** free local zones banner ([#12084](https://github.com/ovh/manager/issues/12084)) ([c38a63a](https://github.com/ovh/manager/commit/c38a63a782606d121f3bedb4b6f1197250aa1a07))
+* **pci:** update project creation documentation links ([#11577](https://github.com/ovh/manager/issues/11577)) ([d451b96](https://github.com/ovh/manager/commit/d451b96dd5edc39b89dc2d9d92acfed6c57f542b))
+
+
+
+
+
+# [6.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.47.0...@ovh-ux/manager-pci@6.48.0) (2024-06-19)
+
+
+### Features
+
+* **pci-private-network:** create µapp ([155f659](https://github.com/ovh/manager/commit/155f659fded08e2a788de45b5c2e748fe6b3c1a0))
+
+
+
+
+
 # [6.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.46.0...@ovh-ux/manager-pci@6.47.0) (2024-06-17)
 
 

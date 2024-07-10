@@ -1,47 +1,51 @@
 import React from 'react';
-
 import { Headers, HeadersProps } from '../../content';
-
-import { Links, LinksProps } from '../../typography';
+import { Description, LinkType, Links, Subtitle } from '../../typography';
 import { PageLayout } from '../layout/layout.component';
+
 export interface DashboardLayoutProps {
   breadcrumb?: React.ReactElement;
   content?: React.ReactElement;
   header?: HeadersProps;
-  linkProps?: LinksProps;
+  message?: React.ReactElement;
+  description?: string;
+  subtitle?: string;
+  subdescription?: string;
+  backLinkLabel?: string;
   tabs?: React.ReactElement;
   onClickReturn?: () => void;
 }
 
 export const DashboardLayout = ({
-  linkProps,
-  breadcrumb,
-  content,
+  backLinkLabel,
   onClickReturn,
+  breadcrumb,
+  description,
+  subtitle,
+  subdescription,
+  message,
+  content,
   header,
   tabs,
-}: DashboardLayoutProps) => {
-  return (
-    <PageLayout>
-      <div className="mb-3">{breadcrumb}</div>
-      {header && (
-        <Headers
-          title={header.title}
-          description={header.description}
-          headerButton={header.headerButton}
-        />
-      )}
-      {linkProps && (
-        <Links
-          onClickReturn={onClickReturn}
-          href={linkProps.href}
-          label={linkProps.label}
-          target={linkProps.target}
-          type={linkProps.type}
-        />
-      )}
-      <div>{tabs}</div>
-      <div className="mt-8">{content}</div>
-    </PageLayout>
-  );
-};
+}: DashboardLayoutProps) => (
+  <PageLayout>
+    <div className="mb-6">{breadcrumb}</div>
+    {header && <Headers {...header} />}
+    {backLinkLabel && onClickReturn && (
+      <Links
+        className="mb-8"
+        onClickReturn={onClickReturn}
+        label={backLinkLabel}
+        type={LinkType.back}
+      />
+    )}
+    {description && <Description className="mb-8">{description}</Description>}
+    {message && <div className="mb-8">{message}</div>}
+    {subtitle && <Subtitle className="block mb-6">{subtitle}</Subtitle>}
+    {subdescription && (
+      <Description className="mb-8">{subdescription}</Description>
+    )}
+    <div className="mb-6">{tabs}</div>
+    <div>{content}</div>
+  </PageLayout>
+);

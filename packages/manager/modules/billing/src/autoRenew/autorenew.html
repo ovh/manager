@@ -211,7 +211,7 @@
         >
             <a
                 class="oui-link"
-                data-ng-if="$row.url"
+                data-ng-if="$row.url && !$row.isByoipService()"
                 data-ng-href="{{:: $row.url }}"
                 data-ng-bind=":: $row.serviceId | limitTo:80"
                 title="{{:: $row.serviceId }}"
@@ -219,7 +219,7 @@
             >
             </a>
             <span
-                data-ng-if="!$row.url"
+                data-ng-if="!$row.url || $row.isByoipService()"
                 data-ng-bind="::$row.serviceId | limitTo:80"
             ></span>
             <small

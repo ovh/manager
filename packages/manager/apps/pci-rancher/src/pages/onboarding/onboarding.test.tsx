@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import Onboarding from './index';
 import { render, waitFor } from '../../utils/test/test.provider';
 import onboardingTranslation from '../../public/translations/pci-rancher/onboarding/Messages_fr_FR.json';
+import { useGuideUtils } from '@/components/GuideLink';
 
 const mockedUsedNavigate = jest.fn();
 
@@ -20,6 +21,12 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
   useTracking: jest.fn(() => ({
     trackPage: jest.fn(),
     trackClick: jest.fn(),
+  })),
+}));
+
+jest.mock('@/components/GuideLink', () => ({
+  useGuideUtils: jest.fn(() => ({
+    MANAGED_RANCHER_SERVICE_GETTING_STARTED: 'https://example.com/guide1',
   })),
 }));
 
@@ -45,6 +52,31 @@ describe('Onboarding', () => {
 
     expect(mockedUsedNavigate).toHaveBeenCalledWith(
       '/pci/projects/123/rancher/new',
+    );
+  });
+
+  it('renders the guide tiles correctly', async () => {
+    const screen = await setupSpecTest();
+
+    const guideTitle = screen.getByText(
+      onboardingTranslation.managedRancherServiceGettingStartedTitle,
+    );
+    const guideDescription = screen.getByText(
+      onboardingTranslation.managedRancherServiceGettingStartedTitleDescription,
+    );
+
+    expect(guideTitle).toBeInTheDocument();
+    expect(guideDescription).toBeInTheDocument();
+
+    const card = screen.getByTestId('tileCard');
+    expect(card).toHaveAttribute('href', 'https://example.com/guide1');
+  });
+
+  it('uses the guide link utility correctly', async () => {
+    const guideUtils = useGuideUtils();
+
+    expect(guideUtils.MANAGED_RANCHER_SERVICE_GETTING_STARTED).toBe(
+      'https://example.com/guide1',
     );
   });
 });
