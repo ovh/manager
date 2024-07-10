@@ -1,4 +1,13 @@
 {
+  "overthebox_migration_title": "Changing plan",
+  "overthebox_migration_offers_error": "An error has occurred retrieving the available solutions. {{error}}",
+  "overthebox_migration_offers_no_offers": "No solutions available.",
+  "overthebox_migration_current_offer": "Current solution: {{offerName}}",
+  "overthebox_migration_monthly_subscription": "Monthly subscription",
+  "overthebox_migration_hardware": "Casing",
+  "overthebox_migration_hardware_yes": "I want to take a new box ({{ price }} ex. VAT)",
+  "overthebox_migration_hardware_no": "I don't want a box",
+  "overthebox_migration_choose_offer_action": "Select",
   "overthebox_migration_contact_title": "Delivery",
   "overthebox_migration_contact_explain": "You have chosen to send a new box.",
   "overthebox_migration_contact_explain2": "Please choose the shipping address for your box.",

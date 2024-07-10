@@ -1,0 +1,6 @@
+{
+  "iam_identities_title": "Identidades",
+  "iam_identities_description": "Seleccione las identidades que quiere asociar a esta política",
+  "iam_identities_delete": "Eliminar de la política",
+  "iam_identities_urn": "Identidad"
+}

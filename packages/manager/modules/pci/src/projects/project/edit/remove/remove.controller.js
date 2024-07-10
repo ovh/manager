@@ -15,6 +15,12 @@ export default class {
     this.goBack();
   }
 
+  getTranslationKey() {
+    return `pci_projects_project_${
+      this.isDiscoveryProject ? 'discovery_' : ''
+    }edit_remove_please_note`;
+  }
+
   remove() {
     this.isLoading = true;
     this.trackClick(

@@ -19,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $stateParams,
         BandwidthVrackOrderService,
         Server,
+        server,
       ) =>
         $q
           .all({
@@ -27,7 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
               $stateParams.productId,
             ),
             bandwidthVrackOrderOptions: BandwidthVrackOrderService.getOrderableBandwidths(
-              $stateParams.productId,
+              server,
             ),
           })
           .then(
@@ -262,15 +263,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $stateParams,
         ServerOrderTrafficService,
         ServerTrafficService,
+        server,
       ) =>
         $q.all({
           traffic: ServerTrafficService.getTraffic($stateParams.productId),
           trafficOption: ServerOrderTrafficService.getOption(
             $stateParams.productId,
           ),
-          trafficOrderables: ServerOrderTrafficService.getOrderables(
-            $stateParams.productId,
-          ),
+          trafficOrderables: ServerOrderTrafficService.getOrderables(server),
         }),
       goToTrafficOrder: /* @ngInject */ ($state, serverName) => () =>
         $state.go('app.dedicated-server.server.dashboard.traffic-order', {

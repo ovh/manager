@@ -1,0 +1,14 @@
+<oui-message data-type="info">
+    <span
+        data-translate="{{ 'pci_free_local_zones_banner_text' + ($ctrl.confirmText ? '_confirm' : '') }}"
+    ></span>
+    <a
+        data-ng-href="{{:: $ctrl.localZoneDocumentation }}"
+        class="d-inline-flex"
+        target="_blank"
+        rel="noopener"
+    >
+        <span data-translate="pci_free_local_zones_banner_link"></span>
+        <i class="oui-icon oui-icon-external-link pl-2" aria-hidden="true"></i>
+    </a>
+</oui-message>

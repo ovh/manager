@@ -25,6 +25,7 @@ export const INPUTS_RULES = {
       maxsize: 2000,
       pattern: /^[a-z0-9-_.~ !#$&()*+,/:;=?@]{1,2000}$/i,
     },
+    limit: 10,
   },
   sshPubKey: {
     maxsize: 15,

@@ -17,8 +17,16 @@ type TStepProps = {
   isChecked: boolean;
   isLocked: boolean;
   order: number;
-  next?: { action: (id: string) => void; label: string; isDisabled: boolean };
-  edit?: { action: (id: string) => void; label: string; isDisabled: boolean };
+  next?: {
+    action: (id: string) => void;
+    label: string | JSX.Element;
+    isDisabled: boolean;
+  };
+  edit?: {
+    action: (id: string) => void;
+    label: string | JSX.Element;
+    isDisabled: boolean;
+  };
   children?: JSX.Element | JSX.Element[];
 };
 

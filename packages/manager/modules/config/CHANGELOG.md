@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@7.3.1...@ovh-ux/manager-config@7.3.2) (2024-06-25)
+
+
+### Bug Fixes
+
+* **config:** add missing country code ([#12082](https://github.com/ovh/manager/issues/12082)) ([1f471ab](https://github.com/ovh/manager/commit/1f471abf2722686483769e21d248cfe43dfb4412))
+
+
+
+
+
 ## [7.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@7.3.0...@ovh-ux/manager-config@7.3.1) (2024-03-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-config

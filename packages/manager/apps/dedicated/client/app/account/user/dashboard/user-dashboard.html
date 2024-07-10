@@ -1,6 +1,5 @@
 <div class="module-useraccount-sections-dashboard">
     <div data-ovh-alert="useraccount.alerts.dashboard"></div>
-
     <div class="row pt-4">
         <div class="col-md-4 mb-4">
             <oui-tile
@@ -83,6 +82,12 @@
                     <span
                         data-translate="{{:: 'user_account_dashboard_shortcut_' + shortcut.key }}"
                     ></span>
+                    <span
+                        class="oui-badge oui-badge_new"
+                        data-ng-if="shortcut.new === true"
+                        data-translate="user_account_dashboard_new"
+                    >
+                    </span>
                 </oui-tile-button>
             </oui-tile>
         </div>

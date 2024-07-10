@@ -325,6 +325,26 @@
                                             </button>
                                         </div>
                                     </form>
+                                    <button
+                                        class="btn btn-default no-transition"
+                                        data-translate="overTheBox_deviceId_unlink"
+                                        type="button"
+                                        title="{{::'overTheBox_deviceId_button_title' | translate }} {{::'overTheBox_deviceId_unlink' | translate }}"
+                                        data-ng-if="!$ctrl.device.editMode && $ctrl.device.deviceId"
+                                        data-ng-click="$ctrl.unlink()"
+                                    ></button>
+                                    <oui-modal
+                                        data-ng-if="$ctrl.confirmUnlink"
+                                        data-primary-label="{{:: 'overTheBox_deviceId_unlink' | translate }}"
+                                        data-primary-action=":: $ctrl.unlinkDevice()"
+                                        data-secondary-label="{{:: 'overTheBox_cancel' | translate }}"
+                                        data-secondary-action=":: $ctrl.cancel()"
+                                        data-on-dismiss="$ctrl.cancel()"
+                                    >
+                                        <p
+                                            data-translate="overTheBox_confirm_unlink_device"
+                                        ></p>
+                                    </oui-modal>
                                 </div>
                             </div>
                         </div>

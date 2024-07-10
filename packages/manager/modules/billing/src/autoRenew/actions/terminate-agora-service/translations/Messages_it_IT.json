@@ -1,0 +1,7 @@
+{
+  "autorenew_agora_terminate_service_OKMS_RESOURCE": "Disattiva il KMS",
+  "autorenew_agora_terminate_service_warning_OKMS_RESOURCE": "Conferma la disattivazione del KMS",
+  "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "La richiesta di disattivazione del KMS è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
+  "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Si è verificato un errore durante la richiesta di disattivazione del KMS: {{error}}",
+  "autorenew_agora_terminate_service_confirm_input": "Inserisci \"TERMINATE\" nel campo qui sotto per confermare"
+}

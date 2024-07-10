@@ -149,6 +149,8 @@ export default class PackMoveCtrl {
       if (!this.isOfferFTTH) {
         if (this.offer.selected.offer.totalSubServiceToDelete > 0) {
           this.moveStep = STEPS.serviceDelete;
+        } else if (this.offer.selected.offer.customOntAddress) {
+          this.moveStep = STEPS.ontShipping;
         } else if (this.offer.selected.offer.needNewModem) {
           this.moveStep = STEPS.shipping;
         } else if (this.isNewLine) {
@@ -166,6 +168,8 @@ export default class PackMoveCtrl {
       this.offer.selected.buildingDetails = selectedOffer;
       if (this.offer.selected.offer.totalSubServiceToDelete > 0) {
         this.moveStep = STEPS.serviceDelete;
+      } else if (this.offer.selected.offer.customOntAddress) {
+        this.moveStep = STEPS.ontShipping;
       } else if (this.offer.selected.offer.needNewModem) {
         this.moveStep = STEPS.shipping;
       } else {
@@ -174,11 +178,23 @@ export default class PackMoveCtrl {
     });
     this.$scope.$on('subservicesDelete', (event, subServicesToDelete) => {
       this.offer.selected.offer.subServicesToDelete = subServicesToDelete;
-      if (this.offer.selected.offer.needNewModem) {
+      if (this.offer.selected.offer.customOntAddress) {
+        this.moveStep = STEPS.ontShipping;
+      } else if (this.offer.selected.offer.needNewModem) {
         this.moveStep = STEPS.shipping;
       } else if (!this.isOfferFTTH && this.isNewLine) {
         this.moveStep = STEPS.meeting;
       } else if (this.isOfferFTTH) {
+        this.moveStep = STEPS.meeting;
+      } else {
+        this.moveStep = STEPS.resume;
+      }
+    });
+    this.$scope.$on('ontShippingSelected', (event, ontShipping) => {
+      this.offer.selected.ontShipping = ontShipping;
+      if (this.offer.selected.offer.needNewModem) {
+        this.moveStep = STEPS.shipping;
+      } else if ((!this.isOfferFTTH && this.isNewLine) || this.isOfferFTTH) {
         this.moveStep = STEPS.meeting;
       } else {
         this.moveStep = STEPS.resume;

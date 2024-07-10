@@ -1,4 +1,13 @@
 {
+  "overthebox_migration_title": "Alteração da oferta",
+  "overthebox_migration_offers_error": "Ocorreu um erro aquando da recuperação das ofertas disponíveis. {{error}}",
+  "overthebox_migration_offers_no_offers": "Nenhuma oferta disponível.",
+  "overthebox_migration_current_offer": "Oferta atual: {{offerName}}",
+  "overthebox_migration_monthly_subscription": "Subscrição mensal",
+  "overthebox_migration_hardware": "Caixa",
+  "overthebox_migration_hardware_yes": "Pretendo adquirir uma nova caixa ({{ price }} + IVA)",
+  "overthebox_migration_hardware_no": "Não quero uma caixa",
+  "overthebox_migration_choose_offer_action": "Selecionar",
   "overthebox_migration_contact_title": "Entrega",
   "overthebox_migration_contact_explain": "Optou por enviar uma nova caixa.",
   "overthebox_migration_contact_explain2": "Escolha o endereço de entrega da sua caixa.",

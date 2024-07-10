@@ -60,9 +60,9 @@
   "manager_components_region_location_GS": "Western Europe",
   "manager_components_region_location_MAD": "Western Europe",
   "manager_components_region_location_BRU": "Western Europe",
-  "manager_components_region_continent_GS": "Western Europe",
-  "manager_components_region_continent_MAD": "Western Europe",
-  "manager_components_region_continent_BRU": "Western Europe",
+  "manager_components_region_continent_GS": "Europa Ocidental",
+  "manager_components_region_continent_MAD": "Europa Ocidental",
+  "manager_components_region_continent_BRU": "Europa Ocidental",
   "manager_components_region_MRS": "Marselha",
   "manager_components_region_MRS_micro": "Marselha ({{ micro }})",
   "manager_components_region_continent_MRS": "Europa Ocidental",
@@ -254,5 +254,11 @@
   "manager_components_region_continent_IND": "América do Norte",
   "manager_components_region_IST": "Istambul",
   "manager_components_region_IST_micro": "Istambul ({{ micro }})",
-  "manager_components_region_continent_IST": "Médio Oriente"
+  "manager_components_region_continent_IST": "Médio Oriente",
+  "manager_components_region_TOR": "Toronto",
+  "manager_components_region_TOR_micro": "Toronto ({{ micro }})",
+  "manager_components_region_continent_TOR": "América do Norte",
+  "manager_components_region_DAL": "Dallas",
+  "manager_components_region_DAL_micro": "Dallas ({{ micro }})",
+  "manager_components_region_continent_DAL": "América do Norte"
 }

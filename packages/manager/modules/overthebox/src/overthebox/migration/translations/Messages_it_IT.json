@@ -1,4 +1,13 @@
 {
+  "overthebox_migration_title": "Cambia offerta",
+  "overthebox_migration_offers_error": "Si è verificato un errore durante il recupero delle offerte disponibili. {{error}}",
+  "overthebox_migration_offers_no_offers": "Nessuna offerta disponibile.",
+  "overthebox_migration_current_offer": "Offerta attuale: {{offerName}}",
+  "overthebox_migration_monthly_subscription": "Abbonamento mensile",
+  "overthebox_migration_hardware": "Casella",
+  "overthebox_migration_hardware_yes": "Scegli una nuova soluzione ({{ price }} +IVA)",
+  "overthebox_migration_hardware_no": "Non voglio l'alloggiamento",
+  "overthebox_migration_choose_offer_action": "Seleziona",
   "overthebox_migration_contact_title": "Consegna",
   "overthebox_migration_contact_explain": "È stata scelta l'invio di una nuova enclosure.",
   "overthebox_migration_contact_explain2": "Scegli l'indirizzo di consegna della tua custodia.",

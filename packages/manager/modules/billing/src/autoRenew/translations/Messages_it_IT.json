@@ -151,5 +151,6 @@
   "billing_autorenew_service_activate_alert": "Il rinnovo automatico è impostato su almeno uno dei tuoi servizi ma non hai ancora autorizzato questa opzione.",
   "autorenew_service_autorenew_day_tooltip_autorenew_2016": "Per i servizi con rinnovo automatico, è possibile scegliere il giorno di rinnovo (opzione non compatibile con i prodotti Bare Metal e VPS: per questa categoria di prodotti la data di rinnovo è definita di default al 1° del mese).",
   "billing_autorenew_service_activate_alert_renew2016": "Questo messaggio non si applica ai servizi Bare Metal e VPS.",
-  "billing_autorenew_service_type_DEDICATED_CLUSTER": "Region 3-AZ"
+  "billing_autorenew_service_type_DEDICATED_CLUSTER": "Region 3-AZ",
+  "billing_autorenew_service_type_OKMS_RESOURCE": "OVHcloud KMS"
 }

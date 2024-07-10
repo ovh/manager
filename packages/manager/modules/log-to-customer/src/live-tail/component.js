@@ -5,7 +5,6 @@ export default {
   controller,
   template,
   transclude: {
-    tileDescription: '?tileDescription',
     mainDescription: '?mainDescription',
   },
   bindings: {
@@ -14,6 +13,7 @@ export default {
     logSubscriptionUrl: '<',
     goToListingPage: '<',
     logKindsList: '<',
+    logKindsKeys: '<',
     kindInitValue: '<',
     trackClick: '<',
     trackingHits: '<',

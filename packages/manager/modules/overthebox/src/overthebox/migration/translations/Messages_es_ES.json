@@ -1,4 +1,13 @@
 {
+  "overthebox_migration_title": "Cambio de producto",
+  "overthebox_migration_offers_error": "Se ha producido un error al cargar las ofertas disponibles. {{error}}",
+  "overthebox_migration_offers_no_offers": "No hay ninguna oferta disponible.",
+  "overthebox_migration_current_offer": "Producto actual: {{offerName}}",
+  "overthebox_migration_monthly_subscription": "Suscripción mensual",
+  "overthebox_migration_hardware": "Caja",
+  "overthebox_migration_hardware_yes": "Quiero adquirir una nueva caja ({{ price }} + IVA)",
+  "overthebox_migration_hardware_no": "No quiero una caja",
+  "overthebox_migration_choose_offer_action": "Seleccionar",
   "overthebox_migration_contact_title": "Entrega",
   "overthebox_migration_contact_explain": "Ha elegido enviar una nueva caja.",
   "overthebox_migration_contact_explain2": "Por favor, seleccione la dirección de entrega de su caja.",

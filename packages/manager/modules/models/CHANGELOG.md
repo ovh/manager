@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.14.11...@ovh-ux/manager-models@1.14.12) (2024-06-25)
+
+
+### Bug Fixes
+
+* **dedicated:** disable view service details for byoip ([#12001](https://github.com/ovh/manager/issues/12001)) ([91872c0](https://github.com/ovh/manager/commit/91872c02804ef82ab71df5d49974688f10d8f886))
+
+
+
+
+
 ## [1.14.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.14.10...@ovh-ux/manager-models@1.14.11) (2024-03-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-models

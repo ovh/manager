@@ -4,9 +4,6 @@ import controller from './controller';
 export default {
   controller,
   template,
-  transclude: {
-    tileDescription: '?tileDescription',
-  },
   bindings: {
     kind: '<',
     logSubscriptionUrl: '<',
