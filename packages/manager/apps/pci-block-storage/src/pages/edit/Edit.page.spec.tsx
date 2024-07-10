@@ -19,6 +19,10 @@ import * as volumeHook from '@/api/hooks/useVolume';
 import { TVolume } from '@/api/data/volume';
 import queryClient from '@/queryClient';
 
+vi.mock('@/core/HidePreloader', () => ({
+  default: () => <div>HidePeloader</div>,
+}));
+
 vi.mock('@ovhcloud/manager-components', async (importOriginal) => {
   const mod = await importOriginal<
     typeof import('@ovhcloud/manager-components')
