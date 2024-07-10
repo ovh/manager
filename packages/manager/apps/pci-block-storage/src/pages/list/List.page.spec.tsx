@@ -46,6 +46,9 @@ vi.mock('@ovhcloud/manager-components', () => ({
     filters: [],
   }),
   useDataGrid: vi.fn().mockReturnValue({}),
+  useNotifications: vi.fn().mockReturnValue({
+    clearNotifications: vi.fn(),
+  }),
   RedirectionGuard: vi.fn().mockReturnValue(<div></div>),
 }));
 
