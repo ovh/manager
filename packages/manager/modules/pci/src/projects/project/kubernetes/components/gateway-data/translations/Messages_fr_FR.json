@@ -1,0 +1,6 @@
+{
+  "kubernetes_gateway_data_public": "Interface publique des noeuds",
+  "kubernetes_gateway_data_private": "Interface privée des noeuds",
+  "kubernetes_gateway_data_custom_ip": "Adresse IP de votre passerelle : {{ ip }}",
+  "kubernetes_gateway_data_dhcp_ip": "Adresse IP de votre passerelle : définie par DHCP"
+}

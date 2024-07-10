@@ -1,0 +1,17 @@
+<div
+    data-ng-if="$ctrl.public"
+    data-translate="kubernetes_gateway_data_public"
+></div>
+<div
+    data-ng-if="$ctrl.private"
+    data-translate="kubernetes_gateway_data_private"
+></div>
+<div
+    data-ng-if="$ctrl.private && $ctrl.ip"
+    data-translate="kubernetes_gateway_data_custom_ip"
+    data-translate-values="{ ip: $ctrl.ip }"
+></div>
+<div
+    data-ng-if="$ctrl.private && !$ctrl.ip"
+    data-translate="kubernetes_gateway_data_dhcp_ip"
+></div>

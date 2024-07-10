@@ -12,6 +12,7 @@ import addOidcProvider from './oidc-provider/add-oidc-provider';
 import updateOidcProvider from './oidc-provider/update-oidc-provider';
 import removeOidcProvider from './oidc-provider/remove-oidc-provider';
 import upgradePolicy from './upgrade-policy';
+import gatewayData from '../../components/gateway-data';
 
 import kubernetesServiceComponent from './service.component';
 
@@ -29,6 +30,7 @@ angular
     updateOidcProvider,
     removeOidcProvider,
     upgradePolicy,
+    gatewayData,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
