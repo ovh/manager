@@ -72,7 +72,7 @@ export default function ListingPage() {
 
   const {
     data: allVolumes,
-    isLoading: isLoadingAllVolumes,
+    isFetching: isFetchingllVolumes,
     isPending: isPendingAllVolumes,
   } = useAllVolumes(projectId);
   const {
@@ -93,7 +93,7 @@ export default function ListingPage() {
 
   return (
     <RedirectionGuard
-      isLoading={isLoadingAllVolumes || isPendingAllVolumes}
+      isLoading={isFetchingllVolumes || isPendingAllVolumes}
       route={`/pci/projects/${projectId}/storages/blocks/onboarding`}
       condition={allVolumes?.length === 0}
     >
