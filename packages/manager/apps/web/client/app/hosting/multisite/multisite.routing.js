@@ -70,6 +70,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      goToConfigureGit: /* @ngInject */ ($state) => (serviceName, domain) =>
+        $state.go('app.hosting.dashboard.multisite.git-configuration', {
+          serviceName,
+          path: domain.path,
+        }),
       setMessage: /* @ngInject */ (Alerter, $timeout) => (
         message,
         type,

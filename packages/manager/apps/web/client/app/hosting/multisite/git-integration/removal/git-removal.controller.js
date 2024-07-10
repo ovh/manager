@@ -17,7 +17,7 @@ export default class HostingMultisiteGitDeploymentController {
 
   primaryAction() {
     return this.isConfirmationStep
-      ? this.deleteGitAssociation(this.path, this.deleteDirectory)
+      ? this.deleteGitAssociation(this.path, !!this.deleteDirectory)
       : this.setConfirmationStep();
   }
 

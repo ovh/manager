@@ -7,6 +7,7 @@ export default {
     path: '<',
     serviceName: '<',
     goBack: '<',
+    isConfiguration: '<',
     webHookUrl: '<',
   },
   controller,
