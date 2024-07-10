@@ -110,9 +110,9 @@ export const useGlobalRegionsNetworks = (
         network,
         subnet: {
           ...subnet,
-          ...subnetDetails,
+          ...(subnetDetails || {}),
           region: subnet.region,
-          allocatedIp: subnetDetails.allocationPools
+          allocatedIp: subnetDetails?.allocationPools
             ?.map((i) => `${i.start} - ${i.end}`)
             .join(' ,'),
           gatewayName: gateways.find((g) =>
@@ -182,9 +182,9 @@ export type TLocalZoneNetwork = {
   id: string;
   name: string;
   allocatedIp?: string;
-  cidr: string;
-  dhcpEnabled: boolean;
-  gatewayIp: string | null;
+  cidr?: string;
+  dhcpEnabled?: boolean;
+  gatewayIp?: string | null;
   region: string;
   search?: string;
 };
@@ -201,14 +201,14 @@ export const useLocalZoneNetworks = (
       queryFn: () => getSubnets(projectId, n.id, n.region),
       select: (subnet: TSubnet) => {
         const network = networks.find((net) => net.id === n.id);
-        const ips = subnet.allocationPools
+        const ips = subnet?.allocationPools
           ?.map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
           .join(' ,');
         return {
-          ...subnet,
+          ...(subnet || {}),
           ...network,
           allocatedIp: ips,
-          search: `${network.id} ${network.name} ${network.region} ${subnet.cidr} ${subnet.gatewayIp} ${ips}`,
+          search: `${network.id} ${network.name} ${network.region} ${subnet?.cidr} ${subnet?.gatewayIp} ${ips}`,
         };
       },
     })),
