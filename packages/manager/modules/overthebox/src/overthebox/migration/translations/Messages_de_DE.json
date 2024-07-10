@@ -1,0 +1,11 @@
+{
+  "overthebox_migration_title": "Wechsel des Angebots",
+  "overthebox_migration_offers_error": "Beim Abruf der verfügbaren Angebote ist ein Fehler aufgetreten. {{error}}",
+  "overthebox_migration_offers_no_offers": "Es sind keine Angebote verfügbar.",
+  "overthebox_migration_current_offer": "Derzeitiges Angebot: {{offerName}}",
+  "overthebox_migration_monthly_subscription": "Monatliches Abonnement",
+  "overthebox_migration_hardware": "Gehäuse",
+  "overthebox_migration_hardware_yes": "Ich möchte ein neues Gehäuse ({{ price }} inkl. MwSt)",
+  "overthebox_migration_hardware_no": "Ich möchte kein Gehäuse",
+  "overthebox_migration_choose_offer_action": "Mehr erfahren"
+}

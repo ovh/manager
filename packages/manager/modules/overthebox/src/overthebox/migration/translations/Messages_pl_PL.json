@@ -1,0 +1,11 @@
+{
+  "overthebox_migration_title": "Zmiana oferty",
+  "overthebox_migration_offers_error": "Wystąpił błąd podczas pobierania dostępnych ofert. {{error}}",
+  "overthebox_migration_offers_no_offers": "Brak dostępnych ofert.",
+  "overthebox_migration_current_offer": "Aktualna oferta: {{offerName}}",
+  "overthebox_migration_monthly_subscription": "Abonament miesięczny",
+  "overthebox_migration_hardware": "Obudowa",
+  "overthebox_migration_hardware_yes": "Chcę wziąć nową obudowę ({{ price }} netto)",
+  "overthebox_migration_hardware_no": "Nie chcę obudowy",
+  "overthebox_migration_choose_offer_action": "Wybierz"
+}
