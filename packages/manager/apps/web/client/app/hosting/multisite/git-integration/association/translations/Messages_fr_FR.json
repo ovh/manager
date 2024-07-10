@@ -21,6 +21,10 @@
   "hosting_multisite_git_association_configure_description": "Votre configuration s'appliquera sur l'ensemble des domaines pointant sur votre répertoire.",
   "hosting_multisite_git_association_repository": "Dépôt",
   "hosting_multisite_git_association_branch": "Branche",
+  "hosting_multisite_git_association_guide_title": "Guide",
+  "hosting_multisite_git_association_guide_name": "association de dépôt git",
+  "hosting_multisite_git_association_guide_configure_webhook": "Configurer le webhoook sur Github",
+  "hosting_multisite_git_association_guide_configure_tutorial": "Tutoriel de configuration",
   "hosting_multisite_git_association_webhook_url": "Url de webhook",
   "hosting_multisite_git_association_apply_configuration": "Appliquer la configuration",
   "hosting_multisite_git_association_ssh_key_description": "Retrouvez ci-dessous la clé SSH de votre hébergement."

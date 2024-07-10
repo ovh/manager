@@ -5,6 +5,7 @@ export default {
   bindings: {
     serviceName: '<',
     websiteId: '<',
+    goBack: '<',
   },
   controller,
   template,
