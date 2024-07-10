@@ -21,6 +21,19 @@ angular
           },
         },
       );
+      $stateProvider.state(
+        'app.hosting.dashboard.multisite.git-configuration.**',
+        {
+          url: '/git-configuration?path',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./git-association.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        },
+      );
     },
   )
   .run(/* @ngTranslationsInject:json ./translations */);

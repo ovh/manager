@@ -39,19 +39,39 @@ export default class HostingMultisiteGitAssociationController {
       repositoryUrl: null,
       branchName: null,
     };
+    if (this.isConfiguration) {
+      this.HostingMultisiteGitAssociationService.getVcsInformations(
+        this.serviceName,
+        this.path,
+      ).then((branchNameAndRepoUrl) => {
+        const { id, ...rest } = branchNameAndRepoUrl;
+        this.websiteId = id;
+        this.model = rest;
+      });
+    }
   }
 
   applyConfiguration() {
-    this.HostingMultisiteGitAssociationService.postWebsiteAssociated(
-      this.serviceName,
-      this.path,
-      this.model.branchName,
-      this.model.repositoryUrl,
-    )
+    const promise = this.isConfiguration
+      ? this.HostingMultisiteGitAssociationService.putWebsiteAssociated(
+          this.serviceName,
+          this.model.branchName,
+          this.websiteId,
+        )
+      : this.HostingMultisiteGitAssociationService.postWebsiteAssociated(
+          this.serviceName,
+          this.path,
+          this.model.branchName,
+          this.model.repositoryUrl,
+        );
+
+    promise
       .then(() =>
         this.goBack(
           this.$translate.instant(
-            'hosting_multisite_git_association_success_message',
+            this.isConfiguration
+              ? 'hosting_multisite_git_association_reconfigure_success'
+              : 'hosting_multisite_git_association_success_message',
             { href: this.ongoingTasksHref },
           ),
           'success',
@@ -61,7 +81,9 @@ export default class HostingMultisiteGitAssociationController {
       .catch(({ data: { message } }) =>
         this.goBack(
           this.$translate.instant(
-            'hosting_multisite_git_association_error_message',
+            this.isConfiguration
+              ? 'hosting_multisite_git_association_reconfigure_error'
+              : 'hosting_multisite_git_association_error_message',
             { errorMessage: message },
           ),
           'danger',

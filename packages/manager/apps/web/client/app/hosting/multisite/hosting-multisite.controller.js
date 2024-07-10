@@ -317,6 +317,9 @@ angular
           domain,
         );
 
+      $scope.goToConfigureGit = (domain) =>
+        $scope.$resolve.goToConfigureGit($scope.hosting.serviceName, domain);
+
       $scope.goToDeployWebSite = (domain) =>
         $scope.$resolve.goToDeployWebSite($scope.hosting.serviceName, domain);
 
