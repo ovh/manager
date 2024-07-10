@@ -48,6 +48,7 @@ import {
   useUpdateVolume,
   useVolume,
 } from '@/api/hooks/useVolume';
+import HidePreloader from '@/core/HidePreloader';
 
 type TFormState = {
   name: string;
@@ -69,6 +70,7 @@ export default function EditPage() {
   const { t: tEdit } = useTranslation('edit');
   const { t: tVolumeEdit } = useTranslation('volume-edit');
   const { t: tGlobal } = useTranslation('global');
+  const { t: tStepper } = useTranslation('stepper');
 
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
@@ -223,13 +225,16 @@ export default function EditPage() {
   }, [formState]);
 
   const onEdit = () => {
-    if (!errorState.isMaxError && !errorState.isMinError) {
+    if (formState.name && !errorState.isMaxError && !errorState.isMinError) {
       updateVolume();
     }
   };
 
+  const hasError = errorState.isMinError || errorState.isMaxError;
+
   return (
     <>
+      <HidePreloader />
       {project && (
         <OsdsBreadcrumb
           items={[
@@ -333,12 +338,25 @@ export default function EditPage() {
               value={formState.name}
               max={255}
               className="w-1/3"
-              color={ODS_THEME_COLOR_INTENT.primary}
+              color={
+                formState.name
+                  ? ODS_THEME_COLOR_INTENT.primary
+                  : ODS_THEME_COLOR_INTENT.error
+              }
               onOdsValueChange={(event) =>
                 setFormState({ ...formState, name: event.detail.value })
               }
               data-testid="editPage-input_volumeName"
             />
+            {!formState.name && (
+              <OsdsText
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                color={ODS_THEME_COLOR_INTENT.error}
+              >
+                {tStepper('common_field_error_required')}
+              </OsdsText>
+            )}
           </OsdsFormField>
 
           <div className="flex items-end mt-8 mb-3">
@@ -373,20 +391,24 @@ export default function EditPage() {
 
                 <OsdsInput
                   type={ODS_INPUT_TYPE.number}
-                  color={ODS_THEME_COLOR_INTENT.primary}
+                  color={
+                    hasError
+                      ? ODS_THEME_COLOR_INTENT.error
+                      : ODS_THEME_COLOR_INTENT.primary
+                  }
                   min={formState.size.min}
                   max={formState.size.max}
                   step={1}
                   value={formState.size.value}
                   default-value={formState.size.value}
                   size={ODS_INPUT_SIZE.md}
-                  error={errorState.isMaxError || errorState.isMinError}
+                  error={hasError}
                   onOdsValueChange={(event) => {
                     setFormState({
                       ...formState,
                       size: {
                         ...formState.size,
-                        value: parseInt(event.detail.value, 10),
+                        value: Number(event.detail.value),
                       },
                     });
                   }}
@@ -460,7 +482,7 @@ export default function EditPage() {
             level={ODS_TEXT_LEVEL.caption}
             size={ODS_THEME_TYPOGRAPHY_SIZE._100}
             color={
-              errorState.isMaxError || errorState.isMinError
+              hasError
                 ? ODS_THEME_COLOR_INTENT.error
                 : ODS_THEME_COLOR_INTENT.primary
             }
@@ -486,6 +508,7 @@ export default function EditPage() {
             <OsdsButton
               color={ODS_THEME_COLOR_INTENT.primary}
               onClick={() => onEdit()}
+              {...(formState.name && !hasError ? {} : { disabled: true })}
               slot="actions"
               data-testid="editPage-button_submit"
             >
