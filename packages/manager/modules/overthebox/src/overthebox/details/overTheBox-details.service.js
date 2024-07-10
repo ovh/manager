@@ -26,4 +26,8 @@ export default class OverTheBoxDetailsService {
       .get(`/overTheBox/${serviceName}/device/hardware`)
       .then(({ data }) => data);
   }
+
+  unlinkDevice(serviceName) {
+    return this.$http.delete(`/overTheBox/${serviceName}/device`);
+  }
 }

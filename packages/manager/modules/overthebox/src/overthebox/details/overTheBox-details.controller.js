@@ -22,7 +22,7 @@ export default class OverTheBoxDetailsCtrl {
     OvhApiOverTheBox,
     OvhApiIp,
     OvhApiIpReverse,
-    OverTheBoxGraphService,
+    OverTheBoxDetailsService,
     TucToast,
   ) {
     this.$filter = $filter;
@@ -33,7 +33,7 @@ export default class OverTheBoxDetailsCtrl {
     this.OvhApiOverTheBox = OvhApiOverTheBox;
     this.OvhApiIp = OvhApiIp;
     this.OvhApiIpReverse = OvhApiIpReverse;
-    this.OverTheBoxGraphService = OverTheBoxGraphService;
+    this.OverTheBoxDetailsService = OverTheBoxDetailsService;
     this.TucToast = TucToast;
     this.TucChartjsFactory = ChartFactory;
     this.DATEFNS_LOCALE = DATEFNS_LOCALE;
@@ -64,6 +64,7 @@ export default class OverTheBoxDetailsCtrl {
     this.guidesLink = this.OVERTHEBOX_DETAILS.guidesUrl.fr;
 
     this.deviceIdPattern = this.OVERTHEBOX_DETAILS.pattern;
+    this.confirmUnlink = false;
 
     this.$q
       .all([
@@ -238,7 +239,7 @@ export default class OverTheBoxDetailsCtrl {
   }
 
   loadStatistics(serviceName, type, period) {
-    return this.OverTheBoxGraphService.loadStatistics(
+    return this.OverTheBoxDetailsService.loadStatistics(
       serviceName,
       type,
       period,
@@ -582,7 +583,7 @@ export default class OverTheBoxDetailsCtrl {
    * Get device detail about hardware
    */
   getDeviceHardware() {
-    return this.OverTheBoxGraphService.getDeviceHardware(this.serviceName)
+    return this.OverTheBoxDetailsService.getDeviceHardware(this.serviceName)
       .then((device) => {
         this.deviceModel = device.prettyModelName;
       })
@@ -859,6 +860,33 @@ export default class OverTheBoxDetailsCtrl {
       })
       .finally(() => {
         this.loaders.changingAutoUpgrade = false;
+      });
+  }
+
+  unlink() {
+    this.confirmUnlink = true;
+  }
+
+  cancel() {
+    this.confirmUnlink = false;
+  }
+
+  unlinkDevice() {
+    this.confirmUnlink = false;
+    return this.OverTheBoxDetailsService.unlinkDevice(this.serviceName)
+      .then(() => {
+        this.TucToast.success(
+          this.$translate.instant('overTheBox_unlink_device_success'),
+        );
+        this.error.noDeviceLinked = false;
+        this.device = null;
+      })
+      .catch((err) => {
+        this.TucToast.error(
+          this.$translate.instant('overTheBox_unlink_device_error', {
+            errorMessage: err.data.message,
+          }),
+        );
       });
   }
 }

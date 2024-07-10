@@ -93,5 +93,10 @@
   "overthebox_caracteristics": "Dimensionamiento de los nodos",
   "overTheBox_model_device": "Modelo de dispositivo",
   "overTheBox_detail_bandwidth": "Ancho de banda máximo",
-  "overTheBox_model_device_unknown": "Desconocido"
+  "overTheBox_model_device_unknown": "Desconocido",
+  "overTheBox_deviceId_unlink": "Desvincular",
+  "overTheBox_cancel": "Cancelar",
+  "overTheBox_confirm_unlink_device": "Este dispositivo ya no podrá conectarse a este servicio, ¿está seguro?",
+  "overTheBox_unlink_device_error": "No se pudo desasociar el dispositivo: {{errorMessage}}",
+  "overTheBox_unlink_device_success": "El dispositivo se ha desvinculado correctamente."
 }

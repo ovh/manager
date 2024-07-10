@@ -92,5 +92,10 @@
   "overthebox_caracteristics": "Caractéristiques",
   "overTheBox_model_device": "Modèle du périphérique",
   "overTheBox_detail_bandwidth": "Bande passante maximum",
-  "overTheBox_model_device_unknown": "Inconnu"
+  "overTheBox_model_device_unknown": "Inconnu",
+  "overTheBox_deviceId_unlink": "Dissocier",
+  "overTheBox_cancel": "Annuler",
+  "overTheBox_confirm_unlink_device": "Ce périphérique ne pourra plus se connecter ce service, en êtes-vous sûr?",
+  "overTheBox_unlink_device_error": "Nous n'avons pas pu dissocier le périphérique : {{errorMessage}}",
+  "overTheBox_unlink_device_success": "Votre périphérique a été dissocié avec succès."
 }

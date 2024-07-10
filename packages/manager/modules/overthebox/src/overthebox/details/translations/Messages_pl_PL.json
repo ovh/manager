@@ -93,5 +93,10 @@
   "overthebox_caracteristics": "Rozmiar węzłów",
   "overTheBox_model_device": "Model urządzenia",
   "overTheBox_detail_bandwidth": "Przepustowość maksymalna",
-  "overTheBox_model_device_unknown": "Nieznany"
+  "overTheBox_model_device_unknown": "Nieznany",
+  "overTheBox_deviceId_unlink": "Odłącz",
+  "overTheBox_cancel": "Anuluj",
+  "overTheBox_confirm_unlink_device": "To urządzenie nie będzie już mogło łączyć się z tą usługą, czy na pewno?",
+  "overTheBox_unlink_device_error": "Nie można odłączyć urządzenia: {{errorMessage}}",
+  "overTheBox_unlink_device_success": "Urządzenie zostało pomyślnie odłączone."
 }
