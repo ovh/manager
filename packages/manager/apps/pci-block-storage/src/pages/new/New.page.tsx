@@ -1,12 +1,12 @@
 import {
-  StepComponent,
-  isDiscoveryProject,
-  useProject,
   Headers,
+  isDiscoveryProject,
   PciDiscoveryBanner,
   PciFreeLocalzonesBanner,
+  StepComponent,
   useMe,
   useNotifications,
+  useProject,
   useProjectUrl,
 } from '@ovhcloud/manager-components';
 import { Translation, useTranslation } from 'react-i18next';
@@ -74,11 +74,6 @@ export default function NewPage(): JSX.Element {
   return (
     <>
       <HidePreloader />
-      <div className="mb-5">
-        {isDiscoveryProject(project) && (
-          <PciDiscoveryBanner projectId={projectId} />
-        )}
-      </div>
       {project && (
         <OsdsBreadcrumb
           className="mb-8"
@@ -99,6 +94,11 @@ export default function NewPage(): JSX.Element {
         />
       )}
       <Headers title={tAdd('pci_projects_project_storages_blocks_add_title')} />
+      <div className="mb-5">
+        {isDiscoveryProject(project) && (
+          <PciDiscoveryBanner projectId={projectId} />
+        )}
+      </div>
       {me && (
         <PciFreeLocalzonesBanner
           ovhSubsidiary={me.ovhSubsidiary}
