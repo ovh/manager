@@ -24,6 +24,7 @@ export default /* @ngInject */
   Ip,
   trackClick,
   isByoipAvailable,
+  isDeleteByoipServiceAvailable,
   goToGameFirewall,
   orderIpAvailable,
   trackPage,
@@ -41,6 +42,7 @@ export default /* @ngInject */
   $scope.goToGameFirewall = goToGameFirewall;
   $scope.goToOrganisation = goToOrganisation;
   $scope.isByoipAvailable = isByoipAvailable;
+  $scope.isDeleteByoipServiceAvailable = isDeleteByoipServiceAvailable;
   $scope.orderIpAvailable = orderIpAvailable;
   $scope.selection = { service: null, serviceType: null };
   $scope.listParams = {};
