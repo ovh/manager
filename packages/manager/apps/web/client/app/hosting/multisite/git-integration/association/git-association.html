@@ -2,10 +2,21 @@
 
 <div data-ovh-alert="git_association_alert"></div>
 
-<h1
-    data-translate="hosting_multisite_git_association_title"
-    data-translate-values="{path: $ctrl.path}"
-></h1>
+<oui-header
+    data-heading="{{ ::'hosting_multisite_git_association_title' | translate }}"
+>
+    <oui-guide-menu
+        data-text="{{ ::'hosting_multisite_git_association_guide_title' | translate }}"
+    >
+        <oui-guide-menu-item
+            data-href="{{ ::$ctrl.GIT_ASSOCIATION_GUIDE_LINK }}"
+            data-external="true"
+            ><span
+                data-ng-bind="::'hosting_multisite_git_association_guide_name' | translate"
+            ></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</oui-header>
 <p data-translate="hosting_multisite_git_association_configure_description"></p>
 
 <form class="form-inline" name="$ctrl.gitAssociationForm">
@@ -128,6 +139,31 @@
         </oui-field>
     </div>
 </form>
+
+<div class="mb-5">
+    <a
+        class="oui-link_icon row m-0 p-0"
+        target="_blank"
+        rel="noopener"
+        data-ng-href="{{ ::$ctrl.GIT_ASSOCIATION_GUIDE_LINK }}"
+    >
+        <span
+            data-translate="hosting_multisite_git_association_guide_configure_webhook"
+        ></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+    <a
+        class="oui-link_icon row m-0 p-0"
+        target="_blank"
+        rel="noopener"
+        data-ng-href="{{ ::$ctrl.GIT_ASSOCIATION_GUIDE_LINK }}"
+    >
+        <span
+            data-translate="hosting_multisite_git_association_guide_configure_tutorial"
+        ></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+</div>
 
 <oui-form-actions
     data-submit-text="{{ ::'hosting_multisite_git_association_apply_configuration' | translate}}"

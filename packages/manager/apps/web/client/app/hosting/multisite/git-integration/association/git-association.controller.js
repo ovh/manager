@@ -5,6 +5,7 @@ import {
   EXAMPLE_SSH_REPOSITORY_URL,
   GITHUB_VCS,
   REGEX_GIT_REPO,
+  GIT_ASSOCIATION_GUIDE_LINK,
 } from './git-association.constants';
 
 export default class HostingMultisiteGitAssociationController {
@@ -12,6 +13,7 @@ export default class HostingMultisiteGitAssociationController {
   constructor(
     HostingMultisiteGitAssociationService,
     coreURLBuilder,
+    coreConfig,
     $translate,
   ) {
     this.REPOSITORY_PLACEHOLDER = REPOSITORY_PLACEHOLDER;
@@ -23,6 +25,9 @@ export default class HostingMultisiteGitAssociationController {
     this.HostingMultisiteGitAssociationService = HostingMultisiteGitAssociationService;
     this.coreURLBuilder = coreURLBuilder;
     this.$translate = $translate;
+    this.GIT_ASSOCIATION_GUIDE_LINK =
+      GIT_ASSOCIATION_GUIDE_LINK[coreConfig.getUser().ovhSubsidiary] ||
+      GIT_ASSOCIATION_GUIDE_LINK.DEFAULT;
   }
 
   $onInit() {
