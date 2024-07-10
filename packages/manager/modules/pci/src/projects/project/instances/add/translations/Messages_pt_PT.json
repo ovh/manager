@@ -9,7 +9,7 @@
   "pci_projects_project_instances_add_region_datacenter_title": "Região",
   "pci_projects_project_instances_add_region_display_nonavailable": "Mostrar as localizações indisponíveis",
   "pci_project_instances_instance_add_region_error": "Ocorreu um erro ao obter as regiões disponíveis",
-  "pci_project_instances_instance_add_region_activate": " A localização escolhida não está ativada. Clique em «Seguinte» para a adicionar ao seu projeto Public Cloud e continuar a criar instâncias.",
+  "pci_project_instances_instance_add_region_activate": " A localização escolhida não está ativada. Clique em “Seguinte” para a adicionar ao seu projeto Public Cloud e continuar a criar instâncias.",
   "pci_project_instances_instance_add_region_quota": "Já não tem limite disponível para esta localização. Para continuar, <a href='{{quotaLink}}'>aumente o seu limite</a>.",
   "pci_project_instances_instance_add_region_unavailable": "Estas localizações estão disponíveis noutros modelos.",
   "pci_project_instances_instance_add_choose_model": "Mudar de modelo",
