@@ -1,7 +1,8 @@
 export default class HostingMultisiteGitAssociationService {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, iceberg) {
     this.$http = $http;
+    this.iceberg = iceberg;
   }
 
   getVcsWebhookUrls(serviceName, path, vcs) {
@@ -32,6 +33,18 @@ export default class HostingMultisiteGitAssociationService {
     return this.$http.put(`/hosting/web/${serviceName}/website/${id}`, {
       vcsBranch,
     });
+  }
+
+  getVcsInformations(serviceName, path) {
+    return this.iceberg(`/hosting/web/${serviceName}/website?path=${path}`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data: [{ id, vcsUrl, vcsBranch }] }) => ({
+        repositoryUrl: vcsUrl,
+        branchName: vcsBranch,
+        id,
+      }));
   }
 
   postWebsiteAssociated(serviceName, path, vcsBranch, vcsUrl) {

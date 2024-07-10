@@ -78,6 +78,8 @@
                 <!-- type "text" and not "url" because the browsers consider urls starting with git@ to be false. -->
                 <input
                     type="text"
+                    data-ng-disabled="$ctrl.isConfiguration"
+                    data-oui-tooltip="{{ :: $ctrl.isConfiguration ? 'hosting_multisite_git_association_reconfigure_warning_url_tooltip' : '' | translate }}"
                     id="repository_url"
                     name="repository_url"
                     class="oui-input mr-2"

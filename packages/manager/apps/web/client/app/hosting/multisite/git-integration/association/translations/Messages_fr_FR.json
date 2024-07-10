@@ -25,6 +25,9 @@
   "hosting_multisite_git_association_guide_name": "association de dépôt git",
   "hosting_multisite_git_association_guide_configure_webhook": "Configurer le webhoook sur Github",
   "hosting_multisite_git_association_guide_configure_tutorial": "Tutoriel de configuration",
+  "hosting_multisite_git_association_reconfigure_success": "Vous devez redéployer votre branche afin que les modifications soient prises en compte",
+  "hosting_multisite_git_association_reconfigure_warning_url_tooltip": "L'url du dépôt ne peut être modifiée. Pour déployer un autre dépôt sur ce répertoire, vous devez au préalable supprimer puis recréer la configuration git associée à ce répertoire.",
+  "hosting_multisite_git_association_reconfigure_error": "La modification a échoué.",
   "hosting_multisite_git_association_webhook_url": "Url de webhook",
   "hosting_multisite_git_association_apply_configuration": "Appliquer la configuration",
   "hosting_multisite_git_association_ssh_key_description": "Retrouvez ci-dessous la clé SSH de votre hébergement."
