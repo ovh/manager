@@ -1,6 +1,6 @@
 import React from 'react';
-import NotFound from '@/pages/404';
-import ErrorBoundary from '@/components/errorBoundary';
+import NotFound from '@/pages/404.page';
+import ErrorBoundary from '@/components/error-boundary/ErrorBoundary.component';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -24,11 +24,17 @@ export const COMMON_PATH = '/pci/projects';
 export default [
   {
     path: '/pci/projects/:projectId/ai/dashboard',
-    ...lazyRouteConfig(() => import('@/pages/layout')),
+    ...lazyRouteConfig(() => import('@/pages/root.layout')),
     children: [
       {
         path: '',
-        ...lazyRouteConfig(() => import('@/pages/home')),
+        ...lazyRouteConfig(() => import('@/pages/home/home.page')),
+      },
+      {
+        path: 'users-tokens',
+        ...lazyRouteConfig(() =>
+          import('@/pages/users-tokens/users-tokens.page'),
+        ),
       },
     ],
   },
