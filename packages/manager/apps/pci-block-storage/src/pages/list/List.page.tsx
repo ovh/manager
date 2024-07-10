@@ -15,6 +15,7 @@ import {
   RedirectionGuard,
   useColumnFilters,
   useDataGrid,
+  useNotifications,
   useProductMaintenance,
   useProject,
 } from '@ovhcloud/manager-components';
@@ -58,6 +59,7 @@ export default function ListingPage() {
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject(projectId || '');
   const { filters, addFilter, removeFilter } = useColumnFilters();
+  const { clearNotifications } = useNotifications();
   const filterPopoverRef = useRef(undefined);
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
@@ -142,7 +144,10 @@ export default function ListingPage() {
             variant={ODS_BUTTON_VARIANT.stroked}
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0"
-            onClick={() => navigate('./new')}
+            onClick={() => {
+              clearNotifications();
+              navigate('./new');
+            }}
           >
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}

@@ -336,7 +336,6 @@ export default function EditPage() {
               type={ODS_INPUT_TYPE.text}
               default-value={volume?.name}
               value={formState.name}
-              max={255}
               className="w-1/3"
               color={
                 formState.name

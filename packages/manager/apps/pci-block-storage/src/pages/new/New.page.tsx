@@ -8,6 +8,7 @@ import {
   useNotifications,
   useProject,
   useProjectUrl,
+  Notifications,
 } from '@ovhcloud/manager-components';
 import { Translation, useTranslation } from 'react-i18next';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
@@ -56,7 +57,7 @@ export default function NewPage(): JSX.Element {
       );
     },
     onError: (err: ApiError) => {
-      navigate('..');
+      stepper.validation.step.unlock();
       addError(
         <Translation ns="add">
           {(tr) =>
@@ -68,6 +69,8 @@ export default function NewPage(): JSX.Element {
         </Translation>,
         true,
       );
+      // scroll to top of page to display error message
+      window.scrollTo(0, 0);
     },
   });
 
@@ -94,6 +97,7 @@ export default function NewPage(): JSX.Element {
         />
       )}
       <Headers title={tAdd('pci_projects_project_storages_blocks_add_title')} />
+      <Notifications />
       <div className="mb-5">
         {isDiscoveryProject(project) && (
           <PciDiscoveryBanner projectId={projectId} />
@@ -183,6 +187,7 @@ export default function NewPage(): JSX.Element {
             volumeCapacity={stepper.form.volumeCapacity}
             volumeType={stepper.form.volumeType}
             onSubmit={() => {
+              clearNotifications();
               stepper.validation.submit();
               addVolume();
             }}
