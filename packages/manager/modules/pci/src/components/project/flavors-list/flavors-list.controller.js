@@ -9,39 +9,30 @@ import { TAGS_BLOB } from '../../../constants';
 
 export default class FlavorsListController {
   /* @ngInject */
-  constructor($filter, $q, $state, coreConfig, PciProjectFlavors, PciProject) {
+  constructor(
+    $filter,
+    $q,
+    $state,
+    $timeout,
+    coreConfig,
+    PciProjectFlavors,
+    PciProject,
+  ) {
     this.$filter = $filter;
     this.$q = $q;
     this.$state = $state;
     this.coreConfig = coreConfig;
     this.PciProjectFlavors = PciProjectFlavors;
     this.PciProject = PciProject;
+    this.$timeout = $timeout;
   }
 
   $onInit() {
     this.quotaUrl = this.$state.href('pci.projects.project.quota');
     this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
     this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
-    this.isLoading = true;
     this.flavorCount = this.flavorCount || 1;
-    return this.$q
-      .all({
-        flavors: this.getFlavors(this.catalogEndpoint),
-        me: this.coreConfig.getUser(),
-      })
-      .then(({ me }) => {
-        this.PriceFormatter = new Intl.NumberFormat(
-          this.coreConfig.getUserLocale().replace('_', '-'),
-          {
-            style: 'currency',
-            currency: me.currency.code,
-            maximumFractionDigits: 5, // default is 2. But this rounds off the price
-          },
-        );
-      })
-      .finally(() => {
-        this.isLoading = false;
-      });
+    return this.load({ force: true });
   }
 
   $onChanges(changesObj) {
@@ -63,17 +54,49 @@ export default class FlavorsListController {
         this.onFlavorChange(this.flavor);
       }
     }
+    if (
+      changesObj.reload?.currentValue === true &&
+      changesObj.reload?.previousValue !== true
+    ) {
+      this.load({ force: true });
+    }
   }
 
-  getFlavors() {
+  load({ force = false } = {}) {
+    this.isLoading = true;
+    return this.$q
+      .all({
+        flavors: this.getFlavors({ force }),
+        me: this.coreConfig.getUser(),
+      })
+      .then(({ me }) => {
+        this.PriceFormatter = new Intl.NumberFormat(
+          this.coreConfig.getUserLocale().replace('_', '-'),
+          {
+            style: 'currency',
+            currency: me.currency.code,
+            maximumFractionDigits: 5, // default is 2. But this rounds off the price
+          },
+        );
+      })
+      .finally(() => {
+        this.isLoading = false;
+        this.$timeout(() => {
+          this.loadEnd();
+        });
+      });
+  }
+
+  getFlavors({ force = false } = {}) {
     let flavorsPromise = null;
-    if (!isEmpty(this.flavors)) {
+    if (!force && !isEmpty(this.flavors)) {
       flavorsPromise = this.$q.when(this.flavors);
     } else {
       flavorsPromise = this.PciProjectFlavors.getFlavors(
         this.serviceName,
         get(this.region, 'name'),
         this.catalogEndpoint,
+        force,
       );
     }
     return flavorsPromise.then((flavors) => {
@@ -93,6 +116,12 @@ export default class FlavorsListController {
       );
       this.selectedCategory =
         this.selectedCategory || get(first(this.flavors), 'category');
+      if (force && this.selectedFlavor && this.selectedCategory) {
+        this.selectedFlavor = find(
+          this.flavors.map(({ flavors: groups }) => groups).flat(),
+          { name: this.selectedFlavor.name },
+        );
+      }
       this.findFlavor();
 
       return flavors;

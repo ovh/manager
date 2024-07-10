@@ -36,6 +36,7 @@ export default class SshKeysController {
     };
 
     this.loadMessages();
+    this.OvhApiCloudProjectSshKey.v6().resetQueryCache();
     return this.$q.all([this.getGuideUrl(), this.getSshKeys()]);
   }
 
