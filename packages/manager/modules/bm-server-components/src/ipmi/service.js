@@ -1,5 +1,3 @@
-import { KVM_PLAN_CODE } from './constants';
-
 export default class BmServerComponentsIpmiService {
   /* @ngInject */
   constructor($http, $q, coreConfig) {
@@ -110,11 +108,11 @@ export default class BmServerComponentsIpmiService {
       );
   }
 
-  addKvmOptionToCart(cartId, duration, pricingMode, quantity) {
+  addKvmOptionToCart(cartId, duration, pricingMode, quantity, kvmPlancode) {
     return this.$http
       .post(`/order/cart/${cartId}/eco`, {
         duration,
-        planCode: KVM_PLAN_CODE,
+        planCode: kvmPlancode,
         pricingMode,
         quantity,
       })
@@ -151,13 +149,19 @@ export default class BmServerComponentsIpmiService {
       }));
   }
 
-  prepareKvmCart(serviceName, datacenter) {
+  prepareKvmCart(serviceName, datacenter, kvmPlancode) {
     let cartId = '';
 
     return this.createAndAssignNewCart()
       .then((data) => {
         cartId = data.cartId;
-        return this.addKvmOptionToCart(cartId, 'P1M', 'default', 1);
+        return this.addKvmOptionToCart(
+          cartId,
+          'P1M',
+          'default',
+          1,
+          kvmPlancode,
+        );
       })
       .then(({ itemId }) =>
         this.addKvmConfigurationToCart(itemId, cartId, serviceName, datacenter),

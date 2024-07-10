@@ -1,13 +1,14 @@
 import isFunction from 'lodash/isFunction';
-import { getKvmOrderTrackingPrefix } from '../constants';
+import { getKvmOrderTrackingPrefix, KVM_PLAN_CODE } from '../constants';
 
 export default class BmServerComponentsOrderKvmController {
   /* @ngInject */
-  constructor($translate, $window, IpmiService, atInternet) {
+  constructor($translate, $window, IpmiService, atInternet, coreConfig) {
     this.$translate = $translate;
     this.$window = $window;
     this.IpmiService = IpmiService;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -16,12 +17,27 @@ export default class BmServerComponentsOrderKvmController {
     this.datacenter = datacenter.toLowerCase();
     this.contractAgreement = false;
     this.pendingOrder = false;
+    this.region = this.coreConfig.getRegion();
     this.prepareKvmCart();
   }
 
   prepareKvmCart() {
+    // In US, If the server is managed by EU IS: you have to order usb-kvm-ip-eu and
+    // if the server is managed by CA IS: you have to order usb-kvm-ip-ca
+    // For EU and CA its usb-kvm-ip
+    if (this.region === 'US') {
+      this.kvmPlancode = this.server.region.startsWith('eu-')
+        ? KVM_PLAN_CODE.US.EU
+        : KVM_PLAN_CODE.US.CA;
+    } else {
+      this.kvmPlancode = KVM_PLAN_CODE.OTHERS;
+    }
     this.loading = true;
-    this.IpmiService.prepareKvmCart(this.serviceName, this.datacenter)
+    this.IpmiService.prepareKvmCart(
+      this.serviceName,
+      this.datacenter,
+      this.kvmPlancode,
+    )
       .then(
         ({
           cartId,
