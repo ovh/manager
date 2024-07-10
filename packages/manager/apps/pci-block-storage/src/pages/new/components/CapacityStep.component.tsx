@@ -50,9 +50,12 @@ export function CapacityStep({
 }: Readonly<CapacityStepProps>) {
   const { t } = useTranslation('add');
   const { t: tStepper } = useTranslation('stepper');
+  const { t: tGlobal } = useTranslation('global');
   const [volumeCapacity, setVolumeCapacity] = useState<number>(VOLUME_MIN_SIZE);
   const [maxSize, setMaxSize] = useState(0);
   const { data: regionQuotas, isLoading } = useRegionsQuota(projectId);
+  const isCapacityValid =
+    volumeCapacity >= VOLUME_MIN_SIZE && volumeCapacity <= maxSize;
 
   useEffect(() => {
     if (!isLoading) {
@@ -98,7 +101,11 @@ export function CapacityStep({
           <OsdsInput
             type={ODS_INPUT_TYPE.number}
             value={volumeCapacity}
-            color={ODS_THEME_COLOR_INTENT.primary}
+            color={
+              isCapacityValid
+                ? ODS_THEME_COLOR_INTENT.primary
+                : ODS_THEME_COLOR_INTENT.error
+            }
             onOdsValueChange={(event) => {
               setVolumeCapacity(Number(event.detail.value));
             }}
@@ -134,15 +141,45 @@ export function CapacityStep({
       />
       <PriceEstimate volumeCapacity={volumeCapacity} volumeType={volumeType} />
       <div className="my-6">
+        {volumeCapacity < VOLUME_MIN_SIZE && (
+          <div>
+            <OsdsText
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+              color={ODS_THEME_COLOR_INTENT.error}
+            >
+              {tGlobal('common_field_error_min', {
+                min: VOLUME_MIN_SIZE,
+              })}
+            </OsdsText>
+          </div>
+        )}
+        {volumeCapacity > maxSize && (
+          <div>
+            <OsdsText
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+              color={ODS_THEME_COLOR_INTENT.error}
+            >
+              {tGlobal('common_field_error_max', {
+                max: maxSize,
+              })}
+            </OsdsText>
+          </div>
+        )}
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-          color={ODS_THEME_COLOR_INTENT.text}
+          color={
+            isCapacityValid
+              ? ODS_THEME_COLOR_INTENT.text
+              : ODS_THEME_COLOR_INTENT.error
+          }
         >
           {t('pci_projects_project_storages_blocks_add_size_help')}
         </OsdsText>
       </div>
-      {!!volumeCapacity && !step.isLocked && (
+      {isCapacityValid && !step.isLocked && (
         <div>
           <OsdsButton
             className="w-fit"
