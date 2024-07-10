@@ -364,57 +364,59 @@ export default class MoveResumeCtrl {
           });
         }
 
-        if (
-          this.offer.selected.neighbourAddress &&
-          this.offer.selected.neighbourAddress.floor
-        ) {
-          assign(moveData, {
-            floor: this.offer.selected.neighbourAddress.floor,
-          });
-        } else if (this.offer.selected.address.floor) {
-          assign(moveData, {
-            floor: this.offer.selected.address.floor,
-          });
-        } else if (this.offer.selected.searchAddress?.floor) {
-          assign(moveData, {
-            floor: this.offer.selected.searchAddress.floor,
-          });
-        }
+        if (!this.offer.selected.isOfferFTTH) {
+          if (
+            this.offer.selected.neighbourAddress &&
+            this.offer.selected.neighbourAddress.floor
+          ) {
+            assign(moveData, {
+              floor: this.offer.selected.neighbourAddress.floor,
+            });
+          } else if (this.offer.selected.address.floor) {
+            assign(moveData, {
+              floor: this.offer.selected.address.floor,
+            });
+          } else if (this.offer.selected.searchAddress?.floor) {
+            assign(moveData, {
+              floor: this.offer.selected.searchAddress.floor,
+            });
+          }
 
-        if (
-          this.offer.selected.neighbourAddress &&
-          this.offer.selected.neighbourAddress.door
-        ) {
-          assign(moveData, {
-            door: this.offer.selected.neighbourAddress.door,
-          });
-        } else if (this.offer.selected.address.door) {
-          assign(moveData, {
-            door: this.offer.selected.address.door,
-          });
-        } else if (this.offer.selected.searchAddress?.door) {
-          assign(moveData, {
-            door: this.offer.selected.searchAddress.door,
-          });
-        }
+          if (
+            this.offer.selected.neighbourAddress &&
+            this.offer.selected.neighbourAddress.door
+          ) {
+            assign(moveData, {
+              door: this.offer.selected.neighbourAddress.door,
+            });
+          } else if (this.offer.selected.address.door) {
+            assign(moveData, {
+              door: this.offer.selected.address.door,
+            });
+          } else if (this.offer.selected.searchAddress?.door) {
+            assign(moveData, {
+              door: this.offer.selected.searchAddress.door,
+            });
+          }
 
-        if (
-          this.offer.selected.neighbourAddress &&
-          this.offer.selected.neighbourAddress.stairs
-        ) {
-          assign(moveData, {
-            stair: this.offer.selected.neighbourAddress.stairs,
-          });
-        } else if (this.offer.selected.address.stairs) {
-          assign(moveData, {
-            stair: this.offer.selected.address.stairs,
-          });
-        } else if (this.offer.selected.searchAddress?.stairs) {
-          assign(moveData, {
-            stair: this.offer.selected.searchAddress.stairs,
-          });
+          if (
+            this.offer.selected.neighbourAddress &&
+            this.offer.selected.neighbourAddress.stairs
+          ) {
+            assign(moveData, {
+              stair: this.offer.selected.neighbourAddress.stairs,
+            });
+          } else if (this.offer.selected.address.stairs) {
+            assign(moveData, {
+              stair: this.offer.selected.address.stairs,
+            });
+          } else if (this.offer.selected.searchAddress?.stairs) {
+            assign(moveData, {
+              stair: this.offer.selected.searchAddress.stairs,
+            });
+          }
         }
-      } else if (!this.offer.selected.isFTTH) {
+      } else if (!this.offer.selected.isOfferFTTH) {
         assign(moveData, {
           meeting: {
             fakeMeeting: true,
