@@ -52,6 +52,7 @@ export default {
     stein: '<',
     isVpsMaintenance: '<',
     trackPage: '<',
+    isSecondaryDnsAvailable: '<',
   },
   controller,
   name: 'ovhManagerVpsDashboard',
