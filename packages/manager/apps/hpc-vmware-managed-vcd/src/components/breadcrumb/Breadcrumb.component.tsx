@@ -12,12 +12,13 @@ export interface BreadcrumbProps {
   items?: BreadcrumbItem[];
 }
 
-function Breadcrumb({ customRootLabel }: BreadcrumbProps): JSX.Element {
+function Breadcrumb({ customRootLabel, items }: BreadcrumbProps): JSX.Element {
   const label = customRootLabel || appConfig.rootLabel;
 
   const breadcrumbItems = useBreadcrumb({
     rootLabel: label,
     appName: 'hpc-vmware-managed-vcd',
+    items,
   });
   return <OsdsBreadcrumb items={breadcrumbItems} />;
 }
