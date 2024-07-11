@@ -77,7 +77,7 @@ export default function Listing() {
   }, [okms.length, isLoading]);
 
   return (
-    <>
+    <div className="m-10">
       <OsdsBreadcrumb
         items={[
           {
@@ -133,6 +133,6 @@ export default function Listing() {
         </div>
       )}
       <Outlet />
-    </>
+    </div>
   );
 }

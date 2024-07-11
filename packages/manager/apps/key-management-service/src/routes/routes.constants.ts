@@ -6,5 +6,7 @@ export const ROUTES_URLS = {
   createKeyManagementService: '/create',
   okmsId: '/:okmsId',
   keys: '/keys',
+  keyId: '/:keyId',
+  serviceKeyEditName: 'edit-name',
   certificates: '/certificates',
 };

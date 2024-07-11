@@ -40,7 +40,7 @@ export default function DashboardPage() {
   ];
 
   return (
-    <>
+    <div className="m-10">
       <Breadcrumb />
       <div className={'flex items-center justify-between mt-2'}>
         <OsdsText
@@ -60,6 +60,6 @@ export default function DashboardPage() {
         <Dashboard tabs={tabsList} />
         <Outlet />
       </Suspense>
-    </>
+    </div>
   );
 }
