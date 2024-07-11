@@ -21,8 +21,13 @@ export const GUIDES = {
   SG: 'https://docs.ovh.com/sg/en/',
   WE: 'https://docs.ovh.com/us/en/',
   WS: 'https://docs.ovh.com/us/es/',
-  US: 'https://docs.us.ovhcloud.com',
+  US: 'https://support.us.ovhcloud.com/hc/en-us',
   IN: 'https://docs.ovh.com/asia/en/',
+};
+
+export const LOG_DATA_PLATFORM_GUIDES = {
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/sections/27230973429523-Logs-Data-Platform',
 };
 
 export const OFFER_TYPES = {
@@ -32,5 +37,6 @@ export const OFFER_TYPES = {
 
 export default {
   GUIDES,
+  LOG_DATA_PLATFORM_GUIDES,
   OFFER_TYPES,
 };
