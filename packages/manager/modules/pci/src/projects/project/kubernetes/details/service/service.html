@@ -164,29 +164,12 @@
                             class="d-block"
                             data-ng-bind="$ctrl.cluster.privateNetworkName"
                         ></span>
-
-                        <!--Default OVH gateway-->
-                        <span
-                            class="d-block"
-                            data-ng-if="$ctrl.isOvhDefaultGateway()"
-                            data-translate="kube_service_cluster_network_ovh_gateway"
-                        ></span>
-
-                        <!--Default vRack gateway-->
-                        <span
-                            class="d-block"
-                            data-ng-if="$ctrl.isVRackDefaultGateway()"
-                            data-translate="kube_service_cluster_network_vrack_default_gateway"
-                        ></span>
-
-                        <!--Custom vRack gateway-->
-                        <span
-                            class="d-block"
-                            data-ng-if="$ctrl.isCustomerDefineVRackGateway()"
-                            data-translate="kube_service_cluster_network_vrack_customer_gateway"
-                            data-translate-values="{ vRackGatewayIp: $ctrl.cluster.privateNetworkConfiguration.defaultVrackGateway }"
-                        ></span>
                     </div>
+
+                    <!--gateway-->
+                    <pci-kubernetes-network-data
+                        data-network="$ctrl.cluster.privateNetworkConfiguration"
+                    />
                 </oui-tile-description>
             </oui-tile-definition>
             <!-- end of network attached -->
