@@ -29,9 +29,14 @@ const DashboardTabs = () => {
   const tabs = [
     { href: '', label: 'Dashboard', end: true },
     {
-      href: 'users-tokens',
-      label: 'Users & tokens',
-      count: users?.length + tokens?.length,
+      href: 'users',
+      label: 'Users',
+      count: users?.length,
+    },
+    {
+      href: 'tokens',
+      label: 'Tokens',
+      count: tokens?.length,
     },
     {
       href: 'registries',

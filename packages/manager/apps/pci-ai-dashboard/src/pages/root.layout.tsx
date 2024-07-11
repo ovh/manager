@@ -10,9 +10,9 @@ import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 
 import { Toaster } from '@/components/ui/toaster';
-import { DashboardHeader } from './_components/dashboardHeader';
-import DashboardTabs from './_components/dashboardTabs';
 import PageLayout from '@/components/page-layout/PageLayout.component';
+import { useGetAuthorization } from '@/hooks/api/authorization-api/useGetAuthorization';
+import Auth from './auth/auth.page';
 
 export function breadcrumb() {
   return (
@@ -64,14 +64,24 @@ export function useDashboardData() {
   return { projectId };
 }
 
-export default function DashboardLayout() {
+export default function Layout() {
+  const { projectId } = useParams();
+  const authorizationQuery = useGetAuthorization(projectId);
+
+  if (authorizationQuery.isSuccess && authorizationQuery.data) {
+    return (
+      <PageLayout>
+        <Breadcrumb />
+        <RoutingSynchronisation />
+        <Outlet />
+        <Toaster />
+      </PageLayout>
+    );
+  }
   return (
     <PageLayout>
-      <Breadcrumb />
       <RoutingSynchronisation />
-      <DashboardHeader />
-      <DashboardTabs />
-      <Outlet />
+      <Auth />
       <Toaster />
     </PageLayout>
   );
