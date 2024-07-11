@@ -1,6 +1,8 @@
+@import (inline) '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
+
 .log-live-tail {
-  background-color: #122844;
-  color: white;
+  background-color: var(--ods-color-primary-900);
+  color: var(--ods-color-default-000);
   position: relative;
   flex: 0 0 70%;
   max-height: 600px;
@@ -22,7 +24,7 @@
     i.cursor {
       content: '';
       display: inline-block;
-      background-color: white;
+      background-color: var(--ods-color-default-000);
       vertical-align: top;
       width: 8px;
       height: 17px;
@@ -30,8 +32,8 @@
     }
 
     span.highlight {
-      background-color: yellow;
-      color: #122844;
+      background-color: var(--ods-color-default-000);
+      color: var(--ods-color-default-800);
     }
   }
 
@@ -42,26 +44,32 @@
     bottom: 10px;
   }
 
-  .log {
-    overflow-wrap: anywhere;
+  .log-key {
+    word-break: break-all;
+
+    &:not(:first-child) {
+      margin-left: 1ch;
+    }
   }
 
-  .log-timestamp {
-    color: DodgerBlue;
+  .log-date {
+    color: var(--ods-color-warning-050);
+  }
+
+  .log-time {
+    color: var(--ods-color-warning-100);
   }
 
   .log-severity {
-    text-transform: uppercase;
+    display: inline-block;
+    width: 6ch;
     text-align: right;
+    text-transform: uppercase;
   }
 
-  .log-timestamp::after,
-  .log-severity::after {
+  .separator::after {
     content: '|';
-    display: inline-block;
-    padding-left: 1ch;
-    color: white;
-    opacity: 0.3;
+    color: var(--ods-color-default-000);
   }
 
   /*
@@ -70,35 +78,35 @@
 
   // level 0 - emerg
   .log-severity[data-level='0'] {
-    color: Magenta;
+    color: var(--ods-color-error-200);
   }
   // level 1 - alert
   .log-severity[data-level='1'] {
-    color: Violet;
+    color: var(--ods-color-error-200);
   }
   // level 2 - crit
   .log-severity[data-level='2'] {
-    color: red;
+    color: var(--ods-color-error-200);
   }
   // level 3 - err
   .log-severity[data-level='3'] {
-    color: Crimson;
+    color: var(--ods-color-error-200);
   }
   // level 4 - warning
   .log-severity[data-level='4'] {
-    color: Gold;
+    color: var(--ods-color-warning-400);
   }
   // level 5 - notice
   .log-severity[data-level='5'] {
-    color: RosyBrown;
+    color: var(--ods-color-primary-300);
   }
   // level 6 - info
   .log-severity[data-level='6'] {
-    color: LightSkyBlue;
+    color: var(--ods-color-primary-300);
   }
   // level 7 - debug
   .log-severity[data-level='7'] {
-    color: Cyan;
+    color: var(--ods-color-primary-300);
   }
 }
 
