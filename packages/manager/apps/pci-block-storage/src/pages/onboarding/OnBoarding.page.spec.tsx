@@ -25,6 +25,13 @@ vi.mock('react-router-dom', () => ({
 vi.mock('@/core/HidePreloader', () => ({
   default: () => <div>HidePeloader</div>,
 }));
+vi.mock('@ovhcloud/manager-components', async () => {
+  const mod = await vi.importActual('@ovhcloud/manager-components');
+  return {
+    ...mod,
+    useProject: vi.fn().mockResolvedValue({}),
+  };
+});
 
 const shellContext = {
   environment: {
