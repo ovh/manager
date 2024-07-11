@@ -1,6 +1,9 @@
 module.exports = {
   testMatch: ['<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}'],
   testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    customExportConditions: [''],
+  },
   transformIgnorePatterns: [
     'node_modules/(?!lodash-es|@ovh-ux|@ovhcloud|@stencil)',
   ],

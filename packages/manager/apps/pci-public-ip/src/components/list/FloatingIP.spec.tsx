@@ -1,3 +1,4 @@
+import * as managerComponentsModule from '@ovhcloud/manager-components';
 import * as coreApplicationModule from '@ovh-ux/manager-react-core-application';
 import {
   QueryClient,
@@ -89,10 +90,12 @@ describe('FloatingIP component tests', () => {
   });
 
   it('should  display the PciAnnouncementBanner component when displayAnnouncementBanner is true ', () => {
-    vi.spyOn(coreApplicationModule, 'useFeatureAvailability').mockReturnValue({
-      data: { 'public-cloud:pci-announcement-banner': true },
-      isLoading: false,
-    } as UseQueryResult<Record<string, boolean>>);
+    vi.spyOn(managerComponentsModule, 'useFeatureAvailability').mockReturnValue(
+      {
+        data: { 'public-cloud:pci-announcement-banner': true },
+        isLoading: false,
+      } as managerComponentsModule.UseFeatureAvailabilityResult,
+    );
 
     const props = {
       projectId: 'project-id-123456',
@@ -105,10 +108,12 @@ describe('FloatingIP component tests', () => {
   });
 
   it('should not display the PciAnnouncementBanner component when displayAnnouncementBanner is falsy ', () => {
-    vi.spyOn(coreApplicationModule, 'useFeatureAvailability').mockReturnValue({
-      data: { 'public-cloud:pci-announcement-banner': false },
-      isLoading: true,
-    } as UseQueryResult<Record<string, boolean>>);
+    vi.spyOn(managerComponentsModule, 'useFeatureAvailability').mockReturnValue(
+      {
+        data: { 'public-cloud:pci-announcement-banner': false },
+        isLoading: true,
+      } as managerComponentsModule.UseFeatureAvailabilityResult,
+    );
 
     const props = {
       projectId: 'project-id-123456',

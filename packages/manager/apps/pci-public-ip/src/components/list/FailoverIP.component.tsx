@@ -1,6 +1,6 @@
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
 import {
+  useFeatureAvailability,
   DataGridTextCell,
   Datagrid,
   FilterAdd,
