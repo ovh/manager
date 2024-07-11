@@ -68,4 +68,10 @@ export default {
   },
   convertToMbps: 104857.6,
   convertToKbps: 102.4,
+  status: {
+    locked: 'locked',
+    warning: 'warning',
+    unknown: 'unknown',
+  },
+  pattern: /[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/,
 };
