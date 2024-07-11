@@ -7,6 +7,7 @@ export default {
     heading: '@',
     href: '@',
     onClick: '&?',
+    onRefresh: '&?',
     hideAction: '<?',
     hideHeading: '<?',
   },
