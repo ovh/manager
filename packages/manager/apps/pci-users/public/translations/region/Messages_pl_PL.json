@@ -259,6 +259,6 @@
   "manager_components_region_TOR_micro": "Toronto ({{ micro }})",
   "manager_components_region_continent_TOR": "Ameryka Północna",
   "manager_components_region_DAL": "Dallas",
-  "manager_components_region_DAL_micro": "Dallas ({{ micro }})",
+  "manager_components_region_DAL_micro": "Dallas ({{micro}})",
   "manager_components_region_continent_DAL": "Ameryka Północna"
 }

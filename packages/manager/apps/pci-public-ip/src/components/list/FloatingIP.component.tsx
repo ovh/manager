@@ -1,5 +1,4 @@
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
 import {
   DataGridTextCell,
   Datagrid,
@@ -9,6 +8,7 @@ import {
   PciAnnouncementBanner,
   useColumnFilters,
   useDatagridSearchParams,
+  useFeatureAvailability,
 } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {

@@ -22,7 +22,7 @@ export function PciAnnouncementBanner({
 
   return (
     <ActionBanner
-      message={t('pci_projects_beta_public_cloud_banner_info')}
+      description={t('pci_projects_beta_public_cloud_banner_info')}
       cta={t('pci_projects_beta_public_cloud_banner_info_link')}
       onClick={onGoToRegion}
     />

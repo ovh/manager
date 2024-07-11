@@ -1,6 +1,7 @@
 import { act, fireEvent } from '@testing-library/react';
 import { PciAnnouncementBanner } from './pci-announcement-banner.component';
 import { render } from '../../../utils/test.provider';
+import trans from './translations/announcement/Messages_fr_FR.json';
 
 const mockNavigateTo = jest.fn();
 jest.mock('@ovh-ux/manager-react-shell-client', () => ({
@@ -18,15 +19,15 @@ describe('PciAnnouncementBanner component Tests', () => {
   });
 
   it('should navigate to region on btn click', () => {
-    const { getByTestId } = render(
+    const { getByText } = render(
       <PciAnnouncementBanner projectId="projectId" />,
     );
 
-    const actionButton = getByTestId('actionBanner-button');
+    const actionButton = getByText(
+      trans.pci_projects_beta_public_cloud_banner_info_link,
+    );
 
-    act(() => {
-      fireEvent.click(actionButton);
-    });
+    fireEvent.click(actionButton);
 
     expect(mockNavigateTo).toHaveBeenNthCalledWith(
       1,
