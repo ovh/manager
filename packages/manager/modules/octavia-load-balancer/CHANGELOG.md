@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.5.0...@ovh-ux/manager-octavia-load-balancer@1.5.1) (2024-07-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3137] ([065d98d](https://github.com/ovh/manager/commit/065d98ddd26b6ee8a995e423e740db2c33c75aef))
+
+
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.4.2...@ovh-ux/manager-octavia-load-balancer@1.5.0) (2024-07-04)
 
 

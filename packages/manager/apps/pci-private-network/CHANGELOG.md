@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.1.4...@ovh-ux/manager-pci-private-network-app@0.2.0) (2024-07-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3138] ([bbbdb66](https://github.com/ovh/manager/commit/bbbdb66aa01910b17180c033d80299872c6b4aed))
+* **i18n:** add missing translations [CDS 3147] ([b680376](https://github.com/ovh/manager/commit/b6803768bb99f235d195d85a794d1db8bf9faacb))
+* **i18n:** add missing translations [CDS 3152] ([ab76d82](https://github.com/ovh/manager/commit/ab76d82d9762e1d220d44e1e2a05c475148efd61))
+
+
+### Features
+
+* **manager-components:** move useFeatureAvailability ([#12274](https://github.com/ovh/manager/issues/12274)) ([ed1f359](https://github.com/ovh/manager/commit/ed1f359480c301a462f8955afaa23689653492b5))
+
+
+
+
+
 ## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.1.3...@ovh-ux/manager-pci-private-network-app@0.1.4) (2024-07-09)
 
 
