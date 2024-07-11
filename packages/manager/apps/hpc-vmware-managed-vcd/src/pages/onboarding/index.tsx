@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovhcloud/manager-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
+import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import onboardingImgSrc from './onboarding-img.png';
 
 export default function Onboarding() {
