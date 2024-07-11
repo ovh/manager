@@ -1,5 +1,5 @@
 import { useQueries } from '@tanstack/react-query';
-import { parseISO, format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { PaginationState } from '@ovhcloud/manager-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useRef } from 'react';
@@ -91,7 +91,7 @@ export const useWorkflows = (projectId: string) => {
               lastExecutionStatus,
             };
           }))(),
-      isPending: results.some((result) => result.isPending),
+      isPending: results.some((result) => result.isPending) || isRegionsPending,
     }),
   });
 };
@@ -123,7 +123,8 @@ export const usePaginatedWorkflows = (
           pagination,
         );
       })(),
-      isPending: results.some((result) => result.isPending),
+      isPending:
+        results.some((result) => result.isPending) || isWorkflowsPending,
     }),
   });
 };

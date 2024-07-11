@@ -1,6 +1,3 @@
-import { getProjectQuery } from '@ovhcloud/manager-components';
-import queryClient from '@/queryClient';
-
 const lazyRouteConfig = (importFn: CallableFunction) => ({
   lazy: async () => {
     const { default: moduleDefault, ...moduleExports } = await importFn();
@@ -26,15 +23,22 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/Layout')),
   },
   {
-    id: '',
+    id: 'workflows',
     path: ROUTE_PATHS.root,
-    loader: async ({ params }) =>
-      queryClient.fetchQuery(getProjectQuery(params.projectId)),
     ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [
       {
         path: '',
+        handle: {
+          tracking: 'workflows',
+        },
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
+        children: [],
+      },
+      {
+        path: 'onboarding',
+        ...lazyRouteConfig(() => import('@/pages/onboarding/OnBoarding.page')),
+        children: [],
       },
     ],
   },

@@ -2,16 +2,16 @@ import { useTranslation } from 'react-i18next';
 import {
   OsdsBreadcrumb,
   OsdsButton,
+  OsdsDivider,
   OsdsIcon,
+  OsdsLink,
   OsdsPopover,
   OsdsPopoverContent,
   OsdsSearchBar,
-  OsdsText,
   OsdsSpinner,
-  OsdsDivider,
-  OsdsLink,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useHref, useParams } from 'react-router-dom';
+import { Outlet, useHref, useParams } from 'react-router-dom';
 import {
   Datagrid,
   DatagridColumn,
@@ -22,12 +22,13 @@ import {
   Notifications,
   PciDiscoveryBanner,
   PciGuidesHeader,
+  RedirectionGuard,
   useColumnFilters,
   useDataGrid,
   useProject,
   useProjectUrl,
 } from '@ovhcloud/manager-components';
-import { useRef, useState } from 'react';
+import { Suspense, useRef, useState } from 'react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -57,7 +58,6 @@ export default function ListingPage() {
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const { t: tFilter } = useTranslation('filter');
   const projectUrl = useProjectUrl('public-cloud');
-
   const { data: workflows, isPending } = usePaginatedWorkflows(
     projectId,
     pagination,
@@ -134,7 +134,11 @@ export default function ListingPage() {
   ];
 
   return (
-    <>
+    <RedirectionGuard
+      isLoading={isPending}
+      route={`/pci/projects/${projectId}/workflow/onboarding`}
+      condition={workflows.totalRows === 0}
+    >
       <HidePreloader />
       {project && (
         <OsdsBreadcrumb
@@ -286,6 +290,9 @@ export default function ListingPage() {
           className="overflow-x-visible"
         />
       )}
-    </>
+      <Suspense>
+        <Outlet />
+      </Suspense>
+    </RedirectionGuard>
   );
 }
