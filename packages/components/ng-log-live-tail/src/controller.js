@@ -172,7 +172,11 @@ export default class LogLiveTailCtrl {
       const { _id, timestamp, level } = message;
 
       // LOG PREFIX
-      const formattedTimestamp = format(timestamp, 'P pp', {
+      const formattedDate = format(timestamp, 'P', {
+        locale: this.dateFnsLocale,
+      });
+
+      const formattedTime = format(timestamp, 'pp', {
         locale: this.dateFnsLocale,
       });
 
@@ -187,7 +191,8 @@ export default class LogLiveTailCtrl {
 
       const formattedLog = {
         _id,
-        formattedTimestamp,
+        formattedDate,
+        formattedTime,
         level,
         levelLabel,
         ...customFields,
