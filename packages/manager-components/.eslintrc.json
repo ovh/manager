@@ -1,4 +1,6 @@
 {
   "extends": "../../.eslintrc.js",
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/no-loss-of-precision": "off"
+  }
 }
