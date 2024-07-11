@@ -1,10 +1,12 @@
-import { useEffect, useState, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { urls } from '@/routes/routes.constant';
 
 export type BreadcrumbItem = {
+  id: string;
   label: string | undefined;
   href?: string;
+  onClick?: () => void;
 };
 
 export interface BreadcrumbProps {
@@ -14,36 +16,33 @@ export interface BreadcrumbProps {
   items?: BreadcrumbItem[];
 }
 
-export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
-  const { shell } = useContext(ShellContext);
-  const [root, setRoot] = useState<BreadcrumbItem[]>([]);
+export const useBreadcrumb = ({
+  rootLabel,
+  appName,
+  items,
+}: BreadcrumbProps) => {
   const [paths, setPaths] = useState<BreadcrumbItem[]>([]);
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
+  const navigate = useNavigate();
+
+  const rootItem = {
+    id: rootLabel,
+    label: rootLabel,
+    onClick: () => navigate(urls.root),
+  };
 
   useEffect(() => {
-    const fetchRoot = async () => {
-      try {
-        const response = await shell?.navigation.getURL(appName, '#/', {});
-        const rootItem = {
-          label: rootLabel,
-          href: String(response),
-        };
-        setRoot([rootItem]);
-      } catch {
-        // Fetch navigation error
-      }
-    };
-    fetchRoot();
-  }, [rootLabel, appName, shell?.navigation]);
-
-  useEffect(() => {
-    const pathsTab = pathnames.map((value) => ({
-      label: value,
-      href: `/#/${appName}/${value}`,
-    }));
+    const pathsTab = pathnames.map(
+      (value) =>
+        items?.find(({ id }) => id === value) ?? {
+          id: value,
+          label: value,
+          href: `/#/${appName}/${value}`,
+        },
+    );
     setPaths(pathsTab);
-  }, [location]);
+  }, [location, items]);
 
-  return [...root, ...paths];
+  return [rootItem, ...paths];
 };

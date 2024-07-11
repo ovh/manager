@@ -2,6 +2,6 @@ export const urls = {
   root: '/',
   onboarding: '/onboarding',
   listing: '/',
-  dashboard: '/:serviceName',
-  tab2: 'Tab2',
+  dashboard: '/:id',
+  datacentres: '/:id/datacentres',
 };
