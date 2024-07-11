@@ -53,8 +53,6 @@ export default class ServerInstallationGabaritCtrl {
         saveGabarit: false,
         gabaritNameSave: null,
         customHostname: null,
-        postInstallationScriptLink: null,
-        postInstallationScriptReturn: null,
         validForm: true,
       },
     };
@@ -210,10 +208,6 @@ export default class ServerInstallationGabaritCtrl {
       saveGabarit: false,
       gabaritNameSave: null,
       customHostname: this.$scope.installation.selectGabarit.customHostname,
-      postInstallationScriptLink: this.$scope.installation.selectGabarit
-        .postInstallationScriptLink,
-      postInstallationScriptReturn: this.$scope.installation.selectGabarit
-        .postInstallationScriptReturn,
       validForm: true,
     };
 
@@ -367,10 +361,6 @@ export default class ServerInstallationGabaritCtrl {
       this.$scope.installation.selectPartitionScheme,
       {
         customHostname: this.$scope.installation.options.customHostname,
-        postInstallationScriptLink: this.$scope.installation.options
-          .postInstallationScriptLink,
-        postInstallationScriptReturn: this.$scope.installation.options
-          .postInstallationScriptReturn,
         softRaidDevices:
           this.$scope.informations.nbDisk > 2 &&
           this.$scope.installation.nbDiskUse > 1
@@ -414,10 +404,6 @@ export default class ServerInstallationGabaritCtrl {
         this.$scope.installation.options.gabaritNameSave,
         {
           customHostname: this.$scope.installation.options.customHostname,
-          postInstallationScriptLink: this.$scope.installation.options
-            .postInstallationScriptLink,
-          postInstallationScriptReturn: this.$scope.installation.options
-            .postInstallationScriptReturn,
         },
       ).then(
         () => {
@@ -493,33 +479,5 @@ export default class ServerInstallationGabaritCtrl {
           this.$scope.installation.options.gabaritNameSave,
         ),
     );
-  }
-
-  postInstallationScriptLinkValidator() {
-    const input = this.$scope.optionForm?.postInstallationScriptLink;
-    const val = this.$scope.installation.options.postInstallationScriptLink;
-    const regexpCheckPort = /^(((https|http|ftp|ftps|ftpes)?:\/\/)?(([^:/]*\.?)*))(:(\d+))?(\/|$)/g;
-    const regexpUrlContent = /^([a-zA-Z0-9-./_:~% ]+)$/;
-    const regexpUrlProtocol = /^((https|http|ftp|ftps|ftpes)?:\/\/).*/;
-    const regexpUrlExtension = /.*(\.zip|\.tar\.gz|\.sh|\.pl|\.cgi)$/;
-    const infoUrl = regexpCheckPort.exec(val);
-    let port;
-
-    if (val) {
-      port = infoUrl ? infoUrl[6] : null;
-
-      input.$setValidity(
-        'bad_port_script',
-        !port || (port >= 0 && port <= 65535),
-      );
-      input.$setValidity('bad_url_script', regexpUrlContent.test(val));
-      input.$setValidity('bad_protocol_script', regexpUrlProtocol.test(val));
-      input.$setValidity('bad_extension_script', regexpUrlExtension.test(val));
-    } else {
-      input.$setValidity('bad_port_script', true);
-      input.$setValidity('bad_url_script', true);
-      input.$setValidity('bad_protocol_script', true);
-      input.$setValidity('bad_extension_script', true);
-    }
   }
 }
