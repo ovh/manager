@@ -7,5 +7,6 @@ export default {
   bindings: {
     service: '<',
     serviceName: '<',
+    changeOffer: '<',
   },
 };

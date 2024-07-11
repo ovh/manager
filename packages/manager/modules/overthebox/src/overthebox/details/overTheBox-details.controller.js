@@ -22,7 +22,7 @@ export default class OverTheBoxDetailsCtrl {
     OvhApiOverTheBox,
     OvhApiIp,
     OvhApiIpReverse,
-    OverTheBoxGraphService,
+    OverTheBoxDetailsService,
     TucToast,
   ) {
     this.$filter = $filter;
@@ -33,7 +33,7 @@ export default class OverTheBoxDetailsCtrl {
     this.OvhApiOverTheBox = OvhApiOverTheBox;
     this.OvhApiIp = OvhApiIp;
     this.OvhApiIpReverse = OvhApiIpReverse;
-    this.OverTheBoxGraphService = OverTheBoxGraphService;
+    this.OverTheBoxDetailsService = OverTheBoxDetailsService;
     this.TucToast = TucToast;
     this.TucChartjsFactory = ChartFactory;
     this.DATEFNS_LOCALE = DATEFNS_LOCALE;
@@ -63,6 +63,9 @@ export default class OverTheBoxDetailsCtrl {
 
     this.guidesLink = this.OVERTHEBOX_DETAILS.guidesUrl.fr;
 
+    this.deviceIdPattern = this.OVERTHEBOX_DETAILS.pattern;
+    this.confirmUnlink = false;
+
     this.$q
       .all([
         this.getServiceInfos(),
@@ -77,8 +80,12 @@ export default class OverTheBoxDetailsCtrl {
             this.nameEditable = otb.status === 'active';
             this.releaseChannel = otb.releaseChannel;
             this.autoUpgrade = otb.autoUpgrade;
+            this.offerName = otb.prettyOfferName;
+            this.offer = otb.offer;
+            this.bandwidth = this.displayBandwidth(otb.bandwidth, 1);
             return otb;
           }),
+        this.getDeviceHardware(),
       ])
       .finally(() => {
         if (this.allDevices.length === 1 && !this.device) {
@@ -89,6 +96,27 @@ export default class OverTheBoxDetailsCtrl {
       });
     this.getAvailableReleaseChannels();
     this.getAvailableAction();
+  }
+
+  displayBandwidth(bandwidth, precisionVal) {
+    const units = {
+      bit: [
+        'unit_bits_per_sec',
+        'unit_kilo_bits_per_sec',
+        'unit_mega_bits_per_sec',
+        'unit_giga_bits_per_sec',
+        'unit_tera_bits_per_sec',
+        'unit_peta_bits_per_sec',
+      ],
+    };
+    const number = Math.floor(Math.log(bandwidth) / Math.log(1000));
+    // eslint-disable-next-line no-restricted-properties
+    const value = (bandwidth / Math.pow(1000, Math.floor(number))).toFixed(
+      precisionVal,
+    );
+    return this.$translate.instant(units.bit[number], {
+      val: value,
+    });
   }
 
   /**
@@ -211,7 +239,7 @@ export default class OverTheBoxDetailsCtrl {
   }
 
   loadStatistics(serviceName, type, period) {
-    return this.OverTheBoxGraphService.loadStatistics(
+    return this.OverTheBoxDetailsService.loadStatistics(
       serviceName,
       type,
       period,
@@ -552,6 +580,24 @@ export default class OverTheBoxDetailsCtrl {
   }
 
   /**
+   * Get device detail about hardware
+   */
+  getDeviceHardware() {
+    return this.OverTheBoxDetailsService.getDeviceHardware(this.serviceName)
+      .then((device) => {
+        this.deviceModel = device.prettyModelName;
+      })
+      .catch((error) => {
+        if (error.status === 404) {
+          this.deviceModel = this.$translate.instant(
+            'overTheBox_model_device_unknown',
+          );
+        }
+        return this.$q.reject(error);
+      });
+  }
+
+  /**
    * Get last seen values
    */
   getLastSeen() {
@@ -814,6 +860,33 @@ export default class OverTheBoxDetailsCtrl {
       })
       .finally(() => {
         this.loaders.changingAutoUpgrade = false;
+      });
+  }
+
+  unlink() {
+    this.confirmUnlink = true;
+  }
+
+  cancel() {
+    this.confirmUnlink = false;
+  }
+
+  unlinkDevice() {
+    this.confirmUnlink = false;
+    return this.OverTheBoxDetailsService.unlinkDevice(this.serviceName)
+      .then(() => {
+        this.TucToast.success(
+          this.$translate.instant('overTheBox_unlink_device_success'),
+        );
+        this.error.noDeviceLinked = false;
+        this.device = null;
+      })
+      .catch((err) => {
+        this.TucToast.error(
+          this.$translate.instant('overTheBox_unlink_device_error', {
+            errorMessage: err.data.message,
+          }),
+        );
       });
   }
 }
