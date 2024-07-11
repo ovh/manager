@@ -17,7 +17,13 @@ export default function ListGuard({
   } = useAllAggregatedGateway(projectId);
 
   if (isPending || isFetching) {
-    return <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />;
+    return (
+      <OsdsSpinner
+        inline={true}
+        size={ODS_SPINNER_SIZE.md}
+        data-testid="listGuard-spinner"
+      />
+    );
   }
 
   return aggregatedGateways?.length > 0 ? (
