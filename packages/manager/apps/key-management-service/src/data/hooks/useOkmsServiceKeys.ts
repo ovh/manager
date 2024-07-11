@@ -3,6 +3,7 @@ import apiClient from '@ovh-ux/manager-core-api';
 
 import { ErrorResponse } from '@/types/api.type';
 import {
+  getOkmsServiceKeyResource,
   getOkmsServiceKeyResourceQueryKey,
   getOkmsServiceKeyResourceListQueryKey,
   getListingOkmsServiceKey,
@@ -10,32 +11,14 @@ import {
 } from '../api/okmsServiceKey';
 import {
   OkmsServiceKey,
+  OkmsAllServiceKeys,
   OkmsServiceKeyOptions,
 } from '@/types/okmsServiceKey.type';
-
-export const getOkmsServiceKeyResource = async (
-  okmsId: string,
-  keyId: string,
-): Promise<{ data: OkmsServiceKey }> => {
-  return apiClient.v2.get(`okms/resource/${okmsId}/sercviceKey/${keyId}`);
-};
 
 export const useAllOkmsServiceKeys = (okmsId: string) => {
   return useQuery({
     queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
     queryFn: () => getListingOkmsServiceKey(okmsId),
-    retry: false,
-    ...{
-      keepPreviousData: true,
-    },
-    refetchInterval: 5000,
-  });
-};
-
-export const useOkmsServiceKeyById = (okmsId: string, keyId: string) => {
-  return useQuery<{ data: OkmsServiceKey }, ErrorResponse>({
-    queryKey: getOkmsServiceKeyResourceQueryKey(okmsId, keyId),
-    queryFn: () => getOkmsServiceKeyResource(okmsId, keyId),
     retry: false,
     ...{
       keepPreviousData: true,
@@ -59,4 +42,34 @@ export const useOkmsServiceKeys = ({
     error: allOKMSError,
     data: sortOkmsServiceKey(okms?.data || [], sorting),
   };
+};
+
+// export const useOkmsServiceKeyById = (okmsId: string, keyId: string) => {
+//   return useQuery<{ data: OkmsServiceKey }, ErrorResponse>({
+//     queryKey: getOkmsServiceKeyResourceQueryKey(okmsId, keyId),
+//     queryFn: () => getOkmsServiceKeyResource(okmsId, keyId),
+
+export const getOkmsServiceKeyResource = async (
+  okmsId: string,
+  keyId: string,
+): Promise<{ data: OkmsServiceKey }> => {
+  return apiClient.v2.get(`okms/resource/${okmsId}/sercviceKey/${keyId}`);
+};
+
+export const useOkmsServiceKeyById = ({
+  okmsId,
+  keyId,
+}: {
+  okmsId: string;
+  keyId: string;
+}) => {
+  return useQuery<{ data: OkmsAllServiceKeys }, ErrorResponse>({
+    queryKey: getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
+    queryFn: () => getOkmsServiceKeyResource({ okmsId, keyId }),
+    retry: false,
+    ...{
+      keepPreviousData: true,
+    },
+    refetchInterval: 5000,
+  });
 };
