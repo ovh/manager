@@ -25,11 +25,11 @@ import {
 
 import { getListingIcebergV2 } from '@/data/api/hpc-vmware-managed-vcd';
 
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
-import ErrorBanner from '@/components/Error/Error.component';
-import Loading from '@/components/Loading/Loading.component';
+import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
+import ErrorBanner from '@/components/error/Error.component';
+import Loading from '@/components/loading/Loading.component';
 
-import RegionLabel from '@/components/Region/RegionLabel.component';
+import RegionLabel from '@/components/region-label/RegionLabel.component';
 import { urls } from '@/routes/routes.constant';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 
@@ -131,47 +131,44 @@ export default function Listing() {
   }
 
   return (
-    <>
-      <div className="pt-5 pb-10 pl-10">
-        <Breadcrumb />
-        <div className={'flex items-center justify-between mt-4'}>
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          >
-            {t('managed_vcd_listing_title')}
-          </OsdsText>
-        </div>
-        <OsdsDivider />
-        <React.Suspense>
-          {flattenData && (
-            <Datagrid
-              columns={gridColumns}
-              items={flattenData}
-              totalItems={0}
-              pagination={pagination}
-              onPaginationChange={setPagination}
-              sorting={sorting}
-              onSortChange={setSorting}
-              contentAlignLeft
-            />
-          )}
-        </React.Suspense>
-        <div className="grid justify-items-center my-5">
-          {hasNextPage && (
-            <div>
-              <OsdsButton
-                color={ODS_THEME_COLOR_INTENT.info}
-                variant={ODS_BUTTON_VARIANT.stroked}
-                onClick={fetchNextPage}
-              >
-                {t('managed_vcd_listing_load_more')}
-              </OsdsButton>
-            </div>
-          )}
-        </div>
+    <div className="px-10 pt-5">
+      <div className="flex items-center justify-between mt-4">
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {t('managed_vcd_listing_title')}
+        </OsdsText>
       </div>
-    </>
+      <OsdsDivider />
+      <React.Suspense>
+        {flattenData && (
+          <Datagrid
+            columns={gridColumns}
+            items={flattenData}
+            totalItems={0}
+            pagination={pagination}
+            onPaginationChange={setPagination}
+            sorting={sorting}
+            onSortChange={setSorting}
+            contentAlignLeft
+          />
+        )}
+      </React.Suspense>
+      <div className="grid justify-items-center my-5">
+        {hasNextPage && (
+          <div>
+            <OsdsButton
+              color={ODS_THEME_COLOR_INTENT.info}
+              variant={ODS_BUTTON_VARIANT.stroked}
+              onClick={fetchNextPage}
+            >
+              {t('managed_vcd_listing_load_more')}
+            </OsdsButton>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
