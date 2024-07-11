@@ -62,6 +62,20 @@ export default [
           },
         ],
       },
+      {
+        path: `${ROUTES_URLS.okmsId}${ROUTES_URLS.keys}${ROUTES_URLS.keyId}`,
+        ...lazyRouteConfig(() => import('@/pages/serviceKey/serviceKey.page')),
+        children: [
+          {
+            path: ROUTES_URLS.serviceKeyEditName,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/serviceKey/editServiceKeyNameModal/editServiceKeyNameModal.page'
+              ),
+            ),
+          },
+        ],
+      },
     ],
   },
   {
