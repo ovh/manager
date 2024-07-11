@@ -11,7 +11,7 @@ export default class LogsDashboardHeaderCtrl {
 
   $onInit() {
     this.initLoaders();
-    this.guides = this.LogsHelperService.getGuides(this.me.ovhSubsidiary);
+    this.guides = this.LogsHelperService.getGuides();
   }
 
   initLoaders() {

@@ -6,6 +6,8 @@ export const GUIDES = [
       DEFAULT: 'https://docs.ovh.com/gb/en/logs-data-platform/quick-start/',
       GB: 'https://docs.ovh.com/gb/en/logs-data-platform/quick-start/',
       FR: 'https://docs.ovh.com/fr/logs-data-platform/quick-start/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/28017122298771-Quick-Start-for-Logs-Data-Platform',
     },
   },
   {
@@ -18,6 +20,8 @@ export const GUIDES = [
         'https://docs.ovh.com/gb/en/logs-data-platform/field-naming-conventions/',
       FR:
         'https://docs.ovh.com/fr/logs-data-platform/field-naming-conventions/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/28131111525907-Logs-Data-Platform-Field-Naming-Convention',
     },
   },
   {
@@ -29,6 +33,8 @@ export const GUIDES = [
       GB:
         'https://docs.ovh.com/gb/en/logs-data-platform/using-grafana-with-logs/',
       FR: 'https://docs.ovh.com/fr/logs-data-platform/using-grafana-with-logs/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/29183576415507-Using-Grafana-with-Logs-Data-Platform',
     },
   },
 ];
