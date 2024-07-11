@@ -1,6 +1,11 @@
-import { apiClient, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
+import {
+  ApiResponse,
+  apiClient,
+  fetchIcebergV2,
+} from '@ovh-ux/manager-core-api';
+import IVcdOrganization from '@/types/vcd-organization.interface';
 
-export type GetVcdProjectListParams = {
+export type GetVcdOrganizationListParams = {
   /** Filter resources on IAM tags */
   iamTags: any;
 };
@@ -10,29 +15,28 @@ export const getVcdProjectListQueryKey = [
 ];
 
 /**
- * Operations about the VCD service : List VMware cloud director projects on OVHcloud infrastructures
+ * Operations about the VCD service : List VMware cloud director organizations on OVHcloud infrastructures
  */
-export const getVcdProjectList = async (
-  params: GetVcdProjectListParams,
-): Promise<any> =>
-  apiClient.V2.get('/vmwareCloudDirector/organization', { data: params });
+export const getVcdOrganizationList = async (
+  params: GetVcdOrganizationListParams,
+): Promise<{ data: IVcdOrganization[] }> =>
+  apiClient.v2.get('/vmwareCloudDirector/organization', { data: params });
 
-export type GetVcdProjectServiceParams = {
-  /** service name = project name */
-  serviceName?: any;
+export type GetVcdOrganizationParams = {
+  id?: string;
 };
 
-export const getVcdOrganizationServiceQueryKey = (
-  params: GetVcdProjectServiceParams,
-) => [`get/vmwareCloudDirector/organization/${params.serviceName}`];
+export const getVcdOrganizationQueryKey = ({
+  id,
+}: GetVcdOrganizationParams) => [`get/vmwareCloudDirector/organization/${id}`];
 
 /**
  * VMware on OVHcloud : Get VMware on OVHcloud
  */
-export const getVcdOrganizationService = async (
-  params: GetVcdProjectServiceParams,
-): Promise<any> =>
-  apiClient.V2.get(`/vmwareCloudDirector/organization/${params.serviceName}`);
+export const getVcdOrganization = async ({
+  id,
+}: GetVcdOrganizationParams): Promise<ApiResponse<IVcdOrganization>> =>
+  apiClient.v2.get(`/vmwareCloudDirector/organization/${id}`);
 
 /**
  *  Get listing with iceberg V2

@@ -50,12 +50,12 @@ export const Routes: any = [
             },
           },
           {
-            id: 'dashboard.tab2',
-            path: 'Tab2',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/tab2')),
+            id: 'datacentres',
+            path: urls.datacentres,
+            ...lazyRouteConfig(() => import('@/pages/dashboard/datacentres')),
             handle: {
               tracking: {
-                pageName: 'tab2',
+                pageName: 'datacentres',
                 pageType: PageType.dashboard,
               },
             },
