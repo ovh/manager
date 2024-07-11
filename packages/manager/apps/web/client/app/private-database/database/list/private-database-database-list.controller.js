@@ -102,20 +102,12 @@ angular.module('App').controller(
     }
 
     getPromise(promise) {
-      promise.then(
-        () => {
-          this.privateDatabaseService.restartPoll(this.productId, [
-            'database/delete',
-            'database/create',
-          ]);
-        },
-        () => {
-          this.privateDatabaseService.restartPoll(this.productId, [
-            'database/delete',
-            'database/create',
-          ]);
-        },
-      );
+      promise.then(() => {
+        this.privateDatabaseService.restartPoll(this.productId, [
+          'database/delete',
+          'database/create',
+        ]);
+      });
     }
 
     transformItem(item) {

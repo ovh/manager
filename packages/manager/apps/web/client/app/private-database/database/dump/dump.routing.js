@@ -7,6 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/dump',
       template,
       controller: 'PrivateDatabaseBDDsDumpsCtrl',
+      controllerAs: 'dumpCtrl',
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('private_database_database_dump'),

@@ -5,6 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/database',
     template,
     controller: 'HostingTabDatabasesCtrl',
+    controllerAs: '$ctrl',
     resolve: {
       goToDatabase: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,

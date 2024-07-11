@@ -5,6 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/task',
     template,
     controller: 'PrivateDatabaseTasksCtrl',
+    controllerAs: 'taskCtrl',
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('private_database_task'),

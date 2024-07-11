@@ -1,4 +1,4 @@
-<div data-ng-controller="HostingTabDatabasesCtrl as $ctrl" ui-view>
+<div ui-view>
     <div data-ovh-alert="{{alerts.main}}"></div>
 
     <div data-ng-if="$ctrl.isFreeHosting()">
@@ -432,7 +432,7 @@
             </div>
         </div>
 
-        <div class="clearfix" data-ng-if="$ctrl.databases.ids">
+        <div class="clearfix" data-ng-if="$ctrl.databases.details">
             <div
                 data-pagination-front
                 data-items="$ctrl.databases.ids"
