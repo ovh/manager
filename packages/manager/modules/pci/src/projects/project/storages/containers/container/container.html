@@ -97,7 +97,7 @@
                 </p>
 
                 <!-- bucket versioning -->
-                <p ng-if="$ctrl.isRightOffer()">
+                <p data-ng-if="$ctrl.isRightOffer()">
                     <span
                         data-translate="pci_projects_project_storages_containers_update_versioning_versioning"
                     ></span>
@@ -112,7 +112,7 @@
                     >
                     </span>
                 </p>
-                <p ng-if="$ctrl.isRightOffer()">
+                <p data-ng-if="$ctrl.isRightOffer()">
                     <button
                         class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                         data-ng-if="$ctrl.container.versioning.status === 'suspended' || $ctrl.container.versioning.status === 'disabled'"
