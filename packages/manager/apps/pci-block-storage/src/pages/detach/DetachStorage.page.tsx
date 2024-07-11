@@ -72,10 +72,10 @@ export default function DetachStorage() {
   const isPending = isInstancePending || isDetachPending;
   const canDetach = !isPending;
 
-  // redirect to attach if volume is not attached
+  // redirect to listing if volume is not attached
   useEffect(() => {
     if (!isPending && volume?.attachedTo?.length === 0) {
-      navigate(`/pci/projects/${projectId}/storages/blocks/attach/${volumeId}`);
+      navigate(`/pci/projects/${projectId}/storages/blocks`);
     }
   }, [navigate, projectId, volume, isPending]);
 
