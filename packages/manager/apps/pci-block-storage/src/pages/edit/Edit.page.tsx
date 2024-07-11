@@ -23,6 +23,7 @@ import {
   ODS_ICON_SIZE,
   ODS_INPUT_SIZE,
   ODS_INPUT_TYPE,
+  ODS_SKELETON_SIZE,
   ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
@@ -33,6 +34,7 @@ import {
   OsdsIcon,
   OsdsInput,
   OsdsQuantity,
+  OsdsSkeleton,
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
@@ -60,11 +62,6 @@ type TFormState = {
   bootable: boolean;
 };
 
-type TEstimatedPrice = {
-  monthly: number;
-  hourly: number;
-};
-
 export default function EditPage() {
   const { t } = useTranslation();
   const { t: tEdit } = useTranslation('edit');
@@ -80,11 +77,6 @@ export default function EditPage() {
   const [errorState, setErrorState] = useState({
     isMinError: false,
     isMaxError: false,
-  });
-
-  const [estimatedPrice, setEstimatedPrice] = useState<TEstimatedPrice>({
-    monthly: 0,
-    hourly: 0,
   });
 
   const { projectId, volumeId } = useParams();
@@ -212,14 +204,6 @@ export default function EditPage() {
   }, [volume, projectQuota]);
 
   useEffect(() => {
-    if (catalogPrice) {
-      const res = getVolumePriceEstimationFromCatalog(
-        catalogPrice,
-        formState.size.value,
-      );
-      setEstimatedPrice(res);
-    }
-
     const { min, max, value } = formState.size;
     setErrorState({ isMinError: value < min, isMaxError: value > max });
   }, [formState]);
@@ -230,6 +214,10 @@ export default function EditPage() {
     }
   };
 
+  const estimatedPrice =
+    catalogPrice &&
+    formState.size.value >= 0 &&
+    getVolumePriceEstimationFromCatalog(catalogPrice, formState.size.value);
   const hasError = errorState.isMinError || errorState.isMaxError;
 
   return (
@@ -443,17 +431,22 @@ export default function EditPage() {
             </OsdsText>
           </div>
 
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="block mb-6"
-          >
-            {tVolumeEdit(
-              'pci_projects_project_storages_blocks_block_volume-edit_price_text',
-              { price: getTextPrice(estimatedPrice.monthly) },
-            )}
-          </OsdsText>
+          {!hasError &&
+            (estimatedPrice?.monthly ? (
+              <OsdsText
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                color={ODS_THEME_COLOR_INTENT.text}
+                className="block mb-6"
+              >
+                {tVolumeEdit(
+                  'pci_projects_project_storages_blocks_block_volume-edit_price_text',
+                  { price: getTextPrice(estimatedPrice.monthly) },
+                )}
+              </OsdsText>
+            ) : (
+              <OsdsSkeleton inline size={ODS_SKELETON_SIZE.md} />
+            ))}
 
           {errorState.isMinError && (
             <OsdsText
