@@ -1,0 +1,9 @@
+{
+  "pci_workflow_delete_confirmation": "Êtes-vous sûr de vouloir supprimer le planning de workflow '{{ workflowName }}' ?",
+  "pci_workflow_delete_warning": "Cette action ne peut pas être annulée.",
+  "pci_workflow_delete_enter": "Tapez DELETE dans le champ suivant pour confirmer votre action.",
+  "pci_workflow_delete_success": "Workflow schedule '{{ workflowName }}' supprimé avec succès",
+  "pci_workflow_delete_error": "Une erreur s'est produite lors de la suppression : {{ message }}",
+  "pci_workflow_common_delete": "Supprimer",
+  "pci_workflow_common_cancel": "Annuler"
+}

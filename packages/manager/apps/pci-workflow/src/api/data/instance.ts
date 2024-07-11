@@ -3,6 +3,7 @@ import { v6 } from '@ovh-ux/manager-core-api';
 export type TInstance = {
   id: string;
   name: string;
+  region: string;
 };
 
 export const getInstance = async (projectId: string, instanceId: string) => {
