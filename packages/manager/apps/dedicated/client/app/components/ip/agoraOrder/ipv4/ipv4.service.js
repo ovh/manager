@@ -67,6 +67,24 @@ export default class Ipv4AgoraOrder {
       ]);
   }
 
+  getDedicatedServerRegion(serviceName) {
+    return this.$http
+      .get(`/dedicated/server/${serviceName}`)
+      .then(({ data }) => data.region);
+  }
+
+  getDedicatedCloudServerRegion(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}`)
+      .then(({ data }) => data.location);
+  }
+
+  getVpsServerRegion(serviceName) {
+    return this.$http
+      .get(`/sws/vps/${serviceName}/info`, { serviceType: 'aapi' })
+      .then(({ data }) => data.location?.datacentre);
+  }
+
   getIpOffers(ovhSubsidiary = 'US', catalogName = 'ip') {
     return this.OvhHttp.get(`/order/catalog/formatted/${catalogName}`, {
       rootPath: 'apiv6',
