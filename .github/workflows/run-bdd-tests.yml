@@ -24,8 +24,11 @@ jobs:
           yarn exec turbo -- run build --filter="./packages/manager/manager-components/*"
           yarn exec turbo -- run build --filter="./packages/manager/modules/order"
           yarn workspace @ovh-ux/manager-container-app start
-      - name: Run tests
+      # This task is for running the jest tests outside microApps
+      - name: Run tests Jest
         run: yarn test:jest
+      - name: Run tests Turbo
+        run: yarn test:turbo
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run e2e tests
