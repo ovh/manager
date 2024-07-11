@@ -1,4 +1,4 @@
-import { useQueries } from '@tanstack/react-query';
+import { useMutation, useQueries } from '@tanstack/react-query';
 import { format, parseISO } from 'date-fns';
 import { PaginationState } from '@ovhcloud/manager-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
@@ -13,6 +13,8 @@ import {
   TWorkflowExecution,
 } from '@/api/data/region-workflow';
 import { getInstance } from '@/api/data/instance';
+import { deleteWorkflow } from '@/api/data/workflow';
+import queryClient from '@/queryClient';
 
 export type TWorkflow = {
   name: string;
@@ -127,4 +129,38 @@ export const usePaginatedWorkflows = (
         results.some((result) => result.isPending) || isWorkflowsPending,
     }),
   });
+};
+
+type DeleteVolumeProps = {
+  projectId: string;
+  workflowId: string;
+  region: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+export const useDeleteWorkflow = ({
+  projectId,
+  workflowId,
+  region,
+  onError,
+  onSuccess,
+}: DeleteVolumeProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => deleteWorkflow(projectId, region, workflowId),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['regions', region, 'workflows'],
+      });
+      queryClient.setQueryData(
+        ['regions', region, 'workflows'],
+        (data: { id: string }[]) => data.filter((v) => v.id !== workflowId),
+      );
+      onSuccess();
+    },
+  });
+  return {
+    deleteWorkflow: () => mutation.mutate(),
+    ...mutation,
+  };
 };
