@@ -1,4 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu, ActionMenuItem } from '@ovhcloud/manager-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_TEXT_COLOR_INTENT,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsChip,
   OsdsDivider,
@@ -7,24 +16,13 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { useNavigate } from 'react-router-dom';
-import { ActionMenu, ActionMenuItem } from '@ovhcloud/manager-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
 import { parseISO } from 'date-fns';
+import React, { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { OKMS } from '@/types/okms.type';
+import { useTerminateOKms } from '@/data/hooks/useTerminateOKms';
 import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 import { TerminateModal } from '@/components/Modal/terminate/TerminateModal.component';
-import { useTerminateOKms } from '@/data/hooks/useTerminateOKms';
-import { ROUTES_URLS } from '@/routes/routes.constants';
 
 type BillingInformationsTileProps = {
   okmsData?: OKMS;
@@ -35,22 +33,19 @@ const BillingInformationsTile = ({
 }: BillingInformationsTileProps) => {
   const { data: kmsService } = useKMSServiceInfos(okmsData);
   const { t } = useTranslation('key-management-service/dashboard');
-  const { t: tTerminate } = useTranslation('key-management-service/terminate');
   const { environment, shell } = useContext(ShellContext);
   const [dateTimeFormat, setDateTimeFormat] = useState<Intl.DateTimeFormat>();
   const [contactUrl, setContactUrl] = useState('');
   const [showTerminationModal, setShowTerminationModal] = useState(false);
-  const navigate = useNavigate();
-  const {
-    terminateKms,
-    isErrorVisible,
-    error: terminationError,
-  } = useTerminateOKms({
+
+  const closeTerminateModal = () => {
+    setShowTerminationModal(false);
+  };
+
+  const { terminateKms, isPending } = useTerminateOKms({
     okmsId: okmsData.id,
-    onSuccess: () => {
-      setShowTerminationModal(false);
-      navigate(ROUTES_URLS.listing);
-    },
+    onSuccess: closeTerminateModal,
+    onError: closeTerminateModal,
   });
 
   const items: ActionMenuItem[] = [
@@ -220,18 +215,9 @@ const BillingInformationsTile = ({
       </OsdsTile>
       {showTerminationModal && (
         <TerminateModal
-          headline={tTerminate('key_management_service_terminate_heading')}
-          terminateInputButton={tTerminate(
-            'key_management_service_terminate_confirm',
-          )}
-          description={tTerminate(
-            'key_management_service_terminate_description',
-          )}
           onConfirmTerminate={terminateKms}
-          closeModal={() => {
-            setShowTerminationModal(false);
-          }}
-          error={isErrorVisible ? terminationError : null}
+          closeModal={closeTerminateModal}
+          isLoading={isPending}
         />
       )}
     </>
