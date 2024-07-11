@@ -1685,5 +1685,7 @@
   "exchange_tab_domain_diagnostic_dkim_activation": "Su DKIM está configurado pero no activado. ¿Quiere activarlo?",
   "exchange_tab_domain_diagnostic_dkim_in_progress": "Hay una operación en progreso en su DKIM.",
   "exchange_tab_domain_add_step2_dkim_checkbox": "Activar DKIM (recomendado)",
-  "exchange_tab_domain_add_step3_dkim_confirmation": "Configuración de DKIM"
+  "exchange_tab_domain_add_step3_dkim_confirmation": "Configuración de DKIM",
+  "exchange_ACTION_order_accounts_step3_bc_ovhtel": "La orden de pedido se ha generado correctamente. El pedido se está procesando.",
+  "exchange_ACTION_order_accounts_step3_explication_ovhtel": "La cuenta tardará aproximadamente unos 10 minutos en terminar de crearse."
 }
