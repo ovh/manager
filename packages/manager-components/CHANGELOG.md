@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.21.0...@ovhcloud/manager-components@1.22.0) (2024-07-11)
+
+### Features
+
+- **manager-components:** add <Clipboard /> component ([#12116](https://github.com/ovh/manager/issues/12116)) ([2e23f8a](https://github.com/ovh/manager/commit/2e23f8aa208463f705e3ccdd19bf08b7525175d3))
+- **manager-components:** move useFeatureAvailability ([#12274](https://github.com/ovh/manager/issues/12274)) ([ed1f359](https://github.com/ovh/manager/commit/ed1f359480c301a462f8955afaa23689653492b5))
+- **manager-components:** redesign action-banner ([#12291](https://github.com/ovh/manager/issues/12291)) ([9523af2](https://github.com/ovh/manager/commit/9523af27503d94d372cb6ca849f45009609d8dde))
+
 # [1.21.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.20.0...@ovhcloud/manager-components@1.21.0) (2024-07-09)
 
 ### Features

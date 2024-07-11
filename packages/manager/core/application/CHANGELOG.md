@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.8.4...@ovh-ux/manager-react-core-application@0.9.0) (2024-07-11)
+
+
+### Features
+
+* **manager-components:** move useFeatureAvailability ([#12274](https://github.com/ovh/manager/issues/12274)) ([ed1f359](https://github.com/ovh/manager/commit/ed1f359480c301a462f8955afaa23689653492b5))
+
+
+
+
+
 ## [0.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.8.3...@ovh-ux/manager-react-core-application@0.8.4) (2024-06-25)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-core-application
