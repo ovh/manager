@@ -37,6 +37,11 @@ import {
 
 import { IPV6_GUIDES_LINK } from '../vrack-associated-services/ipv6/ipv6.constant';
 import arrowIcon from '../../assets/icon_vrack-mapper-arrows.svg';
+import {
+  SURVEY_LANGUAGES,
+  BASE_URL_SURVEY,
+  US_SURVEY_LINK,
+} from '../vrack.constant';
 
 export default class VrackMoveDialogCtrl {
   /* @ngInject */
@@ -69,6 +74,7 @@ export default class VrackMoveDialogCtrl {
     this.vrackService = vrackService;
     this.cucVrackService = CucVrackService;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
     this.user = coreConfig.getUser();
     this.changeOwnerTrackLabel = `${VRACK_DASHBOARD_TRACKING_PREFIX}::change-owner`;
   }
@@ -92,6 +98,16 @@ export default class VrackMoveDialogCtrl {
     this.ipRegions = {};
     this.addIpv6ModalState = null;
     this.hasIpv6 = false;
+
+    if (this.coreConfig.getRegion() === 'US') {
+      this.surveyUrl = US_SURVEY_LINK;
+    } else {
+      const userLanguage = this.coreConfig.getUserLanguage();
+      const languageToUse = SURVEY_LANGUAGES.ALLOWED.includes(userLanguage)
+        ? userLanguage
+        : SURVEY_LANGUAGES.DEFAULT;
+      this.surveyUrl = `${BASE_URL_SURVEY}${languageToUse}&nic=${this.user.nichandle}`;
+    }
 
     this.modals = {
       move: null,
