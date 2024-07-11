@@ -93,6 +93,7 @@ export default function ModalDeleteOrganization() {
       primaryButton={{
         label: t('zimbra_account_delete_button_delete'),
         action: step === 1 ? () => setStep(2) : handleDeleteClick,
+        testid: 'primary-btn',
       }}
     >
       <>
@@ -103,6 +104,7 @@ export default function ModalDeleteOrganization() {
               size={ODS_THEME_TYPOGRAPHY_SIZE._100}
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               hue={ODS_THEME_COLOR_HUE._500}
+              data-testid="text-step-1"
             >
               {t('zimbra_account_delete_modal_content_step1')}
             </OsdsText>
@@ -139,6 +141,7 @@ export default function ModalDeleteOrganization() {
               size={ODS_THEME_TYPOGRAPHY_SIZE._100}
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               hue={ODS_THEME_COLOR_HUE._500}
+              data-testid="text-step-2"
             >
               {t('zimbra_account_delete_modal_content_step2')}
             </OsdsText>

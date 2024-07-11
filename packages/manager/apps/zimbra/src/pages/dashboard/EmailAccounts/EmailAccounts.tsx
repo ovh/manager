@@ -22,7 +22,6 @@ import {
 import { Outlet } from 'react-router-dom';
 import { AccountType } from '@/api/account';
 import {
-  useOrganization,
   useOverridePage,
   useGenerateUrl,
   useAccountList,
@@ -102,10 +101,7 @@ const columns: DatagridColumn<EmailsItem>[] = [
 export default function EmailAccounts() {
   const { t } = useTranslation('accounts');
   const { platformUrn } = usePlatform();
-  const { data: organization } = useOrganization();
-  const { data } = useAccountList({
-    organizationId: organization?.id,
-  });
+  const { data } = useAccountList();
   const isOverriddedPage = useOverridePage();
 
   const items: EmailsItem[] =
@@ -153,6 +149,7 @@ export default function EmailAccounts() {
               urn={platformUrn}
               iamActions={['zimbra:apiovh:platform/account/create']}
               href={hrefAddEmailAccount}
+              data-testid="add-account-btn"
             >
               <span slot="start">
                 <OsdsIcon

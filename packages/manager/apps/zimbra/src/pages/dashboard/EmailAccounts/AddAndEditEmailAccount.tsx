@@ -32,7 +32,7 @@ import {
   ODS_TEXTAREA_SIZE,
 } from '@ovhcloud/ods-components';
 import { useQuery } from '@tanstack/react-query';
-import { useGenerateUrl, usePlatform } from '@/hooks';
+import { useGenerateUrl, usePlatform, useDomains } from '@/hooks';
 import {
   getZimbraPlatformAccountDetail,
   getZimbraPlatformAccountDetailQueryKey,
@@ -40,7 +40,6 @@ import {
   putZimbraPlatformAccount,
 } from '@/api/account';
 import Loading from '@/components/Loading/Loading';
-import { useDomains } from '@/hooks/useDomains';
 
 export default function AddAndEditAccount() {
   const { t } = useTranslation('accounts/addAndEdit');
@@ -112,18 +111,16 @@ export default function AddAndEditAccount() {
         required: !editEmailAccountId,
       },
     },
-    ...(editEmailAccountId
-      ? {
-          initials: {
-            value: '',
-            touched: false,
-          },
-          description: {
-            value: '',
-            touched: false,
-          },
-        }
-      : {}),
+    ...(editEmailAccountId && {
+      initials: {
+        value: '',
+        touched: false,
+      },
+      description: {
+        value: '',
+        touched: false,
+      },
+    }),
   });
 
   const {
@@ -317,7 +314,10 @@ export default function AddAndEditAccount() {
       {isLoading && <Loading />}
       {!isLoading && (
         <>
-          <div className="flex flex-col items-start space-y-4 mb-5">
+          <div
+            className="flex flex-col items-start space-y-4 mb-5"
+            data-testid="page-title"
+          >
             <Links
               type={LinkType.back}
               onClickReturn={goBack}

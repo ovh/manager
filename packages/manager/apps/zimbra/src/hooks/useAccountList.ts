@@ -11,10 +11,8 @@ interface UseAccountListParams {
   organizationId?: string;
 }
 
-export const useAccountList = ({
-  domainId,
-  organizationId,
-}: UseAccountListParams) => {
+export const useAccountList = (props: UseAccountListParams = {}) => {
+  const { domainId, organizationId } = props;
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
 
