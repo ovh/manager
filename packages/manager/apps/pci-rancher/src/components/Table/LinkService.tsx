@@ -25,7 +25,7 @@ export default function LinkService({ cell, row }: Readonly<RancherCellData>) {
             navigate(path);
           }
         }}
-        className="overflow-hidden text-ellipsis max-w-[200px]"
+        className="overflow-hidden text-ellipsis"
         disabled={!isReady || null}
       >
         {label as string}
