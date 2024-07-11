@@ -13,6 +13,7 @@ export default {
     user: '<',
     worldPart: '<',
     nutanixCluster: '<',
+    backupIsOrderable: '<',
   },
   controller,
   template,
