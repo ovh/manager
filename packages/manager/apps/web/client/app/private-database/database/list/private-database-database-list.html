@@ -1,4 +1,4 @@
-<div class="row" data-ng-controller="PrivateDatabaseBDDsListCtrl as listCtrl">
+<div>
     <div class="col-md-9">
         <div data-ovh-alert="{{alerts.main}}"></div>
 
@@ -213,7 +213,7 @@
             </table>
         </div>
 
-        <div class="clearfix" data-ng-if="listCtrl.bddsIds">
+        <div class="clearfix" data-ng-if="listCtrl.bddsDetails">
             <div
                 data-pagination-front
                 data-items="listCtrl.bddsIds"

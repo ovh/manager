@@ -6,6 +6,7 @@ const state = {
     domainView: {
       template,
       controller: 'controllers.Domain.Redirection',
+      controllerAs: 'ctrlDomainRedirect',
     },
   },
   atInternet: {

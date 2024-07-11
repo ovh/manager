@@ -4,6 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.dashboard.local-seo', {
     url: '/localSeo',
     controller: 'HostingTabLocalSeoCtrl',
+    controllerAs: '$ctrl',
     template,
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
