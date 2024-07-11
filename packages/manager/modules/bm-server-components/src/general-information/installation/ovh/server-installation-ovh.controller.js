@@ -183,7 +183,6 @@ export default class ServerInstallationOvhCtrl {
       typeDisk: null,
       otherDisk: [],
       gabaritName: null,
-      isCachecade: false,
       raidController: false,
       hardwareRaid: {
         profile: null, // Profile information of hardware Raid
@@ -228,7 +227,6 @@ export default class ServerInstallationOvhCtrl {
 
     this.$scope.loader = {
       loading: false,
-      loadingCapabilities: false,
     };
 
     this.$scope.errorInst = {
@@ -283,12 +281,7 @@ export default class ServerInstallationOvhCtrl {
     // If the diskGroup is not the first disk group, we need to disable raid setup if it is enabled.
     this.$scope.$watch('installation.diskGroup', (newValue) => {
       if (newValue) {
-        if (
-          newValue.diskGroupId !==
-          this.$scope.informations.diskGroups[0]?.diskGroupId
-        ) {
-          this.$scope.installation.raidSetup = false;
-        }
+        this.$scope.installation.raidSetup = false;
         this.refreshDiskGroupInfos(newValue);
       }
     });
@@ -472,9 +465,9 @@ export default class ServerInstallationOvhCtrl {
       this.$stateParams.productId,
     ).then((spec) => {
       this.$scope.informations.diskGroups =
-        spec.diskGroups
-          ?.filter((diskGroup) => diskGroup.raidController !== 'cache')
-          ?.sort((a, b) => a.description.localeCompare(b.description)) || [];
+        spec.diskGroups?.filter(
+          (diskGroup) => diskGroup.raidController !== 'cache',
+        ) || [];
       this.resetDiskGroup();
     });
   }
@@ -505,37 +498,14 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.warningExistPartition = false;
       this.$scope.installation.partitionSchemeModels = null;
 
-      this.$scope.installation.isHybridCompatible = false;
       this.$scope.installation.selectDistribution = distribution;
 
-      if (distribution) {
-        this.$scope.loader.loadingCapabilities = true;
-        this.Server.getTemplateCapabilities(
-          this.$stateParams.productId,
-          distribution.id,
-        )
-          .then((data) => {
-            this.$scope.installation.isHybridCompatible = data.hybridSupport;
-            if (!this.$scope.installation.isHybridCompatible) {
-              this.resetDiskGroup();
-            }
-          })
-          .finally(() => {
-            this.$scope.loader.loadingCapabilities = false;
-          });
-      } else {
+      if (!distribution) {
         this.resetDiskGroup();
       }
 
       this.$scope.installation.saveSelectDistribution = null;
       this.$scope.informations.gabaritName = null;
-    }
-
-    if (
-      this.$scope.installation.selectDistribution?.hardRaidConfiguration ===
-      false
-    ) {
-      this.$scope.installation.raidSetup = false;
     }
   }
 
@@ -819,8 +789,6 @@ export default class ServerInstallationOvhCtrl {
   }
 
   refreshDiskGroupInfos(newDiskGroup) {
-    this.$scope.informations.isCachecade =
-      newDiskGroup.raidController === 'cache';
     this.$scope.informations.raidController =
       newDiskGroup.raidController !== null;
     this.$scope.informations.typeDisk = newDiskGroup.diskType;
@@ -2167,10 +2135,6 @@ export default class ServerInstallationOvhCtrl {
   }
 
   // ------CUSTOME STEP MODAL------
-  reduceModal() {
-    this.$scope.informations.softRaidOnlyMirroring = null;
-    ServerInstallationOvhCtrl.setSizeModalDialog(false);
-  }
 
   static extendModal() {
     ServerInstallationOvhCtrl.setSizeModalDialog(true);
@@ -2179,11 +2143,10 @@ export default class ServerInstallationOvhCtrl {
   checkNextStep1() {
     this.$scope.informations.nbDisk = this.$scope.installation.diskGroup.numberOfDisks;
     if (!this.$scope.installation.raidSetup) {
+      ServerInstallationOvhCtrl.extendModal();
       if (this.$scope.installation.customInstall) {
-        ServerInstallationOvhCtrl.extendModal();
         this.$rootScope.$broadcast('wizard-goToStep', 3);
       } else {
-        ServerInstallationOvhCtrl.extendModal();
         this.$rootScope.$broadcast('wizard-goToStep', 4);
       }
     }
@@ -2193,31 +2156,6 @@ export default class ServerInstallationOvhCtrl {
     ServerInstallationOvhCtrl.extendModal();
     if (!this.$scope.installation.customInstall) {
       this.$rootScope.$broadcast('wizard-goToStep', 4);
-    }
-  }
-
-  checkPrev1() {
-    if (!this.$scope.installation.raidSetup) {
-      this.reduceModal();
-      this.$rootScope.$broadcast('wizard-goToStep', 1);
-    } else {
-      this.reduceModal();
-    }
-    this.loadPartition();
-    this.$scope.installation.partitionSchemeModels = false;
-  }
-
-  checkCustomPrevFinal() {
-    if (!this.$scope.installation.customInstall) {
-      if (!this.$scope.installation.raidSetup) {
-        this.reduceModal();
-        this.$rootScope.$broadcast('wizard-goToStep', 1);
-      } else {
-        this.reduceModal();
-        this.$rootScope.$broadcast('wizard-goToStep', 2);
-      }
-    } else {
-      ServerInstallationOvhCtrl.extendModal();
     }
   }
 
@@ -2369,14 +2307,6 @@ export default class ServerInstallationOvhCtrl {
     }
   }
 
-  isDefaultDiskGroup(diskGroup) {
-    return (
-      diskGroup &&
-      this.$scope.informations.diskGroups[0].diskGroupId ===
-        diskGroup.diskGroupId
-    );
-  }
-
   startInstall() {
     this.$scope.loader.loading = true;
     const inputs = new Inputs(this.$scope.installation.inputs);
@@ -2406,7 +2336,6 @@ export default class ServerInstallationOvhCtrl {
     ).then(
       (task) => {
         set(task, 'id', task.taskId);
-        this.reduceModal();
         this.$rootScope.$broadcast('dedicated.informations.reinstall', task);
         this.$state.go(`${this.statePrefix}.dashboard.installation-progress`);
         this.$scope.loader.loading = false;
@@ -2516,27 +2445,11 @@ export default class ServerInstallationOvhCtrl {
     }
   }
 
-  canPersonnalizeRaid() {
-    return (
-      this.raidIsPersonnalizable() &&
-      this.isDefaultDiskGroup(this.$scope.installation.diskGroup)
-    );
-  }
-
   raidIsPersonnalizable() {
     return (
-      this.$scope.constants.server.raidController &&
-      this.$scope.installation.selectDistribution?.hardRaidConfiguration !==
-        false &&
+      this.$scope.informations.raidController &&
       !this.$scope.informations.hardwareRaid.error.wrongLocation &&
       !this.$scope.informations.hardwareRaid.error.notAvailable
-    );
-  }
-
-  canEditDiskGroup() {
-    return (
-      this.$scope.informations.diskGroups.length > 1 &&
-      this.$scope.installation.isHybridCompatible
     );
   }
 
