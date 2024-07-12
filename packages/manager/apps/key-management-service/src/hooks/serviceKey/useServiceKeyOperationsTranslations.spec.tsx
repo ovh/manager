@@ -1,39 +1,57 @@
 import { describe, expect, it, test } from 'vitest';
-import { OkmsServiceKeyAllOperations } from '@/types/okmsServiceKey.type';
+import { OkmsServiceKeyOperations } from '@/types/okmsServiceKey.type';
 import { useServiceKeyOperationsTranslations } from './useServiceKeyOperationsTranslations';
 
 describe('get service key operations translation ', () => {
   const useCases: {
-    operations: OkmsServiceKeyAllOperations[];
+    operations: OkmsServiceKeyOperations[];
     translationKey: string;
   }[] = [
     {
-      operations: ['sign', 'verify'],
+      operations: [
+        OkmsServiceKeyOperations.sign,
+        OkmsServiceKeyOperations.verify,
+      ],
       translationKey:
         'key_management_service_service-keys_dashboard_field_operations_sign_verify',
     },
     {
-      operations: ['verify', 'sign'],
+      operations: [
+        OkmsServiceKeyOperations.verify,
+        OkmsServiceKeyOperations.sign,
+      ],
       translationKey:
         'key_management_service_service-keys_dashboard_field_operations_sign_verify',
     },
     {
-      operations: ['wrapKey', 'unwrapKey'],
+      operations: [
+        OkmsServiceKeyOperations.wrapKey,
+        OkmsServiceKeyOperations.unwrapKey,
+      ],
       translationKey:
         'key_management_service_service-keys_dashboard_field_operations_wrap_unwrap',
     },
     {
-      operations: ['unwrapKey', 'wrapKey'],
+      operations: [
+        OkmsServiceKeyOperations.unwrapKey,
+        OkmsServiceKeyOperations.wrapKey,
+      ],
       translationKey:
         'key_management_service_service-keys_dashboard_field_operations_wrap_unwrap',
     },
     {
-      operations: ['encrypt', 'decrypt'],
+      operations: [
+        OkmsServiceKeyOperations.encrypt,
+        OkmsServiceKeyOperations.decrypt,
+      ],
       translationKey:
         'key_management_service_service-keys_dashboard_field_operations_encrypt_decrypt',
     },
     {
-      operations: ['decrypt', 'encrypt'],
+      operations: [
+        OkmsServiceKeyOperations.decrypt,
+        OkmsServiceKeyOperations.encrypt,
+      ],
       translationKey:
         'key_management_service_service-keys_dashboard_field_operations_encrypt_decrypt',
     },
