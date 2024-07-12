@@ -20,7 +20,6 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import { PciAnnouncementBanner } from '@ovh-ux/manager-pci-common';
 import { PciAnnouncementBanner, TProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';

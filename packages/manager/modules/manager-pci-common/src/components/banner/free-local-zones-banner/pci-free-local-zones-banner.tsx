@@ -55,7 +55,7 @@ export function PciFreeLocalZonesBanner({
 
   return (
     <ActionBanner
-      description={t(
+      message={t(
         `pci_free_local_zones_banner_text${showConfirm ? '_confirm' : ''}`,
       )}
       cta={t('pci_free_local_zones_banner_link')}
