@@ -17,7 +17,7 @@ export default {
     runtime: '=',
     runtimes: '<',
     ssl: '=',
-    canModifyDomainWithGit: '<',
+    canModifyPathFolder: '<',
   },
   controller,
   template,

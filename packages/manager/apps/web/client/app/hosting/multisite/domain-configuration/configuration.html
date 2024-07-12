@@ -15,14 +15,14 @@
             placeholder="{{:: 'hosting_multisite_domain_configuration_myfolder' | translate }}"
             data-ng-model="$ctrl.path"
             data-ng-pattern="$ctrl.VALID_PATH"
-            data-ng-disabled="!$ctrl.canModifyDomainWithGit"
+            data-ng-disabled="!$ctrl.canModifyPathFolder"
         />
     </div>
 </oui-field>
 <oui-message
     class="mb-3"
     data-type="warning"
-    data-ng-if="!$ctrl.canModifyDomainWithGit"
+    data-ng-if="!$ctrl.canModifyPathFolder"
 >
     <span
         data-translate="hosting_multisite_domain_configuration_git_warning"
