@@ -38,12 +38,12 @@ describe('PciAnnouncementBanner component Tests', () => {
       isLoading: false,
     });
 
-    const { container } = renderComponent();
+    const { queryByTestId } = renderComponent();
 
-    const actionLink = container.querySelector('osds-link');
+    const actionBtn = queryByTestId('actionBanner-button');
 
     act(() => {
-      fireEvent.click(actionLink);
+      fireEvent.click(actionBtn);
     });
 
     expect(mockNavigateTo).toHaveBeenNthCalledWith(

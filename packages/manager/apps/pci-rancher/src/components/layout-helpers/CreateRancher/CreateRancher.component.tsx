@@ -20,7 +20,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { PciDiscoveryBanner } from '@ovh-ux/manager-pci-common';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import {
   CreateRancherPayload,
   RancherPlan,
@@ -122,7 +122,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const [selectedVersion, setSelectedVersion] = useState(null);
 
   const navigate = useNavigate();
-  const { data: project } = useProject(projectId);
+  const { data: project } = useProject();
 
   const isValidName = rancherName !== '' && isValidRancherName(rancherName);
   const hasInputError = rancherName !== '' && !isValidName;

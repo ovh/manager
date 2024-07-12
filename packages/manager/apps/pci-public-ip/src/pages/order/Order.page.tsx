@@ -14,8 +14,7 @@ import {
   ShellContext,
   useNavigation,
 } from '@ovh-ux/manager-react-shell-client';
-import { PciDiscoveryBanner } from '@ovh-ux/manager-pci-common';
-import useProject from '@/api/hooks/useProject';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { IpTypeStep } from '@/pages/order/steps/IpTypeStep';
 import { FailoverSteps } from '@/pages/order/steps/FailoverSteps';
@@ -35,7 +34,7 @@ export default function OrderPage(): JSX.Element {
   const { t: tStepper } = useTranslation('stepper');
 
   const { form, setSteps } = useOrderStore();
-  const { data: project } = useProject(projectId);
+  const { data: project } = useProject();
 
   const [projectUrl, setProjectUrl] = useState('');
   const backLink = useHref('..');

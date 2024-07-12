@@ -20,8 +20,7 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import { PciAnnouncementBanner } from '@ovh-ux/manager-pci-common';
-import { Project } from '@/api/data/project';
+import { PciAnnouncementBanner, TProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from './OnBoardingGuard';
@@ -32,7 +31,7 @@ export default function OnBoardingPage() {
   const { projectId } = useParams();
   const navigation = useNavigation();
   const { ovhSubsidiary } = useEnvironment().getUser();
-  const project = useRouteLoaderData('public-ips') as Project;
+  const project = useRouteLoaderData('public-ips') as TProject;
   const [urlProject, setUrlProject] = useState('');
   const navigate = useNavigate();
 

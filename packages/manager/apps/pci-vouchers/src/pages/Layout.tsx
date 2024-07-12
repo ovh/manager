@@ -1,26 +1,17 @@
-import { Outlet, useParams, useRouteError } from 'react-router-dom';
-
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { Suspense } from 'react';
-import BreadCrumbs from '@/components/BreadCrumbs';
-import ShellRoutingSync from '@/core/ShellRoutingSync';
+import { Suspense, useContext } from 'react';
+import { Outlet, useRouteError } from 'react-router-dom';
+import { ErrorBanner } from '@ovhcloud/manager-components';
+import { ResponseAPIError, useProject } from '@ovh-ux/manager-pci-common';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import HidePreloader from '@/core/HidePreloader';
-import useProject, { ResponseAPIError } from '@/hooks/useProject';
-
-import ErrorPage from '@/components/error-page/ErrorPage';
+import ShellRoutingSync from '@/core/ShellRoutingSync';
 
 export default function Layout() {
-  const { projectId } = useParams();
-  const { error, isSuccess } = useProject(projectId || '', { retry: false });
+  const { isSuccess } = useProject();
 
-  if (error) {
-    error.message = `Project ${projectId} doesn't exists`;
-    throw error;
-  }
   return (
     <div className="application">
       <Suspense>
-        <BreadCrumbs />
         <ShellRoutingSync />
         {isSuccess && (
           <>
@@ -34,29 +25,28 @@ export default function Layout() {
 }
 
 export const ErrorBoundary = () => {
-  const error = useRouteError();
-  const nav = useNavigation();
+  const error = useRouteError() as ResponseAPIError;
+  const { navigation } = useContext(ShellContext).shell;
 
   const redirectionApplication = 'public-cloud';
 
   const navigateToHomePage = () => {
-    nav.navigateTo(redirectionApplication, '', {});
+    navigation.navigateTo(redirectionApplication, '', {});
   };
 
   const reloadPage = () => {
-    nav.reload();
+    navigation.reload();
   };
 
   return (
     <Suspense>
-      <ErrorPage
-        reloadPage={() => reloadPage()}
-        navigateToHomepage={() => navigateToHomePage()}
-        errorMessage={(error as ResponseAPIError)?.message || ''}
-        xOvhQueryId={
-          (error as ResponseAPIError)?.response?.headers?.['x-ovh-queryid'] ||
-          ''
-        }
+      <ErrorBanner
+        onReloadPage={reloadPage}
+        onRedirectHome={navigateToHomePage}
+        error={{
+          data: { message: error.response?.data?.message || error.message },
+          headers: error.response?.headers || {},
+        }}
       />
       <ShellRoutingSync />
       <HidePreloader />

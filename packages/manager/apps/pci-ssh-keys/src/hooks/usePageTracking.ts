@@ -1,15 +1,14 @@
 import { useEffect } from 'react';
 import { useLocation, useRouteLoaderData } from 'react-router-dom';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
-import { Project } from '@/data/project';
-
+import { TProject } from '@ovh-ux/manager-pci-common';
 import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';
 
 const DISCOVERY_PLANCODE = 'project.discovery';
 
 export default function usePageTracking() {
   const location = useLocation();
-  const project = useRouteLoaderData('ssh') as Project;
+  const project = useRouteLoaderData('ssh') as TProject;
   const { setPciProjectMode, trackPage } = useTracking();
 
   useEffect(() => {

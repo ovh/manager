@@ -35,10 +35,10 @@ import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import {
   isDiscoveryProject,
   PciDiscoveryBanner,
+  useProject,
 } from '@ovh-ux/manager-pci-common';
 import { Voucher } from '@/interface';
 
-import useProject from '@/hooks/useProject';
 import { useVouchers } from '@/hooks/useVouchers';
 
 import Credit from '@/components/vouchers/listing/Credit';
@@ -61,7 +61,7 @@ export default function ListingPage() {
       });
   }, [projectId, navigation]);
 
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
 
   const columns = [
     {

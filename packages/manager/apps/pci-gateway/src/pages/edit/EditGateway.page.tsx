@@ -2,7 +2,6 @@ import {
   StepComponent,
   TilesInputComponent,
   useNotifications,
-  useProject,
 } from '@ovh-ux/manager-react-components';
 import {
   OsdsBreadcrumb,
@@ -34,6 +33,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import { useEditGateway, useGateway } from '@/api/hooks/useGateways';
 import { TSizeItem, useData } from '@/api/hooks/data';
 import { SizeLabelComponent } from '@/pages/edit/SizeLabel.component';
@@ -71,7 +71,7 @@ export default function EditGatewayPage(): JSX.Element {
   });
   const [projectUrl, setProjectUrl] = useState('');
 
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
 
   const { updateGateway, isPending: isGatewayUpdating } = useEditGateway({
     projectId,

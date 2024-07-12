@@ -1,24 +1,20 @@
-import { Outlet, useParams, useRouteError } from 'react-router-dom';
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { Suspense } from 'react';
+import { Suspense, useContext } from 'react';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
-
-import BreadCrumbs from '@/components/BreadCrumbs';
-import ShellRoutingSync from '@/core/ShellRoutingSync';
+import { Outlet, useRouteError } from 'react-router-dom';
+import { ResponseAPIError, useProject } from '@ovh-ux/manager-pci-common';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import HidePreloader from '@/core/HidePreloader';
-import useProject, { ResponseAPIError } from '@/hooks/useProject';
+import ShellRoutingSync from '@/core/ShellRoutingSync';
 import usePageTracking from '@/hooks/usePageTracking';
 
 export default function Layout() {
-  const { projectId } = useParams();
-  const { isSuccess } = useProject(projectId || '', { retry: false });
+  const { isSuccess } = useProject();
 
   usePageTracking();
 
   return (
     <div className="application">
       <Suspense>
-        <BreadCrumbs />
         <ShellRoutingSync />
         {isSuccess && (
           <>
@@ -33,16 +29,16 @@ export default function Layout() {
 
 export const ErrorBoundary = () => {
   const error = useRouteError() as ResponseAPIError;
-  const nav = useNavigation();
+  const { navigation } = useContext(ShellContext).shell;
 
   const redirectionApplication = 'public-cloud';
 
   const navigateToHomePage = () => {
-    nav.navigateTo(redirectionApplication, '', {});
+    navigation.navigateTo(redirectionApplication, '', {});
   };
 
   const reloadPage = () => {
-    nav.reload();
+    navigation.reload();
   };
 
   return (

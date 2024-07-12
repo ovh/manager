@@ -1,10 +1,8 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, render, act } from '@testing-library/react';
 import { ActionBanner, ActionBannerProps } from './action-banner.component';
-import { render } from '../../utils/test.provider';
 
-const renderComponent = (props: ActionBannerProps) => {
-  return render(<ActionBanner {...props} />);
-};
+const renderComponent = (props: ActionBannerProps) =>
+  render(<ActionBanner {...props} />);
 
 describe('ActionBanner tests', () => {
   it('should display message', () => {
@@ -13,21 +11,24 @@ describe('ActionBanner tests', () => {
       cta: 'custom action',
       onClick: () => {},
     });
+
     expect(screen.getAllByText('hello world')).not.toBeNull();
   });
 
   it('should have a working call to action button', () => {
-    const onClick = jest.fn();
+    const mockOnClick = jest.fn();
+
     renderComponent({
       message: 'hello world',
       cta: 'custom action',
-      onClick,
+      onClick: mockOnClick,
     });
-    expect(screen.getAllByText('custom action')).not.toBeNull();
-    const cta = screen.queryByTestId('actionBanner-button');
-    expect(onClick).not.toHaveBeenCalled();
-    fireEvent.click(cta);
-    expect(onClick).toHaveBeenCalled();
+
+    const actionBtn = screen.getByTestId('actionBanner-button');
+
+    act(() => fireEvent.click(actionBtn));
+
+    expect(mockOnClick).toHaveBeenCalled();
   });
 
   it('should have a link action', () => {

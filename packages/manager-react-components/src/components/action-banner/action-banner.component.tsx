@@ -34,7 +34,7 @@ export function ActionBanner({
       className={'mt-3 flex-row'}
       data-testid="actionBanner-message_container"
     >
-      <div className={'sm:flex sm:flex-row sm:justify-between sm:items-center'}>
+      <div className="sm:flex sm:flex-row sm:justify-between sm:items-center">
         <OsdsText
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.default}
@@ -60,7 +60,6 @@ export function ActionBanner({
           <OsdsLink
             className="sm:mt-0 mt-4 sm:ml-4 ml-0"
             color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => onClick && onClick()}
             href={href}
             target={OdsHTMLAnchorElementTarget._blank}
           >

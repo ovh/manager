@@ -23,9 +23,9 @@ import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
   PciAnnouncementBanner,
   PciDiscoveryBanner,
+  useProject,
 } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
-import useProject from '@/api/hooks/useProject';
 import FloatingIPComponent from '@/components/list/FloatingIP.component';
 import FailoverIPComponent from '@/components/list/FailoverIP.component';
 import { IPsTabName } from '@/constants';
@@ -48,7 +48,7 @@ export default function ListingPage(): JSX.Element {
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
   const { projectId } = useParams();
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const activeTab = getActiveTab(location.pathname);
 
