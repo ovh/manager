@@ -15,36 +15,36 @@ describe('ServiceKeyStatus component test suite', () => {
     colorValue: OdsChipAttribute['color'];
   }[] = [
     {
-      state: 'ACTIVE',
+      state: OkmsServiceKeyState.active,
       label: 'key_management_service_service-keys_dashboard_field_state_active',
       colorValue: ODS_TEXT_COLOR_INTENT.success,
     },
     {
-      state: 'COMPROMISED',
+      state: OkmsServiceKeyState.compromised,
       label:
         'key_management_service_service-keys_dashboard_field_state_compromised',
       colorValue: ODS_TEXT_COLOR_INTENT.warning,
     },
     {
-      state: 'DEACTIVATED',
+      state: OkmsServiceKeyState.deactivated,
       label:
         'key_management_service_service-keys_dashboard_field_state_deactivated',
       colorValue: ODS_TEXT_COLOR_INTENT.warning,
     },
     {
-      state: 'DESTROYED',
+      state: OkmsServiceKeyState.destroyed,
       label:
         'key_management_service_service-keys_dashboard_field_state_destroyed',
       colorValue: ODS_TEXT_COLOR_INTENT.error,
     },
     {
-      state: 'DESTROYED_COMPROMISED',
+      state: OkmsServiceKeyState.destroyed_compromised,
       label:
         'key_management_service_service-keys_dashboard_field_state_destroyed_compromised',
       colorValue: ODS_TEXT_COLOR_INTENT.error,
     },
     {
-      state: 'PRE_ACTIVE',
+      state: OkmsServiceKeyState.pre_active,
       label:
         'key_management_service_service-keys_dashboard_field_state_pre_active',
       colorValue: ODS_TEXT_COLOR_INTENT.info,

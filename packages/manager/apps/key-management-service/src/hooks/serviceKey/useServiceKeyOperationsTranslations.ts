@@ -1,19 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import {
-  OkmsServiceKeyAllOperations,
-  OkmsServiceKeyOperationEncrypt,
-  OkmsServiceKeyOperationSign,
-  OkmsServiceKeyOperationWrap,
-} from '@/types/okmsServiceKey.type';
+import { OkmsServiceKeyOperations } from '@/types/okmsServiceKey.type';
 
 export const useServiceKeyOperationsTranslations = (
-  operations: OkmsServiceKeyAllOperations[] | string[],
+  operations: OkmsServiceKeyOperations[] | string[],
 ) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
 
-  const sign: OkmsServiceKeyOperationSign = 'sign';
-  const encrypt: OkmsServiceKeyOperationEncrypt = 'encrypt';
-  const wrapKey: OkmsServiceKeyOperationWrap = 'wrapKey';
+  const { encrypt, sign, wrapKey } = OkmsServiceKeyOperations;
 
   if (operations.includes(sign)) {
     return t(

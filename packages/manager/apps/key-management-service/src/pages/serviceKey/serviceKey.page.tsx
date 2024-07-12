@@ -27,14 +27,14 @@ import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 import Loading from '@/components/Loading/Loading';
 import { Clipboard } from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/InformationsTile';
-import { TileItem } from '@/components/dashboard/tileItem/tileItem.component';
+import { TileItem } from '@/components/dashboard/tile-item/tileItem.component';
 import { Tile } from '@/components/dashboard/tile/tile.component';
-import { TileValue } from '@/components/dashboard/tileValue/tileValue.component';
-import { TileValueDate } from '@/components/dashboard/tileValueDate/tileValueDate.component';
+import { TileValue } from '@/components/dashboard/tile-value/tileValue.component';
+import { TileValueDate } from '@/components/dashboard/tile-value-date/tileValueDate.component';
 import { ServiceKeyStatus } from '@/components/serviceKey/serviceKeyStatus/serviceKeyStatus.component';
 import { ServiceKeyOperations } from '@/components/serviceKey/serviceKeyOperations/serviceKeyOperations.component';
 import { ServiceKeyType } from '@/components/serviceKey/serviceKeyType/serviceKeyType.component';
-import { TileSeparator } from '@/components/dashboard/tileSeparator/tileSeparator';
+import { TileSeparator } from '@/components/dashboard/tile-separator/tileSeparator';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { getOkmsServiceKeyResourceQueryKey } from '@/data/api/okmsServiceKey';
 
