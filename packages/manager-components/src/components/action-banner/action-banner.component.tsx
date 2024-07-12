@@ -1,4 +1,5 @@
 import React from 'react';
+import { Trans } from 'react-i18next';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import {
@@ -38,7 +39,6 @@ export function ActionBanner({
   return (
     <OsdsMessage
       type={type}
-      color={type as unknown as ODS_THEME_COLOR_INTENT}
       className={`mt-3 flex flex-row items-center ${size} ${className}`}
       data-testid="actionBanner-message_container"
       removable={isRemovable}
@@ -52,7 +52,7 @@ export function ActionBanner({
             hue={ODS_THEME_COLOR_HUE._900}
             className="block mb-3"
           >
-            {title}
+            <Trans>{title}</Trans>
           </OsdsText>
         )}
         {description && (
@@ -61,7 +61,7 @@ export function ActionBanner({
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {description}
+              <Trans>{description}</Trans>
             </OsdsText>
           </div>
         )}
