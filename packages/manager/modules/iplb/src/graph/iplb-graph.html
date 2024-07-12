@@ -15,27 +15,17 @@
         </oui-radio>
     </oui-radio-toggle-group>
 
-    <div class="cui-panel">
+    <div
+        class="cui-panel"
+        data-ng-repeat="(name, chart) in ctrl.charts track by name"
+    >
         <div class="cui-panel__header">
-            <h2 data-translate="iplb_graph_connections_title"></h2>
+            <h2 data-translate="{{::chart.title}}"></h2>
         </div>
-        <div class="cui-panel__body">
+        <div class="cui-panel__body" data-ng-if="!ctrl.loadingGraph">
             <div
                 data-chart
-                data-chartjs="ctrl.connChart"
-                data-auto-reload="true"
-            ></div>
-        </div>
-    </div>
-
-    <div class="cui-panel">
-        <div class="cui-panel__header">
-            <h2 data-translate="iplb_graph_rqpersec_title"></h2>
-        </div>
-        <div class="cui-panel__body">
-            <div
-                data-chart
-                data-chartjs="ctrl.reqmChart"
+                data-chartjs="chart.config"
                 data-auto-reload="true"
             ></div>
         </div>
