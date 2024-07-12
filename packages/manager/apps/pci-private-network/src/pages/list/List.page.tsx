@@ -1,7 +1,6 @@
 import {
   PciGuidesHeader,
   useNotifications,
-  useProject,
 } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -23,6 +22,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   PciAnnouncementBanner,
   PciDiscoveryBanner,
+  useProject,
 } from '@ovh-ux/manager-pci-common';
 import GlobalRegionsComponent from '@/components/global-regions/GlobalRegions.component';
 import LocalZoneComponent from '@/components/local-zones/LocalZone.component';
@@ -47,7 +47,7 @@ export default function ListingPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { projectId } = useParams();
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const activeTab = getActiveTab(location.pathname);
 
