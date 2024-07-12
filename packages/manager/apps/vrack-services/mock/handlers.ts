@@ -14,6 +14,7 @@ import {
   GetAuthenticationMocks,
   getAuthenticationMocks,
 } from '../../../../../playwright-helpers/mocks/auth';
+import { getFeatureAvailabilityMock } from './feature-availability/feature-availability';
 
 export type ConfigParams = GetVrackServicesMocksParams &
   GetAuthenticationMocks &
@@ -30,4 +31,5 @@ export const getConfig = (params: ConfigParams): Handler[] =>
     getVrackMocks,
     getOrderDetailsMocks,
     getIamMocks,
+    getFeatureAvailabilityMock,
   ].flatMap((getMocks) => getMocks(params));
