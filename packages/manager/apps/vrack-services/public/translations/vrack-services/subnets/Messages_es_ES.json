@@ -43,11 +43,16 @@
   "copiedSuccessMessage": "Copiado",
   "action-editSubnetDisplayName": "Cambiar el nombre de la subred",
   "action-deleteSubnet": "Eliminar la subred",
-  "modalSubnetUpdateHeadline": "Cambiar el nombre de la subred",
-  "modalSubnetUpdateDescription": "",
-  "subnetUpdateDisplayNameInputLabel": "Nombre de la subred",
+  "modalSubnetUpdateHeadline": "Modificar la subred",
+  "modalSubnetUpdateDescription": "Puede modificar el nombre de la subred, el tamaño del rango de direcciones y el rango de direcciones de servicio.",
+  "subnetUpdateDisplayNameInputLabel": "Nombre",
   "subnetCreationPending": "Configurando la subred...",
   "subnetCreationSuccess": "La subred se ha configurado correctamente en vRack Services {{id}}.",
-  "subnetUpdateSuccess": "La subred se ha actualizado correctamente en vRack Services {{id}}.",
-  "subnetDeleteSuccess": "La subred {{cidr}} se ha eliminado correctamente de vRack Services {{id}}."
+  "subnetUpdateSuccess": "La subred se ha modificado correctamente en vRack Services {{id}}.",
+  "subnetDeleteSuccess": "La subred {{cidr}} se ha eliminado correctamente de vRack Services {{id}}.",
+  "action-editSubnet": "Modificar la subred",
+  "subnetUpdateError": "Se ha producido un error al actualizar la subred: {{error}}.",
+  "subnetUpdatePending": "Modificando la subred...",
+  "modalSubnetUpdateCancelButton": "Cancelar",
+  "modalSubnetUpdateConfirmButton": "Modificar"
 }

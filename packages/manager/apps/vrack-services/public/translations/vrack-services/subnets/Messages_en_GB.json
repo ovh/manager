@@ -43,11 +43,16 @@
   "copiedSuccessMessage": "Copied",
   "action-editSubnetDisplayName": "Modify subnet name",
   "action-deleteSubnet": "Delete subnet",
-  "modalSubnetUpdateHeadline": "Modify subnet name",
-  "modalSubnetUpdateDescription": "",
-  "subnetUpdateDisplayNameInputLabel": "Subnet name",
+  "modalSubnetUpdateHeadline": "Modify subnet",
+  "modalSubnetUpdateDescription": "You can change the subnet name, address range size, and service address range.",
+  "subnetUpdateDisplayNameInputLabel": "Name",
   "subnetCreationPending": "Your subnet is being configured",
   "subnetCreationSuccess": "Your subnet has been configured on the {{id}} vRack Services.",
-  "subnetUpdateSuccess": "Your subnet has been updated on the {{id}} vRack Services.",
-  "subnetDeleteSuccess": "Your subnet {{cidr}} has been deleted from the {{id}} vRack Services."
+  "subnetUpdateSuccess": "Your subnet on the vRack Services {{id}} has been modified.",
+  "subnetDeleteSuccess": "Your subnet {{cidr}} has been deleted from the {{id}} vRack Services.",
+  "action-editSubnet": "Modify subnet",
+  "subnetUpdateError": "An error has occurred updating your subnet: {{error}}.",
+  "subnetUpdatePending": "Modifying your subnet...",
+  "modalSubnetUpdateCancelButton": "Cancel",
+  "modalSubnetUpdateConfirmButton": "Edit"
 }
