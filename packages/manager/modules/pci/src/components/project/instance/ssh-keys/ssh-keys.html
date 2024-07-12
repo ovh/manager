@@ -18,6 +18,7 @@
                 placeholder="{{:: 'pci_project_instance_ssh_pick' | translate }}"
                 data-items="$ctrl.availableKeys"
                 data-on-change="$ctrl.selectKey(modelValue)"
+                style="min-width: 15rem"
                 required
             >
                 <span data-ng-bind="$item.name"></span>

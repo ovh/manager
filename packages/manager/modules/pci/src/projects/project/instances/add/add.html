@@ -2,7 +2,7 @@
 
 <cui-message-container
     id="create-instance-error-container"
-    data-messages="$ctrl.messages"
+    data-messages="$ctrl.messages.instance"
 ></cui-message-container>
 
 <pci-activate-project-banner
@@ -55,6 +55,9 @@
         data-on-submit="$ctrl.onRegionChange()"
         data-editable="!$ctrl.isLoading"
     >
+        <cui-message-container
+            data-messages="$ctrl.messages.region"
+        ></cui-message-container>
         <div
             data-ng-if="!$ctrl.displaySelectedRegion && $ctrl.currentStep === 1"
         >
@@ -272,7 +275,7 @@
     <oui-step-form
         name="instances_add_image"
         data-header="{{:: 'pci_projects_project_instances_add_image_title' | translate }}"
-        data-valid="$ctrl.model.image"
+        data-valid="$ctrl.model.image && $ctrl.model.sshKey"
         data-editable="!$ctrl.isLoading"
         data-on-focus="$ctrl.onImageFocus()"
         data-on-submit="$ctrl.onImageChange()"
@@ -485,6 +488,9 @@
         data-on-submit="$ctrl.onModeSubmit()"
         data-navigation="$ctrl.showNetworkNavigation()"
     >
+        <cui-message-container
+            data-messages="$ctrl.messages.network"
+        ></cui-message-container>
         <p
             data-ng-if="!$ctrl.isLocalZone()"
             class="font-weight-bold"
@@ -567,6 +573,7 @@
         >
             <oui-radio-group
                 data-model="$ctrl.isCreatingNewPrivateNetwork"
+                data-on-change="$ctrl.handleisCreatingNewPrivateNetworkChange()"
                 class="mb-3"
             >
                 <oui-radio
@@ -897,11 +904,11 @@
         data-editable="!$ctrl.isLoading"
         name="instances_add_billing"
         data-on-submit="$ctrl.onCreateFormStepperSubmit()"
-        data-navigation="!$ctrl.isPrivateMode() || (!$ctrl.isLoadBillingStep && $ctrl.isPrivateMode())"
+        data-navigation="!$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError && (!$ctrl.isPrivateMode() || (!$ctrl.isLoadBillingStep && $ctrl.isPrivateMode()))"
     >
         <oui-message
             data-type="info"
-            data-ng-if="$ctrl.IsComingSoonPricingBannerDisplayed()"
+            data-ng-if="$ctrl.IsComingSoonPricingBannerDisplayed() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         >
             <h6
                 data-translate="pci_projects_project_instances_add_billing_coming_soon_message_title"
@@ -911,7 +918,9 @@
             ></p>
         </oui-message>
 
-        <p data-ng-if="!$ctrl.IsComingSoonPricingBannerDisplayed()">
+        <p
+            data-ng-if="!$ctrl.IsComingSoonPricingBannerDisplayed() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
+        >
             <span
                 data-translate="pci_projects_project_instances_add_billing_montly_discount_message"
             ></span>
@@ -935,7 +944,7 @@
         </p>
         <oui-message
             data-type="warning"
-            data-ng-if="($ctrl.subnetGateways.length === 0 || $ctrl.subnetGateways.length > 1) && !$ctrl.isLoadBillingStep && $ctrl.isAttachFloatingIP"
+            data-ng-if="($ctrl.subnetGateways.length === 0 || $ctrl.subnetGateways.length > 1) && !$ctrl.isLoadBillingStep && $ctrl.isAttachFloatingIP && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         >
             <p
                 data-translate="pci_projects_project_instances_add_billing_gateway_info"
@@ -956,7 +965,7 @@
         </oui-message>
         <oui-message
             data-type="warning"
-            data-ng-if="$ctrl.subnetGateways.length > 0 && !$ctrl.subnetGateways[0].externalInformation"
+            data-ng-if="$ctrl.subnetGateways.length > 0 && !$ctrl.subnetGateways[0].externalInformation && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         >
             <p
                 data-translate="pci_projects_project_instances_add_billing_gateway_snat_info"
@@ -964,22 +973,22 @@
         </oui-message>
         <oui-message
             data-type="warning"
-            data-ng-if="$ctrl.subnetGateways.length > 0 && $ctrl.selectedPrivateNetwork.subnet[0].gatewayIp === null"
+            data-ng-if="$ctrl.subnetGateways.length > 0 && $ctrl.selectedPrivateNetwork.subnet[0].gatewayIp === null && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         >
             <p
                 data-translate="pci_projects_project_instances_add_billing_gateway_DHCP_info"
             ></p>
         </oui-message>
         <pci-free-local-zones-banner
-            data-ng-if="$ctrl.areLocalZonesFree && $ctrl.isLocalZoneSelected"
+            data-ng-if="$ctrl.areLocalZonesFree && $ctrl.isLocalZoneSelected && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
             data-confirm-text="true"
         />
         <oui-spinner
             data-size="s"
-            data-ng-if="$ctrl.isLoadBillingStep && $ctrl.isPrivateMode()"
+            data-ng-if="$ctrl.isLoadBillingStep && $ctrl.isPrivateMode() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         ></oui-spinner>
         <pci-project-flavor-billing
-            data-ng-if="!$ctrl.isPrivateMode() || (!$ctrl.isLoadBillingStep && $ctrl.isPrivateMode())"
+            data-ng-if="!$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError && (!$ctrl.isPrivateMode() || (!$ctrl.isLoadBillingStep && $ctrl.isPrivateMode()))"
             data-flavor="$ctrl.flavorGroup"
             data-number="$ctrl.model.number"
             data-monthly-billing="$ctrl.instance.monthlyBilling"
@@ -988,11 +997,13 @@
         >
         </pci-project-flavor-billing>
 
-        <pci-trusted-zone-banner data-ng-if="$ctrl.isTrustedZone">
+        <pci-trusted-zone-banner
+            data-ng-if="$ctrl.isTrustedZone && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
+        >
         </pci-trusted-zone-banner>
     </oui-step-form>
     <div
-        data-ng-if="$ctrl.isLoading && !$ctrl.isPrivateMode()  && $ctrl.currentStep > 4"
+        data-ng-if="$ctrl.isLoading && !$ctrl.isPrivateMode()  && $ctrl.currentStep > 4 && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         class="d-flex flex-wrap flex-md-nowrap align-items-center"
     >
         <oui-spinner></oui-spinner>
@@ -1007,7 +1018,9 @@
     </div>
 </oui-stepper>
 
-<div data-ng-if="$ctrl.confirmPrivateInstanceCreation">
+<div
+    data-ng-if="$ctrl.confirmPrivateInstanceCreation && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
+>
     <div class="modal d-block">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">

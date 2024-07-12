@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
+import reduce from 'lodash/reduce';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
@@ -159,6 +160,8 @@ export default class PciInstancesAddController {
     });
 
     this.selectedFloatingIP = null;
+    this.messageContainers = ['region', 'network', 'instance'];
+    this.messages = {};
     this.loadMessages();
     [this.selectedMode] = this.modes;
     this.showAddPrivateNetworkModalForm = false;
@@ -184,8 +187,10 @@ export default class PciInstancesAddController {
       dhcp: true,
       enableGatewayIp: true,
     };
+
     // this.regenerateNetworkAddress(DEFAULT_VLAN_ID);
     this.isAddingPrivateNetwork = false;
+    this.isAddingPrivateNetworkError = false;
   }
 
   get areLocalZonesFree() {
@@ -277,14 +282,30 @@ export default class PciInstancesAddController {
   }
 
   loadMessages() {
-    this.messageHandler = this.CucCloudMessage.subscribe(
-      'pci.projects.project.instances.add',
-      { onMessage: () => this.refreshMessages() },
+    this.messageHandlers = reduce(
+      this.messageContainers,
+      (handlers, containerName) => ({
+        ...handlers,
+        [containerName]: this.CucCloudMessage.subscribe(
+          `pci.projects.project.instances.add-${containerName}`,
+          {
+            onMessage: () => this.refreshMessages(),
+          },
+        ),
+      }),
+      {},
     );
   }
 
   refreshMessages() {
-    this.messages = this.messageHandler.getMessages();
+    this.messages = reduce(
+      this.messageContainers,
+      (messages, containerName) => ({
+        ...messages,
+        [containerName]: this.messageHandlers[containerName].getMessages(),
+      }),
+      {},
+    );
   }
 
   onFlavorFocus() {
@@ -334,7 +355,7 @@ export default class PciInstancesAddController {
         this.$translate.instant(
           'pci_projects_project_instances_add_flavor_selected_legacy',
         ),
-        'pci.projects.project.instances.add',
+        'pci.projects.project.instances.add-instance',
       );
     } else {
       this.messages = [];
@@ -364,6 +385,7 @@ export default class PciInstancesAddController {
               code: this.model.datacenter.name,
             },
           ),
+          'pci.projects.project.instances.add-region',
         );
         this.isLoading = false;
         this.isAddingRegionError = false;
@@ -376,6 +398,7 @@ export default class PciInstancesAddController {
               message: get(error, 'data.message'),
             },
           ),
+          'pci.projects.project.instances.add-region',
         );
         this.isLoading = false;
         this.isAddingRegionError = true;
@@ -453,6 +476,7 @@ export default class PciInstancesAddController {
     }
     this.getPrivateNetworkSubnet();
     if (this.isLocalZone()) {
+      //
       this.PciProjectsProjectInstanceService.getLocalPrivateNetworks(
         this.projectId,
         this.model.datacenter.name,
@@ -462,9 +486,13 @@ export default class PciInstancesAddController {
           this.getLocalPrivateNetworkSubnet();
         })
         .catch((error) =>
-          this.CucCloudMessage.error(get(error, 'data.message')),
+          this.CucCloudMessage.error(
+            get(error, 'data.message'),
+            'pci.projects.project.instances.add-region',
+          ),
         );
     }
+    this.model.image = null;
     return null;
   }
 
@@ -499,7 +527,6 @@ export default class PciInstancesAddController {
 
   onImageFocus() {
     this.displaySelectedImage = false;
-    this.model.image = null;
   }
 
   onImageChange() {
@@ -695,6 +722,11 @@ export default class PciInstancesAddController {
   onModeFocus() {
     this.displaySelectedMode = false;
     this.isFloatingIpAvailable = false;
+    if (this.isLocalZone()) {
+      this.privateNetworkName = null;
+      this.selectedPrivateNetwork = this.defaultPrivateNetwork;
+      this.isAddingPrivateNetworkError = false;
+    }
     this.PciProjectAdditionalIpService.getRegions(
       this.projectId,
       this.user.ovhSubsidiary,
@@ -879,11 +911,12 @@ export default class PciInstancesAddController {
       this.selectedPrivateNetwork
     ) {
       this.isLoadBillingStep = true;
-      //
+
       if (this.selectedPrivateNetwork.subnet?.[0]) {
         return this.getSubnetGateways(this.selectedPrivateNetwork.subnet[0].id)
           .then((data) => {
             this.subnetGateways = data;
+
             this.addPricing();
             if (
               this.subnetGateways.length > 0 &&
@@ -1009,6 +1042,22 @@ export default class PciInstancesAddController {
           );
         },
       );
+
+      if (
+        this.isLocalPrivateModeLocalZone &&
+        this.isCreatingNewPrivateNetwork &&
+        this.privateNetworkName
+      ) {
+        this.instance.networks = [
+          ...(this.instance.networks || []),
+          {
+            networkId: this.availableLocalPrivateNetworks.find((n) => {
+              return n.name === this.privateNetworkName;
+            })?.id,
+          },
+        ];
+      }
+
       if (this.isAttachPublicNetwork && !publicNetworkAlreadyExist) {
         // if attach check box is ticked, add public network if not added one
         this.instance.networks = [
@@ -1047,6 +1096,7 @@ export default class PciInstancesAddController {
 
     // @TODO: GS Use post /cloud/project/{serviceName}/region/{regionName}/instance
     // for local zone instance creation
+
     return this.PciProjectsProjectInstanceService.save(
       this.projectId,
       this.instance,
@@ -1153,7 +1203,10 @@ export default class PciInstancesAddController {
       );
     }
 
-    this.CucCloudMessage.error(message, 'pci.projects.project.instances.add');
+    this.CucCloudMessage.error(
+      message,
+      'pci.projects.project.instances.add-instance',
+    );
     this.$timeout(() => {
       document
         .getElementById('create-instance-error-container')
@@ -1167,6 +1220,7 @@ export default class PciInstancesAddController {
         'pci_projects_project_instances_add_common_error',
         { message: get(err, 'data.message', '') },
       ),
+      'pci.projects.project.instances.add-instance',
     );
   }
 
@@ -1284,37 +1338,57 @@ export default class PciInstancesAddController {
 
   onCreatePrivateNetworkClick() {
     this.isAddingPrivateNetwork = true;
-    this.isLoading = true;
 
     return this.createPrivateNetwork()
-      .then(([[subnetDetails]]) =>
-        this.associateNetworkToGateway(subnetDetails),
-      )
       .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant(
-            'pci_projects_project_network_private_create_success',
-            {
-              code: this.model.datacenter.name,
-            },
-            ((this.isLoading = false), (this.isAddingPrivateNetwork = false)),
-          ),
-        );
+        return this.PciProjectsProjectInstanceService.getLocalPrivateNetworks(
+          this.projectId,
+          this.model.datacenter.name,
+        ).then((networks) => {
+          this.availableLocalPrivateNetworks = networks;
+          return this.getLocalPrivateNetworkSubnet()
+            .then(() => {
+              this.CucCloudMessage.success(
+                this.$translate.instant(
+                  'pci_projects_project_instances_network_private_create_success',
+                  {
+                    code: this.model.datacenter.name,
+                  },
+                ),
+                'pci.projects.project.instances.add-network',
+              );
+              this.isAddingPrivateNetwork = false;
+              this.isAddingPrivateNetworkError = false;
+            })
+            .catch((error) =>
+              this.CucCloudMessage.error(
+                get(error, 'data.message'),
+                'pci.projects.project.instances.add-network',
+              ),
+            );
+        });
       })
       .catch((error) => {
         this.CucCloudMessage.error(
           this.$translate.instant(
-            'pci_projects_project_network_private_create_error',
+            'pci_projects_project_instances_network_private_create_error',
             { message: get(error, 'data.message') },
           ),
+          'pci.projects.project.instances.add-network',
         );
 
-        this.isLoading = false;
         this.isAddingPrivateNetwork = false;
+        this.isAddingPrivateNetworkError = true;
       })
       .finally(() => {
         this.isAddingPrivateNetwork = false;
-        this.isLoading = false;
       });
+  }
+
+  handleisCreatingNewPrivateNetworkChange() {
+    if (this.isCreatingNewPrivateNetwork === false) {
+      this.privateNetworkName = null;
+    }
+    this.selectedPrivateNetwork = this.defaultPrivateNetwork;
   }
 }
