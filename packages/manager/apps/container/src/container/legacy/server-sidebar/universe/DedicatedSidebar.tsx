@@ -349,7 +349,15 @@ export default function DedicatedSidebar() {
             href: navigation.getURL('dedicated', '#/nasha'),
             routeMatcher: new RegExp('^/(paas/)?nasha'),
             async loader() {
-              return loadServices('/dedicated/nasha')
+              const nasha = await loadServices('/dedicated/nasha');
+              return nasha.map((nashaItem) => ({
+                ...nashaItem,
+                keywords: 'nasha nas-ha',
+                href: navigation.getURL(
+                  'dedicated',
+                  `/nasha/${nashaItem.serviceName}`,
+                ),
+              }));
             }
           }
         ],
