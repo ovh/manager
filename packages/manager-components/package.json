@@ -15,7 +15,6 @@
     "build:storybook": "storybook build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "jest --coverage -u",
-    "test:watch": "jest --watch",
     "test:cov": "vitest run --coverage",
     "test:e2e": "tsc && npx playwright test --ui --debug"
   },
@@ -74,7 +73,6 @@
     "jsdom": "22.1.0",
     "json": "11.0.0",
     "lint-staged": "13.2.3",
-    "msw": "2.3.1",
     "postcss": "8.4.27",
     "prettier": "3.0.1",
     "prop-types": "15.8.1",

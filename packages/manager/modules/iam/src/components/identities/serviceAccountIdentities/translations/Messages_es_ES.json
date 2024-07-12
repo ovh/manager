@@ -3,6 +3,6 @@
   "iam_identities_service_accounts_empty": "No hay ninguna cuenta de servicio",
   "iam_identities_service_accounts_name": "Nombre",
   "iam_identities_service_accounts_id": "Identificador",
-  "iam_identities_service_accounts_flow": "Flujo",
+  "iam_identities_service_accounts_flow": "Flow",
   "iam_identities_service_accounts_description": "Descripción"
 }
