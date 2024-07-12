@@ -28,6 +28,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { useFeatureAvailability } from '@ovhcloud/manager-components';
 import { getVrackServicesResourceListQueryKey } from '@/api';
 import { VrackServicesDatagrid } from '@/pages/listing/components/VrackServicesDataGrid';
 import { PageLayout } from '@/components/layout-helpers';
@@ -44,6 +45,9 @@ export default function ListingPage() {
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const [reachedBetaLimit, setReachedBetaLimit] = React.useState(false);
+  const { data: features, isSuccess } = useFeatureAvailability([
+    'vrack-services:order',
+  ]);
 
   const {
     data: vrackServicesDeliveringOrders,
@@ -98,31 +102,33 @@ export default function ListingPage() {
           </OsdsText>
         </OsdsMessage>
       )}
-      <OsdsButton
-        className="mb-8"
-        inline
-        disabled={reachedBetaLimit || undefined}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        size={ODS_BUTTON_SIZE.sm}
-        {...handleClick(() => {
-          trackClick({
-            location: PageLocation.page,
-            buttonType: ButtonType.button,
-            actionType: 'navigation',
-            actions: ['add_vrack-services'],
-          });
-          navigate(urls.createVrackServices);
-        })}
-      >
-        <OsdsIcon
-          className="mr-4"
-          name={ODS_ICON_NAME.ADD}
-          size={ODS_ICON_SIZE.xs}
+      {isSuccess && features['vrack-services:order'] && (
+        <OsdsButton
+          className="mb-8"
+          inline
+          disabled={reachedBetaLimit || undefined}
           color={ODS_THEME_COLOR_INTENT.primary}
-        />
-        {t('createVrackServicesButtonLabel')}
-      </OsdsButton>
+          variant={ODS_BUTTON_VARIANT.stroked}
+          size={ODS_BUTTON_SIZE.sm}
+          {...handleClick(() => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'navigation',
+              actions: ['add_vrack-services'],
+            });
+            navigate(urls.createVrackServices);
+          })}
+        >
+          <OsdsIcon
+            className="mr-4"
+            name={ODS_ICON_NAME.ADD}
+            size={ODS_ICON_SIZE.xs}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          />
+          {t('createVrackServicesButtonLabel')}
+        </OsdsButton>
+      )}
 
       <DeliveringMessages
         messageKey="deliveringVrackServicesMessage"
