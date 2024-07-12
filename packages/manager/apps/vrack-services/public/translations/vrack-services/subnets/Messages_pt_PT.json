@@ -43,11 +43,16 @@
   "copiedSuccessMessage": "Copiado",
   "action-editSubnetDisplayName": "Modificar o nome da sub-rede",
   "action-deleteSubnet": "Eliminar a sub-rede",
-  "modalSubnetUpdateHeadline": "Modificar o nome da sub-rede",
-  "modalSubnetUpdateDescription": "",
-  "subnetUpdateDisplayNameInputLabel": "Nome da sub-rede",
+  "modalSubnetUpdateHeadline": "Modificar a sub-rede",
+  "modalSubnetUpdateDescription": "Pode alterar o nome da sub-rede, o tamanho do intervalo de endereços e o intervalo de endereços do serviço.",
+  "subnetUpdateDisplayNameInputLabel": "Nome",
   "subnetCreationPending": "A sua sub-rede está a ser configurada",
   "subnetCreationSuccess": "A sua sub-rede foi corretamente configurada nos vRack Services {{id}}.",
-  "subnetUpdateSuccess": "A sua sub-rede foi atualizada com êxito nos vRack Services {{id}}.",
-  "subnetDeleteSuccess": "A sua sub-rede {{cidr}} foi eliminada com êxito dos vRack Services {{id}}."
+  "subnetUpdateSuccess": "A sua sub-rede foi modificada com sucesso no vRack Services {{id}}.",
+  "subnetDeleteSuccess": "A sua sub-rede {{cidr}} foi eliminada com êxito dos vRack Services {{id}}.",
+  "action-editSubnet": "Modificar a sub-rede",
+  "subnetUpdateError": "Ocorreu um erro ao atualizar a sua sub-rede: {{error}}.",
+  "subnetUpdatePending": "A sua sub-rede está a ser alterada",
+  "modalSubnetUpdateCancelButton": "Anular",
+  "modalSubnetUpdateConfirmButton": "Alterar"
 }

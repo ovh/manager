@@ -43,11 +43,16 @@
   "copiedSuccessMessage": "Copiato",
   "action-editSubnetDisplayName": "Modificare il nome della sottorete",
   "action-deleteSubnet": "Eliminare la sottorete",
-  "modalSubnetUpdateHeadline": "Modificare il nome della sottorete",
-  "modalSubnetUpdateDescription": "",
-  "subnetUpdateDisplayNameInputLabel": "Nome della sottorete",
+  "modalSubnetUpdateHeadline": "Modificare la sottorete",
+  "modalSubnetUpdateDescription": "Puoi modificare il nome della sottorete, la dimensione dell'intervallo di indirizzi e l'intervallo di indirizzi di servizio.",
+  "subnetUpdateDisplayNameInputLabel": "Nome",
   "subnetCreationPending": "Configurazione della sottorete in corso...",
   "subnetCreationSuccess": "La tua sottorete è stata configurata correttamente sul vRack Services {{id}}.",
-  "subnetUpdateSuccess": "La tua sottorete è stata aggiornata correttamente sul vRack Services {{id}}.",
-  "subnetDeleteSuccess": "La sottorete {{cidr}} è stata eliminata correttamente dal vRack Services {{id}}."
+  "subnetUpdateSuccess": "La tua sottorete è stata modificata correttamente sul vRack Services {{id}}.",
+  "subnetDeleteSuccess": "La sottorete {{cidr}} è stata eliminata correttamente dal vRack Services {{id}}.",
+  "action-editSubnet": "Modificare la sottorete",
+  "subnetUpdateError": "Si è verificato un errore durante l'aggiornamento della sottorete: {{error}}.",
+  "subnetUpdatePending": "Modifica della sottorete in corso...",
+  "modalSubnetUpdateCancelButton": "Annullare",
+  "modalSubnetUpdateConfirmButton": "Modificare"
 }
