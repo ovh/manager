@@ -41,9 +41,18 @@
     }
 
     &__subrange {
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: space-between;
+
       &__slaac {
-        float: right;
+        margin-left: auto;
         width: 8.3em;
+
+        .oui-popover {
+          top: 0;
+          left: 0;
+        }
       }
     }
   }
