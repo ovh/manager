@@ -34,34 +34,11 @@ export default class VrackAssignedIpCtrl {
     this.label = { SLAAC: SLAAC_LABEL };
   }
 
-  $onInit() {
-    this.vrackAssignedIpv6Service
-      .fetchAllBridgedSubrange(this.serviceName, this.ip.niceName)
-      .then(({ data }) => {
-        this.$q
-          .all(
-            data.map((bridgedSubrange) => {
-              return this.vrackAssignedIpv6Service
-                .getBridgedSubrange(
-                  this.serviceName,
-                  this.ip.niceName,
-                  bridgedSubrange,
-                )
-                .then((res) => {
-                  return {
-                    ...res.data,
-                    model: SLAAC_VALUES[res.data.slaac],
-                    loading: false,
-                  };
-                });
-            }),
-          )
-          .then((bridges) => {
-            this.bridgedSubranges = bridges;
-          });
-      });
-
-    this.loadSubnet();
+  $onChanges(newObject) {
+    if (newObject?.isPending?.currentValue === false) {
+      this.loadBridgedSubrange();
+      this.loadSubnet();
+    }
   }
 
   openAddSubnetModal() {
@@ -162,6 +139,35 @@ export default class VrackAssignedIpCtrl {
         this.deleteSubnetModalContext.isOpenModal = false;
       },
     };
+  }
+
+  loadBridgedSubrange() {
+    this.bridgedSubranges = [];
+    this.vrackAssignedIpv6Service
+      .fetchAllBridgedSubrange(this.serviceName, this.ip.niceName)
+      .then(({ data }) => {
+        return this.$q
+          .all(
+            data.map((bridgedSubrange) => {
+              return this.vrackAssignedIpv6Service
+                .getBridgedSubrange(
+                  this.serviceName,
+                  this.ip.niceName,
+                  bridgedSubrange,
+                )
+                .then((res) => {
+                  return {
+                    ...res.data,
+                    model: SLAAC_VALUES[res.data.slaac],
+                    loading: false,
+                  };
+                });
+            }),
+          )
+          .then((bridges) => {
+            this.bridgedSubranges = bridges;
+          });
+      });
   }
 
   loadSubnet() {
