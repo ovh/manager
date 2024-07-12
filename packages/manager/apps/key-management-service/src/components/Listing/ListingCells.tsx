@@ -4,17 +4,17 @@ import {
   DataGridTextCell,
   Links,
 } from '@ovhcloud/manager-components';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_COLOR_INTENT } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { parseISO } from 'date-fns';
 import { OKMS } from '@/types/okms.type';
 import KmsActionMenu from '../menu/KmsActionMenu.component';
-import { OkmsServiceKey } from '@/types/okmsServiceKey.type';
+import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
+import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyTypeTranslations';
+import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatus.component';
 
-export const DatagridCellId = (props: OKMS | OkmsServiceKey) => {
+export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
   return <DataGridClipboardCell text={props.id} />;
 };
 
@@ -45,13 +45,13 @@ export const DatagridActionMenu = (props: OKMS) => {
   return <KmsActionMenu {...props} />;
 };
 
-export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
+export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
   const navigate = useNavigate();
   return (
     <div>
       <Links
         onClickReturn={() => {
-          navigate(`/${props?.id}`);
+          navigate(`${props?.id}`);
         }}
         label={props?.name}
       />
@@ -59,15 +59,16 @@ export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
   );
 };
 
-export const DatagridServiceKeyCellId = (props: OkmsServiceKey) => {
+export const DatagridServiceKeyCellId = (props: OkmsAllServiceKeys) => {
   return <DataGridClipboardCell text={props.id} />;
 };
 
-export const DatagridCellType = (props: OkmsServiceKey) => {
-  return <DataGridTextCell> {props.type}</DataGridTextCell>;
+export const DatagridCellType = (props: OkmsAllServiceKeys) => {
+  const translatedValue = useServiceKeyTypeTranslations(props.type);
+  return <DataGridTextCell> {translatedValue}</DataGridTextCell>;
 };
 
-export const DatagridCreationDate = (props: OkmsServiceKey) => {
+export const DatagridCreationDate = (props: OkmsAllServiceKeys) => {
   const { environment } = useContext(ShellContext);
   const [dateTimeFormat, setDateTimeFormat] = useState<Intl.DateTimeFormat>();
 
@@ -92,12 +93,10 @@ export const DatagridCreationDate = (props: OkmsServiceKey) => {
   );
 };
 
-export const DatagridStatus = (props: OkmsServiceKey) => {
-  return (
-    <OsdsChip color={ODS_TEXT_COLOR_INTENT.success}>{props.state}</OsdsChip>
-  );
+export const DatagridStatus = (props: OkmsAllServiceKeys) => {
+  return <ServiceKeyStatus state={props.state} inline />;
 };
 
-export const DatagridServiceKeyActionMenu = (props: OkmsServiceKey) => {
+export const DatagridServiceKeyActionMenu = (props: OkmsAllServiceKeys) => {
   return <></>;
 };

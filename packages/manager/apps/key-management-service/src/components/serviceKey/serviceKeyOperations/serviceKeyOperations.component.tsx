@@ -1,10 +1,10 @@
 import React from 'react';
-import { OkmsServiceKeyAllOperations } from '@/types/okmsServiceKey.type';
-import { TileValue } from '@/components/dashboard/tileValue/tileValue.component';
+import { OkmsServiceKeyOperations } from '@/types/okmsServiceKey.type';
+import { TileValue } from '@/components/dashboard/tile-value/tileValue.component';
 import { useServiceKeyOperationsTranslations } from '@/hooks/serviceKey/useServiceKeyOperationsTranslations';
 
 type KeyStatusProps = {
-  operations: OkmsServiceKeyAllOperations[];
+  operations: OkmsServiceKeyOperations[];
 };
 
 export const ServiceKeyOperations = ({ operations }: KeyStatusProps) => {
