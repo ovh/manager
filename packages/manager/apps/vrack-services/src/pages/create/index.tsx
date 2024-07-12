@@ -16,7 +16,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
+import { useFeatureAvailability } from '@ovhcloud/manager-components';
 import {
   getvrackServicesReferenceRegionList,
   getvrackServicesReferenceRegionListQueryKey,

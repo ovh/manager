@@ -25,7 +25,6 @@
     "@ovh-ux/manager-config": "^7.3.2",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-module-order": "^0.3.1",
-    "@ovh-ux/manager-react-core-application": "^0.8.4",
     "@ovh-ux/manager-react-shell-client": "^0.6.1",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "*",

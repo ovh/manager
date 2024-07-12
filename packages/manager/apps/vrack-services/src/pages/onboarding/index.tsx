@@ -3,7 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useNavigate, Navigate } from 'react-router-dom';
-import { Card, CardProps } from '@ovhcloud/manager-components';
+import {
+  Card,
+  CardProps,
+  useFeatureAvailability,
+} from '@ovhcloud/manager-components';
 import {
   OrderDescription,
   useOrderPollingStatus,
@@ -31,6 +35,9 @@ export default function OnboardingPage() {
     queryToInvalidateOnDelivered: getVrackServicesResourceListQueryKey,
     refetchInterval: onboardingRefetchInterval,
   });
+  const { data: features, isSuccess } = useFeatureAvailability([
+    'vrack-services:order',
+  ]);
 
   const tileList: CardProps[] = [
     {
@@ -84,7 +91,11 @@ export default function OnboardingPage() {
       title={t('title')}
       description={t('description')}
       imageSrc={onboardingImgSrc}
-      primaryButtonLabel={t('orderButtonLabel')}
+      primaryButtonLabel={
+        isSuccess && features['vrack-services:order']
+          ? t('orderButtonLabel')
+          : null
+      }
       primaryOnClick={() => {
         trackClick({
           location: PageLocation.page,
