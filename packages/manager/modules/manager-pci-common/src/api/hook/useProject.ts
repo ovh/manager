@@ -1,5 +1,6 @@
+import { useParams } from 'react-router-dom';
 import { QueryOptions, useQuery } from '@tanstack/react-query';
-import { getProject, Project } from '@/data/project';
+import { getProject, TProject } from '../data/project';
 
 export interface ResponseAPIError {
   message: string;
@@ -23,12 +24,13 @@ export const getProjectQuery = (projectId: string) => ({
 });
 
 export const useProject = (
-  projectId: string,
-  opt?: QueryOptions<Project, ResponseAPIError>,
-) =>
-  useQuery({
-    ...getProjectQuery(projectId),
-    ...opt,
-  });
+  projectId?: string,
+  options?: QueryOptions<TProject, ResponseAPIError>,
+) => {
+  const { projectId: defaultProjectId } = useParams();
 
-export default useProject;
+  return useQuery({
+    ...getProjectQuery(projectId || defaultProjectId),
+    ...options,
+  });
+};

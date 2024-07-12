@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovhcloud/manager-components';
 import { Translation } from 'react-i18next';
+import { ResponseAPIError } from '@ovh-ux/manager-pci-common';
 import {
   useAllFailoverIPs,
   useTerminateFailoverIP,
 } from '@/api/hooks/useFailoverIP';
 import TerminateModal from '@/components/terminate/Terminate.component';
-import { ResponseAPIError } from '@/api/hooks/useProject';
 
 export default function TerminateAdditionalIPPage() {
   const navigate = useNavigate();
