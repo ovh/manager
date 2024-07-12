@@ -21,8 +21,8 @@ describe('getMacroRegion', () => {
     expect(getMacroRegion('WES1')).toBe('WES');
   });
 
-  it('returns empty string for invalid region', () => {
-    expect(getMacroRegion('111')).toBe('');
+  it('returns "Unknown_Macro_Region" string for invalid region', () => {
+    expect(getMacroRegion('111')).toBe('Unknown_Macro_Region');
   });
 
   it('returns true for local zone', () => {
