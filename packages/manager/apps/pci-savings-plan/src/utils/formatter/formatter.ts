@@ -1,5 +1,5 @@
-import { TechnicalInfo } from '@/data/api/commercial-catalog';
-import { CommercialCatalogPricing } from '@/data/api/commercial-catalog-pricing';
+import { TechnicalInfo } from '@/types/commercial-catalog.type';
+import { CommercialCatalogPricing } from '@/types/commercial-catalog-pricing.type';
 import { convertToDuration, convertToPrice } from '../commercial-catalog/utils';
 
 export const formatTechnicalInfo = (technicalInfo: TechnicalInfo) => ({

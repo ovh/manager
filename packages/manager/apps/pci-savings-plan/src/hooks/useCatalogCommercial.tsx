@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import { TechnicalInfo } from '@/data/api/commercial-catalog';
+import { TechnicalInfo } from '@/types/commercial-catalog.type';
 import { buildTechnicalInfosMock } from '@/mock/commercial-catalog/technical';
 import {
   formatPricingInfo,
   formatTechnicalInfo,
 } from '@/utils/formatter/formatter';
-import { CommercialCatalogPricing } from '@/data/api/commercial-catalog-pricing';
+import { CommercialCatalogPricing } from '@/types/commercial-catalog-pricing.type';
 import { buildPricingsMock } from '@/mock/commercial-catalog/pricing';
-import { InstanceTechnicalName } from '@/components/CreatePlanForm/CreatePlan.type';
+import { InstanceTechnicalName } from '@/types/CreatePlan.type';
 
 export const getTechnicalInfo = async (
   productCode: string,

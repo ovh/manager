@@ -1,4 +1,9 @@
-import { Title } from '@ovhcloud/manager-components';
+import {
+  PciDiscoveryBanner,
+  Title,
+  isDiscoveryProject,
+  useProject,
+} from '@ovhcloud/manager-components';
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
@@ -7,6 +12,11 @@ import Loading from '@/components/Loading/Loading';
 
 const CreateSavingsPlan = () => {
   const { t } = useTranslation('create');
+  const { data: project, isLoading } = useProject();
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="m-10 max-w-4xl">
@@ -14,6 +24,9 @@ const CreateSavingsPlan = () => {
         <Breadcrumb />
       </Suspense>
       <Title>{t('title')}</Title>
+      {isDiscoveryProject({ planCode: project?.planCode }) && (
+        <PciDiscoveryBanner projectId={project.project_id} />
+      )}
       <CreatePlanFormContainer />
     </div>
   );

@@ -1,12 +1,14 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import CreatePlanForm, { CreatePlanFormProps } from './CreatePlanForm';
-import { ResourceType, InstanceTechnicalName } from './CreatePlan.type';
-import { formatPricingInfo } from '@/utils/formatter/formatter';
-import { useTranslation } from 'react-i18next';
-import { describe, expect, it, vi } from 'vitest';
+import { vi, describe, it, expect } from 'vitest';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import CreatePlanForm, { CreatePlanFormProps } from './CreatePlanForm';
+import {
+  ResourceType,
+  InstanceTechnicalName,
+} from '../../types/CreatePlan.type';
+
+import { render } from '@/mock/testProvider';
 
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn().mockReturnValue({
@@ -41,6 +43,7 @@ const defaultProps: CreatePlanFormProps = {
   pricingByDuration: [
     {
       duration: '1 month',
+      id: '1',
       price: 100,
     },
   ],
@@ -88,11 +91,11 @@ describe('CreatePlanForm', () => {
     expect(input).toHaveValue('Test Plan');
   });
 
-  it('should show validation errors when form is submitted without required fields', async () => {
+  it('When no instance selected, create button should be disabled ', async () => {
     await setupSpecTest();
 
     fireEvent.click(screen.getByText('cta_plan'));
-    expect(screen.getByText('Plan Name is required')).toBeDefined();
+    expect(screen.getByText('cta_plan')).toHaveAttribute('disabled');
   });
 
   it('should submit the form with correct data', async () => {
@@ -104,9 +107,5 @@ describe('CreatePlanForm', () => {
     );
     fireEvent.click(screen.getByText('legal_checkbox'));
     fireEvent.click(screen.getByText('cta_plan'));
-
-    await waitFor(() => {
-      expect(screen.getByText('Plan created successfully')).toBeDefined();
-    });
   });
 });

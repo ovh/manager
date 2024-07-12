@@ -9,10 +9,14 @@ const Commitment = ({
   duration,
   price,
   hourlyPriceWithoutCommitment,
+  isActive,
+  onClick,
 }: {
   duration: string;
   price: string;
   hourlyPriceWithoutCommitment: number;
+  isActive: boolean;
+  onClick: () => void;
 }) => {
   const priceByMonthWithoutCommitment = (
     convertHourlyPriceToMonthly(hourlyPriceWithoutCommitment) * Number(duration)
@@ -30,6 +34,12 @@ const Commitment = ({
       inline
       variant={ODS_TILE_VARIANT.stroked}
       className="flex flex-row items-center mr-5 my-4 justify-between w-full"
+      color={
+        isActive
+          ? ODS_THEME_COLOR_INTENT.primary
+          : ODS_THEME_COLOR_INTENT.default
+      }
+      onClick={onClick}
     >
       <span slot="start" className="flex flex-row items-center justify-center">
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>

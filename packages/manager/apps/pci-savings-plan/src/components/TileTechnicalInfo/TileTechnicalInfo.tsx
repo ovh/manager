@@ -7,7 +7,7 @@ import {
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import SimpleTile from '../SimpleTile/SimpleTile';
-import { Technical } from '@/data/api/commercial-catalog';
+import { Technical } from '@/types/commercial-catalog.type';
 
 type TileTechnicalInfoProps = {
   technical: Technical;

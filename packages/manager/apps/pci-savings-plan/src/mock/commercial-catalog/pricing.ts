@@ -1,4 +1,4 @@
-import { CommercialCatalogPricing } from '@/data/api/commercial-catalog-pricing';
+import { CommercialCatalogPricing } from '@/types/commercial-catalog-pricing.type';
 
 type PricingParams = {
   name: string;

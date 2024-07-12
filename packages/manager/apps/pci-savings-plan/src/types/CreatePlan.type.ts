@@ -1,4 +1,4 @@
-import { Technical } from '@/data/api/commercial-catalog';
+import { Technical } from '@/types/commercial-catalog.type';
 
 export enum ResourceType {
   instance = 'instance',

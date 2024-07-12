@@ -1,4 +1,4 @@
-import { TechnicalInfo } from '@/data/api/commercial-catalog';
+import { TechnicalInfo } from '@/types/commercial-catalog.type';
 
 type TechnicalParams = {
   name: string;

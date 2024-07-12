@@ -31,7 +31,7 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -49,7 +49,8 @@ import {
   InstanceTechnicalName,
   Resource,
   ResourceType,
-} from './CreatePlan.type';
+} from '../../types/CreatePlan.type';
+import LegalLinks from '../LegalLinks/LegalLinks';
 
 export const isValidName = (name: string) =>
   /^[a-z0-9][-_.A-Za-z0-9]{1,61}$/.test(name);
@@ -68,7 +69,7 @@ const Block: React.FC<React.PropsWithChildren> = ({ children }) => {
   return <div className="my-8">{children}</div>;
 };
 
-type CreatePlanFormProps = {
+export type CreatePlanFormProps = {
   instancesInfo: InstanceInfo[];
   resources: Resource[];
   instanceCategory: InstanceTechnicalName;
@@ -102,6 +103,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   );
   const [quantity, setQuantity] = useState<number>(1);
   const [planName, setPlanName] = useState<string>('');
+  const [commitmentSelected, setCommitmentSelected] = useState<string>();
+
   const [isLegalChecked, setIsLegalChecked] = useState<boolean>(false);
 
   const isInstance = selectedResource === ResourceType.instance;
@@ -112,17 +115,29 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         )
       : [];
 
-  const onCreateRancher = () => {
-    console.log({ quantity, technicalModel, selectedResource, planName });
+  const onCreateSavingsPlan = () => {
+    // TODO: Call REAL API with quantity, technicalModel, selectedResource, planName
   };
-
-  const isButtonActive =
-    quantity > 0 && technicalModel && selectedResource && isLegalChecked;
+  const isButtonActive = useMemo(
+    () =>
+      quantity > 0 &&
+      commitmentSelected &&
+      technicalModel &&
+      selectedResource &&
+      isLegalChecked,
+    [
+      quantity,
+      commitmentSelected,
+      technicalModel,
+      selectedResource,
+      isLegalChecked,
+    ],
+  );
 
   const technicalInfoList = instancesInfo.filter(
     (item: InstanceInfo) => item.technicalName === instanceCategory,
   );
-  const currentInstanceSelected = technicalInfoList[0];
+  const [currentInstanceSelected] = technicalInfoList;
 
   // Change Between Instance And Rancher we reset the selectedModel
   const onChangeResource = (value: ResourceType) => {
@@ -216,11 +231,6 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
             />
           </span>
         </OsdsTile>
-        <ActionBanner
-          message={t('quantity_banner')}
-          cta="En savoir plus"
-          onClick={() => {}}
-        />
       </Block>
       <Block>
         <Subtitle>{t('select_commitment')}</Subtitle>
@@ -229,6 +239,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           pricingByDuration.map((pricing) => {
             return (
               <Commitment
+                onClick={() => setCommitmentSelected(pricing.duration)}
+                isActive={commitmentSelected === pricing.duration}
                 duration={pricing.duration}
                 price={pricing.price.toString()}
                 hourlyPriceWithoutCommitment={activeInstance?.hourlyPrice || 0}
@@ -243,7 +255,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <Subtitle>{t('choose_name')}</Subtitle>
         <OsdsInput
           placeholder={t('savings_plan_name_input_placeholder')}
-          aria-label="rancher-name-input"
+          aria-label="savings-plan-name-input"
           type={ODS_INPUT_TYPE.text}
           color={
             isValidName(planName)
@@ -278,26 +290,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
             </OsdsText>
           </OsdsCheckboxButton>
         </OsdsCheckbox>
-        <Links
-          label="Eula microsoft"
-          href="https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/93af107-EULA_MCSFT_VPS_PCI-ALL-1.0.pdf"
-          type={LinkType.external}
-        />
-        <Links
-          label="Conditions générales de service"
-          href="https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/93af107-EULA_MCSFT_VPS_PCI-ALL-1.0.pdf"
-          type={LinkType.external}
-        />
-        <Links
-          label="Data protection agreement"
-          href="https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/7ce0301-OVH_Data_Protection_Agreement-FR-6.2.pdf"
-          type={LinkType.external}
-        />
-        <Links
-          label="Conditions particulieres"
-          href="https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/32ba308-Conditions_particulieres_OVH_Stack-FR-15.0.pdf"
-          type={LinkType.external}
-        />
+        <LegalLinks />
       </Block>
       <div className="flex mt-8">
         <OsdsButton
@@ -310,10 +303,10 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           {t('cta_cancel')}
         </OsdsButton>
         <OsdsButton
-          disabled={!isButtonActive}
+          disabled={!isButtonActive || undefined}
           slot="actions"
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={onCreateRancher}
+          onClick={onCreateSavingsPlan}
         >
           {t('cta_plan')}
         </OsdsButton>
@@ -391,12 +384,10 @@ export const CreatePlanFormContainer = () => {
     },
   ];
 
-  console.log({ instancesInfo });
-
   return (
     <CreatePlanForm
-      instancesInfo={instancesInfo}
       resources={resources}
+      instancesInfo={instancesInfo}
       instanceCategory={instanceCategory}
       setInstanceCategory={setInstanceCategory}
       pricingByDuration={pricingByDuration}

@@ -11,11 +11,16 @@
   "select_quantity_description": "Indiquez le nombre de ressources à inclure dans votre Savings Plan.",
   "quantity_label": "Quantité",
   "quantity_banner": "La quantité maximale de ressources qu'il vous est possible de démarrer dépend du quota de votre projet Public Cloud",
+  "quantity_banner_see_more": "En savoir plus",
   "select_commitment": "Sélectionner la durée d'engagement",
   "select_commitment_description": "Une durée d'engagement plus longue vous accorde une remise plus importante.",
   "choose_name": "Spécifiez un nom",
   "input_name_rules": "Seuls les caractères alphanumériques sont autorisés, ainsi que les _ et -. Limité à 60 caractères.",
   "legal_checkbox": "J'ai pris connaissance et j'accepte les termes des conditions contractuelles suivantes :",
+  "legal_eula_microsoft": "Eula microsoft",
+  "legal_conditions_generales_de_service": "Conditions générales de service",
+  "legal_data_protection_agreement": "Data protection agreement",
+  "legal_conditions_particulieres": "Conditions particulieres",
   "resource_tabs_instance": "Instance",
   "resource_tabs_rancher": "Rancher",
   "resource_tabs_general_purpose": "General purpose",
@@ -28,7 +33,6 @@
   "savings_plan_name_input_placeholder": "MySavingsPlan",
   "commitment_month": "{{value}} mois",
   "commitment_price_month": "HT/mois",
-
   "cta_cancel": "Annuler",
   "cta_plan": "Créer votre Savings Plan"
 }
