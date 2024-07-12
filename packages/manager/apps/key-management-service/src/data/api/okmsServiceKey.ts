@@ -2,7 +2,6 @@ import { ColumnSort } from '@ovhcloud/manager-components';
 import apiClient from '@ovh-ux/manager-core-api';
 import { defaultCompareFunctionSortKey } from './utils';
 import {
-  OkmsServiceKey,
   OkmsAllServiceKeys,
   OkmsServiceKeyPutPayload,
 } from '@/types/okmsServiceKey.type';
@@ -13,7 +12,7 @@ import {
 
 export const getListingOkmsServiceKey = async (
   okmsId: string,
-): Promise<{ data: OkmsServiceKey[] }> => {
+): Promise<{ data: OkmsAllServiceKeys[] }> => {
   return apiClient.v2.get(`okms/resource/${okmsId}/serviceKey`);
 };
 
@@ -22,15 +21,17 @@ export const getOkmsServiceKeyResourceListQueryKey = (okmsId: string) => [
 ];
 
 export const sortOkmsServiceKey = (
-  okms: OkmsServiceKey[],
+  okms: OkmsAllServiceKeys[],
   sorting: ColumnSort,
-): OkmsServiceKey[] => {
+): OkmsAllServiceKeys[] => {
   const data = [...okms];
 
   if (sorting) {
     const { id: sortKey, desc } = sorting;
 
-    data.sort(defaultCompareFunctionSortKey(sortKey as keyof OkmsServiceKey));
+    data.sort(
+      defaultCompareFunctionSortKey(sortKey as keyof OkmsAllServiceKeys),
+    );
     if (desc) {
       data.reverse();
     }

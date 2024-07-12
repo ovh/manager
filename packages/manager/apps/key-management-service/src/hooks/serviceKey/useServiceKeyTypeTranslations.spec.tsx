@@ -8,17 +8,17 @@ describe('get service key type translation ', () => {
     translationKey: string;
   }[] = [
     {
-      type: 'EC',
+      type: OkmsKeyTypes.EC,
       translationKey:
         'key_management_service_service-keys_dashboard_field_type_EC',
     },
     {
-      type: 'RSA',
+      type: OkmsKeyTypes.RSA,
       translationKey:
         'key_management_service_service-keys_dashboard_field_type_RSA',
     },
     {
-      type: 'oct',
+      type: OkmsKeyTypes.oct,
       translationKey:
         'key_management_service_service-keys_dashboard_field_type_oct',
     },
