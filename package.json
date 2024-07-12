@@ -50,6 +50,7 @@
     "@rollup/plugin-commonjs": "11.0.2",
     "@types/react": "18.2.55",
     "@uirouter/angularjs": "1.0.23",
+    "chart.js": "^4.4.3",
     "flatpickr": "4.6.9",
     "graphql": "16.6.0",
     "lodash": "4.17.21",
