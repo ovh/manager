@@ -1,5 +1,6 @@
 import { v2 } from '@ovh-ux/manager-core-api';
 import { AccountBodyParamsType, AccountType } from './type';
+import { getApiPath } from '../utils/apiPath';
 
 // GET
 
@@ -13,7 +14,7 @@ export const getZimbraPlatformAccount = async (
   const params = new URLSearchParams(queryParameters).toString();
   const queryString = params ? `?${params}` : '';
   const { data } = await v2.get<AccountType[]>(
-    `/zimbra/platform/${platformId}/account${queryString}`,
+    `${getApiPath(platformId)}account${queryString}`,
   );
   return data;
 };
@@ -23,7 +24,7 @@ export const getZimbraPlatformAccountDetail = async (
   accountId: string,
 ) => {
   const { data } = await v2.get<AccountType>(
-    `/zimbra/platform/${platformId}/account/${accountId}`,
+    `${getApiPath(platformId)}account/${accountId}`,
   );
   return data;
 };
@@ -34,10 +35,7 @@ export const postZimbraPlatformAccount = async (
   platformId: string,
   params: AccountBodyParamsType,
 ) => {
-  const { data } = await v2.post(
-    `/zimbra/platform/${platformId}/account`,
-    params,
-  );
+  const { data } = await v2.post(`${getApiPath(platformId)}account`, params);
   return data;
 };
 
@@ -49,7 +47,7 @@ export const putZimbraPlatformAccount = async (
   params: AccountBodyParamsType,
 ) => {
   const { data } = await v2.put(
-    `/zimbra/platform/${platformId}/account/${accountId}`,
+    `${getApiPath(platformId)}account/${accountId}`,
     {
       targetSpec: params,
     },
@@ -64,7 +62,7 @@ export const deleteZimbraPlatformAccount = async (
   accountId: string,
 ) => {
   const { data } = await v2.delete(
-    `/zimbra/platform/${platformId}/account/${accountId}`,
+    `${getApiPath(platformId)}account/${accountId}`,
   );
   return data;
 };

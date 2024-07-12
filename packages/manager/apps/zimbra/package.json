@@ -47,7 +47,6 @@
     "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
-    "@jest/globals": "^29.7.0",
     "@ovh-ux/manager-vite-config": "^0.6.2",
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.6",
@@ -58,8 +57,6 @@
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.6.0",
-    "jest": "27.x",
-    "ts-jest": "27.x",
     "typescript": "^4.3.2",
     "vite": "^4.5.0",
     "vitest": "^1.6.0"

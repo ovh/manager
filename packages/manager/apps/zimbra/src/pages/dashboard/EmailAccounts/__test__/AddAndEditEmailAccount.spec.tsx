@@ -2,8 +2,8 @@ import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
-import { cleanup } from '@testing-library/react';
-import { render } from '@/utils/test.provider';
+import { act } from 'react-dom/test-utils';
+import { fireEvent, render } from '@/utils/test.provider';
 import { accountMock, domainMock, platformMock } from '@/api/_mock_';
 import AddAndEditEmailAccount from '../AddAndEditEmailAccount';
 import emailAccountAddAndEditTranslation from '@/public/translations/accounts/addAndEdit/Messages_fr_FR.json';
@@ -59,7 +59,6 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
 
 afterEach(() => {
   vi.restoreAllMocks();
-  cleanup();
 });
 
 describe('email account add and edit page', () => {
@@ -91,5 +90,52 @@ describe('email account add and edit page', () => {
         accountMock[0].targetSpec?.email,
       ),
     );
+  });
+
+  it('check validity form', () => {
+    const { getByTestId } = render(<AddAndEditEmailAccount />);
+
+    const button = getByTestId('confirm-btn');
+    const inputAccount = getByTestId('input-account');
+    const selectDomain = getByTestId('select-domain');
+    const inputPassword = getByTestId('input-password');
+
+    expect(button).not.toBeEnabled();
+
+    act(() => {
+      inputAccount.odsInputBlur.emit({ name: 'account', value: '' });
+    });
+
+    expect(inputAccount).toHaveAttribute('color', 'error');
+
+    act(() => {
+      fireEvent.change(inputAccount, { target: { value: 'account' } });
+      fireEvent.change(selectDomain, { target: { value: 'domain' } });
+      fireEvent.change(inputPassword, {
+        target: { value: 'PasswordWithGoodPattern1&' },
+      });
+      // it seems we have to manually trigger the ods event
+      inputAccount.odsValueChange.emit({ name: 'account', value: 'account' });
+      selectDomain.odsValueChange.emit({ name: 'domain', value: 'domain' });
+      inputPassword.odsValueChange.emit({
+        name: 'password',
+        value: 'PasswordWithGoodPattern1&',
+      });
+    });
+
+    expect(inputAccount).toHaveAttribute('color', 'default');
+    expect(button).toBeEnabled();
+
+    act(() => {
+      fireEvent.change(inputPassword, {
+        target: { value: 'PasswordWithGoodPattern1&' },
+      });
+      // it seems we have to manually trigger the ods event
+      inputPassword.odsValueChange.emit({
+        name: 'password',
+        value: 'PasswordWithoutGoodPattern',
+      });
+    });
+    expect(button).not.toBeEnabled();
   });
 });

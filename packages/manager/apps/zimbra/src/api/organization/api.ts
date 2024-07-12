@@ -1,11 +1,12 @@
 import { v2 } from '@ovh-ux/manager-core-api';
 import { OrganizationBodyParamsType, OrganizationType } from './type';
+import { getApiPath } from '../utils/apiPath';
 
 // GET
 
 export const getZimbraPlatformOrganization = async (platformId: string) => {
   const { data } = await v2.get<OrganizationType[]>(
-    `/zimbra/platform/${platformId}/organization`,
+    `${getApiPath(platformId)}organization`,
   );
   return data;
 };
@@ -15,7 +16,7 @@ export const getZimbraPlatformOrganizationDetails = async (
   organizationId: string,
 ) => {
   const { data } = await v2.get(
-    `/zimbra/platform/${platformId}/organization/${organizationId}`,
+    `${getApiPath(platformId)}organization/${organizationId}`,
   );
   return data;
 };
@@ -27,7 +28,7 @@ export const postZimbraPlatformOrganization = async (
   params: OrganizationBodyParamsType,
 ) => {
   const { data } = await v2.post(
-    `/zimbra/platform/${platformId}/organization`,
+    `${getApiPath(platformId)}organization`,
     params,
   );
   return data;
@@ -40,10 +41,8 @@ export const putZimbraPlatformOrganization = async (
   organizationId: string,
   params: OrganizationBodyParamsType,
 ) => {
-  const {
-    data,
-  } = await v2.put(
-    `/zimbra/platform/${platformId}/organization/${organizationId}`,
+  const { data } = await v2.put(
+    `${getApiPath(platformId)}organization/${organizationId}`,
     { targetSpec: params },
   );
   return data;
@@ -56,7 +55,7 @@ export const deleteZimbraPlatformOrganization = async (
   organizationId: string,
 ) => {
   const { data } = await v2.delete(
-    `/zimbra/platform/${platformId}/organization/${organizationId}`,
+    `${getApiPath(platformId)}organization/${organizationId}`,
   );
   return data;
 };

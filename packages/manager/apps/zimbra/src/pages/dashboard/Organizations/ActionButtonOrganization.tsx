@@ -8,7 +8,7 @@ interface ActionButtonOrganizationProps {
   organizationItem: OrganizationItem;
 }
 
-export const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
+const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
   organizationItem,
 }) => {
   const { t } = useTranslation('organizations');
@@ -40,3 +40,5 @@ export const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> =
 
   return <ActionMenu items={actionItems} isCompact />;
 };
+
+export default ActionButtonOrganization;

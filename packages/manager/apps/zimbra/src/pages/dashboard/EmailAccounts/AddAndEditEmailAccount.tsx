@@ -372,6 +372,7 @@ export default function AddAndEditAccount() {
                   }}
                   required
                   className="rounded-r-none border-r-0 w-1/2"
+                  data-testid="input-account"
                 ></OsdsInput>
                 <OsdsInput
                   type={ODS_INPUT_TYPE.text}
@@ -386,11 +387,16 @@ export default function AddAndEditAccount() {
                   name="domain"
                   value={form.domain.value}
                   className="rounded-l-none border-l-0 w-1/2"
-                  color={ODS_THEME_COLOR_INTENT.default}
+                  color={
+                    form.domain.hasError
+                      ? ODS_THEME_COLOR_INTENT.error
+                      : ODS_THEME_COLOR_INTENT.default
+                  }
                   required
                   onOdsValueChange={(e) =>
                     handleDomainChange(e.detail.value as string)
                   }
+                  data-testid="select-domain"
                 >
                   <span slot="placeholder">
                     {t('zimbra_account_add_select_domain_placeholder')}
@@ -612,6 +618,7 @@ export default function AddAndEditAccount() {
                   onOdsValueChange={({ detail: { name, value } }) => {
                     handleFormChange(name, value);
                   }}
+                  data-testid="input-password"
                 ></OsdsPassword>
                 <div slot="helper">
                   <OsdsText
@@ -650,6 +657,7 @@ export default function AddAndEditAccount() {
                     ? handleModifyAccountClick
                     : handleNewAccountClick
                 }
+                data-testid="confirm-btn"
               >
                 {!editAccountDetail
                   ? t('zimbra_account_add_button_confirm')

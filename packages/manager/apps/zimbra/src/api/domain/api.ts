@@ -1,5 +1,6 @@
 import { v2, v6 } from '@ovh-ux/manager-core-api';
 import { DomainBodyParamsType, DomainType } from './type';
+import { getApiPath } from '../utils/apiPath';
 
 // GET
 
@@ -8,7 +9,7 @@ export const getZimbraPlatformDomains = async (
   organizationId?: string,
 ) => {
   const { data } = await v2.get<DomainType[]>(
-    `/zimbra/platform/${platformId}/domain${
+    `${getApiPath(platformId)}domain${
       organizationId ? `?organizationId=${organizationId}` : ''
     }`,
   );
@@ -26,10 +27,7 @@ export const postZimbraDomain = async (
   platformId: string,
   params: DomainBodyParamsType,
 ) => {
-  const { data } = await v2.post(
-    `/zimbra/platform/${platformId}/domain`,
-    params,
-  );
+  const { data } = await v2.post(`${getApiPath(platformId)}domain`, params);
   return data;
 };
 
@@ -40,7 +38,7 @@ export const deleteZimbraPlatformDomain = async (
   domainId: string,
 ) => {
   const { data } = await v2.delete(
-    `/zimbra/platform/${platformId}/domain/${domainId}`,
+    `${getApiPath(platformId)}domain/${domainId}`,
   );
   return data;
 };

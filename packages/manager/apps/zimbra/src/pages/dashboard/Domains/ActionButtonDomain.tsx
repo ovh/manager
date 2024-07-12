@@ -17,7 +17,7 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
   const { platformUrn } = usePlatform();
   const actionItems = [
     {
-      id: 2,
+      id: 1,
       href: hrefDeleteDomain,
       label: t('zimbra_domains_tooltip_delete'),
       urn: platformUrn,
