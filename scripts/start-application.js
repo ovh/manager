@@ -49,7 +49,7 @@ const getApplications = () =>
  */
 const questions = [
   {
-    type: 'list',
+    type: 'search-list',
     name: 'packageName',
     message: 'Which application do you want to start?',
     choices: getApplications,
@@ -86,6 +86,8 @@ async function getApplicationId(packageName) {
     ].location,
   );
 }
+
+inquirer.registerPrompt('search-list', require('inquirer-search-list'));
 
 inquirer
   .prompt(questions)
