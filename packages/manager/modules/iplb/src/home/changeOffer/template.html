@@ -54,11 +54,11 @@
                     ></span>
                 </oui-checkbox>
                 <li
-                    data-ng-repeat="contrat in $ctrl.model.selectedOffer.order.contracts track by $index"
+                    data-ng-repeat="contract in $ctrl.model.selectedOffer.order.contracts track by $index"
                     class="list-group-item border-0 p-0"
                 >
-                    <a target="_blank" rel="noopener" href="{{::contrat.url}}">
-                        <span data-ng-bind="::contrat.name"></span>
+                    <a target="_blank" rel="noopener" href="{{::contract.url}}">
+                        <span data-ng-bind="::contract.name"></span>
                         <span
                             class="oui-icon oui-icon-external-link"
                             aria-hidden="true"

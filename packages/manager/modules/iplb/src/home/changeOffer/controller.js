@@ -1,7 +1,7 @@
 import { LB2_PLANCODE } from '../iplb-home.constants';
 import { OFFERS_LABELS } from './constants';
 
-export default class OctaviaLoadBalancerDeleteCtrl {
+export default class IpLoadBalancerUpgradeCtrl {
   /* @ngInject */
   constructor(
     $translate,
@@ -9,7 +9,6 @@ export default class OctaviaLoadBalancerDeleteCtrl {
     IpLoadBalancerChangeOfferService,
     coreConfig,
   ) {
-    this.isLoading = false;
     this.$translate = $translate;
     this.$window = $window;
     this.user = coreConfig.getUser();
