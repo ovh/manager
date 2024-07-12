@@ -72,6 +72,7 @@
                     data-ng-if="$ctrl.constructor.isIPv6(service)"
                     data-ng-show="$ctrl.isSelected(service.trueServiceType, service.id)"
                     data-loader="service.loader"
+                    data-is-pending="$ctrl.isPending(service.id)"
                     data-service-name="$ctrl.serviceName"
                     data-add-subnet-modal-context="$ctrl.addSubnetModalContext"
                     data-delete-subnet-modal-context="$ctrl.deleteSubnetModalContext"
