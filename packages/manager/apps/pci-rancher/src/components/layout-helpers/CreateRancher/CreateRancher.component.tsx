@@ -17,7 +17,7 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { PciDiscoveryBanner } from '@ovh-ux/manager-pci-common';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMedia } from 'react-use';
@@ -120,7 +120,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const [selectedVersion, setSelectedVersion] = useState(null);
 
   const navigate = useNavigate();
-  const { data: project } = useProject(projectId);
+  const { data: project } = useProject();
 
   const isValidName = rancherName !== '' && isValidRancherName(rancherName);
   const hasInputError = rancherName !== '' && !isValidName;
