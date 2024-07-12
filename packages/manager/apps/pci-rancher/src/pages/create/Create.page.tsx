@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import { PageLayout, useProject } from '@ovh-ux/manager-react-components';
-import { isDiscoveryProject } from '@ovh-ux/manager-pci-common';
+import { PageLayout } from '@ovh-ux/manager-react-components';
+import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import { getRancherPlan, getReferenceRancherInfo } from '@/data/api/services';
 import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRancher.component';
 import useCreateRancher from '@/data/hooks/useCreateRancher/useCreateRancher';

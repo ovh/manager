@@ -17,7 +17,6 @@ import {
   Notifications,
   PciGuidesHeader,
   useNotifications,
-  useProject,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
@@ -26,6 +25,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   isDiscoveryProject,
   PciDiscoveryBanner,
+  useProject,
 } from '@ovh-ux/manager-pci-common';
 import { SizeStep } from '@/pages/add/SizeStep';
 import { LocationStep } from '@/pages/add/LocationStep';
@@ -41,7 +41,7 @@ export default function AddGatewayPage(): JSX.Element {
   const { t: tEdit } = useTranslation('edit');
   const { clearNotifications } = useNotifications();
   const { projectId } = useParams();
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const store = useNewGatewayStore();
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
