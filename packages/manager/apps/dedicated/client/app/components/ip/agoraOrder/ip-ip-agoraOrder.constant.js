@@ -19,13 +19,6 @@ export const IP_FAILOVER_PLANCODE = {
   US: 'ip-failover-arin',
 };
 
-export const SURVEY_LANGUAGES = {
-  ALLOWED: ['fr'],
-  DEFAULT: 'en',
-};
-
-export const BASE_URL_SURVEY = 'https://survey.ovh.com/index.php/863655?lang=';
-
 export default {
   ADDITIONAL_IP,
   TRACKING_PREFIX,
@@ -34,6 +27,4 @@ export default {
   DASHBOARD_STATE_NAME,
   IP_TYPE,
   ALERT_ID,
-  SURVEY_LANGUAGES,
-  BASE_URL_SURVEY,
 };
