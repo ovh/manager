@@ -13,15 +13,15 @@ import {
 import {
   isDiscoveryProject,
   PciDiscoveryBanner,
+  TProject,
 } from '@ovh-ux/manager-pci-common';
-import { Project } from '@/api/data/project';
 import { useAllUsers } from '@/api/hooks/useUser';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation('common');
   const { projectId } = useParams();
   const navigation = useNavigation();
-  const project = useRouteLoaderData('users') as Project;
+  const project = useRouteLoaderData('users') as TProject;
   const [urlProject, setUrlProject] = useState('');
   const navigate = useNavigate();
   const { data: users, isLoading } = useAllUsers(projectId);
