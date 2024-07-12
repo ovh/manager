@@ -4,8 +4,8 @@ export const FRAUD_STATUS = {
   REQUIRED: 'required',
 };
 
-export const REGIONS = {
-  US: 'US',
+export const FEATURES = {
+  proceduresFraud: 'procedures:fraud',
 };
 
 const TRACK_IMPRESSION = {
