@@ -43,11 +43,16 @@
   "copiedSuccessMessage": "Kopiert",
   "action-editSubnetDisplayName": "Subnetznamen ändern",
   "action-deleteSubnet": "Subnetz löschen",
-  "modalSubnetUpdateHeadline": "Subnetznamen ändern",
-  "modalSubnetUpdateDescription": "",
-  "subnetUpdateDisplayNameInputLabel": "Name des Subnetzes",
+  "modalSubnetUpdateHeadline": "Subnetz bearbeiten",
+  "modalSubnetUpdateDescription": "Sie können den Namen des Subnetzes, die Größe des Adressbereichs und den Dienstadressbereich ändern.",
+  "subnetUpdateDisplayNameInputLabel": "Name",
   "subnetCreationPending": "Ihr Subnetz wird konfiguriert.",
   "subnetCreationSuccess": "Ihr Subnetz wurde erfolgreich auf dem vRack Services {{id}} konfiguriert.",
-  "subnetUpdateSuccess": "Ihr Subnetz wurde erfolgreich auf dem vRack Services {{id}} aktualisiert.",
-  "subnetDeleteSuccess": "Ihr Subnetz {{cidr}} wurde aus dem vRack Services {{id}} entfernt."
+  "subnetUpdateSuccess": "Ihr Subnetz wurde im vRack Services {{id}} geändert.",
+  "subnetDeleteSuccess": "Ihr Subnetz {{cidr}} wurde aus dem vRack Services {{id}} entfernt.",
+  "action-editSubnet": "Subnetz bearbeiten",
+  "subnetUpdateError": "Bei der Aktualisierung Ihres Subnetzes ist ein Fehler aufgetreten: {{error}}.",
+  "subnetUpdatePending": "Subnetz wird geändert",
+  "modalSubnetUpdateCancelButton": "Abbrechen",
+  "modalSubnetUpdateConfirmButton": "Ändern"
 }
