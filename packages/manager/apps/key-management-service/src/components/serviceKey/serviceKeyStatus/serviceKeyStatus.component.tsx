@@ -22,42 +22,42 @@ export const ServiceKeyStatus = ({ state, ...props }: KeyStatusProps) => {
   let color: OdsChipAttribute['color'];
 
   switch (state) {
-    case 'ACTIVE':
+    case OkmsServiceKeyState.active:
       label = t(
         'key_management_service_service-keys_dashboard_field_state_active',
       );
       color = ODS_TEXT_COLOR_INTENT.success;
       break;
 
-    case 'COMPROMISED':
+    case OkmsServiceKeyState.compromised:
       label = t(
         'key_management_service_service-keys_dashboard_field_state_compromised',
       );
       color = ODS_TEXT_COLOR_INTENT.warning;
       break;
 
-    case 'DEACTIVATED':
+    case OkmsServiceKeyState.deactivated:
       label = t(
         'key_management_service_service-keys_dashboard_field_state_deactivated',
       );
       color = ODS_TEXT_COLOR_INTENT.warning;
       break;
 
-    case 'DESTROYED':
+    case OkmsServiceKeyState.destroyed:
       label = t(
         'key_management_service_service-keys_dashboard_field_state_destroyed',
       );
       color = ODS_TEXT_COLOR_INTENT.error;
       break;
 
-    case 'DESTROYED_COMPROMISED':
+    case OkmsServiceKeyState.destroyed_compromised:
       label = t(
         'key_management_service_service-keys_dashboard_field_state_destroyed_compromised',
       );
       color = ODS_TEXT_COLOR_INTENT.error;
       break;
 
-    case 'PRE_ACTIVE':
+    case OkmsServiceKeyState.pre_active:
       label = t(
         'key_management_service_service-keys_dashboard_field_state_pre_active',
       );

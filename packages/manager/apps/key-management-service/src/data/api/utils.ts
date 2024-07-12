@@ -1,5 +1,5 @@
 import { OKMS } from '@/types/okms.type';
-import { OkmsServiceKey } from '@/types/okmsServiceKey.type';
+import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
 
 export const defaultCompareFunction = (key: keyof OKMS) => (
   a: OKMS,
@@ -11,10 +11,9 @@ export const defaultCompareFunction = (key: keyof OKMS) => (
   return (aValue as string).localeCompare(bValue as string);
 };
 
-export const defaultCompareFunctionSortKey = (key: keyof OkmsServiceKey) => (
-  a: OkmsServiceKey,
-  b: OkmsServiceKey,
-) => {
+export const defaultCompareFunctionSortKey = (
+  key: keyof OkmsAllServiceKeys,
+) => (a: OkmsAllServiceKeys, b: OkmsAllServiceKeys) => {
   const aValue = a[key] || '';
   const bValue = b[key] || '';
 
