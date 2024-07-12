@@ -28,7 +28,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
+import { useFeatureAvailability } from '@ovhcloud/manager-components';
 import { getVrackServicesResourceListQueryKey } from '@/api';
 import { VrackServicesDatagrid } from '@/pages/listing/components/VrackServicesDataGrid';
 import { PageLayout } from '@/components/layout-helpers';
