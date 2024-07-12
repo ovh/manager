@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import apiClient from '@ovh-ux/manager-core-api';
 
 import { ErrorResponse } from '@/types/api.type';
 import {
@@ -10,10 +9,11 @@ import {
   sortOkmsServiceKey,
 } from '../api/okmsServiceKey';
 import {
-  OkmsServiceKey,
   OkmsAllServiceKeys,
   OkmsServiceKeyOptions,
 } from '@/types/okmsServiceKey.type';
+
+/* Service Key List */
 
 export const useAllOkmsServiceKeys = (okmsId: string) => {
   return useQuery({
@@ -44,17 +44,7 @@ export const useOkmsServiceKeys = ({
   };
 };
 
-// export const useOkmsServiceKeyById = (okmsId: string, keyId: string) => {
-//   return useQuery<{ data: OkmsServiceKey }, ErrorResponse>({
-//     queryKey: getOkmsServiceKeyResourceQueryKey(okmsId, keyId),
-//     queryFn: () => getOkmsServiceKeyResource(okmsId, keyId),
-
-export const getOkmsServiceKeyResource = async (
-  okmsId: string,
-  keyId: string,
-): Promise<{ data: OkmsServiceKey }> => {
-  return apiClient.v2.get(`okms/resource/${okmsId}/sercviceKey/${keyId}`);
-};
+/* Service Key */
 
 export const useOkmsServiceKeyById = ({
   okmsId,

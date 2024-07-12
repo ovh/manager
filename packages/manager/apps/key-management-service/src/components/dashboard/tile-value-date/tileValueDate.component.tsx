@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
-import { TileValue } from '../tileValue/tileValue.component';
+import { TileValue } from '../tile-value/tileValue.component';
 
 type FormattedDateProps = {
   value: string;
