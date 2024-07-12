@@ -7,5 +7,9 @@
   "autorenew_agora_terminate_service_DBAAS_LOGS": "Cancel my LDP",
   "autorenew_agora_terminate_service_warning_DBAAS_LOGS": "Please confirm the cancellation of your LDP",
   "autorenew_agora_terminate_service_success_DBAAS_LOGS": "Your LDP cancellation request has been submitted. You have been sent an email detailing the procedure to follow.",
-  "autorenew_agora_terminate_service_error_DBAAS_LOGS": "An error has occurred submitting your LDP cancellation request. {{error}}"
+  "autorenew_agora_terminate_service_error_DBAAS_LOGS": "An error has occurred submitting your LDP cancellation request. {{error}}",
+  "autorenew_agora_terminate_service_VRACK_SERVICES_RESOURCE": "Cancel vRack Services",
+  "autorenew_agora_terminate_service_warning_VRACK_SERVICES_RESOURCE": "Please confirm the cancellation of vRack Services",
+  "autorenew_agora_terminate_service_success_VRACK_SERVICES_RESOURCE": "Your request to cancel vRack Services has been processed. You have been sent an email detailing the procedure to follow.",
+  "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "An error has occurred cancelling vRack Services. {{error}}"
 }
