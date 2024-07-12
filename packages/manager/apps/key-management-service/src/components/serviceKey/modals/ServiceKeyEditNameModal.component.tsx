@@ -58,23 +58,19 @@ export const ServiceKeyEditNameModal = ({
         return t(
           'key_management_service_service-keys_update_name_error_min_max',
         );
-        break;
 
       case 'INVALID_CHARACTERS':
         return t(
           'key_management_service_service-keys_update_name_error_invalid_characters',
         );
-        break;
 
       case 'TOO_MANY_CHARACTERS':
         return t(
           'key_management_service_service-keys_update_name_error_min_max',
         );
-        break;
 
       default:
         return undefined;
-        break;
     }
   };
 

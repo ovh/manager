@@ -10,18 +10,14 @@ export const useServiceKeyTypeTranslations = (
   const { t } = useTranslation('key-management-service/serviceKeys');
 
   switch (type) {
-    case 'EC':
+    case OkmsKeyTypes.EC:
       return t('key_management_service_service-keys_dashboard_field_type_EC');
-      break;
-    case 'RSA':
+    case OkmsKeyTypes.RSA:
       return t('key_management_service_service-keys_dashboard_field_type_RSA');
-      break;
-    case 'oct':
+    case OkmsKeyTypes.oct:
       return t('key_management_service_service-keys_dashboard_field_type_oct');
-      break;
 
     default:
       return type;
-      break;
   }
 };
