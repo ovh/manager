@@ -17,8 +17,7 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import { PublicCloudProject } from '@ovhcloud/manager-components/src/hooks/pci-project-provider/publicCloudProject.interface';
-import { PciDiscoveryBanner } from '@ovh-ux/manager-pci-common';
+import { PciDiscoveryBanner, TProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from '@/pages/onboarding/OnBoardingGuard';
@@ -31,7 +30,7 @@ export default function OnBoardingPage() {
   const context = useContext(ShellContext);
   const { navigation, tracking } = context.shell;
   const { ovhSubsidiary } = context.environment.getUser();
-  const project = useRouteLoaderData('public-gateway') as PublicCloudProject;
+  const project = useRouteLoaderData('public-gateway') as TProject;
   const [urlProject, setUrlProject] = useState('');
   const navigate = useNavigate();
 

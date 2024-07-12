@@ -1,4 +1,4 @@
-import { getProjectQuery } from '@ovhcloud/manager-components';
+import { getProjectQuery } from '@ovh-ux/manager-pci-common';
 import queryClient from '@/queryClient';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({

@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PageLayout } from '@ovhcloud/manager-components';
-import { isDiscoveryProject } from '@ovh-ux/manager-pci-common';
+import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import { getRancherPlan, getReferenceRancherInfo } from '@/data/api/services';
 import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRancher.component';
 import useCreateRancher from '@/data/hooks/useCreateRancher/useCreateRancher';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import { getRanchersUrl } from '@/utils/route';
-import usePciProject from '@/hooks/usePciProject';
 import { RancherService } from '@/types/api.type';
 import { ranchersQueryKey } from '@/data/hooks/useRancher/useRancher';
 import {
@@ -34,7 +33,7 @@ export default function Create() {
   useTrackingPage(TrackingPageView.CreateRancher);
   const trackingPage = useSimpleTrackingPage();
 
-  const { data: project } = usePciProject();
+  const { data: project } = useProject();
 
   const ranchersQueryKeyValue = ranchersQueryKey(projectId);
 
