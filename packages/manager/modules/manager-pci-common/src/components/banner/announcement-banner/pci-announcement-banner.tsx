@@ -26,7 +26,7 @@ export function PciAnnouncementBanner({
     <>
       {isBannerVisible && (
         <ActionBanner
-          description={t('pci_projects_beta_public_cloud_banner_info')}
+          message={t('pci_projects_beta_public_cloud_banner_info')}
           cta={t('pci_projects_beta_public_cloud_banner_info_link')}
           onClick={onGoToRegion}
         />

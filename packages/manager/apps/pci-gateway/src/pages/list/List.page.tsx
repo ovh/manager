@@ -6,7 +6,6 @@ import {
   PciGuidesHeader,
   useColumnFilters,
   useDataGrid,
-  useProject,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -37,7 +36,7 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { PciDiscoveryBanner } from '@ovh-ux/manager-pci-common';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import { useAggregatedGateway } from '@/api/hooks/useGateway';
 import ListGuard from '@/pages/list/ListGuard';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
@@ -54,7 +53,7 @@ export default function ListingPage() {
   const { navigation, tracking } = useContext(ShellContext).shell;
   const { projectId } = useParams();
   const [searchField, setSearchField] = useState('');
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
 

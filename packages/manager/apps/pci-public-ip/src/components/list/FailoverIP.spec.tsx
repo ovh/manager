@@ -70,6 +70,22 @@ vi.mock('react-router-dom', () => ({
   },
 }));
 
+vi.mock('@ovh-ux/manager-react-shell-client', () => {
+  const navigateTo = vi.fn();
+  return {
+    useNavigation: () => {
+      return {
+        navigateTo,
+      };
+    },
+  };
+});
+
+vi.mock('@ovh-ux/manager-pci-common', () => ({
+  useProject: vi.fn(() => ({ data: {} })),
+  PciAnnouncementBanner: () => <div>PciAnnouncementBanner</div>,
+}));
+
 const renderFailover = (props: FailoverIPComponentProps) => {
   const queryClient = new QueryClient();
 
@@ -108,24 +124,6 @@ describe('FailoverIP component tests', () => {
     const { container } = renderFailover(props);
 
     expect(container).toContainHTML('<div>PciAnnouncementBanner</div>');
-  });
-
-  it('should not display the PciAnnouncementBanner component when displayAnnouncementBanner is falsy ', () => {
-    vi.spyOn(managerComponentsModule, 'useFeatureAvailability').mockReturnValue(
-      {
-        data: { 'public-cloud:pci-announcement-banner': false },
-        isLoading: true,
-      } as managerComponentsModule.UseFeatureAvailabilityResult,
-    );
-
-    const props = {
-      projectId: 'project-id-123456',
-      projectUrl: 'https://project-url',
-    };
-
-    const { container } = renderFailover(props);
-
-    expect(container).not.toContainHTML('<div>PciAnnouncementBanner</div>');
   });
 
   it('should display Error message when error is defined', () => {

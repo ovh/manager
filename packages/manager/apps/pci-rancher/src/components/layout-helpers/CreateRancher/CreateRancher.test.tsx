@@ -47,6 +47,11 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
+jest.mock('@ovh-ux/manager-pci-common', () => ({
+  useProject: jest.fn(() => ({ data: {} })),
+  PciDiscoveryBanner: () => <></>,
+}));
+
 jest.mock('@ovh-ux/manager-react-shell-client', () => ({
   useNavigation: jest.fn(() => ({
     getURL: jest.fn(() => Promise.resolve('123')),
