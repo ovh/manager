@@ -448,7 +448,6 @@ export default class PciStoragesContainersService {
       .put(url, {
         versioning,
       })
-      .then(({ data }) => data)
       .then(() => {
         return this.$q.resolve();
       });
