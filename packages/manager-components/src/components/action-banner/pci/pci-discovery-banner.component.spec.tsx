@@ -29,7 +29,9 @@ describe('PciDiscoveryBanner tests', () => {
     renderComponent({
       projectId: '123',
     });
-    const cta = screen.getByText(trans.pci_projects_project_activate_project_banner_cta);
+    const cta = screen.getByText(
+      trans.pci_projects_project_activate_project_banner_cta,
+    );
     expect(navigateTo).not.toHaveBeenCalled();
     fireEvent.click(cta);
     expect(navigateTo).toHaveBeenCalledWith(

@@ -7,7 +7,7 @@ import { renderHook } from '@testing-library/react';
 import { pciAnnouncementBannerId } from '@/constants';
 import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
 
-vi.mock('@ovh-ux/manager-react-core-application', () => ({
+vi.mock('@ovhcloud/manager-components', () => ({
   useFeatureAvailability: vi.fn(),
 }));
 
