@@ -43,11 +43,16 @@
   "copiedSuccessMessage": "Skopiowano",
   "action-editSubnetDisplayName": "Zmień nazwę podsieci",
   "action-deleteSubnet": "Usuń podsieć",
-  "modalSubnetUpdateHeadline": "Zmień nazwę podsieci",
-  "modalSubnetUpdateDescription": "",
-  "subnetUpdateDisplayNameInputLabel": "Nazwa podsieci",
+  "modalSubnetUpdateHeadline": "Zmień podsieć",
+  "modalSubnetUpdateDescription": "Możesz zmienić nazwę podsieci, rozmiar zakresu adresów i zakres adresów usług.",
+  "subnetUpdateDisplayNameInputLabel": "Nazwa",
   "subnetCreationPending": "Trwa konfigurowanie podsieci",
   "subnetCreationSuccess": "Twoja podsieć została skonfigurowana w vRack Services {{id}}.",
-  "subnetUpdateSuccess": "Twoja podsieć została zaktualizowana w vRack Services {{id}}.",
-  "subnetDeleteSuccess": "Podsieć {{cidr}} została usunięta z vRack Services {{id}}."
+  "subnetUpdateSuccess": "Twoja podsieć została zmieniona w vRack Services {{id}}.",
+  "subnetDeleteSuccess": "Podsieć {{cidr}} została usunięta z vRack Services {{id}}.",
+  "action-editSubnet": "Zmień podsieć",
+  "subnetUpdateError": "Wystąpił błąd podczas aktualizacji Twojej podsieci: {{error}}.",
+  "subnetUpdatePending": "Trwa modyfikacja podsieci",
+  "modalSubnetUpdateCancelButton": "Anuluj",
+  "modalSubnetUpdateConfirmButton": "Zmień"
 }
