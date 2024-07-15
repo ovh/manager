@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.21.1...@ovh-ux/manager-dbaas-logs@1.22.0) (2024-07-15)
+
+
+### Features
+
+* **dedicated.dbaas:** add regions to city tiles ([#12099](https://github.com/ovh/manager/issues/12099)) ([9d507d4](https://github.com/ovh/manager/commit/9d507d43b16f6df83c1dd047a5e1cd3c17e4b48a))
+* **dedicated.ldp:** fix wrong US guide links for LDP ([#12091](https://github.com/ovh/manager/issues/12091)) ([0a8df83](https://github.com/ovh/manager/commit/0a8df836633ebe07c9832bcf7c028593cf03fd6c))
+
+
+
+
+
 ## [1.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.21.0...@ovh-ux/manager-dbaas-logs@1.21.1) (2024-06-25)
 
 

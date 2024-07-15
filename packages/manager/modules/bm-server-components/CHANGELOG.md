@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.25.3...@ovh-ux/manager-bm-server-components@1.26.0) (2024-07-15)
+
+
+### Features
+
+* **dedicated.server:** hide backup tab if not orderable ([#12197](https://github.com/ovh/manager/issues/12197)) ([7eee615](https://github.com/ovh/manager/commit/7eee615b336e7a470c963ed320660c845d5257fa))
+* **dedicated:** os installation wizard diskgroup - bundle ([#11608](https://github.com/ovh/manager/issues/11608)) ([2fcbfac](https://github.com/ovh/manager/commit/2fcbface9f72714cc39bed9a3e5d50489ac252e5))
+* **dedicated:** post-installation script options ([#12173](https://github.com/ovh/manager/issues/12173)) ([7c1bcba](https://github.com/ovh/manager/commit/7c1bcbac76dfebc740031843501a8720202555ae))
+* **dedicate:** remove fail over ip label form network iface ([#10637](https://github.com/ovh/manager/issues/10637)) ([6c7d71f](https://github.com/ovh/manager/commit/6c7d71f68925ce3aa7b51ef9a30aa0b2326ffdde))
+
+
+
+
+
 ## [1.25.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.25.2...@ovh-ux/manager-bm-server-components@1.25.3) (2024-07-09)
 
 

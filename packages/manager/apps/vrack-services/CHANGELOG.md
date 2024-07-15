@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.4.4...@ovh-ux/manager-vrack-services-app@0.5.0) (2024-07-15)
+
+
+### Features
+
+* **vrack-services:** hide order ([#12182](https://github.com/ovh/manager/issues/12182)) ([fc17c1e](https://github.com/ovh/manager/commit/fc17c1e1eec54456f7c3b38b61f5000219796ba6))
+
+
+
+
+
 ## [0.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.4.3...@ovh-ux/manager-vrack-services-app@0.4.4) (2024-07-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
