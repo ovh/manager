@@ -1,4 +1,6 @@
 {
   "vrack_title": "vRack private network",
-  "vrack_order": "Order"
+  "vrack_order": "Order",
+  "list_layout_like_this": "Like it?",
+  "list_layout_like_this_tooltip": "Like this page? Send us your feedback!"
 }

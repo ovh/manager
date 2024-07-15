@@ -1,4 +1,6 @@
 {
   "vrack_title": "Das private Netzwerk vRack",
-  "vrack_order": "Bestellen"
+  "vrack_order": "Bestellen",
+  "list_layout_like_this": "Gefällt Ihnen das?",
+  "list_layout_like_this_tooltip": "Gefällt Ihnen diese Seite? Teilen Sie uns Ihre Anmerkungen mit!"
 }

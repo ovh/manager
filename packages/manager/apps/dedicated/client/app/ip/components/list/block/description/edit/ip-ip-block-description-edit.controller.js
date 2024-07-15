@@ -47,7 +47,10 @@ export default /* @ngInject */ (
             $translate.instant('ip_description_edit_failure', {
               t0: $scope.data.ipBlock.ipBlock,
             }),
-            reason,
+            {
+              ...reason,
+              type: 'error',
+            },
           );
         },
       )

@@ -21,10 +21,20 @@ import './vrack-mapper.less';
 import actionsPartials from '../partials/actions.html';
 import availablePartials from '../partials/available.html';
 import component from './vrack.component';
+import service from './vrack.service';
 import mappedPartials from '../partials/mapped.html';
 import routing from './vrack.routing';
 import vrackAdd from '../add';
+import vrackSelectDialog from '../select-dialog';
+import vrackAddDialog from '../add-dialog';
+import vrackDeleteDialog from '../delete-dialog';
+import vrackAssignedIp from '../vrack-associated-services/ipv6';
 import vrackMoveDialog from '../move-dialog/vrack-move-dialog.module';
+
+import vrackDeleteModal from '../vrack-associated-services/ipv6/delete-dialog';
+import vrackAddModal from '../vrack-associated-services/ipv6/add-dialog';
+import IPv6SubnetAddModal from '../vrack-associated-services/ipv6/add-subnet';
+import IPv6SubnetDeleteModal from '../vrack-associated-services/ipv6/delete-subnet';
 
 const moduleName = 'ovhManagerVrackDetails';
 
@@ -39,9 +49,18 @@ angular
     'ngOvhToaster',
     'ui.router',
     ngOvhFeatureFlipping,
+    vrackAssignedIp,
+    IPv6SubnetAddModal,
+    IPv6SubnetDeleteModal,
     vrackAdd,
+    vrackSelectDialog,
+    vrackAddDialog,
+    vrackDeleteDialog,
     vrackMoveDialog,
+    vrackAddModal,
+    vrackDeleteModal,
   ])
+  .service('vrackService', service)
   .component('ovhManagerVrackComponent', component)
   .config(routing)
   .run(

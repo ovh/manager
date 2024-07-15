@@ -7,6 +7,7 @@ import punycode from 'punycode';
 
 import {
   IP_TYPE,
+  SUB_RANGE,
   TRACKING_PREFIX,
   BADGE_BYOIP,
   BADGE_FO,
@@ -92,6 +93,7 @@ export default class IpListController {
     let cancelFetch;
 
     $scope.IP_TYPE = IP_TYPE;
+    $scope.SUB_RANGE = SUB_RANGE;
     $scope.ADDITIONAL_IP = ADDITIONAL_IP;
     $scope.FILTER_OPTIONS = FILTER_OPTIONS;
     $scope.VRACK = VRACK;
@@ -165,11 +167,19 @@ export default class IpListController {
     }
 
     function checkIps(ipBlock) {
+      const isAdditionalIpv6 =
+        (ipBlock.version === IP_TYPE.V6 &&
+          (ipBlock.type === FAILOVER || ipBlock.type === VRACK)) ||
+        false;
+      const isIPv6Failover =
+        ipBlock.version === IP_TYPE.V6 && ipBlock.type === FAILOVER;
       if (!(ipBlock.ips && ipBlock.ips.length)) {
         Object.assign(ipBlock, {
           hasSpamAlerts: ipBlock.alerts.spam?.length > 0,
           hasAntihackAlerts: ipBlock.alerts.antihack?.length > 0,
           hasMitigationAlerts: ipBlock.alerts.mitigation?.length > 0,
+          isAdditionalIpv6,
+          isIPv6Failover,
         });
         return;
       }
@@ -178,6 +188,8 @@ export default class IpListController {
         hasSpamAlerts: false,
         hasAntihackAlerts: false,
         hasMitigationAlerts: false,
+        isAdditionalIpv6,
+        isIPv6Failover,
       });
 
       angular.forEach(ipBlock.ips, (ip) => {
@@ -355,12 +367,21 @@ export default class IpListController {
       }
 
       // Else, get it
+      let ipsService;
       set(ipBlock, 'loading', true);
-      return Ip.getIpsForIpBlock(
-        ipBlock.ipBlock,
-        get(ipBlock, 'routedTo.serviceName'),
-        ipBlock.type,
-      )
+      if (ipBlock.version === IP_TYPE.V6 && ipBlock.type === VRACK) {
+        ipsService = Ip.getIpsForIpV6(
+          ipBlock.ipBlock,
+          get(ipBlock, 'routedTo.serviceName'),
+        );
+      } else {
+        ipsService = Ip.getIpsForIpBlock(
+          ipBlock.ipBlock,
+          get(ipBlock, 'routedTo.serviceName'),
+          ipBlock.type,
+        );
+      }
+      return ipsService
         .then((data) => {
           set(ipBlock, 'ips', data);
           checkIps(ipBlock);
@@ -554,6 +575,12 @@ export default class IpListController {
         ipBlock,
         ip,
       });
+    };
+
+    $scope.goToVrack = function goToVrack(ipBlock) {
+      if (ipBlock.type === VRACK && ipBlock.routedTo?.serviceName) {
+        self.goToVrack(ipBlock.routedTo?.serviceName);
+      }
     };
 
     $scope.exportCsv = function exportCsv() {

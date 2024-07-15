@@ -1,4 +1,6 @@
 {
   "vrack_title": "Red privada vRack",
-  "vrack_order": "Contratar"
+  "vrack_order": "Contratar",
+  "list_layout_like_this": "¿Le gusta?",
+  "list_layout_like_this_tooltip": "¿Le gusta esta página? ¡Envíenos sus comentarios!"
 }
