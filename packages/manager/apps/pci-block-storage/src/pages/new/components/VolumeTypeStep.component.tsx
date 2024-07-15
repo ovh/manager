@@ -39,7 +39,9 @@ export function VolumeTypeStep({
   const { t: tStepper } = useTranslation('stepper');
   const [volumeType, setVolumeType] = useState<TAddon>(undefined);
   const tBytes = useTranslateBytes();
-  const { getFormattedCatalogPrice } = useCatalogPrice(6);
+  const { getFormattedCatalogPrice } = useCatalogPrice(6, {
+    hideTaxLabel: true,
+  });
 
   const { volumeTypes, isPending } = useConsumptionVolumesAddon(
     projectId,
