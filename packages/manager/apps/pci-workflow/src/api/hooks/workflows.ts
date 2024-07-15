@@ -15,6 +15,7 @@ import {
 import { getInstance } from '@/api/data/instance';
 import { deleteWorkflow } from '@/api/data/workflow';
 import queryClient from '@/queryClient';
+import { paginateResults } from '@/helpers';
 
 export type TWorkflow = {
   name: string;
@@ -26,18 +27,6 @@ export type TWorkflow = {
   lastExecutionStatus: TExecutionState;
   executions: TWorkflowExecution[];
 };
-
-export const paginateResults = (
-  items: unknown[],
-  pagination: PaginationState,
-) => ({
-  rows: items.slice(
-    pagination.pageIndex * pagination.pageSize,
-    (pagination.pageIndex + 1) * pagination.pageSize,
-  ),
-  pageCount: Math.ceil(items.length / pagination.pageSize),
-  totalRows: items.length,
-});
 
 export const useWorkflows = (projectId: string) => {
   const { i18n } = useTranslation('listing');
@@ -120,7 +109,7 @@ export const usePaginatedWorkflows = (
           ...workflow,
           instanceName: results[i].data?.name,
         }));
-        return paginateResults(
+        return paginateResults<TWorkflow>(
           applyFilters(workflowsWithInstanceIds || [], filters),
           pagination,
         );

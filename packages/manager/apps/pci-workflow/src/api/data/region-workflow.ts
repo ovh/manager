@@ -6,6 +6,8 @@ export type TWorkflowExecution = {
   id: string;
   state: TExecutionState;
   executedAt: string;
+  executedAtDate?: string;
+  executedAtTime?: string;
 };
 
 export type TRemoteWorkflow = {
