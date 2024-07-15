@@ -51,7 +51,7 @@ export default function DashboardPage() {
     },
   ];
 
-  const serviceName = vcdOrganisation?.data?.currentState?.fullName;
+  const serviceName = vcdOrganisation?.data?.currentState?.description;
   const hasServiceRenamed = id !== serviceName;
 
   // TODO use iam.displayName when available
