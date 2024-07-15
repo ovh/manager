@@ -272,6 +272,7 @@ angular
 
       $scope.canDeleteGit = function canDeleteGit({ vcsStatus }) {
         return [
+          GIT_STATUS.initialError,
           GIT_STATUS.created,
           GIT_STATUS.error,
           GIT_STATUS.deploying,
