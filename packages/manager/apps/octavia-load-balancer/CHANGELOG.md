@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.5.2...@ovh-ux/manager-octavia-load-balancer-app@0.6.0) (2024-07-15)
+
+
+### Features
+
+* **log-live-tail:** update theme ([#12089](https://github.com/ovh/manager/issues/12089)) ([d13ee5e](https://github.com/ovh/manager/commit/d13ee5e6d18a4b9d1b22c47326c61005711319e0))
+
+
+
+
+
 ## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.5.1...@ovh-ux/manager-octavia-load-balancer-app@0.5.2) (2024-07-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-octavia-load-balancer-app

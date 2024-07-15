@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.28.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.28.0...@ovh-ux/ng-ovh-telecom-universe-components@7.28.1) (2024-07-15)
+
+
+### Bug Fixes
+
+* **pack.migration:** check ont flag to display ont view ([31adc74](https://github.com/ovh/manager/commit/31adc749f9f75ff4617a7972c408a93fa1ed7339))
+
+
+
+
+
 # [7.28.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.27.0...@ovh-ux/ng-ovh-telecom-universe-components@7.28.0) (2024-07-03)
 
 

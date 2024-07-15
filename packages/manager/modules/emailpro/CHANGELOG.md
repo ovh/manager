@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.12.2...@ovh-ux/manager-emailpro@3.12.3) (2024-07-15)
+
+
+### Bug Fixes
+
+* **web:** multiple controller initialization ([#12220](https://github.com/ovh/manager/issues/12220)) ([fbd1d80](https://github.com/ovh/manager/commit/fbd1d80d7686b6cab7207e624ee9e409e6e40775))
+
+
+
+
+
 ## [3.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.12.1...@ovh-ux/manager-emailpro@3.12.2) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-emailpro
