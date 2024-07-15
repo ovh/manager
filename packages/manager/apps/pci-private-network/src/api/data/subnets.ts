@@ -28,5 +28,5 @@ export const getSubnets = async (
     `/cloud/project/${projectId}/region/${region}/network/${networkId}/subnet`,
   );
 
-  return data[0];
+  return data[0] || null;
 };

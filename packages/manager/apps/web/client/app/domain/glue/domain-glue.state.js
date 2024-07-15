@@ -6,6 +6,7 @@ const state = {
     domainView: {
       template,
       controller: 'controllers.Domain.Glue',
+      controllerAs: 'ctrlDomainGlue',
     },
   },
   atInternet: {

@@ -250,7 +250,7 @@
                                 data-ng-change="ctrl.updateSelectedConfig()"
                                 data-ng-disabled="ctrl.toggle.isRollbackProcess"
                                 data-ng-model="ctrl.model.engineName"
-                                data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.EngineNameEnum'].enum track by name"
+                                data-ng-options="name for name in ctrl.engineNames track by name"
                             >
                             </select>
                             <span

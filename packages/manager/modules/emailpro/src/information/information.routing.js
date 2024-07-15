@@ -5,6 +5,7 @@ const state = {
   url: '',
   template,
   controller: 'EmailProTabInformationCtrl',
+  controllerAs: '$ctrl',
   resolve: {
     breadcrumb: () => null,
   },

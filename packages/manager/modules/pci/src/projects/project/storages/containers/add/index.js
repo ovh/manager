@@ -10,6 +10,7 @@ import 'angular-ui-bootstrap';
 import regionsList from '../../../../../components/project/regions-list';
 import associateUserToContainer from './components/associate-user-to-container';
 import dataEncryption from '../container/data-encryption';
+import bucketVersioning from '../container/bucket-versioning';
 
 import component from './add.component';
 
@@ -27,6 +28,7 @@ angular
     regionsList,
     associateUserToContainer,
     dataEncryption,
+    bucketVersioning,
   ])
   .component('pciProjectStorageContainersAdd', component)
   .run(/* @ngTranslationsInject:json ./translations */);

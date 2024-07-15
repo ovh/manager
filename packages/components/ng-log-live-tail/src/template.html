@@ -60,23 +60,29 @@
             ></div>
 
             <div data-ng-repeat="log in $ctrl.logs track by $index">
-                <div>
+                <span
+                    data-ng-bind-html="log['formattedDate_highlighted']"
+                    class="log-date"
+                ></span>
+                <span
+                    data-ng-bind-html="log['formattedTime_highlighted']"
+                    class="log-time"
+                ></span>
+                <span class="separator"></span>
+                <span
+                    data-level="{{ log['level'] }}"
+                    data-ng-bind-html="log['levelLabel_highlighted']"
+                    class="log-severity"
+                ></span>
+                <span class="separator"></span>
+                <span>
                     <span
-                        data-ng-bind-html="log['formattedTimestamp_highlighted']"
-                        class="log-timestamp"
+                        data-ng-repeat="key in $ctrl.logKeys track by key"
+                        class="log-key"
+                        data-ng-bind-html="log[key + '_highlighted']"
+                        data-ng-if="log[key + '_highlighted']"
                     ></span>
-                    <span
-                        data-level="{{ log['level'] }}"
-                        data-ng-bind-html="log['levelLabel_highlighted']"
-                        class="log-severity"
-                    ></span>
-                    <span data-ng-repeat="key in $ctrl.logKeys track by key">
-                        <span
-                            class="log"
-                            data-ng-bind-html="log[key + '_highlighted']"
-                        ></span>
-                    </span>
-                </div>
+                </span>
             </div>
             <i class="cursor"></i>
         </div>

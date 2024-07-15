@@ -5,6 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
       otbView: 'overTheBoxDetails',
     },
     resolve: {
+      changeOffer: /* @ngInject */ ($state) => () =>
+        $state.go('overTheBoxes.overTheBox.migration'),
       breadcrumb: () => null,
     },
   });

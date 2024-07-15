@@ -77,8 +77,8 @@
   "overTheBox_release_channel_v0_8": "Version v0.8",
   "overTheBox_release_channel_v0_9": "Version v0.9",
   "overTheBox_release_channel_v1_0": "Version v1.0",
-  "overTheBox_version_system": "Operating system version",
-  "overTheBox_last_seen": "Latest access to hardware from provisioning servers",
+  "overTheBox_version_system": "System version",
+  "overTheBox_last_seen": "Device Last Connected",
   "overTheBox_last_seen_few_seconds": "A few seconds ago",
   "overTheBox_last_seen_minutes_ago": "Approximately {{lastSeenDiff}} ago",
   "overTheBox_reverse_dns": "Reverse DNS",
@@ -87,6 +87,12 @@
   "overTheBox_service_id": "Service ID:",
   "overTheBox_available_update": "An update is available for your device.",
   "overTheBox_authorize_autoupgrade": "Allow automatic updates at night",
-  "overTheBox_change_auto_upgrade_success": "The automatic bets have been changed at night.",
-  "overTheBox_change_auto_upgrade_error": "We were unable to change your automatic payments at night: {{errorMessage}}"
+  "overTheBox_change_auto_upgrade_success": "The automatic updates have been changed overnight.",
+  "overTheBox_change_auto_upgrade_error": "Unable to change automatic updates at night: {{errorMessage}}",
+  "overTheBox_offer_name": "Service offer",
+  "overthebox_caracteristics": "Nodes sizing",
+  "overTheBox_model_device": "Device model",
+  "overTheBox_detail_bandwidth": "Maximum bandwidth",
+  "overTheBox_model_device_unknown": "Unknown",
+  "overTheBox_change_offer": "Change plan"
 }

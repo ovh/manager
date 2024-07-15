@@ -8,8 +8,9 @@ module.exports = {
         '!packages/**/*.d.ts',
       ],
       testMatch: [
-        '<rootDir>/packages/**/__tests__/**/*.{spec,test}.{js,jsx,ts,tsx}',
-        '<rootDir>/packages/**/*.{spec,test}.{js,jsx,ts,tsx}',
+        '<rootDir>/packages/components/ovh-shell/**/*.{spec,test}.{js,jsx,ts,tsx}',
+        '<rootDir>/packages/manager/apps/container/**/*.{spec,test}.{js,jsx,ts,tsx}',
+        '<rootDir>/packages/core/url-builder/**/*.{spec,test}.{js,jsx,ts,tsx}',
       ],
       testEnvironment: 'jest-environment-jsdom',
       transform: {
@@ -22,15 +23,7 @@ module.exports = {
         '^.+\\.module\\.(css|sass|scss)$',
         '<rootDir>/node_modules/(?!lodash-es|@stencil)',
       ],
-      testPathIgnorePatterns: [
-        '/node_modules/',
-        '/apps/pci-vouchers/',
-        '/apps/pci-ssh-keys/',
-        '/apps/pci-users/',
-        '/apps/pci-public-ip',
-        '/apps/pci-gateway/',
-        '/apps/pci-private-network',
-      ],
+      testPathIgnorePatterns: ['/node_modules/'],
       moduleNameMapper: {
         '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
         '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
@@ -56,11 +49,7 @@ module.exports = {
       modulePathIgnorePatterns: [
         '/dist/',
         'packages/manager/apps/container/src/__tests__/navbar/navbar.spec.tsx',
-        'packages/manager/apps/pci-rancher/*',
-        'packages/manager-components/*',
       ],
     },
-    'packages/manager/apps/pci-rancher',
-    'packages/manager-components/',
   ],
 };

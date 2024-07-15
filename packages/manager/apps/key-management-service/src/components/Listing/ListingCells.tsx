@@ -2,6 +2,7 @@ import React from 'react';
 import {
   DataGridClipboardCell,
   DataGridTextCell,
+  useNotifications,
 } from '@ovhcloud/manager-components';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_COLOR_INTENT } from '@ovhcloud/ods-components';
@@ -12,10 +13,13 @@ import KmsActionMenu from '../menu/KmsActionMenu.component';
 
 export const DatagridCellName = (props: OKMS) => {
   const navigate = useNavigate();
+  const { clearNotifications } = useNotifications();
+
   return (
     <div>
       <OsdsLink
         onClick={() => {
+          clearNotifications();
           navigate(`/${props?.id}`);
         }}
         color={ODS_TEXT_COLOR_INTENT.primary}

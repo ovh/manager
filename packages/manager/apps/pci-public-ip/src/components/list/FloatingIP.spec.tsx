@@ -1,5 +1,4 @@
 import * as managerComponentsModule from '@ovhcloud/manager-components';
-import * as coreApplicationModule from '@ovh-ux/manager-react-core-application';
 import {
   QueryClient,
   QueryClientProvider,
@@ -49,6 +48,10 @@ vi.mock('@ovhcloud/manager-components', () => ({
     sorting: { desc: false, id: 'id' },
     setSorting: vi.fn(),
   }),
+  useFeatureAvailability: vi.fn().mockReturnValue({
+    data: {},
+    isLoading: false,
+  } as managerComponentsModule.UseFeatureAvailabilityResult),
 }));
 
 const mockedReactRouterNavigation = vi.fn();

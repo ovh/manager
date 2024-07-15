@@ -43,14 +43,16 @@ describe('ListGuard', () => {
     expect(container.firstChild.textContent).toBe('child');
   });
 
-  it('should display nothing while the aggregated gateways list is not available', async () => {
+  it('should display the spinner while the aggregated gateways list is not available and isPending true', async () => {
     data = undefined;
     isPending = true;
-    const { container } = render(
+
+    const { getByTestId } = render(
       <ListGuard projectId="123">
         <span>child</span>
       </ListGuard>,
     );
-    expect(container.firstChild).toBe(null);
+
+    expect(getByTestId('listGuard-spinner')).toBeVisible();
   });
 });
