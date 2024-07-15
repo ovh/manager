@@ -45,7 +45,7 @@ export default class {
   }
 
   /**
-   * Get operation arguments
+   * Get domain operation arguments
    * @param {string} id
    */
   getDomainOperationArguments(id) {
@@ -55,13 +55,34 @@ export default class {
   }
 
   /**
-   * Get operation argument by operation id and argument key
+   * Get dns operation arguments
+   * @param {string} id
+   */
+  getDnsOperationArguments(id) {
+    return this.$http
+      .get(`/me/task/dns/${id}/argument`)
+      .then(({ data }) => data);
+  }
+
+  /**
+   * Get domain operation argument by operation id and argument key
    * @param {string} id
    * @param {string} key
    */
   getDomainOperationArgument(id, key) {
     return this.$http
       .get(`/me/task/domain/${id}/argument/${key}`)
+      .then(({ data }) => data);
+  }
+
+  /**
+   * Get dns operation argument by operation id and argument key
+   * @param {string} id
+   * @param {string} key
+   */
+  getDnsOperationArgument(id, key) {
+    return this.$http
+      .get(`/me/task/dns/${id}/argument/${key}`)
       .then(({ data }) => data);
   }
 

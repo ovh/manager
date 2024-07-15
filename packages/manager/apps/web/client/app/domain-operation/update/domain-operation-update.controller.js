@@ -66,78 +66,82 @@ angular.module('App').controller(
     loadOperationsArguments(operationId) {
       this.loading = true;
 
-      return this.domainOperationService
-        .getDomainOperationArguments(operationId)
+      return this.domainOperationService[
+        `get${this.constructor.capitalizeFirstLetter(
+          this.type,
+        )}OperationArguments`
+      ](operationId)
         .then((argumentIds) => {
           const promises = map(argumentIds, (key) =>
-            this.domainOperationService
-              .getDomainOperationArgument(operationId, key)
-              .then((originalArgument) => {
-                const argument = clone(originalArgument);
+            this.domainOperationService[
+              `get${this.constructor.capitalizeFirstLetter(
+                this.type,
+              )}OperationArgument`
+            ](operationId, key).then((originalArgument) => {
+              const argument = clone(originalArgument);
 
-                this.document =
-                  this.document || argument.type === '/me/document';
+              this.document = this.document || argument.type === '/me/document';
 
-                // add user friendly translations for some known tasks
-                if (
-                  [
-                    'action',
-                    'memberContactXXX',
-                    'firstname',
-                    'name',
-                    'identificationNumber',
-                  ].includes(argument.key)
-                ) {
-                  argument.keyTranslation = this.$translate.instant(
-                    `domain_operations_update_key_${argument.key}`,
+              // add user friendly translations for some known tasks
+              if (
+                [
+                  'action',
+                  'memberContactXXX',
+                  'firstname',
+                  'name',
+                  'identificationNumber',
+                ].includes(argument.key)
+              ) {
+                argument.keyTranslation = this.$translate.instant(
+                  `domain_operations_update_key_${argument.key}`,
+                );
+              }
+
+              // set a default value
+              if (
+                isArray(argument.acceptedValues) &&
+                argument.acceptedValues.length > 1
+              ) {
+                [argument.value] = argument.acceptedValues;
+              }
+
+              if (argument.type === '/me/document') {
+                this.constraints[argument.key] = {};
+                this.constraints[argument.key].template =
+                  argument.template || false;
+                this.constraints[argument.key].maximumSize =
+                  argument.maximumSize || false;
+                this.constraints[argument.key].minimumSize =
+                  argument.minimumSize || false;
+
+                if (argument.acceptedFormats) {
+                  this.constraints[
+                    argument.key
+                  ].acceptedFormatsDisplay = argument.acceptedFormats.join(
+                    ', ',
+                  );
+                  this.constraints[argument.key].acceptedFormats = join(
+                    map(argument.acceptedFormats, (value) => `.${value}`),
+                    ', ',
+                  );
+                } else {
+                  this.constraints[argument.key].acceptedFormats = '*';
+                }
+
+                if (argument.value) {
+                  this.WucUser.getDocument(argument.value).then(
+                    (documentInfo) => {
+                      this.documents[argument.value] = documentInfo;
+                      this.previousValue[argument.key] =
+                        argument.value !== null;
+                      this.viewMode[argument.key] = argument.value !== null;
+                    },
                   );
                 }
+              }
 
-                // set a default value
-                if (
-                  isArray(argument.acceptedValues) &&
-                  argument.acceptedValues.length > 1
-                ) {
-                  [argument.value] = argument.acceptedValues;
-                }
-
-                if (argument.type === '/me/document') {
-                  this.constraints[argument.key] = {};
-                  this.constraints[argument.key].template =
-                    argument.template || false;
-                  this.constraints[argument.key].maximumSize =
-                    argument.maximumSize || false;
-                  this.constraints[argument.key].minimumSize =
-                    argument.minimumSize || false;
-
-                  if (argument.acceptedFormats) {
-                    this.constraints[
-                      argument.key
-                    ].acceptedFormatsDisplay = argument.acceptedFormats.join(
-                      ', ',
-                    );
-                    this.constraints[argument.key].acceptedFormats = join(
-                      map(argument.acceptedFormats, (value) => `.${value}`),
-                      ', ',
-                    );
-                  } else {
-                    this.constraints[argument.key].acceptedFormats = '*';
-                  }
-
-                  if (argument.value) {
-                    this.WucUser.getDocument(argument.value).then(
-                      (documentInfo) => {
-                        this.documents[argument.value] = documentInfo;
-                        this.previousValue[argument.key] =
-                          argument.value !== null;
-                        this.viewMode[argument.key] = argument.value !== null;
-                      },
-                    );
-                  }
-                }
-
-                return argument;
-              }),
+              return argument;
+            }),
           );
 
           return this.$q
