@@ -17,6 +17,7 @@ export { useProductMaintenance } from './pci/useMaintenance';
 export {
   getMacroRegion,
   useTranslatedMicroRegions,
+  isLocalZone,
 } from './region/useTranslatedMicroRegions';
 
 export type TRegion = Region;
