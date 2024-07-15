@@ -13,7 +13,7 @@ export default function ExecutionStatusComponent({
 }: {
   status: TExecutionState;
 }): JSX.Element {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('listing');
   const color: ODS_THEME_COLOR_INTENT = useMemo(() => {
     switch (status) {
       case 'SUCCESS':

@@ -7,7 +7,7 @@ type ActionsProps = {
   backupId: string;
 };
 export default function Actions({ backupId }: Readonly<ActionsProps>) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('listing');
   const hrefExecutions = useHref(`./${backupId}`);
   const hrefDelete = useHref(`./delete?workflowId=${backupId}`);
 
