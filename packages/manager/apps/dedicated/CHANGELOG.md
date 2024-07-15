@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.42.3...@ovh-ux/manager-dedicated@19.43.0) (2024-07-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3142] ([#12262](https://github.com/ovh/manager/issues/12262)) ([e0ff151](https://github.com/ovh/manager/commit/e0ff151821edb2bca40ca0a104a639b3677b3815))
+
+
+### Features
+
+* **dedicated.ip:** order - add campus in step 1 ([#12066](https://github.com/ovh/manager/issues/12066)) ([5c0f583](https://github.com/ovh/manager/commit/5c0f583b74728d905dbad3abbcd9f51dd6706d23))
+* **dedicated.server:** hide backup tab if not orderable ([#12197](https://github.com/ovh/manager/issues/12197)) ([7eee615](https://github.com/ovh/manager/commit/7eee615b336e7a470c963ed320660c845d5257fa))
+* **dedicated:** os installation wizard diskgroup - bundle ([#11608](https://github.com/ovh/manager/issues/11608)) ([2fcbfac](https://github.com/ovh/manager/commit/2fcbface9f72714cc39bed9a3e5d50489ac252e5))
+* **dedicated:** post-installation script options ([#12173](https://github.com/ovh/manager/issues/12173)) ([7c1bcba](https://github.com/ovh/manager/commit/7c1bcbac76dfebc740031843501a8720202555ae))
+
+
+### Reverts
+
+* Revert "feat(dedicated.ip): order - add campus in step 1 (#12066)" (#12347) ([e31eadd](https://github.com/ovh/manager/commit/e31eadd492bbba106836f15509bafcd5097eca1c)), closes [#12066](https://github.com/ovh/manager/issues/12066) [#12347](https://github.com/ovh/manager/issues/12347)
+
+
+
+
+
 ## [19.42.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.42.2...@ovh-ux/manager-dedicated@19.42.3) (2024-07-11)
 
 

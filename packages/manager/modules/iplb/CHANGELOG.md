@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.11.0...@ovh-ux/manager-iplb@1.12.0) (2024-07-15)
+
+
+### Features
+
+* **iplb:** hide subscirption use section for us ([#12207](https://github.com/ovh/manager/issues/12207)) ([2e6a667](https://github.com/ovh/manager/commit/2e6a6674f751f6a5d2e48ae4840014532af71830))
+
+
+
+
+
 # [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.10.1...@ovh-ux/manager-iplb@1.11.0) (2024-05-28)
 
 

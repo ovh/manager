@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.42.0...@ovh-ux/manager-vps@2.42.1) (2024-07-15)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** feature flip secondary dns ([#12283](https://github.com/ovh/manager/issues/12283)) ([241bb9c](https://github.com/ovh/manager/commit/241bb9c801982c707cb51c5529e0090d4f7d4307))
+
+
+
+
+
 # [2.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.41.1...@ovh-ux/manager-vps@2.42.0) (2024-06-25)
 
 
