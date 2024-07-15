@@ -34,6 +34,18 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         },
 
+        enableVersioning: /* @ngInject */ (
+          $state,
+          projectId,
+          containerId,
+        ) => () =>
+          $state.go(
+            'pci.projects.project.storages.object-storage.objects.object.enableVersioning',
+            {
+              projectId,
+              containerId,
+            },
+          ),
         addObject: /* @ngInject */ ($state, projectId, containerId) => () =>
           $state.go(
             'pci.projects.project.storages.object-storage.objects.object.add',
