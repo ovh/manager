@@ -31,7 +31,12 @@ export default [
     loader: async ({ params }) =>
       queryClient.fetchQuery(getProjectQuery(params.projectId)),
     ...lazyRouteConfig(() => import('@/pages/Layout')),
-    children: [],
+    children: [
+      {
+        path: '',
+        ...lazyRouteConfig(() => import('@/pages/list/List.page')),
+      },
+    ],
   },
   {
     path: '*',
