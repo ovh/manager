@@ -126,7 +126,13 @@ export default function ListingPage() {
       id: 'actions',
       cell: (workflow: TWorkflow) => (
         <div className="min-w-16">
-          <Actions projectId={projectId} backupId={workflow.id} />
+          <Actions
+            backupId={workflow.id}
+            isExecutionsAvailable={
+              Array.isArray(workflow?.executions) &&
+              workflow?.executions.length > 0
+            }
+          />
         </div>
       ),
       label: t(''),
