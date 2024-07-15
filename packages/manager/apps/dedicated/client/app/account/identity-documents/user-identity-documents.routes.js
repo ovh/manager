@@ -26,6 +26,8 @@ export default /* @ngInject */ ($stateProvider) => {
       transition
         .injector()
         .getAsync('needkyc')
-        .then((needkyc) => (needkyc ? false : { state: 'app.account' })),
+        .then((needkyc) =>
+          needkyc ? false : { state: 'app.account.user.dashboard' },
+        ),
   });
 };
