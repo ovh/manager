@@ -9,8 +9,8 @@
         class="form-control"
         id="optionVersion"
         name="optionVersion"
-        data-ng-options="optionVersion as (('license_designation_' + license.type + '_version_' + optionVersion.productName) | ducTranslateAlt: optionVersion.productName) for optionVersion in getOptionVersions()"
-        data-ng-model="selected.options['WINDOWS'].version"
+        data-ng-options="optionVersion as (('license_designation_' + license.type + '_version_' + optionVersion.planCode) | ducTranslateAlt: optionVersion.productName) for optionVersion in getOptionVersions()"
+        data-ng-model="selected.options['CPANEL'].version"
     >
         <option value="" data-translate="license_upgrade_common_no_change">
         </option>
