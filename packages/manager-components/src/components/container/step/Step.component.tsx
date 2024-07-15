@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
   OsdsButton,
   OsdsIcon,
   OsdsLink,
+  OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
@@ -15,6 +16,7 @@ import {
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { clsx } from 'clsx';
 
@@ -122,7 +124,11 @@ export const StepComponent = ({
                 isLocked && 'cursor-not-allowed pointer-events-none opacity-50',
               )}
             >
-              {children}
+              <Suspense
+                fallback={<OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
+              >
+                {children}
+              </Suspense>
             </div>
             {next?.action && !isLocked && (
               <div className="mt-6" data-testid="next">
