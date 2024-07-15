@@ -1,5 +1,3 @@
-import { getProjectQuery } from '@ovhcloud/manager-components';
-import queryClient from '@/queryClient';
 import DeleteWorkflowRedirect from '@/components/DeleteWorkflowRedirect';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
@@ -19,6 +17,10 @@ export interface RouteHandle {
 
 const ROUTE_PATHS = {
   root: '/pci/projects/:projectId/workflow',
+  executions: ':workflowId/executions',
+  onboarding: 'onboarding',
+  delete: 'delete',
+  deleteWorkflow: 'delete/:workflowId',
 };
 
 export default [
@@ -39,25 +41,30 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
         children: [
           {
-            path: 'delete',
+            path: ROUTE_PATHS.delete,
             element: <DeleteWorkflowRedirect />,
           },
           {
-            path: 'delete/:workflowId',
+            path: ROUTE_PATHS.deleteWorkflow,
             ...lazyRouteConfig(() =>
               import('@/pages/delete/DeleteWorkflow.page'),
             ),
             handle: {
               tracking: 'delete',
             },
-            children: [],
           },
         ],
       },
       {
-        path: 'onboarding',
+        path: ROUTE_PATHS.onboarding,
         ...lazyRouteConfig(() => import('@/pages/onboarding/OnBoarding.page')),
-        children: [],
+      },
+      {
+        path: ROUTE_PATHS.executions,
+        handle: {
+          tracking: 'executions',
+        },
+        ...lazyRouteConfig(() => import('@/pages/executions/Executions.page')),
       },
     ],
   },
