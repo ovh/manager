@@ -40,7 +40,7 @@ export const paginateResults = (
 });
 
 export const useWorkflows = (projectId: string) => {
-  const { i18n, t } = useTranslation('common');
+  const { i18n } = useTranslation('listing');
 
   const locales = useRef({ ...dateFnsLocales }).current;
 
