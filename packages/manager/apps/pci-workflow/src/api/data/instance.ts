@@ -33,18 +33,6 @@ export const getAllInstance = async (
   return data;
 };
 
-export const paginateResults = <T>(
-  items: T[],
-  pagination: PaginationState,
-) => ({
-  rows: items.slice(
-    pagination.pageIndex * pagination.pageSize,
-    (pagination.pageIndex + 1) * pagination.pageSize,
-  ),
-  pageCount: Math.ceil(items.length / pagination.pageSize),
-  totalRows: items.length,
-});
-
 export const sortResults = (items: TInstance[], sorting: ColumnSort) => {
   let data: TInstance[];
   if (sorting?.id === 'status') {
