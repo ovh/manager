@@ -48,7 +48,7 @@ import { TWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';
 import ExecutionStatusComponent from '@/components/execution-status.component';
 
 export default function ListingPage() {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('listing');
   const { projectId } = useParams();
   const { data: project } = useProject(projectId || '');
   const hrefAdd = useHref(`./new`);

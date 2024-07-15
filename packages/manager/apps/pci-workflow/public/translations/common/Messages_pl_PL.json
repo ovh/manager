@@ -1,26 +1,3 @@
 {
-  "pci_workflow_title": "Zarządzanie workflowami",
-  "pci_workflow_name": "Nazwa",
-  "pci_workflow_type": "Workflow",
-  "pci_workflow_resource": "Docelowe zasoby",
-  "pci_workflow_schedule": "Kolejność (UNIX Cron)",
-  "pci_workflow_last_execution": "Ostatnie uruchomienie (UTC)",
-  "pci_workflow_last_execution_status": "Ostatni stan po uruchomieniu",
-  "pci_workflow_delete": "Usuń",
-  "pci_workflow_delete_title": "Usuń harmonogram workflowu",
-  "pci_workflow_type_instance_backup_title": "Automatyczne kopie zapasowe instancji",
-  "pci_workflow_view_executions": "Wyświetl listę uruchomień",
-  "pci_workflow_execution_status_IDLE": "Nieaktywny",
-  "pci_workflow_execution_status_RUNNING": "Trwa wykonywanie",
-  "pci_workflow_execution_status_SUCCESS": "Operacja zakończona powodzeniem",
-  "pci_workflow_execution_status_ERROR": "Błąd",
-  "pci_workflow_execution_status_PAUSED": "Zatrzymany",
-  "pci_workflow_executions_title": "Uruchomienie workflowu '{{ workflowName }}'",
-  "pci_workflow_executions_empty": "Nie znaleziono żadnych wykonanych workflowów.",
-  "pci_workflow_executions_ececution_date": "Data (UTC)",
-  "pci_workflow_executions_ececution_time": "Godzina (UTC)",
-  "pci_workflow_executions_status": "Status",
-  "pci_workflow_add": "Utwórz harmonogram",
-  "pci_workflow_executions": "Uruchomienia",
-  "pci_workflow_id": "ID"
+  "common_not_supported": "Nie obsługiwane"
 }
