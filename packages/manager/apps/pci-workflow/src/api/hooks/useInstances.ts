@@ -5,11 +5,11 @@ import { useTranslatedMicroRegions } from '@ovhcloud/manager-components';
 import {
   getAllInstance,
   getFlavor,
-  paginateResults,
   sortResults,
   TInstanceOptions,
 } from '@/api/data/instance';
 import { TInstance } from '@/type';
+import { paginateResults } from '@/helpers';
 
 export const getInstancesQuery = (projectId: string) => ({
   queryKey: ['project', projectId, 'instances'],
