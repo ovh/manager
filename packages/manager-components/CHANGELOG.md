@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.1](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.22.0...@ovhcloud/manager-components@1.22.1) (2024-07-15)
+
+### Reverts
+
+- Revert "feat(manager-components): redesign action-banner (#12291)" ([28cf109](https://github.com/ovh/manager/commit/28cf10925897984cab21b35baebee367e5e9f014)), closes [#12291](https://github.com/ovh/manager/issues/12291)
+
 # [1.22.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.21.0...@ovhcloud/manager-components@1.22.0) (2024-07-11)
 
 ### Features

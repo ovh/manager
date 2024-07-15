@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.17.3...@ovh-ux/manager-overthebox@6.18.0) (2024-07-15)
+
+
+### Features
+
+* **overthebox:** rework on detail view ([#12144](https://github.com/ovh/manager/issues/12144)) ([576accf](https://github.com/ovh/manager/commit/576accfa937524fd135c6c66b7a4ccfc88967ca0))
+
+
+
+
+
 ## [6.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.17.2...@ovh-ux/manager-overthebox@6.17.3) (2024-07-09)
 
 

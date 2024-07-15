@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.18.1...@ovh-ux/manager-telecom@15.18.2) (2024-07-15)
+
+
+### Bug Fixes
+
+* **pack.migration:** check ont flag to display ont view ([31adc74](https://github.com/ovh/manager/commit/31adc749f9f75ff4617a7972c408a93fa1ed7339))
+
+
+
+
+
 ## [15.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.18.0...@ovh-ux/manager-telecom@15.18.1) (2024-07-09)
 
 

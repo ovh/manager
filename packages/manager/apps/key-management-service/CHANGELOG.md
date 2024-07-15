@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.2.5...@ovh-ux/manager-key-management-service-app@0.3.0) (2024-07-15)
+
+
+### Bug Fixes
+
+* **kms:** fix breadcrumb root label ([#12196](https://github.com/ovh/manager/issues/12196)) ([626579d](https://github.com/ovh/manager/commit/626579deb92b7ae5bab5f0bd6a9439c94deedb95))
+
+
+### Features
+
+* **kms:** add notifications on kms terminate ([#12131](https://github.com/ovh/manager/issues/12131)) ([d8a4b94](https://github.com/ovh/manager/commit/d8a4b94d0283c6c731771f7b146d5d5812a6b8ca))
+
+
+
+
+
 ## [0.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.2.4...@ovh-ux/manager-key-management-service-app@0.2.5) (2024-07-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.30.2...@ovh-ux/manager-web@18.30.3) (2024-07-15)
+
+
+### Bug Fixes
+
+* **hosting.multisite:** separate logs display ([d9809ee](https://github.com/ovh/manager/commit/d9809eeb010f9f3e70e0df96058d5a37c5ce4f90))
+* **hosting:** do not allow phpcgi for stable64 ([6979d6a](https://github.com/ovh/manager/commit/6979d6ae6c49c389521e307ad22a587eea5a0beb))
+* **web:** multiple controller initialization ([#12220](https://github.com/ovh/manager/issues/12220)) ([fbd1d80](https://github.com/ovh/manager/commit/fbd1d80d7686b6cab7207e624ee9e409e6e40775))
+
+
+
+
+
 ## [18.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.30.1...@ovh-ux/manager-web@18.30.2) (2024-07-09)
 
 

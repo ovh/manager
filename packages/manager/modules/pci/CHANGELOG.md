@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.52.1...@ovh-ux/manager-pci@6.53.0) (2024-07-15)
+
+
+### Features
+
+* **log-live-tail:** update theme ([#12089](https://github.com/ovh/manager/issues/12089)) ([d13ee5e](https://github.com/ovh/manager/commit/d13ee5e6d18a4b9d1b22c47326c61005711319e0))
+* **pci-object-storage:** bucket versioning v1 ([#11981](https://github.com/ovh/manager/issues/11981)) ([7eaa856](https://github.com/ovh/manager/commit/7eaa856bdf8204f71bbbd3c462108ab984fad17e))
+
+
+
+
+
 ## [6.52.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.52.0...@ovh-ux/manager-pci@6.52.1) (2024-07-11)
 
 

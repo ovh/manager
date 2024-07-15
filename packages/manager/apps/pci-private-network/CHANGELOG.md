@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.2.0...@ovh-ux/manager-pci-private-network-app@0.2.1) (2024-07-15)
+
+
+### Bug Fixes
+
+* **pci-private-network:** handle empty subnet gracefully ([9fa6675](https://github.com/ovh/manager/commit/9fa66752829f1951db027468aee1f4c7cb063571))
+* **pci.private-networks:** list networks with vlanId 0 ([9f5b74e](https://github.com/ovh/manager/commit/9f5b74e7d4a0536c76df668beffae7a13c5f865b))
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.1.4...@ovh-ux/manager-pci-private-network-app@0.2.0) (2024-07-11)
 
 
