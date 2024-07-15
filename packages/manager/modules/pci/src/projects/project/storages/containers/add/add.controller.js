@@ -168,6 +168,14 @@ export default class PciStoragesContainersAddController {
     this.container.containerType = this.selectedType.id;
   }
 
+  handleBucketVersioningChange(versioning) {
+    if (versioning?.status === 'enabled') {
+      this.container.versioning = versioning;
+    } else {
+      delete this.container.versioning;
+    }
+  }
+
   add() {
     const containerOffer =
       this.container.offer === 'storage' ? 'standard' : this.container.offer;

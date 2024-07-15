@@ -182,4 +182,8 @@ export default class PciStoragesContainersContainerController {
       type: 'action',
     });
   }
+
+  isRightOffer() {
+    return this.container.s3StorageType;
+  }
 }

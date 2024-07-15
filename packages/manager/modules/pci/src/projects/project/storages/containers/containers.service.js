@@ -341,12 +341,13 @@ export default class PciStoragesContainersService {
    * @returns {Promise}: $http request promise
    */
   addS3ObjectContainer(projectId, container) {
-    const { region, name, ownerId, encryption } = container;
+    const { region, name, ownerId, encryption, versioning } = container;
     return this.$http
       .post(`/cloud/project/${projectId}/region/${region.name}/storage`, {
         name,
         ownerId,
         encryption,
+        ...(versioning?.status === 'enabled' && { versioning }),
       })
       .then(({ data }) => data);
   }
@@ -389,13 +390,14 @@ export default class PciStoragesContainersService {
    * @returns {Promise}: $http request promise
    */
   addS3HighPerfStandardContainer(projectId, container) {
-    const { region, name, ownerId, encryption } = container;
+    const { region, name, ownerId, encryption, versioning } = container;
 
     return this.$http
       .post(`/cloud/project/${projectId}/region/${region.name}/storage`, {
         name,
         ownerId,
         encryption,
+        ...(versioning?.status === 'enabled' && { versioning }),
       })
       .then(({ data }) => data);
   }
@@ -409,6 +411,7 @@ export default class PciStoragesContainersService {
           containerModel.region.name,
           containerModel.name,
           containerModel.archive,
+          containerModel.versioning,
         )
       : this.manageContainerCreation(projectId, containerModel)
     ).then((container) => {
@@ -431,6 +434,23 @@ export default class PciStoragesContainersService {
         region,
       },
     ).$promise;
+  }
+
+  updateContainer(projectId, containerModel) {
+    const { region, name, versioning, s3StorageType } = containerModel;
+
+    const url =
+      s3StorageType === 'storage'
+        ? `/cloud/project/${projectId}/region/${region}/storage/${name}`
+        : `/cloud/project/${projectId}/region/${region}/storageStandard/${name}`;
+
+    return this.$http
+      .put(url, {
+        versioning,
+      })
+      .then(() => {
+        return this.$q.resolve();
+      });
   }
 
   setContainerAsStatic(projectId, container) {

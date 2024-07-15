@@ -205,9 +205,24 @@
         ></pci-project-storages-create-linked-user>
     </oui-step-form>
 
-    <!-- Data encryption -->
+    <!-- bucket versioning -->
+
     <oui-step-form
         data-position="3"
+        data-ng-if="!$ctrl.archive && $ctrl.isRightOffer()"
+        data-header="{{:: 'pci_projects_project_storages_containers_bucket_versioning_title' | translate }}"
+        data-editable="!$ctrl.isLoading"
+        data-name="storage_container_bucket_versioning"
+    >
+        <pci-project-storages-bucket-versioning
+            is-bucket-versioning-enabled="$ctrl.container.isBucketVersioningEnabled"
+            on-bucket-versioning-change="$ctrl.handleBucketVersioningChange(versioning)"
+        ></pci-project-storages-bucket-versioning>
+    </oui-step-form>
+
+    <!-- Data encryption -->
+    <oui-step-form
+        data-position="{{!$ctrl.archive && $ctrl.isRightOffer() ? 4 : 3}}"
         data-ng-if="!$ctrl.archive && $ctrl.encryptionAvailable && $ctrl.isRightOffer()"
         data-header="{{:: 'pci_projects_project_storages_containers_data_encryption_title' | translate }}"
         data-editable="!$ctrl.isLoading"
@@ -222,7 +237,7 @@
 
     <!--Container name-->
     <oui-step-form
-        data-position="3"
+        data-position="{{!$ctrl.archive && $ctrl.isRightOffer() ? 4 : 3}}"
         data-ng-if="!$ctrl.archive"
         data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
         data-editable="!$ctrl.isLoading"

@@ -25,5 +25,6 @@ export default {
     trackingPrefix: '<',
     trackEncryptionAction: '<',
     encryptionAvailable: '<',
+    enableVersioning: '<',
   },
 };

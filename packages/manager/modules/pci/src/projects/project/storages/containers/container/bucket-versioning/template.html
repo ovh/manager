@@ -1,0 +1,21 @@
+<div class="mb-3">
+    <p
+        data-translate="pci_projects_project_storages_containers_bucket_versioning_description"
+    ></p>
+
+    <oui-radio-group
+        data-model="$ctrl.isBucketVersioningEnabled"
+        data-on-change="$ctrl.handleBucketVersioningChange()"
+    >
+        <oui-radio value="false">
+            <span
+                data-translate="pci_projects_project_storages_containers_bucket_versioning_disabled"
+            ></span>
+        </oui-radio>
+        <oui-radio value="true">
+            <span
+                data-translate="pci_projects_project_storages_containers_bucket_versioning_enabled"
+            ></span>
+        </oui-radio>
+    </oui-radio-group>
+</div>
