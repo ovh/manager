@@ -21,6 +21,12 @@ export default /* @ngInject */ ($stateProvider) => {
         Object.values(DASHBOARD_FEATURES).filter((feature) =>
           capabilities.includes(feature),
         ),
+      featureFlipping: /* @ngInject */ (ovhFeatureFlipping) => {
+        const features = `vps:secondary-dns`;
+        return ovhFeatureFlipping.checkFeatureAvailability(features);
+      },
+      isSecondaryDnsAvailable: /* @ngInject */ (featureFlipping) =>
+        featureFlipping.features['vps:secondary-dns'],
       goToDisplayIps: /* @ngInject */ ($state) => () =>
         $state.go('vps.detail.dashboard.display-ips'),
       goToKvm: /* @ngInject */ ($state) => (noVnc) =>

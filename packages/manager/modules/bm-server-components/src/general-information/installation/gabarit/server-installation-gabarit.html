@@ -5,6 +5,7 @@
         data-wizard-on-finish="$ctrl.install.bind($ctrl)"
         data-wizard-title=":: 'server_configuration_installation_gabarit_title' | translate"
         data-wizard-hide-cancel-button="loader.loading"
+        data-wizard-hide-previous-button="true"
         data-wizard-bread-crumb
         data-wizard-keydown-disabled
     >
@@ -55,12 +56,6 @@
                                         class="text-warning"
                                         data-ng-show="gabarit.isDeprecated"
                                         data-translate="server_configuration_installation_deprecated"
-                                    >
-                                    </span>
-                                    <span
-                                        class="text-warning"
-                                        data-ng-show="constants.server.raidController && distribution.hardRaidConfiguration === false"
-                                        data-translate="server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported_short"
                                     >
                                     </span>
                                     <button
@@ -136,7 +131,6 @@
                                         && !loader.loading
                                         && !loader.loadingForm
                                         && optionForm.$valid"
-                data-wizard-step-on-previous="$ctrl.clearErrorPersonalTemplate.bind($ctrl)"
                 data-wizard-step-on-load="$ctrl.loadStep2.bind($ctrl)"
             >
                 <div
@@ -262,75 +256,20 @@
                         </span>
                     </div>
 
-                    <!-- postInstallationScriptLink -->
-                    <div
-                        class="form-group"
-                        data-ng-class="{
-                             'has-error': optionForm.postInstallationScriptLink.$touched && optionForm.postInstallationScriptLink.$invalid
-                        }"
+                    <!-- diskgroup -->
+                    <oui-field
+                        data-label="{{ 'server_configuration_installation_ovh_step1_disk_group' | translate }}"
                     >
-                        <label
-                            for="postInstallationScriptLink"
-                            class="control-label"
-                            data-translate="server_configuration_installation_form_postInstallationScriptLink"
+                        <oui-select
+                            class="oui-select_l d-inline-block"
+                            data-disabled="informations.diskGroups.length < 2"
+                            data-items="informations.diskGroups"
+                            data-model="installation.diskGroup"
+                            name="diskGroup"
+                            data-match="description"
                         >
-                        </label>
-                        <input
-                            type="text"
-                            id="postInstallationScriptLink"
-                            class="form-control"
-                            name="postInstallationScriptLink"
-                            data-ng-model="installation.options.postInstallationScriptLink"
-                            data-ng-change="$ctrl.postInstallationScriptLinkValidator()"
-                            data-ng-trim="true"
-                        />
-                        <span
-                            class="icon-question-sign"
-                            data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLink_help' | translate }}"
-                            data-oui-tooltip-placement="left"
-                        >
-                        </span>
-                        <div
-                            class="errorFormLabel"
-                            data-ng-if="optionForm.postInstallationScriptLink.$invalid && optionForm.$dirty"
-                        >
-                            <span
-                                data-ng-if="value"
-                                data-ng-repeat="(error, value) in optionForm.postInstallationScriptLink.$error"
-                            >
-                                {{
-                                ('server_configuration_installation_form_postInstallationScriptLink_'
-                                + error) | ducTranslateAlt: error }}
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- postInstallationScriptReturn -->
-                    <div
-                        class="form-group"
-                        data-ng-if="installation.options.postInstallationScriptLink != null && installation.options.postInstallationScriptLink != ''"
-                    >
-                        <label
-                            for="postInstallationScriptReturn"
-                            class="control-label"
-                            data-translate="server_configuration_installation_form_postInstallationScriptLinkReturn"
-                        >
-                        </label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="postInstallationScriptReturn"
-                            name="postInstallationScriptReturn"
-                            data-ng-model="installation.options.postInstallationScriptReturn"
-                            data-ng-trim="true"
-                        />
-                        <span
-                            class="icon-question-sign"
-                            data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLinkReturn_help' | translate }}"
-                            data-oui-tooltip-placement="left"
-                        >
-                        </span>
-                    </div>
+                        </oui-select>
+                    </oui-field>
 
                     <!-- nbDisk -->
                     <p class="form-inline" data-ng-if="informations.nbDisk > 1">
@@ -341,11 +280,11 @@
                         >
                         </label>
                         <span
-                            data-ng-if="installation.selectSoftRaidOnlyMirroring && installation.server.nbDisk > 2"
+                            data-ng-if="installation.selectSoftRaidOnlyMirroring && informations.nbDisk > 2"
                         >
                             <i
                                 class="fa fa-info-circle"
-                                data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_type_disk_warning_windows' | translate:{ t0: installation.server.nbDisk } }}"
+                                data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_type_disk_warning_windows' | translate:{ t0: informations.nbDisk } }}"
                                 data-oui-tooltip-placement="bottom"
                                 aria-hidden="true"
                             >

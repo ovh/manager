@@ -1070,15 +1070,6 @@ export default class Server {
     });
   }
 
-  getTemplateCapabilities(productId, templateName) {
-    return this.get(productId, 'install/templateCapabilities', {
-      proxypass: true,
-      params: {
-        templateName,
-      },
-    });
-  }
-
   cancelTask(productId, taskId) {
     return this.post(productId, 'task/{taskId}/cancel', {
       urlParams: {

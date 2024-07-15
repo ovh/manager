@@ -44,7 +44,7 @@ export default class ServerInstallationGabaritCtrl {
       selectGabarit: null,
       selectSoftRaidOnlyMirroring: null,
 
-      diskGroupId: null,
+      diskGroup: null,
       hasData: false,
       deleteGabarit: null,
       nbDiskUse: null, // if nbPhysicalDisk > 2 user can select nb disk to use
@@ -53,8 +53,6 @@ export default class ServerInstallationGabaritCtrl {
         saveGabarit: false,
         gabaritNameSave: null,
         customHostname: null,
-        postInstallationScriptLink: null,
-        postInstallationScriptReturn: null,
         validForm: true,
       },
     };
@@ -65,6 +63,7 @@ export default class ServerInstallationGabaritCtrl {
       nbDisk: 0,
       hardwareRaid: null,
       hardwareRaidCompatible: true,
+      diskGroups: [],
     };
 
     this.$scope.errorGab = {
@@ -112,6 +111,13 @@ export default class ServerInstallationGabaritCtrl {
         this.$scope.optionForm?.$valid,
       );
     });
+
+    this.$scope.$watch('installation.diskGroup', (newValue) => {
+      if (newValue) {
+        this.$scope.informations.nbDisk = this.$scope.installation.diskGroup.numberOfDisks;
+        this.$scope.installation.nbDiskUse = this.$scope.installation.diskGroup.numberOfDisks;
+      }
+    });
   }
 
   static setSizeModalDialog(bigSize) {
@@ -124,9 +130,6 @@ export default class ServerInstallationGabaritCtrl {
   }
 
   // ------CUSTOME STEP MODAL------
-  static reduceModal() {
-    ServerInstallationGabaritCtrl.setSizeModalDialog(false);
-  }
 
   static extendModal() {
     ServerInstallationGabaritCtrl.setSizeModalDialog(true);
@@ -138,8 +141,6 @@ export default class ServerInstallationGabaritCtrl {
         this.$scope.installation.familyType = templateList.family;
         this.$scope.installation.distributionList =
           templateList.templates.results;
-        this.$scope.informations.nbDisk = this.$scope.installation.server.nbDisk;
-        this.$scope.installation.nbDiskUse = this.$scope.installation.server.nbDisk;
       })
       .catch((data) => {
         this.Alerter.alertFromSWS(
@@ -185,11 +186,6 @@ export default class ServerInstallationGabaritCtrl {
       this.$scope.installation.selectGabarit.inputs || [];
   }
 
-  clearErrorPersonalTemplate() {
-    this.$scope.errorGab.ws = null;
-    ServerInstallationGabaritCtrl.reduceModal();
-  }
-
   static getDisks(disks) {
     if (disks && disks[0].indexOf('[') > -1) {
       return flatten(
@@ -212,16 +208,14 @@ export default class ServerInstallationGabaritCtrl {
       saveGabarit: false,
       gabaritNameSave: null,
       customHostname: this.$scope.installation.selectGabarit.customHostname,
-      postInstallationScriptLink: this.$scope.installation.selectGabarit
-        .postInstallationScriptLink,
-      postInstallationScriptReturn: this.$scope.installation.selectGabarit
-        .postInstallationScriptReturn,
       validForm: true,
     };
 
     if (this.$scope.installation.inputs.length > 0) {
       ServerInstallationGabaritCtrl.extendModal();
     }
+
+    this.getHardwareSpecification();
 
     this.Server.getPartitionSchemesByPriority(
       this.$stateParams.productId,
@@ -266,7 +260,7 @@ export default class ServerInstallationGabaritCtrl {
       .then(() => {
         if (tempHardwareRaid) {
           this.$scope.informations.hardwareRaid = tempHardwareRaid;
-          if (!this.$scope.installation.server.raidController) {
+          if (!this.$scope.installation.diskgroup.raidController) {
             this.$scope.errorGab.ws = this.$translate.instant(
               'server_configuration_installation_gabarit_step2_hardwareRaid_incompatible_noHardwareRaid',
             );
@@ -276,13 +270,13 @@ export default class ServerInstallationGabaritCtrl {
               this.$scope.informations.hardwareRaid.disks,
             );
             if (
-              this.$scope.installation.server.nbPhysicalDisk <
+              this.$scope.installation.diskgroup.numberOfDisks <
               this.$scope.informations.hardwareRaid.disks.length
             ) {
               this.$scope.errorGab.ws = this.$translate.instant(
                 'server_configuration_installation_gabarit_step2_hardwareRaid_incompatible_disks',
                 {
-                  t0: this.$scope.installation.server.nbPhysicalDisk,
+                  t0: this.$scope.installation.diskgroup.numberOfDisks,
                   t1: this.$scope.informations.hardwareRaid.disks.length,
                 },
               );
@@ -305,6 +299,23 @@ export default class ServerInstallationGabaritCtrl {
       .finally(() => {
         this.$scope.loader.loading = false;
       });
+  }
+
+  resetDiskGroup() {
+    [this.$scope.installation.diskGroup] =
+      this.$scope.informations.diskGroups || [];
+  }
+
+  getHardwareSpecification() {
+    return this.Server.getHardwareSpecifications(
+      this.$stateParams.productId,
+    ).then((spec) => {
+      this.$scope.informations.diskGroups =
+        spec.diskGroups?.filter(
+          (diskGroup) => diskGroup.raidController !== 'cache',
+        ) || [];
+      this.resetDiskGroup();
+    });
   }
 
   deleteGabarit() {
@@ -350,10 +361,6 @@ export default class ServerInstallationGabaritCtrl {
       this.$scope.installation.selectPartitionScheme,
       {
         customHostname: this.$scope.installation.options.customHostname,
-        postInstallationScriptLink: this.$scope.installation.options
-          .postInstallationScriptLink,
-        postInstallationScriptReturn: this.$scope.installation.options
-          .postInstallationScriptReturn,
         softRaidDevices:
           this.$scope.informations.nbDisk > 2 &&
           this.$scope.installation.nbDiskUse > 1
@@ -362,6 +369,7 @@ export default class ServerInstallationGabaritCtrl {
         noRaid:
           this.$scope.installation.nbDiskUse === 1 &&
           !this.$scope.informations.raidController,
+        diskGroupId: this.$scope.installation.diskGroup.diskGroupId || null,
       },
       inputs.answersHash2userMetadata(this.$scope.installation.input),
     )
@@ -396,10 +404,6 @@ export default class ServerInstallationGabaritCtrl {
         this.$scope.installation.options.gabaritNameSave,
         {
           customHostname: this.$scope.installation.options.customHostname,
-          postInstallationScriptLink: this.$scope.installation.options
-            .postInstallationScriptLink,
-          postInstallationScriptReturn: this.$scope.installation.options
-            .postInstallationScriptReturn,
         },
       ).then(
         () => {
@@ -475,33 +479,5 @@ export default class ServerInstallationGabaritCtrl {
           this.$scope.installation.options.gabaritNameSave,
         ),
     );
-  }
-
-  postInstallationScriptLinkValidator() {
-    const input = this.$scope.optionForm?.postInstallationScriptLink;
-    const val = this.$scope.installation.options.postInstallationScriptLink;
-    const regexpCheckPort = /^(((https|http|ftp|ftps|ftpes)?:\/\/)?(([^:/]*\.?)*))(:(\d+))?(\/|$)/g;
-    const regexpUrlContent = /^([a-zA-Z0-9-./_:~% ]+)$/;
-    const regexpUrlProtocol = /^((https|http|ftp|ftps|ftpes)?:\/\/).*/;
-    const regexpUrlExtension = /.*(\.zip|\.tar\.gz|\.sh|\.pl|\.cgi)$/;
-    const infoUrl = regexpCheckPort.exec(val);
-    let port;
-
-    if (val) {
-      port = infoUrl ? infoUrl[6] : null;
-
-      input.$setValidity(
-        'bad_port_script',
-        !port || (port >= 0 && port <= 65535),
-      );
-      input.$setValidity('bad_url_script', regexpUrlContent.test(val));
-      input.$setValidity('bad_protocol_script', regexpUrlProtocol.test(val));
-      input.$setValidity('bad_extension_script', regexpUrlExtension.test(val));
-    } else {
-      input.$setValidity('bad_port_script', true);
-      input.$setValidity('bad_url_script', true);
-      input.$setValidity('bad_protocol_script', true);
-      input.$setValidity('bad_extension_script', true);
-    }
   }
 }
