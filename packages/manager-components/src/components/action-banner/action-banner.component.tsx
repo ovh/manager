@@ -38,7 +38,7 @@ export function ActionBanner({
   return (
     <OsdsMessage
       type={type}
-      color={type as unknown as ODS_THEME_COLOR_INTENT}
+      color={(type as unknown) as ODS_THEME_COLOR_INTENT}
       className={`mt-3 flex flex-row items-center ${size} ${className}`}
       data-testid="actionBanner-message_container"
       removable={isRemovable}
