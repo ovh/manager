@@ -1,0 +1,22 @@
+{
+  "vrack__assigned-ipv6_add_subnet": "Aggiungere una sottorete",
+  "vrack__assigned-ipv6__subrange_slaac_help": "L'attivazione di SLAAC facilita l'indirizzamento IPv6, ma consigliamo di evitare questa opzione con più Region utilizzate dalla vRack",
+  "vrack__assigned-ipv6__subrange_slaac_help_tooltip_link": "Più dettagli ",
+  "vrack__assigned-ipv6__subnet_add_title": "Aggiungere una sottorete",
+  "vrack__assigned-ipv6__subnet_add_description": "Stai per aggiungere una nuova sottorete /64 alla tua vRack. Specifica il prefisso (che non deve sovrapporsi a un altro prefisso esistente) e l'indirizzo Nexthop che deve far parte della prima sottorete /64 (bridged) del tuo blocco IPv6 aggiuntivo.",
+  "vrack__assigned-ipv6__subnet_add_subnet": "Inserire l’indirizzo della sottorete /64",
+  "vrack__assigned-ipv6__subnet_add_address": "Indirizzo Nexthop",
+  "vrack__assigned-ipv6__subnet_delete_title": "Rimuovere la sottorete dalla tua vRack",
+  "vrack__assigned-ipv6__subnet_delete_description": "Confermi di voler rimuovere la sottorete della tua vRack?",
+  "vrack__assigned-ipv6_subnet_via": "via {{ ip }} ",
+  "vrack_add_ipv6_modal_title": "Aggiungere un blocco IP nella vRack",
+  "vrack_add_ipv6_modal_description": "Stai per aggiungere il blocco IP {{ ipblock }} (situato in {{ region }}) nella tua vRack: {{ vrack }}",
+  "vrack_add_ipv6_modal_description1": "Questa azione permetterà di raggiungere le macchine situate in questa vRack dall’Internet pubblico.",
+  "vrack_add_ipv6_modal_description2": "Il traffico pubblico sarà instradato attraverso la Region {{ region }}",
+  "vrack_add_ipv6_modal_description3": "Per maggiori informazioni, consulta",
+  "vrack_add_ipv6_modal_help_link": "la nostra documentazione",
+  "vrack_add_ipv6_modal_alert_msg": "Abbiamo rilevato che nella tua vRack è già presente un blocco IPv6 pubblico, ma stai aggiungendo un nuovo blocco. Assicurati che l’opzione SLAAC sia disattivata su TUTTI i tuoi blocchi IPv6, altrimenti il risultato non sarà quello atteso.",
+  "vrack_delete_ipv6_modal_title": "Spostare l'IP aggiuntivo",
+  "vrack_delete_ipv6_modal_description": "Stai per eliminare {{ ip }} dalla tua vRack. Tutte le sottoreti configurate con questo blocco saranno eliminate.",
+  "vrack_delete_ipv6_modal_question": "Vuoi continuare?"
+}

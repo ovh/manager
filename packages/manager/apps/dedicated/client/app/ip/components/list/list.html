@@ -440,7 +440,14 @@
 
                 <!-- Actions -->
                 <td>
-                    <div data-ng-include="'ip/popover/ipBlock.html'"></div>
+                    <div
+                        data-ng-if="ipBlock.isAdditionalIpv6"
+                        data-ng-include="'ip/popover/additional-ipv6.html'"
+                    ></div>
+                    <div
+                        data-ng-if="!ipBlock.isAdditionalIpv6"
+                        data-ng-include="'ip/popover/ipBlock.html'"
+                    ></div>
                 </td>
             </tr>
 
@@ -455,7 +462,7 @@
                 <td>
                     <span
                         data-ng-class="{
-                              'pl-5': ip.block
+                              'pl-5': ip.block || ipBlock.isAdditionalIpv6
                           }"
                         data-ng-bind="ip.ip"
                     ></span>
@@ -465,12 +472,15 @@
                         class="oui-badge oui-badge_info"
                     ></span>
                     <span
-                        data-ng-if="showFOBadge && ipBlock.isUniq && ipBlock.type == 'FAILOVER'"
+                        data-ng-if="showFOBadge && ipBlock.isUniq && ipBlock.type == FAILOVER"
                         data-ng-bind=":: ADDITIONAL_IP"
                         class="oui-badge oui-badge_info"
                     ></span>
                     <small
                         class="ip-description d-block text-truncate"
+                        data-ng-class="{
+                            'pl-5': ip.block || ipBlock.isAdditionalIpv6
+                        }"
                         data-ng-if="ipBlock.description"
                         data-ng-bind="ipBlock.description"
                         data-ng-attr-title="{{ ipBlock.description }}"
@@ -514,10 +524,15 @@
 
                 <!-- Reverse -->
                 <td>
-                    <div data-ng-if="ipBlock.fetchingData" class="text-center">
+                    <div
+                        data-ng-if="ipBlock.fetchingData && ip.type !== SUB_RANGE"
+                        class="text-center"
+                    >
                         <oui-skeleton size="m"></oui-skeleton>
                     </div>
-                    <div data-ng-if="!ipBlock.fetchingData">
+                    <div
+                        data-ng-if="!ipBlock.fetchingData && ip.type !== SUB_RANGE"
+                    >
                         <span
                             data-ng-if="!ip.reverseEdit"
                             data-ng-bind="ip.reverse ? (ip.reverse | ipPunycode:true) : '-'"
@@ -667,12 +682,15 @@
 
                 <!-- Actions -->
                 <td>
-                    <div data-ng-include="'ip/popover/ip.html'"></div>
+                    <div
+                        data-ng-if="ip.type !== SUB_RANGE"
+                        data-ng-include="'ip/popover/ip.html'"
+                    ></div>
                 </td>
             </tr>
 
             <tr
-                data-ng-if="ipBlock.version === IP_TYPE.V6 && !ipBlock.isUniq && !ipBlock.collapsed"
+                data-ng-if="ipBlock.version === IP_TYPE.V6 && !ipBlock.isUniq && !ipBlock.collapsed && ipBlock.type !== VRACK"
             >
                 <td class="text-center" colspan="42">
                     <button
@@ -683,7 +701,7 @@
                     ></button>
                 </td>
             </tr>
-
+            <!-- Its an additional IPv6 -->
             <tr data-ng-if="!loading && ipsListEmpty">
                 <td
                     class="text-center"
