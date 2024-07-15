@@ -9,7 +9,7 @@
   "pci_projects_project_instances_add_region_datacenter_title": "Region",
   "pci_projects_project_instances_add_region_display_nonavailable": "Die nicht verfügbaren Standorte anzeigen",
   "pci_project_instances_instance_add_region_error": "Beim Abruf der verfügbaren Regionen ist ein Fehler aufgetreten",
-  "pci_project_instances_instance_add_region_activate": " Der ausgewählte Ort ist nicht aktiviert. Klicken Sie auf „Weiter“, um ihn zu Ihrem Public-Cloud-Projekt hinzuzufügen und mit der Erstellung von Instanzen fortzufahren.",
+  "pci_project_instances_instance_add_region_activate": " Der ausgewählte Ort ist nicht aktiviert. Klicken Sie auf „Weiter“, um es zu Ihrem Public Cloud Projekt hinzuzufügen und mit der Erstellung von Instanzen fortzufahren.",
   "pci_project_instances_instance_add_region_quota": "Sie haben für diesen Standort kein verfügbares Quota mehr. <a href='{{quotaLink}}'>Erhöhen Sie Ihr Quota</a>, um fortzufahren.",
   "pci_project_instances_instance_add_region_unavailable": "Diese Standorte sind mit anderen Modellen verfügbar.",
   "pci_project_instances_instance_add_choose_model": "Modell wechseln",

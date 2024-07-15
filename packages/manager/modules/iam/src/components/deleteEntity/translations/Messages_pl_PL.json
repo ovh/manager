@@ -1,4 +1,9 @@
 {
+  "iam_delete_entity_identity_error": "Wystąpił błąd podczas usuwania tożsamości: {{message}}",
+  "iam_delete_entity_identity_heading": "Usuwanie tożsamości",
+  "iam_delete_entity_identity_name": "Usuwanie tożsamości:",
+  "iam_delete_entity_identity_success": "Tożsamość została usunięta",
+  "iam_delete_entity_identity_warn": "Czy na pewno chcesz usunąć tożsamość związaną z tą polityką? Nie usuwasz użytkownika, ale tylko jego powiązanie z polityką.",
   "iam_delete_entity_policy_error": "Wystąpił błąd podczas usuwania polityki: {{ message }}",
   "iam_delete_entity_policy_field": "Wpisz słowo \"{{ statement }}\", aby usunąć swoją politykę",
   "iam_delete_entity_policy_heading": "Usuwanie polityki",

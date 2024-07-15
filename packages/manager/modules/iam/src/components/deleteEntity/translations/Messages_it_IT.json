@@ -1,4 +1,9 @@
 {
+  "iam_delete_entity_identity_error": "Si è verificato un errore durante l'eliminazione dell'identità: {{ message }}",
+  "iam_delete_entity_identity_heading": "Eliminazione di un'identità",
+  "iam_delete_entity_identity_name": "Eliminazione dell'identità:",
+  "iam_delete_entity_identity_success": "L'identità è stata eliminata correttamente",
+  "iam_delete_entity_identity_warn": "Vuoi davvero eliminare l'identità associata a questa policy? Non eliminerai l’utente, ma solo il suo legame con la policy.",
   "iam_delete_entity_policy_error": "Si è verificato un errore durante l’eliminazione della policy: {{ message }}",
   "iam_delete_entity_policy_field": "Scrivi la parola \"{{ statement }}\" per eliminare la policy",
   "iam_delete_entity_policy_heading": "Eliminazione di una policy",

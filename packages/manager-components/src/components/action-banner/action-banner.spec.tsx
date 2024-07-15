@@ -9,8 +9,7 @@ const renderComponent = (props: ActionBannerProps) => {
 describe('ActionBanner tests', () => {
   it('should display message', () => {
     renderComponent({
-      title: 'hello world',
-      description: 'custom action',
+      message: 'hello world',
       cta: 'custom action',
       onClick: () => {},
     });
@@ -20,13 +19,12 @@ describe('ActionBanner tests', () => {
   it('should have a working call to action button', () => {
     const onClick = jest.fn();
     renderComponent({
-      title: 'hello world',
-      description: 'a beautiful description',
+      message: 'hello world',
       cta: 'custom action',
       onClick,
     });
     expect(screen.getAllByText('custom action')).not.toBeNull();
-    const cta = screen.getByText('custom action');
+    const cta = screen.queryByTestId('actionBanner-button');
     expect(onClick).not.toHaveBeenCalled();
     fireEvent.click(cta);
     expect(onClick).toHaveBeenCalled();

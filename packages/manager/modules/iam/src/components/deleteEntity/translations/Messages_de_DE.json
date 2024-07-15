@@ -1,4 +1,9 @@
 {
+  "iam_delete_entity_identity_error": "Beim Löschen der Identität ist ein Fehler aufgetreten: {{ message }}",
+  "iam_delete_entity_identity_heading": "Löschen einer Identität",
+  "iam_delete_entity_identity_name": "Löschen der Identität:",
+  "iam_delete_entity_identity_success": "Die Identität wurde gelöscht",
+  "iam_delete_entity_identity_warn": "Sind Sie sicher, dass Sie die mit dieser Richtlinie verbundene Identität löschen möchten? Der Benutzer wird dabei nicht gelöscht, sondern nur seine Verbindung zur Richtlinie.",
   "iam_delete_entity_policy_error": "Beim Löschen der Richtlinie ist ein Fehler aufgetreten: {{ message }}",
   "iam_delete_entity_policy_field": "Bitte schreiben Sie das Wort „{{ statement }}“, um Ihre Richtlinie zu löschen",
   "iam_delete_entity_policy_heading": "Löschen einer Richtlinie",

@@ -29,7 +29,7 @@ export function PciDiscoveryBanner({
   const [t] = useTranslation('pci-discovery-banner');
   return (
     <ActionBanner
-      description={t('pci_projects_project_activate_project_banner_message')}
+      message={t('pci_projects_project_activate_project_banner_message')}
       cta={t('pci_projects_project_activate_project_banner_cta')}
       type={ODS_MESSAGE_TYPE.warning}
       onClick={activateDiscoveryProject}

@@ -1,4 +1,9 @@
 {
+  "iam_delete_entity_identity_error": "Ocorreu um erro aquando da eliminação da identidade: {{ message }}",
+  "iam_delete_entity_identity_heading": "Eliminação de uma identidade",
+  "iam_delete_entity_identity_name": "Eliminação da identidade:",
+  "iam_delete_entity_identity_success": "A identidade foi eliminada com sucesso",
+  "iam_delete_entity_identity_warn": "Tem a certeza de que deseja eliminar a identidade ligada a esta política? Não está a eliminar o utilizador, mas somente a sua ligação com a política.",
   "iam_delete_entity_policy_error": "Ocorreu um erro aquando da eliminação da política: {{ message }}",
   "iam_delete_entity_policy_field": "Escreva a palavra « {{ statement }} » para eliminar a sua política",
   "iam_delete_entity_policy_heading": "Eliminação de uma política",
