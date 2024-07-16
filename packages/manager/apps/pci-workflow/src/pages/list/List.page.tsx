@@ -116,9 +116,10 @@ export default function ListingPage() {
     },
     {
       id: 'lastExecutionStatus',
-      cell: (workflow: TWorkflow) => (
-        <ExecutionStatusComponent status={workflow.lastExecutionStatus} />
-      ),
+      cell: (workflow: TWorkflow) =>
+        workflow.lastExecutionStatus ? (
+          <ExecutionStatusComponent status={workflow.lastExecutionStatus} />
+        ) : null,
       label: t('pci_workflow_last_execution_status'),
     },
     {
