@@ -5,10 +5,11 @@ import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyT
 
 type KeyStatusProps = {
   type: OkmsKeyTypes;
+  isText?: boolean;
 };
 
-export const ServiceKeyType = ({ type }: KeyStatusProps) => {
+export const ServiceKeyType = ({ type, isText = false }: KeyStatusProps) => {
   const translatedValue = useServiceKeyTypeTranslations(type);
 
-  return <TileValue value={translatedValue} />;
+  return <TileValue value={translatedValue} isText={isText} />;
 };
