@@ -9,4 +9,5 @@ export const ROUTES_URLS = {
   keyId: '/:keyId',
   serviceKeyEditName: 'edit-name',
   certificates: '/certificates',
+  createKmsServiceKey: '/create',
 };
