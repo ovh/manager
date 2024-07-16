@@ -1,10 +1,7 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { database } from '@/models/database';
 import { getServiceLogs } from '@/api/databases/logs';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetServiceLogs(
   projectId: string,
@@ -13,9 +10,9 @@ export function useGetServiceLogs(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'logs'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getServiceLogs({ projectId, engine, serviceId }),
-    ...options,
+    options,
   }) as UseQueryResult<database.service.LogEntry[], Error>;
 }

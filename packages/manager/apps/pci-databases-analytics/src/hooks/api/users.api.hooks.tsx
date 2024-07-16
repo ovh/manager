@@ -19,6 +19,7 @@ import {
   resetUserPassword,
 } from '@/api/databases/users';
 import { CdbError } from '@/api/databases';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetUsers(
   projectId: string,
@@ -27,10 +28,10 @@ export function useGetUsers(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'user'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getUsers({ projectId, engine, serviceId }),
-    ...options,
+    options,
   }) as UseQueryResult<GenericUser[], Error>;
 }
 

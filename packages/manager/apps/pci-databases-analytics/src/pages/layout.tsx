@@ -11,6 +11,8 @@ import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 import queryClient from '@/query.client';
 import { getProject } from '@/api/projects';
 import { useLoadingIndicatorContext } from '@/contexts/loadingIndicatorContext';
+import { UserActivityProvider } from '@/contexts/userActivityContext';
+import { USER_INACTIVITY_TIMEOUT } from '@/configuration/polling';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return (
@@ -71,11 +73,12 @@ function RoutingSynchronisation() {
 export default function Layout() {
   return (
     <PageLayout>
-      <Breadcrumb />
-      <RoutingSynchronisation />
-      <Outlet />
-      <Toaster />
+      <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>
+        <Breadcrumb />
+        <RoutingSynchronisation />
+        <Outlet />
+        <Toaster />
+      </UserActivityProvider>
     </PageLayout>
   );
 }
-// operational

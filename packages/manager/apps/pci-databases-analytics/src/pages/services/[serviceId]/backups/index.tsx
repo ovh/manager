@@ -15,6 +15,7 @@ import RestoreServiceModal from './_components/restore';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import Guides from '@/components/guides';
 import { GuideSections } from '@/models/guide';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 export interface BackupWithExpiricyDate extends database.Backup {
   expiricyDate: Date;
@@ -26,8 +27,9 @@ const Backups = () => {
   const restoreModal = useModale('restore');
   const navigate = useNavigate();
   const { projectId, service } = useServiceData();
+  const { isUserActive } = useUserActivityContext();
   const backupsQuery = useGetBackups(projectId, service.engine, service.id, {
-    refetchInterval: POLLING.BACKUPS,
+    refetchInterval: isUserActive && POLLING.BACKUPS,
   });
   const columns = getColumns({
     onRestoreClick: (backup) => {

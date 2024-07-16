@@ -14,14 +14,16 @@ import Guides from '@/components/guides';
 import { GuideSections } from '@/models/guide';
 import { useTrackPage, useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
   useTrackPage(TRACKING.servicesList.page());
   const track = useTrackAction();
   const { projectId, category } = useParams();
+  const { isUserActive } = useUserActivityContext();
   const servicesQuery = useGetServices(projectId, {
-    refetchInterval: POLLING.SERVICES,
+    refetchInterval: isUserActive && POLLING.SERVICES,
   });
   const filteredServices = useMemo(() => {
     if (!servicesQuery.data) return [];

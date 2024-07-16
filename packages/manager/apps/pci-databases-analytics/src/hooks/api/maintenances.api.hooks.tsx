@@ -2,7 +2,6 @@ import {
   QueryObserverOptions,
   UseQueryResult,
   useMutation,
-  useQuery,
 } from '@tanstack/react-query';
 
 import { database } from '@/models/database';
@@ -12,6 +11,7 @@ import {
   applyMaintenance,
   getMaintenances,
 } from '@/api/databases/maintenances';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetMaintenances(
   projectId: string,
@@ -20,10 +20,10 @@ export function useGetMaintenances(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'maintenance'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getMaintenances({ projectId, engine, serviceId }),
-    ...options,
+    options,
   }) as UseQueryResult<database.service.Maintenance[], Error>;
 }
 

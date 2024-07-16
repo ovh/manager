@@ -14,6 +14,7 @@ import {
   resetQueryStatistics,
 } from '@/api/databases/queries';
 import { CdbError, ServiceData } from '@/api/databases';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetCurrentQueries(
   projectId: string,
@@ -22,10 +23,10 @@ export function useGetCurrentQueries(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'currentQueries'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getCurrentQueries({ projectId, engine, serviceId }),
-    ...options,
+    options,
   }) as UseQueryResult<database.service.currentqueries.Query[], Error>;
 }
 

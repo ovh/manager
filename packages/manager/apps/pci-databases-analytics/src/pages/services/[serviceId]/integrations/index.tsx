@@ -15,6 +15,7 @@ import DeleteIntegration from './_components/deleteIntegration';
 import AddIntegration from './_components/addIntegration';
 import { GuideSections } from '@/models/guide';
 import Guides from '@/components/guides';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 export function breadcrumb() {
   return (
@@ -36,15 +37,16 @@ const Integrations = () => {
   const addModale = useModale('add');
   const deleteModale = useModale('delete');
   const { projectId, service, serviceQuery } = useServiceData();
+  const { isUserActive } = useUserActivityContext();
   const servicesQuery = useGetServices(projectId, {
-    refetchInterval: POLLING.INTEGRATIONS,
+    refetchInterval: isUserActive && POLLING.INTEGRATIONS,
   });
   const integrationsQuery = useGetIntegrations(
     projectId,
     service.engine,
     service.id,
     {
-      refetchInterval: POLLING.INTEGRATIONS,
+      refetchInterval: isUserActive && POLLING.INTEGRATIONS,
     },
   );
 

@@ -14,6 +14,7 @@ import {
   getServiceIntegrations,
 } from '@/api/databases/integrations';
 import { CdbError } from '@/api/databases';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetIntegrations(
   projectId: string,
@@ -22,10 +23,10 @@ export function useGetIntegrations(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'integration'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getServiceIntegrations({ projectId, engine, serviceId }),
-    ...options,
+    options,
   }) as UseQueryResult<database.service.Integration[], Error>;
 }
 

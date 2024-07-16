@@ -1,7 +1,6 @@
 import {
   QueryObserverOptions,
   UseQueryResult,
-  useQuery,
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
@@ -16,6 +15,7 @@ import {
   updateService,
 } from '@/api/databases/service';
 import { CdbError, ServiceData } from '@/api/databases';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetService(
   projectId: string,
@@ -23,10 +23,10 @@ export function useGetService(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database/service', serviceId];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getService({ projectId, serviceId }),
-    ...options,
+    options,
   }) as UseQueryResult<database.Service, CdbError>;
 }
 
@@ -35,10 +35,10 @@ export function useGetServices(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database/service'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getServices({ projectId }),
-    ...options,
+    options,
   }) as UseQueryResult<database.Service[], Error>;
 }
 
