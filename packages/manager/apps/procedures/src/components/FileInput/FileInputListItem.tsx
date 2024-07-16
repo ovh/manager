@@ -29,7 +29,7 @@ export const FileInputListItem: FunctionComponent<FileInputListItemProps> = ({
 
   return (
     <div
-      className={`flex justify-between items-center border rounded p-4 mt-2 ${
+      className={`flex justify-between items-center border rounded p-4 mt-2 gap-4 ${
         hasError
           ? 'bg-red-100 border-red-600 text-red-800 '
           : 'bg-sky-100 border-sky-600 text-sky-800 '
@@ -44,14 +44,14 @@ export const FileInputListItem: FunctionComponent<FileInputListItemProps> = ({
         }
         size={ODS_ICON_SIZE.sm}
       />
-      <p className="text-sm truncate">
+      <div className="text-sm">
         {file.name} {`(${bytesToSize(file.size)})`}
         {file.errors.map((error, index) => (
           <span className="block" key={index}>
             {error}
           </span>
         ))}
-      </p>
+      </div>
 
       <OsdsIcon
         name={ODS_ICON_NAME.CLOSE}
