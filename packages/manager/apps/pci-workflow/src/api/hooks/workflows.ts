@@ -1,4 +1,4 @@
-import { useMutation, useQueries } from '@tanstack/react-query';
+import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query';
 import { format, parseISO } from 'date-fns';
 import { PaginationState } from '@ovhcloud/manager-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
@@ -8,13 +8,13 @@ import { useTranslation } from 'react-i18next';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import { useRegions } from '@/api/hooks/regions';
 import {
+  addWorkflow,
   getRegionsWorkflows,
   TExecutionState,
   TWorkflowExecution,
 } from '@/api/data/region-workflow';
 import { getInstance } from '@/api/data/instance';
 import { deleteWorkflow } from '@/api/data/workflow';
-import queryClient from '@/queryClient';
 import { paginateResults } from '@/helpers';
 
 export type TWorkflow = {
@@ -29,10 +29,8 @@ export type TWorkflow = {
 };
 
 export const useWorkflows = (projectId: string) => {
-  const { i18n } = useTranslation('listing');
-
+  const { i18n } = useTranslation('common');
   const locales = useRef({ ...dateFnsLocales }).current;
-
   const userLocale = getDateFnsLocale(i18n.language);
 
   const { data: regions, isPending: isRegionsPending } = useRegions(projectId);
@@ -134,6 +132,7 @@ export const useDeleteWorkflow = ({
   onError,
   onSuccess,
 }: DeleteVolumeProps) => {
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: async () => deleteWorkflow(projectId, region, workflowId),
     onError,
@@ -150,6 +149,45 @@ export const useDeleteWorkflow = ({
   });
   return {
     deleteWorkflow: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+interface UseAddWorkflowProps {
+  projectId: string;
+  region: string;
+  type: {
+    cron: string;
+    instanceId: string;
+    name: string;
+    rotation: number;
+    maxExecutionCount: number;
+  };
+  onError: (error: Error) => void;
+  onSuccess: () => void;
+}
+
+export const useAddWorkflow = ({
+  projectId,
+  region,
+  type,
+  onError,
+  onSuccess,
+}: UseAddWorkflowProps) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: async () => addWorkflow(projectId, region, type),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['regions', region, 'workflows'],
+      });
+      onSuccess();
+    },
+  });
+
+  return {
+    addWorkflow: () => mutation.mutate(),
     ...mutation,
   };
 };
