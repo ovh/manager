@@ -53,6 +53,21 @@ export const GIT_ASSOCIATION_GUIDE_LINK = {
     'https://help.ovhcloud.com/csm/en-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063754',
 };
 
+const PREFIX_GITHUB_DOCS_URL = 'https://docs.github.com/';
+const SUFFIX_GITHUB_WEBHOOK_DOCS_URL =
+  '/apps/github-marketplace/listing-an-app-on-github-marketplace/configuring-a-webhook-to-notify-you-of-plan-changes';
+export const GIT_WEBHOOK_GUIDE_LINK = {
+  DE: `${PREFIX_GITHUB_DOCS_URL}de${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  ES: `${PREFIX_GITHUB_DOCS_URL}es${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  FR: `${PREFIX_GITHUB_DOCS_URL}fr${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  QC: `${PREFIX_GITHUB_DOCS_URL}fr${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  MA: `${PREFIX_GITHUB_DOCS_URL}fr${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  SN: `${PREFIX_GITHUB_DOCS_URL}fr${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  TN: `${PREFIX_GITHUB_DOCS_URL}fr${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  WS: `${PREFIX_GITHUB_DOCS_URL}es${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  DEFAULT: `${PREFIX_GITHUB_DOCS_URL}en${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+};
+
 export default {
   REPOSITORY_PLACEHOLDER,
   EXAMPLE_HTTPS_REPOSITORY_URL,
@@ -61,4 +76,5 @@ export default {
   GITHUB_VCS,
   REGEX_GIT_REPO,
   GIT_ASSOCIATION_GUIDE_LINK,
+  GIT_WEBHOOK_GUIDE_LINK,
 };
