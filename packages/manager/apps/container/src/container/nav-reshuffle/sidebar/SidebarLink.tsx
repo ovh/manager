@@ -47,7 +47,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       id={id}
     >
       {isShortText ?
-        <ShortSidebarLinkTooltip content={t(node.translation)}>
+        <ShortSidebarLinkTooltip id={node.id} content={t(node.translation)}>
           {t(node.shortTranslation)}
         </ShortSidebarLinkTooltip>
         :

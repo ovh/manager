@@ -1,36 +1,31 @@
 import React, { FunctionComponent } from "react";
 import { Tooltip } from "react-tooltip";
 
-type Props = { 
-    children: React.ReactNode, 
-    content: string 
+type Props = {
+    children: React.ReactNode,
+    content: string,
+    id: string,
 };
 
 export const ShortSidebarLinkTooltip: FunctionComponent<Props> = ({
     content,
-    children
+    children,
+    id
 }) => {
 
-    const id = 'SidebarLinkTooltip';
+    const tooltipId = `SidebarLinkTooltip_${id}`;
 
     return (
         <>
-            <span data-tooltip-id={id}
-                data-tooltip-position-strategy={'fixed'}
-                data-tooltip-content={content}
-                data-tooltip-place="right"
-            >
+            <span id={tooltipId}>
                 {children}
             </span>
             <Tooltip
-                id={id}
-                style={{
-                    backgroundColor: 'white',
-                    color: '#4d5592',
-                    opacity: 1,
-                    boxShadow: '0px 0px 1rem rgba(0, 0, 0, 0.25)',
-                    zIndex: 99999,
-                }}
+                anchorSelect={`#${tooltipId}`}
+                content={content}
+                className="bg-white !text-[--ods-color-primary-800] z-[99999]"
+                place="right"
+                positionStrategy="fixed"
             />
         </>
     );
