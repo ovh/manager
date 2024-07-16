@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.43.0...@ovh-ux/manager-dedicated@19.44.0) (2024-07-16)
+
+
+### Features
+
+* **dedicated:** order additional ipv6 and add to vrack ([e86afd8](https://github.com/ovh/manager/commit/e86afd8013f395ec162b271f82eac410ba8e0c2e))
+
+
+
+
+
 # [19.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.42.3...@ovh-ux/manager-dedicated@19.43.0) (2024-07-15)
 
 
