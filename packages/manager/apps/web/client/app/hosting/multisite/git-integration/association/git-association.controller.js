@@ -6,6 +6,7 @@ import {
   GITHUB_VCS,
   REGEX_GIT_REPO,
   GIT_ASSOCIATION_GUIDE_LINK,
+  GIT_WEBHOOK_GUIDE_LINK,
 } from './git-association.constants';
 
 export default class HostingMultisiteGitAssociationController {
@@ -25,9 +26,12 @@ export default class HostingMultisiteGitAssociationController {
     this.HostingMultisiteGitAssociationService = HostingMultisiteGitAssociationService;
     this.coreURLBuilder = coreURLBuilder;
     this.$translate = $translate;
+    const { ovhSubsidiary } = coreConfig.getUser();
     this.GIT_ASSOCIATION_GUIDE_LINK =
-      GIT_ASSOCIATION_GUIDE_LINK[coreConfig.getUser().ovhSubsidiary] ||
+      GIT_ASSOCIATION_GUIDE_LINK[ovhSubsidiary] ||
       GIT_ASSOCIATION_GUIDE_LINK.DEFAULT;
+    this.GIT_WEBHOOK_GUIDE_LINK =
+      GIT_WEBHOOK_GUIDE_LINK[ovhSubsidiary] || GIT_WEBHOOK_GUIDE_LINK.DEFAULT;
   }
 
   $onInit() {

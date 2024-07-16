@@ -3,7 +3,7 @@
 <div data-ovh-alert="git_association_alert"></div>
 
 <oui-header
-    data-heading="{{ ::'hosting_multisite_git_association_title' | translate }}"
+    data-heading="{{ ::'hosting_multisite_git_association_title' | translate : { path: $ctrl.path } }}"
 >
     <oui-guide-menu
         data-text="{{ ::'hosting_multisite_git_association_guide_title' | translate }}"
@@ -147,7 +147,7 @@
         class="oui-link_icon row m-0 p-0"
         target="_blank"
         rel="noopener"
-        data-ng-href="{{ ::$ctrl.GIT_ASSOCIATION_GUIDE_LINK }}"
+        data-ng-href="{{ ::$ctrl.GIT_WEBHOOK_GUIDE_LINK }}"
     >
         <span
             data-translate="hosting_multisite_git_association_guide_configure_webhook"
