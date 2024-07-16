@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { Suspense, useContext, useEffect, useRef, useState } from 'react';
 import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -266,7 +266,9 @@ export default function ListingPage() {
             />
           </div>
         )}
-        <Outlet />
+        <Suspense>
+          <Outlet />
+        </Suspense>
       </>
     </RedirectionGuard>
   );
