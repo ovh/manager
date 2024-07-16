@@ -63,6 +63,10 @@ export default [
         ],
       },
       {
+        path: `${ROUTES_URLS.okmsId}${ROUTES_URLS.keys}${ROUTES_URLS.createKmsServiceKey}`,
+        ...lazyRouteConfig(() => import('@/pages/serviceKey/createKey.page')),
+      },
+      {
         path: `${ROUTES_URLS.okmsId}${ROUTES_URLS.keys}${ROUTES_URLS.keyId}`,
         ...lazyRouteConfig(() => import('@/pages/serviceKey/serviceKey.page')),
         children: [
