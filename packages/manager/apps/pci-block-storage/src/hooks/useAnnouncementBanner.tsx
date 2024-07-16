@@ -1,4 +1,4 @@
-import { useFeatureAvailability } from '@ovh-ux/manager-react-core-application';
+import { useFeatureAvailability } from '@ovhcloud/manager-components';
 
 export const PCI_ANNOUNCEMENT_BANNER_FEATURE =
   'public-cloud:pci-announcement-banner';
