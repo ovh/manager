@@ -66,19 +66,29 @@ export const useWorkflows = (projectId: string) => {
           .flat(1)
           .filter((w) => !!w)
           .map((w) => {
-            const executions = w.executions
-              .map((execution) => ({
-                at: parseISO(execution.executedAt),
-                ...execution,
-              }))
-              .sort((a, b) => b.at.getTime() - a.at.getTime());
+            let [lastExecutionAt, lastExecutionStatus] = [
+              new Date(),
+              undefined,
+            ];
+
+            if (Array.isArray(w.executions) && w.executions.length) {
+              const executions = w.executions
+                .map((execution) => ({
+                  at: parseISO(execution.executedAt),
+                  ...execution,
+                }))
+                .sort((a, b) => b.at.getTime() - a.at.getTime());
+
+              lastExecutionAt = executions[0].at;
+              lastExecutionStatus = executions[0].state;
+            }
 
             return {
               ...w,
-              lastExecution: format(executions[0].at, 'dd MMM yyyy HH:mm:ss', {
+              lastExecution: format(lastExecutionAt, 'dd MMM yyyy HH:mm:ss', {
                 locale: locales[userLocale],
               }),
-              lastExecutionStatus: executions[0].state,
+              lastExecutionStatus,
             };
           }))(),
       isPending: results.some((result) => result.isPending),
