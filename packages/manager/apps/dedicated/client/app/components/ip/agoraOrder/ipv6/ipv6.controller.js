@@ -51,15 +51,16 @@ export default class AgoraIpV6OrderController {
     this.canOrderIpv6 = true;
     this.regionState = {};
 
-    this.IpAgoraV6Order.fetchIpv6Services().then(({ data }) => {
-      if (data.length < this.getIpv6OrderableNumber()) {
-        this.IpAgoraV6Order.fetchIpv6ServicesWithDetails().then((ips) => {
-          ips.forEach((ip) => {
-            ip.regions.forEach((region) => {
-              this.regionState[region] = this.regionState[region]
-                ? this.regionState[region] + 1
-                : 1;
-            });
+    this.IpAgoraV6Order.fetchIpv6ServicesWithDetails().then((ips) => {
+      const additonalIpv6 = ips.filter(
+        (ip) => ip.version === 6 && ip.isAdditionalIp === true,
+      );
+      if (additonalIpv6.length < this.getIpv6OrderableNumber()) {
+        ips.forEach((ip) => {
+          ip.regions.forEach((region) => {
+            this.regionState[region] = this.regionState[region]
+              ? this.regionState[region] + 1
+              : 1;
           });
         });
       } else {
@@ -135,11 +136,13 @@ export default class AgoraIpV6OrderController {
     this.catalogByLocation = this.ipv6RegionsWithPlan.map(
       ({ regionId, plan }) => {
         const countryCode = this.constructor.getMacroRegion(regionId);
-
+        const nbIpv6onRegion = this.regionState[regionId]
+          ? this.regionState[regionId]
+          : 0;
         return {
           regionId,
           planCode: plan,
-          available: this.canOrderIpv6 && this.regionState[regionId] < 3,
+          available: this.canOrderIpv6 && nbIpv6onRegion < 3,
           location: this.$translate.instant(
             `ip_agora_ipv6_location_${regionId}`,
           ),
