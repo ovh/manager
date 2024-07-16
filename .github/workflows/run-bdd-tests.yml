@@ -23,7 +23,6 @@ jobs:
           yarn exec turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
           yarn exec turbo -- run build --filter="./packages/manager/manager-components/*" --concurrency=5
           yarn exec turbo -- run build --filter="./packages/manager/modules/order" --concurrency=5
-          yarn workspace @ovh-ux/manager-container-app start
       # This task is for running the jest tests outside microApps
       - name: Run tests Jest
         run: yarn test:jest
