@@ -1,7 +1,7 @@
 import { ArrowRight, Construction } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useGetMaintenances } from '@/hooks/api/maintenances.api.hooks';
-import { useUserActivityContext } from '@/contexts/userActivityContext';
+import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useServiceData } from '../../Service.layout';
 import { POLLING } from '@/configuration/polling.constants';
 import { database } from '@/interfaces/database';

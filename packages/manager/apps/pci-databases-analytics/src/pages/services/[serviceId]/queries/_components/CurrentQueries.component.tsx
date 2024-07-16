@@ -13,7 +13,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { POLLING } from '@/configuration/polling.constants';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { useUserActivityContext } from '@/contexts/userActivityContext';
+import { useUserActivityContext } from '@/contexts/UserActivityContext';
 
 const CurrentQueries = () => {
   const { t } = useTranslation(

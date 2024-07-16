@@ -24,7 +24,7 @@ import { colors } from './colors.constants';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { useServiceData } from '../../Service.layout';
 import { cn } from '@/lib/utils';
-import { useUserActivityContext } from '@/contexts/userActivityContext';
+import { useUserActivityContext } from '@/contexts/UserActivityContext';
 
 ChartJS.register(
   CategoryScale,

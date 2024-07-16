@@ -8,7 +8,7 @@ import { useGetConnectionPools } from '@/hooks/api/connectionPool.api.hooks';
 import { useGetCurrentQueries } from '@/hooks/api/queries.api.hooks';
 import { useGetIntegrations } from '@/hooks/api/integrations.api.hook';
 import { useGetNamespaces } from '@/hooks/api/namespaces.api.hooks';
-import { useUserActivityContext } from '@/contexts/userActivityContext';
+import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 
