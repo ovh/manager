@@ -1,6 +1,4 @@
-import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useMe } from './useMe';
 
 const ASIA_FORMAT = ['SG', 'ASIA', 'AU', 'IN'];
@@ -27,10 +25,9 @@ export const useCatalogPrice = (
   maximumFractionDigits?: number,
   options?: CatalogPriceOptions,
 ) => {
-  const { t } = useTranslation('order-price');
+  const { i18n, t } = useTranslation('order-price');
   const { me } = useMe();
 
-  const locale = useContext(ShellContext).environment.getUserLocale();
   const isTaxExcl = [...ASIA_FORMAT, ...FRENCH_FORMAT].includes(
     me?.ovhSubsidiary,
   );
@@ -44,7 +41,7 @@ export const useCatalogPrice = (
     };
     return me
       ? new Intl.NumberFormat(
-          locale.replace('_', '-'),
+          i18n.language.replace('_', '-'),
           numberFormatOptions as Parameters<typeof Intl.NumberFormat>[1],
         ).format(priceToFormat)
       : '';
