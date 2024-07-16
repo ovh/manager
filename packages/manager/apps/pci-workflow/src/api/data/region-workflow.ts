@@ -28,3 +28,21 @@ export const getRegionsWorkflows = async (
   );
   return data;
 };
+
+export const addWorkflow = async (
+  projectId: string,
+  regionName: string,
+  type: {
+    cron: string;
+    instanceId: string;
+    name: string;
+    rotation: number;
+    maxExecutionCount: number;
+  },
+) => {
+  const { data } = await v6.post<TRemoteWorkflow[]>(
+    `/cloud/project/${projectId}/region/${regionName}/workflow/backup`,
+    { ...type },
+  );
+  return data;
+};
