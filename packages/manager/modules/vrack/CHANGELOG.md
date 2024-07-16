@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.9.1...@ovh-ux/manager-vrack@1.10.0) (2024-07-16)
+
+
+### Features
+
+* **dedicated:** order additional ipv6 and add to vrack ([e86afd8](https://github.com/ovh/manager/commit/e86afd8013f395ec162b271f82eac410ba8e0c2e))
+
+
+
+
+
 ## [1.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.9.0...@ovh-ux/manager-vrack@1.9.1) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack
