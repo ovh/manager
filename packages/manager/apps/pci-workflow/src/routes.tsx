@@ -17,6 +17,7 @@ const ROUTE_PATHS = {
   onboarding: 'onboarding',
   delete: 'delete',
   deleteWorkflow: 'delete/:workflowId',
+  new: 'new',
 };
 
 export default [
@@ -25,7 +26,7 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/Layout')),
   },
   {
-    id: 'workflows',
+    id: 'workflow',
     path: ROUTE_PATHS.root,
     ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [
@@ -61,6 +62,13 @@ export default [
           tracking: 'executions',
         },
         ...lazyRouteConfig(() => import('@/pages/executions/Executions.page')),
+      },
+      {
+        path: ROUTE_PATHS.new,
+        handle: {
+          tracking: 'new',
+        },
+        ...lazyRouteConfig(() => import('@/pages/new/New.page')),
       },
     ],
   },
