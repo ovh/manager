@@ -5,14 +5,20 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 type TileTextProps = {
   value: string;
+  isText?: boolean;
 };
 
-export const TileValue: React.FC<TileTextProps> = ({ value }) => {
+export const TileValue: React.FC<TileTextProps> = ({
+  value,
+  isText = false,
+}) => {
   return (
     <OsdsText
       size={ODS_TEXT_SIZE._400}
       level={ODS_TEXT_LEVEL.body}
-      color={ODS_THEME_COLOR_INTENT.default}
+      color={
+        isText ? ODS_THEME_COLOR_INTENT.text : ODS_THEME_COLOR_INTENT.default
+      }
     >
       {value}
     </OsdsText>

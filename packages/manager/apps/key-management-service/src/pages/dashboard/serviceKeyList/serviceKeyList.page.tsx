@@ -1,18 +1,27 @@
 import React from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ODS_SPINNER_SIZE, ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import {
+  ODS_SPINNER_SIZE,
+  ODS_MESSAGE_TYPE,
+  ODS_BUTTON_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_BUTTON_VARIANT,
+} from '@ovhcloud/ods-components';
 import {
   OsdsText,
   OsdsMessage,
   OsdsSpinner,
+  OsdsButton,
+  OsdsIcon,
 } from '@ovhcloud/ods-components/react';
 import {
   Datagrid,
-  Notifications,
   useDatagridSearchParams,
 } from '@ovhcloud/manager-components';
 import {
+  ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
@@ -25,11 +34,12 @@ import {
   DatagridStatus,
 } from '@/components/Listing/ListingCells';
 import { useOkmsServiceKeys } from '@/data/hooks/useOkmsServiceKeys';
+import { ROUTES_URLS } from '@/routes/routes.constants';
 
 export default function Keys() {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tError } = useTranslation('error');
-
+  const navigate = useNavigate();
   const columns = [
     {
       id: 'name',
@@ -73,7 +83,6 @@ export default function Keys() {
 
   return (
     <>
-      <Notifications />
       <div className={'flex mb-3 mt-6'}>
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -95,6 +104,28 @@ export default function Keys() {
       )}
       {!isLoading && !error && (
         <div className={'mt-8'}>
+          <OsdsButton
+            size={ODS_BUTTON_SIZE.sm}
+            inline
+            color={ODS_THEME_COLOR_INTENT.primary}
+            variant={ODS_BUTTON_VARIANT.stroked}
+            className={'xs:mt-2 sm:mt-0 w-fit h-fit'}
+            onClick={() => {
+              navigate(
+                `/${okmsId}${ROUTES_URLS.keys}${ROUTES_URLS.createKmsServiceKey}`,
+              );
+            }}
+          >
+            <span slot="start">
+              <OsdsIcon
+                name={ODS_ICON_NAME.ADD}
+                size={ODS_ICON_SIZE.xs}
+                color={ODS_THEME_COLOR_INTENT.primary}
+              ></OsdsIcon>
+            </span>
+
+            {t('key_management_service_service-keys_cta_create')}
+          </OsdsButton>
           <Datagrid
             columns={columns}
             items={okmsServiceKey || []}
