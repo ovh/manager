@@ -26,6 +26,7 @@
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/request-tagger": "*",
     "@ovh-ux/shell": "*",
     "@ovhcloud/ods-common-core": "^17.1.0",
     "@ovhcloud/ods-components": "^17.1.0",
