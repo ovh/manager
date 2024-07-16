@@ -34,7 +34,14 @@ import {
   VRACK_ACTIONS_SUFFIX,
   VRACK_URLS,
 } from './vrack.constant';
+
+import { IPV6_GUIDES_LINK } from '../vrack-associated-services/ipv6/ipv6.constant';
 import arrowIcon from '../../assets/icon_vrack-mapper-arrows.svg';
+import {
+  SURVEY_LANGUAGES,
+  BASE_URL_SURVEY,
+  US_SURVEY_LINK,
+} from '../vrack.constant';
 
 export default class VrackMoveDialogCtrl {
   /* @ngInject */
@@ -50,7 +57,9 @@ export default class VrackMoveDialogCtrl {
     OvhApiVrack,
     OvhApiMe,
     CucVrackService,
+    vrackService,
     atInternet,
+    coreConfig,
   ) {
     this.$scope = $scope;
     this.$q = $q;
@@ -62,8 +71,11 @@ export default class VrackMoveDialogCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiVrack = OvhApiVrack;
     this.OvhApiMe = OvhApiMe;
-    this.vrackService = CucVrackService;
+    this.vrackService = vrackService;
+    this.cucVrackService = CucVrackService;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
+    this.user = coreConfig.getUser();
     this.changeOwnerTrackLabel = `${VRACK_DASHBOARD_TRACKING_PREFIX}::change-owner`;
   }
 
@@ -79,9 +91,63 @@ export default class VrackMoveDialogCtrl {
     this.changeOwnerUrl = null;
     this.vRackCloudRoadmapGuide = null;
     this.arrowIcon = arrowIcon;
+    this.deleteIpv6Modal = false;
+    this.addIpv6Modal = false;
+    this.isOpenModalAddSubnet = false;
+    this.isOpenModalDeleteSubnet = false;
+    this.ipRegions = {};
+    this.addIpv6ModalState = null;
+    this.hasIpv6 = false;
+
+    if (this.coreConfig.getRegion() === 'US') {
+      this.surveyUrl = US_SURVEY_LINK;
+    } else {
+      const userLanguage = this.coreConfig.getUserLanguage();
+      const languageToUse = SURVEY_LANGUAGES.ALLOWED.includes(userLanguage)
+        ? userLanguage
+        : SURVEY_LANGUAGES.DEFAULT;
+      this.surveyUrl = `${BASE_URL_SURVEY}${languageToUse}&nic=${this.user.nichandle}`;
+    }
 
     this.modals = {
       move: null,
+      select: {
+        open: false,
+        target: null,
+        confirm: () => {
+          this.form.servicesToAdd = [this.modals.select.target];
+          this.modals.select.open = false;
+        },
+        cancel: () => {
+          this.modals.select.open = false;
+        },
+      },
+      add: {
+        open: false,
+        servicesToAdd: null,
+        confirm: () => {
+          this.trackClick('add');
+          this.addSelectedServices();
+          this.modals.add.open = false;
+        },
+        cancel: () => {
+          this.form.servicesToAdd = [];
+          this.modals.add.open = false;
+        },
+      },
+      delete: {
+        open: false,
+        servicesToDelete: null,
+        confirm: () => {
+          this.trackClick('remove');
+          this.deleteSelectedServices();
+          this.modals.delete.open = false;
+        },
+        cancel: () => {
+          this.form.servicesToDelete = [];
+          this.modals.delete.open = false;
+        },
+      },
     };
 
     this.messages = [];
@@ -184,6 +250,14 @@ export default class VrackMoveDialogCtrl {
     });
   }
 
+  loadIpRegion(ip) {
+    if (!this.ipRegions[ip]) {
+      this.vrackService.getIpInfo(ip).then(({ data }) => {
+        [this.ipRegions[ip]] = data.regions;
+      });
+    }
+  }
+
   getDisplayName(serviceType) {
     return this.$translate.instant(
       `vrack_service_type_${serviceType.toLowerCase()}`,
@@ -245,6 +319,15 @@ export default class VrackMoveDialogCtrl {
           );
 
           allServices.dedicatedServerInterface = [];
+        }
+
+        if (allServices?.ip?.length > 0) {
+          const ipv6List = allServices.ip.filter((ip) =>
+            this.constructor.isIPv6(ip),
+          );
+          angular.forEach(ipv6List, (ipv6) => {
+            this.loadIpRegion(ipv6.id);
+          });
         }
 
         return this.getAvailableServices(allServices);
@@ -343,6 +426,12 @@ export default class VrackMoveDialogCtrl {
           );
 
           allServices.dedicatedServerInterface = [];
+        }
+
+        if (allServices?.ip?.length > 0) {
+          this.hasIpv6 = !!allServices.ip.find((ip) =>
+            this.constructor.isIPv6(ip),
+          );
         }
 
         return this.getAvailableServices(allServices);
@@ -546,15 +635,22 @@ export default class VrackMoveDialogCtrl {
     return ids.indexOf(serviceId) >= 0;
   }
 
-  toggleAddService(serviceType, serviceId) {
+  toggleAddService(serviceType, serviceId, name) {
     if (
       !this.isPending(serviceId) &&
       !this.loaders.adding &&
       !this.loaders.deleting
     ) {
-      const toAdd = { type: serviceType, id: serviceId };
+      const toAdd = { type: serviceType, id: serviceId, name };
       if (find(this.form.servicesToAdd, toAdd)) {
         this.form.servicesToAdd = reject(this.form.servicesToAdd, toAdd);
+      } else if (
+        this.form.servicesToAdd[0] &&
+        (this.constructor.isIPv6(toAdd) ||
+          this.constructor.isIPv6(this.form.servicesToAdd[0]))
+      ) {
+        this.modals.select.target = toAdd;
+        this.modals.select.open = true;
       } else {
         this.form.servicesToAdd.push(toAdd);
       }
@@ -563,13 +659,13 @@ export default class VrackMoveDialogCtrl {
     }
   }
 
-  toggleDeleteService(serviceType, serviceId) {
+  toggleDeleteService(serviceType, serviceId, name) {
     if (
       !this.isPending(serviceId) &&
       !this.loaders.adding &&
       !this.loaders.deleting
     ) {
-      const toDelete = { type: serviceType, id: serviceId };
+      const toDelete = { type: serviceType, id: serviceId, name };
       if (find(this.form.servicesToDelete, toDelete)) {
         this.form.servicesToDelete = reject(
           this.form.servicesToDelete,
@@ -663,6 +759,34 @@ export default class VrackMoveDialogCtrl {
       });
   }
 
+  addHandler() {
+    const ipv6ToAdd = this.form.servicesToAdd.find(
+      (service) => service.type === 'ip' && service.id.indexOf(':') !== -1,
+    );
+
+    if (ipv6ToAdd) {
+      this.addIpv6ModalState = {
+        vrack: this.serviceName,
+        ipblock: ipv6ToAdd.id,
+        region: this.ipRegions[ipv6ToAdd.id],
+        hasIpv6: this.hasIpv6,
+        helpLink:
+          IPV6_GUIDES_LINK[this.user.ovhSubsidiary] || IPV6_GUIDES_LINK.DEFAULT,
+      };
+      this.addIpv6Modal = true;
+    } else {
+      this.modals.add.servicesToAdd = this.form.servicesToAdd
+        .map(({ name }) => name)
+        .join(', ');
+      this.modals.add.open = true;
+    }
+  }
+
+  addServiceAction() {
+    this.addIpv6Modal = false;
+    this.addSelectedServices();
+  }
+
   addSelectedServices() {
     this.trackClick('add');
     this.loaders.adding = true;
@@ -721,16 +845,7 @@ export default class VrackMoveDialogCtrl {
                 ).$promise;
               break;
             case 'ip':
-              task = this.OvhApiVrack.Ip()
-                .v6()
-                .create(
-                  {
-                    serviceName: this.serviceName,
-                  },
-                  {
-                    block: service.id,
-                  },
-                ).$promise;
+              task = this.addIp(service);
               break;
             case 'cloudProject':
               task = this.OvhApiVrack.CloudProject()
@@ -777,6 +892,66 @@ export default class VrackMoveDialogCtrl {
       });
   }
 
+  resetAction() {
+    this.form.servicesToDelete = [];
+    this.form.servicesToAdd = [];
+    this.deleteIpv6Modal = false;
+    this.addIpv6Modal = false;
+  }
+
+  deleteServiceAction() {
+    this.deleteIpv6Modal = false;
+    this.deleteSelectedServices();
+  }
+
+  servicesToDeleteList() {
+    return this.form.servicesToDelete.map((ip) => ip.id).join(', ');
+  }
+
+  deleteHandler() {
+    const ipv6ToDelete = this.form.servicesToDelete.find(
+      (service) => service.type === 'ip' && service.id.indexOf(':') !== -1,
+    );
+
+    if (ipv6ToDelete) {
+      this.deleteIpv6Modal = true;
+    } else {
+      this.modals.delete.servicesToDelete = this.form.servicesToDelete
+        .map(({ name }) => name)
+        .join(', ');
+      this.modals.delete.open = true;
+    }
+  }
+
+  addIp(service) {
+    if (this.constructor.isIPv6(service)) {
+      return this.vrackService.addIpv6(this.serviceName, service.id);
+    }
+    return this.OvhApiVrack.Ip()
+      .v6()
+      .create(
+        {
+          serviceName: this.serviceName,
+        },
+        {
+          block: service.id,
+        },
+      ).$promise;
+  }
+
+  deleteIp(service) {
+    if (this.constructor.isIPv6(service)) {
+      return this.vrackService.deleteIpv6(this.serviceName, service.id);
+    }
+
+    return this.OvhApiVrack.Ip()
+      .v6()
+      .delete({
+        serviceName: this.serviceName,
+        ip: service.id,
+      }).$promise;
+  }
+
   deleteSelectedServices() {
     this.trackClick('remove');
     this.loaders.deleting = true;
@@ -819,12 +994,7 @@ export default class VrackMoveDialogCtrl {
                 }).$promise;
               break;
             case 'ip':
-              task = this.OvhApiVrack.Ip()
-                .v6()
-                .delete({
-                  serviceName: this.serviceName,
-                  ip: service.id,
-                }).$promise;
+              task = this.deleteIp(service);
               break;
             case 'cloudProject':
               task = this.OvhApiVrack.CloudProject()
@@ -907,6 +1077,10 @@ export default class VrackMoveDialogCtrl {
 
   isMoving() {
     return this.form.serviceToMove !== null && !this.loaders.moving;
+  }
+
+  static isIPv6(service) {
+    return !!service.id.match(/::/);
   }
 
   static hasServices(services) {

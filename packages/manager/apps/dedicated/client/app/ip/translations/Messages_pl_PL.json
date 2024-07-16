@@ -765,5 +765,6 @@
   "ip_byoip_aggregate_set_parent_size": "Wskaż żądany blok nadrzędny",
   "ip_byoip_aggregate_configuration": "Ta konfiguracja spowoduje utworzenie następującego bloku nadrzędnego:",
   "ip_byoip_aggregate_slicing_not_available_error_message": "Brak dostępnej konfiguracji segmentacji/agregacji. Więcej informacji znajdziesz w przewodniku: <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">tutaj</a>",
-  "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Dla tego adresu IP wykonano inną operację segmentacji lub agregacji."
+  "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Dla tego adresu IP wykonano inną operację segmentacji lub agregacji.",
+  "ip_table_manage_subnets": "Zarządzanie podsieciami IPv6 w sieci vRack"
 }

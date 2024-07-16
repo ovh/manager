@@ -1,30 +1,15 @@
 import filter from 'lodash/filter';
-import get from 'lodash/get';
-import isArray from 'lodash/isArray';
-import isEmpty from 'lodash/isEmpty';
 
 import { FETCH_PRICE_MAX_TRIES, PRODUCT_TYPES } from './ipv4.constant';
 
 export default class Ipv4AgoraOrder {
   /* @ngInject */
-  constructor($q, $http, OvhHttp) {
+  constructor($q, $http, OvhHttp, IpAgoraOrder) {
     this.$q = $q;
     this.$http = $http;
     this.OvhHttp = OvhHttp;
-
+    this.IpAgoraOrder = IpAgoraOrder;
     this.fetchPricesTries = 0;
-  }
-
-  handleErrorOrServices({ errors, results }) {
-    const filteredErrors = errors.filter(({ msg }) => {
-      const [errorCode] = msg.match(/\d+/);
-      return ![400, 404].includes(parseInt(errorCode, 10));
-    });
-    if (isArray(filteredErrors) && !isEmpty(filteredErrors)) {
-      return this.$q.reject(filteredErrors);
-    }
-
-    return get(results, '[0].services', []);
   }
 
   fetchProducts(product) {
@@ -41,14 +26,16 @@ export default class Ipv4AgoraOrder {
       .all([
         this.fetchProducts(
           PRODUCT_TYPES.privateCloud.apiTypeName,
-        ).then((privateClouds) => this.handleErrorOrServices(privateClouds)),
+        ).then((privateClouds) =>
+          this.IpAgoraOrder.handleErrorOrServices(privateClouds),
+        ),
         this.fetchProducts(
           PRODUCT_TYPES.dedicatedServer.apiTypeName,
         ).then((dedicatedServers) =>
-          this.handleErrorOrServices(dedicatedServers),
+          this.IpAgoraOrder.handleErrorOrServices(dedicatedServers),
         ),
         this.fetchProducts(PRODUCT_TYPES.vps.apiTypeName).then((vps) =>
-          this.handleErrorOrServices(vps),
+          this.IpAgoraOrder.handleErrorOrServices(vps),
         ),
       ])
       .then(([privateClouds, dedicatedServers, vps]) => [

@@ -10,6 +10,7 @@ import map from 'lodash/map';
 import range from 'lodash/range';
 import uniq from 'lodash/uniq';
 
+import { DASHBOARD_STATE_NAME } from '../ip-ip-agoraOrder.constant';
 import {
   IP_LOCATION_GROUPS,
   PRODUCT_TYPES,
@@ -84,10 +85,6 @@ export default class AgoraIpV4OrderController {
   }
 
   loadServices() {
-    this.atInternet.trackClick({
-      name: `dedicated::ip::dashboard::order`,
-      type: 'action',
-    });
     this.loading.services = true;
 
     return this.$q
@@ -466,10 +463,10 @@ export default class AgoraIpV4OrderController {
           this.ALERT_ID,
         );
         return this.$state
-          .go('app.ip.dashboard')
+          .go(DASHBOARD_STATE_NAME)
           .then(() => this.$q.reject(err));
       })
-      .finally(() => this.$state.go('app.ip.dashboard'));
+      .finally(() => this.$state.go(DASHBOARD_STATE_NAME));
   }
 
   getOfferDetails = (offerDetails, ipOffersByRegion, countryList) => {
@@ -536,6 +533,6 @@ export default class AgoraIpV4OrderController {
       name: `${TRACKING_PREFIX}cancel`,
       type: 'action',
     });
-    return this.$state.go('app.ip.dashboard');
+    return this.$state.go(DASHBOARD_STATE_NAME);
   }
 }

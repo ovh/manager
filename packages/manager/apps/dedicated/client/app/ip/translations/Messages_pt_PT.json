@@ -765,5 +765,6 @@
   "ip_byoip_aggregate_set_parent_size": "Especifique o bloco principal desejado",
   "ip_byoip_aggregate_configuration": "Esta ação agregará as seguintes sub-redes:",
   "ip_byoip_aggregate_slicing_not_available_error_message": "Nenhuma configuração de segmentação/agregação disponível. Para mais informações, consulte o nosso guia: <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">aqui</a>",
-  "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Foi efetuada outra ação de segmentação ou agregação para este endereço IP."
+  "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Foi efetuada outra ação de segmentação ou agregação para este endereço IP.",
+  "ip_table_manage_subnets": "Gerir IPv6 subnets no vRack"
 }

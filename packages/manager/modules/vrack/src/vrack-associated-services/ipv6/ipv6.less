@@ -1,0 +1,59 @@
+@import '../../dashboard/vrack-mapper.less';
+
+.vrack {
+  &__assigned-ipv6 {
+    max-width: 25rem;
+    margin-left: auto;
+
+    &__sub-item {
+      padding-left: 1rem;
+      text-align: end;
+    }
+
+    &__subnet,
+    &__subrange {
+      text-align: left;
+      list-style: none;
+      padding: 0.625rem 0.2rem;
+      border-width: 1px;
+      border-style: solid;
+      border-color: @vrack-service-border-color_selected;
+      background-color: @vrack-service-background-color_selected;
+      margin: 0.3125rem 0 0.3125rem 0;
+      font-size: 0.9375rem;
+      color: @vrack-service-font-color_selected;
+      white-space: nowrap;
+      user-select: none;
+      cursor: default;
+      box-shadow: @vrack-service-box-shadow_selected;
+      overflow: hidden;
+
+      &__via {
+        padding: 0 0.3rem;
+        font-weight: bold;
+      }
+
+      &__title {
+        padding: 0 1em;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+
+    &__subrange {
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: space-between;
+
+      &__slaac {
+        margin-left: auto;
+        width: 8.3em;
+
+        .oui-popover {
+          top: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+}
