@@ -98,7 +98,9 @@ export default class SignUpFormAppCtrl {
           this.saveError = error;
         });
     }
-    this.goToKycDocumentUploadPage();
+    if (this.needkyc) {
+      this.goToKycDocumentUploadPage();
+    }
 
     return null;
   }
