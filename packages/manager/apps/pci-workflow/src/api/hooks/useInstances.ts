@@ -69,7 +69,7 @@ export const useAllInstances = (projectId: string) => {
       enabled: !isPending,
     })),
     combine: (results) => ({
-      isPending: results.some((r) => r.isPending),
+      isPending: results.some((r) => r.isPending) || isPending,
       data: instances?.map((instance) => {
         const flavor = results.find(
           (result) => result.data?.id === instance.flavorId,
