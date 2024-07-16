@@ -1,0 +1,14 @@
+{
+  "order_catalog_price_free": "Included",
+  "order_catalog_price_tax_excl_label": "{{ price }} ex. VAT",
+  "order_catalog_price_tax_incl_label": "{{price}} incl. VAT",
+  "order_catalog_price_gst_excl_label": "{{ price }} ex. VAT",
+  "order_catalog_price_gst_incl_label": "{{ price }} incl. VAT",
+  "order_catalog_price_interval_day": "day",
+  "order_catalog_price_interval_month": "month",
+  "order_catalog_price_interval_year": "year",
+  "order_catalog_price_from": "From",
+  "order_catalog_price_to": "to",
+  "order_catalog_price_interval_hour": "hour",
+  "order_catalog_price_beta_free": "Free during the beta period"
+}
