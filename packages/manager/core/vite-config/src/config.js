@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
 import svgr from 'vite-plugin-svgr';
+import yn from 'yn';
 
 import IframeHmrPlugin from './plugin/iframe-hmr.js';
 import viteOvhDevServerPlugin from './plugin/dev-server.js';
@@ -70,7 +71,7 @@ const getBaseConfig = (config) => {
       outDir: resolve(process.cwd(), 'dist'),
       emptyOutDir: true,
       minify: true,
-      sourcemap: true,
+      sourcemap: yn(process.env.OVH_VITE_CONFIG_SOURCEMAPS, { default: false }),
     },
     server: {
       port: runInContainer ? 9001 : 9000,
