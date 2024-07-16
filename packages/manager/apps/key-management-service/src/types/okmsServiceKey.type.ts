@@ -103,3 +103,15 @@ export type OkmsServiceKeyPutPayload = {
   name?: string;
   state?: 'ACTIVE' | 'DEACTIVATED';
 };
+
+/*
+POST SERVICE KEY
+*/
+export type OkmsServiceKeyPostPayload = {
+  name: string;
+  context: string;
+  curve?: OkmsServiceKeyTypeECCurve;
+  size?: OkmsServiceKeyTypeOctSize & OkmsServiceKeyTypeRSASize;
+  operations: OkmsServiceKeyOperations[];
+  type: OkmsKeyTypes;
+};

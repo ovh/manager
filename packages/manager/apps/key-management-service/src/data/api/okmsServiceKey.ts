@@ -3,6 +3,7 @@ import apiClient from '@ovh-ux/manager-core-api';
 import { defaultCompareFunctionSortKey } from './utils';
 import {
   OkmsAllServiceKeys,
+  OkmsServiceKeyPostPayload,
   OkmsServiceKeyPutPayload,
 } from '@/types/okmsServiceKey.type';
 
@@ -84,4 +85,24 @@ export const updateOkmsServiceKeyResource = async ({
   data: OkmsServiceKeyPutPayload;
 }) => {
   return apiClient.v2.put(`okms/resource/${okmsId}/serviceKey/${keyId}`, data);
+};
+
+/**
+ *  create okms Servicekey
+ */
+
+export const createOkmsServiceKeyResourceQueryKey = ({
+  okmsId,
+}: {
+  okmsId: string;
+}) => [`put/okms/resource/${okmsId}/serviceKey/create`];
+
+export const createOkmsServiceKeyResource = async ({
+  okmsId,
+  data,
+}: {
+  okmsId: string;
+  data: OkmsServiceKeyPostPayload;
+}) => {
+  return apiClient.v2.post(`okms/resource/${okmsId}/serviceKey`, data);
 };

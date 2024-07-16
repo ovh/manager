@@ -5,10 +5,14 @@ import { useServiceKeyOperationsTranslations } from '@/hooks/serviceKey/useServi
 
 type KeyStatusProps = {
   operations: OkmsServiceKeyOperations[];
+  isText?: boolean;
 };
 
-export const ServiceKeyOperations = ({ operations }: KeyStatusProps) => {
+export const ServiceKeyOperations = ({
+  operations,
+  isText = false,
+}: KeyStatusProps) => {
   const value = useServiceKeyOperationsTranslations(operations);
 
-  return <TileValue value={value} />;
+  return <TileValue value={value} isText={isText} />;
 };
