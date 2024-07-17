@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Shell } from '@ovh-ux/shell';
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
@@ -85,7 +85,7 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
   return (
     <>
       {show && (
-        <OsdsModal dismissible onOdsModalClose={() => setShow(false)}>
+        <OsdsModal>
           <div className="p-1">
             <div className="w-full flex justify-center items-center">
               <img src={ovhCloudLogo} alt="ovh-cloud-logo" />
