@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import OvhLink from '@/components/links/OvhLink.component';
 import { Button } from '@/components/ui/button';
 import { POLLING } from '@/configuration/polling';
-import { useGetUsers } from '@/hooks/api/user-api/useGetUsers';
+import { useGetUsers } from '@/hooks/api/user/useGetUsers.hook';
 import { user } from '@/types/user';
 
 export default function Users() {
