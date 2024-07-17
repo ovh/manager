@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import { getProject } from '../data/api/services';
 
+// TODO: remove this file
+
 const usePciProject = () => {
   const { projectId } = useParams();
 
