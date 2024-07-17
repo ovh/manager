@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { act, renderHook, screen, waitFor } from '@testing-library/react';
-import { DEFAULT_OPEN_VALUE, useModale } from '@/hooks/useModale';
+import { DEFAULT_OPEN_VALUE, useModale } from '@/hooks/useModale.hook';
 import { RouterWithLocationWrapper } from '@/__tests__/helpers/wrappers/RouterWithLocationWrapper';
 
 describe('useModale', () => {

@@ -9,7 +9,7 @@ import {
 
 import Guides from './Guides.component';
 
-import { Locale } from '@/hooks/useLocale';
+import { Locale } from '@/hooks/useLocale.hook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import {
   mockedGuideOnboarding,
@@ -42,7 +42,7 @@ describe('Guides component', () => {
       };
     });
 
-    vi.mock('@/data/api/apiGuide', () => ({
+    vi.mock('@/data/api/ai/guide.api', () => ({
       getGuides: vi.fn(() => [mockedGuides, mockedGuideOnboarding]),
     }));
 

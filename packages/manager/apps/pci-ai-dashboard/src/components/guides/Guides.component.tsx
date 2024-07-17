@@ -11,11 +11,11 @@ import {
   CommandItem,
   CommandList,
 } from '../ui/command';
-import { useLocale } from '@/hooks/useLocale';
+import { useLocale } from '@/hooks/useLocale.hook';
 import { Button } from '../ui/button';
 import { Skeleton } from '../ui/skeleton';
 import { Guide } from '@/types/guide';
-import { useGetGuides } from '@/hooks/api/guide-api/useGetGuides';
+import { useGetGuides } from '@/hooks/api/ai/guide/useGetGuides.hook';
 
 interface GuidesProps {
   section?: string;

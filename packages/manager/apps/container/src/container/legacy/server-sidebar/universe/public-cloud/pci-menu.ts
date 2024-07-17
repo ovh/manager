@@ -327,6 +327,12 @@ export function getPciProjectMenu(
       regions: ['EU', 'CA'],
       subItems: [
         {
+          id: 'dashboard',
+          title: 'AI Dashboard Angular',
+          feature: 'ai-dashboard',
+          href: getURL('public-cloud', `#/pci/projects/${projectId}/ai-dashboard`),
+        },
+        {
           id: 'pci-ai-dashboard',
           title: 'AI Dashboard',
           feature: 'pci-ai-dashboard',
