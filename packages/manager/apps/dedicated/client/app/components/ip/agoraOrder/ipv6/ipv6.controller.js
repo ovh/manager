@@ -187,10 +187,13 @@ export default class AgoraIpV6OrderController {
       duration: 'P1M',
       planCode,
       quantity: 1,
+      destination:
+        this.model.selectedService !== EMPTY_CHOICE
+          ? this.model.selectedService
+          : null,
     });
 
     if (this.model.selectedService !== EMPTY_CHOICE) {
-      productToOrder.destination = this.model.selectedService;
       trakingService = `_${this.model.selectedService}`;
     }
 
