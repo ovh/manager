@@ -70,8 +70,18 @@ export default class AgoraIpV4OrderController {
     this.loadServices();
   }
 
+  getIpv4Catalog() {
+    return this.ipCatalog.filter(
+      (plan) => plan.planCode.match(/^ip-v4.*/) != null,
+    );
+  }
+
+  static isIpv6Plan(planCode) {
+    return planCode.match(/^ip-v6.*/) != null;
+  }
+
   getIpFailoverPrice() {
-    const ipFailoverRIPEPlan = this.ipCatalog.find(
+    const ipFailoverRIPEPlan = this.getIpv4Catalog().find(
       ({ planCode }) => planCode === IP_FAILOVER_PLANCODE[this.region],
     );
     if (!ipFailoverRIPEPlan) {
@@ -104,7 +114,6 @@ export default class AgoraIpV4OrderController {
         }
       })
       .catch((err) => {
-        console.log(err);
         this.Alerter.error(
           this.$translate.instant('ip_order_loading_error', this.ALERT_ID),
         );
@@ -471,7 +480,11 @@ export default class AgoraIpV4OrderController {
 
   getOfferDetails = (offerDetails, ipOffersByRegion, countryList) => {
     return offerDetails
-      .filter(({ productRegion }) => ipOffersByRegion.includes(productRegion))
+      .filter(
+        ({ productRegion, planCode }) =>
+          ipOffersByRegion.includes(productRegion) &&
+          !this.constructor.isIpv6Plan(planCode),
+      )
       .map((ipOffer) => {
         return {
           ...ipOffer,
