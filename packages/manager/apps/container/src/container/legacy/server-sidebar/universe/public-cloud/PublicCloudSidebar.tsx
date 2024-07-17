@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from '@tanstack/react-query';
+import { useFeatureAvailability } from '@ovhcloud/manager-components';
 import { useLegacyContainer } from '@/container/legacy/context';
 import { useShell } from '@/context';
 import useProjects from './useProjects';
@@ -16,7 +15,6 @@ export default function PublicCloudSidebar() {
   const location = useLocation();
   const shell = useShell();
   const navigation = shell.getPlugin('navigation');
-  const reketInstance = useReket();
   const { t } = useTranslation('pci-sidebar');
   const { setIsResponsiveSidebarMenuOpen } = useLegacyContainer();
   const { currentProject, projects } = useProjects();
@@ -28,15 +26,7 @@ export default function PublicCloudSidebar() {
     .getRegion();
   const projectId = currentProject?.project_id;
 
-  const getFeatures = (): Promise<Record<string, string>> =>
-    reketInstance.get(`/feature/${features.join(',')}/availability`, {
-      requestType: 'aapi',
-    });
-
-  const { data: availability } = useQuery({
-    queryKey: ['sidebar-public-cloud-availability'],
-    queryFn: getFeatures,
-  });
+  const {data: availability } = useFeatureAvailability(features);
 
   const menu = useMemo(() => {
     if (!availability) return [];
@@ -213,7 +203,7 @@ export default function PublicCloudSidebar() {
         {menu.map((item) => (
           <div className="m-2" key={item.id}>
             <h2 className={style.menuTitle}>
-             {item.title}                     
+             {item.title}
              {item.badge && (
                         <span
                           className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}

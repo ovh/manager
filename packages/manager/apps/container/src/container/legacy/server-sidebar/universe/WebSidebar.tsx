@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
@@ -10,6 +8,7 @@ import OrderTrigger from '../order/OrderTrigger';
 import webShopConfig from '../order/shop-config/web';
 import { ShopItem } from '../order/OrderPopupContent';
 import getIcon  from './GetIcon';
+import { useFeatureAvailability } from '@ovhcloud/manager-components';
 
 export const webFeatures = [
   'web:domains',
@@ -37,7 +36,6 @@ export default function WebSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
   const [shopItems, setShopItems] = useState<ShopItem[]>([]);
   const shell = useShell();
-  const reketInstance = useReket();
   const { loadServices } = useServiceLoader('web');
   const { t, i18n } = useTranslation('sidebar');
   const navigation = shell.getPlugin('navigation');
@@ -45,7 +43,7 @@ export default function WebSidebar() {
   const { ovhSubsidiary, isTrusted } = environment.getUser();
   const region = environment.getRegion();
 
-  const getWebMenu = (features: Record<string, string>) => {
+  const getWebMenu = (features: Record<string, boolean>) => {
     const menu = [];
 
     if (features['web:domains']) {
@@ -295,15 +293,7 @@ export default function WebSidebar() {
     return menu;
   };
 
-  const getFeatures = (): Promise<Record<string, string>> =>
-    reketInstance.get(`/feature/${webFeatures.join(',')}/availability`, {
-      requestType: 'aapi',
-    });
-
-  const { data: availability } = useQuery({
-    queryKey: ['sidebar-web-availability'],
-    queryFn: getFeatures,
-  });
+  const {data: availability} = useFeatureAvailability(webFeatures);
 
   useEffect(() => {
     if (availability) {

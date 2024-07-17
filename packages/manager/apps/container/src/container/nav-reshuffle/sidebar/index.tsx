@@ -19,10 +19,10 @@ import {
   findPathToNode,
   initFeatureNames,
   shouldHideElement,
-  debounce,
 } from './utils';
 import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
+import { fetchFeatureAvailabilityData } from '@ovhcloud/manager-components';
 
 interface ServicesCountError {
   url: string;
@@ -97,12 +97,7 @@ const Sidebar = (): JSX.Element => {
       if (!abort) {
         const features = initFeatureNames(navigationRoot);
 
-        const results: Record<string, boolean> = await reketInstance.get(
-          `/feature/${features.join(',')}/availability`,
-          {
-            requestType: 'aapi',
-          },
-        );
+        const results = await fetchFeatureAvailabilityData(features);
 
         const region = environmentPlugin.getEnvironment().getRegion();
         const [tree] = initTree([navigationRoot], results, region);
