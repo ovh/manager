@@ -62,7 +62,7 @@
   "domain_operations_statusOperation_doing": "W realizacji",
   "domain_operations_statusOperation_done": "Zakończone",
   "domain_operations_statusOperation_error": "Do wykonania",
-  "domain_operations_statusOperation_todo": "Zaplanowana",
+  "domain_operations_statusOperation_todo": "Zaplanowane",
   "domain_operations_update_title": "Dane operacji",
   "domain_operations_update": "Zmień dane operacji",
   "domain_operations_update_info": "Możesz zmienić dane dotyczące operacji <strong>„{{t0}}”</strong> dla domeny <strong>{{t1}}</strong>",
