@@ -13,5 +13,9 @@
   "modalCancelButtonLabel": "Abbrechen",
   "modalConfirmVrackButtonLabel": "Mein vRack bestellen",
   "modalNoVrackButtonLabel": "Nein danke, ich habe bereits ein vRack",
-  "createPageTitle": "vRack Services aktivieren"
+  "createPageTitle": "vRack Services aktivieren",
+  "modalCreateOrderWaitMessage": "Bitte gedulden Sie sich einen Augenblick ...",
+  "modalSubmitOrderButtonLabel": "Bestellen",
+  "vrackServicesCreationSuccess": "Die Konfiguration wurde registriert.",
+  "vrackServicesOrderLinkLabel": "Meine Bestellung"
 }
