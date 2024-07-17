@@ -10,7 +10,7 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
         Component: moduleDefault,
         ...moduleExports,
       };
-    }
+    },
   };
 };
 

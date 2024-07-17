@@ -39,12 +39,12 @@ export const usePciBreadcrumb = ({
           label: description,
           href: response as string,
         };
-        const appRoot = {
+        const appRootItem = {
           label: appName,
           href: response.split('public-cloud')[1],
         };
         setRoot([rootItem]);
-        setAppRoot([appRoot]);
+        setAppRoot([appRootItem]);
       } catch (error) {
         console.error('Error fetching root URL:', error);
       }
