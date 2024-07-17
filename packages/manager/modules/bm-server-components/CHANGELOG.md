@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.26.0...@ovh-ux/manager-bm-server-components@1.26.1) (2024-07-17)
+
+
+### Reverts
+
+* Revert "feat(dedicated.server): hide backup tab if not orderable (#12197)" (#12393) ([9407c63](https://github.com/ovh/manager/commit/9407c63e421748346b9f4999c091961b1265d4c2)), closes [#12197](https://github.com/ovh/manager/issues/12197) [#12393](https://github.com/ovh/manager/issues/12393)
+
+
+
+
+
 # [1.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.25.3...@ovh-ux/manager-bm-server-components@1.26.0) (2024-07-15)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.44.0...@ovh-ux/manager-dedicated@19.44.1) (2024-07-17)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** fix uniq ipv4 price ([#12407](https://github.com/ovh/manager/issues/12407)) ([5f40d82](https://github.com/ovh/manager/commit/5f40d826d5d736efd19367e4b7d1eef118df8cd3))
+
+
+### Reverts
+
+* Revert "feat(dedicated.server): hide backup tab if not orderable (#12197)" (#12393) ([9407c63](https://github.com/ovh/manager/commit/9407c63e421748346b9f4999c091961b1265d4c2)), closes [#12197](https://github.com/ovh/manager/issues/12197) [#12393](https://github.com/ovh/manager/issues/12393)
+
+
+
+
+
 # [19.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.43.0...@ovh-ux/manager-dedicated@19.44.0) (2024-07-16)
 
 
