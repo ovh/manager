@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useGetTokens } from '@/hooks/api/token-api/useGetTokens';
-import { useGetUsers } from '@/hooks/api/user-api/useGetUsers';
-import { useGetRegistries } from '@/hooks/api/registry-api/useGetRegistries';
-import { useGetDatastores } from '@/hooks/api/datastore-api/useGetDatastores';
+import { useGetTokens } from '@/hooks/api/ai/token/useGetTokens.hook';
+import { useGetUsers } from '@/hooks/api/user/useGetUsers.hook';
+import { useGetRegistries } from '@/hooks/api/ai/registry/useGetRegistries.hook';
+import { useGetDatastores } from '@/hooks/api/ai/datastore/useGetDatastores.hook';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 
 const DashboardTabs = () => {

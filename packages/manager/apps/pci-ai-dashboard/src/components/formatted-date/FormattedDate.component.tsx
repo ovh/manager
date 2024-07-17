@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useLocale } from '@/hooks/useLocale';
+import { useLocale } from '@/hooks/useLocale.hook';
 
 interface TableDateCellProps {
   date: Date;

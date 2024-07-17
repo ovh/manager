@@ -5,13 +5,13 @@ import { useEffect } from 'react';
 import queryClient from '@/query.client';
 
 import { useLoadingIndicatorContext } from '@/contexts/loadingIndicatorContext';
-import { getProject } from '@/data/api/apiProjects';
+import { getProject } from '@/data/api/project/project.api';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 
 import { Toaster } from '@/components/ui/toaster';
 import PageLayout from '@/components/page-layout/PageLayout.component';
-import { useGetAuthorization } from '@/hooks/api/authorization-api/useGetAuthorization';
+import { useGetAuthorization } from '@/hooks/api/ai/authorization/useGetAuthorization.hook';
 import Auth from './auth/auth.page';
 
 export function breadcrumb() {

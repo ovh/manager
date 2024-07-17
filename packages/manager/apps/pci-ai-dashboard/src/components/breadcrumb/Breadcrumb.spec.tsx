@@ -31,7 +31,7 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-vi.mock('@/data/api/apiProjects', () => {
+vi.mock('@/data/api/project/project.api', () => {
   return {
     getProject: vi.fn(() => ({
       project_id: '123456',

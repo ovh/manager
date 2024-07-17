@@ -3,7 +3,7 @@ import { Params, useParams, useLocation, useMatches } from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 
 import { Skeleton } from '../ui/skeleton';
-import usePciProject from '@/hooks/api/projects-api/useGetProjects';
+import usePciProject from '@/hooks/api/project/useGetProjects.hook';
 import A from '../links/A.component';
 import Link from '../links/Link.component';
 

@@ -351,6 +351,7 @@ export function getPciProjectMenu(
   if (
     isFeaturesAvailable(
       'ai-dashboard',
+      'pci-ai-dashboard',
       'notebooks',
       'training',
       'ai-apps',
@@ -361,12 +362,19 @@ export function getPciProjectMenu(
       id: 'ai',
       title: 'AI & Machine Learning',
       subItems: [
-        isFeaturesAvailable('ai-dashboard') && {
+        isFeaturesAvailable('ai-dashboard') && 
+        {
           id: 'dashboard',
+          title: 'AI Dashboard Angular',
+          href: getURL('public-cloud', `#/pci/projects/${projectId}/ai-dashboard`),
+        },
+        isFeaturesAvailable('pci-ai-dashboard') && 
+        {
+          id: 'pci-ai-dashboard',
           title: 'AI Dashboard',
           href: getURL(
             'public-cloud',
-            `#/pci/projects/${projectId}/ai-dashboard`,
+            `#/pci/projects/${projectId}/ai/dashboard`,
           ),
         },
         isFeaturesAvailable('notebooks') && {

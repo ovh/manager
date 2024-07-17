@@ -1,9 +1,9 @@
 import { Outlet, useOutletContext, useParams } from 'react-router-dom';
 import { DashboardHeader } from './_components/dashboardHeader.component';
 import DashboardTabs from './_components/dashboardTabs.component';
-import { useGetNotebooks } from '@/hooks/api/notebook-api/useGetNotebooks';
-import { useGetJobs } from '@/hooks/api/job-api/useGetJobs';
-import { useGetApps } from '@/hooks/api/app-api/useGetApps';
+import { useGetNotebooks } from '@/hooks/api/ai/notebook/useGetNotebooks.hook';
+import { useGetJobs } from '@/hooks/api/ai/job/useGetJobs.hook';
+import { useGetApps } from '@/hooks/api/ai/app/useGetApps.hook';
 import { ai } from '@/types/ai';
 import { POLLING } from '@/configuration/polling';
 

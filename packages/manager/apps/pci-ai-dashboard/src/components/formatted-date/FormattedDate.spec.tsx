@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { useShell } from '@ovh-ux/manager-react-shell-client';
 import FormattedDate from './FormattedDate.component';
-import { Locale } from '@/hooks/useLocale';
+import { Locale } from '@/hooks/useLocale.hook';
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => {
   type CallbackType = (localePros: { locale: string }) => void;
