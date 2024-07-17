@@ -3,5 +3,9 @@
   "modalVrackCreationDescriptionLine2": "You can only link 1 vRack Services per region for a given vRack.",
   "modalVrackCreationError": "The following error has occurred: {{error}}.",
   "modalVrackCreationCancel": "Cancel",
-  "modalCreateNewVrackButtonLabel": "Create a vRack "
+  "modalCreateNewVrackButtonLabel": "Create a vRack ",
+  "modalVrackCreationOrderWaitMessage": "Please wait...",
+  "modalVrackCreationSubmitOrderButtonLabel": "Order my vRack",
+  "vrackCreationSuccess": "vRack order has been placed.",
+  "vrackOrderLinkLabel": "My order"
 }
