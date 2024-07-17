@@ -7,7 +7,6 @@ import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRanch
 import useCreateRancher from '@/data/hooks/useCreateRancher/useCreateRancher';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import { getRanchersUrl } from '@/utils/route';
-import usePciProject from '@/hooks/usePciProject';
 import { PciProjectPlanCode, RancherService } from '@/types/api.type';
 import { ranchersQueryKey } from '@/data/hooks/useRancher/useRancher';
 import {
@@ -35,7 +34,7 @@ export default function Create() {
   useTrackingPage(TrackingPageView.CreateRancher);
   const trackingPage = useSimpleTrackingPage();
 
-  const { data: project } = usePciProject();
+  const { data: project } = useProject();
 
   const ranchersQueryKeyValue = ranchersQueryKey(projectId);
 
