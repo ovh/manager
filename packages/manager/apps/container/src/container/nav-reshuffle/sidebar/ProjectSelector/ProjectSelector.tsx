@@ -74,14 +74,14 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   const selectStyles = {
     option: (provided: any, {isFocused} : {isFocused: boolean}) => ({
       ...provided,
-      backgroundColor: isFocused ? '#C8F0FD' : '#FFFFFF',
-      color: isFocused ? '#1A53CF' : '#4E568E',
+      backgroundColor: isFocused ? 'var(--ods-color-primary-075)' : 'var(--ods-color-default-000)',
+      color: isFocused ? 'var(--ods-color-primary-700)' : 'var(--ods-color-primary-800)',
       cursor: 'pointer',
     }),
     control: (provided: any, state: any) => ({
       ...provided,
-      backgroundColor: state.isFocused ? '#98D7F9' : '#FFF',
-      color: state.isFocused ? '#1C55D0' : '#1A53CF',
+      backgroundColor: state.isFocused ? 'var(--ods-color-primary-100)' : 'var(--ods-color-default-000)',
+      color: state.isFocused ? 'var(--ods-color-primary-700)' : 'var(--ods-color-primary-800)',
     }),
   };
   const [options, setOptions] = useState([]);
