@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { BookOpen } from 'lucide-react';
 
-import { useParams } from 'react-router-dom';
 import {
   CommandDialog,
   CommandEmpty,
@@ -16,6 +15,7 @@ import { Button } from '../ui/button';
 import { Skeleton } from '../ui/skeleton';
 import { Guide } from '@/types/guide';
 import { useGetGuides } from '@/hooks/api/guide-api/useGetGuides';
+import { useParams } from 'react-router-dom';
 
 interface GuidesProps {
   section?: string;

@@ -67,7 +67,6 @@ export function useDashboardData() {
 export default function Layout() {
   const { projectId } = useParams();
   const authorizationQuery = useGetAuthorization(projectId);
-
   if (authorizationQuery.isSuccess && authorizationQuery.data) {
     return (
       <PageLayout>
@@ -78,6 +77,7 @@ export default function Layout() {
       </PageLayout>
     );
   }
+  console.log('in Auth');
   return (
     <PageLayout>
       <RoutingSynchronisation />

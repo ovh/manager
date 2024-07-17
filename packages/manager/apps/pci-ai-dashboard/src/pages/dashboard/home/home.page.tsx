@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <>
       <div className="float-right">
-        <Guides section="cli" />
+        <Guides />
       </div>
       <div className="flex flex-row justify-around">
         <ProductInformations

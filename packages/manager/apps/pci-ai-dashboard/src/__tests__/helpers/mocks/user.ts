@@ -14,10 +14,11 @@ export const mockedUser: user.User = {
     {
       description: 'description',
       id: 'idRole',
-      name: 'roleName',
+      name: user.AIUserRoleEnum.ai_training_operator,
       permissions: ['RO'],
     },
   ],
   status: user.UserStatusEnum.OK,
   username: 'username',
+  password: 'myPassword'
 };
