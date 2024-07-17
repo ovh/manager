@@ -14,7 +14,7 @@ import {
 import { useToast } from '@/components/ui/use-toast';
 import { useUpdateService } from '@/hooks/api/services.api.hooks';
 import { database } from '@/interfaces/database';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 
 interface IpsRestrictionsUpdateProps {
   initialValue: database.service.IpRestriction[];

@@ -2,7 +2,7 @@ import { Pen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import { Button } from '@/components/ui/button';
 import { useModale } from '@/hooks/useModale';
 import RenameService from '../../_components/RenameService.component';

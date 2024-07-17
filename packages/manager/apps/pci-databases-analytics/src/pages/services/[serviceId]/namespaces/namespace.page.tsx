@@ -9,7 +9,7 @@ import { DataTable } from '@/components/ui/data-table';
 import { useModale } from '@/hooks/useModale';
 import { useGetNamespaces } from '@/hooks/api/namespaces.api.hooks';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
-import { useServiceData } from '../Service.layout';
+import { useServiceData } from '../Service.context';
 import { POLLING } from '@/configuration/polling.constants';
 import { getColumns } from './_components/NamespacesTableColumns.component';
 import DeleteNamespaceModal from './_components/DeleteNamespace.component';

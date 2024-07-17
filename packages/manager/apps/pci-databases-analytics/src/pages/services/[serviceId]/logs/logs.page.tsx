@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Switch } from '@/components/ui/switch';
 import { useGetServiceLogs } from '@/hooks/api/logs.api.hooks';
-import { useServiceData } from '../Service.layout';
+import { useServiceData } from '../Service.context';
 import { Skeleton } from '@/components/ui/skeleton';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';

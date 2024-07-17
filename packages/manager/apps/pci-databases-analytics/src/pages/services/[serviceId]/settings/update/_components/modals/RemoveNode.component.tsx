@@ -17,7 +17,7 @@ import { useDeleteNode } from '@/hooks/api/nodes.api.hooks';
 import { ModalController } from '@/hooks/useModale';
 import { Pricing } from '@/lib/pricingHelper';
 import { order } from '@/interfaces/catalog';
-import { useServiceData } from '@/pages/services/[serviceId]/Service.layout';
+import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 
 interface DeleteNodeProps {
   controller: ModalController;

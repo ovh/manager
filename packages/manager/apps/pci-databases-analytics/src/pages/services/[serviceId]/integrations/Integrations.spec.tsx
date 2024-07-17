@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
+import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import Integrations, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/integrations/Integrations.page';
@@ -54,7 +54,7 @@ describe('Integrations page', () => {
       getServices: vi.fn(() => [mockedServiceOrig, mockedServiceInte]),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedNewService,
@@ -113,7 +113,7 @@ describe('Integrations page', () => {
     });
   });
   it('displays add integrations button if capability is present', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedNewService,
@@ -130,7 +130,7 @@ describe('Integrations page', () => {
     expect(screen.queryByTestId('integrations-add-button')).toBeInTheDocument();
   });
   it('does not display add integrations button if capability is absent', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedNewService,
@@ -145,7 +145,7 @@ describe('Integrations page', () => {
     expect(screen.queryByTestId('integrations-add-button')).toBeNull();
   });
   it('disable add integrations button if capability is disabled', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedNewService,

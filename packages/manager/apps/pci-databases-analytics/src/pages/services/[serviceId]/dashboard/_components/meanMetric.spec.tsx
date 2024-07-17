@@ -17,7 +17,7 @@ describe('Mean Metric component', () => {
       getMetric: vi.fn(() => mockMetric),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

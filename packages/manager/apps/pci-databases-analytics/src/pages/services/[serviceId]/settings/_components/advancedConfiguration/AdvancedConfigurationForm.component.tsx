@@ -24,7 +24,7 @@ import {
 } from '@/components/ui/form';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Input } from '@/components/ui/input';
-import { useServiceData } from '../../../Service.layout';
+import { useServiceData } from '../../../Service.context';
 import { useToast } from '@/components/ui/use-toast';
 import { useUpdateAdvancedConfiguration } from '@/hooks/api/advancedConfiguration.api.hook';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';

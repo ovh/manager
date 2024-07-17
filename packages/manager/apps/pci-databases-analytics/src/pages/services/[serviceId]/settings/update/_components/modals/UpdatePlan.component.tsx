@@ -20,7 +20,7 @@ import { createTree } from '@/lib/availabilitiesHelper';
 import { order } from '@/interfaces/catalog';
 import { database } from '@/interfaces/database';
 import { Engine, Version } from '@/interfaces/order-funnel';
-import { useServiceData } from '@/pages/services/[serviceId]/Service.layout';
+import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Form,

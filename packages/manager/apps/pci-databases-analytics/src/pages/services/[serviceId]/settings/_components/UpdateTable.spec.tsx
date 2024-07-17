@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
+import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
 import { database } from '@/interfaces/database';
 import * as nodesApi from '@/data/api/databases/nodes';
@@ -103,7 +103,7 @@ describe('Update table in settings page', () => {
       deleteNode: vi.fn(),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,
@@ -178,7 +178,7 @@ describe('Update table in settings page', () => {
 
   it('renders and shows update table with button disabled', async () => {
     render(<Settings />, { wrapper: RouterWithQueryClientWrapper });
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -226,7 +226,7 @@ describe('Update table in settings page', () => {
 describe('Open modals', () => {
   beforeEach(async () => {
     window.HTMLElement.prototype.scrollIntoView = vi.fn();
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: mockedService,
       category: 'operational',

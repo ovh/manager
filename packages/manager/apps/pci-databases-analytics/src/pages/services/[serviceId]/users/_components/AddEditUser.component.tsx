@@ -37,7 +37,7 @@ import {
 import { useToast } from '@/components/ui/use-toast';
 import { useUserForm } from './formUser/useUserForm.hook';
 import RolesSelect from './formUser/RolesSelect.component';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 
 interface AddEditUserModalProps {
   isEdition: boolean;

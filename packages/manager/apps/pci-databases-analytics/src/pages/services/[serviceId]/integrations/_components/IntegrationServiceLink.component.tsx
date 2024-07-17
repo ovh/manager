@@ -1,6 +1,6 @@
 import { ExternalLink } from 'lucide-react';
 import { database } from '@/interfaces/database';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import Link from '@/components/links/Link.component';
 
 interface IntegrationServiceLinkProps {

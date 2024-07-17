@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
+import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import Namespaces, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/namespaces/Namespace.page';
@@ -52,7 +52,7 @@ describe('Namespaces page', () => {
       deleteNamespace: vi.fn(),
       editNamespace: vi.fn((namespace) => namespace),
     }));
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,
@@ -102,7 +102,7 @@ describe('Namespaces page', () => {
     });
   });
   it('displays add namespace button if capability is present', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -119,7 +119,7 @@ describe('Namespaces page', () => {
     expect(screen.queryByTestId('namespaces-add-button')).toBeInTheDocument();
   });
   it('does not display namespaces button if capability is absent', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -134,7 +134,7 @@ describe('Namespaces page', () => {
     expect(screen.queryByTestId('namespaces-add-button')).toBeNull();
   });
   it('disable add namespaces button if capability is disabled', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedService,

@@ -28,7 +28,7 @@ describe('Delete user modal', () => {
       editUser: vi.fn(),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

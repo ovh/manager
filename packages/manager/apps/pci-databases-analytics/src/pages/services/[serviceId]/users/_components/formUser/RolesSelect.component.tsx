@@ -25,7 +25,7 @@ import {
 import { useRolesSelectForm } from './useRolesSelectForm.hook';
 import { USER_CONFIG } from './user.constants';
 import { useGetRoles } from '@/hooks/api/users.api.hooks';
-import { useServiceData } from '../../../Service.layout';
+import { useServiceData } from '../../../Service.context';
 import { Skeleton } from '@/components/ui/skeleton';
 import { database } from '@/interfaces/database';
 

@@ -21,7 +21,7 @@ import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
 import { database } from '@/interfaces/database';
 import { durationStringToHuman } from '@/lib/durationHelper';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 
 interface NamespacesTableColumnsProps {
   onEditClick: (namespace: database.m3db.Namespace) => void;

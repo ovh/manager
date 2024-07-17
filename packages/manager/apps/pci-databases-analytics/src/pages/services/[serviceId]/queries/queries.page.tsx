@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useServiceData } from '../Service.layout';
+import { useServiceData } from '../Service.context';
 import { database } from '@/interfaces/database';
 import CurrentQueries from './_components/CurrentQueries.component';
 import QueryStatistics from './_components/QueryStatistics.component';

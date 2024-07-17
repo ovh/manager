@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
+import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import Queries, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/queries/Queries.page';
@@ -58,7 +58,7 @@ describe('Queries page', () => {
       getQueryStatistics: vi.fn(() => [mockedQueryStatisticsPG]),
       resetQueryStatistics: vi.fn(),
     }));
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,
@@ -119,7 +119,7 @@ describe('Queries page', () => {
   });
 
   it('no display if both read capabilities is disable', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -138,7 +138,7 @@ describe('Queries page', () => {
   });
 
   it('does not display reset statistics button if capability is absent', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -163,7 +163,7 @@ describe('Queries page', () => {
   });
 
   it('disable reset statistics button if capability is in disable', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -215,7 +215,7 @@ describe('Action of queries and statistics', () => {
   };
   beforeEach(async () => {
     vi.restoreAllMocks();
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: mockedService,
       category: 'operational',

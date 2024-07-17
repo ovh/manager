@@ -1,7 +1,7 @@
 import { AccordionItem } from '@radix-ui/react-accordion';
 import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { useServiceData } from '../Service.layout';
+import { useServiceData } from '../Service.context';
 import Maintenances from './_components/Maintenances.component';
 import IpsRestrictionsUpdate from './_components/IpRestrictionsUpdate.component';
 import AdvancedConfigurationUpdate from './_components/AdvancedConfigurationUpdate.component';

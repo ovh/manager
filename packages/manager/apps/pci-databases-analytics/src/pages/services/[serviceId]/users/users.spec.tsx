@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
+import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import Users, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/users/Users.page';
@@ -51,7 +51,7 @@ describe('Users page', () => {
       getRoles: vi.fn(() => []),
       editUser: vi.fn((user) => user),
     }));
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,
@@ -111,7 +111,7 @@ describe('Users page', () => {
     });
   });
   it('renders redis columns', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -138,7 +138,7 @@ describe('Users page', () => {
     });
   });
   it('renders group column for m3db', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -159,7 +159,7 @@ describe('Users page', () => {
     });
   });
   it('displays add user button if capability is present', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -176,7 +176,7 @@ describe('Users page', () => {
     expect(screen.queryByTestId('users-add-button')).toBeInTheDocument();
   });
   it('does not display add user button if capability is absent', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -189,7 +189,7 @@ describe('Users page', () => {
     expect(screen.queryByTestId('users-add-button')).toBeNull();
   });
   it('disable add user button if capability is disabled', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValueOnce({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValueOnce({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -305,7 +305,7 @@ describe('Open modals', () => {
   });
   it('refetch data on delete user success', async () => {
     const mockedServiceData = vi
-      .mocked(LayoutContext.useServiceData)
+      .mocked(ServiceContext.useServiceData)
       .getMockImplementation();
     mockedServiceData().serviceQuery.refetch = vi.fn();
     await openButtonInMenu('user-action-delete-button');
@@ -343,7 +343,7 @@ describe('Open modals', () => {
   });
   it('refetch data on edit user success', async () => {
     const mockedServiceData = vi
-      .mocked(LayoutContext.useServiceData)
+      .mocked(ServiceContext.useServiceData)
       .getMockImplementation();
     mockedServiceData().serviceQuery.refetch = vi.fn();
     await openButtonInMenu('user-action-edit-button');
@@ -369,7 +369,7 @@ describe('Open modals', () => {
   });
   it('closes reset password user modal', async () => {
     const mockedServiceData = vi
-      .mocked(LayoutContext.useServiceData)
+      .mocked(ServiceContext.useServiceData)
       .getMockImplementation();
     mockedServiceData().serviceQuery.refetch = vi.fn();
     await openButtonInMenu('user-action-reset-password-button');

@@ -3,7 +3,7 @@ import {
   useApplyMaintenance,
   useGetMaintenances,
 } from '@/hooks/api/maintenances.api.hooks';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';

@@ -1,7 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton';
 import { useMeanMetric } from '@/hooks/useMeanMetric';
 import { cn } from '@/lib/utils';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 
 interface MeanMetricProps {
   value?: number;

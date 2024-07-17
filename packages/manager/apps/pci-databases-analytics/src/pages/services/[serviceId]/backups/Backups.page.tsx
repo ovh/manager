@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Pen } from 'lucide-react';
 import Link from '@/components/links/Link.component';
 import { database } from '@/interfaces/database';
-import { useServiceData } from '../Service.layout';
+import { useServiceData } from '../Service.context';
 import { getColumns } from './_components/BackupsTableColumns.component';
 import { DataTable } from '@/components/ui/data-table';
 import { useGetBackups } from '@/hooks/api/backups.api.hooks';

@@ -35,7 +35,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { formatStorage } from '@/lib/bytesHelper';
 import {

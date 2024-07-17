@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
+import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import * as serviceApi from '@/data/api/databases/service';
 import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
 import { database } from '@/interfaces/database';
@@ -97,7 +97,7 @@ describe('Service configuration page', () => {
       getServices: vi.fn(() => [mockedServiceOrig, mockedServiceInte]),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,
@@ -163,7 +163,7 @@ describe('Service configuration page', () => {
   });
 
   it('renders and shows service configuration without button', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -192,7 +192,7 @@ describe('Service configuration page', () => {
   });
 
   it('renders and shows service configuration with button disabled', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -239,7 +239,7 @@ describe('Service configuration page', () => {
 
 describe('Open modals', () => {
   beforeEach(async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: mockedService,
       category: 'operational',

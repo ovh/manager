@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
+import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import Pools, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/pools/Pools.page';
@@ -65,7 +65,7 @@ describe('Connection pool page', () => {
       // test
     }));
 
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,
@@ -115,7 +115,7 @@ describe('Connection pool page', () => {
     });
   });
   it('displays add connection pool button if capability is present', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -132,7 +132,7 @@ describe('Connection pool page', () => {
     expect(screen.queryByTestId('pools-add-button')).toBeInTheDocument();
   });
   it('does not display add connection pool button if capability is absent', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -146,7 +146,7 @@ describe('Connection pool page', () => {
   });
 
   it('disable add connection pool button if capability is disabled', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -196,7 +196,7 @@ describe('Open modals', () => {
         })),
       };
     });
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: mockedService,
       category: 'operational',

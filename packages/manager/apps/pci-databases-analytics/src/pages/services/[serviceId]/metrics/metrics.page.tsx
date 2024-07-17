@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
-import { useServiceData } from '../Service.layout';
+import { useServiceData } from '../Service.context';
 import { database } from '@/interfaces/database';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';

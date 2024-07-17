@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { database } from '@/interfaces/database';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import UserStatusBadge from '../../users/_components/UserStatusBadge.component';
 import { IntegrationWithServices } from '../Integrations.page';
 import IntegrationServiceLink from './IntegrationServiceLink.component';

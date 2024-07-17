@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { ConnectionPoolWithData } from '../Pools.page';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import { database } from '@/interfaces/database';
 
 interface ConnectionPoolsTableColumnsProps {

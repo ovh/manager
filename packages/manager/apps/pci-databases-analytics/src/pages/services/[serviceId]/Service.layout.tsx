@@ -1,14 +1,7 @@
-import {
-  Outlet,
-  redirect,
-  useOutletContext,
-  useParams,
-} from 'react-router-dom';
-import { UseQueryResult } from '@tanstack/react-query';
+import { Outlet, redirect, useParams } from 'react-router-dom';
 import { useGetService } from '@/hooks/api/services.api.hooks';
 import { Skeleton } from '@/components/ui/skeleton';
 import LegalMentions from '@/pages/_components/LegalMentions.component';
-import { database } from '@/interfaces/database';
 import { ServiceHeader } from './_components/ServiceHeader.component';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 import { POLLING } from '@/configuration/polling.constants';
@@ -16,6 +9,7 @@ import { getService } from '@/data/api/databases/service';
 import queryClient from '@/query.client';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import ServiceTabs from './_components/ServiceTabs.component';
+import { ServiceLayoutContext } from './Service.context';
 
 interface ServiceLayoutProps {
   params: {
@@ -55,17 +49,6 @@ function ServiceName() {
 
 export function breadcrumb() {
   return <ServiceName />;
-}
-
-// Share data with the child routes
-type ServiceLayoutContext = {
-  service: database.Service;
-  serviceQuery: UseQueryResult<database.Service, Error>;
-};
-export function useServiceData() {
-  const { projectId, category } = useParams();
-  const { service, serviceQuery } = useOutletContext() as ServiceLayoutContext;
-  return { projectId, category, service, serviceQuery };
 }
 
 export default function ServiceLayout() {

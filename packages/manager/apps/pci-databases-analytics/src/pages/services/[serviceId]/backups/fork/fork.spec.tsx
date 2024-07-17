@@ -131,7 +131,7 @@ describe('Fork funnel page', () => {
     }));
     vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedForkService,

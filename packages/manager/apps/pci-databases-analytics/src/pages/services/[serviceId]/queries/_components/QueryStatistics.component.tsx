@@ -5,7 +5,7 @@ import {
   useGetQueryStatistics,
   useResetQueryStatistics,
 } from '@/hooks/api/queries.api.hooks';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import { DataTable } from '@/components/ui/data-table';
 import { database } from '@/interfaces/database';
 import { Button } from '@/components/ui/button';

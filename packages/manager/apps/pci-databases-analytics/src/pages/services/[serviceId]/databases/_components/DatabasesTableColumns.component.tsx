@@ -16,7 +16,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { database } from '@/interfaces/database';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 
 interface DatabasesTableColumnsProps {
   onDeleteClick: (db: database.service.Database) => void;

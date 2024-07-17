@@ -6,7 +6,7 @@ import {
   useGetAvailabilities,
   useGetFullCapabilities,
 } from '@/hooks/api/availabilities.api.hooks';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import { database } from '@/interfaces/database';
 import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
 import { Skeleton } from '@/components/ui/skeleton';

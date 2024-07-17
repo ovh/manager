@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/interfaces/database';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import {
   FullCapabilities,
   useGetAvailabilities,

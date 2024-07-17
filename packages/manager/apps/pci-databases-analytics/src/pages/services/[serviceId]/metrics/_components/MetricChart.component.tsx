@@ -22,7 +22,7 @@ import { useGetMetric } from '@/hooks/api/metrics.api.hooks';
 import { database } from '@/interfaces/database';
 import { colors } from './colors.constants';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import { cn } from '@/lib/utils';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 

@@ -12,7 +12,7 @@ import { useGetConnectionPools } from '@/hooks/api/connectionPool.api.hooks';
 import { useGetDatabases } from '@/hooks/api/databases.api.hook';
 import { useGetUsers } from '@/hooks/api/users.api.hooks';
 
-import { useServiceData } from '../Service.layout';
+import { useServiceData } from '../Service.context';
 import { POLLING } from '@/configuration/polling.constants';
 import { GenericUser } from '@/data/api/databases/users';
 import { database } from '@/interfaces/database';

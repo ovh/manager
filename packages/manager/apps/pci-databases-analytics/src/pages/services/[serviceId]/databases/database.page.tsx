@@ -3,7 +3,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { database } from '@/interfaces/database';
-import { useServiceData } from '../Service.layout';
+import { useServiceData } from '../Service.context';
 import { DataTable } from '@/components/ui/data-table';
 import { getColumns } from './_components/DatabasesTableColumns.component';
 import { useGetDatabases } from '@/hooks/api/databases.api.hook';

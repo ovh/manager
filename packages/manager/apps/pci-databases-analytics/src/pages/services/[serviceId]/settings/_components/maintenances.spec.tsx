@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
+import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
 import * as maintenanceApi from '@/data/api/databases/maintenances';
 import { database } from '@/interfaces/database';
@@ -62,7 +62,7 @@ describe('Maintenance in settings page', () => {
       applyMaintenance: vi.fn((maintenance) => maintenance),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,
@@ -140,7 +140,7 @@ describe('Maintenance in settings page', () => {
   });
 
   it('disable apply maintenance button if capability is absent', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,

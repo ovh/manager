@@ -51,7 +51,7 @@ vi.mock('@/hooks/api/logs.api.hooks', () => {
   };
 });
 
-vi.mock('@/pages/services/[serviceId]/service.layout', () => {
+vi.mock('@/pages/services/[serviceId]/Service.context', () => {
   const useServiceData = vi.fn(() => ({
     projectId: 'projectId',
     service: mockService,

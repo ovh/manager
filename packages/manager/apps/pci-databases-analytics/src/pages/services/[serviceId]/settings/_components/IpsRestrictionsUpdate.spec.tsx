@@ -100,7 +100,7 @@ describe('Ips restrictions update in settings page', () => {
       updateService: vi.fn((service) => service),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

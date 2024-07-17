@@ -16,7 +16,7 @@ import { order } from '@/interfaces/catalog';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
 import { useVrack } from '@/hooks/useVrack';
-import { useServiceData } from '../../../Service.layout';
+import { useServiceData } from '../../../Service.context';
 import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
 import { ForkInitialValue } from '../Fork.page';
 import { Pricing, computeServicePrice } from '@/lib/pricingHelper';

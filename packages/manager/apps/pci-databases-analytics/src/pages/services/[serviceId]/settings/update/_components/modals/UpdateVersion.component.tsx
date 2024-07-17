@@ -19,7 +19,7 @@ import { createTree } from '@/lib/availabilitiesHelper';
 import { order } from '@/interfaces/catalog';
 import { database } from '@/interfaces/database';
 import { Engine } from '@/interfaces/order-funnel';
-import { useServiceData } from '@/pages/services/[serviceId]/Service.layout';
+import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 import {
   Form,
   FormControl,

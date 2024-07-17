@@ -12,7 +12,7 @@ import { database } from '@/interfaces/database';
 describe('Service backups Layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,

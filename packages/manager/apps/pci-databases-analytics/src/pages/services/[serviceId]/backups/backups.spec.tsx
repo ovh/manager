@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as LayoutContext from '@/pages/services/[serviceId]/Service.layout';
+import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import { breadcrumb as Breadcrumb } from '@/pages/services/[serviceId]/backups/Backups.layout';
 import Backups from '@/pages/services/[serviceId]/backups/Backups.page';
 import * as backupsApi from '@/data/api/databases/backups';
@@ -46,7 +46,7 @@ describe('Backups page', () => {
       restoreBackup: vi.fn((backup) => backup),
     }));
 
-    vi.mock('@/pages/services/[serviceId]/service.layout', () => ({
+    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
         service: mockedService,
@@ -100,7 +100,7 @@ describe('Backups page', () => {
   });
 
   it('does not display restore button and fork button if capability is absent', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -115,7 +115,7 @@ describe('Backups page', () => {
   });
 
   it('disable restore button and fork button if capability is disabled', async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: {
         ...mockedService,
@@ -168,7 +168,7 @@ describe('Open restore modals', () => {
     });
   };
   beforeEach(async () => {
-    vi.mocked(LayoutContext.useServiceData).mockReturnValue({
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
       projectId: 'projectId',
       service: mockedService,
       category: 'operational',

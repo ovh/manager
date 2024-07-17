@@ -11,6 +11,16 @@ import { NetworkOptionValue } from '@/interfaces/order-funnel';
 import { database } from '@/interfaces/database';
 import { useGetNetwork, useGetSubnet } from '@/hooks/api/network.api.hooks';
 
+vi.mock('react-i18next', async (importOriginal) => {
+  const mod = await importOriginal<typeof import('react-i18next')>();
+  return {
+    ...mod,
+    useTranslation: () => ({
+      t: (key: string) => key,
+    }),
+  };
+});
+
 vi.mock('@/data/api/network', () => ({
   networkApi: {
     getPrivateNetworks: vi.fn(),
@@ -61,7 +71,6 @@ describe('NetworkOptions component', () => {
 
     await waitFor(() => {
       expect(screen.getByRole('radiogroup')).toBeInTheDocument();
-      expect(screen.getByTestId('network-placeholder')).toBeInTheDocument();
       expect(screen.queryByText('noNetworkFoundTitle')).not.toBeInTheDocument();
     });
   });

@@ -29,7 +29,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import { useAddIntegrationForm } from './useAddIntegrationForm.hook';
 import { CdbError } from '@/data/api/databases';
 import { Alert, AlertTitle } from '@/components/ui/alert';

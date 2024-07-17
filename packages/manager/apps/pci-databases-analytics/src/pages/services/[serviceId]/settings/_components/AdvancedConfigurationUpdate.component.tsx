@@ -3,7 +3,7 @@ import {
   useGetAdvancedConfiguration,
   useGetAdvancedConfigurationCapabilities,
 } from '@/hooks/api/advancedConfiguration.api.hook';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import AdvancedConfigurationForm from './advancedConfiguration/AdvancedConfigurationForm.component';
 import { Skeleton } from '@/components/ui/skeleton';

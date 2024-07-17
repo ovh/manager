@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
-import { useServiceData } from '../Service.layout';
+import { useServiceData } from '../Service.context';
 import { useGetUsers } from '@/hooks/api/users.api.hooks';
 import { GenericUser } from '@/data/api/databases/users';
 import { database } from '@/interfaces/database';

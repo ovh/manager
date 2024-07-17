@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
-import { useServiceData } from '../Service.layout';
+import { useServiceData } from '../Service.context';
 import MetricChart from '../metrics/_components/MetricChart.component';
 import { database } from '@/interfaces/database';
 import { POLLING } from '@/configuration/polling.constants';

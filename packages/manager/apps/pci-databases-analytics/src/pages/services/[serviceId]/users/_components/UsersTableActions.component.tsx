@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { GenericUser } from '@/data/api/databases/users';
-import { useServiceData } from '../../Service.layout';
+import { useServiceData } from '../../Service.context';
 import { database } from '@/interfaces/database';
 
 interface UserActionsProps {
