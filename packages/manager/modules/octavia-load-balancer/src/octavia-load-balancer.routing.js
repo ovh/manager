@@ -33,24 +33,30 @@ export default /* @ngInject */ ($stateProvider) => {
               `#/pci/projects/${project.project_id}`,
             )
             .then((url) => {
-              return [
-                {
-                  name:
-                    project.status !== 'creating' ? project.description : null,
-                  url,
-                },
-              ];
+              return {
+                prefixes: [
+                  {
+                    name:
+                      project.status !== 'creating'
+                        ? project.description
+                        : null,
+                    url,
+                  },
+                ],
+              };
             });
         }
-        return $q.when([
-          {
-            name: project.status !== 'creating' ? project.description : null,
-            url: coreURLBuilder.buildURL(
-              'public-cloud',
-              `#/pci/projects/${project.project_id}`,
-            ),
-          },
-        ]);
+        return $q.when({
+          prefixes: [
+            {
+              name: project.status !== 'creating' ? project.description : null,
+              url: coreURLBuilder.buildURL(
+                'public-cloud',
+                `#/pci/projects/${project.project_id}`,
+              ),
+            },
+          ],
+        });
       },
       displayErrorAlert: /* @ngInject */ (Alerter, $translate) => (
         error,

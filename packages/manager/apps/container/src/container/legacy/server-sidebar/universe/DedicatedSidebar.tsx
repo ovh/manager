@@ -14,42 +14,43 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useFeatureAvailability } from '@ovhcloud/manager-components';
 
 export const features = [
-  'dedicated-server',
-  'vps',
-  'managed-bare-metal',
-  'dedicated-networks',
-  'dedicated-cdn',
-  'dedicated-nasha',
-  'paas',
-  'cloud-disk-array',
-  'veeam-cloud-connect',
-  'metrics',
-  'dedicated-network',
-  'vrack:bare-metal-cloud',
-  'vrack:hosted-private-cloud',
-  'cloud-connect',
-  'vrack-services',
-  'netapp',
-  'exchange:dedicated-dashboard',
-  'license',
-  'ip',
-  'iam',
-  'public-cloud',
-  'dedicated-server:order',
-  'kubernetes',
-  'dedicated-cloud:order',
-  'dedicated-cloud:sapHanaOrder',
-  'veeam-cloud-connect:order',
-  'veeam-enterprise:order',
-  'vrack:order',
-  'ip-load-balancer',
-  'logs-data-platform',
-  'dedicated-server:ecoRangeOrder',
-  'dedicated-server:nutanixOrder',
-  'carbon-calculator',
-  'network-security',
-  'key-management-service'
-];
+    'dedicated-server',
+    'dedicated-servers',
+    'vps',
+    'managed-bare-metal',
+    'dedicated-networks',
+    'dedicated-cdn',
+    'dedicated-nasha',
+    'paas',
+    'cloud-disk-array',
+    'veeam-cloud-connect',
+    'metrics',
+    'dedicated-network',
+    'vrack:bare-metal-cloud',
+    'vrack:hosted-private-cloud',
+    'cloud-connect',
+    'vrack-services',
+    'netapp',
+    'exchange:dedicated-dashboard',
+    'license',
+    'ip',
+    'iam',
+    'public-cloud',
+    'dedicated-server:order',
+    'kubernetes',
+    'dedicated-cloud:order',
+    'dedicated-cloud:sapHanaOrder',
+    'veeam-cloud-connect:order',
+    'veeam-enterprise:order',
+    'vrack:order',
+    'ip-load-balancer',
+    'logs-data-platform',
+    'dedicated-server:ecoRangeOrder',
+    'dedicated-server:nutanixOrder',
+    'carbon-calculator',
+    'network-security',
+    'key-management-service'
+  ];
 
 export default function DedicatedSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
@@ -61,6 +62,7 @@ export default function DedicatedSidebar() {
   const environment = shell.getPlugin('environment').getEnvironment();
   const { ovhSubsidiary, isTrusted } = environment.getUser();
   const region = environment.getRegion();
+  const {data: availability} = useFeatureAvailability(features);
 
   const getDedicatedMenu = (feature: Record<string, boolean>) => {
     const menu = [];
@@ -70,7 +72,12 @@ export default function DedicatedSidebar() {
         id: 'dedicated-server',
         label: t('sidebar_dedicated'),
         icon: getIcon('ovh-font ovh-font-server'),
-        routeMatcher: new RegExp('^/(configuration/)?(server|housing|cluster)'),
+        ...(feature['dedicated-servers'] ? {
+          routeMatcher: new RegExp('^/(configuration/)?(server|housing|cluster|dedicated-servers)'),
+          pathMatcher: new RegExp('^(/dedicated-servers/)'),
+        } : {
+          routeMatcher: new RegExp('^/(configuration/)?(server|housing|cluster)'),
+        }),
         async loader() {
           const clusters = await loadServices('/dedicated/cluster');
           const servers = await loadServices('/dedicated/server');
@@ -80,10 +87,15 @@ export default function DedicatedSidebar() {
               id: 'dedicated-server-all',
               label: t('sidebar_dedicated_all'),
               icon: getIcon('ovh-font ovh-font-server'),
-              href: navigation.getURL('dedicated', '#/server'),
-              routeMatcher: new RegExp(`/server$`),
               ignoreSearch: true,
               title: t('sidebar_access_list'),
+              ...(feature['dedicated-servers'] ? {
+                href: navigation.getURL('dedicated-servers', '#/'),
+                pathMatcher: new RegExp('/dedicated-servers'),
+              } : {
+                href: navigation.getURL('dedicated', '#/server'),
+                routeMatcher: new RegExp(`/server$`),
+              })
             },
             ...clusters.map((service) => {
               return {
@@ -409,8 +421,6 @@ export default function DedicatedSidebar() {
 
     return menu;
   };
-
-  const {data: availability} = useFeatureAvailability(features);
 
   useEffect(() => {
     if (availability) {

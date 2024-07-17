@@ -18,17 +18,21 @@ export default /* @ngInject */ ($stateProvider) => {
           return $injector
             .get('shellClient')
             .navigation.getURL('dedicated', `#/useraccount/dashboard`)
-            .then((url) => [{ name, url }]);
+            .then((url) => ({
+              prefixes: [{ name, url }],
+            }));
         }
-        return $q.when([
-          {
-            name,
-            url: coreURLBuilder.buildURL(
-              'dedicated',
-              `#/useraccount/dashboard`,
-            ),
-          },
-        ]);
+        return $q.when({
+          prefixes: [
+            {
+              name,
+              url: coreURLBuilder.buildURL(
+                'dedicated',
+                `#/useraccount/dashboard`,
+              ),
+            },
+          ],
+        });
       },
       apiPath: () => '/me/procedure/fraud',
       resource: /* @ngInject */ ($http, apiPath) =>

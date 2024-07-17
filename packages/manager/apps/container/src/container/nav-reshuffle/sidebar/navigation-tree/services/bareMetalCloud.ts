@@ -13,8 +13,18 @@ export default {
     {
       id: 'bmc-dedicated-vps',
       translation: 'sidebar_dedicated_vps',
-      features: ['dedicated-server', 'vps', 'managed-bare-metal', 'license'],
+      features: ['dedicated-server', 'dedicated-servers:container', 'vps', 'managed-bare-metal', 'license'],
       children: [
+        {
+          id: 'dedicated-servers',
+          translation: 'sidebar_dedicated',
+          serviceType: 'DEDICATED_SERVER',
+          routing: {
+            application: 'dedicated-servers',
+            hash: '#/',
+          },
+          features: ['dedicated-servers:container'],
+        },
         {
           id: 'dedicated-servers',
           translation: 'sidebar_dedicated',
@@ -23,6 +33,7 @@ export default {
             application: 'dedicated',
             hash: '#/server',
           },
+          hideIfFeatures: ['dedicated-servers:container'],
           features: ['dedicated-server'],
         },
         {
