@@ -26,6 +26,7 @@ export const URLs = {
   TN: 'https://www.ovhcloud.com/fr-tn/about-us/global-infrastructure/local-zone/',
   WE: 'https://www.ovhcloud.com/en/about-us/global-infrastructure/local-zone/',
   WS: 'https://www.ovhcloud.com/es/about-us/global-infrastructure/local-zone/',
+  US: 'https://us.ovhcloud.com/public-cloud/local-zone/',
 };
 
 export interface PciFreeLocalzonesBannerProps {
