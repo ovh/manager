@@ -87,12 +87,19 @@ export default class SignUpFormAppCtrl {
     }
 
     this.atInternet.trackPage(tracking);
-    if (this.needkyc) this.goToKycDocumentUploadPage();
+
     // call to finishSignUp binding
     if (isFunction(this.finishSignUp)) {
-      return this.finishSignUp(this.smsConsent).catch((error) => {
-        this.saveError = error;
-      });
+      return this.finishSignUp(this.smsConsent)
+        .then(() => {
+          if (this.needkyc) this.goToKycDocumentUploadPage();
+        })
+        .catch((error) => {
+          this.saveError = error;
+        });
+    }
+    if (this.needkyc) {
+      this.goToKycDocumentUploadPage();
     }
 
     return null;
