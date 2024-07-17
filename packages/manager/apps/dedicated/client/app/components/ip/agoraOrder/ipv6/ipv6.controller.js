@@ -51,16 +51,15 @@ export default class AgoraIpV6OrderController {
     this.canOrderIpv6 = true;
     this.regionState = {};
 
-    this.IpAgoraV6Order.fetchIpv6ServicesWithDetails().then((ips) => {
-      const additonalIpv6 = ips.filter(
-        (ip) => ip.version === 6 && ip.isAdditionalIp === true,
-      );
-      if (additonalIpv6.length < this.getIpv6OrderableNumber()) {
-        ips.forEach((ip) => {
-          ip.regions.forEach((region) => {
-            this.regionState[region] = this.regionState[region]
-              ? this.regionState[region] + 1
-              : 1;
+    this.IpAgoraV6Order.fetchIpv6Services().then((data) => {
+      if (data.length < this.getIpv6OrderableNumber()) {
+        this.IpAgoraV6Order.fetchIpv6ServicesWithDetails().then((ips) => {
+          ips.forEach((ip) => {
+            ip.regions.forEach((region) => {
+              this.regionState[region] = this.regionState[region]
+                ? this.regionState[region] + 1
+                : 1;
+            });
           });
         });
       } else {
