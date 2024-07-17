@@ -13,5 +13,9 @@
   "modalCancelButtonLabel": "Anular",
   "modalConfirmVrackButtonLabel": "Encomendar um vRack",
   "modalNoVrackButtonLabel": "Não, obrigado. Já tenho um vRack",
-  "createPageTitle": "Ativar os vRack Services"
+  "createPageTitle": "Ativar os vRack Services",
+  "modalCreateOrderWaitMessage": "Por favor aguarde...",
+  "modalSubmitOrderButtonLabel": "Encomendar",
+  "vrackServicesCreationSuccess": "A configuração foi corretamente tomada em conta.",
+  "vrackServicesOrderLinkLabel": "A minha encomenda"
 }
