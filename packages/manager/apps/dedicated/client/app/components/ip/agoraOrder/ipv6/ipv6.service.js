@@ -26,11 +26,13 @@ export default class IpAgoraV6Order {
   }
 
   fetchIpv6Services() {
-    return this.$http.get('/ip/service');
+    return this.$http
+      .get(`/ip?isAdditionalIp=true&version=6`)
+      .then(({ data }) => data);
   }
 
   fetchIpv6ServicesWithDetails() {
-    return this.iceberg('/ip')
+    return this.iceberg('/ip?isAdditionalIp=true&version=6')
       .query()
       .expand('CachedObjectList-Pages')
       .execute()

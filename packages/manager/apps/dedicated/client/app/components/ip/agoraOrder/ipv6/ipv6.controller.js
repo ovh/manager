@@ -51,7 +51,7 @@ export default class AgoraIpV6OrderController {
     this.canOrderIpv6 = true;
     this.regionState = {};
 
-    this.IpAgoraV6Order.fetchIpv6Services().then(({ data }) => {
+    this.IpAgoraV6Order.fetchIpv6Services().then((data) => {
       if (data.length < this.getIpv6OrderableNumber()) {
         this.IpAgoraV6Order.fetchIpv6ServicesWithDetails().then((ips) => {
           ips.forEach((ip) => {
@@ -135,11 +135,13 @@ export default class AgoraIpV6OrderController {
     this.catalogByLocation = this.ipv6RegionsWithPlan.map(
       ({ regionId, plan }) => {
         const countryCode = this.constructor.getMacroRegion(regionId);
-
+        const nbIpv6onRegion = this.regionState[regionId]
+          ? this.regionState[regionId]
+          : 0;
         return {
           regionId,
           planCode: plan,
-          available: this.canOrderIpv6 && this.regionState[regionId] < 3,
+          available: this.canOrderIpv6 && nbIpv6onRegion < 3,
           location: this.$translate.instant(
             `ip_agora_ipv6_location_${regionId}`,
           ),
@@ -184,10 +186,13 @@ export default class AgoraIpV6OrderController {
       duration: 'P1M',
       planCode,
       quantity: 1,
+      destination:
+        this.model.selectedService !== EMPTY_CHOICE
+          ? this.model.selectedService
+          : null,
     });
 
     if (this.model.selectedService !== EMPTY_CHOICE) {
-      productToOrder.destination = this.model.selectedService;
       trakingService = `_${this.model.selectedService}`;
     }
 
