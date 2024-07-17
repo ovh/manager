@@ -72,7 +72,7 @@ export default class AgoraIpV4OrderController {
 
   getIpv4Catalog() {
     return this.ipCatalog.filter(
-      (plan) => plan.planCode.match(/^ip-v4.*/) != null,
+      (plan) => plan.planCode.match(/^ip-v4.*|ip-failover.*/) != null,
     );
   }
 
