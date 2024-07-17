@@ -29,15 +29,16 @@ import { useInstance } from '@/api/hooks/instance';
 
 export default function DeleteWorkflowPage() {
   const { t: tDelete } = useTranslation('delete');
-  const { t } = useTranslation();
+  const { t } = useTranslation('listing');
   const { t: tGlobal } = useTranslation('global');
   const { projectId, workflowId } = useParams();
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const { addError, addSuccess } = useNotifications();
-  const { data: workflows } = useWorkflows(projectId);
+  const { data: workflows, isPending: isPendingWorkflows } = useWorkflows(
+    projectId,
+  );
 
-  // TODO function to get workflow from workflowList with find and workflowId (after ListingPage feature)
   const workflow = workflows.find((w) => w.id === workflowId);
   const { data: instance } = useInstance(projectId, workflow?.instanceId);
   const { deleteWorkflow, isPending } = useDeleteWorkflow({
@@ -97,12 +98,12 @@ export default function DeleteWorkflowPage() {
       onOdsModalClose={onClose}
     >
       <slot name="content">
-        {isPending ? (
+        {isPending || isPendingWorkflows ? (
           <OsdsSpinner
             inline
             size={ODS_SPINNER_SIZE.md}
             className="block text-center"
-            data-testid="deleteStorage-spinner"
+            data-testid="deleteWorkflow-spinner"
           />
         ) : (
           <div className="mt-4">
@@ -146,6 +147,7 @@ export default function DeleteWorkflowPage() {
                 value={formState.inputDelete}
                 type={ODS_INPUT_TYPE.text}
                 onOdsValueChange={handleInputDeleteChange}
+                data-testid="deleteWorkflow-input_delete"
                 className={
                   formState.hasError
                     ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
@@ -167,6 +169,7 @@ export default function DeleteWorkflowPage() {
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={() => onClose()}
+        data-testid="deleteWorkflow-button_cancel"
       >
         {tDelete('pci_workflow_common_cancel')}
       </OsdsButton>
@@ -174,8 +177,12 @@ export default function DeleteWorkflowPage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={deleteWorkflow}
-        {...(formState.inputDelete !== 'DELETE' && { disabled: true })}
-        data-testid="deleteGateway-button_submit"
+        {...((formState.inputDelete !== 'DELETE' ||
+          isPending ||
+          isPendingWorkflows) && {
+          disabled: true,
+        })}
+        data-testid="deleteWorkflow-button_submit"
       >
         {tDelete('pci_workflow_common_delete')}
       </OsdsButton>

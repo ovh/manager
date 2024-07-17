@@ -1,5 +1,3 @@
-import { getProjectQuery } from '@ovhcloud/manager-components';
-import queryClient from '@/queryClient';
 import DeleteWorkflowRedirect from '@/components/DeleteWorkflowRedirect';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
@@ -12,10 +10,6 @@ const lazyRouteConfig = (importFn: CallableFunction) => ({
     };
   },
 });
-
-export interface RouteHandle {
-  tracking?: string;
-}
 
 const ROUTE_PATHS = {
   root: '/pci/projects/:projectId/workflow',
