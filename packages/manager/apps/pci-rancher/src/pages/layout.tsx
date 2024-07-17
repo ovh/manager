@@ -2,6 +2,8 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import React, { useContext, useEffect } from 'react';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
+import { ErrorBanner, useProject } from '@ovhcloud/manager-components';
+import Loading from '@/components/Loading/Loading';
 
 interface MatchHandle {
   tracking?: {
@@ -41,6 +43,16 @@ function RoutingSynchronisation() {
 }
 
 export default function Layout() {
+  const { isLoading, data, isError, error } = useProject();
+
+  if (isError && error) {
+    return <ErrorBanner error={error.response} />;
+  }
+
+  if (isLoading || !data) {
+    return <Loading />;
+  }
+
   return (
     <>
       <RoutingSynchronisation />
