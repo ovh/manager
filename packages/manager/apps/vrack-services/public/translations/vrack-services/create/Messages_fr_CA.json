@@ -9,5 +9,9 @@
   "modalDescriptionLine3": "Prix du vRack : 0€",
   "modalCancelButtonLabel": "Annuler",
   "modalConfirmVrackButtonLabel": "Commander mon vRack",
-  "modalNoVrackButtonLabel": "Non merci, j'ai déjà un vRack"
+  "modalNoVrackButtonLabel": "Non merci, j'ai déjà un vRack",
+  "modalCreateOrderWaitMessage": "Veuillez patienter...",
+  "modalSubmitOrderButtonLabel": "Commander",
+  "vrackServicesCreationSuccess": "La configuration a bien été prise en compte.",
+  "vrackServicesOrderLinkLabel": "Ma commande"
 }
