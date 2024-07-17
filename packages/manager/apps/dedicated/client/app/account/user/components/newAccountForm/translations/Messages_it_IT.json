@@ -769,5 +769,10 @@
   "signup_field_purposeOfPurchase": "Motivo dell'acquisto",
   "new_account_content_check_validation": "Verifica le informazioni inserite (P. IVA, numero di telefono, data di nascita, etc.) per procedere alla convalida del modulo.",
   "signup_enum_country_BV": "Norvegia - Isola Bouvet",
-  "signup_enum_country_HM": "Regno Unito - Isole Heard e McDonald"
+  "signup_enum_country_HM": "Regno Unito - Isole Heard e McDonald",
+  "signup_enum_purposeOfPurchase_personal": "Utilizzo a titolo personale",
+  "signup_enum_purposeOfPurchase_commercial": "Utilizzo nell'ambito di un'attività commerciale",
+  "signup_enum_purposeOfPurchase_non-commercial": "Utilizzo nell'ambito di un'attività non lucrativa, religiosa o politica",
+  "signup_enum_purposeOfPurchase_study": "Utilizzo a fini di studio o ricerca universitaria",
+  "signup_enum_purposeOfPurchase_public-service": "Utilizzo a fini di servizio pubblico"
 }

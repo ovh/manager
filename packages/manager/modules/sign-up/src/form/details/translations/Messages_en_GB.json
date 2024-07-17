@@ -14,5 +14,7 @@
   "sign_up_details_field_sms_consent": "I agree to receive SMS messages regarding OVHcloud news and commercial offers",
   "sign_up_details_field_gender": "Genre",
   "sign_up_details_field_birthday": "Date of birth",
-  "sign_up_details_field_address_help_text": "Check that the address matches the one listed in your supporting document."
+  "sign_up_details_field_address_help_text": "Check that the address matches the one listed in your supporting document.",
+  "sign_up_details_field_purpose_of_purchase": "Purpose of purchase",
+  "sign_up_details_field_purpose_of_purchase_placeholder": "Please state the purpose of your purchase"
 }
