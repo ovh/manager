@@ -1,0 +1,19 @@
+<oui-modal
+    heading="{{:: 'netapp_volumes_edit_size_title' | translate }}"
+    loading="$ctrl.isCreating"
+    primary-action="$ctrl.modifySize()"
+    primary-label="{{:: 'netapp_volumes_edit_size_submit' | translate }}"
+    primary-disabled="$ctrl.editVolumeSizeForm.$invalid"
+    secondary-action="$ctrl.goBack()"
+    secondary-label="{{:: 'netapp_volumes_edit_size_cancel' | translate }}"
+    on-dismiss="$ctrl.goBack()"
+>
+    <form novalidate name="$ctrl.editVolumeSizeForm">
+        <oui-numeric
+            min="$ctrl.boundaries.min"
+            max="$ctrl.boundaries.max"
+            model="$ctrl.model.size"
+        >
+        </oui-numeric>
+    </form>
+</oui-modal>

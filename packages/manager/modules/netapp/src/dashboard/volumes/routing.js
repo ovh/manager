@@ -97,6 +97,15 @@ export default /* @ngInject */ ($stateProvider) => {
           volumeId: volume.id,
         });
       },
+      goToEditVolumeSize: /* @ngInject */ ($state, serviceName, trackClick) => (
+        volume,
+      ) => {
+        trackClick('edit-volume-size');
+        return $state.go('netapp.dashboard.volumes.edit-size', {
+          serviceName,
+          volumeId: volume.id,
+        });
+      },
       goToDeleteVolume: /* @ngInject */ ($state, serviceName, trackClick) => (
         volume,
       ) => {

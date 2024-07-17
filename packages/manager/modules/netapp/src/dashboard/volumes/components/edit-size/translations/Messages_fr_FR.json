@@ -1,0 +1,5 @@
+{
+  "netapp_volumes_edit_size_title": "Modifier la taille du volume {{volume}}",
+  "netapp_volumes_edit_size_submit": "Modifier la taille",
+  "netapp_volumes_edit_size_cancel": "Annuler"
+}
