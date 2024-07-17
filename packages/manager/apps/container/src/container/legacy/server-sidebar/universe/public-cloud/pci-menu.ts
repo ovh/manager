@@ -42,6 +42,7 @@ export const features = [
   'public-cloud:vouchers',
   'public-cloud:contacts',
   'public-cloud:project-settings',
+  'pci-ai-dashboard',
   'ai-dashboard',
   'data-platform',
   'ai-endpoints'
@@ -290,9 +291,15 @@ export function getPciProjectMenu(
       subItems: [
         {
           id: 'dashboard',
-          title: 'AI Dashboard',
+          title: 'AI Dashboard Angular',
           feature: 'ai-dashboard',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai-dashboard`),
+        },
+        {
+          id: 'pci-ai-dashboard',
+          title: 'AI Dashboard',
+          feature: 'pci-ai-dashboard',
+          href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/dashboard`),
         },
         {
           id: 'notebooks',

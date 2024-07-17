@@ -30,7 +30,7 @@ export const useCatalogPrice = (maximumFractionDigits?: number) => {
 
   const getTextPrice = (priceInCents: number) => {
     const priceToFormat = priceInCents / 100000000;
-    const numberFormatOptions = {
+    const numberFormatOptions: Intl.NumberFormatOptions = {
       style: 'currency',
       currency: me?.currency?.code,
       ...(maximumFractionDigits ? { maximumFractionDigits } : {}),
