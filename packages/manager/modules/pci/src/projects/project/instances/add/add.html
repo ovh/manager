@@ -505,29 +505,67 @@
             data-type="info"
             data-ng-if="$ctrl.isLocalZone() && !$ctrl.isAddingPrivateNetwork"
         >
-            <p
-                data-translate="pci_projects_project_instances_add_attch_floating_ip_banner_description1"
-            ></p>
             <p>
                 <span
-                    data-translate="pci_projects_project_instances_add_attch_floating_ip_banner_description2"
+                    class="font-weight-bold"
+                    data-translate="pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description1_part1"
+                ></span>
+                <span
+                    data-translate="pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description1_part2"
+                ></span>
+                <span class="oui-badge oui-badge_new my-1">
+                    <span
+                        data-translate="pci_project_flavors_zone_global_region"
+                    ></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover
+                        data-oui-popover-scope="$ctrl"
+                        data-oui-popover-template="pci_project_flavors_zone_globalregions_tooltip.html"
+                    ></button>
+                    <script
+                        type="text/ng-template"
+                        id="pci_project_flavors_zone_globalregions_tooltip.html"
+                    >
+                        <span
+                            class="text-center"
+                            data-translate="pci_project_flavors_zone_globalregions_tooltip"
+                        ></span>
+                        <a
+                            class="oui-link_icon"
+                            aria-hidden="true"
+                            data-ng-href="{{$ctrl.globalRegionsUrl}}"
+                            target="_blank"
+                        >
+                            <span
+                                data-translate="pci_project_flavors_zone_tooltip_link"
+                            ></span>
+                            <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                        </a>
+                    </script>
+                </span>
+            </p>
+            <p>
+                <span
+                    data-translate="pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description2"
                 >
                 </span>
-                <a
-                    class="oui-link oui-link_icon"
-                    data-ng-href="{{:: $ctrl.instanceReadMoreUrl }}"
-                    target="_blank"
+
+                <button
+                    class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                     data-track-on="click"
                     data-track-name="PublicCloud::pci::projects::project::instances::add::guide-attaching-pci-floating-ip-to-instance"
+                    data-ng-click="$ctrl.currentStep = 1"
                 >
                     <span
-                        data-translate="pci_projects_project_instances_add_attch_floating_ip_banner_description3"
+                        data-translate="pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description3"
                     ></span>
                     <span
-                        class="oui-icon oui-icon-arrow-right"
+                        class="oui-icon oui-icon-arrow-right ml-1"
                         aria-hidden="true"
                     ></span>
-                </a>
+                </button>
             </p>
         </oui-message>
 
@@ -558,10 +596,42 @@
                     <span
                         data-translate="pci_projects_project_instances_add_privateNetwork_local_private_mode"
                     ></span>
+                    <span class="oui-badge oui-badge_promotion my-1">
+                        <span
+                            data-translate="pci_project_flavors_zone_localzone"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover
+                            data-oui-popover-scope="$ctrl"
+                            data-oui-popover-template="pci_project_flavors_zone_localzone.html"
+                        ></button>
+                        <script
+                            type="text/ng-template"
+                            id="pci_project_flavors_zone_localzone.html"
+                        >
+                            <span
+                                class="text-center"
+                                data-translate="pci_project_flavors_zone_localzone_tooltip"
+                            ></span>
+                            <a
+                                class="oui-link_icon"
+                                aria-hidden="true"
+                                data-ng-href="{{$ctrl.localZoneUrl}}"
+                                target="_blank"
+                            >
+                                <span
+                                    data-translate="pci_project_flavors_zone_tooltip_link"
+                                ></span>
+                                <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                            </a>
+                        </script>
+                    </span>
                 </oui-checkbox-label>
                 <oui-checkbox-description>
                     <span
-                        data-translate="pci_projects_project_instances_add_localPrivateNetwork_add_public_network_info"
+                        data-translate="pci_projects_project_instances_add_localPrivateNetwork_add_local_private_mode_info"
                     ></span>
                 </oui-checkbox-description>
             </oui-checkbox>
@@ -590,6 +660,7 @@
                     <oui-field
                         data-size="xl"
                         class="oui-input-group ml-6"
+                        style="font-size: 0.875rem !important;"
                         data-ng-if="$ctrl.isLocalZone() && $ctrl.isLocalPrivateModeLocalZone && $ctrl.isCreatingNewPrivateNetwork === false"
                         data-label="{{ :: 'pci_projects_project_instances_add_localPrivateNetwork_label' | translate }}"
                     >
@@ -601,20 +672,14 @@
                             data-on-change="$ctrl.onPrivateNetworkChange(modelValue)"
                         >
                         </oui-select>
-                        <p data-ng-if="$ctrl.currentStep < 5">
-                            <span
-                                data-translate="pci_projects_project_instances_add_localPrivateNetwork_description"
-                            ></span>
-                            <a
-                                data-ng-href="{{:: $ctrl.addLocalPrivateNetworksLink }}"
-                                data-translate="pci_projects_project_instances_add_localPrivateNetwork_add"
-                                target="_top"
-                            ></a>
-                        </p>
+                        <p
+                            data-ng-if="$ctrl.currentStep < 5"
+                            data-translate="pci_projects_project_instances_add_localPrivateNetwork_description"
+                        ></p>
                     </oui-field>
                 </div>
 
-                <oui-radio value="true">
+                <oui-radio value="true" class="mb-3">
                     <span
                         data-translate="pci_projects_project_instances_add_create_a_new_private_network"
                     ></span>
@@ -626,21 +691,21 @@
                 >
                     <div data-ng-if="!$ctrl.isLoading">
                         <oui-field
-                            data-size="xl"
-                            data-label="{{:: 'pci_projects_project_network_private_create_name' | translate }}"
+                            data-size="xxl"
+                            data-label="{{:: 'pci_projects_project_instances_add_modal_add_private_network_field_label' | translate }}"
                         >
                             <input
                                 class="oui-input"
                                 type="text"
                                 id="privateNetworkName"
                                 name="privateNetworkName"
-                                placeholder="{{ 'pci_projects_project_network_private_create_name_placeholder' | translate }}"
+                                placeholder="{{ 'pci_projects_project_instances_add_modal_add_private_network_field_placeholder' | translate }}"
                                 data-ng-model="$ctrl.privateNetworkName"
                                 required
                             />
                         </oui-field>
                         <oui-field
-                            data-size="xl"
+                            data-size="xxl"
                             data-label="{{:: 'pci_projects_project_network_private_create_dhcp_address_distribution_options' | translate }}"
                         >
                             <oui-checkbox
