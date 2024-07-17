@@ -35,7 +35,9 @@ export const postZimbraPlatformAccount = async (
   platformId: string,
   params: AccountBodyParamsType,
 ) => {
-  const { data } = await v2.post(`${getApiPath(platformId)}account`, params);
+  const { data } = await v2.post(`${getApiPath(platformId)}account`, {
+    targetSpec: params,
+  });
   return data;
 };
 

@@ -27,10 +27,9 @@ export const postZimbraPlatformOrganization = async (
   platformId: string,
   params: OrganizationBodyParamsType,
 ) => {
-  const { data } = await v2.post(
-    `${getApiPath(platformId)}organization`,
-    params,
-  );
+  const { data } = await v2.post(`${getApiPath(platformId)}organization`, {
+    targetSpec: params,
+  });
   return data;
 };
 
