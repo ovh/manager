@@ -28,13 +28,27 @@ export default [
     children: [
       {
         path: '',
-        ...lazyRouteConfig(() => import('@/pages/home/home.page')),
-      },
-      {
-        path: 'users-tokens',
-        ...lazyRouteConfig(() =>
-          import('@/pages/users-tokens/users-tokens.page'),
-        ),
+        ...lazyRouteConfig(() => import('@/pages/dashboard/dashboard.layout')),
+        children: [
+          {
+            path: '',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/home/home.page'),
+            ),
+          },
+          {
+            path: 'users',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/users/users.page'),
+            ),
+          },
+          {
+            path: 'tokens',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/tokens/tokens.page'),
+            ),
+          },
+        ],
       },
     ],
   },
