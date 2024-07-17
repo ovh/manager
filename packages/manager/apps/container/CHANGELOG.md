@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.62.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.62.2...@ovh-ux/manager-container-app@0.62.3) (2024-07-17)
+
+
+### Bug Fixes
+
+* **container:** fixed update payment method popup alert ([#12306](https://github.com/ovh/manager/issues/12306)) ([63b297b](https://github.com/ovh/manager/commit/63b297bd8cfa71477a10a67d4de6d2b8fa30dadc))
+
+
+
+
+
 ## [0.62.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.62.1...@ovh-ux/manager-container-app@0.62.2) (2024-07-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
