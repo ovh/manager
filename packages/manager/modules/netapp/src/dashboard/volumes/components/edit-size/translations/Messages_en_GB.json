@@ -1,0 +1,9 @@
+{
+  "netapp_volumes_edit_size_title": "Edit {{volume}} volume size",
+  "netapp_volumes_edit_size_submit": "Edit size",
+  "netapp_volumes_edit_size_cancel": "Cancel",
+  "netapp_volumes_edit_size_label": "{{ name }} volume size",
+  "netapp_volumes_edit_size_rules": "Size limit: min {{min}}GB, max {{max}}GB",
+  "netapp_volumes_edit_size_success": "{{ volumeName }} volume will be resized shortly.",
+  "netapp_volumes_edit_size_error": "An error has occurred <br> {{message}} <br> request_id: {{requestId}}"
+}
