@@ -14,7 +14,7 @@ export namespace user {
 
   export interface UserCreation {
     description?: string;
-    role: UserCreationEnum;
+    role: AIUserRoleEnum;
   }
 
   export interface Role {
@@ -31,8 +31,13 @@ export namespace user {
     'OK' = 'OK',
   }
 
-  export enum UserCreationEnum {
+  export enum AIUserRoleEnum {
     'ai_training_operator' = 'ai_training_operator',
     'ai_training_read' = 'ai_training_read',
+  }
+
+  export enum AIUserRoleEnumWithLabel {
+    'ai_training_operator' = 'AI Platform - Operator',
+    'ai_training_read' = 'AI Platform - Read only',
   }
 }

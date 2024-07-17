@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { BookOpen } from 'lucide-react';
 
+import { useParams } from 'react-router-dom';
 import {
   CommandDialog,
   CommandEmpty,
@@ -21,12 +22,14 @@ interface GuidesProps {
   onGuideClick?: (guide: Guide) => void;
 }
 const Guides = ({ section, onGuideClick }: GuidesProps) => {
+  const { projectId } = useParams();
   const { t } = useTranslation('guides');
   const locale = useLocale();
   const [open, setOpen] = useState(false);
   const guidesQuery = useGetGuides(
+    projectId,
     section,
-    locale.toLocaleUpperCase().replace('_', '-'),
+    locale.toLocaleLowerCase().replace('_', '-'),
   );
   // open the menu on cmd + j
   useEffect(() => {

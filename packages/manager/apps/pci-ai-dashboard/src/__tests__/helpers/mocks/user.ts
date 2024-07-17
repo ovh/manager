@@ -2,7 +2,7 @@ import { user } from '@/types/user';
 
 export const mockedUserCreation: user.UserCreation = {
   description: 'description',
-  role: user.UserCreationEnum.ai_training_operator,
+  role: user.AIUserRoleEnum.ai_training_operator,
 };
 
 export const mockedUser: user.User = {
