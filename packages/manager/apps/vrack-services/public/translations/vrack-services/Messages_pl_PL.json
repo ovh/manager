@@ -29,5 +29,7 @@
   "modalDeleteVrackServicesInputLabel": "Wpisz słowo „TERMINATE”, aby potwierdzić usunięcie vRack Services",
   "modalDeleteVrackServicesHeadline": "Usuń vRack Services",
   "vrackServicesNotReadyInfoMessage": "vRack Services {{displayName}} jest w trakcie wykonywania operacji",
-  "vrackServicesInErrorMessage": "Wystąpił błąd w vRack Services {{displayName}}"
+  "vrackServicesInErrorMessage": "Wystąpił błąd w vRack Services {{displayName}}",
+  "modalSubmitOrderWaitMessage": "Proszę czekać...",
+  "modalConfirmContractsCheckboxLabel": "Zapoznałem się i akceptuję regulamin usług:"
 }

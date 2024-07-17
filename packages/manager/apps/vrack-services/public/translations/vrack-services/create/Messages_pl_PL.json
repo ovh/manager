@@ -13,5 +13,9 @@
   "modalCancelButtonLabel": "Anuluj",
   "modalConfirmVrackButtonLabel": "Zamów vRack",
   "modalNoVrackButtonLabel": "Nie, dziękuję, mam już vRack",
-  "createPageTitle": "Włącz vRack Services"
+  "createPageTitle": "Włącz vRack Services",
+  "modalCreateOrderWaitMessage": "Proszę czekać...",
+  "modalSubmitOrderButtonLabel": "Zamów",
+  "vrackServicesCreationSuccess": "Konfiguracja została zapisana.",
+  "vrackServicesOrderLinkLabel": "Moje zamówienie"
 }
