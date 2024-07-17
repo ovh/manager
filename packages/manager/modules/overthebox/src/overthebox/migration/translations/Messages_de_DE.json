@@ -16,10 +16,10 @@
   "overthebox_migration_contact_select": "Kontakt auswählen",
   "overthebox_migration_summary_title": "Zusammenfassung des Angebotswechsels",
   "overthebox_migration_summary_detail": "Wechsel des Angebots „{{oldOffer}}“ für das Angebot „{{newOffer}}“.",
-  "overthebox_migration_summary_table_title": "Titel",
-  "overthebox_migration_summary_table_unit_price": "Stückpreis",
+  "overthebox_migration_summary_table_title": "Bezeichnung",
+  "overthebox_migration_summary_table_unit_price": "Preis je Einheit",
   "overthebox_migration_summary_table_quantity": "Menge",
-  "overthebox_migration_summary_table_price_per_month": "Preis / Monat",
+  "overthebox_migration_summary_table_price_per_month": "Preis zzgl. MwSt. / Monat",
   "overthebox_migration_summary_table_offer": "Angebot {{offerName}}",
   "overthebox_migration_summary_table_hardware": "Gehäuse",
   "overthebox_migration_summary_contracts_title": "Verträge",
@@ -32,5 +32,6 @@
   "overthebox_migration_summary_total": "Dies entspricht einer Summe aus:",
   "overthebox_migration_summary_command_order_explain": "Um die Migration Ihres Angebots abzuschließen, müssen Sie dafür <a href=\"{{orderUrl}}\" target=\"_blank\" title=\" bezahlen: {{orderId}}\">  Bestellschein.<span class=\"oui-icon oui-icon-external-link ml-2\" aria-hidden=\"true\"> </span> </a> ",
   "overthebox_migration_summary_command_order_help": "Mehr Informationen zur Bezahlung eines Bestellscheins.",
-  "overthebox_migration_summary_launch_migration_error": "Bei der Migration des Angebots ist ein Fehler aufgetreten. {{errorMsg}}"
+  "overthebox_migration_summary_launch_migration_error": "Bei der Migration des Angebots ist ein Fehler aufgetreten. {{errorMsg}}",
+  "overthebox_migration_offers_title": "Wahl des Angebots"
 }

@@ -93,5 +93,10 @@
   "overTheBox_model_device": "Device model",
   "overTheBox_detail_bandwidth": "Maximum bandwidth",
   "overTheBox_model_device_unknown": "Unknown",
-  "overTheBox_change_offer": "Change plan"
+  "overTheBox_change_offer": "Change plan",
+  "overTheBox_deviceId_unlink": "Detach",
+  "overTheBox_cancel": "Cancel",
+  "overTheBox_confirm_unlink_device": "This device will no longer be able to connect to this service, are you sure?",
+  "overTheBox_unlink_device_error": "Unable to unlink the device: {{errorMessage}}",
+  "overTheBox_unlink_device_success": "Your device has been successfully detached."
 }

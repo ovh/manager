@@ -93,5 +93,10 @@
   "overTheBox_model_device": "Gerätemodell",
   "overTheBox_detail_bandwidth": "Maximale Bandbreite",
   "overTheBox_model_device_unknown": "Unbekannt",
-  "overTheBox_change_offer": "Angebot wechseln"
+  "overTheBox_change_offer": "Angebot wechseln",
+  "overTheBox_deviceId_unlink": "Trennen",
+  "overTheBox_cancel": "Abbrechen",
+  "overTheBox_confirm_unlink_device": "Dieses Gerät kann keine Verbindung mehr mit diesem Dienst herstellen, sind Sie sicher?",
+  "overTheBox_unlink_device_error": "Das Gerät konnte nicht getrennt werden: {{errorMessage}}",
+  "overTheBox_unlink_device_success": "Die Zuordnung des Geräts wurde erfolgreich aufgehoben."
 }
