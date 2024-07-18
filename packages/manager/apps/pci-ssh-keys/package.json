@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.6.3",
+    "@ovh-ux/manager-vite-config": "^0.6.3 || ^0.7.0",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",

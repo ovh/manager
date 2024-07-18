@@ -32,5 +32,6 @@
   "overthebox_migration_summary_total": "Per un totale di:",
   "overthebox_migration_summary_command_order_explain": "Per completare la migrazione della tua offerta, è necessario pagare <a href=\"{{orderUrl}}\" target=\"_blank\" title=\" il buono d&apos;ordine: {{orderId}}\">  il buono d'ordine.<span class=\"oui-icon oui-icon-external-link ml-2\" aria-hidden=\"true\"> </span> </a> ",
   "overthebox_migration_summary_command_order_help": "Per saperne di più sul pagamento di un buono d'ordine.",
-  "overthebox_migration_summary_launch_migration_error": "Si è verificato un errore durante la migrazione dell'offerta. {{errorMsg}}"
+  "overthebox_migration_summary_launch_migration_error": "Si è verificato un errore durante la migrazione dell'offerta. {{errorMsg}}",
+  "overthebox_migration_offers_title": "Scelta del piano"
 }
