@@ -27,7 +27,7 @@
   "createRancherDiscoveryMode": "Actualmente está en modo Discovery. <strong>Para terminar de crear el recurso</strong>, deberá activar su proyecto.",
   "createRancherDiscoveryModeActive": "Active su proyecto",
   "createRancherTitle": "Managed Rancher Service",
-  "createRancherInfoMessage": "Su uso se facturará por horas, en función del número total de vCPU de cada uno de los nodos de trabajo («worker nodes») de sus «downstream clusters» Rancher, teniendo en cuenta un <strong>mínimo de 20 vCPU facturadas</strong>.",
+  "createRancherInfoMessage": "¡Disfrute de nuestro servicio gratis durante la fase beta! Una vez terminada la fase beta, el servicio se facturará por horas, en función del número total de vCPU de los nodos de trabajo («worker nodes») de sus «downstream clusters» Rancher, teniendo en cuenta un <strong>mínimo de 20 vCPU facturadas</strong>.",
   "createRancherName": "Nombre",
   "createRancherDescription": "En este servicio podrá gestionar varios «downstream clusters».",
   "createRancherPlaceholder": "mi_rancher",
