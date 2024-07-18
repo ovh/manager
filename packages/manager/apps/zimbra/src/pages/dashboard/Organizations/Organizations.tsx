@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import { Outlet } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -19,7 +19,7 @@ import {
 import { ResourceStatus } from '@/api/api.type';
 
 import { useOrganizationList, usePlatform, useGenerateUrl } from '@/hooks';
-import { ActionButtonOrganization } from './ActionButtonOrganization';
+import ActionButtonOrganization from './ActionButtonOrganization';
 import IdLink from './IdLink';
 import LabelChip from '@/components/LabelChip';
 import { BadgeStatus } from '@/components/BadgeStatus';
@@ -76,7 +76,7 @@ const columns: DatagridColumn<OrganizationItem>[] = [
 ];
 
 export default function Organizations() {
-  const { t } = useTranslation('organisations');
+  const { t } = useTranslation('organizations');
   const { platformId, platformUrn } = usePlatform();
   const { data } = useOrganizationList();
 
@@ -105,6 +105,7 @@ export default function Organizations() {
           href={hrefAddOrganization}
           urn={platformUrn}
           iamActions={['zimbra:apiovh:platform/organization/create']}
+          data-testid="add-organization-btn"
         >
           <span slot="start">
             <OsdsIcon
