@@ -7,7 +7,6 @@ export default {
   bindings: {
     onFieldError: '<',
     trackField: '<',
-    isIndianSubsidiary: '<',
   },
   template,
   require: {
