@@ -11,7 +11,7 @@ import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovhcloud/manager-components';
 import { useAccountList, useGenerateUrl, usePlatform } from '@/hooks';
-import { deleteZimbraPlatformDomain } from '@/api/DELETE/apiv2/services';
+import { deleteZimbraPlatformDomain } from '@/api/domain';
 import Modal from '@/components/Modals/Modal';
 
 export default function ModalDeleteDomain() {
@@ -82,6 +82,7 @@ export default function ModalDeleteDomain() {
         label: t('zimbra_domain_delete'),
         action: handleDeleteClick,
         disabled: hasEmailAccount,
+        testid: 'delete-btn',
       }}
     >
       <>
@@ -98,6 +99,7 @@ export default function ModalDeleteDomain() {
             color={ODS_THEME_COLOR_INTENT.error}
             icon={ODS_ICON_NAME.WARNING_CIRCLE}
             className="mt-4"
+            data-testid="banner-message"
           >
             <div className="flex flex-col text-left ml-4">
               <OsdsText

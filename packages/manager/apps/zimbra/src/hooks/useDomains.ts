@@ -1,11 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { usePlatform } from '@/hooks';
-import { useOrganization } from './useOrganization';
+import { usePlatform, useOrganization } from '@/hooks';
 
 import {
   getZimbraPlatformDomains,
   getZimbraPlatformDomainsQueryKey,
-} from '@/api';
+} from '@/api/domain';
 
 export const useDomains = (organizationId?: string, noCache?: boolean) => {
   const { platformId } = usePlatform();

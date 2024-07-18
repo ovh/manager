@@ -32,18 +32,17 @@ import {
   ODS_TEXTAREA_SIZE,
 } from '@ovhcloud/ods-components';
 import { useQuery } from '@tanstack/react-query';
-import { useGenerateUrl, usePlatform } from '@/hooks';
+import { useGenerateUrl, usePlatform, useDomains } from '@/hooks';
 import {
-  getZimbraPlatformEmailsDetail,
-  getZimbraPlatformEmailsDetailQueryKey,
+  getZimbraPlatformAccountDetail,
+  getZimbraPlatformAccountDetailQueryKey,
   postZimbraPlatformAccount,
   putZimbraPlatformAccount,
-} from '@/api';
+} from '@/api/account';
 import Loading from '@/components/Loading/Loading';
-import { useDomains } from '@/hooks/useDomains';
 
 export default function AddAndEditAccount() {
-  const { t } = useTranslation('emails/addAndEdit');
+  const { t } = useTranslation('accounts/addAndEdit');
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { platformId } = usePlatform();
@@ -112,30 +111,28 @@ export default function AddAndEditAccount() {
         required: !editEmailAccountId,
       },
     },
-    ...(editEmailAccountId
-      ? {
-          initials: {
-            value: '',
-            touched: false,
-          },
-          description: {
-            value: '',
-            touched: false,
-          },
-        }
-      : {}),
+    ...(editEmailAccountId && {
+      initials: {
+        value: '',
+        touched: false,
+      },
+      description: {
+        value: '',
+        touched: false,
+      },
+    }),
   });
 
   const {
     data: editAccountDetail,
     isLoading: isLoadingEmailDetailRequest,
   } = useQuery({
-    queryKey: getZimbraPlatformEmailsDetailQueryKey(
+    queryKey: getZimbraPlatformAccountDetailQueryKey(
       platformId,
       editEmailAccountId,
     ),
     queryFn: () =>
-      getZimbraPlatformEmailsDetail(platformId, editEmailAccountId),
+      getZimbraPlatformAccountDetail(platformId, editEmailAccountId),
     enabled: !!platformId && !!editEmailAccountId,
   });
 
@@ -235,7 +232,7 @@ export default function AddAndEditAccount() {
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             hue={ODS_THEME_COLOR_HUE._500}
           >
-            {t('zimbra_emails_add_success_message')}
+            {t('zimbra_account_add_success_message')}
           </OsdsText>,
           true,
         );
@@ -249,7 +246,7 @@ export default function AddAndEditAccount() {
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             hue={ODS_THEME_COLOR_HUE._500}
           >
-            {t('zimbra_emails_add_error_message', {
+            {t('zimbra_account_add_error_message', {
               error: response.data.message,
             })}
           </OsdsText>,
@@ -289,7 +286,7 @@ export default function AddAndEditAccount() {
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             hue={ODS_THEME_COLOR_HUE._500}
           >
-            {t('zimbra_emails_edit_success_message')}
+            {t('zimbra_account_edit_success_message')}
           </OsdsText>,
           true,
         );
@@ -303,7 +300,7 @@ export default function AddAndEditAccount() {
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             hue={ODS_THEME_COLOR_HUE._500}
           >
-            {t('zimbra_emails_edit_error_message', {
+            {t('zimbra_account_edit_error_message', {
               error: response.data.message,
             })}
           </OsdsText>,
@@ -317,16 +314,19 @@ export default function AddAndEditAccount() {
       {isLoading && <Loading />}
       {!isLoading && (
         <>
-          <div className="flex flex-col items-start space-y-4 mb-5">
+          <div
+            className="flex flex-col items-start space-y-4 mb-5"
+            data-testid="page-title"
+          >
             <Links
               type={LinkType.back}
               onClickReturn={goBack}
-              label={t('zimbra_emails_add_cta_back')}
+              label={t('zimbra_account_add_cta_back')}
             />
             <Subtitle>
               {!editAccountDetail
-                ? t('zimbra_emails_add_title')
-                : t('zimbra_emails_edit_title', {
+                ? t('zimbra_account_add_title')
+                : t('zimbra_account_edit_title', {
                     account: editAccountDetail?.targetSpec?.email,
                   })}
             </Subtitle>
@@ -339,7 +339,7 @@ export default function AddAndEditAccount() {
               size={ODS_THEME_TYPOGRAPHY_SIZE._100}
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             >
-              {t('zimbra_emails_add_input_mandatory')}
+              {t('zimbra_account_add_input_mandatory')}
             </OsdsText>
 
             <OsdsFormField>
@@ -349,14 +349,14 @@ export default function AddAndEditAccount() {
                   color={ODS_THEME_COLOR_INTENT.text}
                   size={ODS_THEME_TYPOGRAPHY_SIZE._100}
                 >
-                  {t('zimbra_emails_add_input_email_label')} *
+                  {t('zimbra_account_add_input_email_label')} *
                 </OsdsText>
               </div>
               <div className="flex">
                 <OsdsInput
                   type={ODS_INPUT_TYPE.text}
                   name="account"
-                  placeholder={t('zimbra_emails_add_input_email_placeholder')}
+                  placeholder={t('zimbra_account_add_input_email_placeholder')}
                   color={
                     form.account.hasError
                       ? ODS_THEME_COLOR_INTENT.error
@@ -372,6 +372,7 @@ export default function AddAndEditAccount() {
                   }}
                   required
                   className="rounded-r-none border-r-0 w-1/2"
+                  data-testid="input-account"
                 ></OsdsInput>
                 <OsdsInput
                   type={ODS_INPUT_TYPE.text}
@@ -386,14 +387,19 @@ export default function AddAndEditAccount() {
                   name="domain"
                   value={form.domain.value}
                   className="rounded-l-none border-l-0 w-1/2"
-                  color={ODS_THEME_COLOR_INTENT.default}
+                  color={
+                    form.domain.hasError
+                      ? ODS_THEME_COLOR_INTENT.error
+                      : ODS_THEME_COLOR_INTENT.default
+                  }
                   required
                   onOdsValueChange={(e) =>
                     handleDomainChange(e.detail.value as string)
                   }
+                  data-testid="select-domain"
                 >
                   <span slot="placeholder">
-                    {t('zimbra_emails_add_select_domain_placeholder')}
+                    {t('zimbra_account_add_select_domain_placeholder')}
                   </span>
                   {domainList?.map(({ targetSpec: domain }) => (
                     <OsdsSelectOption key={domain.name} value={domain.name}>
@@ -413,10 +419,10 @@ export default function AddAndEditAccount() {
                   level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                   className="flex flex-col"
                 >
-                  <span>{t('zimbra_emails_add_input_email_helper')}</span>
+                  <span>{t('zimbra_account_add_input_email_helper')}</span>
                   {[1, 2, 3].map((elm) => (
                     <span key={elm}>
-                      - {t(`zimbra_emails_add_input_email_helper_rule_${elm}`)}
+                      - {t(`zimbra_account_add_input_email_helper_rule_${elm}`)}
                     </span>
                   ))}
                 </OsdsText>
@@ -432,7 +438,7 @@ export default function AddAndEditAccount() {
                   color={ODS_THEME_COLOR_INTENT.text}
                   size={ODS_THEME_TYPOGRAPHY_SIZE._100}
                 >
-                  {t('zimbra_emails_add_message_organization', {
+                  {t('zimbra_account_add_message_organization', {
                     organizationLabel: selectedDomainOrganization,
                   })}
                 </OsdsText>
@@ -446,14 +452,14 @@ export default function AddAndEditAccount() {
                     color={ODS_THEME_COLOR_INTENT.text}
                     size={ODS_THEME_TYPOGRAPHY_SIZE._100}
                   >
-                    {t('zimbra_emails_add_input_lastName_label')}
+                    {t('zimbra_account_add_input_lastName_label')}
                   </OsdsText>
                 </div>
                 <OsdsInput
                   type={ODS_INPUT_TYPE.text}
                   name="lastName"
                   placeholder={t(
-                    'zimbra_emails_add_input_lastName_placeholder',
+                    'zimbra_account_add_input_lastName_placeholder',
                   )}
                   color={ODS_THEME_COLOR_INTENT.default}
                   size={ODS_INPUT_SIZE.md}
@@ -474,14 +480,14 @@ export default function AddAndEditAccount() {
                     color={ODS_THEME_COLOR_INTENT.text}
                     size={ODS_THEME_TYPOGRAPHY_SIZE._100}
                   >
-                    {t('zimbra_emails_add_input_firstName_label')}
+                    {t('zimbra_account_add_input_firstName_label')}
                   </OsdsText>
                 </div>
                 <OsdsInput
                   type={ODS_INPUT_TYPE.text}
                   name="firstName"
                   placeholder={t(
-                    'zimbra_emails_add_input_firstName_placeholder',
+                    'zimbra_account_add_input_firstName_placeholder',
                   )}
                   color={ODS_THEME_COLOR_INTENT.default}
                   size={ODS_INPUT_SIZE.md}
@@ -504,14 +510,14 @@ export default function AddAndEditAccount() {
                     color={ODS_THEME_COLOR_INTENT.text}
                     size={ODS_THEME_TYPOGRAPHY_SIZE._100}
                   >
-                    {t('zimbra_emails_add_input_displayName_label')}
+                    {t('zimbra_account_add_input_displayName_label')}
                   </OsdsText>
                 </div>
                 <OsdsInput
                   type={ODS_INPUT_TYPE.text}
                   name="displayName"
                   placeholder={t(
-                    'zimbra_emails_add_input_displayName_placeholder',
+                    'zimbra_account_add_input_displayName_placeholder',
                   )}
                   color={ODS_THEME_COLOR_INTENT.default}
                   size={ODS_INPUT_SIZE.md}
@@ -533,14 +539,14 @@ export default function AddAndEditAccount() {
                       color={ODS_THEME_COLOR_INTENT.text}
                       size={ODS_THEME_TYPOGRAPHY_SIZE._100}
                     >
-                      {t('zimbra_emails_add_input_initials_label')}
+                      {t('zimbra_account_add_input_initials_label')}
                     </OsdsText>
                   </div>
                   <OsdsInput
                     type={ODS_INPUT_TYPE.text}
                     name="initials"
                     placeholder={t(
-                      'zimbra_emails_add_input_initials_placeholder',
+                      'zimbra_account_add_input_initials_placeholder',
                     )}
                     color={ODS_THEME_COLOR_INTENT.default}
                     size={ODS_INPUT_SIZE.md}
@@ -565,14 +571,14 @@ export default function AddAndEditAccount() {
                       color={ODS_THEME_COLOR_INTENT.text}
                       size={ODS_THEME_TYPOGRAPHY_SIZE._100}
                     >
-                      {t('zimbra_emails_add_input_description_label')}
+                      {t('zimbra_account_add_input_description_label')}
                     </OsdsText>
                   </div>
                   <OsdsTextarea
                     color={ODS_THEME_COLOR_INTENT.default}
                     name="description"
                     placeholder={t(
-                      'zimbra_emails_add_input_description_placeholder',
+                      'zimbra_account_add_input_description_placeholder',
                     )}
                     resizable
                     size={ODS_TEXTAREA_SIZE.md}
@@ -596,7 +602,7 @@ export default function AddAndEditAccount() {
                     color={ODS_THEME_COLOR_INTENT.text}
                     size={ODS_THEME_TYPOGRAPHY_SIZE._100}
                   >
-                    {t('zimbra_emails_add_input_password_label')}
+                    {t('zimbra_account_add_input_password_label')}
                     {!editAccountDetail && ' *'}
                   </OsdsText>
                 </div>
@@ -612,6 +618,7 @@ export default function AddAndEditAccount() {
                   onOdsValueChange={({ detail: { name, value } }) => {
                     handleFormChange(name, value);
                   }}
+                  data-testid="input-password"
                 ></OsdsPassword>
                 <div slot="helper">
                   <OsdsText
@@ -624,12 +631,12 @@ export default function AddAndEditAccount() {
                     level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                     className="flex flex-col"
                   >
-                    <span>{t('zimbra_emails_add_input_password_helper')}</span>
+                    <span>{t('zimbra_account_add_input_password_helper')}</span>
                     {[1, 2, 3].map((elm) => (
                       <span key={elm}>
                         -{' '}
                         {t(
-                          `zimbra_emails_add_input_password_helper_rule_${elm}`,
+                          `zimbra_account_add_input_password_helper_rule_${elm}`,
                         )}
                       </span>
                     ))}
@@ -650,10 +657,11 @@ export default function AddAndEditAccount() {
                     ? handleModifyAccountClick
                     : handleNewAccountClick
                 }
+                data-testid="confirm-btn"
               >
                 {!editAccountDetail
-                  ? t('zimbra_emails_add_button_confirm')
-                  : t('zimbra_emails_add_button_save')}
+                  ? t('zimbra_account_add_button_confirm')
+                  : t('zimbra_account_add_button_save')}
               </OsdsButton>
 
               {editAccountDetail && (
@@ -664,7 +672,7 @@ export default function AddAndEditAccount() {
                   color={ODS_THEME_COLOR_INTENT.primary}
                   variant={ODS_BUTTON_VARIANT.stroked}
                 >
-                  {t('zimbra_emails_add_button_cancel')}
+                  {t('zimbra_account_add_button_cancel')}
                 </OsdsButton>
               )}
             </div>
