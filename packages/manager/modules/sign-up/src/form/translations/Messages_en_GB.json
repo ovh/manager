@@ -679,5 +679,10 @@
   "sign_up_form_enum_sex_female": "Female",
   "sign_up_form_enum_sex_male": "Male",
   "sign_up_form_enum_country_BV": "Norway – Bouvet Island",
-  "sign_up_form_enum_country_HM": "United Kingdom – Heard and MacDonald Islands"
+  "sign_up_form_enum_country_HM": "United Kingdom – Heard and MacDonald Islands",
+  "sign_up_form_enum_purposeofpurchase_personal": "Personal",
+  "sign_up_form_enum_purposeofpurchase_commercial": "Business",
+  "sign_up_form_enum_purposeofpurchase_non-commercial": "Non-profit, religious or political",
+  "sign_up_form_enum_purposeofpurchase_study": "Academic study/research",
+  "sign_up_form_enum_purposeofpurchase_public-service": "Government services"
 }

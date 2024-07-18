@@ -769,5 +769,10 @@
   "signup_field_purposeOfPurchase": "Grund für den Kauf",
   "new_account_content_check_validation": "Bitte überprüfen Sie die eingegebenen Informationen (MwSt., Telefonnummer, Geburtsdatum usw.), um das Formular zu validieren.",
   "signup_enum_country_BV": "Norwegen  – Bouvetinsel",
-  "signup_enum_country_HM": "Vereinigtes Königreich – Heard und MacDonald-Inseln"
+  "signup_enum_country_HM": "Vereinigtes Königreich – Heard und MacDonald-Inseln",
+  "signup_enum_purposeOfPurchase_personal": "Persönliche Nutzung",
+  "signup_enum_purposeOfPurchase_commercial": "Nutzung im Rahmen einer Geschäftstätigkeit",
+  "signup_enum_purposeOfPurchase_non-commercial": "Nutzung für gemeinnützige, religiöse oder politische Aktivitäten",
+  "signup_enum_purposeOfPurchase_study": "Nutzung für Studien oder akademische Forschung",
+  "signup_enum_purposeOfPurchase_public-service": "Nutzung für die Erbringung öffentlicher Dienstleistungen"
 }

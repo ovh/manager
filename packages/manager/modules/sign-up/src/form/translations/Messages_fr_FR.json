@@ -679,5 +679,10 @@
   "sign_up_form_enum_IT_area_FM": "Fermo (Marche)",
   "sign_up_form_enum_IT_area_MB": "Monza E Brianza (Lombardia)",
   "sign_up_form_enum_sex_female": "Femme",
-  "sign_up_form_enum_sex_male": "Homme"
+  "sign_up_form_enum_sex_male": "Homme",
+  "sign_up_form_enum_purposeofpurchase_personal": "Utilisation à titre personnel",
+  "sign_up_form_enum_purposeofpurchase_commercial": "Utilisation dans le cadre d'une activité commerciale",
+  "sign_up_form_enum_purposeofpurchase_non-commercial": "Utilisation dans le cadre d'une activité non lucrative, religieuse ou politique",
+  "sign_up_form_enum_purposeofpurchase_study": "Utilisation à des fins d'étude ou de recherche universitaire",
+  "sign_up_form_enum_purposeofpurchase_public-service": "Utilisation à des fins de service public"
 }

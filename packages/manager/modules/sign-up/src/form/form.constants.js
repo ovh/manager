@@ -28,6 +28,9 @@ export const ENUM_TRANSLATION_RULES = [
     fieldName: 'sex',
     sort: true,
   },
+  {
+    fieldName: 'purposeOfPurchase',
+  },
 ];
 
 export const MODEL_DEBOUNCE_DELAY = 500;
