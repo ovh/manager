@@ -15,9 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
         volumes.find(({ id }) => id === volumeId),
       remainingQuota: /* @ngInject */ (totalVolumesStorage, storage) =>
         storage.quota - totalVolumesStorage,
-      goBack: /* @ngInject */ (goToVolumes, trackClick) => () => {
-        trackClick('modify-size::cancel');
-        goToVolumes();
+      goBack: /* @ngInject */ (goToVolumes) => (message) => {
+        goToVolumes(message);
       },
     },
   });
