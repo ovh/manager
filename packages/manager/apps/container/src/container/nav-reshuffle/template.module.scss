@@ -71,6 +71,8 @@ $z-index-sidebar: 700;
     position: absolute;
     width: 100%;
     z-index: $z-index-sidebar;
+
+    overflow-y: hidden;
   }
   .iframeOverlay_visible {
     opacity: 1;
