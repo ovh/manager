@@ -1,10 +1,9 @@
-import React, { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 
 import { useLocation } from 'react-router-dom';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
-import useContainer from '@/core/container';
 import logo from '@/assets/images/OVHcloud_logo.svg';
 import shortLogo from '@/assets/images/icon-logo-ovh.svg';
 import Assistance from './Assistance';
@@ -19,7 +18,8 @@ import {
   findPathToNode,
   initFeatureNames,
   shouldHideElement,
-  debounce,
+  findUniverse,
+  splitPathIntoSegmentsWithoutRouteParams,
   IServicesCount,
 } from './utils';
 import { Node } from './navigation-tree/node';
@@ -45,13 +45,11 @@ const Sidebar = (): JSX.Element => {
   const navigationPlugin = shell.getPlugin('navigation');
   const environmentPlugin = shell.getPlugin('environment');
   const reketInstance = useReket();
-  const { betaVersion } = useContainer();
 
   const {
     currentNavigationNode,
     setCurrentNavigationNode,
     setNavigationTree,
-    isNavigationSidebarOpened,
     isMobile
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
@@ -59,9 +57,12 @@ const Sidebar = (): JSX.Element => {
     Array<{ node: Node; count: number | boolean }>
   >([]);
   const [selectedNode, setSelectedNode] = useState<Node>(null);
+  const [displayedNode, setDisplayedNode] = useState<Node>(null);
+  const [selectedSubmenu, setSelectedSubmenu] = useState<Node>(null);
   const [open, setOpen] = useState<boolean>(true);
   const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>(null);
   const logoLink = navigationPlugin.getURL('hub', '#/');
+  const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
 
   const toggleSidebar = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -69,6 +70,8 @@ const Sidebar = (): JSX.Element => {
 
   const menuClickHandler = (node: Node) => {
     setSelectedNode(node);
+    setDisplayedNode(node);
+    setSelectedSubmenu(null);
 
     let trackingIdComplement = 'navbar_v2_entry_';
     const history = findPathToNode(
@@ -86,6 +89,10 @@ const Sidebar = (): JSX.Element => {
       name: trackingIdComplement.replace(/[:][:]$/g, ''),
       type: 'navigation',
     });
+  };
+
+  const menuHoverHandler = (node: Node) => {
+    setDisplayedNode(node);
   };
 
   const onSidebarLeave = () => {
@@ -117,47 +124,6 @@ const Sidebar = (): JSX.Element => {
           mxPlanNode.routing.hash = '#/email_mxplan';
         }
 
-        /**
-         * Remove Identity Documents option
-         * Identity docments entry is added by default in ./navigation-tree/root.ts
-         */
-        let isIdentityDocumentsVisible;
-        if (results['identity-documents']) {
-          const { status } = await reketInstance.get(`/me/procedure/identity`);
-          if (!['required', 'open'].includes(status)) {
-            isIdentityDocumentsVisible = false;
-          }
-        } else {
-          isIdentityDocumentsVisible = false;
-        }
-        const account = findNodeById(tree, 'account');
-        if (!isIdentityDocumentsVisible && account) {
-          account.children.splice(
-            account.children.findIndex(
-              (node) => node.id === 'account_identity_documents',
-            ),
-            1,
-          );
-        }
-
-        /**
-         * US enterprise customers special case
-         */
-        ['billing_bills', 'billing_payment', 'orders'].forEach((nodeId) => {
-          const node = findNodeById(tree, nodeId);
-          if (!node) return;
-          const env = environmentPlugin.getEnvironment();
-          if (env.getRegion() === 'US' && env.user.enterprise) {
-            if (nodeId === 'orders') {
-              node.hideIfEmpty = true;
-            } else {
-              delete node.routing;
-              node.url = 'https://billing.us.ovhcloud.com/login';
-              node.isExternal = true;
-            }
-          }
-        });
-
         setNavigationTree(tree);
         setCurrentNavigationNode(tree);
       }
@@ -180,22 +146,46 @@ const Sidebar = (): JSX.Element => {
       .then((result: ServicesCount) => setServicesCount(result));
   }, []);
 
-  /**
-   * Hide Subtree after navigation
-   */
-  useEffect(() => {
-    setSelectedNode(null);
-  }, [location]);
+  const selectSubmenu = (node: Node, parent: Node) => {
+    setSelectedNode(parent);
+    setDisplayedNode(parent);
+    setSelectedSubmenu(node);
+    window.localStorage.setItem(savedLocationKey, node.id);
+    if (!isMobile) setOpen(false);
+  };
 
-  /**
-   * Reset selectednode on navigation sidebar close
-   */
   useEffect(() => {
-    if (!isNavigationSidebarOpened) {
-      setSelectedNode(null);
+    if (displayedNode) return;
+
+    const savedNodeID = window.localStorage.getItem(
+      savedLocationKey,
+    );
+    
+    const pathname = location.pathname;
+    if (savedNodeID) {
+      const node = findNodeById(navigationRoot, savedNodeID);
+      const parent = findNodeById(navigationRoot, node.universe);
+      if (node && parent) {
+        const nodePath = node.routing.hash
+          ? node.routing.hash.replace('#', node.routing.application)
+          : '/' + node.routing.application;
+        
+        const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath);
+        const isMatching = parsedPath.reduce((acc: boolean, segment: string) => acc && pathname.includes(segment), true);
+        if (isMatching) {
+          selectSubmenu(node, parent);
+          return;
+        } else {
+          window.localStorage.removeItem(savedLocationKey);
+        }
+      }
     }
-  }, [isNavigationSidebarOpened]);
 
+    const { node, parent } = findUniverse(navigationRoot, pathname);
+    if (node && parent) {
+      selectSubmenu(node, parent);
+    }
+  }, []);
 
   const computeNodeCount = (count: IServicesCount, node: Node): number | boolean => {
     if (node.count === false) return node.count;
@@ -228,8 +218,14 @@ const Sidebar = (): JSX.Element => {
   }, [currentNavigationNode, servicesCount]);
 
   return (
-    <div className={`${style.sidebar} ${!open && style.sidebar_short}`}>
-      {!isMobile && (
+    <div
+      className={`${style.sidebar} ${
+        displayedNode ? style.sidebar_selected : ''
+      }`}
+    >
+      <div
+        className={`${style.sidebar_wrapper} ${!open && style.sidebar_short}`}
+      >
         <a
           role="img"
           className={`block ${style.sidebar_logo}`}
@@ -244,92 +240,96 @@ const Sidebar = (): JSX.Element => {
             aria-hidden="true"
           />
         </a>
-      )}
 
-      <div className={style.sidebar_menu} role="menubar">
-        {(servicesCount || betaVersion === 1) && (
-          <ul id="menu" onMouseOut={onSidebarLeave} onBlur={onSidebarLeave} role="menu">
-            <li className="px-3 mb-3 mt-2">
-              <h2 className={!open ? style.hidden : ''}>
-                {t(currentNavigationNode.translation)}
-              </h2>
-            </li>
-            {menuItems?.map(({ node, count }) => (
-              <li
-                key={node.id}
-                id={node.id}
-                className={`${style.sidebar_menu_items} ${
-                  node.id === selectedNode?.id
+        <div className={style.sidebar_menu} role="menubar">
+          {servicesCount && (
+            <ul id="menu" onMouseOut={onSidebarLeave} onBlur={onSidebarLeave} role="menu">
+              <li className="px-3 mb-3 mt-2">
+                <h2 className={!open ? style.hidden : ''}>
+                  {t(currentNavigationNode.translation)}
+                </h2>
+              </li>
+              {menuItems
+                ?.filter((node) => !shouldHideElement(node, node.count))
+                .map(({ node, count }) => (
+                  <li
+                    key={node.id}
+                    id={node.id}
+                    className={`${style.sidebar_menu_items} ${
+                  node.id === displayedNode?.id
                     ? style.sidebar_menu_items_selected
                     : ''
-                }`}
-                role="menuitem"
-              >
-                {!shouldHideElement(node, count, betaVersion) && (
-                  <SidebarLink
-                    node={node}
-                    count={count}
-                    handleNavigation={() => menuClickHandler(node)}
-                    handleOnMouseOver={() => menuClickHandler(node)}
-                    handleOnMouseLeave={() => setSelectedNode(null)}
-                    handleOnEnter={(node: Node) => onEnter(node)}
+                  }`}
+                  role="menuitem"
+                  >
+                    <SidebarLink
+                      node={node}
+                      count={count}
+                      handleNavigation={() => menuClickHandler(node)}
+                      handleOnMouseOver={() => menuHoverHandler(node)}
+                      handleOnMouseLeave={() => setDisplayedNode(selectedNode)}
+                      handleOnClick={() => menuClickHandler(node)}
+                      handleOnEnter={(node: Node) => onEnter(node)}
                     id={node.idAttr}
-                    isShortText={!open}
-                  />
-                )}
-                {node.separator && <hr role="separator" />}
-              </li>
-            ))}
-          </ul>
-        )}
-        <div className={`m-3 ${style.sidebar_action}`}>
-          <a
-            onClick={() =>
-              trackingPlugin.trackClick({
-                name: 'navbar_v2_cta_add_a_service',
-                type: 'action',
-              })
-            }
-            href={navigationPlugin.getURL('catalog', '/')}
-            role="link"
+                      isShortText={!open}
+                    />
+                    {node.separator && <hr role="separator" />}
+                  </li>
+                ))}
+            </ul>
+          )}
+          <div className={`m-3 ${style.sidebar_action}`}>
+            <a
+              onClick={() =>
+                trackingPlugin.trackClick({
+                  name: 'navbar_v2_cta_add_a_service',
+                  type: 'action',
+                })
+              }
+              href={navigationPlugin.getURL('catalog', '/')}
+              role="link"
             title={t('sidebar_service_add')}
           >
-            <span
-              className={`oui-icon oui-icon-cart ${style.sidebar_action_icon}`}
-              aria-hidden="true"
-            ></span>
-            {open && <span className="ml-3">{t('sidebar_service_add')}</span>}
-          </a>
+              <span
+                className={`oui-icon oui-icon-cart ${style.sidebar_action_icon}`}
+                aria-hidden="true"
+              ></span>
+              {open && <span className="ml-3">{t('sidebar_service_add')}</span>}
+            </a>
+          </div>
         </div>
-      </div>
 
-      {open && (
-        <Suspense fallback="">
-          <Assistance />
-        </Suspense>
-      )}
+        {open && (
+          <Suspense fallback="">
+            <Assistance />
+          </Suspense>
+        )}
 
-      <button className={style.sidebar_toggle_btn} onClick={toggleSidebar} role="button">
-        {open && <span className="mr-2">Réduire</span>}
-        <span
-          className={`${
+        <button className={style.sidebar_toggle_btn} onClick={toggleSidebar} role="button">
+          {open && <span className="mr-2">Réduire</span>}
+          <span
+            className={`${
             style.sidebar_toggle_btn_first_icon
           } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
-          aria-hidden="true"
-        ></span>
-        <span
-          className={`oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
-          aria-hidden="true"
-        ></span>
-      </button>
-
-      {selectedNode !== null && (
+            aria-hidden="true"
+          ></span>
+          <span
+            className={`oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
+            aria-hidden="true"
+          ></span>
+        </button>
+      </div>
+      {displayedNode !== null && (
         <SubTree
           handleBackNavigation={() => {
-            setSelectedNode(null);
+            isMobile ? setDisplayedNode(null) : setDisplayedNode(selectedNode);
           }}
-          handleOnMouseOver={(node) => setSelectedNode(node)}
-          rootNode={selectedNode}
+          handleOnMouseOver={(node) => setDisplayedNode(node)}
+          selectedNode={selectedSubmenu}
+          handleOnSubmenuClick={(childNode) =>
+            selectSubmenu(childNode, displayedNode)
+          }
+          rootNode={displayedNode}
         ></SubTree>
       )}
     </div>

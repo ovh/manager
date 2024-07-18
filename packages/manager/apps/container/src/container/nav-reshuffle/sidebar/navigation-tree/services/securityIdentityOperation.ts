@@ -1,4 +1,6 @@
-export default {
+import { Node } from '../node';
+
+const sioUniverse : Node = {
   id: 'security-identity-operation',
   idAttr: 'security-identity-operation-link',
   translation: 'sidebar_security_identity_operations',
@@ -8,25 +10,30 @@ export default {
   },
   count: false,
   features: ['iam'],
-  children: [
-    {
-      id: 'security-identity-operation-iam',
-      idAttr: 'security-identity-operation-iam-link',
-      translation: 'sidebar_security_identity_operations_iam',
-      routing: {
-        application: 'iam',
-        hash: '#/',
-      },
-    },
-    {
-      id: 'security-identity-operation-logs',
-      idAttr: 'security-identity-operation-logs-link',
-      translation: 'sidebar_security_identity_operations_logs',
-      serviceType: 'DBAAS_LOGS',
-      routing: {
-        application: 'dedicated',
-        hash: '#/dbaas/logs',
-      },
-    },
-  ],
 };
+
+sioUniverse.children = [
+  {
+    id: 'security-identity-operation-iam',
+    idAttr: 'security-identity-operation-iam-link',
+    universe: sioUniverse.id,
+    translation: 'sidebar_security_identity_operations_iam',
+    routing: {
+      application: 'iam',
+      hash: '#/',
+    },
+  },
+  {
+    id: 'security-identity-operation-logs',
+    idAttr: 'security-identity-operation-logs-link',
+    universe: sioUniverse.id,
+    translation: 'sidebar_security_identity_operations_logs',
+    serviceType: 'DBAAS_LOGS',
+    routing: {
+      application: 'dedicated',
+      hash: '#/dbaas/logs',
+    },
+  },
+];
+
+export default sioUniverse;
