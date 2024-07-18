@@ -172,11 +172,7 @@ export function findPathToNodeByApp(
   return path;
 }
 
-export const shouldHideElement = (
-  node: Node,
-  count: number | boolean,
-  betaVersion: number | string,
-) => {
+export const shouldHideElement = (node: Node, count: number | boolean) => {
   if (node.hideIfEmpty && !count) {
     return true;
   }
@@ -185,11 +181,8 @@ export const shouldHideElement = (
     return false;
   }
 
-  if (betaVersion === 2) {
-    if (node.id === 'services') return false;
-    if (node.count === false) return false;
-    if (node.hideIfEmpty === false) return false;
-    return !count;
+  if (node.hidden) {
+    return true;
   }
 
   return false;
@@ -222,6 +215,60 @@ export const getLastElement = (root: Node) => {
 
   return getLast(root);
 }
+
+/* this function is used to parse a path with the pattern /some/thing/{id}/other/thing
+and return it as an array of segments: ['/some/thing/', '/other/thing']
+if no curly brackets, that returns an array that contains only the path */
+export const splitPathIntoSegmentsWithoutRouteParams = (
+  path: string,
+): string[] => {
+  const regex = /\/(?!{)[^\/]+(\/(?!{)[^\/]+)?/g;
+  const matches = path.match(regex);
+  return matches ? matches : [path];
+};
+
+export const findUniverse = (root: Node, locationPath: string) => {
+  const isMatchingNode = (node: Node, pathSegment: string) => {
+    if (!node.routing) return null;
+    const nodePath = node.routing.hash
+      ? node.routing.hash.replace('#', node.routing.application)
+      : '/' + node.routing.application;
+
+    const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath);
+    return parsedPath.reduce(
+      (acc: boolean, segment: string) => pathSegment.includes(segment) && acc,
+      true,
+    )
+      ? node
+      : null;
+  };
+
+  const exploreTree = (node: Node, pathSegment: string): Node | null => {
+    if (node.children && typeof node.children[Symbol.iterator] === 'function') {
+      for (let child of node.children) {
+        const result = exploreTree(child, pathSegment);
+        if (result) return result;
+      }
+    }
+
+    return isMatchingNode(node, pathSegment);
+  };
+
+  const pathSegments = locationPath
+    .split('/')
+    .filter((segment) => segment.length > 0);
+  for (let i = pathSegments.length; i > 0; i--) {
+    const path = pathSegments.slice(0, i).join('/');
+    const result = exploreTree(root, path);
+    if (result) {
+      return {
+        node: result,
+        parent: findNodeById(root, result.universe),
+      };
+    }
+  }
+  return { node: null, parent: null };
+};
 
 export default {
   initTree,
