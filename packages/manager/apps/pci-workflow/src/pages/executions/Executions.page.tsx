@@ -58,7 +58,7 @@ export default function Executions() {
       )}
 
       {workflowName && (
-        <div className="header mt-8">
+        <div className="header mt-8" data-testid="Executions_header-container">
           <Headers
             title={tExecution('pci_workflow_executions_title', {
               workflowName,
@@ -69,12 +69,16 @@ export default function Executions() {
 
       {isPending && (
         <div className="text-center">
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+          <OsdsSpinner
+            data-testid="Executions_spinner"
+            inline
+            size={ODS_SPINNER_SIZE.md}
+          />
         </div>
       )}
 
       {!isPending && (
-        <div className="mt-8">
+        <div className="mt-8" data-testid="Executions_datagrid-container">
           <Datagrid
             columns={columns}
             items={executions.rows || []}
