@@ -174,16 +174,14 @@ const UpdateSoftware: FC<UpdateSoftwareProps> = ({
           {t('updateSoftwareRancherUpgradeInfo')}
         </OsdsText>
       </div>
-      <div className="my-6 w-2/12">
+      <div className="my-6">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => setShowConfirmModal(true)}
+          inline
         >
-          <span slot="start"></span>
           {t('updateSoftwareRancherCta')}
-
-          <span slot="end"></span>
         </OsdsButton>
       </div>
       {showConfirmModal && (
