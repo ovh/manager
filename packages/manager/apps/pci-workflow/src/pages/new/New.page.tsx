@@ -5,10 +5,20 @@ import {
   useProject,
   useProjectUrl,
 } from '@ovhcloud/manager-components';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import {
+  OsdsBreadcrumb,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useWorkflowStepper } from './hooks/useWorkflowStepper';
 import { WorkflowType } from './steps/WorkflowType.component';
 import {
@@ -31,7 +41,7 @@ export default function NewPage() {
   const backHref = useHref('..');
   const navigate = useNavigate();
 
-  const { addWorkflow } = useAddWorkflow({
+  const { addWorkflow, isPending: isAdding } = useAddWorkflow({
     projectId,
     region: stepper.form.instance?.region,
     type: {
@@ -150,12 +160,33 @@ export default function NewPage() {
           <WorkflowName
             name={stepper.form.name}
             region={stepper.form.instance?.region}
+            step={stepper.naming.step}
             onNameChange={stepper.naming.update}
             onSubmit={() => {
               stepper.naming.submit();
               addWorkflow();
             }}
+            onCancel={() => {
+              navigate('..');
+            }}
           />
+          {isAdding && (
+            <div className="mt-5">
+              <OsdsSpinner
+                inline
+                size={ODS_SPINNER_SIZE.md}
+                className="align-middle"
+              />
+              <OsdsText
+                className="ml-8"
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              >
+                {t('pci_workflow_creating')}
+              </OsdsText>
+            </div>
+          )}
         </StepComponent>
       </div>
     </>
