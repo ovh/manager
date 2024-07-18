@@ -679,5 +679,10 @@
   "sign_up_form_enum_sex_female": "Weiblich",
   "sign_up_form_enum_sex_male": "Männlich",
   "sign_up_form_enum_country_BV": "Norwegen  – Bouvetinsel",
-  "sign_up_form_enum_country_HM": "Vereinigtes Königreich – Heard und MacDonald-Inseln"
+  "sign_up_form_enum_country_HM": "Vereinigtes Königreich – Heard und MacDonald-Inseln",
+  "sign_up_form_enum_purposeofpurchase_personal": "Persönliche Nutzung",
+  "sign_up_form_enum_purposeofpurchase_commercial": "Nutzung im Rahmen einer Geschäftstätigkeit",
+  "sign_up_form_enum_purposeofpurchase_non-commercial": "Nutzung für gemeinnützige, religiöse oder politische Aktivitäten",
+  "sign_up_form_enum_purposeofpurchase_study": "Nutzung für Studien oder akademische Forschung",
+  "sign_up_form_enum_purposeofpurchase_public-service": "Nutzung für die Erbringung öffentlicher Dienstleistungen"
 }

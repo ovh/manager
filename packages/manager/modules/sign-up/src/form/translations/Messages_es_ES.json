@@ -679,5 +679,10 @@
   "sign_up_form_enum_sex_female": "Mujer",
   "sign_up_form_enum_sex_male": "Hombre",
   "sign_up_form_enum_country_BV": "Noruega - Isla Bouvet",
-  "sign_up_form_enum_country_HM": "Reino Unido - Islas Heard y McDonald"
+  "sign_up_form_enum_country_HM": "Reino Unido - Islas Heard y McDonald",
+  "sign_up_form_enum_purposeofpurchase_personal": "Uso a título personal",
+  "sign_up_form_enum_purposeofpurchase_commercial": "Uso en el marco de una actividad comercial",
+  "sign_up_form_enum_purposeofpurchase_non-commercial": "Uso en actividades no lucrativas, religiosas o políticas",
+  "sign_up_form_enum_purposeofpurchase_study": "Uso con fines académicos o de investigación",
+  "sign_up_form_enum_purposeofpurchase_public-service": "Uso con fines de servicio público"
 }
