@@ -20,6 +20,5 @@ export const useGenerateUrl = (
   if (type === 'href') {
     return useHref(fullURL);
   }
-
   return fullURL;
 };

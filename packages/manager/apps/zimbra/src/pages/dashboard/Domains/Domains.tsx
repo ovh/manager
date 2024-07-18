@@ -114,6 +114,7 @@ export default function Domains() {
               href={hrefAddDomain}
               urn={platformUrn}
               iamActions={['zimbra:apiovh:platform/domain/create']}
+              data-testid="add-domain-btn"
             >
               <span slot="start">
                 <OsdsIcon
