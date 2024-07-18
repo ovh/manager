@@ -1,13 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
-import Users, {
+import Tokens, {
   breadcrumb as Breadcrumb,
-} from '@/pages/dashboard/users/Users.page';
+} from '@/pages/dashboard/tokens/Tokens.page';
 import { Locale } from '@/hooks/useLocale.hook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
+import { mockedToken } from '@/__tests__/helpers/mocks/token';
 
-describe('Users page', () => {
+describe('Tokens page', () => {
   beforeEach(() => {
     // Mock necessary hooks and dependencies
     vi.mock('react-i18next', () => ({
@@ -15,8 +15,8 @@ describe('Users page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/data/api/user/user.api', () => ({
-      getUsers: vi.fn(() => [mockedUser]),
+    vi.mock('@/data/api/ai/token.api', () => ({
+      getTokens: vi.fn(() => [mockedToken]),
     }));
     vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
       const mod = await importOriginal<
@@ -44,9 +44,14 @@ describe('Users page', () => {
       expect(screen.getByText(translationKey)).toBeInTheDocument();
     });
   });
+  it('renders and shows skeletons while loading', async () => {
+    render(<Tokens />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByTestId('tokens-table-skeleton')).toBeInTheDocument();
+    });
+  });
   it('renders and shows buttons in the user page', async () => {
-    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('manage-user-button')).toBeInTheDocument();
-    expect(screen.getByTestId('create-user-button')).toBeInTheDocument();
+    render(<Tokens />, { wrapper: RouterWithQueryClientWrapper });
+    expect(screen.getByTestId('create-token-button')).toBeInTheDocument();
   });
 });

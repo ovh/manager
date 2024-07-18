@@ -3,7 +3,7 @@ import { ai } from '@/types/ai';
 export const mockedCapabilitiesRegion: ai.capabilities.Region = {
   cliInstallUrl: 'cliInstallUrl',
   documentationUrl: 'documentationUrl',
-  id: 'regionId',
+  id: 'GRA',
   registryUrl: 'registryUrl',
   version: 'version',
 };

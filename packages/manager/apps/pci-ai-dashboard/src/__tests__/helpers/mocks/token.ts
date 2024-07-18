@@ -8,7 +8,7 @@ export const mockedTokenCreation: ai.token.TokenSpec = {
 };
 
 export const mockedToken: ai.token.Token = {
-  createdAt: 'createdAt',
+  createdAt: '1989/04/08',
   id: 'id',
   spec: {
     name: 'tokenSpec',
@@ -19,5 +19,5 @@ export const mockedToken: ai.token.Token = {
     value: 'value',
     version: 4,
   },
-  updatedAt: 'updatedAt',
+  updatedAt: '1989/04/08',
 };
