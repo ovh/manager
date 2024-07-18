@@ -6,15 +6,17 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import Users from '@/pages/dashboard/users/Users.page';
 import { Locale } from '@/hooks/useLocale.hook';
-import * as usersApi from '@/data/api/user/user.api';
+
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
+import * as tokensApi from '@/data/api/ai/token.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
 import { useToast } from '@/components/ui/use-toast';
+import { mockedToken } from '@/__tests__/helpers/mocks/token';
+import Tokens from '../Tokens.page';
+import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
 
-describe('AddUser modal', () => {
+describe('AddToken modal', () => {
   beforeEach(() => {
     // Mock necessary hooks and dependencies
     vi.mock('react-i18next', () => ({
@@ -30,10 +32,15 @@ describe('AddUser modal', () => {
         })),
       };
     });
-    vi.mock('@/data/api/user/user.api', () => ({
-      getUsers: vi.fn(() => [mockedUser]),
-      addUser: vi.fn(() => mockedUser),
+    vi.mock('@/data/api/ai/token.api', () => ({
+      getTokens: vi.fn(() => [mockedToken]),
+      addToken: vi.fn(() => mockedToken),
     }));
+
+    vi.mock('@/data/api/ai/capabilities.api', () => ({
+      getRegions: vi.fn(() => [mockedCapabilitiesRegion]),
+    }));
+
     vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
       const mod = await importOriginal<
         typeof import('@ovh-ux/manager-react-shell-client')
@@ -49,109 +56,103 @@ describe('AddUser modal', () => {
         })),
       };
     });
-    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
+    render(<Tokens />, { wrapper: RouterWithQueryClientWrapper });
   });
   afterEach(() => {
     vi.clearAllMocks();
   });
-  it('renders and shows buttons', async () => {
-    expect(screen.getByTestId('manage-user-button')).toBeInTheDocument();
-    expect(screen.getByTestId('create-user-button')).toBeInTheDocument();
-  });
 
-  it('open and close add user modal', async () => {
+  it('open and close add token modal', async () => {
     act(() => {
-      fireEvent.click(screen.getByTestId('create-user-button'));
+      fireEvent.click(screen.getByTestId('create-token-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('add-user-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-token-modal')).toBeInTheDocument();
     });
     act(() => {
-      fireEvent.click(screen.getByTestId('add-user-cancel-button'));
+      fireEvent.click(screen.getByTestId('add-token-cancel-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('add-user-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('add-token-modal')).not.toBeInTheDocument();
     });
   });
 
-  it('renders addUser and display toast error', async () => {
+  it('renders addToken and display toast error', async () => {
     const errorMsg = {
       description: 'api error message',
-      title: 'formUserToastErrorTitle',
+      title: 'formTokenToastErrorTitle',
       variant: 'destructive',
     };
-    vi.mocked(usersApi.addUser).mockImplementationOnce(() => {
+    vi.mocked(tokensApi.addToken).mockImplementationOnce(() => {
       throw apiErrorMock;
     });
     act(() => {
-      fireEvent.click(screen.getByTestId('create-user-button'));
+      fireEvent.click(screen.getByTestId('create-token-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('add-user-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-token-modal')).toBeInTheDocument();
     });
     act(() => {
-      fireEvent.change(screen.getByTestId('user-description-input'), {
+      fireEvent.change(screen.getByTestId('token-name-input'), {
         target: {
-          value: 'user-error',
+          value: 'token-error',
         },
       });
     });
     act(() => {
-      fireEvent.click(screen.getByTestId('add-user-submit-button'));
+      fireEvent.click(screen.getByTestId('add-token-submit-button'));
     });
     await waitFor(() => {
       expect(useToast().toast).toHaveBeenCalledWith(errorMsg);
     });
   });
 
-  it('renders addUser and display password, copy it and close the modal', async () => {
+  it('renders addToken and display token, copy it and close the modal', async () => {
     Object.assign(window.navigator, {
       clipboard: {
         writeText: vi.fn().mockImplementation(() => Promise.resolve()),
       },
     });
     const successMsg = {
-      description: 'formUserToastSuccessDescription',
-      title: 'formUserToastSuccessTitle',
+      description: 'formTokenToastSuccessDescription',
+      title: 'formTokenToastSuccessTitle',
     };
     act(() => {
-      fireEvent.click(screen.getByTestId('create-user-button'));
+      fireEvent.click(screen.getByTestId('create-token-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('add-user-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-token-modal')).toBeInTheDocument();
     });
     act(() => {
-      fireEvent.change(screen.getByTestId('user-description-input'), {
+      fireEvent.change(screen.getByTestId('token-name-input'), {
         target: {
-          value: 'newUser',
+          value: 'newToken',
         },
       });
     });
     act(() => {
-      fireEvent.click(screen.getByTestId('add-user-submit-button'));
+      fireEvent.click(screen.getByTestId('add-token-submit-button'));
     });
     await waitFor(() => {
-      expect(usersApi.addUser).toHaveBeenCalled();
+      expect(tokensApi.addToken).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith(successMsg);
     });
 
     await waitFor(() => {
-      expect(
-        screen.getByTestId('user-password-copy-button'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('token-copy-button')).toBeInTheDocument();
     });
     act(() => {
-      fireEvent.click(screen.getByTestId('user-password-copy-button'));
+      fireEvent.click(screen.getByTestId('token-copy-button'));
     });
     await waitFor(() => {
       expect(window.navigator.clipboard.writeText).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalled();
     });
     act(() => {
-      fireEvent.click(screen.getByTestId('user-close-button'));
+      fireEvent.click(screen.getByTestId('token-close-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('add-user-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('token-user-modal')).not.toBeInTheDocument();
     });
   });
 });
