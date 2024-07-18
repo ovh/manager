@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.26.1...@ovh-ux/manager-bm-server-components@1.26.2) (2024-07-18)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([1839c35](https://github.com/ovh/manager/commit/1839c35ebfdd440765cc442581747798abe086fa))
+
+
+
+
+
 ## [1.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.26.0...@ovh-ux/manager-bm-server-components@1.26.1) (2024-07-17)
 
 
