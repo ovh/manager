@@ -63,7 +63,6 @@
   "privateDatabase_configurations_general_mariadb": "Configuration générale de MariaDB",
   "privateDatabase_configurations_general_redis": "Configuration générale de Redis",
   "privateDatabase_configurations_general_postgresql": "Configuration générale de PostgreSQL",
-  "privateDatabase_configurations_general_postgresql_soon": "Bientôt disponible pour PostgreSQL",
   "privateDatabase_configuration_alert": "Toute modification entraîne un redémarrage du serveur.",
   "privateDatabase_configuration_documentation": "Plus d'informations sur ces options",
   "privateDatabase_configuration_edit_btn": "Editer",
