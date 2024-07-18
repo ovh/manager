@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -11,18 +10,14 @@ import {
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovhcloud/manager-components';
-import { usePlatform } from '@/hooks';
-import {
-  getZimbraPlatformDomains,
-  getZimbraPlatformDomainsQueryKey,
-} from '@/api';
-import { deleteZimbraPlatformOrganization } from '@/api/DELETE/apiv2/services';
+import { useDomains, usePlatform } from '@/hooks';
+import { deleteZimbraPlatformOrganization } from '@/api/organization';
 import Modal from '@/components/Modals/Modal';
 
 export default function ModalDeleteOrganization() {
   const [searchParams] = useSearchParams();
   const deleteOrganizationId = searchParams.get('deleteOrganizationId');
-  const { t } = useTranslation('organisations/delete');
+  const { t } = useTranslation('organizations/delete');
   const { platformId } = usePlatform();
   const { addError, addSuccess } = useNotifications();
   const [hasDomain, setHasDomain] = useState(false);
@@ -64,13 +59,7 @@ export default function ModalDeleteOrganization() {
       });
   };
 
-  const { data, isLoading } = useQuery({
-    queryKey: getZimbraPlatformDomainsQueryKey(
-      platformId,
-      deleteOrganizationId,
-    ),
-    queryFn: () => getZimbraPlatformDomains(platformId, deleteOrganizationId),
-  });
+  const { data, isLoading } = useDomains(deleteOrganizationId);
 
   useEffect(() => {
     setHasDomain(data?.length > 0);
@@ -84,6 +73,7 @@ export default function ModalDeleteOrganization() {
       dismissible={true}
       isLoading={isLoading}
       primaryButton={{
+        testid: 'delete-btn',
         color: ODS_THEME_COLOR_INTENT.primary,
         label: t('zimbra_organization_delete'),
         action: handleDeleteClick,
@@ -105,6 +95,7 @@ export default function ModalDeleteOrganization() {
             color={ODS_THEME_COLOR_INTENT.error}
             icon={ODS_ICON_NAME.WARNING_CIRCLE}
             className="mt-4"
+            data-testid="banner-message"
           >
             <div className="flex flex-col text-left ml-4">
               <OsdsText

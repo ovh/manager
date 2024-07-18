@@ -42,7 +42,7 @@ import {
   getDomainsZoneList,
   getDomainsZoneListQueryKey,
   postZimbraDomain,
-} from '@/api';
+} from '@/api/domain';
 
 export default function AddDomain() {
   const { t } = useTranslation('domains/addDomain');
