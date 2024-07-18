@@ -22,8 +22,10 @@ export default class kubernetesResetCtrl {
           ? { id: this.cluster.privateNetworkId }
           : null,
         gateway: {
-          enabled: this.cluster?.privateNetworkConfiguration
-            ?.privateNetworkRoutingAsDefault,
+          enabled: Boolean(
+            this.cluster?.privateNetworkConfiguration
+              ?.privateNetworkRoutingAsDefault,
+          ),
           ip:
             this.cluster?.privateNetworkConfiguration?.defaultVrackGateway ||
             '',
