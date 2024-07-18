@@ -3,7 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { getZimbraPlatformTask, getZimbraPlatformTaskQueryKey } from '@/api';
+import {
+  getZimbraPlatformTask,
+  getZimbraPlatformTaskQueryKey,
+} from '@/api/task';
 import { useOrganization, usePlatform } from '@/hooks';
 
 export const OngoingTasks: React.FC = () => {

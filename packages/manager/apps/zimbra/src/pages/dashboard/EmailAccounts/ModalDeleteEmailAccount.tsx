@@ -16,17 +16,17 @@ import {
 import { useNotifications } from '@ovhcloud/manager-components';
 import { useQuery } from '@tanstack/react-query';
 import { useGenerateUrl, usePlatform } from '@/hooks';
-import { deleteZimbraPlatformAccount } from '@/api/DELETE/apiv2/services';
 import Modal from '@/components/Modals/Modal';
 import {
-  getZimbraPlatformEmailsDetail,
-  getZimbraPlatformEmailsDetailQueryKey,
-} from '@/api';
+  getZimbraPlatformAccountDetail,
+  deleteZimbraPlatformAccount,
+  getZimbraPlatformAccountDetailQueryKey,
+} from '@/api/account';
 
 export default function ModalDeleteOrganization() {
   const [searchParams] = useSearchParams();
   const deleteEmailAccountId = searchParams.get('deleteEmailAccountId');
-  const { t } = useTranslation('emails/delete');
+  const { t } = useTranslation('accounts/delete');
   const { platformId } = usePlatform();
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
@@ -36,12 +36,12 @@ export default function ModalDeleteOrganization() {
 
   const [step, setStep] = useState(1);
   const { data, isLoading } = useQuery({
-    queryKey: getZimbraPlatformEmailsDetailQueryKey(
+    queryKey: getZimbraPlatformAccountDetailQueryKey(
       platformId,
       deleteEmailAccountId,
     ),
     queryFn: () =>
-      getZimbraPlatformEmailsDetail(platformId, deleteEmailAccountId),
+      getZimbraPlatformAccountDetail(platformId, deleteEmailAccountId),
     enabled: !!platformId,
   });
 
@@ -56,7 +56,7 @@ export default function ModalDeleteOrganization() {
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             hue={ODS_THEME_COLOR_HUE._500}
           >
-            {t('zimbra_emails_delete_success_message')}
+            {t('zimbra_account_delete_success_message')}
           </OsdsText>,
           true,
         );
@@ -70,7 +70,7 @@ export default function ModalDeleteOrganization() {
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             hue={ODS_THEME_COLOR_HUE._500}
           >
-            {t('zimbra_emails_delete_error_message', {
+            {t('zimbra_account_delete_error_message', {
               error: response.data.message,
             })}
           </OsdsText>,
@@ -81,18 +81,19 @@ export default function ModalDeleteOrganization() {
 
   return (
     <Modal
-      title={t('zimbra_emails_delete_modal_title')}
+      title={t('zimbra_account_delete_modal_title')}
       color={ODS_THEME_COLOR_INTENT.warning}
       onDismissible={onClose}
       dismissible={true}
       isLoading={isLoading}
       secondaryButton={{
-        label: t('zimbra_emails_delete_button_cancel'),
+        label: t('zimbra_account_delete_button_cancel'),
         action: onClose,
       }}
       primaryButton={{
-        label: t('zimbra_emails_delete_button_delete'),
+        label: t('zimbra_account_delete_button_delete'),
         action: step === 1 ? () => setStep(2) : handleDeleteClick,
+        testid: 'primary-btn',
       }}
     >
       <>
@@ -103,8 +104,9 @@ export default function ModalDeleteOrganization() {
               size={ODS_THEME_TYPOGRAPHY_SIZE._100}
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               hue={ODS_THEME_COLOR_HUE._500}
+              data-testid="text-step-1"
             >
-              {t('zimbra_emails_delete_modal_content_step1')}
+              {t('zimbra_account_delete_modal_content_step1')}
             </OsdsText>
             <OsdsContentAddon className="mt-5">
               <span slot="start">
@@ -114,7 +116,7 @@ export default function ModalDeleteOrganization() {
                   size={ODS_THEME_TYPOGRAPHY_SIZE._100}
                   hue={ODS_THEME_COLOR_HUE._500}
                 >
-                  {t('zimbra_emails_delete_modal_mail_label')}
+                  {t('zimbra_account_delete_modal_mail_label')}
                 </OsdsText>
               </span>
 
@@ -139,8 +141,9 @@ export default function ModalDeleteOrganization() {
               size={ODS_THEME_TYPOGRAPHY_SIZE._100}
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               hue={ODS_THEME_COLOR_HUE._500}
+              data-testid="text-step-2"
             >
-              {t('zimbra_emails_delete_modal_content_step2')}
+              {t('zimbra_account_delete_modal_content_step2')}
             </OsdsText>
             <OsdsMessage
               color={ODS_THEME_COLOR_INTENT.warning}
@@ -153,7 +156,7 @@ export default function ModalDeleteOrganization() {
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
                 hue={ODS_THEME_COLOR_HUE._500}
               >
-                {t('zimbra_emails_delete_modal_warn_message')}
+                {t('zimbra_account_delete_modal_warn_message')}
               </OsdsText>
             </OsdsMessage>
           </>

@@ -20,9 +20,8 @@ import {
   Notifications,
 } from '@ovhcloud/manager-components';
 import { Outlet } from 'react-router-dom';
-
+import { AccountType } from '@/api/account';
 import {
-  useOrganization,
   useOverridePage,
   useGenerateUrl,
   useAccountList,
@@ -55,7 +54,7 @@ const columns: DatagridColumn<EmailsItem>[] = [
         {item.email}
       </OsdsText>
     ),
-    label: 'zimbra_emails_datagrid_email_label',
+    label: 'zimbra_account_datagrid_email_label',
   },
   {
     id: 'organization',
@@ -63,7 +62,7 @@ const columns: DatagridColumn<EmailsItem>[] = [
       item.organizationLabel && (
         <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
       ),
-    label: 'zimbra_emails_datagrid_organization_label',
+    label: 'zimbra_account_datagrid_organization_label',
   },
   {
     id: 'offer',
@@ -77,7 +76,7 @@ const columns: DatagridColumn<EmailsItem>[] = [
           {item.offer}
         </OsdsText>
       ),
-    label: 'zimbra_emails_datagrid_offer_label',
+    label: 'zimbra_account_datagrid_offer_label',
   },
   {
     id: 'quota',
@@ -90,7 +89,7 @@ const columns: DatagridColumn<EmailsItem>[] = [
         {convertOctets(item.used)} / {convertOctets(item.available)}
       </OsdsText>
     ),
-    label: 'zimbra_emails_datagrid_quota',
+    label: 'zimbra_account_datagrid_quota',
   },
   {
     id: 'tooltip',
@@ -100,16 +99,13 @@ const columns: DatagridColumn<EmailsItem>[] = [
 ];
 
 export default function EmailAccounts() {
-  const { t } = useTranslation('emails');
+  const { t } = useTranslation('accounts');
   const { platformUrn } = usePlatform();
-  const { data: organization } = useOrganization();
-  const { data } = useAccountList({
-    organizationId: organization?.id,
-  });
+  const { data } = useAccountList();
   const isOverriddedPage = useOverridePage();
 
   const items: EmailsItem[] =
-    data?.map((item) => ({
+    data?.map((item: AccountType) => ({
       id: item.id,
       email: item.currentState.email,
       offer: item.currentState.offer,
@@ -137,7 +133,7 @@ export default function EmailAccounts() {
                 size={ODS_TEXT_SIZE._200}
                 className="font-bold mr-4"
               >
-                {t('zimbra_emails_datagrid_webmail_label')}
+                {t('zimbra_account_datagrid_webmail_label')}
               </OsdsText>
               <Links
                 href={webmailUrl}
@@ -153,6 +149,7 @@ export default function EmailAccounts() {
               urn={platformUrn}
               iamActions={['zimbra:apiovh:platform/account/create']}
               href={hrefAddEmailAccount}
+              data-testid="add-account-btn"
             >
               <span slot="start">
                 <OsdsIcon
@@ -162,7 +159,7 @@ export default function EmailAccounts() {
                   contrasted
                 ></OsdsIcon>
               </span>
-              <span slot="end">{t('zimbra_emails_account_add')}</span>
+              <span slot="end">{t('zimbra_account_account_add')}</span>
             </ManagerButton>
             <Datagrid
               columns={columns.map((column) => ({

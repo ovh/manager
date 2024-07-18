@@ -28,7 +28,7 @@ import Modal from '@/components/Modals/Modal';
 import {
   postZimbraPlatformOrganization,
   putZimbraPlatformOrganization,
-} from '@/api';
+} from '@/api/organization';
 
 type FieldType = {
   value: string;
@@ -44,11 +44,11 @@ interface FormInputRegexInterface {
   [key: string]: RegExp;
 }
 
-export default function ModalDeleteOrganization() {
-  const { t } = useTranslation('organisations/addAndEdit');
+export default function ModalAddAndEditOrganization() {
+  const { t } = useTranslation('organizations/addAndEdit');
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
-  const editOrganizationId = searchParams.get('editOrganizationId');
+  const editOrganizationId = searchParams?.get('editOrganizationId');
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');
@@ -205,6 +205,7 @@ export default function ModalDeleteOrganization() {
       dismissible={true}
       isLoading={isLoading}
       primaryButton={{
+        testid: 'confirm-btn',
         color: ODS_THEME_COLOR_INTENT.primary,
         label: t('zimbra_organization_add'),
         disabled: isLoading || !isFormValid,
@@ -244,6 +245,7 @@ export default function ModalDeleteOrganization() {
           {t('zimbra_organization_add_form_input_mandatory')}
         </OsdsText>
         <OsdsFormField
+          data-testid="field-name"
           error={
             form.name.hasError
               ? t('zimbra_organization_add_form_input_name_error')
@@ -265,6 +267,7 @@ export default function ModalDeleteOrganization() {
           <OsdsInput
             type={ODS_INPUT_TYPE.text}
             name="name"
+            data-testid="input-name"
             placeholder={t(
               'zimbra_organization_add_form_input_name_placeholder',
             )}
@@ -285,6 +288,7 @@ export default function ModalDeleteOrganization() {
           ></OsdsInput>
         </OsdsFormField>
         <OsdsFormField
+          data-testid="field-label"
           error={
             form.label.hasError
               ? t('zimbra_organization_add_form_input_label_error', {
@@ -328,12 +332,13 @@ export default function ModalDeleteOrganization() {
           </div>
           <OsdsInput
             type={ODS_INPUT_TYPE.text}
+            data-testid="input-label"
             name="label"
             placeholder={t(
               'zimbra_organization_add_form_input_label_placeholder',
             )}
             color={
-              form.name.hasError
+              form.label.hasError
                 ? ODS_THEME_COLOR_INTENT.error
                 : ODS_THEME_COLOR_INTENT.default
             }

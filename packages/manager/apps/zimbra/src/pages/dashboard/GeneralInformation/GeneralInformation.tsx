@@ -82,22 +82,24 @@ function GeneralInformation() {
             <Subtitle>
               {t('zimbra_dashboard_tile_serviceConsumption_title')}
             </Subtitle>
-            <ManagerText
-              urn={platformUrn}
-              iamActions={['zimbra:apiovh:platform/account/get']}
+            <TileBlock
+              label={t('zimbra_dashboard_tile_serviceConsumption_accountOffer')}
             >
-              <TileBlock
-                label={t(
-                  'zimbra_dashboard_tile_serviceConsumption_accountOffer',
-                )}
+              <ManagerText
+                urn={platformUrn}
+                iamActions={['zimbra:apiovh:platform/account/get']}
               >
-                {accountsStatistics?.map((stats) => (
-                  <span
-                    key={stats.offer}
-                  >{`${stats.configuredAccountsCount} ${stats.offer}`}</span>
-                ))}
-              </TileBlock>
-            </ManagerText>
+                {accountsStatistics?.length > 0
+                  ? accountsStatistics?.map((stats) => (
+                      <span
+                        key={stats.offer}
+                      >{`${stats.configuredAccountsCount} ${stats.offer}`}</span>
+                    ))
+                  : t(
+                      'zimbra_dashboard_tile_serviceConsumption_noAccountOffer',
+                    )}
+              </ManagerText>
+            </TileBlock>
           </div>
         </OsdsTile>
       </div>

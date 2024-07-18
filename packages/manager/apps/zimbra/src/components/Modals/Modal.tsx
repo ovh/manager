@@ -8,6 +8,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_MODE } from '@ovhcloud/ods-components';
 
 export interface ButtonType {
+  testid?: string;
   action: () => void;
   label: string;
   disabled?: boolean;
@@ -38,6 +39,7 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   return (
     <OsdsModal
+      data-testid="modal"
       color={color}
       headline={title}
       dismissible={dismissible}
@@ -56,6 +58,9 @@ const Modal: React.FC<ModalProps> = ({
 
       {secondaryButton && (
         <OsdsButton
+          {...(secondaryButton.testid
+            ? { 'data-testid': secondaryButton.testid }
+            : {})}
           slot="actions"
           inline
           color={secondaryButton.color ?? ODS_THEME_COLOR_INTENT.primary}
@@ -68,6 +73,9 @@ const Modal: React.FC<ModalProps> = ({
       )}
       {primaryButton && (
         <OsdsButton
+          {...(primaryButton.testid
+            ? { 'data-testid': primaryButton.testid }
+            : {})}
           slot="actions"
           inline
           color={primaryButton.color ?? ODS_THEME_COLOR_INTENT.primary}

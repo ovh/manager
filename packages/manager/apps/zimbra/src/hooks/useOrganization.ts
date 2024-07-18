@@ -1,11 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
 import { usePlatform } from '@/hooks';
-
 import {
   getZimbraPlatformOrganizationDetails,
   getZimbraPlatformOrganizationDetailsQueryKey,
-} from '@/api';
+} from '@/api/organization';
 
 export const useOrganization = (organizationId?: string, noCache?: boolean) => {
   const { platformId } = usePlatform();

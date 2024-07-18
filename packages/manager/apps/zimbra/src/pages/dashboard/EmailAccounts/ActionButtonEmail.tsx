@@ -11,10 +11,11 @@ interface ActionButtonEmailAccountProps {
 const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
   emailsItem,
 }) => {
-  const { t } = useTranslation('emails');
+  const { t } = useTranslation('accounts');
   const { platformUrn } = usePlatform();
+
   const hrefEditEmailAccount = useGenerateUrl('./edit', 'href', {
-    deleteEmailAccountId: emailsItem.id,
+    editEmailAccountId: emailsItem.id,
   });
 
   const hrefDeleteEmailAccount = useGenerateUrl('./delete', 'href', {
@@ -26,14 +27,14 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
       href: hrefEditEmailAccount,
       urn: platformUrn,
       iamActions: ['zimbra:apiovh:platform/account/edit'],
-      label: t('zimbra_emails_datagrid_tooltip_modification'),
+      label: t('zimbra_account_datagrid_tooltip_modification'),
     },
     {
       id: 2,
       href: hrefDeleteEmailAccount,
       urn: platformUrn,
       iamActions: ['zimbra:apiovh:platform/account/delete'],
-      label: t('zimbra_emails_datagrid_tooltip_delete'),
+      label: t('zimbra_account_datagrid_tooltip_delete'),
     },
   ];
   return <ActionMenu items={actionItems} isCompact />;

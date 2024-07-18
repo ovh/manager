@@ -3,7 +3,7 @@ import { usePlatform } from '@/hooks';
 import {
   getZimbraPlatformOrganization,
   getZimbraPlatformOrganizationQueryKey,
-} from '@/api';
+} from '@/api/organization';
 
 export const useOrganizationList = () => {
   const { platformId } = usePlatform();

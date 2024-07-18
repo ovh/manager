@@ -2,19 +2,17 @@ import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { usePlatform } from '@/hooks';
 import {
-  getZimbraPlatformEmails,
-  getZimbraPlatformEmailsQueryKey,
-} from '@/api';
+  getZimbraPlatformAccount,
+  getZimbraPlatformAccountQueryKey,
+} from '@/api/account';
 
 interface UseAccountListParams {
   domainId?: string;
   organizationId?: string;
 }
 
-export const useAccountList = ({
-  domainId,
-  organizationId,
-}: UseAccountListParams) => {
+export const useAccountList = (props: UseAccountListParams = {}) => {
+  const { domainId, organizationId } = props;
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
 
@@ -28,8 +26,8 @@ export const useAccountList = ({
   };
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: getZimbraPlatformEmailsQueryKey(platformId, queryParameters),
-    queryFn: () => getZimbraPlatformEmails(platformId, queryParameters),
+    queryKey: getZimbraPlatformAccountQueryKey(platformId, queryParameters),
+    queryFn: () => getZimbraPlatformAccount(platformId, queryParameters),
     enabled: !!platformId,
   });
 
