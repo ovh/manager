@@ -135,9 +135,6 @@ export default class NetworkFormController {
 
   toggleLoadBalancersSubnet() {
     this.isLoadBalancersSubnetShown = !this.isLoadBalancersSubnetShown;
-    if (!this.isLoadBalancersSubnetShown) {
-      this.loadBalancersSubnet = null;
-    }
   }
 
   onGatewayChanged() {
