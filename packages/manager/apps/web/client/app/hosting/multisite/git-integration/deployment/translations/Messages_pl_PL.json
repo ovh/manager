@@ -1,0 +1,7 @@
+{
+  "hosting_multisite_git_deployment_title": "Wdrażanie GIT",
+  "hosting_multisite_git_deployment_description": "Chcesz ręcznie wdrożyć lub zaktualizować zawartość zdalnego repozytorium na Twoim hostingu.",
+  "hosting_multisite_git_deployment_checkbox_label": "Jeśli wystąpi konflikt zmian, wymuś zdalne zmiany w lokalnym repozytorium.",
+  "hosting_multisite_git_deployment_message_success": "Trwa wdrażanie repozytorium.",
+  "hosting_multisite_git_deployment_message_error": "Konflikt podczas wdrażania Git. Aby rozwiązać konflikt, wymuś zdalne zmiany w lokalnym repozytorium."
+}

@@ -1386,5 +1386,21 @@
   "hosting_dashboard_service_common_inactive": "Inaktiv",
   "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen.",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Mehr"
+  "hosting_dashboard_tabs_dropdown": "Mehr",
+  "hosting_tab_DOMAINS_table_header_git": "Git",
+  "hosting_tab_DOMAINS_table_git_state_created": "Aktiviert",
+  "hosting_tab_DOMAINS_table_git_state_creating": "Wird ausgeführt",
+  "hosting_tab_DOMAINS_table_git_state_deleting": "Wird gelöscht",
+  "hosting_tab_DOMAINS_table_git_state_disabled": "Deaktiviert",
+  "hosting_tab_DOMAINS_table_git_state_error": "Fehler",
+  "hosting_tab_DOMAINS_table_git_state_deploying": "Wird ausgeführt",
+  "hosting_tab_DOMAINS_table_git_state_initialError": "Fehler",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_lastDeploy": "Informationen zur letzten Bereitstellung anzeigen",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_limitedNumberPath": "Die Zuordnung von GIT kann nur in einem Verzeichnis erfolgen",
+  "hosting_tab_DOMAINS_table_popover_git_association": "Git zuordnen",
+  "hosting_tab_DOMAINS_table_popover_git_configuration": "Git konfigurieren",
+  "hosting_tab_DOMAINS_table_popover_git_deployment": "Git deployen",
+  "hosting_tab_DOMAINS_table_popover_git_viewLastDeployment": "Informationen zur letzten Bereitstellung",
+  "hosting_tab_DOMAINS_table_popover_git_delete": "Git löschen",
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Wenn Sie den Domänennamen abtrennen möchten, müssen Sie zunächst die Git-Konfiguration entfernen, um mögliche Probleme bei der Änderungsnachverfolgung und der Verwaltung von Bereitstellungen zu vermeiden."
 }
