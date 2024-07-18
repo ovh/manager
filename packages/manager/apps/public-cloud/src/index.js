@@ -8,6 +8,8 @@ import { getShellClient, setShellClient } from './shell';
 
 defineApplicationVersion(__VERSION__);
 
+console.log('private network angularjs');
+
 initShellClient('public-cloud')
   .then((client) => {
     if (!isTopLevelApplication()) {
