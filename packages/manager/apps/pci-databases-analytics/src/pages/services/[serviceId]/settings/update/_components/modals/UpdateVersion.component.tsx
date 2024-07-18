@@ -13,7 +13,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
 import { ModalController } from '@/hooks/useModale';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { order } from '@/interfaces/catalog';
@@ -28,8 +27,9 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { useUpdateService } from '@/hooks/api/services.api.hooks';
+import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import { useToast } from '@/components/ui/use-toast';
+import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 
 interface UpdateVersionProps {
   controller: ModalController;
@@ -55,7 +55,7 @@ const UpdateVersionContent = ({
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/settings/update',
   );
-  const { updateService, isPending } = useUpdateService({
+  const { editService, isPending } = useEditService({
     onError: (err) => {
       toast.toast({
         title: t('updateVersionToastErrorTitle'),
@@ -104,7 +104,7 @@ const UpdateVersionContent = ({
     },
   });
   const onSubmit = form.handleSubmit((formValues) => {
-    updateService({
+    editService({
       serviceId: service.id,
       projectId,
       engine: service.engine,

@@ -8,14 +8,14 @@ import { DataTable } from '@/components/ui/data-table';
 import { Button } from '@/components/ui/button';
 import { useModale } from '@/hooks/useModale';
 import { POLLING } from '@/configuration/polling.constants';
-import { useGetIntegrations } from '@/hooks/api/integrations.api.hook';
 import { getColumns } from './_components/IntegrationListColumns.component';
-import { useGetServices } from '@/hooks/api/services.api.hooks';
+import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import DeleteIntegration from './_components/DeleteIntegration.component';
 import AddIntegration from './_components/AddIntegration.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { GuideSections } from '@/interfaces/guide';
 import Guides from '@/components/guides/Guides.component';
+import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
 
 export function breadcrumb() {
   return (

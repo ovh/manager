@@ -13,7 +13,7 @@ import Queries, {
 } from '@/pages/services/[serviceId]/queries/Queries.page';
 import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as queriesApi from '@/data/api/databases/queries';
+import * as queriesApi from '@/data/api/database/queries.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import {
@@ -52,7 +52,7 @@ describe('Queries page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/data/api/databases/queries', () => ({
+    vi.mock('@/data/api/database/queries.api', () => ({
       getCurrentQueries: vi.fn(() => [mockedQueries]),
       cancelCurrentQuery: vi.fn(() => mockCancelResponse),
       getQueryStatistics: vi.fn(() => [mockedQueryStatisticsPG]),

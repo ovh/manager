@@ -4,7 +4,7 @@ import { UseQueryResult } from '@tanstack/react-query';
 import { act } from 'react-dom/test-utils';
 import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as usersApi from '@/data/api/databases/users';
+import * as usersApi from '@/data/api/database/user.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import DeleteUser from '@/pages/services/[serviceId]/users/_components/DeleteUser.component';
 import { useToast } from '@/components/ui/use-toast';
@@ -19,7 +19,7 @@ describe('Delete user modal', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/data/api/databases/users', () => ({
+    vi.mock('@/data/api/database/user.api', () => ({
       getUsers: vi.fn(() => [mockedDatabaseUser]),
       addUser: vi.fn(),
       deleteUser: vi.fn(),

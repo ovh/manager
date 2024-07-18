@@ -7,7 +7,6 @@ import { database } from '@/interfaces/database';
 import { useServiceData } from '../Service.context';
 import { getColumns } from './_components/BackupsTableColumns.component';
 import { DataTable } from '@/components/ui/data-table';
-import { useGetBackups } from '@/hooks/api/backups.api.hooks';
 import { POLLING } from '@/configuration/polling.constants';
 import { Button } from '@/components/ui/button';
 import { useModale } from '@/hooks/useModale';
@@ -16,6 +15,7 @@ import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import Guides from '@/components/guides/Guides.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { GuideSections } from '@/interfaces/guide';
+import { useGetBackups } from '@/hooks/api/database/backup/useGetBackups.hook';
 
 export interface BackupWithExpiricyDate extends database.Backup {
   expiricyDate: Date;

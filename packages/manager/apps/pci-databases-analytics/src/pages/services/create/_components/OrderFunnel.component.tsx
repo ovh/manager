@@ -28,7 +28,7 @@ import { cn } from '@/lib/utils';
 import {
   ServiceCreationWithEngine,
   useAddService,
-} from '@/hooks/api/services.api.hooks';
+} from '@/hooks/api/database/service/useAddService.hook';
 import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
 import EnginesSelect from '@/components/order/engine/EngineSelect.component';
 import PlansSelect from '@/components/order/plan/PlanSelect.component';
@@ -39,8 +39,8 @@ import RegionsSelect from '@/components/order/region/RegionSelect.component';
 import OrderPrice from '@/components/order/price/OrderPrice.component';
 import OrderSummary from './OrderSummary.component';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
-import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
-import usePciProject from '@/hooks/api/pciProjects.api.hooks';
+import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
+import usePciProject from '@/hooks/api/project/usePciProject.hook';
 import { PciProjectPlanCode } from '@/interfaces/project';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import OvhLink from '@/components/links/OvhLink.component';

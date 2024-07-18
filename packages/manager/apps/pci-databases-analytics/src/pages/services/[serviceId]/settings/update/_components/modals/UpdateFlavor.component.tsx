@@ -15,7 +15,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
+import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import { ModalController } from '@/hooks/useModale';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { order } from '@/interfaces/catalog';
@@ -31,7 +31,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useToast } from '@/components/ui/use-toast';
-import { useUpdateService } from '@/hooks/api/services.api.hooks';
+import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import Price from '@/components/price/Price.component';
 import { computeServicePrice } from '@/lib/pricingHelper';
 import StorageConfig from '@/components/order/cluster-configuration/StorageConfig.component';
@@ -67,7 +67,7 @@ const UpdateFlavorContent = ({
   );
   const hasStorage =
     service.storage?.size.value > 0 && service.storage.size.unit === 'GB';
-  const { updateService, isPending } = useUpdateService({
+  const { editService, isPending } = useEditService({
     onError: (err) => {
       toast.toast({
         title: t('updateFlavorToastErrorTitle'),
@@ -180,7 +180,7 @@ const UpdateFlavorContent = ({
   }, [flavorObject, selectedStorage]);
 
   const onSubmit = form.handleSubmit((formValues) => {
-    updateService({
+    editService({
       serviceId: service.id,
       projectId,
       engine: service.engine,

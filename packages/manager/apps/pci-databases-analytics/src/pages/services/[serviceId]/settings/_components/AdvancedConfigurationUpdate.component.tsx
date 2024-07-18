@@ -1,12 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import {
-  useGetAdvancedConfiguration,
-  useGetAdvancedConfigurationCapabilities,
-} from '@/hooks/api/advancedConfiguration.api.hook';
 import { useServiceData } from '../../Service.context';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import AdvancedConfigurationForm from './advancedConfiguration/AdvancedConfigurationForm.component';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useGetAdvancedConfiguration } from '@/hooks/api/database/advancedConfiguration/useGetAdvancedConfiguration.hook';
+import { useGetAdvancedConfigurationCapabilities } from '@/hooks/api/database/advancedConfiguration/useGetAdvancedConfigurationCapabilities.hook';
 
 const AdvancedConfigurationUpdate = () => {
   const { t } = useTranslation(

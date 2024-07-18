@@ -14,7 +14,7 @@ describe('Home page', () => {
       }),
     }));
 
-    vi.mock('@/data/api/databases/service', () => ({
+    vi.mock('@/data/api/database/service.api', () => ({
       getServices: vi.fn(() => []),
     }));
 

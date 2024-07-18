@@ -1,12 +1,6 @@
 import { useSearchParams, useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { Skeleton } from '@/components/ui/skeleton';
-import {
-  useGetAvailabilities,
-  useGetFullCapabilities,
-  useGetSuggestions,
-} from '@/hooks/api/availabilities.api.hooks';
-import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
 import LegalMentions from '@/pages/_components/LegalMentions.component';
 import OrderFunnel from './_components/OrderFunnel.component';
 import { database } from '@/interfaces/database';
@@ -14,6 +8,10 @@ import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import OvhLink from '@/components/links/OvhLink.component';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/interfaces/guide';
+import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
+import { useGetSuggestions } from '@/hooks/api/database/availability/useGetSuggestions.hook';
+import { useGetFullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
+import { useGetCatalog } from '@/hooks/api/catalog/useGetCatalog.hook';
 
 export function breadcrumb() {
   return (

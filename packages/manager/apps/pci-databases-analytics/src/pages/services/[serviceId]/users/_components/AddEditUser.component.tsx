@@ -16,7 +16,7 @@ import {
   GenericUser,
   UserCreation,
   UserEdition,
-} from '@/data/api/databases/users';
+} from '@/data/api/database/user.api';
 import { database } from '@/interfaces/database';
 import {
   Form,
@@ -30,10 +30,10 @@ import {
 import TagsInput from '@/components/tags-input/TagsInput.component';
 import { ModalController } from '@/hooks/useModale';
 import {
-  MutateUserProps,
+  UseAddUser,
   useAddUser,
-  useEditUser,
-} from '@/hooks/api/users.api.hooks';
+} from '@/hooks/api/database/user/useAddUser.hook';
+import { useEditUser } from '@/hooks/api/database/user/useEditUser.hook';
 import { useToast } from '@/components/ui/use-toast';
 import { useUserForm } from './formUser/useUserForm.hook';
 import RolesSelect from './formUser/RolesSelect.component';
@@ -75,7 +75,7 @@ const AddEditUserModal = ({
   const toast = useToast();
   const prefix = isEdition ? 'edit' : 'add';
 
-  const UserMutationProps: MutateUserProps = {
+  const UserMutationProps: UseAddUser = {
     onError: (err) => {
       toast.toast({
         title: t(`${prefix}UserToastErrorTitle`),

@@ -59,25 +59,28 @@ describe('Settings page', () => {
       }),
     }));
 
-    vi.mock('@/data/api/catalog', () => ({
+    vi.mock('@/data/api/catalog/catalog.api', () => ({
       catalogApi: {
         getCatalog: vi.fn(() => mockedCatalog),
       },
     }));
 
-    vi.mock('@/data/api/databases/availabilities', () => ({
-      getCapabilities: vi.fn(() => mockedCapabilities),
-      getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
-      getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
+    vi.mock('@/data/api/database/availability.api', () => ({
       getAvailabilities: vi.fn(() => [mockedAvailabilities]),
     }));
 
-    vi.mock('@/data/api/databases/maintenances', () => ({
+    vi.mock('@/data/api/database/capabilities.api', () => ({
+      getCapabilities: vi.fn(() => mockedCapabilities),
+      getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
+      getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
+    }));
+
+    vi.mock('@/data/api/database/maintenance.api', () => ({
       getMaintenances: vi.fn(() => [mockedMaintenance]),
       applyMaintenance: vi.fn((maintenance) => maintenance),
     }));
 
-    vi.mock('@/data/api/databases/advancedConfiguration', () => ({
+    vi.mock('@/data/api/database/advancedConfiguration.api', () => ({
       getAdvancedConfiguration: vi.fn(() => mockAdvancedConfiguration),
       getAdvancedConfigurationCapabilities: vi.fn(() => mockCapabilities),
     }));

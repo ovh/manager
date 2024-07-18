@@ -13,7 +13,7 @@ import Databases, {
 } from '@/pages/services/[serviceId]/databases/Database.page';
 import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as databasesApi from '@/data/api/databases/databases';
+import * as databasesApi from '@/data/api/database/database.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
@@ -40,7 +40,7 @@ describe('Databases page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/data/api/databases/databases', () => ({
+    vi.mock('@/data/api/database/database.api', () => ({
       getServiceDatabases: vi.fn(() => [mockedDatabase]),
       addDatabase: vi.fn((user) => user),
       deleteDatabase: vi.fn(),

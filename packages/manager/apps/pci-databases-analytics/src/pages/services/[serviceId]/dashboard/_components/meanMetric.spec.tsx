@@ -13,7 +13,7 @@ describe('Mean Metric component', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
 
-    vi.mock('@/data/api/databases/metrics', () => ({
+    vi.mock('@/data/api/database/metric.api', () => ({
       getMetric: vi.fn(() => mockMetric),
     }));
 

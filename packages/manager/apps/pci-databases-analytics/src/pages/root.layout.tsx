@@ -11,7 +11,7 @@ import { Toaster } from '@/components/ui/toaster';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import queryClient from '@/query.client';
 import { UserActivityProvider } from '@/contexts/UserActivityContext';
-import { getProject } from '@/data/api/projects';
+import { getProject } from '@/data/api/project/project.api';
 import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
 import { USER_INACTIVITY_TIMEOUT } from '@/configuration/polling.constants';
 

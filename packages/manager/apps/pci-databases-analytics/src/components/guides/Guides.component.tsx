@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { BookOpen } from 'lucide-react';
-import { useGetGuides } from '@/hooks/api/guides.api.hooks';
+import { useGetGuides } from '@/hooks/api/guides/useGetGuides.hook';
 import { database } from '@/interfaces/database';
 import {
   CommandDialog,

@@ -31,16 +31,16 @@ import {
 import { useToast } from '@/components/ui/use-toast';
 
 import { useConnectionPoolForm } from './formPools/useConnectionPoolForm.hook';
-import {
-  MutateConnectionPoolProps,
-  useAddConnectionPool,
-  useEditConnectionPool,
-} from '@/hooks/api/connectionPool.api.hooks';
 import { ModalController } from '@/hooks/useModale';
 
-import { GenericUser } from '@/data/api/databases/users';
+import { GenericUser } from '@/data/api/database/user.api';
 import { database } from '@/interfaces/database';
-import { ConnectionPoolEdition } from '@/data/api/databases/connectionPool';
+import { ConnectionPoolEdition } from '@/data/api/database/connectionPool.api';
+import {
+  UseAddConnectionPool,
+  useAddConnectionPool,
+} from '@/hooks/api/database/connectionPool/useAddConnectionPool.hook';
+import { useEditConnectionPool } from '@/hooks/api/database/connectionPool/useEditConnectionPool.hook';
 
 interface AddEditConnectionPoolModalProps {
   isEdition: boolean;
@@ -81,7 +81,7 @@ const AddEditConnectionPool = ({
   const prefix = isEdition ? 'edit' : 'add';
   const toast = useToast();
 
-  const ConnectionPoolMutationProps: MutateConnectionPoolProps = {
+  const connectionPoolMutationConfig: UseAddConnectionPool = {
     onError(err) {
       toast.toast({
         title: t(`${prefix}ConnectionPoolToastErrorTitle`),
@@ -109,12 +109,12 @@ const AddEditConnectionPool = ({
   const {
     addConnectionPool,
     isPending: isPendingAddPool,
-  } = useAddConnectionPool(ConnectionPoolMutationProps);
+  } = useAddConnectionPool(connectionPoolMutationConfig);
 
   const {
     editConnectionPool,
     isPending: isPendingEditPool,
-  } = useEditConnectionPool(ConnectionPoolMutationProps);
+  } = useEditConnectionPool(connectionPoolMutationConfig);
 
   const onSubmit = form.handleSubmit((formValues) => {
     if (isEdition) {

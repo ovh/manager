@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/dialog';
 import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
-import { useDeleteDatabase } from '@/hooks/api/databases.api.hook';
+import { useDeleteDatabase } from '@/hooks/api/database/database/useDeleteDatabase.hook';
 
 interface DeleteDatabaseModalProps {
   service: dbTypes.Service;

@@ -5,11 +5,6 @@ import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/interfaces/database';
 import { useServiceData } from '../../Service.context';
-import {
-  FullCapabilities,
-  useGetAvailabilities,
-  useGetFullCapabilities,
-} from '@/hooks/api/availabilities.api.hooks';
 import { Button } from '@/components/ui/button';
 import { formatStorage } from '@/lib/bytesHelper';
 import { useModale } from '@/hooks/useModale';
@@ -18,8 +13,13 @@ import UpdatePlan from '../update/_components/modals/UpdatePlan.component';
 import UpdateFlavor from '../update/_components/modals/UpdateFlavor.component';
 import AddNode from '../update/_components/modals/AddNode.component';
 import DeleteNode from '../update/_components/modals/RemoveNode.component';
-import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
 import { updateTags } from '@/lib/tagsHelper';
+import { useGetCatalog } from '@/hooks/api/catalog/useGetCatalog.hook';
+import {
+  FullCapabilities,
+  useGetFullCapabilities,
+} from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
+import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
 
 const UpdateTable = () => {
   const { t } = useTranslation(

@@ -49,7 +49,7 @@ import {
   NetworkTypeEnum,
 } from '@/interfaces/network';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
-import * as ServiceAPI from '@/data/api/databases/service';
+import * as ServiceAPI from '@/data/api/database/service.api';
 import { useToast } from '@/components/ui/use-toast';
 
 const mockedFork = {
@@ -140,31 +140,34 @@ describe('Fork funnel page', () => {
       })),
     }));
 
-    vi.mock('@/data/api/databases/availabilities', () => ({
+    vi.mock('@/data/api/database/availability.api', () => ({
       getAvailabilities: vi.fn(() => [mockedAvailabilities]),
+    }));
+
+    vi.mock('@/data/api/database/capabilities.api', () => ({
       getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
       getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
       getCapabilities: vi.fn(() => mockedCapabilities),
     }));
 
-    vi.mock('@/data/api/databases/backups', () => ({
+    vi.mock('@/data/api/database/backup.api', () => ({
       getServiceBackups: vi.fn(() => [mockedBackup, mockedBackupBis]),
     }));
 
-    vi.mock('@/data/api/network', () => ({
+    vi.mock('@/data/api/network/network.api', () => ({
       networkApi: {
         getPrivateNetworks: vi.fn(() => mockedNetworksFork),
         getSubnets: vi.fn(() => mockedSubnets),
       },
     }));
 
-    vi.mock('@/data/api/catalog', () => ({
+    vi.mock('@/data/api/catalog/catalog.api', () => ({
       catalogApi: {
         getCatalog: vi.fn(() => mockedCatalog),
       },
     }));
 
-    vi.mock('@/data/api/databases/service', () => ({
+    vi.mock('@/data/api/database/service.api', () => ({
       addService: vi.fn((service) => service),
     }));
 

@@ -25,7 +25,7 @@ import {
 } from '@/components/ui/dialog';
 import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
-import { useAddDatabase } from '@/hooks/api/databases.api.hook';
+import { useAddDatabase } from '@/hooks/api/database/database/useAddDatabase.hook';
 
 interface AddDatabaseModalProps {
   service: database.Service;

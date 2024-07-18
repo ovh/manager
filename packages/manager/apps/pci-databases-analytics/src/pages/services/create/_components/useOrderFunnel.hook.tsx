@@ -17,7 +17,7 @@ import { order } from '@/interfaces/catalog';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
 import { useVrack } from '@/hooks/useVrack';
-import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
+import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import { Pricing, computeServicePrice } from '@/lib/pricingHelper';
 
 const getSuggestedItemOrDefault = (

@@ -13,7 +13,7 @@ import Pools, {
 } from '@/pages/services/[serviceId]/pools/Pools.page';
 import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as connectionPoolApi from '@/data/api/databases/connectionPool';
+import * as connectionPoolApi from '@/data/api/database/connectionPool.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedConnectionPool } from '@/__tests__/helpers/mocks/connectionPool';
@@ -45,22 +45,22 @@ describe('Connection pool page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/data/api/databases/connectionPool', () => ({
+    vi.mock('@/data/api/database/connectionPool.api', () => ({
       getConnectionPools: vi.fn(() => [mockedConnectionPool]),
       addConnectionPool: vi.fn((connectionPool) => connectionPool),
       deleteConnectionPool: vi.fn(),
       editConnectionPool: vi.fn((connectionPool) => connectionPool),
     }));
 
-    vi.mock('@/data/api/databases/databases', () => ({
+    vi.mock('@/data/api/database/database.api', () => ({
       getServiceDatabases: vi.fn(() => [mockedDatabase]),
     }));
 
-    vi.mock('@/data/api/databases/users', () => ({
+    vi.mock('@/data/api/database/user.api', () => ({
       getUsers: vi.fn(() => [mockedUser]),
     }));
 
-    vi.mock('@/data/api/databases/certificates', () => ({
+    vi.mock('@/data/api/database/certificate.api', () => ({
       getCertificate: vi.fn(() => mockCertificate),
       // test
     }));

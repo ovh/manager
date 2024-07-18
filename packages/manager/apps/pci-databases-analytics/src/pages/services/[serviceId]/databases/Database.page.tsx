@@ -6,13 +6,13 @@ import { database } from '@/interfaces/database';
 import { useServiceData } from '../Service.context';
 import { DataTable } from '@/components/ui/data-table';
 import { getColumns } from './_components/DatabasesTableColumns.component';
-import { useGetDatabases } from '@/hooks/api/databases.api.hook';
 import { Button } from '@/components/ui/button';
 import { useModale } from '@/hooks/useModale';
 import AddDatabase from './_components/AddDatabase.component';
 import DeleteDatabase from './_components/DeleteDatabase.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
+import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
 
 export function breadcrumb() {
   return (

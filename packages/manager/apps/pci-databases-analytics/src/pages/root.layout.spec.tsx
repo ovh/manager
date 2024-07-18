@@ -4,7 +4,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import Layout, { breadcrumb as Breadcrumb, Loader } from '@/pages/Root.layout';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { database } from '@/interfaces/database';
-import * as projectAPI from '@/data/api/projects';
+import * as projectAPI from '@/data/api/project/project.api';
 
 const breadCrumbParam = {
   params: {
@@ -18,7 +18,7 @@ describe('Services Layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
 
-    vi.mock('@/data/api/projects', () => {
+    vi.mock('@/data/api/project/project.api', () => {
       return {
         getProject: vi.fn(() => ({
           project_id: '123456',

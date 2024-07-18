@@ -7,11 +7,11 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import MetricChart from './_components/MetricChart.component';
-import { useGetMetrics } from '@/hooks/api/metrics.api.hooks';
 import { cn } from '@/lib/utils';
 import { POLLING } from '@/configuration/polling.constants';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/interfaces/guide';
+import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 
 export function breadcrumb() {
   return (

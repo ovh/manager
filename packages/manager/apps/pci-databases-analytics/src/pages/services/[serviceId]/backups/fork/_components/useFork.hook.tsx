@@ -17,9 +17,9 @@ import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
 import { useVrack } from '@/hooks/useVrack';
 import { useServiceData } from '../../../Service.context';
-import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
 import { ForkInitialValue } from '../Fork.page';
 import { Pricing, computeServicePrice } from '@/lib/pricingHelper';
+import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 
 const getSuggestedItemOrDefault = (
   suggestion: database.Suggestion,

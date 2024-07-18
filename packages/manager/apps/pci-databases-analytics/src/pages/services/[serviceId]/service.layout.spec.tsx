@@ -7,7 +7,7 @@ import ServiceLayout, {
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { database } from '@/interfaces/database';
-import * as serviceAPI from '@/data/api/databases/service';
+import * as serviceAPI from '@/data/api/database/service.api';
 
 const loaderParam = {
   params: {
@@ -33,7 +33,7 @@ describe('Service Layout', () => {
       };
     });
 
-    vi.mock('@/data/api/databases/service', () => ({
+    vi.mock('@/data/api/database/service.api', () => ({
       getService: vi.fn(),
     }));
 

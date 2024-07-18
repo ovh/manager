@@ -17,14 +17,12 @@ import { useToast } from '@/components/ui/use-toast';
 import { ModalController } from '@/hooks/useModale';
 
 import { database } from '@/interfaces/database';
-import {
-  useDeleteService,
-  useGetServices,
-} from '@/hooks/api/services.api.hooks';
-import { useGetIntegrations } from '@/hooks/api/integrations.api.hook';
+import { useDeleteService } from '@/hooks/api/database/service/useDeleteService.hook';
+import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useTrackAction, useTrackPage } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
+import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
 
 interface DeleteServiceModalProps {
   service: database.Service;

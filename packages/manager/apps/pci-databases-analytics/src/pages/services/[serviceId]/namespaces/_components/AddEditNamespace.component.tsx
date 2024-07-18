@@ -33,15 +33,15 @@ import { useToast } from '@/components/ui/use-toast';
 
 import { ModalController } from '@/hooks/useModale';
 import { useNamespaceForm } from './formNamespace/useNamespaceForm.hook';
-import {
-  MutateNamespaceProps,
-  useAddNamespace,
-  useEditNamespace,
-} from '@/hooks/api/namespaces.api.hooks';
 
 import { database } from '@/interfaces/database';
 import { convertDurationStringToISODuration } from '@/lib/durationHelper';
 import { TOAST } from '@/configuration/toast.constants';
+import {
+  UseAddNamespace,
+  useAddNamespace,
+} from '@/hooks/api/database/namespace/useAddNamespace.hook';
+import { useEditNamespace } from '@/hooks/api/database/namespace/useEditNamespace.hook';
 
 interface AddEditNamespaceModalProps {
   isEdition: boolean;
@@ -87,7 +87,7 @@ const AddEditNamespace = ({
   const prefix = isEdition ? 'edit' : 'add';
   const toast = useToast();
 
-  const NamespaceMutationProps: MutateNamespaceProps = {
+  const NamespaceMutationProps: UseAddNamespace = {
     onError(err) {
       toast.toast({
         title: t(`${prefix}NamespaceToastErrorTitle`),

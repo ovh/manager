@@ -1,16 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { database } from '@/interfaces/database';
-import { useGetUsers } from '@/hooks/api/users.api.hooks';
-import { useGetBackups } from '@/hooks/api/backups.api.hooks';
-import { useGetDatabases } from '@/hooks/api/databases.api.hook';
-import { useGetConnectionPools } from '@/hooks/api/connectionPool.api.hooks';
-import { useGetCurrentQueries } from '@/hooks/api/queries.api.hooks';
-import { useGetIntegrations } from '@/hooks/api/integrations.api.hook';
-import { useGetNamespaces } from '@/hooks/api/namespaces.api.hooks';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
+import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
+import { useGetBackups } from '@/hooks/api/database/backup/useGetBackups.hook';
+import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
+import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
+import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
+import { useGetNamespaces } from '@/hooks/api/database/namespace/useGetNamespaces.hook';
+import { useGetCurrentQueries } from '@/hooks/api/database/query/useGetCurrentQueries.hook';
 
 interface ServiceTabsProps {
   service: database.Service;

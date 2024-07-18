@@ -1,4 +1,4 @@
-import { UserEdition } from '@/data/api/databases/users';
+import { UserEdition } from '@/data/api/database/user.api';
 import { database } from '@/interfaces/database';
 
 export const mockedDatabaseUser: database.service.User = {

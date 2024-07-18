@@ -8,10 +8,10 @@ import {
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import Dashboard from '@/pages/services/[serviceId]/dashboard/Dashboard.page';
-import * as metricApi from '@/data/api/databases/metrics';
+import * as metricApi from '@/data/api/database/metric.api';
 import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as maintenanceApi from '@/data/api/databases/maintenances';
+import * as maintenanceApi from '@/data/api/database/maintenance.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
@@ -37,7 +37,7 @@ describe('Dashboard page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/data/api/databases/metrics', () => ({
+    vi.mock('@/data/api/database/metric.api', () => ({
       getMetrics: vi.fn(() => [
         mockMetric.name,
         mockMetricCpu.name,
@@ -46,11 +46,11 @@ describe('Dashboard page', () => {
       ]),
     }));
 
-    vi.mock('@/data/api/databases/maintenances', () => ({
+    vi.mock('@/data/api/database/maintenance.api', () => ({
       getMaintenances: vi.fn(() => [mockedMaintenance]),
     }));
 
-    vi.mock('@/data/api/network', () => ({
+    vi.mock('@/data/api/network/network.api', () => ({
       networkApi: {
         getVrack: vi.fn(() => [mockedVrack]),
       },

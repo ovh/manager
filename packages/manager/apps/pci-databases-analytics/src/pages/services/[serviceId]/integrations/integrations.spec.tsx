@@ -13,7 +13,7 @@ import Integrations, {
 } from '@/pages/services/[serviceId]/integrations/Integrations.page';
 import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as integrationApi from '@/data/api/databases/integrations';
+import * as integrationApi from '@/data/api/database/integration.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import {
   mockedServiceInte,
@@ -44,13 +44,13 @@ describe('Integrations page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/data/api/databases/integrations', () => ({
+    vi.mock('@/data/api/database/integration.api', () => ({
       getServiceIntegrations: vi.fn(() => [mockedIntegrations]),
       addIntegration: vi.fn((integration) => integration),
       deleteIntegration: vi.fn(),
     }));
 
-    vi.mock('@/data/api/databases/service', () => ({
+    vi.mock('@/data/api/database/service.api', () => ({
       getServices: vi.fn(() => [mockedServiceOrig, mockedServiceInte]),
     }));
 

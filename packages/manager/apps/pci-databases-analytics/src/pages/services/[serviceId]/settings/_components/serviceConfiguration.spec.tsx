@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
   act,
@@ -8,7 +9,7 @@ import {
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
-import * as serviceApi from '@/data/api/databases/service';
+import * as serviceApi from '@/data/api/database/service.api';
 import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
 import { database } from '@/interfaces/database';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
@@ -67,17 +68,17 @@ describe('Service configuration page', () => {
       }),
     }));
 
-    vi.mock('@/data/api/catalog', () => ({
+    vi.mock('@/data/api/catalog/catalog.api', () => ({
       catalogApi: {
         getCatalog: vi.fn(() => mockedCatalog),
       },
     }));
 
-    vi.mock('@/data/api/databases/integrations', () => ({
+    vi.mock('@/data/api/database/integration.api', () => ({
       getServiceIntegrations: vi.fn(() => [mockedIntegrations]),
     }));
 
-    vi.mock('@/data/api/databases/availabilities', () => ({
+    vi.mock('@/data/api/database/availability.api', () => ({
       getCapabilities: vi.fn(() => mockedCapabilities),
       getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
       getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
@@ -87,12 +88,12 @@ describe('Service configuration page', () => {
       ]),
     }));
 
-    vi.mock('@/data/api/databases/maintenances', () => ({
+    vi.mock('@/data/api/database/maintenance.api', () => ({
       getMaintenances: vi.fn(() => [mockedMaintenance]),
     }));
 
-    vi.mock('@/data/api/databases/service', () => ({
-      updateService: vi.fn((service) => service),
+    vi.mock('@/data/api/database/service.api', () => ({
+      editService: vi.fn((service) => service),
       deleteService: vi.fn(),
       getServices: vi.fn(() => [mockedServiceOrig, mockedServiceInte]),
     }));
@@ -131,7 +132,7 @@ describe('Service configuration page', () => {
       useTranslation: () => ({
         t: (key: string) => key,
       }),
-      Trans: ({ children }: any) => children,
+      Trans: ({ children }: { children: ReactNode }) => children,
     }));
   });
 
@@ -293,7 +294,7 @@ describe('Open modals', () => {
       expect(
         screen.queryByTestId('rename-service-modal'),
       ).not.toBeInTheDocument();
-      expect(serviceApi.updateService).toHaveBeenCalled();
+      expect(serviceApi.editService).toHaveBeenCalled();
     });
   });
 

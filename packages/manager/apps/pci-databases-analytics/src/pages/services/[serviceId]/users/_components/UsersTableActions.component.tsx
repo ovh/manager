@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { GenericUser } from '@/data/api/databases/users';
+import { GenericUser } from '@/data/api/database/user.api';
 import { useServiceData } from '../../Service.context';
 import { database } from '@/interfaces/database';
 

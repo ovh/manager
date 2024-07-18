@@ -24,11 +24,11 @@ import Maintenance from './_components/Maintenance.component';
 import Link from '@/components/links/Link.component';
 import OvhLink from '@/components/links/OvhLink.component';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { useGetVrack } from '@/hooks/api/network.api.hooks';
-import { useGetMetrics } from '@/hooks/api/metrics.api.hooks';
 import { Skeleton } from '@/components/ui/skeleton';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/interfaces/guide';
+import { useGetVrack } from '@/hooks/api/network/useGetVrack.hook';
+import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 
 interface MetricTile {
   name: string;

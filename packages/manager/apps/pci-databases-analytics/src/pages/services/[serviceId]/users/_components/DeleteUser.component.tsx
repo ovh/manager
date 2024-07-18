@@ -13,8 +13,8 @@ import {
 import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
 import { database } from '@/interfaces/database';
-import { GenericUser } from '@/data/api/databases/users';
-import { useDeleteUser } from '@/hooks/api/users.api.hooks';
+import { GenericUser } from '@/data/api/database/user.api';
+import { useDeleteUser } from '@/hooks/api/database/user/useDeleteUser.hook';
 
 interface DeleteUserModalProps {
   service: database.Service;

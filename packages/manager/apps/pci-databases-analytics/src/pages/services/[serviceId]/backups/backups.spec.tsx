@@ -10,7 +10,7 @@ import { UseQueryResult } from '@tanstack/react-query';
 import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import { breadcrumb as Breadcrumb } from '@/pages/services/[serviceId]/backups/Backups.layout';
 import Backups from '@/pages/services/[serviceId]/backups/Backups.page';
-import * as backupsApi from '@/data/api/databases/backups';
+import * as backupsApi from '@/data/api/database/backup.api';
 import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
@@ -41,7 +41,7 @@ describe('Backups page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/data/api/databases/backups', () => ({
+    vi.mock('@/data/api/database/backup.api', () => ({
       getServiceBackups: vi.fn(() => [mockedBackup]),
       restoreBackup: vi.fn((backup) => backup),
     }));

@@ -12,7 +12,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useToast } from '@/components/ui/use-toast';
-import { useUpdateService } from '@/hooks/api/services.api.hooks';
+import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import { database } from '@/interfaces/database';
 import { useServiceData } from '../../Service.context';
 
@@ -42,7 +42,7 @@ const IpsRestrictionsUpdate = ({
       ipRestrictions: initialValue,
     },
   });
-  const { updateService, isPending } = useUpdateService({
+  const { editService, isPending } = useEditService({
     onError: (err) => {
       toast.toast({
         title: t('ipsUpdateErrorTitle'),
@@ -62,7 +62,7 @@ const IpsRestrictionsUpdate = ({
     },
   });
   const onSubmit = form.handleSubmit((formValues) => {
-    updateService({
+    editService({
       serviceId: service.id,
       engine: service.engine,
       projectId,

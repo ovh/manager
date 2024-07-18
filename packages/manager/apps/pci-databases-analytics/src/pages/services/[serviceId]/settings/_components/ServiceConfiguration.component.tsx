@@ -6,10 +6,8 @@ import { useServiceData } from '../../Service.context';
 import { Button } from '@/components/ui/button';
 import { useModale } from '@/hooks/useModale';
 import RenameService from '../../_components/RenameService.component';
-import {
-  useGetServices,
-  useUpdateService,
-} from '@/hooks/api/services.api.hooks';
+import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
+import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import { useToast } from '@/components/ui/use-toast';
 import TimeUpdate from './serviceConfiguration/TimeUpdate.component';
 import DeleteService from '../../_components/DeleteService.component';
@@ -27,7 +25,7 @@ const ServiceConfiguration = () => {
     enabled: false,
   });
   const toast = useToast();
-  const { updateService } = useUpdateService({
+  const { editService } = useEditService({
     onError: (err) => {
       toast.toast({
         title: t('serviceConfigurationUpdateToastErrorTitle'),
@@ -58,7 +56,7 @@ const ServiceConfiguration = () => {
   }
 
   const onMaintenanceTimeSubmit = (maintenanceTime: Date) => {
-    updateService({
+    editService({
       engine: service.engine,
       projectId,
       serviceId: service.id,
@@ -70,7 +68,7 @@ const ServiceConfiguration = () => {
     });
   };
   const onBackupTimeSubmit = (backupTime: Date) => {
-    updateService({
+    editService({
       engine: service.engine,
       projectId,
       serviceId: service.id,

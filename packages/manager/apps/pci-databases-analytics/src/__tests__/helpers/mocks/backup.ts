@@ -1,4 +1,3 @@
-import { RestoreBackupProps } from '@/data/api/databases/backups';
 import { database } from '@/interfaces/database';
 
 export const mockedBackup: database.Backup = {

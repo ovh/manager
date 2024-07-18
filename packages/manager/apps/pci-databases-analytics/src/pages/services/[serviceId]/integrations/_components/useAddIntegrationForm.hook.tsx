@@ -5,11 +5,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useServiceData } from '../../Service.context';
 import { database } from '@/interfaces/database';
-import { useGetServices } from '@/hooks/api/services.api.hooks';
-import {
-  useGetCapabilitiesIntegrations,
-  useGetIntegrations,
-} from '@/hooks/api/integrations.api.hook';
+import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
+import { useGetCapabilitiesIntegrations } from '@/hooks/api/database/integration/useGetCapabilitiesIntegrations.hook';
+import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
 
 const i18nNamespace = {
   ns: 'pci-databases-analytics/services/service/integrations',

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { USER_CONFIG } from './user.constants';
 import { database } from '@/interfaces/database';
-import { GenericUser } from '@/data/api/databases/users';
+import { GenericUser } from '@/data/api/database/user.api';
 
 export interface UseUserFormProps {
   service: database.Service;

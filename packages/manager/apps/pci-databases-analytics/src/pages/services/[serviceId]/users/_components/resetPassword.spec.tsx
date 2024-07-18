@@ -4,7 +4,7 @@ import { UseQueryResult } from '@tanstack/react-query';
 import { act } from 'react-dom/test-utils';
 import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as usersApi from '@/data/api/databases/users';
+import * as usersApi from '@/data/api/database/user.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { useToast } from '@/components/ui/use-toast';
 import ResetUserPassword from '@/pages/services/[serviceId]/users/_components/ResetUserPassword.component';
@@ -22,7 +22,7 @@ describe('Reset user password modal', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/data/api/databases/users', () => ({
+    vi.mock('@/data/api/database/user.api', () => ({
       getUsers: vi.fn(() => [mockedDatabaseUser]),
       addUser: vi.fn(),
       deleteUser: vi.fn(),

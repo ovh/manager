@@ -20,7 +20,6 @@ import {
 } from '@/components/ui/dialog';
 import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
-import { useAddIntegration } from '@/hooks/api/integrations.api.hook';
 import {
   Select,
   SelectContent,
@@ -31,8 +30,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { useServiceData } from '../../Service.context';
 import { useAddIntegrationForm } from './useAddIntegrationForm.hook';
-import { CdbError } from '@/data/api/databases';
+import { CdbError } from '@/data/api/database';
 import { Alert, AlertTitle } from '@/components/ui/alert';
+import { useAddIntegration } from '@/hooks/api/database/integration/useAddIntegration.hook';
 
 interface AddIntegrationModalProps {
   service: database.Service;

@@ -8,13 +8,10 @@ import { DataTable } from '@/components/ui/data-table';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 
 import { useModale } from '@/hooks/useModale';
-import { useGetConnectionPools } from '@/hooks/api/connectionPool.api.hooks';
-import { useGetDatabases } from '@/hooks/api/databases.api.hook';
-import { useGetUsers } from '@/hooks/api/users.api.hooks';
 
 import { useServiceData } from '../Service.context';
 import { POLLING } from '@/configuration/polling.constants';
-import { GenericUser } from '@/data/api/databases/users';
+import { GenericUser } from '@/data/api/database/user.api';
 import { database } from '@/interfaces/database';
 import { getColumns } from './_components/PoolsTableColumns.component';
 import InfoConnectionPool from './_components/InfoConnectionPool.component';
@@ -23,6 +20,9 @@ import DeleteConnectionPool from './_components/DeleteConnectionPool.component';
 import Guides from '@/components/guides/Guides.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { GuideSections } from '@/interfaces/guide';
+import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
+import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
+import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
 
 export function breadcrumb() {
   return (

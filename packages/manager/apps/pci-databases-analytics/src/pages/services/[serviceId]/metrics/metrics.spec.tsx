@@ -26,7 +26,7 @@ describe('Metrics page', () => {
       }),
     }));
 
-    vi.mock('@/data/api/databases/metrics', () => ({
+    vi.mock('@/data/api/database/metric.api', () => ({
       getMetrics: vi.fn(() => [
         mockMetric.name,
         mockMetricCpu.name,

@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
-import { useAddNode } from '@/hooks/api/nodes.api.hooks';
+import { useAddNode } from '@/hooks/api/database/node/useAddNode.hook';
 import { ModalController } from '@/hooks/useModale';
 import { Pricing } from '@/lib/pricingHelper';
 import { order } from '@/interfaces/catalog';

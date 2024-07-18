@@ -47,8 +47,8 @@ import { cn } from '@/lib/utils';
 import { Calendar } from '@/components/ui/calendar';
 import { TimePicker } from '@/components/ui/time-picker';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
-import { useRestoreBackup } from '@/hooks/api/backups.api.hooks';
-import { CdbError } from '@/data/api/databases';
+import { CdbError } from '@/data/api/database';
+import { useRestoreBackup } from '@/hooks/api/database/backup/useRestoreBackup.hook';
 
 interface RestoreServiceModalProps {
   controller: ModalController;

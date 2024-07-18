@@ -1,4 +1,4 @@
-import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
+import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import { database } from '@/interfaces/database';
 
 const mockedLifecycle = {

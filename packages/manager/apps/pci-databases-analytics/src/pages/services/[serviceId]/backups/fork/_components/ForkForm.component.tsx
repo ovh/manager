@@ -29,7 +29,7 @@ import { cn } from '@/lib/utils';
 import {
   ServiceCreationWithEngine,
   useAddService,
-} from '@/hooks/api/services.api.hooks';
+} from '@/hooks/api/database/service/useAddService.hook';
 import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
 import PlansSelect from '@/components/order/plan/PlanSelect.component';
 import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
@@ -60,8 +60,8 @@ import {
 } from '@/components/ui/popover';
 import { TimePicker } from '@/components/ui/time-picker';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
-import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
 import { ForkInitialValue } from '../Fork.page';
+import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 
 interface ForkFormProps {
   availabilities: database.Availability[];

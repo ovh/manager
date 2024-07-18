@@ -15,8 +15,8 @@ import {
 import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
 import { database } from '@/interfaces/database';
-import { GenericUser } from '@/data/api/databases/users';
-import { useResetUserPassword } from '@/hooks/api/users.api.hooks';
+import { GenericUser } from '@/data/api/database/user.api';
+import { useResetUserPassword } from '@/hooks/api/database/user/useResetUserPassword.hook';
 import { Alert } from '@/components/ui/alert';
 
 interface ResetUserPasswordModalProps {

@@ -26,11 +26,11 @@ import {
 } from '@/components/ui/dialog';
 import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
-import { useUpdateService } from '@/hooks/api/services.api.hooks';
+import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import { useTrackAction, useTrackPage } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
 
-interface UpdateServiceNameModalProps {
+interface RenameServiceProps {
   service: database.Service;
   controller: ModalController;
   onSuccess?: (service: database.Service) => void;
@@ -42,14 +42,14 @@ const RenameService = ({
   controller,
   onError,
   onSuccess,
-}: UpdateServiceNameModalProps) => {
+}: RenameServiceProps) => {
   // import translations
   const { projectId } = useParams();
   useTrackPage(TRACKING.renameService.page(service.engine));
   const track = useTrackAction();
   const { t } = useTranslation('pci-databases-analytics/services/service');
   const toast = useToast();
-  const { updateService, isPending } = useUpdateService({
+  const { editService, isPending } = useEditService({
     onError: (err) => {
       toast.toast({
         title: t('renameServiceToastErrorTitle'),
@@ -98,7 +98,7 @@ const RenameService = ({
 
   const onSubmit = form.handleSubmit((formValues) => {
     track(TRACKING.renameService.confirm(service.engine));
-    updateService({
+    editService({
       serviceId: service.id,
       projectId,
       engine: service.engine,

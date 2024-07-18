@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
   act,
@@ -9,7 +10,7 @@ import {
 import { UseQueryResult } from '@tanstack/react-query';
 import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
 import { database } from '@/interfaces/database';
-import * as serviceApi from '@/data/api/databases/service';
+import * as serviceApi from '@/data/api/database/service.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
@@ -70,13 +71,13 @@ describe('Ips restrictions update in settings page', () => {
       }),
     }));
 
-    vi.mock('@/data/api/catalog', () => ({
+    vi.mock('@/data/api/catalog/catalog.api', () => ({
       catalogApi: {
         getCatalog: vi.fn(() => mockedCatalog),
       },
     }));
 
-    vi.mock('@/data/api/databases/availabilities', () => ({
+    vi.mock('@/data/api/database/availability.api', () => ({
       getCapabilities: vi.fn(() => mockedCapabilities),
       getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
       getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
@@ -86,18 +87,18 @@ describe('Ips restrictions update in settings page', () => {
       ]),
     }));
 
-    vi.mock('@/data/api/databases/maintenances', () => ({
+    vi.mock('@/data/api/database/maintenance.api', () => ({
       getMaintenances: vi.fn(() => [mockedMaintenance]),
       applyMaintenance: vi.fn((maintenance) => maintenance),
     }));
 
-    vi.mock('@/data/api/databases/advancedConfiguration', () => ({
+    vi.mock('@/data/api/database/advancedConfiguration.api', () => ({
       getAdvancedConfiguration: vi.fn(() => mockAdvancedConfiguration),
       getAdvancedConfigurationCapabilities: vi.fn(() => mockCapabilities),
     }));
 
-    vi.mock('@/data/api/databases/service', () => ({
-      updateService: vi.fn((service) => service),
+    vi.mock('@/data/api/database/service.api', () => ({
+      editService: vi.fn((service) => service),
     }));
 
     vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
@@ -134,7 +135,7 @@ describe('Ips restrictions update in settings page', () => {
       useTranslation: () => ({
         t: (key: string) => key,
       }),
-      Trans: ({ children }: any) => children,
+      Trans: ({ children }: { children: ReactNode }) => children,
     }));
   });
 
@@ -170,7 +171,7 @@ describe('Ips restrictions update in settings page', () => {
     });
   });
 
-  it('call updateService on add ips success', async () => {
+  it('call editService on add ips success', async () => {
     render(<Settings />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(
@@ -205,7 +206,7 @@ describe('Ips restrictions update in settings page', () => {
       fireEvent.click(screen.getByTestId('ips-update-submit-button'));
     });
     await waitFor(() => {
-      expect(serviceApi.updateService).toHaveBeenCalled();
+      expect(serviceApi.editService).toHaveBeenCalled();
     });
   });
 });

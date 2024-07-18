@@ -18,13 +18,13 @@ import {
 import { Line } from 'react-chartjs-2';
 import { Loader } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useGetMetric } from '@/hooks/api/metrics.api.hooks';
 import { database } from '@/interfaces/database';
 import { colors } from './colors.constants';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { useServiceData } from '../../Service.context';
 import { cn } from '@/lib/utils';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
+import { useGetMetric } from '@/hooks/api/database/metric/useGetMetric.hook';
 
 ChartJS.register(
   CategoryScale,

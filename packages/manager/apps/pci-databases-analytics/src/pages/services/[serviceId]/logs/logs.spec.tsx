@@ -1,13 +1,13 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as logsHook from '@/hooks/api/logs.api.hooks';
 import Logs, {
   breadcrumb as LogsBreadcrumb,
 } from '@/pages/services/[serviceId]/logs/Logs.page';
 import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
+import * as logHook from '@/hooks/api/database/logs/useGetServiceLogs.hook';
 
 const mockService: database.Service = {
   engine: database.EngineEnum.mongodb,
@@ -44,7 +44,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@/hooks/api/logs.api.hooks', () => {
+vi.mock('@/hooks/api/database/logs/useGetServiceLogs.hook', () => {
   const useGetServiceLogs = vi.fn();
   return {
     useGetServiceLogs,
@@ -79,7 +79,7 @@ describe('Logs page', () => {
     vi.clearAllMocks();
   });
   it('renders and shows skeletons while loading', async () => {
-    vi.mocked(logsHook.useGetServiceLogs).mockResolvedValue({
+    vi.mocked(logHook.useGetServiceLogs).mockResolvedValue({
       data: [],
       isSuccess: false,
     } as UseQueryResult<database.service.LogEntry[], Error>);
@@ -90,7 +90,7 @@ describe('Logs page', () => {
   it('displays logs after fetching', async () => {
     const mockScrollIntoView = vi.fn();
     window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
-    vi.mocked(logsHook.useGetServiceLogs).mockReturnValue({
+    vi.mocked(logHook.useGetServiceLogs).mockReturnValue({
       isSuccess: true,
       data: [
         { timestamp: 1609459200, hostname: 'host1', message: 'Test log 1' },
@@ -109,7 +109,7 @@ describe('Logs page', () => {
   it('updates auto-refresh status when switch is toggled', async () => {
     const mockScrollIntoView = vi.fn();
     window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
-    vi.mocked(logsHook.useGetServiceLogs).mockReturnValue({
+    vi.mocked(logHook.useGetServiceLogs).mockReturnValue({
       isSuccess: true,
       data: [
         { timestamp: 1609459200, hostname: 'host1', message: 'Test log 1' },

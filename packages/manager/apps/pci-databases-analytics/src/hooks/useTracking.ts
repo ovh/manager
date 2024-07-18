@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { PciProjectPlanCode } from '@/interfaces/project';
-import usePciProject from './api/pciProjects.api.hooks';
+import usePciProject from './api/project/usePciProject.hook';
 import { PCI_LEVEL2 } from '@/configuration/tracking.constants';
 
 // Set the project mode, needed to track discovery actions

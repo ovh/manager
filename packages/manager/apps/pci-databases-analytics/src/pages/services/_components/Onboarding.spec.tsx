@@ -43,7 +43,7 @@ describe('Onboarding page', () => {
     }));
     vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 
-    vi.mock('@/data/api/databases/guides', () => ({
+    vi.mock('@/data/api/guides/guides.api', () => ({
       getGuides: vi.fn(() => [mockedGuide, mockedGuideOnboarding]),
     }));
   });

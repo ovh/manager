@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
-import { useGetServices } from '@/hooks/api/services.api.hooks';
+import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import { database } from '@/interfaces/database';
 import ServicesList from './_components/ServiceListTable.component';
 import Onboarding from './_components/Onboarding.component';

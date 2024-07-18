@@ -1,16 +1,14 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { RotateCcw } from 'lucide-react';
-import {
-  useGetQueryStatistics,
-  useResetQueryStatistics,
-} from '@/hooks/api/queries.api.hooks';
 import { useServiceData } from '../../Service.context';
 import { DataTable } from '@/components/ui/data-table';
 import { database } from '@/interfaces/database';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { getColumns } from './QueryStatisticsTableColumns.component';
+import { useGetQueryStatistics } from '@/hooks/api/database/query/useGetQueryStatistics.hook';
+import { useResetQueryStatistics } from '@/hooks/api/database/query/useResetQueryStatistics.hook';
 
 const QueryStatistics = () => {
   const { t } = useTranslation(

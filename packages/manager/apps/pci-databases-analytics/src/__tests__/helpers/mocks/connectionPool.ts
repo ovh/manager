@@ -1,4 +1,4 @@
-import { ConnectionPoolEdition } from '@/data/api/databases/connectionPool';
+import { ConnectionPoolEdition } from '@/data/api/database/connectionPool.api';
 import { database } from '@/interfaces/database';
 
 export const mockedConnectionPool: database.postgresql.ConnectionPool = {

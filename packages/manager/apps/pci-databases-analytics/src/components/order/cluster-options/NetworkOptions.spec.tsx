@@ -1,6 +1,6 @@
 import { render, renderHook, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import * as API from '@/data/api/network';
+import * as API from '@/data/api/network/network.api';
 import NetworkOptions from '@/components/order/cluster-options/NetworkOptions.components';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import {
@@ -9,7 +9,8 @@ import {
 } from '@/__tests__/helpers/mocks/network';
 import { NetworkOptionValue } from '@/interfaces/order-funnel';
 import { database } from '@/interfaces/database';
-import { useGetNetwork, useGetSubnet } from '@/hooks/api/network.api.hooks';
+import { useGetNetwork } from '@/hooks/api/network/useGetNetwork.hook';
+import { useGetSubnet } from '@/hooks/api/network/useGetSubnet.hook';
 
 vi.mock('react-i18next', async (importOriginal) => {
   const mod = await importOriginal<typeof import('react-i18next')>();
@@ -21,7 +22,7 @@ vi.mock('react-i18next', async (importOriginal) => {
   };
 });
 
-vi.mock('@/data/api/network', () => ({
+vi.mock('@/data/api/network/network.api', () => ({
   networkApi: {
     getPrivateNetworks: vi.fn(),
     getSubnets: vi.fn(),

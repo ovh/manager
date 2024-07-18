@@ -13,7 +13,7 @@ import Users, {
 } from '@/pages/services/[serviceId]/users/Users.page';
 import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as usersApi from '@/data/api/databases/users';
+import * as usersApi from '@/data/api/database/user.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedDatabaseUser } from '@/__tests__/helpers/mocks/databaseUser';
@@ -43,7 +43,7 @@ describe('Users page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/data/api/databases/users', () => ({
+    vi.mock('@/data/api/database/user.api', () => ({
       getUsers: vi.fn(() => [mockedDatabaseUser]),
       addUser: vi.fn((user) => user),
       deleteUser: vi.fn(),

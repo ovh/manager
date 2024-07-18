@@ -13,11 +13,11 @@ import {
 } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
-import { useDeleteNode } from '@/hooks/api/nodes.api.hooks';
 import { ModalController } from '@/hooks/useModale';
 import { Pricing } from '@/lib/pricingHelper';
 import { order } from '@/interfaces/catalog';
 import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
+import { useDeleteNode } from '@/hooks/api/database/node/useDeleteNode.hook';
 
 interface DeleteNodeProps {
   controller: ModalController;

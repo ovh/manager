@@ -1,8 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import {
-  useApplyMaintenance,
-  useGetMaintenances,
-} from '@/hooks/api/maintenances.api.hooks';
 import { useServiceData } from '../../Service.context';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -11,6 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Badge, BadgeProps } from '@/components/ui/badge';
 import { database } from '@/interfaces/database';
 import { useToast } from '@/components/ui/use-toast';
+import { useGetMaintenances } from '@/hooks/api/database/maintenance/useGetMaintenances.hook';
+import { useApplyMaintenance } from '@/hooks/api/database/maintenance/useApplyMaintenance.hook';
 
 const Maintenances = () => {
   const { t } = useTranslation(

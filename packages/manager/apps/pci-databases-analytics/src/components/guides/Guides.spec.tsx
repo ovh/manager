@@ -42,7 +42,7 @@ describe('Guides component', () => {
       };
     });
 
-    vi.mock('@/data/api/databases/guides', () => ({
+    vi.mock('@/data/api/guides/guides.api', () => ({
       getGuides: vi.fn(() => [mockedGuide, mockedGuideOnboarding]),
     }));
 

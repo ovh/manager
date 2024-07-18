@@ -14,7 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
+import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import { ModalController } from '@/hooks/useModale';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { order } from '@/interfaces/catalog';
@@ -31,7 +31,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useToast } from '@/components/ui/use-toast';
-import { useUpdateService } from '@/hooks/api/services.api.hooks';
+import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import { computeServicePrice } from '@/lib/pricingHelper';
 import Price from '@/components/price/Price.component';
 import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
@@ -64,7 +64,7 @@ const UpdatePlanContent = ({
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/settings/update',
   );
-  const { updateService, isPending } = useUpdateService({
+  const { editService, isPending } = useEditService({
     onError: (err) => {
       toast.toast({
         title: t('updatePlanToastErrorTitle'),
@@ -139,7 +139,7 @@ const UpdatePlanContent = ({
         flavor: flavor.name,
       }),
     };
-    updateService({
+    editService({
       serviceId: service.id,
       projectId,
       engine: service.engine,

@@ -9,7 +9,7 @@ import {
 import Services from '@/pages/services/Services.page';
 import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as serviceApi from '@/data/api/databases/service';
+import * as serviceApi from '@/data/api/database/service.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
@@ -46,9 +46,9 @@ describe('Services List page', () => {
       Trans: ({ children }: any) => children,
     }));
 
-    vi.mock('@/data/api/databases/service', () => ({
+    vi.mock('@/data/api/database/service.api', () => ({
       getServices: vi.fn(() => [mockedService]),
-      updateService: vi.fn((service) => service),
+      editService: vi.fn((service) => service),
       deleteService: vi.fn(),
     }));
 
@@ -160,7 +160,7 @@ describe('Open modals', () => {
       expect(
         screen.queryByTestId('rename-service-modal'),
       ).not.toBeInTheDocument();
-      expect(serviceApi.updateService).toHaveBeenCalled();
+      expect(serviceApi.editService).toHaveBeenCalled();
     });
   });
 

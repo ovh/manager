@@ -14,9 +14,9 @@ import {
 import { useToast } from '@/components/ui/use-toast';
 
 import { ModalController } from '@/hooks/useModale';
-import { useDeleteConnectionPool } from '@/hooks/api/connectionPool.api.hooks';
 
 import { database } from '@/interfaces/database';
+import { useDeleteConnectionPool } from '@/hooks/api/database/connectionPool/useDeleteConnectionPool.hook';
 
 interface DeleteConnectionPoolModalProps {
   service: database.Service;

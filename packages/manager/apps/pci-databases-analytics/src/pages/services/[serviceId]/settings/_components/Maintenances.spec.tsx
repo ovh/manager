@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
   act,
@@ -9,7 +10,7 @@ import {
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
-import * as maintenanceApi from '@/data/api/databases/maintenances';
+import * as maintenanceApi from '@/data/api/database/maintenance.api';
 import { database } from '@/interfaces/database';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
@@ -44,20 +45,20 @@ describe('Maintenance in settings page', () => {
       }),
     }));
 
-    vi.mock('@/data/api/catalog', () => ({
+    vi.mock('@/data/api/catalog/catalog.api', () => ({
       catalogApi: {
         getCatalog: vi.fn(() => mockedCatalog),
       },
     }));
 
-    vi.mock('@/data/api/databases/availabilities', () => ({
+    vi.mock('@/data/api/database/availability.api', () => ({
       getCapabilities: vi.fn(() => mockedCapabilities),
       getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
       getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
       getAvailabilities: vi.fn(() => [mockedAvailabilities]),
     }));
 
-    vi.mock('@/data/api/databases/maintenances', () => ({
+    vi.mock('@/data/api/database/maintenance.api', () => ({
       getMaintenances: vi.fn(() => [mockedMaintenanceTer]),
       applyMaintenance: vi.fn((maintenance) => maintenance),
     }));
@@ -96,7 +97,7 @@ describe('Maintenance in settings page', () => {
       useTranslation: () => ({
         t: (key: string) => key,
       }),
-      Trans: ({ children }: any) => children,
+      Trans: ({ children }: { children: ReactNode }) => children,
     }));
   });
 

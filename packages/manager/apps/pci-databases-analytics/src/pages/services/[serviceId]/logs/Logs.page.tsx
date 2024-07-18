@@ -4,7 +4,6 @@ import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { Label } from '@/components/ui/label';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Switch } from '@/components/ui/switch';
-import { useGetServiceLogs } from '@/hooks/api/logs.api.hooks';
 import { useServiceData } from '../Service.context';
 import { Skeleton } from '@/components/ui/skeleton';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
@@ -12,6 +11,7 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import { GuideSections } from '@/interfaces/guide';
 import Guides from '@/components/guides/Guides.component';
+import { useGetServiceLogs } from '@/hooks/api/database/logs/useGetServiceLogs.hook';
 
 export function breadcrumb() {
   return (

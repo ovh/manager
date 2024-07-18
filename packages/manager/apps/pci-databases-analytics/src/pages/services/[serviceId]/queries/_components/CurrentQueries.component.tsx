@@ -1,10 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import {
-  useCancelCurrentQuery,
-  useGetCurrentQueries,
-} from '@/hooks/api/queries.api.hooks';
 import { useServiceData } from '../../Service.context';
 import { DataTable } from '@/components/ui/data-table';
 import { database } from '@/interfaces/database';
@@ -14,6 +10,8 @@ import { POLLING } from '@/configuration/polling.constants';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
+import { useGetCurrentQueries } from '@/hooks/api/database/query/useGetCurrentQueries.hook';
+import { useCancelCurrentQuery } from '@/hooks/api/database/query/useCancelCurrentQuery.hook';
 
 const CurrentQueries = () => {
   const { t } = useTranslation(

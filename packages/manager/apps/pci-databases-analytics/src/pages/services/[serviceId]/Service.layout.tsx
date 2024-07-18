@@ -1,11 +1,11 @@
 import { Outlet, redirect, useParams } from 'react-router-dom';
-import { useGetService } from '@/hooks/api/services.api.hooks';
+import { useGetService } from '@/hooks/api/database/service/useGetService.hook';
 import { Skeleton } from '@/components/ui/skeleton';
 import LegalMentions from '@/pages/_components/LegalMentions.component';
 import { ServiceHeader } from './_components/ServiceHeader.component';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 import { POLLING } from '@/configuration/polling.constants';
-import { getService } from '@/data/api/databases/service';
+import { getService } from '@/data/api/database/service.api';
 import queryClient from '@/query.client';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import ServiceTabs from './_components/ServiceTabs.component';

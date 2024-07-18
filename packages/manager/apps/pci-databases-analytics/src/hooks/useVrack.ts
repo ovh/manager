@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { NetworkTypeEnum } from '@/interfaces/network';
-import { useGetNetwork, useGetSubnet } from './api/network.api.hooks';
+import { useGetNetwork } from './api/network/useGetNetwork.hook';
+import { useGetSubnet } from './api/network/useGetSubnet.hook';
 
 /**
  * Fetch networks and only return the ones that

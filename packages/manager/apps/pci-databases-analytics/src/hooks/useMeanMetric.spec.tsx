@@ -5,7 +5,7 @@ import { useMeanMetric } from '@/hooks/useMeanMetric';
 import { database } from '@/interfaces/database';
 import { QueryClientWrapper } from '../__tests__/helpers/wrappers/QueryClientWrapper';
 
-vi.mock('@/data/api/databases/metrics', () => ({
+vi.mock('@/data/api/database/metric.api', () => ({
   getMetric: vi.fn(() => mockMetric),
 }));
 describe('useMeanMetric', () => {

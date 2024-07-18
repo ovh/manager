@@ -13,7 +13,7 @@ import Namespaces, {
 } from '@/pages/services/[serviceId]/namespaces/Namespace.page';
 import { database } from '@/interfaces/database';
 import { Locale } from '@/hooks/useLocale';
-import * as namespaceApi from '@/data/api/databases/namespaces';
+import * as namespaceApi from '@/data/api/database/namespace.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedNamespaces } from '@/__tests__/helpers/mocks/namespaces';
@@ -46,7 +46,7 @@ describe('Namespaces page', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/data/api/databases/namespaces', () => ({
+    vi.mock('@/data/api/database/namespace.api', () => ({
       getNamespaces: vi.fn(() => [mockedNamespaces]),
       addNamespace: vi.fn((namespace) => namespace),
       deleteNamespace: vi.fn(),

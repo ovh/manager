@@ -14,7 +14,7 @@ import {
 import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
 import { IntegrationWithServices } from '../Integrations.page';
-import { UseDeleteIntegration } from '@/hooks/api/integrations.api.hook';
+import { useDeleteIntegration } from '@/hooks/api/database/integration/useDeleteIntegration.hook';
 
 interface DeleteIntegrationProps {
   service: dbTypes.Service;
@@ -36,7 +36,7 @@ const DeleteIntegration = ({
     'pci-databases-analytics/services/service/integrations',
   );
   const toast = useToast();
-  const { deleteIntegration, isPending } = UseDeleteIntegration({
+  const { deleteIntegration, isPending } = useDeleteIntegration({
     onError: (err) => {
       toast.toast({
         title: t('deleteIntegrationToastErrorTitle'),

@@ -26,7 +26,6 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Input } from '@/components/ui/input';
 import { useServiceData } from '../../../Service.context';
 import { useToast } from '@/components/ui/use-toast';
-import { useUpdateAdvancedConfiguration } from '@/hooks/api/advancedConfiguration.api.hook';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
 import {
@@ -48,6 +47,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { useEditAdvancedConfiguration } from '@/hooks/api/database/advancedConfiguration/useEditAdvancedConfiguration.hook';
 
 interface AdvancedConfigurationFormProps {
   advancedConfiguration: Record<string, string>;
@@ -72,7 +72,7 @@ const AdvancedConfigurationForm = ({
   const {
     updateAdvancedConfiguration,
     isPending,
-  } = useUpdateAdvancedConfiguration({
+  } = useEditAdvancedConfiguration({
     onError: (error) => {
       toast.toast({
         variant: 'destructive',

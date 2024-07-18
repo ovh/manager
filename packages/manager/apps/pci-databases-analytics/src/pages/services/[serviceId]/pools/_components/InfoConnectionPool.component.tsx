@@ -13,10 +13,10 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 
 import { ModalController } from '@/hooks/useModale';
-import { useGetCertificate } from '@/hooks/api/certificates.api.hooks';
 import useDownload from '@/hooks/useDownload';
 
 import { database } from '@/interfaces/database';
+import { useGetCertificate } from '@/hooks/api/database/certificate/useGetCertificate.hook';
 
 interface InfoConnectionPoolModalProps {
   service: database.Service;

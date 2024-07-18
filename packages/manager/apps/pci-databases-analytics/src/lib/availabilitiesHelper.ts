@@ -9,7 +9,7 @@ import {
   Version,
 } from '@/interfaces/order-funnel';
 import { compareStorage } from './bytesHelper';
-import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
+import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 
 function updatePlanStorage(
   availability: database.Availability,

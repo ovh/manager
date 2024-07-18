@@ -1,6 +1,6 @@
 import { database } from '@/interfaces/database';
 import { mockedNode } from './nodes';
-import { ServiceCreationWithEngine } from '@/hooks/api/services.api.hooks';
+import { ServiceCreationWithEngine } from '@/hooks/api/database/service/useAddService.hook';
 
 export const mockedService: database.Service = {
   backupTime: '16:00:00',

@@ -1,22 +1,22 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  FullCapabilities,
-  useGetAvailabilities,
-  useGetFullCapabilities,
-} from '@/hooks/api/availabilities.api.hooks';
 import { useServiceData } from '../../Service.context';
 import { database } from '@/interfaces/database';
-import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
 import { Skeleton } from '@/components/ui/skeleton';
 import ForkForm from './_components/ForkForm.component';
-import { useGetBackups } from '@/hooks/api/backups.api.hooks';
 import { useVrack } from '@/hooks/useVrack';
 import { Network } from '@/interfaces/network';
 import { ForkSource, ForkSourceType } from '@/interfaces/order-funnel';
 import { updateTags } from '@/lib/tagsHelper';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
+import {
+  FullCapabilities,
+  useGetFullCapabilities,
+} from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
+import { useGetBackups } from '@/hooks/api/database/backup/useGetBackups.hook';
+import { useGetCatalog } from '@/hooks/api/catalog/useGetCatalog.hook';
 
 export function breadcrumb() {
   return (

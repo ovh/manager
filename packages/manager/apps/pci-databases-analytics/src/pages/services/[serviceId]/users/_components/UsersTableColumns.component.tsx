@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
-import { GenericUser } from '@/data/api/databases/users';
+import { GenericUser } from '@/data/api/database/user.api';
 import { SortableHeader } from '@/components/ui/data-table';
 import UserStatusBadge from './UserStatusBadge.component';
 import UserActions from './UsersTableActions.component';

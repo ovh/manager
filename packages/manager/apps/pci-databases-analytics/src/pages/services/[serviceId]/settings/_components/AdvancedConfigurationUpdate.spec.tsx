@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
   act,
@@ -9,7 +10,7 @@ import {
 import { UseQueryResult } from '@tanstack/react-query';
 import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
 import { database } from '@/interfaces/database';
-import * as advancedConfigurationAPI from '@/data/api/databases/advancedConfiguration';
+import * as advancedConfigurationAPI from '@/data/api/database/advancedConfiguration.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
@@ -74,28 +75,31 @@ describe('Advanced configuration in settings page', () => {
       }),
     }));
 
-    vi.mock('@/data/api/catalog', () => ({
+    vi.mock('@/data/api/catalog/catalog.api', () => ({
       catalogApi: {
         getCatalog: vi.fn(() => mockedCatalog),
       },
     }));
 
-    vi.mock('@/data/api/databases/availabilities', () => ({
-      getCapabilities: vi.fn(() => mockedCapabilities),
-      getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
-      getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
+    vi.mock('@/data/api/database/availability.api', () => ({
       getAvailabilities: vi.fn(() => [mockedAvailabilities]),
     }));
 
-    vi.mock('@/data/api/databases/maintenances', () => ({
+    vi.mock('@/data/api/database/capabilities.api', () => ({
+      getCapabilities: vi.fn(() => mockedCapabilities),
+      getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
+      getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
+    }));
+
+    vi.mock('@/data/api/database/maintenance.api', () => ({
       getMaintenances: vi.fn(() => [mockedMaintenance]),
       applyMaintenance: vi.fn((maintenance) => maintenance),
     }));
 
-    vi.mock('@/data/api/databases/advancedConfiguration', () => ({
+    vi.mock('@/data/api/database/advancedConfiguration.api', () => ({
       getAdvancedConfiguration: vi.fn(() => mockAdvancedConfiguration),
       getAdvancedConfigurationCapabilities: vi.fn(() => mockCapabilities),
-      updateAdvancedConfiguration: vi.fn((advConfig) => advConfig),
+      editAdvancedConfiguration: vi.fn((advConfig) => advConfig),
     }));
 
     vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
@@ -132,7 +136,7 @@ describe('Advanced configuration in settings page', () => {
       useTranslation: () => ({
         t: (key: string) => key,
       }),
-      Trans: ({ children }: any) => children,
+      Trans: ({ children }: { children: ReactNode }) => children,
     }));
 
     const ResizeObserverMock = vi.fn(() => ({
@@ -335,7 +339,7 @@ describe('Advanced configuration in settings page', () => {
     });
     await waitFor(() => {
       expect(
-        advancedConfigurationAPI.updateAdvancedConfiguration,
+        advancedConfigurationAPI.editAdvancedConfiguration,
       ).toHaveBeenCalled();
     });
   });
