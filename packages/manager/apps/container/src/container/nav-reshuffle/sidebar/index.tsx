@@ -92,8 +92,8 @@ const Sidebar = (): JSX.Element => {
   const onEnter = (node: Node) => {
     const getFirstChild = (node: Node): Node =>
       !node.children ? node : getFirstChild(node.children[0]);
-    const firstElem = window.document.getElementById(getFirstChild(node)?.idAttr);
-    if (firstElem) firstElem.focus();
+    const firstElement = window.document.getElementById(getFirstChild(node)?.idAttr);
+    if (firstElement) firstElement.focus();
   };
 
   /** Initialize navigation tree */
