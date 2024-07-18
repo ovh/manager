@@ -37,7 +37,7 @@ const LinkIcon: FC<LinkIconProps> = ({
     target={target}
   >
     <OsdsText
-      className="overflow-hidden text-ellipsis max-w-[300px]"
+      className="block overflow-hidden text-ellipsis max-w-[300px]"
       level={ODS_TEXT_LEVEL.heading}
       color={ODS_THEME_COLOR_INTENT.primary}
       size={ODS_TEXT_SIZE._200}
