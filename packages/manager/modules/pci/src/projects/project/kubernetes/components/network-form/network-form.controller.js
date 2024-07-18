@@ -97,15 +97,15 @@ export default class NetworkFormController {
       this.region.name,
     )
       .then(({ subnets, subnetsByRegion }) => {
-        this.subnets = subnets;
-        this.subnetsByRegion = subnetsByRegion;
+        this.subnets = this.augmentSubnets(subnets, { none: true });
+        this.subnetsByRegion = this.augmentSubnets(subnetsByRegion);
         this.subnetError = null;
         this.subnet = selectSubnet
           ? selectSubnet(this.subnetsByRegion)
-          : subnetsByRegion[0];
+          : this.subnetsByRegion[0];
         this.loadBalancersSubnet = selectLoadBalancersSubnet
           ? selectLoadBalancersSubnet(this.subnets)
-          : null;
+          : this.subnets[0];
         this.onSubnetChanged(this.subnet);
       })
       .catch((error) => {
@@ -141,5 +141,23 @@ export default class NetworkFormController {
     if (!this.gateway.enabled) {
       this.gateway.ip = '';
     }
+  }
+
+  augmentSubnets(subnets, { none = false } = {}) {
+    const noneItem = none
+      ? {
+          id: null,
+          displayedLabel: this.$translate.instant(
+            'kubernetes_network_form_subnet_none',
+          ),
+        }
+      : null;
+    return [
+      ...((noneItem && [noneItem]) || []),
+      ...subnets.map((subnet) => ({
+        ...subnet,
+        displayedLabel: `${subnet.id} - ${subnet.cidr}`,
+      })),
+    ];
   }
 }
