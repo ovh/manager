@@ -1,6 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useMe } from './useMe';
 
 const ASIA_FORMAT = ['SG', 'ASIA', 'AU', 'IN'];
@@ -19,11 +17,17 @@ const FRENCH_FORMAT = [
   'TN',
 ];
 
-export const useCatalogPrice = (maximumFractionDigits?: number) => {
-  const { t } = useTranslation('order-price');
+export interface CatalogPriceOptions {
+  hideTaxLabel?: boolean;
+}
+
+export const useCatalogPrice = (
+  maximumFractionDigits?: number,
+  options?: CatalogPriceOptions,
+) => {
+  const { i18n, t } = useTranslation('order-price');
   const { me } = useMe();
 
-  const locale = useContext(ShellContext).environment.getUserLocale();
   const isTaxExcl = [...ASIA_FORMAT, ...FRENCH_FORMAT].includes(
     me?.ovhSubsidiary,
   );
@@ -37,15 +41,15 @@ export const useCatalogPrice = (maximumFractionDigits?: number) => {
     };
     return me
       ? new Intl.NumberFormat(
-          locale.replace('_', '-'),
-          numberFormatOptions,
+          i18n.language.replace('_', '-'),
+          numberFormatOptions as Parameters<typeof Intl.NumberFormat>[1],
         ).format(priceToFormat)
       : '';
   };
 
   const getFormattedCatalogPrice = (price: number): string =>
     `${
-      isTaxExcl
+      isTaxExcl && !options?.hideTaxLabel
         ? t('order_catalog_price_tax_excl_label', {
             price: getTextPrice(price),
           })
@@ -63,6 +67,7 @@ export const useCatalogPrice = (maximumFractionDigits?: number) => {
     )}`;
 
   return {
+    getTextPrice,
     getFormattedCatalogPrice,
     getFormattedHourlyCatalogPrice,
     getFormattedMonthlyCatalogPrice,

@@ -1,0 +1,4 @@
+{
+  "common_field_error_min": "Veuillez saisir une valeur plus grande ou égale à {{min}}.",
+  "common_field_error_max": "Veuillez saisir une valeur plus petite ou égale à {{max}}."
+}
