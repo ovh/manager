@@ -13,6 +13,7 @@ import {
 import {
   ODS_INPUT_TYPE,
   ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
@@ -24,8 +25,10 @@ import { useInstanceSnapshotPricing } from '@/api/hooks/order';
 interface WorkflowNameProps {
   name: string;
   region: string;
+  step: StepState;
   onNameChange: (name: string) => void;
   onSubmit: () => void;
+  onCancel: () => void;
 }
 
 const VALID_NAME_PATTERN = /^[a-zA-Z0-9_.-]+$/;
@@ -33,8 +36,10 @@ const VALID_NAME_PATTERN = /^[a-zA-Z0-9_.-]+$/;
 export function WorkflowName({
   name,
   region,
+  step,
   onNameChange,
   onSubmit,
+  onCancel,
 }: Readonly<WorkflowNameProps>) {
   const { t } = useTranslation('workflow-add');
   const { t: tCommon } = useTranslation('common');
@@ -117,15 +122,28 @@ export function WorkflowName({
           )}
         </OsdsText>
       </div>
-      <OsdsButton
-        className="w-fit mt-6"
-        size={ODS_BUTTON_SIZE.md}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => !hasError && onSubmit()}
-        {...(isValid ? {} : { disabled: true })}
-      >
-        {tCommon('common_stepper_next_button_label')}
-      </OsdsButton>
+      {!step.isLocked && (
+        <div className="flex flex-row">
+          <OsdsButton
+            className="w-fit mt-6 mr-4"
+            size={ODS_BUTTON_SIZE.md}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            onClick={() => !hasError && onSubmit()}
+            {...(isValid ? {} : { disabled: true })}
+          >
+            {tCommon('common_stepper_next_button_label')}
+          </OsdsButton>
+          <OsdsButton
+            className="mt-6 w-fit"
+            size={ODS_BUTTON_SIZE.md}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            onClick={onCancel}
+          >
+            {tCommon('common_stepper_cancel_button_label')}
+          </OsdsButton>
+        </div>
+      )}
     </>
   );
 }
