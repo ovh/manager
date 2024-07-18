@@ -4,6 +4,7 @@ import { Navigate } from 'react-router-dom';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as managerComponentModule from '@ovhcloud/manager-components';
 import { PublicCloudProject } from '@ovhcloud/manager-components';
+import * as useInstancesModule from '@/api/hooks/useInstances';
 import OnBoardingPage from './OnBoarding.page';
 import { shellContext, wrapper } from '@/wrapperRenders';
 import { useWorkflows } from '@/api/hooks/workflows';
@@ -27,13 +28,17 @@ vi.mock('@ovhcloud/manager-components', async () => {
 });
 
 describe('OnBoardingPage', () => {
-  it('should render children when volumes are empty', () => {
+  it('should render children with create button instance when workflow are empty', () => {
     const { shell } = shellContext;
     shell.navigation.getURL.mockResolvedValue('https://www.ovh.com');
     vi.mocked(useWorkflows).mockReturnValue({
       data: [],
       isPending: false,
     } as UseQueryResult<never[]>);
+    vi.spyOn(useInstancesModule, 'useAllInstances').mockReturnValue({
+      data: [],
+      isPending: false,
+    } as { data: never[]; isPending: boolean; error: never });
 
     vi.spyOn(managerComponentModule, 'useProject').mockReturnValue(({
       description: 'mocked_description',
@@ -47,6 +52,41 @@ describe('OnBoardingPage', () => {
     expect(
       getByText('pci_workflow_onboarding_create_instance'),
     ).toBeInTheDocument();
+    expect(
+      getByText('pci_workflow_onboarding_no_instance'),
+    ).toBeInTheDocument();
+  });
+
+  it('should render children with create button workflow when workflow are empty', () => {
+    const { shell } = shellContext;
+    shell.navigation.getURL.mockResolvedValue('https://www.ovh.com');
+    vi.mocked(useWorkflows).mockReturnValue({
+      data: [],
+      isPending: false,
+    } as UseQueryResult<never[]>);
+    vi.spyOn(useInstancesModule, 'useAllInstances').mockReturnValue({
+      data: [
+        {
+          id: 'mocked_instanceId',
+          name: 'mocked_instanceName',
+        },
+      ],
+      isPending: false,
+    } as { data: never[]; isPending: boolean; error: never });
+
+    vi.spyOn(managerComponentModule, 'useProject').mockReturnValue(({
+      description: 'mocked_description',
+      planCode: 'project.discovery',
+    } as unknown) as UseQueryResult<PublicCloudProject, never>);
+
+    const { container, getByText, queryByText } = render(<OnBoardingPage />, {
+      wrapper,
+    });
+    expect(container).toBeDefined();
+    expect(getByText('pci_workflow_add')).toBeInTheDocument();
+    expect(
+      queryByText('pci_workflow_onboarding_no_instance'),
+    ).not.toBeInTheDocument();
   });
 
   it('should render spinner when isLoading is true', () => {

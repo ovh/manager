@@ -19,15 +19,22 @@ import {
 } from '@ovhcloud/manager-components';
 import { Suspense } from 'react';
 import { useWorkflows } from '@/api/hooks/workflows';
+import { useAllInstances } from '@/api/hooks/useInstances';
 
 export default function OnBoardingPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('listing');
   const { t: tOnBoarding } = useTranslation('onboarding');
+  const { t: tExecution } = useTranslation('executions');
   const { projectId } = useParams();
   const { data: project } = useProject(projectId);
   const urlProject = useProjectUrl('public-cloud');
   const navigate = useNavigate();
-  const { data: workflows, isPending } = useWorkflows(projectId);
+  const { data: instances, isPending: isPendingInstances } = useAllInstances(
+    projectId,
+  );
+  const { data: workflows, isPending: isPendingWorkflows } = useWorkflows(
+    projectId,
+  );
 
   const breadcrumbItems: OdsBreadcrumbAttributeItem[] = [
     {
@@ -41,7 +48,7 @@ export default function OnBoardingPage() {
 
   return (
     <RedirectionGuard
-      isLoading={isPending}
+      isLoading={isPendingWorkflows || isPendingInstances}
       route={`/pci/projects/${projectId}/workflow`}
       condition={workflows?.length > 0}
     >
@@ -96,20 +103,28 @@ export default function OnBoardingPage() {
             >
               {tOnBoarding('pci_workflow_onboarding_content5')}
             </OsdsText>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-              className="mt-6 block"
-            >
-              {tOnBoarding('pci_workflow_onboarding_no_instance')}
-            </OsdsText>
+            {instances?.length === 0 && (
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+                className="mt-6 block"
+              >
+                {tOnBoarding('pci_workflow_onboarding_no_instance')}
+              </OsdsText>
+            )}
           </>
         }
-        orderButtonLabel={tOnBoarding(
-          'pci_workflow_onboarding_create_instance',
-        )}
-        onOrderButtonClick={() => navigate(`../new`)}
+        orderButtonLabel={
+          instances?.length > 0
+            ? tExecution('pci_workflow_add')
+            : tOnBoarding('pci_workflow_onboarding_create_instance')
+        }
+        onOrderButtonClick={() =>
+          instances?.length > 0
+            ? navigate(`../new`)
+            : navigate(`/pci/projects/${projectId}/instances/new`)
+        }
       />
       <Suspense>
         <Outlet />
