@@ -17,6 +17,7 @@ type SidebarLinkProps = {
   linkParams?: Record<string, string>;
   handleOnMouseOver?(): void;
   handleOnMouseLeave?(): void;
+  handleOnClick?(): void;
   handleNavigation?(): void;
   id?: string;
   isShortText?: boolean;
@@ -28,6 +29,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   linkParams = {},
   handleOnMouseOver = () => {},
   handleOnMouseLeave = () => {},
+  handleOnClick = () => {},
   handleNavigation = () =>  {},
   id = '',
   isShortText = false,
@@ -51,6 +53,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       onMouseLeave={!mobile ? handleOnMouseLeave : null}
       onFocus={!mobile ? handleOnMouseOver : null}
       onTouchEnd={mobile ? handleNavigation : null}
+      onClick={!mobile ? handleOnClick : null}
       id={id}
     >
       <span> {t(isShortText ? node.shortTranslation : node.translation)}</span>

@@ -16,6 +16,8 @@ interface SubTreeProps {
   rootNode: Node;
   handleBackNavigation(): void;
   handleOnMouseOver(node: Node): void;
+  handleOnSubmenuClick(node: Node): void;
+  selectedNode: Node;
 }
 
 const parseContainerURL = (
@@ -29,6 +31,8 @@ const SubTree = ({
   rootNode,
   handleBackNavigation,
   handleOnMouseOver,
+  handleOnSubmenuClick,
+  selectedNode
 }: SubTreeProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
@@ -116,8 +120,7 @@ const SubTree = ({
   }, [defaultPciProject, defaultPciProjectStatus, pciProjects]);
 
   return (
-    <div className={style.subtree}>
-      <div
+    <div
         className={style.subtree_content}
         onMouseOver={() => handleOnMouseOver(rootNode)}
         onMouseLeave={handleBackNavigation}
@@ -146,13 +149,13 @@ const SubTree = ({
         )}
 
         <div className={rootNode.illustration ? '' : 'pt-4'}>
-          <ul className={`${style.subtree_list} mx-3`}>
-            <li className="mb-4">
+          <ul className={`${style.subtree_list}`}>
+            <li className="mb-4 px-3">
               <h2>{t(rootNode.translation)}</h2>
             </li>
 
             {rootNode.id.startsWith('pci') && (
-              <li>
+              <li className="px-3">
                 <ProjectSelector
                   isLoading={!pciSuccess}
                   projects={pciProjects}
@@ -215,10 +218,12 @@ const SubTree = ({
                   id={node.id}
                   className={style.sidebar_pciEntry}
                 >
-                  {!shouldHideElement(node, 1, 2) && (
+                  {!shouldHideElement(node, 1) && (
                     <SubTreeSection
                       node={node}
                       selectedPciProject={selectedPciProject?.project_id}
+                      selectedNode={selectedNode}
+                      handleOnSubmenuClick={handleOnSubmenuClick}
                     />
                   )}
                   {node.separator && <hr />}
@@ -227,7 +232,6 @@ const SubTree = ({
           </ul>
         </div>
       </div>
-    </div>
   );
 };
 
