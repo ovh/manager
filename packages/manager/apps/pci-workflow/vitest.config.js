@@ -25,6 +25,7 @@ export default defineConfig({
         'src/pages/Layout.tsx',
         'src/routes.tsx',
         'src/queryClient.ts',
+        'src/wrapperRenders.tsx',
       ],
     },
   },
