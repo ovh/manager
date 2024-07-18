@@ -17,11 +17,12 @@ export default class HostingMultisiteGitDeploymentController {
 
   primaryAction() {
     return this.isConfirmationStep
-      ? this.deleteGitAssociation(this.path, !!this.deleteDirectory)
+      ? this.deleteGitAssociation(!!this.deleteDirectory)
       : this.setConfirmationStep();
   }
 
-  deleteGitAssociation(path, deleteFiles) {
+  deleteGitAssociation(deleteFiles) {
+    this.isDeleting = true;
     this.HostingDomain.getWebsitesAssociated(this.serviceName, this.path)
       .then(([websiteId]) => {
         return this.HostingMultisiteGitRemovalService.deleteGitAssociation(
