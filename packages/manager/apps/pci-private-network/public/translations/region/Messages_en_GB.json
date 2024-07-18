@@ -95,7 +95,7 @@
   "manager_components_region_CHI": "Chicago",
   "manager_components_region_CHI_micro": "Chicago ({{ micro }})",
   "manager_components_region_continent_CHI": "North America",
-  "manager_components_region_NYC": "New York City",
+  "manager_components_region_NYC": "New York",
   "manager_components_region_NYC_micro": "New York ({{ micro }})",
   "manager_components_region_continent_NYC": "North America",
   "manager_components_region_MIA": "Miami",

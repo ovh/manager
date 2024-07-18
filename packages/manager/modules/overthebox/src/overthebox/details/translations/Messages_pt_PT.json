@@ -28,7 +28,6 @@
   "overTheBox_tasks": "Trabalhos:",
   "overTheBox_tasks_show": "Ver os trabalhos",
   "overTheBox_trafic": "Tráfego",
-  "overTheBox_bandwidth": "Débito",
   "overTheBox_publicIp": "Endereço IP público:",
   "overTheBox_deviceId": "Identificador do periférico:",
   "overTheBox_deviceId_button_title": "Identificador do periférico:",
@@ -94,5 +93,10 @@
   "overTheBox_model_device": "Modelo do dispositivo",
   "overTheBox_detail_bandwidth": "Largura de banda máxima",
   "overTheBox_model_device_unknown": "Desconhecido",
-  "overTheBox_change_offer": "Mudar de oferta"
+  "overTheBox_change_offer": "Mudar de oferta",
+  "overTheBox_deviceId_unlink": "Dissociar",
+  "overTheBox_cancel": "Anular",
+  "overTheBox_confirm_unlink_device": "Este dispositivo já não conseguirá estabelecer ligação, tem a certeza?",
+  "overTheBox_unlink_device_error": "Não foi possível desassociar o dispositivo: {{errorMessage}}",
+  "overTheBox_unlink_device_success": "O dispositivo foi dissociado com sucesso."
 }

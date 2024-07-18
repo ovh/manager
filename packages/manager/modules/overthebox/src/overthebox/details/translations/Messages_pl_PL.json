@@ -28,7 +28,6 @@
   "overTheBox_tasks": "Zadania:",
   "overTheBox_tasks_show": "Sprawdź zadania",
   "overTheBox_trafic": "Transfer",
-  "overTheBox_bandwidth": "Wykorzystane środki",
   "overTheBox_publicIp": "Publiczny adres IP:",
   "overTheBox_deviceId": "Identyfikator urządzenia:",
   "overTheBox_deviceId_button_title": "Identyfikator urządzenia:",
@@ -94,5 +93,10 @@
   "overTheBox_model_device": "Model urządzenia",
   "overTheBox_detail_bandwidth": "Przepustowość maksymalna",
   "overTheBox_model_device_unknown": "Nieznany",
-  "overTheBox_change_offer": "Zmień ofertę"
+  "overTheBox_change_offer": "Zmień ofertę",
+  "overTheBox_deviceId_unlink": "Odłącz",
+  "overTheBox_cancel": "Anuluj",
+  "overTheBox_confirm_unlink_device": "To urządzenie nie będzie już mogło łączyć się z tą usługą, czy na pewno?",
+  "overTheBox_unlink_device_error": "Nie można odłączyć urządzenia: {{errorMessage}}",
+  "overTheBox_unlink_device_success": "Urządzenie zostało pomyślnie odłączone."
 }

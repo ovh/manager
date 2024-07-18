@@ -32,5 +32,6 @@
   "overthebox_migration_summary_total": "czyli łącznie:",
   "overthebox_migration_summary_command_order_explain": "Aby dokończyć migrację oferty, należy <a href=\"{{orderUrl}}\" target=\"_blank\" title=\" opłacić Zamówienie: {{orderId}}\">  Zamówienie.<span class=\"oui-icon oui-icon-external-link ml-2\" aria-hidden=\"true\"> </span> </a> ",
   "overthebox_migration_summary_command_order_help": "Dowiedz się więcej o opłacaniu zamówienia.",
-  "overthebox_migration_summary_launch_migration_error": "Wystąpił błąd podczas migracji oferty. {{errorMsg}}"
+  "overthebox_migration_summary_launch_migration_error": "Wystąpił błąd podczas migracji oferty. {{errorMsg}}",
+  "overthebox_migration_offers_title": "Wybór usługi"
 }
