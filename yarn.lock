@@ -17944,9 +17944,9 @@ istanbul-lib-source-maps@^4.0.0, istanbul-lib-source-maps@^4.0.1:
     source-map "^0.6.1"
 
 istanbul-lib-source-maps@^5.0.4:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-source-maps/-/istanbul-lib-source-maps-5.0.4.tgz#1947003c72a91b6310efeb92d2a91be8804d92c2"
-  integrity sha512-wHOoEsNJTVltaJp8eVkm8w+GVkVNHT2YDYo53YdzQEL2gWm1hBX5cGFR9hQJtuGLebidVX7et3+dmDZrmclduw==
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/istanbul-lib-source-maps/-/istanbul-lib-source-maps-5.0.5.tgz#2bed84db66687448736dba91954f1080f4441ced"
+  integrity sha512-gKf4eJ8bHmSX/ljiOCpnd8vtmHTwG71uugm0kXYd5aqFCl6z8cj8k7QduXSwU6QOst6LCdSXTlaoc8W4554crQ==
   dependencies:
     "@jridgewell/trace-mapping" "^0.3.23"
     debug "^4.1.1"

@@ -8,10 +8,10 @@ interface ActionButtonOrganizationProps {
   organizationItem: OrganizationItem;
 }
 
-export const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
+const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
   organizationItem,
 }) => {
-  const { t } = useTranslation('organisations');
+  const { t } = useTranslation('organizations');
   const { platformUrn } = usePlatform();
 
   const hrefDeleteOrganization = useGenerateUrl('./delete', 'href', {
@@ -40,3 +40,5 @@ export const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> =
 
   return <ActionMenu items={actionItems} isCompact />;
 };
+
+export default ActionButtonOrganization;
