@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_blocks_block_edit_title": "Editar um volume",
+  "pci_projects_project_storages_blocks_block_edit_submit_label": "Alterar o volume",
+  "pci_projects_project_storages_blocks_block_edit_success_message": "O volume {{ volume }} foi atualizado.",
+  "pci_projects_project_storages_blocks_block_edit_error_put": "Ocorreu um erro ao atualizar o volume {{ volume }}: {{ message }}",
+  "pci_projects_project_storages_blocks_block_edit_error_upsize": "Ocorreu um erro ao alterar a capacidade do volume {{ volume }}: {{ message }}",
+  "pci_projects_project_storages_blocks_block_edit_error_load": "Ocorreu um erro ao carregar o volume: {{ message }}"
+}

@@ -1,4 +1,5 @@
 export * from './action-banner';
+export * from './redirection-guard';
 
 export * from './container';
 export * from './input';
@@ -24,3 +25,5 @@ export * from './filters';
 
 export * from './ManagerButton/ManagerButton';
 export * from './ManagerText/ManagerText';
+
+export * from './pci-maintenance-banner';

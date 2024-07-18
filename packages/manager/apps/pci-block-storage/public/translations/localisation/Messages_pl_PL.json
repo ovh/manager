@@ -1,0 +1,7 @@
+{
+  "pci_project_regions_list_continent_all": "Wszystkie lokalizacje",
+  "pci_project_regions_list_empty": "Żadna z lokalizacji nie jest dostępna",
+  "pci_project_regions_list_add": "Włącz najnowsze lokalizacje każdej strefy w sekcji <a href=\"{{url}}\" class=\"oui-link\">Lokalizacje</a>",
+  "pci_project_regions_list_region": "Lokalizacja",
+  "pci_project_regions_list_quota": "Zwiększ limit"
+}

@@ -30,8 +30,13 @@ export default /* @ngInject */ ($stateProvider) => {
 
       messageContainer: () => VOLUME_BACKUP_ROUTES.CREATE.STATE,
 
-      preselectedVolume: /* @ngInject */ ($transition$) =>
-        $transition$.params().volume,
+      preselectedVolume: /* @ngInject */ ($transition$) => {
+        return $transition$.params().volume;
+      },
+
+      preselectedVolumeId: /* @ngInject */ ($transition$) => {
+        return $transition$.params().volumeId;
+      },
 
       preselectedVolumeOption: /* @ngInject */ ($transition$) =>
         VOLUMES_OPTIONS.find(
@@ -43,18 +48,26 @@ export default /* @ngInject */ ($stateProvider) => {
 
       volumeBackupModel: /* @ngInject */ (
         preselectedVolume,
+        preselectedVolumeId,
         preselectedVolumeOption,
         prefilledBackupName,
         PciProject,
         customerRegions,
+        volumes,
       ) => {
+        let volumeSelected = preselectedVolume;
+        if (preselectedVolumeId) {
+          volumeSelected = volumes?.find(
+            (volume) => volume.id === preselectedVolumeId,
+          );
+        }
         const localZones = PciProject.getLocalZones(customerRegions);
         const isLocalZone = PciProject.checkIsLocalZone(
           localZones,
-          preselectedVolume?.region,
+          volumeSelected?.region,
         );
-        const volume = preselectedVolume
-          ? { ...preselectedVolume, isLocalZone }
+        const volume = volumeSelected
+          ? { ...volumeSelected, isLocalZone }
           : null;
         return {
           name: prefilledBackupName || '',

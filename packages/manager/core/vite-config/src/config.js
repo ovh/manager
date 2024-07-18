@@ -34,7 +34,9 @@ const getBaseConfig = (config) => {
         '@': resolve(join(process.cwd(), 'src')),
       },
       dedupe: [
+        '@ovh-ux/manager-core-api',
         '@ovh-ux/manager-react-shell-client',
+        '@tanstack/react-query',
         'i18next',
         'react',
         'react-dom',

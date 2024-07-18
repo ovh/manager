@@ -1,0 +1,4 @@
+{
+  "common_field_error_min": "Wprowadź wartość większą lub równą {{min}}.",
+  "common_field_error_max": "Wprowadź wartość mniejszą lub równą {{max}}."
+}

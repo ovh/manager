@@ -30,6 +30,8 @@
     "@tanstack/react-table": "^8.11.6",
     "babel-preset-react-app": "^10.0.1",
     "clsx": "^2.1.1",
+    "lodash.isequal": "^4.5.0",
+    "@types/lodash.isequal": "^4.5.0",
     "react": "18.2.0",
     "react-use": "^17.5.0",
     "sass": "1.71.0",
