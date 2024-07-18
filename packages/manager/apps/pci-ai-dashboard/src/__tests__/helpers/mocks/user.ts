@@ -20,4 +20,5 @@ export const mockedUser: user.User = {
   ],
   status: user.UserStatusEnum.OK,
   username: 'username',
+  password: 'password',
 };

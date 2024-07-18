@@ -24,28 +24,28 @@ export const COMMON_PATH = '/pci/projects';
 export default [
   {
     path: '/pci/projects/:projectId/ai/dashboard',
-    ...lazyRouteConfig(() => import('@/pages/root.layout')),
+    ...lazyRouteConfig(() => import('@/pages/Root.layout')),
     children: [
       {
         path: '',
-        ...lazyRouteConfig(() => import('@/pages/dashboard/dashboard.layout')),
+        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.layout')),
         children: [
           {
             path: '',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/home/home.page'),
+              import('@/pages/dashboard/home/Home.page'),
             ),
           },
           {
             path: 'users',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/users/users.page'),
+              import('@/pages/dashboard/users/Users.page'),
             ),
           },
           {
             path: 'tokens',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/tokens/tokens.page'),
+              import('@/pages/dashboard/tokens/Tokens.page'),
             ),
           },
         ],
