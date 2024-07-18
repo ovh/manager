@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.22.1...@ovhcloud/manager-components@1.23.0) (2024-07-18)
+
+### Bug Fixes
+
+- **manager-component:** dicovery banner null project ([0903f63](https://github.com/ovh/manager/commit/0903f639c529274243b10bd8c79a46fa13ada536))
+- **manager-components:** add suspense in step component ([4d5f437](https://github.com/ovh/manager/commit/4d5f43770b4b120f734b83551570b97e459da582))
+- **manager-components:** add US guide in local zone banner ([1a8bba2](https://github.com/ovh/manager/commit/1a8bba29ecedb214ba07edee8087fad6b3af9b68))
+- **manager-components:** getMacroRegion ([eca5bee](https://github.com/ovh/manager/commit/eca5beebffe5f228349f9ca7cc144bfa952519fd))
+- **manager-components:** remove core application dependency ([ff61e56](https://github.com/ovh/manager/commit/ff61e568b7d32d7283723202c330d4cc092d168e))
+- **manager-components:** useCatalogPrice language ([78b9260](https://github.com/ovh/manager/commit/78b9260134d23b3539b0eb992ce2af7e136d4e9e))
+- **pci-block-storage:** fix trad name-space in manager components ([5466dfb](https://github.com/ovh/manager/commit/5466dfbd03ce56f5908c089c60473f2b1d4e6598))
+- **pci-block-storage:** macro regions ([24a6b93](https://github.com/ovh/manager/commit/24a6b935a5eecafb9d18cf0275bd1673961a8b08))
+
+### Features
+
+- **manager-components:** add optional itemKey on Tabs ([c5cc366](https://github.com/ovh/manager/commit/c5cc366206b8ca5cf74a86fce30821efe7b31598))
+- **manager-components:** add options to useCatalogPrice hook ([90a992f](https://github.com/ovh/manager/commit/90a992f7d246c4bd0362dd868dfc4cb4c2d9f975))
+- **manager-components:** add pci free-localzones banner ([5bab4c8](https://github.com/ovh/manager/commit/5bab4c8ded345de77ca89ef9955fd766471c77cd))
+- **manager-components:** add pci-maintenance-banner ([5a761e7](https://github.com/ovh/manager/commit/5a761e77a28c701ed78d8d0230eaca37846af49b))
+- **manager-components:** add trusted zone banner ([69cc8eb](https://github.com/ovh/manager/commit/69cc8ebe4c4c0d515c142317c7f364fb28d2bb74))
+- **manager-components:** stepper & tiles ([393a66f](https://github.com/ovh/manager/commit/393a66f36d86bdcbc3655c08394cad76c4c38525))
+- **manager-components:** stepper => scroll on open ([f1eaea8](https://github.com/ovh/manager/commit/f1eaea873ffccc764ab02604e1c00dffd72a7679))
+- **pci-block-storage:** add onboarding page ([59c8dd3](https://github.com/ovh/manager/commit/59c8dd37616b7db842fb9b81c668e7c77bac091d))
+- **pci-block-storage:** add storage edit page ([53048d5](https://github.com/ovh/manager/commit/53048d5f3d4a92a885ec5c57280ba891bb604982))
+- **pci-block-storage:** init react app ([f268c1f](https://github.com/ovh/manager/commit/f268c1fe7624564563f82fb68c374e146fb1627b))
+
 ## [1.22.1](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.22.0...@ovhcloud/manager-components@1.22.1) (2024-07-15)
 
 ### Reverts

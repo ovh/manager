@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-gateway-app",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "private": true,
   "type": "module",
   "scripts": {
@@ -18,7 +18,7 @@
     "@ovh-ux/manager-core-api": "^0.7.1",
     "@ovh-ux/manager-react-shell-client": "^0.6.1",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
-    "@ovhcloud/manager-components": "^1.22.1",
+    "@ovhcloud/manager-components": "^1.23.0",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-stencil": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.6.1",
+    "@ovh-ux/manager-vite-config": "^0.6.3",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",

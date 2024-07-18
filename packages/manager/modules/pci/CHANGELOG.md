@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.53.0...@ovh-ux/manager-pci@6.54.0) (2024-07-18)
+
+
+### Bug Fixes
+
+* **pci:** add free local zone banner US doc ([1d7868a](https://github.com/ovh/manager/commit/1d7868a2c1e245501aff6ec4ad5bf728502eba48))
+
+
+### Features
+
+* **pci-block-storage:** add create backup action ([b5a364e](https://github.com/ovh/manager/commit/b5a364e0d2c255a94498331037c29188de9dfeea))
+
+
+
+
+
 # [6.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.52.1...@ovh-ux/manager-pci@6.53.0) (2024-07-15)
 
 
