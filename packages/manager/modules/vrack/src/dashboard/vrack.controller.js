@@ -39,6 +39,7 @@ import arrowIcon from '../../assets/icon_vrack-mapper-arrows.svg';
 export default class VrackMoveDialogCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $scope,
     $q,
     $stateParams,
@@ -52,6 +53,7 @@ export default class VrackMoveDialogCtrl {
     CucVrackService,
     atInternet,
   ) {
+    this.$http = $http;
     this.$scope = $scope;
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -720,6 +722,14 @@ export default class VrackMoveDialogCtrl {
                   },
                 ).$promise;
               break;
+            case 'vrackServices':
+              task = this.$http.post(
+                `/vrack/${this.serviceName}/vrackServices/`,
+                {
+                  vrackServices: service.id,
+                },
+              );
+              break;
             case 'ip':
               task = this.OvhApiVrack.Ip()
                 .v6()
@@ -817,6 +827,11 @@ export default class VrackMoveDialogCtrl {
                   serviceName: this.serviceName,
                   legacyVrack: service.id,
                 }).$promise;
+              break;
+            case 'vrackServices':
+              task = this.$http.delete(
+                `/vrack/${this.serviceName}/vrackServices/${service.id}`,
+              );
               break;
             case 'ip':
               task = this.OvhApiVrack.Ip()
@@ -1014,6 +1029,16 @@ export default class VrackMoveDialogCtrl {
           id: service,
           niceName: service,
           trueServiceType: 'legacyVrack',
+        };
+        break;
+      case 'vrackServices':
+        formattedService = {
+          id: service.id,
+          niceName:
+            service.iam?.displayName && service.iam.displayName !== service.id
+              ? `${service.iam?.displayName} (${service.id})`
+              : service.id,
+          trueServiceType: 'vrackServices',
         };
         break;
       case 'ip':

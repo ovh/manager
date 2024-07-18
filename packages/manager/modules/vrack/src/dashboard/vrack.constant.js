@@ -35,6 +35,7 @@ export const FEATURE_NAMES = {
   ip: 'ip',
   ipLoadbalancing: 'ip-load-balancer',
   legacyVrack: 'vrack',
+  vrackServices: 'vrack-services',
   managedBareMetal: 'managed-bare-metal',
   managedBareMetalDatacenter: 'managed-bare-metal',
 };
