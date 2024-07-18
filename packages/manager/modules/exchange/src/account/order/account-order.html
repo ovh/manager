@@ -2,9 +2,10 @@
     <div
         data-wizard
         data-wizard-bread-crumb
-        data-wizard-confirm-button-text="'wizard_pay' | translate"
+        data-wizard-confirm-button-text="ctrl.isOvhtel ? 'wizard_close' : 'wizard_pay' | translate"
+        data-wizard-hide-previous-button="ctrl.isOvhtel"
         data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="addExchangeAccount"
+        data-wizard-on-finish="ctrl.isOvhtel ? resetAction : addExchangeAccount"
         data-wizard-title="'exchange_ACTION_order_accounts_title' | translate"
     >
         <div data-wizard-step data-wizard-step-valid="isValid()">
@@ -198,7 +199,7 @@
                 ></span>
             </div>
 
-            <div data-ng-if="ctrl.url">
+            <div data-ng-if="ctrl.url && !ctrl.isOvhtel">
                 <p data-translate="exchange_ACTION_order_accounts_step3_bc"></p>
                 <p
                     class="font-weight-bold"
@@ -211,6 +212,17 @@
                     class="alert alert-info"
                     role="alert"
                     data-translate="exchange_ACTION_order_accounts_step3_explication"
+                ></div>
+            </div>
+
+            <div data-ng-if="ctrl.url && ctrl.isOvhtel">
+                <p
+                    data-translate="exchange_ACTION_order_accounts_step3_bc_ovhtel"
+                ></p>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="exchange_ACTION_order_accounts_step3_explication_ovhtel"
                 ></div>
             </div>
         </div>

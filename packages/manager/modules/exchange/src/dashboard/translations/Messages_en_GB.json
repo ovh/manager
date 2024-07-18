@@ -1685,5 +1685,7 @@
   "exchange_tab_domain_diagnostic_dkim_activation": "Your DKIM is configured but not enabled. Do you want to enable it?",
   "exchange_tab_domain_diagnostic_dkim_in_progress": "An operation pertaining to your DKIM is currently in progress.",
   "exchange_tab_domain_add_step2_dkim_checkbox": "Enable DKIM (recommended)",
-  "exchange_tab_domain_add_step3_dkim_confirmation": "DKIM configuration"
+  "exchange_tab_domain_add_step3_dkim_confirmation": "DKIM configuration",
+  "exchange_ACTION_order_accounts_step3_bc_ovhtel": "The purchase order has been generated. Your order is being processed.",
+  "exchange_ACTION_order_accounts_step3_explication_ovhtel": "It will take around 10 minutes to set up your account."
 }
