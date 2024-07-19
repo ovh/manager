@@ -22,7 +22,7 @@ export const useRancher = ({
 } = {}) => {
   const { projectId, rancherId } = useParams();
   return useQuery<RancherService, ErrorResponse>({
-    queryKey: ['projectId', projectId, 'rancher', rancherId],
+    queryKey: ['projectId', projectId, 'rancherId', rancherId],
     queryFn: () => getByRancherIdProjectId(projectId, rancherId),
     refetchInterval: refetchInterval ?? false,
   });

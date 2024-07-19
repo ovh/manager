@@ -45,7 +45,7 @@ function RoutingSynchronisation() {
 export default function Layout() {
   const { isLoading, data, isError, error } = useProject();
 
-  if (isError && error) {
+  if (isError || error) {
     return <ErrorBanner error={error.response} />;
   }
 
