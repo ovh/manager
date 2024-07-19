@@ -1,35 +1,34 @@
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { ActionMenu } from '@ovhcloud/manager-components';
+import { TWorkflow } from '@/api/hooks/workflows';
 
 type ActionsProps = {
-  backupId: string;
-  isExecutionsAvailable: boolean;
+  workflow: TWorkflow;
 };
-
-export default function Actions({
-  backupId,
-  isExecutionsAvailable,
-}: Readonly<ActionsProps>) {
+export default function Actions({ workflow }: Readonly<ActionsProps>) {
   const { t } = useTranslation('listing');
+  const hrefExecutions = useHref(`./${workflow.id}/executions`);
+  const hrefDelete = useHref(`./delete?workflowId=${workflow.id}`);
 
-  const hrefExecutions = useHref(`./${backupId}/executions`);
-  const hrefDelete = useHref(`./delete?workflowId=${backupId}`);
-
-  const executionsItem = {
-    id: 0,
-    href: hrefExecutions,
-    label: t('pci_workflow_view_executions'),
-  };
-
-  const items = [
-    isExecutionsAvailable ? executionsItem : undefined,
+  let items = [
     {
       id: 1,
       href: hrefDelete,
       label: t('pci_workflow_delete'),
     },
-  ].filter((item) => item);
+  ];
+
+  if (Array.isArray(workflow.executions) && workflow.executions.length > 0) {
+    items = [
+      {
+        id: 0,
+        href: hrefExecutions,
+        label: t('pci_workflow_view_executions'),
+      },
+      ...items,
+    ];
+  }
 
   return <ActionMenu items={items} isCompact />;
 }
