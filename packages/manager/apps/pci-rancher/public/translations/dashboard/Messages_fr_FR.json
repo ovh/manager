@@ -47,5 +47,7 @@
   "updateOfferModaleTitle": "Changer d'offre",
   "updateOfferModalDescription": "Vous êtes sur le point de modifier votre offre actuelle pour l'offre {{availableServicePlan}}. Vous serez facturé {{planPricing}} HT / heure par vCPUs orchestrés. Cette opération prendra effet immédiatement et n'a pas d'impact sur vos « downstream clusters » ni les données de votre Rancher managé. Veuillez confirmer si vous souhaitez continuer.",
   "updateOfferPending": "Votre changement d’offre a bien été pris en compte. Merci de patienter, cela peut prendre quelques minutes",
-  "updateOfferError": "Une erreur s'est produite : {{errorMessage}}"
+  "updateOfferError": "Une erreur s'est produite : {{errorMessage}}",
+  "savingsPlanMessage": "Bénéficiez de tarifs mensuels avantageux grâce aux Savings Plans, tout en gardant la flexibilité de la tarification horaire.",
+  "savingsPlanCTA": "Configurez vos Savings Plans"
 }

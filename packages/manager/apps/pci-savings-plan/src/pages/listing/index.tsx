@@ -1,148 +1,186 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { Outlet, useHref, useNavigate, useParams } from 'react-router-dom';
+import { MutationStatus, useMutationState } from '@tanstack/react-query';
 
-import { OsdsButton, OsdsLink } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-
 import {
-  Datagrid,
-  DataGridTextCell,
-  useDatagridSearchParams,
-} from '@ovhcloud/manager-components';
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_MESSAGE_TYPE,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 
-import { getListingIcebergV2 } from '@/data/api/pci-savings-plan';
+import { Title } from '@ovh-ux/manager-react-components';
 
-import Loading from '@/components/Loading/Loading';
-import ErrorBanner from '@/components/Error/Error';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import TableContainer from '@/components/Table/TableContainer';
+import {
+  getMutationKeyCreateSavingsPlan,
+  useSavingsPlan,
+  useServiceId,
+} from '@/hooks/useSavingsPlan';
+import { SavingsPlanService } from '@/types';
+import { formatDate } from '../../utils/formatter/date';
 
-import appConfig from '@/pci-savings-plan.config';
-import { urls } from '@/routes/routes.constant';
+export const formatDateString = (dateString: string, locale?: string) => {
+  const date = new Date(dateString);
+  return date.toString() !== 'Invalid Date'
+    ? date.toLocaleString(locale, {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+    : '-';
+};
 
-export default function Listing() {
+const Banner = ({ message }: { message: string }) => {
+  const [showBanner, setShowBanner] = useState(true);
+
+  useEffect(() => {
+    if (message) {
+      setShowBanner(true);
+    }
+  }, [message]);
+  return (
+    showBanner && (
+      <OsdsMessage
+        type={ODS_MESSAGE_TYPE.success}
+        className="my-4"
+        removable
+        onOdsRemoveClick={() => setShowBanner(false)}
+      >
+        <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="inline-block">
+          {message}
+        </OsdsText>
+      </OsdsMessage>
+    )
+  );
+};
+
+export interface ListingProps {
+  data: SavingsPlanService[];
+  refetchSavingsPlans: () => void;
+}
+
+const ListingTablePage: React.FC<ListingProps> = ({
+  data,
+  refetchSavingsPlans,
+}) => {
   const { t } = useTranslation('listing');
-  const myConfig = appConfig;
-  const serviceKey = myConfig.listing?.datagrid?.serviceKey;
-  const [columns, setColumns] = useState([]);
-  const [flattenData, setFlattenData] = useState([]);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const {
-    pagination,
-    setPagination,
-    sorting,
-    setSorting,
-  } = useDatagridSearchParams();
-  const { pageSize } = pagination;
-  const { projectId } = useParams();
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isError,
-    isLoading,
-    error,
-    status,
-  }: any = useInfiniteQuery({
-    initialPageParam: null,
-    queryKey: ['project', projectId, 'savings-plan'],
-    queryFn: ({ pageParam }) =>
-      getListingIcebergV2({ projectId, pageSize, cursor: pageParam }),
-    staleTime: Infinity,
-    retry: false,
-    getNextPageParam: (lastPage) => lastPage.cursorNext as any,
+
+  const hrefDashboard = useHref('');
+  const serviceId = useServiceId();
+  const mutationSPChangePeriod = useMutationState<{
+    status: MutationStatus;
+    variables: {
+      periodEndAction: 'REACTIVATE' | 'ACTIVATE';
+    };
+    data: SavingsPlanService;
+  }>({
+    filters: { mutationKey: ['savings-plan', serviceId, 'change-period'] },
   });
 
-  const navigateToDashboard = (label: string) => {
-    const path =
-      location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
-    navigate(`${path}${label}`);
-  };
+  const mutationSPEditName = useMutationState<{
+    status: MutationStatus;
+  }>({
+    filters: { mutationKey: ['savings-plan', serviceId, 'edit-name'] },
+  });
+  const lastMutationChangePeriod =
+    mutationSPChangePeriod[mutationSPChangePeriod.length - 1];
 
-  useEffect(() => {
-    if (status === 'success' && data?.pages[0].data.length === 0) {
-      navigate(urls.onboarding);
-    } else if (status === 'success' && data?.pages.length > 0 && !flattenData) {
-      const tmp = Object.keys(data?.pages[0].data[0])
-        .filter((element) => element !== 'iam')
-        .map((element) => ({
-          id: element,
-          header: element,
-          label: element,
-          accessorKey: element,
-          cell: (props: any) => {
-            const label = props[element] as string;
-            if (typeof label === 'string' || typeof label === 'number') {
-              if (serviceKey === element)
-                return (
-                  <DataGridTextCell>
-                    <OsdsLink
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                      onClick={() => navigateToDashboard(label)}
-                    >
-                      {label}
-                    </OsdsLink>
-                  </DataGridTextCell>
-                );
-              return <DataGridTextCell>{label}</DataGridTextCell>;
-            }
-            return <div>-</div>;
-          },
-        }));
-      setColumns(tmp);
-    }
-  }, [data]);
+  const mutationSpCreate = useMutationState<{
+    status: MutationStatus;
+    error?: {
+      code: string;
+    };
+    data: SavingsPlanService;
+  }>({
+    filters: { mutationKey: getMutationKeyCreateSavingsPlan(serviceId) },
+  });
 
-  useEffect(() => {
-    const flatten = data?.pages.map((page: any) => page.data).flat();
-    setFlattenData(flatten);
-  }, [data]);
-
-  if (isError) {
-    return <ErrorBanner error={error.response} />;
-  }
-
-  if (isLoading && !flattenData) {
-    return <Loading />;
-  }
+  const renewBannerMessage = t(
+    lastMutationChangePeriod?.variables.periodEndAction === 'REACTIVATE'
+      ? 'banner_renew_activate'
+      : 'banner_renew_deactivate',
+    {
+      planName: lastMutationChangePeriod?.data?.displayName,
+      endDate: lastMutationChangePeriod?.data?.endDate,
+    },
+  );
 
   return (
     <>
+      <Title>{t('title')}</Title>
       <div className="pt-5 pb-10">
-        <Breadcrumb />
-        <h2>Savings Plan</h2>
-        <div>{t('title')}</div>
-        <React.Suspense>
-          {columns && flattenData && (
-            <Datagrid
-              columns={columns}
-              items={flattenData || []}
-              totalItems={0}
-              pagination={pagination}
-              onPaginationChange={setPagination}
-              sorting={sorting}
-              onSortChange={setSorting}
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.stroked}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          inline
+          href={`${hrefDashboard}/new`}
+        >
+          <span slot="start" className="flex justify-center items-center">
+            <OsdsIcon
+              name={ODS_ICON_NAME.ADD}
+              size={ODS_ICON_SIZE.xxs}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              className="mr-4"
             />
-          )}
-        </React.Suspense>
-        <div className="grid justify-items-center my-5">
-          {hasNextPage && (
-            <div>
-              <OsdsButton
-                color={ODS_THEME_COLOR_INTENT.info}
-                variant={ODS_BUTTON_VARIANT.stroked}
-                onClick={fetchNextPage}
-              >
-                Load more
-              </OsdsButton>
-            </div>
-          )}
-        </div>
+            <span>{t('createSavingsPlan')}</span>
+          </span>
+        </OsdsButton>
       </div>
+      {mutationSPChangePeriod.length > 0 && (
+        <Banner message={renewBannerMessage} />
+      )}
+      {mutationSpCreate.length > 0 && !mutationSpCreate[0].error?.code && (
+        <Banner
+          message={t('banner_create_sp', {
+            startDate: mutationSpCreate[0].data.startDate,
+          })}
+        />
+      )}
+      {mutationSPEditName.length > 0 && (
+        <Banner message={t('banner_edit_name')} />
+      )}
+      <TableContainer data={data} refetchSavingsPlans={refetchSavingsPlans} />
     </>
   );
-}
+};
+
+const Listing: React.FC<ListingProps> = ({ refetchSavingsPlans }) => {
+  const { projectId } = useParams();
+  const navigate = useNavigate();
+  const { data: services, isLoading, isPending } = useSavingsPlan();
+
+  useEffect(() => {
+    if (!isLoading && !isPending && services?.length === 0) {
+      navigate(`/pci/projects/${projectId}/savings-plan/onboarding`);
+    }
+  }, [isLoading, isPending, services]);
+
+  return (
+    <>
+      <Outlet />
+      {services?.length ? (
+        <ListingTablePage
+          data={services}
+          refetchSavingsPlans={refetchSavingsPlans}
+        />
+      ) : (
+        <></>
+      )}
+    </>
+  );
+};
+
+export default Listing;

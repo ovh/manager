@@ -62,6 +62,10 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
   })),
 }));
 
+jest.mock('@ovh-ux/manager-pci-common', () => ({
+  usePciUrl: jest.fn(() => '/url'),
+}));
+
 const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
   waitFor(() =>
     render(
