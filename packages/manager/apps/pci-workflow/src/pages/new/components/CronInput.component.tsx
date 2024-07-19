@@ -74,6 +74,7 @@ export function CronInput({ scheduling, onInput }: Readonly<CronInputProps>) {
             </OsdsText>
             <OsdsInput
               value={state[field]}
+              data-testid={`cronInput-input_${field}`}
               inline
               color={
                 ODS_THEME_COLOR_INTENT[errors[field] ? 'error' : 'primary']
