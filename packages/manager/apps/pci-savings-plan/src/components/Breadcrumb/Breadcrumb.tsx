@@ -3,7 +3,7 @@ import { Params, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import usePciProject from '@/hooks/usePciProject';
+import { useProject } from '@ovhcloud/manager-components';
 
 export type BreadcrumbHandleParams = {
   data: unknown;
@@ -16,8 +16,8 @@ interface BreadcrumbProps {
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ items = [] }) => {
   const { projectId } = useParams();
-  const { t } = useTranslation('pci-savings-plan/listing');
-  const { data: project } = usePciProject();
+  const { t } = useTranslation('listing');
+  const { data: project } = useProject();
 
   const navigation = useNavigation();
   const [urlProject, setUrlProject] = useState('');

@@ -1468,7 +1468,6 @@
   version "7.24.1"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-pure-annotations/-/plugin-transform-react-pure-annotations-7.24.1.tgz#c86bce22a53956331210d268e49a0ff06e392470"
   integrity sha512-+pWEAaDJvSm9aFvJNpLiM2+ktl2Sn2U5DdyiWdZBxmLc6+xGt88dvFqsHiAiDS+8WqUwbDfkKz9jRxK3M0k+kA==
-  dependencies:
     "@babel/helper-annotate-as-pure" "^7.22.5"
     "@babel/helper-plugin-utils" "^7.24.0"
 
@@ -5071,10 +5070,19 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.2.1.tgz#c5cc5ec6dede4ddf7b8e45a52bbc3eeab5bd6812"
   integrity sha512-gJspFlE4UZpiYcwKxuvOSMuQndPMU1TPOlTnyzsaswOu5nooF5lCHmN2+gTq5Co0mkh4P5y94W/KORBMp9Vnzw==
 
-"@ovhcloud/ods-common-core@17.2.2", "@ovhcloud/ods-common-core@^17.1.0", "@ovhcloud/ods-common-core@^17.2.2":
+"@ovhcloud/ods-common-core@17.2.2", "@ovhcloud/ods-common-core@^17.2.2":
   version "17.2.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.2.2.tgz#9c4c620aa70e0b95a9747debf9f5a83d502987a1"
   integrity sha512-tGux+pchnUqrtviBOb098Re+z2B+/594fU7UC+lGVlBGbpfQZ5YYPZAkSKyjO2aPinxC9sqn+b4xqwhrh3yZ3w==
+
+"@ovhcloud/ods-common-stencil@17.2.1":
+  version "17.2.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-17.2.1.tgz#eaaf4f2f2da5cf9039af476dc8f58611de51dc31"
+  integrity sha512-0kkK0K2L6UaA5sCFiNdtepoOXgEfMHdcMmKdb/3xfcTI7gY21cGobIrQWrlnANABXxmNrqdmijJOfmnHSkdTQQ==
+  dependencies:
+    "@ovhcloud/ods-common-core" "17.2.1"
+    "@ovhcloud/ods-theme-blue-jeans" "17.2.1"
+    "@stencil/core" "4.12.0"
 
 "@ovhcloud/ods-common-stencil@17.2.1":
   version "17.2.1"
@@ -5099,6 +5107,11 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.2.1.tgz#681c355499c35029536a56973dcf3ab634cb94d9"
   integrity sha512-yzAmWzUJlud0xBd6qL9O3+jJvYpaduZ1N22wZsqSBstpTZH7U5tFxcckfweggc6tfIcL88FTZil8LQvx0hb8DA==
 
+"@ovhcloud/ods-common-theming@17.2.1":
+  version "17.2.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.2.1.tgz#681c355499c35029536a56973dcf3ab634cb94d9"
+  integrity sha512-yzAmWzUJlud0xBd6qL9O3+jJvYpaduZ1N22wZsqSBstpTZH7U5tFxcckfweggc6tfIcL88FTZil8LQvx0hb8DA==
+
 "@ovhcloud/ods-common-theming@17.2.2", "@ovhcloud/ods-common-theming@^17.2.2":
   version "17.2.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.2.2.tgz#376b54531aa10d5019d489f318f97ca83f46aac0"
@@ -5113,7 +5126,7 @@
     "@ovhcloud/ods-common-stencil" "17.2.1"
     "@ovhcloud/ods-common-theming" "17.2.1"
 
-"@ovhcloud/ods-components@17.2.2", "@ovhcloud/ods-components@^17.1.0", "@ovhcloud/ods-components@^17.2.2":
+"@ovhcloud/ods-components@17.2.2", "@ovhcloud/ods-components@^17.2.2":
   version "17.2.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-17.2.2.tgz#85c8647c10d0427213525dbec7873cd9beb784ed"
   integrity sha512-+YzRON5IUSIKLmTGtSZFkVlSzUxn9ubce29j3ikF/KRLFfOwhIGOdHaLs4W78DGkRMRmbTL2bHiC+owAHKNObA==
@@ -5129,7 +5142,7 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.1"
 
-"@ovhcloud/ods-theme-blue-jeans@17.2.2", "@ovhcloud/ods-theme-blue-jeans@^17.1.0", "@ovhcloud/ods-theme-blue-jeans@^17.2.2":
+"@ovhcloud/ods-theme-blue-jeans@17.2.2", "@ovhcloud/ods-theme-blue-jeans@^17.2.2":
   version "17.2.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.2.tgz#12029b0e1c129f47a98ffd4f2002d7968182922a"
   integrity sha512-0Fr6ZJ10btgkGAXJDun5tftlV1gYFevB7piQiYT4kFjfVXmxmpSw9A1nusPHiZfmV+Dnzv3/+SVxpYK/uccYXw==
@@ -11656,7 +11669,6 @@ citty@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/citty/-/citty-0.1.6.tgz#0f7904da1ed4625e1a9ea7e0fa780981aab7c5e4"
   integrity sha512-tskPPKEs8D2KPafUypv2gxwJP8h/OaJmC82QQGGDQcHvXX43xF2VDACcJVmZ0EuSxkpO9Kc4MlrA3q0+FG58AQ==
-  dependencies:
     consola "^3.2.3"
 
 cjs-module-lexer@^0.6.0:
@@ -17465,18 +17477,10 @@ ip-address@^5.9.2:
     lodash "^4.17.15"
     sprintf-js "1.1.2"
 
-ip-address@^9.0.5:
-  version "9.0.5"
-  resolved "https://registry.yarnpkg.com/ip-address/-/ip-address-9.0.5.tgz#117a960819b08780c3bd1f14ef3c1cc1d3f3ea5a"
-  integrity sha512-zHtQzGojZXTwZTHQqra+ETKd4Sn3vgi7uBmlPoXVWZqYvuKmtI0l/VZTjqGmJY9x88GGOaZ9+G9ES8hC4T4X8g==
-  dependencies:
-    jsbn "1.1.0"
-    sprintf-js "^1.1.3"
-
 ip@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/ip/-/ip-2.0.1.tgz#e8f3595d33a3ea66490204234b77636965307105"
-  integrity sha512-lJUL9imLTNi1ZfXT+DU6rBBdbiKGBuay9B6xGSPVjUeQwaH1RIGqef8RZkUtHioLmSNpPR5M4HVKJGm1j8FWVQ==
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ip/-/ip-2.0.0.tgz#4cf4ab182fee2314c75ede1276f8c80b479936da"
+  integrity sha512-WKa+XuLG1A1R0UWhl2+1XQSi+fZWMsYKffMZTTYsiZaUD8k2yDAj5atimTUD2TZkyCkNEeYE5NhFZmupOGtjYQ==
 
 ipaddr.js@1.9.1, ipaddr.js@^1.6.0, ipaddr.js@^1.9.1:
   version "1.9.1"
