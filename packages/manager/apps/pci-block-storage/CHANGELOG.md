@@ -1,0 +1,58 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.1.0...@ovh-ux/manager-pci-block-storage-app@0.1.1) (2024-07-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+# [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.0.0...@ovh-ux/manager-pci-block-storage-app@0.1.0) (2024-07-18)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** add margin between in attach modal ([62f8248](https://github.com/ovh/manager/commit/62f824860a413391f2cf4c2e563417856b587341))
+* **pci-block-storage:** add missing region translations ([6b6a63f](https://github.com/ovh/manager/commit/6b6a63f7c3f88a1a9729840f0797e81ff05fa826))
+* **pci-block-storage:** add suspense around outlet ([092b1c7](https://github.com/ovh/manager/commit/092b1c7e41eb9109a5ef2c88ccde10255bdd2a02))
+* **pci-block-storage:** attach/detach redirection ([02b23f2](https://github.com/ovh/manager/commit/02b23f2306fce7654ee0df9a6f14c4bfd748fc8e))
+* **pci-block-storage:** avoid persistant banners with volume creation ([5108413](https://github.com/ovh/manager/commit/5108413fecb69f58fb01a342dff470b357d4a974))
+* **pci-block-storage:** backup creation link ([d2c6368](https://github.com/ovh/manager/commit/d2c6368e885ba1339d12c69acf3821091a899653))
+* **pci-block-storage:** capacity error message ([46c620d](https://github.com/ovh/manager/commit/46c620d54b3e00a8c9501063a6009ac27e9af0dd))
+* **pci-block-storage:** disable creation for discovery projects ([4164529](https://github.com/ovh/manager/commit/416452915b266fc58c8ca1bd797c28b3c01c9320))
+* **pci-block-storage:** display errors on creation page ([1256cde](https://github.com/ovh/manager/commit/1256cde998cf63e1a71364ee1472a9905f9ea5e7))
+* **pci-block-storage:** edit volume ([3667fba](https://github.com/ovh/manager/commit/3667fba06300db714c300fef61edf76fea1e2342))
+* **pci-block-storage:** edition estimated price ([0bfda79](https://github.com/ovh/manager/commit/0bfda79c6edd01acf09f5a14ee1789ef830d86ae))
+* **pci-block-storage:** empty name error ([38a7b23](https://github.com/ovh/manager/commit/38a7b23827e5aedb2f469533db418f816085738e))
+* **pci-block-storage:** fix trad name-space in manager components ([5466dfb](https://github.com/ovh/manager/commit/5466dfbd03ce56f5908c089c60473f2b1d4e6598))
+* **pci-block-storage:** listing redirection spinner ([fcccfa9](https://github.com/ovh/manager/commit/fcccfa9d14ba66ba51e18e6826333dd7602af3a0))
+* **pci-block-storage:** move discovery banner below the title ([031c2ed](https://github.com/ovh/manager/commit/031c2ed1f402f1e76f01342fafe9d190db09222a))
+* **pci-block-storage:** onboarding breadcrumb ([361a1d9](https://github.com/ovh/manager/commit/361a1d9bad13e7066635a7daee2cd6972aa61099))
+* **pci-block-storage:** rebase on master ([de745a7](https://github.com/ovh/manager/commit/de745a7985ede967b19ff83891eb0e683a99e114))
+* **pci-block-storage:** redirections ([db401c3](https://github.com/ovh/manager/commit/db401c3b7d42d95233f4c1742b1a60b955741228))
+* **pci-block-storage:** sorting correctly in datagrid ([8bc6ab4](https://github.com/ovh/manager/commit/8bc6ab4f47ba31f5d2a26e0780731a96a08e69f0))
+* **pci-block-storage:** use full width in mobile mode ([28745ec](https://github.com/ovh/manager/commit/28745ecc0c280e7bdbf88449c7247a8c5738c4f7))
+* **pci-block-storage:** volume name edit ([ab61b28](https://github.com/ovh/manager/commit/ab61b28d207b381b70ed3e077997d32d89aa88eb))
+* **pci-block-storage:** volume name edit ([ea3097a](https://github.com/ovh/manager/commit/ea3097a750c2e34dfefa9c9c02f7c369166ad1db))
+* **pci-block-storage:** volume status ([2d142ee](https://github.com/ovh/manager/commit/2d142ee61c339adedc6000ecfde019ebbdd4d52c))
+* **pci-block-storage:** volume type price ([7bfb903](https://github.com/ovh/manager/commit/7bfb903ae51857448b5936571e93cf2abd71c79e))
+
+
+### Features
+
+* **pci-block-storage:** add announcement banner ([511ad0f](https://github.com/ovh/manager/commit/511ad0f2a7a911d45dddc95990742450f4bed029))
+* **pci-block-storage:** add create backup action ([b5a364e](https://github.com/ovh/manager/commit/b5a364e0d2c255a94498331037c29188de9dfeea))
+* **pci-block-storage:** add listing page ([b5b14f5](https://github.com/ovh/manager/commit/b5b14f5919b38ec09ef0c132f16613350be103b3))
+* **pci-block-storage:** add maintenance banner ([82a90a1](https://github.com/ovh/manager/commit/82a90a1644a6eec888c3e45df5176fa68f83f284))
+* **pci-block-storage:** add onboarding page ([59c8dd3](https://github.com/ovh/manager/commit/59c8dd37616b7db842fb9b81c668e7c77bac091d))
+* **pci-block-storage:** add rules for eslint to avoid some braces ([45b5e60](https://github.com/ovh/manager/commit/45b5e60c4c2366904d50f0afad262f7354917721))
+* **pci-block-storage:** add storage edit page ([53048d5](https://github.com/ovh/manager/commit/53048d5f3d4a92a885ec5c57280ba891bb604982))
+* **pci-block-storage:** attach/detach instance ([a7218a3](https://github.com/ovh/manager/commit/a7218a3139e26fa1e743b397c38326bbe26839ba))
+* **pci-block-storage:** delete volume ([39ae047](https://github.com/ovh/manager/commit/39ae047e80663e7bc03c6fb054b32c3e0cc0dae0))
+* **pci-block-storage:** init react app ([f268c1f](https://github.com/ovh/manager/commit/f268c1fe7624564563f82fb68c374e146fb1627b))
+* **pci-block-storage:** use the menu action from the manager component ([a1cb71e](https://github.com/ovh/manager/commit/a1cb71e6687df1a0d517347d63f2347452ccd00c))
+* **pci-block-storage:** volume creation ([267e9a3](https://github.com/ovh/manager/commit/267e9a34980eb0f2989326f2a466775289682b27))
