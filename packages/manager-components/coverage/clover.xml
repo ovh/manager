@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1718709139428" clover="3.2.0">
+  <project timestamp="1718709139429" name="All files">
+    <metrics statements="242" coveredstatements="133" conditionals="245" coveredconditionals="119" methods="116" coveredmethods="55" elements="603" coveredelements="307" complexity="0" loc="242" ncloc="242" packages="24" files="28" classes="28"/>
+    <package name="action-banner">
+      <metrics statements="1" coveredstatements="1" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="action-banner.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/action-banner/action-banner.component.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="26" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="action-banner.pci">
+      <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+      <file name="pci-announcement-banner.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/action-banner/pci/pci-announcement-banner.component.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+      </file>
+      <file name="pci-discovery-banner.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/action-banner/pci/pci-discovery-banner.component.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="container.step">
+      <metrics statements="4" coveredstatements="0" conditionals="25" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="Step.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/container/step/Step.component.tsx">
+        <metrics statements="4" coveredstatements="0" conditionals="25" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="container.tabs">
+      <metrics statements="21" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="15" coveredmethods="0"/>
+      <file name="Tabs.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/container/tabs/Tabs.component.tsx">
+        <metrics statements="21" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="15" coveredmethods="0"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="28" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="29" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="66" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+        <line num="119" count="0" type="stmt"/>
+        <line num="120" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="content.headers">
+      <metrics statements="2" coveredstatements="2" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+      <file name="headers.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/content/headers/headers.component.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
+      </file>
+    </package>
+    <package name="content.price">
+      <metrics statements="17" coveredstatements="16" conditionals="23" coveredconditionals="22" methods="3" coveredmethods="3"/>
+      <file name="price.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/content/price/price.component.tsx">
+        <metrics statements="17" coveredstatements="16" conditionals="23" coveredconditionals="22" methods="3" coveredmethods="3"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="40" count="9" type="stmt"/>
+        <line num="41" count="9" type="stmt"/>
+        <line num="42" count="9" type="stmt"/>
+        <line num="43" count="9" type="stmt"/>
+        <line num="57" count="9" type="stmt"/>
+        <line num="59" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="62" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="66" count="9" type="stmt"/>
+        <line num="71" count="9" type="stmt"/>
+        <line num="77" count="9" type="cond" truecount="4" falsecount="0"/>
+        <line num="80" count="9" type="stmt"/>
+        <line num="153" count="34" type="stmt"/>
+        <line num="154" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="158" count="9" type="stmt"/>
+      </file>
+    </package>
+    <package name="datagrid">
+      <metrics statements="21" coveredstatements="15" conditionals="36" coveredconditionals="25" methods="11" coveredmethods="9"/>
+      <file name="datagrid.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/datagrid/datagrid.component.tsx">
+        <metrics statements="20" coveredstatements="14" conditionals="36" coveredconditionals="25" methods="10" coveredmethods="8"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="76" count="10" type="stmt"/>
+        <line num="77" count="10" type="cond" truecount="1" falsecount="1"/>
+        <line num="81" count="10" type="stmt"/>
+        <line num="83" count="17" type="stmt"/>
+        <line num="85" count="3" type="stmt"/>
+        <line num="103" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="104" count="4" type="stmt"/>
+        <line num="105" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="106" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="113" count="10" type="stmt"/>
+        <line num="119" count="10" type="stmt"/>
+        <line num="121" count="17" type="stmt"/>
+        <line num="180" count="3" type="stmt"/>
+        <line num="185" count="3" type="stmt"/>
+        <line num="220" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="221" count="0" type="stmt"/>
+        <line num="229" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="230" count="0" type="stmt"/>
+      </file>
+      <file name="text-cell.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/datagrid/text-cell.component.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="11" count="8" type="stmt"/>
+      </file>
+    </package>
+    <package name="filters">
+      <metrics statements="23" coveredstatements="16" conditionals="10" coveredconditionals="4" methods="14" coveredmethods="9"/>
+      <file name="filter-add.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/filters/filter-add.component.tsx">
+        <metrics statements="17" coveredstatements="10" conditionals="8" coveredconditionals="3" methods="10" coveredmethods="5"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="34" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="76" count="2" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="98" count="10" type="stmt"/>
+        <line num="120" count="0" type="stmt"/>
+        <line num="122" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="123" count="0" type="stmt"/>
+      </file>
+      <file name="filter-list.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/filters/filter-list.component.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="4"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="guides-header">
+      <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="3" methods="5" coveredmethods="5"/>
+      <file name="guides-header-item.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/guides-header/guides-header-item.component.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <line num="35" count="10" type="stmt"/>
+        <line num="44" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="45" count="2" type="stmt"/>
+      </file>
+      <file name="guides-header.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/guides-header/guides-header.component.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="37" count="5" type="stmt"/>
+        <line num="60" count="10" type="stmt"/>
+        <line num="66" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="67" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="guides-header.pci">
+      <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="pci-guides-header.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/guides-header/pci/pci-guides-header.component.tsx">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="input.tiles">
+      <metrics statements="22" coveredstatements="0" conditionals="20" coveredconditionals="0" methods="11" coveredmethods="0"/>
+      <file name="TilesInput.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/input/tiles/TilesInput.component.tsx">
+        <metrics statements="22" coveredstatements="0" conditionals="20" coveredconditionals="0" methods="11" coveredmethods="0"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="87" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="95" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="input.tiles.components">
+      <metrics statements="41" coveredstatements="0" conditionals="34" coveredconditionals="0" methods="22" coveredmethods="0"/>
+      <file name="SimpleTilesInput.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/input/tiles/components/SimpleTilesInput.component.tsx">
+        <metrics statements="41" coveredstatements="0" conditionals="34" coveredconditionals="0" methods="22" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="99" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="111" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="116" count="0" type="stmt"/>
+        <line num="117" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="118" count="0" type="stmt"/>
+        <line num="127" count="0" type="stmt"/>
+        <line num="128" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="134" count="0" type="stmt"/>
+        <line num="135" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="136" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="141" count="0" type="stmt"/>
+        <line num="142" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="147" count="0" type="stmt"/>
+        <line num="151" count="0" type="stmt"/>
+        <line num="156" count="0" type="stmt"/>
+        <line num="160" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="177" count="0" type="stmt"/>
+        <line num="180" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="navigation.card">
+      <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+      <file name="card.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/navigation/card/card.component.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <line num="46" count="4" type="stmt"/>
+        <line num="57" count="8" type="stmt"/>
+        <line num="58" count="8" type="stmt"/>
+        <line num="60" count="8" type="stmt"/>
+        <line num="95" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="navigation.menus.action">
+      <metrics statements="15" coveredstatements="15" conditionals="22" coveredconditionals="22" methods="5" coveredmethods="5"/>
+      <file name="action.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/navigation/menus/action/action.component.tsx">
+        <metrics statements="15" coveredstatements="15" conditionals="22" coveredconditionals="22" methods="5" coveredmethods="5"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="55" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="56" count="5" type="stmt"/>
+        <line num="59" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="62" count="5" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="72" count="10" type="stmt"/>
+        <line num="79" count="10" type="stmt"/>
+        <line num="107" count="2" type="stmt"/>
+        <line num="113" count="5" type="stmt"/>
+        <line num="114" count="5" type="stmt"/>
+        <line num="115" count="5" type="stmt"/>
+        <line num="117" count="5" type="stmt"/>
+        <line num="127" count="1" type="stmt"/>
+        <line num="136" count="10" type="stmt"/>
+      </file>
+    </package>
+    <package name="navigation.menus.guide">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="guide.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/navigation/menus/guide/guide.component.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="60" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="notifications">
+      <metrics statements="9" coveredstatements="8" conditionals="5" coveredconditionals="4" methods="3" coveredmethods="3"/>
+      <file name="notifications.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/notifications/notifications.component.tsx">
+        <metrics statements="9" coveredstatements="8" conditionals="5" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="24" count="6" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
+        <line num="27" count="6" type="stmt"/>
+        <line num="28" count="4" type="cond" truecount="3" falsecount="1"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="32" count="6" type="stmt"/>
+        <line num="35" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="table">
+      <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+      <file name="table.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/table/table.component.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="templates.dashboard">
+      <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+      <file name="dashboard.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/templates/dashboard/dashboard.component.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="templates.error">
+      <metrics statements="3" coveredstatements="3" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+      <file name="error.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/templates/error/error.component.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="templates.layout">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="layout.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/templates/layout/layout.component.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="templates.onboarding">
+      <metrics statements="2" coveredstatements="2" conditionals="9" coveredconditionals="7" methods="1" coveredmethods="1"/>
+      <file name="onboarding.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/templates/onboarding/onboarding.component.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="9" coveredconditionals="7" methods="1" coveredmethods="1"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="typography.description">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="description.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/typography/description/description.component.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="typography.links">
+      <metrics statements="12" coveredstatements="12" conditionals="11" coveredconditionals="10" methods="1" coveredmethods="1"/>
+      <file name="links.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/typography/links/links.component.tsx">
+        <metrics statements="12" coveredstatements="12" conditionals="11" coveredconditionals="10" methods="1" coveredmethods="1"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="38" count="16" type="stmt"/>
+        <line num="40" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="43" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="5" type="stmt"/>
+        <line num="45" count="5" type="stmt"/>
+        <line num="46" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="47" count="9" type="stmt"/>
+        <line num="48" count="9" type="stmt"/>
+        <line num="51" count="16" type="stmt"/>
+      </file>
+    </package>
+    <package name="typography.title">
+      <metrics statements="6" coveredstatements="6" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <file name="title.component.tsx" path="/home/qpavy/Documents/workspace/manager/packages/manager-components/src/components/typography/title/title.component.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="12" count="4" type="cond" truecount="0" falsecount="1"/>
+        <line num="13" count="8" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="33" count="4" type="stmt"/>
+        <line num="34" count="4" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

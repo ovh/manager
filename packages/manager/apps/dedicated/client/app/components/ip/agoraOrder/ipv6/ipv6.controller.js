@@ -4,7 +4,9 @@ import {
   ALERT_ID,
   DASHBOARD_STATE_NAME,
   ADDITIONAL_IP,
+  IP_TYPE_TITLE
 } from '../ip-ip-agoraOrder.constant';
+
 import {
   FLAGS,
   EMPTY_CHOICE,
@@ -40,6 +42,7 @@ export default class AgoraIpV6OrderController {
     this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
     this.loading = {};
     this.ADDITIONAL_IP = ADDITIONAL_IP;
+    this.type = IP_TYPE_TITLE.IPv6;
   }
 
   $onInit() {
