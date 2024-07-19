@@ -8,7 +8,7 @@ import { Routes } from './routes/routes';
 
 odsSetup();
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 300_000,
