@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_public_gateway_delete": "Delete Gateway",
-  "pci_projects_project_public_gateway_delete_confirmation": "Are you sure you want to delete the {{name}} Gateway?",
-  "pci_projects_project_public_gateway_delete_confirm": "Confirm",
-  "pci_projects_project_public_gateway_delete_cancel": "Exit",
-  "pci_projects_project_public_gateway_delete_success": "{{name}} Gateway deleted.",
-  "pci_projects_project_public_gateway_delete_error": "An error has occurred deleting the {{name}} Gateway"
-}

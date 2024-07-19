@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_public_gateway_delete": "Usuń Gateway",
-  "pci_projects_project_public_gateway_delete_confirmation": "Czy na pewno chcesz usunąć Gateway {{name}}?",
-  "pci_projects_project_public_gateway_delete_confirm": "Zatwierdź",
-  "pci_projects_project_public_gateway_delete_cancel": "Anuluj",
-  "pci_projects_project_public_gateway_delete_success": "Gateway {{name}} został usunięty.",
-  "pci_projects_project_public_gateway_delete_error": "Wystąpił błąd podczas usuwania Gateway {{name}}"
-}
