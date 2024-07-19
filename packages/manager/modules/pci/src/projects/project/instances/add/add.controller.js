@@ -37,6 +37,7 @@ import { useURLModel } from '../../project.utils';
 export default class PciInstancesAddController {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $translate,
     coreConfig,
@@ -50,6 +51,7 @@ export default class PciInstancesAddController {
     PciProject,
     OvhApiCloudProjectRegion,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.$timeout = $timeout;
@@ -186,12 +188,48 @@ export default class PciInstancesAddController {
     return null;
   }
 
+  getGatwayCatalog(params) {
+    return this.$http
+      .get(`/order/catalog/public/cloud`, {
+        params,
+      })
+      .then(({ data }) => data);
+  }
+
   getSmallestGatewayInfo() {
-    return this.PciPublicGatewaysService.getSmallestGatewayInfo(
-      this.user.ovhSubsidiary,
-    ).then((data) => {
-      this.defaultGateway = data;
-    });
+    return this.getGatwayCatalog({
+      ovhSubsidiary: this.user.ovhSubsidiary,
+      productName: 'cloud',
+    })
+      .then((data) => {
+        // pick the variants of product with least price
+        const gatewayProducts = data.addons
+          .filter((addon) => addon.product.startsWith('publiccloud-gateway'))
+          .sort(
+            (
+              { pricings: [{ price: priceA }] },
+              { pricings: [{ price: priceB }] },
+            ) => priceA - priceB,
+          )
+          .filter(({ product }, _, arr) => product === arr[0].product);
+        const [monthlyPriceObj] = gatewayProducts.find(({ planCode }) =>
+          planCode.includes('month'),
+        )?.pricings;
+        const [hourlyPriceObj] = gatewayProducts.find(({ planCode }) =>
+          planCode.includes('hour'),
+        )?.pricings;
+        return {
+          size: gatewayProducts[0].product
+            .split('-')
+            .slice(-1)
+            .join(),
+          pricePerMonth: monthlyPriceObj.price,
+          pricePerHour: hourlyPriceObj.price,
+        };
+      })
+      .then((data) => {
+        this.defaultGateway = data;
+      });
   }
 
   getDefaultSelectValue(transKey) {
