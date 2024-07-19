@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import {
   OsdsBreadcrumb,
   OsdsButton,
+  OsdsChip,
   OsdsDivider,
   OsdsIcon,
   OsdsLink,
@@ -9,7 +10,6 @@ import {
   OsdsPopoverContent,
   OsdsSearchBar,
   OsdsSpinner,
-  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import {
@@ -18,6 +18,7 @@ import {
   DataGridTextCell,
   FilterAdd,
   FilterList,
+  Headers,
   isDiscoveryProject,
   Notifications,
   PciDiscoveryBanner,
@@ -25,18 +26,16 @@ import {
   RedirectionGuard,
   useColumnFilters,
   useDataGrid,
+  useDatagridSearchParams,
   useProject,
   useProjectUrl,
 } from '@ovhcloud/manager-components';
 import { Suspense, useRef, useState } from 'react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
+  ODS_CHIP_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
@@ -54,14 +53,18 @@ export default function ListingPage() {
   const hrefAdd = useHref(`./new`);
   const [searchField, setSearchField] = useState('');
   const filterPopoverRef = useRef(undefined);
-  const { pagination, setPagination } = useDataGrid();
+  const [searchQueries, setSearchQueries] = useState<string[]>([]);
+
+  const { pagination, setPagination, sorting, setSorting } = useDataGrid();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const { t: tFilter } = useTranslation('filter');
   const projectUrl = useProjectUrl('public-cloud');
   const { data: workflows, isPending } = usePaginatedWorkflows(
     projectId,
     pagination,
+    sorting,
     filters,
+    searchQueries,
   );
 
   const columns: DatagridColumn<TWorkflow>[] = [
@@ -89,7 +92,7 @@ export default function ListingPage() {
       label: t('pci_workflow_type'),
     },
     {
-      id: 'resource',
+      id: 'instanceName',
       cell: (workflow: TWorkflow) => (
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}
@@ -101,7 +104,7 @@ export default function ListingPage() {
       label: t('pci_workflow_resource'),
     },
     {
-      id: 'schedule',
+      id: 'cron',
       cell: (workflow: TWorkflow) => (
         <DataGridTextCell>{workflow.cron}</DataGridTextCell>
       ),
@@ -126,16 +129,10 @@ export default function ListingPage() {
       id: 'actions',
       cell: (workflow: TWorkflow) => (
         <div className="min-w-16">
-          <Actions
-            backupId={workflow.id}
-            isExecutionsAvailable={
-              Array.isArray(workflow?.executions) &&
-              workflow?.executions.length > 0
-            }
-          />
+          <Actions workflow={workflow} />
         </div>
       ),
-      label: t(''),
+      label: '',
     },
   ];
 
@@ -159,28 +156,27 @@ export default function ListingPage() {
           ]}
         />
       )}
+
       <div className="header mb-6 mt-8">
-        <div className="flex items-center justify-between">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          >
-            {t('pci_workflow_title')}
-          </OsdsText>
-          <PciGuidesHeader category="kubernetes"></PciGuidesHeader>
-        </div>
+        <Headers
+          title={t('pci_workflow_title')}
+          headerButton={<PciGuidesHeader category="kubernetes" />}
+        />
       </div>
 
-      <OsdsDivider></OsdsDivider>
+      <OsdsDivider data-testid="divider" />
       <Notifications />
       <div className="mb-5">
         {project && isDiscoveryProject(project) && (
-          <PciDiscoveryBanner projectId={projectId} />
+          <PciDiscoveryBanner
+            data-testid="discoveryBanner"
+            projectId={projectId}
+          />
         )}
       </div>
       <div className="sm:flex items-center justify-between mt-4">
         <OsdsButton
+          data-testid="add-button"
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
@@ -197,20 +193,23 @@ export default function ListingPage() {
         </OsdsButton>
         <div className="justify-between flex">
           <OsdsSearchBar
+            data-testid="search-bar"
             className="w-[70%]"
             value={searchField}
             onOdsSearchSubmit={({ detail }) => {
-              setPagination({
-                pageIndex: 0,
-                pageSize: pagination.pageSize,
-              });
-              addFilter({
-                key: 'search',
-                value: detail.inputValue,
-                comparator: FilterComparator.Includes,
-                label: '',
-              });
-              setSearchField('');
+              const { inputValue } = detail;
+              if (inputValue) {
+                setSearchField('');
+                if (searchQueries.indexOf(inputValue) < 0) {
+                  setSearchQueries([...searchQueries, inputValue]);
+                  setPagination({
+                    ...pagination,
+                    pageIndex: 0,
+                  });
+                } else {
+                  setSearchQueries([...searchQueries]);
+                }
+              }
             }}
           />
           <OsdsPopover ref={filterPopoverRef}>
@@ -247,12 +246,12 @@ export default function ListingPage() {
                     comparators: FilterCategories.String,
                   },
                   {
-                    id: 'resource',
+                    id: 'instanceName',
                     label: t('pci_workflow_resource'),
                     comparators: FilterCategories.String,
                   },
                   {
-                    id: 'schedule',
+                    id: 'cron',
                     label: t('pci_workflow_schedule'),
                     comparators: FilterCategories.String,
                   },
@@ -278,13 +277,33 @@ export default function ListingPage() {
           </OsdsPopover>
         </div>
       </div>
+      <div className="flex mt-4">
+        {searchQueries.map((query, index) => (
+          <OsdsChip
+            key={index}
+            className="mr-2"
+            color={ODS_THEME_COLOR_INTENT.primary}
+            variant={ODS_CHIP_VARIANT.flat}
+            removable
+            onOdsChipRemoval={() => {
+              setSearchQueries(searchQueries.filter((_, i) => i !== index));
+            }}
+          >
+            {query}
+          </OsdsChip>
+        ))}
+      </div>
       <div className="my-5">
         <FilterList filters={filters} onRemoveFilter={removeFilter} />
       </div>
 
       {isPending ? (
         <div className="text-center">
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+          <OsdsSpinner
+            inline
+            size={ODS_SPINNER_SIZE.md}
+            data-testid="spinner"
+          />
         </div>
       ) : (
         <Datagrid
@@ -293,6 +312,8 @@ export default function ListingPage() {
           totalItems={workflows.totalRows || 0}
           pagination={pagination}
           onPaginationChange={setPagination}
+          sorting={sorting}
+          onSortChange={setSorting}
           className="overflow-x-visible"
         />
       )}
