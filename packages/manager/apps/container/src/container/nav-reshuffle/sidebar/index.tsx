@@ -91,10 +91,6 @@ const Sidebar = (): JSX.Element => {
     });
   };
 
-  const menuHoverHandler = (node: Node) => {
-    setDisplayedNode(node);
-  };
-
   const onSidebarLeave = () => {
     clearTimeout(timer);
   };
@@ -154,13 +150,17 @@ const Sidebar = (): JSX.Element => {
     if (!isMobile) setOpen(false);
   };
 
+  const closeSubmenu = () => {
+    setDisplayedNode(null);
+  };
+
   useEffect(() => {
     if (displayedNode) return;
 
     const savedNodeID = window.localStorage.getItem(
       savedLocationKey,
     );
-    
+
     const pathname = location.pathname;
     if (savedNodeID) {
       const node = findNodeById(navigationRoot, savedNodeID);
@@ -169,7 +169,7 @@ const Sidebar = (): JSX.Element => {
         const nodePath = node.routing.hash
           ? node.routing.hash.replace('#', node.routing.application)
           : '/' + node.routing.application;
-        
+
         const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath);
         const isMatching = parsedPath.reduce((acc: boolean, segment: string) => acc && pathname.includes(segment), true);
         if (isMatching) {
@@ -219,9 +219,9 @@ const Sidebar = (): JSX.Element => {
 
   return (
     <div
-      className={`${style.sidebar} ${
-        displayedNode ? style.sidebar_selected : ''
-      }`}
+    className={`${style.sidebar} ${
+      displayedNode ? style.sidebar_selected : ''
+    }`}
     >
       <div
         className={`${style.sidebar_wrapper} ${!open && style.sidebar_short}`}
@@ -256,18 +256,16 @@ const Sidebar = (): JSX.Element => {
                     key={node.id}
                     id={node.id}
                     className={`${style.sidebar_menu_items} ${
-                  node.id === displayedNode?.id
-                    ? style.sidebar_menu_items_selected
-                    : ''
-                  }`}
+                      node.id === displayedNode?.id
+                      ? style.sidebar_menu_items_selected
+                      : ''
+                    }`}
                   role="menuitem"
                   >
                     <SidebarLink
                       node={node}
                       count={count}
                       handleNavigation={() => menuClickHandler(node)}
-                      handleOnMouseOver={() => menuHoverHandler(node)}
-                      handleOnMouseLeave={() => setDisplayedNode(selectedNode)}
                       handleOnClick={() => menuClickHandler(node)}
                       handleOnEnter={(node: Node) => onEnter(node)}
                     id={node.idAttr}
@@ -324,9 +322,10 @@ const Sidebar = (): JSX.Element => {
           handleBackNavigation={() => {
             isMobile ? setDisplayedNode(null) : setDisplayedNode(selectedNode);
           }}
-          handleOnMouseOver={(node) => setDisplayedNode(node)}
+          handleOnMouseOver={(node: Node) => setDisplayedNode(node)}
           selectedNode={selectedSubmenu}
-          handleOnSubmenuClick={(childNode) =>
+          handleCloseSideBar={closeSubmenu}
+          handleOnSubmenuClick={(childNode: Node) =>
             selectSubmenu(childNode, displayedNode)
           }
           rootNode={displayedNode}
