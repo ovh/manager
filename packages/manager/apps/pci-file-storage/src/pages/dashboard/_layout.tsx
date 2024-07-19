@@ -82,19 +82,12 @@ export default function DashboardPage() {
     }
   }, [location.pathname]);
 
-  const linkProps = {
-    label: t('back_link'),
-    href: useHref(`/pci/projects/${projectId}/file-storage`),
-    type: LinkType.back,
-  };
-
   return (
     <React.Suspense>
       {data && (
         <div>
           <DashboardLayout
             header={{ title: data.name }}
-            linkProps={linkProps}
             tabs={
               <OsdsTabs panel={panel}>
                 <OsdsTabBar slot="top">
