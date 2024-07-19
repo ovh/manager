@@ -3,6 +3,7 @@ import { PciAnnouncementBanner } from './pci-announcement-banner.component';
 import { render } from '../../../utils/test.provider';
 
 const mockNavigateTo = jest.fn();
+
 jest.mock('@ovh-ux/manager-react-shell-client', () => ({
   useNavigation: () => ({ navigateTo: mockNavigateTo }),
 }));

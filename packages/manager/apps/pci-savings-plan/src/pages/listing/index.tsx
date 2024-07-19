@@ -67,7 +67,7 @@ export default function Listing() {
     if (status === 'success' && data?.pages[0].data.length === 0) {
       navigate(urls.onboarding);
     } else if (status === 'success' && data?.pages.length > 0 && !flattenData) {
-      const tmp = Object.keys(data?.pages[0].data[0])
+      const tmp = Object.keys(data?.pages[0].data)
         .filter((element) => element !== 'iam')
         .map((element) => ({
           id: element,

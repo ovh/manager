@@ -28,7 +28,7 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: ['listing', 'dashboard', 'onboarding'],
+    ns: ['listing', 'dashboard', 'onboarding', 'create'],
   });
 
   const region = context.environment.getRegion();
@@ -39,13 +39,16 @@ const init = async (appName: string) => {
     // nothing to do
   }
 
-  ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-      <ShellContext.Provider value={context}>
-        <App />
-      </ShellContext.Provider>
-    </React.StrictMode>,
-  );
+  const rootElement = document.getElementById('root');
+  if (rootElement) {
+    ReactDOM.createRoot(rootElement).render(
+      <React.StrictMode>
+        <ShellContext.Provider value={context}>
+          <App />
+        </ShellContext.Provider>
+      </React.StrictMode>,
+    );
+  }
 };
 
 init('pci-savings-plan');
