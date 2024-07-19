@@ -1,6 +1,11 @@
 import find from 'lodash/find';
 
-import { ALERT_ID, DASHBOARD_STATE_NAME } from '../ip-ip-agoraOrder.constant';
+import {
+  ALERT_ID,
+  DASHBOARD_STATE_NAME,
+  IP_TYPE_TITLE,
+} from '../ip-ip-agoraOrder.constant';
+
 import {
   FLAGS,
   EMPTY_CHOICE,
@@ -35,6 +40,7 @@ export default class AgoraIpV6OrderController {
     this.region = coreConfig.getRegion();
     this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
     this.loading = {};
+    this.type = IP_TYPE_TITLE.IPv6;
   }
 
   $onInit() {
