@@ -48,6 +48,12 @@ export default [
               import('@/pages/dashboard/tokens/Tokens.page'),
             ),
           },
+          {
+            path: 'docker-registries',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/docker/Docker.page'),
+            ),
+          },
         ],
       },
     ],

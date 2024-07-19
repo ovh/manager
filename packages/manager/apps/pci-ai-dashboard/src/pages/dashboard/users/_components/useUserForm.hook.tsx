@@ -36,7 +36,7 @@ export const useUserForm = () => {
   };
 
   const form = useForm<ValidationSchema>({
-    // resolver: zodResolver(schema),
+    resolver: zodResolver(schema),
     defaultValues,
   });
 

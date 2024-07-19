@@ -48,12 +48,12 @@ const DashboardTabs = () => {
       count: tokens?.length || 0,
     },
     {
-      href: 'registries',
+      href: 'docker-registries',
       label: t('dockerRegistriesTab'),
       count: registries?.length || 0,
     },
     {
-      href: 'registries',
+      href: 'git',
       label: t('githubRegistriesTab'),
       count: registries?.length || 0,
     },

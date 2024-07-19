@@ -14,9 +14,9 @@ export const mockedRegistryEdit: ai.registry.RegistryEdition = {
 };
 
 export const mockedRegistry: ai.registry.Registry = {
-  createdAt: 'createdAt',
+  createdAt: '1989/04/08',
   id: 'id',
-  region: 'region',
-  updatedAt: 'updatedAt',
+  region: 'GRA',
+  updatedAt: '1989/04/08',
   user: 'user',
 };
