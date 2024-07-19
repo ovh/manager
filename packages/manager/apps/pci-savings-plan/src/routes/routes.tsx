@@ -72,6 +72,16 @@ export const Routes = [
           },
         },
       },
+      {
+        path: 'new',
+        ...lazyRouteConfig(() => import('@/pages/create')),
+        handle: {
+          tracking: {
+            pageName: 'create',
+            pageType: PageType.funnel,
+          },
+        },
+      },
     ],
   },
   {
