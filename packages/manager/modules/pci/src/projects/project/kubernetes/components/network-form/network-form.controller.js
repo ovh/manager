@@ -1,4 +1,8 @@
-import { SUBNET_DOC, GATEWAY_IP_REGEX } from './network-form.constants';
+import {
+  SUBNET_DOC,
+  LOAD_BALANCER_DOC,
+  GATEWAY_IP_REGEX,
+} from './network-form.constants';
 import KubernetesService from '../../service';
 
 export default class NetworkFormController {
@@ -9,13 +13,16 @@ export default class NetworkFormController {
 
     this.subnetDocumentationLink =
       SUBNET_DOC[coreConfig.getUser().ovhSubsidiary] ?? SUBNET_DOC.DEFAULT;
+    this.loadBalancerDocumentationLink =
+      LOAD_BALANCER_DOC[coreConfig.getUser().ovhSubsidiary] ??
+      LOAD_BALANCER_DOC.DEFAULT;
 
     this.GATEWAY_IP_REGEX = GATEWAY_IP_REGEX;
 
     this.isLoadingSubnets = false;
     this.subnets = [];
     this.subnetsByRegion = [];
-    this.subnetError = null;
+    this.subnetError = '';
     this.loadBalancersSubnet = null;
   }
 
@@ -36,6 +43,21 @@ export default class NetworkFormController {
       this.hasPrivateNetwork &&
       !this.isLoadingSubnets &&
       !!this.subnetsByRegion.length
+    );
+  }
+
+  get shouldWarnSubnet() {
+    return (
+      !this.isLoadingSubnets && Boolean(this.subnet) && !this.subnet.gatewayIp
+    );
+  }
+
+  get shouldWarnLoadBalancerSubnet() {
+    return (
+      !this.isLoadingSubnets &&
+      Boolean(this.subnet?.gatewayIp) &&
+      Boolean(this.loadBalancersSubnet?.id) &&
+      !this.loadBalancersSubnet.gatewayIp
     );
   }
 
@@ -99,7 +121,7 @@ export default class NetworkFormController {
       .then(({ subnets, subnetsByRegion }) => {
         this.subnets = this.augmentSubnets(subnets, { none: true });
         this.subnetsByRegion = this.augmentSubnets(subnetsByRegion);
-        this.subnetError = null;
+        this.subnetError = '';
         this.subnet = selectSubnet
           ? selectSubnet(this.subnetsByRegion)
           : this.subnetsByRegion[0];
@@ -109,28 +131,11 @@ export default class NetworkFormController {
         this.onSubnetChanged(this.subnet);
       })
       .catch((error) => {
-        this.subnetError = {
-          type: 'error',
-          message: this.$translate.instant(
-            'kubernetes_network_form_subnet_error_default',
-            { error: error.data?.message || error.message },
-          ),
-        };
+        this.subnetError = error.data?.message;
       })
       .finally(() => {
         this.isLoadingSubnets = false;
       });
-  }
-
-  onSubnetChanged({ gatewayIp } = {}) {
-    this.subnetError = !gatewayIp
-      ? {
-          type: 'warning',
-          message: this.$translate.instant(
-            'kubernetes_network_form_subnet_error_no_gateway_ip',
-          ),
-        }
-      : null;
   }
 
   toggleLoadBalancersSubnet() {

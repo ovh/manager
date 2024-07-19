@@ -49,7 +49,57 @@ export const SUBNET_DOC = {
     'https://help.ovhcloud.com/csm/es-public-cloud-kubernetes-known-limits?id=kb_article_view&sysparm_article=KB0055210',
 };
 
+export const LOAD_BALANCER_DOC = {
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059277',
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059273',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059272',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059276',
+  DE:
+    'https://help.ovhcloud.com/csm/de-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059267',
+  ES:
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059274',
+  EU:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059275',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059279',
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059283',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059275',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059273',
+  IT:
+    'https://help.ovhcloud.com/csm/it-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059284',
+  MA:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059279',
+  NL:
+    'https://help.ovhcloud.com/csm/en-nl-documentation-public-cloud?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938',
+  PL:
+    'https://help.ovhcloud.com/csm/pl-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059281',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059285',
+  QC:
+    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059282',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059280',
+  SN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059279',
+  TN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059279',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/21133261407251-Concepts-Load-Balancer',
+  WE:
+    'https://help.ovhcloud.com/csm/en-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059277',
+  WS:
+    'https://help.ovhcloud.com/csm/es-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059278',
+};
+
 export default {
   GATEWAY_IP_REGEX,
   SUBNET_DOC,
+  LOAD_BALANCER_DOC,
 };

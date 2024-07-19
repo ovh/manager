@@ -66,7 +66,6 @@
                 data-model="$ctrl.subnet"
                 data-items="$ctrl.subnetsByRegion"
                 data-match="displayedLabel"
-                data-on-change="$ctrl.onSubnetChanged(modelValue)"
             >
             </oui-select>
         </oui-field>
@@ -74,9 +73,36 @@
 
     <oui-message
         data-ng-if="!$ctrl.isLoadingSubnets && $ctrl.subnetError"
-        data-type="{{ $ctrl.subnetError.type }}"
+        data-type="error"
     >
-        <span data-ng-bind="$ctrl.subnetError.message"></span>
+        <span
+            data-translate="kubernetes_network_form_subnet_error_default"
+            data-translate-values="{ error: $ctrl.subnetError }"
+        ></span>
+    </oui-message>
+
+    <oui-message data-ng-if="$ctrl.shouldWarnSubnet" data-type="warning">
+        <p
+            data-translate="kubernetes_network_form_subnet_error_no_gateway_ip_p1"
+        ></p>
+        <p>
+            <span
+                data-translate="kubernetes_network_form_subnet_error_no_gateway_ip_p2"
+            ></span>
+            <a
+                data-ng-href="{{:: $ctrl.loadBalancerDocumentationLink }}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="kubernetes_network_form_subnet_error_no_gateway_ip_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </p>
     </oui-message>
 
     <!--Public/Private gateway-->
@@ -199,6 +225,32 @@
                 >
                 </oui-select>
             </oui-field>
+            <oui-message
+                data-ng-if="$ctrl.shouldWarnLoadBalancerSubnet"
+                data-type="warning"
+            >
+                <p
+                    data-translate="kubernetes_network_form_subnet_error_no_gateway_ip_p1"
+                ></p>
+                <p>
+                    <span
+                        data-translate="kubernetes_network_form_subnet_error_no_gateway_ip_p2"
+                    ></span>
+                    <a
+                        data-ng-href="{{:: $ctrl.loadBalancerDocumentationLink }}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span
+                            data-translate="kubernetes_network_form_subnet_error_no_gateway_ip_link"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </p>
+            </oui-message>
         </div>
     </div>
 </ng-form>
