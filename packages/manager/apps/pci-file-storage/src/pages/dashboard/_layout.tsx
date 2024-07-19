@@ -88,6 +88,8 @@ export default function DashboardPage() {
         <div>
           <DashboardLayout
             header={{ title: data.name }}
+            backLinkLabel={t('back_link')}
+            onClickReturn={() => {}}
             tabs={
               <OsdsTabs panel={panel}>
                 <OsdsTabBar slot="top">
