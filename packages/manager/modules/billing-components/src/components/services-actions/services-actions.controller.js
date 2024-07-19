@@ -37,7 +37,9 @@ export default class ServicesActionsCtrl {
     return fetchAutoRenewLink.promise.then((link) => {
       this.autorenewLink = link;
       this.isLoading = false;
-      this.initLinks();
+      if (this.service.SERVICE_TYPE !== this.SERVICE_TYPE.VRACK) {
+        this.initLinks();
+      }
     });
   }
 
@@ -129,6 +131,12 @@ export default class ServicesActionsCtrl {
     return `${RENEW_URL[this.user.ovhSubsidiary] || RENEW_URL.default}${
       this.service.serviceId
     }`;
+  }
+
+  canResiliate() {
+    return ![this.SERVICE_TYPE.PACK_XDSL, this.SERVICE_TYPE.VRACK].includes(
+      this.service.serviceType,
+    );
   }
 
   getExchangeBilling() {
