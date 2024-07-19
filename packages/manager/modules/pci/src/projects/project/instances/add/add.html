@@ -327,6 +327,7 @@
         data-editable="!$ctrl.isLoading"
         data-valid="$ctrl.automatedBackup.selected ? $ctrl.automatedBackup.schedule : true"
         name="instances_add_configuration"
+        data-on-submit="$ctrl.onInstanceSubmit()"
     >
         <oui-field
             data-label="{{ 'pci_projects_project_instances_add_numInstances_label' | translate }}"

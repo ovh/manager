@@ -186,7 +186,6 @@ export default class PciInstancesAddController {
       enableGatewayIp: true,
     };
 
-    // this.regenerateNetworkAddress(DEFAULT_VLAN_ID);
     this.isAddingPrivateNetwork = false;
     this.isAddingPrivateNetworkError = false;
   }
@@ -712,6 +711,11 @@ export default class PciInstancesAddController {
       'action',
       false,
     );
+  }
+
+  onInstanceSubmit() {
+    this.isLocalPrivateModeLocalZone = undefined;
+    this.isCreatingNewPrivateNetwork = undefined;
   }
 
   onModeFocus() {
