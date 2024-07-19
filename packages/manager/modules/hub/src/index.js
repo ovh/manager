@@ -6,6 +6,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 
 import billingSummary from './components/billing-summary';
+import ovhManagerHubCarousel from './components/carousel';
 import ovhManagerHubCatalogItems from './components/catalog-items';
 import ovhManagerHubEnterpriseBillingSummary from './components/enterprise-billing-summary';
 import ovhManagerHubOrderTracking from './components/order-tracking';
@@ -22,6 +23,7 @@ angular.module(moduleName, [
   'ovhManagerCore',
   'pascalprecht.translate',
   'ui.router',
+  ovhManagerHubCarousel,
   ovhManagerHubCatalogItems,
   ovhManagerHubEnterpriseBillingSummary,
   ovhManagerHubOrderTracking,
