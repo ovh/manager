@@ -605,6 +605,7 @@ pciNode.children = [
       'public-cloud:vouchers',
       'public-cloud:contacts',
       'public-cloud:project-settings',
+      'pci-savings-plan'
     ],
     children: [
       {
@@ -679,6 +680,7 @@ pciNode.children = [
         },
         count: false,
         tag: NodeTag.NEW,
+        features: ['pci-savings-plan'],
       },
       {
         id: 'pci-contacts-rights',

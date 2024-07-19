@@ -1,26 +1,38 @@
 import React, { useState } from 'react';
-import { Params, useParams } from 'react-router-dom';
+import { Params, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import usePciProject from '@/hooks/usePciProject';
+
+import { useProject } from '@ovh-ux/manager-pci-common';
 
 export type BreadcrumbHandleParams = {
   data: unknown;
   params: Params<string>;
 };
 
-interface BreadcrumbProps {
-  items?: { label: string }[];
-}
+const getPageName = (location: string, t: (key: string) => string) => {
+  if (location.includes('new')) {
+    return [
+      {
+        label: t('createSavingsPlan'),
+      },
+    ];
+  }
+  return [];
+};
 
-const Breadcrumb: React.FC<BreadcrumbProps> = ({ items = [] }) => {
+const Breadcrumb: React.FC = () => {
   const { projectId } = useParams();
-  const { t } = useTranslation('pci-savings-plan/listing');
-  const { data: project } = usePciProject();
+  const { t } = useTranslation('listing');
+  const { data: project } = useProject();
+  const location = useLocation();
 
   const navigation = useNavigation();
   const [urlProject, setUrlProject] = useState('');
+
+  const items = getPageName(location.pathname, t);
+
   React.useEffect(() => {
     const updateNav = async () => {
       const url = await navigation.getURL(

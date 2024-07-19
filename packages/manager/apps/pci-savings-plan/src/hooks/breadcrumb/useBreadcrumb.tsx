@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useProject } from '@ovhcloud/manager-components';
+import { useProject } from '@ovh-ux/manager-pci-common';
 
 export type BreadcrumbItem = {
   label: string | undefined;

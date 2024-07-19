@@ -9,8 +9,9 @@ import { useTranslation } from 'react-i18next';
 
 /** Simple datagrid cell text formatter applying ODS style */
 export function DataGridTextCell({
+  className,
   children,
-}: React.PropsWithChildren<unknown>) {
+}: React.PropsWithChildren<{ className?: string }>) {
   const { t } = useTranslation('datagrid');
   return (
     <OsdsText
@@ -21,6 +22,7 @@ export function DataGridTextCell({
           : ODS_THEME_TYPOGRAPHY_SIZE._300
       }
       color={ODS_THEME_COLOR_INTENT.text}
+      className={className}
     >
       {children ?? t('common_empty_text_cell')}
     </OsdsText>

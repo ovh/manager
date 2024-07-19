@@ -22,7 +22,7 @@ export const Routes = [
     children: [
       {
         id: 'listing',
-        path: urls.listing,
+        path: '',
         ...lazyRouteConfig(() => import('@/pages/listing')),
         handle: {
           tracking: {
@@ -30,32 +30,24 @@ export const Routes = [
             pageType: PageType.listing,
           },
         },
-      },
-      {
-        path: urls.dashboard,
-        ...lazyRouteConfig(() => import('@/pages/dashboard')),
         children: [
           {
-            id: 'dashboard',
-            path: '',
-            ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/general-informations'),
-            ),
+            path: ':savingsPlanId/renew',
+            ...lazyRouteConfig(() => import('@/pages/listing/renew-modal')),
             handle: {
               tracking: {
-                pageName: 'dashboard',
-                pageType: PageType.dashboard,
+                pageName: 'renew',
+                pageType: PageType.popup,
               },
             },
           },
           {
-            id: 'tab2',
-            path: 'Tab2',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/tab2')),
+            path: ':savingsPlanId/edit-name',
+            ...lazyRouteConfig(() => import('@/pages/listing/edit-name')),
             handle: {
               tracking: {
-                pageName: 'tab2',
-                pageType: PageType.dashboard,
+                pageName: 'edit-name',
+                pageType: PageType.popup,
               },
             },
           },
@@ -69,6 +61,16 @@ export const Routes = [
           tracking: {
             pageName: 'onboarding',
             pageType: PageType.onboarding,
+          },
+        },
+      },
+      {
+        path: 'new',
+        ...lazyRouteConfig(() => import('@/pages/create')),
+        handle: {
+          tracking: {
+            pageName: 'create',
+            pageType: PageType.funnel,
           },
         },
       },

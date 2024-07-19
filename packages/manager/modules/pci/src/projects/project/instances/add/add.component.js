@@ -29,6 +29,7 @@ export default {
     isDiscoveryProject: '<',
     projectActivationPageHref: '<',
     goToDiscoveryProjectActivationPage: '&',
+    getUAppUrl: '<',
   },
   controller,
   template,

@@ -48,7 +48,8 @@ export const features = [
   'ai-dashboard',
   'data-platform',
   'ai-endpoints',
-  'key-management-service'
+  'key-management-service',
+  'pci-savings-plan',
 ];
 
 export function getPciProjectMenu(
@@ -476,7 +477,7 @@ export function getPciProjectMenu(
         },
         isFeaturesAvailable('pci-savings-plan') && {
           id: 'savings',
-          title: 'Savings Plan',
+          title: 'Savings Plans',
           badge: 'new',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/savings-plan`),
         },
