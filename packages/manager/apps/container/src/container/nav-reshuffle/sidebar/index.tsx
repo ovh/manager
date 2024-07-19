@@ -89,10 +89,6 @@ const Sidebar = (): JSX.Element => {
     });
   };
 
-  const menuHoverHandler = (node: Node) => {
-    setDisplayedNode(node);
-  };
-
   const onSidebarLeave = () => {
     clearTimeout(timer);
   };
@@ -150,13 +146,17 @@ const Sidebar = (): JSX.Element => {
     if (!mobile) setOpen(false);
   };
 
+  const closeSubmenu = () => {
+    setDisplayedNode(null);
+  };
+
   useEffect(() => {
     if (displayedNode) return;
 
     const savedNodeID = window.localStorage.getItem(
       savedLocationKey,
     );
-    
+
     const pathname = location.pathname;
     if (savedNodeID) {
       const node = findNodeById(navigationRoot, savedNodeID);
@@ -165,7 +165,7 @@ const Sidebar = (): JSX.Element => {
         const nodePath = node.routing.hash
           ? node.routing.hash.replace('#', node.routing.application)
           : '/' + node.routing.application;
-        
+
         const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath);
         const isMatching = parsedPath.reduce((acc: boolean, segment: string) => acc && pathname.includes(segment), true);
         if (isMatching) {
@@ -203,9 +203,9 @@ const Sidebar = (): JSX.Element => {
 
   return (
     <div
-      className={`${style.sidebar} ${
-        displayedNode ? style.sidebar_selected : ''
-      }`}
+    className={`${style.sidebar} ${
+      displayedNode ? style.sidebar_selected : ''
+    }`}
     >
       <div
         className={`${style.sidebar_wrapper} ${!open && style.sidebar_short}`}
@@ -243,14 +243,12 @@ const Sidebar = (): JSX.Element => {
                       node.id === displayedNode?.id
                         ? style.sidebar_menu_items_selected
                         : ''
-                    }`}
+                      }`}
                   >
                     <SidebarLink
                       node={node}
                       count={count}
                       handleNavigation={() => menuClickHandler(node)}
-                      handleOnMouseOver={() => menuHoverHandler(node)}
-                      handleOnMouseLeave={() => setDisplayedNode(selectedNode)}
                       handleOnClick={() => menuClickHandler(node)}
                       id={node.idAttr}
                       isShortText={!open}
@@ -290,7 +288,7 @@ const Sidebar = (): JSX.Element => {
           <span
             className={`${
               style.sidebar_toggle_btn_first_icon
-            } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
+              } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
             aria-hidden="true"
           ></span>
           <span
@@ -306,6 +304,7 @@ const Sidebar = (): JSX.Element => {
           }}
           handleOnMouseOver={(node) => setDisplayedNode(node)}
           selectedNode={selectedSubmenu}
+          handleCloseSideBar={closeSubmenu}
           handleOnSubmenuClick={(childNode) =>
             selectSubmenu(childNode, displayedNode)
           }

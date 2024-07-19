@@ -246,10 +246,6 @@
     height: 100vh;
     width: 20rem;
     overflow-y: auto;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
   &_list {
     min-height: 28.125rem;
