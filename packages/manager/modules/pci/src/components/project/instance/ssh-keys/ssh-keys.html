@@ -2,7 +2,7 @@
 
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
-<form name="$ctrl.sshKeyForm" novalidate>
+<ng-form name="$ctrl.sshKeyForm" class="ssh-key-config" novalidate>
     <div data-ng-if="!$ctrl.loaders.keys">
         <oui-field
             data-label="{{:: 'pci_project_instance_ssh_key' | translate }}"
@@ -12,15 +12,14 @@
         >
             <div class="d-inline-block">
                 <oui-select
-                    class="mr-2 mb-0"
+                    class="mr-2 mb-0 oui-select-min-width"
                     data-name="sshKey"
                     data-model="$ctrl.key"
                     data-match="name"
-                    placeholder="{{:: 'pci_project_instance_ssh_pick' | translate }}"
+                    data-placeholder="{{:: 'pci_project_instance_ssh_pick' | translate }}"
                     data-items="$ctrl.availableKeys"
                     data-on-change="$ctrl.selectKey(modelValue)"
-                    style="min-width: 15rem"
-                    required
+                    data-required="true"
                 >
                     <span data-ng-bind="$item.name"></span>
                 </oui-select>
@@ -114,4 +113,4 @@
             </div>
         </div>
     </div>
-</form>
+</ng-form>

@@ -504,6 +504,7 @@
         <oui-message
             data-type="info"
             data-ng-if="$ctrl.isLocalZone() && !$ctrl.isAddingPrivateNetwork"
+            class="oui-message-localzone"
         >
             <p>
                 <span
@@ -553,6 +554,7 @@
                 </span>
 
                 <button
+                    type="button"
                     class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                     data-track-on="click"
                     data-track-name="PublicCloud::pci::projects::project::instances::add::guide-attaching-pci-floating-ip-to-instance"
@@ -647,7 +649,7 @@
                 class="mb-3"
             >
                 <oui-radio
-                    value="false"
+                    data-value="false"
                     data-ng-if="$ctrl.availableLocalPrivateNetworks && $ctrl.availableLocalPrivateNetworks.length > 1"
                     class="mb-3"
                 >
@@ -656,11 +658,10 @@
                     ></span>
                 </oui-radio>
 
-                <div class="ml-3">
+                <div class="ml-3 existing-network">
                     <oui-field
                         data-size="xl"
-                        class="oui-input-group ml-6"
-                        style="font-size: 0.875rem !important;"
+                        class="oui-input-group ml-6 oui-field-font-size"
                         data-ng-if="$ctrl.isLocalZone() && $ctrl.isLocalPrivateModeLocalZone && $ctrl.isCreatingNewPrivateNetwork === false"
                         data-label="{{ :: 'pci_projects_project_instances_add_localPrivateNetwork_label' | translate }}"
                     >
@@ -679,7 +680,7 @@
                     </oui-field>
                 </div>
 
-                <oui-radio value="true" class="mb-3">
+                <oui-radio data-value="true" class="mb-3">
                     <span
                         data-translate="pci_projects_project_instances_add_create_a_new_private_network"
                     ></span>
@@ -750,8 +751,8 @@
                                 <button
                                     type="button"
                                     class="oui-popover-button"
-                                    oui-popover="{{:: 'pci_projects_project_network_private_create_configure_api' | translate }}"
-                                    oui-popover-placement="right"
+                                    data-oui-popover="{{:: 'pci_projects_project_network_private_create_configure_api' | translate }}"
+                                    data-oui-popover-placement="right"
                                 ></button>
                             </div>
                             <oui-checkbox
