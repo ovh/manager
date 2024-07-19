@@ -148,13 +148,11 @@ const Dashboard = () => {
             </Card>
           ))
         ) : (
-          <>
-            <div data-testid="dashboard-metrics-skeleton">
-              <Skeleton className="w-full h-[200px]" />
-              <Skeleton className="w-full h-[200px]" />
-              <Skeleton className="w-full h-[200px]" />
-            </div>
-          </>
+          <div data-testid="dashboard-metrics-skeleton">
+            <Skeleton className="w-full h-[200px]" />
+            <Skeleton className="w-full h-[200px]" />
+            <Skeleton className="w-full h-[200px]" />
+          </div>
         )}
       </div>
       <div className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2">
