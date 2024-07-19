@@ -50,10 +50,12 @@ const useDatagridColumn = (
             name="instance"
             disabled={isLocalZone(instance.region)}
             {...(selectedInstance === instance && { checked: true })}
+            data-testid={`radio-${instance.id}`}
           >
             <OsdsRadioButton
               color={ODS_THEME_COLOR_INTENT.primary}
               size={ODS_RADIO_BUTTON_SIZE.xs}
+              data-testid={`radio-button-${instance.id}`}
               onClick={() => {
                 if (!isLocalZone(instance.region)) {
                   onSelectInstance(instance);
