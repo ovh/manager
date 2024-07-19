@@ -9,6 +9,10 @@ const pciNode: Node = {
   illustration,
   features: ['public-cloud'],
   forceVisibility: true,
+  routing: {
+    application: 'public-cloud',
+    hash: '#/pci/projects/{projectId}',
+  },
 };
 
 pciNode.children = [
