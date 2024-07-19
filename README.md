@@ -4,7 +4,7 @@
 
 ![Contributors](https://badgen.net/github/contributors/ovh/manager) ![Last commit](https://badgen.net/github/last-commit/ovh/manager) [![License](https://badgen.net/github/license/ovh/manager)](https://github.com/ovh/manager/blob/master/LICENSE)
 
-[![OVHcloud control panel UI](docs/docs/.vuepress/public/assets/img/control-panel.jpg)](https://ovh.com/manager)
+[![OVHcloud control panel UI](docs/docs/public/assets/img/control-panel.jpg)](https://ovh.com/manager)
 
 ## Intro
 
