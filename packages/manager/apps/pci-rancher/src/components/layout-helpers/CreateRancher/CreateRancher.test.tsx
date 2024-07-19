@@ -165,8 +165,7 @@ describe('CreateRancher', () => {
     it('Given that I am in a Discovery project, I should see the yellow banner inviting me to activate my project', async () => {
       const screen = await setupSpecTest({ isProjectDiscoveryMode: true });
       const banner = screen.getByText(
-        'Bien que le service soit gratuit durant la phase Beta',
-        { exact: false },
+        'pci_projects_project_activate_project_banner_message',
       );
 
       expect(banner).not.toBeNull();
