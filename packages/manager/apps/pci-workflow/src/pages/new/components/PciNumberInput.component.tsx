@@ -11,11 +11,11 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_INPUT_TYPE,
-  ODS_BUTTON_VARIANT,
   ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_INPUT_TYPE,
 } from '@ovhcloud/ods-components';
 
 interface PciNumberInputProps {
@@ -50,6 +50,7 @@ export function PciNumberInput({
           slot="minus"
           variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
+          data-testid="pciNumberInput-minus"
           size={ODS_BUTTON_SIZE.sm}
           text-align="center"
         >
@@ -62,6 +63,7 @@ export function PciNumberInput({
         <OsdsInput
           type={ODS_INPUT_TYPE.number}
           value={value}
+          data-testid="pciNumberInput-input"
           color={ODS_THEME_COLOR_INTENT.primary}
           onOdsValueChange={(event) => {
             let newValue = Number(event.detail.value);
@@ -77,6 +79,7 @@ export function PciNumberInput({
           slot="plus"
           variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
+          data-testid="pciNumberInput-plus"
           size={ODS_BUTTON_SIZE.sm}
           text-align="center"
         >

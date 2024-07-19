@@ -28,6 +28,7 @@ export function PciTile({
     <OsdsTile
       className={isChecked ? checkedClass : uncheckedClass}
       checked={isChecked}
+      data-testid="pciTile-Tile"
       onClick={() => onClick?.()}
     >
       <div className="w-full">

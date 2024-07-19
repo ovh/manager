@@ -59,7 +59,13 @@ export function WorkflowName({
   );
 
   if (isPending) {
-    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
+    return (
+      <OsdsSpinner
+        inline
+        size={ODS_SPINNER_SIZE.md}
+        data-testid="loading-spinner"
+      />
+    );
   }
 
   return (
