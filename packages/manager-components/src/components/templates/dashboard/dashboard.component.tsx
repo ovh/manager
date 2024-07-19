@@ -14,6 +14,7 @@ export interface DashboardLayoutProps {
   backLinkLabel?: string;
   tabs?: React.ReactElement;
   onClickReturn?: () => void;
+  linkProps: { label: string; href: string; type: string };
 }
 
 export const DashboardLayout = ({
