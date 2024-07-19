@@ -30,6 +30,18 @@ export const Routes = [
             pageType: PageType.listing,
           },
         },
+        children: [
+          {
+            path: ':rancherId/renew',
+            ...lazyRouteConfig(() => import('@/pages/listing/renew-modal')),
+            handle: {
+              tracking: {
+                pageName: 'renew',
+                pageType: PageType.popup,
+              },
+            },
+          },
+        ],
       },
       {
         path: urls.dashboard,

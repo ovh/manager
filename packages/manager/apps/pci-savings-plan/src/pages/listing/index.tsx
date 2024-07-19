@@ -1,7 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate, useLocation, useHref } from 'react-router-dom';
+import {
+  useParams,
+  useNavigate,
+  useLocation,
+  useHref,
+  Outlet,
+} from 'react-router-dom';
 
 import {
   ODS_BUTTON_SIZE,
@@ -20,6 +26,7 @@ import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 import { pciSavingsPlanListMocked } from '@/_mock_/savingsPlan';
 import TableContainer from '@/components/Table/TableContainer';
 import { getOnboardingUrl } from '@/utils/routes';
+import RenewModal from '@/components/Modal/RenewModal';
 
 export interface ListingProps {
   data: any[];
@@ -69,8 +76,6 @@ const Listing: React.FC<ListingProps> = ({ data, refetchSavingsPlans }) => {
   const { projectId } = useParams();
   const Listingdata = pciSavingsPlanListMocked;
 
-  console.log({ Listingdata });
-
   useEffect(() => {
     if (Listingdata.length === 0) {
       navigate(getOnboardingUrl(projectId));
@@ -79,6 +84,7 @@ const Listing: React.FC<ListingProps> = ({ data, refetchSavingsPlans }) => {
 
   return (
     <PageLayout>
+      <Outlet />
       {Listingdata.length ? (
         <ListingTablePage
           data={Listingdata}
