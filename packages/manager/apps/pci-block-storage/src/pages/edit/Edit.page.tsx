@@ -4,7 +4,6 @@ import { Translation, useTranslation } from 'react-i18next';
 import {
   useCatalogPrice,
   useNotifications,
-  useProject,
   useProjectLocalRegions,
   useProjectQuota,
   useProjectUrl,
@@ -38,6 +37,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   VOLUME_MAX_SIZE,
   VOLUME_MIN_SIZE,
