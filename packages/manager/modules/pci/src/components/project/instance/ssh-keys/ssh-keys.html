@@ -10,35 +10,41 @@
             data-ng-if="!$ctrl.addKeyMode"
             class="oui-input-group"
         >
-            <div class="d-inline-block">
-                <oui-select
-                    class="mr-2 mb-0 oui-select-min-width"
-                    data-name="sshKey"
-                    data-model="$ctrl.key"
-                    data-match="name"
-                    data-placeholder="{{:: 'pci_project_instance_ssh_pick' | translate }}"
-                    data-items="$ctrl.availableKeys"
-                    data-on-change="$ctrl.selectKey(modelValue)"
-                    data-required="true"
-                >
-                    <span data-ng-bind="$item.name"></span>
-                </oui-select>
+            <div class="row">
+                <div class="col-9">
+                    <oui-select
+                        class="mr-2 mb-0"
+                        data-name="sshKey"
+                        data-model="$ctrl.key"
+                        data-match="name"
+                        data-placeholder="{{:: 'pci_project_instance_ssh_pick' | translate }}"
+                        data-items="$ctrl.availableKeys"
+                        data-on-change="$ctrl.selectKey(modelValue)"
+                        data-required="true"
+                    >
+                        <span data-ng-bind="$item.name"></span>
+                    </oui-select>
+                </div>
+                <div class="col-3">
+                    <oui-button
+                        class="align-top"
+                        data-variant="secondary"
+                        data-on-click="$ctrl.displayAddForm()"
+                    >
+                        <span
+                            data-translate="pci_project_instance_ssh_add"
+                        ></span>
+                    </oui-button>
+                </div>
             </div>
-            <oui-button
-                class="align-top"
-                data-variant="secondary"
-                data-on-click="$ctrl.displayAddForm()"
-            >
-                <span data-translate="pci_project_instance_ssh_add"></span>
-            </oui-button>
 
             <div class="oui-field__helper">
                 <p
                     data-ng-if="!$ctrl.loaders.guide"
                     data-translate="pci_project_instance_ssh_key_help_required"
                     data-translate-values="{
-              guideUrl: $ctrl.guideUrl
-          }"
+                        guideUrl: $ctrl.guideUrl
+                    }"
                 ></p>
                 <p data-translate="pci_project_instance_ssh_key_infos"></p>
             </div>
@@ -79,8 +85,8 @@
                         data-ng-if="!$ctrl.loaders.guide"
                         data-translate="pci_project_instance_ssh_key_help_required"
                         data-translate-values="{
-                guideUrl: $ctrl.guideUrl
-            }"
+                            guideUrl: $ctrl.guideUrl
+                        }"
                     ></span>
                     <span
                         class="d-inline-block"
@@ -99,7 +105,6 @@
                     data-variant="secondary"
                     data-type="button"
                     data-on-click="$ctrl.addKey()"
-                    data-disabled="$ctrl.loaders.isAdding"
                     ><span data-translate="pci_project_instance_ssh_add"></span>
                 </oui-button>
                 <oui-button

@@ -3,7 +3,6 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
-import './style.less';
 
 import component from './ssh-keys.component';
 

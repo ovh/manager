@@ -176,7 +176,7 @@ export default class PciInstancesAddController {
     this.defaultFloatingIp = this.getProductCatalog;
     this.isIpLoading = false;
     this.isAddingRegionError = false;
-    this.isCreatingNewPrivateNetwork = undefined;
+
     this.configuration = {
       region: null,
       createGateway: false,
@@ -714,8 +714,8 @@ export default class PciInstancesAddController {
   }
 
   onInstanceSubmit() {
-    this.isLocalPrivateModeLocalZone = undefined;
-    this.isCreatingNewPrivateNetwork = undefined;
+    this.isLocalPrivateModeLocalZone = false;
+    this.isCreatingNewPrivateNetwork = null;
   }
 
   onModeFocus() {
