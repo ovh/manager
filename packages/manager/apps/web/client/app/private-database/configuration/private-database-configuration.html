@@ -8,6 +8,14 @@
     <div data-ng-if="!configurationsCtrl.loading">
         <oui-message
             data-type="info"
+            data-ng-if="configurationsCtrl.database.type === 'postgresql'"
+        >
+            <span
+                data-translate="privateDatabase_configurations_general_postgresql_soon"
+            ></span>
+        </oui-message>
+        <oui-message
+            data-type="info"
             data-ng-if="configurationsCtrl.database.type !== 'postgresql' && configurationsCtrl.configurations.length === 0"
         >
             <span
