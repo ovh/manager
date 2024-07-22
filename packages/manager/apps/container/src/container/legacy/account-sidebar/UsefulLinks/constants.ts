@@ -2,10 +2,16 @@ import { Region } from '@ovh-ux/manager-config';
 
 const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '-home?id=csm_index';
+const createTicketSupportIndex = '?id=csm_get_help';
+const ticketsSupportIndex = '?id=csm_cases_requests';
 
 interface UsefulLinks {
   help: {
     [key in string]: string;
+  };
+  support?: {
+    createTicket: string;
+    tickets: string;
   };
   tasks: string;
 }
@@ -29,6 +35,10 @@ const consts: UsefulLinkConstants = {
       SN: `${helpRoot}/fr-sn${homeIndex}`,
       TN: `${helpRoot}/fr-tn${homeIndex}`,
     },
+    support: { 
+      createTicket: `${helpRoot}${createTicketSupportIndex}`, 
+      tickets: `${helpRoot}${ticketsSupportIndex}` 
+    },
     tasks: 'https://www.status-ovhcloud.com/',
   },
   CA: {
@@ -40,6 +50,10 @@ const consts: UsefulLinkConstants = {
       SG: `${helpRoot}/en-sg${homeIndex}`,
       WE: `${helpRoot}/en${homeIndex}`,
       WS: `${helpRoot}/es${homeIndex}`,
+    },
+    support: { 
+      createTicket: `${helpRoot}${createTicketSupportIndex}`, 
+      tickets: `${helpRoot}${ticketsSupportIndex}` 
     },
     tasks: 'https://www.status-ovhcloud.com/',
   },

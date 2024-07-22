@@ -46,9 +46,16 @@
                         <li>
                             <a
                                 data-ng-href="{{:: SupportCtrl.supportUrl }}"
-                                data-translate="telephony_line_assist_support_contact_ticket"
-                                target="_top"
+                                target="_blank"
+                                rel="noopener"
                             >
+                                <span
+                                    data-translate="telephony_line_assist_support_contact_ticket"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-external-link"
+                                    aria-hidden="true"
+                                ></span>
                             </a>
                         </li>
                     </ul>
