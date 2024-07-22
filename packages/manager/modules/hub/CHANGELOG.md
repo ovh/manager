@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.13.0...@ovh-ux/manager-hub@3.13.1) (2024-07-22)
+
+
+### Reverts
+
+* Revert "feat(hub): delete a warning pop up on manager dashboard (#12102)" ([1571c40](https://github.com/ovh/manager/commit/1571c4056a2711a06ad5a579916e6147c0430afa)), closes [#12102](https://github.com/ovh/manager/issues/12102)
+
+
+
+
+
 # [3.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.12.2...@ovh-ux/manager-hub@3.13.0) (2024-07-15)
 
 

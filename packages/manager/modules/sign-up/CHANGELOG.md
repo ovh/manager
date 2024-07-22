@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.17.3...@ovh-ux/sign-up@2.18.0) (2024-07-22)
+
+
+### Features
+
+* **sign-up:** add purpose of purchase field on signup form ([#12142](https://github.com/ovh/manager/issues/12142)) ([941f7ee](https://github.com/ovh/manager/commit/941f7ee969631d2645dc46f08ac502eab10b63c4))
+* **sign-up:** adjusted address completion message for in ([#11996](https://github.com/ovh/manager/issues/11996)) ([28a39c5](https://github.com/ovh/manager/commit/28a39c57502adc0df5832c867aefe272f4fa3439))
+
+
+
+
+
 ## [2.17.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.17.2...@ovh-ux/sign-up@2.17.3) (2024-06-25)
 
 
