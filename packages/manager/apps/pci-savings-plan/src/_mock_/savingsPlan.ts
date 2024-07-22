@@ -1,4 +1,4 @@
-import { SavingsPlanService, SavingsPlanStatus, SavingsPlanPlanedChangeStatus } from '../data/api/api.type';
+import { SavingsPlanPlanedChangeStatus, SavingsPlanService, SavingsPlanStatus } from "@/types/api.type"
 
 export const pciSavingsPlanMocked: SavingsPlanService ={
     displayName: 'saving-plan-001',

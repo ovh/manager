@@ -2,57 +2,44 @@ import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsModal,
-  OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { SavingsPlanPlanedChangeStatus } from '@/types/api.type';
 
 type TDeleteModal = {
-  networkId: string;
-  isPending: boolean;
+  periodEndAction: SavingsPlanPlanedChangeStatus;
   onClose: () => void;
   onConfirm: () => void;
 };
 
 export default function RenewModal({
-  networkId,
-  isPending,
+  periodEndAction,
   onClose,
   onConfirm,
 }: Readonly<TDeleteModal>) {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation('renew');
   return (
-    <OsdsModal
-      headline={t('pci_projects_project_network_private_delete_label')}
-      onOdsModalClose={onClose}
-    >
+    <OsdsModal headline={t('title')} onOdsModalClose={onClose}>
       <slot name="content">
         <div className="mt-5">
-          {isPending ? (
-            <OsdsSpinner
-              inline
-              size={ODS_SPINNER_SIZE.md}
-              className="block text-center"
-              data-testid="deleteModal-spinner"
-            />
-          ) : (
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_TEXT_SIZE._400}
-            >
-              {t('pci_projects_project_network_private_delete_confirmation', {
-                name: networkId,
-              })}
-            </OsdsText>
-          )}
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+          >
+            {t(
+              periodEndAction === SavingsPlanPlanedChangeStatus.REACTIVATE
+                ? 'message_deactivate'
+                : 'message_activate',
+            )}
+          </OsdsText>
         </div>
       </slot>
       <OsdsButton
@@ -62,16 +49,19 @@ export default function RenewModal({
         onClick={onClose}
         data-testid="deleteModal-button_cancel"
       >
-        {t('pci_projects_project_network_private_delete_cancel')}
+        {t('buttons_cancel')}
       </OsdsButton>
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={onConfirm}
-        disabled={isPending || undefined}
-        data-testid="deleteModal-button_confirm"
+        data-testid="renewModal-button_confirm"
       >
-        {t('pci_projects_project_network_private_delete_confirm')}
+        {t(
+          periodEndAction === SavingsPlanPlanedChangeStatus.REACTIVATE
+            ? 'buttons_deactivate'
+            : 'buttons_activate',
+        )}
       </OsdsButton>
     </OsdsModal>
   );

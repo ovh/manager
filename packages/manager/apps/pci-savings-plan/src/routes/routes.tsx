@@ -32,7 +32,7 @@ export const Routes = [
         },
         children: [
           {
-            path: ':rancherId/renew',
+            path: ':savingsPlanId/renew',
             ...lazyRouteConfig(() => import('@/pages/listing/renew-modal')),
             handle: {
               tracking: {

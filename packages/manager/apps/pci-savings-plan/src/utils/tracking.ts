@@ -1,4 +1,5 @@
-export const TRACKING_PATH = 'PublicCloud::pci::projects::project::rancher';
+export const TRACKING_PATH =
+  'PublicCloud::pci::projects::project::savings-plan';
 
 export enum TrackingPageView {
   Onboarding = 'onboarding',

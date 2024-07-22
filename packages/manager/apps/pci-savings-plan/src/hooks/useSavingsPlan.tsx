@@ -1,0 +1,74 @@
+import { v6 } from '@ovh-ux/manager-core-api';
+import { useParams } from 'react-router-dom';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useServices } from './useService';
+import {
+  SavingsPlanPlanedChangeStatus,
+  SavingsPlanService,
+} from '@/types/api.type';
+
+export const getSubscribedSavingsPlan = async (
+  serviceId: number,
+): Promise<SavingsPlanService[]> => {
+  const { data } = await v6.get<SavingsPlanService[]>(
+    `services/${serviceId}/savingsPlans/subscribed`,
+  );
+  return data;
+};
+
+export const postSubscribedSavingsPlanChangePeriod = async (
+  serviceId: number,
+  savingsPlanId: string,
+  periodEndAction: SavingsPlanPlanedChangeStatus,
+): Promise<SavingsPlanService[]> => {
+  const { data } = await v6.post<SavingsPlanService[]>(
+    `/services/${serviceId}/savingsPlans/subscribed/${savingsPlanId}/changePeriodEndAction`,
+    {
+      periodEndAction,
+    },
+  );
+  return data;
+};
+
+export const useServiceId = () => {
+  const { projectId } = useParams();
+  const { data: services } = useServices({
+    projectId: projectId as string,
+  });
+  return services?.[0];
+};
+
+export const useSavingsPlan = () => {
+  const serviceId = useServiceId();
+
+  return useQuery({
+    queryKey: ['savings-plan', serviceId],
+    queryFn: () => getSubscribedSavingsPlan(serviceId),
+    enabled: !!serviceId,
+  });
+};
+
+export const getMutationKeySPChangePeriod = (
+  savingsPlanId: string,
+  serviceId: number,
+) => ['savings-plan', serviceId, 'change-period', savingsPlanId];
+
+export const useSavingsPlanChangePeriod = (savingsPlanId: string) => {
+  const { refetch } = useSavingsPlan();
+  const serviceId = useServiceId();
+
+  return useMutation({
+    onSuccess: () => refetch(),
+    mutationKey: getMutationKeySPChangePeriod(savingsPlanId, serviceId),
+    mutationFn: ({
+      periodEndAction,
+    }: {
+      periodEndAction: SavingsPlanPlanedChangeStatus;
+    }) =>
+      postSubscribedSavingsPlanChangePeriod(
+        serviceId,
+        savingsPlanId,
+        periodEndAction,
+      ),
+  });
+};

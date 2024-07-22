@@ -3,7 +3,8 @@ import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsChip, OsdsSpinner } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { SavingsPlanPlanedChangeStatus } from '@/data/api/api.type';
+import { SavingsPlanPlanedChangeStatus } from '@/types/api.type';
+
 
 const PlannedChangeStatusChip = ({ label }: { label: string }) => {
   const { t } = useTranslation('listing');
@@ -15,7 +16,10 @@ const PlannedChangeStatusChip = ({ label }: { label: string }) => {
   };
 
   return label ? (
-    <OsdsChip inline color={colorByProductStatus[label as SavingsPlanPlanedChangeStatus]}>
+    <OsdsChip
+      inline
+      color={colorByProductStatus[label as SavingsPlanPlanedChangeStatus]}
+    >
       {t(label.toLowerCase() as SavingsPlanPlanedChangeStatus)}
     </OsdsChip>
   ) : (

@@ -1,6 +1,6 @@
 {
   "title": "Savings Plan",
-  "createSavingsPlan": "Créer",
+  "createSavingsPlan": "Créer un Savings Plan",
   "name": "Nom",
   "model": "Modèle",
   "quantity": "Quantité",
@@ -18,5 +18,8 @@
   "edit": "Editer",
   "enableAutoRenew": "Activer le renouvellement automatique",
   "disableAutoRenew": "Désactiver le renouvellement automatique",
-  "listing_resultats": "résultats"
+  "listing_resultats": "résultats",
+  "months": "{{monthValue}} mois",
+  "banner_renew_activate": "Le renouvellement automatique du Savings Plan a été activé avec succès.",
+  "banner_renew_deactivate": "Le renouvellement automatique du Savings Plan a été désactivé avec succès."
 }

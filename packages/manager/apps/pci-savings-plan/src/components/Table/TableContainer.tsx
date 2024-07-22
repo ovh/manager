@@ -1,129 +1,114 @@
-import React, { useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
-  useReactTable,
-  ColumnDef,
-  getCoreRowModel,
-  getSortedRowModel,
-  SortingState,
-  Row,
-} from '@tanstack/react-table';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import TableComponent from './Table';
-import ActionsCell from './ActionsCell';
-import LinkService from './LinkService';
-import { SavingsPlanService } from '@/data/api/api.type';
-import { SavingsPlanDatagridWrapper } from './Table.type';
-import DisplayCellText from './TextCell';
-import './Table.scss';
-import StatusChip from '../StatusChip/StatusChip';
+  DataGridTextCell,
+  Datagrid,
+  DatagridColumn,
+} from '@ovhcloud/manager-components';
+import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { SavingsPlanService } from '@/types/api.type';
 import PlannedChangeStatusChip from '../PlannedChangeStatusChip/PlannedChangeStatusChip';
+import StatusChip from '../StatusChip/StatusChip';
+import ActionsCell from './ActionsCell';
+import { SavingsPlanDatagridWrapper } from './Table.type';
+import { convertToDuration } from '@/utils/commercial-catalog/utils';
 
 export default function TableContainer({
   data,
 }: Readonly<SavingsPlanDatagridWrapper>) {
   const { t } = useTranslation('listing');
-  const [sorting, setSorting] = useState<SortingState>([]);
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const Actions = ({ row }: { row: Row<SavingsPlanService> }) => (
-    <ActionsCell
-      row={row}
-      onClickDelete={() =>
-        navigate(`${location.pathname}/${row.original.id}/delete`)
-      }
-      onClickManage={(path: string) => navigate(`${location.pathname}/${path}`)}
-    />
-  );
-
-  const columns: ColumnDef<SavingsPlanService>[] = useMemo(
+  const columns: DatagridColumn<SavingsPlanService>[] = useMemo(
     () => [
       {
         id: 'name',
-        header: t('name'),
-        accessorKey: 'name',
-        accessorFn: (row) => row.displayName,
-        cell: LinkService,
+        label: t('name'),
+        cell: (props: SavingsPlanService) => (
+          <DataGridTextCell>
+            {props.displayName || 'Savings Plan'}
+          </DataGridTextCell>
+        ),
       },
       {
         id: 'model',
-        header: t('model'),
+        label: t('model'),
         accessorKey: 'model',
-        accessorFn: (row) => row.model,
-        cell: DisplayCellText,
+        cell: (props: SavingsPlanService) => (
+          <DataGridTextCell>{props.model}</DataGridTextCell>
+        ),
       },
       {
         id: 'quantity',
-        header: t('quantity'),
-        accessorKey: 'size',
-        cell: DisplayCellText,
+        label: t('quantity'),
+        cell: (props: SavingsPlanService) => (
+          <DataGridTextCell>{props.size}</DataGridTextCell>
+        ),
       },
       {
         id: 'duration',
-        header: t('duration'),
-        accessorFn: (row) => row.period,
-        cell: DisplayCellText,
+        label: t('duration'),
+        cell: (props: SavingsPlanService) => (
+          <DataGridTextCell>
+            {t('months', { monthValue: convertToDuration(props.period) })}
+          </DataGridTextCell>
+        ),
       },
       {
         id: 'renew',
-        header: t('renew'),        
+        label: t('renew'),
         accessorKey: 'periodEndAction',
-        cell: (row) => <PlannedChangeStatusChip label={row.getValue() as string} />,
+        cell: (props: SavingsPlanService) => (
+          <PlannedChangeStatusChip label={props?.periodEndAction as string} />
+        ),
       },
       {
         id: 'startDate',
-        header: t('startDate'),
-        accessorFn: (row) => row.periodStartDate,
-        cell: DisplayCellText,
+        label: t('startDate'),
+        accessorFn: (row: SavingsPlanService) => row.periodStartDate,
+        cell: (props: SavingsPlanService) => (
+          <DataGridTextCell>{props.periodStartDate}</DataGridTextCell>
+        ),
       },
       {
         id: 'endDate',
-        header: t('endDate'),
-        accessorFn: (row) => row.periodEndDate,
-        cell: DisplayCellText,
+        label: t('endDate'),
+        accessorFn: (row: SavingsPlanService) => row.periodEndDate,
+        cell: (props: SavingsPlanService) => (
+          <DataGridTextCell>{props.periodEndDate}</DataGridTextCell>
+        ),
       },
       {
         id: 'status',
-        header: t('status'),
+        label: t('status'),
         accessorKey: 'status',
-        cell: (row) => <StatusChip label={row.getValue() as string} />,
+        cell: (props: SavingsPlanService) => (
+          <StatusChip label={props?.status as string} />
+        ),
       },
       {
         id: 'actions',
-        header: t('actions'),
+        label: t('actions'),
         accessorKey: 'actions',
-        cell: Actions,
+        cell: (props: SavingsPlanService) => (
+          <ActionsCell
+            id={props.id}
+            status={props.status}
+            periodEndAction={props.periodEndAction}
+            onClickManage={() => navigate(`./${props.id}/renew`)}
+            onClickDelete={() => navigate(`./${props.id}/delete`)}
+          />
+        ),
       },
     ],
     [data],
   );
 
-  const table = useReactTable<SavingsPlanService>({
-    columns,
-    data,
-    state: { sorting },
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-  });
-
   return (
     <>
-      {/* { (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.error} className="my-4 p-3">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="inline-block"
-          >
-            {t('deleteSavingsPlanError')}
-          </OsdsText>
-        </OsdsMessage>
-      )} */}
-      {data && columns && <TableComponent table={table} />}
+      {data && columns && (
+        <Datagrid items={data} columns={columns} totalItems={data.length} />
+      )}
     </>
   );
 }

@@ -1,32 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  useParams,
-  useNavigate,
-  useLocation,
-  useHref,
-  Outlet,
-} from 'react-router-dom';
+import { Outlet, useHref } from 'react-router-dom';
 
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_MESSAGE_TYPE,
 } from '@ovhcloud/ods-components';
-import { OsdsButton, OsdsLink, OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 
-import { PageLayout, Title } from '@ovhcloud/manager-components';
+import { Title } from '@ovhcloud/manager-components';
 
-import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
-
-import { pciSavingsPlanListMocked } from '@/_mock_/savingsPlan';
 import TableContainer from '@/components/Table/TableContainer';
-import { getOnboardingUrl } from '@/utils/routes';
-import RenewModal from '@/components/Modal/RenewModal';
+import { useSavingsPlan, useServiceId } from '@/hooks/useSavingsPlan';
+import { MutationStatus, useMutationState } from '@tanstack/react-query';
 
 export interface ListingProps {
   data: any[];
@@ -38,10 +34,12 @@ const ListingTablePage: React.FC<ListingProps> = ({
 }) => {
   const { t } = useTranslation('listing');
   const hrefDashboard = useHref('');
-  const trackAction = useTrackingAction();
-  const trackClick = () =>
-    trackAction(TrackingPageView.ListingPage, TrackingEvent.add);
-  useTrackingPage();
+  const serviceId = useServiceId();
+  const mutationSPChangePeriod = useMutationState<{
+    status: MutationStatus;
+  }>({
+    filters: { mutationKey: ['savings-plan', serviceId, 'change-period'] },
+  });
 
   return (
     <>
@@ -52,7 +50,6 @@ const ListingTablePage: React.FC<ListingProps> = ({
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           inline
-          onClick={trackClick}
           href={`${hrefDashboard}/new`}
         >
           <span slot="start" className="flex justify-center items-center">
@@ -66,34 +63,36 @@ const ListingTablePage: React.FC<ListingProps> = ({
           </span>
         </OsdsButton>
       </div>
+      {mutationSPChangePeriod.length > 0 && (
+        <OsdsMessage type={ODS_MESSAGE_TYPE.success} className="my-2">
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="inline-block"
+          >
+            {t('banner_renew_activate')}
+          </OsdsText>
+        </OsdsMessage>
+      )}
       <TableContainer data={data} refetchSavingsPlans={refetchSavingsPlans} />
     </>
   );
 };
 
 const Listing: React.FC<ListingProps> = ({ data, refetchSavingsPlans }) => {
-  const navigate = useNavigate();
-  const { projectId } = useParams();
-  const Listingdata = pciSavingsPlanListMocked;
-
-  useEffect(() => {
-    if (Listingdata.length === 0) {
-      navigate(getOnboardingUrl(projectId));
-    }
-  }, [projectId, Listingdata.length]);
+  const { data: services } = useSavingsPlan();
 
   return (
-    <PageLayout>
+    <>
       <Outlet />
-      {Listingdata.length ? (
+      {services.length ? (
         <ListingTablePage
-          data={Listingdata}
+          data={services}
           refetchSavingsPlans={refetchSavingsPlans}
         />
       ) : (
         <></>
       )}
-    </PageLayout>
+    </>
   );
 };
 

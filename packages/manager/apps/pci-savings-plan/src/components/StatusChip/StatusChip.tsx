@@ -3,7 +3,7 @@ import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsChip, OsdsSpinner } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { SavingsPlanStatus } from '@/data/api/api.type';
+import { SavingsPlanStatus } from '@/types/api.type';
 
 const StatusChip = ({ label }: { label: string }) => {
   const { t } = useTranslation('listing');
