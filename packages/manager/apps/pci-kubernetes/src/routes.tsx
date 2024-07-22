@@ -26,7 +26,15 @@ export default [
     id: 'kubernetes',
     path: ROUTE_PATHS.root,
     ...lazyRouteConfig(() => import('@/pages/Layout')),
-    children: [],
+    children: [
+      {
+        path: '',
+        handle: {
+          tracking: 'kubernetes',
+        },
+        ...lazyRouteConfig(() => import('@/pages/list/List.page')),
+      },
+    ],
   },
   {
     path: '*',
