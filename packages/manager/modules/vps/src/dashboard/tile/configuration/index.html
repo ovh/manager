@@ -17,7 +17,7 @@
             <span data-ng-bind=":: $ctrl.vps.vcore"></span>
             <p
                 class="p-0"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxVcore && !$ctrl.isInRescueMode && !$ctrl.isMigrating"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxVcore && !$ctrl.isInRescueMode && !$ctrl.isMigrating && !$ctrl.isResellerResourceProductName"
             >
                 <a
                     data-ng-if="$ctrl.configurationTile.upgrades"
@@ -48,7 +48,7 @@
         data-term="{{ ::'vps_dashboard_tile_configuration_memory' | translate }}"
     >
         <oui-tile-description
-            data-ng-if="$ctrl.configurationTile.upgrades.memory.plan && !$ctrl.isVpsStarter"
+            data-ng-if="$ctrl.configurationTile.upgrades.memory.plan && !$ctrl.isVpsStarter && !$ctrl.isResellerResourceProductName"
         >
             <oui-radio-toggle-group
                 data-model="$ctrl.configurationTile.model.memory"
@@ -78,14 +78,14 @@
         </oui-tile-description>
 
         <oui-tile-description
-            data-ng-if="!$ctrl.configurationTile.upgrades.memory.plan || $ctrl.isVpsStarter"
+            data-ng-if="!$ctrl.configurationTile.upgrades.memory.plan || $ctrl.isVpsStarter || $ctrl.isResellerResourceProductName"
         >
             <span
                 data-ng-bind=":: ($ctrl.stateVps.model.memory / 1024) | bytes:0:false:'GB'"
             ></span>
             <p
                 class="p-0"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxRam && !$ctrl.isInRescueMode && !$ctrl.isMigrating"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxRam && !$ctrl.isInRescueMode && !$ctrl.isMigrating && !$ctrl.isResellerResourceProductName"
             >
                 <a
                     data-ng-if="$ctrl.configurationTile.upgrades"
@@ -116,7 +116,7 @@
         data-term="{{ ::'vps_dashboard_tile_configuration_storage' | translate }}"
     >
         <oui-tile-description
-            data-ng-if="$ctrl.configurationTile.upgrades.storage.plan && !$ctrl.isVpsStarter"
+            data-ng-if="$ctrl.configurationTile.upgrades.storage.plan && !$ctrl.isVpsStarter && !$ctrl.isResellerResourceProductName"
         >
             <oui-radio-toggle-group
                 data-model="$ctrl.configurationTile.model.storage"
@@ -146,14 +146,14 @@
         </oui-tile-description>
 
         <oui-tile-description
-            data-ng-if="!$ctrl.configurationTile.upgrades.storage.plan || $ctrl.isVpsStarter"
+            data-ng-if="!$ctrl.configurationTile.upgrades.storage.plan || $ctrl.isVpsStarter || $ctrl.isResellerResourceProductName"
         >
             <span
                 data-ng-bind=":: $ctrl.stateVps.model.disk | bytes:0:false:'GB'"
             ></span>
             <p
                 class="p-0"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxStorage && !$ctrl.isInRescueMode"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxStorage && !$ctrl.isInRescueMode && !$ctrl.isResellerResourceProductName"
             >
                 <a
                     data-ng-if="$ctrl.configurationTile.upgrades"
