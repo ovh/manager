@@ -1,11 +1,8 @@
 import { render, waitFor } from '@testing-library/react';
-/* import {
-  PublicCloudProject,
-  useProductMaintenance,
-  useProject,
-} from '@ovhcloud/manager-components'; */
+
 import * as managerComponentsModule from '@ovhcloud/manager-components';
-import { Datagrid, PublicCloudProject } from '@ovhcloud/manager-components';
+import * as pciCommonModule from '@ovh-ux/manager-pci-common';
+import { Datagrid } from '@ovhcloud/manager-components';
 import { describe, it, vi } from 'vitest';
 import {
   QueryClient,
@@ -16,6 +13,7 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
+import { TProject } from '@ovh-ux/manager-pci-common';
 import * as useVolumeModule from '@/api/hooks/useVolume';
 import ListingPage from './List.page';
 import * as useAnnouncementBannerModule from '@/hooks/useAnnouncementBanner';
@@ -88,11 +86,11 @@ type TVolumePaginated = {
 
 const { shell } = shellContext;
 shell.navigation.getURL.mockResolvedValue('https://www.ovh.com');
-vi.spyOn(managerComponentsModule, 'useProject').mockReturnValue({
+vi.spyOn(pciCommonModule, 'useProject').mockReturnValue({
   data: { description: 'Project 1' },
   isLoading: false,
   isPending: false,
-} as UseQueryResult<PublicCloudProject, null>);
+} as UseQueryResult<TProject, null>);
 
 describe('ListingPage', () => {
   it('renders maintenance banner when product has maintenance', async () => {
