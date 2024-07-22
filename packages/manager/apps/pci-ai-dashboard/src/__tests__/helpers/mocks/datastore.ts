@@ -1,3 +1,4 @@
+import { DataStoresWithRegion } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
 import { ai } from '@/types/ai';
 
 export const mockedDatastoreInput: ai.DataStoreInput = {
@@ -29,4 +30,12 @@ export const mockedDatastoreAuth: ai.DataStoreAuth = {
   secretKey: 'secretKey',
   token: 'token',
   url: 'url',
+};
+
+export const mockedDatastoreWithRegion: DataStoresWithRegion = {
+  alias: 'alias',
+  endpoint: 'endpoint',
+  owner: ai.DataStoreOwnerEnum.customer,
+  type: ai.DataStoreTypeEnum.s3,
+  region: 'GRA',
 };

@@ -30,27 +30,27 @@ import {
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { ai } from '@/types/ai';
-import { useDockerForm } from './useDockerForm.hook';
+import { useDatastoreForm } from './useDatastoreForm.hook';
 import {
-  AddEditMutateRegistryProps,
-  useAddRegistry,
-} from '@/hooks/api/ai/registry/useAddRegistry.hook';
+  AddEditMutateDatastoreProps,
+  useAddDatastore,
+} from '@/hooks/api/ai/datastore/useAddDatastore.hook';
 
-interface AddDockerModalProps {
+interface AddDatastoreModalProps {
   regions: ai.capabilities.Region[];
   controller: ModalController;
-  onSuccess?: (registry?: ai.registry.Registry) => void;
+  onSuccess?: (datastore?: ai.DataStore) => void;
   onError?: (error: Error) => void;
 }
 
-const AddDocker = ({
+const AddDatastore = ({
   regions,
   controller,
   onSuccess,
   onError,
-}: AddDockerModalProps) => {
+}: AddDatastoreModalProps) => {
   const { projectId } = useParams();
-  const { form } = useDockerForm({ regions });
+  const { form } = useDatastoreForm({ regions });
 
   useEffect(() => {
     if (!controller.open) {
@@ -58,14 +58,14 @@ const AddDocker = ({
     }
   }, [controller.open]);
 
-  const { t } = useTranslation('pci-ai-dashboard/docker');
+  const { t } = useTranslation('pci-ai-dashboard/datastores');
   const { t: tRegions } = useTranslation('regions');
   const toast = useToast();
 
-  const AddDockerMutationProps: AddEditMutateRegistryProps = {
+  const AddDatastoreMutationPropos: AddEditMutateDatastoreProps = {
     onError(err) {
       toast.toast({
-        title: t(`formDockerToastErrorTitle`),
+        title: t(`formDatastoreToastErrorTitle`),
         variant: 'destructive',
         description: err.response.data.message,
       });
@@ -73,32 +73,40 @@ const AddDocker = ({
         onError(err);
       }
     },
-    onSuccess(newRegistry) {
+    onSuccess(newDatastore) {
       form.reset();
       toast.toast({
-        title: t('formDockerToastSuccessTitle'),
-        description: t(`formDockerToastSuccessDescription`, {
-          description: newRegistry.url,
-        }),
+        title: t('formDatastoreToastSuccessTitle'),
+        description: t(`formDatastoreToastSuccessDescription`),
       });
       form.reset();
       if (onSuccess) {
-        onSuccess(newRegistry);
+        onSuccess(newDatastore);
       }
     },
   };
-  const { addRegistry, isPending } = useAddRegistry(AddDockerMutationProps);
+  const { addDatastore, isPending } = useAddDatastore(
+    AddDatastoreMutationPropos,
+  );
 
   const onSubmit = form.handleSubmit((formValues) => {
-    const registryCreation: ai.registry.RegistryCreation = {
-      region: formValues.region,
-      username: formValues.username,
-      url: formValues.url,
-      password: formValues.password,
+    const datastoreCreation: ai.DataStoreInput = {
+      alias: formValues.alias,
+      endpoint: formValues.endpoint,
+      owner: ai.DataStoreOwnerEnum.customer,
+      type: ai.DataStoreTypeEnum.s3,
+      credentials: {
+        s3: {
+          accessKey: formValues.s3AccessKey,
+          secretKey: formValues.s3SecretKey,
+          region: formValues.s3Region,
+        },
+      },
     };
-    addRegistry({
+    addDatastore({
       projectId,
-      registry: registryCreation,
+      region: formValues.region,
+      datastore: datastoreCreation,
     });
   });
 
@@ -106,8 +114,8 @@ const AddDocker = ({
     <Dialog {...controller}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle data-testid="add-docker-modal">
-            {t(`formAddDockerTitle`)}
+          <DialogTitle data-testid="add-datastore-modal">
+            {t(`formAddDatastoreTitle`)}
           </DialogTitle>
         </DialogHeader>
         <DialogDescription />
@@ -115,10 +123,50 @@ const AddDocker = ({
           <form onSubmit={onSubmit} className="flex flex-col gap-2">
             <FormField
               control={form.control}
+              name="alias"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t('formAddDatastoreFieldAliasLabel')}</FormLabel>
+                  <FormControl>
+                    <Input
+                      data-testid="datastore-alias-input"
+                      placeholder={t('formAddDatastoreFieldAliasPlaceholder')}
+                      disabled={isPending}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="endpoint"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {t('formAddDatastoreFieldEndpointLabel')}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      data-testid="datastore-endpoint-input"
+                      placeholder={t(
+                        'formAddDatastoreFieldEndpointPlaceholder',
+                      )}
+                      disabled={isPending}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="region"
               render={({ field }) => (
                 <FormItem className="flex flex-col gap-1 mt-2">
-                  <FormLabel>{t('formAddDockerFieldRegionLabel')}</FormLabel>
+                  <FormLabel>{t('formAddDatastoreFieldRegionLabel')}</FormLabel>
                   <FormControl>
                     <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger>
@@ -139,14 +187,15 @@ const AddDocker = ({
             />
             <FormField
               control={form.control}
-              name="username"
+              name="s3AccessKey"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('formAddDockerFieldUsernameLabel')}</FormLabel>
+                  <FormLabel>
+                    {t('formAddDatastoreFieldAccessKeyLabel')}
+                  </FormLabel>
                   <FormControl>
                     <Input
-                      data-testid="docker-username-input"
-                      placeholder={t('formAddDockerFieldUsernamePlaceholder')}
+                      data-testid="datastore-access-key-input"
                       disabled={isPending}
                       {...field}
                     />
@@ -157,14 +206,16 @@ const AddDocker = ({
             />
             <FormField
               control={form.control}
-              name="password"
+              name="s3SecretKey"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('formAddDockerFieldPasswordLabel')}</FormLabel>
+                  <FormLabel>
+                    {t('formAddDatastoreFieldSecretKeyLabel')}
+                  </FormLabel>
                   <FormControl>
                     <Input
                       type="password"
-                      data-testid="docker-password-input"
+                      data-testid="datastore-secret-key-input"
                       disabled={isPending}
                       {...field}
                     />
@@ -175,14 +226,15 @@ const AddDocker = ({
             />
             <FormField
               control={form.control}
-              name="url"
+              name="s3Region"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('formAddDockerFieldUrlLabel')}</FormLabel>
+                  <FormLabel>
+                    {t('formAddDatastoreFieldS3RegionLabel')}
+                  </FormLabel>
                   <FormControl>
                     <Input
-                      data-testid="docker-url-input"
-                      placeholder={t('formAddDockerFieldUrlPlaceholder')}
+                      data-testid="datastore-s3-region-input"
                       disabled={isPending}
                       {...field}
                     />
@@ -194,19 +246,19 @@ const AddDocker = ({
             <DialogFooter className="flex justify-end mt-4">
               <DialogClose asChild>
                 <Button
-                  data-testid="add-docker-cancel-button"
+                  data-testid="add-datastore-cancel-button"
                   type="button"
                   variant="outline"
                 >
-                  {t('formAddDockerButtonCancel')}
+                  {t('formAddDatastoreButtonCancel')}
                 </Button>
               </DialogClose>
               <Button
-                data-testid="add-docker-submit-button"
+                data-testid="add-datastore-submit-button"
                 type="submit"
                 disabled={isPending}
               >
-                {t(`formAddDockerButtonConfirm`)}
+                {t(`formAddDatastoreButtonConfirm`)}
               </Button>
             </DialogFooter>
           </form>
@@ -216,4 +268,4 @@ const AddDocker = ({
   );
 };
 
-export default AddDocker;
+export default AddDatastore;

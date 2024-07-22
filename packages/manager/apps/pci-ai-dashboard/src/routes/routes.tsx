@@ -54,6 +54,12 @@ export default [
               import('@/pages/dashboard/docker/Docker.page'),
             ),
           },
+          {
+            path: 'datastore',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/datastore/Datastore.page'),
+            ),
+          },
         ],
       },
     ],
