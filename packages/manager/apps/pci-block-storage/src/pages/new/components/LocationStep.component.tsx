@@ -2,11 +2,8 @@ import { useState } from 'react';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  isDiscoveryProject,
-  useProject,
-} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
+import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import { RegionSelector } from '@/components/region-selector/RegionSelector.component';
 import { RegionSummary } from '@/components/region-selector/RegionSummary.component';
 import { TLocalisation } from '@/api/hooks/useRegions';
@@ -25,7 +22,7 @@ export function LocationStep({
 }: Readonly<LocationProps>) {
   const { t: tStepper } = useTranslation('stepper');
   const [region, setRegion] = useState<TLocalisation>(undefined);
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const isDiscovery = isDiscoveryProject(project);
   const hasRegion = !!region;
   return (

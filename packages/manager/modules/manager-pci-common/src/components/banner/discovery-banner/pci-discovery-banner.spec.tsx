@@ -37,8 +37,10 @@ describe('PciDiscoveryBanner tests', () => {
   });
 
   it('should identify discovery projects', () => {
-    expect(isDiscoveryProject({ planCode: 'foo' })).toBeFalsy();
-    expect(isDiscoveryProject({ planCode: undefined })).toBeFalsy();
-    expect(isDiscoveryProject({ planCode: 'project.discovery' })).toBeTruthy();
+    expect(isDiscoveryProject({ planCode: 'foo' } as TProject)).toBeFalsy();
+    expect(isDiscoveryProject({ planCode: undefined } as TProject)).toBeFalsy();
+    expect(
+      isDiscoveryProject({ planCode: 'project.discovery' } as TProject),
+    ).toBeTruthy();
   });
 });
