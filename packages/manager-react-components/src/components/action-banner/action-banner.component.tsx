@@ -31,7 +31,7 @@ export function ActionBanner({
     <OsdsMessage
       type={type}
       color={(type as unknown) as ODS_THEME_COLOR_INTENT}
-      className={'mt-3 flex-row'}
+      className="mt-3 flex-row"
       data-testid="actionBanner-message_container"
     >
       <div className="sm:flex sm:flex-row sm:justify-between sm:items-center">
