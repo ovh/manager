@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.26.2...@ovh-ux/manager-bm-server-components@1.27.0) (2024-07-22)
+
+
+### Features
+
+* **dedicated:** sol with public sshkey textarea ([#11394](https://github.com/ovh/manager/issues/11394)) ([0460e30](https://github.com/ovh/manager/commit/0460e3073161e71db2477ad7f9f7ac60dd8671b4))
+
+
+
+
+
 ## [1.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.26.1...@ovh-ux/manager-bm-server-components@1.26.2) (2024-07-18)
 
 

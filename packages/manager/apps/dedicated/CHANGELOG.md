@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.44.2...@ovh-ux/manager-dedicated@19.45.0) (2024-07-22)
+
+
+### Features
+
+* **sign-up:** add purpose of purchase field on signup form ([#12142](https://github.com/ovh/manager/issues/12142)) ([941f7ee](https://github.com/ovh/manager/commit/941f7ee969631d2645dc46f08ac502eab10b63c4))
+
+
+
+
+
 ## [19.44.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.44.1...@ovh-ux/manager-dedicated@19.44.2) (2024-07-18)
 
 

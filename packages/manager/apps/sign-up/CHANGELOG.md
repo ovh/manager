@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.7.4...@ovh-ux/sign-up-app@3.8.0) (2024-07-22)
+
+
+### Features
+
+* **sign-up:** adjusted address completion message for in ([#11996](https://github.com/ovh/manager/issues/11996)) ([28a39c5](https://github.com/ovh/manager/commit/28a39c57502adc0df5832c867aefe272f4fa3439))
+
+
+
+
+
 ## [3.7.4](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.7.3...@ovh-ux/sign-up-app@3.7.4) (2024-07-17)
 
 
