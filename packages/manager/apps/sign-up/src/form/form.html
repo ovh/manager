@@ -32,10 +32,34 @@
                 data-prevent-next="true"
                 data-ng-if="!$ctrl.loading.init"
             >
-                <p
-                    data-translate="{{ 'sign_up_form_global_information' + $ctrl.subsidiaryLabelSuffix}}"
-                    data-ng-if="$ctrl.isActiveStep('details')"
-                ></p>
+                <div data-ng-if="$ctrl.isActiveStep('details')">
+                    <p
+                        data-translate="{{ 'sign_up_form_global_information'}}"
+                        data-ng-if="!$ctrl.isIndiaSubsidiary"
+                    ></p>
+                    <oui-message
+                        data-type="warning"
+                        data-ng-if="$ctrl.isIndiaSubsidiary"
+                    >
+                        <strong
+                            class="d-block"
+                            data-translate="sign_up_form_global_information_kyc_reminder"
+                        >
+                        </strong>
+                        <ul>
+                            <li>
+                                <span
+                                    data-translate="sign_up_form_global_information_kyc_reminder_fill_address"
+                                ></span>
+                            </li>
+                            <li>
+                                <span
+                                    data-translate="sign_up_form_global_information_kyc_reminder_match_address"
+                                ></span>
+                            </li>
+                        </ul>
+                    </oui-message>
+                </div>
                 <div data-ui-view="details"></div>
             </oui-step-form>
             <oui-step-form

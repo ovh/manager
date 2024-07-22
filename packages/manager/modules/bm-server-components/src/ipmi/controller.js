@@ -6,7 +6,7 @@ import Ipmi from './ipmi.class';
 import Kvm from './kvm.class';
 import { State, STATE_ENUM } from './state.class';
 
-import { getIpmiGuideUrl } from './constants';
+import { getIpmiGuideUrl, SSH_KEY } from './constants';
 
 export default class BmServerComponentsIpmiController {
   /* @ngInject */
@@ -19,6 +19,7 @@ export default class BmServerComponentsIpmiController {
     IpmiService,
     Polling,
     $scope,
+    $timeout,
     $q,
   ) {
     this.$sce = $sce;
@@ -29,6 +30,7 @@ export default class BmServerComponentsIpmiController {
     this.IpmiService = IpmiService;
     this.Polling = Polling;
     this.$scope = $scope;
+    this.$timeout = $timeout;
     this.$q = $q;
   }
 
@@ -66,9 +68,8 @@ export default class BmServerComponentsIpmiController {
     };
 
     this.ssh = {
-      list: [],
-      error: false,
-      selectedKey: '',
+      publicKey: '',
+      inputRules: SSH_KEY,
     };
 
     this.ipmiHelpUrl = getIpmiGuideUrl(this.user.ovhSubsidiary);
@@ -78,10 +79,6 @@ export default class BmServerComponentsIpmiController {
     this.$q
       .all({
         ipmiFeatures: this.loadIpmiFeatures().then(() => {
-          if (this.ipmi.isSerialOverLanSshKeySupported()) {
-            this.loadSshKey();
-          }
-
           // load kvm features if IPMI is not activated
           if (!this.ipmi.isActivated()) {
             return this.IpmiService.getKvmFeatures(this.serviceName)
@@ -105,6 +102,30 @@ export default class BmServerComponentsIpmiController {
       .finally(() => {
         this.loader.loading = false;
       });
+
+    this.$scope.setAction = (action, data) => {
+      this.$scope.currentAction = action;
+      this.$scope.currentActionData = data;
+
+      if (this.$scope.currentAction) {
+        this.$scope.stepPath = `bm-server-components/ipmi/${action}.html`;
+
+        $('#sshAction').modal({
+          keyboard: false,
+          backdrop: 'static',
+        });
+      } else {
+        $('#sshAction').modal('hide');
+
+        this.$timeout(() => {
+          delete this.$scope.stepPath;
+        }, 300);
+      }
+    };
+
+    this.$scope.resetAction = () => {
+      this.$scope.setAction();
+    };
   }
 
   $onDestroy() {
@@ -123,17 +144,6 @@ export default class BmServerComponentsIpmiController {
         return this.ipmi;
       },
     );
-  }
-
-  loadSshKey() {
-    return this.IpmiService.getSshKey()
-      .then((keys) => {
-        this.ssh.error = false;
-        this.ssh.list = keys;
-      })
-      .catch(() => {
-        this.ssh.error = true;
-      });
   }
 
   getIpmiNavigation() {
@@ -667,15 +677,16 @@ export default class BmServerComponentsIpmiController {
   }
 
   // ---------ACTION SSH SOL------------
-  onSelectSshKey() {
+  startSolSshSession() {
     this.trackClick('access-sol-ssh');
     this.loader.buttonStart = true;
     this.loader.solSshKeyLoading = true;
+    this.$scope.setAction();
     return this.IpmiService.ipmiStartConnection({
       serviceName: this.serviceName,
       type: 'serialOverLanSshKey',
       ttl: this.ttl,
-      sshKey: this.ssh.selectedKey,
+      sshKey: this.ssh.publicKey,
       ipToAllow: this.ipmi.model.clientIp,
     })
       .then(({ taskId }) => {
@@ -689,6 +700,10 @@ export default class BmServerComponentsIpmiController {
           this.$translate.instant('server_configuration_impi_navigation_error'),
         );
       });
+  }
+
+  isKeyValid() {
+    return SSH_KEY.pattern.test(this.ssh.publicKey);
   }
 
   hasSOL() {

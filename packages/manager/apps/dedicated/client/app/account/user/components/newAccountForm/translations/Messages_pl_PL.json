@@ -769,5 +769,10 @@
   "signup_field_purposeOfPurchase": "Przyczyna zakupu",
   "new_account_content_check_validation": "Prosimy o sprawdzenie podanych informacji (numer VAT, numer telefonu, data urodzenia, etc.) w celu zatwierdzenia formularza.",
   "signup_enum_country_BV": "Norwegia - Wyspa Bouveta",
-  "signup_enum_country_HM": "Zjednoczone Królestwo - Wyspy Heard i MacDonald"
+  "signup_enum_country_HM": "Zjednoczone Królestwo - Wyspy Heard i MacDonald",
+  "signup_enum_purposeOfPurchase_personal": "Do celów prywatnych",
+  "signup_enum_purposeOfPurchase_commercial": "Do celów związanych z działalnością gospodarczą",
+  "signup_enum_purposeOfPurchase_non-commercial": "Do celów związanych z działalnością non-profit, religijną lub polityczną",
+  "signup_enum_purposeOfPurchase_study": "Do celów naukowych lub badań akademickich",
+  "signup_enum_purposeOfPurchase_public-service": "Do celów użyteczności publicznej"
 }
