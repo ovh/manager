@@ -39,8 +39,10 @@ describe('ActionBanner tests', () => {
       href,
     });
     const link = container.querySelector('osds-link');
+
+    console.log(link.getAttribute('href'));
     expect(link).toBeDefined();
-    expect(link).toHaveAttribute('href', href);
-    expect(link).toHaveAttribute('target', '_blank');
+    expect(link.getAttribute('href')).toBe(href);
+    expect(link.getAttribute('target')).toBe('_blank');
   });
 });

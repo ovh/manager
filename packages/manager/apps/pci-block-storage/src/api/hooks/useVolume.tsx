@@ -2,10 +2,10 @@ import { useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import {
   useCatalogPrice,
-  useProject,
   useTranslatedMicroRegions,
 } from '@ovhcloud/manager-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import { TPricing } from '@/api/data/catalog';
 import {
   addVolume,
