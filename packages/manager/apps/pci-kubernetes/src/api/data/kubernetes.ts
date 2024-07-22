@@ -1,42 +1,31 @@
-import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
+import { TKube } from '@/types';
 
-export type TKube = {
-  id: string;
-  region: string;
-  name: string;
-  url: string;
-  attachedTo?: string;
-  nodesUrl: string;
-  version: string;
-  nextUpgradeVersions: string[];
-  kubeProxyMode: string;
-  customization: {
-    apiServer: {
-      admissionPlugins: {
-        enabled: string[];
-        disabled: string[];
-      };
-    };
-  };
-  status: string;
-  updatePolicy: string;
-  isUpToDate: boolean;
-  controlPlaneIsUpToDate: boolean;
-  privateNetworkId: string;
-  nodesSubnetId: string;
-  privateNetworkConfiguration: {
-    privateNetworkRoutingAsDefault: boolean;
-    defaultVrackGateway: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-  auditLogsSubscribed: boolean;
+export const getKubernetesCluster = async (
+  projectId: string,
+  kubeId: string,
+): Promise<TKube> => {
+  const { data } = await v6.get<TKube>(
+    `/cloud/project/${projectId}/kube/${kubeId}`,
+  );
+  return data;
 };
 
 export const getAllKube = async (projectId: string): Promise<TKube[]> => {
   const { data } = await fetchIcebergV6<TKube>({
     route: `/cloud/project/${projectId}/kube`,
   });
+  return data;
+};
 
+export const updateKubernetesCluster = async (
+  projectId: string,
+  kubeId: string,
+  params: Partial<TKube>,
+) => {
+  const { data } = await v6.put(
+    `/cloud/project/${projectId}/kube/${kubeId}`,
+    params,
+  );
   return data;
 };

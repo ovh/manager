@@ -4,7 +4,7 @@ import { OsdsClipboard, OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import ActionsComponent from '@/components/listing/actions.component';
-import { TKube } from '@/api/data/kubernetes';
+import { TKube } from '@/types';
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation('listing');

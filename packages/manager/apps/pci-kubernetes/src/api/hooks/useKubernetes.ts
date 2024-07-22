@@ -1,12 +1,18 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovhcloud/manager-components';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { paginateResults } from '@/helpers';
-import { getAllKube, TKube } from '../data/kubernetes';
+import {
+  getAllKube,
+  getKubernetesCluster,
+  updateKubernetesCluster,
+} from '../data/kubernetes';
 import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
+import { TKube } from '@/types';
+import queryClient from '@/queryClient';
 
 export const getAllKubeQueryKey = (projectId: string) => [
   'project',
@@ -70,4 +76,44 @@ export const useKubes = (
     pagination,
     filters,
   ]);
+};
+export const useKubernetesCluster = (projectId: string, kubeId: string) =>
+  useQuery({
+    queryKey: ['project', projectId, 'kube', kubeId],
+    queryFn: () => getKubernetesCluster(projectId, kubeId),
+  });
+type RenameKubernetesClusterProps = {
+  projectId: string;
+  kubeId: string;
+  name: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+function getKubernetesClusterQuery(projectId: string, kubeId: string) {
+  return ['project', projectId, 'kube', kubeId];
+}
+
+export const useRenameKubernetesCluster = ({
+  projectId,
+  kubeId,
+  name,
+  onError,
+  onSuccess,
+}: RenameKubernetesClusterProps) => {
+  const mutation = useMutation({
+    mutationFn: async () =>
+      updateKubernetesCluster(projectId, kubeId, { name }),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    renameCluster: () => mutation.mutate(),
+    ...mutation,
+  };
 };
