@@ -178,6 +178,7 @@ export default class AgoraIpV4OrderController {
   }
 
   getServiceRegion() {
+    this.loadServiceRegion = true;
     this.model.selectedServiceRegion = null;
     let request = null;
     const { serviceName } = this.model.selectedService;
@@ -205,8 +206,9 @@ export default class AgoraIpV4OrderController {
         PRODUCT_TYPES.dedicatedServer.typeName
           ? this.$translate.instant(`ip_region_${region}`)
           : this.ovhManagerRegionService.getTranslatedMicroRegionLocation(
-              region,
+              region.toUpperCase(),
             );
+      this.loadServiceRegion = false;
     });
   }
 
