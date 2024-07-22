@@ -21,6 +21,7 @@ import {
   BLOCK_ADDITIONAL_IP,
   IP_FAILOVER_PLANCODE,
   ALERT_ID,
+  REGION_TO_COUNTRY,
 } from './ipv4.constant';
 
 export default class AgoraIpV4OrderController {
@@ -68,12 +69,7 @@ export default class AgoraIpV4OrderController {
     this.user = this.$state.params.user;
     this.catalogName = this.$state.params.catalogName;
     this.loadServices();
-  }
-
-  getIpv4Catalog() {
-    return this.ipCatalog.filter(
-      (plan) => plan.planCode.match(/^ip-v4.*|ip-failover.*/) != null,
-    );
+    this.ipv4Catalog = this.getIpv4Catalog();
   }
 
   static isIpv6Plan(planCode) {
@@ -103,6 +99,11 @@ export default class AgoraIpV4OrderController {
         services: this.Ipv4AgoraOrder.getServices(),
       })
       .then((results) => {
+        results.services.push({
+          displayName: this.$translate.instant('ip_servicetype__PARK'),
+          serviceName: 'PARKING',
+          type: 'PARKING',
+        });
         this.user = results.user;
         this.services = results.services;
         this.ipFailoverPrice = this.getIpFailoverPrice();
@@ -122,6 +123,12 @@ export default class AgoraIpV4OrderController {
       .finally(() => {
         this.loading.services = false;
       });
+  }
+
+  getIpv4Catalog() {
+    return this.ipCatalog.filter(
+      (plan) => plan.planCode.match(/^ip-v4.*|ip-failover.*/) != null,
+    );
   }
 
   getServiceTypeLabel(type) {
@@ -187,6 +194,11 @@ export default class AgoraIpV4OrderController {
     }
 
     return 'USA';
+  }
+
+  static getRegionForParkingIp() {
+    // TODO get location
+    return 'EUROPE';
   }
 
   loadPrivateCloudIpOffers(serviceName) {
@@ -276,6 +288,9 @@ export default class AgoraIpV4OrderController {
     this.model.params = {};
     let ipOffersPromise;
 
+    this.isParkingIp =
+      get(this.model, 'selectedService.type') ===
+      PRODUCT_TYPES.parking.typeName;
     this.isPrivateCloudOffer =
       get(this.model, 'selectedService.type') ===
       PRODUCT_TYPES.privateCloud.typeName;
@@ -301,7 +316,8 @@ export default class AgoraIpV4OrderController {
             }));
         } else if (
           this.model.selectedService.type ===
-          PRODUCT_TYPES.dedicatedServer.typeName
+            PRODUCT_TYPES.dedicatedServer.typeName ||
+          this.model.selectedService.type === PRODUCT_TYPES.parking.typeName
         ) {
           blockIpOfferDetails = this.filterOffer(
             ipOfferDetails,
@@ -325,6 +341,14 @@ export default class AgoraIpV4OrderController {
             let countries = data;
             if (data.length === 0) {
               const REGION = AgoraIpV4OrderController.getRegionFromServiceName(
+                this.model.selectedService.serviceName,
+              );
+              countries = IP_LOCATION_GROUPS.find((group) =>
+                group.labels.includes(REGION),
+              )?.countries;
+            }
+            if (this.isParkingIp) {
+              const REGION = AgoraIpV4OrderController.getRegionForParkingIp(
                 this.model.selectedService.serviceName,
               );
               countries = IP_LOCATION_GROUPS.find((group) =>
@@ -449,6 +473,19 @@ export default class AgoraIpV4OrderController {
         serviceName: get(this.model, 'selectedService.serviceName'),
         ...commonProductProps,
       });
+    } else if (this.isParkingIp) {
+      const datacenter = params.selectedCountry.regionId;
+      productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
+        organisation: get(
+          this.model.params,
+          'selectedOrganisation.organisationId',
+        ),
+        ...commonProductProps,
+        country: REGION_TO_COUNTRY[
+          params.selectedCountry.regionId
+        ]?.toUpperCase(),
+        datacenter,
+      });
     } else {
       productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
         organisation: get(
@@ -510,7 +547,8 @@ export default class AgoraIpV4OrderController {
     return (
       this.model.selectedService?.type === PRODUCT_TYPES.vps.typeName ||
       this.model.selectedService?.type ===
-        PRODUCT_TYPES.dedicatedServer.typeName
+        PRODUCT_TYPES.dedicatedServer.typeName ||
+      this.model.selectedService?.type === PRODUCT_TYPES.parking.typeName
     );
   }
 
@@ -519,7 +557,8 @@ export default class AgoraIpV4OrderController {
       this.model.selectedService?.type ===
         PRODUCT_TYPES.privateCloud.typeName ||
       this.model.selectedService?.type ===
-        PRODUCT_TYPES.dedicatedServer.typeName
+        PRODUCT_TYPES.dedicatedServer.typeName ||
+      this.model.selectedService?.type === PRODUCT_TYPES.parking.typeName
     );
   }
 
