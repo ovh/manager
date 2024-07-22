@@ -1,10 +1,7 @@
 import {
   Headers,
-  isDiscoveryProject,
-  PciDiscoveryBanner,
   StepComponent,
   useNotifications,
-  useProject,
   useProjectUrl,
   Notifications,
 } from '@ovh-ux/manager-react-components';
@@ -12,6 +9,11 @@ import { Translation, useTranslation } from 'react-i18next';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
+import {
+  isDiscoveryProject,
+  PciDiscoveryBanner,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { VolumeTypeStep } from './components/VolumeTypeStep.component';
 import { CapacityStep } from './components/CapacityStep.component';
@@ -26,7 +28,7 @@ export default function NewPage(): JSX.Element {
   const { t: tAdd } = useTranslation('add');
   const { t: tStepper } = useTranslation('stepper');
   const { projectId } = useParams();
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const navigate = useNavigate();
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
@@ -95,11 +97,11 @@ export default function NewPage(): JSX.Element {
       )}
       <Headers title={tAdd('pci_projects_project_storages_blocks_add_title')} />
       <Notifications />
+
       <div className="mb-5">
-        {isDiscoveryProject(project) && (
-          <PciDiscoveryBanner projectId={projectId} />
-        )}
+        <PciDiscoveryBanner project={project} />
       </div>
+
       <div className="mt-8">
         <StepComponent
           order={1}
