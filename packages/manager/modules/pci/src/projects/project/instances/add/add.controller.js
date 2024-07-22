@@ -1084,8 +1084,8 @@ export default class PciInstancesAddController {
         this.instance.networks = [
           ...(this.instance.networks || []),
           {
-            networkId: this.availableLocalPrivateNetworks.find((n) => {
-              return n.name === this.privateNetworkName;
+            networkId: this.availableLocalPrivateNetworks.find(({ name }) => {
+              return name === this.privateNetworkName;
             })?.id,
           },
         ];
