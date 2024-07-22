@@ -15,6 +15,7 @@ export interface RouteHandle {
 
 const ROUTE_PATHS = {
   root: '/pci/projects/:projectId/kubernetes',
+  renameCluster: '/pci/projects/:projectId/kubernetes/:kubeId/service/name',
 };
 
 export default [
@@ -33,6 +34,22 @@ export default [
           tracking: 'kubernetes',
         },
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
+        children: [
+          {
+            path: 'service',
+            ...lazyRouteConfig(() =>
+              import('@/pages/rename/RenameCluster.page'),
+            ),
+            children: [
+              {
+                path: ROUTE_PATHS.renameCluster,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/rename/RenameCluster.page'),
+                ),
+              },
+            ],
+          },
+        ],
       },
     ],
   },
