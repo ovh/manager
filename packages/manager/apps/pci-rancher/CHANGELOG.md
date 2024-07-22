@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.10.5...@ovh-ux/manager-pci-rancher-app@1.11.0) (2024-07-22)
+
+
+### Bug Fixes
+
+* **pci.rancher:** resolve text overflow ([#12328](https://github.com/ovh/manager/issues/12328)) ([a494cd3](https://github.com/ovh/manager/commit/a494cd3d8f4dc8aa126a831e156439c777620ff2))
+* update button to es language ([#12317](https://github.com/ovh/manager/issues/12317)) ([9c70787](https://github.com/ovh/manager/commit/9c7078770cb356c5f376c8515d9fec21b1f0b067))
+
+
+### Features
+
+* **pci.rancher:** update rancher creation info banner ([#12168](https://github.com/ovh/manager/issues/12168)) ([1015795](https://github.com/ovh/manager/commit/101579524dbc78fa95e3c3aeb2cbca53992c3a14))
+
+
+
+
+
 ## [1.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.10.4...@ovh-ux/manager-pci-rancher-app@1.10.5) (2024-07-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
