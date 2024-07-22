@@ -3,6 +3,7 @@ import forOwn from 'lodash/forOwn';
 import includes from 'lodash/includes';
 import kebabCase from 'lodash/kebabCase';
 import map from 'lodash/map';
+import { SUPPORT_URL } from './diagnostic.constants';
 
 export default class ExchangeTabDiagnosticsCtrl {
   /* @ngInject */
@@ -37,14 +38,7 @@ export default class ExchangeTabDiagnosticsCtrl {
     this.POLL_NAMESPACE = 'exchange.diagnostic.poll';
 
     this.exchange = wucExchange.value;
-    this.newTicketUrl = coreURLBuilder.buildURL(
-      'dedicated',
-      '#/support/tickets/new',
-      {
-        serviceTypeName: 'email_exchange',
-        serviceName: this.exchange.domain,
-      },
-    );
+    this.newTicketUrl = SUPPORT_URL;
 
     this.states = {
       REQUESTING_NEW_DIAGNOSTIC: 'REQUESTING_NEW_DIAGNOSTIC',
