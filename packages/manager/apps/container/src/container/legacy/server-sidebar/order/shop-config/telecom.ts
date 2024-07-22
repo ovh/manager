@@ -13,7 +13,7 @@ const telephony = (
   navigation: any,
   region: string,
   sub: string,
-  features: Record<string, string>,
+  features: Record<string, boolean>,
 ): ShopItem =>
   features.telephony
     ? {
@@ -89,7 +89,7 @@ const sms = (
   navigation: any,
   region: string,
   sub: string,
-  features: Record<string, string>,
+  features: Record<string, boolean>,
 ): ShopItem =>
   features.sms
     ? {
@@ -119,7 +119,7 @@ const telecomShopConfig = (
   navigation: any,
   region: string,
   sub: string,
-  features: Record<string, string>,
+  features: Record<string, boolean>,
 ): Array<ShopItem> => [
   features.telephony
     ? {

@@ -20,6 +20,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^7.3.2",
     "@ovh-ux/ovh-at-internet": "^0.13.1",
+    "@ovh-ux/request-tagger": "^0.2.0",
     "@ovh-ux/shell": "^3.6.1",
     "i18next": "^20.4.0",
     "i18next-http-backend": "^2.4.2",

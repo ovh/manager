@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useReket } from '@ovh-ux/ovh-reket';
 import { useURL } from '@/container/common/urls-constants';
 import ApplicationContext from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -13,6 +12,7 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { fetchFeatureAvailabilityData } from '@ovhcloud/manager-components';
 
 const AssistanceSidebar: React.FC = (): JSX.Element => {
   const { t } = useTranslation('sidebar');
@@ -26,7 +26,6 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
     .getEnvironment();
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
-  const reketInstance = useReket();
 
   const [hasLiveChat, setHashLiveChat] = useState(false);
   const [hasCarbonCalculator, setHasCarbonCalculator] = useState(false);
@@ -35,12 +34,7 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     const initFeatures = async () => {
-      const results: Record<string, boolean> = await reketInstance.get(
-        `/feature/${features.join(',')}/availability`,
-        {
-          requestType: 'aapi',
-        },
-      );
+      const results = await fetchFeatureAvailabilityData(features);
       setHashLiveChat(results['livechat']);
       setHasCarbonCalculator(results['carbon-calculator']);
     }

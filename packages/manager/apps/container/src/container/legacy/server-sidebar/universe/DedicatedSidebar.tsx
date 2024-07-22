@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
@@ -9,10 +7,11 @@ import useServiceLoader from "./useServiceLoader";
 import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
-import  getIcon  from './GetIcon';
+import getIcon from './GetIcon';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useFeatureAvailability } from '@ovhcloud/manager-components';
 
 export const features = [
   'dedicated-server',
@@ -56,7 +55,6 @@ export default function DedicatedSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
   const [shopItems, setShopItems] = useState<ShopItem[]>([]);
   const shell = useShell();
-  const reketInstance = useReket();
   const { loadServices } = useServiceLoader('dedicated');
   const { t, i18n } = useTranslation('sidebar');
   const navigation = shell.getPlugin('navigation');
@@ -64,7 +62,7 @@ export default function DedicatedSidebar() {
   const { ovhSubsidiary, isTrusted } = environment.getUser();
   const region = environment.getRegion();
 
-  const getDedicatedMenu = (feature: Record<string, string>) => {
+  const getDedicatedMenu = (feature: Record<string, boolean>) => {
     const menu = [];
 
     if (feature['dedicated-server']) {
@@ -412,15 +410,7 @@ export default function DedicatedSidebar() {
     return menu;
   };
 
-  const getFeatures = (): Promise<Record<string, string>> =>
-    reketInstance.get(`/feature/${features.join(',')}/availability`, {
-      requestType: 'aapi',
-    });
-
-  const { data: availability } = useQuery({
-    queryKey: ['sidebar-dedicated-availability'],
-    queryFn: getFeatures,
-  });
+  const {data: availability} = useFeatureAvailability(features);
 
   useEffect(() => {
     if (availability) {

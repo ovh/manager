@@ -8,6 +8,7 @@ import useOnboarding, {
   ONBOARDING_STATUS_ENUM,
 } from '../onboarding';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
+import { BetaVersion } from '../container/context';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -28,7 +29,7 @@ export const ProductNavReshuffleProvider = ({
    * @TODO: manage links for US version
    */
   const getFeedbackUrl = () => {
-    let feedbackUrl = FEEDBACK_URLS[`beta${betaVersion}`];
+    let feedbackUrl = FEEDBACK_URLS[`beta${betaVersion as BetaVersion}`];
     const [lang] = shell
       .getPlugin('i18n')
       .getLocale()

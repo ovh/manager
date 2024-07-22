@@ -19,7 +19,7 @@ const dedicatedShopConfig = (
   navigation: any,
   region: string,
   sub: string,
-  features: Record<string, string>,
+  features: Record<string, boolean>,
 ) => [
   features['public-cloud'] && ORDER_URLS[region].publicCloudProjectOrder
     ? {
