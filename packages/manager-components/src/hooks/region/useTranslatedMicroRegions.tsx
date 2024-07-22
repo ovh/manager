@@ -3,7 +3,12 @@ import './translations';
 
 export const isLocalZone = (region: string) => {
   const localZonePattern = /^lz/i;
-  return localZonePattern.test(region.split('-')?.slice(2)?.join('-'));
+  return localZonePattern.test(
+    region
+      .split('-')
+      ?.slice(2)
+      ?.join('-'),
+  );
 };
 
 export const getMacroRegion = (region: string): string => {
