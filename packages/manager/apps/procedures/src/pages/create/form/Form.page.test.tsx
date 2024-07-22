@@ -1,148 +1,194 @@
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  OdsSelectValueChangeEventDetail,
+  OsdsSelect,
+} from '@ovhcloud/ods-components';
 import FormCreateRequest from './Form.page';
+import * as useDocumentsModule from '@/data/api/documentsApi';
 
-const mockedUseForm = vi.fn(() => ({
-  handleSubmit: vi.fn((fn) => fn),
-  control: {},
-  reset: vi.fn(),
-  formState: { isValid: true },
-  watch: vi.fn(() => ({})),
-}));
-
-const useUploadDocuments = {
-  mutate: vi.fn(),
-  isPending: false,
-  isError: false,
-  reset: vi.fn(),
+const renderFormComponent = () => {
+  const queryClient = new QueryClient();
+  return render(
+    <QueryClientProvider client={queryClient}>
+      <FormCreateRequest />
+    </QueryClientProvider>,
+  );
 };
 
-let onSuccessCallback: () => void;
-vi.mock('@/data/hooks/useDocments', () => ({
-  useUploadDocuments: vi.fn((config) => {
-    onSuccessCallback = config.onSuccess;
-    return useUploadDocuments;
-  }),
-}));
-const mockedUseTranslation = vi.fn(() => ({
-  t: (key: string) => key,
-  tdoc: (key: string) => key,
-}));
-
-vi.mock('react-hook-form', () => ({
-  useForm: () => mockedUseForm(),
-}));
-
-vi.mock('react-i18next', () => ({
-  useTranslation: () => mockedUseTranslation(),
-}));
+const user = {
+  legalForm: 'other',
+  subsidiary: 'FR',
+};
 
 vi.mock('@/context/User/useUser', () => ({
   default: () => ({
-    user: {
-      legalForm: 'other',
-      subsidiary: 'FR',
-    },
+    user,
   }),
 }));
 
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OsdsButton: ({ children, ...props }: any) => (
-    <button {...props} disabled={false}>
-      {children}
-    </button>
-  ),
-  OsdsSelect: ({ onOdsValueChange, value = '' }: any) => (
-    <select
-      data-testid="SELECT"
-      onChange={onOdsValueChange}
-      value={value && ''}
-    >
-      <option>administration</option>
-      <option>other</option>
-    </select>
-  ),
-  OsdsSelectOption: ({ children, ...props }: any) => (
-    <div {...props}>{children}</div>
-  ),
-  OsdsText: ({ children }: any) => <span>{children}</span>,
-  OsdsMessage: ({ children, ...props }: any) => (
-    <div {...props}>{children}</div>
-  ),
-}));
-
-vi.mock('@ovhcloud/ods-common-theming', () => ({
-  ODS_THEME_TYPOGRAPHY_LEVEL: 'ODS_THEME_TYPOGRAPHY_LEVEL',
-  ODS_THEME_COLOR_INTENT: 'ODS_THEME_COLOR_INTENT',
-  ODS_TEXT_SIZE: {
-    _500: '500',
-  },
-  ODS_BUTTON_TYPE: {
-    submit: 'submit',
-  },
-}));
-
-vi.mock('./FormDocumentFields/FormDocumentFieldList', () => ({
-  FormDocumentFieldList: () => (
-    <div data-testid="FormDocumentFieldList">FormDocumentFieldList</div>
-  ),
-}));
-
-vi.mock('./Modal/ConfirmModal', () => ({
-  ConfirmModal: ({ onValidate }: any) => (
-    <div data-testid="ConfirmModal">
-      ConfirmModal
-      <button onClick={onValidate}>Validate</button>
-    </div>
-  ),
-}));
-
-vi.mock('./Modal/SuccessModal', () => ({
-  SuccessModal: () => <div data-testid="SuccessModal">SuccessModal</div>,
-}));
-
 describe('Form.page', () => {
-  it('should render select LegalForms correctly when the sub is FR and legalForms is other', () => {
-    render(<FormCreateRequest />);
+  it('should render select LegalForms correctly when the sub is FR and legalForms is other', async () => {
+    renderFormComponent();
 
-    expect(screen.getByTestId('SELECT')).not.toBeNull();
+    expect(
+      screen.getByTestId('account-disable-2fa-create-form-select'),
+    ).not.toBeNull();
   });
 
-  it('should render FormDocumentFieldList when legalForm is selected', () => {
-    render(<FormCreateRequest />);
+  it('should render FormDocumentFieldList when legalForm is selected', async () => {
+    renderFormComponent();
 
-    const selectInput = screen.getByTestId('SELECT');
-    fireEvent.change(selectInput, {
-      target: { value: 'administration' },
-    });
+    const legalFormSelect = (screen.queryByTestId(
+      'account-disable-2fa-create-form-select',
+    ) as unknown) as OsdsSelect;
 
-    expect(screen.getByTestId('FormDocumentFieldList')).not.toBeNull();
+    await act(() =>
+      legalFormSelect.odsValueChange.emit({
+        value: 'administration',
+      } as OdsSelectValueChangeEventDetail),
+    );
+
+    const selectInput = screen.getByTestId(
+      'account-disable-2fa-create-form-select',
+    );
+    await act(() => fireEvent.click(selectInput));
+
+    const selectOption = screen.getByText(
+      'account-disable-2fa-create-form-legalform-administration',
+    );
+    await act(() => fireEvent.click(selectOption));
+
+    expect(screen.getByTestId('form-document-field-list')).not.toBeNull();
   });
 
-  it('should show ConfirmModal on form submit', () => {
-    const { getByText, getByTestId, debug } = render(<FormCreateRequest />);
+  it('should not allow form submission if there is no file uploaded', async () => {
+    user.legalForm = 'corporation';
 
-    const selectInput = getByTestId('SELECT');
-    fireEvent.change(selectInput, {
-      target: { value: 'administration' },
-    });
+    const { getByText } = renderFormComponent();
 
     const submitBtn = getByText('account-disable-2fa-create-form-submit');
-    fireEvent.click(submitBtn);
 
-    expect(getByTestId('ConfirmModal')).not.toBeNull();
+    expect(submitBtn).toBeDisabled();
   });
 
-  it('should show SuccessModal on successful document upload', () => {
-    const { getByTestId } = render(<FormCreateRequest />);
+  it('should allow form submission if there is at least one file uploaded', async () => {
+    const { getByText, getByTestId } = renderFormComponent();
 
-    onSuccessCallback();
-    const selectInput = getByTestId('SELECT');
-    fireEvent.change(selectInput, {
-      target: { value: 'administration' },
-    });
+    const fileInput = getByTestId('18');
+    await act(() =>
+      fireEvent.change(fileInput, {
+        target: {
+          files: [new File(['test'], 'chucknorris.png', { type: 'image/png' })],
+        },
+      }),
+    );
 
-    expect(getByTestId('SuccessModal')).not.toBeNull();
+    const submitBtn = getByText('account-disable-2fa-create-form-submit');
+    expect(submitBtn).not.toBeDisabled();
+  });
+
+  it('should show ConfirmModal on form submit', async () => {
+    const { getByText, getByTestId } = renderFormComponent();
+
+    const fileInput = getByTestId('18');
+    await act(() =>
+      fireEvent.change(fileInput, {
+        target: {
+          files: [new File(['test'], 'chucknorris.png', { type: 'image/png' })],
+        },
+      }),
+    );
+
+    const submitBtn = getByText('account-disable-2fa-create-form-submit');
+    await act(() => fireEvent.click(submitBtn));
+
+    expect(
+      getByText(
+        'account-disable-2fa-create-form-confirm-modal-send-document-description-insure',
+      ),
+    ).not.toBeNull();
+  });
+
+  it('should hide ConfirmModal when declining submission', async () => {
+    const { getByText, getByTestId, queryByText } = renderFormComponent();
+
+    const fileInput = getByTestId('18');
+    await act(() =>
+      fireEvent.change(fileInput, {
+        target: {
+          files: [new File(['test'], 'chucknorris.png', { type: 'image/png' })],
+        },
+      }),
+    );
+
+    await act(() =>
+      fireEvent.click(getByText('account-disable-2fa-create-form-submit')),
+    );
+
+    await act(async () =>
+      fireEvent.click(getByText('account-disable-2fa-confirm-modal-no')),
+    );
+
+    expect(
+      queryByText(
+        'account-disable-2fa-create-form-confirm-modal-send-document-description-insure',
+      ),
+    ).not.toBeInTheDocument();
+  });
+
+  it('should show SuccessModal on successful document upload', async () => {
+    const { getByText, getByTestId } = renderFormComponent();
+    vi.spyOn(useDocumentsModule, 'uploadDocuments').mockReturnValue(
+      Promise.resolve(),
+    );
+
+    const fileInput = getByTestId('18');
+    await act(() =>
+      fireEvent.change(fileInput, {
+        target: {
+          files: [new File(['test'], 'chucknorris.png', { type: 'image/png' })],
+        },
+      }),
+    );
+
+    const submitBtn = getByText('account-disable-2fa-create-form-submit');
+    await act(() => fireEvent.click(submitBtn));
+
+    const confirmBtn = getByText('account-disable-2fa-confirm-modal-yes');
+    await act(() => fireEvent.click(confirmBtn));
+
+    expect(
+      getByText(
+        'account-disable-2fa-create-form-success-modal-send-document-title',
+      ),
+    ).not.toBeNull();
+  });
+
+  it('should show error message when document upload is not successful', async () => {
+    const { getByText, getByTestId } = renderFormComponent();
+    vi.spyOn(useDocumentsModule, 'uploadDocuments').mockRejectedValue(null);
+
+    const fileInput = getByTestId('18');
+    await act(() =>
+      fireEvent.change(fileInput, {
+        target: {
+          files: [new File(['test'], 'chucknorris.png', { type: 'image/png' })],
+        },
+      }),
+    );
+
+    const submitBtn = getByText('account-disable-2fa-create-form-submit');
+    await act(() => fireEvent.click(submitBtn));
+
+    const confirmBtn = getByText('account-disable-2fa-confirm-modal-yes');
+    await act(() => fireEvent.click(confirmBtn));
+
+    expect(
+      getByText('account-disable-2fa-create-form-error-message-send-document'),
+    ).not.toBeNull();
   });
 });

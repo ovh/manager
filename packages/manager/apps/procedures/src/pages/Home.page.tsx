@@ -32,7 +32,7 @@ export default function Home() {
       // To avoid redirecting user to the login page after navigating to another view,
       // we append the location.search value to keep the token in the url
       // This could be handled by storing the token and removing it from the url (but it will to be done later)
-      navigate(`${url}${location.search}`, { replace: true });
+      navigate(`${url}${location.search || ''}`, { replace: true });
     }
   };
   const { data, error, isSuccess, isFetched, isLoading } = useFetch2faStatus();

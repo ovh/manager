@@ -83,6 +83,7 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
         type="file"
         ref={fileInputRef}
         id={id}
+        data-testid={id}
         accept={accept}
         disabled={disabled}
         multiple={multiple}

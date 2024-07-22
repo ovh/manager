@@ -56,7 +56,7 @@ export const FormDocumentFieldList: FunctionComponent<Props> = ({
   const { t: tdoc } = useTranslation('account-disable-2fa-documents');
 
   return (
-    <ul>
+    <ul data-testid="form-document-field-list">
       {fields.map((field) => (
         <Controller
           key={field.field}
@@ -72,6 +72,7 @@ export const FormDocumentFieldList: FunctionComponent<Props> = ({
           }}
           render={({ field: { onChange, value } }) => (
             <FormDocumentFieldItem
+              id={field.field}
               multiple={field.multiple}
               maxFiles={field.multiple ? maxFiles : 1}
               maxSize={maxFileSize}
