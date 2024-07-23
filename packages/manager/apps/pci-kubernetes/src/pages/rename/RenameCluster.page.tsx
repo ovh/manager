@@ -28,6 +28,7 @@ import {
   useKubernetesCluster,
   useRenameKubernetesCluster,
 } from '@/api/hooks/useKubernetes';
+import { NAME_INPUT_CONSTRAINTS } from '@/constants';
 
 export default function RenameClusterPage() {
   const { t: tEditName } = useTranslation('edit-name');
@@ -38,6 +39,10 @@ export default function RenameClusterPage() {
     isPending: isPendingCluster,
   } = useKubernetesCluster(projectId, kubeId);
   const [name, setName] = useState('');
+  const [errors, setErrors] = useState({
+    length: false,
+    pattern: false,
+  });
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const {
@@ -75,6 +80,18 @@ export default function RenameClusterPage() {
   useEffect(() => {
     setName(kubernetesCluster?.name || '');
   }, [kubernetesCluster]);
+  useEffect(() => {
+    setErrors({
+      length: name.length > NAME_INPUT_CONSTRAINTS.MAX_LENGTH,
+      pattern: RegExp(NAME_INPUT_CONSTRAINTS.PATTERN).test(name) === false,
+    });
+  }, [name]);
+  const canRename =
+    isPendingCluster ||
+    isPendingRename ||
+    name === '' ||
+    errors.length ||
+    errors.pattern;
   return (
     <OsdsModal
       onOdsModalClose={onClose}
@@ -106,13 +123,30 @@ export default function RenameClusterPage() {
             </OsdsText>
             <OsdsFormField
               data-testid="renameCluster-input_name"
+              error={`${
+                errors.pattern
+                  ? tEditName(
+                      'pci_projects_project_kubernetes_details_service_name_input_pattern_validation_error',
+                    )
+                  : ''
+              }  ${
+                errors.length
+                  ? tEditName('common_field_error_maxlength', {
+                      maxlength: NAME_INPUT_CONSTRAINTS.MAX_LENGTH,
+                    })
+                  : ''
+              } `}
               className="mt-6"
             >
               <div slot="label">
                 <OsdsText
                   level={ODS_TEXT_LEVEL.body}
                   size={ODS_TEXT_SIZE._200}
-                  color={ODS_TEXT_COLOR_INTENT.text}
+                  color={
+                    errors.length || errors.pattern
+                      ? ODS_TEXT_COLOR_INTENT.error
+                      : ODS_THEME_COLOR_INTENT.text
+                  }
                 >
                   {tEditName(
                     'pci_projects_project_kubernetes_details_service_name_custom',
@@ -126,6 +160,11 @@ export default function RenameClusterPage() {
                 type={ODS_INPUT_TYPE.text}
                 onOdsValueChange={(event: OdsInputValueChangeEvent) =>
                   setName(event.detail.value)
+                }
+                className={
+                  errors.length || errors.pattern
+                    ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
+                    : 'border-color-[var(--ods-color-default-200)] bg-white'
                 }
               />
             </OsdsFormField>
@@ -146,7 +185,7 @@ export default function RenameClusterPage() {
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        {...((isPendingCluster || isPendingRename || name === '') && {
+        {...(canRename && {
           disabled: true,
         })}
         onClick={renameCluster}
