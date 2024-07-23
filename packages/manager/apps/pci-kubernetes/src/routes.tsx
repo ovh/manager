@@ -46,9 +46,6 @@ export default [
         children: [
           {
             path: '',
-            handle: {
-              tracking: '',
-            },
             element: <Navigate to="service" replace />,
           },
           {
