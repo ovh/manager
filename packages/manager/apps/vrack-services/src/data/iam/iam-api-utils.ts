@@ -11,7 +11,21 @@ import {
 import {
   EligibleManagedService,
   Subnet,
+  VrackServicesWithIAM,
 } from '../vrack-services/vrack-services.type';
+
+const addVrackServicesUrnToUrnList = (vrackServices: VrackServicesWithIAM) => (
+  urns: string[],
+) =>
+  Array.from(
+    new Set(
+      vrackServices?.currentState.subnets
+        .flatMap((subnet: Subnet) =>
+          subnet.serviceEndpoints.map((endpoint) => endpoint.managedServiceURN),
+        )
+        .concat(urns),
+    ),
+  );
 
 export const useServiceList = (vrackServicesId: string) => {
   const [urnList, setUrnList] = React.useState<string[]>([]);
@@ -50,19 +64,7 @@ export const useServiceList = (vrackServicesId: string) => {
   }, [serviceListResponse?.data]);
 
   React.useEffect(() => {
-    setUrnList((urns) =>
-      Array.from(
-        new Set(
-          vrackServices?.currentState.subnets
-            .flatMap((subnet: Subnet) =>
-              subnet.serviceEndpoints.map(
-                (endpoint) => endpoint.managedServiceURN,
-              ),
-            )
-            .concat(urns),
-        ),
-      ),
-    );
+    setUrnList(addVrackServicesUrnToUrnList(vrackServices));
   }, [vrackServices?.checksum]);
 
   React.useEffect(() => {
