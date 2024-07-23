@@ -218,19 +218,19 @@
                             <td class="text-center">
                                 <span
                                     class="oui-badge"
-                                    data-ng-click="openDiagnosticModal(domain)"
-                                    data-oui-tooltip="{{getTooltipForDomain(domain.name)}}"
+                                    data-ng-click="openDiagnosticModal(domain, HOSTING_TAB_DOMAINS.A_RECORD)"
+                                    data-oui-tooltip="{{getTooltipForDomain(domain.name, HOSTING_TAB_DOMAINS.A_RECORD)}}"
                                     data-oui-tooltip-placement="bottom"
-                                    data-ng-class="'oui-badge_' + getDiagnosticSuffix(domain.name)"
+                                    data-ng-class="'oui-badge_' + getDiagnosticSuffix(domain.name, HOSTING_TAB_DOMAINS.A_RECORD)"
                                     data-ng-bind="HOSTING_TAB_DOMAINS.A_RECORD | translate"
                                 >
                                 </span>
                                 <span
                                     class="oui-badge"
-                                    data-ng-click="openDiagnosticModal(domain)"
-                                    data-oui-tooltip="{{getTooltipForDomain(domain.name)}}"
+                                    data-ng-click="openDiagnosticModal(domain, HOSTING_TAB_DOMAINS.AAAA_RECORD)"
+                                    data-oui-tooltip="{{getTooltipForDomain(domain.name, HOSTING_TAB_DOMAINS.AAAA_RECORD)}}"
                                     data-oui-tooltip-placement="bottom"
-                                    data-ng-class="'oui-badge_' + getDiagnosticSuffix(domain.name)"
+                                    data-ng-class="'oui-badge_' + getDiagnosticSuffix(domain.name, HOSTING_TAB_DOMAINS.AAAA_RECORD)"
                                     data-ng-bind="HOSTING_TAB_DOMAINS.AAAA_RECORD | translate"
                                 >
                                 </span>
