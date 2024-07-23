@@ -73,7 +73,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
                     projectId: selectedPciProject,
                   }}
                   node={childNode}
-                  handleNavigation={() => menuClickHandler(childNode)}
+                  handleOnClick={() => menuClickHandler(childNode)}
                   id={childNode.idAttr}
                 />
                 {childNode.separator && <hr />}
@@ -93,7 +93,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
               projectId: selectedPciProject,
             }}
             node={node}
-            handleNavigation={() => menuClickHandler(node)}
+            handleOnClick={() => menuClickHandler(node)}
             id={node.idAttr}
           />
         </div>

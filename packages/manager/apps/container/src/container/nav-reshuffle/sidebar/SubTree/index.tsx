@@ -14,7 +14,6 @@ interface SubTreeProps {
   rootNode: Node;
   handleBackNavigation(): void;
   handleCloseSideBar(): void;
-  handleOnMouseOver(node: Node): void;
   handleOnSubmenuClick(node: Node): void;
   selectedNode: Node;
 }
@@ -22,7 +21,6 @@ interface SubTreeProps {
 const SubTree = ({
   rootNode,
   handleBackNavigation,
-  handleOnMouseOver,
   handleOnSubmenuClick,
   selectedNode,
   handleCloseSideBar,
@@ -33,8 +31,6 @@ const SubTree = ({
   return (
     <div
       className={style.subtree_content}
-      onMouseOver={() => handleOnMouseOver(rootNode)}
-      onMouseLeave={handleBackNavigation}
     >
       {!mobile && (
         <div className="flex justify-end p-2">

@@ -47,6 +47,7 @@ const Sidebar = (): JSX.Element => {
   const {
     currentNavigationNode,
     setCurrentNavigationNode,
+    closeNavigationSidebar,
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
   const [menuItems, setMenuItems] = useState<
@@ -136,7 +137,7 @@ const Sidebar = (): JSX.Element => {
     setSelectedNode(parent);
     setSelectedSubmenu(node);
     window.localStorage.setItem(savedLocationKey, node.id);
-    if (!mobile) setOpen(false);
+    mobile ? closeNavigationSidebar() : setOpen(false);
   };
 
   const closeSubmenu = () => {
@@ -248,7 +249,6 @@ const Sidebar = (): JSX.Element => {
                     <SidebarLink
                       node={node}
                       count={count}
-                      handleNavigation={() => menuClickHandler(node)}
                       handleOnClick={() => menuClickHandler(node)}
                       id={node.idAttr}
                       isShortText={!open}
@@ -302,7 +302,6 @@ const Sidebar = (): JSX.Element => {
           handleBackNavigation={() => {
             mobile ? setSelectedNode(null) : setSelectedNode(selectedNode);
           }}
-          handleOnMouseOver={(node) => setSelectedNode(node)}
           selectedNode={selectedSubmenu}
           handleCloseSideBar={closeSubmenu}
           handleOnSubmenuClick={(childNode) =>
