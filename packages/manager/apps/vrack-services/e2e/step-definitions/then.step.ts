@@ -10,6 +10,7 @@ import {
   modalVrackCreationDescriptionLine1,
   modalCreateNewVrackButtonLabel,
   associateVrackButtonLabel,
+  description,
 } from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 import {
   deliveringVrackMessage,
@@ -406,4 +407,16 @@ Then('User sees a modal to confirm {word} deletion', async function(
         : endpointModalDeleteHeadline,
   });
   await expect(modalHeadLine).toBeVisible();
+});
+
+Then('User {string} redirected to HUB', async function(
+  this: ICustomWorld<ConfigParams>,
+  isRedirected: 'is' | 'is not',
+) {
+  if (isRedirected === 'is') {
+    await expect(this.page).toHaveURL(/.*\/#\/hub/);
+  } else {
+    const listingDescription = await this.page.getByText(description);
+    await expect(listingDescription).toBeVisible();
+  }
 });

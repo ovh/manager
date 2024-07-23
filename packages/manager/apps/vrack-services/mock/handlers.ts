@@ -1,8 +1,14 @@
 import { Handler } from '@playwright-helpers';
 import {
+  getCartMocks,
+  GetCartMocksParams,
   getOrderDetailsMocks,
   GetOrderDetailsMocksParams,
-} from '../../../modules/order/mock';
+} from '@ovh-ux/manager-module-order/mock';
+import {
+  getFeatureAvailabilityMocks,
+  GetFeatureAvailabilityMocksParams,
+} from '@ovhcloud/manager-components/src/hooks/feature-availability/mocks/feature-availability.mock';
 import {
   getVrackServicesMocks,
   GetVrackServicesMocksParams,
@@ -14,16 +20,25 @@ import {
   GetAuthenticationMocks,
   getAuthenticationMocks,
 } from '../../../../../playwright-helpers/mocks/auth';
-import { getFeatureAvailabilityMock } from './feature-availability/feature-availability';
 
 export type ConfigParams = GetVrackServicesMocksParams &
   GetAuthenticationMocks &
   GetOrderDetailsMocksParams &
   GetRegionMocksParams &
   GetVrackMocksParams &
-  GetIamMocksParams;
+  GetIamMocksParams &
+  GetCartMocksParams &
+  Omit<GetFeatureAvailabilityMocksParams, 'featureAvailabilityResponse'> & {
+    isVrackServicesFeatureUnavailable?: boolean;
+    isVrackServicesOrderFeatureUnavailable?: boolean;
+  };
 
-export const getConfig = (params: ConfigParams): Handler[] =>
+export const getConfig = ({
+  isFeatureAvailabilityServiceKo,
+  isVrackServicesFeatureUnavailable,
+  isVrackServicesOrderFeatureUnavailable,
+  ...params
+}: ConfigParams): Handler[] =>
   [
     getAuthenticationMocks,
     getVrackServicesMocks,
@@ -31,5 +46,22 @@ export const getConfig = (params: ConfigParams): Handler[] =>
     getVrackMocks,
     getOrderDetailsMocks,
     getIamMocks,
-    getFeatureAvailabilityMock,
-  ].flatMap((getMocks) => getMocks(params));
+    getCartMocks,
+  ]
+    .flatMap((getMocks) => getMocks(params))
+    .concat(
+      getFeatureAvailabilityMocks({
+        isFeatureAvailabilityServiceKo,
+        featureAvailabilityResponse: {
+          'vrack-services': !isVrackServicesFeatureUnavailable,
+        },
+      }),
+    )
+    .concat(
+      getFeatureAvailabilityMocks({
+        isFeatureAvailabilityServiceKo,
+        featureAvailabilityResponse: {
+          'vrack-services:order': !isVrackServicesOrderFeatureUnavailable,
+        },
+      }),
+    );

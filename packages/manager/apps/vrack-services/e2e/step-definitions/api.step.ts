@@ -59,3 +59,18 @@ Given('The service to {word} a {word} is {word}', function(
     this.testContext.errorMessage = errorMessageByAction[action];
   }
 });
+
+Given('Feature availability service is {word}', function(
+  this: ICustomWorld<ConfigParams>,
+  okOrKo: 'ok' | 'ko',
+) {
+  this.handlersConfig.isFeatureAvailabilityServiceKo = okOrKo === 'ko';
+});
+
+Given('vRack Services feature is {word}', function(
+  this: ICustomWorld<ConfigParams>,
+  availability: 'available' | 'unavailable',
+) {
+  this.handlersConfig.isVrackServicesFeatureUnavailable =
+    availability === 'unavailable';
+});
