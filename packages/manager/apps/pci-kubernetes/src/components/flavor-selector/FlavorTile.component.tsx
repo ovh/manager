@@ -1,0 +1,191 @@
+import { OsdsChip, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import {
+  ODS_CHIP_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
+import { useCatalogPrice } from '@ovhcloud/manager-components';
+import { GB, useBytes } from '@/hooks/useBytes';
+import { FlavorLocalzoneChip } from './FlavorLocalzoneChip';
+
+export interface FlavorDiskType {
+  number: number;
+  capacity: number;
+  sizeUnit: string;
+  technology: string;
+}
+
+export interface FlavorTileProps {
+  flavorName: string;
+  flavorSpecs: {
+    ram: number;
+    vcores: number;
+    frequency: number;
+    disk: FlavorDiskType[];
+    nvme: FlavorDiskType[];
+    bandwidth: number;
+  };
+  flavorCompatibility: {
+    localzone: boolean;
+    globalzone: boolean;
+  };
+  flavorPrice: {
+    hourly: number;
+    monthly?: number;
+  };
+  isNewFlavor: boolean;
+  isSelected: boolean;
+  onClick: () => void;
+}
+
+const checkedClass =
+  'cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
+const uncheckedClass =
+  'cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600]';
+const separatorClass = 'h-px my-5 bg-[#85d9fd] border-0';
+
+export function FlavorTile({
+  flavorName,
+  flavorSpecs,
+  flavorCompatibility,
+  flavorPrice,
+  isNewFlavor,
+  isSelected,
+  onClick,
+}: Readonly<FlavorTileProps>) {
+  const { t } = useTranslation('flavors');
+  const { formatBytes } = useBytes();
+  const { getTextPrice, getFormattedHourlyCatalogPrice } = useCatalogPrice(4);
+  return (
+    <OsdsTile
+      className={isSelected ? checkedClass : uncheckedClass}
+      checked={isSelected}
+      onClick={() => onClick?.()}
+    >
+      <div className="w-full">
+        <div className="flex justify-between">
+          <OsdsText
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            <span className={clsx(isSelected && 'font-bold')}>
+              {flavorName}
+            </span>
+          </OsdsText>
+          {isNewFlavor && (
+            <OsdsChip
+              color={ODS_THEME_COLOR_INTENT.info}
+              size={ODS_CHIP_SIZE.sm}
+              inline
+            >
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.primary}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_TEXT_SIZE._500}
+              >
+                {t('pci_project_flavors_category_new')}
+              </OsdsText>
+            </OsdsChip>
+          )}
+        </div>
+        <hr className={separatorClass} />
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {t('pci_project_flavors_spec_ram', { ram: `${flavorSpecs.ram} GB` })}
+        </OsdsText>
+        <OsdsText
+          className="block"
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {t('pci_project_flavors_spec_vCore_details', {
+            vcores: flavorSpecs.vcores,
+            frequency: flavorSpecs.frequency,
+          })}
+        </OsdsText>
+        {flavorSpecs.disk?.map((disk, index) => (
+          <OsdsText
+            key={index}
+            className="block"
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {disk.number > 1 ? `${disk.number} x ` : ''}
+            {`${formatBytes(disk.capacity * GB, 2)}`}
+            {` ${disk.technology}`}
+          </OsdsText>
+        ))}
+        {flavorSpecs.nvme?.map((disk, index) => (
+          <OsdsText
+            key={index}
+            className="block"
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {disk.number > 1 ? `${disk.number} x ` : ''}
+            {`${formatBytes(disk.capacity * GB, 2)}`}
+            {` NVMe`}
+          </OsdsText>
+        ))}
+        <OsdsText
+          className="block"
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {t('pci_project_flavors_spec_bandwidth_detail', {
+            bandwidth: flavorSpecs.bandwidth,
+          })}
+        </OsdsText>
+        <hr className={separatorClass} />
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {t('pci_project_flavors_zone_compatible')}
+        </OsdsText>
+        <div className="flex gap-4 mt-3">
+          {flavorCompatibility.localzone && <FlavorLocalzoneChip isLocalZone />}
+          {flavorCompatibility.globalzone && (
+            <FlavorLocalzoneChip isLocalZone={false} />
+          )}
+        </div>
+        <hr className={separatorClass} />
+        {flavorPrice.monthly && (
+          <OsdsText
+            className="block"
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('pci_project_flavors_price_monthly', {
+              price: getTextPrice(flavorPrice.monthly),
+            })}
+          </OsdsText>
+        )}
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {getFormattedHourlyCatalogPrice(flavorPrice.hourly)}
+        </OsdsText>
+      </div>
+    </OsdsTile>
+  );
+}
