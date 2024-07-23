@@ -91,6 +91,8 @@ export default class ExchangeOrderAccountCtrl {
     this.previewOrder = null;
     this.exchange = wucExchange.value;
 
+    this.isOvhtel = wucExchange.value.nicType.length === 0;
+
     this.loadOrderList();
 
     $scope.addExchangeAccount = () => this.addExchangeAccount();
