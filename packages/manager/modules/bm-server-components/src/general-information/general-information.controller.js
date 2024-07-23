@@ -1,4 +1,8 @@
-import { URLS, OPERATING_SYSTEM_ENUM } from './general-information.constants';
+import {
+  URLS,
+  OPERATING_SYSTEM_ENUM,
+  INFORMATION_UNKNOWN,
+} from './general-information.constants';
 
 export default class BmServerComponentsGeneralInformationController {
   /* @ngInject */
@@ -9,6 +13,7 @@ export default class BmServerComponentsGeneralInformationController {
     this.atInternet = atInternet;
     this.user = coreConfig.getUser();
     this.URLS = URLS;
+    this.INFORMATION_UNKNOWN = INFORMATION_UNKNOWN;
   }
 
   getOperatingSystemLabel() {

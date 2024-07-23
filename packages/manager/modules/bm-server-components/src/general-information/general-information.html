@@ -167,7 +167,10 @@
             ><span
                 data-translate="{{ :: 'dedicated_server_dashboard_region_' + $ctrl.server.region }}"
             ></span
-            ><br /><span data-ng-bind=":: $ctrl.server.region"></span
+            ><br /><span
+                data-ng-if="$ctrl.server.region !== $ctrl.INFORMATION_UNKNOWN"
+                data-ng-bind=":: $ctrl.server.region"
+            ></span
         ></oui-tile-description>
     </oui-tile-definition>
 
@@ -177,7 +180,9 @@
             <span data-translate="dedicated_server_dashboard_zone"></span>
         </oui-tile-term>
         <oui-tile-description
-            ><span data-ng-bind=":: $ctrl.server.availabilityZone"></span
+            ><span
+                data-ng-bind="$ctrl.server.availabilityZone === $ctrl.INFORMATION_UNKNOWN ? ('dedicated_server_dashboard_zone_unknown' | translate) : $ctrl.server.availabilityZone"
+            ></span
         ></oui-tile-description>
     </oui-tile-definition>
 
