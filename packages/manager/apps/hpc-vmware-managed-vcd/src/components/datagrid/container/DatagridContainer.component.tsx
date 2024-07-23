@@ -20,14 +20,10 @@ import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import Loading from '@/components/loading/Loading.component';
 import { getListingIcebergV2 } from '@/data/api/hpc-vmware-managed-vcd';
-
-type Routes = {
-  api: string;
-  onboarding: string;
-};
+import TDatagridRoute from '@/types/datagrid-route.type';
 
 export type TDatagridContainerProps = {
-  route: Routes;
+  route: TDatagridRoute;
   title: string;
   isEmbedded?: boolean;
   containerId: string;
@@ -41,7 +37,7 @@ export default function DatagridContainer({
   route: { api, onboarding },
   columns,
 }: TDatagridContainerProps) {
-  const [flattenData, setFlattenData] = useState([]);
+  const [flattenData, setFlattenData] = useState<Record<string, unknown>[]>([]);
   const navigate = useNavigate();
   const { t } = useTranslation('listing');
 
@@ -71,7 +67,7 @@ export default function DatagridContainer({
       }),
     staleTime: Infinity,
     retry: false,
-    getNextPageParam: (lastPage) => lastPage.cursorNext as any,
+    getNextPageParam: (lastPage) => lastPage.cursorNext,
   });
 
   useEffect(() => {
@@ -79,14 +75,14 @@ export default function DatagridContainer({
       navigate(onboarding);
     }
     const flatten = data?.pages.map((page: any) => page.data).flat();
-    setFlattenData(flatten);
+    setFlattenData(flatten ?? []);
   }, [data]);
 
   if (isError) {
     return <ErrorBanner error={error.response} />;
   }
 
-  if (isLoading && !flattenData) {
+  if (isLoading && !flattenData.length) {
     return (
       <div>
         <Loading />
@@ -94,7 +90,7 @@ export default function DatagridContainer({
     );
   }
 
-  const layoutCss = `px-10 ${!isEmbedded ? 'pt-5' : 'pt-0'}`;
+  const layoutCss = `px-10 pt-${!isEmbedded ? '5' : '0'}`;
 
   return (
     <div className={layoutCss}>
@@ -110,7 +106,7 @@ export default function DatagridContainer({
       </div>
       <OsdsDivider />
       <React.Suspense>
-        {flattenData && (
+        {flattenData.length && (
           <Datagrid
             columns={columns}
             items={flattenData}

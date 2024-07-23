@@ -15,50 +15,62 @@ import RegionLabel from '@/components/region-label/RegionLabel.component';
 import { urls } from '@/routes/routes.constant';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 
+/* ========= datagrid cells ========== */
+const DatagridIdCell = (vdcOrg: IVcdOrganization) => {
+  const navigate = useNavigate();
+  return (
+    <DataGridTextCell>
+      <Links
+        onClickReturn={() => navigate(`/${vdcOrg.id}`)}
+        label={vdcOrg.currentState?.fullName}
+      ></Links>
+    </DataGridTextCell>
+  );
+};
+
+const DatagridRegionCell = (vdcOrg: IVcdOrganization) => (
+  <DataGridTextCell>
+    <RegionLabel code={vdcOrg.currentState?.region} />
+  </DataGridTextCell>
+);
+
+const DatagridDescriptionCell = (vdcOrg: IVcdOrganization) => (
+  <DataGridTextCell>{vdcOrg.currentState?.description}</DataGridTextCell>
+);
+
+const DatagridWebInterfaceCell = (vdcOrg: IVcdOrganization) => (
+  <DataGridTextCell>
+    <Links
+      href={vdcOrg.currentState?.webInterfaceUrl}
+      type={LinkType.external}
+      label={vdcOrg.currentState?.webInterfaceUrl}
+    />
+  </DataGridTextCell>
+);
+
+/* ======= listing page ======= */
 export default function Listing() {
   const { t } = useTranslation('listing');
-  const navigate = useNavigate();
 
   const columns = [
     {
       id: 'name',
-      cell: (vdcOrg: IVcdOrganization) => (
-        <DataGridTextCell>
-          <Links
-            onClickReturn={() => navigate(`/${vdcOrg.id}`)}
-            label={vdcOrg.currentState?.fullName}
-          ></Links>
-        </DataGridTextCell>
-      ),
+      cell: DatagridIdCell,
       label: t('managed_vcd_listing_name'),
     },
     {
       id: 'location',
-      cell: (vdcOrg: IVcdOrganization) => (
-        <DataGridTextCell>
-          <RegionLabel code={vdcOrg.currentState?.region} />
-        </DataGridTextCell>
-      ),
+      cell: DatagridRegionCell,
       label: t('managed_vcd_listing_location'),
     },
     {
       id: 'description',
-      cell: (vdcOrg: IVcdOrganization) => (
-        <DataGridTextCell>{vdcOrg.currentState?.description}</DataGridTextCell>
-      ),
+      cell: DatagridDescriptionCell,
       label: t('managed_vcd_listing_description'),
     },
     {
       id: 'webInterfaceURL',
-      cell: (vdcOrg: IVcdOrganization) => (
-        <DataGridTextCell>
-          <Links
-            href={vdcOrg.currentState?.webInterfaceUrl}
-            type={LinkType.external}
-            label={vdcOrg.currentState?.webInterfaceUrl}
-          />
-        </DataGridTextCell>
-      ),
+      cell: DatagridWebInterfaceCell,
       label: t('managed_vcd_listing_web_interface_url'),
     },
   ];
