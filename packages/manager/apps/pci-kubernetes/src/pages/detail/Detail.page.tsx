@@ -18,16 +18,15 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Outlet, useHref, useParams, useResolvedPath } from 'react-router-dom';
 import TabsPanel from '@/components/detail/TabsPanel.component';
-import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
+import { useKubeDetail } from '@/api/hooks/useKubernetes';
 
 export default function DetailPage() {
   const { t } = useTranslation('listing');
   const { t: tDetail } = useTranslation('detail');
 
   const { data: project } = useProject();
-  const { projectId } = useParams();
+  const { projectId, kubeId } = useParams();
   const hrefProject = useProjectUrl(projectId);
-  const { kubeId } = useParams();
   const hrefBack = useHref('..');
 
   const tabs = [
@@ -71,7 +70,7 @@ export default function DetailPage() {
     },
   ];
 
-  const { data: kubeDetail } = useKubernetesCluster(projectId, kubeId);
+  const { data: kubeDetail } = useKubeDetail(projectId, kubeId);
 
   return (
     <>

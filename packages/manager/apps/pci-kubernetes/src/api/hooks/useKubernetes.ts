@@ -119,3 +119,46 @@ export const useRenameKubernetesCluster = ({
     ...mutation,
   };
 };
+
+export const useKubeDetail = (projectId: string, kubeId: string) => {
+  const { t } = useTranslation('listing');
+
+  const {
+    data: kubeDetail,
+    error: kubeError,
+    isLoading: isKubeLoading,
+    isPending: isKubePending,
+  } = useKubernetesCluster(projectId, kubeId);
+
+  const {
+    data: privateNetworks,
+    error: networksError,
+    isLoading: isNetworksLoading,
+    isPending: isNetworksPending,
+  } = useAllPrivateNetworks(projectId);
+
+  return useMemo(() => {
+    const result = {
+      ...kubeDetail,
+      attachedTo: kubeDetail?.privateNetworkId
+        ? getPrivateNetworkName(privateNetworks, kubeDetail.privateNetworkId)
+        : t('kube_list_network_public'),
+    };
+
+    return {
+      isLoading: isKubeLoading || isNetworksLoading,
+      isPending: isKubePending || isNetworksPending,
+      data: result,
+      error: kubeError || networksError,
+    };
+  }, [
+    kubeDetail,
+    kubeError,
+    isKubeLoading,
+    isKubePending,
+    privateNetworks,
+    networksError,
+    isNetworksLoading,
+    isNetworksPending,
+  ]);
+};
