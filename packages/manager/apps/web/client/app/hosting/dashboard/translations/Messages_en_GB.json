@@ -1386,5 +1386,21 @@
   "hosting_dashboard_service_common_inactive": "Disabled",
   "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "More"
+  "hosting_dashboard_tabs_dropdown": "More",
+  "hosting_tab_DOMAINS_table_header_git": "Git",
+  "hosting_tab_DOMAINS_table_git_state_created": "Enabled",
+  "hosting_tab_DOMAINS_table_git_state_creating": "In progress",
+  "hosting_tab_DOMAINS_table_git_state_deleting": "Deleting",
+  "hosting_tab_DOMAINS_table_git_state_disabled": "Disabled",
+  "hosting_tab_DOMAINS_table_git_state_error": "Error",
+  "hosting_tab_DOMAINS_table_git_state_deploying": "In progress",
+  "hosting_tab_DOMAINS_table_git_state_initialError": "Error",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_lastDeploy": "View latest deployment information",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_limitedNumberPath": "The GIT association can only be done on one directory",
+  "hosting_tab_DOMAINS_table_popover_git_association": "Link Git",
+  "hosting_tab_DOMAINS_table_popover_git_configuration": "Configure Git",
+  "hosting_tab_DOMAINS_table_popover_git_deployment": "Deploy Git",
+  "hosting_tab_DOMAINS_table_popover_git_viewLastDeployment": "Latest deployment information",
+  "hosting_tab_DOMAINS_table_popover_git_delete": "Delete Git",
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "If you would like to detach your domain name, you will need to delete your Git configuration beforehand in order to prevent any potential change tracking and deployment management issues."
 }

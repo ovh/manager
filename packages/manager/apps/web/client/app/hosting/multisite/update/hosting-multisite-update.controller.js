@@ -6,6 +6,7 @@ import includes from 'lodash/includes';
 import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
 import set from 'lodash/set';
+import { GIT_STATUS } from '../hosting-multisite.constants';
 
 angular
   .module('App')
@@ -25,6 +26,8 @@ angular
       $q,
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites::modify-domain' });
+
+      $scope.isLoading = true;
 
       $scope.selectedOptions = {};
 
@@ -114,7 +117,33 @@ angular
             }
           }
         });
+
+        HostingDomain.getAttachedDomains($stateParams.productId, {
+          params: {
+            path: $scope.selected.domain.path,
+          },
+        })
+          .then((data) => {
+            $scope.domainsWithSamePath = data;
+            $scope.checkDomainWithSamePath();
+          })
+          .finally(() => {
+            $scope.isLoading = false;
+          });
       }
+
+      $scope.checkDomainWithSamePath = function checkDomainWithSamePath() {
+        $scope.hasDomainWithSamePath = $scope.domainsWithSamePath.some(
+          (domain) => domain !== $scope.selected.domain.name,
+        );
+      };
+
+      $scope.canModifyDomainWithGit = function canModifyDomainWithGit() {
+        return (
+          $scope.hasDomainWithSamePath ||
+          $scope.selected.domain.vcsStatus === GIT_STATUS.disabled
+        );
+      };
 
       $scope.loadStep1 = () => {
         const subDomainName = $scope
