@@ -60,6 +60,7 @@ type TFormState = {
     max: number;
   };
   bootable: boolean;
+  isInitialized: boolean;
 };
 
 export default function EditPage() {
@@ -108,6 +109,7 @@ export default function EditPage() {
       max: VOLUME_MAX_SIZE,
     },
     bootable: volume?.bootable || false,
+    isInitialized: false,
   });
 
   const { updateVolume, isPending: isUpdatePending } = useUpdateVolume({
@@ -154,25 +156,27 @@ export default function EditPage() {
     projectId,
   );
 
-  const availableQuotaByRegion = (region: string) => {
+  const getMaxSize = (_volume: TVolume) => {
     if (projectQuota?.length > 0) {
-      const regionQuota = projectQuota.find((d) => d.region === region);
-
-      if (regionQuota?.volume) {
-        let availableGigabytes = VOLUME_MAX_SIZE;
-        if (regionQuota.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA) {
-          availableGigabytes = Math.min(
-            VOLUME_MAX_SIZE,
-            regionQuota.volume.maxGigabytes - regionQuota.volume.usedGigabytes,
-          );
-        }
-        return availableGigabytes;
+      const regionQuota = projectQuota.find(
+        ({ region }) => region === _volume.region,
+      );
+      if (
+        regionQuota.volume &&
+        regionQuota.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA
+      ) {
+        const availableGigabytes =
+          regionQuota.volume.maxGigabytes - regionQuota.volume.usedGigabytes;
+        return Math.min(_volume.size + availableGigabytes, VOLUME_MAX_SIZE);
       }
     }
     return VOLUME_MAX_SIZE;
   };
 
-  const getVolumePriceEstimationFromCatalog = (price, volumeSize: number) => {
+  const getVolumePriceEstimationFromCatalog = (
+    price: { priceInUcents: number },
+    volumeSize: number,
+  ) => {
     const hourlyEstimation = volumeSize * price.priceInUcents;
     const monthlyEstimation = hourlyEstimation * 30 * 24;
 
@@ -190,15 +194,16 @@ export default function EditPage() {
     isPendingQuota;
 
   useEffect(() => {
-    if (volume) {
+    if (volume && projectQuota) {
       setFormState({
         name: volume.name,
         size: {
           value: volume.size,
           min: volume.size,
-          max: availableQuotaByRegion(volume.region),
+          max: getMaxSize(volume),
         },
         bootable: volume.bootable,
+        isInitialized: true,
       });
     }
   }, [volume, projectQuota]);
@@ -247,7 +252,7 @@ export default function EditPage() {
         />
       )}
 
-      {isLoading || isUpdatePending ? (
+      {isLoading || isUpdatePending || !formState.isInitialized ? (
         <OsdsSpinner
           size={ODS_SPINNER_SIZE.md}
           inline
@@ -367,6 +372,9 @@ export default function EditPage() {
                   color={ODS_THEME_COLOR_INTENT.primary}
                   variant={ODS_BUTTON_VARIANT.flat}
                   textAlign={ODS_BUTTON_TEXT_ALIGN.center}
+                  {...(formState.size.value <= formState.size.min
+                    ? { disabled: true }
+                    : {})}
                 >
                   <OsdsIcon
                     size={ODS_ICON_SIZE.sm}
@@ -408,6 +416,9 @@ export default function EditPage() {
                   color={ODS_THEME_COLOR_INTENT.primary}
                   variant={ODS_BUTTON_VARIANT.flat}
                   textAlign={ODS_BUTTON_TEXT_ALIGN.center}
+                  {...(formState.size.value >= formState.size.max
+                    ? { disabled: true }
+                    : {})}
                 >
                   <OsdsIcon
                     size={ODS_ICON_SIZE.sm}
