@@ -190,7 +190,7 @@
                 </div>
 
                 <div
-                    data-ng-show="$ctrl.model.params.selectedOffer.countries.length > 1"
+                    data-ng-show="$ctrl.model.params.selectedOffer.countries.length > 0"
                 >
                     <div class="row">
                         <p
@@ -198,12 +198,29 @@
                             data-translate-values="{ ipType: $ctrl.type }"
                         ></p>
                     </div>
-                    <div class="row">
+                    <div class="row" data-ng-show="!$ctrl.isParkingIp">
                         <oui-select-picker
                             class="d-inline-block col-md-6 col-xl-3 my-3"
                             data-name="country"
                             data-ng-repeat="country in $ctrl.model.params.selectedOffer.countries track by country.code"
                             data-label="{{ country.description }}"
+                            data-variant="light"
+                            data-picture="{{ ::country.icon }}"
+                            data-model="$ctrl.model.params.selectedCountry"
+                            data-values="[country]"
+                        >
+                        </oui-select-picker>
+                    </div>
+                    <div
+                        class="row"
+                        data-ng-show="$ctrl.isParkingIp && $ctrl.catalogByLocation.length >= 1"
+                    >
+                        <oui-select-picker
+                            class="d-inline-block col-md-6 col-xl-3 my-3"
+                            data-name="country"
+                            data-ng-repeat="country in $ctrl.catalogByLocation track by country.regionId"
+                            data-label="{{ country.location }}"
+                            data-description="{{ country.regionId }}"
                             data-variant="light"
                             data-picture="{{ ::country.icon }}"
                             data-model="$ctrl.model.params.selectedCountry"

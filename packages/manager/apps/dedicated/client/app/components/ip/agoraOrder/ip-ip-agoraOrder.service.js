@@ -42,6 +42,7 @@ export default class IpAgoraOrder {
     pricingMode = 'default',
     quantity = 1,
     serviceName,
+    datacenter,
   }) {
     const productToOrder = {
       configuration,
@@ -51,6 +52,7 @@ export default class IpAgoraOrder {
       productId,
       quantity,
       serviceName,
+      datacenter,
     };
 
     if (description) {
@@ -92,6 +94,13 @@ export default class IpAgoraOrder {
       productToOrder.configuration.push({
         label: 'organisation',
         value: organisation,
+      });
+    }
+
+    if (datacenter) {
+      productToOrder.configuration.push({
+        label: 'datacenter',
+        value: datacenter,
       });
     }
 
