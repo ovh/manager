@@ -58,6 +58,8 @@ export const DIAGNOSTIC_STATE = {
   ERROR: 'error',
   INFO: 'info',
   SUCCESS: 'success',
+  DISABLED: 'disabled',
+  DISABLED_GREY: 'sold-out',
 };
 
 export const HOSTING_TAB_DOMAINS = {
