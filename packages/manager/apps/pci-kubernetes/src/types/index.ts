@@ -19,6 +19,7 @@ export type TKube = {
   updatedAt: string;
   auditLogsSubscribed: boolean;
   privateNetworkConfiguration: NetworkConfiguration;
+  isClusterReady: boolean;
 };
 
 export type TAdmissionPlugin = {
