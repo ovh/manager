@@ -8,11 +8,13 @@ import { paginateResults } from '@/helpers';
 import {
   getAllKube,
   getKubernetesCluster,
+  resetKubeConfig,
   updateKubernetesCluster,
 } from '../data/kubernetes';
 import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
 import { TKube } from '@/types';
+import { STATUS } from '@/constants';
 
 export const getAllKubeQueryKey = (projectId: string) => [
   'project',
@@ -86,6 +88,10 @@ export const useKubernetesCluster = (projectId: string, kubeId: string) =>
   useQuery({
     queryKey: getKubernetesClusterQuery(projectId, kubeId),
     queryFn: () => getKubernetesCluster(projectId, kubeId),
+    select: (data) => ({
+      ...data,
+      isClusterReady: data.status === STATUS.READY,
+    }),
   });
 
 type RenameKubernetesClusterProps = {
@@ -116,6 +122,35 @@ export const useRenameKubernetesCluster = ({
   });
   return {
     renameCluster: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type ResetKubeConfigProps = {
+  projectId: string;
+  kubeId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useResetKubeConfig = ({
+  projectId,
+  kubeId,
+  onError,
+  onSuccess,
+}: ResetKubeConfigProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => resetKubeConfig(projectId, kubeId),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    resetKubeConfig: () => mutation.mutate(),
     ...mutation,
   };
 };
