@@ -56,7 +56,7 @@ const Sidebar = (): JSX.Element => {
   const [selectedNode, setSelectedNode] = useState<Node>(null);
   const [selectedSubmenu, setSelectedSubmenu] = useState<Node>(null);
   const [open, setOpen] = useState<boolean>(true);
-  const [assistanceTree, setAssistanceTree] = useState<Node>(null)
+  const [assistanceTree, setAssistanceTree] = useState<Node>(null);
   const mobile = isMobile();
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
@@ -88,38 +88,43 @@ const Sidebar = (): JSX.Element => {
   };
 
   /** Initialize navigation tree */
-  useEffect(() => {
-    let abort = false;
+  const memoizedNavigationTree = useMemo(() => {
+    const initializeNavigationTree = async () => {
+      const features = initFeatureNames(navigationTree);
 
-    const featuresListPromise = async () => {
-      if (!abort) {
-        const features = initFeatureNames(navigationTree);
+      const results: Record<string, boolean> = await reketInstance.get(
+        `/feature/${features.join(',')}/availability`,
+        {
+          requestType: 'aapi',
+        },
+      );
 
-        const results: Record<string, boolean> = await reketInstance.get(
-          `/feature/${features.join(',')}/availability`,
-          {
-            requestType: 'aapi',
-          },
-        );
+      const region = environmentPlugin.getEnvironment().getRegion();
+      const [tree] = initTree([navigationTree], results, region);
 
-        const region = environmentPlugin.getEnvironment().getRegion();
-        const [tree] = initTree([navigationTree], results, region);
-
-        const mxPlanNode = findNodeById(tree, 'mxplan');
-        if (mxPlanNode && region === 'CA') {
-          mxPlanNode.routing.hash = '#/email_mxplan';
-        }
-
-        setAssistanceTree(tree.children.find(({id} : Node) => id === 'assistance'))
-        setCurrentNavigationNode(tree.children.find(({id} : Node) => id === 'sidebar'));
+      const mxPlanNode = findNodeById(tree, 'mxplan');
+      if (mxPlanNode && region === 'CA') {
+        mxPlanNode.routing.hash = '#/email_mxplan';
       }
-    };
-    featuresListPromise();
 
-    return () => {
-      abort = true;
+      setAssistanceTree(
+        tree.children.find(({ id }: Node) => id === 'assistance'),
+      );
+      setCurrentNavigationNode(
+        tree.children.find(({ id }: Node) => id === 'sidebar'),
+      );
+
+      return tree;
     };
-  }, []);
+    return initializeNavigationTree();
+  }, [navigationTree]);
+
+  useEffect(() => {
+    const init = async () => {
+      await memoizedNavigationTree;
+    };
+    init();
+  }, [memoizedNavigationTree]);
 
   const memoizedServiceCount = useMemo(() => {
     return reketInstance.get('/services/count', {
@@ -279,7 +284,7 @@ const Sidebar = (): JSX.Element => {
 
         {open && assistanceTree && (
           <Suspense fallback="">
-            <Assistance nodeTree={assistanceTree}/>
+            <Assistance nodeTree={assistanceTree} />
           </Suspense>
         )}
 
