@@ -258,14 +258,10 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
               isDisabled={plan.status !== 'AVAILABLE'}
               name={t(plan.name)}
               description={t(getRancherPlanDescription(plan.name))}
-              chipLabel={
-                plan.name === 'OVHCLOUD_EDITION' ? t('comingSoon') : ''
-              }
               onClick={() => setSelectedPlan(plan)}
             />
           ))}
         </div>
-
         <Block>
           <Subtitle>{t('createRancherVersion')}</Subtitle>
         </Block>
