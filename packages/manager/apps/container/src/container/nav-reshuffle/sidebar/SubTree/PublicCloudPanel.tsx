@@ -9,7 +9,6 @@ import publicCloud from '@/container/nav-reshuffle/sidebar/navigation-tree/servi
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import {
-  isMobile,
   shouldHideElement,
 } from '@/container/nav-reshuffle/sidebar/utils';
 import { Location, useLocation } from 'react-router-dom';
@@ -19,7 +18,7 @@ import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSec
 interface PublicCloudPanelProps {
   rootNode: Node;
   selectedNode: Node;
-  handleOnSubmenuClick(node: Node): void;
+  handleOnSubMenuClick(node: Node): void;
 }
 
 const parseContainerURL = (
@@ -31,7 +30,7 @@ const parseContainerURL = (
 
 export const PublicCloudPanel: React.FC<ComponentProps<
   PublicCloudPanelProps
->> = ({ rootNode, selectedNode, handleOnSubmenuClick }: PublicCloudPanelProps) => {
+>> = ({ rootNode, selectedNode, handleOnSubMenuClick }: PublicCloudPanelProps) => {
   const [selectedPciProject, setSelectedPciProject] = useState<PciProject>(
     null,
   );
@@ -192,7 +191,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
                 node={node}
                 selectedNode={selectedNode}
                 selectedPciProject={selectedPciProject?.project_id}
-                handleOnSubmenuClick={handleOnSubmenuClick}
+                handleOnSubMenuClick={handleOnSubMenuClick}
               />
             )}
             {node.separator && <hr />}

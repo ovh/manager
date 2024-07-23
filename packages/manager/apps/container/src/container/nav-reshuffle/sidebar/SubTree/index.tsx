@@ -14,14 +14,14 @@ interface SubTreeProps {
   rootNode: Node;
   handleBackNavigation(): void;
   handleCloseSideBar(): void;
-  handleOnSubmenuClick(node: Node): void;
+  handleOnSubMenuClick(node: Node): void;
   selectedNode: Node;
 }
 
 const SubTree = ({
   rootNode,
   handleBackNavigation,
-  handleOnSubmenuClick,
+  handleOnSubMenuClick,
   selectedNode,
   handleCloseSideBar,
 }: SubTreeProps): JSX.Element => {
@@ -73,7 +73,7 @@ const SubTree = ({
             <PublicCloudPanel
               rootNode={rootNode}
               selectedNode={selectedNode}
-              handleOnSubmenuClick={handleOnSubmenuClick}
+              handleOnSubMenuClick={handleOnSubMenuClick}
             />
           ) : rootNode.children?.map((node) => (
             <li key={node.id} id={node.id} className={style.sidebar_pciEntry}>
@@ -81,7 +81,7 @@ const SubTree = ({
                 <SubTreeSection
                   node={node}
                   selectedNode={selectedNode}
-                  handleOnSubmenuClick={handleOnSubmenuClick}
+                  handleOnSubMenuClick={handleOnSubMenuClick}
                 />
               )}
               {node.separator && <hr />}

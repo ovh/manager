@@ -54,7 +54,7 @@ const Sidebar = (): JSX.Element => {
     Array<{ node: Node; count: number | boolean }>
   >([]);
   const [selectedNode, setSelectedNode] = useState<Node>(null);
-  const [selectedSubmenu, setSelectedSubmenu] = useState<Node>(null);
+  const [selectedSubMenu, setSelectedSubMenu] = useState<Node>(null);
   const [open, setOpen] = useState<boolean>(true);
   const [assistanceTree, setAssistanceTree] = useState<Node>(null);
   const mobile = isMobile();
@@ -67,7 +67,7 @@ const Sidebar = (): JSX.Element => {
 
   const menuClickHandler = (node: Node) => {
     setSelectedNode(node);
-    setSelectedSubmenu(null);
+    setSelectedSubMenu(null);
 
     let trackingIdComplement = 'navbar_v2_entry_';
     const history = findPathToNode(
@@ -138,54 +138,52 @@ const Sidebar = (): JSX.Element => {
     });
   }, [memoizedServiceCount]);
 
-  const selectSubmenu = (node: Node, parent: Node) => {
+  const selectSubMenu = (node: Node, parent: Node) => {
     setSelectedNode(parent);
-    setSelectedSubmenu(node);
+    setSelectedSubMenu(node);
     window.localStorage.setItem(savedLocationKey, node.id);
     mobile ? closeNavigationSidebar() : setOpen(false);
   };
 
-  const closeSubmenu = () => {
+  const closeSubMenu = () => {
     setSelectedNode(null);
-    setSelectedSubmenu(null);
+    setSelectedSubMenu(null);
   };
 
   useEffect(() => {
     if (selectedNode) return;
 
-    const savedNodeID = window.localStorage.getItem(savedLocationKey);
-
     const pathname = location.pathname;
-    if (savedNodeID) {
-      const node = findNodeById(currentNavigationNode, savedNodeID);
-      if (!node || !node.universe) {
-        window.localStorage.removeItem(savedLocationKey);
+    const savedNodeID = window.localStorage.getItem(savedLocationKey);
+    if (!savedNodeID) return;
+    const node = findNodeById(currentNavigationNode, savedNodeID);
+    if (!node || !node.universe) {
+      window.localStorage.removeItem(savedLocationKey);
+      return;
+    }
+
+    const parent = findNodeById(currentNavigationNode, node.universe);
+    if (parent) {
+      const nodePath = node.routing.hash
+        ? node.routing.hash.replace('#', node.routing.application)
+        : '/' + node.routing.application;
+
+      const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath);
+      const isMatching = parsedPath.reduce(
+        (acc: boolean, segment: string) => acc && pathname.includes(segment),
+        true,
+      );
+      if (isMatching) {
+        selectSubMenu(node, parent);
         return;
-      }
-
-      const parent = findNodeById(currentNavigationNode, node.universe);
-      if (parent) {
-        const nodePath = node.routing.hash
-          ? node.routing.hash.replace('#', node.routing.application)
-          : '/' + node.routing.application;
-
-        const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath);
-        const isMatching = parsedPath.reduce(
-          (acc: boolean, segment: string) => acc && pathname.includes(segment),
-          true,
-        );
-        if (isMatching) {
-          selectSubmenu(node, parent);
-          return;
-        } else {
-          window.localStorage.removeItem(savedLocationKey);
-        }
+      } else {
+        window.localStorage.removeItem(savedLocationKey);
       }
     }
 
-    const { node, parent } = findUniverse(currentNavigationNode, pathname);
-    if (node && parent) {
-      selectSubmenu(node, parent);
+    const universe = findUniverse(currentNavigationNode, pathname);
+    if (universe) {
+      selectSubMenu(universe.node, universe.parent);
     }
   }, [currentNavigationNode]);
 
@@ -305,12 +303,12 @@ const Sidebar = (): JSX.Element => {
       {selectedNode !== null && (
         <SubTree
           handleBackNavigation={() => {
-            mobile ? setSelectedNode(null) : setSelectedNode(selectedNode);
+            if (mobile) setSelectedNode(null);
           }}
-          selectedNode={selectedSubmenu}
-          handleCloseSideBar={closeSubmenu}
-          handleOnSubmenuClick={(childNode) =>
-            selectSubmenu(childNode, selectedNode)
+          selectedNode={selectedSubMenu}
+          handleCloseSideBar={closeSubMenu}
+          handleOnSubMenuClick={(childNode) =>
+            selectSubMenu(childNode, selectedNode)
           }
           rootNode={selectedNode}
         ></SubTree>

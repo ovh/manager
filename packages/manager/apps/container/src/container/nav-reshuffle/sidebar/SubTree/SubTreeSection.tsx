@@ -15,14 +15,14 @@ interface SubTreeSectionProps {
   node?: Node;
   selectedPciProject?: string;
   selectedNode: Node;
-  handleOnSubmenuClick(node: Node): void;
+  handleOnSubMenuClick(node: Node): void;
 }
 
 const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
   node = {},
   selectedPciProject,
   selectedNode,
-  handleOnSubmenuClick,
+  handleOnSubMenuClick,
 }: SubTreeSectionProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
@@ -43,7 +43,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
       name: trackingIdComplement.replace(/::$/g, ''),
       type: 'navigation',
     });
-    handleOnSubmenuClick(node);
+    handleOnSubMenuClick(node);
   };
 
   return (
