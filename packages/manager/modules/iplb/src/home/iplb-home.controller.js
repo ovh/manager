@@ -244,7 +244,7 @@ export default class IpLoadBalancerHomeCtrl {
       },
       changeOffer: {
         // TODO: Implementation of modal for changing offer
-        text: this.$translate.instant('iplb_edit'),
+        text: this.$translate.instant('iplb_modal_offer_change_title'),
         isAvailable: () => !!this.availableOffers.length,
         callback: () => {
           this.$state.go('iplb.detail.home.change-offer', {
