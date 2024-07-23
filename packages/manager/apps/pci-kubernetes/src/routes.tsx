@@ -60,6 +60,12 @@ export default [
                   import('@/pages/rename/RenameCluster.page'),
                 ),
               },
+              {
+                path: 'reset-kubeconfig',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/reset/ResetKubeConfig.page'),
+                ),
+              },
             ],
           },
           {
