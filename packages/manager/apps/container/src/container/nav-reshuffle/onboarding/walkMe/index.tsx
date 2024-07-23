@@ -22,10 +22,6 @@ export const OnboardingWalkMe = () => {
   const popoverElement = useRef();
   const [arrowPlacement, setArrowPlacement] = useState<Placement>();
   const [popperInstance, setPopperInstance] = useState<Instance>();
-  const user = useShell()
-    .getPlugin('environment')
-    .getEnvironment()
-    .getUser();
   const trackingPlugin = useShell().getPlugin('tracking');
 
   const {
@@ -153,7 +149,7 @@ export const OnboardingWalkMe = () => {
     }
   };
 
-  const calculateTargetBound = useCallback(() => {
+  const calculateTargetBound = () => {
     const currentStep = steps[currentStepIndex];
     const updatePos = (targetPos: DOMRect) => {
       const el: HTMLElement = stepElement.current;
@@ -171,7 +167,7 @@ export const OnboardingWalkMe = () => {
       const range = new Range();
 
       range.setStartBefore(elements[0]);
-      range.setEndAfter(elements[elements.length - 5]);
+      range.setEndAfter(elements[elements.length - 1]);
 
       targetPos = range.getBoundingClientRect();
       updatePos(targetPos);
@@ -180,7 +176,7 @@ export const OnboardingWalkMe = () => {
       targetPos = targetElement.getBoundingClientRect();
       updatePos(targetPos);
     }
-  }, [currentStepIndex, isMobile]);
+  };
 
   const updatePopper = useCallback(
     (interval = 350) => {

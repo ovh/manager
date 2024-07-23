@@ -3,7 +3,7 @@ import { Environment, Region } from '@ovh-ux/manager-config';
 const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '-home?id=csm_index';
 
-interface ContentURLS {
+export interface ContentURLS {
   help: {
     [key in string]: string;
   };

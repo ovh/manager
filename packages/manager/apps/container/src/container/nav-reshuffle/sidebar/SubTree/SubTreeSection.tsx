@@ -64,8 +64,8 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
                 id={childNode.id}
                 className={`px-3 ${
                   childNode.id === selectedNode?.id
-                    ? style.sidebar_submenu_items_selected
-                    : style.sidebar_submenu_items
+                    ? style.subtree_submenu_items_selected
+                    : style.subtree_submenu_items
                 }`}
               >
                 <SidebarLink
@@ -84,8 +84,8 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
         <div
           className={`px-3 ${
             node.id === selectedNode?.id
-              ? style.sidebar_submenu_items_selected
-              : style.sidebar_submenu_items
+              ? style.subtree_submenu_items_selected
+              : style.subtree_submenu_items
           }`}
         >
           <SidebarLink
