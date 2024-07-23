@@ -389,6 +389,18 @@ angular.module('services').service(
       });
     }
 
+    getNichandleAttached(domainName, nichandle) {
+      return this.getServiceInfosForZone(domainName).then((serviceInfos) => {
+        const { contactTech, contactAdmin } = serviceInfos;
+
+        const isDnsAttachedToNic =
+          nichandle === contactAdmin || nichandle === contactTech;
+        return {
+          isDnsAttachedToNic,
+        };
+      });
+    }
+
     /**
      * Get IPv6 configuration
      * @param {string} serviceName

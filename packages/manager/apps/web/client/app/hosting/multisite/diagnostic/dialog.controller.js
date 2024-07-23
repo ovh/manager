@@ -11,6 +11,7 @@ export default class MultisiteDiagnosticCtrl {
     this.domain = options.domain;
     this.dns = options.dns;
     this.nic = options.nic;
+    this.recordType = options.recordType;
     this.isDnsExternal = options.isDnsExternal;
     this.diagnosticState = options.diagnosticState;
     this.isDnsAttachedToNic = options.isDnsAttachedToNic;
