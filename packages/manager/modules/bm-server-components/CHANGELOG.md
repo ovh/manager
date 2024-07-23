@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.27.0...@ovh-ux/manager-bm-server-components@1.28.0) (2024-07-23)
+
+
+### Features
+
+* helpcenter ga migration to snow ([#11907](https://github.com/ovh/manager/issues/11907)) ([001cbb6](https://github.com/ovh/manager/commit/001cbb65fb0cb3f677e69f9176c096e994f99523))
+
+
+
+
+
 # [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.26.2...@ovh-ux/manager-bm-server-components@1.27.0) (2024-07-22)
 
 
