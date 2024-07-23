@@ -1,3 +1,5 @@
+import { Navigate } from 'react-router-dom';
+
 const lazyRouteConfig = (importFn: CallableFunction) => ({
   lazy: async () => {
     const { default: moduleDefault, ...moduleExports } = await importFn();
@@ -15,7 +17,6 @@ export interface RouteHandle {
 
 const ROUTE_PATHS = {
   root: '/pci/projects/:projectId/kubernetes',
-  renameCluster: '/pci/projects/:projectId/kubernetes/:kubeId/service/name',
 };
 
 export default [
@@ -34,20 +35,60 @@ export default [
           tracking: 'kubernetes',
         },
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
+        children: [],
+      },
+      {
+        path: ':kubeId',
+        handle: {
+          tracking: '',
+        },
+        ...lazyRouteConfig(() => import('@/pages/detail/Detail.page')),
         children: [
+          {
+            path: '',
+            handle: {
+              tracking: '',
+            },
+            element: <Navigate to="service" replace />,
+          },
           {
             path: 'service',
             ...lazyRouteConfig(() =>
-              import('@/pages/rename/RenameCluster.page'),
+              import('@/pages/detail/service/Service.page'),
             ),
             children: [
               {
-                path: ROUTE_PATHS.renameCluster,
+                path: 'name',
                 ...lazyRouteConfig(() =>
                   import('@/pages/rename/RenameCluster.page'),
                 ),
               },
             ],
+          },
+          {
+            path: 'nodepools',
+            handle: {
+              tracking: 'nodepools',
+            },
+            ...lazyRouteConfig(() =>
+              import('@/pages/detail/nodepools/NodePools.page'),
+            ),
+          },
+          {
+            path: 'restrictions',
+            handle: {
+              tracking: 'restrictions',
+            },
+            ...lazyRouteConfig(() =>
+              import('@/pages/detail/restrictions/Restrictions.page'),
+            ),
+          },
+          {
+            path: 'logs',
+            handle: {
+              tracking: 'logs',
+            },
+            ...lazyRouteConfig(() => import('@/pages/detail/log/Logs.page')),
           },
         ],
       },
