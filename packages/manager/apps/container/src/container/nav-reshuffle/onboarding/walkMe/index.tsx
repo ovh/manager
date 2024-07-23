@@ -149,7 +149,7 @@ export const OnboardingWalkMe = () => {
     }
   };
 
-  const calculateTargetBound = () => {
+  const calculateTargetBound = useCallback(() => {
     const currentStep = steps[currentStepIndex];
     const updatePos = (targetPos: DOMRect) => {
       const el: HTMLElement = stepElement.current;
@@ -176,7 +176,7 @@ export const OnboardingWalkMe = () => {
       targetPos = targetElement.getBoundingClientRect();
       updatePos(targetPos);
     }
-  };
+  }, [currentStepIndex, isMobile]);
 
   const updatePopper = useCallback(
     (interval = 350) => {
