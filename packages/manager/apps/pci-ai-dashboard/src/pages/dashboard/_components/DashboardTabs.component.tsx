@@ -63,9 +63,10 @@ const DashboardTabs = () => {
       count: registries?.length || 0,
     },
     {
-      href: 'git',
+      href: 'git-registries',
       label: t('githubRegistriesTab'),
-      count: registries?.length || 0,
+      count: datastores?.filter((ds) => ds.type === ai.DataStoreTypeEnum.git)
+        .length,
     },
     {
       href: 'datastore',

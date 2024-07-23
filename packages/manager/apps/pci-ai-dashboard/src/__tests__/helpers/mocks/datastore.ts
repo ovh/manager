@@ -39,3 +39,11 @@ export const mockedDatastoreWithRegion: DataStoresWithRegion = {
   type: ai.DataStoreTypeEnum.s3,
   region: 'GRA',
 };
+
+export const mockedGitWithRegion: DataStoresWithRegion = {
+  alias: 'alias',
+  endpoint: 'endpoint',
+  owner: ai.DataStoreOwnerEnum.customer,
+  type: ai.DataStoreTypeEnum.git,
+  region: 'GRA',
+};
