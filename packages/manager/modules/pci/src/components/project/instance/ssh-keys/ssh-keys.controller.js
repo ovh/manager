@@ -82,6 +82,9 @@ export default class SshKeysController {
       .$promise.then((sshKeys) => {
         this.sshKeys = sshKeys;
         this.getAvailableKeys(this.region);
+
+        this.sshKeyForm.$setPristine();
+        this.sshKeyForm.$setUntouched();
       })
       .catch((err) => {
         this.CucCloudMessage.error(
@@ -107,6 +110,7 @@ export default class SshKeysController {
 
   addKey() {
     this.messages = [];
+    this.loaders.isAdding = true;
     return this.OvhApiCloudProjectSshKey.v6()
       .save({ serviceName: this.serviceName }, this.model)
       .$promise.then((sshKey) => {
