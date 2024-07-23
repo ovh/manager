@@ -3,6 +3,7 @@ import { PaginationState } from '@ovhcloud/manager-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import queryClient from '@/queryClient';
 import { paginateResults } from '@/helpers';
 import {
   getAllKube,
@@ -12,7 +13,6 @@ import {
 import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
 import { TKube } from '@/types';
-import queryClient from '@/queryClient';
 
 export const getAllKubeQueryKey = (projectId: string) => [
   'project',
@@ -77,11 +77,17 @@ export const useKubes = (
     filters,
   ]);
 };
+
+function getKubernetesClusterQuery(projectId: string, kubeId: string) {
+  return ['project', projectId, 'kube', kubeId];
+}
+
 export const useKubernetesCluster = (projectId: string, kubeId: string) =>
   useQuery({
-    queryKey: ['project', projectId, 'kube', kubeId],
+    queryKey: getKubernetesClusterQuery(projectId, kubeId),
     queryFn: () => getKubernetesCluster(projectId, kubeId),
   });
+
 type RenameKubernetesClusterProps = {
   projectId: string;
   kubeId: string;
@@ -89,10 +95,6 @@ type RenameKubernetesClusterProps = {
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
-
-function getKubernetesClusterQuery(projectId: string, kubeId: string) {
-  return ['project', projectId, 'kube', kubeId];
-}
 
 export const useRenameKubernetesCluster = ({
   projectId,
