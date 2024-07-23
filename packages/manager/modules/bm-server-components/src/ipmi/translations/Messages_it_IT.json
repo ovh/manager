@@ -37,7 +37,6 @@
   "server_configuration_impi_sessions_success": "Le sessioni del modulo IPMI sono state eliminate correttamente",
   "server_configuration_impi_disable": "Le funzionalità del modulo IPMI sono temporaneamente disattivate a causa di un intervento in corso. Saranno riattivate al termine dell'operazione.",
   "server_configuration_impi_monitoring_warning": "Ricorda di disattivare il monitoraggio dei tuoi servizi prima di installare un sistema operativo da IPMI.",
-  "server_configuration_impi_SOL_help": "È necessario configurare la sessione SOL.",
   "server_configuration_impi_SOL_help_link": "Accedere alla guida di configurazione",
   "server_configuration_ipmi_title": "IPMI",
   "server_configuration_kvm_title": "KVM",
@@ -62,10 +61,6 @@
   "server_configuration_tile_sol_heading": "Serial over LAN (SoL)",
   "server_configuration_tile_sol_description": "Accesso alla console di serie della macchina tramite una connessione sicura",
   "server_configuration_ssh_sol_definition": "SSH SoL (autenticazione con chiave SSH)",
-  "server_configuration_ssh_select": "Seleziona una chiave SSH",
-  "server_configuration_doing": "[In corso]",
-  "server_common_confirm": "Conferma",
-  "server_common_cancel": "Annulla",
   "server_configuration_ssh_sol_input_placeholder": "Inserisci una chiave SSH pubblica. Esempio: {{t0}}",
   "server_configuration_ssh_sol_input_bad_pattern": "La chiave pubblica SSH non è valida: sono accettate solo le chiavi RSA, ECDSA e EdDSA in formato OpenSSH",
   "server_configuration_ssh_sol_add_key": "Aggiungere la chiave SSH",
@@ -73,5 +68,8 @@
   "server_configuration_ssh_sol_start": "Avviare la sessione SSL via SSH",
   "server_configuration_ssh_sol_input_bad_required": "Inserire una chiave SSH pubblica nel campo di input.",
   "server_configuration_tile_ipmi_heading": "IPMI",
-  "server_configuration_tile_ipmi_description": "Gestire l’IPMI (Intelligent Platform Management Interface)"
+  "server_configuration_tile_ipmi_description": "Gestire l’IPMI (Intelligent Platform Management Interface)",
+  "server_configuration_doing": "[In corso]",
+  "server_common_confirm": "Conferma",
+  "server_common_cancel": "Annulla"
 }
