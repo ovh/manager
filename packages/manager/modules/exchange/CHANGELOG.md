@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.5.0...@ovh-ux/manager-exchange@4.5.1) (2024-07-23)
+
+
+### Bug Fixes
+
+* **web.exchange:** no need redirection to order when is ovhtel ([#12177](https://github.com/ovh/manager/issues/12177)) ([0b6600d](https://github.com/ovh/manager/commit/0b6600d1a486da2fa7b8f66d343a61b746b76760))
+
+
+
+
+
 # [4.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.4.2...@ovh-ux/manager-exchange@4.5.0) (2024-05-28)
 
 

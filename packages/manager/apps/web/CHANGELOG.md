@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.30.3...@ovh-ux/manager-web@18.31.0) (2024-07-23)
+
+
+### Bug Fixes
+
+* **web.privatedb:** hide banner if postgre and config available ([a6d0336](https://github.com/ovh/manager/commit/a6d0336f23a48e9adf8d0880a426b8e77797f122))
+* **web:** fix typo on ongoing operation dashboard ([#12395](https://github.com/ovh/manager/issues/12395)) ([5c6b497](https://github.com/ovh/manager/commit/5c6b49753c42a7ad05ae516c3e0f3fd12b37e281))
+
+
+### Features
+
+* **web:** remove sql coming soon message ([#12379](https://github.com/ovh/manager/issues/12379)) ([8a5e0a2](https://github.com/ovh/manager/commit/8a5e0a21e82dd9f3a54cef1279a9419acdd325b9))
+
+
+### Reverts
+
+* Revert "feat(web): remove sql coming soon message (#12379)" ([876c9b6](https://github.com/ovh/manager/commit/876c9b6728e3289781bd2b69f37b6a401407ddba)), closes [#12379](https://github.com/ovh/manager/issues/12379)
+
+
+
+
+
 ## [18.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.30.2...@ovh-ux/manager-web@18.30.3) (2024-07-15)
 
 
