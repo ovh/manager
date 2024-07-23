@@ -45,7 +45,7 @@ export default function OnboardingPage() {
         category: t('guideCategory'),
         description: t('guide1Description'),
       },
-      href: link?.guideLink1 as string,
+      href: link?.guideLink1,
       onClick: () =>
         trackClick({
           location: PageLocation.page,
@@ -64,7 +64,7 @@ export default function OnboardingPage() {
         category: t('guideCategory'),
         description: t('guide2Description'),
       },
-      href: link?.guideLink2 as string,
+      href: link?.guideLink2,
       onClick: () =>
         trackClick({
           location: PageLocation.page,
