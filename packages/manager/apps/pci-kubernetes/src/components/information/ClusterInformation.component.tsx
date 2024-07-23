@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
 import ClusterStatus from './ClusterStatus.component';
+import TileLine from './TileLine.component';
 
 export default function ClusterInformation() {
   const { t } = useTranslation('service');
@@ -49,138 +50,97 @@ export default function ClusterInformation() {
         >
           {t('kube_service_cluster_information')}
         </OsdsText>
-
         <OsdsDivider separator />
 
-        <div className="flex flex-col mb-3">
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {tDetail('kube_list_id')}
-          </OsdsText>
-          <OsdsClipboard aria-label="clipboard" value={kubeDetail.id} />
+        <TileLine
+          title={tDetail('kube_list_id')}
+          value={<OsdsClipboard aria-label="clipboard" value={kubeDetail.id} />}
+        />
 
-          <OsdsDivider separator />
+        <TileLine
+          title={t('kube_service_name')}
+          value={
+            <OsdsText
+              className="mb-4"
+              size={ODS_TEXT_SIZE._400}
+              level={ODS_TEXT_LEVEL.body}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              {kubeDetail.name}
+            </OsdsText>
+          }
+        />
 
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('kube_service_name')}
-          </OsdsText>
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {kubeDetail.name}
-          </OsdsText>
+        <TileLine
+          title={t('kube_service_cluster_status')}
+          value={<ClusterStatus status={kubeDetail.status} />}
+        />
 
-          <OsdsDivider separator />
+        <TileLine
+          title={t('kube_service_cluster_version')}
+          value={
+            <OsdsText
+              className="mb-4"
+              size={ODS_TEXT_SIZE._400}
+              level={ODS_TEXT_LEVEL.body}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              {kubeDetail.version}
+            </OsdsText>
+          }
+        />
 
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('kube_service_cluster_status')}
-          </OsdsText>
-          <ClusterStatus status={kubeDetail.status} />
+        <TileLine
+          title={t('kube_service_cluster_network_attached')}
+          value={
+            <OsdsText
+              className="mb-4"
+              size={ODS_TEXT_SIZE._400}
+              level={ODS_TEXT_LEVEL.body}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              <span className="block">{kubeDetail.attachedTo}</span>
 
-          <OsdsDivider separator />
-
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('kube_service_cluster_version')}
-          </OsdsText>
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {kubeDetail.version}
-          </OsdsText>
-
-          <OsdsDivider separator />
-
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('kube_service_cluster_network_attached')}
-          </OsdsText>
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            <span className="block">{kubeDetail.attachedTo}</span>
-
-            {publicNetwork() && (
-              <span className="block">
-                {tKubernetes('pci_kubernetes_network_data_public')}
-              </span>
-            )}
-            {privateNetwork() && (
-              <>
+              {publicNetwork() && (
                 <span className="block">
-                  {tKubernetes('pci_kubernetes_network_data_private')}
+                  {tKubernetes('pci_kubernetes_network_data_public')}
                 </span>
-                <span>
-                  {tKubernetes('pci_kubernetes_network_data_ip')}:{' '}
-                  {ip() || tKubernetes('pci_kubernetes_network_data_dhcp')}
-                </span>
-                <span></span>
-              </>
-            )}
-          </OsdsText>
+              )}
+              {privateNetwork() && (
+                <>
+                  <span className="block">
+                    {tKubernetes('pci_kubernetes_network_data_private')}
+                  </span>
+                  <span>
+                    {tKubernetes('pci_kubernetes_network_data_ip')}:{' '}
+                    {ip() || tKubernetes('pci_kubernetes_network_data_dhcp')}
+                  </span>
+                </>
+              )}
+            </OsdsText>
+          }
+        />
 
-          <OsdsDivider separator />
+        <TileLine
+          title={t('kube_service_cluster_region')}
+          value={
+            <OsdsText
+              className="mb-4"
+              size={ODS_TEXT_SIZE._400}
+              level={ODS_TEXT_LEVEL.body}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              {kubeDetail.region}
+            </OsdsText>
+          }
+        />
 
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('kube_service_cluster_region')}
-          </OsdsText>
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {kubeDetail.region}
-          </OsdsText>
-
-          <OsdsDivider separator />
-
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('kube_service_cluster_nodes_url')}
-          </OsdsText>
-          <OsdsClipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
-        </div>
+        <TileLine
+          title={t('kube_service_cluster_nodes_url')}
+          value={
+            <OsdsClipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
+          }
+        />
       </div>
     </OsdsTile>
   );

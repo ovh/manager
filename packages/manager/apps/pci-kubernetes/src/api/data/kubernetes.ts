@@ -36,3 +36,46 @@ export const resetKubeConfig = async (projectId: string, kubeId: string) => {
   );
   return data;
 };
+
+export const getClusterRestrictions = async (
+  projectId: string,
+  kubeId: string,
+): Promise<string[]> => {
+  const { data } = await v6.get<string[]>(
+    `/cloud/project/${projectId}/kube/${kubeId}/ipRestrictions`,
+  );
+  return data;
+};
+
+export type TOidcProvider = {
+  issuerUrl: string;
+  clientId: string;
+  usernameClaim: string;
+  usernamePrefix: string;
+  groupsClaim: string | null;
+  groupsPrefix: string;
+  signingAlgorithms: string | null;
+  caContent: string;
+  requiredClaim: string | null;
+};
+
+export const getOidcProvider = async (
+  projectId: string,
+  kubeId: string,
+): Promise<TOidcProvider> => {
+  const { data } = await v6.get<TOidcProvider>(
+    `/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`,
+  );
+  return data;
+};
+
+export const getKubeConfig = async (
+  projectId: string,
+  kubeId: string,
+): Promise<{ content: string }> => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/kube/${kubeId}/kubeconfig`,
+  );
+
+  return data;
+};

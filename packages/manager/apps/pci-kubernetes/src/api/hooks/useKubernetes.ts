@@ -7,8 +7,10 @@ import queryClient from '@/queryClient';
 import { paginateResults } from '@/helpers';
 import {
   getAllKube,
+  getClusterRestrictions,
   getKubernetesCluster,
   resetKubeConfig,
+  getOidcProvider,
   updateKubernetesCluster,
 } from '../data/kubernetes';
 import { getPrivateNetworkName } from '../data/network';
@@ -197,3 +199,23 @@ export const useKubeDetail = (projectId: string, kubeId: string) => {
     isNetworksPending,
   ]);
 };
+
+function getClusterRestrictionsQuery(projectId: string, kubeId: string) {
+  return ['project', projectId, 'kube', kubeId, 'restrictions'];
+}
+
+export const useClusterRestrictions = (projectId: string, kubeId: string) =>
+  useQuery({
+    queryKey: getClusterRestrictionsQuery(projectId, kubeId),
+    queryFn: () => getClusterRestrictions(projectId, kubeId),
+  });
+
+function getOidcProviderQuery(projectId: string, kubeId: string) {
+  return ['project', projectId, 'kube', kubeId, 'openIdConnect'];
+}
+
+export const useOidcProvider = (projectId: string, kubeId: string) =>
+  useQuery({
+    queryKey: getOidcProviderQuery(projectId, kubeId),
+    queryFn: () => getOidcProvider(projectId, kubeId),
+  });
