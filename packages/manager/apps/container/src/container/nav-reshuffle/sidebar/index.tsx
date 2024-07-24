@@ -78,14 +78,14 @@ const Sidebar = (): JSX.Element => {
     setSelectedNode(node);
     setSelectedSubMenu(null);
 
-    let trackingIdComplement = 'navbar_v3_entry_';
+    let trackingIdComplement = 'navbar_v3_entry_home::';
     const history = findPathToNode(
       currentNavigationNode,
       (n: Node) => n.id === node.id,
     )
       .filter((item) => item.id)
       .map((element) => element.id);
-
+      
     history.forEach((entry: string) => {
       trackingIdComplement += `${entry.replace(/-/g, '_')}::`;
     });
