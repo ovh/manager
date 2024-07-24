@@ -1,7 +1,14 @@
 import React from 'react';
 import { CommonTitle, Description, Links } from '@ovhcloud/manager-components';
-import { OsdsDivider, OsdsTile } from '@ovhcloud/ods-components/react';
+import {
+  OsdsChip,
+  OsdsDivider,
+  OsdsLink,
+  OsdsTile,
+} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import TileSubtitle from '../tile-subtitle/TileSubtitle.component';
 import useManagedVcdService from '@/data/hooks/useManagedVcdService';
 import { TGetVcdServiceIdParams } from '@/data/api/hpc-vmware-managed-vcd-service';
@@ -12,6 +19,8 @@ export default function BillingTile({ id }: TGetVcdServiceIdParams) {
 
   const { user, dateTimeFormat } = useCurrentUser();
   const { data: billingService } = useManagedVcdService(id);
+
+  const nextBillingDate = billingService?.data?.billing?.nextBillingDate;
 
   return (
     <OsdsTile>
@@ -24,19 +33,29 @@ export default function BillingTile({ id }: TGetVcdServiceIdParams) {
         <Description>{user?.email}</Description>
         <OsdsDivider separator />
         <TileSubtitle>{t('managed_vcd_dashboard_service_renew')}</TileSubtitle>
-        <Links
-          onClickReturn={() => {}}
-          label={dateTimeFormat?.format(
-            // new Date(billingService.data.billing.nextBillingDate),
-            new Date(),
-          )}
-        />
+        {nextBillingDate ? (
+          <Links
+            onClickReturn={() => {}}
+            label={dateTimeFormat?.format(new Date(nextBillingDate))}
+          />
+        ) : (
+          <span>-</span>
+        )}
         <OsdsDivider separator />
         <TileSubtitle>{t('managed_vcd_dashboard_password')}</TileSubtitle>
-        <Links
-          onClickReturn={() => {}}
-          label={t('managed_vcd_dashboard_password_renew')}
-        />
+        <div className="flex-wrap">
+          <OsdsLink disabled>
+            {t('managed_vcd_dashboard_password_renew')}
+          </OsdsLink>
+          <OsdsChip
+            inline
+            color={ODS_THEME_COLOR_INTENT.primary}
+            className="ml-3"
+            size={ODS_CHIP_SIZE.sm}
+          >
+            {t('managed_vcd_dashboard_coming_soon')}
+          </OsdsChip>
+        </div>
       </div>
     </OsdsTile>
   );

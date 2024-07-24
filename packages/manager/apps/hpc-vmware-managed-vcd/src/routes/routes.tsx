@@ -52,15 +52,26 @@ export const Routes: any = [
           {
             id: 'datacentres',
             path: urls.datacentres,
-            ...lazyRouteConfig(() => import('@/pages/dashboard/datacentres')),
+            ...lazyRouteConfig(() => import('@/pages/listing/datacentres')),
             handle: {
               tracking: {
                 pageName: 'datacentres',
-                pageType: PageType.dashboard,
+                pageType: PageType.listing,
               },
             },
           },
         ],
+      },
+      {
+        id: 'vDcDashboard',
+        path: urls.datacentreDashboard,
+        ...lazyRouteConfig(() => import('@/pages/dashboard/datacentres')),
+        handle: {
+          tracking: {
+            pageName: 'datacentre',
+            pageType: PageType.dashboard,
+          },
+        },
       },
       {
         id: 'onboarding',
