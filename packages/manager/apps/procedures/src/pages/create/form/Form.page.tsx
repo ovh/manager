@@ -90,6 +90,7 @@ const FormCreateRequest = () => {
           <OsdsSelect
             onOdsValueChange={handleLegalFormChange}
             value={selectedByFRLegalForm}
+            data-testid="account-disable-2fa-create-form-select"
           >
             <span slot="placeholder">
               {t('account-disable-2fa-create-form-select-legalform-type')}

@@ -20,6 +20,7 @@ type Props = {
   accept: string;
   maxSize: number;
   maxFiles: number;
+  id?: string;
 };
 
 export const FormDocumentFieldItem: FunctionComponent<Props> = ({
@@ -31,9 +32,11 @@ export const FormDocumentFieldItem: FunctionComponent<Props> = ({
   accept,
   maxFiles,
   maxSize,
+  id,
 }) => {
   return (
     <FileInputContainer
+      id={id}
       accept={accept}
       maxFiles={maxFiles}
       value={value}
