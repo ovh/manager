@@ -3,9 +3,12 @@ import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
-import { RegionSelector } from '@/components/region-selector/RegionSelector.component';
-import { RegionSummary } from '@/components/region-selector/RegionSummary.component';
+import {
+  isDiscoveryProject,
+  useProject,
+  RegionSelector,
+  RegionSummary,
+} from '@ovh-ux/manager-pci-common';
 import { TLocalisation } from '@/api/hooks/useRegions';
 import { StepState } from '@/pages/new/hooks/useStep';
 
