@@ -5,6 +5,7 @@ import {
   ISSUE_TYPE_IDS,
   QUOTA_INCREASE_MODES,
   TRACK,
+  SUPPORT_TICKET_ID_URL,
 } from './increase.constants';
 
 export default class PciProjectQuotaIncreaseController {
@@ -33,7 +34,6 @@ export default class PciProjectQuotaIncreaseController {
     this.issueTypeFieldsStr = get(this.issueType, 'fields', [])
       .map((issueType) => get(issueType, 'label'))
       .join('\n\n');
-    this.supportUrl = this.coreURLBuilder.buildURL('dedicated', '#/support');
     this.billingUrl = this.coreURLBuilder.buildURL(
       'dedicated',
       '#/billing/history',
@@ -145,7 +145,7 @@ ${this.issueTypeDescription}
           this.$translate.instant(
             'pci_projects_project_quota_increase_success_message',
             {
-              ticketUrl: `${this.supportUrl}/tickets/${ticketId}`,
+              ticketUrl: SUPPORT_TICKET_ID_URL.replace('{ticketId}', ticketId),
             },
           ),
         );

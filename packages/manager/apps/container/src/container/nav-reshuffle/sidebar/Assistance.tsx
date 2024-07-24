@@ -27,6 +27,7 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
 
+  const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
   const [hasLiveChat, setHashLiveChat] = useState(false);
   const [hasCarbonCalculator, setHasCarbonCalculator] = useState(false);
 
@@ -90,9 +91,13 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
         <SidebarLink
           node={{
             translation: 'sidebar_assistance_help_center',
-            url: urls.get('help'),
+            url: isEUOrCA ? urls.get('support') : null,
+            routing: !isEUOrCA ? {
+              application: 'dedicated',
+              hash: '#/ticket',
+            } : null,
             count: false,
-            isExternal: true,
+            isExternal: isEUOrCA,
           }}
           onClick={() => trackNode('assistance_help_center')}
         />

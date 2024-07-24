@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.10.0...@ovh-ux/manager-vrack@1.10.1) (2024-07-23)
+
+
+### Bug Fixes
+
+* **dedicated:** resolve display condition issue ([#12457](https://github.com/ovh/manager/issues/12457)) ([727c53a](https://github.com/ovh/manager/commit/727c53a856ae32718313db6e3c1415c756b8e661))
+
+
+
+
+
 # [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.9.1...@ovh-ux/manager-vrack@1.10.0) (2024-07-16)
 
 
