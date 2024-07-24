@@ -98,9 +98,7 @@ export default function ResetKubeConfigPage() {
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        {...((isPendingCluster || isPendingResetKubeConfig) && {
-          disabled: true,
-        })}
+        disabled={isPending || undefined}
         onClick={resetKubeConfig}
         data-testid="resetKubeConfig-button_submit"
       >

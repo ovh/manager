@@ -79,3 +79,17 @@ export const postKubeConfig = async (
 
   return data;
 };
+
+export const updateKubePolicy = async (
+  projectId: string,
+  kubeId: string,
+  updatePolicy: string,
+) => {
+  const { data } = await v6.put(
+    `/cloud/project/${projectId}/kube/${kubeId}/updatePolicy`,
+    {
+      updatePolicy,
+    },
+  );
+  return data;
+};

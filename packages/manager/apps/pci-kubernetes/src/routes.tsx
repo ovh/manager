@@ -66,6 +66,12 @@ export default [
                   import('@/pages/reset/ResetKubeConfig.page'),
                 ),
               },
+              {
+                path: 'upgrade-policy',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/upgrade-policy/UpgradePolicy.page'),
+                ),
+              },
             ],
           },
           {

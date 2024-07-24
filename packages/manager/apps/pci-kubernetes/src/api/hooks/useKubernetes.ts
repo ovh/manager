@@ -10,6 +10,7 @@ import {
   getClusterRestrictions,
   getKubernetesCluster,
   resetKubeConfig,
+  updateKubePolicy,
   getOidcProvider,
   updateKubernetesCluster,
   postKubeConfig,
@@ -154,6 +155,36 @@ export const useResetKubeConfig = ({
   });
   return {
     resetKubeConfig: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+type UpdateKubePolicyProps = {
+  projectId: string;
+  kubeId: string;
+  updatePolicy: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useUpdateKubePolicy = ({
+  projectId,
+  kubeId,
+  updatePolicy,
+  onError,
+  onSuccess,
+}: UpdateKubePolicyProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => updateKubePolicy(projectId, kubeId, updatePolicy),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    updateKubePolicy: () => mutation.mutate(),
     ...mutation,
   };
 };
