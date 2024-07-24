@@ -16,6 +16,7 @@ import { ResponseAPIError } from '@ovh-ux/manager-pci-public-ip-app/src/interfac
 import { DEFAULT_DATA } from '@/pages/list/data.mock';
 import * as useWorkflowsModule from '@/api/hooks/workflows';
 import ListingPage from './List.page';
+import { usePaginatedWorkflows, TWorkflow } from '@/api/hooks/workflows';
 
 const shellContext = {};
 const queryClient = new QueryClient();
@@ -128,8 +129,11 @@ describe('ListPage', () => {
       vi.spyOn(osdsComponents, 'OsdsBreadcrumb').mockImplementation((props) => (
         <div data-testid="breadcrumb">{JSON.stringify(props)}</div>
       ));
+
       vi.spyOn(useWorkflowsModule, 'usePaginatedWorkflows').mockReturnValue(
-        DEFAULT_DATA.fullPaginationWorkflows,
+        DEFAULT_DATA.fullPaginationWorkflows as ReturnType<
+          typeof usePaginatedWorkflows
+        >,
       );
     });
 
@@ -205,7 +209,7 @@ describe('ListPage', () => {
         vi.spyOn(useWorkflowsModule, 'usePaginatedWorkflows').mockReturnValue({
           isPending: false,
           data: {
-            rows: [DEFAULT_DATA.workflow],
+            rows: [DEFAULT_DATA.workflow as TWorkflow],
             totalRows: 1,
             pageCount: 1,
           },
@@ -229,7 +233,13 @@ describe('ListPage', () => {
           const props = JSON.parse(el.textContent);
 
           expect(Object.keys(props).sort()).toEqual(
-            ['columns', 'items', 'totalItems', 'className'].sort(),
+            [
+              'columns',
+              'items',
+              'totalItems',
+              'pagination',
+              'className',
+            ].sort(),
           );
           expect(props.items).toEqual([DEFAULT_DATA.workflow]);
           expect(props.totalItems).toEqual(1);
