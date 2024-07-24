@@ -37,6 +37,9 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
         node.url = urls.get(node.url as keyof ContentURLS);
       }
       switch (node.id) {
+        case 'marketplace':
+          node.onClick = () => trackNode('marketplace');
+          break;
         case 'help':
           node.onClick = () => trackNode('assistance_help_center');
           node.url = isEUOrCA ? node.url : null;
@@ -46,7 +49,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
           } : null;
           node.isExternal = isEUOrCA;
           break;
-        case 'assistance-status':
+        case 'assistance_status':
           node.onClick = () => trackNode('assistance_status');
           break;
         case 'livechat':
@@ -57,9 +60,9 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
               closeNavigationSidebar();
           };
           break;
-        case 'carbon-calculator':
+        case 'carbon_calculator':
           node.onClick = () => {
-            trackNode('assistance_carbon_calculator');
+            trackNode('carbon_calculator');
             closeNavigationSidebar();
           };
           break;
@@ -70,7 +73,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   }, []);
 
   const trackNode = (id: string) => {
-    trackingPlugin.trackClick({ name: `navbar_v2_${id}`, type: 'navigation' });
+    trackingPlugin.trackClick({ name: `navbar_v3_entry_home::${id}`, type: 'navigation' });
   };
 
   return (

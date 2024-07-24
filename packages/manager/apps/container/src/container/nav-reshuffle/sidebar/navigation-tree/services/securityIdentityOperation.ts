@@ -1,7 +1,7 @@
 import { Node } from '../node';
 
 const sioUniverse : Node = {
-  id: 'security-identity-operation',
+  id: 'security-identity-operations',
   translation: 'sidebar_security_identity_operations',
   shortTranslation: 'sidebar_security_identity_operations_short',
   routing: {

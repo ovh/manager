@@ -9,15 +9,16 @@ import { useShell } from '@/context';
 type Props = {
   defaultPaymentMethod?: PaymentMethodType;
   isLoading?: boolean;
+  onPaymentMethodLinkClick:  () => void;
 };
 
 const UserDefaultPaymentMethod = ({
   defaultPaymentMethod = {},
   isLoading = false,
+  onPaymentMethodLinkClick
 }: Props): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
   const shell = useShell();
-  const trackingPlugin = shell.getPlugin('tracking');
   const paymentMethodUrl = shell
     .getPlugin('navigation')
     .getURL('dedicated', '#/billing/payment/method');
@@ -26,13 +27,6 @@ const UserDefaultPaymentMethod = ({
     return ODS_THEME_COLOR_INTENT[
       defaultPaymentMethod.getStatusCategory() as ODS_THEME_COLOR_INTENT
     ];
-  };
-
-  const onPaymentMethodLinkClick = () => {
-    trackingPlugin.trackClick({
-      name: 'topnav::user_widget::go_to_payment_method',
-      type: 'navigation',
-    });
   };
 
   return (
