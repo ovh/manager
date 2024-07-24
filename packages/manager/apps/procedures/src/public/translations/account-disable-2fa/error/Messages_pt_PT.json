@@ -1,0 +1,5 @@
+{
+  "account-disable-2fa-error-validation": "Estamos a ter dificuldades em validar que não é um robô.",
+  "account-disable-2fa-error-verification": "Certifique-se de que não bloqueou os iframes, impediu a execução de Javascript ou impôs a execução restrita de Javascript no seu navegador.",
+  "account-disable-2fa-error-suggestion": "Se surgir algum problema, pode testar novamente o seu pedido com um novo navegador sem definições ou extensões personalizadas."
+}
