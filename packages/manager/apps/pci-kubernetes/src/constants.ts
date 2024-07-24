@@ -18,14 +18,6 @@ export const STATUS = {
   USER_QUOTA_ERROR: 'USER_QUOTA_ERROR',
 };
 
-export const HORIZON_LINK_TRUSTED = {
-  EU:
-    'https://horizon.trustedzone.cloud.ovh.net/auth/login?username={username}',
-  CA:
-    'https://horizon.trustedzone.cloud.ovh.net/auth/login?username={username}',
-  US: '',
-};
-
 export const CONFIG_FILENAME = 'kubeconfig';
 
 export const VERSIONS_GUIDE_URL =
@@ -52,3 +44,9 @@ export const PROCESSING_STATUS = [
 ];
 
 export const KUBE_INSTALLING_STATUS = 'INSTALLING';
+
+export const UPGRADE_POLICIES = [
+  'NEVER_UPDATE',
+  'MINIMAL_DOWNTIME',
+  'ALWAYS_UPDATE',
+];
