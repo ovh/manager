@@ -33,7 +33,7 @@
   "createRancherPlaceholder": "mon_rancher",
   "createNameModaleHelperInput": "Le nom du service doit comporter entre 3 et 63 caractères, doit commencer et se terminer par des caractères alphanumériques minuscules (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants : '_', '.' et '-'.",
   "createRancherServiceLevel": "Choix de l'offre",
-  "createRancherServiceLevelDescription": " Les deux offres proposent l’ensemble des fonctionnalités de Rancher. L’offre OVHcloud Edition permet uniquement la création de « downstream clusters » sur le cloud public OVHcloud des nœuds self-managés apportés un à un. L’offre Standard est idéale pour les usages de type cloud privé, multicloud ou Edge. Vous pouvez migrer vers l’offre Standard à tout moment.",
+  "createRancherServiceLevelDescription": " Les deux offres proposent l’ensemble des fonctionnalités de Rancher. L’offre OVHcloud Edition permet uniquement la création de « downstream clusters » sur le cloud public OVHcloud des nœuds self-managés apportés un à un. L’offre Standard est idéale pour les usages de type cloud privé, multicloud ou Edge. Vous pouvez migrer vers l’offre Standard à tout moment. Les nodes de type controle-plane ne sont pas facturés.",
   "createRancherVersion": "Version du Rancher",
   "createRancherVersionDescription": "Ce service s’appuie sur SUSE Rancher. OVHcloud supporte les dernières versions de Rancher. Nous vous recommandons d’utiliser la plus récente. Nous appliquons régulièrement les patchs de sécurité et fournissons de nouvelles versions, conformément à notre politique de cycle de vie des logiciels.",
   "createRancherCTA": "Créer un Managed Rancher Service",

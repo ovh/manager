@@ -137,7 +137,11 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
 
   useEffect(() => {
     if (selectedPlan === null && plans?.length) {
-      setSelectedPlan(plans?.filter((v) => v.status === 'AVAILABLE')[0]);
+      setSelectedPlan(
+        plans?.filter(
+          (v) => v.status === 'AVAILABLE' && v.name === 'STANDARD',
+        )[0],
+      );
     }
 
     if (selectedVersion === null && versions?.length) {
