@@ -2,13 +2,11 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsDivider, OsdsText } from '@ovhcloud/ods-components/react';
 
-export default function TileLine({
-  title,
-  value,
-}: {
+type TileLineProps = {
   title: string;
   value: JSX.Element;
-}) {
+};
+export default function TileLine({ title, value }: Readonly<TileLineProps>) {
   return (
     <>
       <OsdsText

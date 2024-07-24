@@ -26,9 +26,29 @@ export const HORIZON_LINK_TRUSTED = {
   US: '',
 };
 
-export const ALPHA_CHARACTERS_REGEX = /^[a-zA-Z-]+$/;
-
 export const CONFIG_FILENAME = 'kubeconfig';
+
+export const VERSIONS_GUIDE_URL =
+  'https://docs.ovh.com/gb/en/kubernetes/eos-eol-policies/';
 
 export const KUBECONFIG_URL =
   'https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig';
+
+export const KUBECTL_URL =
+  'https://kubernetes.io/docs/reference/kubectl/overview/';
+
+export const KUBE_INSTALL_URL =
+  'https://docs.ovh.com/gb/en/kubernetes/installing-kubernetes-dashboard/';
+
+export const PROCESSING_STATUS = [
+  'INSTALLING',
+  'DELETING',
+  'UPDATING',
+  'RESETTING',
+  'SUSPENDING',
+  'MAINTENANCE',
+  'REOPENING',
+  'REDEPLOYING',
+];
+
+export const KUBE_INSTALLING_STATUS = 'INSTALLING';

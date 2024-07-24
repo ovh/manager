@@ -1,4 +1,10 @@
-import { ActionMenu, Links, LinkType } from '@ovhcloud/manager-components';
+import { ResponseAPIError } from '@ovh-ux/manager-pci-common';
+import {
+  ActionMenu,
+  Links,
+  LinkType,
+  useNotifications,
+} from '@ovhcloud/manager-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -23,56 +29,68 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useMemo } from 'react';
+import { Translation, useTranslation } from 'react-i18next';
 import { useHref, useParams } from 'react-router-dom';
+import { TKube } from '@/types';
 import { downloadContent } from '@/helpers';
-import { CONFIG_FILENAME, KUBECONFIG_URL } from '@/constants';
+import {
+  CONFIG_FILENAME,
+  KUBE_INSTALLING_STATUS,
+  KUBECONFIG_URL,
+} from '@/constants';
 import {
   useClusterRestrictions,
-  useKubeDetail,
+  useKubeConfig,
   useOidcProvider,
 } from '@/api/hooks/useKubernetes';
-import { getKubeConfig } from '@/api/data/kubernetes';
 import TileLine from './TileLine.component';
 
-export default function ClusterAccessAndSecurity() {
+export type ClusterAccessAndSecurityProps = {
+  kubeDetail: TKube;
+};
+
+export default function ClusterAccessAndSecurity({
+  kubeDetail,
+}: Readonly<ClusterAccessAndSecurityProps>) {
   const { t } = useTranslation('service');
 
-  const [isKubeConfigPending, setIsKubeConfigPending] = useState(false);
   const { kubeId, projectId } = useParams();
+  const { addError } = useNotifications();
+
   const hrefRestrictions = useHref('../restrictions');
 
-  const { data: kubeDetail, isPending } = useKubeDetail(projectId, kubeId);
   const { data: oidcProvider } = useOidcProvider(projectId, kubeId);
   const {
     data: clusterRestrictions,
     isPending: isRestrictionsPending,
   } = useClusterRestrictions(projectId, kubeId);
 
-  const isOidcDefined = useMemo<boolean>(() => {
-    if (!oidcProvider) return false;
+  const isOidcDefined = useMemo<boolean>(
+    () => Boolean(oidcProvider?.clientId && oidcProvider?.issuerUrl),
+    [oidcProvider],
+  );
 
-    const { clientId, issuerUrl } = oidcProvider;
-    return Boolean(clientId && issuerUrl);
-  }, [oidcProvider]);
-
-  const downloadConfigFile = () => {
-    setIsKubeConfigPending(true);
-    getKubeConfig(projectId, kubeId)
-      .then((config) =>
-        downloadContent({
-          fileContent: config.content,
-          fileName: `${CONFIG_FILENAME}.yml`,
-        }),
-      )
-      .catch((error) => console.error(error))
-      .finally(() => setIsKubeConfigPending(false));
-  };
-
-  if (isPending) {
-    return null;
-  }
+  const { postKubeConfig, isPending: isKubeConfigPending } = useKubeConfig({
+    projectId,
+    kubeId,
+    onSuccess: (config) =>
+      downloadContent({
+        fileContent: config.content,
+        fileName: `${CONFIG_FILENAME}.yml`,
+      }),
+    onError: (error: ResponseAPIError) =>
+      addError(
+        <Translation ns="service">
+          {(_t) =>
+            _t('kube_service_file_error', {
+              message: error?.response?.data?.message || error?.message || null,
+            })
+          }
+        </Translation>,
+        true,
+      ),
+  });
 
   return (
     <OsdsTile
@@ -95,7 +113,7 @@ export default function ClusterAccessAndSecurity() {
         <TileLine
           title={t('kube_service_cluster_api_url')}
           value={
-            <OsdsClipboard aria-label="clipboard" value={kubeDetail.url} />
+            <OsdsClipboard aria-label="clipboard" value={kubeDetail?.url} />
           }
         />
 
@@ -173,8 +191,11 @@ export default function ClusterAccessAndSecurity() {
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.ghost}
-            onClick={downloadConfigFile}
-            {...(isKubeConfigPending ? { disabled: true } : {})}
+            onClick={postKubeConfig}
+            {...(isKubeConfigPending ||
+            kubeDetail?.status === KUBE_INSTALLING_STATUS
+              ? { disabled: true }
+              : {})}
             inline
           >
             {CONFIG_FILENAME}
@@ -190,22 +211,23 @@ export default function ClusterAccessAndSecurity() {
         <TileLine
           title={t('kube_service_access_security_oidc_title')}
           value={
-            <div className="flex items-center justify-between	">
+            <div className="flex items-center justify-between">
               {isOidcDefined ? (
-                <>
+                <div className="w-fit">
                   <OsdsClipboard
                     aria-label="clipboard"
                     value={oidcProvider.issuerUrl}
+                    className="block"
                   />
                   <OsdsText
-                    className="mb-4"
+                    className="mb-4 block"
                     size={ODS_TEXT_SIZE._400}
                     level={ODS_TEXT_LEVEL.body}
                     color={ODS_THEME_COLOR_INTENT.text}
                   >
                     {oidcProvider.clientId}
                   </OsdsText>
-                </>
+                </div>
               ) : (
                 <OsdsText
                   className="mb-4"
@@ -218,7 +240,9 @@ export default function ClusterAccessAndSecurity() {
               )}
 
               <ActionMenu
-                aria-label="kube_service_access_security_oidc_menu_action_sr_only"
+                aria-label={t(
+                  'kube_service_access_security_oidc_menu_action_sr_only',
+                )}
                 isCompact
                 items={[
                   {

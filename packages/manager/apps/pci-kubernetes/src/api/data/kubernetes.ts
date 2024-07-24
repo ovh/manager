@@ -69,7 +69,7 @@ export const getOidcProvider = async (
   return data;
 };
 
-export const getKubeConfig = async (
+export const postKubeConfig = async (
   projectId: string,
   kubeId: string,
 ): Promise<{ content: string }> => {
