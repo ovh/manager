@@ -3,8 +3,10 @@ import { PaginationState } from '@ovhcloud/manager-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { TKube } from '@/types';
 import queryClient from '@/queryClient';
 import { paginateResults } from '@/helpers';
+import { STATUS } from '@/constants';
 import {
   getAllKube,
   getClusterRestrictions,
@@ -21,8 +23,6 @@ import {
 } from '../data/kubernetes';
 import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
-import { TKube } from '@/types';
-import { STATUS } from '@/constants';
 
 export const getAllKubeQueryKey = (projectId: string) => [
   'project',
@@ -236,9 +236,10 @@ export const useKubeDetail = (projectId: string, kubeId: string) => {
   ]);
 };
 
-function getClusterRestrictionsQuery(projectId: string, kubeId: string) {
-  return ['project', projectId, 'kube', kubeId, 'restrictions'];
-}
+export const getClusterRestrictionsQuery = (
+  projectId: string,
+  kubeId: string,
+) => ['project', projectId, 'kube', kubeId, 'restrictions'];
 
 export const useClusterRestrictions = (projectId: string, kubeId: string) =>
   useQuery({
