@@ -167,7 +167,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
               isActive={selectedResource === resource.value}
               onClick={() => onChangeResource(resource.value)}
             >
-              <img className="w-32 h-20" src={resource.img} alt="" />
+              <img className="w-16 h-16" src={resource.img} alt="" />
               <Description>{resource.label}</Description>
             </SimpleTile>
           ))}

@@ -1,7 +1,6 @@
 export const urls = {
   root: '/',
   onboarding: 'onboarding',
-  listing: '',
+  listing: 'listing',
   dashboard: ':serviceName',
-  tab2: 'tab2',
 };
