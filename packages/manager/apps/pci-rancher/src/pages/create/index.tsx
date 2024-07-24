@@ -19,7 +19,7 @@ import {
   TrackingEvent,
   TrackingPageView,
 } from '../../utils/tracking';
-import queryClient from '@/query.client';
+import queryClient from '@/queryClient';
 import useVersions from '@/hooks/useVersions';
 
 export default function Create() {

@@ -9,7 +9,7 @@ import { patchRancherServiceQueryKey, postRancherServiceQueryKey } from '@/api';
 import { RancherService } from '@/api/api.type';
 import { EditAction, EditMutationVariables } from '@/hooks/useEditRancher';
 import { useTrackingPage } from '@/hooks/useTrackingPage';
-import { COMMON_PATH } from '@/routes';
+import { COMMON_PATH } from '@/routes/routes';
 import { TrackingPageView } from '@/utils/tracking';
 import RancherDetail from './RancherDetail';
 import TabBar from './TabBar';

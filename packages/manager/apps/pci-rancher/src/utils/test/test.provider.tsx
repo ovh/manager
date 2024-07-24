@@ -8,7 +8,7 @@ import dashboardTranslation from '../../public/translations/pci-rancher/dashboar
 import onboardingTranslation from '../../public/translations/pci-rancher/onboarding/Messages_fr_FR.json';
 import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 import updateSoftwareTranslation from '../../public/translations/pci-rancher/updateSoftware/Messages_fr_FR.json';
-import queryClient from '../../query.client';
+import queryClient from '../../queryClient';
 
 const ns = [
   'pci-rancher/onboarding',
