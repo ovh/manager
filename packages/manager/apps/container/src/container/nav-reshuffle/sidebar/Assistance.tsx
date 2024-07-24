@@ -83,12 +83,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
             contrasted
           />
           <SidebarLink
-            node={{
-              translation: node.translation,
-              url: node.url,
-              count: node.count,
-              isExternal: node.isExternal,
-            }}
+            handleOnClick={node.onClick}
+            node={node}
           />
         </li>
       ))}
