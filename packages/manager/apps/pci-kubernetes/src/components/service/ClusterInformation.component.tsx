@@ -11,29 +11,27 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { useKubeDetail } from '@/api/hooks/useKubernetes';
+import { TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
 import TileLine from './TileLine.component';
 
-export default function ClusterInformation() {
+export type ClusterInformationProps = {
+  kubeDetail: TKube;
+};
+
+export default function ClusterInformation({
+  kubeDetail,
+}: Readonly<ClusterInformationProps>) {
   const { t } = useTranslation('service');
   const { t: tDetail } = useTranslation('listing');
   const { t: tKubernetes } = useTranslation('kubernetes');
 
-  const { kubeId, projectId } = useParams();
-  const { data: kubeDetail, isPending } = useKubeDetail(projectId, kubeId);
-
-  const ip = () => kubeDetail?.privateNetworkConfiguration?.defaultVrackGateway;
-  const publicNetwork = () =>
+  const ip = kubeDetail?.privateNetworkConfiguration?.defaultVrackGateway;
+  const publicNetwork =
     !kubeDetail?.privateNetworkConfiguration ||
     !kubeDetail?.privateNetworkConfiguration?.privateNetworkRoutingAsDefault;
-  const privateNetwork = () =>
+  const privateNetwork =
     kubeDetail?.privateNetworkConfiguration?.privateNetworkRoutingAsDefault;
-
-  if (isPending) {
-    return null;
-  }
 
   return (
     <OsdsTile
@@ -101,19 +99,19 @@ export default function ClusterInformation() {
             >
               <span className="block">{kubeDetail.attachedTo}</span>
 
-              {publicNetwork() && (
+              {publicNetwork && (
                 <span className="block">
                   {tKubernetes('pci_kubernetes_network_data_public')}
                 </span>
               )}
-              {privateNetwork() && (
+              {privateNetwork && (
                 <>
                   <span className="block">
                     {tKubernetes('pci_kubernetes_network_data_private')}
                   </span>
                   <span>
                     {tKubernetes('pci_kubernetes_network_data_ip')}:{' '}
-                    {ip() || tKubernetes('pci_kubernetes_network_data_dhcp')}
+                    {ip || tKubernetes('pci_kubernetes_network_data_dhcp')}
                   </span>
                 </>
               )}
