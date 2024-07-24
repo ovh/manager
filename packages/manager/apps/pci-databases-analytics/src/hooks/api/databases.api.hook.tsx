@@ -2,7 +2,6 @@ import {
   QueryObserverOptions,
   UseQueryResult,
   useMutation,
-  useQuery,
 } from '@tanstack/react-query';
 import { database } from '@/models/database';
 import {
@@ -13,6 +12,7 @@ import {
   getServiceDatabases,
 } from '@/api/databases/databases';
 import { CdbError } from '@/api/databases';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetDatabases(
   projectId: string,
@@ -21,7 +21,7 @@ export function useGetDatabases(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'database'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getServiceDatabases({ projectId, engine, serviceId }),
     ...options,

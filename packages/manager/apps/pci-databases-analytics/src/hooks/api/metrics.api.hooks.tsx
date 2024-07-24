@@ -1,10 +1,7 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { database } from '@/models/database';
 import { getMetric, getMetrics } from '@/api/databases/metrics';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetMetrics(
   projectId: string,
@@ -13,7 +10,7 @@ export function useGetMetrics(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'metric'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getMetrics({ projectId, engine, serviceId }),
     ...options,
@@ -37,7 +34,7 @@ export function useGetMetric(
     metric,
     period,
   ];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getMetric({ projectId, engine, serviceId, metric, period }),
     ...options,

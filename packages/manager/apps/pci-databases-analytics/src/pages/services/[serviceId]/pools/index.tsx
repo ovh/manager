@@ -22,6 +22,7 @@ import AddEditConnectionPool from './_components/addEditconnectionPool';
 import DeleteConnectionPool from './_components/deleteConnectionPool';
 import Guides from '@/components/guides';
 import { GuideSections } from '@/models/guide';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 export function breadcrumb() {
   return (
@@ -46,6 +47,7 @@ const Pools = () => {
   const [connectionPoolListWithData, setConnectionPoolListWithData] = useState<
     ConnectionPoolWithData[]
   >([]);
+  const { isUserActive } = useUserActivityContext();
   const addModale = useModale('add');
   const getInfoModale = useModale('information');
   const deleteModale = useModale('delete');
@@ -55,7 +57,7 @@ const Pools = () => {
     service.engine,
     service.id,
     {
-      refetchInterval: POLLING.POOLS,
+      refetchInterval: isUserActive && POLLING.POOLS,
     },
   );
   const databasesQuery = useGetDatabases(
@@ -63,11 +65,11 @@ const Pools = () => {
     service.engine,
     service.id,
     {
-      refetchInterval: POLLING.DATABASES,
+      refetchInterval: isUserActive && POLLING.DATABASES,
     },
   );
   const usersQuery = useGetUsers(projectId, service.engine, service.id, {
-    refetchInterval: POLLING.USERS,
+    refetchInterval: isUserActive && POLLING.USERS,
   });
 
   useEffect(() => {

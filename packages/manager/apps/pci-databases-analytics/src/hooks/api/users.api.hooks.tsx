@@ -2,7 +2,6 @@ import {
   QueryObserverOptions,
   UseQueryResult,
   useMutation,
-  useQuery,
 } from '@tanstack/react-query';
 import { database } from '@/models/database';
 import {
@@ -19,6 +18,7 @@ import {
   resetUserPassword,
 } from '@/api/databases/users';
 import { CdbError } from '@/api/databases';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetUsers(
   projectId: string,
@@ -27,7 +27,7 @@ export function useGetUsers(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'user'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getUsers({ projectId, engine, serviceId }),
     ...options,
@@ -41,7 +41,7 @@ export function useGetRoles(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'roles'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getRoles({ projectId, engine, serviceId }),
     ...options,

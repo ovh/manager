@@ -2,7 +2,6 @@ import {
   QueryObserverOptions,
   UseQueryResult,
   useMutation,
-  useQuery,
 } from '@tanstack/react-query';
 import { database } from '@/models/database';
 import {
@@ -14,6 +13,7 @@ import {
   getServiceIntegrations,
 } from '@/api/databases/integrations';
 import { CdbError } from '@/api/databases';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetIntegrations(
   projectId: string,
@@ -22,7 +22,7 @@ export function useGetIntegrations(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'integration'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getServiceIntegrations({ projectId, engine, serviceId }),
     ...options,
@@ -42,7 +42,7 @@ export function useGetCapabilitiesIntegrations(
     serviceId,
     'capabilities/integration',
   ];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () =>
       getServiceCapabilitiesIntegrations({ projectId, engine, serviceId }),

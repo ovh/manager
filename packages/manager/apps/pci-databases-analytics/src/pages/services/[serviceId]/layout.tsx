@@ -15,6 +15,7 @@ import { POLLING } from '@/configuration/polling';
 import { getService } from '@/api/databases/service';
 import queryClient from '@/query.client';
 import ServiceTabs from './_components/serviceTabs';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 interface ServiceLayoutProps {
   params: {
@@ -68,9 +69,10 @@ export function useServiceData() {
 }
 
 export default function ServiceLayout() {
+  const { isUserActive } = useUserActivityContext();
   const { projectId, serviceId } = useParams();
   const serviceQuery = useGetService(projectId, serviceId, {
-    refetchInterval: POLLING.SERVICE,
+    refetchInterval: isUserActive && POLLING.SERVICE,
   });
 
   const service = serviceQuery.data;

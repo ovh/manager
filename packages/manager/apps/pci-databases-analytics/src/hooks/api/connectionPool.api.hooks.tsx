@@ -2,7 +2,6 @@ import {
   QueryObserverOptions,
   UseQueryResult,
   useMutation,
-  useQuery,
 } from '@tanstack/react-query';
 
 import {
@@ -16,6 +15,7 @@ import {
 } from '@/api/databases/connectionPool';
 import { database } from '@/models/database';
 import { CdbError } from '@/api/databases';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetConnectionPools(
   projectId: string,
@@ -24,7 +24,7 @@ export function useGetConnectionPools(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'connectionPool'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getConnectionPools({ projectId, engine, serviceId }),
     ...options,

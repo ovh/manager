@@ -14,6 +14,7 @@ import DeleteUser from './_components/deleteUser';
 import ResetUserPassword from './_components/resetUserPassword';
 import { POLLING } from '@/configuration/polling';
 import AddEditUserModal from './_components/addEditUser';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 export function breadcrumb() {
   return (
@@ -31,9 +32,10 @@ const Users = () => {
   const { projectId, service, serviceQuery } = useServiceData();
   const addEditModale = useModale('add-edit');
   const deleteModale = useModale('delete');
+  const { isUserActive } = useUserActivityContext();
   const resetPasswordModale = useModale('reset-password');
   const usersQuery = useGetUsers(projectId, service.engine, service.id, {
-    refetchInterval: POLLING.USERS,
+    refetchInterval: isUserActive && POLLING.USERS,
   });
   const columns: ColumnDef<GenericUser>[] = getColumns({
     displayGroupCol: service.engine === database.EngineEnum.m3db,

@@ -5,9 +5,11 @@ import { useServiceData } from '../../layout';
 import { POLLING } from '@/configuration/polling';
 import { database } from '@/models/database';
 import { Link } from '@/components/links';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 const Maintenance = () => {
   const { projectId, service } = useServiceData();
+  const { isUserActive } = useUserActivityContext();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/dashboard',
   );
@@ -16,7 +18,7 @@ const Maintenance = () => {
     service.engine,
     service.id,
     {
-      refetchInterval: POLLING.MAINTENANCE,
+      refetchInterval: isUserActive && POLLING.MAINTENANCE,
     },
   );
   const plannedMaintenance: number =
