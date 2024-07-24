@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react';
 import { ColumnSort, PaginationState } from '@ovhcloud/manager-components';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import * as dateFnsLocales from 'date-fns/locale';
@@ -57,10 +57,10 @@ export const useWorkflowExecutions = (
     if (Array.isArray(executions) && executions.length > 0) {
       mappedExecution = executions.map((exec) => ({
         ...exec,
-        executedAtDate: format(new Date(exec.executedAt), "dd MMMM'.' yyyy", {
+        executedAtDate: format(parseISO(exec.executedAt), "dd MMMM'.' yyyy", {
           locale: locales[userLocale],
         }),
-        executedAtTime: format(new Date(exec.executedAt), 'hh:mm:ss', {
+        executedAtTime: format(parseISO(exec.executedAt), 'hh:mm:ss', {
           locale: locales[userLocale],
         }),
       }));
