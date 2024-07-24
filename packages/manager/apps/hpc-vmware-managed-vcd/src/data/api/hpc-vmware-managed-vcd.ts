@@ -1,5 +1,6 @@
 import {
   ApiResponse,
+  IcebergFetchParamsV2,
   apiClient,
   fetchIcebergV2,
 } from '@ovh-ux/manager-core-api';
@@ -44,12 +45,10 @@ export const getVcdOrganization = async ({
 export const getListingIcebergV2 = async ({
   pageSize,
   cursor,
-}: {
-  pageSize: number;
-  cursor: string;
-}) => {
+  route,
+}: IcebergFetchParamsV2) => {
   const { data, status, cursorNext } = await fetchIcebergV2({
-    route: `/vmwareCloudDirector/organization`,
+    route,
     pageSize,
     cursor,
   });
