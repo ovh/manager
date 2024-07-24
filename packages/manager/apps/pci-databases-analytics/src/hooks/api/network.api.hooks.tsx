@@ -1,17 +1,14 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { networkApi } from '@/api/network';
 import { Network, Subnet, Vrack } from '@/models/network';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetNetwork(
   projectId: string,
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'network/private'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => networkApi.getPrivateNetworks(projectId),
     ...options,
@@ -24,7 +21,7 @@ export function useGetSubnet(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'network/private', networkId];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => networkApi.getSubnets(projectId, networkId),
     ...options,
@@ -36,7 +33,7 @@ export function useGetVrack(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'vrack'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => networkApi.getVrack(projectId),
     ...options,

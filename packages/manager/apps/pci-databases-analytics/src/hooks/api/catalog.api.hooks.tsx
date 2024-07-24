@@ -1,11 +1,8 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { catalogApi } from '@/api/catalog';
 import { order } from '@/models/catalog';
 import { useUser } from '../useUser';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetCatalog(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
@@ -14,7 +11,7 @@ export function useGetCatalog(
   const product = 'cloud';
   const subsidiary = user?.ovhSubsidiary ?? 'FR';
   const queryKey = ['order/catalog/public/cloud', subsidiary, product];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => catalogApi.getCatalog(subsidiary, product),
     ...options,

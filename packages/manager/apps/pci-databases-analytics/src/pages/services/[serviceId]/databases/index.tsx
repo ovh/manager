@@ -12,6 +12,7 @@ import { useModale } from '@/hooks/useModale';
 import AddDatabase from './_components/addDatabase';
 import DeleteDatabase from './_components/deleteDatabase';
 import { POLLING } from '@/configuration/polling';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 export function breadcrumb() {
   return (
@@ -29,12 +30,13 @@ const Databases = () => {
   const addModale = useModale('add');
   const deleteModale = useModale('delete');
   const { projectId, service, serviceQuery } = useServiceData();
+  const { isUserActive } = useUserActivityContext();
   const databasesQuery = useGetDatabases(
     projectId,
     service.engine,
     service.id,
     {
-      refetchInterval: POLLING.DATABASES,
+      refetchInterval: isUserActive && POLLING.DATABASES,
     },
   );
   const deletingDatabase = databasesQuery.data?.find(

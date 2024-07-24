@@ -11,6 +11,7 @@ import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 import { POLLING } from '@/configuration/polling';
 import { GuideSections } from '@/models/guide';
 import Guides from '@/components/guides';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 export function breadcrumb() {
   return (
@@ -55,8 +56,9 @@ const Logs = () => {
   const [poll, setPoll] = useState(false);
   const listLogRef = useRef<HTMLUListElement>(null);
   const { projectId, service } = useServiceData();
+  const { isUserActive } = useUserActivityContext();
   const logsQuery = useGetServiceLogs(projectId, service.engine, service.id, {
-    refetchInterval: poll ? POLLING.LOGS : false,
+    refetchInterval: isUserActive && poll && POLLING.LOGS,
   });
   // scroll to the bottom on data update
   useEffect(() => {

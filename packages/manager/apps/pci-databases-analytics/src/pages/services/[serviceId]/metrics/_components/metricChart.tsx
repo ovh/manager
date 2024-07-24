@@ -24,6 +24,7 @@ import { colors } from './colors';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { useServiceData } from '../../layout';
 import { cn } from '@/lib/utils';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 ChartJS.register(
   CategoryScale,
@@ -56,12 +57,14 @@ const MetricChart = ({
     'pci-databases-analytics/services/service/metrics',
   );
   const chartLocale = useDateFnsLocale();
+  const { isUserActive } = useUserActivityContext();
   const [isInitialized, setIsInitialized] = useState(false);
   const [chart, setChart] = useState<{
     options: ChartOptions<'line'>;
     data: ChartData<'line', { x: number; y: number }[], Date>;
   }>({ options: {}, data: { labels: [], datasets: [] } });
   const { projectId, service } = useServiceData();
+
   const metricQuery = useGetMetric(
     projectId,
     service.engine,
@@ -69,7 +72,7 @@ const MetricChart = ({
     metric,
     period,
     {
-      refetchInterval: poll ? pollInterval : false,
+      refetchInterval: isUserActive && poll && pollInterval,
     },
   );
 

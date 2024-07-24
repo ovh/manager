@@ -10,6 +10,7 @@ import { useGetIntegrations } from '@/hooks/api/integrations.api.hook';
 import { useGetNamespaces } from '@/hooks/api/namespaces.api.hooks';
 import { POLLING } from '@/configuration/polling';
 import TabsMenu from '@/components/tabs-menu';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 interface ServiceTabsProps {
   service: database.Service;
@@ -17,8 +18,10 @@ interface ServiceTabsProps {
 const ServiceTabs = ({ service }: ServiceTabsProps) => {
   const { projectId } = useParams();
   const { t } = useTranslation('pci-databases-analytics/services/service');
+  const { isUserActive } = useUserActivityContext();
+
   const { data: users } = useGetUsers(projectId, service.engine, service.id, {
-    refetchInterval: POLLING.SERVICE,
+    refetchInterval: isUserActive && POLLING.USERS,
     enabled: !!service.capabilities.users?.read,
   });
   const { data: backups } = useGetBackups(
@@ -26,7 +29,7 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
     service.engine,
     service.id,
     {
-      refetchInterval: POLLING.SERVICE,
+      refetchInterval: isUserActive && POLLING.BACKUPS,
       enabled: !!service.capabilities.backups?.read,
     },
   );
@@ -35,7 +38,7 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
     service.engine,
     service.id,
     {
-      refetchInterval: POLLING.SERVICE,
+      refetchInterval: isUserActive && POLLING.DATABASES,
       enabled: !!service.capabilities.databases?.read,
     },
   );
@@ -44,7 +47,7 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
     service.engine,
     service.id,
     {
-      refetchInterval: POLLING.SERVICE,
+      refetchInterval: isUserActive && POLLING.NAMESPACES,
       enabled: !!service.capabilities.namespaces?.read,
     },
   );
@@ -53,7 +56,7 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
     service.engine,
     service.id,
     {
-      refetchInterval: POLLING.SERVICE,
+      refetchInterval: isUserActive && POLLING.POOLS,
       enabled: !!service.capabilities.connectionPools?.read,
     },
   );
@@ -62,7 +65,7 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
     service.engine,
     service.id,
     {
-      refetchInterval: POLLING.SERVICE,
+      refetchInterval: isUserActive && POLLING.CURRENT_QUERIES,
       enabled: !!service.capabilities.currentQueries?.read,
     },
   );
@@ -71,7 +74,7 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
     service.engine,
     service.id,
     {
-      refetchInterval: POLLING.SERVICE,
+      refetchInterval: isUserActive && POLLING.INTEGRATIONS,
       enabled: !!service.capabilities.currentQueries?.read,
     },
   );

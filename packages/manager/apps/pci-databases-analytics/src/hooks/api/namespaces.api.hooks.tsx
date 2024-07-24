@@ -2,7 +2,6 @@ import {
   QueryObserverOptions,
   UseQueryResult,
   useMutation,
-  useQuery,
 } from '@tanstack/react-query';
 
 import { database } from '@/models/database';
@@ -16,6 +15,7 @@ import {
   getNamespaces,
 } from '@/api/databases/namespaces';
 import { CdbError } from '@/api/databases';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetNamespaces(
   projectId: string,
@@ -24,7 +24,7 @@ export function useGetNamespaces(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'namespace'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getNamespaces({ projectId, engine, serviceId }),
     ...options,

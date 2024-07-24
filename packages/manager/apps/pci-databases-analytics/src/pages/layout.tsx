@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { Outlet, useLocation, redirect } from 'react-router-dom';
+import { Outlet, useLocation, redirect, useMatches } from 'react-router-dom';
 import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
+import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import PageLayout from '@/components/PageLayout/PageLayout';
 import Breadcrumb, {
   BreadcrumbHandleParams,
@@ -11,6 +12,8 @@ import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 import queryClient from '@/query.client';
 import { getProject } from '@/api/projects';
 import { useLoadingIndicatorContext } from '@/contexts/loadingIndicatorContext';
+import { UserActivityProvider } from '@/contexts/userActivityContext';
+import { USER_INACTIVITY_TIMEOUT } from '@/configuration/polling';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return (
@@ -57,6 +60,8 @@ function RoutingSynchronisation() {
   const location = useLocation();
   const routing = useRouting();
   const shell = useShell();
+  const matches = useMatches();
+
   useEffect(() => {
     routing.stopListenForHashChange();
   }, []);
@@ -65,17 +70,25 @@ function RoutingSynchronisation() {
     setLoading(false);
     routing.onHashChange();
   }, [location]);
+
+  useEffect(() => {
+    const match = matches.slice(-1);
+    //  We cannot type properly useMatches cause it's not support type inference or passing specific type https://github.com/remix-run/react-router/discussions/10902
+    defineCurrentPage(`app.pci-databases-analytics.${match[0].id}`);
+  }, [location]);
+
   return <></>;
 }
 
 export default function Layout() {
   return (
     <PageLayout>
-      <Breadcrumb />
-      <RoutingSynchronisation />
-      <Outlet />
-      <Toaster />
+      <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>
+        <Breadcrumb />
+        <RoutingSynchronisation />
+        <Outlet />
+        <Toaster />
+      </UserActivityProvider>
     </PageLayout>
   );
 }
-// operational

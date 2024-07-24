@@ -2,7 +2,6 @@ import {
   QueryObserverOptions,
   UseQueryResult,
   useMutation,
-  useQuery,
 } from '@tanstack/react-query';
 import { database } from '@/models/database';
 import {
@@ -12,6 +11,7 @@ import {
   updateAdvancedConfiguration,
 } from '@/api/databases/advancedConfiguration';
 import { CdbError } from '@/api/databases';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetAdvancedConfiguration(
   projectId: string,
@@ -26,7 +26,7 @@ export function useGetAdvancedConfiguration(
     serviceId,
     'advancedConfiguration',
   ];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getAdvancedConfiguration({ projectId, engine, serviceId }),
     ...options,
@@ -46,7 +46,7 @@ export function useGetAdvancedConfigurationCapabilities(
     serviceId,
     'capabilities/advancedConfiguration',
   ];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () =>
       getAdvancedConfigurationCapabilities({ projectId, engine, serviceId }),

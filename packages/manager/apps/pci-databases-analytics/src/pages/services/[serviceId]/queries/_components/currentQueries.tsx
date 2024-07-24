@@ -13,12 +13,14 @@ import { useToast } from '@/components/ui/use-toast';
 import { POLLING } from '@/configuration/polling';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 const CurrentQueries = () => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/queries',
   );
   const { projectId, service } = useServiceData();
+  const { isUserActive } = useUserActivityContext();
   const [poll, setPoll] = useState(false);
   const [showIdle, setShowIdle] = useState(true);
   const [showActive, setShowActive] = useState(true);
@@ -28,7 +30,7 @@ const CurrentQueries = () => {
     service.engine,
     service.id,
     {
-      refetchInterval: poll ? POLLING.CURRENT_QUERIES : false,
+      refetchInterval: isUserActive && poll && POLLING.CURRENT_QUERIES,
     },
   );
   const { cancelCurrentQuery } = useCancelCurrentQuery({

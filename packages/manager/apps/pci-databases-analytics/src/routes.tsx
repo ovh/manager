@@ -28,10 +28,12 @@ export default [
     children: [
       {
         path: '',
+        id: 'services',
         ...lazyRouteConfig(() => import('@/pages')),
       },
       {
         path: 'new',
+        id: 'create',
         ...lazyRouteConfig(() => import('@/pages/services/create')),
       },
       {
@@ -40,12 +42,14 @@ export default [
         children: [
           {
             path: '',
+            id: 'service.dashboard',
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/dashboard'),
             ),
           },
           {
             path: 'users',
+            id: 'service.users',
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/users'),
             ),
@@ -58,12 +62,14 @@ export default [
             children: [
               {
                 path: '',
+                id: 'service.backups',
                 ...lazyRouteConfig(() =>
                   import('@/pages/services/[serviceId]/backups'),
                 ),
               },
               {
                 path: 'fork',
+                id: 'service.fork',
                 ...lazyRouteConfig(() =>
                   import('@/pages/services/[serviceId]/backups/fork'),
                 ),
@@ -72,42 +78,49 @@ export default [
           },
           {
             path: 'databases',
+            id: 'service.databases',
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/databases'),
             ),
           },
           {
             path: 'namespaces',
+            id: 'service.namespaces',
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/namespaces'),
             ),
           },
           {
             path: 'pools',
+            id: 'service.pools',
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/pools'),
             ),
           },
           {
             path: 'queries',
+            id: 'service.queries',
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/queries'),
             ),
           },
           {
             path: 'integrations',
+            id: 'service.integrations',
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/integrations'),
             ),
           },
           {
             path: 'metrics',
+            id: 'service.metrics',
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/metrics'),
             ),
           },
           {
             path: 'logs',
+            id: 'service.logs',
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/logs'),
             ),
@@ -120,6 +133,7 @@ export default [
             children: [
               {
                 path: '',
+                id: 'service.settings',
                 ...lazyRouteConfig(() =>
                   import('@/pages/services/[serviceId]/settings'),
                 ),

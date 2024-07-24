@@ -16,6 +16,7 @@ import DeleteNamespaceModal from './_components/deleteNamespace';
 import AddEditNamespace from './_components/addEditNamespace';
 import { NAMESPACES_CONFIG } from './_components/formNamespace/namespace.const';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
+import { useUserActivityContext } from '@/contexts/userActivityContext';
 
 export function breadcrumb() {
   return (
@@ -31,6 +32,7 @@ const Namespaces = () => {
     'pci-databases-analytics/services/service/namespaces',
   );
   const { projectId, service } = useServiceData();
+  const { isUserActive } = useUserActivityContext();
   const addModale = useModale('add');
   const deleteModale = useModale('delete');
   const editModale = useModale('edit');
@@ -39,7 +41,7 @@ const Namespaces = () => {
     service.engine,
     service.id,
     {
-      refetchInterval: POLLING.NAMESPACES,
+      refetchInterval: isUserActive && POLLING.NAMESPACES,
     },
   );
 
