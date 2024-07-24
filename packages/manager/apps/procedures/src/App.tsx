@@ -27,11 +27,7 @@ if (!user) {
   const redirectUrl = getRedirectLoginUrl(user);
   window.location.assign(redirectUrl);
 } else {
-  initI18n(
-    locale || 'en_GB',
-    [locale || 'en_GB'],
-    getSubsidiary(subsidiary, locale),
-  );
+  initI18n(locale || 'en_GB', getSubsidiary(subsidiary, locale));
   initAuthenticationInterceptor(token);
   initInterceptor();
 
