@@ -107,12 +107,8 @@ const Sidebar = (): JSX.Element => {
         mxPlanNode.routing.hash = '#/email_mxplan';
       }
 
-      setAssistanceTree(
-        tree.children.find(({ id }: Node) => id === 'assistance'),
-      );
-      setCurrentNavigationNode(
-        tree.children.find(({ id }: Node) => id === 'sidebar'),
-      );
+      setAssistanceTree(findNodeById(tree, 'assistance'));
+      setCurrentNavigationNode(findNodeById(tree, 'sidebar'));
 
       return tree;
     };
@@ -230,7 +226,7 @@ const Sidebar = (): JSX.Element => {
         </a>
 
         <div className={style.sidebar_menu}>
-          {servicesCount && (
+          {servicesCount && currentNavigationNode && (
             <ul id="menu">
               <li className="px-3 mb-3 mt-2">
                 <h2 className={!open ? style.hidden : ''}>

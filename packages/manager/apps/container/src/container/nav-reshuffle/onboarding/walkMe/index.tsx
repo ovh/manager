@@ -32,7 +32,6 @@ export const OnboardingWalkMe = () => {
     closeNavigationSidebar,
     onboardingOpenedState,
     currentNavigationNode,
-    navigationTree,
     setCurrentNavigationNode,
   } = useProductNavReshuffle();
   const [currentUserNode, setCurrentUserNode] = useState<Node>({});
@@ -100,8 +99,6 @@ export const OnboardingWalkMe = () => {
       trackingVariant: '',
       onBeforeEnter: async () => {
         closeAccountSidebar();
-        const homeNode = findNodeById(navigationTree, 'home');
-        setCurrentNavigationNode(homeNode);
 
         if (isMobile) {
           openNavigationSidebar();
