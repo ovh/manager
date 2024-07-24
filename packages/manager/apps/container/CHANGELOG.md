@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.62.5...@ovh-ux/manager-container-app@0.63.0) (2024-07-23)
+
+
+### Features
+
+* helpcenter ga migration to snow ([#11907](https://github.com/ovh/manager/issues/11907)) ([001cbb6](https://github.com/ovh/manager/commit/001cbb65fb0cb3f677e69f9176c096e994f99523))
+
+
+
+
+
 ## [0.62.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.62.4...@ovh-ux/manager-container-app@0.62.5) (2024-07-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

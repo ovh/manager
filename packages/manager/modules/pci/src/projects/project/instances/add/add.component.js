@@ -28,6 +28,7 @@ export default {
     customerRegions: '<',
     isDiscoveryProject: '<',
     projectActivationPageHref: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
   controller,
   template,

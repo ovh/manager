@@ -16,10 +16,14 @@ export const TRACK = {
   ERROR: 'error',
   SUCCESS: 'success',
 };
+export const SUPPORT_TICKET_ID_URL =
+  'https://help.ovhcloud.com/csm?id=csm_ticket&table=sn_customerservice_case&number=CS{ticketId}&view=csp';
+
 export default {
   ISSUE_CATEGORY,
   ISSUE_SERVICE_TYPE,
   ISSUE_TYPE_IDS,
   QUOTA_INCREASE_MODES,
   TRACK,
+  SUPPORT_TICKET_ID_URL,
 };
