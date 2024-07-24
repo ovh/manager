@@ -39,3 +39,29 @@ export const downloadContent = ({
 
 export const getFormatedKubeVersion = (version: string) =>
   version.substring(0, version.lastIndexOf('.'));
+
+export const formatIP = (ip: string) => {
+  const [cidr, mask] = ip.split('/');
+  return `${cidr}/${parseInt(mask, 10) || 32}`;
+};
+
+export const isIPValid = (ip: string) => {
+  try {
+    const [cidr, mask] = ip.split('/');
+    const splittedCidr = cidr.split('.');
+
+    if (splittedCidr.length !== 4) {
+      return false;
+    }
+
+    if (mask || mask === '') {
+      splittedCidr.push(mask);
+    }
+
+    return splittedCidr.every(
+      (value) => parseInt(value, 10) >= 0 && parseInt(value, 10) < 256,
+    );
+  } catch (error) {
+    return false;
+  }
+};
