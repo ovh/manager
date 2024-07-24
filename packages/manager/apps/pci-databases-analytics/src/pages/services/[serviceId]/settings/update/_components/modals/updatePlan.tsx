@@ -127,13 +127,23 @@ const UpdatePlanContent = ({
     });
   }, [form.formState.errors.plan]);
   const onSubmit = form.handleSubmit((formValues) => {
+    // Get the data to submit. We want to check the flavor for some edge cases
+    // such as mongodb discovery, where the flavor must be updated with the plan
+    const { flavors } = listPlans
+      .find((p) => p.name === formValues.plan)
+      .regions.find((r) => r.name === service.nodes[0].region);
+    const flavor = flavors.find((f) => f.name === service.flavor) || flavors[0];
+    const data = {
+      plan: formValues.plan,
+      ...(flavor.name !== service.flavor && {
+        flavor: flavor.name,
+      }),
+    };
     updateService({
       serviceId: service.id,
       projectId,
       engine: service.engine,
-      data: {
-        plan: formValues.plan,
-      },
+      data,
     });
   });
 
@@ -161,17 +171,18 @@ const UpdatePlanContent = ({
     });
   }, [service.flavor]);
   const newPrice = useMemo(() => {
-    const planObject = listPlans.find((p) => p.name === selectedPlan);
-    const flavorObject = planObject.regions
-      .find((r) => r.name === service.nodes[0].region)
-      .flavors.find((f) => f.name === service.flavor);
+    const plan = listPlans.find((p) => p.name === selectedPlan);
+    const region = plan.regions.find((r) => r.name === service.nodes[0].region);
+    const flavor =
+      region.flavors.find((f) => f.name === service.flavor) ||
+      region.flavors[0];
+    const { storageMode } = listEngines.find((e) => e.name === service.engine);
     return computeServicePrice({
-      offerPricing: flavorObject.pricing,
-      nbNodes: Math.max(service.nodes.length, planObject.nodes.minimum),
-      storagePricing: flavorObject.storage?.pricing,
+      offerPricing: flavor.pricing,
+      nbNodes: Math.max(service.nodes.length, plan.nodes.minimum),
+      storagePricing: flavor.storage?.pricing,
       additionalStorage: initialAddedStorage,
-      storageMode: listEngines.find((e) => e.name === service.engine)
-        .storageMode,
+      storageMode,
     });
   }, [selectedPlan]);
 
