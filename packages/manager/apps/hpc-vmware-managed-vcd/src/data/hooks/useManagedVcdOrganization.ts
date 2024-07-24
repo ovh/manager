@@ -14,7 +14,6 @@ const useManagedVcdOrganization = (id: string) => {
     ...{
       keepPreviousData: true,
     },
-    refetchInterval: 5000,
   });
 };
 
