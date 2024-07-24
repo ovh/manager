@@ -17,12 +17,12 @@ export const languages = [
     {
         code: 'pl_PL',
         short: 'pl',
-        long: 'polsky',
+        long: 'polish',
     },
     {
         code: 'de_DE',
         short: 'de',
-        long: 'DE',
+        long: 'german',
     },
     {
         code: 'es_ES',
@@ -37,7 +37,7 @@ export const languages = [
     {
         code: 'pt_PT',
         short: 'pt',
-        long: 'portugues',
+        long: 'portuguese',
     },
 ];
 

@@ -7,6 +7,7 @@ const EloquantSurvey = () => {
   const environment = shell.getPlugin('environment').getEnvironment();
   const locale = environment.getUserLocale();
   const region = environment.getRegion();
+  const user = environment.getUser();
   
   const regionTerm = regions[region as keyof typeof regions];
 
@@ -41,6 +42,10 @@ const EloquantSurvey = () => {
       // Only fill the checkbox "variable javascript" and enter the name of the website variable.
       elq.set('urlparameter.region', function () {
         return regionTerm;
+      });
+
+      elq.set('urlparameter.nic_handle', function() {
+        return user.nichandle;
       });
     };
     doc.body.appendChild(script);
