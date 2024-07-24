@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { describe, vi } from 'vitest';
+import { format, parseISO } from 'date-fns';
 import { wrapper } from '@/wrapperRenders';
 import { useWorkflowExecutions } from './useExecutions';
 import * as useWorkflowHook from './workflows';
@@ -54,14 +55,14 @@ describe('useExecutions tests', () => {
         state: 'SUCCESS',
         executedAt: '2024-07-18T01:05:29Z',
         executedAtDate: '18 juillet. 2024',
-        executedAtTime: '03:05:29',
+        executedAtTime: format(parseISO('2024-07-18T01:05:29Z'), 'hh:mm:ss'),
       },
       {
         id: 'project_id_2',
         state: 'SUCCESS',
         executedAt: '2024-07-17T01:05:24Z',
         executedAtDate: '17 juillet. 2024',
-        executedAtTime: '03:05:24',
+        executedAtTime: format(parseISO('2024-07-17T01:05:24Z'), 'hh:mm:ss'),
       },
     ]);
   });
