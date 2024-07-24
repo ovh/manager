@@ -21,6 +21,7 @@ import { useState } from 'react';
 import { useCatalogPrice, useMe } from '@ovhcloud/manager-components';
 import { useParams } from 'react-router-dom';
 import { useInstanceSnapshotPricing } from '@/api/hooks/order';
+import { StepState } from '@/pages/new/hooks/useStep';
 
 interface WorkflowNameProps {
   name: string;
