@@ -22,7 +22,7 @@ export const Routes = [
     children: [
       {
         id: 'listing',
-        path: urls.listing,
+        path: '',
         ...lazyRouteConfig(() => import('@/pages/listing')),
         handle: {
           tracking: {
@@ -30,6 +30,18 @@ export const Routes = [
             pageType: PageType.listing,
           },
         },
+        children: [
+          {
+            path: ':savingsPlanId/renew',
+            ...lazyRouteConfig(() => import('@/pages/listing/renew-modal')),
+            handle: {
+              tracking: {
+                pageName: 'renew',
+                pageType: PageType.popup,
+              },
+            },
+          },
+        ],
       },
       {
         path: urls.dashboard,
@@ -44,17 +56,6 @@ export const Routes = [
             handle: {
               tracking: {
                 pageName: 'dashboard',
-                pageType: PageType.dashboard,
-              },
-            },
-          },
-          {
-            id: 'tab2',
-            path: 'Tab2',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/tab2')),
-            handle: {
-              tracking: {
-                pageName: 'tab2',
                 pageType: PageType.dashboard,
               },
             },
