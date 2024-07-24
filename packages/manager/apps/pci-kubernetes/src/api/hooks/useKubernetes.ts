@@ -12,6 +12,7 @@ import {
   resetKubeConfig,
   getOidcProvider,
   updateKubernetesCluster,
+  postKubeConfig,
 } from '../data/kubernetes';
 import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
@@ -219,3 +220,27 @@ export const useOidcProvider = (projectId: string, kubeId: string) =>
     queryKey: getOidcProviderQuery(projectId, kubeId),
     queryFn: () => getOidcProvider(projectId, kubeId),
   });
+
+type KubeConfigProps = {
+  projectId: string;
+  kubeId: string;
+  onError: (cause: Error) => void;
+  onSuccess: (data: { content: string }) => void;
+};
+
+export const useKubeConfig = ({
+  projectId,
+  kubeId,
+  onError,
+  onSuccess,
+}: KubeConfigProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => postKubeConfig(projectId, kubeId),
+    onError,
+    onSuccess,
+  });
+  return {
+    postKubeConfig: () => mutation.mutate(),
+    ...mutation,
+  };
+};
