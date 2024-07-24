@@ -34,7 +34,6 @@ export default function ClusterVersionUpgradeBanner() {
             }}
           ></span>
         </OsdsText>
-
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
