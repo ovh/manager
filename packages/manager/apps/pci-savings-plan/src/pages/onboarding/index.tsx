@@ -10,19 +10,16 @@ export default function Onboarding() {
   const navigate = useNavigate();
 
   return (
-    <PageLayout>
-      <Breadcrumb />
-      <OnboardingLayout
-        title={t('title')}
-        img={{
-          src: onboardingImgSrc,
-        }}
-        description={t('description')}
-        orderButtonLabel={t('orderButtonLabel')}
-        onOrderButtonClick={() => navigate('../new')}
-        moreInfoButtonLabel={t('moreInfoButtonLabel')}
-        moreInfoHref={t('moreInfoButtonLink')}
-      />
-    </PageLayout>
+    <OnboardingLayout
+      title={t('title')}
+      img={{
+        src: onboardingImgSrc,
+      }}
+      description={t('description')}
+      orderButtonLabel={t('orderButtonLabel')}
+      onOrderButtonClick={() => navigate('../new')}
+      moreInfoButtonLabel={t('moreInfoButtonLabel')}
+      moreInfoHref={t('moreInfoButtonLink')}
+    />
   );
 }
