@@ -2,11 +2,19 @@ import i18n from 'i18next';
 import I18NextHttpBackend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
-export default function initI18n(
-  locale = 'fr_FR',
-  availablesLocales = ['fr_FR'],
-  sub: string,
-) {
+const availableLocales: string[] = [
+  'fr_FR',
+  'fr_CA',
+  'en_GB',
+  'pt_PT',
+  'pl_PL',
+  'es_ES',
+  'it_IT',
+  'de_DE',
+];
+
+export default function initI18n(locale = 'fr_FR', sub: string) {
+  const validLocale = availableLocales.includes(locale) ? locale : 'en_GB';
   i18n
     .use(initReactI18next)
     .use(I18NextHttpBackend)
@@ -17,9 +25,9 @@ export default function initI18n(
         value ? value.replace(/&amp;/g, '&') : value,
     })
     .init({
-      lng: locale,
-      fallbackLng: 'fr_FR',
-      supportedLngs: availablesLocales,
+      lng: validLocale,
+      fallbackLng: 'en_GB',
+      supportedLngs: availableLocales,
       ns: [
         'account-disable-2fa',
         'account-disable-2fa/error',
