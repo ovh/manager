@@ -161,6 +161,7 @@ export default class ExchangeAddDomainController {
     }
     this.model.autoEnableDKIM = this.model.autoEnableDKIM && this.isOvhDomain;
     this.model.configureDKIM = this.isOvhDomain;
+    this.model.configureSPF = this.isOvhDomain;
 
     delete this.model.domainType;
     delete this.model.isUTF8Domain;
