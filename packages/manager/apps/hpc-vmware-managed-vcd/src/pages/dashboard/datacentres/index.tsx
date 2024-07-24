@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Datacentres() {
+function DatacentreDashboard() {
   return (
     <div className="flex justify-center items-center">
-      Datacentres ... (coming soon)
+      Datacentre dashboard ... (coming soon)
     </div>
   );
 }
 
-export default Datacentres;
+export default DatacentreDashboard;
