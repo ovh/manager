@@ -1,7 +1,6 @@
 import {
   QueryObserverOptions,
   UseQueryResult,
-  useQuery,
   useMutation,
 } from '@tanstack/react-query';
 import { database } from '@/models/database';
@@ -11,6 +10,7 @@ import {
   restoreBackup,
 } from '@/api/databases/backups';
 import { CdbError } from '@/api/databases';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetBackups(
   projectId: string,
@@ -19,7 +19,7 @@ export function useGetBackups(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'backup'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getServiceBackups({ projectId, engine, serviceId }),
     ...options,

@@ -24,7 +24,7 @@ export function useGetDatabases(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getServiceDatabases({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.service.Database[], Error>;
 }
 

@@ -4,45 +4,46 @@ import {
   UseQueryResult,
   UseQueryOptions,
   QueryKey,
-  QueryFunction,
+  DefinedInitialDataOptions,
+  UndefinedInitialDataOptions,
+  QueryClient,
+  DefinedUseQueryResult,
+  DefaultError,
 } from '@tanstack/react-query';
 
-type QueryOptions<TData, TError> = Omit<
-  UseQueryOptions<TData, TError>,
-  'queryKey'
->;
-
-interface UseQueryImmediateRefetchParams<TData, TError> {
-  queryKey: QueryKey;
-  queryFn: QueryFunction<TData, QueryKey>;
-  options?: QueryOptions<TData, TError>;
-}
-
-export function useQueryImmediateRefetch<TData, TError>({
-  queryKey,
-  queryFn,
-  options,
-}: UseQueryImmediateRefetchParams<TData, TError>): UseQueryResult<
+type UseQueryWrapperOptions<
+  TQueryFnData,
+  TError,
   TData,
-  TError
-> {
+  TQueryKey extends QueryKey
+> =
+  | DefinedInitialDataOptions<TQueryFnData, TError, TData, TQueryKey>
+  | UndefinedInitialDataOptions<TQueryFnData, TError, TData, TQueryKey>
+  | UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>;
+
+export function useQueryImmediateRefetch<
+  TQueryFnData = unknown,
+  TError = DefaultError,
+  TData = TQueryFnData,
+  TQueryKey extends QueryKey = QueryKey
+>(
+  options: UseQueryWrapperOptions<TQueryFnData, TError, TData, TQueryKey>,
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> | DefinedUseQueryResult<TData, TError> {
   const prevRefetchInterval = useRef(options?.refetchInterval);
 
-  const query = useQuery({
-    queryKey,
-    queryFn,
-    ...options,
-  });
+  const query = useQuery(options, queryClient);
+
   useEffect(() => {
     if (
       options?.enabled !== false &&
-      options.refetchInterval &&
+      options.refetchInterval !== undefined &&
       options.refetchInterval !== prevRefetchInterval.current
     ) {
       query.refetch();
     }
     prevRefetchInterval.current = options.refetchInterval;
-  }, [options?.refetchInterval, queryKey, options?.enabled]);
+  }, [options.refetchInterval, options.queryKey, options.enabled, query]);
 
   return query;
 }

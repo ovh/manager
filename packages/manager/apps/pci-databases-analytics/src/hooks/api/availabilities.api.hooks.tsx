@@ -1,8 +1,4 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { database } from '@/models/database';
 import {
   getAvailabilities,
@@ -12,6 +8,7 @@ import {
   getSuggestions,
 } from '@/api/databases/availabilities';
 import { CdbError } from '@/api/databases';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetAvailabilities(
   projectId: string,
@@ -27,7 +24,7 @@ export function useGetAvailabilities(
     action,
     target,
   ].filter(Boolean);
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () =>
       getAvailabilities({
@@ -45,7 +42,7 @@ export function useGetSuggestions(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database/availability/suggestions'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getSuggestions(projectId),
     ...options,
@@ -57,7 +54,7 @@ export function useGetCapabilities(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database/capabilities'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getCapabilities(projectId),
     ...options,
@@ -69,7 +66,7 @@ export function useGetEnginesCapabilities(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database/capabilities/engines'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getEnginesCapabilities(projectId),
     ...options,
@@ -81,7 +78,7 @@ export function useGetRegionsCapabilities(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database/capabilities/regions'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getRegionsCapabilities(projectId),
     ...options,
@@ -107,7 +104,7 @@ export function useGetFullCapabilities(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database/full-capabilities'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: async () => {
       const [

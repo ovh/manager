@@ -13,7 +13,7 @@ export function useGetMetrics(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getMetrics({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<string[], Error>;
 }
 
@@ -37,6 +37,6 @@ export function useGetMetric(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getMetric({ projectId, engine, serviceId, metric, period }),
-    options,
+    ...options,
   }) as UseQueryResult<database.service.Metric, Error>;
 }

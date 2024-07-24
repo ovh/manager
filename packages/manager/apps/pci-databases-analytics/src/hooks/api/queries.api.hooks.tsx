@@ -2,7 +2,6 @@ import {
   QueryObserverOptions,
   UseQueryResult,
   useMutation,
-  useQuery,
 } from '@tanstack/react-query';
 import { database } from '@/models/database';
 import {
@@ -26,7 +25,7 @@ export function useGetCurrentQueries(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getCurrentQueries({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.service.currentqueries.Query[], Error>;
 }
 
@@ -69,7 +68,7 @@ export function useGetQueryStatistics(
     serviceId,
     'queryStatistics',
   ];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getQueryStatistics({ projectId, engine, serviceId }),
     ...options,

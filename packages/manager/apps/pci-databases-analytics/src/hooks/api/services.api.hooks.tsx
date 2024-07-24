@@ -26,7 +26,7 @@ export function useGetService(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getService({ projectId, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.Service, CdbError>;
 }
 
@@ -38,7 +38,7 @@ export function useGetServices(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getServices({ projectId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.Service[], Error>;
 }
 

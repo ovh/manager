@@ -1,11 +1,8 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 
 import { getCertificate } from '@/api/databases/certificates';
 import { database } from '@/models/database';
+import { useQueryImmediateRefetch } from './useImmediateRefetch';
 
 export function useGetCertificate(
   projectId: string,
@@ -14,7 +11,7 @@ export function useGetCertificate(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'certificates'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getCertificate({ projectId, engine, serviceId }),
     ...options,

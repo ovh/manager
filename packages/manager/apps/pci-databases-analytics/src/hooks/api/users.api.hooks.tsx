@@ -2,7 +2,6 @@ import {
   QueryObserverOptions,
   UseQueryResult,
   useMutation,
-  useQuery,
 } from '@tanstack/react-query';
 import { database } from '@/models/database';
 import {
@@ -31,7 +30,7 @@ export function useGetUsers(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getUsers({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<GenericUser[], Error>;
 }
 
@@ -42,7 +41,7 @@ export function useGetRoles(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'roles'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getRoles({ projectId, engine, serviceId }),
     ...options,

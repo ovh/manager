@@ -13,6 +13,6 @@ export function useGetServiceLogs(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getServiceLogs({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.service.LogEntry[], Error>;
 }
