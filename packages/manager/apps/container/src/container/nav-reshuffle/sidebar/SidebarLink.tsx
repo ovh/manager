@@ -15,10 +15,7 @@ type SidebarLinkProps = {
   count?: number | boolean;
   node?: Node;
   linkParams?: Record<string, string>;
-  handleOnMouseOver?(): void;
-  handleOnMouseLeave?(): void;
   handleOnClick?(): void;
-  handleNavigation?(): void;
   handleOnEnter?(node: Node): void;
   id?: string;
   isShortText?: boolean;
@@ -28,10 +25,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   count = 0,
   node = {},
   linkParams = {},
-  handleOnMouseOver = () => {},
-  handleOnMouseLeave = () => {},
   handleOnClick = () => {},
-  handleNavigation = () =>  {},
   handleOnEnter = () => {},
   id = '',
   isShortText = false,
@@ -41,7 +35,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
 
   return !node.children && (node.url || node.routing) ? (
     <StaticLink
-      handleClick={handleNavigation}
+      handleClick={handleOnClick}
       count={count}
       node={node}
       linkParams={linkParams}
@@ -52,10 +46,6 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
     <button
       className={style['button-as-div']}
       title={t(isShortText ? node.shortTranslation : node.translation)}
-      onMouseOver={!isMobile ? handleOnMouseOver : null}
-      onMouseLeave={!isMobile ? handleOnMouseLeave : null}
-      onFocus={!isMobile ? handleOnMouseOver : null}
-      onTouchEnd={isMobile ? handleNavigation : null}
       onKeyUp={(e) => {
         if (e.key === 'Enter') {
           handleOnEnter(node);

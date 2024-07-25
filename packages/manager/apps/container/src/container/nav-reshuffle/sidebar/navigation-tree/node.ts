@@ -32,4 +32,6 @@ export type Node = {
   routing?: NodeRouting;
   region?: string[];
   tag?: NodeTag;
+  icon?: string;
+  onClick?: any;
 };

@@ -22,10 +22,6 @@ export const OnboardingWalkMe = () => {
   const popoverElement = useRef();
   const [arrowPlacement, setArrowPlacement] = useState<Placement>();
   const [popperInstance, setPopperInstance] = useState<Instance>();
-  const user = useShell()
-    .getPlugin('environment')
-    .getEnvironment()
-    .getUser();
   const trackingPlugin = useShell().getPlugin('tracking');
 
   const {
@@ -36,7 +32,6 @@ export const OnboardingWalkMe = () => {
     closeNavigationSidebar,
     onboardingOpenedState,
     currentNavigationNode,
-    navigationTree,
     setCurrentNavigationNode,
     isMobile
   } = useProductNavReshuffle();
@@ -102,8 +97,6 @@ export const OnboardingWalkMe = () => {
       trackingVariant: '',
       onBeforeEnter: async () => {
         closeAccountSidebar();
-        const homeNode = findNodeById(navigationTree, 'home');
-        setCurrentNavigationNode(homeNode);
 
         if (isMobile) {
           openNavigationSidebar();
@@ -169,7 +162,7 @@ export const OnboardingWalkMe = () => {
       const range = new Range();
 
       range.setStartBefore(elements[0]);
-      range.setEndAfter(elements[elements.length - 5]);
+      range.setEndAfter(elements[elements.length - 1]);
 
       targetPos = range.getBoundingClientRect();
       updatePos(targetPos);

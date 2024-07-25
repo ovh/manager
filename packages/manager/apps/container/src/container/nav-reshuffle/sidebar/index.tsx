@@ -1,4 +1,4 @@
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState, useMemo, Suspense } from 'react';
 
 import { useLocation } from 'react-router-dom';
 import { useReket } from '@ovh-ux/ovh-reket';
@@ -7,9 +7,9 @@ import { useShell } from '@/context';
 import logo from '@/assets/images/OVHcloud_logo.svg';
 import shortLogo from '@/assets/images/icon-logo-ovh.svg';
 import Assistance from './Assistance';
-import navigationRoot from './navigation-tree/root';
+import navigationTree from './navigation-tree/root';
 import SidebarLink from './SidebarLink';
-import SubTree from './SubTree';
+import SubTree from '@/container/nav-reshuffle/sidebar/SubTree';
 import style from './style.module.scss';
 import {
   initTree,
@@ -49,7 +49,7 @@ const Sidebar = (): JSX.Element => {
   const {
     currentNavigationNode,
     setCurrentNavigationNode,
-    setNavigationTree,
+    closeNavigationSidebar,
     isMobile
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
@@ -57,10 +57,9 @@ const Sidebar = (): JSX.Element => {
     Array<{ node: Node; count: number | boolean }>
   >([]);
   const [selectedNode, setSelectedNode] = useState<Node>(null);
-  const [displayedNode, setDisplayedNode] = useState<Node>(null);
-  const [selectedSubmenu, setSelectedSubmenu] = useState<Node>(null);
+  const [selectedSubMenu, setSelectedSubMenu] = useState<Node>(null);
   const [open, setOpen] = useState<boolean>(true);
-  const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>(null);
+  const [assistanceTree, setAssistanceTree] = useState<Node>(null);
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
 
@@ -70,12 +69,11 @@ const Sidebar = (): JSX.Element => {
 
   const menuClickHandler = (node: Node) => {
     setSelectedNode(node);
-    setDisplayedNode(node);
-    setSelectedSubmenu(null);
+    setSelectedSubMenu(null);
 
     let trackingIdComplement = 'navbar_v2_entry_';
     const history = findPathToNode(
-      navigationRoot,
+      currentNavigationNode,
       (n: Node) => n.id === node.id,
     )
       .filter((item) => item.id)
@@ -91,10 +89,6 @@ const Sidebar = (): JSX.Element => {
     });
   };
 
-  const onSidebarLeave = () => {
-    clearTimeout(timer);
-  };
-
   const onEnter = (node: Node) => {
     const getFirstChild = (node: Node): Node =>
       !node.children ? node : getFirstChild(node.children[0]);
@@ -103,89 +97,95 @@ const Sidebar = (): JSX.Element => {
   };
 
   /** Initialize navigation tree */
-  useEffect(() => {
-    let abort = false;
-
-    const featuresListPromise = async () => {
-      if (!abort) {
-        const features = initFeatureNames(navigationRoot);
+  const memoizedNavigationTree = useMemo(() => {
+    const initializeNavigationTree = async () => {
+      const features = initFeatureNames(navigationTree);
 
         const results = await fetchFeatureAvailabilityData(features);
 
-        const region = environmentPlugin.getEnvironment().getRegion();
-        const [tree] = initTree([navigationRoot], results, region);
+      const region = environmentPlugin.getEnvironment().getRegion();
+      const [tree] = initTree([navigationTree], results, region);
 
-        const mxPlanNode = findNodeById(tree, 'mxplan');
-        if (mxPlanNode && region === 'CA') {
-          mxPlanNode.routing.hash = '#/email_mxplan';
-        }
-
-        setNavigationTree(tree);
-        setCurrentNavigationNode(tree);
+      const mxPlanNode = findNodeById(tree, 'mxplan');
+      if (mxPlanNode && region === 'CA') {
+        mxPlanNode.routing.hash = '#/email_mxplan';
       }
-    };
-    featuresListPromise();
 
-    return () => {
-      abort = true;
-    };
-  }, []);
+      setAssistanceTree(findNodeById(tree, 'assistance'));
+      setCurrentNavigationNode(findNodeById(tree, 'sidebar'));
 
-  /**
-   * Initialize service count
-   */
+      return tree;
+    };
+    return initializeNavigationTree();
+  }, [navigationTree]);
+
   useEffect(() => {
-    reketInstance
-      .get('/services/count', {
-        requestType: 'aapi',
-      })
-      .then((result: ServicesCount) => setServicesCount(result));
+    const init = async () => {
+      await memoizedNavigationTree;
+    };
+    init();
+  }, [memoizedNavigationTree]);
+
+  const memoizedServiceCount = useMemo(() => {
+    return reketInstance.get('/services/count', {
+      requestType: 'aapi',
+    });
   }, []);
 
-  const selectSubmenu = (node: Node, parent: Node) => {
+  useEffect(() => {
+    memoizedServiceCount.then((servicesCount: ServicesCount) => {
+      setServicesCount(servicesCount);
+    });
+  }, [memoizedServiceCount]);
+
+  const selectSubMenu = (node: Node, parent: Node) => {
     setSelectedNode(parent);
-    setDisplayedNode(parent);
-    setSelectedSubmenu(node);
+    setSelectedSubMenu(node);
     window.localStorage.setItem(savedLocationKey, node.id);
-    if (!isMobile) setOpen(false);
+    isMobile ? closeNavigationSidebar() : setOpen(false);
   };
 
-  const closeSubmenu = () => {
-    setDisplayedNode(null);
+  const closeSubMenu = () => {
+    setSelectedNode(null);
+    setSelectedSubMenu(null);
   };
 
   useEffect(() => {
-    if (displayedNode) return;
-
-    const savedNodeID = window.localStorage.getItem(
-      savedLocationKey,
-    );
+    if (selectedNode) return;
 
     const pathname = location.pathname;
-    if (savedNodeID) {
-      const node = findNodeById(navigationRoot, savedNodeID);
-      const parent = findNodeById(navigationRoot, node.universe);
-      if (node && parent) {
-        const nodePath = node.routing.hash
-          ? node.routing.hash.replace('#', node.routing.application)
-          : '/' + node.routing.application;
+    const savedNodeID = window.localStorage.getItem(savedLocationKey);
+    if (!savedNodeID) return;
+    const node = findNodeById(currentNavigationNode, savedNodeID);
+    if (!node || !node.universe) {
+      window.localStorage.removeItem(savedLocationKey);
+      return;
+    }
 
-        const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath);
-        const isMatching = parsedPath.reduce((acc: boolean, segment: string) => acc && pathname.includes(segment), true);
-        if (isMatching) {
-          selectSubmenu(node, parent);
-          return;
-        } else {
-          window.localStorage.removeItem(savedLocationKey);
-        }
+    const parent = findNodeById(currentNavigationNode, node.universe);
+    if (parent) {
+      const nodePath = node.routing.hash
+        ? node.routing.hash.replace('#', node.routing.application)
+        : '/' + node.routing.application;
+
+      const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath);
+      const isMatching = parsedPath.reduce(
+        (acc: boolean, segment: string) => acc && pathname.includes(segment),
+        true,
+      );
+      if (isMatching) {
+        selectSubMenu(node, parent);
+        return;
+      } else {
+        window.localStorage.removeItem(savedLocationKey);
       }
     }
 
-    const { node, parent } = findUniverse(navigationRoot, pathname);
-    if (node && parent) {
-      selectSubmenu(node, parent);
+    const universe = findUniverse(currentNavigationNode, pathname);
+    if (universe) {
+      selectSubMenu(universe.node, universe.parent);
     }
-  }, []);
+  }, [currentNavigationNode]);
 
   const computeNodeCount = (count: IServicesCount, node: Node): number | boolean => {
     if (node.count === false) return node.count;
@@ -219,9 +219,9 @@ const Sidebar = (): JSX.Element => {
 
   return (
     <div
-    className={`${style.sidebar} ${
-      displayedNode ? style.sidebar_selected : ''
-    }`}
+      className={`${style.sidebar} ${
+        selectedNode ? style.sidebar_selected : ''
+      }`}
     >
       <div
         className={`${style.sidebar_wrapper} ${!open && style.sidebar_short}`}
@@ -242,8 +242,8 @@ const Sidebar = (): JSX.Element => {
         </a>
 
         <div className={style.sidebar_menu} role="menubar">
-          {servicesCount && (
-            <ul id="menu" onMouseOut={onSidebarLeave} onBlur={onSidebarLeave} role="menu">
+          {servicesCount && currentNavigationNode && (
+            <ul id="menu" role="menu">
               <li className="px-3 mb-3 mt-2">
                 <h2 className={!open ? style.hidden : ''}>
                   {t(currentNavigationNode.translation)}
@@ -256,16 +256,15 @@ const Sidebar = (): JSX.Element => {
                     key={node.id}
                     id={node.id}
                     className={`${style.sidebar_menu_items} ${
-                      node.id === displayedNode?.id
-                      ? style.sidebar_menu_items_selected
-                      : ''
+                      node.id === selectedNode?.id
+                        ? style.sidebar_menu_items_selected
+                        : ''
                     }`}
-                  role="menuitem"
+                    role="menuitem"
                   >
                     <SidebarLink
                       node={node}
                       count={count}
-                      handleNavigation={() => menuClickHandler(node)}
                       handleOnClick={() => menuClickHandler(node)}
                       handleOnEnter={(node: Node) => onEnter(node)}
                     id={node.idAttr}
@@ -297,9 +296,9 @@ const Sidebar = (): JSX.Element => {
           </div>
         </div>
 
-        {open && (
+        {open && assistanceTree && (
           <Suspense fallback="">
-            <Assistance />
+            <Assistance nodeTree={assistanceTree} />
           </Suspense>
         )}
 
@@ -307,8 +306,8 @@ const Sidebar = (): JSX.Element => {
           {open && <span className="mr-2">Réduire</span>}
           <span
             className={`${
-            style.sidebar_toggle_btn_first_icon
-          } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
+              style.sidebar_toggle_btn_first_icon
+            } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
             aria-hidden="true"
           ></span>
           <span
@@ -317,18 +316,17 @@ const Sidebar = (): JSX.Element => {
           ></span>
         </button>
       </div>
-      {displayedNode !== null && (
+      {selectedNode !== null && (
         <SubTree
           handleBackNavigation={() => {
-            isMobile ? setDisplayedNode(null) : setDisplayedNode(selectedNode);
+            if (isMobile) setSelectedNode(null);
           }}
-          handleOnMouseOver={(node: Node) => setDisplayedNode(node)}
-          selectedNode={selectedSubmenu}
-          handleCloseSideBar={closeSubmenu}
-          handleOnSubmenuClick={(childNode: Node) =>
-            selectSubmenu(childNode, displayedNode)
+          selectedNode={selectedSubMenu}
+          handleCloseSideBar={closeSubMenu}
+          handleOnSubMenuClick={(childNode: Node) =>
+            selectSubMenu(childNode, selectedNode)
           }
-          rootNode={displayedNode}
+          rootNode={selectedNode}
         ></SubTree>
       )}
     </div>

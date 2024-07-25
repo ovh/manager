@@ -267,7 +267,7 @@ export const findUniverse = (root: Node, locationPath: string) => {
       };
     }
   }
-  return { node: null, parent: null };
+  return null;
 };
 
 export default {

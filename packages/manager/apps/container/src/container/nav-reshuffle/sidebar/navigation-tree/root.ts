@@ -7,6 +7,7 @@ import sunrise from './services/sunrise';
 import telecom from './services/telecom';
 import webCloud from './services/webCloud';
 import securityIdentityOperation from './services/securityIdentityOperation';
+import { assistanceTree } from './assistance';
 
 const root: Node = {
   id: 'home',
@@ -17,14 +18,21 @@ const root: Node = {
     hash: '#/',
   },
   children: [
-    bareMetalCloud,
-    hostedPrivateCloud,
-    network,
-    publicCloud,
-    sunrise,
-    securityIdentityOperation,
-    telecom,
-    webCloud,
+    {
+      id: 'sidebar',
+      count: false,
+      children: [
+        bareMetalCloud,
+        hostedPrivateCloud,
+        network,
+        publicCloud,
+        sunrise,
+        securityIdentityOperation,
+        telecom,
+        webCloud,
+      ],
+    },
+    assistanceTree,
   ],
 };
 

@@ -1,24 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useURL } from '@/container/common/urls-constants';
+import { useURL, ContentURLS } from '@/container/common/urls-constants';
 import ApplicationContext from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import SidebarLink from './SidebarLink';
 import useContainer from '@/core/container';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { fetchFeatureAvailabilityData } from '@ovhcloud/manager-components';
+import { Node } from './navigation-tree/node';
 
-const AssistanceSidebar: React.FC = (): JSX.Element => {
+interface AssistanceProps {
+  nodeTree?: Node;
+}
+
+const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
+  nodeTree,
+}): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const { shell } = useContext(ApplicationContext);
   const { setChatbotReduced } = useContainer();
-  const features = ['livechat', 'carbon-calculator'];
 
   const environment = shell
     .getPluginManager()
@@ -26,29 +28,46 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
     .getEnvironment();
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
-
   const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
-  const [hasLiveChat, setHashLiveChat] = useState(false);
-  const [hasCarbonCalculator, setHasCarbonCalculator] = useState(false);
-
-  const { closeNavigationSidebar, openOnboarding } = useProductNavReshuffle();
+  const { closeNavigationSidebar } = useProductNavReshuffle();
 
   useEffect(() => {
-    const initFeatures = async () => {
-      const results = await fetchFeatureAvailabilityData(features);
-      setHashLiveChat(results['livechat']);
-      setHasCarbonCalculator(results['carbon-calculator']);
-    }
-    initFeatures();
-  }, []);
-
-  const startOnboarding = () => {
-    openOnboarding();
-    trackingPlugin.trackClick({
-      name: 'navbar_v2::assistance::onboarding_widget',
-      type: 'action',
+    nodeTree.children.forEach((node: Node) => {
+      if (node.url && typeof node.url === 'string' && !node.url.startsWith('http')) {
+        node.url = urls.get(node.url as keyof ContentURLS);
+      }
+      switch (node.id) {
+        case 'help':
+          node.onClick = () => trackNode('assistance_help_center');
+          node.url = isEUOrCA ? node.url : null;
+          node.routing = !isEUOrCA ? {
+            application: 'dedicated',
+            hash: '#/ticket',
+          } : null;
+          node.isExternal = isEUOrCA;
+          break;
+        case 'assistance-status':
+          node.onClick = () => trackNode('assistance_status');
+          break;
+        case 'livechat':
+          node.onClick = () => {
+            shell.getPlugin('ux').openLiveChat();
+              setChatbotReduced(false);
+              trackNode('assistance_live_chat');
+              closeNavigationSidebar();
+          };
+          break;
+        case 'carbon-calculator':
+          node.onClick = () => {
+            trackNode('assistance_carbon_calculator');
+            closeNavigationSidebar();
+          };
+          break;
+        default:
+          break;
+      }
     });
-  };
+  }, []);
 
   const trackNode = (id: string) => {
     trackingPlugin.trackClick({ name: `navbar_v2_${id}`, type: 'navigation' });
@@ -61,113 +80,21 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
           <span>{t('sidebar_assistance_title')}</span>
         </h2>
       </li>
-      {['EU'].includes(environment.getRegion()) && (
-        <li className="flex px-3 align-items-center" role="menuitem">
+      {nodeTree.children.map((node: Node) => (
+        <li className="flex px-3 align-items-center" role="menuitem" key={`assistance_${node.id}`}>
           <OsdsIcon
-            name={ODS_ICON_NAME.HOME}
+            name={node.icon as ODS_ICON_NAME}
             className="mr-2"
             size={ODS_ICON_SIZE.sm}
             color={ODS_THEME_COLOR_INTENT.primary}
             contrasted
           />
           <SidebarLink
-            node={{
-              translation: 'sidebar_marketplace',
-              url: urls.get('marketplace'),
-              count: false,
-              isExternal: true,
-            }}
+            handleOnClick={node.onClick}
+            node={node}
           />
         </li>
-      )}
-      <li className="flex px-3 align-items-center" role="menuitem">
-        <OsdsIcon
-            name={ODS_ICON_NAME.HELP_CIRCLE}
-            className="mr-2"
-            size={ODS_ICON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            contrasted
-          />
-        <SidebarLink
-          node={{
-            translation: 'sidebar_assistance_help_center',
-            url: isEUOrCA ? urls.get('support') : null,
-            routing: !isEUOrCA ? {
-              application: 'dedicated',
-              hash: '#/ticket',
-            } : null,
-            count: false,
-            isExternal: isEUOrCA,
-          }}
-          onClick={() => trackNode('assistance_help_center')}
-        />
-      </li>
-      <li className="flex px-3 align-items-center" role="menuitem">
-        <OsdsIcon
-            name={ODS_ICON_NAME.WARNING}
-            className="mr-2"
-            size={ODS_ICON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            contrasted
-          />
-        <SidebarLink
-          node={{
-            translation: 'sidebar_assistance_status',
-            url: urls.get('status'),
-            count: false,
-            isExternal: true,
-          }}
-          onClick={() => trackNode('assistance_status')}
-        />
-      </li>
-      {hasLiveChat && (
-        <li className="flex px-3 align-items-center" role="menuitem">
-          <OsdsIcon
-            name={ODS_ICON_NAME.CHAT}
-            className="mr-2"
-            size={ODS_ICON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            contrasted
-          />
-          <SidebarLink
-            node={{
-              translation: 'sidebar_assistance_live_chat',
-              count: false,
-            }}
-            onClick={() => {
-              shell.getPlugin('ux').openLiveChat();
-              setChatbotReduced(false);
-              trackNode('assistance_live_chat');
-              closeNavigationSidebar();
-            }}
-          />
-        </li>
-      )}
-      {hasCarbonCalculator && (
-        <li className="flex px-3 align-items-center" role="menuitem">
-          <OsdsIcon
-            name={ODS_ICON_NAME.LEAF_CONCEPT}
-            className="mr-2"
-            size={ODS_ICON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            contrasted
-          />
-          <SidebarLink
-            node={{
-              translation: 'sidebar_assistance_carbon_calculator',
-              count: false,
-              routing: {
-                application: 'carbon-calculator',
-                hash: '#/',
-              },
-            }}
-            onClick={() => {
-              trackNode('assistance_carbon_calculator');
-              closeNavigationSidebar();
-            }}
-          />
-        </li>
-      )}
+      ))}
     </ul>
   );
 };
