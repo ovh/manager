@@ -67,6 +67,27 @@ describe('specs:Card', () => {
         ODS_THEME_COLOR_INTENT.primary,
       );
       expect(catElement).toHaveAttribute('hue', ODS_THEME_COLOR_HUE._500);
+
+      // and
+      expect(getByText('En savoir plus')).toBeDefined();
+    });
+
+    it('should override href label', async () => {
+      // given
+      const cardProps: Partial<CardProps> = {
+        texts: {
+          title: 'my title',
+          description: 'my decription',
+          category: 'my category',
+        },
+        hrefLabel: 'custom label',
+      };
+
+      // when
+      const { getByText } = await setupSpecTest(cardProps);
+
+      // then
+      expect(getByText('custom label')).toBeDefined();
     });
   });
 });

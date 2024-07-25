@@ -17,23 +17,77 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import placeholderSrc from './assets/placeholder.png';
 
-export type OnboardingLayoutProps = PropsWithChildren<{
-  hideHeadingSection?: boolean;
-  title: string;
-  orderButtonLabel: string;
+type OnboardingLayoutButtonProps = {
+  orderButtonLabel?: string;
   orderHref?: string;
-  description?: React.ReactNode;
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
   onOrderButtonClick?: () => void;
   onmoreInfoButtonClick?: () => void;
-  img?: {
-    src: string;
-    width?: number;
-    height?: number;
-  };
   isActionDisabled?: boolean;
-}>;
+};
+
+export type OnboardingLayoutProps = OnboardingLayoutButtonProps &
+  PropsWithChildren<{
+    hideHeadingSection?: boolean;
+    title: string;
+    description?: React.ReactNode;
+    img?: {
+      src: string;
+      width?: number;
+      height?: number;
+    };
+  }>;
+
+const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
+  orderHref,
+  orderButtonLabel,
+  moreInfoHref,
+  moreInfoButtonLabel,
+  onOrderButtonClick,
+  onmoreInfoButtonClick,
+  isActionDisabled,
+}) => {
+  if (!orderButtonLabel && !moreInfoButtonLabel) {
+    return <></>;
+  }
+  return (
+    <div className="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center">
+      <OsdsButton
+        inline
+        color={ODS_THEME_COLOR_INTENT.primary}
+        size={ODS_BUTTON_SIZE.md}
+        href={orderHref}
+        onClick={onOrderButtonClick}
+      >
+        {orderButtonLabel}
+      </OsdsButton>
+
+      {moreInfoButtonLabel && moreInfoHref && (
+        <OsdsButton
+          inline
+          color={ODS_THEME_COLOR_INTENT.primary}
+          variant={ODS_BUTTON_VARIANT.stroked}
+          size={ODS_BUTTON_SIZE.md}
+          onClick={onmoreInfoButtonClick}
+          {...(isActionDisabled && { disabled: true })}
+          href={moreInfoHref}
+          target={OdsHTMLAnchorElementTarget._blank}
+        >
+          {moreInfoButtonLabel}
+          <span slot="end">
+            <OsdsIcon
+              className="ml-4 cursor-pointer"
+              name={ODS_ICON_NAME.EXTERNAL_LINK}
+              size={ODS_ICON_SIZE.xs}
+              hoverable
+            ></OsdsIcon>
+          </span>
+        </OsdsButton>
+      )}
+    </div>
+  );
+};
 
 export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   hideHeadingSection,
@@ -83,40 +137,15 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
               {description}
             </OsdsText>
           )}
-          <div className="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center">
-            <OsdsButton
-              inline
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_BUTTON_SIZE.md}
-              href={orderHref}
-              onClick={onOrderButtonClick}
-            >
-              {orderButtonLabel}
-            </OsdsButton>
-
-            {moreInfoButtonLabel && moreInfoHref && (
-              <OsdsButton
-                inline
-                color={ODS_THEME_COLOR_INTENT.primary}
-                variant={ODS_BUTTON_VARIANT.stroked}
-                size={ODS_BUTTON_SIZE.md}
-                onClick={onmoreInfoButtonClick}
-                {...(isActionDisabled && { disabled: true })}
-                href={moreInfoHref}
-                target={OdsHTMLAnchorElementTarget._blank}
-              >
-                {moreInfoButtonLabel}
-                <span slot="end">
-                  <OsdsIcon
-                    className="ml-4 cursor-pointer"
-                    name={ODS_ICON_NAME.EXTERNAL_LINK}
-                    size={ODS_ICON_SIZE.xs}
-                    hoverable
-                  ></OsdsIcon>
-                </span>
-              </OsdsButton>
-            )}
-          </div>
+          <OnboardingLayoutButton
+            isActionDisabled={isActionDisabled}
+            orderHref={orderHref}
+            onOrderButtonClick={onOrderButtonClick}
+            onmoreInfoButtonClick={onmoreInfoButtonClick}
+            orderButtonLabel={orderButtonLabel}
+            moreInfoHref={moreInfoHref}
+            moreInfoButtonLabel={moreInfoButtonLabel}
+          />
         </section>
       )}
       {children && (
