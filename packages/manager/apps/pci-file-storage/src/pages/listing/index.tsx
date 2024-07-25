@@ -1,40 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Navigate,
-  useParams,
-  useNavigate,
-  useLocation,
-} from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { OsdsLink } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   Datagrid,
   DataGridTextCell,
   useDatagridSearchParams,
+  ActionMenu,
+  ActionMenuItem,
 } from '@ovhcloud/manager-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_THEME_COLOR_HUE,
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+
 import { getShares } from '@/api';
 
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
-import appConfig from '@/pci-file-storage.config';
+import CreateButton from './CreateButton';
+import IdCell from './IdCell';
+import StatusCell from './StatusCell';
+import { COLUMNS } from './constants';
 
 export default function Listing() {
-  const myConfig = appConfig;
-  const serviceKey = myConfig.listing?.datagrid?.serviceKey;
   const [res, setRes] = useState([]);
   const [columns, setColumns] = useState([]);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const {
-    pagination,
-    setPagination,
-    sorting,
-    setSorting,
-  } = useDatagridSearchParams();
+  const { pagination, setPagination } = useDatagridSearchParams();
   const { pageIndex, pageSize } = pagination;
   const { t } = useTranslation('pci-file-storage/listing');
   const { projectId } = useParams();
@@ -44,41 +41,41 @@ export default function Listing() {
     staleTime: Infinity,
     enabled: true,
   });
+  const actionMenuItems: ActionMenuItem[] = [
+    {
+      id: 1,
+      label: t('action_manage'),
+    },
+    {
+      id: 2,
+      label: t('action_delete'),
+      color: ODS_THEME_COLOR_INTENT.error,
+    },
+  ];
 
-  const navigateToDashabord = (label: string) => {
-    const path =
-      location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
-    navigate(`${path}${label}`);
+  const cellContents: Record<string, (props: any) => any> = {
+    id: ({ id, name, region }) => (
+      <IdCell id={id} name={name} region={region} />
+    ),
+    region: ({ region }) => <DataGridTextCell>{region}</DataGridTextCell>,
+    protocol: ({ protocol }) => <DataGridTextCell>{protocol}</DataGridTextCell>,
+    size: ({ size }) => <DataGridTextCell>{size} GB</DataGridTextCell>,
+    status: ({ status: shareStatus }) => <StatusCell status={shareStatus} />,
+    actions: () => <ActionMenu isCompact items={actionMenuItems} />,
   };
 
   useEffect(() => {
     if (status === 'success' && data?.data) {
       setRes(data?.data);
-      const newColumns = Object.keys(data?.data[0])
-        .filter((element) => element !== 'iam')
+      const newColumns = [...Object.keys(data?.data[0]), 'actions']
+        .filter((element) => COLUMNS.includes(element))
+        .sort((a, b) => COLUMNS.indexOf(a) - COLUMNS.indexOf(b))
         .map((element) => ({
           id: element,
           header: element,
-          label: element,
+          label: t(`title_${element}`),
           accessorKey: element,
-          cell: (props: any) => {
-            const label = props[element] as string;
-            if (typeof label === 'string' || typeof label === 'number') {
-              if (serviceKey === element)
-                return (
-                  <DataGridTextCell>
-                    <OsdsLink
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                      onClick={() => navigateToDashabord(label)}
-                    >
-                      {label}
-                    </OsdsLink>
-                  </DataGridTextCell>
-                );
-              return <DataGridTextCell>{label}</DataGridTextCell>;
-            }
-            return <div>-</div>;
-          },
+          cell: (props: any) => cellContents[element](props) ?? <div>-</div>,
         }));
       setColumns(newColumns);
     }
@@ -102,18 +99,30 @@ export default function Listing() {
     <>
       <div className="pt-5 pb-10">
         <Breadcrumb />
-        <h2>pci-file-storage</h2>
+        <OsdsText
+          class="block mt-8"
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._700}
+          color={ODS_THEME_COLOR_INTENT.text}
+          hue={ODS_THEME_COLOR_HUE._800}
+        >
+          {t('title')}
+        </OsdsText>
         <React.Suspense>
           {columns && res && (
-            <Datagrid
-              columns={columns}
-              items={res || []}
-              totalItems={data?.totalCount || 0}
-              pagination={pagination}
-              onPaginationChange={setPagination}
-              sorting={sorting}
-              onSortChange={setSorting}
-            />
+            <>
+              <div className="my-3 mt-5">
+                <CreateButton />
+              </div>
+              <Datagrid
+                columns={columns}
+                items={res || []}
+                totalItems={data?.totalCount || 0}
+                pagination={pagination}
+                onPaginationChange={setPagination}
+                contentAlignLeft
+              />
+            </>
           )}
         </React.Suspense>
       </div>
