@@ -844,7 +844,11 @@
                 class="mb-3"
                 data-model="$ctrl.isAttachFloatingIP"
                 data-on-change="$ctrl.onAttachIPChange(modelValue)"
-                data-disabled="!$ctrl.isFloatingIpAvailable || !$ctrl.PciProjectsProjectInstanceService.additionalIpsIsAvailable($ctrl.flavor.type)"
+                data-disabled="!$ctrl.isFloatingIpAvailable || !$ctrl.PciProjectsProjectInstanceService.additionalIpsIsAvailable($ctrl.flavor.type) || $ctrl.model.number > 1"
+                data-uib-tooltip="{{ $ctrl.model.number > 1 ? ('pci_projects_project_instances_add_attch_floating_ip_checkbox_label_tooltip' | translate) : '' }}"
+                data-tooltip-append-to-body="data-translate-values"
+                data-toggle="tooltip"
+                aria-hidden="true"
             >
                 <oui-checkbox-label>
                     <span
