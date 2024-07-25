@@ -3,7 +3,7 @@ import { RancherPlan, RancherVersion } from '@/api/api.type';
 export const rancherPlan: RancherPlan[] = [
   {
     name: 'OVHCLOUD_EDITION',
-    status: 'UNAVAILABLE',
+    status: 'AVAILABLE',
   },
   {
     name: 'STANDARD',

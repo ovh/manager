@@ -99,11 +99,13 @@ describe('CreateRancher', () => {
     });
   });
 
-  it("Given that I'm configuring the service, I should only have the Standard offer selected, and see the OVHcloud Edition card disabled with a Coming soon label on it.", async () => {
+  it("Given that I'm configuring the service, I should only have OVHcloud Edition offer selected", async () => {
     const screen = await setupSpecTest();
-    const standardPlan = screen.getByText(listingTranslation.STANDARD);
+    const cloudEditionPlan = screen.getByText(
+      listingTranslation.OVHCLOUD_EDITION,
+    );
 
-    expect(standardPlan).not.toBeNull();
+    expect(cloudEditionPlan).not.toBeNull();
   });
 
   it("Given that I'm configuring the service, I should have the recommanded version selected by default.", async () => {
@@ -114,14 +116,6 @@ describe('CreateRancher', () => {
 
     // ODS attribute checked is not true sometime ..
     expect(versionActive).toHaveAttribute('checked');
-  });
-
-  it("Given that I'm configuring the service, I should only have the Standard offer selected, and see the OVHcloud Edition card disabled with a Coming soon label on it.", async () => {
-    const screen = await setupSpecTest();
-    const planActive = screen.getByLabelText('tile-Standard');
-
-    expect(planActive).not.toBeNull();
-    expect(planActive).toHaveAttribute('checked');
   });
 
   it('Given that there is an error i should see error banner.', async () => {
