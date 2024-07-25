@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-export type TRegion = {
+type TRegion = {
   continentCode: 'ASIA' | 'EU' | 'NA' | 'US';
   datacenter: string;
   enabled: boolean;
