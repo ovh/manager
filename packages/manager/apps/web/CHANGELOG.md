@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.31.1...@ovh-ux/manager-web@18.32.0) (2024-07-25)
+
+
+### Features
+
+* **web.hosting:** git integration project ([#12215](https://github.com/ovh/manager/issues/12215)) ([492bcd9](https://github.com/ovh/manager/commit/492bcd948e295219c87d6190879df62beaf26d17))
+
+
+
+
+
 ## [18.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.31.0...@ovh-ux/manager-web@18.31.1) (2024-07-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
