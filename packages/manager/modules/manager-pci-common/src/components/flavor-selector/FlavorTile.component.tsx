@@ -12,7 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import { useCatalogPrice } from '@ovhcloud/manager-components';
-import { GB, useBytes } from '@/hooks/useBytes';
+import { useBytes } from '../../hooks';
 import { FlavorLocalzoneChip } from './FlavorLocalzoneChip';
 
 export interface FlavorDiskType {
@@ -50,6 +50,7 @@ const checkedClass =
 const uncheckedClass =
   'cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600]';
 const separatorClass = 'h-px my-5 bg-[#85d9fd] border-0';
+const gigabytes = 10 ** 9;
 
 export function FlavorTile({
   flavorName,
@@ -60,7 +61,7 @@ export function FlavorTile({
   isSelected,
   onClick,
 }: Readonly<FlavorTileProps>) {
-  const { t } = useTranslation('flavors');
+  const { t } = useTranslation('pci-flavors');
   const { formatBytes } = useBytes();
   const { getTextPrice, getFormattedHourlyCatalogPrice } = useCatalogPrice(4);
   return (
@@ -124,7 +125,7 @@ export function FlavorTile({
             color={ODS_THEME_COLOR_INTENT.text}
           >
             {disk.number > 1 ? `${disk.number} x ` : ''}
-            {`${formatBytes(disk.capacity * GB, 2)}`}
+            {`${formatBytes(disk.capacity * gigabytes, 2)}`}
             {` ${disk.technology}`}
           </OsdsText>
         ))}
@@ -137,7 +138,7 @@ export function FlavorTile({
             color={ODS_THEME_COLOR_INTENT.text}
           >
             {disk.number > 1 ? `${disk.number} x ` : ''}
-            {`${formatBytes(disk.capacity * GB, 2)}`}
+            {`${formatBytes(disk.capacity * gigabytes, 2)}`}
             {` NVMe`}
           </OsdsText>
         ))}
