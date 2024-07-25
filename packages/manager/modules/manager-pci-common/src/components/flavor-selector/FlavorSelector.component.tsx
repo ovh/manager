@@ -10,8 +10,9 @@ import { TabsComponent } from '@ovhcloud/manager-components';
 import {
   KUBE_FLAVOR_CATEGORIES,
   useMergedKubeFlavors,
-} from '@/api/hooks/useFlavors';
+} from '../../api/hook/useFlavors';
 import { FlavorTile } from './FlavorTile.component';
+import './translations';
 
 interface FlavorSelectorProps {
   projectId: string;

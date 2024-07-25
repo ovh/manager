@@ -1,12 +1,10 @@
 import { useTranslation } from 'react-i18next';
+import './translations';
 
 const UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
-export const GB = 10 ** 9;
-
-// @TODO move to pci common or manager-components
 export function useBytes() {
-  const { t } = useTranslation('bytes');
+  const { t } = useTranslation('pci-bytes');
   const formatBytes = (
     bytes: number,
     decimals = 0,

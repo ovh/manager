@@ -18,15 +18,24 @@ import { Links, LinkType } from '@ovhcloud/manager-components';
 import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { URL_INFO } from '@/constants';
+import {
+  GLOBAL_REGIONS_INFO_URL,
+  LOCAL_ZONE_INFO_URL,
+} from '../../constants/urls';
+
+const URL_INFO = {
+  GLOBAL_REGIONS: GLOBAL_REGIONS_INFO_URL,
+  LOCAL_ZONE: LOCAL_ZONE_INFO_URL,
+};
 
 export type TFlavorLocalzoneChip = {
   isLocalZone: boolean;
 };
+
 export function FlavorLocalzoneChip({
   isLocalZone,
 }: Readonly<TFlavorLocalzoneChip>) {
-  const { t } = useTranslation('flavors');
+  const { t } = useTranslation('pci-flavors');
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const getDocumentUrl = (linkType: string) =>

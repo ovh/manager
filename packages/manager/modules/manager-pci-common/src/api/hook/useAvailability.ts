@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMe } from '@ovhcloud/manager-components';
-import { getProductAvailability } from '@/api/data/availability';
+import { getProductAvailability } from '../data/availability';
 
 export const getProductAvailabilityQuery = (
   projectId: string,

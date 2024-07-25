@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { getFlavors, getKubeFlavors } from '@/api/data/flavors';
-import { useCatalog } from '@/api/hooks/useCatalog';
+import { getFlavors, getKubeFlavors } from '../data';
+import { useCatalog } from './useCatalog';
 import { useProductAvailability } from './useAvailability';
 
 export const FLAVOR_CATEGORIES = [
