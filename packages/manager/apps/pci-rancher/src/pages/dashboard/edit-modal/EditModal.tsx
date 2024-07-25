@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { RancherService } from '@/api/api.type';
-import EditNameModal from '@/components/Modal/EditNameModal';
+import EditNameModal from '@/components/Modal/EditNameModal/EditNameModal.component';
 import { useRancher } from '@/hooks/useRancher';
 import useEditRancher, { EditAction } from '@/hooks/useEditRancher';
 

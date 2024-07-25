@@ -13,15 +13,15 @@ import { useMutationState } from '@tanstack/react-query';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import TableComponent from './Table';
-import ActionsCell from './ActionsCell';
-import LinkService from './LinkService';
+import TableComponent from '../Table.component';
+import ActionsCell from '../ActionsCell/ActionsCell.component';
+import LinkService from '../LinkService/LinkService.component';
 import { RancherService } from '@/api/api.type';
-import { RancherDatagridWrapper } from './Table.type';
-import DisplayCellText from './TextCell';
-import './Table.scss';
+import { RancherDatagridWrapper } from '../Table.type';
+import DisplayCellText from '../TextCell/TextCell.component';
+import '../Table.scss';
 import { deleteRancherServiceQueryKey } from '@/api';
-import StatusChip from '../StatusChip/StatusChip';
+import StatusChip from '../../StatusChip/StatusChip.component';
 
 export default function TableContainer({
   data,

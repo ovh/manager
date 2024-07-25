@@ -3,8 +3,8 @@ import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/';
 import { useNavigate } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { RancherCellData } from './Table.type';
-import './Table.scss';
+import { RancherCellData } from '../Table.type';
+import '../Table.scss';
 import { ResourceStatus } from '@/api/api.type';
 
 export default function LinkService({ cell, row }: Readonly<RancherCellData>) {

@@ -6,7 +6,7 @@ import { getRancherByIdUrl } from '@/utils/route';
 import UpdateSoftware from './UpdateSoftware.component';
 import { getVersion } from '@/utils/rancher';
 import useVersions from '@/hooks/useVersions';
-import Loading from '@/components/Loading/Loading';
+import Loading from '@/components/Loading/Loading.component';
 
 const UpdateSoftwarePage = () => {
   const { data: rancher } = useRancher();

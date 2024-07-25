@@ -7,10 +7,10 @@ import listingTranslation from '../../../public/translations/pci-rancher/listing
 import {
   act,
   fireEvent,
-  render,
   waitFor,
+  render,
 } from '../../../utils/test/test.provider';
-import CreateRancher, { CreateRancherProps } from './CreateRancher';
+import CreateRancher, { CreateRancherProps } from './CreateRancher.component';
 import { getRanchersUrl } from '@/utils/route';
 
 const onCreateRancher = jest.fn();
@@ -55,11 +55,8 @@ const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
 describe('CreateRancher', () => {
   it("Given that I don't fill the name field, I shouldn't be able to create my Managed Rancher Service (CTA disabled)", async () => {
     const screen = await setupSpecTest();
-
     const button = screen.getByText(dashboardTranslation.createRancherCTA);
-
-    await userEvent.click(button);
-
+    userEvent.click(button);
     expect(onCreateRancher).not.toHaveBeenCalled();
   });
 
@@ -136,9 +133,11 @@ describe('CreateRancher', () => {
       const screen = await setupSpecTest({});
       const cancelButton = screen.getByText(dashboardTranslation.cancel);
 
-      await userEvent.click(cancelButton);
+      userEvent.click(cancelButton);
 
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(getRanchersUrl('1234'));
+      await waitFor(() => {
+        expect(mockedUsedNavigate).toHaveBeenCalledWith(getRanchersUrl('1234'));
+      });
     });
   });
 

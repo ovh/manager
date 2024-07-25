@@ -15,8 +15,8 @@ import {
 } from '@ovhcloud/ods-components/';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ResourceStatus } from '@/api/api.type';
-import { RancherActionsCell } from './Table.type';
-import './Table.scss';
+import { RancherActionsCell } from '../Table.type';
+import '../Table.scss';
 
 export default function ActionsCell({
   row,

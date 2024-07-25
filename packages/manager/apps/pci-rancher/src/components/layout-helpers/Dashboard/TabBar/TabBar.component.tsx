@@ -10,7 +10,7 @@ import {
 import React, { FC, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { DashboardTabItemProps } from './Dashboard';
+import { DashboardTabItemProps } from '../Dashboard.component';
 
 const TabBar: FC<{ tabs: DashboardTabItemProps[] }> = ({ tabs }) => {
   const { t } = useTranslation('pci-rancher/dashboard');

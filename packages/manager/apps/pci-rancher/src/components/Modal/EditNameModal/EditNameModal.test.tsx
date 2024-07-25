@@ -1,9 +1,14 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import EditNameModal from './EditNameModal';
-import { fireEvent, render, waitFor } from '../../utils/test/test.provider';
-import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
-import { rancherMocked } from '../../_mock_/rancher';
+import EditNameModal from './EditNameModal.component';
+import {
+  fireEvent,
+  render,
+  waitFor,
+  act,
+} from '../../../utils/test/test.provider';
+import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
+import { rancherMocked } from '../../../_mock_/rancher';
 
 const onEditMocked = jest.fn();
 const onClose = jest.fn();
@@ -58,7 +63,9 @@ describe('Edit Name Modal', () => {
     const button = screen.getByText(listingTranslation.editNameRancherCta);
     const NEW_NAME = 'rancher1234';
 
-    fireEvent.change(input, { target: { value: NEW_NAME } });
+    await act(async () => {
+      fireEvent.change(input, { target: { value: NEW_NAME } });
+    });
 
     await userEvent.click(button);
 
@@ -79,7 +86,9 @@ describe('Edit Name Modal', () => {
 
     expect(input).toHaveAttribute('color', 'info');
 
-    fireEvent.change(input, { target: { value: '12()34343:::' } });
+    await act(async () => {
+      fireEvent.change(input, { target: { value: '12()34343:::' } });
+    });
 
     await userEvent.click(button);
 

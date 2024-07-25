@@ -7,11 +7,11 @@ import {
 } from '@ovhcloud/manager-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import onboardingImgSrc from '../../assets/onboarding-img.png';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.component';
 import { getCreateRancherUrl } from '@/utils/route';
 import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import { useGuideUtils } from '@/components/GuideLink';
+import { useGuideUtils } from '@/hooks/guideLink/useGuideLink';
 
 export default function Onboarding() {
   const { t } = useTranslation('pci-rancher/onboarding');

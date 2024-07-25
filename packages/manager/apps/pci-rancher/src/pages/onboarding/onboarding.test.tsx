@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import Onboarding from './index';
 import { render, waitFor } from '../../utils/test/test.provider';
 import onboardingTranslation from '../../public/translations/pci-rancher/onboarding/Messages_fr_FR.json';
-import { useGuideUtils } from '@/components/GuideLink';
+import { useGuideUtils } from '@/hooks/guideLink/useGuideLink';
 
 const mockedUsedNavigate = jest.fn();
 

@@ -21,7 +21,7 @@ import { useTranslation } from 'react-i18next';
 import { RancherService } from '@/api/api.type';
 import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import Modal from './Modal';
+import Modal from '../Modal.component';
 
 interface DeleteModalProps {
   onClose: () => void;

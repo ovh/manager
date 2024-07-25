@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import GenerateAccessModal from '@/components/Modal/GenerateAccesModal';
+import GenerateAccessModal from '@/components/Modal/GenerateAccessModal/GenerateAccesModal.component';
 import useGenerateAccessDetail from '@/hooks/useGenerateAccessDetail';
 import { useRancher } from '@/hooks/useRancher';
 import { useTrackingAction } from '@/hooks/useTrackingPage';

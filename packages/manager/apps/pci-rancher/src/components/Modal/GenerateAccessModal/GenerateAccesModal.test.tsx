@@ -1,11 +1,11 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, waitFor } from '../../utils/test/test.provider';
+import { render, waitFor } from '../../../utils/test/test.provider';
 import GenerateAccessModal, {
   GenerateAccessModalProps,
-} from './GenerateAccesModal';
-import dashboardTranslation from '../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
-import { rancherMocked } from '../../_mock_/rancher';
+} from './GenerateAccesModal.component';
+import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
+import { rancherMocked } from '../../../_mock_/rancher';
 
 const mockedUsedNavigate = jest.fn();
 

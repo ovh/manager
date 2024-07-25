@@ -29,7 +29,7 @@ import {
   RancherPlan,
   RancherVersion,
 } from '@/api/api.type';
-import Block from '@/components/Block/Block';
+import Block from '@/components/Block/Block.component';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
 import { isValidRancherName } from '@/utils/rancher';
 import { getRanchersUrl } from '@/utils/route';

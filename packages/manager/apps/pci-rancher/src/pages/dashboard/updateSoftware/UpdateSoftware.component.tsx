@@ -18,9 +18,9 @@ import {
 import React, { FC, useEffect, useState } from 'react';
 import { useHref, useParams } from 'react-router-dom';
 import { RancherService, RancherVersion } from '@/api/api.type';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-import LinkIcon from '@/components/LinkIcon/LinkIcon';
-import UpdateSoftwareModal from '@/components/Modal/UpdateSoftwareConfirmModal';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
+import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
+import UpdateSoftwareModal from '@/components/Modal/UpdateSoftwareConfirmModal/UpdateSoftwareConfirmModal.component';
 import { getLatestVersions } from '@/utils/rancher';
 import { getRancherByIdUrl } from '@/utils/route';
 

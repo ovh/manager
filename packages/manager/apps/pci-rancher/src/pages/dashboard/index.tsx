@@ -9,11 +9,11 @@ import {
 import { useTranslation } from 'react-i18next';
 import Breadcrumb, {
   BreadcrumbHandleParams,
-} from '@/components/Breadcrumb/Breadcrumb';
-import Loading from '@/components/Loading/Loading';
+} from '@/components/Breadcrumb/Breadcrumb.component';
+import Loading from '@/components/Loading/Loading.component';
 import Dashboard, {
   DashboardTabItemProps,
-} from '@/components/layout-helpers/Dashboard/Dashboard';
+} from '@/components/layout-helpers/Dashboard/Dashboard.component';
 import { useRancher } from '@/hooks/useRancher';
 import { getRanchersUrl } from '@/utils/route';
 

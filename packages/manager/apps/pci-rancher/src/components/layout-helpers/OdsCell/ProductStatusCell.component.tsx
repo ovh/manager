@@ -5,6 +5,7 @@ import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ResourceStatus } from '@/api/api.type';
 
+// TODO: remove this file
 export type DataGridCellProps<Cell = string> = {
   cellData?: Cell;
 };

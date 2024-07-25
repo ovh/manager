@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Loading from '@/components/Loading/Loading';
-import DeleteModal from '@/components/Modal/DeleteModal';
+import Loading from '@/components/Loading/Loading.component';
+import DeleteModal from '@/components/Modal/DeleteModal/DeleteModal.component';
 import { useDeleteRancher, useRancher } from '@/hooks/useRancher';
 
 const DeleteRancherModal = () => {

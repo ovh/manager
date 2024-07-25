@@ -3,7 +3,7 @@ import { render, waitFor } from '@/utils/test/test.provider';
 import { rancherMocked } from '@/_mock_/rancher';
 import { versionsMocked } from '@/_mock_/version';
 import { ResourceStatus } from '@/api/api.type';
-import UpdateVersionBanner from './UpdateVersionBanner';
+import UpdateVersionBanner from './UpdateVersionBanner.component';
 import updateSoftwareTranslation from '@/public/translations/pci-rancher/updateSoftware/Messages_fr_FR.json';
 
 const defaultProps = {

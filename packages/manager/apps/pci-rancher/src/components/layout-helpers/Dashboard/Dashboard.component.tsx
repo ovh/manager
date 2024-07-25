@@ -11,9 +11,9 @@ import { EditAction, EditMutationVariables } from '@/hooks/useEditRancher';
 import { useTrackingPage } from '@/hooks/useTrackingPage';
 import { COMMON_PATH } from '@/routes/routes';
 import { TrackingPageView } from '@/utils/tracking';
-import RancherDetail from './RancherDetail';
-import TabBar from './TabBar';
-import LinkIcon from '@/components/LinkIcon/LinkIcon';
+import RancherDetail from './RancherDetail/RancherDetail.component';
+import TabBar from './TabBar/TabBar.component';
+import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
 import useVersions from '@/hooks/useVersions';
 
 export type DashboardTabItemProps = {

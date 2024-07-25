@@ -20,8 +20,8 @@ import { useRancherVersionsCapabilities } from '@/hooks/useRancher';
 import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
 import { getVersionInfoByName } from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import LinkIcon from '../LinkIcon/LinkIcon';
-import Modal from './Modal';
+import LinkIcon from '../../LinkIcon/LinkIcon.component';
+import Modal from '../Modal.component';
 
 interface UpdateSoftwareModalProps {
   onClose: () => void;

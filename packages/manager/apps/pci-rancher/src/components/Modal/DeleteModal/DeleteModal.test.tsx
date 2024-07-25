@@ -1,9 +1,14 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import DeleteModal, { TERMINATE_TEXT } from './DeleteModal';
-import { fireEvent, render, waitFor } from '../../utils/test/test.provider';
-import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
-import { rancherMocked } from '../../_mock_/rancher';
+import DeleteModal, { TERMINATE_TEXT } from './DeleteModal.component';
+import {
+  fireEvent,
+  render,
+  waitFor,
+  act,
+} from '../../../utils/test/test.provider';
+import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
+import { rancherMocked } from '../../../_mock_/rancher';
 
 const onDeleteMocked = jest.fn();
 
@@ -50,7 +55,10 @@ describe('Delete Modal', () => {
       const input = screen.getByLabelText('delete-input');
       const button = screen.getByText(listingTranslation.deleteRancher);
 
-      fireEvent.change(input, { target: { value: TERMINATE_TEXT } });
+      await act(async () => {
+        fireEvent.change(input, { target: { value: TERMINATE_TEXT } });
+      });
+
       await userEvent.click(button);
 
       expect(input.getAttribute('value')).toBe(TERMINATE_TEXT);

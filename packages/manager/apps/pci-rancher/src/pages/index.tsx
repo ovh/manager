@@ -3,8 +3,8 @@ import { ErrorBanner, PageLayout } from '@ovhcloud/manager-components';
 import React, { Suspense } from 'react';
 import Breadcrumb, {
   BreadcrumbHandleParams,
-} from '@/components/Breadcrumb/Breadcrumb';
-import Loading from '@/components/Loading/Loading';
+} from '@/components/Breadcrumb/Breadcrumb.component';
+import Loading from '@/components/Loading/Loading.component';
 import { useRanchers } from '@/hooks/useRancher';
 import Listing from './listing';
 

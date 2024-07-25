@@ -6,7 +6,7 @@ import dashboardTranslation from '@/public/translations/pci-rancher/dashboard/Me
 import updateTranslation from '@/public/translations/pci-rancher/updateSoftware/Messages_fr_FR.json';
 
 import { fireEvent, render, waitFor } from '@/utils/test/test.provider';
-import RancherDetail, { RancherDetailProps } from './RancherDetail';
+import RancherDetail, { RancherDetailProps } from './RancherDetail.component';
 
 jest.mock('@ovh-ux/manager-react-shell-client', () => ({
   useTracking: jest.fn(() => ({
