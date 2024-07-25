@@ -15,14 +15,14 @@ interface SubTreeSectionProps {
   node?: Node;
   selectedPciProject?: string;
   selectedNode: Node;
-  handleOnSubmenuClick(node: Node): void;
+  handleOnSubMenuClick(node: Node): void;
 }
 
 const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
   node = {},
   selectedPciProject,
   selectedNode,
-  handleOnSubmenuClick,
+  handleOnSubMenuClick,
 }: SubTreeSectionProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
@@ -43,7 +43,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
       name: trackingIdComplement.replace(/::$/g, ''),
       type: 'navigation',
     });
-    handleOnSubmenuClick(node);
+    handleOnSubMenuClick(node);
   };
 
   return (
@@ -64,8 +64,8 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
                 id={childNode.id}
                 className={`px-3 ${
                   childNode.id === selectedNode?.id
-                    ? style.sidebar_submenu_items_selected
-                    : style.sidebar_submenu_items
+                    ? style.subtree_submenu_items_selected
+                    : style.subtree_submenu_items
                 }`}
               >
                 <SidebarLink
@@ -73,7 +73,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
                     projectId: selectedPciProject,
                   }}
                   node={childNode}
-                  handleNavigation={() => menuClickHandler(childNode)}
+                  handleOnClick={() => menuClickHandler(childNode)}
                   id={childNode.idAttr}
                 />
                 {childNode.separator && <hr />}
@@ -84,8 +84,8 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
         <div
           className={`px-3 ${
             node.id === selectedNode?.id
-              ? style.sidebar_submenu_items_selected
-              : style.sidebar_submenu_items
+              ? style.subtree_submenu_items_selected
+              : style.subtree_submenu_items
           }`}
         >
           <SidebarLink
@@ -93,7 +93,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
               projectId: selectedPciProject,
             }}
             node={node}
-            handleNavigation={() => menuClickHandler(node)}
+            handleOnClick={() => menuClickHandler(node)}
             id={node.idAttr}
           />
         </div>

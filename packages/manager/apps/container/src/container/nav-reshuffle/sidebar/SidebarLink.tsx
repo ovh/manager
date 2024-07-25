@@ -15,10 +15,7 @@ type SidebarLinkProps = {
   count?: number | boolean;
   node?: Node;
   linkParams?: Record<string, string>;
-  handleOnMouseOver?(): void;
-  handleOnMouseLeave?(): void;
   handleOnClick?(): void;
-  handleNavigation?(): void;
   id?: string;
   isShortText?: boolean;
 };
@@ -27,19 +24,15 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   count = 0,
   node = {},
   linkParams = {},
-  handleOnMouseOver = () => {},
-  handleOnMouseLeave = () => {},
   handleOnClick = () => {},
-  handleNavigation = () =>  {},
   id = '',
   isShortText = false,
 }: SidebarLinkProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
-  const mobile = isMobile();
 
   return !node.children && (node.url || node.routing) ? (
     <StaticLink
-      handleClick={handleNavigation}
+      handleClick={handleOnClick}
       count={count}
       node={node}
       linkParams={linkParams}
@@ -49,11 +42,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   ) : (
     <button
       className={style['button-as-div']}
-      onMouseOver={!mobile ? handleOnMouseOver : null}
-      onMouseLeave={!mobile ? handleOnMouseLeave : null}
-      onFocus={!mobile ? handleOnMouseOver : null}
-      onTouchEnd={mobile ? handleNavigation : null}
-      onClick={!mobile ? handleOnClick : null}
+      onClick={handleOnClick}
       id={id}
     >
       <span> {t(isShortText ? node.shortTranslation : node.translation)}</span>
