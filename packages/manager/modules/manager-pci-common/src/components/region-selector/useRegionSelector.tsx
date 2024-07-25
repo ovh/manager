@@ -18,11 +18,13 @@ export function useRegionSelector({
   const query = useProjectLocalisation(projectId);
   const { continents: unfilteredContinents, regions: unfilteredRegions } =
     query.data || {};
-  const regions = unfilteredRegions?.filter((r) =>
-    regionFilter ? regionFilter(r) : true,
+  const regions = unfilteredRegions?.filter((region) =>
+    regionFilter ? regionFilter(region) : true,
   );
   const continents = unfilteredContinents?.filter(
-    (c) => c.id === 'WORLD' || regions.some((r) => r.continentLabel === c.name),
+    (continent) =>
+      continent.id === 'WORLD' ||
+      regions.some(({ continentLabel }) => continentLabel === continent.name),
   );
 
   // filter regions by selected continent
@@ -31,7 +33,7 @@ export function useRegionSelector({
       (selectedContinent?.id === 'WORLD'
         ? regions
         : regions?.filter(
-            (r) => r.continentLabel === selectedContinent?.name,
+            ({ continentLabel }) => continentLabel === selectedContinent?.name,
           )) || [],
     [selectedContinent, regions],
   );
@@ -41,7 +43,7 @@ export function useRegionSelector({
     () =>
       continentRegions.filter((region) => {
         const children = continentRegions.filter(
-          (r) => r.macro === region.macro && r.isMacro === false,
+          ({ macro, isMacro }) => macro === region.macro && isMacro === false,
         );
         // only display macro regions with one or more micro regions
         // otherwise only display the micro region
@@ -58,10 +60,10 @@ export function useRegionSelector({
     () =>
       (macroRegions.indexOf(selectedMacroRegion) >= 0 &&
         continentRegions.filter(
-          (r) =>
-            r.macro === selectedMacroRegion.macro &&
-            r.isMacro === false &&
-            r !== selectedMacroRegion,
+          (region) =>
+            region.macro === selectedMacroRegion.macro &&
+            region.isMacro === false &&
+            region !== selectedMacroRegion,
         )) ||
       [],
     [macroRegions, selectedMacroRegion],
@@ -69,7 +71,10 @@ export function useRegionSelector({
 
   const selectMacroRegion = (region: TLocalisation) => {
     const micros = continentRegions.filter(
-      (r) => r.macro === region.macro && r.isMacro === false && r !== region,
+      (_region) =>
+        _region.macro === region.macro &&
+        _region.isMacro === false &&
+        _region !== region,
     );
     setSelectedMacroRegion(region);
     setSelectedMicroRegion(null);
