@@ -13,6 +13,7 @@ export * from './services';
 export * from './tasks';
 export { useProductMaintenance } from './pci/useMaintenance';
 export {
+  isLocalZone,
   getMacroRegion,
   useTranslatedMicroRegions,
 } from './region/useTranslatedMicroRegions';
