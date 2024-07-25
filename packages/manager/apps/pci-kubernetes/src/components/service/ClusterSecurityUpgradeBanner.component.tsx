@@ -14,7 +14,7 @@ import { useHref } from 'react-router-dom';
 export default function ClusterSecurityUpgradeBanner() {
   const { t } = useTranslation('service');
 
-  const hrefUpdate = useHref('./update');
+  const hrefForceVersion = useHref('./update?forceVersion');
 
   return (
     <OsdsMessage
@@ -38,7 +38,7 @@ export default function ClusterSecurityUpgradeBanner() {
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
-          href={hrefUpdate}
+          href={hrefForceVersion}
           inline
         >
           {t('kube_service_common_update')}
