@@ -275,7 +275,7 @@
     <oui-step-form
         name="instances_add_image"
         data-header="{{:: 'pci_projects_project_instances_add_image_title' | translate }}"
-        data-valid="$ctrl.isLinuxImageType() ? ($ctrl.model.image && $ctrl.model.sshKey) : $ctrl.model.image"
+        data-valid="$ctrl.model.image && (!$ctrl.isLinuxImageType() || $ctrl.model.sshKey)"
         data-editable="!$ctrl.isLoading"
         data-on-focus="$ctrl.onImageFocus()"
         data-on-submit="$ctrl.onImageChange()"
