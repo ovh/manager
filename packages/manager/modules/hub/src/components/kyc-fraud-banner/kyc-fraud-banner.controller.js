@@ -1,4 +1,5 @@
 import {
+  SUPPORT_URL,
   FRAUD_STATUS,
   TRACK_IMPRESSION_REQUIRED,
   TRACK_IMPRESSION_OPEN,
@@ -6,10 +7,10 @@ import {
 
 export default class KycFraudBannerController {
   /* @ngInject */
-  constructor($http, $q, coreURLBuilder, atInternet) {
+  constructor($http, coreURLBuilder, atInternet, coreConfig) {
     this.$http = $http;
-    this.$q = $q;
     this.coreURLBuilder = coreURLBuilder;
+    this.coreConfig = coreConfig;
     this.atInternet = atInternet;
     this.TRACK_IMPRESSION_REQUIRED = TRACK_IMPRESSION_REQUIRED;
     this.TRACK_IMPRESSION_OPEN = TRACK_IMPRESSION_OPEN;
@@ -24,10 +25,10 @@ export default class KycFraudBannerController {
       '#/documents',
     );
 
-    this.supportLink = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/support/tickets',
-    );
+    this.isSupportWithExternalLinks = this.coreConfig.isRegion(['EU', 'CA']);
+    this.supportLink = this.isSupportWithExternalLinks
+      ? SUPPORT_URL
+      : this.coreURLBuilder.buildURL('dedicated', '#/ticket');
 
     this.$http
       .get(`/me/procedure/fraud`)

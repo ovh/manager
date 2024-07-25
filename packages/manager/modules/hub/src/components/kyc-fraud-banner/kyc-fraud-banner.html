@@ -17,5 +17,6 @@
         data-ng-click="$ctrl.trackClickImpression($ctrl.TRACK_IMPRESSION_OPEN)"
         data-ng-href="{{:: $ctrl.supportLink}}"
         data-translate="kyc_fraud_open_banner_link"
+        target="{{$ctrl.isSupportWithExternalLinks ? '_blank' : '_top'}}"
     ></a>
 </oui-message>
