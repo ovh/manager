@@ -11,10 +11,7 @@ export default function DatacentresGeneralInformationPage() {
   const {
     data: vcdDatacentre,
     isLoading: isLoadingVdc,
-  } = useManagedVcdDatacentre({
-    id,
-    vdcId,
-  });
+  } = useManagedVcdDatacentre(id, vdcId);
 
   if (isLoading || isLoadingVdc) {
     return (

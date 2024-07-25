@@ -10,7 +10,7 @@ function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
-  const { data: vcdDatacentre } = useManagedVcdDatacentre({ id, vdcId });
+  const { data: vcdDatacentre } = useManagedVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useManagedVcdOrganization(id);
 
   const tabsList = [
