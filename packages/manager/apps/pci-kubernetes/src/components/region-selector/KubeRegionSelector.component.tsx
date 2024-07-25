@@ -32,6 +32,7 @@ export function KubeRegionSelector({
           product?.regions?.some(({ name }) => name === region.name)
         );
       }}
+      compactMode
     />
   );
 }
