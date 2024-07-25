@@ -9,11 +9,12 @@ import {
   getAllKube,
   getClusterRestrictions,
   getKubernetesCluster,
+  getOidcProvider,
+  postKubeConfig,
   resetKubeConfig,
   updateKubePolicy,
-  getOidcProvider,
   updateKubernetesCluster,
-  postKubeConfig,
+  updateKubeVersion,
 } from '../data/kubernetes';
 import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
@@ -272,6 +273,37 @@ export const useKubeConfig = ({
   });
   return {
     postKubeConfig: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type KubeUpdateVersionProps = {
+  projectId: string;
+  kubeId: string;
+  strategy: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useUpdateKubeVersion = ({
+  projectId,
+  kubeId,
+  strategy,
+  onError,
+  onSuccess,
+}: KubeUpdateVersionProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => updateKubeVersion(projectId, kubeId, strategy),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    updateKubeVersion: () => mutation.mutate(),
     ...mutation,
   };
 };

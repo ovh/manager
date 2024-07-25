@@ -72,6 +72,12 @@ export default [
                   import('@/pages/upgrade-policy/UpgradePolicy.page'),
                 ),
               },
+              {
+                path: 'update',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/update/UpdateVersion.page'),
+                ),
+              },
             ],
           },
           {

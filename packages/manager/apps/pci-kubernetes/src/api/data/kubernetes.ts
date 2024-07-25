@@ -93,3 +93,17 @@ export const updateKubePolicy = async (
   );
   return data;
 };
+
+export const updateKubeVersion = async (
+  projectId: string,
+  kubeId: string,
+  strategy: string,
+) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/kube/${kubeId}/update`,
+    {
+      strategy,
+    },
+  );
+  return data;
+};
