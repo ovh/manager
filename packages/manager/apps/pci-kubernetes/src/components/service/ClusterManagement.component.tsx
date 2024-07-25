@@ -32,6 +32,9 @@ export default function ClusterManagement({
 
   const hrefRenameCluster = useHref('./name');
   const hrefResetClusterConfig = useHref('./reset-kubeconfig');
+  const hrefUpgradePolicy = useHref('./upgrade-policy');
+  const hrefMinorUpdate = useHref('./update');
+  const hrefForceUpdate = useHref('./update?forceVersion');
 
   const { data: cloudSchema } = useGetCloudSchema();
 
@@ -52,7 +55,6 @@ export default function ClusterManagement({
       .map((version) => parseFloat(version))
       .reduce((max, current) => (current > max ? current : max), 0);
   }, [cloudSchema]);
-
   return (
     <OsdsTile
       className="w-full h-full flex-col shadow-lg opacity-100"
@@ -94,21 +96,21 @@ export default function ClusterManagement({
         <TileButton
           title={t('kube_service_common_edit_security_update_policy')}
           isDisabled={isProcessing(kubeDetail?.status)}
-          href=""
+          href={hrefUpgradePolicy}
         />
         {!kubeDetail.isUpToDate && (
           <TileButton
             title={t('kube_service_common_update')}
             isDisabled={kubeDetail?.status !== STATUS.READY}
-            href=""
+            href={hrefForceUpdate}
           />
         )}
 
-        {clusterMinorVersion !== highestVersion.toString() && (
+        {parseFloat(clusterMinorVersion) !== highestVersion && (
           <TileButton
             title={t('kube_service_minor_version_upgrade')}
             isDisabled={isProcessing(kubeDetail?.status)}
-            href=""
+            href={hrefMinorUpdate}
           />
         )}
 
