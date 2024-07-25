@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -10,7 +10,11 @@ import { useTranslation } from 'react-i18next';
 /** Simple datagrid cell text formatter applying ODS style */
 export function DataGridTextCell({
   children,
-}: React.PropsWithChildren<unknown>) {
+  className,
+}: {
+  children?: ReactNode;
+  className?: string;
+}) {
   const { t } = useTranslation('datagrid');
   return (
     <OsdsText
@@ -21,6 +25,7 @@ export function DataGridTextCell({
           : ODS_THEME_TYPOGRAPHY_SIZE._300
       }
       color={ODS_THEME_COLOR_INTENT.text}
+      className={className}
     >
       {children ?? t('common_empty_text_cell')}
     </OsdsText>
