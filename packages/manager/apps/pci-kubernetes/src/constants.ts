@@ -50,3 +50,8 @@ export const UPGRADE_POLICIES = [
   'MINIMAL_DOWNTIME',
   'ALWAYS_UPDATE',
 ];
+
+export const UPDATE_STRATEGY = {
+  PATCH: 'LATEST_PATCH',
+  MINOR: 'NEXT_MINOR',
+};
