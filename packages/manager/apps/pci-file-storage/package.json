@@ -17,9 +17,7 @@
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-file-storage-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-file-storage-app' --include-dependencies -- npm run dev:watch --if-present",
     "test": "jest",
-    "test:e2e": "tsc && npx playwright test --headed",
-    "test:e2e:ci": "tsc && npx playwright test",
-    "test:e2e:script": "tsc && node ../../../../scripts/run-playwright.js"
+    "test:e2e": "tsc && npx playwright test --headed"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "*",
