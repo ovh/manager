@@ -16,18 +16,21 @@ import { useRegionSelector } from './useRegionSelector';
 import { RegionTile } from './RegionTile';
 import { RegionList } from './RegionList.component';
 
+import './style.scss';
 import './translations';
 
 export interface RegionSelectorProps {
   projectId: string;
   onSelectRegion: (region?: TLocalisation) => void;
   regionFilter?: (region: TLocalisation) => boolean;
+  compactMode?: boolean;
 }
 
 export function RegionSelector({
   projectId,
   onSelectRegion,
   regionFilter,
+  compactMode,
 }: Readonly<RegionSelectorProps>): JSX.Element {
   const { t } = useTranslation('pci-region-selector');
 
@@ -62,6 +65,7 @@ export function RegionSelector({
                 key={region.name}
                 region={region}
                 isSelected={isSelected}
+                isCompact={compactMode}
               />
             )}
           />

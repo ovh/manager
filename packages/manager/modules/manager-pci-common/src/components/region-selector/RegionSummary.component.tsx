@@ -10,6 +10,7 @@ import {
   regionTile,
   regionTileSelected,
 } from './style.constants';
+import './style.scss';
 
 export interface RegionSummaryProps {
   region: TLocalisation;
@@ -20,7 +21,7 @@ export function RegionSummary({ region }: Readonly<RegionSummaryProps>) {
     <div className={regionContainer}>
       <OsdsTile className={`${regionTile} ${regionTileSelected}`} checked>
         <div className="w-full">
-          <div className="border-solid border-0 border-b border-b-[#85d9fd] py-3">
+          <div className="border-solid border-0 border-b border-ods-primary-200 py-3">
             <OsdsText
               className="font-bold"
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
