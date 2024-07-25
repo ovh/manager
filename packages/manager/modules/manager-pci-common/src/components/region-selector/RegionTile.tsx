@@ -28,7 +28,7 @@ export const RegionTile = ({
     </div>
     {!isCompact && (
       <>
-        <hr className="w-full border-solid border-0 border-b border-b-[#85d9fd]" />
+        <hr className="w-full border-solid border-0 border-b border-ods-primary-200" />
         <div>
           {region?.isLocalZone ? (
             <RegionLocalzoneChip />
