@@ -16,5 +16,6 @@
   "hosting_multisite_domain_configuration_countriesIp": "Geolokalizacja IP",
   "hosting_multisite_domain_configuration_countriesIp_none": "Brak",
   "hosting_multisite_domain_configuration_ssl": "SSL",
-  "hosting_multisite_domain_configuration_ssl_help": "Włącz opcję SSL, aby korzystać z protokołu HTTPS."
+  "hosting_multisite_domain_configuration_ssl_help": "Włącz opcję SSL, aby korzystać z protokołu HTTPS",
+  "hosting_multisite_domain_configuration_git_warning": "Jeśli chcesz zmienić swój folder główny, musisz najpierw usunąć konfigurację Git z katalogu, aby zapobiec ewentualnym problemom ze śledzeniem zmian i zarządzaniem wdrożeniami."
 }

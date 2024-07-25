@@ -1386,5 +1386,21 @@
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
   "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Więcej"
+  "hosting_dashboard_tabs_dropdown": "Więcej",
+  "hosting_tab_DOMAINS_table_header_git": "Git",
+  "hosting_tab_DOMAINS_table_git_state_created": "Włączone",
+  "hosting_tab_DOMAINS_table_git_state_creating": "W trakcie",
+  "hosting_tab_DOMAINS_table_git_state_deleting": "W trakcie usuwania",
+  "hosting_tab_DOMAINS_table_git_state_disabled": "Wyłączona",
+  "hosting_tab_DOMAINS_table_git_state_error": "Błąd",
+  "hosting_tab_DOMAINS_table_git_state_deploying": "W trakcie",
+  "hosting_tab_DOMAINS_table_git_state_initialError": "Błąd",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_lastDeploy": "Wyświetl informacje o ostatnim wdrożeniu",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_limitedNumberPath": "Asocjacja GIT może zostać wykonana tylko w jednym katalogu",
+  "hosting_tab_DOMAINS_table_popover_git_association": "Przypisz Git",
+  "hosting_tab_DOMAINS_table_popover_git_configuration": "Skonfiguruj Git",
+  "hosting_tab_DOMAINS_table_popover_git_deployment": "Wdrożenie Git",
+  "hosting_tab_DOMAINS_table_popover_git_viewLastDeployment": "Informacje o ostatnim wdrożeniu",
+  "hosting_tab_DOMAINS_table_popover_git_delete": "Usuń Git",
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Jeśli chcesz odłączyć domenę, musisz najpierw usunąć konfigurację Git, aby zapobiec problemom ze śledzeniem zmian i zarządzaniem wdrożeniami."
 }

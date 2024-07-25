@@ -1,0 +1,33 @@
+<oui-modal
+    data-heading="{{$ctrl.isConfirmationStep ? 'hosting_multisite_git_association_removal_warning_title' :  'hosting_multisite_git_association_removal_confirmation_title' | translate }}"
+    data-primary-action="$ctrl.primaryAction()"
+    data-primary-disabled="$ctrl.isDeleting"
+    data-secondary-action="$ctrl.goBack()"
+    data-primary-label="{{$ctrl.isConfirmationStep ? 'hosting_multisite_git_association_confirm' : 'hosting_multisite_git_association_removal_next' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-type="warning"
+>
+    <div data-ng-if="!$ctrl.isConfirmationStep">
+        <p
+            data-translate="hosting_multisite_git_association_removal_description_part_1"
+        ></p>
+        <b
+            data-translate="hosting_multisite_git_association_removal_description_part_2"
+        ></b>
+        <oui-checkbox
+            class="mt-2"
+            data-on-change="$ctrl.setSuffixForMessage(modelValue)"
+        >
+            <span
+                data-translate="hosting_multisite_git_association_removal_ask_confirmation"
+                data-translate-values="{ path: $ctrl.path}"
+            ></span>
+        </oui-checkbox>
+    </div>
+    <div data-ng-if="$ctrl.isConfirmationStep">
+        <span
+            data-translate="{{ 'hosting_multisite_git_association_removal_warning' +  $ctrl.deleteDirectory }}"
+        >
+        </span>
+    </div>
+</oui-modal>

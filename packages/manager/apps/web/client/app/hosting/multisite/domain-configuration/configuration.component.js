@@ -17,6 +17,7 @@ export default {
     runtime: '=',
     runtimes: '<',
     ssl: '=',
+    canModifyPathFolder: '<',
   },
   controller,
   template,
