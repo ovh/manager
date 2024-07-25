@@ -9,6 +9,7 @@ export * from './pci-project-provider';
 export * from './feature-availability';
 export { useProductMaintenance } from './pci/useMaintenance';
 export {
+  isLocalZone,
   getMacroRegion,
   useTranslatedMicroRegions,
 } from './region/useTranslatedMicroRegions';
