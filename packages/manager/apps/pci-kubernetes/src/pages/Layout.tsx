@@ -4,7 +4,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Suspense, useContext } from 'react';
 import { ErrorBanner } from '@ovhcloud/manager-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { FlavorSelector, useProject } from '@ovh-ux/manager-pci-common';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 import HidePreloader from '@/core/HidePreloader';
 
@@ -22,6 +22,7 @@ export default function Layout() {
           <>
             <HidePreloader />
             <Outlet />
+            <FlavorSelector projectId={projectId} region="GRA7" />
           </>
         )}
       </Suspense>
