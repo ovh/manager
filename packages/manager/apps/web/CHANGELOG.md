@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.32.0...@ovh-ux/manager-web@18.32.1) (2024-07-26)
+
+
+### Bug Fixes
+
+* **web.dns:** fix load controller for dns standalone ([#12496](https://github.com/ovh/manager/issues/12496)) ([d25f22e](https://github.com/ovh/manager/commit/d25f22ef1616cd64e54b09b79003326b02c39aa9))
+
+
+
+
+
 # [18.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.31.1...@ovh-ux/manager-web@18.32.0) (2024-07-25)
 
 
