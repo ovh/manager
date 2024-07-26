@@ -21,15 +21,16 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import IVcdOrganization from '@/types/vcd-organization.interface';
-import RegionLabel from '../../region-label/RegionLabel.component';
-import TileSubtitle from '../tile-subtitle/TileSubtitle.component';
+import TileSubtitle from '@/components/tiles/tile-subtitle/TileSubtitle.component';
+import RegionLabel from '@/components/region-label/RegionLabel.component';
 
 type TTileProps = {
-  vcdOrganisation?: IVcdOrganization;
+  vcdOrganization: IVcdOrganization;
+  datacenterCount?: number;
 };
 
 // TODO remove when Clipboard is available in manager-components
-const Clipboard = ({ value }: { value: string }) => {
+export function Clipboard({ value }: { value: string }) {
   return (
     <OsdsClipboard className="mb-2" value={value}>
       <span slot="success-message">
@@ -40,10 +41,11 @@ const Clipboard = ({ value }: { value: string }) => {
       </span>
     </OsdsClipboard>
   );
-};
+}
 
-export default function VcdGenerationInformationTile({
-  vcdOrganisation,
+export default function OrganizationGenerationInformationTile({
+  vcdOrganization,
+  datacenterCount = 0,
 }: TTileProps) {
   const { t } = useTranslation('dashboard');
 
@@ -58,7 +60,7 @@ export default function VcdGenerationInformationTile({
           <TileSubtitle>{t('managed_vcd_dashboard_description')}</TileSubtitle>
           <div className="flex flex-row justify-between items-center">
             <Description>
-              {vcdOrganisation?.currentState?.description}
+              {vcdOrganization?.currentState?.description}
             </Description>
             <OsdsIcon
               aria-label="edit"
@@ -73,7 +75,7 @@ export default function VcdGenerationInformationTile({
           <TileSubtitle>
             {t('managed_vcd_dashboard_commercial_name')}
           </TileSubtitle>
-          <Description>{vcdOrganisation?.currentState?.fullName}</Description>
+          <Description>{vcdOrganization?.currentState?.fullName}</Description>
           <OsdsDivider separator />
           <TileSubtitle>{t('managed_vcd_dashboard_localisation')}</TileSubtitle>
           <OsdsText
@@ -84,26 +86,26 @@ export default function VcdGenerationInformationTile({
             hue={ODS_THEME_COLOR_HUE._500}
           >
             <RegionLabel
-              code={vcdOrganisation?.currentState?.region}
+              code={vcdOrganization?.currentState?.region}
             ></RegionLabel>
           </OsdsText>
           <OsdsDivider separator />
           <TileSubtitle>
             {t('managed_vcd_dashboard_datacentres_count')}
           </TileSubtitle>
-          <Description>?</Description>
+          <Description>{datacenterCount.toString()}</Description>
           <OsdsDivider separator />
           <TileSubtitle>
             {t('managed_vcd_dashboard_management_interface')}
           </TileSubtitle>
           <Links
             type={LinkType.external}
-            href={vcdOrganisation?.currentState?.webInterfaceUrl}
+            href={vcdOrganization?.currentState?.webInterfaceUrl}
             label={t('managed_vcd_dashboard_management_interface_access')}
           />
           <OsdsDivider separator />
           <TileSubtitle>{t('managed_vcd_dashboard_api_url')}</TileSubtitle>
-          <Clipboard value={vcdOrganisation?.currentState?.apiUrl} />
+          <Clipboard value={vcdOrganization.currentState?.apiUrl} />
         </div>
       </div>
     </OsdsTile>
