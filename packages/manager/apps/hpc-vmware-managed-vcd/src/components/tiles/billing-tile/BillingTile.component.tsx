@@ -11,10 +11,13 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import TileSubtitle from '../tile-subtitle/TileSubtitle.component';
 import useManagedVcdService from '@/data/hooks/useManagedVcdService';
-import { TGetVcdServiceIdParams } from '@/data/api/hpc-vmware-managed-vcd-service';
 import useCurrentUser from '@/hooks/user/useCurrentUser';
 
-export default function BillingTile({ id }: TGetVcdServiceIdParams) {
+type TBillingTileProps = {
+  id: string;
+};
+
+export default function BillingTile({ id }: TBillingTileProps) {
   const { t } = useTranslation('dashboard');
 
   const { user, dateTimeFormat } = useCurrentUser();

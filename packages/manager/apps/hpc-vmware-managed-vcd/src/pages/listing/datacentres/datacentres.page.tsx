@@ -32,11 +32,11 @@ const DatagridCpuCountCell = (vcdDatacentre: IVcdDatacentre) => (
 );
 
 const DatagridCpuSpeedCell = (vcdDatacentre: IVcdDatacentre) => {
-  const { t } = useTranslation('listing/datacentres');
+  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
 
   return (
     <DataGridTextCell>
-      {t('managed_vcd_listing_vdc_vcpu_value', {
+      {t('managed_vcd_vdc_vcpu_value', {
         speed: vcdDatacentre.currentState?.vCPUSpeed,
       })}
     </DataGridTextCell>
@@ -44,22 +44,28 @@ const DatagridCpuSpeedCell = (vcdDatacentre: IVcdDatacentre) => {
 };
 
 const DatagridRamCountCell = (vcdDatacentre: IVcdDatacentre) => {
-  const { t } = useTranslation('listing/datacentres');
+  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
 
   return (
     <DataGridTextCell>
-      {t('managed_vcd_listing_vdc_quota_value', {
+      {t('managed_vcd_vdc_quota_value', {
         quota: vcdDatacentre.currentState?.memoryQuota,
       })}
     </DataGridTextCell>
   );
 };
 
+const DatagridCommercialRange = (vcdDatacentre: IVcdDatacentre) => (
+  <DataGridTextCell>
+    {vcdDatacentre.currentState?.commercialRange}
+  </DataGridTextCell>
+);
+
 const DatagridDiskSpaceCell = (vcdDatacentre: IVcdDatacentre) => {
-  const { t } = useTranslation('listing/datacentres');
+  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
   return (
     <DataGridTextCell>
-      {t('managed_vcd_listing_vdc_quota_value', {
+      {t('managed_vcd_vdc_quota_value', {
         quota: vcdDatacentre.currentState?.storageQuota,
       })}
     </DataGridTextCell>
@@ -69,7 +75,7 @@ const DatagridDiskSpaceCell = (vcdDatacentre: IVcdDatacentre) => {
 /* ======= listing page ======== */
 export default function DatacentresListing() {
   const { t } = useTranslation('listing');
-  const { t: tListingVdc } = useTranslation('listing/datacentres');
+  const { t: tVdc } = useTranslation('hpc-vmware-managed-vcd/datacentres');
   const { id } = useParams();
 
   const columns = [
@@ -84,30 +90,34 @@ export default function DatacentresListing() {
       label: t('managed_vcd_listing_description'),
     },
     {
+      id: 'commercialRange',
+      cell: DatagridCommercialRange,
+      label: tVdc('managed_vcd_vdc_commercial_range'),
+    },
+    {
       id: 'cpuCount',
       cell: DatagridCpuCountCell,
-      label: tListingVdc('managed_vcd_listing_vdc_cpu_count'),
+      label: tVdc('managed_vcd_vdc_cpu_count'),
     },
     {
       id: 'ramCount',
       cell: DatagridRamCountCell,
-      label: tListingVdc('managed_vcd_listing_vdc_ram_count'),
+      label: tVdc('managed_vcd_vdc_ram_count'),
     },
     {
       id: 'diskSpace',
       cell: DatagridDiskSpaceCell,
-      label: tListingVdc('managed_vcd_listing_vdc_disk_space_count'),
+      label: tVdc('managed_vcd_vdc_disk_space_count'),
     },
-
     {
       id: 'vCpuSpeed',
       cell: DatagridCpuSpeedCell,
-      label: tListingVdc('managed_vcd_listing_vdc_vcpu_speed'),
+      label: tVdc('managed_vcd_vdc_vcpu_speed'),
     },
   ];
 
   const datagridProps: TDatagridContainerProps = {
-    title: tListingVdc('managed_vcd_listing_vdc_title'),
+    title: tVdc('managed_vcd_vdc_title'),
     containerId: `vdcs-${id}`,
     isEmbedded: true,
     route: {
