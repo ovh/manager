@@ -1,0 +1,183 @@
+import {
+  ODS_TEXT_COLOR_INTENT,
+  ODS_TEXT_LEVEL,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_MESSAGE_TYPE,
+} from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import {
+  OsdsFormField,
+  OsdsIcon,
+  OsdsLink,
+  OsdsMessage,
+  OsdsText,
+  OsdsToggle,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import { useTranslation } from 'react-i18next';
+import { useMe } from '@ovhcloud/manager-components';
+import { useEffect, useState } from 'react';
+import { QuantitySelector } from '@ovh-ux/manager-pci-common';
+
+const AUTOSCALING_LINK = {
+  DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/using-cluster-autoscaler/',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500009150301',
+};
+
+const NODE_RANGE = {
+  MIN: 3,
+  MAX: 100,
+};
+
+const ANTI_AFFINITY_MAX_NODES = 5;
+
+export interface AutoscalingState {
+  desiredQuantity: number;
+  minQuantity: number;
+  maxQuantity: number;
+  isAutoscale: boolean;
+}
+
+export interface AutoscalingProps {
+  initialScaling?: { min: number; max: number; desired: number };
+  isMonthlyBilling?: boolean;
+  isAntiAffinity?: boolean;
+  onChange?: (scaling: AutoscalingState) => void;
+}
+
+export function Autoscaling({
+  initialScaling,
+  isMonthlyBilling,
+  isAntiAffinity,
+  onChange,
+}: Readonly<AutoscalingProps>) {
+  const { t } = useTranslation('autoscaling');
+  const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
+  const infosURL = AUTOSCALING_LINK[ovhSubsidiary] || AUTOSCALING_LINK.DEFAULT;
+  const [isAutoscale, setIsAutoscale] = useState(false);
+  const [desiredQuantity, setDesiredQuantity] = useState(
+    initialScaling ? initialScaling.desired : NODE_RANGE.MIN,
+  );
+  const [minQuantity, setMinQuantity] = useState(
+    initialScaling ? initialScaling.min : 0,
+  );
+  const [maxQuantity, setMaxQuantity] = useState(
+    initialScaling ? initialScaling.max : NODE_RANGE.MAX,
+  );
+  const maxValue = isAntiAffinity ? ANTI_AFFINITY_MAX_NODES : NODE_RANGE.MAX;
+
+  useEffect(() => {
+    if (!onChange) return;
+    onChange({
+      desiredQuantity,
+      minQuantity,
+      maxQuantity,
+      isAutoscale,
+    });
+  }, [desiredQuantity, minQuantity, maxQuantity, isAutoscale]);
+
+  return (
+    <>
+      <OsdsText
+        color={ODS_TEXT_COLOR_INTENT.text}
+        level={ODS_TEXT_LEVEL.body}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+        className="block"
+      >
+        {t('kubernetes_node_pool_autoscaling_description')}
+        {ovhSubsidiary && (
+          <OsdsLink
+            className="ml-4"
+            color={ODS_THEME_COLOR_INTENT.primary}
+            href={infosURL}
+            target={OdsHTMLAnchorElementTarget._blank}
+          >
+            {t('kubernetes_node_pool_autoscaling_description_link')}
+            <OsdsIcon
+              className="ml-3"
+              slot="end"
+              name={ODS_ICON_NAME.EXTERNAL_LINK}
+              size={ODS_ICON_SIZE.xxs}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            ></OsdsIcon>
+          </OsdsLink>
+        )}
+      </OsdsText>
+
+      <OsdsFormField className="mt-8" inline>
+        <OsdsText
+          color={ODS_TEXT_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+          slot="label"
+        >
+          {t('kubernetes_node_pool_autoscaling_autoscale')}
+        </OsdsText>
+        <OsdsToggle
+          color={ODS_THEME_COLOR_INTENT.primary}
+          checked={isAutoscale || undefined}
+          onClick={() => setIsAutoscale((autoscale) => !autoscale)}
+        >
+          <OsdsText
+            className="ml-4 font-bold"
+            color={ODS_TEXT_COLOR_INTENT.text}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+            slot="end"
+          >
+            {t(
+              `kubernetes_node_pool_autoscaling_autoscale_toggle_${isAutoscale}`,
+            )}
+          </OsdsText>
+        </OsdsToggle>
+      </OsdsFormField>
+
+      {isAutoscale && (
+        <>
+          <QuantitySelector
+            className="mt-8"
+            label={t('kubernetes_node_pool_autoscaling_lowest_nodes_size')}
+            value={minQuantity}
+            onValueChange={setMinQuantity}
+            min={0}
+            max={maxQuantity}
+          />
+          <QuantitySelector
+            className="mt-8"
+            label={t('kubernetes_node_pool_autoscaling_highest_nodes_size')}
+            value={maxQuantity}
+            onValueChange={setMaxQuantity}
+            min={minQuantity}
+            max={maxValue}
+          />
+          {isMonthlyBilling && isAutoscale && (
+            <OsdsMessage className="mt-8" type={ODS_MESSAGE_TYPE.warning}>
+              {t('kubernetes_node_pool_billing_auto_scaling_monthly_warning')}
+            </OsdsMessage>
+          )}
+        </>
+      )}
+
+      {!isAutoscale && (
+        <>
+          <QuantitySelector
+            className="mt-8"
+            label={t('kubernetes_node_pool_autoscaling_desired_nodes_size')}
+            value={desiredQuantity}
+            onValueChange={setDesiredQuantity}
+            min={0}
+            max={maxValue}
+          />
+          {desiredQuantity < NODE_RANGE.MIN && (
+            <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.warning}>
+              {t('kubernetes_node_pool_autoscaling_desired_nodes_warning')}
+            </OsdsMessage>
+          )}
+        </>
+      )}
+    </>
+  );
+}
