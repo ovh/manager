@@ -11,12 +11,14 @@ import union from 'lodash/union';
 import {
   CDN_STATUS,
   CDN_VERSION,
-  DIAGNOSTIC_STATE,
+  DIAGNOSTIC_BADGE_STATE,
+  DIAGNOSTIC_STATUS,
   HOSTING_OFFER,
   GIT_BADGES_STATUS,
   GIT_STATUS_WITH_TOOLTIP,
   GIT_STATUS,
   HOSTING_TAB_DOMAINS,
+  RECORD_TYPE_TO_IP_TYPE,
 } from './hosting-multisite.constants';
 
 const CDN_STATISTICS_PERIOD = {
@@ -49,7 +51,6 @@ angular
       hostingSSLCertificateType,
       Alerter,
       ChartFactory,
-      WucUser,
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites' });
 
@@ -63,8 +64,6 @@ angular
 
       $scope.domains = null;
       $scope.HOSTING_TAB_DOMAINS = HOSTING_TAB_DOMAINS;
-      $scope.diagnosticSuffix = {};
-      $scope.optionsForModal = {};
       $scope.sslLinked = [];
       $scope.HOSTING = HOSTING;
       $scope.HOSTING_STATUS = HOSTING_STATUS;
@@ -91,6 +90,14 @@ angular
         value: period,
       }));
 
+      HostingDomain.getZones()
+        .then((zones) => {
+          $scope.listZone = zones;
+        })
+        .catch(() => {
+          $scope.listZone = [];
+        });
+
       function sendTrackClick(hit) {
         atInternet.trackClick({
           name: hit,
@@ -105,72 +112,83 @@ angular
         $scope.existingWebsites = existingWebsites;
       });
 
-      $scope.getNichandleAttachedWithFallback = function getNichandleAttachedWithFallback(
-        domainName,
-      ) {
-        return $scope.hosting.serviceName !== domainName
-          ? HostingDomain.getNichandleAttached(
-              domainName,
-              $scope.user.nichandle,
-            )
-          : $q.resolve({ isDnsAttachedToNic: true });
-      };
+      $scope.wrapperZoneInfo = function wrapperZoneInfo(domainName) {
+        const rootDomain = domainName
+          .split('.')
+          .slice(-2)
+          .join('.');
 
-      $scope.getZoneLinkedWithFallback = function getZoneLinkedWithFallback(
-        domainName,
-      ) {
-        return $scope.hosting.serviceName !== domainName
-          ? HostingDomain.getZoneLinked(domainName)
-          : $q.resolve(domainName);
-      };
-
-      $scope.storeDiagnosticInfos = function storeDiagnosticInfos(
-        domain,
-        zoneLinked,
-        record,
-        recordType,
-        nicProperties,
-      ) {
-        $scope.diagnosticSuffix[$scope.getKeyFor(domain.name, recordType)] =
-          DIAGNOSTIC_STATE.INFO;
-        $scope.optionsForModal[$scope.getKeyFor(domain.name, recordType)] = {
-          ...$scope.optionsForModal[$scope.getKeyFor(domain.name, recordType)],
-          zone: zoneLinked.zone,
-          diagnosticState:
-            $scope.diagnosticSuffix[$scope.getKeyFor(domain.name, recordType)],
-          isDnsAttachedToNic: nicProperties.isDnsAttachedToNic,
+        return {
+          isOVHZone: $scope.listZone.includes(rootDomain),
+          zone: rootDomain,
         };
-        $scope.optionsForModal[
-          $scope.getKeyFor(domain.name, recordType)
-        ].ip = record;
       };
 
-      $scope.getRecommendIpsFor = function getRecommendIpsFor(
-        recordType,
+      $scope.wrapperDigStatus = function wrapperDigStatus({
+        records,
         recommendedIps,
-      ) {
-        const { recommendedIpV4, recommendedIpV6 } = recommendedIps;
-        return recordType === HOSTING_TAB_DOMAINS.A_RECORD
-          ? recommendedIpV4
-          : recommendedIpV6;
+      }) {
+        return Object.entries(records).reduce(
+          (acc, [key, { type }]) => ({
+            ...acc,
+            [type]: {
+              ip: key,
+              status: recommendedIps[
+                `recommended${RECORD_TYPE_TO_IP_TYPE[type]}`
+              ].includes(key),
+              recommendedIps:
+                recommendedIps[`recommended${RECORD_TYPE_TO_IP_TYPE[type]}`],
+            },
+          }),
+          {},
+        );
       };
 
-      $scope.fetchOptionsForModal = function fetchOptionsForModal(
-        domain,
+      $scope.getDiagnosticBadge = function getDiagnosticBadge(
+        { digStatus },
         recordType,
       ) {
-        $scope.optionsForModal[$scope.getKeyFor(domain.name, recordType)] = {
-          ...$scope.optionsForModal[$scope.getKeyFor(domain.name, recordType)],
-          diagnosticState:
-            recordType === HOSTING_TAB_DOMAINS.A_RECORD
-              ? DIAGNOSTIC_STATE.ERROR
-              : DIAGNOSTIC_STATE.DISABLED_GREY,
-          isDnsAttachedToNic: false,
-        };
+        return DIAGNOSTIC_BADGE_STATE[recordType][
+          $scope.diagnosticStatus(digStatus[recordType]?.status)
+        ];
       };
 
-      $scope.getKeyFor = function getKeyFor(domainName, recordType) {
-        return [domainName, recordType].join('_');
+      $scope.getDiagnosticTooltip = function getDiagnosticTooltip(
+        { digStatus },
+        recordType,
+      ) {
+        return $translate.instant(
+          `hosting_tab_DOMAINS_diagnostique_tooltip_${$scope.diagnosticStatus(
+            digStatus[recordType]?.status,
+          )}`,
+          {
+            domainName: digStatus.domain,
+            hosting: $scope.hosting.serviceName,
+            ip: digStatus[recordType]?.ip,
+          },
+        );
+      };
+
+      $scope.diagnosticStatus = (status) => {
+        if (typeof status === 'boolean') {
+          return status
+            ? DIAGNOSTIC_STATUS.GOOD_CONFIGURATION
+            : DIAGNOSTIC_STATUS.NOT_GOOD_CONFIGURATION;
+        }
+        return DIAGNOSTIC_STATUS.UNCONFIGURED;
+      };
+
+      $scope.openDiagnosticModal = function openDiagnosticModal(
+        { digStatus },
+        recordType,
+      ) {
+        return (
+          !digStatus[recordType]?.status &&
+          $scope.setAction('multisite/diagnostic/dialog', {
+            digStatus,
+            recordType,
+          })
+        );
       };
 
       $scope.loadDomains = function loadDomains(count, offset) {
@@ -212,108 +230,40 @@ angular
                 );
               }
             });
-            return WucUser.getUser();
-          })
-          .then((user) => {
-            $scope.user = user;
-
-            const promises = $scope.domains.list.results.map((domain) => {
-              return $q
-                .all([
-                  HostingDomain.getDigStatus(
-                    $stateParams.productId,
-                    domain.name,
-                  ),
-                  $scope.getZoneLinkedWithFallback(domain.name),
-                  $scope.getNichandleAttachedWithFallback(domain.name),
-                ])
-                .then(([digStatus, zoneLinked, nicProperties]) => {
-                  const isDnsExternal = Object.keys(zoneLinked).length === 0;
-                  const values = {
-                    ip: $scope.hosting.clusterIp,
-                    domain: domain.name,
-                    dns: $scope.hosting.serviceName,
-                    nic: $scope.user.nichandle,
-                    isDnsExternal,
-                  };
-                  $scope.optionsForModal[
-                    $scope.getKeyFor(domain.name, HOSTING_TAB_DOMAINS.A_RECORD)
-                  ] = values;
-                  $scope.optionsForModal[
-                    $scope.getKeyFor(
-                      domain.name,
-                      HOSTING_TAB_DOMAINS.AAAA_RECORD,
-                    )
-                  ] = values;
-
-                  $scope.fetchOptionsForModal(
-                    domain,
-                    HOSTING_TAB_DOMAINS.A_RECORD,
-                  );
-                  $scope.fetchOptionsForModal(
-                    domain,
-                    HOSTING_TAB_DOMAINS.AAAA_RECORD,
-                  );
-                  if (isDnsExternal) {
-                    return;
-                  }
-
-                  Object.keys(digStatus.records).forEach((record) => {
-                    const recordType = digStatus.records[record].type;
-
-                    $scope.storeDiagnosticInfos(
-                      domain,
-                      zoneLinked,
-                      record,
-                      recordType,
-                      nicProperties,
-                    );
-
-                    if (
-                      $scope
-                        .getRecommendIpsFor(
-                          recordType,
-                          digStatus.recommendedIps,
-                        )
-                        .includes(record)
-                    ) {
-                      $scope.diagnosticSuffix[
-                        $scope.getKeyFor(domain.name, recordType)
-                      ] = DIAGNOSTIC_STATE.SUCCESS;
-                      $scope.optionsForModal[
-                        $scope.getKeyFor(domain.name, recordType)
-                      ].ip = record;
-                    } else {
-                      $scope.diagnosticSuffix[
-                        $scope.getKeyFor(domain.name, recordType)
-                      ] =
-                        recordType === HOSTING_TAB_DOMAINS.A_RECORD
-                          ? DIAGNOSTIC_STATE.ERROR
-                          : DIAGNOSTIC_STATE.DISABLED_GREY;
-                      $scope.optionsForModal[
-                        $scope.getKeyFor(domain.name, recordType)
-                      ] = {
-                        ...$scope.optionsForModal[
-                          $scope.getKeyFor(domain.name, recordType)
-                        ],
-                        zone: zoneLinked.zone,
-                        diagnosticState:
-                          $scope.diagnosticSuffix[
-                            $scope.getKeyFor(domain.name, recordType)
-                          ],
-                        isDnsAttachedToNic: nicProperties.isDnsAttachedToNic,
-                      };
-                    }
-                  });
-                });
-            });
-            return $q.all(promises);
           })
           .then(() =>
-            hostingSSLCertificate.retrievingLinkedDomains(
-              $stateParams.productId,
+            $q.all(
+              $scope.domains.list.results.map((domain) =>
+                $q
+                  .all([
+                    HostingDomain.getDigStatus(
+                      $stateParams.productId,
+                      domain.name,
+                    ),
+                    $scope.wrapperZoneInfo(domain.name),
+                  ])
+                  .then(([digStatus, zoneInfo]) => ({
+                    ...$scope.wrapperDigStatus(digStatus),
+                    domain: domain.name,
+                    ...zoneInfo,
+                  })),
+              ),
             ),
           )
+          .then((digStatus) => {
+            $scope.domains.list.results = $scope.domains.list.results.map(
+              (domain) => ({
+                ...domain,
+                digStatus: digStatus.find(
+                  ({ domain: digDomain }) => domain.name === digDomain,
+                ),
+              }),
+            );
+
+            return hostingSSLCertificate.retrievingLinkedDomains(
+              $stateParams.productId,
+            );
+          })
           .then((sslLinked) => {
             const linkedSSLs = isArray(sslLinked) ? sslLinked : [sslLinked];
 
@@ -762,59 +712,8 @@ angular
         HostingDomain.killAllPolling();
       });
 
-      $scope.getTooltipForDomain = function getTooltipForDomain(
-        domainName,
-        recordType,
-      ) {
-        const options =
-          $scope.optionsForModal[[domainName, recordType].join('_')];
-        const suffix = $scope.getDiagnosticSuffix(domainName, recordType);
-        const normalizedSuffix =
-          suffix === DIAGNOSTIC_STATE.DISABLED_GREY
-            ? DIAGNOSTIC_STATE.ERROR
-            : suffix;
-        return $translate.instant(
-          `hosting_tab_DOMAINS_tooltip_${
-            !options ? 'error' : normalizedSuffix
-          }`,
-          {
-            domainName,
-            hosting: $scope.hosting.serviceName,
-            ip: options?.ip,
-          },
-        );
-      };
-
-      $scope.getDiagnosticSuffix = function getDiagnosticSuffix(
-        domainName,
-        recordType,
-      ) {
-        const errorType =
-          recordType === HOSTING_TAB_DOMAINS.A_RECORD
-            ? DIAGNOSTIC_STATE.ERROR
-            : DIAGNOSTIC_STATE.DISABLED_GREY;
-        return (
-          $scope.diagnosticSuffix[[domainName, recordType].join('_')] ||
-          errorType
-        );
-      };
-
       $scope.getChartJsInstance = function getChartJsInstance(configuration) {
         return new ChartFactory(configuration);
-      };
-
-      $scope.openDiagnosticModal = function openDiagnosticModal(
-        domain,
-        recordType,
-      ) {
-        const suffix = $scope.getDiagnosticSuffix(domain.name, recordType);
-        const options = {
-          ...$scope.optionsForModal[$scope.getKeyFor(domain.name, recordType)],
-          recordType,
-        };
-        return suffix !== DIAGNOSTIC_STATE.SUCCESS
-          ? $scope.setAction('multisite/diagnostic/dialog', { options })
-          : null;
       };
 
       $scope.resetAction = function resetAction() {

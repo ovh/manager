@@ -219,19 +219,19 @@
                                 <span
                                     class="oui-badge"
                                     data-ng-click="openDiagnosticModal(domain, HOSTING_TAB_DOMAINS.A_RECORD)"
-                                    data-oui-tooltip="{{getTooltipForDomain(domain.name, HOSTING_TAB_DOMAINS.A_RECORD)}}"
+                                    data-oui-tooltip="{{ getDiagnosticTooltip(domain, HOSTING_TAB_DOMAINS.A_RECORD) }}"
                                     data-oui-tooltip-placement="bottom"
-                                    data-ng-class="'oui-badge_' + getDiagnosticSuffix(domain.name, HOSTING_TAB_DOMAINS.A_RECORD)"
-                                    data-ng-bind="HOSTING_TAB_DOMAINS.A_RECORD | translate"
+                                    data-ng-class="'oui-badge_' + getDiagnosticBadge(domain, HOSTING_TAB_DOMAINS.A_RECORD)"
+                                    data-ng-bind="HOSTING_TAB_DOMAINS.A_RECORD"
                                 >
                                 </span>
                                 <span
                                     class="oui-badge"
                                     data-ng-click="openDiagnosticModal(domain, HOSTING_TAB_DOMAINS.AAAA_RECORD)"
-                                    data-oui-tooltip="{{getTooltipForDomain(domain.name, HOSTING_TAB_DOMAINS.AAAA_RECORD)}}"
+                                    data-oui-tooltip="{{ getDiagnosticTooltip(domain, HOSTING_TAB_DOMAINS.AAAA_RECORD) }}"
                                     data-oui-tooltip-placement="bottom"
-                                    data-ng-class="'oui-badge_' + getDiagnosticSuffix(domain.name, HOSTING_TAB_DOMAINS.AAAA_RECORD)"
-                                    data-ng-bind="HOSTING_TAB_DOMAINS.AAAA_RECORD | translate"
+                                    data-ng-class="'oui-badge_' + getDiagnosticBadge(domain, HOSTING_TAB_DOMAINS.AAAA_RECORD)"
+                                    data-ng-bind="HOSTING_TAB_DOMAINS.AAAA_RECORD"
                                 >
                                 </span>
                             </td>
