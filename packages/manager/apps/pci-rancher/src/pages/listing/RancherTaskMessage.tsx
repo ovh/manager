@@ -3,7 +3,7 @@ import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { RancherTask, RancherTaskType } from '@/api/api.type';
+import { RancherTask, RancherTaskType } from '@/types/api.type';
 
 const RancherTaskMessage = ({ tasks }: { tasks: RancherTask[] }) => {
   const { t } = useTranslation('pci-rancher/listing');

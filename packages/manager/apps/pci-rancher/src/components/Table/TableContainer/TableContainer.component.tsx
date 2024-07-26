@@ -16,11 +16,11 @@ import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import TableComponent from '../Table.component';
 import ActionsCell from '../ActionsCell/ActionsCell.component';
 import LinkService from '../LinkService/LinkService.component';
-import { RancherService } from '@/api/api.type';
+import { RancherService } from '@/types/api.type';
 import { RancherDatagridWrapper } from '../Table.type';
 import DisplayCellText from '../TextCell/TextCell.component';
 import '../Table.scss';
-import { deleteRancherServiceQueryKey } from '@/api';
+import { deleteRancherServiceQueryKey } from '@/data/api/services';
 import StatusChip from '../../StatusChip/StatusChip.component';
 
 export default function TableContainer({

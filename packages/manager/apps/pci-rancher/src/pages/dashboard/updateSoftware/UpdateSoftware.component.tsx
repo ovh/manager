@@ -17,7 +17,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React, { FC, useEffect, useState } from 'react';
 import { useHref, useParams } from 'react-router-dom';
-import { RancherService, RancherVersion } from '@/api/api.type';
+import { RancherService, RancherVersion } from '@/types/api.type';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
 import UpdateSoftwareModal from '@/components/Modal/UpdateSoftwareConfirmModal/UpdateSoftwareConfirmModal.component';

@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { RancherService } from '@/api/api.type';
+import { RancherService } from '@/types/api.type';
 import EditNameModal from '@/components/Modal/EditNameModal/EditNameModal.component';
-import { useRancher } from '@/hooks/useRancher';
-import useEditRancher, { EditAction } from '@/hooks/useEditRancher';
+import { useRancher } from '@/data/hooks/useRancher/useRancher';
+import useEditRancher, {
+  EditAction,
+} from '@/data/hooks/useEditRancher/useEditRancher';
 
 export default function EditModal() {
   const { data: rancher, refetch } = useRancher();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OvhSubsidiary } from '../../../../../../manager-components/src/enumTypes';
+import { OvhSubsidiary } from '@ovhcloud/manager-components/src/enumTypes';
 
 type GuideLinks = { [key in OvhSubsidiary]: string };
 

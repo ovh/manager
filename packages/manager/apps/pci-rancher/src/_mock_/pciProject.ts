@@ -1,4 +1,4 @@
-import { PciProject, PciProjectPlanCode } from '@/api/api.type';
+import { PciProject, PciProjectPlanCode } from '@/types/api.type';
 
 export const pciProjectMocked: PciProject = {
   project_id: '1234',

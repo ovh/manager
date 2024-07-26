@@ -12,7 +12,11 @@ import {
   getLatestVersionAvailable,
   isVersionDeprecated,
 } from '@/utils/rancher';
-import { RancherService, RancherVersion, ResourceStatus } from '@/api/api.type';
+import {
+  RancherService,
+  RancherVersion,
+  ResourceStatus,
+} from '@/types/api.type';
 import LinkIcon from '../LinkIcon/LinkIcon.component';
 
 const SimpleBannerWithCta = ({

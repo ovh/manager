@@ -18,10 +18,13 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React, { FC } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { AccessDetail } from '../../../hooks/useGenerateAccessDetail';
-import { RancherService } from '@/api/api.type';
+import { AccessDetail } from '../../../data/hooks/useGenerateAccessDetail/useGenerateAccessDetail';
+import { RancherService } from '@/types/api.type';
 import Modal from '../Modal.component';
-import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
+import {
+  useTrackingAction,
+  useTrackingPage,
+} from '@/hooks/useTrackingPage/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 export interface GenerateAccessModalProps {

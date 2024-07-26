@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import GenerateAccessModal from '@/components/Modal/GenerateAccessModal/GenerateAccesModal.component';
-import useGenerateAccessDetail from '@/hooks/useGenerateAccessDetail';
-import { useRancher } from '@/hooks/useRancher';
-import { useTrackingAction } from '@/hooks/useTrackingPage';
+import useGenerateAccessDetail from '@/data/hooks/useGenerateAccessDetail/useGenerateAccessDetail';
+import { useRancher } from '@/data/hooks/useRancher/useRancher';
+import { useTrackingAction } from '@/hooks/useTrackingPage/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 const GenerateAccessModalPage = () => {

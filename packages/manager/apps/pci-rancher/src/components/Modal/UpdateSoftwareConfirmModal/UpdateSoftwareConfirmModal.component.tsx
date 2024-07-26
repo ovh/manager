@@ -16,8 +16,11 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useRancherVersionsCapabilities } from '@/hooks/useRancher';
-import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
+import { useRancherVersionsCapabilities } from '@/data/hooks/useRancher/useRancher';
+import {
+  useTrackingAction,
+  useTrackingPage,
+} from '@/hooks/useTrackingPage/useTrackingPage';
 import { getVersionInfoByName } from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import LinkIcon from '../../LinkIcon/LinkIcon.component';

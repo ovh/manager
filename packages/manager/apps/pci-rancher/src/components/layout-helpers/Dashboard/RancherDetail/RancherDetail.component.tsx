@@ -22,12 +22,16 @@ import { useHref } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { MutationStatus } from '@tanstack/react-query';
-import { RancherService, RancherVersion, ResourceStatus } from '@/api/api.type';
+import {
+  RancherService,
+  RancherVersion,
+  ResourceStatus,
+} from '@/types/api.type';
 import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
 import StatusChip from '@/components/StatusChip/StatusChip.component';
 import { TileBlock } from '@/components/TileBlock/TileBlock.component';
 import UpdateVersionBanner from '@/components/UpdateRancherVersionBanner/UpdateVersionBanner.component';
-import { useTrackingAction } from '@/hooks/useTrackingPage';
+import { useTrackingAction } from '@/hooks/useTrackingPage/useTrackingPage';
 import { getLatestVersionAvailable } from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 

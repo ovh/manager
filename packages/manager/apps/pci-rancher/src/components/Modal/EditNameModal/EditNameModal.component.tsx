@@ -16,10 +16,13 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { RancherService } from '@/api/api.type';
+import { RancherService } from '@/types/api.type';
 import { isValidRancherName } from '@/utils/rancher';
 import Modal from '../Modal.component';
-import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
+import {
+  useTrackingAction,
+  useTrackingPage,
+} from '@/hooks/useTrackingPage/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 interface DeleteModalProps {

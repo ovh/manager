@@ -2,25 +2,25 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PageLayout } from '@ovhcloud/manager-components';
-import { getRancherPlan, getReferenceRancherInfo } from '@/api';
+import { getRancherPlan, getReferenceRancherInfo } from '@/data/api/services';
 import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRancher.component';
-import useCreateRancher from '@/hooks/useCreateRancher';
+import useCreateRancher from '@/data/hooks/useCreateRancher/useCreateRancher';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.component';
 import { getRanchersUrl } from '@/utils/route';
 import usePciProject from '@/hooks/usePciProject';
-import { PciProjectPlanCode, RancherService } from '@/api/api.type';
-import { ranchersQueryKey } from '@/hooks/useRancher';
+import { PciProjectPlanCode, RancherService } from '@/types/api.type';
+import { ranchersQueryKey } from '@/data/hooks/useRancher/useRancher';
 import {
   useSimpleTrackingPage,
   useTrackingPage,
-} from '../../hooks/useTrackingPage';
+} from '@/hooks/useTrackingPage/useTrackingPage';
 import {
   TRACKING_PATH,
   TrackingEvent,
   TrackingPageView,
 } from '../../utils/tracking';
 import queryClient from '@/queryClient';
-import useVersions from '@/hooks/useVersions';
+import useVersions from '@/data/hooks/useVersions/useVersions';
 
 export default function Create() {
   const { projectId } = useParams();

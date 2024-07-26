@@ -2,8 +2,8 @@ import { useMutation } from '@tanstack/react-query';
 import {
   editRancherService,
   patchRancherServiceQueryKey,
-} from '../api/apiv2/services';
-import { RancherService } from '../api/api.type';
+} from '../../api/services';
+import { RancherService } from '../../../types/api.type';
 
 export enum EditAction {
   EditName = 'EditName',

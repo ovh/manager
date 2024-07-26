@@ -14,7 +14,7 @@ import Loading from '@/components/Loading/Loading.component';
 import Dashboard, {
   DashboardTabItemProps,
 } from '@/components/layout-helpers/Dashboard/Dashboard.component';
-import { useRancher } from '@/hooks/useRancher';
+import { useRancher } from '@/data/hooks/useRancher/useRancher';
 import { getRanchersUrl } from '@/utils/route';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {

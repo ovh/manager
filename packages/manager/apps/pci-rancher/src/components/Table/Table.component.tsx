@@ -13,7 +13,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components/';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { RancherService } from '@/api/api.type';
+import { RancherService } from '@/types/api.type';
 import { RancherTable, RancherTableTh } from './Table.type';
 import './Table.scss';
 

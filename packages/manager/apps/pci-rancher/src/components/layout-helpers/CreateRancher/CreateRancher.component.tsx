@@ -28,13 +28,15 @@ import {
   CreateRancherPayload,
   RancherPlan,
   RancherVersion,
-} from '@/api/api.type';
+} from '@/types/api.type';
 import Block from '@/components/Block/Block.component';
-import { useTrackingAction } from '@/hooks/useTrackingPage';
+import {
+  useTrackingAction,
+  useSimpleTrackingAction,
+} from '@/hooks/useTrackingPage/useTrackingPage';
 import { isValidRancherName } from '@/utils/rancher';
 import { getRanchersUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import { useSimpleTrackingAction } from '../../../hooks/useTrackingPage';
 
 const TileSection: React.FC<{
   name: string;

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { RancherCellData } from '../Table.type';
 import '../Table.scss';
-import { ResourceStatus } from '@/api/api.type';
+import { ResourceStatus } from '@/types/api.type';
 
 export default function LinkService({ cell, row }: Readonly<RancherCellData>) {
   const navigate = useNavigate();

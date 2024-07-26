@@ -1,4 +1,4 @@
-import { RancherPlan, RancherVersion } from '@/api/api.type';
+import { RancherPlan, RancherVersion } from '@/types/api.type';
 
 export const rancherPlan: RancherPlan[] = [
   {

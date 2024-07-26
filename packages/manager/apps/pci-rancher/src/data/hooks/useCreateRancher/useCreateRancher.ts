@@ -3,11 +3,11 @@ import {
   CreateRancherPayload,
   ErrorResponse,
   RancherService,
-} from '@/api/api.type';
+} from '@/types/api.type';
 import {
   createRancherService,
   createRancherServiceQueryKey,
-} from '../api/apiv2/services';
+} from '../../api/services';
 
 export type AccessDetail = {
   username: string;

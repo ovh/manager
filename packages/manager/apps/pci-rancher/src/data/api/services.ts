@@ -5,7 +5,7 @@ import {
   RancherPlan,
   RancherService,
   RancherVersion,
-} from '@/api/api.type';
+} from '@/types/api.type';
 
 type RancherInfo = 'plan' | 'version';
 

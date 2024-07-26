@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { Cell } from '@tanstack/react-table';
-import { RancherService } from '@/api/api.type';
+import { RancherService } from '@/types/api.type';
 import '../Table.scss';
 
 interface DisplayCellInterface {

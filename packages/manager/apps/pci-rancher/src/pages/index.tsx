@@ -5,7 +5,7 @@ import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb.component';
 import Loading from '@/components/Loading/Loading.component';
-import { useRanchers } from '@/hooks/useRancher';
+import { useRanchers } from '@/data/hooks/useRancher/useRancher';
 import Listing from './listing';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {

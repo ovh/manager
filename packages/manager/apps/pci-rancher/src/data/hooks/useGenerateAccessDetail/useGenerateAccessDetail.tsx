@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {
   generateAccessRancherService,
   postRancherServiceQueryKey,
-} from '../api/apiv2/services';
+} from '../../api/services';
 
 export type AccessDetail = {
   username: string;

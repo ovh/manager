@@ -14,7 +14,7 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components/';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ResourceStatus } from '@/api/api.type';
+import { ResourceStatus } from '@/types/api.type';
 import { RancherActionsCell } from '../Table.type';
 import '../Table.scss';
 

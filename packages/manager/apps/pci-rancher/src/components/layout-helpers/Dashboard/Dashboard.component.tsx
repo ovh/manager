@@ -5,16 +5,22 @@ import { useTranslation } from 'react-i18next';
 
 import { Title } from '@ovhcloud/manager-components';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
-import { patchRancherServiceQueryKey, postRancherServiceQueryKey } from '@/api';
-import { RancherService } from '@/api/api.type';
-import { EditAction, EditMutationVariables } from '@/hooks/useEditRancher';
-import { useTrackingPage } from '@/hooks/useTrackingPage';
+import {
+  patchRancherServiceQueryKey,
+  postRancherServiceQueryKey,
+} from '@/data/api/services';
+import { RancherService } from '@/types/api.type';
+import {
+  EditAction,
+  EditMutationVariables,
+} from '@/data/hooks/useEditRancher/useEditRancher';
+import { useTrackingPage } from '@/hooks/useTrackingPage/useTrackingPage';
 import { COMMON_PATH } from '@/routes/routes';
 import { TrackingPageView } from '@/utils/tracking';
 import RancherDetail from './RancherDetail/RancherDetail.component';
 import TabBar from './TabBar/TabBar.component';
 import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
-import useVersions from '@/hooks/useVersions';
+import useVersions from '@/data/hooks/useVersions/useVersions';
 
 export type DashboardTabItemProps = {
   name: string;

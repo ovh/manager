@@ -1,5 +1,5 @@
 import { Table, Header, Row, Cell } from '@tanstack/react-table';
-import { RancherService } from '../../api/api.type';
+import { RancherService } from '../../types/api.type';
 
 export interface RancherDatagridWrapper {
   data: RancherService[];

@@ -8,8 +8,12 @@ import {
   getByRancherIdProjectId,
   getRancherProjectById,
   getRancherVersionCapabilities,
-} from '@/api';
-import { ErrorResponse, RancherService, RancherVersion } from '@/api/api.type';
+} from '@/data/api/services';
+import {
+  ErrorResponse,
+  RancherService,
+  RancherVersion,
+} from '@/types/api.type';
 
 export const useRancher = ({
   refetchInterval,

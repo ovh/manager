@@ -1,7 +1,7 @@
 import React from 'react';
 import { versionsMocked } from '@/_mock_/version';
 import { rancherMocked } from '@/_mock_/rancher';
-import { ResourceStatus } from '@/api/api.type';
+import { ResourceStatus } from '@/types/api.type';
 import dashboardTranslation from '@/public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
 import updateTranslation from '@/public/translations/pci-rancher/updateSoftware/Messages_fr_FR.json';
 

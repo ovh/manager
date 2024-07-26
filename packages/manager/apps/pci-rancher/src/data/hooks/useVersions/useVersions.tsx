@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import {
   getRancherVersion,
   getpublicCloudReferenceRancherVersionListQueryKey,
-} from '../api/apiv2/services';
+} from '../../api/services';
 
 const useVersions = () => {
   const { projectId } = useParams();
