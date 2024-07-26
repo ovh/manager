@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/ng-ovh-user-pref",
   "version": "2.1.1",
+  "private": true,
   "description": "An AngularJS service to create/get/delete user preferences",
   "keywords": [
     "angularjs",
@@ -21,9 +22,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "type": "module",
-  "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/ng-ovh-user-pref.js",
   "files": [
     "dist"
   ],

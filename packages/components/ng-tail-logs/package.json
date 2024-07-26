@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/ng-tail-logs",
   "version": "2.1.1",
+  "private": true,
   "description": "Poll a log API for displaying messages",
   "keywords": [
     "angularjs",
@@ -22,9 +23,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "type": "module",
-  "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/ng-tail-logs.js",
   "files": [
     "dist"
   ],

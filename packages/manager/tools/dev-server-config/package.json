@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/manager-dev-server-config",
   "version": "6.1.0",
+  "private": true,
   "description": "Provide OVHcloud Manager dev server config",
   "keywords": [
     "config",
@@ -21,7 +22,7 @@
     "request": "^2.88.0"
   },
   "engines": {
-    "node": "^18",
+    "node": "^20",
     "yarn": ">=1.21.1"
   }
 }

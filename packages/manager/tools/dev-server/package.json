@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/manager-dev-server",
   "version": "5.0.1",
+  "private": true,
   "description": "Provide OVHcloud Manager dev server",
   "keywords": [
     "dev-server",
@@ -25,7 +26,7 @@
     "http-proxy-middleware": "^1.0.4"
   },
   "engines": {
-    "node": "^18",
+    "node": "^20",
     "yarn": ">=1.21.1"
   }
 }

@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/ng-ovh-http",
   "version": "5.1.1",
+  "private": true,
   "description": "Simple HTTP provider for OVH API.",
   "keywords": [
     "angularjs",
@@ -21,9 +22,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "type": "module",
-  "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/ng-ovh-http.js",
   "files": [
     "dist"
   ],

@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/ng-ovh-contracts",
   "version": "4.6.0",
+  "private": true,
   "description": "Component to correctly show contracts in OVHcloud control panels",
   "keywords": [
     "angularjs",
@@ -20,9 +21,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "type": "module",
-  "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/ng-ovh-contracts.js",
   "files": [
     "dist"
   ],

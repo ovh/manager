@@ -12,18 +12,4 @@ const outputs = [
   }),
 ];
 
-if (process.env.BUILD === 'production') {
-  outputs.push(config.cjs());
-  outputs.push(
-    config.umd({
-      output: {
-        globals: {
-          angular: 'angular',
-          jquery: '$',
-        },
-      },
-    }),
-  );
-}
-
 export default outputs;

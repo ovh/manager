@@ -8,6 +8,7 @@ const set = require('lodash/set');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const webpackRetryChunckLoadPlugin = require('webpack-retry-chunk-load-plugin');
+const { RsdoctorWebpackPlugin } = require('@rsdoctor/webpack-plugin');
 
 const RetryChunkLoadPlugin = Object.assign(
   webpackRetryChunckLoadPlugin.RetryChunkLoadPlugin,
@@ -92,7 +93,12 @@ module.exports = (opts) => {
         // optional value to set the maximum number of retries to load the chunk. Default is 1
         maxRetries: 5,
       }),
-    ],
+
+      process.env.RSDOCTOR &&
+        new RsdoctorWebpackPlugin({
+          // plugin options
+        }),
+    ].filter(Boolean),
 
     resolve: {
       modules: ['./node_modules', path.resolve('./node_modules')],

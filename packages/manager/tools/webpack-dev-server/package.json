@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/manager-webpack-dev-server",
   "version": "4.0.1",
+  "private": true,
   "description": "OVHcloud manager webpack development server configuration.",
   "keywords": [
     "webpack",

@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/codename-generator",
   "version": "1.0.3",
+  "private": true,
   "description": "Generate a random codename",
   "keywords": [
     "codename",
@@ -25,7 +26,7 @@
     "titleize": "^2.1.0"
   },
   "engines": {
-    "node": ">=8",
+    "node": "^20",
     "yarn": ">=1.0.0"
   }
 }

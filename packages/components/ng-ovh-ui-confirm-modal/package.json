@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/ng-ovh-ui-confirm-modal",
   "version": "2.1.1",
+  "private": true,
   "description": "Simple confirmation modal",
   "keywords": [
     "angular",
@@ -19,9 +20,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "type": "module",
-  "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/ng-ovh-ui-confirm-modal.js",
   "files": [
     "dist"
   ],
