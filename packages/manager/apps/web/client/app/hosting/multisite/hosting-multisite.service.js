@@ -353,10 +353,9 @@ angular.module('services').service(
 
     /**
      * Get service infos
-     * @param {string} domain
+     * @param {string} zone
      */
-    async getServiceInfosForZone(domain) {
-      const { zone } = await this.getZoneLinked(domain);
+    getZoneServiceInfos(zone) {
       return this.$http
         .get(`/domain/zone/${zone}/serviceInfos`)
         .then(({ data }) => data);
@@ -386,18 +385,6 @@ angular.module('services').service(
         }
 
         return zoneAssociated;
-      });
-    }
-
-    getNichandleAttached(domainName, nichandle) {
-      return this.getServiceInfosForZone(domainName).then((serviceInfos) => {
-        const { contactTech, contactAdmin } = serviceInfos;
-
-        const isDnsAttachedToNic =
-          nichandle === contactAdmin || nichandle === contactTech;
-        return {
-          isDnsAttachedToNic,
-        };
       });
     }
 
