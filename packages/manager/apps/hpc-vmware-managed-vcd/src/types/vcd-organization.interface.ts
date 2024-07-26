@@ -8,7 +8,6 @@ export interface IVcdOrganizationCurrentState extends IVcdOrganizationState {
   region: string;
   name: string;
   spla: boolean;
-  state: string;
   webInterfaceUrl: string;
 }
 

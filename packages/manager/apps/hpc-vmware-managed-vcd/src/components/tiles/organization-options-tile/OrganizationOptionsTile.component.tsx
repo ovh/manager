@@ -4,7 +4,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import TileSubtitle from '../tile-subtitle/TileSubtitle.component';
 
-export default function VcdOptionsTile() {
+export default function OrganizationOptionsTile() {
   const { t } = useTranslation('dashboard');
 
   return (
