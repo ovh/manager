@@ -4,12 +4,12 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import VcdOptionsTile from './VcdOptionsTile.component';
+import OrganizationOptionsTile from './OrganizationOptionsTile.component';
 
-describe('VcdOptionsTile component unit test suite', () => {
+describe('OrganizationOptionsTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
     // when
-    const { getByText } = render(<VcdOptionsTile />);
+    const { getByText } = render(<OrganizationOptionsTile />);
 
     // then
     const optionsTitle = getByText('managed_vcd_dashboard_options');
