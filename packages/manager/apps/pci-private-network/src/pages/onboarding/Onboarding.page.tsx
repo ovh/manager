@@ -104,22 +104,20 @@ export default function OnBoardingPage() {
           orderButtonLabel={t('pci_projects_project_network_private_create')}
           onOrderButtonClick={() => navigate('../new')}
         >
-          <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
-            {GUIDES.map((guide) => {
-              const card = {
-                id: guide.id,
-                href: guide.links[ovhSubsidiary] || guide.links.DEFAULT,
-                texts: {
-                  title: tOnboarding(
-                    `pci_projects_project_network_private_vrack_guides_${guide.id}_title`,
-                  ),
-                  category: tOnboarding('onboarding_guide_title'),
-                },
-              };
+          {GUIDES.map((guide) => {
+            const card = {
+              id: guide.id,
+              href: guide.links[ovhSubsidiary] || guide.links.DEFAULT,
+              texts: {
+                title: tOnboarding(
+                  `pci_projects_project_network_private_vrack_guides_${guide.id}_title`,
+                ),
+                category: tOnboarding('onboarding_guide_title'),
+              },
+            };
 
-              return <Card key={card.id} href={card.href} texts={card.texts} />;
-            })}
-          </aside>
+            return <Card key={card.id} href={card.href} texts={card.texts} />;
+          })}
         </OnboardingLayout>
         <Outlet />
       </>
