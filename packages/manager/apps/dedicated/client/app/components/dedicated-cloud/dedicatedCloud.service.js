@@ -1724,11 +1724,23 @@ class DedicatedCloudService {
   }
 
   getManagedVCDMigrationState(serviceName) {
-    return this.$http
-      .get('/services', {
-        params: { resourceName: `${serviceName}/option/tovcdmigration` },
+    const resourcePath = `${serviceName}/option/tovcdmigration`;
+    return this.$q
+      .all({
+        step1: this.$http.get('/services', {
+          params: { resourceName: resourcePath },
+        }),
+        step2: this.$http.get('/services', {
+          params: {
+            resourceName: `${resourcePath}/migration`,
+          },
+        }),
       })
-      .then(({ data }) => new VCDMigrationState(data?.length));
+      .then(({ step1, step2 }) => {
+        const countStep1 = step1?.data?.length;
+        const countStep2 = step2?.data?.length;
+        return new VCDMigrationState((countStep1 ?? 0) + (countStep2 ?? 0));
+      });
   }
 
   getPCCMigrationState(serviceName) {
