@@ -1,6 +1,7 @@
 {
   "managed_vcd_dashboard_general_information": "Informations générales",
-  "managed_vcd_dashboard_datacentres": "Datacentres",
+  "managed_vcd_dashboard_datacentres_title": "Datacentres",
+  "managed_vcd_dashboard_datacentres_label": "datacentres",
   "managed_vcd_dashboard_description": "Description",
   "managed_vcd_dashboard_commercial_name": "Nom commercial",
   "managed_vcd_dashboard_localisation": "Région",
