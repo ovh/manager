@@ -1,7 +1,7 @@
 import dashboard from '../dashboard';
 import dynhost from '../dynhost';
 import newDnsZone from '../new';
-import redirection from '../redirection';
+import redirection from '../../domain/redirection/redirection.module';
 import tasks from '../tasks';
 import history from '../history';
 
