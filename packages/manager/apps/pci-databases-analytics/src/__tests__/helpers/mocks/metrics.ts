@@ -1,4 +1,4 @@
-import { database } from '@/models/database';
+import * as database from '@/types/cloud/project/database';
 
 export const mockMetric: database.service.Metric = {
   name: 'cpu_usage_percent',

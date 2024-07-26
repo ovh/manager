@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { QueryObserverOptions } from '@tanstack/react-query';
-import { database } from '@/models/database';
-import { useGetMetric } from '@/hooks/api/metrics.api.hooks';
+import * as database from '@/types/cloud/project/database';
+import { useGetMetric } from '@/hooks/api/database/metric/useGetMetric.hook';
 
 interface UseMeanMetricProps {
   projectId: string;
