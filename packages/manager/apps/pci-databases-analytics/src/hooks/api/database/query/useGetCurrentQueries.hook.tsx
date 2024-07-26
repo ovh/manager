@@ -13,6 +13,6 @@ export function useGetCurrentQueries(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getCurrentQueries({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.service.currentqueries.Query[], Error>;
 }

@@ -14,6 +14,6 @@ export function useGetMaintenances(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getMaintenances({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.service.Maintenance[], Error>;
 }

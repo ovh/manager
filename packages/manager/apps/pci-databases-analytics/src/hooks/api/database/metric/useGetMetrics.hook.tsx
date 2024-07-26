@@ -13,6 +13,6 @@ export function useGetMetrics(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getMetrics({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<string[], Error>;
 }

@@ -14,6 +14,6 @@ export function useGetConnectionPools(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getConnectionPools({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.postgresql.ConnectionPool[], Error>;
 }

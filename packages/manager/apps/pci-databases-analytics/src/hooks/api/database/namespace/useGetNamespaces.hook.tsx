@@ -13,6 +13,6 @@ export function useGetNamespaces(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getNamespaces({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.m3db.Namespace[], Error>;
 }

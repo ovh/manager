@@ -13,6 +13,6 @@ export function useGetIntegrations(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getServiceIntegrations({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.service.Integration[], Error>;
 }

@@ -13,6 +13,6 @@ export function useGetUsers(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getUsers({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<GenericUser[], Error>;
 }

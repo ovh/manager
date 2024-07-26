@@ -11,6 +11,6 @@ export function useGetServices(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getServices({ projectId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.Service[], Error>;
 }
