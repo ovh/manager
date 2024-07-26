@@ -1,15 +1,14 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 import { IBillingService } from '@/types/vcd-billing.interface';
-import {
-  getBillingService,
-  getVcdServiceIdQueryKey,
-} from '../api/hpc-vmware-managed-vcd-service';
+import { getBillingService } from '../api/hpc-vmware-managed-vcd-service';
+
+const getVcdServiceIdQueryKey = (id: string) => [`get/services${id}`];
 
 const useManagedVcdService = (id: string) => {
   return useQuery<ApiResponse<IBillingService>, ApiError>({
-    queryKey: getVcdServiceIdQueryKey({ id }),
-    queryFn: () => getBillingService({ id }),
+    queryKey: getVcdServiceIdQueryKey(id),
+    queryFn: () => getBillingService(id),
     retry: false,
     ...{
       keepPreviousData: true,
