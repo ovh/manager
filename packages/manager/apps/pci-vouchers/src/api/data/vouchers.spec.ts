@@ -1,11 +1,9 @@
 import { describe, expect, vi } from 'vitest';
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
-import { getAllVouchers, paginateResults } from '@/data/vouchers';
+import { getAllVouchers, paginateResults } from '@/api/data/vouchers';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
-  const mock = vi.fn(() => {
-    return Promise.resolve({ data: {} });
-  });
+  const mock = vi.fn(() => Promise.resolve({ data: {} }));
   return {
     fetchIcebergV6: mock,
   };

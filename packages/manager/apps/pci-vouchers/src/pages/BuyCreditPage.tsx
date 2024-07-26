@@ -15,6 +15,7 @@ export default function BuyCreditPage() {
   return (
     <>
       <BuyCreditModal
+        data-testid="BuyCreditPage-modal"
         projectId={projectId}
         onClose={onClose}
         onSuccess={(amount, url) => {

@@ -1,8 +1,8 @@
 import {
   OsdsButton,
-  OsdsModal,
   OsdsFormField,
   OsdsInput,
+  OsdsModal,
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
@@ -18,7 +18,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAddVoucher } from '@/hooks/useVouchers';
+import { useAddVoucher } from '@/api/hooks/useVouchers';
 
 interface AddVoucherModalProps {
   projectId: string;
@@ -58,6 +58,7 @@ export default function AddVoucherModal({
     <>
       <OsdsModal
         headline={t('cpb_vouchers_your_voucher_add')}
+        data-testid="AddVoucherModal-modal"
         onOdsModalClose={onClose}
       >
         <slot name="content">
@@ -73,7 +74,7 @@ export default function AddVoucherModal({
                 </OsdsText>
                 <OsdsInput
                   type={ODS_INPUT_TYPE.text}
-                  className={'border'}
+                  className="border"
                   onOdsValueChange={handleInputChange}
                   ariaLabel={t('cpb_vouchers_your_voucher')}
                   data-testid="voucherId"

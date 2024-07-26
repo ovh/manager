@@ -8,17 +8,24 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    setupFiles: './src/setupTests.ts',
     coverage: {
       include: ['src'],
       exclude: [
         'src/interface',
         'src/__tests__',
+        'src/**/*constants.ts',
         'src/vite-*.ts',
         'src/App.tsx',
         'src/core/ShellRoutingSync.tsx',
+        'src/core/HidePreloader.tsx',
         'src/i18n.ts',
         'src/main.tsx',
         'src/routes.tsx',
+        'src/queryClient.ts',
+        'src/pages/Layout.tsx',
+        // This files will be deleted while refactoring sprint, it's the rease we exclude files
+        'src/components/error-page/ErrorPage.tsx',
       ],
     },
   },

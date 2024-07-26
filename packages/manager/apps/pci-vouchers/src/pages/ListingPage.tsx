@@ -1,23 +1,22 @@
-import { useEffect, useState } from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Datagrid,
-  DataGridTextCell,
-  useDatagridSearchParams,
-  Notifications,
   isDiscoveryProject,
+  Notifications,
   PciDiscoveryBanner,
   PciGuidesHeader,
+  useDatagridSearchParams,
+  useProjectUrl,
 } from '@ovhcloud/manager-components';
 
 import {
-  OsdsText,
-  OsdsDivider,
   OsdsBreadcrumb,
   OsdsButton,
+  OsdsDivider,
   OsdsMessage,
   OsdsSpinner,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
@@ -32,90 +31,19 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-
-import { Voucher } from '@/interface';
-
-import useProject from '@/hooks/useProject';
-import { useVouchers } from '@/hooks/useVouchers';
-
-import Credit from '@/components/vouchers/listing/Credit';
-import DisplayName from '@/components/vouchers/listing/DisplayName';
-import Validity from '@/components/vouchers/listing/Validity';
+import { useVouchers } from '@/api/hooks/useVouchers';
+import { useDatagridColumn } from '@/hooks/UseDatagridColumn';
+import useProject from '@/api/hooks/useProject';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
   const { t: tError } = useTranslation('error');
 
-  const navigation = useNavigation();
   const { projectId } = useParams();
-  const [urlProject, setUrlProject] = useState('');
-  useEffect(() => {
-    navigation
-      .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
-      .then((data) => {
-        setUrlProject(data as string);
-      });
-  }, [projectId, navigation]);
+  const projectUrl = useProjectUrl('public-cloud');
 
   const { data: project } = useProject(projectId || '');
-
-  const columns = [
-    {
-      id: 'description',
-      cell: (props: Voucher) => {
-        return <DisplayName voucher={props}></DisplayName>;
-      },
-      label: t('cpb_vouchers_name_cell'),
-    },
-    {
-      id: 'products',
-      cell: (props: Voucher) => {
-        return (
-          <DataGridTextCell>
-            {props.products || t('cpb_vouchers_products_all')}
-          </DataGridTextCell>
-        );
-      },
-      label: t('cpb_vouchers_products_cell'),
-    },
-    {
-      id: 'voucher',
-      cell: (props: Voucher) => {
-        return <DataGridTextCell>{props.voucher}</DataGridTextCell>;
-      },
-      label: t('cpb_vouchers_voucher_cell'),
-    },
-    {
-      id: 'validityFrom',
-      cell: (props: Voucher) => {
-        return <Validity date={props.validity.from} />;
-      },
-      label: t('cpb_vouchers_validity_from_cell'),
-    },
-
-    {
-      id: 'total_credit',
-      cell: (props: Voucher) => {
-        return <Credit credit={props.total_credit} />;
-      },
-      label: t('cpb_vouchers_total_credit_cell'),
-    },
-    {
-      id: 'validityTo',
-      cell: (props: Voucher) => {
-        return <Validity date={props.validity.to} />;
-      },
-      label: t('cpb_vouchers_validity_to_cell'),
-    },
-    {
-      id: 'available_credit',
-      cell: (props: Voucher) => {
-        return <Credit credit={props.available_credit} />;
-      },
-      label: t('cpb_vouchers_available_credit_cell'),
-    },
-  ];
+  const columns = useDatagridColumn();
 
   const {
     pagination,
@@ -138,7 +66,7 @@ export default function ListingPage() {
         <OsdsBreadcrumb
           items={[
             {
-              href: urlProject,
+              href: projectUrl,
               label: project.description,
             },
             {
@@ -147,7 +75,7 @@ export default function ListingPage() {
           ]}
         ></OsdsBreadcrumb>
       )}
-      <div className={'flex items-center justify-between mt-4'}>
+      <div className="flex items-center justify-between mt-4">
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
           size={ODS_THEME_TYPOGRAPHY_SIZE._600}
@@ -174,10 +102,13 @@ export default function ListingPage() {
       </OsdsText>
 
       {isDiscoveryProject(project) && (
-        <PciDiscoveryBanner projectId={projectId} />
+        <PciDiscoveryBanner
+          projectId={projectId}
+          data-testid="ListingPage-discoveryBanner"
+        />
       )}
 
-      <div className={'flex mb-3 mt-6'}>
+      <div className="flex mb-3 mt-6">
         <OsdsButton
           className="mr-1"
           size={ODS_BUTTON_SIZE.sm}
@@ -192,7 +123,7 @@ export default function ListingPage() {
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
-          className={'ml-0.5'}
+          className="ml-0.5"
           href={!isDiscoveryProject(project) ? hrefCredit : ''}
           {...(!isDiscoveryProject(project) ? {} : { disabled: true })}
         >
@@ -208,12 +139,16 @@ export default function ListingPage() {
 
       {isLoading && !error && (
         <div className="text-center">
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+          <OsdsSpinner
+            inline
+            size={ODS_SPINNER_SIZE.md}
+            data-testid="ListingPage-spinner"
+          />
         </div>
       )}
 
       {!isLoading && !error && (
-        <div className={'mt-8'}>
+        <div className="mt-8">
           <Datagrid
             columns={columns}
             items={vouchers?.rows || []}
