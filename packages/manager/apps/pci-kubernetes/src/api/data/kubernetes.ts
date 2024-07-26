@@ -107,3 +107,10 @@ export const updateKubeVersion = async (
   );
   return data;
 };
+
+export const terminateCluster = async (projectId: string, kubeId: string) => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/kube/${kubeId}`,
+  );
+  return data;
+};

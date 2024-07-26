@@ -78,6 +78,12 @@ export default [
                   import('@/pages/update/UpdateVersion.page'),
                 ),
               },
+              {
+                path: 'terminate',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/terminate/Terminate.page'),
+                ),
+              },
             ],
           },
           {

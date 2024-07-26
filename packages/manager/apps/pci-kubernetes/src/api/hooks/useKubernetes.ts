@@ -12,6 +12,7 @@ import {
   getOidcProvider,
   postKubeConfig,
   resetKubeConfig,
+  terminateCluster,
   updateKubePolicy,
   updateKubernetesCluster,
   updateKubeVersion,
@@ -304,6 +305,37 @@ export const useUpdateKubeVersion = ({
   });
   return {
     updateKubeVersion: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+type TerminateClusterProps = {
+  projectId: string;
+  kubeId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useTerminateCluster = ({
+  projectId,
+  kubeId,
+  onError,
+  onSuccess,
+}: TerminateClusterProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => terminateCluster(projectId, kubeId),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: getAllKubeQueryKey(projectId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    terminateCluster: () => mutation.mutate(),
     ...mutation,
   };
 };

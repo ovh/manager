@@ -14,7 +14,7 @@ import {
   useKubernetesCluster,
   useUpdateKubeVersion,
 } from '@/api/hooks/useKubernetes';
-import UpdateVersionContent from '@/components/UpdateVersionContent';
+import UpdateVersionContent from '@/components/update/UpdateVersionContent';
 import { UPDATE_STRATEGY } from '@/constants';
 
 export default function UpdateVersionPage() {

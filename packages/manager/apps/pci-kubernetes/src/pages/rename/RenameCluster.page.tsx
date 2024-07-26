@@ -32,6 +32,7 @@ import { NAME_INPUT_CONSTRAINTS } from '@/constants';
 
 export default function RenameClusterPage() {
   const { t: tEditName } = useTranslation('edit-name');
+  const { t: tCommon } = useTranslation('common');
   const { projectId, kubeId } = useParams();
   const { addError, addSuccess } = useNotifications();
   const {
@@ -131,7 +132,7 @@ export default function RenameClusterPage() {
                   : ''
               }  ${
                 errors.length
-                  ? tEditName('common_field_error_maxlength', {
+                  ? tCommon('common_field_error_maxlength', {
                       maxlength: NAME_INPUT_CONSTRAINTS.MAX_LENGTH,
                     })
                   : ''
