@@ -54,12 +54,23 @@ export const GIT_STATUS_WITH_TOOLTIP = {
   },
 };
 
-export const DIAGNOSTIC_STATE = {
-  ERROR: 'error',
-  INFO: 'info',
-  SUCCESS: 'success',
-  DISABLED: 'disabled',
-  DISABLED_GREY: 'sold-out',
+export const DIAGNOSTIC_BADGE_STATE = {
+  A: {
+    good_configuration: 'success',
+    not_good_configuration: 'info',
+    unconfigured: 'error',
+  },
+  AAAA: {
+    good_configuration: 'success',
+    not_good_configuration: 'info',
+    unconfigured: 'sold-out',
+  },
+};
+
+export const DIAGNOSTIC_STATUS = {
+  GOOD_CONFIGURATION: 'good_configuration',
+  NOT_GOOD_CONFIGURATION: 'not_good_configuration',
+  UNCONFIGURED: 'unconfigured',
 };
 
 export const HOSTING_TAB_DOMAINS = {
@@ -67,9 +78,22 @@ export const HOSTING_TAB_DOMAINS = {
   AAAA_RECORD: 'AAAA',
 };
 
+export const RECORD_TYPE_TO_HOSTING_IP = {
+  A: 'hostingIp',
+  AAAA: 'hostingIpv6',
+};
+
+export const RECORD_TYPE_TO_IP_TYPE = {
+  A: 'IpV4',
+  AAAA: 'IpV6',
+};
+
 export default {
-  DIAGNOSTIC_STATE,
+  DIAGNOSTIC_BADGE_STATE,
+  DIAGNOSTIC_STATUS,
   HOSTING_TAB_DOMAINS,
+  RECORD_TYPE_TO_IP_TYPE,
+  RECORD_TYPE_TO_HOSTING_IP,
   HOSTING_OFFER,
   CDN_STATUS,
   CDN_VERSION,
