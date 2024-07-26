@@ -139,7 +139,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
     if (selectedPlan === null && plans?.length) {
       setSelectedPlan(
         plans?.filter(
-          (v) => v.status === 'AVAILABLE' && v.name === 'STANDARD',
+          (plan) => plan.status === 'AVAILABLE' && plan.name === 'STANDARD',
         )[0],
       );
     }
