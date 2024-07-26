@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.55.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.55.1...@ovh-ux/manager-pci@6.55.2) (2024-07-26)
+
+
+### Bug Fixes
+
+* **pci.instances:** fix instance creation with windows image ([#12539](https://github.com/ovh/manager/issues/12539)) ([316d61b](https://github.com/ovh/manager/commit/316d61bb3529135320f72c2f26e7f1df9018467d))
+
+
+
+
+
 ## [6.55.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.55.0...@ovh-ux/manager-pci@6.55.1) (2024-07-24)
 
 
