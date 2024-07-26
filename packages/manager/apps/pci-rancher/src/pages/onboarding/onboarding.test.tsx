@@ -1,6 +1,6 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import Onboarding from './index';
+import Onboarding from './Onboarding.page';
 import { render, waitFor } from '../../utils/test/test.provider';
 import onboardingTranslation from '../../public/translations/pci-rancher/onboarding/Messages_fr_FR.json';
 import { useGuideUtils } from '@/hooks/useGuideLink/useGuideLink';
@@ -24,7 +24,7 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
   })),
 }));
 
-jest.mock('@/components/GuideLink', () => ({
+jest.mock('@/hooks/useGuideLink/useGuideLink', () => ({
   useGuideUtils: jest.fn(() => ({
     MANAGED_RANCHER_SERVICE_GETTING_STARTED: 'https://example.com/guide1',
   })),

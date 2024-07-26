@@ -23,7 +23,7 @@ import {
 } from '@/hooks/useTrackingPage/useTrackingPage';
 import { getOnboardingUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import RancherTaskMessage from './RancherTaskMessage';
+import RancherTaskMessage from './RancherTaskMessage.component';
 
 export interface ListingProps {
   data: RancherService[];

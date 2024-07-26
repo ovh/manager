@@ -1,6 +1,6 @@
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import React from 'react';
-import NotFound from '../pages/404';
+import NotFound from '../pages/notFound/NotFound.page';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -30,16 +30,18 @@ export enum Route {
 export default [
   {
     path: '/pci/projects/:projectId',
-    ...lazyRouteConfig(() => import('@/pages/layout')),
+    ...lazyRouteConfig(() =>
+      import('@/components/layout-helpers/Layout.component'),
+    ),
     children: [
       {
         path: 'rancher',
-        ...lazyRouteConfig(() => import('@/pages/')),
+        ...lazyRouteConfig(() => import('@/pages/home/Home.page')),
         children: [
           {
             path: ':rancherId/delete',
             ...lazyRouteConfig(() =>
-              import('@/pages/listing/delete/DeleteRancherModal'),
+              import('@/pages/listing/delete/DeleteRancherModal.page'),
             ),
             handle: {
               tracking: {
@@ -58,7 +60,7 @@ export default [
       },
       {
         path: 'rancher/onboarding',
-        ...lazyRouteConfig(() => import('@/pages/onboarding')),
+        ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
         handle: {
           tracking: {
             pageName: Route.Onboarding,
@@ -68,7 +70,7 @@ export default [
       },
       {
         path: 'rancher/new',
-        ...lazyRouteConfig(() => import('@/pages/create')),
+        ...lazyRouteConfig(() => import('@/pages/create/Create.page')),
         handle: {
           tracking: {
             pageName: Route.New,
@@ -78,7 +80,7 @@ export default [
       },
       {
         path: 'rancher/:rancherId',
-        ...lazyRouteConfig(() => import('@/pages/dashboard')),
+        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
         handle: {
           tracking: {
             pageName: Route.Dashboard,
@@ -89,7 +91,7 @@ export default [
           {
             path: 'edit',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/edit-modal/EditModal'),
+              import('@/pages/dashboard/edit-modal/EditModal.page'),
             ),
             handle: {
               tracking: {
@@ -101,7 +103,9 @@ export default [
           {
             path: 'generate-access',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/generate-access/GenerateAccessModal'),
+              import(
+                '@/pages/dashboard/generate-access/GenerateAccessModal.page'
+              ),
             ),
             handle: {
               tracking: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Listing, { ListingProps } from './index';
+import Listing, { ListingProps } from './Listing.page';
 import { render, waitFor } from '../../utils/test/test.provider';
 import { RancherService } from '../../types/api.type';
 import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
