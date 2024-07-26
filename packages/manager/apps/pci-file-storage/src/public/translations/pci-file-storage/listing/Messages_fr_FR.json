@@ -1,4 +1,13 @@
 {
-  "title": "Listing page",
+  "title": "File Storage",
+  "title_id": "Nom/ID",
+  "title_region": "Région",
+  "title_protocol": "Protocole",
+  "title_size": "Taille allouée",
+  "title_status": "Statut",
+  "title_actions": "Actions",
+  "action_manage": "Gérer",
+  "action_delete": "Supprimer",
+  "action_create": "Créer un partage de fichier",
   "listing_resultats": "résultats"
 }
