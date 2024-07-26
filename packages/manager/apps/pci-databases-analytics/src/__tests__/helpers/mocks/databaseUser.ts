@@ -1,5 +1,5 @@
-import { UserEdition } from '@/api/databases/users';
-import { database } from '@/models/database';
+import { UserEdition } from '@/data/api/database/user.api';
+import * as database from '@/types/cloud/project/database';
 
 export const mockedDatabaseUser: database.service.User = {
   createdAt: '2024-03-19T11:34:47.088723+01:00',

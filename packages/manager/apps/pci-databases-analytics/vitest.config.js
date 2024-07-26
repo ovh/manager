@@ -23,6 +23,7 @@ export default defineConfig({
         'src/query.client.ts',
         'src/components/ui',
         'src/configuration',
+        'src/**/*constants.ts',
       ],
     },
   },

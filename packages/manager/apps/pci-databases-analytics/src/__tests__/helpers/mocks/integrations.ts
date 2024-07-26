@@ -1,4 +1,4 @@
-import { database } from '@/models/database';
+import * as database from '@/types/cloud/project/database';
 
 export const mockedIntegrations: database.service.Integration = {
   destinationServiceId: 'destinationServiceId',

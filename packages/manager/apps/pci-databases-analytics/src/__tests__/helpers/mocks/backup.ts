@@ -1,5 +1,4 @@
-import { RestoreBackupProps } from '@/api/databases/backups';
-import { database } from '@/models/database';
+import * as database from '@/types/cloud/project/database';
 
 export const mockedBackup: database.Backup = {
   createdAt: '2024/04/08',

@@ -1,5 +1,5 @@
-import { ConnectionPoolEdition } from '@/api/databases/connectionPool';
-import { database } from '@/models/database';
+import { ConnectionPoolEdition } from '@/data/api/database/connectionPool.api';
+import * as database from '@/types/cloud/project/database';
 
 export const mockedConnectionPool: database.postgresql.ConnectionPool = {
   databaseId: 'databaseId',
