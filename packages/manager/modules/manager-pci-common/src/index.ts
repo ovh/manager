@@ -6,3 +6,4 @@ export * from './components/region-selector/RegionSummary.component';
 export * from './components/flavor-selector';
 export * from './hooks';
 export * from './constants';
+export * from './components/quantity-selector';
