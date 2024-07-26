@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
 export const getConnectionPools = async ({
@@ -21,7 +21,7 @@ export const getConnectionPools = async ({
     .then((res) => res.data as database.postgresql.ConnectionPool[]);
 
 export interface AddConnectionPool extends ServiceData {
-  connectionPool: database.postgresql.ConnectionPoolCreation;
+  connectionPool: Partial<database.postgresql.ConnectionPoolCreation>;
 }
 
 export const addConnectionPool = async ({

@@ -1,6 +1,6 @@
 import { Database } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import ServiceStatusBadge from '../../_components/ServiceStatusBadge.component';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';

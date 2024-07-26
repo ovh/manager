@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { PciProjectPlanCode } from '@/interfaces/project';
 import usePciProject from './api/project/usePciProject.hook';
 import { PCI_LEVEL2 } from '@/configuration/tracking.constants';
+import { PlanCode } from '@/types/cloud/Project';
 
 // Set the project mode, needed to track discovery actions
 function useProjectModeTracking() {
@@ -13,7 +13,7 @@ function useProjectModeTracking() {
     if (project) {
       setPciProjectMode({
         projectId: project.project_id,
-        isDiscoveryProject: project.planCode === PciProjectPlanCode.DISCOVERY,
+        isDiscoveryProject: project.planCode === PlanCode.DISCOVERY,
       });
     }
   }, [project]);

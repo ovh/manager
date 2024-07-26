@@ -6,7 +6,7 @@ import PageLayout from '@/components/page-layout/PageLayout.component';
 import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/breadcrumb/Breadcrumb.component';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Toaster } from '@/components/ui/toaster';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import queryClient from '@/query.client';
@@ -36,11 +36,14 @@ export const Loader = ({ params, request }: ServiceCategoryLayoutProps) => {
   // check if we have a correct category
   const { category, projectId } = params;
   if (
-    !Object.values(database.CategoryEnum).includes(
-      category as database.CategoryEnum,
+    !Object.values(database.engine.CategoryEnum).includes(
+      category as database.engine.CategoryEnum,
     )
   ) {
-    const path = request.url.replace(category, database.CategoryEnum.all);
+    const path = request.url.replace(
+      category,
+      database.engine.CategoryEnum.all,
+    );
     return redirect(path);
   }
   // check if we have a correct projectId

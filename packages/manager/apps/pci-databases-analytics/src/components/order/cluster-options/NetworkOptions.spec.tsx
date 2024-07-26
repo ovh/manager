@@ -7,8 +7,8 @@ import {
   mockedNetworks,
   mockedSubnets,
 } from '@/__tests__/helpers/mocks/network';
-import { NetworkOptionValue } from '@/interfaces/order-funnel';
-import { database } from '@/interfaces/database';
+import { NetworkOptionValue } from '@/types/orderFunnel';
+import * as database from '@/types/cloud/project/database';
 import { useGetNetwork } from '@/hooks/api/network/useGetNetwork.hook';
 import { useGetSubnet } from '@/hooks/api/network/useGetSubnet.hook';
 

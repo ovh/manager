@@ -15,9 +15,9 @@ import {
 } from '@/components/ui/dialog';
 import { ModalController } from '@/hooks/useModale';
 import { createTree } from '@/lib/availabilitiesHelper';
-import { order } from '@/interfaces/catalog';
-import { database } from '@/interfaces/database';
-import { Engine } from '@/interfaces/order-funnel';
+import { order } from '@/types/catalog';
+import * as database from '@/types/cloud/project/database';
+import { Engine } from '@/types/orderFunnel';
 import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 import {
   Form,
@@ -33,7 +33,7 @@ import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCa
 
 interface UpdateVersionProps {
   controller: ModalController;
-  suggestions: database.Suggestion[];
+  suggestions: database.availability.Suggestion[];
   availabilities: database.Availability[];
   capabilities: FullCapabilities;
   catalog: order.publicOrder.Catalog;

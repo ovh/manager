@@ -4,7 +4,7 @@ import { ZodType, z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useServiceData } from '../../Service.context';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import { useGetCapabilitiesIntegrations } from '@/hooks/api/database/integration/useGetCapabilitiesIntegrations.hook';
 import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';

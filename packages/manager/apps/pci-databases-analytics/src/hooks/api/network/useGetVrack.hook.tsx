@@ -1,17 +1,14 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { networkApi } from '@/data/api/network/network.api';
-import { Vrack } from '@/interfaces/network';
+import { Vrack } from '@/types/cloud/Vrack';
+import { useQueryImmediateRefetch } from '../useImmediateRefetch';
 
 export function useGetVrack(
   projectId: string,
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'vrack'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => networkApi.getVrack(projectId),
     ...options,

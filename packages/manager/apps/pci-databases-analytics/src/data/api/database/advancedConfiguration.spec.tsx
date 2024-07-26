@@ -5,7 +5,7 @@ import {
   getAdvancedConfigurationCapabilities,
   editAdvancedConfiguration,
 } from '@/data/api/database/advancedConfiguration.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {

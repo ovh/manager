@@ -1,6 +1,6 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { catalogApi } from '@/data/api/catalog/catalog.api';
-import { order } from '@/interfaces/catalog';
+import { order } from '@/types/catalog';
 import { useUser } from '@/hooks/useUser';
 import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
 

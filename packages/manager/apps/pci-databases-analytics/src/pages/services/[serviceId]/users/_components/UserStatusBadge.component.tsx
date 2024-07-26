@@ -1,5 +1,5 @@
 import { Badge, badgeVariants } from '@/components/ui/badge';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 const UserStatusBadge = ({ status }: { status: database.StatusEnum }) => {
   let variant;

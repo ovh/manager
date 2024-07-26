@@ -1,5 +1,5 @@
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 const mockedLifecycle = {
   startDate: '',
@@ -9,7 +9,7 @@ export const mockedCapabilities: FullCapabilities = {
   engines: [
     {
       name: 'mongodb',
-      category: database.CategoryEnum.operational,
+      category: database.engine.CategoryEnum.operational,
       description: 'mongodb description',
       order: 0,
       storage: database.capabilities.engine.storage.StrategyEnum.distributed,
@@ -22,7 +22,7 @@ export const mockedCapabilities: FullCapabilities = {
     },
     {
       name: 'postgresql',
-      category: database.CategoryEnum.operational,
+      category: database.engine.CategoryEnum.operational,
       description: 'postgresql description',
       order: 1,
       storage: database.capabilities.engine.storage.StrategyEnum.distributed,
@@ -35,7 +35,7 @@ export const mockedCapabilities: FullCapabilities = {
     },
     {
       name: 'grafana',
-      category: database.CategoryEnum.operational,
+      category: database.engine.CategoryEnum.operational,
       description: 'grafana description',
       order: 2,
       storage: database.capabilities.engine.storage.StrategyEnum.distributed,
@@ -105,7 +105,7 @@ export const mockedCapabilities: FullCapabilities = {
       name: 'discovery',
       description: 'discovery plan',
       lifecycle: mockedLifecycle,
-      tags: [database.capabilities.Tags.new],
+      tags: [database.capabilities.TagEnum.new],
       order: 0,
       backupRetention: '1',
     },

@@ -1,4 +1,4 @@
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 const mockedLifecycle = {
   startDate: '',
@@ -25,7 +25,7 @@ const mongo: database.Availability[] = [
     backups: {
       available: false,
     },
-    category: database.CategoryEnum.operational,
+    category: database.engine.CategoryEnum.operational,
     lifecycle: mockedLifecycle,
     region: 'GRA',
     default: false,
@@ -51,7 +51,7 @@ const mongo: database.Availability[] = [
       available: true,
       retentionDays: 3,
     },
-    category: database.CategoryEnum.operational,
+    category: database.engine.CategoryEnum.operational,
     lifecycle: mockedLifecycle,
     region: 'GRA',
     default: false,
@@ -77,7 +77,7 @@ const mongo: database.Availability[] = [
       available: true,
       retentionDays: 3,
     },
-    category: database.CategoryEnum.operational,
+    category: database.engine.CategoryEnum.operational,
     lifecycle: mockedLifecycle,
     region: 'GRA',
     default: false,
@@ -103,7 +103,7 @@ const mongo: database.Availability[] = [
       available: true,
       retentionDays: 3,
     },
-    category: database.CategoryEnum.operational,
+    category: database.engine.CategoryEnum.operational,
     lifecycle: mockedLifecycle,
     region: 'GRA',
     default: false,
@@ -132,7 +132,7 @@ const pg: database.Availability[] = [
       available: true,
       retentionDays: 3,
     },
-    category: database.CategoryEnum.operational,
+    category: database.engine.CategoryEnum.operational,
     lifecycle: mockedLifecycle,
     region: 'GRA',
     default: false,
@@ -158,7 +158,7 @@ const pg: database.Availability[] = [
       available: true,
       retentionDays: 3,
     },
-    category: database.CategoryEnum.operational,
+    category: database.engine.CategoryEnum.operational,
     lifecycle: mockedLifecycle,
     region: 'GRA',
     default: false,
@@ -182,7 +182,7 @@ const grafana = [
       available: true,
       retentionDays: 3,
     },
-    category: database.CategoryEnum.operational,
+    category: database.engine.CategoryEnum.operational,
     lifecycle: mockedLifecycle,
     region: 'GRA',
     default: false,

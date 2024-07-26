@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { database as dbTypes } from '@/interfaces/database';
+import * as dbTypes from '@/types/cloud/project/database';
+
 import {
   Dialog,
   DialogClose,

@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import {
   AdvancedConfigurationProperty,
   useAdvancedConfigurationForm,
@@ -51,7 +51,7 @@ import { useEditAdvancedConfiguration } from '@/hooks/api/database/advancedConfi
 
 interface AdvancedConfigurationFormProps {
   advancedConfiguration: Record<string, string>;
-  capabilities: database.capabilities.advancedConfiguration.Property[];
+  capabilities: database.capabilities.advancedconfiguration.Property[];
   onSucces: () => void;
 }
 const AdvancedConfigurationForm = ({
@@ -99,7 +99,7 @@ const AdvancedConfigurationForm = ({
     capability: AdvancedConfigurationProperty,
   ) => {
     switch (capability.type) {
-      case database.capabilities.advancedConfiguration.property.TypeEnum
+      case database.capabilities.advancedconfiguration.property.TypeEnum
         .boolean:
         return (
           <RadioGroup
@@ -122,10 +122,10 @@ const AdvancedConfigurationForm = ({
             </FormItem>
           </RadioGroup>
         );
-      case database.capabilities.advancedConfiguration.property.TypeEnum.double:
-      case database.capabilities.advancedConfiguration.property.TypeEnum.long:
+      case database.capabilities.advancedconfiguration.property.TypeEnum.double:
+      case database.capabilities.advancedconfiguration.property.TypeEnum.long:
         return <Input type="number" value={field.value} {...field} />;
-      case database.capabilities.advancedConfiguration.property.TypeEnum.string:
+      case database.capabilities.advancedconfiguration.property.TypeEnum.string:
         if (capability.values) {
           return (
             <RadioGroup

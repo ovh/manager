@@ -4,7 +4,7 @@ import { useDeleteService } from './useDeleteService.hook';
 import { useEditService } from './useEditService.hook';
 import { useAddService } from './useAddService.hook';
 import * as databaseAPI from '@/data/api/database/service.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import {
   mockedService,

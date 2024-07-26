@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import * as databaseAPI from '@/data/api/database/queries.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useGetCurrentQueries } from '@/hooks/api/database/query/useGetCurrentQueries.hook';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import { mockedQueries } from '@/__tests__/helpers/mocks/queries';

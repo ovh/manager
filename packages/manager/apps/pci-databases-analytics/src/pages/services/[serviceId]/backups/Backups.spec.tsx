@@ -11,7 +11,7 @@ import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import { breadcrumb as Breadcrumb } from '@/pages/services/[serviceId]/backups/Backups.layout';
 import Backups from '@/pages/services/[serviceId]/backups/Backups.page';
 import * as backupsApi from '@/data/api/database/backup.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';

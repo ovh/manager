@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/command';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Version } from '@/interfaces/order-funnel';
+import { Version } from '@/types/orderFunnel';
 import { getTagVariant } from '@/lib/tagsHelper';
 import { cn } from '@/lib/utils';
 

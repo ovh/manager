@@ -1,5 +1,5 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { getServices } from '@/data/api/database/service.api';
 import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
 
@@ -11,6 +11,6 @@ export function useGetServices(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getServices({ projectId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.Service[], Error>;
 }

@@ -3,14 +3,14 @@ import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 export interface UseAdvancedConfigurationFormProps {
   initialValue: Record<string, string>;
-  capabilities: database.capabilities.advancedConfiguration.Property[];
+  capabilities: database.capabilities.advancedconfiguration.Property[];
 }
 export interface AdvancedConfigurationProperty
-  extends database.capabilities.advancedConfiguration.Property {
+  extends database.capabilities.advancedconfiguration.Property {
   isDeletable: boolean;
   defaultValue: string | boolean | number;
 }
@@ -42,16 +42,16 @@ export const useAdvancedConfigurationForm = ({
     properties.forEach((property) => {
       let val = property.defaultValue;
       switch (property.type) {
-        case database.capabilities.advancedConfiguration.property.TypeEnum
+        case database.capabilities.advancedconfiguration.property.TypeEnum
           .boolean:
           val = val === 'true';
           break;
-        case database.capabilities.advancedConfiguration.property.TypeEnum
+        case database.capabilities.advancedconfiguration.property.TypeEnum
           .double:
-        case database.capabilities.advancedConfiguration.property.TypeEnum.long:
+        case database.capabilities.advancedconfiguration.property.TypeEnum.long:
           val = +val;
           break;
-        case database.capabilities.advancedConfiguration.property.TypeEnum
+        case database.capabilities.advancedconfiguration.property.TypeEnum
           .string:
         default:
           break;
@@ -69,11 +69,11 @@ export const useAdvancedConfigurationForm = ({
     property: AdvancedConfigurationProperty,
   ) => {
     switch (property.type) {
-      case database.capabilities.advancedConfiguration.property.TypeEnum
+      case database.capabilities.advancedconfiguration.property.TypeEnum
         .boolean:
         return z.coerce.boolean();
-      case database.capabilities.advancedConfiguration.property.TypeEnum.double:
-      case database.capabilities.advancedConfiguration.property.TypeEnum.long: {
+      case database.capabilities.advancedconfiguration.property.TypeEnum.double:
+      case database.capabilities.advancedconfiguration.property.TypeEnum.long: {
         let numericSchema = z.coerce.number();
         if (property.minimum !== undefined && property.minimum !== null) {
           numericSchema = numericSchema.min(
@@ -89,7 +89,7 @@ export const useAdvancedConfigurationForm = ({
         }
         return numericSchema;
       }
-      case database.capabilities.advancedConfiguration.property.TypeEnum.string:
+      case database.capabilities.advancedconfiguration.property.TypeEnum.string:
         return property.values
           ? z.enum(property.values as [string, ...string[]])
           : z.string().min(1, t('advancedConfigurationErrorRequired'));
@@ -126,19 +126,19 @@ export const useAdvancedConfigurationForm = ({
     (c) => !properties.find((p) => p.name === c.name),
   );
   const addProperty = (
-    property: database.capabilities.advancedConfiguration.Property,
+    property: database.capabilities.advancedconfiguration.Property,
   ) => {
     let defaultValue: string | number | boolean = '';
     switch (property.type) {
-      case database.capabilities.advancedConfiguration.property.TypeEnum
+      case database.capabilities.advancedconfiguration.property.TypeEnum
         .boolean:
         defaultValue = true;
         break;
-      case database.capabilities.advancedConfiguration.property.TypeEnum.double:
-      case database.capabilities.advancedConfiguration.property.TypeEnum.long:
+      case database.capabilities.advancedconfiguration.property.TypeEnum.double:
+      case database.capabilities.advancedconfiguration.property.TypeEnum.long:
         defaultValue = 0;
         break;
-      case database.capabilities.advancedConfiguration.property.TypeEnum.string:
+      case database.capabilities.advancedconfiguration.property.TypeEnum.string:
       default:
         break;
     }
@@ -153,7 +153,7 @@ export const useAdvancedConfigurationForm = ({
     setProperties((prevValue) => [...prevValue, advancedProp]);
   };
   const removeProperty = (
-    property: database.capabilities.advancedConfiguration.Property,
+    property: database.capabilities.advancedconfiguration.Property,
   ) => {
     form.unregister(sanitizePropertyName(property.name));
     setProperties((prevValue) =>

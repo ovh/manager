@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
 import VersionSelector from './EngineTileVersion.component';
-import { Engine, Version } from '@/interfaces/order-funnel';
+import { Engine, Version } from '@/types/orderFunnel';
 import { humanizeEngine } from '@/lib/engineNameHelper';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Badge } from '@/components/ui/badge';
 import { getTagVariant } from '@/lib/tagsHelper';
 

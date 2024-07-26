@@ -11,7 +11,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { GenericUser } from '@/data/api/database/user.api';
 import { useServiceData } from '../../Service.context';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 interface UserActionsProps {
   user: GenericUser;

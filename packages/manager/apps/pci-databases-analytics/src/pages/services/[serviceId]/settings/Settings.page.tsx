@@ -13,7 +13,7 @@ import {
 import UpdateTable from './_components/UpdateTable.component';
 import ServiceConfiguration from './_components/ServiceConfiguration.component';
 import Guides from '@/components/guides/Guides.component';
-import { GuideSections } from '@/interfaces/guide';
+import { GuideSections } from '@/types/guide';
 
 const Settings = () => {
   const { service } = useServiceData();

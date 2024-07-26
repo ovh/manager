@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AlertCircle, ArrowRight } from 'lucide-react';
 import { useOrderFunnel } from './useOrderFunnel.hook';
-import { order } from '@/interfaces/catalog';
-import { database } from '@/interfaces/database';
+import { order } from '@/types/catalog';
+import * as database from '@/types/cloud/project/database';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -41,14 +41,14 @@ import OrderSummary from './OrderSummary.component';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import usePciProject from '@/hooks/api/project/usePciProject.hook';
-import { PciProjectPlanCode } from '@/interfaces/project';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import OvhLink from '@/components/links/OvhLink.component';
+import { PlanCode } from '@/types/cloud/Project';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
   capabilities: FullCapabilities;
-  suggestions: database.Suggestion[];
+  suggestions: database.availability.Suggestion[];
   catalog: order.publicOrder.Catalog;
 }
 
@@ -86,7 +86,7 @@ const OrderFunnel = ({
   });
 
   const isProjectDiscoveryMode =
-    projectData.data?.planCode === PciProjectPlanCode.DISCOVERY;
+    projectData.data?.planCode === PlanCode.DISCOVERY;
   const hasNodeSelection =
     model.result.plan &&
     model.result.plan.nodes.minimum !== model.result.plan.nodes.maximum;

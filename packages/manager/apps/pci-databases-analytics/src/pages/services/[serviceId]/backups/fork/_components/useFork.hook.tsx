@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import {
   Engine,
   Flavor,
@@ -11,8 +11,8 @@ import {
   Plan,
   Region,
   Version,
-} from '@/interfaces/order-funnel';
-import { order } from '@/interfaces/catalog';
+} from '@/types/orderFunnel';
+import { order } from '@/types/catalog';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
 import { useVrack } from '@/hooks/useVrack';
@@ -22,7 +22,7 @@ import { Pricing, computeServicePrice } from '@/lib/pricingHelper';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 
 const getSuggestedItemOrDefault = (
-  suggestion: database.Suggestion,
+  suggestion: database.availability.Suggestion,
   item: 'plan' | 'region' | 'flavor',
   listItems: Plan[] | Region[] | Flavor[],
   currentValue?: string,

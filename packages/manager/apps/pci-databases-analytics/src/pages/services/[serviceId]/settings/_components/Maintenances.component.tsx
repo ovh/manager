@@ -5,7 +5,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { Button } from '@/components/ui/button';
 import { Badge, BadgeProps } from '@/components/ui/badge';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useToast } from '@/components/ui/use-toast';
 import { useGetMaintenances } from '@/hooks/api/database/maintenance/useGetMaintenances.hook';
 import { useApplyMaintenance } from '@/hooks/api/database/maintenance/useApplyMaintenance.hook';

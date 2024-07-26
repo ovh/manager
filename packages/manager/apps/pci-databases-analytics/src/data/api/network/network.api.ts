@@ -1,5 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { Network, Subnet, Vrack } from '@/interfaces/network';
+import { Network, Subnet } from '@/types/cloud/network';
+import { Vrack } from '@/types/cloud/Vrack';
 
 export const networkApi = {
   getPrivateNetworks: async (projectId: string) =>

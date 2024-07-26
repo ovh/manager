@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
 export const getServiceBackups = async ({

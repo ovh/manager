@@ -15,7 +15,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
 import { ModalController } from '@/hooks/useModale';
 import { Pricing } from '@/lib/pricingHelper';
-import { order } from '@/interfaces/catalog';
+import { order } from '@/types/catalog';
 import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 import { useDeleteNode } from '@/hooks/api/database/node/useDeleteNode.hook';
 

@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { useServiceData } from '../../Service.context';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 interface BackupsTableColumnsProps {
   onForkClick: (backup: BackupWithExpiricyDate) => void;

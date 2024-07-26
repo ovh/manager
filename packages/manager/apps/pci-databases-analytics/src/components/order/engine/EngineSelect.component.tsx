@@ -1,5 +1,5 @@
 import React from 'react';
-import { Engine, EngineWithVersion, Version } from '@/interfaces/order-funnel';
+import { Engine, EngineWithVersion, Version } from '@/types/orderFunnel';
 import EngineTile from './EngineTile.component';
 
 interface EngineSelectProps {

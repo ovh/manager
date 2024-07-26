@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
 import { DataTable } from '@/components/ui/data-table';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getColumns } from './ServiceListColumns.component';
 import { useModale } from '@/hooks/useModale';

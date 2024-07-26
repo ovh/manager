@@ -11,7 +11,7 @@ import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook
 import { useToast } from '@/components/ui/use-toast';
 import TimeUpdate from './serviceConfiguration/TimeUpdate.component';
 import DeleteService from '../../_components/DeleteService.component';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 const ServiceConfiguration = () => {
   const { t } = useTranslation(

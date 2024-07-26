@@ -4,7 +4,7 @@ import { UseQueryResult } from '@tanstack/react-query';
 import Logs, {
   breadcrumb as LogsBreadcrumb,
 } from '@/pages/services/[serviceId]/logs/Logs.page';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as logHook from '@/hooks/api/database/logs/useGetServiceLogs.hook';
@@ -13,7 +13,7 @@ const mockService: database.Service = {
   engine: database.EngineEnum.mongodb,
   id: 'serviceId',
   capabilities: {},
-  category: database.CategoryEnum.operational,
+  category: database.engine.CategoryEnum.operational,
   createdAt: '',
   description: '',
   endpoints: [],
@@ -30,6 +30,8 @@ const mockService: database.Service = {
   nodes: [],
   plan: '',
   status: database.StatusEnum.READY,
+  region: '',
+  storage: null,
   version: '',
   backups: {
     regions: [],

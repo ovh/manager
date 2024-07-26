@@ -3,7 +3,7 @@ import { add } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import { Pen } from 'lucide-react';
 import Link from '@/components/links/Link.component';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
 import { getColumns } from './_components/BackupsTableColumns.component';
 import { DataTable } from '@/components/ui/data-table';
@@ -14,7 +14,7 @@ import RestoreServiceModal from './_components/Restore.component';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import Guides from '@/components/guides/Guides.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
-import { GuideSections } from '@/interfaces/guide';
+import { GuideSections } from '@/types/guide';
 import { useGetBackups } from '@/hooks/api/database/backup/useGetBackups.hook';
 
 export interface BackupWithExpiricyDate extends database.Backup {

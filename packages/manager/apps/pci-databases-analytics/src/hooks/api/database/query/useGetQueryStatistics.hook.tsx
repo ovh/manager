@@ -1,13 +1,10 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
-import { database } from '@/interfaces/database';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
+import * as database from '@/types/cloud/project/database';
 import {
   QueryStatistics,
   getQueryStatistics,
 } from '@/data/api/database/queries.api';
+import { useQueryImmediateRefetch } from '../../useImmediateRefetch';
 
 export function useGetQueryStatistics(
   projectId: string,
@@ -22,7 +19,7 @@ export function useGetQueryStatistics(
     serviceId,
     'queryStatistics',
   ];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getQueryStatistics({ projectId, engine, serviceId }),
     ...options,

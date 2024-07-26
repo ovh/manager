@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import {
   Engine,
   Flavor,
@@ -12,8 +12,8 @@ import {
   Plan,
   Region,
   Version,
-} from '@/interfaces/order-funnel';
-import { order } from '@/interfaces/catalog';
+} from '@/types/orderFunnel';
+import { order } from '@/types/catalog';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
 import { useVrack } from '@/hooks/useVrack';
@@ -21,7 +21,7 @@ import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCa
 import { Pricing, computeServicePrice } from '@/lib/pricingHelper';
 
 const getSuggestedItemOrDefault = (
-  suggestion: database.Suggestion,
+  suggestion: database.availability.Suggestion,
   item: 'plan' | 'region' | 'flavor',
   listItems: Plan[] | Region[] | Flavor[],
   currentValue?: string,
@@ -41,7 +41,7 @@ const getSuggestedItemOrDefault = (
 export function useOrderFunnel(
   availabilities: database.Availability[],
   capabilities: FullCapabilities,
-  suggestions: database.Suggestion[],
+  suggestions: database.availability.Suggestion[],
   catalog: order.publicOrder.Catalog,
 ) {
   const { t } = useTranslation('pci-databases-analytics/services/new');

@@ -15,7 +15,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { ModalController } from '@/hooks/useModale';
 import useDownload from '@/hooks/useDownload';
 
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useGetCertificate } from '@/hooks/api/database/certificate/useGetCertificate.hook';
 
 interface InfoConnectionPoolModalProps {

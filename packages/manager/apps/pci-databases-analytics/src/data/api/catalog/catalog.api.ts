@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { order } from '@/interfaces/catalog';
+import { order } from '@/types/catalog';
 
 export const catalogApi = {
   getCatalog: async (subsidiary = 'FR', productName = 'cloud') =>

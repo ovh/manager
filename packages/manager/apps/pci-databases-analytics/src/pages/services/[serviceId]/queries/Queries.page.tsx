@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { useServiceData } from '../Service.context';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import CurrentQueries from './_components/CurrentQueries.component';
 import QueryStatistics from './_components/QueryStatistics.component';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
-import { GuideSections } from '@/interfaces/guide';
+import { GuideSections } from '@/types/guide';
 
 export function breadcrumb() {
   return (

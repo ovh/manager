@@ -8,7 +8,7 @@ import {
 import { describe, it, vi } from 'vitest';
 import IpsRestrictionsForm from '@/components/order/cluster-options/IpsRestrictionsForm.component';
 import { mockedOrderFunnelIps } from '@/__tests__/helpers/mocks/order-funnel';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 describe('IpsRestrictionsForm component', () => {
   afterEach(() => {

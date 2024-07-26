@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
-import { database } from '@/interfaces/database';
 import ServicesList from './_components/ServiceListTable.component';
 import Onboarding from './_components/Onboarding.component';
 import LegalMentions from '../_components/LegalMentions.component';
@@ -11,10 +10,11 @@ import { POLLING } from '@/configuration/polling.constants';
 import Link from '@/components/links/Link.component';
 import { Button } from '@/components/ui/button';
 import Guides from '@/components/guides/Guides.component';
-import { GuideSections } from '@/interfaces/guide';
+import { GuideSections } from '@/types/guide';
 import { useTrackPage, useTrackAction } from '@/hooks/useTracking';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { TRACKING } from '@/configuration/tracking.constants';
+import * as database from '@/types/cloud/project/database';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
@@ -29,7 +29,8 @@ const Services = () => {
     if (!servicesQuery.data) return [];
     return servicesQuery.data.filter(
       (service) =>
-        category === database.CategoryEnum.all || service.category === category,
+        category === database.engine.CategoryEnum.all ||
+        service.category === category,
     );
   }, [servicesQuery.data, category]);
 

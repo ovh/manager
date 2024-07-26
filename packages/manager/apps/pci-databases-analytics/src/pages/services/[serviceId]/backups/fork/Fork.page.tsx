@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useServiceData } from '../../Service.context';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Skeleton } from '@/components/ui/skeleton';
 import ForkForm from './_components/ForkForm.component';
 import { useVrack } from '@/hooks/useVrack';
-import { Network } from '@/interfaces/network';
-import { ForkSource, ForkSourceType } from '@/interfaces/order-funnel';
+import { Network } from '@/types/cloud/network';
+import { ForkSource, ForkSourceType } from '@/types/orderFunnel';
 import { updateTags } from '@/lib/tagsHelper';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
@@ -27,7 +27,7 @@ export function breadcrumb() {
   );
 }
 
-export interface ForkInitialValue extends database.Suggestion {
+export interface ForkInitialValue extends database.availability.Suggestion {
   source: ForkSource;
   networkType?: database.NetworkTypeEnum;
   networkId?: string;

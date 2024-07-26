@@ -10,7 +10,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { formatStorage } from '@/lib/bytesHelper';
-import { Flavor } from '@/interfaces/order-funnel';
+import { Flavor } from '@/types/orderFunnel';
 import { Badge } from '@/components/ui/badge';
 import { getTagVariant } from '@/lib/tagsHelper';
 import { cn } from '@/lib/utils';

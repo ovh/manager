@@ -34,7 +34,7 @@ import { useConnectionPoolForm } from './formPools/useConnectionPoolForm.hook';
 import { ModalController } from '@/hooks/useModale';
 
 import { GenericUser } from '@/data/api/database/user.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { ConnectionPoolEdition } from '@/data/api/database/connectionPool.api';
 import {
   UseAddConnectionPool,
@@ -136,7 +136,7 @@ const AddEditConnectionPool = ({
         connectionPool,
       });
     } else {
-      const connectionPool: database.postgresql.ConnectionPoolCreation = {
+      const connectionPool: Partial<database.postgresql.ConnectionPoolCreation> = {
         databaseId: formValues.databaseId,
         mode: formValues.mode,
         name: formValues.name,

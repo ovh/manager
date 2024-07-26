@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 
 interface CurrentQueriesListColumnsProps {

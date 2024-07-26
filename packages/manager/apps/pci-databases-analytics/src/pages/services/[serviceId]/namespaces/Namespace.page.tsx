@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 
 import { Plus } from 'lucide-react';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
 

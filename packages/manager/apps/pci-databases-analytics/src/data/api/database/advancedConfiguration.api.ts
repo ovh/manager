@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
 export const getAdvancedConfiguration = async ({
@@ -29,7 +29,7 @@ export const getAdvancedConfigurationCapabilities = async ({
     )
     .then(
       (res) =>
-        res.data as database.capabilities.advancedConfiguration.Property[],
+        res.data as database.capabilities.advancedconfiguration.Property[],
     );
 
 export interface EditAdvancedConfiguration extends ServiceData {

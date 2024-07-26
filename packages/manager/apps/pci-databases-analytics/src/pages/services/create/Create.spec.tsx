@@ -24,7 +24,7 @@ import {
 } from '@/__tests__/helpers/mocks/availabilities';
 
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
 import {
   mockedBasicOrderFunnelFlavor,
@@ -37,13 +37,13 @@ import {
   NetworkRegionStatusEnum,
   NetworkStatusEnum,
   NetworkTypeEnum,
-} from '@/interfaces/network';
+} from '@/types/cloud/network';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/pciProjects';
 import * as ProjectAPI from '@/data/api/project/project.api';
-import { PciProjectPlanCode } from '@/interfaces/project';
 import * as ServiceAPI from '@/data/api/database/service.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { useToast } from '@/components/ui/use-toast';
+import { PlanCode } from '@/types/cloud/Project';
 
 const mockedOrder = {
   engine: mockedOrderFunnelEngine,
@@ -124,7 +124,7 @@ describe('Order funnel page', () => {
         ...mod,
         useParams: () => ({
           projectId: 'projectId',
-          category: database.CategoryEnum.all,
+          category: database.engine.CategoryEnum.all,
         }),
       };
     });
@@ -243,7 +243,7 @@ describe('Order funnel page', () => {
   it('renders Service with discovery banner', async () => {
     const mockedDiscoveryProject = {
       ...mockedPciProject,
-      planCode: PciProjectPlanCode.DISCOVERY,
+      planCode: PlanCode.DISCOVERY,
     };
     vi.mocked(ProjectAPI.getProject).mockResolvedValue(mockedDiscoveryProject);
     render(<Service />, { wrapper: RouterWithQueryClientWrapper });

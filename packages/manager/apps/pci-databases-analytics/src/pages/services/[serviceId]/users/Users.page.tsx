@@ -5,7 +5,7 @@ import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useServiceData } from '../Service.context';
 import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
 import { GenericUser } from '@/data/api/database/user.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { getColumns } from './_components/UsersTableColumns.component';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';

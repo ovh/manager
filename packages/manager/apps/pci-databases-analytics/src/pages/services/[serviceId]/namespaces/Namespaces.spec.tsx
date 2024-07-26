@@ -11,7 +11,7 @@ import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import Namespaces, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/namespaces/Namespace.page';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import * as namespaceApi from '@/data/api/database/namespace.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';

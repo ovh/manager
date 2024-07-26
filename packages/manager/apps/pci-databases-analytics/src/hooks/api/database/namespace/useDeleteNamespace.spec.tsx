@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import { useDeleteNamespace } from './useDeleteNamespace.hook';
 import * as databaseAPI from '@/data/api/database/namespace.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 
 vi.mock('@/data/api/database/namespace.api', () => ({

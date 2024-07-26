@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Params, useParams, useLocation, useMatches } from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import usePciProject from '@/hooks/api/pciProjects.api.hooks';
+import usePciProject from '@/hooks/api/project/usePciProject.hook';
 import { Skeleton } from '../ui/skeleton';
 import Link from '@/components/links/Link.component';
 import A from '@/components/links/A.component';

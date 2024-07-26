@@ -11,7 +11,7 @@ import { UseQueryResult } from '@tanstack/react-query';
 import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import * as serviceApi from '@/data/api/database/service.api';
 import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import {
   mockedServiceInte,

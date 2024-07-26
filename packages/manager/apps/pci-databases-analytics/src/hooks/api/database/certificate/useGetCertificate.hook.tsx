@@ -1,7 +1,7 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 
 import { getCertificate } from '@/data/api/database/certificate.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
 
 export function useGetCertificate(

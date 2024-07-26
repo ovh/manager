@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { NAMESPACES_CONFIG } from './namespace.constants';
 import { durationISOStringToShortTime } from '@/lib/durationHelper';
 

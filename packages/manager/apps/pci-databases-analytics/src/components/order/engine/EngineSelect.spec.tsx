@@ -8,7 +8,7 @@ import {
 import { describe, it, vi } from 'vitest';
 import EngineSelect from '@/components/order/engine/EngineSelect.component';
 import { mockedOrderFunnelEngine } from '@/__tests__/helpers/mocks/order-funnel';
-import { Engine } from '@/interfaces/order-funnel';
+import { Engine } from '@/types/orderFunnel';
 
 describe('EngineSelect component', () => {
   afterEach(() => {

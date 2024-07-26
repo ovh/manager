@@ -1,6 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { ServiceData } from '.';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 export const getCertificate = async ({
   projectId,

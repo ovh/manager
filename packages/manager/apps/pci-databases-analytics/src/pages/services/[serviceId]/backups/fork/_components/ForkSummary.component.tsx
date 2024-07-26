@@ -11,7 +11,7 @@ import {
   MemoryStick,
 } from 'lucide-react';
 import { humanizeEngine } from '@/lib/engineNameHelper';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { addStorage, formatStorage } from '@/lib/bytesHelper';
 import {
   Engine,
@@ -21,9 +21,9 @@ import {
   Plan,
   Region,
   Version,
-} from '@/interfaces/order-funnel';
+} from '@/types/orderFunnel';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Network, Subnet } from '@/interfaces/network';
+import { Network, Subnet } from '@/types/cloud/network';
 import { Button } from '@/components/ui/button';
 import {
   Popover,

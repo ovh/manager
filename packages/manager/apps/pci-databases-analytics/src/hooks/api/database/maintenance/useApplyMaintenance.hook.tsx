@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { CdbError } from '@/data/api/database';
 import {
   ApplyMaintenance,

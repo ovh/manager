@@ -15,7 +15,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 
 interface DatabasesTableColumnsProps {

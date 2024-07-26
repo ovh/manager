@@ -27,7 +27,7 @@ import { USER_CONFIG } from './user.constants';
 import { useGetRoles } from '@/hooks/api/database/user/useGetRoles.hook';
 import { useServiceData } from '../../../Service.context';
 import { Skeleton } from '@/components/ui/skeleton';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 interface RoleSelectProps {
   value: string[] | undefined;

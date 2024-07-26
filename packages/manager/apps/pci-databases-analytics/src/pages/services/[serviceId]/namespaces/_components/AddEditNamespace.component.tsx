@@ -34,7 +34,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { ModalController } from '@/hooks/useModale';
 import { useNamespaceForm } from './formNamespace/useNamespaceForm.hook';
 
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { convertDurationStringToISODuration } from '@/lib/durationHelper';
 import { TOAST } from '@/configuration/toast.constants';
 import {

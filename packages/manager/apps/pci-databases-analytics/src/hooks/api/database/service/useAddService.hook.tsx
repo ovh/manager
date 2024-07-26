@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { addService } from '@/data/api/database/service.api';
 import { CdbError } from '@/data/api/database';
 
@@ -8,7 +8,8 @@ interface UseAddService {
   onError: (cause: CdbError) => void;
   onSuccess: (service: database.Service) => void;
 }
-export interface ServiceCreationWithEngine extends database.ServiceCreation {
+export interface ServiceCreationWithEngine
+  extends Partial<database.ServiceCreation> {
   engine: database.EngineEnum;
 }
 export function useAddService({ onError, onSuccess }: UseAddService) {

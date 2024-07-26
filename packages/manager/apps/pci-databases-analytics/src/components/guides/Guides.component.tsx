@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { BookOpen } from 'lucide-react';
 import { useGetGuides } from '@/hooks/api/guides/useGetGuides.hook';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import {
   CommandDialog,
   CommandEmpty,
@@ -13,7 +13,7 @@ import {
 } from '../ui/command';
 import { useLocale } from '@/hooks/useLocale';
 import { Button } from '../ui/button';
-import { Guide } from '@/interfaces/guide';
+import { Guide } from '@/types/guide';
 import { Skeleton } from '../ui/skeleton';
 
 interface GuidesProps {

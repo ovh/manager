@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
 import { DataTable } from '@/components/ui/data-table';
 import { getColumns } from './_components/DatabasesTableColumns.component';

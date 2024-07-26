@@ -1,4 +1,4 @@
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 export const mockedLogs: database.service.LogEntry = {
   hostname: 'hostName',

@@ -11,7 +11,7 @@ import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import Users, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/users/Users.page';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import * as usersApi from '@/data/api/database/user.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';

@@ -8,7 +8,7 @@ import {
 import { describe, it, vi } from 'vitest';
 import { PlanTile } from '@/components/order/plan/PlanTile.component';
 import { mockedBasicOrderFunnelPlan } from '@/__tests__/helpers/mocks/order-funnel';
-import { Plan } from '@/interfaces/order-funnel';
+import { Plan } from '@/types/orderFunnel';
 
 describe('PlanTile component', () => {
   afterEach(() => {

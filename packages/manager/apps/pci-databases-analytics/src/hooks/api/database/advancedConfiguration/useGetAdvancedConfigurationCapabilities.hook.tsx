@@ -1,11 +1,8 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
-import { database } from '@/interfaces/database';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
+import * as database from '@/types/cloud/project/database';
 import { getAdvancedConfigurationCapabilities } from '@/data/api/database/advancedConfiguration.api';
 import { CdbError } from '@/data/api/database';
+import { useQueryImmediateRefetch } from '../../useImmediateRefetch';
 
 export function useGetAdvancedConfigurationCapabilities(
   projectId: string,
@@ -20,13 +17,13 @@ export function useGetAdvancedConfigurationCapabilities(
     serviceId,
     'capabilities/advancedConfiguration',
   ];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () =>
       getAdvancedConfigurationCapabilities({ projectId, engine, serviceId }),
     ...options,
   }) as UseQueryResult<
-    database.capabilities.advancedConfiguration.Property[],
+    database.capabilities.advancedconfiguration.Property[],
     CdbError
   >;
 }

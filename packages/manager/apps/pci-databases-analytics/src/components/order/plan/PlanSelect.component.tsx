@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plan } from '@/interfaces/order-funnel';
+import { Plan } from '@/types/orderFunnel';
 import PlanTile from './PlanTile.component';
 import { cn } from '@/lib/utils';
 

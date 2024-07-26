@@ -17,7 +17,7 @@ import {
   UserCreation,
   UserEdition,
 } from '@/data/api/database/user.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import {
   Form,
   FormControl,

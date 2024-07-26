@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { useServiceData } from '../Service.context';
 import MetricChart from '../metrics/_components/MetricChart.component';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { POLLING } from '@/configuration/polling.constants';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import ConnectionDetails from './_components/ConnectionDetails.component';
@@ -26,7 +26,7 @@ import OvhLink from '@/components/links/OvhLink.component';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Skeleton } from '@/components/ui/skeleton';
 import Guides from '@/components/guides/Guides.component';
-import { GuideSections } from '@/interfaces/guide';
+import { GuideSections } from '@/types/guide';
 import { useGetVrack } from '@/hooks/api/network/useGetVrack.hook';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 

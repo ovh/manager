@@ -24,7 +24,7 @@ import {
 } from '@/__tests__/helpers/mocks/availabilities';
 
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
 import { mockedForkService } from '@/__tests__/helpers/mocks/services';
 import {
@@ -35,7 +35,7 @@ import {
   mockedNetworksFork,
   mockedSubnets,
 } from '@/__tests__/helpers/mocks/network';
-import { ForkSourceType } from '@/interfaces/order-funnel';
+import { ForkSourceType } from '@/types/orderFunnel';
 import {
   mockedBasicOrderFunnelFlavor,
   mockedBasicOrderFunnelPlan,
@@ -47,7 +47,7 @@ import {
   NetworkRegionStatusEnum,
   NetworkStatusEnum,
   NetworkTypeEnum,
-} from '@/interfaces/network';
+} from '@/types/cloud/network';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import * as ServiceAPI from '@/data/api/database/service.api';
 import { useToast } from '@/components/ui/use-toast';

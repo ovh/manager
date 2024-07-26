@@ -1,5 +1,5 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { getNamespaces } from '@/data/api/database/namespace.api';
 import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
 
@@ -13,6 +13,6 @@ export function useGetNamespaces(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getNamespaces({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.m3db.Namespace[], Error>;
 }

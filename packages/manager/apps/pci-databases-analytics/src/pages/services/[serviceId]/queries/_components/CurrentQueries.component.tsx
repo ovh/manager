@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useServiceData } from '../../Service.context';
 import { DataTable } from '@/components/ui/data-table';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { getColumns } from './CurrentQueriesTableColumns.component';
 import { useToast } from '@/components/ui/use-toast';
 import { POLLING } from '@/configuration/polling.constants';

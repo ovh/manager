@@ -1,9 +1,9 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
 export interface AddNode extends ServiceData {
-  node: database.service.NodeCreation;
+  node: Partial<database.service.NodeCreation>;
 }
 export const addNode = async ({
   projectId,

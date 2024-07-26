@@ -7,7 +7,7 @@ import MeanMetric from '@/pages/services/[serviceId]/dashboard/_components/MeanM
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockMetric } from '@/__tests__/helpers/mocks/metrics';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 describe('Mean Metric component', () => {
   beforeEach(() => {

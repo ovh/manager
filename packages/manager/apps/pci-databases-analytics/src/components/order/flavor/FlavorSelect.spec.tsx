@@ -8,7 +8,7 @@ import {
 import { describe, it, vi } from 'vitest';
 import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
 import { mockedBasicOrderFunnelFlavor } from '@/__tests__/helpers/mocks/order-funnel';
-import { Flavor } from '@/interfaces/order-funnel';
+import { Flavor } from '@/types/orderFunnel';
 
 describe('FlavorsSelect component', () => {
   afterEach(() => {

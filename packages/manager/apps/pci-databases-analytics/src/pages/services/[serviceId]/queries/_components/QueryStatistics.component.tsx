@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { RotateCcw } from 'lucide-react';
 import { useServiceData } from '../../Service.context';
 import { DataTable } from '@/components/ui/data-table';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { getColumns } from './QueryStatisticsTableColumns.component';

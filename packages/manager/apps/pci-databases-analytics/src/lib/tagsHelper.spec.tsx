@@ -1,6 +1,6 @@
 import { describe, vi } from 'vitest';
 import { getTagVariant, updateTags } from '@/lib/tagsHelper';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { mockedFlavor } from '../__tests__/helpers/mocks/availabilities';
 
 describe('tagsHelper', () => {
@@ -8,20 +8,20 @@ describe('tagsHelper', () => {
     vi.clearAllMocks();
   });
   it('getTagVariant should be success', () => {
-    const mockedTags: database.capabilities.Tags =
-      database.capabilities.Tags.current;
+    const mockedTags: database.capabilities.TagEnum =
+      database.capabilities.TagEnum.current;
     const tagVariant = getTagVariant(mockedTags);
     expect(tagVariant).toBe('success');
   });
   it('getTagVariant should be warning', () => {
-    const mockedTags: database.capabilities.Tags =
-      database.capabilities.Tags.soonDeprecated;
+    const mockedTags: database.capabilities.TagEnum =
+      database.capabilities.TagEnum.soonDeprecated;
     const tagVariant = getTagVariant(mockedTags);
     expect(tagVariant).toBe('warning');
   });
 
   it('getTagVariant should be info', () => {
-    const tagVariant = getTagVariant('test' as database.capabilities.Tags);
+    const tagVariant = getTagVariant('test' as database.capabilities.TagEnum);
     expect(tagVariant).toBe('info');
   });
 

@@ -11,7 +11,7 @@ import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import Pools, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/pools/Pools.page';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import * as connectionPoolApi from '@/data/api/database/connectionPool.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';

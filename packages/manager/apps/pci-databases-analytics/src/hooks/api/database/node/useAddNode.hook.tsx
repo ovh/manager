@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { CdbError } from '@/data/api/database';
 import { AddNode, addNode } from '@/data/api/database/node.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 interface UseAddNode {
   onError: (cause: CdbError) => void;

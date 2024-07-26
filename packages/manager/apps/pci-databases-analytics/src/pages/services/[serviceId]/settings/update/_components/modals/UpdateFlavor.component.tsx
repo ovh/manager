@@ -18,9 +18,9 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import { ModalController } from '@/hooks/useModale';
 import { createTree } from '@/lib/availabilitiesHelper';
-import { order } from '@/interfaces/catalog';
-import { database } from '@/interfaces/database';
-import { Engine, Version, Plan, Region } from '@/interfaces/order-funnel';
+import { order } from '@/types/catalog';
+import * as database from '@/types/cloud/project/database';
+import { Engine, Version, Plan, Region } from '@/types/orderFunnel';
 import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 import {
   Form,
@@ -42,7 +42,7 @@ import PricingDetails from '../PricingDetails.component';
 
 interface UpdateFlavorProps {
   controller: ModalController;
-  suggestions: database.Suggestion[];
+  suggestions: database.availability.Suggestion[];
   availabilities: database.Availability[];
   capabilities: FullCapabilities;
   catalog: order.publicOrder.Catalog;

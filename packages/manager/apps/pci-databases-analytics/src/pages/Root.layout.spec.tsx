@@ -3,13 +3,13 @@ import { render, screen, waitFor } from '@testing-library/react';
 
 import Layout, { breadcrumb as Breadcrumb, Loader } from '@/pages/Root.layout';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import * as projectAPI from '@/data/api/project/project.api';
 
 const breadCrumbParam = {
   params: {
     projectId: 'projectId',
-    category: database.CategoryEnum.operational,
+    category: database.engine.CategoryEnum.operational,
   },
   request: new Request('https://my-api.com/endpoint'),
 };

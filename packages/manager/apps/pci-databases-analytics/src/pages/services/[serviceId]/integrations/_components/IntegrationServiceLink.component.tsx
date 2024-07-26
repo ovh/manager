@@ -1,5 +1,5 @@
 import { ExternalLink } from 'lucide-react';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import Link from '@/components/links/Link.component';
 

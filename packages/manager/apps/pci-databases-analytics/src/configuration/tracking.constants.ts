@@ -1,4 +1,4 @@
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 const APP_TRACKING_PREFIX = 'PublicCloud::databases_analytics::databases';
 export const PCI_LEVEL2 = '86';

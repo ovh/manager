@@ -1,6 +1,6 @@
 import { describe, vi } from 'vitest';
 import { computeServicePrice } from '@/lib/pricingHelper';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { mockedPricing } from '../__tests__/helpers/mocks/order-funnel';
 
 const mockedPricingHelper = {

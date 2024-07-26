@@ -2,7 +2,7 @@ import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 
 import { getConnectionPools } from '@/data/api/database/connectionPool.api';
 import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 export function useGetConnectionPools(
   projectId: string,
@@ -14,6 +14,6 @@ export function useGetConnectionPools(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getConnectionPools({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.postgresql.ConnectionPool[], Error>;
 }

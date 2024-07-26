@@ -1,5 +1,5 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { GenericUser, getUsers } from '@/data/api/database/user.api';
 import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
 
@@ -13,6 +13,6 @@ export function useGetUsers(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getUsers({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<GenericUser[], Error>;
 }

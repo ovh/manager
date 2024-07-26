@@ -15,7 +15,7 @@ import { useToast } from '@/components/ui/use-toast';
 
 import { ModalController } from '@/hooks/useModale';
 
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useDeleteNamespace } from '@/hooks/api/database/namespace/useDeleteNamespace.hook';
 
 interface DeleteNamespaceModalProps {

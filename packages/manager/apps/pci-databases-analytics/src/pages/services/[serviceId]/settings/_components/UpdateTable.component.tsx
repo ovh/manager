@@ -3,7 +3,7 @@ import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { humanizeEngine } from '@/lib/engineNameHelper';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { Button } from '@/components/ui/button';
 import { formatStorage } from '@/lib/bytesHelper';
@@ -83,7 +83,7 @@ const UpdateTable = () => {
     } as FullCapabilities;
   }, [capabilitiesQuery.data, service]);
 
-  const suggestions: database.Suggestion[] = [
+  const suggestions: database.availability.Suggestion[] = [
     {
       default: true,
       engine: service.engine,

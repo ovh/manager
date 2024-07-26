@@ -9,7 +9,7 @@ import {
 import { UseQueryResult } from '@tanstack/react-query';
 import Dashboard from '@/pages/services/[serviceId]/dashboard/Dashboard.page';
 import * as metricApi from '@/data/api/database/metric.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import * as maintenanceApi from '@/data/api/database/maintenance.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';

@@ -3,7 +3,7 @@ import { MoreHorizontal } from 'lucide-react';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Button } from '@/components/ui/button';
 import ServiceStatusBadge from './ServiceStatusBadge.component';
 import {

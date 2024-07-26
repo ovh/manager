@@ -16,8 +16,8 @@ import { useToast } from '@/components/ui/use-toast';
 import { useAddNode } from '@/hooks/api/database/node/useAddNode.hook';
 import { ModalController } from '@/hooks/useModale';
 import { Pricing } from '@/lib/pricingHelper';
-import { order } from '@/interfaces/catalog';
-import { database } from '@/interfaces/database';
+import { order } from '@/types/catalog';
+import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 
 interface AddNodeProps {

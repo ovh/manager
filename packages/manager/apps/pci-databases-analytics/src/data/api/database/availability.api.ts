@@ -1,6 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import QueryString from 'qs';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { PCIData } from '.';
 
 interface GetAvailabilities extends PCIData {
@@ -49,4 +49,4 @@ export const getAvailabilities = async ({
 export const getSuggestions = async (projectId: string) =>
   apiClient.v6
     .get(`/cloud/project/${projectId}/database/availability/suggestion`)
-    .then((res) => res.data as database.Suggestion[]);
+    .then((res) => res.data as database.availability.Suggestion[]);

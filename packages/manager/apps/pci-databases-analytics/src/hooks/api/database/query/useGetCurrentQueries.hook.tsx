@@ -1,5 +1,5 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { getCurrentQueries } from '@/data/api/database/queries.api';
 import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
 
@@ -13,6 +13,6 @@ export function useGetCurrentQueries(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getCurrentQueries({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.service.currentqueries.Query[], Error>;
 }

@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dialog';
 import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { GenericUser } from '@/data/api/database/user.api';
 import { useDeleteUser } from '@/hooks/api/database/user/useDeleteUser.hook';
 

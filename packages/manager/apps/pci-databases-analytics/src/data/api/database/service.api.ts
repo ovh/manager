@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { PCIData, ServiceData } from '.';
 
 export const getServices = async ({ projectId }: PCIData) =>
@@ -22,7 +22,7 @@ export const getService = async ({
     .then((res) => res.data as database.Service);
 
 interface AddService extends Omit<ServiceData, 'serviceId'> {
-  serviceInfo: database.ServiceCreation;
+  serviceInfo: Partial<database.ServiceCreation>;
 }
 export const addService = async ({
   projectId,

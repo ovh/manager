@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import {
   Dialog,
   DialogContent,
@@ -25,7 +25,7 @@ import {
 } from '@/components/ui/dialog';
 import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
-import { ForkSourceType } from '@/interfaces/order-funnel';
+import { ForkSourceType } from '@/types/orderFunnel';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
   Select,

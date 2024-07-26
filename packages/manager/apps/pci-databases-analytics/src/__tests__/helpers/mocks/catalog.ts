@@ -1,4 +1,4 @@
-import { nichandle, order } from '@/interfaces/catalog';
+import { nichandle, order } from '@/types/catalog';
 
 export const mockedCatalogPlan: order.publicOrder.Plan = {
   addonFamilies: [

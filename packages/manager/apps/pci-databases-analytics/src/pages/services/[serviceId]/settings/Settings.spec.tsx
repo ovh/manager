@@ -9,7 +9,7 @@ import {
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
@@ -41,10 +41,10 @@ const mockedService = {
 
 const mockAdvancedConfiguration = { capability: 'capabilityMocked' };
 
-const mockCapabilities: database.capabilities.advancedConfiguration.Property[] = [
+const mockCapabilities: database.capabilities.advancedconfiguration.Property[] = [
   {
     name: 'capability',
-    type: database.capabilities.advancedConfiguration.property.TypeEnum.string,
+    type: database.capabilities.advancedconfiguration.property.TypeEnum.string,
     description: 'capabilityMocked',
   },
 ];

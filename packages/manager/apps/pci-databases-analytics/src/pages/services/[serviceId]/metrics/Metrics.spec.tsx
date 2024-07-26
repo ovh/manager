@@ -4,7 +4,7 @@ import { UseQueryResult } from '@tanstack/react-query';
 import Metrics, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/metrics/Metrics.page';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';

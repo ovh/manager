@@ -4,7 +4,7 @@ import {
   editNamespace,
 } from '@/data/api/database/namespace.api';
 import { CdbError } from '@/data/api/database';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 export interface UsEditNamespace {
   onError: (cause: CdbError) => void;

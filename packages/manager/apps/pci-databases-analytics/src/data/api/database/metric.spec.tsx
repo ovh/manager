@@ -1,7 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
 import { getMetrics, getMetric } from '@/data/api/database/metric.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {

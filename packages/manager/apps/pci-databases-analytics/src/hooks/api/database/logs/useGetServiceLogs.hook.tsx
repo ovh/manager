@@ -1,5 +1,5 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { getServiceLogs } from '@/data/api/database/logs.api';
 import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
 

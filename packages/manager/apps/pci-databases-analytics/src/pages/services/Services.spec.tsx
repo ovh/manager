@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import Services from '@/pages/services/Services.page';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import * as serviceApi from '@/data/api/database/service.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
@@ -58,7 +58,7 @@ describe('Services List page', () => {
         ...mod,
         useParams: () => ({
           projectId: 'projectId',
-          category: database.CategoryEnum.all,
+          category: database.engine.CategoryEnum.all,
         }),
       };
     });

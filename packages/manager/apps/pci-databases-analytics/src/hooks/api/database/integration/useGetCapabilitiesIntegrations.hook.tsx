@@ -1,10 +1,7 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
-import { database } from '@/interfaces/database';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
+import * as database from '@/types/cloud/project/database';
 import { getServiceCapabilitiesIntegrations } from '@/data/api/database/integration.api';
+import { useQueryImmediateRefetch } from '../../useImmediateRefetch';
 
 export function useGetCapabilitiesIntegrations(
   projectId: string,
@@ -19,7 +16,7 @@ export function useGetCapabilitiesIntegrations(
     serviceId,
     'capabilities/integration',
   ];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () =>
       getServiceCapabilitiesIntegrations({ projectId, engine, serviceId }),

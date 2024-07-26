@@ -6,7 +6,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { ServicePricing } from '@/lib/pricingHelper';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import Price from '@/components/price/Price.component';
 
 interface PrincingDetailsProps {

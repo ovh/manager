@@ -7,7 +7,7 @@ import BackupLayout, {
 } from '@/pages/services/[serviceId]/settings/Settings.layout';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 describe('Service settings layout', () => {
   beforeEach(() => {

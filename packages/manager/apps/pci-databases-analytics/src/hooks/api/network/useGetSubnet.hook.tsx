@@ -1,10 +1,7 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { networkApi } from '@/data/api/network/network.api';
-import { Subnet } from '@/interfaces/network';
+import { Subnet } from '@/types/cloud/network';
+import { useQueryImmediateRefetch } from '../useImmediateRefetch';
 
 export function useGetSubnet(
   projectId: string,
@@ -12,7 +9,7 @@ export function useGetSubnet(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'network/private', networkId];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => networkApi.getSubnets(projectId, networkId),
     ...options,

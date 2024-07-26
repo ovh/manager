@@ -9,7 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
-import { GuideSections } from '@/interfaces/guide';
+import { GuideSections } from '@/types/guide';
 import Guides from '@/components/guides/Guides.component';
 import { useGetServiceLogs } from '@/hooks/api/database/logs/useGetServiceLogs.hook';
 

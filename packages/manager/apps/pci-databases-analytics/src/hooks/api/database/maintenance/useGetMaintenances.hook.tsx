@@ -1,6 +1,5 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { getMaintenances } from '@/data/api/database/maintenance.api';
 import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
 
@@ -14,6 +13,6 @@ export function useGetMaintenances(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getMaintenances({ projectId, engine, serviceId }),
-    options,
+    ...options,
   }) as UseQueryResult<database.service.Maintenance[], Error>;
 }

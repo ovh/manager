@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { USER_CONFIG } from './user.constants';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { GenericUser } from '@/data/api/database/user.api';
 
 export interface UseUserFormProps {

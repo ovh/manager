@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useToast } from '@/components/ui/use-toast';
 
 interface ConnectionDetailsProps {

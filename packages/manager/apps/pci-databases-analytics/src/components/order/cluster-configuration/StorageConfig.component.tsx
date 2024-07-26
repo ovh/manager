@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { formatStorage } from '@/lib/bytesHelper';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 interface StorageConfigProps {
   availability: database.Availability;

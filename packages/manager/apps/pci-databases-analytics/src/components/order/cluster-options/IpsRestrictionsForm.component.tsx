@@ -6,7 +6,7 @@ import { MinusCircle, PlusCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import {
   Form,
   FormControl,

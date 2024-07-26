@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { Calendar } from '@/components/ui/calendar';
-import { order } from '@/interfaces/catalog';
-import { database } from '@/interfaces/database';
+import { order } from '@/types/catalog';
+import * as database from '@/types/cloud/project/database';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -52,7 +52,7 @@ import { formatStorage } from '@/lib/bytesHelper';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useServiceData } from '../../../Service.context';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
-import { ForkSourceType } from '@/interfaces/order-funnel';
+import { ForkSourceType } from '@/types/orderFunnel';
 import {
   Popover,
   PopoverContent,

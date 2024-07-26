@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useAddService } from './useAddService.hook';
 import * as databaseAPI from '@/data/api/database/service.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import {
   mockedService,

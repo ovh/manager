@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/form';
 import { useToast } from '@/components/ui/use-toast';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 
 interface IpsRestrictionsUpdateProps {

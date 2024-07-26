@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
 import { DataTable } from '@/components/ui/data-table';
 import { Button } from '@/components/ui/button';
@@ -13,7 +13,7 @@ import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook
 import DeleteIntegration from './_components/DeleteIntegration.component';
 import AddIntegration from './_components/AddIntegration.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
-import { GuideSections } from '@/interfaces/guide';
+import { GuideSections } from '@/types/guide';
 import Guides from '@/components/guides/Guides.component';
 import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
 

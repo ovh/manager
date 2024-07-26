@@ -16,7 +16,7 @@ import { useToast } from '@/components/ui/use-toast';
 
 import { ModalController } from '@/hooks/useModale';
 
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useDeleteService } from '@/hooks/api/database/service/useDeleteService.hook';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import { Alert, AlertDescription } from '@/components/ui/alert';

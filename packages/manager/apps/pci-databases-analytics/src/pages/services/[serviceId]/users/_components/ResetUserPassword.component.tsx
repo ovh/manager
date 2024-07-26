@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/dialog';
 import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { GenericUser } from '@/data/api/database/user.api';
 import { useResetUserPassword } from '@/hooks/api/database/user/useResetUserPassword.hook';
 import { Alert } from '@/components/ui/alert';

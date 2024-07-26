@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import * as databaseAPI from '@/data/api/database/advancedConfiguration.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import { useGetAdvancedConfigurationCapabilities } from './useGetAdvancedConfigurationCapabilities.hook';
 // Mock the API functions
@@ -14,11 +14,11 @@ describe('useGetAdvancedConfigurationCapabilities', () => {
     const projectId = 'projectId';
     const engine = database.EngineEnum.mysql;
     const serviceId = 'serviceId';
-    const mockCapabilities: database.capabilities.advancedConfiguration.Property[] = [
+    const mockCapabilities: database.capabilities.advancedconfiguration.Property[] = [
       {
         name: 'capability',
         type:
-          database.capabilities.advancedConfiguration.property.TypeEnum.string,
+          database.capabilities.advancedconfiguration.property.TypeEnum.string,
         description: '',
       },
     ];

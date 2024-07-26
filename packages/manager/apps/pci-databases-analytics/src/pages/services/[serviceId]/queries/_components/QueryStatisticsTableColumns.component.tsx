@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 import { SortableHeader } from '@/components/ui/data-table';
 import { ExpandableSqlQuery } from './ExpandableSqlQuery.component';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 export const getColumns = () => {
   const { t } = useTranslation(

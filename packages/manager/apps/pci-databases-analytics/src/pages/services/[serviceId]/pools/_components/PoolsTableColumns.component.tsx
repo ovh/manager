@@ -18,7 +18,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { ConnectionPoolWithData } from '../Pools.page';
 import { useServiceData } from '../../Service.context';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 interface ConnectionPoolsTableColumnsProps {
   onGetInformationClick: (connectionPool: ConnectionPoolWithData) => void;

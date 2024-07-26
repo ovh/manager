@@ -19,7 +19,7 @@ import { Button } from '@/components/ui/button';
 
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { durationStringToHuman } from '@/lib/durationHelper';
 import { useServiceData } from '../../Service.context';
 

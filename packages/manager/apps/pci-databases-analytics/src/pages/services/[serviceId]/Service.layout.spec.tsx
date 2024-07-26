@@ -6,14 +6,14 @@ import ServiceLayout, {
 } from '@/pages/services/[serviceId]/Service.layout';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import * as serviceAPI from '@/data/api/database/service.api';
 
 const loaderParam = {
   params: {
     projectId: 'projectId',
     serviceId: 'serviceId',
-    category: database.CategoryEnum.operational,
+    category: database.engine.CategoryEnum.operational,
   },
   request: new Request('https://my-api.com/endpoint'),
 };

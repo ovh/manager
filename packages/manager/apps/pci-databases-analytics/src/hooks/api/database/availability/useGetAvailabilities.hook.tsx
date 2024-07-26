@@ -1,10 +1,7 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
-import { database } from '@/interfaces/database';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
+import * as database from '@/types/cloud/project/database';
 import { getAvailabilities } from '@/data/api/database/availability.api';
+import { useQueryImmediateRefetch } from '../../useImmediateRefetch';
 
 export function useGetAvailabilities(
   projectId: string,
@@ -20,7 +17,7 @@ export function useGetAvailabilities(
     action,
     target,
   ].filter(Boolean);
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () =>
       getAvailabilities({

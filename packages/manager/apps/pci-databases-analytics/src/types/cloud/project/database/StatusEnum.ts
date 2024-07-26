@@ -1,0 +1,14 @@
+/** Possible state of the job */
+export enum StatusEnum {
+  'CREATING' = 'CREATING',
+  'DELETING' = 'DELETING',
+  'ERROR' = 'ERROR',
+  'ERROR_INCONSISTENT_SPEC' = 'ERROR_INCONSISTENT_SPEC',
+  'LOCKED' = 'LOCKED',
+  'LOCKED_PENDING' = 'LOCKED_PENDING',
+  'LOCKED_UPDATING' = 'LOCKED_UPDATING',
+  'PENDING' = 'PENDING',
+  'READY' = 'READY',
+  'SHELVED' = 'SHELVED',
+  'UPDATING' = 'UPDATING',
+}

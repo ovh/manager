@@ -4,7 +4,7 @@ import {
   AddConnectionPool,
   addConnectionPool,
 } from '@/data/api/database/connectionPool.api';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { CdbError } from '@/data/api/database';
 
 export interface UseAddConnectionPool {

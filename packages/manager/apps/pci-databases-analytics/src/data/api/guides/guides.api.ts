@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { Guide } from '@/interfaces/guide';
+import { Guide } from '@/types/guide';
 
 interface GetGuidesProps {
   section?: string;

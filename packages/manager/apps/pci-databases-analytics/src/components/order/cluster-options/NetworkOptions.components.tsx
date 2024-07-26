@@ -5,9 +5,9 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Network, NetworkTypeEnum, Subnet } from '@/interfaces/network';
-import { NetworkOptionValue } from '@/interfaces/order-funnel';
-import { database } from '@/interfaces/database';
+import { Network, NetworkTypeEnum, Subnet } from '@/types/cloud/network';
+import { NetworkOptionValue } from '@/types/orderFunnel';
+import * as database from '@/types/cloud/project/database';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
   Select,

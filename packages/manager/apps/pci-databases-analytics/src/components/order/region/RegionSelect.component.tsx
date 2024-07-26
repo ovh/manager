@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Region } from '@/interfaces/order-funnel';
+import { Region } from '@/types/orderFunnel';
 import { Badge } from '@/components/ui/badge';
 import { getTagVariant } from '@/lib/tagsHelper';
 

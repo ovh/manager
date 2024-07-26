@@ -1,6 +1,6 @@
 import { UseQueryResult } from '@tanstack/react-query';
 import { useOutletContext, useParams } from 'react-router-dom';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 
 // Share data with the child routes
 export type ServiceLayoutContext = {

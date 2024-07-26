@@ -1,6 +1,6 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { getGuides } from '@/data/api/guides/guides.api';
-import { Guide } from '@/interfaces/guide';
+import { Guide } from '@/types/guide';
 import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
 
 export function useGetGuides(

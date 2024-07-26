@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { database } from '@/interfaces/database';
+import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import UserStatusBadge from '../../users/_components/UserStatusBadge.component';
 import { IntegrationWithServices } from '../Integrations.page';
