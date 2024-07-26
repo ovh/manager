@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, useRouteLoaderData } from 'react-router-dom';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
-import { Project } from '@/data/project';
+import { Project } from '@/api/data/project';
 
 import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';
 
