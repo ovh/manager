@@ -23,20 +23,12 @@ export const getVcdOrganizationList = async (
 ): Promise<{ data: IVcdOrganization[] }> =>
   apiClient.v2.get('/vmwareCloudDirector/organization', { data: params });
 
-export type GetVcdOrganizationParams = {
-  id?: string;
-};
-
-export const getVcdOrganizationQueryKey = ({
-  id,
-}: GetVcdOrganizationParams) => [`get/vmwareCloudDirector/organization/${id}`];
-
 /**
  * VMware on OVHcloud : Get VMware on OVHcloud
  */
-export const getVcdOrganization = async ({
-  id,
-}: GetVcdOrganizationParams): Promise<ApiResponse<IVcdOrganization>> =>
+export const getVcdOrganization = async (
+  id: string,
+): Promise<ApiResponse<IVcdOrganization>> =>
   apiClient.v2.get(`/vmwareCloudDirector/organization/${id}`);
 
 /**

@@ -24,7 +24,9 @@ export const Routes: any = [
       {
         id: 'listing',
         path: urls.listing,
-        ...lazyRouteConfig(() => import('@/pages/listing')),
+        ...lazyRouteConfig(() =>
+          import('@/pages/listing/organizations/Organizations.page'),
+        ),
         handle: {
           tracking: {
             pageName: 'listing',
@@ -34,13 +36,17 @@ export const Routes: any = [
       },
       {
         path: urls.dashboard,
-        ...lazyRouteConfig(() => import('@/pages/dashboard')),
+        ...lazyRouteConfig(() =>
+          import('@/pages/dashboard/organization/OrganizationDashboard.page'),
+        ),
         children: [
           {
             id: 'dashboard',
             path: '',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/general-informations'),
+              import(
+                '@/pages/dashboard/organization/general-information/OrganizationGeneralInformation.page'
+              ),
             ),
             handle: {
               tracking: {
@@ -52,7 +58,9 @@ export const Routes: any = [
           {
             id: 'datacentres',
             path: urls.datacentres,
-            ...lazyRouteConfig(() => import('@/pages/listing/datacentres')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/listing/datacentres/datacentres.page'),
+            ),
             handle: {
               tracking: {
                 pageName: 'datacentres',
@@ -63,20 +71,68 @@ export const Routes: any = [
         ],
       },
       {
-        id: 'vDcDashboard',
         path: urls.datacentreDashboard,
-        ...lazyRouteConfig(() => import('@/pages/dashboard/datacentres')),
+        ...lazyRouteConfig(() =>
+          import('@/pages/dashboard/datacentre/DatacentreDashboard.page'),
+        ),
         handle: {
           tracking: {
             pageName: 'datacentre',
             pageType: PageType.dashboard,
           },
         },
+        children: [
+          {
+            id: 'vDcDashboard',
+            path: '',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/dashboard/datacentre/general-informations/DatacentreGeneralInformation.page'
+              ),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'dashboard',
+                pageType: PageType.dashboard,
+              },
+            },
+          },
+          {
+            id: 'vDcStorage',
+            path: urls.datacentreStorage,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/dashboard/datacentre/storage/DatacentreStorage.page'
+              ),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'dashboard',
+                pageType: PageType.listing,
+              },
+            },
+          },
+          {
+            id: 'vDcCompute',
+            path: urls.datacentreCompute,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/dashboard/datacentre/compute/DatacentreCompute.page'
+              ),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'dashboard',
+                pageType: PageType.listing,
+              },
+            },
+          },
+        ],
       },
       {
         id: 'onboarding',
         path: urls.onboarding,
-        ...lazyRouteConfig(() => import('@/pages/onboarding')),
+        ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
         handle: {
           tracking: {
             pageName: 'onboarding',
