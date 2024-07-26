@@ -4,3 +4,4 @@ export * from './components/banner';
 export * from './components/flavor-selector';
 export * from './hooks';
 export * from './constants';
+export * from './components/quantity-selector';
