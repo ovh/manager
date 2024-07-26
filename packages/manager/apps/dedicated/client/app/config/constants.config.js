@@ -1137,6 +1137,12 @@ const constants = {
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
             url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=fr',
           },
+          {
+            title: 'core_pcc_top_guide_13_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-13',
+            url:
+              'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
+          },
         ],
         de_DE: [
           {
@@ -1190,6 +1196,12 @@ const constants = {
             url:
               'https://docs.vmware.com/de/VMware-NSX-Data-Center-for-vSphere/index.html',
           },
+          {
+            title: 'core_pcc_top_guide_13_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-13',
+            url:
+              'https://help.ovhcloud.com/csm/worldeuro-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+          },
         ],
         en_GB: [
           {
@@ -1239,6 +1251,12 @@ const constants = {
             title: 'core_pcc_top_guide_10_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
             url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=en',
+          },
+          {
+            title: 'core_pcc_top_guide_13_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-13',
+            url:
+              'https://help.ovhcloud.com/csm/worldeuro-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
           },
         ],
       },
@@ -1807,6 +1825,12 @@ const constants = {
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
             url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=fr',
           },
+          {
+            title: 'core_pcc_top_guide_13_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-13',
+            url:
+              'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
+          },
         ],
         de_DE: [
           {
@@ -1860,6 +1884,12 @@ const constants = {
             url:
               'https://docs.vmware.com/de/VMware-NSX-Data-Center-for-vSphere/index.html',
           },
+          {
+            title: 'core_pcc_top_guide_13_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-13',
+            url:
+              'https://help.ovhcloud.com/csm/worldeuro-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+          },
         ],
         en_GB: [
           {
@@ -1909,6 +1939,12 @@ const constants = {
             title: 'core_pcc_top_guide_10_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
             url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=en',
+          },
+          {
+            title: 'core_pcc_top_guide_13_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-13',
+            url:
+              'https://help.ovhcloud.com/csm/worldeuro-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
           },
         ],
       },
