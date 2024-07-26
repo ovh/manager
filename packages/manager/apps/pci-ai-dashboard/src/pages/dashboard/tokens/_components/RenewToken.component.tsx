@@ -100,7 +100,7 @@ const RenewToken = ({
           <div>
             <Alert variant="success">
               <p>{t('renewTokenSuccess')}</p>
-              <div className="relative my-2">
+              <div className="relative my-2 rounded bg-gray-100">
                 <Button
                   data-testid="renew-token-copy-button"
                   onClick={() => handleCopyPass()}

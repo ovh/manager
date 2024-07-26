@@ -134,7 +134,7 @@ const AddToken = ({
           <div>
             <Alert variant="success">
               <p>{t('formTokenSuccess')}</p>
-              <div className="relative my-2">
+              <div className="relative my-2 rounded bg-gray-100">
                 <Button
                   data-testid="token-copy-button"
                   onClick={() => handleCopyPass()}
