@@ -118,6 +118,16 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/detail/nodepools/NodePools.page'),
             ),
+            children: [],
+          },
+          {
+            path: 'nodepools/:poolId/nodes',
+            // handle: {
+            //   tracking: 'nodepools',
+            // },
+            ...lazyRouteConfig(() =>
+              import('@/pages/detail/nodepools/nodes/Nodes.page'),
+            ),
           },
           {
             path: 'restrictions',
