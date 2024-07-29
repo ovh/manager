@@ -1141,7 +1141,7 @@
   "hosting_tab_BOOST_disable_title": "Va a desactivar la opción Boost de su alojamiento web.",
   "hosting_tab_BOOST_disable_description": "Próximamente recibirá la factura correspondiente el período de activación de esta opción (facturación por días).",
   "hosting_tab_BOOST_disable_description_part_2": "Recuerde que puede reactivar la opción Boost en cualquier momento.",
-  "hosting_tab_BOOST_accept_cgv": "He entendido y acepto las condiciones del servicio. La opción se desactivará en unos minutos tras la validación.",
+  "hosting_tab_BOOST_accept_cgv": "He entendido y acepto las condiciones del servicio.",
   "hosting_tab_BOOST_disable_started": "El «boost» de su producto se está desactivando...",
   "hosting_tab_BOOST_disable_success": "El «boost» de su producto se ha desactivado.",
   "hosting_tab_BOOST_disable_error": "Se ha producido un error al desactivar el «boost»:",

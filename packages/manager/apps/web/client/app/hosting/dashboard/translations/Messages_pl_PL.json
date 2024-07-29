@@ -1141,7 +1141,7 @@
   "hosting_tab_BOOST_disable_title": "Chcesz wyłączyć opcję Boost dla swojego hostingu.",
   "hosting_tab_BOOST_disable_description": "Wkrótce otrzymasz fakturę, która będzie obejmowała cały okres, kiedy opcja była aktywna (płatności za dzień).",
   "hosting_tab_BOOST_disable_description_part_2": "W każdej chwili będziesz mógł ponownie włączyć opcję Boost.",
-  "hosting_tab_BOOST_accept_cgv": "Zrozumiałem i akceptuję warunki usługi. Opcja zostanie wyłączona po kilku minutach od zatwierdzenia.",
+  "hosting_tab_BOOST_accept_cgv": "Zrozumiałem i akceptuję warunki usługi.",
   "hosting_tab_BOOST_disable_started": "Trwa wyłączanie opcji Boost dla Twojej oferty...",
   "hosting_tab_BOOST_disable_success": "Opcja Boost dla Twojego hostingu została wyłączona.",
   "hosting_tab_BOOST_disable_error": "Wystąpił błąd podczas wyłączania opcji Boost:",
