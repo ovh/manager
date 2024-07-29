@@ -14,12 +14,12 @@ import {
 import { useLocale } from '@/hooks/useLocale.hook';
 import { Button } from '../ui/button';
 import { Skeleton } from '../ui/skeleton';
-import { Guide } from '@/types/guide';
+import * as ai from '@/types/cloud/project/ai';
 import { useGetGuides } from '@/hooks/api/ai/guide/useGetGuides.hook';
 
 interface GuidesProps {
   section?: string;
-  onGuideClick?: (guide: Guide) => void;
+  onGuideClick?: (guide: ai.Guide) => void;
 }
 const Guides = ({ section, onGuideClick }: GuidesProps) => {
   const { projectId } = useParams();
@@ -44,7 +44,7 @@ const Guides = ({ section, onGuideClick }: GuidesProps) => {
     return () => document.removeEventListener('keydown', down);
   }, []);
   // open a guide in a new tab
-  const openGuide = (guide: Guide) => {
+  const openGuide = (guide: ai.Guide) => {
     if (onGuideClick) {
       onGuideClick(guide);
     }

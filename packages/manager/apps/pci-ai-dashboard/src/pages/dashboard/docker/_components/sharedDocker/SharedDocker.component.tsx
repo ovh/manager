@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 interface SharedDockerProps {
   regions: ai.capabilities.Region[];
@@ -75,7 +75,7 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
         <p>{projectId}</p>
       </div>
       <p>{t('sharedDockerParagraphe4')}</p>
-      <div className="relative my-2">
+      <div className="relative my-2 rounded bg-gray-100">
         <Button
           data-testid="shared-docker-login-copy-button"
           onClick={() => handleCopyPass(dockerLogin)}
@@ -85,13 +85,13 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
           <Copy className="size-4" />
           <span className="sr-only">copy</span>
         </Button>
-        <pre className="p-4 bg-gray-100 rounded">
+        <pre className="p-4 bg-gray-100 rounded overflow-auto">
           <code>{dockerLogin}</code>
         </pre>
       </div>
       <p>{t('sharedDockerParagraphe5')}</p>
       <p>{t('sharedDockerParagraphe6')}</p>
-      <div className="relative my-2">
+      <div className="relative my-2 rounded bg-gray-100">
         <Button
           data-testid="shared-docker-tag-copy-button"
           onClick={() => handleCopyPass(dockerTag)}
@@ -100,11 +100,11 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
           <Copy className="size-4" />
           <span className="sr-only">copy</span>
         </Button>
-        <pre className="p-4 bg-gray-100 rounded">
+        <pre className="p-4 bg-gray-100 rounded overflow-auto">
           <code>{dockerTag}</code>
         </pre>
       </div>
-      <div className="relative my-2">
+      <div className="relative my-2 rounded bg-gray-100">
         <Button
           data-testid="shared-docker-push-copy-button"
           onClick={() => handleCopyPass(dockerPush)}
@@ -113,7 +113,7 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
           <Copy className="size-4" />
           <span className="sr-only">copy</span>
         </Button>
-        <pre className="p-4 bg-gray-100 rounded">
+        <pre className="p-4 bg-gray-100 rounded overflow-auto">
           <code>{dockerPush}</code>
         </pre>
       </div>

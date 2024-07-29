@@ -1,4 +1,4 @@
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import { mockedJobStatus } from './job';
 
 export const mockedNotebookSpec: ai.notebook.NotebookSpec = {
@@ -31,10 +31,6 @@ export const mockedNotebookStatus: ai.notebook.NotebookStatus = {
     {
       createdAt: 'createdAt',
       id: 'datasyncId',
-      spec: {
-        direction: ai.volume.DataSyncEnum.pull,
-        manual: true,
-      },
       status: {
         info: {
           code: ai.InfoCodeEnum.APP_RUNNING,

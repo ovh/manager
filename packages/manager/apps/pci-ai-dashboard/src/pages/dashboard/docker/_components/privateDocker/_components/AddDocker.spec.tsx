@@ -123,10 +123,6 @@ describe('AddDocker modal', () => {
   });
 
   it('renders addToken and refresh getRegistries after added', async () => {
-    const successMsg = {
-      description: 'formDockerToastSuccessDescription',
-      title: 'formDockerToastSuccessTitle',
-    };
     act(() => {
       fireEvent.click(screen.getByTestId('create-docker-button'));
     });

@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
 import { ModalController } from '@/hooks/useModale.hook';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import { useDeleteRegistry } from '@/hooks/api/ai/registry/useDeleteRegistry.hook';
 
 interface DeleteDockerModalProps {

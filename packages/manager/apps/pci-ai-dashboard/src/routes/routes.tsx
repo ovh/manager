@@ -54,6 +54,16 @@ export default [
               import('@/pages/dashboard/docker/Docker.page'),
             ),
           },
+          {
+            path: 'git-registries',
+            ...lazyRouteConfig(() => import('@/pages/dashboard/git/Git.page')),
+          },
+          {
+            path: 'datastore',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/datastore/Datastore.page'),
+            ),
+          },
         ],
       },
     ],
