@@ -16,6 +16,7 @@ export const SERVICE_TYPES = [
   'xdsl',
 ];
 
+export const VRACK_SERVICE = 'vrack';
 export const ADDITIONAL_IP = 'Additional IP';
 
 export const SERVICE_URL_DATA = {
