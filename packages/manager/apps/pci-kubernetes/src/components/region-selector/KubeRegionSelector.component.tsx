@@ -1,10 +1,10 @@
 import {
   RegionSelector,
   RegionSelectorProps,
+  useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { useProductAvailability } from '@/api/hooks/useAvailability';
 
 export interface KubeRegionSelectorProps {
   projectId: string;
