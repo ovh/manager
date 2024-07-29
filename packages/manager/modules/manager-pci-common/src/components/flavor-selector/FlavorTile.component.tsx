@@ -1,3 +1,4 @@
+import React from 'react';
 import { OsdsChip, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
