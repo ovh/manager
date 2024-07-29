@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { TOKEN_CONFIG } from './token.constant';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export interface UseTokenFormProps {
   regions: ai.capabilities.Region[];

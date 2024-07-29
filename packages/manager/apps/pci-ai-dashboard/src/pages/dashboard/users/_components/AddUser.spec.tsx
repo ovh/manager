@@ -10,7 +10,7 @@ import Users from '@/pages/dashboard/users/Users.page';
 import { Locale } from '@/hooks/useLocale.hook';
 import * as usersApi from '@/data/api/user/user.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
+import { mockedUser, mockedUserDetails } from '@/__tests__/helpers/mocks/user';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -32,7 +32,7 @@ describe('AddUser modal', () => {
     });
     vi.mock('@/data/api/user/user.api', () => ({
       getUsers: vi.fn(() => [mockedUser]),
-      addUser: vi.fn(() => mockedUser),
+      addUser: vi.fn(() => mockedUserDetails),
     }));
     vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
       const mod = await importOriginal<

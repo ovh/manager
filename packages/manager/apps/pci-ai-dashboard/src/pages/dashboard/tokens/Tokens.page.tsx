@@ -7,14 +7,15 @@ import Guides from '@/components/guides/Guides.component';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
 import { useGetTokens } from '@/hooks/api/ai/token/useGetTokens.hook';
-import { ai } from '@/types/ai';
-import { GuideSections } from '@/types/guide';
+import * as ai from '@/types/cloud/project/ai';
 import { getColumns } from './_components/TokensTableColumns.component';
 import AddToken from './_components/AddToken.component';
 import { useModale } from '@/hooks/useModale.hook';
 import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
 import DeleteToken from './_components/DeleteToken.component';
 import RenewToken from './_components/RenewToken.component';
+import { POLLING } from '@/configuration/polling';
+import { GuideSections } from '@/configuration/guide';
 
 export function breadcrumb() {
   return (
@@ -31,7 +32,9 @@ const Tokens = () => {
   const addModale = useModale('add');
   const deleteModale = useModale('delete');
   const renewModale = useModale('renew');
-  const tokenQuery = useGetTokens(projectId);
+  const tokenQuery = useGetTokens(projectId, {
+    refetchInterval: POLLING.TOKEN,
+  });
   const regionsQuery = useGetRegions(projectId);
   const columns: ColumnDef<ai.token.Token>[] = getColumns({
     onRegenerateClick: (token: ai.token.Token) => renewModale.open(token.id),

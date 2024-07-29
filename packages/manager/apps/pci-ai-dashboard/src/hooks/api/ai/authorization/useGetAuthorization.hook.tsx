@@ -3,6 +3,7 @@ import {
   UseQueryResult,
   useQuery,
 } from '@tanstack/react-query';
+import * as ai from '@/types/cloud/project/ai';
 
 import { getAuthorization } from '@/data/api/ai/authorization.api';
 
@@ -15,5 +16,5 @@ export function useGetAuthorization(
     queryKey,
     queryFn: () => getAuthorization({ projectId }),
     ...options,
-  }) as UseQueryResult<boolean, Error>;
+  }) as UseQueryResult<ai.AuthorizationStatus, Error>;
 }

@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Copy } from 'lucide-react';
 import { ModalController } from '@/hooks/useModale.hook';
-import { user } from '@/types/user';
+import * as user from '@/types/cloud/user';
+import * as ai from '@/types/cloud/project/ai';
 import { useUserForm } from './useUserForm.hook';
 import { useToast } from '@/components/ui/use-toast';
 import { MutateUserProps, useAddUser } from '@/hooks/api/user/useAddUser.hook';
@@ -37,7 +38,7 @@ import { Alert } from '@/components/ui/alert';
 
 interface AddUserModalProps {
   controller: ModalController;
-  onSuccess?: (user?: user.User) => void;
+  onSuccess?: (user?: user.UserDetail) => void;
   onError?: (error: Error) => void;
   onClose?: () => void;
 }
@@ -90,7 +91,7 @@ const AddUser = ({
   const { addUser, isPending } = useAddUser(AddUserMutationProps);
 
   const onSubmit = form.handleSubmit((formValues) => {
-    const userCreation: user.UserCreation = {
+    const userCreation = {
       description: formValues.description,
       role: formValues.userRole,
     };
@@ -189,7 +190,7 @@ const AddUser = ({
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          {Object.values(user.AIUserRoleEnum).map((option) => (
+                          {Object.values(ai.TokenRoleEnum).map((option) => (
                             <SelectItem key={option} value={option}>
                               {t(option)}
                             </SelectItem>

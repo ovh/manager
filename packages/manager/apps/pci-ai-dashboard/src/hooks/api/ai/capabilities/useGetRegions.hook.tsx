@@ -4,7 +4,7 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import { getRegions } from '@/data/api/ai/capabilities.api';
 
 export function useGetRegions(

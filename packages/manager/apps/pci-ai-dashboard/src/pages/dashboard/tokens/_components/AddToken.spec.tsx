@@ -152,7 +152,7 @@ describe('AddToken modal', () => {
       fireEvent.click(screen.getByTestId('token-close-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('token-user-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('add-token-modal')).not.toBeInTheDocument();
     });
   });
 });

@@ -31,7 +31,7 @@ import {
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Alert } from '@/components/ui/alert';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import { useTokenForm } from './tokensForm/useTokenForm.hook';
 import {
   AddRenewMutateTokenProps,
@@ -134,7 +134,7 @@ const AddToken = ({
           <div>
             <Alert variant="success">
               <p>{t('formTokenSuccess')}</p>
-              <div className="relative my-2">
+              <div className="relative my-2 rounded bg-gray-100">
                 <Button
                   data-testid="token-copy-button"
                   onClick={() => handleCopyPass()}
