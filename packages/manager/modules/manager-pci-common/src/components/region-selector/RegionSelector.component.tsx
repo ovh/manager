@@ -1,3 +1,4 @@
+import React from 'react';
 import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_SPINNER_SIZE,
