@@ -80,12 +80,15 @@ const Cli = ({ regions }: CliProps) => {
       <h5>{t('cliAuthentificationTitle')}</h5>
       <span>
         {t('cliParagraphe3')}
-        <Link to={userLink}>{t('cliUserLink')}</Link>
+        <Link className="mx-1" to={userLink}>
+          {t('cliUserLink')}
+        </Link>
         {t('cliParagraphe3Bis')}
-        <Link to={tokenLink}>{t('cliTokenLink')}</Link>
-        <p>{t('cliParagraphe3Ter')}</p>
+        <Link className="mx-1" to={tokenLink}>
+          {t('cliTokenLink')}
+        </Link>
+        {t('cliParagraphe3Ter')}
       </span>
-      <span></span>
       <p>{t('cliParagraphe4')}</p>
       <ul className="list-disc pl-8">
         <li>
@@ -99,10 +102,10 @@ const Cli = ({ regions }: CliProps) => {
         <li>{t('cliList4')}</li>
       </ul>
       <h5>{t('cliCommandsTitle')}</h5>
-      <div className="flex flex-row gap-1">
-        <p>{t('cliCommandParagraphe1')}</p>
-        <p className="text-red-600">ovhai --help</p>
-        <p>{t('cliCommandParagraphe1Bis')}</p>
+      <div className="inline">
+        <span>{t('cliCommandParagraphe1')}</span>
+        <span className="text-red-600 inline"> ovhai --help </span>
+        <span>{t('cliCommandParagraphe1Bis')}</span>
       </div>
     </div>
   );

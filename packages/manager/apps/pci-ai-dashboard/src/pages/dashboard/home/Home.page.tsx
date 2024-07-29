@@ -1,7 +1,12 @@
 import { useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
-import { Activity, CircleDollarSign, TerminalSquare } from 'lucide-react';
+import {
+  Activity,
+  BrainCircuit,
+  CircleDollarSign,
+  TerminalSquare,
+} from 'lucide-react';
 import storeImage from '@/../public/assets/stock.png';
 import exploreImage from '@/../public/assets/explore.png';
 import trainImage from '@/../public/assets/train.png';
@@ -15,6 +20,7 @@ import Cli from './_components/Cli.component';
 import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Billing from './_components/Billing.components';
+import Onboarding from './_components/Onboarding.component';
 
 export default function Home() {
   const { projectId } = useParams();
@@ -26,8 +32,10 @@ export default function Home() {
   const jobsPath = `projects/${projectId}/ai/jobs`;
   const appsPath = `projects/${projectId}/ai/apps`;
 
-  const isOnbording: boolean = !notebooks && !jobs && !apps;
+  const isOnbording: boolean =
+    notebooks.length === 0 && jobs.length === 0 && apps.length === 0;
 
+  console.log(notebooks);
   return (
     <>
       <div className="float-right pr-2 pt-2">
@@ -35,19 +43,26 @@ export default function Home() {
       </div>
       <Card data-testid="product-life-card">
         <CardHeader>
-          <div className="flex flex-row items-center">
-            <Activity className="size-4 inline mr-2" />
-            <h4>{t('serviceTitle')}</h4>
-          </div>
+          {isOnbording ? (
+            <div className="flex flex-row items-center">
+              <BrainCircuit className="size-4 inline mr-2" />
+              <h4>{t('onboardingTitle')}</h4>
+            </div>
+          ) : (
+            <div className="flex flex-row items-center">
+              <Activity className="size-4 inline mr-2" />
+              <h4>{t('serviceTitle')}</h4>
+            </div>
+          )}
         </CardHeader>
         <CardContent>
-          <div className="flex flex-row justify-around">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 content-end">
             <ProductInformations
               img={storeImage}
               link={objectStoragePath}
               title={t('store-title')}
               productName={t('object-storage-title')}
-              showConsumptionInfos={isOnbording}
+              showConsumptionInfos={false}
             />
             <ProductInformations
               img={exploreImage}
@@ -111,34 +126,36 @@ export default function Home() {
           </div>
         </CardContent>
       </Card>
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="w-full md:w-2/3">
-          <Card>
-            <CardHeader>
-              <div className="flex flex-row items-center">
-                <TerminalSquare className="size-4 inline mr-2" />
-                <h4>{t('cliTitle')}</h4>
-              </div>
-            </CardHeader>
-            <CardContent>
-              {regionQuery.isSuccess && <Cli regions={regionQuery.data} />}
-            </CardContent>
-          </Card>
+      {isOnbording ? (
+        <Onboarding />
+      ) : (
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="w-full md:w-2/3">
+            <Card>
+              <CardHeader>
+                <div className="flex flex-row items-center">
+                  <TerminalSquare className="size-4 inline mr-2" />
+                  <h4>{t('cliTitle')}</h4>
+                </div>
+              </CardHeader>
+              <CardContent>
+                {regionQuery.isSuccess && <Cli regions={regionQuery.data} />}
+              </CardContent>
+            </Card>
+          </div>
+          <div className="w-full md:w-1/3">
+            <Card>
+              <CardHeader>
+                <div className="flex flex-row items-center">
+                  <CircleDollarSign className="size-4 inline mr-2" />
+                  <h4>{t('billingTitle')}</h4>
+                </div>
+              </CardHeader>
+              <CardContent>{!isOnbording && <Billing />}</CardContent>
+            </Card>
+          </div>
         </div>
-        <div className="w-full md:w-1/3">
-          <Card>
-            <CardHeader>
-              <div className="flex flex-row items-center">
-                <CircleDollarSign className="size-4 inline mr-2" />
-                <h4>{t('billingTitle')}</h4>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <Billing />
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+      )}
     </>
   );
 }

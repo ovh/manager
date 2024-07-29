@@ -27,13 +27,6 @@ describe('Authorization functions', () => {
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/authorization',
-      {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': '50000',
-          Pragma: 'no-cache',
-        },
-      },
     );
   });
 });

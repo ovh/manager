@@ -23,6 +23,8 @@ export default defineConfig({
         'src/query.client.ts',
         'src/components/ui',
         'src/configuration',
+        'src/data/api/api.type.ts',
+        'src/react-app-env.d.ts',
       ],
     },
   },
