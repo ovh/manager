@@ -5,11 +5,11 @@ import storeImage from '@/../public/assets/stock.png';
 import exploreImage from '@/../public/assets/explore.png';
 import trainImage from '@/../public/assets/train.png';
 import deployImage from '@/../public/assets/serve.png';
-import Onboarding from '@/pages/dashboard/home/_components/onboarding.component';
-import { useDashboardData } from '../dashboard.layout';
-import ProductInformations from './_components/productInformations.component';
+
+import ProductInformations from './_components/ProductInformations.component';
 import { ai } from '@/types/ai';
 import Guides from '@/components/guides/Guides.component';
+import { useDashboardData } from '../Dashboard.context';
 
 export default function Home() {
   const { projectId } = useParams();

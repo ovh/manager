@@ -1,8 +1,6 @@
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import OvhLink from '@/components/links/OvhLink.component';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 
 interface ProductInformationsProps {
   img: string;

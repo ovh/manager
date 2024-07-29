@@ -6,3 +6,7 @@ export interface Guide {
   excerpt: string;
   url: string;
 }
+
+export enum GuideSections {
+  'users' = 'utilisateurs',
+}

@@ -1,3 +1,12 @@
 {
-  "title": "AI Dashboard"
+  "title": "AI Dashboard",
+  "paragraphe1": "L'intelligence artificielle (IA) sonne souvent comme une technologie réservée aux initiés. Chez OVHcloud, nous sommes convaincus de l'incroyable potentiel de cette pratique dans chaque secteur d'activité. Nous concentrons donc nos efforts pour fournir des outils capables de résoudre les défis auxquels font face les organisations : traitement de données, exploration, entraînement et déploiement de modèles... Notre but : rendre l'utilisation du Machine Learning simple pour tous les profils d'utilisateurs.",
+  "paragraphe2": "Découvrez l'ensemble de notre offre AI Tools !",
+  "linkPrice": "Voir les prix du service",
+  "homeTab": "Tableau de bord",
+  "usersTab": "Utilisateurs",
+  "tokensTab": "Tokens",
+  "dockerRegistriesTab": "Docker registries",
+  "githubRegistriesTab": "Github registries",
+  "datastoreTab": "Datastores"
 }

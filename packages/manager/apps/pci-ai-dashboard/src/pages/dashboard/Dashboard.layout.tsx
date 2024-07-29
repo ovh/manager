@@ -1,27 +1,11 @@
-import { Outlet, useOutletContext, useParams } from 'react-router-dom';
-import { DashboardHeader } from './_components/dashboardHeader.component';
-import DashboardTabs from './_components/dashboardTabs.component';
+import { Outlet, useParams } from 'react-router-dom';
+import { DashboardHeader } from './_components/DashboardHeader.component';
+import DashboardTabs from './_components/DashboardTabs.component';
 import { useGetNotebooks } from '@/hooks/api/ai/notebook/useGetNotebooks.hook';
 import { useGetJobs } from '@/hooks/api/ai/job/useGetJobs.hook';
 import { useGetApps } from '@/hooks/api/ai/app/useGetApps.hook';
-import { ai } from '@/types/ai';
 import { POLLING } from '@/configuration/polling';
-
-type DashboardLayoutContext = {
-  notebooks: ai.notebook.Notebook[];
-  jobs: ai.job.Job[];
-  apps: ai.app.App[];
-};
-
-export function useDashboardData() {
-  const { projectId } = useParams();
-  const {
-    notebooks,
-    jobs,
-    apps,
-  } = useOutletContext() as DashboardLayoutContext;
-  return { projectId, notebooks, jobs, apps };
-}
+import { DashboardLayoutContext } from './Dashboard.context';
 
 export default function DashboardLayout() {
   const { projectId } = useParams();
