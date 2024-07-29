@@ -1,4 +1,4 @@
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export const mockedAppSpec: ai.app.AppSpec = {
   command: ['command'],
@@ -30,10 +30,6 @@ export const mockedAppStatus: ai.app.AppStatus = {
     {
       createdAt: 'createdAt',
       id: 'datasyncId',
-      spec: {
-        direction: ai.volume.DataSyncEnum.pull,
-        manual: true,
-      },
       status: {
         info: {
           code: ai.InfoCodeEnum.APP_RUNNING,

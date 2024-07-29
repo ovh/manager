@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import { PCIAi } from '..';
 
 export const getRegions = async ({ projectId }: PCIAi) =>

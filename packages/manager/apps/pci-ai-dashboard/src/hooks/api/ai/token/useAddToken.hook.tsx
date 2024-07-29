@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { AIError } from '@/data/api';
 import { AddTokenProps, addToken } from '@/data/api/ai/token.api';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export interface AddRenewMutateTokenProps {
   onError: (cause: AIError) => void;

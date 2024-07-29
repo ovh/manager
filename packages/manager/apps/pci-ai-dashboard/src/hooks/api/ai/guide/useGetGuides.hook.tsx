@@ -4,7 +4,7 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import { getGuides } from '@/data/api/ai/guide.api';
-import { Guide } from '@/types/guide';
+import * as ai from '@/types/cloud/project/ai';
 
 export function useGetGuides(
   projectId: string,
@@ -22,5 +22,5 @@ export function useGetGuides(
         lang,
       }),
     ...options,
-  }) as UseQueryResult<Guide[], Error>;
+  }) as UseQueryResult<ai.Guide[], Error>;
 }

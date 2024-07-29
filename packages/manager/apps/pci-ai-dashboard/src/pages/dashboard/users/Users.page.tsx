@@ -6,12 +6,14 @@ import OvhLink from '@/components/links/OvhLink.component';
 import { Button } from '@/components/ui/button';
 import { POLLING } from '@/configuration/polling';
 import { useGetUsers } from '@/hooks/api/user/useGetUsers.hook';
-import { user } from '@/types/user';
+import * as user from '@/types/cloud/user';
+import * as role from '@/types/cloud/role';
+import * as ai from '@/types/cloud/project/ai';
 import { useModale } from '@/hooks/useModale.hook';
 import AddUser from './_components/AddUser.component';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
-import { GuideSections } from '@/types/guide';
+import { GuideSections } from '@/configuration/guide';
 
 export function breadcrumb() {
   return (
@@ -31,7 +33,6 @@ const Users = () => {
   });
   const queryClient = useQueryClient();
   const userPath = `#/pci/project/${projectId}/users`;
-
   return (
     <>
       <div className="float-right">
@@ -57,9 +58,9 @@ const Users = () => {
             {t('manageButtonLabel', {
               number: userQuery.data?.filter((us: user.User) =>
                 us.roles.find(
-                  (role: user.Role) =>
-                    role.name === user.AIUserRoleEnum.ai_training_operator ||
-                    role.name === user.AIUserRoleEnum.ai_training_read,
+                  (aiRole: role.Role) =>
+                    aiRole.name === ai.TokenRoleEnum.ai_training_operator ||
+                    aiRole.name === ai.TokenRoleEnum.ai_training_read,
                 ),
               ).length,
             })}

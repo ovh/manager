@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { USER_CONFIG } from './users.constants';
-import { user } from '@/types/user';
+import * as ai from '@/types/cloud/project/ai';
 
 export const useUserForm = () => {
   const { t } = useTranslation('pci-ai-dashboard/users');
@@ -21,7 +21,7 @@ export const useUserForm = () => {
       }),
     });
 
-  const userRoleRules = z.nativeEnum(user.AIUserRoleEnum);
+  const userRoleRules = z.nativeEnum(ai.TokenRoleEnum);
 
   const schema = z.object({
     description: descriptionRules,
@@ -32,11 +32,11 @@ export const useUserForm = () => {
 
   const defaultValues: ValidationSchema = {
     description: '',
-    userRole: user.AIUserRoleEnum.ai_training_operator,
+    userRole: ai.TokenRoleEnum.ai_training_operator,
   };
 
   const form = useForm<ValidationSchema>({
-    // resolver: zodResolver(schema),
+    resolver: zodResolver(schema),
     defaultValues,
   });
 

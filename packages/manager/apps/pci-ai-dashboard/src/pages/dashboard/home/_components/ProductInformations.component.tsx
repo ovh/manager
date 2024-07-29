@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import OvhLink from '@/components/links/OvhLink.component';
 import { Badge } from '@/components/ui/badge';
 
@@ -21,6 +22,7 @@ export default function ProductInformations({
   active,
   stopped,
 }: ProductInformationsProps) {
+  const { t } = useTranslation('pci-ai-dashboard/home');
   return (
     <>
       <div className="flex flex-col items-center">
@@ -34,8 +36,16 @@ export default function ProductInformations({
 
         {showConsumptionInfos && (
           <div className="flex flew-row font-semibold gap-2 mt-2">
-            <Badge variant="success">{active} in service</Badge>
-            <Badge variant="warning">{stopped} stopped</Badge>
+            <Badge variant="success">
+              {t('ai-product-active', {
+                number: active,
+              })}
+            </Badge>
+            <Badge variant="warning">
+              {t('ai-product-stopped', {
+                number: stopped,
+              })}
+            </Badge>
           </div>
         )}
       </div>

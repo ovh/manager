@@ -1,5 +1,5 @@
 import { useOutletContext, useParams } from 'react-router-dom';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export type DashboardLayoutContext = {
   notebooks: ai.notebook.Notebook[];

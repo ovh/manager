@@ -1,4 +1,5 @@
-import { ai } from '@/types/ai';
+import { DataStoresWithRegion } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
+import * as ai from '@/types/cloud/project/ai';
 
 export const mockedDatastoreInput: ai.DataStoreInput = {
   alias: 'datastoreAlias',
@@ -29,4 +30,20 @@ export const mockedDatastoreAuth: ai.DataStoreAuth = {
   secretKey: 'secretKey',
   token: 'token',
   url: 'url',
+};
+
+export const mockedDatastoreWithRegion: DataStoresWithRegion = {
+  alias: 'alias',
+  endpoint: 'endpoint',
+  owner: ai.DataStoreOwnerEnum.customer,
+  type: ai.DataStoreTypeEnum.s3,
+  region: 'GRA',
+};
+
+export const mockedGitWithRegion: DataStoresWithRegion = {
+  alias: 'alias',
+  endpoint: 'endpoint',
+  owner: ai.DataStoreOwnerEnum.customer,
+  type: ai.DataStoreTypeEnum.git,
+  region: 'GRA',
 };

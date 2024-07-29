@@ -5,7 +5,7 @@ import {
 } from '@tanstack/react-query';
 
 import { getNotebooks } from '@/data/api/ai/notebook.api';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export function useGetNotebooks(
   projectId: string,

@@ -8,5 +8,5 @@
   "tokensTab": "Tokens",
   "dockerRegistriesTab": "Docker registries",
   "githubRegistriesTab": "Github registries",
-  "datastoreTab": "Datastores"
+  "datastoreTab": "Datastores S3"
 }

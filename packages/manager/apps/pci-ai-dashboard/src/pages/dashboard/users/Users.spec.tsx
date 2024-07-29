@@ -17,7 +17,6 @@ describe('Users page', () => {
     }));
     vi.mock('@/data/api/user/user.api', () => ({
       getUsers: vi.fn(() => [mockedUser]),
-      addUser: vi.fn((user) => user),
     }));
     vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
       const mod = await importOriginal<

@@ -5,6 +5,8 @@ import Layout, { breadcrumb as Breadcrumb, Loader } from '@/pages/Root.layout';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as projectAPI from '@/data/api/project/project.api';
 import * as authAPI from '@/data/api/ai/authorization.api';
+import { mockedAuthorization } from '@/__tests__/helpers/mocks/authorization';
+import * as ai from '@/types/cloud/project/ai';
 
 const breadCrumbParam = {
   params: {
@@ -37,7 +39,7 @@ describe('Dashboard Layout', () => {
       };
     });
     vi.mock('@/data/api/ai/authorization.api', () => ({
-      getAuthorization: vi.fn(() => true),
+      getAuthorization: vi.fn(() => mockedAuthorization),
     }));
   });
   afterEach(() => {
@@ -71,7 +73,10 @@ describe('Dashboard Layout', () => {
   });
 
   it('renders the Layout component and display auth page', async () => {
-    vi.mocked(authAPI.getAuthorization).mockResolvedValueOnce(false);
+    const noAut: ai.AuthorizationStatus = {
+      authorized: false,
+    };
+    vi.mocked(authAPI.getAuthorization).mockResolvedValueOnce(noAut);
     render(<Layout />, {
       wrapper: RouterWithQueryClientWrapper,
     });

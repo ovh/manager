@@ -1,6 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { PCIAi } from '..';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export const getApps = async ({ projectId }: PCIAi) =>
   apiClient.v6

@@ -1,4 +1,4 @@
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export const mockedTokenCreation: ai.token.TokenSpec = {
   labelSelector: 'labelSelector',
@@ -8,16 +8,17 @@ export const mockedTokenCreation: ai.token.TokenSpec = {
 };
 
 export const mockedToken: ai.token.Token = {
-  createdAt: 'createdAt',
+  createdAt: '1989/04/08',
   id: 'id',
-  spec: {
-    name: 'tokenSpec',
-    region: 'tokenRegion',
-    role: ai.TokenRoleEnum.ai_training_operator,
-  },
   status: {
     value: 'value',
     version: 4,
   },
-  updatedAt: 'updatedAt',
+  spec: {
+    labelSelector: 'labelSelector',
+    name: 'tokenName',
+    region: 'GRA',
+    role: ai.TokenRoleEnum.ai_training_operator,
+  },
+  updatedAt: '1989/04/08',
 };

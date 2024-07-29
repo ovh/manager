@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { AIError } from '@/data/api';
 import { AddDatastoreProps, addDatastore } from '@/data/api/ai/datastore.api';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export interface AddEditMutateDatastoreProps {
   onError: (cause: AIError) => void;
