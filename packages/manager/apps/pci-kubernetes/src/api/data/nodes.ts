@@ -32,7 +32,12 @@ export const getNodes = async (
   return items.map((item) => ({
     ...item,
     formattedFlavor: item.flavor,
-    // TODO
     billingType: '',
   }));
 };
+
+export const deleteNode = async (
+  projectId: string,
+  clusterId: string,
+  nodeId: string,
+) => v6.delete(`/cloud/project/${projectId}/kube/${clusterId}/node/${nodeId}`);

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useMemo, useRef, useState } from 'react';
 import {
   ODS_BUTTON_SIZE,
@@ -28,6 +28,7 @@ import {
   Datagrid,
   FilterAdd,
   FilterList,
+  Notifications,
   useColumnFilters,
   useDataGrid,
 } from '@ovhcloud/manager-components';
@@ -75,6 +76,7 @@ export default function NodesPage(): JSX.Element {
       >
         {pool?.name}
       </OsdsText>
+      <Notifications />
       <p>
         <OsdsText
           color={ODS_TEXT_COLOR_INTENT.text}
@@ -86,7 +88,6 @@ export default function NodesPage(): JSX.Element {
           })}
         </OsdsText>
       </p>
-      {/**/}
       <div className="sm:flex items-center justify-between mt-4">
         <div className="flex flex-row">
           <OsdsButton
@@ -199,6 +200,8 @@ export default function NodesPage(): JSX.Element {
           />
         </div>
       )}
+
+      <Outlet />
     </>
   );
 }
