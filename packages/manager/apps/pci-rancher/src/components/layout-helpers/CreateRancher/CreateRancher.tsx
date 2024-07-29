@@ -251,7 +251,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         </div>
         <div className="max-w-3xl">
           <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-            {t('createRancherServiceLevelDescription')}
+            <Trans>{t('createRancherServiceLevelDescription')}</Trans>
           </OsdsText>
         </div>
         <div className="flex my-5">
