@@ -1,4 +1,4 @@
-export const LOCAL_ZONE_INFO_URL = {
+export const LOCAL_ZONE_INFO_URL: Record<string, string> = {
   DEFAULT: 'https://ovhcloud.com/en/public-cloud/local-zone-compute/',
   ASIA: 'https://ovhcloud.com/asia/public-cloud/local-zone-compute/',
   DE: 'https://ovhcloud.com/de/public-cloud/local-zone-compute/',
@@ -22,7 +22,7 @@ export const LOCAL_ZONE_INFO_URL = {
   US: 'https://us.ovhcloud.com/public-cloud/local-zone-compute/',
 };
 
-export const GLOBAL_REGIONS_INFO_URL = {
+export const GLOBAL_REGIONS_INFO_URL: Record<string, string> = {
   DEFAULT: 'https://ovhcloud.com/en/public-cloud/compute/',
   ASIA: 'https://ovhcloud.com/asia/public-cloud/compute/',
   DE: 'https://ovhcloud.com/de/public-cloud/compute/',

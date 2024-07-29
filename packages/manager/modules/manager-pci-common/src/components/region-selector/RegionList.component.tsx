@@ -1,3 +1,4 @@
+import React from 'react';
 import { OsdsTile } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
 import { TLocalisation } from './useRegions';
