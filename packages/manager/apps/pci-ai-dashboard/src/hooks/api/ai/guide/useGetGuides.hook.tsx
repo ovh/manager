@@ -12,7 +12,7 @@ export function useGetGuides(
   lang?: string,
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
-  const queryKey = [projectId, 'ai', 'guides'];
+  const queryKey = [projectId, 'ai', 'guides', section];
   return useQuery({
     queryKey,
     queryFn: () =>
