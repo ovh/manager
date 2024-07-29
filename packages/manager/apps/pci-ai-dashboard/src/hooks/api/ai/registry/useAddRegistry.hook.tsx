@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { AIError } from '@/data/api';
 import { AddRegistryProps, addRegistry } from '@/data/api/ai/registry.api';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export interface AddEditMutateRegistryProps {
   onError: (cause: AIError) => void;
