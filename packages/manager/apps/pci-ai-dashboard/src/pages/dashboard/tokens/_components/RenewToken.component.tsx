@@ -16,7 +16,7 @@ import {
 import { useToast } from '@/components/ui/use-toast';
 
 import { ModalController } from '@/hooks/useModale.hook';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import { useRenewToken } from '@/hooks/api/ai/token/useRenewToken.hook';
 import { Alert } from '@/components/ui/alert';
 
@@ -100,7 +100,7 @@ const RenewToken = ({
           <div>
             <Alert variant="success">
               <p>{t('renewTokenSuccess')}</p>
-              <div className="relative my-2">
+              <div className="relative my-2 rounded bg-gray-100">
                 <Button
                   data-testid="renew-token-copy-button"
                   onClick={() => handleCopyPass()}

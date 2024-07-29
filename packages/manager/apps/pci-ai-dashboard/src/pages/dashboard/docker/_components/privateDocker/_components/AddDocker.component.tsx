@@ -29,7 +29,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import { useDockerForm } from './useDockerForm.hook';
 import {
   AddEditMutateRegistryProps,
@@ -90,7 +90,7 @@ const AddDocker = ({
   const { addRegistry, isPending } = useAddRegistry(AddDockerMutationProps);
 
   const onSubmit = form.handleSubmit((formValues) => {
-    const registryCreation: ai.registry.RegistryCreation = {
+    const registryCreation = {
       region: formValues.region,
       username: formValues.username,
       url: formValues.url,

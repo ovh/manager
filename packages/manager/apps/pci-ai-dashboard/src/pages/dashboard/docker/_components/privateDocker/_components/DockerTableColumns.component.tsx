@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 
 interface DockerTableColumnsProps {

@@ -4,7 +4,7 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import { getUsers } from '@/data/api/user/user.api';
-import { user } from '@/types/user';
+import * as user from '@/types/cloud/user';
 
 export function useGetUsers(
   projectId: string,

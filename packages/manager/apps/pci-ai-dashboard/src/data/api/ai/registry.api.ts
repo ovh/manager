@@ -1,6 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { PCIAi } from '..';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export const getRegistries = async ({ projectId }: PCIAi) =>
   apiClient.v6
@@ -14,7 +14,12 @@ export const getRegistries = async ({ projectId }: PCIAi) =>
     .then((res) => res.data as ai.registry.Registry[]);
 
 export interface AddRegistryProps extends PCIAi {
-  registry: ai.registry.RegistryCreation;
+  registry: {
+    password: string;
+    region: string;
+    url: string;
+    username: string;
+  };
 }
 export const addRegistry = async ({ projectId, registry }: AddRegistryProps) =>
   apiClient.v6
@@ -23,7 +28,7 @@ export const addRegistry = async ({ projectId, registry }: AddRegistryProps) =>
 
 export interface EditRegistryProps extends PCIAi {
   registryId: string;
-  registry: ai.registry.RegistryEdition;
+  registry: ai.registry.RegistryUpdateInput;
 }
 export const editRegistry = async ({
   projectId,

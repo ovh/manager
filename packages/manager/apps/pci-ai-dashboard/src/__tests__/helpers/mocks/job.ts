@@ -1,4 +1,4 @@
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export const mockedJobSpec: ai.job.JobSpec = {
   image: 'image',
@@ -19,10 +19,6 @@ export const mockedJobStatus: ai.job.JobStatus = {
     {
       createdAt: 'createdAt',
       id: 'datasyncId',
-      spec: {
-        direction: ai.volume.DataSyncEnum.pull,
-        manual: true,
-      },
       status: {
         info: {
           code: ai.InfoCodeEnum.APP_RUNNING,

@@ -29,7 +29,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import { useDatastoreForm } from './useDatastoreForm.hook';
 import {
   AddEditMutateDatastoreProps,

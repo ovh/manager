@@ -5,10 +5,11 @@ import { useGetTokens } from '@/hooks/api/ai/token/useGetTokens.hook';
 import { useGetUsers } from '@/hooks/api/user/useGetUsers.hook';
 import { useGetRegistries } from '@/hooks/api/ai/registry/useGetRegistries.hook';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
-import { user } from '@/types/user';
+import * as user from '@/types/cloud/user';
 import { POLLING } from '@/configuration/polling';
 import { useGetDatastoresWithRegions } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
+import * as role from '@/types/cloud/role';
 import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
 
 const DashboardTabs = () => {
@@ -46,9 +47,9 @@ const DashboardTabs = () => {
       count:
         users?.filter((us: user.User) =>
           us.roles.find(
-            (role: user.Role) =>
-              role.name === user.AIUserRoleEnum.ai_training_operator ||
-              role.name === user.AIUserRoleEnum.ai_training_read,
+            (aiRole: role.Role) =>
+              aiRole.name === ai.TokenRoleEnum.ai_training_operator ||
+              aiRole.name === ai.TokenRoleEnum.ai_training_read,
           ),
         ).length || 0,
     },
@@ -63,9 +64,10 @@ const DashboardTabs = () => {
       count: registries?.length || 0,
     },
     {
-      href: 'git',
+      href: 'git-registries',
       label: t('githubRegistriesTab'),
-      count: registries?.length || 0,
+      count: datastores?.filter((ds) => ds.type === ai.DataStoreTypeEnum.git)
+        .length,
     },
     {
       href: 'datastore',

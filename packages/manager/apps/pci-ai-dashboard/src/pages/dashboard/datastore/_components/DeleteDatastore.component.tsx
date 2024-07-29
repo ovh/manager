@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
 import { ModalController } from '@/hooks/useModale.hook';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import { useDeleteDatastore } from '@/hooks/api/ai/datastore/useDeleteDatastore.hook';
 import { DataStoresWithRegion } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
 
