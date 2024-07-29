@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Links, LinkType } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -25,7 +25,8 @@ export function RegionLocalzoneChip() {
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const getDocumentUrl = (linkType: string) =>
-    URL_INFO[linkType][ovhSubsidiary] || URL_INFO[linkType].DEFAULT;
+    URL_INFO[linkType as keyof typeof URL_INFO][ovhSubsidiary] ||
+    URL_INFO[linkType as keyof typeof URL_INFO].DEFAULT;
 
   return (
     <OsdsPopover>
