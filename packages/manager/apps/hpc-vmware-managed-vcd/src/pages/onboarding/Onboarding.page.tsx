@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovhcloud/manager-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
-import onboardingImgSrc from './onboarding-img.png';
+import vmwareBroadcomOVHCloud from '@/assets/VmwareBroadcomxOVHcloud.svg';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
@@ -13,55 +13,61 @@ export default function Onboarding() {
     {
       id: 1,
       texts: {
-        title: t('guide1Title'),
-        description: t('guide1Description'),
-        category: t('guideCategory'),
+        title: t('managed_vcd_onboarding_guide1_title'),
+        description: t('managed_vcd_onboarding_guide1_description'),
+        category: t('managed_vcd_onboarding_guide1_category').toUpperCase(),
       },
       href: link?.guideLink1,
+      hrefLabel: null,
     },
     {
       id: 2,
       texts: {
-        title: t('guide2Title'),
-        description: t('guide2Description'),
-        category: t('guideCategory'),
+        title: t('managed_vcd_onboarding_guide2_title'),
+        description: t('managed_vcd_onboarding_guide2_description'),
+        category: t('managed_vcd_onboarding_guide2_category').toUpperCase(),
       },
       href: link?.guideLink2,
+      hrefLabel: t('managed_vcd_onboarding_guide2_link'),
     },
     {
       id: 3,
       texts: {
-        title: t('guide3Title'),
-        description: t('guide3Description'),
-        category: t('guideCategory'),
+        title: t('managed_vcd_onboarding_guide3_title'),
+        description: t('managed_vcd_onboarding_guide3_description'),
+        category: t('managed_vcd_onboarding_guide3_category').toUpperCase(),
       },
       href: link?.guideLink3,
+      hrefLabel: t('managed_vcd_onboarding_guide3_link'),
     },
   ];
 
-  const title: string = t('title');
-  const description: string = t('description');
+  const description: React.ReactNode = (
+    <>
+      <p>{t('managed_vcd_onboarding_description_part1')}</p>
+      {t('managed_vcd_onboarding_description_part2')}
+    </>
+  );
   const imgSrc = {
-    src: onboardingImgSrc,
+    src: vmwareBroadcomOVHCloud,
   };
 
   return (
     <div className="pt-8">
       <Breadcrumb />
       <OnboardingLayout
-        title={title}
+        title="Managed VMware Cloud Director"
         img={imgSrc}
         description={description}
-        orderButtonLabel={t('orderButtonLabel')}
-        orderHref={t('orderButtonLink')}
-        moreInfoButtonLabel={t('moreInfoButtonLabel')}
-        moreInfoHref={t('moreInfoButtonLink')}
       >
-        <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {tileList.map((tile) => (
-            <Card key={tile.id} href={tile.href} texts={tile.texts} />
-          ))}
-        </aside>
+        {tileList.map((tile) => (
+          <Card
+            key={tile.id}
+            href={tile.href}
+            texts={tile.texts}
+            hrefLabel={tile.hrefLabel}
+          />
+        ))}
       </OnboardingLayout>
     </div>
   );
