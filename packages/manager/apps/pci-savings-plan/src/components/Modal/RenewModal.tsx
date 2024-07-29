@@ -13,7 +13,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { SavingsPlanPlanedChangeStatus } from '@/types/api.type';
 
-type TDeleteModal = {
+type TRenewModal = {
   periodEndAction: SavingsPlanPlanedChangeStatus;
   onClose: () => void;
   onConfirm: () => void;
@@ -23,8 +23,9 @@ export default function RenewModal({
   periodEndAction,
   onClose,
   onConfirm,
-}: Readonly<TDeleteModal>) {
+}: Readonly<TRenewModal>) {
   const { t } = useTranslation('renew');
+
   return (
     <OsdsModal headline={t('title')} onOdsModalClose={onClose}>
       <slot name="content">
@@ -47,7 +48,6 @@ export default function RenewModal({
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={onClose}
-        data-testid="deleteModal-button_cancel"
       >
         {t('buttons_cancel')}
       </OsdsButton>

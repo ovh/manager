@@ -41,22 +41,13 @@ export const Routes = [
               },
             },
           },
-        ],
-      },
-      {
-        path: urls.dashboard,
-        ...lazyRouteConfig(() => import('@/pages/dashboard')),
-        children: [
           {
-            id: 'dashboard',
-            path: '',
-            ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/general-informations'),
-            ),
+            path: ':savingsPlanId/edit-name',
+            ...lazyRouteConfig(() => import('@/pages/listing/edit-name')),
             handle: {
               tracking: {
-                pageName: 'dashboard',
-                pageType: PageType.dashboard,
+                pageName: 'edit-name',
+                pageType: PageType.popup,
               },
             },
           },

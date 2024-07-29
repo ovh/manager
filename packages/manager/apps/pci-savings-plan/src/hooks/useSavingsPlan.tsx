@@ -30,6 +30,20 @@ export const postSubscribedSavingsPlanChangePeriod = async (
   return data;
 };
 
+export const putSubscribedSavingsPlanEditName = async (
+  serviceId: number,
+  savingsPlanId: string,
+  displayName: string,
+): Promise<SavingsPlanService[]> => {
+  const { data } = await v6.put<SavingsPlanService[]>(
+    `/services/${serviceId}/savingsPlans/subscribed/${savingsPlanId}`,
+    {
+      displayName,
+    },
+  );
+  return data;
+};
+
 export const useServiceId = () => {
   const { projectId } = useParams();
   const { data: services } = useServices({
@@ -70,5 +84,22 @@ export const useSavingsPlanChangePeriod = (savingsPlanId: string) => {
         savingsPlanId,
         periodEndAction,
       ),
+  });
+};
+
+export const getMutationKeySPEditName = (
+  savingsPlanId: string,
+  serviceId: number,
+) => ['savings-plan', serviceId, 'edit-name', savingsPlanId];
+
+export const useSavingsPlanEditName = (savingsPlanId: string) => {
+  const { refetch } = useSavingsPlan();
+  const serviceId = useServiceId();
+
+  return useMutation({
+    onSuccess: () => refetch(),
+    mutationKey: getMutationKeySPEditName(savingsPlanId, serviceId),
+    mutationFn: ({ displayName }: { displayName: string }) =>
+      putSubscribedSavingsPlanEditName(serviceId, savingsPlanId, displayName),
   });
 };
