@@ -68,7 +68,7 @@ export default function Layout() {
   const { projectId } = useParams();
   const authorizationQuery = useGetAuthorization(projectId);
 
-  if (authorizationQuery.isSuccess && authorizationQuery.data) {
+  if (authorizationQuery.isSuccess && authorizationQuery.data.authorized) {
     return (
       <PageLayout>
         <Breadcrumb />
