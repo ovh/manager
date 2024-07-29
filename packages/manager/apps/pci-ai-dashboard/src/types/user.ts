@@ -35,9 +35,4 @@ export namespace user {
     'ai_training_operator' = 'ai_training_operator',
     'ai_training_read' = 'ai_training_read',
   }
-
-  export enum AIUserRoleEnumWithLabel {
-    'ai_training_operator' = 'AI Platform - Operator',
-    'ai_training_read' = 'AI Platform - Read only',
-  }
 }
