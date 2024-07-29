@@ -1,5 +1,5 @@
 import { DataStoresWithRegion } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export const mockedDatastoreInput: ai.DataStoreInput = {
   alias: 'datastoreAlias',

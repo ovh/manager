@@ -5,7 +5,7 @@ import {
 } from '@tanstack/react-query';
 
 import { getApps } from '@/data/api/ai/app.api';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export function useGetApps(
   projectId: string,

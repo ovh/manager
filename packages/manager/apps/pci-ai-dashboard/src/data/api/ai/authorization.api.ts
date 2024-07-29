@@ -1,5 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { PCIAi } from '..';
+import * as ai from '@/types/cloud/project/ai';
 
 export const getAuthorization = async ({ projectId }: PCIAi) =>
   apiClient.v6
@@ -10,4 +11,4 @@ export const getAuthorization = async ({ projectId }: PCIAi) =>
         Pragma: 'no-cache',
       },
     })
-    .then((res) => res.data as boolean);
+    .then((res) => res.data as ai.AuthorizationStatus);
