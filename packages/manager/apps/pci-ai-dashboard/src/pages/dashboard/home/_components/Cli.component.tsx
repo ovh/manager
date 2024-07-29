@@ -99,10 +99,10 @@ const Cli = ({ regions }: CliProps) => {
         <li>{t('cliList4')}</li>
       </ul>
       <h5>{t('cliCommandsTitle')}</h5>
-      <div className="flex flex-row gap-1">
-        <p>{t('cliCommandParagraphe1')}</p>
-        <p className="text-red-600">ovhai --help</p>
-        <p>{t('cliCommandParagraphe1Bis')}</p>
+      <div className="inline">
+        <span>{t('cliCommandParagraphe1')}</span>
+        <span className="text-red-600 inline"> ovhai --help </span>
+        <span>{t('cliCommandParagraphe1Bis')}</span>
       </div>
     </div>
   );
