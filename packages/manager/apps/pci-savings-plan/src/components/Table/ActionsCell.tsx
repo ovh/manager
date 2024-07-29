@@ -20,8 +20,8 @@ import {
 } from '@/types/api.type';
 
 interface SavingsPlanActionsCell {
-  onClickManage: (path: string) => void;
-  onClickDelete: () => void;
+  onClickEditName: (path: string) => void;
+  onClickRenew: () => void;
   id: string;
   status: SavingsPlanStatus;
   periodEndAction: SavingsPlanPlanedChangeStatus;
@@ -31,12 +31,13 @@ export default function ActionsCell({
   status,
   periodEndAction,
   id,
-  onClickDelete,
-  onClickManage,
+  onClickEditName,
+  onClickRenew,
 }: Readonly<SavingsPlanActionsCell>) {
   const editable = true;
   const { t } = useTranslation('listing');
 
+  const onClick = () => onClickEditName(id);
   return (
     <OsdsMenu className="absolute  mt-[-15px]">
       <OsdsButton
@@ -62,7 +63,7 @@ export default function ActionsCell({
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.ghost}
             text-align="start"
-            onClick={() => onClickManage(id)}
+            onClick={onClick}
           >
             <span slot="start">
               <span>{t('edit')}</span>
@@ -77,7 +78,7 @@ export default function ActionsCell({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.ghost}
           text-align="start"
-          onClick={() => onClickManage(id)}
+          onClick={onClickRenew}
         >
           <span slot="start">
             <span>

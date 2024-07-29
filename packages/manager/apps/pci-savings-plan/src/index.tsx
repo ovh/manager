@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
 import {
   ShellContext,
-  initShellContext,
   initI18n,
+  initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import App from './App';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
 import './index.scss';
 import './vite-hmr';
 
-import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
+import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constant';
 
 const trackingContext = {
   chapter1: UNIVERSE,
@@ -28,7 +28,7 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: ['listing', 'dashboard', 'onboarding', 'create'],
+    ns: ['listing', 'renew', 'onboarding', 'create'],
   });
 
   const region = context.environment.getRegion();
