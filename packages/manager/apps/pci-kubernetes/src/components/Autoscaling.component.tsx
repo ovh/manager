@@ -36,9 +36,11 @@ const NODE_RANGE = {
 const ANTI_AFFINITY_MAX_NODES = 5;
 
 export interface AutoscalingState {
-  desiredQuantity: number;
-  minQuantity: number;
-  maxQuantity: number;
+  quantity: {
+    desired: number;
+    min: number;
+    max: number;
+  };
   isAutoscale: boolean;
 }
 
@@ -59,26 +61,19 @@ export function Autoscaling({
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
   const infosURL = AUTOSCALING_LINK[ovhSubsidiary] || AUTOSCALING_LINK.DEFAULT;
   const [isAutoscale, setIsAutoscale] = useState(false);
-  const [desiredQuantity, setDesiredQuantity] = useState(
-    initialScaling ? initialScaling.desired : NODE_RANGE.MIN,
-  );
-  const [minQuantity, setMinQuantity] = useState(
-    initialScaling ? initialScaling.min : 0,
-  );
-  const [maxQuantity, setMaxQuantity] = useState(
-    initialScaling ? initialScaling.max : NODE_RANGE.MAX,
-  );
+  const [quantity, setQuantity] = useState({
+    desired: initialScaling ? initialScaling.desired : NODE_RANGE.MIN,
+    min: initialScaling ? initialScaling.min : 0,
+    max: initialScaling ? initialScaling.max : NODE_RANGE.MAX,
+  });
   const maxValue = isAntiAffinity ? ANTI_AFFINITY_MAX_NODES : NODE_RANGE.MAX;
 
   useEffect(() => {
-    if (!onChange) return;
-    onChange({
-      desiredQuantity,
-      minQuantity,
-      maxQuantity,
+    onChange?.({
+      quantity,
       isAutoscale,
     });
-  }, [desiredQuantity, minQuantity, maxQuantity, isAutoscale]);
+  }, [quantity, isAutoscale]);
 
   return (
     <>
@@ -140,17 +135,27 @@ export function Autoscaling({
           <QuantitySelector
             className="mt-8"
             label={t('kubernetes_node_pool_autoscaling_lowest_nodes_size')}
-            value={minQuantity}
-            onValueChange={setMinQuantity}
+            value={quantity.min}
+            onValueChange={(min) =>
+              setQuantity((_quantity) => ({
+                ..._quantity,
+                min,
+              }))
+            }
             min={0}
-            max={maxQuantity}
+            max={quantity.max}
           />
           <QuantitySelector
             className="mt-8"
             label={t('kubernetes_node_pool_autoscaling_highest_nodes_size')}
-            value={maxQuantity}
-            onValueChange={setMaxQuantity}
-            min={minQuantity}
+            value={quantity.max}
+            onValueChange={(max) =>
+              setQuantity((_quantity) => ({
+                ..._quantity,
+                max,
+              }))
+            }
+            min={quantity.min}
             max={maxValue}
           />
           {isMonthlyBilling && isAutoscale && (
@@ -166,12 +171,17 @@ export function Autoscaling({
           <QuantitySelector
             className="mt-8"
             label={t('kubernetes_node_pool_autoscaling_desired_nodes_size')}
-            value={desiredQuantity}
-            onValueChange={setDesiredQuantity}
+            value={quantity.desired}
+            onValueChange={(desired) =>
+              setQuantity((_quantity) => ({
+                ..._quantity,
+                desired,
+              }))
+            }
             min={0}
             max={maxValue}
           />
-          {desiredQuantity < NODE_RANGE.MIN && (
+          {quantity.desired < NODE_RANGE.MIN && (
             <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.warning}>
               {t('kubernetes_node_pool_autoscaling_desired_nodes_warning')}
             </OsdsMessage>
