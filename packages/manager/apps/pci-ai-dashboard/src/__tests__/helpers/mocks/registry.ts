@@ -1,16 +1,16 @@
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
-export const mockedRegistryInput: ai.registry.RegistryCreation = {
+export const mockedRegistryEdit: ai.registry.RegistryUpdateInput = {
   password: 'password',
-  region: 'region',
   url: 'url',
   username: 'username',
 };
 
-export const mockedRegistryEdit: ai.registry.RegistryEdition = {
+export const mockedRegistryInput = {
   password: 'password',
   url: 'url',
   username: 'username',
+  region: 'GRA',
 };
 
 export const mockedRegistry: ai.registry.Registry = {
@@ -19,4 +19,7 @@ export const mockedRegistry: ai.registry.Registry = {
   region: 'GRA',
   updatedAt: '1989/04/08',
   user: 'user',
+  password: '',
+  url: 'registryUrl',
+  username: 'username',
 };

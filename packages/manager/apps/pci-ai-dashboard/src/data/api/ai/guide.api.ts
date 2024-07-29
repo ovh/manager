@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { Guide } from '@/types/guide';
+import * as ai from '@/types/cloud/project/ai';
 import { PCIAi } from '..';
 
 export interface GetGuidesProps extends PCIAi {
@@ -29,5 +29,5 @@ export const getGuides = async ({
     .get(`/cloud/project/${projectId}/ai/guides`, {
       headers,
     })
-    .then((res) => res.data as Guide[]);
+    .then((res) => res.data as ai.Guide[]);
 };

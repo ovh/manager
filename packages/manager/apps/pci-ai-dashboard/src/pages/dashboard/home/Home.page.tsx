@@ -8,7 +8,7 @@ import trainImage from '@/../public/assets/train.png';
 import deployImage from '@/../public/assets/serve.png';
 
 import ProductInformations from './_components/ProductInformations.component';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import Guides from '@/components/guides/Guides.component';
 import { useDashboardData } from '../Dashboard.context';
 import Cli from './_components/Cli.component';

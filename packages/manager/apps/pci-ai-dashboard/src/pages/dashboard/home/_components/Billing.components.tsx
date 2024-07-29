@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useGetCurrentUsage } from '@/hooks/api/usage/useGetUsage.hook';
 import OvhLink from '@/components/links/OvhLink.component';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
+import * as billingView from '@/types/cloud/billingView';
 
 const Billing = () => {
   const { t } = useTranslation('pci-ai-dashboard/home');
@@ -17,17 +18,18 @@ const Billing = () => {
     setAiGlobalPrice(
       aiGlobalPrice +
         currentUsageQuery.data?.resourcesUsage?.find(
-          (res: any) => res.type === 'ai-notebook-workspace',
-        ).totalPrice ||
-        0 +
-          currentUsageQuery.data?.resourcesUsage?.find(
-            (res: any) => res.type === 'ai-training-workspace',
-          ).totalPrice ||
-        0 +
-          currentUsageQuery.data?.resourcesUsage?.find(
-            (res: any) => res.type === 'ai-deploy-workspace',
-          ).totalPrice ||
-        0,
+          (res: billingView.TypedResources) =>
+            res.type === 'ai-notebook-workspace',
+        ).totalPrice +
+        currentUsageQuery.data?.resourcesUsage?.find(
+          (res: billingView.TypedResources) => res.type === 'ai-training',
+        ).totalPrice +
+        currentUsageQuery.data?.resourcesUsage?.find(
+          (res: billingView.TypedResources) => res.type === 'ai-notebook',
+        ).totalPrice +
+        currentUsageQuery.data?.resourcesUsage?.find(
+          (res: billingView.TypedResources) => res.type === 'ai-app',
+        ).totalPrice,
     );
   }, [currentUsageQuery.isSuccess]);
 

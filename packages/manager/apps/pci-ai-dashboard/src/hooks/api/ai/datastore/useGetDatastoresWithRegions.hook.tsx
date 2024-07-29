@@ -1,7 +1,7 @@
 import { QueryObserverOptions, useQueries } from '@tanstack/react-query';
 import { useCallback } from 'react';
 import { getDatastores } from '@/data/api/ai/datastore.api';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export interface DataStoresWithRegion extends ai.DataStore {
   region: string;

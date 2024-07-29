@@ -1,7 +1,6 @@
 import { AlertCircle, Copy } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import Link from '@/components/links/Link.component';
 import { Alert } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -13,7 +12,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 interface CliProps {
   regions: ai.capabilities.Region[];

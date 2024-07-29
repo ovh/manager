@@ -1,6 +1,6 @@
-import { Guide } from '@/types/guide';
+import * as ai from '@/types/cloud/project/ai';
 
-export const mockedGuides: Guide = {
+export const mockedGuides: ai.Guide = {
   section: 'section',
   lang: 'lang',
   slug: 'slug',
@@ -9,7 +9,7 @@ export const mockedGuides: Guide = {
   url: 'https://monguide.ovhai.com',
 };
 
-export const mockedGuideOnboarding: Guide = {
+export const mockedGuideOnboarding: ai.Guide = {
   section: 'onbaording',
   lang: 'fr_FR',
   slug: 'slug',

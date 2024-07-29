@@ -16,7 +16,7 @@ import {
 import { useToast } from '@/components/ui/use-toast';
 
 import { ModalController } from '@/hooks/useModale.hook';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import { useRenewToken } from '@/hooks/api/ai/token/useRenewToken.hook';
 import { Alert } from '@/components/ui/alert';
 

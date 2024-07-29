@@ -1,7 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { PciProject } from '@/types/project';
+import { Project } from '@/types/cloud/Project';
 
-export const getProject = async (projectId: string): Promise<PciProject> => {
+export const getProject = async (projectId: string): Promise<Project> => {
   const response = await apiClient.v6.get(`/cloud/project/${projectId}`);
-  return response.data as PciProject;
+  return response.data as Project;
 };

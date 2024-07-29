@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 interface SharedDockerProps {
   regions: ai.capabilities.Region[];

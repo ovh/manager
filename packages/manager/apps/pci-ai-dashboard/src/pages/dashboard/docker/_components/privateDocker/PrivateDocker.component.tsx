@@ -2,7 +2,7 @@ import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
 import OvhLink from '@/components/links/OvhLink.component';

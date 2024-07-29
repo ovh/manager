@@ -15,12 +15,12 @@ import {
   DataStoresWithRegion,
   useGetDatastoresWithRegions,
 } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
-import { ai } from '@/types/ai';
-import { GuideSections } from '@/types/guide';
+import * as ai from '@/types/cloud/project/ai';
 import { getColumns } from './_components/ DatastoreTableColumns.component';
 import AddDatastore from './_components/AddDatastore.component';
 import { useModale } from '@/hooks/useModale.hook';
 import DeleteDatastore from './_components/DeleteDatastore.component';
+import { GuideSections } from '@/configuration/guide';
 
 export function breadcrumb() {
   return (

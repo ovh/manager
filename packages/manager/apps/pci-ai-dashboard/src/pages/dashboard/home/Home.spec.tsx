@@ -14,6 +14,7 @@ import { mockedApp } from '@/__tests__/helpers/mocks/app';
 import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
 import { mockedJob } from '@/__tests__/helpers/mocks/job';
 import { useToast } from '@/components/ui/use-toast';
+import { mockedCurrentUsage } from '@/__tests__/helpers/mocks/currentUsage';
 
 describe('Home page', () => {
   beforeEach(() => {
@@ -31,6 +32,10 @@ describe('Home page', () => {
     }));
     vi.mock('@/data/api/ai/job.api', () => ({
       getJobs: vi.fn(() => [mockedJob]),
+    }));
+
+    vi.mock('@/data/api/usage/usage.api', () => ({
+      getCurrentUsage: vi.fn(() => mockedCurrentUsage),
     }));
     vi.mock('@/components/ui/use-toast', () => {
       const toastMock = vi.fn();

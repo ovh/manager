@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 import { GIT_CONFIG } from './git.constant';
 
 export interface UseGitFormProps {

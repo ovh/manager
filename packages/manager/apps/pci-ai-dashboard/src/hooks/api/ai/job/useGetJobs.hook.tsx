@@ -5,7 +5,7 @@ import {
 } from '@tanstack/react-query';
 
 import { getJobs } from '@/data/api/ai/job.api';
-import { ai } from '@/types/ai';
+import * as ai from '@/types/cloud/project/ai';
 
 export function useGetJobs(
   projectId: string,

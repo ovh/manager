@@ -13,12 +13,12 @@ import {
   DataStoresWithRegion,
   useGetDatastoresWithRegions,
 } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
-import { ai } from '@/types/ai';
-import { GuideSections } from '@/types/guide';
+import * as ai from '@/types/cloud/project/ai';
 import { useModale } from '@/hooks/useModale.hook';
 import { getColumns } from './_components/GitTableColumns.component';
 import AddGit from './_components/AddGit.component';
 import DeleteGit from './_components/DeleteGit.component';
+import { GuideSections } from '@/configuration/guide';
 
 export function breadcrumb() {
   return (
@@ -56,7 +56,7 @@ const Git = () => {
   return (
     <>
       <div className="float-right">
-        <Guides section={GuideSections.tokens} />
+        <Guides section={GuideSections.datastore} />
       </div>
       <h3>{t('title')}</h3>
       <p>{t('gitParagraphe2')}</p>
