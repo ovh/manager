@@ -15,7 +15,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { Links, LinkType } from '@ovhcloud/manager-components';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
@@ -39,7 +39,8 @@ export function FlavorLocalzoneChip({
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const getDocumentUrl = (linkType: string) =>
-    URL_INFO[linkType][ovhSubsidiary] || URL_INFO[linkType].DEFAULT;
+    URL_INFO[linkType as keyof typeof URL_INFO][ovhSubsidiary] ||
+    URL_INFO[linkType as keyof typeof URL_INFO].DEFAULT;
 
   return (
     <OsdsPopover>
