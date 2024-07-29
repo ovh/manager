@@ -31,6 +31,7 @@ export interface ImageDetails {
 export interface CardProps {
   href: string;
   isExternalHref?: boolean;
+  hrefLabel?: string;
   img?: ImageDetails;
   texts: {
     title: string;
@@ -46,6 +47,7 @@ export interface CardProps {
 export const Card: React.FC<CardProps> = ({
   href,
   isExternalHref,
+  hrefLabel,
   img,
   badges,
   texts,
@@ -128,7 +130,7 @@ export const Card: React.FC<CardProps> = ({
 
           <Links
             tab-index="-1"
-            label={t('see_more_label')}
+            label={hrefLabel ?? t('see_more_label')}
             type={isExternalHref ? LinkType.external : LinkType.next}
           />
         </div>
