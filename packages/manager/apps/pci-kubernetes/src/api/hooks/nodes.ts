@@ -1,11 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { PaginationState } from '@ovhcloud/manager-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useRegionFlavors } from '@/api/hooks/flavors';
-import { getNodes, TNode } from '@/api/data/nodes';
+import { deleteNode, getNodes, TNode } from '@/api/data/nodes';
 import { useInstances } from '@/api/hooks/instances';
 
 export const useNodes = (
@@ -129,5 +129,36 @@ export const usePaginatedNodes = (
       isClusterPending ||
       isFlavorsPending ||
       isInstancesPending,
+  };
+};
+
+type RemoveNodeProps = {
+  projectId: string;
+  clusterId: string;
+  nodeId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useDeleteNode = ({
+  projectId,
+  clusterId,
+  nodeId,
+  onError,
+  onSuccess,
+}: RemoveNodeProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => deleteNode(projectId, clusterId, nodeId),
+    onError: (cause: Error) => {
+      onError(cause);
+    },
+    onSuccess: async () => {
+      onSuccess();
+    },
+  });
+
+  return {
+    deleteNode: () => mutation.mutate(),
+    ...mutation,
   };
 };

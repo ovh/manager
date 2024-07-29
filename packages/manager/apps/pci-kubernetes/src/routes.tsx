@@ -128,6 +128,14 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/detail/nodepools/nodes/Nodes.page'),
             ),
+            children: [
+              {
+                path: ':nodeId/delete',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/detail/nodepools/nodes/Delete.page'),
+                ),
+              },
+            ],
           },
           {
             path: 'restrictions',
