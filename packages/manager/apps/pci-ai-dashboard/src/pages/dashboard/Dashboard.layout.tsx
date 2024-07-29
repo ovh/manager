@@ -19,9 +19,9 @@ export default function DashboardLayout() {
     refetchInterval: POLLING.APPS,
   });
 
-  const notebooks = notebooksQuery.data;
-  const jobs = jobsQuery.data;
-  const apps = appsQuery.data;
+  const notebooks = notebooksQuery.isSuccess && notebooksQuery.data;
+  const jobs = jobsQuery.isSuccess && jobsQuery.data;
+  const apps = appsQuery.isSuccess && appsQuery.data;
 
   if (
     !notebooksQuery.isSuccess &&
@@ -34,7 +34,15 @@ export default function DashboardLayout() {
       </>
     );
   }
-  const dashboardTabs = notebooks || jobs || apps ? <DashboardTabs /> : <></>;
+  const dashboardTabs =
+    notebooksQuery.isSuccess &&
+    jobsQuery.isSuccess &&
+    appsQuery.isSuccess &&
+    (notebooks.length > 0 || jobs.length > 0 || apps?.length > 0) ? (
+      <DashboardTabs />
+    ) : (
+      <></>
+    );
 
   const dashboardLayoutContext: DashboardLayoutContext = {
     notebooks,
