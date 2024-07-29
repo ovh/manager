@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useHref } from 'react-router-dom';
+import { Outlet, useHref, useNavigate, useParams } from 'react-router-dom';
+import { MutationStatus, useMutationState } from '@tanstack/react-query';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -22,10 +22,11 @@ import { Title } from '@ovhcloud/manager-components';
 
 import TableContainer from '@/components/Table/TableContainer';
 import { useSavingsPlan, useServiceId } from '@/hooks/useSavingsPlan';
-import { MutationStatus, useMutationState } from '@tanstack/react-query';
+import { SavingsPlanService } from '@/types';
+import Loading from '@/components/Loading/Loading';
 
 export interface ListingProps {
-  data: any[];
+  data: SavingsPlanService[];
   refetchSavingsPlans: () => void;
 }
 const ListingTablePage: React.FC<ListingProps> = ({
@@ -78,13 +79,29 @@ const ListingTablePage: React.FC<ListingProps> = ({
   );
 };
 
-const Listing: React.FC<ListingProps> = ({ data, refetchSavingsPlans }) => {
-  const { data: services } = useSavingsPlan();
+const Listing: React.FC<ListingProps> = ({ refetchSavingsPlans }) => {
+  const { projectId } = useParams();
+  const navigate = useNavigate();
+  const { data: services, isLoading, isPending } = useSavingsPlan();
+
+  useEffect(() => {
+    if (!isLoading && !isPending && services.length === 0) {
+      navigate(`/pci/projects/${projectId}/savings-plan/onboarding`);
+    }
+  }, [isLoading, isPending, services]);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <>
       <Outlet />
-      {services.length ? (
+      {services?.length ? (
         <ListingTablePage
           data={services}
           refetchSavingsPlans={refetchSavingsPlans}

@@ -32,7 +32,7 @@ const Wrappers = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <MemoryRouter>
-        <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+        <I18nextProvider i18n={i18n as any}>{children}</I18nextProvider>
       </MemoryRouter>
     </QueryClientProvider>
   );

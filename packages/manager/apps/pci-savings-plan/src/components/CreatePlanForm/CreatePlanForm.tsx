@@ -328,13 +328,13 @@ export const CreatePlanFormContainer = () => {
   );
 
   const {
-    data: technicalList,
+    data: technicalList = [],
     isLoading: isTechnicalInfoLoading,
   } = useTechnicalInfo({
     productCode: instanceCategory,
   });
   const {
-    data: pricingByDuration,
+    data: pricingByDuration = [],
     isLoading: isPricingLoading,
   } = usePricingInfo({
     productSizeCode: technicalModel,

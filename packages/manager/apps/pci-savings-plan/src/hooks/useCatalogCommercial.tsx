@@ -1,13 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
-import { TechnicalInfo } from '@/types/commercial-catalog.type';
+import { v2 } from '@ovh-ux/manager-core-api';
 import { buildTechnicalInfosMock } from '@/mock/commercial-catalog/technical';
 import {
   formatPricingInfo,
   formatTechnicalInfo,
 } from '@/utils/formatter/formatter';
 import { CommercialCatalogPricing } from '@/types/commercial-catalog-pricing.type';
-import { buildPricingsMock } from '@/mock/commercial-catalog/pricing';
 import { InstanceTechnicalName } from '@/types/CreatePlan.type';
+import { TechnicalInfo } from '@/types/commercial-catalog.type';
+
+export const getCommercialOffers = async (
+  productSizeCode: string,
+): Promise<CommercialCatalogPricing[]> => {
+  const { data } = await v2.get<CommercialCatalogPricing[]>(
+    `commercialCatalog/offers`,
+  );
+  return data;
+};
 
 export const getTechnicalInfo = async (
   productCode: string,
@@ -15,14 +24,6 @@ export const getTechnicalInfo = async (
   // TODO: Fetch to real api
 
   return Promise.resolve(buildTechnicalInfosMock(productCode));
-};
-
-export const getPricingInfo = async (
-  productSizeCode: string,
-): Promise<CommercialCatalogPricing[]> => {
-  // TODO: Fetch to real api
-
-  return Promise.resolve(buildPricingsMock(productSizeCode));
 };
 
 export const useTechnicalInfo = ({
@@ -44,7 +45,7 @@ export const usePricingInfo = ({
 }) => {
   return useQuery({
     queryKey: ['pricingInfo', productSizeCode],
-    queryFn: () => getPricingInfo(productSizeCode),
+    queryFn: () => getCommercialOffers(productSizeCode),
     select: (res) => res.map(formatPricingInfo),
   });
 };

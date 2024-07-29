@@ -95,8 +95,8 @@ export default function TableContainer({
             id={props.id}
             status={props.status}
             periodEndAction={props.periodEndAction}
-            onClickManage={() => navigate(`./${props.id}/renew`)}
-            onClickDelete={() => navigate(`./${props.id}/delete`)}
+            onClickRenew={() => navigate(`./${props.id}/renew`)}
+            onClickEditName={() => navigate(`./${props.id}/edit-name`)}
           />
         ),
       },
