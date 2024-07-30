@@ -14,6 +14,8 @@
   "license_designation_CPANEL_version_cpanel-license-version-11-for-virtuozzo": "CPanel 11 pour Virtuozzo",
   "license_designation_CPANEL_version_VERSION_11_FOR_VPS": "CPanel 11 pour VPS",
   "license_designation_CPANEL_version_cpanel-license-version-11-for-vps": "CPanel 11 pour VPS",
+  "license_designation_CPANEL_version_version-pro-cloud": "cPanel license Pro Cloud",
+  "license_designation_CPANEL_version_version-solo-cloud": "cPanel license Solo Cloud",
   "license_designation_DIRECTADMIN": "Direct Admin",
   "license_designation_DIRECTADMIN_version_DIRECTADMIN_1": "DirectAdmin v1.xx",
   "license_designation_DIRECTADMIN_version_directadmin-license": "DirectAdmin v1.xx",
