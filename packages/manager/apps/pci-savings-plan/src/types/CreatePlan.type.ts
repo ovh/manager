@@ -1,4 +1,5 @@
-import { Technical } from '@/types/commercial-catalog.type';
+import { formatTechnicalInfo } from '@/utils/formatter/formatter';
+import { CommercialCatalogTechnicalType } from './commercial-catalog.type';
 
 export enum ResourceType {
   instance = 'instance',
@@ -9,7 +10,7 @@ export enum InstanceTechnicalName {
   b3 = 'b3',
   c3 = 'c3',
   r3 = 'r3',
-  rancher = 'rancher',
+  rancher = 'publiccloud-rancher',
 }
 
 export type InstanceInfo = {
@@ -17,11 +18,7 @@ export type InstanceInfo = {
   category: ResourceType;
   technicalName: InstanceTechnicalName;
   label: string;
-  technical: {
-    name: string;
-    technical: Technical;
-    hourlyPrice: number;
-  }[];
+  technical: ReturnType<typeof formatTechnicalInfo>[];
 };
 
 export type Resource = {

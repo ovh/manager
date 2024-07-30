@@ -1,11 +1,12 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useServices } from './useService';
 import {
   SavingsPlanPlanedChangeStatus,
   SavingsPlanService,
 } from '@/types/api.type';
+import { getSavingsPlansUrl } from '@/utils/routes';
 
 export const getSubscribedSavingsPlan = async (
   serviceId: number,
@@ -39,6 +40,28 @@ export const putSubscribedSavingsPlanEditName = async (
     `/services/${serviceId}/savingsPlans/subscribed/${savingsPlanId}`,
     {
       displayName,
+    },
+  );
+  return data;
+};
+
+export const postSavingsPlan = async ({
+  serviceId,
+  offerId,
+  displayName,
+  size,
+}: {
+  serviceId: number;
+  offerId: string;
+  displayName: string;
+  size: number;
+}): Promise<SavingsPlanService[]> => {
+  const { data } = await v6.post<SavingsPlanService[]>(
+    `/services/${serviceId}/savingsPlans/subscribe/execute`,
+    {
+      displayName,
+      offerId,
+      size,
     },
   );
   return data;
@@ -92,6 +115,12 @@ export const getMutationKeySPEditName = (
   serviceId: number,
 ) => ['savings-plan', serviceId, 'edit-name', savingsPlanId];
 
+export const getMutationKeyCreateSavingsPlan = (serviceId: number) => [
+  'savings-plan',
+  serviceId,
+  'create',
+];
+
 export const useSavingsPlanEditName = (savingsPlanId: string) => {
   const { refetch } = useSavingsPlan();
   const serviceId = useServiceId();
@@ -101,5 +130,29 @@ export const useSavingsPlanEditName = (savingsPlanId: string) => {
     mutationKey: getMutationKeySPEditName(savingsPlanId, serviceId),
     mutationFn: ({ displayName }: { displayName: string }) =>
       putSubscribedSavingsPlanEditName(serviceId, savingsPlanId, displayName),
+  });
+};
+
+export const useSavingsPlanCreate = () => {
+  const { refetch } = useSavingsPlan();
+  const serviceId = useServiceId();
+  const navigate = useNavigate();
+  const { projectId } = useParams();
+
+  return useMutation({
+    onSuccess: () => {
+      refetch();
+      navigate(getSavingsPlansUrl(projectId));
+    },
+    mutationKey: getMutationKeyCreateSavingsPlan(serviceId),
+    mutationFn: ({
+      displayName,
+      offerId,
+      size,
+    }: {
+      displayName: string;
+      offerId: string;
+      size: number;
+    }) => postSavingsPlan({ serviceId, offerId, displayName, size }),
   });
 };

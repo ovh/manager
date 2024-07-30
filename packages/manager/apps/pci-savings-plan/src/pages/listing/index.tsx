@@ -21,9 +21,35 @@ import {
 import { Title } from '@ovhcloud/manager-components';
 
 import TableContainer from '@/components/Table/TableContainer';
-import { useSavingsPlan, useServiceId } from '@/hooks/useSavingsPlan';
+import {
+  getMutationKeyCreateSavingsPlan,
+  useSavingsPlan,
+  useServiceId,
+} from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
-import Loading from '@/components/Loading/Loading';
+import i18next from 'i18next';
+
+export const formatDateString = (dateString: string, locale?: string) => {
+  const date = new Date(dateString);
+  console.log({ date, dateString });
+  return date.toString() !== 'Invalid Date'
+    ? date.toLocaleString(locale, {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+    : '-';
+};
+
+const Banner = ({ message }: { message: string }) => (
+  <OsdsMessage type={ODS_MESSAGE_TYPE.success} className="my-2">
+    <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="inline-block">
+      {message}
+    </OsdsText>
+  </OsdsMessage>
+);
 
 export interface ListingProps {
   data: SavingsPlanService[];
@@ -34,12 +60,30 @@ const ListingTablePage: React.FC<ListingProps> = ({
   refetchSavingsPlans,
 }) => {
   const { t } = useTranslation('listing');
+
   const hrefDashboard = useHref('');
   const serviceId = useServiceId();
   const mutationSPChangePeriod = useMutationState<{
     status: MutationStatus;
+    variables: {
+      periodEndAction: 'REACTIVATE' | 'ACTIVATE';
+    };
   }>({
     filters: { mutationKey: ['savings-plan', serviceId, 'change-period'] },
+  });
+
+  const mutationSPEditName = useMutationState<{
+    status: MutationStatus;
+  }>({
+    filters: { mutationKey: ['savings-plan', serviceId, 'edit-name'] },
+  });
+  const lastMutation =
+    mutationSPChangePeriod[mutationSPChangePeriod.length - 1];
+
+  const mutationSpCreate = useMutationState<{
+    status: MutationStatus;
+  }>({
+    filters: { mutationKey: getMutationKeyCreateSavingsPlan(serviceId) },
   });
 
   return (
@@ -65,14 +109,33 @@ const ListingTablePage: React.FC<ListingProps> = ({
         </OsdsButton>
       </div>
       {mutationSPChangePeriod.length > 0 && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.success} className="my-2">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="inline-block"
-          >
-            {t('banner_renew_activate')}
-          </OsdsText>
-        </OsdsMessage>
+        <Banner
+          message={
+            lastMutation?.variables.periodEndAction === 'REACTIVATE'
+              ? t('banner_renew_activate')
+              : t('banner_renew_deactivate')
+          }
+        />
+      )}
+      {mutationSpCreate.length > 0 && (
+        <Banner
+          message={t('banner_create_sp', {
+            startDate: formatDateString(
+              new Date(
+                new Date(new Date().setDate(new Date().getDate() + 1)).setHours(
+                  0,
+                  0,
+                  0,
+                  0,
+                ),
+              ).toISOString(),
+              i18next.language.replace('_', '-'),
+            ),
+          })}
+        />
+      )}
+      {mutationSPEditName.length > 0 && (
+        <Banner message={t('banner_edit_name')} />
       )}
       <TableContainer data={data} refetchSavingsPlans={refetchSavingsPlans} />
     </>
@@ -85,18 +148,10 @@ const Listing: React.FC<ListingProps> = ({ refetchSavingsPlans }) => {
   const { data: services, isLoading, isPending } = useSavingsPlan();
 
   useEffect(() => {
-    if (!isLoading && !isPending && services.length === 0) {
+    if (!isLoading && !isPending && services?.length === 0) {
       navigate(`/pci/projects/${projectId}/savings-plan/onboarding`);
     }
   }, [isLoading, isPending, services]);
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-full">
-        <Loading />
-      </div>
-    );
-  }
 
   return (
     <>

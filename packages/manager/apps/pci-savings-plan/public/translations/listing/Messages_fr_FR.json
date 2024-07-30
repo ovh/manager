@@ -21,5 +21,7 @@
   "listing_resultats": "résultats",
   "months": "{{monthValue}} mois",
   "banner_renew_activate": "Le renouvellement automatique du Savings Plan a été activé avec succès.",
-  "banner_renew_deactivate": "Le renouvellement automatique du Savings Plan a été désactivé avec succès."
+  "banner_renew_deactivate": "Le renouvellement automatique du Savings Plan a été désactivé avec succès.",
+  "banner_edit_name": "Le nom du Savings Plan a été modifié avec succès.",
+  "banner_create_sp": "Votre Savings Plan a été créé avec succès. Celui-ci sera actif à compté du {{startDate}}"
 }
