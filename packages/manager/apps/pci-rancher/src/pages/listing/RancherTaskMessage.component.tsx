@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { RancherTask, RancherTaskType } from '@/types/api.type';
 
 const RancherTaskMessage = ({ tasks }: { tasks: RancherTask[] }) => {
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslation('listing');
   const tasksMessage = tasks
     .filter((task) => task?.type === RancherTaskType.RANCHER_DELETE)
     .map(({ id }) => ({

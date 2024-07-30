@@ -23,7 +23,7 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 
 export default function DashboardPage() {
   const { projectId } = useParams();
-  const { t } = useTranslation('pci-rancher/dashboard');
+  const { t } = useTranslation('dashboard');
   const { data: rancher, error, isLoading } = useRancher({
     refetchInterval: 5000,
   });

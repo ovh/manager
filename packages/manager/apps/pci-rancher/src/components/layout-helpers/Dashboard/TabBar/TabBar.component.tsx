@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { DashboardTabItemProps } from '../Dashboard.component';
 
 const TabBar: FC<{ tabs: DashboardTabItemProps[] }> = ({ tabs }) => {
-  const { t } = useTranslation('pci-rancher/dashboard');
+  const { t } = useTranslation('dashboard');
 
   const location = useLocation();
 

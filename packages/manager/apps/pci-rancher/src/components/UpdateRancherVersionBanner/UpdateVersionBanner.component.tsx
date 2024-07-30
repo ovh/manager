@@ -70,7 +70,7 @@ const UpdateVersionBanner = ({
   const isVersionDeprecied =
     currentVersionInfo && isVersionDeprecated(currentVersionInfo);
 
-  const { t } = useTranslation('pci-rancher/updateSoftware');
+  const { t } = useTranslation('updateSoftware');
   const hrefUpdateSoftware = useHref('./update-software');
 
   const shouldDisplayUpdateSoftware =

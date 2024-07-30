@@ -24,7 +24,7 @@ export default function ActionsCell({
   onClickManage,
 }: Readonly<RancherActionsCell>) {
   const editable = true;
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslation('listing');
 
   const NOT_EDITABLE_STATUS: ResourceStatus[] = [
     ResourceStatus.CREATING,

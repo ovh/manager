@@ -40,7 +40,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
   onGenerateAccess,
   accessDetail,
 }) => {
-  const { t } = useTranslation('pci-rancher/dashboard');
+  const { t } = useTranslation('dashboard');
   const trackAction = useTrackingAction();
   useTrackingPage(TrackingPageView.GenerateAccessModal);
   const hasValidAccess = !!accessDetail?.username && !!accessDetail?.password;

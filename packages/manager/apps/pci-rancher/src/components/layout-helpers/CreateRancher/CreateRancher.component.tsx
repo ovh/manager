@@ -130,10 +130,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const hasInputError = rancherName !== '' && !isValidName;
   const isCreateRancherAllowed = isValidName && !isProjectDiscoveryMode;
 
-  const { t } = useTranslation([
-    'pci-rancher/dashboard',
-    'pci-rancher/listing',
-  ]);
+  const { t } = useTranslation(['dashboard', 'listing']);
   const trackAction = useTrackingAction();
   const simpleTrackAction = useSimpleTrackingAction();
 

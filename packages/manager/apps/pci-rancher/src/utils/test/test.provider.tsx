@@ -10,22 +10,17 @@ import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import updateSoftwareTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
 import queryClient from '../../queryClient';
 
-const ns = [
-  'pci-rancher/onboarding',
-  'pci-rancher/listing',
-  'pci-rancher/dashboard',
-  'pci-rancher/updateSoftware',
-];
+const ns = ['onboarding', 'listing', 'dashboard', 'updateSoftware'];
 
 i18n.use(initReactI18next).init({
   lng: 'fr',
   fallbackLng: 'fr',
   resources: {
     fr: {
-      'pci-rancher/dashboard': dashboardTranslation,
-      'pci-rancher/onboarding': onboardingTranslation,
-      'pci-rancher/listing': listingTranslation,
-      'pci-rancher/updateSoftware': updateSoftwareTranslation,
+      dashboard: dashboardTranslation,
+      onboarding: onboardingTranslation,
+      listing: listingTranslation,
+      updateSoftware: updateSoftwareTranslation,
     },
   },
   fallbackNS: ns,

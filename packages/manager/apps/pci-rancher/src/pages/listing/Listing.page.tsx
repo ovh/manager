@@ -34,7 +34,7 @@ const ListingTablePage: React.FC<ListingProps> = ({
   data,
   refetchRanchers,
 }) => {
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslation('listing');
   const hrefDashboard = useHref('');
   const trackAction = useTrackingAction();
   const trackClick = () =>

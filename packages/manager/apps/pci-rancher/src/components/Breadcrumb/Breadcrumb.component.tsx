@@ -16,7 +16,7 @@ interface BreadcrumbProps {
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ items = [] }) => {
   const { projectId } = useParams();
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslation('listing');
   const { data: project } = usePciProject();
 
   const navigation = useNavigation();

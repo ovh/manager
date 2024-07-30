@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { ResourceStatus } from '@/types/api.type';
 
 const StatusChip = ({ label }: { label: string }) => {
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslation('listing');
   const colorByProductStatus: {
     [key in ResourceStatus]: ODS_THEME_COLOR_INTENT;
   } = {

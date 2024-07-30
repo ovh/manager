@@ -26,7 +26,7 @@ import StatusChip from '../../StatusChip/StatusChip.component';
 export default function TableContainer({
   data,
 }: Readonly<RancherDatagridWrapper>) {
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslation('listing');
   const [sorting, setSorting] = useState<SortingState>([]);
   const state = useMutationState({
     filters: {

@@ -17,7 +17,7 @@ import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { useGuideUtils } from '@/hooks/useGuideLink/useGuideLink';
 
 export default function Onboarding() {
-  const { t } = useTranslation('pci-rancher/onboarding');
+  const { t } = useTranslation('onboarding');
   const link = useGuideUtils();
   const navigate = useNavigate();
   const { projectId } = useParams();

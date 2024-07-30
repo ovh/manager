@@ -50,11 +50,7 @@ const RancherDetail = ({
   hasErrorAccessDetail,
   versions,
 }: RancherDetailProps) => {
-  const { t } = useTranslation([
-    'pci-rancher/dashboard',
-    'pci-rancher/updateSoftware',
-    'pci-rancher/listing',
-  ]);
+  const { t } = useTranslation(['dashboard', 'updateSoftware', 'listing']);
   const trackAction = useTrackingAction();
   const hrefEdit = useHref('./edit');
   const hrefUpdateSoftware = useHref('./update-software');

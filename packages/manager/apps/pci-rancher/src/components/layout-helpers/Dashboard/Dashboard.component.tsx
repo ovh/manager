@@ -51,7 +51,7 @@ const getResponseStatusByEditAction = (
 const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const { projectId, rancherId } = useParams();
   const { data: versions } = useVersions();
-  const { t } = useTranslation('pci-rancher/dashboard');
+  const { t } = useTranslation('dashboard');
   useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
 

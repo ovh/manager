@@ -42,7 +42,7 @@ const UpdateSoftwareModal = ({
   const { data } = useRancherVersionsCapabilities();
 
   const selectedVersionInfo = getVersionInfoByName(selectedVersion, data);
-  const { t } = useTranslation('pci-rancher/updateSoftware');
+  const { t } = useTranslation('updateSoftware');
   useTrackingPage(TrackingPageView.UpdateSoftware);
   const trackAction = useTrackingAction();
 

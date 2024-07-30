@@ -36,7 +36,7 @@ const EditNameModal = ({
   onEditRancher,
   onClose,
 }: DeleteModalProps) => {
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslation('listing');
   const trackAction = useTrackingAction();
   useTrackingPage(TrackingPageView.EditNameModal);
   const [newName, setNewName] = useState(rancher.currentState?.name || '');

@@ -17,7 +17,6 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "jsx": "react",
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@playwright-helpers/*": ["../../../../playwright-helpers/*"],

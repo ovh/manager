@@ -38,7 +38,7 @@ const DeleteModal = ({
   onDeleteRancher,
   selectedRancher,
 }: DeleteModalProps) => {
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslation('listing');
   const [terminateText, setTerminateText] = useState('');
   useTrackingPage(TrackingPageView.DeleteRancherModal);
   const trackAction = useTrackingAction();

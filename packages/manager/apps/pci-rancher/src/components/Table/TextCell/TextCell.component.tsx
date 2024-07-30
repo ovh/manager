@@ -11,7 +11,7 @@ interface DisplayCellInterface {
 }
 
 function DisplayCellText({ cell }: Readonly<DisplayCellInterface>) {
-  const { t } = useTranslation('pci-rancher/listing');
+  const { t } = useTranslation('listing');
   const label = cell.renderValue() as string;
   return (
     <OsdsText color={ODS_THEME_COLOR_INTENT.text}>

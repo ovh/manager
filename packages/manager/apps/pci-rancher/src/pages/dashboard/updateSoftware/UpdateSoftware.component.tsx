@@ -37,10 +37,7 @@ const VersionTable = ({
   setSelectedVersion,
   currentVersion,
 }: VersionTableProps) => {
-  const { t } = useTranslation([
-    'pci-rancher/updateSoftware',
-    'pci-rancher/dashboard',
-  ]);
+  const { t } = useTranslation(['updateSoftware', 'dashboard']);
   return (
     <OsdsTable className="my-6" size={ODS_TABLE_SIZE.sm}>
       <table>
@@ -120,7 +117,7 @@ const UpdateSoftware: FC<UpdateSoftwareProps> = ({
 }) => {
   const { projectId } = useParams();
 
-  const { t } = useTranslation('pci-rancher/updateSoftware');
+  const { t } = useTranslation('updateSoftware');
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const hrefRancherById = useHref(getRancherByIdUrl(projectId, rancher?.id));
   const [selectedVersion, setSelectedVersion] = useState('');
