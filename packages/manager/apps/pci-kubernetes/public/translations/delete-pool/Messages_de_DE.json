@@ -1,0 +1,8 @@
+{
+  "kube_node_pool_delete": "Node-Pool löschen",
+  "kube_node_pool_delete_confirmation": "Sind Sie sicher, dass Sie den Node {{ node }} löschen möchten?",
+  "kube_node_pool_delete_warning": "Dieser Vorgang kann nicht rückgängig gemacht werden.",
+  "kube_node_pool_delete_enter": "Geben Sie im folgenden Feld „DELETE\" ein, um den Vorgang zu bestätigen.",
+  "kube_node_pool_delete_success": "Node-Pool wird gelöscht",
+  "kube_node_pool_delete_error": "Beim Löschen des Node-Pools ist ein Fehler aufgetreten: {{message}}"
+}

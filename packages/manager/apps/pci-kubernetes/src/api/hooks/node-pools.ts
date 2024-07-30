@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { PaginationState } from '@ovhcloud/manager-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo, useRef } from 'react';
@@ -7,7 +7,11 @@ import { ColumnSort } from '@tanstack/react-table';
 import { format, parseISO } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
-import { getClusterNodePools, TClusterNodePool } from '@/api/data/node-pools';
+import {
+  deleteNodePool,
+  getClusterNodePools,
+  TClusterNodePool,
+} from '@/api/data/node-pools';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useRegionFlavors } from '@/api/hooks/flavors';
 
@@ -131,5 +135,36 @@ export const usePaginatedClusterNodePools = (
     error: poolsError || clusterError || flavorsError,
     isLoading: isPoolsLoading || isClusterLoading || isFlavorsLoading,
     isPending: isPoolsPending || isClusterPending || isFlavorsPending,
+  };
+};
+
+type RemoveNodePoolProps = {
+  projectId: string;
+  clusterId: string;
+  poolId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useDeleteNodePool = ({
+  projectId,
+  clusterId,
+  poolId,
+  onError,
+  onSuccess,
+}: RemoveNodePoolProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => deleteNodePool(projectId, clusterId, poolId),
+    onError: (cause: Error) => {
+      onError(cause);
+    },
+    onSuccess: async () => {
+      onSuccess();
+    },
+  });
+
+  return {
+    deletePool: () => mutation.mutate(),
+    ...mutation,
   };
 };

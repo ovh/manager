@@ -1,0 +1,8 @@
+{
+  "kube_node_pool_delete": "Eliminar el pool de nodos",
+  "kube_node_pool_delete_confirmation": "¿Seguro que quiere eliminar el nodo {{ node }}?",
+  "kube_node_pool_delete_warning": "Esta acción es irreversible.",
+  "kube_node_pool_delete_enter": "Introduzca «DELETE» en el siguiente campo para confirmar la operación.",
+  "kube_node_pool_delete_success": "Eliminando el pool de nodos...",
+  "kube_node_pool_delete_error": "Se ha producido un error al eliminar el pool de nodos: {{message}}"
+}

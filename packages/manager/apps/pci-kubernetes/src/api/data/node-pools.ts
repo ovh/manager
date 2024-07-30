@@ -5,7 +5,7 @@ type TRawClusterNodePool = {
   projectId: string;
   name: string;
   flavor: string;
-  status: 'READY' | 'UPDATING' | 'ERROR';
+  status: 'READY' | 'UPDATING' | 'DELETING' | 'INSTALLING' | 'ERROR';
   sizeStatus: string;
   autoscale: boolean;
   monthlyBilled: boolean;
@@ -80,3 +80,10 @@ export const getClusterNodePools = async (
       } as TClusterNodePool),
   );
 };
+
+export const deleteNodePool = async (
+  projectId: string,
+  clusterId: string,
+  poolId: string,
+) =>
+  v6.delete(`/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`);

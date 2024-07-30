@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import {
   OsdsButton,
@@ -19,6 +19,7 @@ import {
   Datagrid,
   FilterAdd,
   FilterList,
+  Notifications,
   useColumnFilters,
   useDataGrid,
 } from '@ovhcloud/manager-components';
@@ -59,7 +60,7 @@ export default function NodePoolsPage() {
 
   return (
     <>
-      {/* TODO add messages(notifications) */}
+      <Notifications />
       <div className="sm:flex items-center justify-between mt-4">
         <div className="flex flex-row">
           <OsdsButton
@@ -191,6 +192,8 @@ export default function NodePoolsPage() {
           />
         </div>
       )}
+
+      <Outlet />
     </>
   );
 }
