@@ -6,7 +6,7 @@
   "select_model_description_instance_c3": "Les instances General Purpose disposent de ressources équilibrées et garanties entre le CPU, la mémoire, le stockage et le réseau.",
   "select_model_description_instance_b3": "Les instances Compute Optimized sont conçues pour des tâches exigeantes en matière de puissance de calcul et des charges de travail intensives en calcul.",
   "select_model_description_instance_r3": "Les instances Memory Optimized sont idéales pour les bases de données et les applications chargées en mémoire ou les utilisations intensives en RAM.",
-  "select_model_description_instance_rancher": "Managed Rancher Service permet de faciliter la gestion de plusieurs clusters Kubernetes, dont ceux créés avec Managed Kubernetes Service.",
+  "select_model_description_instance_publiccloud-rancher": "Managed Rancher Service permet de faciliter la gestion de plusieurs clusters Kubernetes, dont ceux créés avec Managed Kubernetes Service.",
   "select_quantity": "Indiquez le nombre de ressources",
   "select_quantity_description": "Indiquez le nombre de ressources à inclure dans votre Savings Plan.",
   "quantity_label": "Quantité",
