@@ -38,19 +38,11 @@ export default function Container(): JSX.Element {
       const tracking = shell.getPlugin('tracking');
       tracking.waitForConfig().then(() => {
         if (isNavReshuffle) {
-          if (betaVersion === 1) {
-            tracking.trackMVTest({
-              test: '[product-navigation-reshuffle]',
-              waveId: 1,
-              creation: '[full-services]',
-            });
-          } else if (betaVersion === 2) {
-            tracking.trackMVTest({
-              test: '[product-navigation-reshuffle]',
-              waveId: 1,
-              creation: '[customer-services]',
-            });
-          }
+          tracking.trackMVTest({
+            test: '[product-navigation-reshuffle]',
+            waveId: 2,
+            creation: '[full-services_v3]',
+          });
         }
       });
       if (isNavReshuffle) {
@@ -88,7 +80,7 @@ export default function Container(): JSX.Element {
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
-      {isCookiePolicyApplied && 
+      {isCookiePolicyApplied &&
         <Suspense fallback="">
           <PaymentModal />
         </Suspense>

@@ -1,0 +1,92 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+
+.subtree {
+  width: 100%;
+  height: 100%;
+  background-color: rgba($p-500, 0.50);
+  position: fixed;
+  top: 0;
+  left: 20rem;
+  z-index: 901;
+  overflow-y: auto;
+  &_content {
+    background: $p-800;
+    height: auto;
+    min-height: 100%;
+    width: 20rem;
+    overflow-y: auto;
+  }
+  &_list {
+    min-height: 28.125rem;
+    overflow-y: auto;
+  }
+  &_illustration {
+    width: 55%;
+    margin: auto;
+    & > img {
+      width: 100%;
+    }
+  }
+  &_back_btn{
+    display: none;
+    height: 2.5rem;
+    background-color: $p-500;
+    color: white;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 0.625em;
+    width: 100%;
+  }
+  &_section_title{
+    color: $p-200 !important;
+    text-transform: uppercase;
+    font-size: 1rem !important;
+  }
+  &_section{
+    &:after {
+      content: '';
+      margin: 0 1rem;
+      width: auto;
+      border-bottom: solid 1px $p-200;
+      margin-top: 0.625em;
+      display: flex;
+    }
+  }
+
+  &_submenu_items:hover {
+    background-color: darken($p-800, 5);
+    
+    a, button  {
+      text-decoration: none;
+    }
+  }
+
+  &_submenu_items_selected {
+    background-color: darken($p-800, 5);
+
+    a:hover, button:hover  {
+      text-decoration: none !important;
+    }
+  }
+}
+
+@media (max-width: $device-breakpoint-tablet-max-width) {
+  .subtree {
+    left: 0;
+    width: 100%;
+    &_content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding-top: 2.75rem;
+    }
+    &_back_btn {
+      display: flex;
+    }
+  }
+}

@@ -16,6 +16,7 @@ import style from './style.module.scss';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { tracking } from './constants';
 
 type Props = {
   onToggle(show: boolean): void;
@@ -82,7 +83,7 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
             setIsNotificationsSidebarVisible(false);
             trackingPlugin.trackClick({
               type: 'action',
-              name: 'topnav::user_widget::open',
+              name: tracking.open,
             });
           } else {
             closeAccountSidebar();

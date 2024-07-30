@@ -22,7 +22,7 @@ function NavReshuffleBetaAccessModal(): JSX.Element {
   async function onAccept() {
     setSubmitting(true);
     trackingPlugin.trackClick({
-      name: 'accessing_beta_popin::go_to_beta',
+      name: 'switch_versionpopin_V3::product-navigation-reshuffle::go_to_new_version',
       type: 'action',
     });
     onboarding.forceOnboardingDisplayed(true);
@@ -32,7 +32,7 @@ function NavReshuffleBetaAccessModal(): JSX.Element {
   async function onDecline() {
     setSubmitting(true);
     trackingPlugin.trackClick({
-      name: 'accessing_beta_popin::nogo_beta',
+      name: 'switch_versionpopin_V3::product-navigation-reshuffle:::decline_new_version',
       type: 'action',
     });
     return createBetaChoice(false).then(() => window.location.reload());
@@ -40,7 +40,7 @@ function NavReshuffleBetaAccessModal(): JSX.Element {
 
   useEffect(() => {
     if (askBeta) {
-      trackingPlugin.trackPage('accessing_beta_popin');
+      trackingPlugin.trackPage('product-navigation-reshuffle::switch_version_V3::go_to_new_version');
     }
   }, [askBeta]);
 

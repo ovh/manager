@@ -34,7 +34,7 @@ function NavReshuffleSwitchBack(): JSX.Element {
   const toggleVersion = (value: 'classic' | 'beta') => {
     const versionName = value === 'beta' ? 'new' : 'old';
     trackingPlugin.trackClick({
-      name: `topnav::switch_version::go_to_${versionName}_version`,
+      name: `topnav::switch_version_V3::go_to_${versionName}_version`,
       type: 'navigation',
     });
     updateBetaChoice(value === 'beta');

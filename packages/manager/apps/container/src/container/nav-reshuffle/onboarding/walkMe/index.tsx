@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createPopper, Instance, Placement } from '@popperjs/core';
 import { debounce } from 'lodash-es';
@@ -22,10 +22,6 @@ export const OnboardingWalkMe = () => {
   const popoverElement = useRef();
   const [arrowPlacement, setArrowPlacement] = useState<Placement>();
   const [popperInstance, setPopperInstance] = useState<Instance>();
-  const user = useShell()
-    .getPlugin('environment')
-    .getEnvironment()
-    .getUser();
   const trackingPlugin = useShell().getPlugin('tracking');
 
   const {
@@ -36,7 +32,6 @@ export const OnboardingWalkMe = () => {
     closeNavigationSidebar,
     onboardingOpenedState,
     currentNavigationNode,
-    navigationTree,
     setCurrentNavigationNode,
   } = useProductNavReshuffle();
   const [currentUserNode, setCurrentUserNode] = useState<Node>({});
@@ -68,6 +63,7 @@ export const OnboardingWalkMe = () => {
       title: t('onboarding_walkme_popover_step1_title'),
       content: t('onboarding_walkme_popover_step1_content'),
       trackingVariant: 'my_account',
+      trackingLabel: 'access_my_account'
     },
     {
       selector: '#user-account-menu-profile',
@@ -76,6 +72,7 @@ export const OnboardingWalkMe = () => {
       title: t('onboarding_walkme_popover_step2_title'),
       content: t('onboarding_walkme_popover_step2_content'),
       trackingVariant: 'my_profile',
+      trackingLabel: 'my_profile',
       onBeforeEnter: async () => {
         openAccountSidebar();
         const animationPromise = new Promise<void>((resolve) => {
@@ -94,6 +91,7 @@ export const OnboardingWalkMe = () => {
       title: t('onboarding_walkme_popover_step3_title'),
       content: t('onboarding_walkme_popover_step3_content'),
       trackingVariant: 'my_services',
+      trackingLabel: 'see_products',
     },
     {
       selector: '#useful-links',
@@ -102,10 +100,9 @@ export const OnboardingWalkMe = () => {
       title: t('onboarding_walkme_popover_step4_title'),
       content: t('onboarding_walkme_popover_step4_content'),
       trackingVariant: '',
+      trackingLabel: 'see_useful_links',
       onBeforeEnter: async () => {
         closeAccountSidebar();
-        const homeNode = findNodeById(navigationTree, 'home');
-        setCurrentNavigationNode(homeNode);
 
         if (isMobile) {
           openNavigationSidebar();
@@ -117,8 +114,25 @@ export const OnboardingWalkMe = () => {
     },
   ];
 
+  const currentStepRank = useMemo(() => currentStepIndex + 1,[currentStepIndex]);
+  const isLastStep = useMemo(() => currentStepIndex === (steps.length - 1),[currentStepIndex]);
+  
+  useEffect(() => {
+    const currentStep = steps[currentStepIndex]
+    if(currentStep){
+      trackingPlugin.trackPage(`product-navigation-reshuffle::version_V3::modal_guided_tour::step-${currentStepRank}::${currentStep.trackingLabel}`);
+    }
+  }, [currentStepIndex]);
+
   const onHideBtnClick = (onboardingStatus?: string) => {
     const currentStep = steps[currentStepIndex];
+    if(!isLastStep){
+      trackingPlugin.trackClick({
+        name: `modal_guided_tour_version_V3::product-navigation-reshuffle::step-${currentStepRank}::${currentStep.trackingLabel}::decline_modal_guided_tour`,
+        type: 'action',
+      });
+    }
+
     trackingPlugin.trackClickImpression({
       click: {
         ...commonTrackingOptions,
@@ -136,6 +150,13 @@ export const OnboardingWalkMe = () => {
 
   const onNextBtnClick = () => {
     const currentStep = steps[currentStepIndex];
+    if(!isLastStep){
+      trackingPlugin.trackClick({
+        name: `modal_guided_tour_version_V3::product-navigation-reshuffle::step-${currentStepRank}::${currentStep.trackingLabel}::go_to_next_step`,
+        type: 'action',
+      });
+    }
+
     trackingPlugin.trackClickImpression({
       click: {
         ...commonTrackingOptions,
@@ -171,7 +192,7 @@ export const OnboardingWalkMe = () => {
       const range = new Range();
 
       range.setStartBefore(elements[0]);
-      range.setEndAfter(elements[elements.length - 5]);
+      range.setEndAfter(elements[elements.length - 1]);
 
       targetPos = range.getBoundingClientRect();
       updatePos(targetPos);

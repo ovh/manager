@@ -14,18 +14,22 @@ import { useShell } from '@/context';
 interface SubTreeSectionProps {
   node?: Node;
   selectedPciProject?: string;
+  selectedNode: Node;
+  handleOnSubMenuClick(node: Node): void;
 }
 
 const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
   node = {},
   selectedPciProject,
+  selectedNode,
+  handleOnSubMenuClick,
 }: SubTreeSectionProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
 
   const menuClickHandler = (node: Node) => {
-    let trackingIdComplement = 'navbar_v2_entry_';
+    let trackingIdComplement = 'navbar_v3_entry_';
     const history = findPathToNode(
       navigationRoot,
       (n: Node) => n.id === node.id,
@@ -39,43 +43,60 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
       name: trackingIdComplement.replace(/::$/g, ''),
       type: 'navigation',
     });
+    handleOnSubMenuClick(node);
   };
 
   return (
     <>
       {node.children ? (
         <ul className={`mt-3 pb-2 ${style.subtree_section}`}>
-          <li>
+          <li className="px-3">
             <h2 className={style.subtree_section_title}>
               {t(node.translation)}
             </h2>
           </li>
 
-          {node.children?.map((childNode) => (
-            <li key={childNode.id} id={childNode.id}>
-              {!shouldHideElement(childNode, 1, 2) && (
+          {node.children
+            ?.filter((childNode) => !shouldHideElement(childNode, 1))
+            .map((childNode, index) => (
+              <li
+                key={childNode.id + index}
+                id={childNode.id}
+                className={`px-3 ${
+                  childNode.id === selectedNode?.id
+                    ? style.subtree_submenu_items_selected
+                    : style.subtree_submenu_items
+                }`}
+              >
                 <SidebarLink
                   linkParams={{
                     projectId: selectedPciProject,
                   }}
                   node={childNode}
-                  handleNavigation={() => menuClickHandler(childNode)}
+                  handleOnClick={() => menuClickHandler(childNode)}
                   id={childNode.idAttr}
                 />
-              )}
-              {childNode.separator && <hr />}
-            </li>
-          ))}
+                {childNode.separator && <hr />}
+              </li>
+            ))}
         </ul>
       ) : (
-        <SidebarLink
-          linkParams={{
-            projectId: selectedPciProject,
-          }}
-          node={node}
-          handleNavigation={() => menuClickHandler(node)}
-          id={node.idAttr}
-        />
+        <div
+          className={`px-3 ${
+            node.id === selectedNode?.id
+              ? style.subtree_submenu_items_selected
+              : style.subtree_submenu_items
+          }`}
+        >
+          <SidebarLink
+            linkParams={{
+              projectId: selectedPciProject,
+            }}
+            node={node}
+            handleOnClick={() => menuClickHandler(node)}
+            id={node.idAttr}
+          />
+        </div>
       )}
       {node.separator && <hr />}
     </>

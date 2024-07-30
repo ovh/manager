@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
@@ -18,6 +18,10 @@ function NavReshuffleSwitchBackModal({
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
 
+  useEffect(() => {
+    trackingPlugin.trackPage('product-navigation-reshuffle::switch_version_V3::go_to_old_version::satisfaction_survey');
+  }, [])
+
   return (
     <div
       className={style.backdrop}
@@ -34,7 +38,7 @@ function NavReshuffleSwitchBackModal({
             className="oui-button oui-button_primary float-right"
             onClick={() => {
               trackingPlugin.trackClick({
-                name: 'topnav::switch_version_popin::go_to_survey',
+                name: 'switch_versionpopin_V3::product-navigation-reshuffle::go_to_survey',
                 type: 'navigation',
               });
               onConfirm(true);
@@ -47,7 +51,7 @@ function NavReshuffleSwitchBackModal({
             className="oui-button oui-button_secondary float-right mr-2"
             onClick={() => {
               trackingPlugin.trackClick({
-                name: 'topnav::switch_versionpopin::decline_survey',
+                name: 'switch_versionpopin_V3::product-navigation-reshuffle::decline_survey',
                 type: 'navigation',
               });
               onConfirm();
