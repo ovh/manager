@@ -32,6 +32,7 @@ export default function ClusterManagement({
 
   const hrefRenameCluster = useHref('./name');
   const hrefResetClusterConfig = useHref('./reset-kubeconfig');
+  const hrefResetCluster = useHref('./reset');
   const hrefUpgradePolicy = useHref('./upgrade-policy');
   const hrefMinorUpdate = useHref('./update');
   const hrefForceUpdate = useHref('./update?forceVersion');
@@ -81,7 +82,7 @@ export default function ClusterManagement({
         <TileButton
           title={t('kube_service_reset')}
           isDisabled={isProcessing(kubeDetail?.status)}
-          href=""
+          href={hrefResetCluster}
         />
         <TileButton
           title={tDetail('kube_common_create_node_pool')}
