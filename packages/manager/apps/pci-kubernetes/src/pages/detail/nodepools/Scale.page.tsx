@@ -1,0 +1,141 @@
+import {
+  OsdsButton,
+  OsdsModal,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useMemo, useState } from 'react';
+import { useNotifications } from '@ovhcloud/manager-components';
+import {
+  useClusterNodePools,
+  useUpdateNodePoolSize,
+} from '@/api/hooks/node-pools';
+import queryClient from '@/queryClient';
+import {
+  Autoscaling,
+  AutoscalingState,
+} from '@/components/Autoscaling.component';
+
+export default function ScalePage(): JSX.Element {
+  const { projectId, kubeId: clusterId } = useParams();
+  const [searchParams] = useSearchParams();
+  const poolId = searchParams.get('nodePoolId');
+
+  const navigate = useNavigate();
+  const goBack = () => navigate('..');
+
+  const { addError, addSuccess } = useNotifications();
+
+  const { t: tScale } = useTranslation('scale');
+  const { t: tListing } = useTranslation('listing');
+
+  const [state, setState] = useState<AutoscalingState>(null);
+
+  const { data: pools, isPending: isPoolsPending } = useClusterNodePools(
+    projectId,
+    clusterId,
+  );
+
+  const pool = useMemo(() => pools?.find((p) => p.id === poolId), [
+    pools,
+    poolId,
+  ]);
+
+  useEffect(() => {
+    if (pool) {
+      setState({
+        quantity: {
+          desired: pool?.desiredNodes,
+          min: pool?.minNodes,
+          max: pool?.maxNodes,
+        },
+        isAutoscale: pool?.autoscale,
+      });
+    }
+  }, [pool]);
+
+  const { updateSize, isPending: isDeleting } = useUpdateNodePoolSize({
+    onError(cause: Error & { response: { data: { message: string } } }): void {
+      addError(
+        tScale('kube_node_pool_autoscaling_scale_error', {
+          message: cause?.response?.data?.message,
+        }),
+      );
+      goBack();
+    },
+    onSuccess: async () => {
+      // TODO: add tracking
+      await queryClient.invalidateQueries({
+        queryKey: ['project', projectId, 'kubernetes', clusterId, 'nodePools'],
+      });
+      addSuccess(tScale('kube_node_pool_autoscaling_scale_success'));
+      goBack();
+    },
+    projectId,
+    clusterId,
+    poolId,
+  });
+
+  return (
+    <OsdsModal
+      headline={tListing('kube_common_node_pool_autoscaling_title')}
+      onOdsModalClose={() => {
+        goBack();
+      }}
+      color={ODS_THEME_COLOR_INTENT.text}
+    >
+      <slot name="content">
+        {!isPoolsPending && !isDeleting ? (
+          <>
+            <Autoscaling
+              initialScaling={{
+                min: pool?.minNodes,
+                max: pool?.maxNodes,
+                desired: pool?.desiredNodes,
+              }}
+              isMonthlyBilling={pool?.monthlyBilled}
+              isAntiAffinity={pool?.antiAffinity}
+              autoscale={pool?.autoscale}
+              onChange={(s) => setState(s)}
+            />
+          </>
+        ) : (
+          <OsdsSpinner
+            inline
+            size={ODS_SPINNER_SIZE.md}
+            className="block text-center"
+          />
+        )}
+      </slot>
+      <OsdsButton
+        slot="actions"
+        color={ODS_THEME_COLOR_INTENT.primary}
+        variant={ODS_BUTTON_VARIANT.ghost}
+        onClick={() => {
+          goBack();
+        }}
+      >
+        {tListing('kube_common_cancel')}
+      </OsdsButton>
+      <OsdsButton
+        slot="actions"
+        color={ODS_THEME_COLOR_INTENT.primary}
+        onClick={() => {
+          updateSize({
+            autoscale: state.isAutoscale,
+            desiredNodes: state.quantity.desired,
+            maxNodes: state.quantity.max,
+            minNodes: state.quantity.min,
+          });
+          // TODO add tracking
+        }}
+        {...(isDeleting ? { disabled: true } : {})}
+      >
+        {tListing('kube_common_save')}
+      </OsdsButton>
+    </OsdsModal>
+  );
+}
