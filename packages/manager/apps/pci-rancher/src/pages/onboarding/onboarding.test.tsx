@@ -1,8 +1,8 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
+import onboardingTranslation from '@translation/onboarding/Messages_fr_FR.json';
 import Onboarding from './Onboarding.page';
 import { render, waitFor } from '../../utils/test/test.provider';
-import onboardingTranslation from '../../public/translations/pci-rancher/onboarding/Messages_fr_FR.json';
 import { useGuideUtils } from '@/hooks/useGuideLink/useGuideLink';
 
 const mockedUsedNavigate = jest.fn();

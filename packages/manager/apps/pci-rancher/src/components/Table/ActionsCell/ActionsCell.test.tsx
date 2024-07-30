@@ -1,10 +1,10 @@
 import React from 'react';
 import { Row } from '@tanstack/react-table';
+import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import ActionsCell from './ActionsCell.component';
 import { render, waitFor } from '../../../utils/test/test.provider';
 import { rancherError, rancherMocked } from '../../../_mock_/rancher';
 import { RancherService } from '@/types/api.type';
-import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 
 const setupSpecTest = async (rancherService: RancherService = rancherMocked) =>
   waitFor(() =>

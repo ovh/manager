@@ -1,5 +1,6 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
+import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import EditNameModal from './EditNameModal.component';
 import {
   fireEvent,
@@ -7,7 +8,6 @@ import {
   waitFor,
   act,
 } from '../../../utils/test/test.provider';
-import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 import { rancherMocked } from '../../../_mock_/rancher';
 
 const onEditMocked = jest.fn();

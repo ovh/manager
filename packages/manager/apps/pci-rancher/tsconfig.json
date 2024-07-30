@@ -20,7 +20,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
+      "@playwright-helpers/*": ["../../../../playwright-helpers/*"],
+      "@translation/*": ["./public/translations/*"]
     }
   },
   "include": ["src"],

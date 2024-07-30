@@ -1,9 +1,9 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
+import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import { rancherPlan, rancherVersion } from '@/_mock_/rancher-resource';
-import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
-import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 import {
   act,
   fireEvent,
