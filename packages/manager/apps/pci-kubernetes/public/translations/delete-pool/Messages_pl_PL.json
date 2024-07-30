@@ -1,0 +1,8 @@
+{
+  "kube_node_pool_delete": "Usuń pulę węzłów",
+  "kube_node_pool_delete_confirmation": "Czy na pewno chcesz usunąć {{ node}} ?",
+  "kube_node_pool_delete_warning": "Operacja ta jest nieodwracalna.",
+  "kube_node_pool_delete_enter": "Aby potwierdzić, wprowadź \"DELETE\" w poniższym polu",
+  "kube_node_pool_delete_success": "Trwa usuwanie puli węzłów",
+  "kube_node_pool_delete_error": "Wystąpił błąd podczas usuwania puli węzłów: {{message}}"
+}
