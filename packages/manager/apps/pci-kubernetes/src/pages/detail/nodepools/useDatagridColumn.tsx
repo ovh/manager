@@ -115,9 +115,8 @@ export const useDatagridColumns = () => {
             color={(() => {
               if (pool.status === 'READY')
                 return ODS_THEME_COLOR_INTENT.success;
-              if (pool.status === 'UPDATING')
-                return ODS_THEME_COLOR_INTENT.warning;
-              return ODS_THEME_COLOR_INTENT.error;
+              if (pool.status === 'ERROR') return ODS_THEME_COLOR_INTENT.error;
+              return ODS_THEME_COLOR_INTENT.warning;
             })()}
             inline
             size={ODS_CHIP_SIZE.sm}
