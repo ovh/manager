@@ -63,7 +63,7 @@ export default [
               {
                 path: 'reset-kubeconfig',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/reset/ResetKubeConfig.page'),
+                  import('@/pages/reset-kubeconfig/ResetKubeConfig.page'),
                 ),
               },
               {
@@ -82,6 +82,12 @@ export default [
                 path: 'terminate',
                 ...lazyRouteConfig(() =>
                   import('@/pages/terminate/Terminate.page'),
+                ),
+              },
+              {
+                path: 'reset',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/reset/ResetCluster.page'),
                 ),
               },
             ],

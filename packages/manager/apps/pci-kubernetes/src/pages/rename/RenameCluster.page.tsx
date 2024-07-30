@@ -186,9 +186,7 @@ export default function RenameClusterPage() {
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        {...(canRename && {
-          disabled: true,
-        })}
+        disabled={canRename || undefined}
         onClick={renameCluster}
         data-testid="renameCluster-button_submit"
       >
