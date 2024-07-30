@@ -23,6 +23,7 @@ import ActionButtonOrganization from './ActionButtonOrganization';
 import IdLink from './IdLink';
 import LabelChip from '@/components/LabelChip';
 import { BadgeStatus } from '@/components/BadgeStatus';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 export type OrganizationItem = {
   id: string;
@@ -98,25 +99,27 @@ export default function Organizations() {
       <Notifications />
       <Outlet />
       <div className="flex items-center justify-between">
-        <ManagerButton
-          color={ODS_THEME_COLOR_INTENT.primary}
-          inline={true}
-          size={ODS_BUTTON_SIZE.sm}
-          href={hrefAddOrganization}
-          urn={platformUrn}
-          iamActions={['zimbra:apiovh:platform/organization/create']}
-          data-testid="add-organization-btn"
-        >
-          <span slot="start">
-            <OsdsIcon
-              name={ODS_ICON_NAME.PLUS}
-              size={ODS_ICON_SIZE.sm}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              contrasted
-            ></OsdsIcon>
-          </span>
-          <span slot="end">{t('zimbra_organization_cta')}</span>
-        </ManagerButton>
+        {platformUrn && (
+          <ManagerButton
+            color={ODS_THEME_COLOR_INTENT.primary}
+            inline
+            size={ODS_BUTTON_SIZE.sm}
+            href={hrefAddOrganization}
+            urn={platformUrn}
+            iamActions={[IAM_ACTIONS.organization.create]}
+            data-testid="add-organization-btn"
+          >
+            <span slot="start">
+              <OsdsIcon
+                name={ODS_ICON_NAME.PLUS}
+                size={ODS_ICON_SIZE.sm}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                contrasted
+              ></OsdsIcon>
+            </span>
+            <span slot="end">{t('zimbra_organization_cta')}</span>
+          </ManagerButton>
+        )}
       </div>
       <Datagrid
         columns={columns.map((column) => ({

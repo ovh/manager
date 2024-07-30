@@ -25,14 +25,13 @@ import {
 } from '@/hooks';
 import ActionButtonDomain from './ActionButtonDomain';
 import LabelChip from '@/components/LabelChip';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 export type DomainsItem = {
   id: string;
   name: string;
   organizationLabel: string;
   account: number;
-  authoritative: boolean;
-  configuredAccountsCount: number;
 };
 
 const columns: DatagridColumn<DomainsItem>[] = [
@@ -92,9 +91,6 @@ export default function Domains() {
       name: item.targetSpec.name,
       id: item.currentState.organizationId,
       organizationLabel: item.targetSpec.organizationLabel,
-      configuredAccountsCount:
-        item.currentState.accountsStatistics[0].configuredAccountsCount,
-      authoritative: item.currentState.authoritative,
       account: item.currentState.accountsStatistics.reduce(
         (acc, current) => acc + current.configuredAccountsCount,
         0,
@@ -107,25 +103,27 @@ export default function Domains() {
         <div className="py-6 mt-8">
           <Notifications />
           <div className="flex items-center justify-between">
-            <ManagerButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              inline={true}
-              size={ODS_BUTTON_SIZE.sm}
-              href={hrefAddDomain}
-              urn={platformUrn}
-              iamActions={['zimbra:apiovh:platform/domain/create']}
-              data-testid="add-domain-btn"
-            >
-              <span slot="start">
-                <OsdsIcon
-                  name={ODS_ICON_NAME.PLUS}
-                  size={ODS_ICON_SIZE.sm}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  contrasted
-                ></OsdsIcon>
-              </span>
-              <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
-            </ManagerButton>
+            {platformUrn && (
+              <ManagerButton
+                color={ODS_THEME_COLOR_INTENT.primary}
+                inline
+                size={ODS_BUTTON_SIZE.sm}
+                href={hrefAddDomain}
+                urn={platformUrn}
+                iamActions={[IAM_ACTIONS.domain.create]}
+                data-testid="add-domain-btn"
+              >
+                <span slot="start">
+                  <OsdsIcon
+                    name={ODS_ICON_NAME.PLUS}
+                    size={ODS_ICON_SIZE.sm}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    contrasted
+                  ></OsdsIcon>
+                </span>
+                <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
+              </ManagerButton>
+            )}
           </div>
           <Datagrid
             columns={columns.map((column) => ({
