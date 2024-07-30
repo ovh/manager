@@ -51,7 +51,7 @@ const Modal: React.FC<ModalProps> = ({
         <div className="flex flex-col text-left">
           <OsdsSpinner
             mode={ODS_SPINNER_MODE.indeterminate}
-            inline={true}
+            inline
           ></OsdsSpinner>
         </div>
       )}

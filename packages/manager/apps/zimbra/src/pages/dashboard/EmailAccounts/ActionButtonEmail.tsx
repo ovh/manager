@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovhcloud/manager-components';
 import { EmailsItem } from './EmailAccounts';
 import { useGenerateUrl, usePlatform } from '@/hooks';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 interface ActionButtonEmailAccountProps {
   emailsItem: EmailsItem;
@@ -26,14 +27,14 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
       id: 1,
       href: hrefEditEmailAccount,
       urn: platformUrn,
-      iamActions: ['zimbra:apiovh:platform/account/edit'],
+      iamActions: [IAM_ACTIONS.account.edit],
       label: t('zimbra_account_datagrid_tooltip_modification'),
     },
     {
       id: 2,
       href: hrefDeleteEmailAccount,
       urn: platformUrn,
-      iamActions: ['zimbra:apiovh:platform/account/delete'],
+      iamActions: [IAM_ACTIONS.account.delete],
       label: t('zimbra_account_datagrid_tooltip_delete'),
     },
   ];

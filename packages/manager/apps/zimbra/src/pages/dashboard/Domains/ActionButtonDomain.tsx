@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovhcloud/manager-components';
 import { DomainsItem } from './Domains';
 import { useGenerateUrl, usePlatform } from '@/hooks';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 interface ActionButtonDomainProps {
   domainItem: DomainsItem;
@@ -21,7 +22,7 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
       href: hrefDeleteDomain,
       label: t('zimbra_domains_tooltip_delete'),
       urn: platformUrn,
-      iamActions: ['zimbra:apiovh:platform/domain/delete'],
+      iamActions: [IAM_ACTIONS.domain.delete],
     },
   ];
   return <ActionMenu items={actionItems} isCompact />;

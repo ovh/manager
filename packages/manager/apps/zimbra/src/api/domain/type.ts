@@ -1,7 +1,6 @@
 import { AccountStatistics, ResourceStatus } from '../api.type';
 
 export type DomainBodyParamsType = {
-  authoritative?: boolean;
   organizationId?: string;
   name?: string;
 };
@@ -9,7 +8,6 @@ export type DomainBodyParamsType = {
 export type DomainType = {
   checksum: string;
   currentState: {
-    authoritative: boolean;
     cnameToCheck: string;
     createdAt: string;
     name: string;
@@ -28,7 +26,6 @@ export type DomainType = {
   id: string;
   resourceStatus: keyof typeof ResourceStatus;
   targetSpec: {
-    authoritative: boolean;
     cnameToCheck: string;
     createdAt: string;
     name: string;

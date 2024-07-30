@@ -101,7 +101,7 @@ export const organizationListMock: OrganizationType[] = [
       updatedAt: '2024-06-02T14:52:43.601Z',
     },
     currentTasks: [],
-    id: '1903b491-4d10-4000-8b70-f474d1abe601',
+    id: '1903b491-4d10-4000-8b70-f474d1abe602',
     resourceStatus: 'READY',
     targetSpec: {
       accountsStatistics: [

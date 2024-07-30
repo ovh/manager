@@ -9,6 +9,7 @@ vi.mock('@/hooks', () => {
   return {
     usePlatform: vi.fn(() => ({
       platformId: platformMock[0].id,
+      platformUrn: platformMock[0].iam.urn,
     })),
     useAccountList: vi.fn(() => ({
       data: accountMock,

@@ -31,6 +31,7 @@ import LabelChip from '@/components/LabelChip';
 import guidesConstants from '@/guides.constants';
 import ActionButtonEmail from './ActionButtonEmail';
 import { convertOctets } from '@/utils';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 export type EmailsItem = {
   id: string;
@@ -142,25 +143,27 @@ export default function EmailAccounts() {
                 target={OdsHTMLAnchorElementTarget._blank}
               ></Links>
             </div>
-            <ManagerButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              inline={true}
-              size={ODS_BUTTON_SIZE.sm}
-              urn={platformUrn}
-              iamActions={['zimbra:apiovh:platform/account/create']}
-              href={hrefAddEmailAccount}
-              data-testid="add-account-btn"
-            >
-              <span slot="start">
-                <OsdsIcon
-                  name={ODS_ICON_NAME.PLUS}
-                  size={ODS_ICON_SIZE.sm}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  contrasted
-                ></OsdsIcon>
-              </span>
-              <span slot="end">{t('zimbra_account_account_add')}</span>
-            </ManagerButton>
+            {platformUrn && (
+              <ManagerButton
+                color={ODS_THEME_COLOR_INTENT.primary}
+                inline
+                size={ODS_BUTTON_SIZE.sm}
+                urn={platformUrn}
+                iamActions={[IAM_ACTIONS.account.create]}
+                href={hrefAddEmailAccount}
+                data-testid="add-account-btn"
+              >
+                <span slot="start">
+                  <OsdsIcon
+                    name={ODS_ICON_NAME.PLUS}
+                    size={ODS_ICON_SIZE.sm}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    contrasted
+                  ></OsdsIcon>
+                </span>
+                <span slot="end">{t('zimbra_account_account_add')}</span>
+              </ManagerButton>
+            )}
             <Datagrid
               columns={columns.map((column) => ({
                 ...column,
