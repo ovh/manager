@@ -1,10 +1,4 @@
-import {
-  ActionBanner,
-  Description,
-  LinkType,
-  Links,
-  Subtitle,
-} from '@ovhcloud/manager-components';
+import { Description, Subtitle } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -31,35 +25,38 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import QuantitySelector from '@/components/QuantitySelector/QuantitySelector';
 import useTechnicalInfo, { usePricingInfo } from '@/hooks/useCatalogCommercial';
+import { useSavingsPlanCreate } from '@/hooks/useSavingsPlan';
 import { formatPricingInfo } from '@/utils/formatter/formatter';
 import rancherSrc from '../../assets/images/rancher.png';
 import serviceSrc from '../../assets/images/service.png';
-import Commitment from '../Commitment/Commitment';
-import SimpleTile from '../SimpleTile/SimpleTile';
-import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
 import {
   InstanceInfo,
   InstanceTechnicalName,
   Resource,
   ResourceType,
 } from '../../types/CreatePlan.type';
+import Commitment from '../Commitment/Commitment';
 import LegalLinks from '../LegalLinks/LegalLinks';
+import SimpleTile from '../SimpleTile/SimpleTile';
+import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
 
 export const isValidName = (name: string) =>
   /^[a-z0-9][-_.A-Za-z0-9]{1,61}$/.test(name);
+
+const COMMON_SPACING = 'my-4';
 
 export const DescriptionWrapper: React.FC<{
   children: string;
 }> = ({ children }) => {
   return (
-    <div className="my-3">
+    <div className={COMMON_SPACING}>
       <Description>{children}</Description>
     </div>
   );
@@ -79,6 +76,15 @@ export type CreatePlanFormProps = {
   isTechnicalInfoLoading: boolean;
   technicalModel: string;
   setTechnicalModel: (technicalModel: string) => void;
+  onCreatePlan: ({
+    offerId,
+    displayName,
+    size,
+  }: {
+    offerId: string;
+    displayName: string;
+    size: number;
+  }) => void;
 };
 
 export const getDescriptionInstanceKey = (resource: string) => {
@@ -95,6 +101,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   isTechnicalInfoLoading,
   technicalModel,
   setTechnicalModel,
+  onCreatePlan,
 }: CreatePlanFormProps) => {
   const navigate = useNavigate();
   const { t } = useTranslation('create');
@@ -103,31 +110,26 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   );
   const [quantity, setQuantity] = useState<number>(1);
   const [planName, setPlanName] = useState<string>('');
-  const [commitmentSelected, setCommitmentSelected] = useState<string>();
-
+  const [offerIdSelected, setOfferIdSelected] = useState<string>();
   const [isLegalChecked, setIsLegalChecked] = useState<boolean>(false);
 
   const isInstance = selectedResource === ResourceType.instance;
-  const tabsList =
-    ResourceType.instance === selectedResource
-      ? instancesInfo.filter(
-          (instance) => instance.category === ResourceType.instance,
-        )
-      : [];
+  const tabsList = isInstance
+    ? instancesInfo.filter(
+        (instance) => instance.category === ResourceType.instance,
+      )
+    : [];
 
-  const onCreateSavingsPlan = () => {
-    // TODO: Call REAL API with quantity, technicalModel, selectedResource, planName
-  };
   const isButtonActive = useMemo(
     () =>
       quantity > 0 &&
-      commitmentSelected &&
+      offerIdSelected &&
       technicalModel &&
       selectedResource &&
       isLegalChecked,
     [
       quantity,
-      commitmentSelected,
+      offerIdSelected,
       technicalModel,
       selectedResource,
       isLegalChecked,
@@ -138,6 +140,9 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
     (item: InstanceInfo) => item.technicalName === instanceCategory,
   );
   const [currentInstanceSelected] = technicalInfoList;
+  const activeInstance = currentInstanceSelected.technical?.find(
+    (item) => item.name === technicalModel,
+  );
 
   // Change Between Instance And Rancher we reset the selectedModel
   const onChangeResource = (value: ResourceType) => {
@@ -149,9 +154,18 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
     }
   };
 
-  const activeInstance = currentInstanceSelected.technical?.find(
-    (item) => item.name === technicalModel,
-  );
+  const onSelectModel = (model: string) => {
+    setTechnicalModel(model);
+    setOfferIdSelected(undefined);
+  };
+
+  const onCreateSavingsPlan = () => {
+    onCreatePlan({
+      offerId: offerIdSelected,
+      displayName: planName,
+      size: quantity,
+    });
+  };
 
   return (
     <div>
@@ -176,7 +190,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       <Block>
         <Subtitle>{t('select_model')}</Subtitle>
         {isInstance && (
-          <div className="my-4">
+          <div className={COMMON_SPACING}>
             <OsdsTabs panel={instanceCategory}>
               <OsdsTabBar slot="top">
                 {tabsList.map((tab) => (
@@ -197,11 +211,13 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         </DescriptionWrapper>
         {!isTechnicalInfoLoading ? (
           <div className="flex flex-row">
-            {currentInstanceSelected.technical?.map((item) => (
+            {currentInstanceSelected.technical?.map(({ name, technical }) => (
               <TileTechnicalInfo
-                technical={item.technical}
-                onClick={() => setTechnicalModel(item.name)}
-                isActive={technicalModel === item.name}
+                key={name}
+                technical={technical}
+                name={name}
+                onClick={() => onSelectModel(name)}
+                isActive={technicalModel === name}
               />
             ))}
           </div>
@@ -234,15 +250,18 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       </Block>
       <Block>
         <Subtitle>{t('select_commitment')}</Subtitle>
-        <Description>{t('select_commitment_description')}</Description>
-        {!isPricingLoading ? (
-          pricingByDuration.map((pricing) => {
+        <DescriptionWrapper>
+          {t('select_commitment_description')}
+        </DescriptionWrapper>
+        {!isPricingLoading && !isTechnicalInfoLoading ? (
+          pricingByDuration?.map((pricing) => {
             return (
               <Commitment
-                onClick={() => setCommitmentSelected(pricing.duration)}
-                isActive={commitmentSelected === pricing.duration}
+                key={pricing.id}
+                onClick={() => setOfferIdSelected(pricing.id)}
+                isActive={offerIdSelected === pricing.id}
                 duration={pricing.duration}
-                price={pricing.price.toString()}
+                price={pricing.price?.toString()}
                 hourlyPriceWithoutCommitment={activeInstance?.hourlyPrice || 0}
               />
             );
@@ -258,11 +277,11 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           aria-label="savings-plan-name-input"
           type={ODS_INPUT_TYPE.text}
           color={
-            isValidName(planName)
+            isValidName(planName) || planName === ''
               ? ODS_THEME_COLOR_INTENT.primary
               : ODS_THEME_COLOR_INTENT.error
           }
-          className="my-3 w-1/3"
+          className={`${COMMON_SPACING} w-1/3`}
           value={planName}
           onOdsValueChange={(
             e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
@@ -333,12 +352,25 @@ export const CreatePlanFormContainer = () => {
   } = useTechnicalInfo({
     productCode: instanceCategory,
   });
+
   const {
     data: pricingByDuration = [],
     isLoading: isPricingLoading,
   } = usePricingInfo({
     productSizeCode: technicalModel,
   });
+
+  useEffect(() => {
+    if (technicalList.length > 0) {
+      setTechnicalModel(technicalList[0].name);
+    }
+  }, [technicalList]);
+
+  const { mutate: onCreatePlan } = useSavingsPlanCreate();
+
+  const sortedPriceByDuration = [...pricingByDuration].sort(
+    (a, b) => a.duration - b.duration,
+  );
 
   const resources: Resource[] = [
     {
@@ -353,7 +385,7 @@ export const CreatePlanFormContainer = () => {
     },
   ];
 
-  const instancesInfo = [
+  const instancesInfo: InstanceInfo[] = [
     {
       id: '1',
       category: ResourceType.instance,
@@ -386,11 +418,12 @@ export const CreatePlanFormContainer = () => {
 
   return (
     <CreatePlanForm
+      onCreatePlan={onCreatePlan}
       resources={resources}
       instancesInfo={instancesInfo}
       instanceCategory={instanceCategory}
       setInstanceCategory={setInstanceCategory}
-      pricingByDuration={pricingByDuration}
+      pricingByDuration={sortedPriceByDuration}
       isTechnicalInfoLoading={isTechnicalInfoLoading}
       isPricingLoading={isPricingLoading}
       setTechnicalModel={setTechnicalModel}
