@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import isDate from 'lodash.isdate';
 import { IcebergFetchParamsV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import isDate from 'lodash.isdate';
 import { useQuery } from '@tanstack/react-query';
 import { ColumnSort } from '../../components';
 
@@ -79,8 +79,8 @@ export function useResourcesV6({
 
   useEffect(() => {
     if (data?.data && data?.data?.length > 0) {
-      setTotalCount(data.data.length);
-      setSortData(data.data);
+      setTotalCount(data.data[0].length);
+      setSortData(data.data[0]);
     }
   }, [data]);
 

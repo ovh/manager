@@ -47,6 +47,15 @@ export const getRoutes = (): RouteObject[] => {
       Component: RootWrapper,
       children: [
         routeConfig({
+          pageImport: () => import('@/pages/private-networks'),
+          path: '/private-networks',
+        }),
+
+        routeConfig({
+          pageImport: () => import('@/pages/vps'),
+          path: '/vps',
+        }),
+        routeConfig({
           pageImport: () => import('@/pages/listing'),
           path: urls.listing,
           currentPage: 'vrack-services.listing',
