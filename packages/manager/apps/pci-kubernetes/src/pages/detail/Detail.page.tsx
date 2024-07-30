@@ -26,7 +26,7 @@ export default function DetailPage() {
 
   const { data: project } = useProject();
   const { projectId, kubeId } = useParams();
-  const hrefProject = useProjectUrl(projectId);
+  const hrefProject = useProjectUrl('public-cloud');
   const hrefBack = useHref('..');
 
   const tabs = [
