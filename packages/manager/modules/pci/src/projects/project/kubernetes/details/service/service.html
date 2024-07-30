@@ -146,33 +146,6 @@
                     <span data-ng-bind="$ctrl.cluster.version"></span>
                 </oui-tile-description>
             </oui-tile-definition>
-            <!-- network attached -->
-            <oui-tile-definition
-                data-term="{{ ::'kube_service_cluster_network_attached' | translate }}"
-            >
-                <oui-tile-description>
-                    <!--Public network-->
-                    <span
-                        data-ng-if="!$ctrl.cluster.privateNetworkId"
-                        data-translate="kube_service_cluster_network_public"
-                    ></span>
-
-                    <!--Private network info-->
-                    <div data-ng-if="$ctrl.cluster.privateNetworkId">
-                        <!--Private network name-->
-                        <span
-                            class="d-block"
-                            data-ng-bind="$ctrl.cluster.privateNetworkName"
-                        ></span>
-                    </div>
-
-                    <!--gateway-->
-                    <pci-kubernetes-network-data
-                        data-network="$ctrl.cluster.privateNetworkConfiguration"
-                    />
-                </oui-tile-description>
-            </oui-tile-definition>
-            <!-- end of network attached -->
             <oui-tile-definition
                 data-term="{{:: 'kube_service_cluster_region' | translate }}"
                 data-description="{{:: $ctrl.cluster.region }}"
@@ -356,4 +329,85 @@
             </oui-tile-definition>
         </oui-tile>
     </div>
+</div>
+<div class="row d-lg-flex mt-4">
+    <div class="col-md-4"></div>
+    <!--Network-->
+    <div class="col-md-4">
+        <oui-tile
+            data-heading="{{:: 'kube_service_cluster_network_tile_title' | translate }}"
+        >
+            <oui-message
+                data-ng-if="$ctrl.networkDetailsError"
+                data-type="error"
+            >
+                <span
+                    data-translate="kube_service_cluster_network_error"
+                    data-translate-values="{ error: $ctrl.networkDetailsError }"
+                ></span>
+            </oui-message>
+            <oui-spinner
+                data-ng-if="$ctrl.isFetchingNetworkDetails"
+                data-size="s"
+            />
+            <div
+                data-ng-if="!$ctrl.isFetchingNetworkDetails && !$ctrl.networkDetailsError"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'kube_service_cluster_network_attached_network' | translate }}"
+                >
+                    <oui-tile-description>
+                        <!--Public network-->
+                        <span
+                            data-ng-if="!$ctrl.cluster.privateNetworkId"
+                            data-translate="kube_service_cluster_network_public"
+                        ></span>
+                        <!--Private network-->
+                        <div data-ng-if="$ctrl.cluster.privateNetworkId">
+                            <span
+                                class="d-block"
+                                data-ng-bind="$ctrl.cluster.privateNetworkName"
+                            ></span>
+                        </div>
+                        <!--gateway-->
+                        <pci-kubernetes-network-data
+                            data-ng-if="$ctrl.cluster.privateNetworkId"
+                            data-network="$ctrl.cluster.privateNetworkConfiguration"
+                        />
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!--subnet-->
+                <oui-tile-definition
+                    data-ng-if="$ctrl.networkDetails.nodesSubnet"
+                    data-term="{{:: 'kube_service_cluster_network_subnet' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind="$ctrl.networkDetails.nodesSubnet.id"
+                        ></span>
+                        -
+                        <span
+                            data-ng-bind="$ctrl.networkDetails.nodesSubnet.cidr"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!--load balancer subnet-->
+                <oui-tile-definition
+                    data-ng-if="$ctrl.networkDetails.loadBalancersSubnet"
+                    data-term="{{:: 'kube_service_cluster_network_lb_subnet' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind="$ctrl.networkDetails.loadBalancersSubnet.id"
+                        ></span>
+                        -
+                        <span
+                            data-ng-bind="$ctrl.networkDetails.loadBalancersSubnet.cidr"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </div>
+        </oui-tile>
+    </div>
+    <div class="col-md-4"></div>
 </div>
