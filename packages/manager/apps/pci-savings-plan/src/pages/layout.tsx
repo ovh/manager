@@ -12,14 +12,13 @@ import {
 import React, { Suspense, useContext, useEffect } from 'react';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-import Errors from '@/components/Error/Error';
 import Loading from '@/components/Loading/Loading';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 
 const Header = () => {
   return (
     <div className="flex flex-col my-5">
-      <Suspense fallback={<Loading />}>
+      <Suspense>
         <Breadcrumb />
       </Suspense>
     </div>
