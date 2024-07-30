@@ -5,10 +5,8 @@ import Loading from '@/components/Loading/Loading';
 
 export default function DashboardPage() {
   return (
-    <div>
-      <Suspense fallback={<Loading />}>
-        <Dashboard />
-      </Suspense>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <Dashboard />
+    </Suspense>
   );
 }

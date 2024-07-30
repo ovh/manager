@@ -4,27 +4,16 @@ import {
   useRouteSynchro,
   useRouting,
 } from '@ovh-ux/manager-react-shell-client';
-import { useQuery } from '@tanstack/react-query';
-import {
-  getZimbraPlatformList,
-  ZimbraPlatformType,
-  getZimbraPlatformListQueryKey,
-} from '@/api/platform';
 
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
+import { usePlatform } from '@/hooks';
 
 export default function Layout() {
   const location = useLocation();
   const routing = useRouting();
 
-  const { data, isLoading, isError, error } = useQuery<
-    ZimbraPlatformType[],
-    Error
-  >({
-    queryKey: [getZimbraPlatformListQueryKey],
-    queryFn: () => getZimbraPlatformList(),
-  });
+  const { platformId, isLoading, isError, error } = usePlatform();
   useEffect(() => {
     routing.onHashChange();
   }, [location]);
@@ -36,10 +25,10 @@ export default function Layout() {
       <Outlet />
       {isLoading && <Loading />}
       {isError && <ErrorBanner error={error} />}
-      {data?.length === 0 && <Navigate to="onboarding" />}
-      {data?.length > 0 &&
-        location.pathname === '/' &&
-        location.search === '' && <Navigate to={`${data[0].id}`} />}
+      {!platformId && !isLoading && <Navigate to="onboarding" />}
+      {platformId && location.pathname === '/' && location.search === '' && (
+        <Navigate to={platformId} />
+      )}
     </>
   );
 }
