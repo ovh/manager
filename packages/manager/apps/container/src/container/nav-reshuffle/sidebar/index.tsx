@@ -50,6 +50,7 @@ const Sidebar = (): JSX.Element => {
     setCurrentNavigationNode,
     setNavigationTree,
     isNavigationSidebarOpened,
+    isMobile
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
   const [menuItems, setMenuItems] = useState<
@@ -213,20 +214,22 @@ const Sidebar = (): JSX.Element => {
 
   return (
     <div className={`${style.sidebar} ${!open && style.sidebar_short}`}>
-      <a
-        role="img"
-        className={`block ${style.sidebar_logo}`}
-        aria-label="OVHcloud"
-        target="_top"
-        href={logoLink}
-      >
-        <img
-          className={`${open ? 'mx-4' : 'mx-2'} my-3`}
-          src={open ? logo : shortLogo}
-          alt="OVHcloud"
-          aria-hidden="true"
-        />
-      </a>
+      {!isMobile && (
+        <a
+          role="img"
+          className={`block ${style.sidebar_logo}`}
+          aria-label="OVHcloud"
+          target="_top"
+          href={logoLink}
+        >
+          <img
+            className={`${open ? 'mx-4' : 'mx-2'} my-3`}
+            src={open ? logo : shortLogo}
+            alt="OVHcloud"
+            aria-hidden="true"
+          />
+        </a>
+      )}
 
       <div className={style.sidebar_menu} role="menubar">
         {(servicesCount || betaVersion === 1) && (

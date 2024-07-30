@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import style from './style.module.scss';
 import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
-import { isMobile } from '@/container/nav-reshuffle/sidebar/utils';
 import StaticLink from '@/container/nav-reshuffle/sidebar/StaticLink';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
+import useProductNavReshuffle from '@/core/product-nav-reshuffle/useProductNavReshuffle';
 
 type SidebarLinkProps = {
   count?: number | boolean;
@@ -35,7 +35,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   isShortText = false,
 }: SidebarLinkProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
-  const mobile = isMobile();
+  const { isMobile } = useProductNavReshuffle();
 
   return !node.children && (node.url || node.routing) ? (
     <StaticLink
@@ -50,10 +50,10 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
     <button
       className={style['button-as-div']}
       title={t(isShortText ? node.shortTranslation : node.translation)}
-      onMouseOver={!mobile ? handleOnMouseOver : null}
-      onMouseLeave={!mobile ? handleOnMouseLeave : null}
-      onFocus={handleOnMouseOver}
-      onTouchEnd={mobile ? handleNavigation : null}
+      onMouseOver={!isMobile ? handleOnMouseOver : null}
+      onMouseLeave={!isMobile ? handleOnMouseLeave : null}
+      onFocus={!isMobile ? handleOnMouseOver : null}
+      onTouchEnd={isMobile ? handleNavigation : null}
       onKeyUp={(e) => {
         if (e.key === 'Enter') {
           handleOnEnter(node);

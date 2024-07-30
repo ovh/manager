@@ -2,6 +2,8 @@
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
 
+$sidebar-font-size: 0.875rem;
+
 .sidebar {
   @import '@ovh-ux/manager-hub/src/variables.scss';
   background-color: $p-700;
@@ -34,6 +36,10 @@
 
   &_logo {
     display: block;
+    
+    img {
+      height: 1.85rem;
+    }
   }
 
   &_pci_refresh {
@@ -78,7 +84,7 @@
   }
 
   li {
-    line-height: 2.3rem;
+    line-height: 2rem;
     vertical-align: middle;
     button {
       width: 100%;
@@ -88,6 +94,7 @@
     a {
       color: white;
       font-weight: 600;
+      font-size: $sidebar-font-size;
       display: inline-block;
       width: 100%;
       outline: none;
@@ -100,8 +107,8 @@
 
   h2 {
     color: white;
+    font-weight: 700;
     font-size: 1.3rem;
-    font-weight: 600;
     margin: 0;
     margin-bottom: 0.5rem;
   }
@@ -298,6 +305,7 @@
   font: inherit;
   color: inherit;
   font-weight: 600;
+  font-size: $sidebar-font-size;
 }
 
 .sidebarLinkTag {
