@@ -12,20 +12,24 @@ const Commitment = ({
   isActive,
   onClick,
 }: {
-  duration: string;
+  duration: number;
   price: string;
   hourlyPriceWithoutCommitment: number;
   isActive: boolean;
   onClick: () => void;
 }) => {
-  const priceByMonthWithoutCommitment = (
-    convertHourlyPriceToMonthly(hourlyPriceWithoutCommitment) * Number(duration)
-  ).toFixed(2);
+  const priceByMonthWithoutCommitment = convertHourlyPriceToMonthly(
+    hourlyPriceWithoutCommitment,
+  );
+
+  const priceNumber = Number(price);
 
   const diffInPercent = (
-    ((Number(price) - Number(priceByMonthWithoutCommitment)) / Number(price)) *
+    ((Number(priceByMonthWithoutCommitment) - priceNumber) /
+      Number(priceByMonthWithoutCommitment)) *
     100
   ).toFixed(0);
+
   const { t } = useTranslation('create');
   return (
     <OsdsTile
@@ -33,7 +37,7 @@ const Commitment = ({
       rounded
       inline
       variant={ODS_TILE_VARIANT.stroked}
-      className="flex flex-row items-center mr-5 my-4 justify-between w-full"
+      className="flex flex-row items-center mr-5 my-4 justify-between w-full cursor-pointer"
       color={
         isActive
           ? ODS_THEME_COLOR_INTENT.primary
@@ -55,10 +59,10 @@ const Commitment = ({
             color={ODS_THEME_COLOR_INTENT.text}
             className="line-through"
           >
-            {priceByMonthWithoutCommitment} €
+            ~ {priceByMonthWithoutCommitment.toFixed(2)} €
           </OsdsText>
           <OsdsText color={ODS_THEME_COLOR_INTENT.success} className="ml-3">
-            {price} €
+            {priceNumber.toFixed(2)} €
           </OsdsText>
         </div>
         <OsdsText>{t('commitment_price_month')}</OsdsText>

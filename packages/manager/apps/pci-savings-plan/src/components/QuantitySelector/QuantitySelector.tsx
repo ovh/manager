@@ -52,6 +52,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       size={ODS_INPUT_SIZE.md}
     ></OsdsInput>
     <OsdsButton
+      data-testid="plus-button"
       onClick={onPlusClick}
       slot="plus"
       size={ODS_BUTTON_SIZE.sm}

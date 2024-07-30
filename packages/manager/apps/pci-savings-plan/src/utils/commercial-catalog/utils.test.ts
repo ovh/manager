@@ -1,4 +1,4 @@
-import { vi, describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';
 
 import {
   convertToPrice,
@@ -22,9 +22,18 @@ describe('Utils', () => {
   });
 
   describe('convertToDuration', () => {
-    it('should convert ISO 8601 duration to months', () => {
-      expect(convertToDuration('P12M')).toBe('12');
-      expect(convertToDuration('P6M')).toBe('6');
-    });
+    it.each([
+      ['P1M', 1],
+      ['P3M', 3],
+      ['P6M', 6],
+      ['P12M', 12],
+      ['P1Y', 12],
+      ['P2Y', 24],
+    ])(
+      'should convert ISO 8601 duration %s to %d months',
+      (input, expected) => {
+        expect(convertToDuration(input)).toBe(expected);
+      },
+    );
   });
 });

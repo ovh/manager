@@ -19,7 +19,7 @@ import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 const Header = () => {
   return (
     <div className="flex flex-col my-5">
-      <Suspense fallback={<Loading />}>
+      <Suspense>
         <Breadcrumb />
       </Suspense>
     </div>

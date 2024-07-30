@@ -7,53 +7,69 @@ import {
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import SimpleTile from '../SimpleTile/SimpleTile';
-import { Technical } from '@/types/commercial-catalog.type';
+import { formatTechnicalInfo } from '@/utils/formatter/formatter';
+
+const DisplayTechnicalInfo = ({
+  technical,
+}: {
+  technical: ReturnType<typeof formatTechnicalInfo>['technical'];
+}) => {
+  const { t } = useTranslation('create');
+  const { memory, cpu, storage, bandwidth } = technical;
+  return (
+    <>
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+      >
+        {t('resource_model_characteristics_gb', {
+          value: memory.size,
+        })}
+      </OsdsText>
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+        {t('resource_model_characteristics_cpu', {
+          cores: cpu.cores,
+          ghz: cpu.frequency,
+        })}
+      </OsdsText>
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+        {t('resource_model_characteristics_disk', {
+          value: storage.disks[0].capacity,
+        })}
+      </OsdsText>
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+        {t('resource_model_characteristics_mbits', {
+          value: bandwidth.level,
+        })}
+      </OsdsText>
+    </>
+  );
+};
 
 type TileTechnicalInfoProps = {
-  technical: Technical;
+  technical: ReturnType<typeof formatTechnicalInfo>['technical'];
   onClick?: () => void;
   isActive?: boolean;
+  name: string;
 };
+
 export const TileTechnicalInfo: React.FC<TileTechnicalInfoProps> = ({
+  name,
   technical,
   onClick,
   isActive,
-}) => {
-  const { t } = useTranslation('create');
-  const { name, memory, cpu, storage, bandwidth } = technical;
-  return (
-    <SimpleTile key={name} onClick={onClick} isActive={isActive}>
-      <div className="flex flex-col items-center justify-center">
-        <OsdsText
-          size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-          color={ODS_THEME_COLOR_INTENT.text}
-          hue={ODS_THEME_COLOR_HUE._700}
-          className="mb-5"
-        >
-          {name}
-        </OsdsText>
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-          {t('resource_model_characteristics_gb', {
-            value: memory.size,
-          })}
-        </OsdsText>
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-          {t('resource_model_characteristics_cpu', {
-            cores: cpu.cores,
-            ghz: cpu.frequency,
-          })}
-        </OsdsText>
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-          {t('resource_model_characteristics_disk', {
-            value: storage.disks[0].capacity,
-          })}
-        </OsdsText>
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-          {t('resource_model_characteristics_mbits', {
-            value: bandwidth.level,
-          })}
-        </OsdsText>
-      </div>
-    </SimpleTile>
-  );
-};
+}) => (
+  <SimpleTile onClick={onClick} isActive={isActive}>
+    <div className="flex flex-col items-center justify-center">
+      <OsdsText
+        size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+        color={ODS_THEME_COLOR_INTENT.text}
+        hue={ODS_THEME_COLOR_HUE._700}
+        className="mb-5"
+      >
+        {name}
+      </OsdsText>
+      {technical && <DisplayTechnicalInfo technical={technical} />}
+    </div>
+  </SimpleTile>
+);

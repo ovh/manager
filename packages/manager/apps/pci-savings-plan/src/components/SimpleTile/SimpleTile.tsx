@@ -16,6 +16,8 @@ const SimpleTile: React.FC<React.PropsWithChildren<{
     variant={ODS_TILE_VARIANT.stroked}
     className={`flex items-center justify-center w-1/4  mr-5 text-center ${
       onClick ? 'cursor-pointer' : 'cursor-default'
+    } ${
+      isActive ? ' bg-[--ods-color-blue-100] border-[--ods-color-blue-600]' : ''
     }`}
     onClick={onClick}
   >

@@ -1,52 +1,63 @@
 import { useQuery } from '@tanstack/react-query';
 import { v2 } from '@ovh-ux/manager-core-api';
-import { buildTechnicalInfosMock } from '@/mock/commercial-catalog/technical';
 import {
   formatPricingInfo,
   formatTechnicalInfo,
 } from '@/utils/formatter/formatter';
-import { CommercialCatalogPricing } from '@/types/commercial-catalog-pricing.type';
 import { InstanceTechnicalName } from '@/types/CreatePlan.type';
-import { TechnicalInfo } from '@/types/commercial-catalog.type';
+import {
+  CommercialCatalogPricingType,
+  CommercialCatalogTechnicalType,
+} from '@/types/commercial-catalog.type';
 
-export const getCommercialOffers = async (
-  productSizeCode: string,
-): Promise<CommercialCatalogPricing[]> => {
-  const { data } = await v2.get<CommercialCatalogPricing[]>(
-    `commercialCatalog/offers`,
+const getCatalogCommercial = async <T,>(
+  additionalParams: string,
+): Promise<T> => {
+  const { data } = await v2.get<T>(
+    // TODO: Change the locale based on manager
+    `commercialCatalog/offers?merchants=FR&type=ATOMIC&${additionalParams}`,
   );
   return data;
 };
 
+export const getCommercialOffers = async (
+  productCode: string,
+): Promise<CommercialCatalogPricingType[]> => {
+  return getCatalogCommercial<CommercialCatalogPricingType[]>(
+    `nature=BILLING_PLAN&productCode=${productCode}%20SP`,
+  );
+};
+
 export const getTechnicalInfo = async (
   productCode: string,
-): Promise<TechnicalInfo[]> => {
-  // TODO: Fetch to real api
-
-  return Promise.resolve(buildTechnicalInfosMock(productCode));
+): Promise<CommercialCatalogTechnicalType[]> => {
+  return getCatalogCommercial<CommercialCatalogTechnicalType[]>(
+    `nature=REGULAR&productCode=${productCode}`,
+  );
 };
 
 export const useTechnicalInfo = ({
   productCode,
 }: {
   productCode: InstanceTechnicalName;
-}) => {
-  return useQuery({
+}) =>
+  useQuery({
     queryKey: ['technicalInfo', productCode],
     queryFn: () => getTechnicalInfo(productCode),
-    select: (res) => res.map(formatTechnicalInfo),
+    select: (res) =>
+      res.map(formatTechnicalInfo).filter((item) => item.id !== ''),
   });
-};
 
 export const usePricingInfo = ({
   productSizeCode,
 }: {
   productSizeCode: string;
-}) => {
-  return useQuery({
+}) =>
+  useQuery({
     queryKey: ['pricingInfo', productSizeCode],
     queryFn: () => getCommercialOffers(productSizeCode),
-    select: (res) => res.map(formatPricingInfo),
+    select: (res) =>
+      res.map(formatPricingInfo).filter((item) => item.id !== null),
   });
-};
+
 export default useTechnicalInfo;
