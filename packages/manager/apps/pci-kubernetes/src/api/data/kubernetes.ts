@@ -1,5 +1,5 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
-import { TKube } from '@/types';
+import { TKube, TNetworkConfiguration } from '@/types';
 
 export const getKubernetesCluster = async (
   projectId: string,
@@ -111,6 +111,24 @@ export const updateKubeVersion = async (
 export const terminateCluster = async (projectId: string, kubeId: string) => {
   const { data } = await v6.delete(
     `/cloud/project/${projectId}/kube/${kubeId}`,
+  );
+  return data;
+};
+
+export type TResetClusterParams = {
+  privateNetworkConfiguration?: TNetworkConfiguration;
+  privateNetworkId: string;
+  version: string;
+  workerNodesPolicy: string;
+};
+export const resetCluster = async (
+  projectId: string,
+  kubeId: string,
+  params: TResetClusterParams,
+) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/kube/${kubeId}/reset`,
+    params,
   );
   return data;
 };

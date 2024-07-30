@@ -18,7 +18,7 @@ export type TKube = {
   createdAt: string;
   updatedAt: string;
   auditLogsSubscribed: boolean;
-  privateNetworkConfiguration: NetworkConfiguration;
+  privateNetworkConfiguration: TNetworkConfiguration;
   isClusterReady: boolean;
 };
 
@@ -35,7 +35,7 @@ export type TClusterCustomization = {
   apiServer: TApiServerCustomization;
 };
 
-export type NetworkConfiguration = {
+export type TNetworkConfiguration = {
   privateNetworkRoutingAsDefault: boolean;
   defaultVrackGateway: string;
 };

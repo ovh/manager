@@ -13,7 +13,7 @@ import {
   useKubernetesCluster,
   useResetKubeConfig,
 } from '@/api/hooks/useKubernetes';
-import ResetKubeConfigContent from '@/components/reset/ResetKubeConfigContent';
+import ResetKubeConfigContent from '@/components/reset-kubeconfig/ResetKubeConfigContent';
 
 export default function ResetKubeConfigPage() {
   const { t: tResetKubeConfig } = useTranslation('reset-kubeconfig');

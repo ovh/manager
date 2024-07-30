@@ -40,7 +40,7 @@ export default function ListPage() {
 
   const { projectId } = useParams();
   const { data: project } = useProject();
-  const hrefProject = useProjectUrl(projectId);
+  const hrefProject = useProjectUrl('public-cloud');
   const { pagination, setPagination } = useDataGrid();
   const columns = useDatagridColumn();
   const navigate = useNavigate();

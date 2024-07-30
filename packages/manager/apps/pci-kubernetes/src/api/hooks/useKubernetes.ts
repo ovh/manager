@@ -11,8 +11,10 @@ import {
   getKubernetesCluster,
   getOidcProvider,
   postKubeConfig,
+  resetCluster,
   resetKubeConfig,
   terminateCluster,
+  TResetClusterParams,
   updateKubePolicy,
   updateKubernetesCluster,
   updateKubeVersion,
@@ -336,6 +338,40 @@ export const useTerminateCluster = ({
   });
   return {
     terminateCluster: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type ResetClusterProps = {
+  projectId: string;
+  kubeId: string;
+  params: TResetClusterParams;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useResetCluster = ({
+  projectId,
+  kubeId,
+  params,
+  onError,
+  onSuccess,
+}: ResetClusterProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => resetCluster(projectId, kubeId, params),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: getAllKubeQueryKey(projectId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    resetCluster: () => mutation.mutate(),
     ...mutation,
   };
 };
