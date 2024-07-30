@@ -2,8 +2,8 @@ import React from 'react';
 import { Outlet, useResolvedPath } from 'react-router-dom';
 
 import {
-  DashboardLayout,
-  DashboardLayoutProps,
+  BaseLayout,
+  BaseLayoutProps,
   GuideButton,
   GuideItem,
 } from '@ovhcloud/manager-components';
@@ -14,7 +14,7 @@ import TabsPanel from './TabsPanel';
 
 import './Dashboard.scss';
 
-export const Dashboard: React.FC<DashboardLayoutProps> = () => {
+export const Dashboard: React.FC<BaseLayoutProps> = () => {
   const { t } = useTranslation('dashboard');
 
   const guideItems: GuideItem[] = [
@@ -50,15 +50,16 @@ export const Dashboard: React.FC<DashboardLayoutProps> = () => {
   ];
 
   return (
-    <DashboardLayout
+    <BaseLayout
       header={{
         title: 'Zimbra',
         headerButton: <GuideButton items={guideItems} />,
       }}
       breadcrumb={<Breadcrumb />}
       tabs={<TabsPanel tabs={tabsList} />}
-      content={<Outlet />}
-    />
+    >
+      <Outlet />
+    </BaseLayout>
   );
 };
 

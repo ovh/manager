@@ -1,15 +1,8 @@
-import { DashboardLayout, ErrorBanner } from '@ovhcloud/manager-components';
+import { ErrorBanner } from '@ovhcloud/manager-components';
 import React, { Suspense } from 'react';
-import {
-  Outlet,
-  useNavigate,
-  useParams,
-  useResolvedPath,
-} from 'react-router-dom';
+import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Breadcrumb, {
-  BreadcrumbHandleParams,
-} from '@/components/Breadcrumb/Breadcrumb';
+import { BreadcrumbHandleParams } from '@/components/Breadcrumb/Breadcrumb';
 import Loading from '@/components/Loading/Loading';
 import Dashboard, {
   DashboardTabItemProps,
@@ -66,11 +59,7 @@ export default function DashboardPage() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <DashboardLayout
-        breadcrumb={<Breadcrumb items={[{ label: rancher.targetSpec.name }]} />}
-        content={rancher && <Dashboard tabs={tabsList} rancher={rancher} />}
-      />
-      <Outlet />
+      {rancher && <Dashboard tabs={tabsList} rancher={rancher} />}
     </Suspense>
   );
 }

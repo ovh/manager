@@ -1,19 +1,20 @@
-import { ODS_MESSAGE_TYPE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import React from 'react';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import React, { useState, useEffect } from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Title } from '@ovhcloud/manager-components';
+import { BaseLayout } from '@ovhcloud/manager-components';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import { patchRancherServiceQueryKey, postRancherServiceQueryKey } from '@/api';
 import { RancherService } from '@/api/api.type';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import DashboardMessages from './DashboardMessages';
 import { EditAction, EditMutationVariables } from '@/hooks/useEditRancher';
 import { useTrackingPage } from '@/hooks/useTrackingPage';
 import { COMMON_PATH } from '@/routes';
 import { TrackingPageView } from '@/utils/tracking';
 import RancherDetail from './RancherDetail';
 import TabBar from './TabBar';
-import LinkIcon from '@/components/LinkIcon/LinkIcon';
 import useVersions from '@/hooks/useVersions';
 
 export type DashboardTabItemProps = {
@@ -46,6 +47,8 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const { projectId, rancherId } = useParams();
   const { data: versions } = useVersions();
   const { t } = useTranslation('pci-rancher/dashboard');
+  const [isPendingUpdate, setIsPendingUpdate] = useState(false);
+  const [hasTaskPending, setHasTaskPending] = useState(false);
   useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
 
@@ -76,6 +79,27 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
     EditAction.UpdateSoftware,
   );
 
+  const { currentTasks } = rancher;
+
+  useEffect(() => {
+    if (updateSoftwareResponseType === 'pending') {
+      setIsPendingUpdate(true);
+    }
+  }, [updateSoftwareResponseType]);
+
+  useEffect(() => {
+    if (currentTasks.length) {
+      setHasTaskPending(true);
+    }
+  }, [currentTasks]);
+
+  useEffect(() => {
+    if (hasTaskPending && currentTasks.length === 0) {
+      setIsPendingUpdate(false);
+      setHasTaskPending(false);
+    }
+  }, [currentTasks]);
+
   let editNameBannerType = null;
 
   if (editNameResponseType === 'error') {
@@ -87,27 +111,31 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   }
 
   return (
-    <>
-      <div className="py-4 overflow-hidden text-ellipsis">
-        <Title>{rancher.currentState.name}</Title>
-      </div>
-      <LinkIcon
-        href={hrefPrevious}
-        text={t('see_all_rancher')}
-        iconName={ODS_ICON_NAME.ARROW_LEFT}
-        slot="start"
-        className="my-4"
-      />
-      <TabBar tabs={tabs} />
+    <BaseLayout
+      breadcrumb={<Breadcrumb />}
+      header={{ title: rancher.currentState.name }}
+      tabs={<TabBar tabs={tabs} />}
+      backLinkLabel={t('see_all_rancher')}
+      hrefPrevious={hrefPrevious}
+      message={
+        <DashboardMessages
+          editNameBannerType={editNameBannerType}
+          rancher={rancher}
+          isPendingUpdate={isPendingUpdate}
+          mutationGenerateAccessState={mutationGenerateAccessState}
+          versions={versions}
+        />
+      }
+    >
       <RancherDetail
         rancher={rancher}
         versions={versions}
         editNameResponseType={editNameBannerType}
         updateSoftwareResponseType={updateSoftwareResponseType}
-        hasErrorAccessDetail={mutationGenerateAccessState.length > 0}
+        isPendingUpdate={isPendingUpdate}
       />
       <Outlet />
-    </>
+    </BaseLayout>
   );
 };
 

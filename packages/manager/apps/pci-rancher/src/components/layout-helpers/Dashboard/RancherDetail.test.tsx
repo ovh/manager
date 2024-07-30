@@ -19,7 +19,6 @@ const defaultProps: RancherDetailProps = {
   versions: versionsMocked,
   rancher: rancherMocked,
   editNameResponseType: null,
-  hasErrorAccessDetail: false,
   updateSoftwareResponseType: null,
 };
 const setupSpecTest = async (props: RancherDetailProps = defaultProps) =>
@@ -119,50 +118,10 @@ describe('RancherDetail', () => {
   });
 
   describe('Update software', () => {
-    it('Given that the update software is displayed, it should contain the version of the software and the button to update', async () => {
-      const screen = await setupSpecTest({
-        ...defaultProps,
-      });
-
-      const updateSoftwareLabel = screen.getByText(
-        updateTranslation.updateSoftwareBannerAvailableUpdate,
-      );
-
-      const updateSoftwareButton = screen.getAllByText(
-        updateTranslation.updateSoftwareAvailableUpdate,
-      );
-
-      expect(updateSoftwareLabel).not.toBeNull();
-      expect(updateSoftwareButton).not.toBeNull();
-    });
-
     it('Given there is higher version but there is current update mutation, i should not see update  software banner', async () => {
       const screen = await setupSpecTest({
         ...defaultProps,
         updateSoftwareResponseType: 'pending',
-      });
-
-      const updateSoftwareLabel = screen.queryByText(
-        updateTranslation.updateSoftwareBannerAvailableUpdate.replaceAll(
-          '{{version}}',
-          versionsMocked[1].name,
-        ),
-      );
-      const updateSoftwareButton = screen.queryByText(
-        updateTranslation.updateSoftwareAvailableUpdate,
-      );
-
-      expect(updateSoftwareLabel).toBeNull();
-      expect(updateSoftwareButton).toBeNull();
-    });
-
-    it('Given there is higher version but rancher status is not status ready, i should not see update  software banner', async () => {
-      const screen = await setupSpecTest({
-        ...defaultProps,
-        rancher: {
-          ...rancherMocked,
-          resourceStatus: ResourceStatus.UPDATING,
-        },
       });
 
       const updateSoftwareLabel = screen.queryByText(

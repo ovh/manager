@@ -92,7 +92,7 @@ const Tabs = () => (
   </OsdsTable>
 );
 
-export const ListingTemplateProps = {
+export const listingTemplateProps = {
   breadcrumb: (
     <OsdsBreadcrumb
       className="flex-start"
@@ -126,7 +126,7 @@ export const ListingTemplateProps = {
   subdescription: '',
 };
 
-const DashboardTemplateProps = {
+const dashboardTemplateProps = {
   breadcrumb: (
     <OsdsBreadcrumb
       className="flex-start"
@@ -195,14 +195,14 @@ const DashboardTemplateProps = {
 };
 
 export const DashboardTemplate = () => (
-  <BaseLayout {...DashboardTemplateProps} />
+  <BaseLayout {...dashboardTemplateProps} />
 );
 
 const meta: Meta<typeof BaseLayout> = {
   title: 'Templates/Base',
   component: BaseLayout,
   argTypes: {},
-  args: ListingTemplateProps,
+  args: listingTemplateProps,
 };
 
 export default meta;

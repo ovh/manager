@@ -14,7 +14,8 @@ import {
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
-import { Title } from '@ovhcloud/manager-components';
+import { BaseLayout } from '@ovhcloud/manager-components';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { RancherService } from '@/api/api.type';
 import TableContainer from '@/components/Table/TableContainer';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
@@ -43,9 +44,12 @@ const ListingTablePage: React.FC<ListingProps> = ({
   const tasks = data.map((rancher) => rancher.currentTasks).flat();
 
   return (
-    <>
-      <Title>{t('rancherTitle')}</Title>
-      <div className="my-3 mt-5">
+    <BaseLayout
+      breadcrumb={<Breadcrumb />}
+      header={{ title: t('rancherTitle') }}
+      message={tasks.length ? <RancherTaskMessage tasks={tasks} /> : <></>}
+    >
+      <div>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
@@ -65,13 +69,12 @@ const ListingTablePage: React.FC<ListingProps> = ({
           </span>
         </OsdsButton>
       </div>
-      {tasks.length ? <RancherTaskMessage tasks={tasks} /> : <></>}
       {data ? (
         <TableContainer data={data} refetchRanchers={refetchRanchers} />
       ) : (
         <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />
       )}
-    </>
+    </BaseLayout>
   );
 };
 

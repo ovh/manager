@@ -1,4 +1,4 @@
-import { DashboardLayout, Subtitle, Title } from '@ovhcloud/manager-components';
+import { BaseLayout, Subtitle, Title } from '@ovhcloud/manager-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
@@ -196,7 +196,7 @@ const UpdateSoftware: FC<UpdateSoftwareProps> = ({
   );
 
   return (
-    <DashboardLayout
+    <BaseLayout
       breadcrumb={
         <Breadcrumb
           items={[
@@ -206,8 +206,9 @@ const UpdateSoftware: FC<UpdateSoftwareProps> = ({
           ]}
         />
       }
-      content={content}
-    />
+    >
+      {content}
+    </BaseLayout>
   );
 };
 

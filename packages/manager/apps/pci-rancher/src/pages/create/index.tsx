@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import { PageLayout } from '@ovhcloud/manager-components';
+import { BaseLayout } from '@ovhcloud/manager-components';
 import { getRancherPlan, getReferenceRancherInfo } from '@/api';
 import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRancher';
 import useCreateRancher from '@/hooks/useCreateRancher';
@@ -65,8 +65,7 @@ export default function Create() {
   const { data: versions } = useVersions();
 
   return (
-    <PageLayout>
-      <Breadcrumb />
+    <BaseLayout breadcrumb={<Breadcrumb />}>
       <CreateRancher
         isCreateRancherLoading={isPending}
         projectId={projectId}
@@ -79,6 +78,6 @@ export default function Create() {
           project?.planCode === PciProjectPlanCode.DISCOVERY
         }
       />
-    </PageLayout>
+    </BaseLayout>
   );
 }

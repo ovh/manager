@@ -1,11 +1,11 @@
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import { BaseLayout } from './base.component';
-import { ListingTemplateProps } from './base.stories';
+import { listingTemplateProps } from './base.stories';
 
 describe('BaseLayout component', () => {
   it('renders base component correctly', async () => {
-    render(<BaseLayout {...ListingTemplateProps} />);
+    render(<BaseLayout {...listingTemplateProps} />);
     waitFor(() => {
       expect(screen.getByText('Vrack Services')).toBeInTheDocument();
       expect(
@@ -22,7 +22,7 @@ describe('BaseLayout component', () => {
 
     render(
       <BaseLayout
-        {...ListingTemplateProps}
+        {...listingTemplateProps}
         backLinkLabel={backLinkLabel}
         onClickReturn={spy}
       />,

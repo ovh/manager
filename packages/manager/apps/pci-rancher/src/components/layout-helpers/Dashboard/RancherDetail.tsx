@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-import { CommonTitle } from '@ovhcloud/manager-components';
+import { CommonTitle, DashboardGridLayout } from '@ovhcloud/manager-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -13,11 +13,10 @@ import {
   OsdsButton,
   OsdsClipboard,
   OsdsDivider,
-  OsdsMessage,
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHref } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -26,7 +25,6 @@ import { RancherService, RancherVersion, ResourceStatus } from '@/api/api.type';
 import LinkIcon from '@/components/LinkIcon/LinkIcon';
 import StatusChip from '@/components/StatusChip/StatusChip';
 import { TileBlock } from '@/components/TileBlock/TileBlock';
-import UpdateVersionBanner from '@/components/UpdateRancherVersionBanner/UpdateVersionBanner';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
 import { getLatestVersionAvailable } from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
@@ -35,16 +33,15 @@ export interface RancherDetailProps {
   rancher: RancherService;
   editNameResponseType: ODS_MESSAGE_TYPE | null;
   updateSoftwareResponseType: MutationStatus;
-  hasErrorAccessDetail: boolean;
   versions: RancherVersion[];
+  isPendingUpdate?: boolean;
 }
 
 const RancherDetail = ({
   rancher,
-  editNameResponseType,
   updateSoftwareResponseType,
-  hasErrorAccessDetail,
   versions,
+  isPendingUpdate,
 }: RancherDetailProps) => {
   const { t } = useTranslation([
     'pci-rancher/dashboard',
@@ -55,28 +52,7 @@ const RancherDetail = ({
   const hrefEdit = useHref('./edit');
   const hrefUpdateSoftware = useHref('./update-software');
   const hrefGenerateAccess = useHref('./generate-access');
-  const [isPendingUpdate, setIsPendingUpdate] = useState(false);
-  const [hasTaskPending, setHasTaskPending] = useState(false);
-  const { resourceStatus, currentState, currentTasks } = rancher;
-
-  useEffect(() => {
-    if (updateSoftwareResponseType === 'pending') {
-      setIsPendingUpdate(true);
-    }
-  }, [updateSoftwareResponseType]);
-
-  useEffect(() => {
-    if (currentTasks.length) {
-      setHasTaskPending(true);
-    }
-  }, [currentTasks]);
-
-  useEffect(() => {
-    if (hasTaskPending && currentTasks.length === 0) {
-      setIsPendingUpdate(false);
-      setHasTaskPending(false);
-    }
-  }, [currentTasks]);
+  const { resourceStatus, currentState } = rancher;
 
   const computedStatus = isPendingUpdate
     ? ResourceStatus.UPDATING
@@ -97,130 +73,93 @@ const RancherDetail = ({
     !updateSoftwareResponseType;
 
   return (
-    <div className="max-w-4xl">
-      {editNameResponseType && (
-        <OsdsMessage type={editNameResponseType} className="my-4 p-3">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="inline-block"
-          >
-            {editNameResponseType === ODS_MESSAGE_TYPE.success
-              ? t('editNameRancherSuccess')
-              : t('editNameRancherError')}
-          </OsdsText>
-        </OsdsMessage>
-      )}
-      <UpdateVersionBanner
-        rancher={rancher}
-        isPendingUpdateOperation={isPendingUpdate}
-        versions={versions}
-      />
-      {hasErrorAccessDetail && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.error} className="my-4 p-3">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="inline-block"
-          >
-            {t('editNameRancherError')}
-          </OsdsText>
-        </OsdsMessage>
-      )}
-      <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 py-6">
-        <div className="p-3">
-          <OsdsTile className="w-full h-full flex-col" inline rounded>
-            <div className="flex flex-col w-full">
-              <CommonTitle>{t('general_informations')}</CommonTitle>
-              <OsdsDivider separator />
-              <TileBlock label={t('description')}>
-                <LinkIcon
-                  iconName={ODS_ICON_NAME.PEN}
-                  href={hrefEdit}
-                  text={name}
-                  isDisabled={!isReadyStatus}
-                />
-              </TileBlock>
+    <div>
+      <DashboardGridLayout>
+        <OsdsTile className="w-full h-full flex-col" inline rounded>
+          <div className="flex flex-col w-full">
+            <CommonTitle>{t('general_informations')}</CommonTitle>
+            <OsdsDivider separator />
+            <TileBlock label={t('description')}>
+              <LinkIcon
+                iconName={ODS_ICON_NAME.PEN}
+                href={hrefEdit}
+                text={name}
+                isDisabled={!isReadyStatus}
+              />
+            </TileBlock>
 
-              <TileBlock label={t('rancher_version')}>
-                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {version}
-                </OsdsText>
-                {shouldDisplayUpdateSoftware && (
-                  <LinkIcon
-                    iconName={ODS_ICON_NAME.ARROW_RIGHT}
-                    href={hrefUpdateSoftware}
-                    text={t('updateSoftwareAvailableUpdate')}
-                  />
-                )}
-              </TileBlock>
-              <TileBlock label={t('status')}>
-                <div>
-                  <StatusChip label={computedStatus} />
-                </div>
-              </TileBlock>
-            </div>
-          </OsdsTile>
-        </div>
-        <div className="p-3">
-          <OsdsTile className="w-full h-full flex-col" inline rounded>
-            <div className="flex flex-col w-full">
-              <CommonTitle>{t('security_and_access')}</CommonTitle>
-              <OsdsDivider separator />
-              <TileBlock label={t('rancher_ui_access')}>
-                <OsdsClipboard aria-label="clipboard" value={url}>
-                  <span slot="success-message">{t('copy')}</span>
-                  <span slot="error-message">{t('error')}</span>
-                </OsdsClipboard>
-                <OsdsButton
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  size={ODS_BUTTON_SIZE.sm}
-                  variant={ODS_BUTTON_VARIANT.stroked}
-                  target={OdsHTMLAnchorElementTarget._blank}
-                  className="my-5"
-                  inline
-                  onClick={onAccessRancherUrl}
-                  href={url}
-                >
-                  {t('rancher_button_acces')}
-                </OsdsButton>
+            <TileBlock label={t('rancher_version')}>
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{version}</OsdsText>
+              {shouldDisplayUpdateSoftware && (
                 <LinkIcon
                   iconName={ODS_ICON_NAME.ARROW_RIGHT}
-                  href={hrefGenerateAccess}
-                  text={t('generate_access')}
-                  isDisabled={!isReadyStatus}
+                  href={hrefUpdateSoftware}
+                  text={t('updateSoftwareAvailableUpdate')}
                 />
-              </TileBlock>
-            </div>
-          </OsdsTile>
-        </div>
-        <div className="p-3">
-          <OsdsTile className="w-full h-full flex-col" inline rounded>
-            <div className="flex flex-col w-full">
-              <CommonTitle>{t('consumption')}</CommonTitle>
-              <OsdsDivider separator />
-              <TileBlock label={t('service_level')}>
-                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {t(plan)}
-                </OsdsText>
-              </TileBlock>
-              <TileBlock label={t('count_cpu_orchestrated')}>
-                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {rancher.currentState.usage?.orchestratedVcpus || '-'}
-                </OsdsText>
-                {dateUsage && (
-                  <div className="mt-3">
-                    <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                      {t('last_update_date', {
-                        date: format(dateUsage, 'yyyy_MM_dd'),
-                        hour: format(dateUsage, 'HH:mm:ss'),
-                      })}
-                    </OsdsText>
-                  </div>
-                )}
-              </TileBlock>
-            </div>
-          </OsdsTile>
-        </div>
-      </div>
+              )}
+            </TileBlock>
+            <TileBlock label={t('status')}>
+              <div>
+                <StatusChip label={computedStatus} />
+              </div>
+            </TileBlock>
+          </div>
+        </OsdsTile>
+        <OsdsTile className="w-full h-full flex-col" inline rounded>
+          <div className="flex flex-col w-full">
+            <CommonTitle>{t('security_and_access')}</CommonTitle>
+            <OsdsDivider separator />
+            <TileBlock label={t('rancher_ui_access')}>
+              <OsdsClipboard aria-label="clipboard" value={url}>
+                <span slot="success-message">{t('copy')}</span>
+                <span slot="error-message">{t('error')}</span>
+              </OsdsClipboard>
+              <OsdsButton
+                color={ODS_THEME_COLOR_INTENT.primary}
+                size={ODS_BUTTON_SIZE.sm}
+                variant={ODS_BUTTON_VARIANT.stroked}
+                target={OdsHTMLAnchorElementTarget._blank}
+                className="my-5"
+                inline
+                onClick={onAccessRancherUrl}
+                href={url}
+              >
+                {t('rancher_button_acces')}
+              </OsdsButton>
+              <LinkIcon
+                iconName={ODS_ICON_NAME.ARROW_RIGHT}
+                href={hrefGenerateAccess}
+                text={t('generate_access')}
+                isDisabled={!isReadyStatus}
+              />
+            </TileBlock>
+          </div>
+        </OsdsTile>
+        <OsdsTile className="w-full h-full flex-col" inline rounded>
+          <div className="flex flex-col w-full">
+            <CommonTitle>{t('consumption')}</CommonTitle>
+            <OsdsDivider separator />
+            <TileBlock label={t('service_level')}>
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{t(plan)}</OsdsText>
+            </TileBlock>
+            <TileBlock label={t('count_cpu_orchestrated')}>
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                {rancher.currentState.usage?.orchestratedVcpus || '-'}
+              </OsdsText>
+              {dateUsage && (
+                <div className="mt-3">
+                  <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                    {t('last_update_date', {
+                      date: format(dateUsage, 'yyyy_MM_dd'),
+                      hour: format(dateUsage, 'HH:mm:ss'),
+                    })}
+                  </OsdsText>
+                </div>
+              )}
+            </TileBlock>
+          </div>
+        </OsdsTile>
+      </DashboardGridLayout>
     </div>
   );
 };
