@@ -8,13 +8,21 @@ import {
   InstanceTechnicalName,
 } from '../../types/CreatePlan.type';
 
-import { render } from '@/mock/testProvider';
+import { render } from '@/utils/testProvider';
 
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn().mockReturnValue({
     t: (key: string) => key,
   }),
 }));
+
+const mockOnCreatePlan = vi.fn();
+const mockSetTechnicalModel = vi.fn();
+
+beforeEach(() => {
+  mockOnCreatePlan.mockReset();
+  mockSetTechnicalModel.mockReset();
+});
 
 const defaultProps: CreatePlanFormProps = {
   instancesInfo: [
@@ -42,15 +50,17 @@ const defaultProps: CreatePlanFormProps = {
   setInstanceCategory: vi.fn(),
   pricingByDuration: [
     {
-      duration: '1 month',
+      duration: 1,
       id: '1',
       price: 100,
+      code: '1',
     },
   ],
   isPricingLoading: false,
   isTechnicalInfoLoading: false,
   technicalModel: 'b3-8',
-  setTechnicalModel: vi.fn(),
+  setTechnicalModel: mockSetTechnicalModel,
+  onCreatePlan: mockOnCreatePlan,
 };
 
 const setupSpecTest = async (props: CreatePlanFormProps = defaultProps) =>
@@ -91,21 +101,43 @@ describe('CreatePlanForm', () => {
     expect(input).toHaveValue('Test Plan');
   });
 
-  it('When no instance selected, create button should be disabled ', async () => {
-    await setupSpecTest();
+  describe('When we want to submit form', () => {
+    it('should submit the form with correct data', async () => {
+      await setupSpecTest();
 
-    fireEvent.click(screen.getByText('cta_plan'));
-    expect(screen.getByText('cta_plan')).toHaveAttribute('disabled');
-  });
+      fireEvent.change(
+        screen.getByPlaceholderText('savings_plan_name_input_placeholder'),
+        { target: { value: 'Test Plan' } },
+      );
 
-  it('should submit the form with correct data', async () => {
-    await setupSpecTest();
+      // Select duration
+      fireEvent.click(screen.getByText('commitment_month'));
+      // Select quantity
+      const plusButton = screen.getByTestId('plus-button');
+      fireEvent.click(plusButton);
+      // Select model
+      fireEvent.click(screen.getByText('select_model_description_instance_b3'));
+      // Accept legal checkbox
+      fireEvent.click(screen.getByText('legal_checkbox'));
+      // Click on create button
+      fireEvent.click(screen.getByText('cta_plan'));
 
-    fireEvent.change(
-      screen.getByPlaceholderText('savings_plan_name_input_placeholder'),
-      { target: { value: 'Test Plan' } },
-    );
-    fireEvent.click(screen.getByText('legal_checkbox'));
-    fireEvent.click(screen.getByText('cta_plan'));
+      expect(defaultProps.onCreatePlan).toHaveBeenCalled();
+    });
+
+    it('When no instance selected, create button should be disabled ', async () => {
+      await setupSpecTest();
+
+      fireEvent.click(screen.getByText('cta_plan'));
+      expect(screen.getByText('cta_plan')).toHaveAttribute('disabled');
+    });
+
+    it('should not call onCreatePlan if form not valid', async () => {
+      await setupSpecTest();
+
+      fireEvent.click(screen.getByText('cta_plan'));
+
+      expect(defaultProps.onCreatePlan).not.toHaveBeenCalled();
+    });
   });
 });

@@ -85,18 +85,10 @@ const Listing: React.FC<ListingProps> = ({ data, refetchSavingsPlans }) => {
   const { data: services, isLoading, isPending } = useSavingsPlan();
 
   useEffect(() => {
-    if (!isLoading && !isPending && services.length === 0) {
+    if (!isLoading && !isPending && services?.length === 0) {
       navigate(`/pci/projects/${projectId}/savings-plan/onboarding`);
     }
   }, [isLoading, isPending, services]);
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-full">
-        <Loading />
-      </div>
-    );
-  }
 
   return (
     <>
