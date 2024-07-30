@@ -3,7 +3,7 @@ import { useTranslation, Trans } from 'react-i18next';
 
 import UserDefaultPaymentMethod from './DefaultPaymentMethod';
 import style from './style.module.scss';
-import { links } from './constants';
+import { links, tracking } from './constants';
 
 import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -47,21 +47,22 @@ const UserAccountMenu = ({
     className: `oui-heading_4 mb-1 ${isSubUser && 'text-truncate'}`,
   };
 
-  const onLougoutBtnClick = () => {
+  const onTrackNavigation = (name: string) => {
     trackingPlugin.trackClick({
-      name: 'topnav::user_widget::logout',
-      type: 'action',
+      name: name,
+      type: 'navigation',
     });
+  }
+
+  const onLogoutBtnClick = () => {
+    onTrackNavigation(tracking.logout);
     shell.getPlugin('auth').logout();
   };
 
   const onLinkClick = (link: UserLink) => {
     closeAccountSidebar();
     if (link.trackingHit) {
-      trackingPlugin.trackClick({
-        name: link.trackingHit,
-        type: 'navigation',
-      });
+      onTrackNavigation(link.trackingHit)
     }
   };
 
@@ -92,21 +93,21 @@ const UserAccountMenu = ({
         ...links,
         ...(isIdentityDocumentsAvailable
           ? [
-              {
-                key: 'myIdentityDocuments',
-                hash: '#/identity-documents',
-                i18nKey: 'user_account_menu_my_identity_documents',
-              },
-            ]
+            {
+              key: 'myIdentityDocuments',
+              hash: '#/identity-documents',
+              i18nKey: 'user_account_menu_my_identity_documents',
+            },
+          ]
           : []),
         ...(region === 'US'
           ? [
-              {
-                key: 'myAssistanceTickets',
-                hash: '#/ticket',
-                i18nKey: 'user_account_menu_my_assistance_tickets',
-              },
-            ]
+            {
+              key: 'myAssistanceTickets',
+              hash: '#/ticket',
+              i18nKey: 'user_account_menu_my_assistance_tickets',
+            },
+          ]
           : []),
       ]);
     },
@@ -150,7 +151,7 @@ const UserAccountMenu = ({
             className={`d-flex justify-content-between ${style.menuContentRow}`}
           >
             <span>{t('user_account_menu_role_connexion')}</span>
-            <a href={ssoLink}>
+            <a href={ssoLink} onClick={() => onTrackNavigation(tracking.connexionMethode)}>
               <OsdsChip
                 color={ODS_THEME_COLOR_INTENT.success}
                 className={style.menuContentRowChip}
@@ -162,6 +163,7 @@ const UserAccountMenu = ({
           </div>
           {!user.enterprise && (
             <UserDefaultPaymentMethod
+              onPaymentMethodLinkClick={() => onTrackNavigation(tracking.paymentMethod)}
               defaultPaymentMethod={defaultPaymentMethod}
               isLoading={isLoading}
             />
@@ -171,15 +173,14 @@ const UserAccountMenu = ({
               className={`d-flex mt-1 justify-content-between ${style.menuContentRow}`}
             >
               <span>{t('user_account_menu_support')}</span>
-              <a href={supportLink}>
+              <a href={supportLink} onClick={() => onTrackNavigation(tracking.supportLevel)}>
                 <OsdsChip
                   color={ODS_THEME_COLOR_INTENT.info}
                   className={style.menuContentRowChip}
                   selectable={true}
                 >
                   {t(
-                    `user_account_menu_support_level_${
-                      user.supportLevel.level
+                    `user_account_menu_support_level_${user.supportLevel.level
                     }${user.isTrusted ? '_trusted' : ''}`,
                   )}
                 </OsdsChip>
@@ -231,7 +232,7 @@ const UserAccountMenu = ({
             type="button"
             role="button"
             className="w-100 oui-button oui-button_link mt-3 center"
-            onClick={onLougoutBtnClick}
+            onClick={onLogoutBtnClick}
             aria-label={t('user_account_menu_logout')}
             title={t('user_account_menu_logout')}
             data-navi-id="logout"

@@ -29,7 +29,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
   const trackingPlugin = shell.getPlugin('tracking');
 
   const menuClickHandler = (node: Node) => {
-    let trackingIdComplement = 'navbar_v2_entry_';
+    let trackingIdComplement = 'navbar_v3_entry_';
     const history = findPathToNode(
       navigationRoot,
       (n: Node) => n.id === node.id,

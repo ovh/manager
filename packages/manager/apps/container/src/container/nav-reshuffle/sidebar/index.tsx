@@ -62,14 +62,23 @@ const Sidebar = (): JSX.Element => {
   const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
 
   const toggleSidebar = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen((prevOpen) => {
+      const nextOpen = !prevOpen;
+      const trackingName = nextOpen ? 'navbar_v3::open_navbar': 'navbar_v3::reduce_navbar' ;
+      trackingPlugin.trackClick({
+        name: trackingName,
+        type: 'action',
+      });
+      return nextOpen;
+    });
+
   };
 
   const menuClickHandler = (node: Node) => {
     setSelectedNode(node);
     setSelectedSubMenu(null);
 
-    let trackingIdComplement = 'navbar_v2_entry_';
+    let trackingIdComplement = 'navbar_v3_entry_';
     const history = findPathToNode(
       currentNavigationNode,
       (n: Node) => n.id === node.id,
@@ -261,7 +270,7 @@ const Sidebar = (): JSX.Element => {
             <a
               onClick={() =>
                 trackingPlugin.trackClick({
-                  name: 'navbar_v2_cta_add_a_service',
+                  name: 'navbar_v3_entry_home::cta_add_a_service',
                   type: 'action',
                 })
               }
