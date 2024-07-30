@@ -15,6 +15,7 @@ import { BadgeStatus } from '@/components/BadgeStatus';
 import { useOrganization, usePlatform } from '@/hooks';
 import { OngoingTasks } from './OngoingTasks';
 import { GUIDES_LIST } from '@/guides.constants';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 interface GuideLinks {
   [key: string]: string | undefined;
@@ -63,15 +64,14 @@ function GeneralInformation() {
               </TileBlock>
             )}
             <TileBlock label={t('zimbra_dashboard_tile_status_ongoingTask')}>
-              <ManagerText
-                urn={platformUrn}
-                iamActions={[
-                  'zimbra:apiovh:platform/task/get',
-                  'zimbra:apiovh:platform/get',
-                ]}
-              >
-                <OngoingTasks />
-              </ManagerText>
+              {platformUrn && (
+                <ManagerText
+                  urn={platformUrn}
+                  iamActions={[IAM_ACTIONS.platform.get, IAM_ACTIONS.task.get]}
+                >
+                  <OngoingTasks />
+                </ManagerText>
+              )}
             </TileBlock>
           </div>
         </OsdsTile>
@@ -85,20 +85,22 @@ function GeneralInformation() {
             <TileBlock
               label={t('zimbra_dashboard_tile_serviceConsumption_accountOffer')}
             >
-              <ManagerText
-                urn={platformUrn}
-                iamActions={['zimbra:apiovh:platform/account/get']}
-              >
-                {accountsStatistics?.length > 0
-                  ? accountsStatistics?.map((stats) => (
-                      <span
-                        key={stats.offer}
-                      >{`${stats.configuredAccountsCount} ${stats.offer}`}</span>
-                    ))
-                  : t(
-                      'zimbra_dashboard_tile_serviceConsumption_noAccountOffer',
-                    )}
-              </ManagerText>
+              {platformUrn && (
+                <ManagerText
+                  urn={platformUrn}
+                  iamActions={[IAM_ACTIONS.account.get]}
+                >
+                  {accountsStatistics?.length > 0
+                    ? accountsStatistics?.map((stats) => (
+                        <span
+                          key={stats.offer}
+                        >{`${stats.configuredAccountsCount} ${stats.offer}`}</span>
+                      ))
+                    : t(
+                        'zimbra_dashboard_tile_serviceConsumption_noAccountOffer',
+                      )}
+                </ManagerText>
+              )}
             </TileBlock>
           </div>
         </OsdsTile>
