@@ -107,7 +107,7 @@ export default function TableContainer({
   return (
     <>
       {data && columns && (
-        <Datagrid items={data} columns={columns} totalItems={data.length} />
+        <Datagrid items={data} columns={columns} totalItems={data.length}  />
       )}
     </>
   );

@@ -27,6 +27,8 @@ export default function EditNameModal({
   onConfirm,
 }: Readonly<TEditNameModal>) {
   const { t } = useTranslation('edit-name');
+  const { t: tCreate } = useTranslation('create');
+
   const [newName, setNewName] = useState(oldName);
 
   const isValidName = isValidSavingsPlanName(newName);
@@ -57,6 +59,17 @@ export default function EditNameModal({
         value={newName}
         onOdsValueChange={handleOdsValueChange}
       />
+      <div className="mt-5">
+        <OsdsText
+          color={
+            isValidName
+              ? ODS_THEME_COLOR_INTENT.text
+              : ODS_THEME_COLOR_INTENT.error
+          }
+        >
+          {tCreate('input_name_rules')}
+        </OsdsText>
+      </div>
       <OsdsButton
         slot="actions"
         variant={ODS_BUTTON_VARIANT.stroked}
