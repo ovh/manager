@@ -1,186 +1,96 @@
-interface Description {
-  defaultLanguage: string;
-  originalLanguage: string;
-  localDescriptions: LocalDescription[];
-}
+import { z } from 'zod';
 
-interface LocalDescription {
-  language: string;
-  longLabel: string;
-  shortLabel: string;
-  translationStatus: string;
-}
+const EngagementSchema = z.object({
+  validDuration: z.string(),
+  autoReactive: z.boolean().optional(),
+});
 
-interface Charge {
-  processingStrategy: string;
-  type: string;
-  ratingMode: string;
-  atomicCharge: AtomicCharge;
-}
+const PriceSchema = z.object({
+  currencyCode: z.string().optional(),
+  amount: z.number(),
+});
 
-interface AtomicCharge {
-  chargeType: string;
-  consumptionCharge: ConsumptionCharge;
-}
+const RatingValueSchema = z.object({
+  type: z.string(),
+  prices: z.array(PriceSchema),
+});
 
-interface ConsumptionCharge {
-  aggregationPeriod: string;
-  aggregationType: string;
-  roundingPolicy: string;
-}
+const CommercialRatingValueSchema = z.object({
+  ratingValue: RatingValueSchema,
+});
 
-interface RatingModel {
-  charge: Charge;
-}
+const LegacyTechnicalSchema = z.object({
+  plan: z.string(),
+  blobs: z.object({
+    content: z.object({
+      technical: z.object({
+        bandwidth: z.object({
+          guaranteed: z.boolean(),
+          level: z.number(),
+          unlimited: z.boolean(),
+        }),
+        cpu: z.object({
+          cores: z.number(),
+          frequency: z.number(),
+          model: z.string(),
+          type: z.string(),
+        }),
+        memory: z.object({
+          size: z.number(),
+        }),
+        name: z.string(),
+        os: z.object({
+          family: z.string(),
+        }),
+        storage: z.object({
+          disks: z.array(
+            z.object({
+              capacity: z.number(),
+              number: z.number(),
+              technology: z.string(),
+            }),
+          ),
+          raid: z.string(),
+        }),
+        vrack: z.object({
+          guaranteed: z.boolean(),
+          level: z.number(),
+          unlimited: z.boolean(),
+        }),
+      }),
+    }),
+  }),
+});
 
-interface Price {
-  currencyCode: string;
-  amount: number;
-}
+const CommercialCatalogBasic = z.object({
+  id: z.string(),
+  code: z.string().optional(),
+  version: z.number(),
+  commercialRatingValues: z.array(CommercialRatingValueSchema),
+});
 
-interface PriceRatingValue {
-  prices: Price[];
-}
+export const CommercialCatalogPricingSchema = CommercialCatalogBasic.extend({
+  legacy: z
+    .object({
+      plan: z.string(),
+    })
+    .optional(),
+  engagements: z.array(EngagementSchema),
+});
 
-interface RatingValue {
-  type: string;
-  priceRatingValue: PriceRatingValue;
-}
+export const CommercialCatalogTechnicalSchema = CommercialCatalogBasic.extend({
+  legacy: LegacyTechnicalSchema,
+  descriptions: z.array(
+    z.object({
+      longLabel: z.string(),
+    }),
+  ),
+});
 
-interface CommercialRatingValue {
-  chargeId: string;
-  ratingValue: RatingValue;
-}
+export type CommercialCatalogPricingType = z.infer<
+  typeof CommercialCatalogPricingSchema
+>;
 
-interface Validity {
-  startDate: string;
-  eosDate?: string;
-  eolDate?: string;
-}
-
-interface Bandwidth {
-  guaranteed: boolean;
-  level: number;
-  unlimited: boolean;
-}
-
-interface Cpu {
-  cores: number;
-  frequency: number;
-  model: string;
-  type: string;
-}
-
-interface Memory {
-  size: number;
-}
-
-interface Os {
-  family: string;
-}
-
-interface Disk {
-  capacity: number;
-  number: number;
-  technology: string;
-}
-
-interface Storage {
-  disks: Disk[];
-  raid: string;
-}
-
-interface Vrack {
-  guaranteed: boolean;
-  level: number;
-  unlimited: boolean;
-}
-
-export interface Technical {
-  bandwidth: Bandwidth;
-  cpu: Cpu;
-  memory: Memory;
-  name: string;
-  os: Os;
-  storage: Storage;
-  vrack: Vrack;
-}
-
-interface Commercial {
-  brick: string;
-  brickSubtype: string;
-  name: string;
-  price: PriceDetails;
-}
-
-interface PriceDetails {
-  interval: string;
-  precision: number;
-  unit: string;
-}
-
-interface BlobContent {
-  commercial: Commercial;
-  tags: string[];
-  technical: Technical;
-}
-
-interface Blob {
-  content: BlobContent;
-}
-
-interface Catalog {
-  id: number;
-  name: string;
-}
-
-interface Legacy {
-  plan: string;
-  blob: Blob;
-  catalog: Catalog;
-}
-
-interface ConfigField {
-  name: string;
-  type: string;
-  mandatory: boolean;
-  defaultValue: string;
-}
-
-interface CommercialProductDescription {
-  defaultLanguage: string;
-  originalLanguage: string;
-  localDescriptions: LocalDescription[];
-}
-
-interface CommercialProduct {
-  code: string;
-  description: CommercialProductDescription;
-  type: string;
-  configFields: ConfigField[];
-}
-
-interface AtomicOfferCommercialProduct {
-  commercialProduct: CommercialProduct;
-  min: number;
-}
-
-interface AtomicOffer {
-  atomicOfferCommercialProduct: AtomicOfferCommercialProduct;
-}
-
-export interface TechnicalInfo {
-  id: string;
-  code: string;
-  version: number;
-  description: Description;
-  ratingModels: RatingModel[];
-  commercialRatingValues: CommercialRatingValue[];
-  archivable: boolean;
-  validity: Validity;
-  legacy: Legacy;
-  type: string;
-  nature: string;
-  customerVisible: boolean;
-  atomicOffer: AtomicOffer;
-}
+export type CommercialCatalogTechnicalType = z.infer<
+  typeof CommercialCatalogTechnicalSchema
+>;
