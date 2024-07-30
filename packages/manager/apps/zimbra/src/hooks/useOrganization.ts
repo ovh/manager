@@ -21,7 +21,7 @@ export const useOrganization = (organizationId?: string, noCache?: boolean) => {
         platformId,
         organizationId || selectedOrganizationId,
       ),
-    enabled: !!organizationId || !!selectedOrganizationId,
+    enabled: (!!organizationId || !!selectedOrganizationId) && !!platformId,
     gcTime: noCache ? 0 : 5000,
   });
 
