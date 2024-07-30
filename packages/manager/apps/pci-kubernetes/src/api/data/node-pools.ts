@@ -87,3 +87,21 @@ export const deleteNodePool = async (
   poolId: string,
 ) =>
   v6.delete(`/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`);
+
+export type TUpdateNodePoolSizeParam = {
+  desiredNodes: number;
+  minNodes: number;
+  maxNodes: number;
+  autoscale: boolean;
+};
+
+export const updateNodePoolSize = async (
+  projectId: string,
+  clusterId: string,
+  poolId: string,
+  param: TUpdateNodePoolSizeParam,
+) =>
+  v6.put(
+    `/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`,
+    param,
+  );
