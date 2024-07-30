@@ -118,7 +118,14 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/detail/nodepools/NodePools.page'),
             ),
-            children: [],
+            children: [
+              {
+                path: 'delete',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/detail/nodepools/Delete.page'),
+                ),
+              },
+            ],
           },
           {
             path: 'nodepools/:poolId/nodes',
