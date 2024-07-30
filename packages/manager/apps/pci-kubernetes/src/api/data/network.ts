@@ -13,7 +13,7 @@ export type TNetwork = {
   type: string;
   status: string;
   regions: TRegion[];
-  clusterRegion?: TNetwork[];
+  clusterRegion?: TRegion;
 };
 
 export const getAllPrivateNetworks = async (
