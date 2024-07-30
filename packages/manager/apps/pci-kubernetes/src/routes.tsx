@@ -125,6 +125,12 @@ export default [
                   import('@/pages/detail/nodepools/Delete.page'),
                 ),
               },
+              {
+                path: 'scale',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/detail/nodepools/Scale.page'),
+                ),
+              },
             ],
           },
           {

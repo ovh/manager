@@ -48,6 +48,7 @@ export interface AutoscalingProps {
   initialScaling?: { min: number; max: number; desired: number };
   isMonthlyBilling?: boolean;
   isAntiAffinity?: boolean;
+  autoscale: boolean;
   onChange?: (scaling: AutoscalingState) => void;
 }
 
@@ -55,12 +56,13 @@ export function Autoscaling({
   initialScaling,
   isMonthlyBilling,
   isAntiAffinity,
+  autoscale,
   onChange,
 }: Readonly<AutoscalingProps>) {
   const { t } = useTranslation('autoscaling');
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
   const infosURL = AUTOSCALING_LINK[ovhSubsidiary] || AUTOSCALING_LINK.DEFAULT;
-  const [isAutoscale, setIsAutoscale] = useState(false);
+  const [isAutoscale, setIsAutoscale] = useState(autoscale);
   const [quantity, setQuantity] = useState({
     desired: initialScaling ? initialScaling.desired : NODE_RANGE.MIN,
     min: initialScaling ? initialScaling.min : 0,
@@ -114,7 +116,7 @@ export function Autoscaling({
         <OsdsToggle
           color={ODS_THEME_COLOR_INTENT.primary}
           checked={isAutoscale || undefined}
-          onClick={() => setIsAutoscale((autoscale) => !autoscale)}
+          onClick={() => setIsAutoscale((auto) => !auto)}
         >
           <OsdsText
             className="ml-4 font-bold"
