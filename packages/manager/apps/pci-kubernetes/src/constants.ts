@@ -55,3 +55,10 @@ export const UPDATE_STRATEGY = {
   PATCH: 'LATEST_PATCH',
   MINOR: 'NEXT_MINOR',
 };
+
+export const WORKER_NODE_POLICIES = {
+  DELETE: 'delete',
+  REINSTALL: 'reinstall',
+};
+
+export const GATEWAY_IP_REGEX = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$/;

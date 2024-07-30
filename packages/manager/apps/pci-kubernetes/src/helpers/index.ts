@@ -36,3 +36,6 @@ export const downloadContent = ({
   // Cleanup
   URL.revokeObjectURL(url);
 };
+
+export const getFormatedKubeVersion = (version: string) =>
+  version.substring(0, version.lastIndexOf('.'));
