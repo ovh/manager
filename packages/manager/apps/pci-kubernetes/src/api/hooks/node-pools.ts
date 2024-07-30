@@ -11,6 +11,8 @@ import {
   deleteNodePool,
   getClusterNodePools,
   TClusterNodePool,
+  TUpdateNodePoolSizeParam,
+  updateNodePoolSize,
 } from '@/api/data/node-pools';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useRegionFlavors } from '@/api/hooks/flavors';
@@ -165,6 +167,32 @@ export const useDeleteNodePool = ({
 
   return {
     deletePool: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type UpdateNodePoolSizeProps = RemoveNodePoolProps;
+
+export const useUpdateNodePoolSize = ({
+  projectId,
+  clusterId,
+  poolId,
+  onError,
+  onSuccess,
+}: UpdateNodePoolSizeProps) => {
+  const mutation = useMutation({
+    mutationFn: async (param: TUpdateNodePoolSizeParam) =>
+      updateNodePoolSize(projectId, clusterId, poolId, param),
+    onError: (cause: Error) => {
+      onError(cause);
+    },
+    onSuccess: async () => {
+      onSuccess();
+    },
+  });
+
+  return {
+    updateSize: (param: TUpdateNodePoolSizeParam) => mutation.mutate(param),
     ...mutation,
   };
 };
