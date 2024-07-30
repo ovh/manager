@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovhcloud/manager-components';
 import { OrganizationItem } from './Organizations';
 import { useGenerateUrl, usePlatform } from '@/hooks';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 interface ActionButtonOrganizationProps {
   organizationItem: OrganizationItem;
@@ -26,14 +27,14 @@ const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
       id: 1,
       href: hrefEditOrganization,
       urn: platformUrn,
-      iamActions: ['zimbra:apiovh:platform/organization/edit'],
+      iamActions: [IAM_ACTIONS.organization.edit],
       label: t('zimbra_organization_edit'),
     },
     {
       id: 2,
       href: hrefDeleteOrganization,
       urn: platformUrn,
-      iamActions: ['zimbra:apiovh:platform/organization/delete'],
+      iamActions: [IAM_ACTIONS.organization.delete],
       label: t('zimbra_organization_delete'),
     },
   ];
