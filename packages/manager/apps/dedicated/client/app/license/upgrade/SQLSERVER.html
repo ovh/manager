@@ -9,7 +9,7 @@
         class="form-control"
         id="optionVersion"
         name="optionVersion"
-        data-ng-options="optionVersion as (('license_designation_' + license.type + '_version_' + optionVersion.value) | ducTranslateAlt: optionVersion.value) for optionVersion in getOptionVersions()"
+        data-ng-options="optionVersion as (('license_designation_' + license.type + '_version_' + optionVersion.planCode) | ducTranslateAlt: optionVersion.planCode) for optionVersion in getOptionVersions()"
         data-ng-model="selected.options['SQLSERVER'].version"
     >
         <option value="" data-translate="license_upgrade_common_no_change">
