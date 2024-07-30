@@ -310,6 +310,14 @@ export default class Kubernetes {
       });
   }
 
+  getPrivateNetworkSubnet(serviceName, regionName, networkId, subnetId) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/region/${regionName}/network/${networkId}/subnet/${subnetId}`,
+      )
+      .then(({ data: subnet }) => subnet);
+  }
+
   getRegions(projectId, ovhSubsidiary) {
     const product = KUBE_PRODUCT_ID;
     return this.$http
