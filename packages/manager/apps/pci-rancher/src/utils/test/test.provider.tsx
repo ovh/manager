@@ -4,10 +4,10 @@ import React, { ComponentType } from 'react';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
-import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
-import onboardingTranslation from '@translation/onboarding/Messages_fr_FR.json';
-import listingTranslation from '@translation/listing/Messages_fr_FR.json';
-import updateSoftwareTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
+import dashboardTranslation from '../../../public/translations/dashboard/Messages_fr_FR.json';
+import onboardingTranslation from '../../../public/translations/onboarding/Messages_fr_FR.json';
+import listingTranslation from '../../../public/translations/listing/Messages_fr_FR.json';
+import updateSoftwareTranslation from '../../../public/translations/updateSoftware/Messages_fr_FR.json';
 import queryClient from '../../queryClient';
 
 const ns = ['onboarding', 'listing', 'dashboard', 'updateSoftware'];

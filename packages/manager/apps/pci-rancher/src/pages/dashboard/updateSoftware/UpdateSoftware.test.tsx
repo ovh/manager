@@ -1,5 +1,5 @@
 import React from 'react';
-import updateTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
+import updateTranslation from '../../../../public/translations/updateSoftware/Messages_fr_FR.json';
 import { fireEvent, render, waitFor } from '@/utils/test/test.provider';
 
 import { versionsMocked } from '@/_mock_/version';

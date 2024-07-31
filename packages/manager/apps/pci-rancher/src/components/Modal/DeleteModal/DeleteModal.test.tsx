@@ -1,6 +1,6 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import listingTranslation from '@translation/listing/Messages_fr_FR.json';
+import listingTranslation from '../../../../public/translations/listing/Messages_fr_FR.json';
 import DeleteModal, { TERMINATE_TEXT } from './DeleteModal.component';
 import {
   fireEvent,
