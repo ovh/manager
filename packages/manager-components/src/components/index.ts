@@ -1,6 +1,7 @@
 export * from './action-banner';
 export * from './redirection-guard';
 
+export * from './clipboard/clipboard.component';
 export * from './container';
 export * from './input';
 
