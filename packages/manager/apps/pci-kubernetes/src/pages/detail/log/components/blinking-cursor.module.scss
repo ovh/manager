@@ -1,0 +1,21 @@
+@keyframes cursor-blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.blinkingCursor {
+  display: inline-block;
+  width: 0.5rem;
+  height: 1rem;
+  background-color: white;
+  animation: cursor-blink 1s step-end infinite;
+}

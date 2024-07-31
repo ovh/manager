@@ -135,6 +135,13 @@ export default [
             },
             ...lazyRouteConfig(() => import('@/pages/detail/log/Logs.page')),
           },
+          {
+            path: 'streams',
+            handle: {
+              tracking: 'streams',
+            },
+            element: 'TODO streams',
+          },
         ],
       },
     ],
