@@ -7,6 +7,7 @@ import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useRegionFlavors } from '@/api/hooks/flavors';
 import { deleteNode, getNodes, TNode } from '@/api/data/nodes';
 import { useInstances } from '@/api/hooks/instances';
+import { paginateResults } from '@/helpers';
 
 export const useNodes = (
   projectId: string,
@@ -26,25 +27,6 @@ export const useNodes = (
     queryFn: () => getNodes(projectId, clusterId, nodePoolId),
     throwOnError: true,
   });
-
-const paginateResults = <T>(items: T[], pagination: PaginationState) => ({
-  rows: items.slice(
-    pagination.pageIndex * pagination.pageSize,
-    (pagination.pageIndex + 1) * pagination.pageSize,
-  ),
-  pageCount: Math.ceil(items.length / pagination.pageSize),
-  totalRows: items.length,
-});
-
-export const defaultCompareFunction = (key: keyof TNode) => (
-  a: TNode,
-  b: TNode,
-) => {
-  const aValue = a[key] || '';
-  const bValue = b[key] || '';
-
-  return aValue.toString().localeCompare(bValue.toString());
-};
 
 export const usePaginatedNodes = (
   projectId: string,
@@ -86,10 +68,15 @@ export const usePaginatedNodes = (
     () =>
       (nodes || []).map((node) => {
         const flavor = (flavors || []).find((f) => f.name === node.flavor);
-
         const instance = (instances || []).find(
           (i) => i.id === node.instanceId,
         );
+
+        const billingType = (() => {
+          if (!instance?.monthlyBilling) return 'hourly';
+          if (instance?.monthlyBilling?.status === 'ok') return 'monthly';
+          return 'monthly_pending';
+        })();
 
         return {
           ...node,
@@ -99,12 +86,10 @@ export const usePaginatedNodes = (
             ramCapacity: flavor?.ram / 1000,
             diskCapacity: flavor?.disk,
           }),
-          billingType: (() => {
-            if (!instance?.monthlyBilling) return 'hourly';
-            if (instance?.monthlyBilling?.status === 'ok') return 'monthly';
-            return 'monthly_pending';
-          })(),
-        };
+          billingType,
+          canSwitchToMonthly:
+            billingType === 'hourly' && !!flavor?.planCodes?.monthly,
+        } as TNode;
       }),
     [nodes, flavors, instances],
   );
