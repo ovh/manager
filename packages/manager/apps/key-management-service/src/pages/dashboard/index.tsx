@@ -16,9 +16,13 @@ import Loading from '@/components/Loading/Loading';
 import { useOKMSById } from '@/data/hooks/useOKMS';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { ROUTES_URLS } from '@/routes/routes.constants';
+import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 
 export default function DashboardPage() {
   const { t: tDashboard } = useTranslation('key-management-service/dashboard');
+  const { t: tServiceKeys } = useTranslation(
+    'key-management-service/serviceKeys',
+  );
   const { okmsId } = useParams();
   const { data: okms } = useOKMSById(okmsId);
   const displayName = okms?.data?.iam?.displayName;
@@ -39,9 +43,22 @@ export default function DashboardPage() {
     },
   ];
 
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      id: okmsId,
+      label: displayName || okmsId,
+      navigateTo: `/${okmsId}`,
+    },
+    {
+      id: ROUTES_URLS.keys,
+      label: tServiceKeys('key_management_service_service_keys'),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
+    },
+  ];
+
   return (
     <div className="m-10">
-      <Breadcrumb />
+      <Breadcrumb items={breadcrumbItems} />
       <div className={'flex items-center justify-between mt-2'}>
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}

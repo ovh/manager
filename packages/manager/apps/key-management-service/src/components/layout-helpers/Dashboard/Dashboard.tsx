@@ -32,11 +32,11 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
 
   useEffect(() => {
     const activeTab = tabs.find(
-      (tab) => `/${okmsId}${tab.url}` === location.pathname,
+      (tab) => `/${okmsId}/${tab.url}` === location.pathname,
     );
 
     setActivePanel(activeTab?.url);
-  }, []);
+  }, [location]);
 
   const handleTabChange = (
     event: OsdsTabsCustomEvent<OdsTabsChangeEventDetail>,
@@ -44,7 +44,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
     const {
       detail: { panel },
     } = event;
-    const url = `/${okmsId}${panel}`;
+    const url = `/${okmsId}/${panel}`;
 
     setActivePanel(panel);
     navigate(url);
