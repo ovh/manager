@@ -37,16 +37,23 @@ import { ServiceKeyType } from '@/components/serviceKey/serviceKeyType/serviceKe
 import { TileSeparator } from '@/components/dashboard/tile-separator/tileSeparator';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { getOkmsServiceKeyResourceQueryKey } from '@/data/api/okmsServiceKey';
+import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
+import { useOKMSById } from '@/data/hooks/useOKMS';
 
 export default function Key() {
   const { okmsId, keyId } = useParams();
-  const { data, error, isLoading } = useOkmsServiceKeyById({ okmsId, keyId });
+  const { data: okms } = useOKMSById(okmsId);
+  const { data: serviceKey, error, isLoading } = useOkmsServiceKeyById({
+    okmsId,
+    keyId,
+  });
   const { t } = useTranslation('key-management-service/serviceKeys');
   const queryClient = useQueryClient();
 
   const navigate = useNavigate();
 
-  const kmsKey = data?.data;
+  const kms = okms?.data;
+  const kmsKey = serviceKey?.data;
 
   const statusMenuItem: ActionMenuItem[] = [
     {
@@ -72,10 +79,33 @@ export default function Key() {
       />
     );
 
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      id: okmsId,
+      label: kms.iam.displayName,
+      navigateTo: `/${okmsId}`,
+    },
+    {
+      id: ROUTES_URLS.keys,
+      label: t('key_management_service_service_keys'),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
+    },
+    {
+      id: keyId,
+      label: kmsKey.name,
+      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}/${keyId}`,
+    },
+    {
+      id: ROUTES_URLS.serviceKeyEditName,
+      label: t('key_management_service_service-keys_update_name_title'),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.serviceKeyEditName}`,
+    },
+  ];
+
   return (
     <Suspense fallback={<Loading />}>
       <DashboardLayout
-        breadcrumb={<Breadcrumb />}
+        breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
           title: kmsKey.name || kmsKey.id,
           headerButton: <KmsGuidesHeader />,

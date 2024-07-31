@@ -27,7 +27,7 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/listing')),
         children: [
           {
-            path: `${ROUTES_URLS.terminateOkms}/:okmsId`,
+            path: `${ROUTES_URLS.terminateOkms}/${ROUTES_URLS.okmsId}`,
             ...lazyRouteConfig(() =>
               import('@/pages/listing/terminate/TerminateKms'),
             ),
@@ -55,7 +55,7 @@ export default [
             ),
           },
           {
-            path: `${ROUTES_URLS.okmsId}${ROUTES_URLS.keys}`,
+            path: ROUTES_URLS.keys,
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/serviceKeyList/serviceKeyList.page'),
             ),
@@ -63,11 +63,11 @@ export default [
         ],
       },
       {
-        path: `${ROUTES_URLS.okmsId}${ROUTES_URLS.keys}${ROUTES_URLS.createKmsServiceKey}`,
+        path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.createKmsServiceKey}`,
         ...lazyRouteConfig(() => import('@/pages/serviceKey/createKey.page')),
       },
       {
-        path: `${ROUTES_URLS.okmsId}${ROUTES_URLS.keys}${ROUTES_URLS.keyId}`,
+        path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.keyId}`,
         ...lazyRouteConfig(() => import('@/pages/serviceKey/serviceKey.page')),
         children: [
           {

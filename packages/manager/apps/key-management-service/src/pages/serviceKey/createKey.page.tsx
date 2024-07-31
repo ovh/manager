@@ -49,6 +49,7 @@ import {
   validateServiceKeyName,
 } from '@/utils/serviceKey/validateServiceKeyName';
 import { useOKMSById } from '@/data/hooks/useOKMS';
+import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 
 export default function CreateKey() {
   const { okmsId } = useParams();
@@ -76,7 +77,7 @@ export default function CreateKey() {
   const { createKmsServiceKey, isPending } = useCreateOkmsServiceKey({
     okmsId,
     onSuccess: () => {
-      navigate(`/${okmsId}${ROUTES_URLS.keys}`);
+      navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
     },
     onError: () => {},
   });
@@ -159,10 +160,28 @@ export default function CreateKey() {
     });
   }, [key]);
 
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      id: okmsId,
+      label: okms.data.iam.displayName || okmsId,
+      navigateTo: `/${okmsId}`,
+    },
+    {
+      id: ROUTES_URLS.keys,
+      label: t('key_management_service_service_keys'),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
+    },
+    {
+      id: ROUTES_URLS.createKmsServiceKey,
+      label: t('key_management_service_service-keys_create_title'),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.createKmsServiceKey}`,
+    },
+  ];
+
   return (
     <>
       <DashboardLayout
-        breadcrumb={<Breadcrumb />}
+        breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
           title: t('key_management_service_service-keys_create_title'),
           description: t('key_management_service_service-keys_create_subtitle'),
@@ -392,7 +411,7 @@ export default function CreateKey() {
               color={ODS_THEME_COLOR_INTENT.primary}
               className={'xs:mt-2 sm:mt-0 w-fit h-fit'}
               onClick={() => {
-                navigate(`/${okmsId}${ROUTES_URLS.keys}`);
+                navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
               }}
             >
               {t('key_management_service_service-keys_create_cta_cancel')}
