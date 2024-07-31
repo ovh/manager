@@ -59,6 +59,16 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/serviceKeyList/serviceKeyList.page'),
             ),
+            children: [
+              {
+                path: `${ROUTES_URLS.serviceKeyDeactivate}/${ROUTES_URLS.keyId}`,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/serviceKey/deactivateServiceKeyModal/deactivateServiceKeyModal.page'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },
@@ -75,6 +85,14 @@ export default [
             ...lazyRouteConfig(() =>
               import(
                 '@/pages/serviceKey/editServiceKeyNameModal/editServiceKeyNameModal.page'
+              ),
+            ),
+          },
+          {
+            path: ROUTES_URLS.serviceKeyDeactivate,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/serviceKey/deactivateServiceKeyModal/deactivateServiceKeyModal.page'
               ),
             ),
           },

@@ -51,7 +51,7 @@ export const getOkmsServiceKeyResourceQueryKey = ({
 }: {
   okmsId: string;
   keyId: string;
-}) => [`get/okms/resource/${okmsId}/serviceKey/${keyId}`];
+}) => [`get/okms/resource/${okmsId}/serviceKey/${keyId}?format=JWK`];
 
 export const getOkmsServiceKeyResource = async ({
   okmsId,
@@ -60,7 +60,9 @@ export const getOkmsServiceKeyResource = async ({
   okmsId: string;
   keyId: string;
 }): Promise<{ data: OkmsAllServiceKeys }> => {
-  return apiClient.v2.get(`okms/resource/${okmsId}/serviceKey/${keyId}`);
+  return apiClient.v2.get(
+    `okms/resource/${okmsId}/serviceKey/${keyId}?format=JWK`,
+  );
 };
 
 /**
@@ -85,6 +87,28 @@ export const updateOkmsServiceKeyResource = async ({
   data: OkmsServiceKeyPutPayload;
 }) => {
   return apiClient.v2.put(`okms/resource/${okmsId}/serviceKey/${keyId}`, data);
+};
+
+/**
+ *  Delete okms ServiceKey
+ */
+
+export const deleteOkmsServiceKeyResourceQueryKey = ({
+  okmsId,
+  keyId,
+}: {
+  okmsId: string;
+  keyId: string;
+}) => [`okms/resource/${okmsId}/serviceKey/${keyId}/delete`];
+
+export const deleteOkmsServiceKeyResource = async ({
+  okmsId,
+  keyId,
+}: {
+  okmsId: string;
+  keyId: string;
+}) => {
+  return apiClient.v2.delete(`okms/resource/${okmsId}/serviceKey/${keyId}`);
 };
 
 /**
