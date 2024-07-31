@@ -1,0 +1,10 @@
+{
+  "tableHeadType": "Type",
+  "tableHeadCores": "vCores",
+  "tableHeadMemory": "Memory",
+  "tableHeadStorage": "Usable storage",
+  "tableHeadPrice-hourly": "Cost/hour/node (estimated)",
+  "tableHeadPrice-monthly": "Cost/month/node (estimated)",
+  "tableCellStorageRange": "From {{min}} to {{max}}",
+  "flavorTag-new": "New"
+}

@@ -1,0 +1,6 @@
+{
+  "title": "Logs",
+  "breadcrumb": "Logs",
+  "description": "Nachstehend finden Sie die neuesten Events (Logs) zur Nachverfolgung und Verwaltung Ihres Datenbankdienstes, praktisch in Echtzeit. Die Aufbewahrungszeit hängt von Ihrem Dienstangebot ab.",
+  "autoRefreshInputLabel": "Auto-Refresh"
+}
