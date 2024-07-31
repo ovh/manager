@@ -18,7 +18,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useNotifications } from '@ovhcloud/manager-components';
 import { useClusterNodePools, useDeleteNodePool } from '@/api/hooks/node-pools';
 import queryClient from '@/queryClient';
