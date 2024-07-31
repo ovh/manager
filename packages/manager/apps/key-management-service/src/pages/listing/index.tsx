@@ -10,7 +10,6 @@ import {
 import {
   OsdsText,
   OsdsDivider,
-  OsdsBreadcrumb,
   OsdsButton,
   OsdsMessage,
   OsdsSpinner,
@@ -35,6 +34,7 @@ import {
   DatagridCellRegion,
 } from '@/components/Listing/ListingCells';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
@@ -80,14 +80,7 @@ export default function Listing() {
 
   return (
     <div className="m-10">
-      <OsdsBreadcrumb
-        items={[
-          {
-            href: ROUTES_URLS.listing,
-            label: t('key_management_service_listing_title'),
-          },
-        ]}
-      ></OsdsBreadcrumb>
+      <Breadcrumb />
       <div className={'flex items-center justify-between mt-4'}>
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}

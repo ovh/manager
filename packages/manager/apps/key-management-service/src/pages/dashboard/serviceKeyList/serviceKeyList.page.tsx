@@ -111,9 +111,7 @@ export default function Keys() {
             variant={ODS_BUTTON_VARIANT.stroked}
             className={'xs:mt-2 sm:mt-0 w-fit h-fit'}
             onClick={() => {
-              navigate(
-                `/${okmsId}${ROUTES_URLS.keys}${ROUTES_URLS.createKmsServiceKey}`,
-              );
+              navigate(ROUTES_URLS.createKmsServiceKey);
             }}
           >
             <span slot="start">

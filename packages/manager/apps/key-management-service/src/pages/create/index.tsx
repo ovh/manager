@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import {
-  OsdsText,
-  OsdsDivider,
-  OsdsBreadcrumb,
-} from '@ovhcloud/ods-components/react';
+import { OsdsText, OsdsDivider } from '@ovhcloud/ods-components/react';
 
 import { Notifications } from '@ovhcloud/manager-components';
 import {
@@ -16,21 +12,23 @@ import { ROUTES_URLS } from '@/routes/routes.constants';
 import RegionSelector from '@/components/layout-helpers/Create/RegionSelector';
 import OrderConfirmation from '@/components/layout-helpers/Create/OrderConfirmation';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 export default function Create() {
   const { t } = useTranslation('key-management-service/create');
   const [isOrderInitiated, setIsOrderInitiated] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState(undefined);
   return (
-    <>
-      <OsdsBreadcrumb
+    <div className="m-10">
+      <Breadcrumb
         items={[
           {
-            href: ROUTES_URLS.listing,
+            id: ROUTES_URLS.createKeyManagementService,
             label: t('key_management_service_create_title'),
+            navigateTo: ROUTES_URLS.createKeyManagementService,
           },
         ]}
-      ></OsdsBreadcrumb>
+      />
       <div className={'flex items-center justify-between mt-4 mb-2'}>
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
@@ -61,6 +59,6 @@ export default function Create() {
       ) : (
         <OrderConfirmation region={selectedRegion} />
       )}
-    </>
+    </div>
   );
 }
