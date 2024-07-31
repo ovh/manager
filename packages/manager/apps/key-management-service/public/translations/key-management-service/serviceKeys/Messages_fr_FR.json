@@ -1,4 +1,5 @@
 {
+  "key_management_service_service_keys": "Clés de chiffrement",
   "key_management_service_service-keys_headline": "Créez, importez et gérez vos clés de chiffrements CMK (Customer Managed Keys).",
   "key_management_service_service-keys_column_name": "Nom",
   "key_management_service_service-keys_column_id": "ID",
@@ -28,6 +29,7 @@
   "key_management_service_service-keys_dashboard_field_operations_sign_verify": "Signature / Vérification",
   "key_management_service_service-keys_dashboard_field_operations_encrypt_decrypt": "Chiffrer / Déchiffrer",
   "key_management_service_service-keys_dashboard_field_operations_wrap_unwrap": "Encapsulation / Décapsulation",
+  "key_management_service_service-keys_update_name_title": "Renommer",
   "key_management_service_service-keys_update_name_error_min_max": "Le nom doit comporter entre 1 et 32 caractères.",
   "key_management_service_service-keys_update_name_error_invalid_characters": "Votre saisie n'est pas valide.",
   "key_management_service_service-keys_update_name_success": "Le nom a été modifié avec succès.",
