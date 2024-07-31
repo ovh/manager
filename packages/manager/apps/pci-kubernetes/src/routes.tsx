@@ -90,6 +90,24 @@ export default [
                   import('@/pages/reset/ResetCluster.page'),
                 ),
               },
+              {
+                path: 'add-oidc-provider',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/oidc-provider/AddOIDCProvider.page'),
+                ),
+              },
+              {
+                path: 'update-oidc-provider',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/oidc-provider/UpdateOIDCProvider.page'),
+                ),
+              },
+              {
+                path: 'remove-oidc-provider',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/oidc-provider/RemoveOIDCProvider.page'),
+                ),
+              },
             ],
           },
           {
