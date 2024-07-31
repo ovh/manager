@@ -9,8 +9,8 @@ export const SUPPORT_LEVELS = {
 const rootSupportUrl = 'https://help.ovhcloud.com/';
 
 export const SUPPORT_URLS = {
-  viewTickets: `${rootSupportUrl}csm?id=csm_cases_requests`,
-  createTicket: `${rootSupportUrl}csm?id=csm_get_help`,
+  viewTickets: `${rootSupportUrl}csm?id=csm_cases_requests&ovhSubsidiary=`,
+  createTicket: `${rootSupportUrl}csm?id=csm_get_help&ovhSubsidiary=`,
 };
 
 export default {
