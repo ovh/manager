@@ -1,14 +1,21 @@
 import React from 'react';
-import { useBreadcrumb } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import {
+  BreadcrumbItem,
+  useBreadcrumb,
+} from '@/hooks/breadcrumb/useBreadcrumb';
 
-function Breadcrumb(): JSX.Element {
+export interface BreadcrumbProps {
+  items?: BreadcrumbItem[];
+}
+
+function Breadcrumb({ items }: Readonly<BreadcrumbProps>): JSX.Element {
   const { t } = useTranslation('key-management-service/listing');
 
   const breadcrumbItems = useBreadcrumb({
     rootLabel: t('key_management_service_listing_title'),
-    appName: 'key-management-service',
+    items,
   });
 
   return <OsdsBreadcrumb items={breadcrumbItems} />;
