@@ -16,6 +16,7 @@ import {
 } from '@/api/data/node-pools';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useRegionFlavors } from '@/api/hooks/flavors';
+import { compareFunction, paginateResults } from '@/helpers';
 
 export const useClusterNodePools = (projectId: string, clusterId: string) => {
   const { i18n } = useTranslation('common');
@@ -39,25 +40,6 @@ export const useClusterNodePools = (projectId: string, clusterId: string) => {
   });
 };
 
-const paginateResults = <T>(items: T[], pagination: PaginationState) => ({
-  rows: items.slice(
-    pagination.pageIndex * pagination.pageSize,
-    (pagination.pageIndex + 1) * pagination.pageSize,
-  ),
-  pageCount: Math.ceil(items.length / pagination.pageSize),
-  totalRows: items.length,
-});
-
-export const defaultCompareFunction = (key: keyof TClusterNodePool) => (
-  a: TClusterNodePool,
-  b: TClusterNodePool,
-) => {
-  const aValue = a[key] || '';
-  const bValue = b[key] || '';
-
-  return aValue.toString().localeCompare(bValue.toString());
-};
-
 export const sortClusterNodePools = (
   pools: TClusterNodePool[],
   sorting: ColumnSort,
@@ -67,7 +49,9 @@ export const sortClusterNodePools = (
   if (sorting) {
     const { id: sortKey, desc } = sorting;
 
-    data.sort(defaultCompareFunction(sortKey as keyof TClusterNodePool));
+    data.sort(
+      compareFunction<TClusterNodePool>(sortKey as keyof TClusterNodePool),
+    );
     if (desc) {
       data.reverse();
     }
@@ -140,12 +124,12 @@ export const usePaginatedClusterNodePools = (
   };
 };
 
-type RemoveNodePoolProps = {
+type ActionNodePoolProps = {
   projectId: string;
   clusterId: string;
   poolId: string;
-  onError: (cause: Error) => void;
-  onSuccess: () => void;
+  onError: (cause: Error) => void | Promise<void>;
+  onSuccess: () => void | Promise<void>;
 };
 
 export const useDeleteNodePool = ({
@@ -154,7 +138,7 @@ export const useDeleteNodePool = ({
   poolId,
   onError,
   onSuccess,
-}: RemoveNodePoolProps) => {
+}: ActionNodePoolProps) => {
   const mutation = useMutation({
     mutationFn: async () => deleteNodePool(projectId, clusterId, poolId),
     onError: (cause: Error) => {
@@ -171,15 +155,13 @@ export const useDeleteNodePool = ({
   };
 };
 
-type UpdateNodePoolSizeProps = RemoveNodePoolProps;
-
 export const useUpdateNodePoolSize = ({
   projectId,
   clusterId,
   poolId,
   onError,
   onSuccess,
-}: UpdateNodePoolSizeProps) => {
+}: ActionNodePoolProps) => {
   const mutation = useMutation({
     mutationFn: async (param: TUpdateNodePoolSizeParam) =>
       updateNodePoolSize(projectId, clusterId, poolId, param),

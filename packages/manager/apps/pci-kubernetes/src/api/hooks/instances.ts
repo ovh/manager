@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import { getInstances } from '@/api/data/instance';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { getInstances, switchToMonthlyBilling } from '@/api/data/instance';
 
 export const useInstances = (projectId: string) =>
   useQuery({
@@ -8,3 +8,32 @@ export const useInstances = (projectId: string) =>
     enabled: !!projectId,
     throwOnError: true,
   });
+
+type SwitchToMonthlyBillingProps = {
+  projectId: string;
+  instanceId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useSwitchToMonthlyBilling = ({
+  projectId,
+  instanceId,
+  onError,
+  onSuccess,
+}: SwitchToMonthlyBillingProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => switchToMonthlyBilling(projectId, instanceId),
+    onError: (cause: Error) => {
+      onError(cause);
+    },
+    onSuccess: async () => {
+      onSuccess();
+    },
+  });
+
+  return {
+    switchToMonthlyBilling: () => mutation.mutate(),
+    ...mutation,
+  };
+};

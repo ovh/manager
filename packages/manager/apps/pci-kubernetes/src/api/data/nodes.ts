@@ -17,7 +17,8 @@ type TRawNode = {
 
 export type TNode = TRawNode & {
   formattedFlavor: string;
-  billingType: string;
+  billingType: 'hourly' | 'monthly' | 'monthly_pending';
+  canSwitchToMonthly: boolean;
 };
 
 export const getNodes = async (
@@ -32,7 +33,8 @@ export const getNodes = async (
   return items.map((item) => ({
     ...item,
     formattedFlavor: item.flavor,
-    billingType: '',
+    billingType: 'monthly',
+    canSwitchToMonthly: false,
   }));
 };
 

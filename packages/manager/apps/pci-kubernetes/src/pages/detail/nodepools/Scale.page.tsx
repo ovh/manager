@@ -89,19 +89,17 @@ export default function ScalePage(): JSX.Element {
     >
       <slot name="content">
         {!isPoolsPending && !isDeleting ? (
-          <>
-            <Autoscaling
-              initialScaling={{
-                min: pool?.minNodes,
-                max: pool?.maxNodes,
-                desired: pool?.desiredNodes,
-              }}
-              isMonthlyBilling={pool?.monthlyBilled}
-              isAntiAffinity={pool?.antiAffinity}
-              autoscale={pool?.autoscale}
-              onChange={(s) => setState(s)}
-            />
-          </>
+          <Autoscaling
+            initialScaling={{
+              min: pool?.minNodes,
+              max: pool?.maxNodes,
+              desired: pool?.desiredNodes,
+            }}
+            isMonthlyBilling={pool?.monthlyBilled}
+            isAntiAffinity={pool?.antiAffinity}
+            autoscale={pool?.autoscale}
+            onChange={(s) => setState(s)}
+          />
         ) : (
           <OsdsSpinner
             inline

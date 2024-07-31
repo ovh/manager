@@ -1,5 +1,12 @@
 import { PaginationState } from '@ovhcloud/manager-components';
 
+export const compareFunction = <T>(key: keyof T) => (a: T, b: T) => {
+  const aValue = a[key] || '';
+  const bValue = b[key] || '';
+
+  return aValue.toString().localeCompare(bValue.toString());
+};
+
 export const paginateResults = <T>(
   items: T[],
   pagination: PaginationState,
