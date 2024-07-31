@@ -6,18 +6,22 @@ import { useTranslation } from 'react-i18next';
 import queryClient from '@/queryClient';
 import { paginateResults } from '@/helpers';
 import {
+  addOidcProvider,
   getAllKube,
   getClusterRestrictions,
   getKubernetesCluster,
   getOidcProvider,
   postKubeConfig,
+  removeOidcProvider,
   resetCluster,
   resetKubeConfig,
   terminateCluster,
+  TOidcProvider,
   TResetClusterParams,
   updateKubePolicy,
   updateKubernetesCluster,
   updateKubeVersion,
+  updateOidcProvider,
 } from '../data/kubernetes';
 import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
@@ -372,6 +376,97 @@ export const useResetCluster = ({
   });
   return {
     resetCluster: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type AddOidcProviderProps = {
+  projectId: string;
+  kubeId: string;
+  params: Partial<TOidcProvider>;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useAddOidcProvider = ({
+  projectId,
+  kubeId,
+  params,
+  onError,
+  onSuccess,
+}: AddOidcProviderProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => addOidcProvider(projectId, kubeId, params),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    addOidcProvider: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type UpdateOidcProviderProps = {
+  projectId: string;
+  kubeId: string;
+  params: Partial<TOidcProvider>;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useUpdateOidcProvider = ({
+  projectId,
+  kubeId,
+  params,
+  onError,
+  onSuccess,
+}: UpdateOidcProviderProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => updateOidcProvider(projectId, kubeId, params),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    updateOidcProvider: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type RemoveOidcProviderProps = {
+  projectId: string;
+  kubeId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useRemoveOidcProvider = ({
+  projectId,
+  kubeId,
+  onError,
+  onSuccess,
+}: RemoveOidcProviderProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => removeOidcProvider(projectId, kubeId),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    removeOidcProvider: () => mutation.mutate(),
     ...mutation,
   };
 };

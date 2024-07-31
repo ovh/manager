@@ -59,6 +59,9 @@ export default function ClusterAccessAndSecurity({
   const { addError } = useNotifications();
 
   const hrefRestrictions = useHref('../restrictions');
+  const hrefAddOIDCProvider = useHref('./add-oidc-provider');
+  const hrefUpdateOIDCProvider = useHref('./update-oidc-provider');
+  const hrefRemoveOIDCProvider = useHref('./remove-oidc-provider');
 
   const { data: oidcProvider } = useOidcProvider(projectId, kubeId);
   const {
@@ -251,6 +254,7 @@ export default function ClusterAccessAndSecurity({
                       'kube_service_access_security_oidc_menu_action_add_provider',
                     ),
                     disabled: isOidcDefined,
+                    href: hrefAddOIDCProvider,
                   },
                   {
                     id: 2,
@@ -258,6 +262,7 @@ export default function ClusterAccessAndSecurity({
                       'kube_service_access_security_oidc_menu_action_set_provider',
                     ),
                     disabled: !isOidcDefined,
+                    href: hrefUpdateOIDCProvider,
                   },
                   {
                     id: 3,
@@ -265,6 +270,7 @@ export default function ClusterAccessAndSecurity({
                       'kube_service_access_security_oidc_menu_action_remove_provider',
                     ),
                     disabled: !isOidcDefined,
+                    href: hrefRemoveOIDCProvider,
                   },
                 ]}
               />
