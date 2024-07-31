@@ -13,6 +13,7 @@ import {
   getClusterRestrictions,
   getKubernetesCluster,
   getOidcProvider,
+  getSubscribedLogs,
   postKubeConfig,
   removeOidcProvider,
   resetCluster,
@@ -315,6 +316,7 @@ export const useUpdateKubeVersion = ({
     ...mutation,
   };
 };
+
 type TerminateClusterProps = {
   projectId: string;
   kubeId: string;
@@ -471,3 +473,19 @@ export const useRemoveOidcProvider = ({
     ...mutation,
   };
 };
+
+export const getSubscribedLogsQueryKey = (
+  projectId: string,
+  kubeId: string,
+  kind: string,
+) => ['log-subscription', projectId, kubeId, 'audit', kind];
+
+export const useSubscribedLogs = (
+  projectId: string,
+  kubeId: string,
+  kind: string,
+) =>
+  useQuery({
+    queryKey: getSubscribedLogsQueryKey(projectId, kubeId, kind),
+    queryFn: () => getSubscribedLogs(projectId, kubeId, kind),
+  });
