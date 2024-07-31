@@ -89,15 +89,18 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             </OsdsText>
           )}
           <div className="flex sm:py-8 xs:w-full xs:flex-col sm:items-center sm:flex-row w-full justify-center">
-            <OsdsButton
-              inline
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_BUTTON_SIZE.md}
-              href={orderHref}
-              onClick={onOrderButtonClick}
-            >
-              {orderButtonLabel}
-            </OsdsButton>
+            {orderButtonLabel && (
+              <OsdsButton
+                inline
+                color={ODS_THEME_COLOR_INTENT.primary}
+                size={ODS_BUTTON_SIZE.md}
+                href={orderHref}
+                onClick={onOrderButtonClick}
+                {...(!onOrderButtonClick && !orderHref && { disabled: true })}
+              >
+                {orderButtonLabel}
+              </OsdsButton>
+            )}
 
             {moreInfoButtonLabel && moreInfoHref && (
               <OsdsButton
