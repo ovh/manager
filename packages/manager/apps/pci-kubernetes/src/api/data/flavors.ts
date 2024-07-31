@@ -6,6 +6,9 @@ export type TRawFlavor = {
   ram: number;
   disk: number;
   vcpus: number;
+  planCodes?: {
+    monthly?: string;
+  };
 };
 
 export const getRegionFlavors = async (
