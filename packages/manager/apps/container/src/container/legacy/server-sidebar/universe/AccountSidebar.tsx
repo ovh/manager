@@ -27,6 +27,7 @@ export default function AccountSidebar() {
     .getPlugin('environment')
     .getEnvironment();
   const region = environment.getRegion();
+  const subsidiary = environment.getUser()?.ovhSubsidiary;
   const isEnterprise = environment.getUser()?.enterprise;
 
   const getAccountSidebar = async (availability: Record<string, string> | null) => {
