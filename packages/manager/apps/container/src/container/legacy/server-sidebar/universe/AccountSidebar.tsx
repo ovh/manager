@@ -138,7 +138,7 @@ export default function AccountSidebar() {
       label: t('sidebar_assistance_tickets'),
       isExternal: isEUOrCA,
       
-      href: isEUOrCA ? constants[region].support.tickets : navigation.getURL('dedicated', '/ticket'),
+      href: isEUOrCA ? constants[region].support.tickets(subsidiary) : navigation.getURL('dedicated', '/ticket'),
       routeMatcher: new RegExp('^/(ticket|support)'),
     });
 
