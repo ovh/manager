@@ -168,17 +168,15 @@ export default class BmServerComponentsNetbootCtrl {
           this.$translate.instant('server_configuration_netboot_success'),
         );
       })
-      .catch((error) =>
-        this.handleError(
+      .catch((error) => {
+        this.loading.setNetboot = false;
+        return this.handleError(
           error,
           this.$translate.instant('server_configuration_netboot_fail', {
             t0: this.server.name,
             message: error.message || error.data?.message,
           }),
-        ),
-      )
-      .finally(() => {
-        this.loading.setNetboot = false;
+        );
       });
   }
 
