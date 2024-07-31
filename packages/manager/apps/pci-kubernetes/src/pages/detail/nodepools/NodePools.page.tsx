@@ -1,4 +1,4 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import {
   OsdsButton,
@@ -37,6 +37,7 @@ export default function NodePoolsPage() {
   const { t: tFilter } = useTranslation('filter');
   const { t: tKubeNodes } = useTranslation('kube-nodes');
   const filterPopoverRef = useRef(undefined);
+  const navigate = useNavigate();
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
   const columns = useDatagridColumns();
@@ -69,8 +70,7 @@ export default function NodePoolsPage() {
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0"
             onClick={() => {
-              // clearNotifications();
-              // navigate('./new');
+              navigate('./new');
             }}
           >
             {tNodesPool('kube_node_pool_add')}

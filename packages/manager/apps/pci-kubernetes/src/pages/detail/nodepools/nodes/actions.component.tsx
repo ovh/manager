@@ -11,16 +11,29 @@ export default function ActionsComponent({
   node,
 }: Readonly<ActionsComponentProps>) {
   const { t: tListing } = useTranslation('listing');
+  const { t: tKubeNodes } = useTranslation('kube-nodes');
 
   const deleteHref = useHref(`./${node.id}/delete`);
+  const switchToMonthlyHref = useHref(`./billing-type?nodeId=${node.id}`);
 
-  const items = [
+  let items = [
     {
-      id: 0,
+      id: node.canSwitchToMonthly ? 1 : 0,
       href: deleteHref,
       label: tListing('kube_common_delete'),
     },
   ];
+
+  if (node.canSwitchToMonthly) {
+    items = [
+      {
+        id: 0,
+        href: switchToMonthlyHref,
+        label: tKubeNodes('kube_nodes_switch_to_monthly_billing_title'),
+      },
+      ...items,
+    ];
+  }
 
   return <ActionMenu items={items} isCompact />;
 }
