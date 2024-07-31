@@ -17,6 +17,7 @@ export const DOMAIN_STATUS = {
   PENDING_INCOMING_TRANSFER: 'pending_incoming_transfer',
   TECHNICAL_SUSPENDED: 'technical_suspended',
   REGISTRY_SUSPENDED: 'registry_suspended',
+  AUTORENEW_IN_PROGRESS: 'autorenew_in_progress',
 };
 
 export const DOMAIN_DNSSEC_STATE = {
@@ -83,6 +84,7 @@ export const DOMAINS_BADGES_STATUS = {
   [DOMAIN_STATUS.PENDING_INCOMING_TRANSFER]: 'oui-badge_info',
   [DOMAIN_STATUS.TECHNICAL_SUSPENDED]: 'oui-badge_limited-edition',
   [DOMAIN_STATUS.REGISTRY_SUSPENDED]: 'oui-badge_limited-edition',
+  [DOMAIN_STATUS.AUTORENEW_IN_PROGRESS]: 'oui-badge_info',
 };
 
 export const DOMAIN_SUSPENSION_STATE_CLASS = {
