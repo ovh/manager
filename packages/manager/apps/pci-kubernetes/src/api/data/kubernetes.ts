@@ -163,3 +163,46 @@ export const removeOidcProvider = async (projectId: string, kubeId: string) => {
   );
   return data;
 };
+
+export type TSubscription = {
+  createdAt: string;
+  king: string;
+  resource: {
+    name: string;
+    type: string;
+  };
+  serviceName: string;
+  streamId: string;
+  subscriptionId: string;
+  updatedAt: string;
+};
+
+export const getSubscribedLogs = async (
+  projectId: string,
+  kubeId: string,
+  kind: string,
+) => {
+  const { data } = await fetchIcebergV6<TSubscription>({
+    route: `/cloud/project/${projectId}/kube/${kubeId}/log/subscription?kind=${kind}`,
+  });
+  return data;
+};
+
+export type TLogURL = {
+  expirationDate: string;
+  url: string;
+};
+
+export const postLogURL = async (
+  projectId: string,
+  kubeId: string,
+  kind: string,
+) => {
+  const { data } = await v6.post<TLogURL>(
+    `/cloud/project/${projectId}/kube/${kubeId}/log/url`,
+    {
+      kind,
+    },
+  );
+  return data;
+};
