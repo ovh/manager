@@ -23,7 +23,6 @@ export const useAllOkmsServiceKeys = (okmsId: string) => {
     ...{
       keepPreviousData: true,
     },
-    refetchInterval: 5000,
   });
 };
 
@@ -60,6 +59,5 @@ export const useOkmsServiceKeyById = ({
     ...{
       keepPreviousData: true,
     },
-    refetchInterval: 5000,
   });
 };
