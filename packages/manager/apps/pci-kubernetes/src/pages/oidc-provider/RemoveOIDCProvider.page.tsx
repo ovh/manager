@@ -1,0 +1,126 @@
+import { Translation, useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useNotifications } from '@ovhcloud/manager-components';
+import {
+  OsdsButton,
+  OsdsModal,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  useOidcProvider,
+  useRemoveOidcProvider,
+} from '@/api/hooks/useKubernetes';
+
+export default function RemoveOIDCProvider() {
+  const { t } = useTranslation('remove-oidc-provider');
+  const { projectId, kubeId } = useParams();
+  const navigate = useNavigate();
+  const onClose = () => navigate('..');
+  const { addError, addSuccess } = useNotifications();
+  const {
+    data: oidcProvider,
+    isPending: isPendingOidsProvider,
+  } = useOidcProvider(projectId, kubeId);
+  const {
+    removeOidcProvider,
+    isPending: isPendingRemoveOidcProvider,
+  } = useRemoveOidcProvider({
+    projectId,
+    kubeId,
+    onError(error: ApiError) {
+      addError(
+        <Translation ns="remove-oidc-provider">
+          {(_t) =>
+            _t(
+              'pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_error',
+              {
+                message:
+                  error?.response?.data?.message || error?.message || null,
+              },
+            )
+          }
+        </Translation>,
+        true,
+      );
+      onClose();
+    },
+    onSuccess() {
+      addSuccess(
+        <Translation ns="remove-oidc-provider">
+          {(_t) =>
+            _t(
+              'pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_success',
+            )
+          }
+        </Translation>,
+      );
+      onClose();
+    },
+  });
+  const isPending = isPendingOidsProvider || isPendingRemoveOidcProvider;
+  return (
+    <OsdsModal
+      headline={t(
+        'pci_projects_project_kubernetes_details_service_remove_oidc_provider_title',
+      )}
+      onOdsModalClose={onClose}
+    >
+      <slot name="content">
+        {isPending ? (
+          <div className="mt-6">
+            <OsdsSpinner
+              inline
+              size={ODS_SPINNER_SIZE.md}
+              className="block text-center"
+              data-testid="addOIDCProvider-spinner"
+            />
+          </div>
+        ) : (
+          <div className="mt-6">
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_TEXT_SIZE._400}
+            >
+              {t(
+                'pci_projects_project_kubernetes_details_service_remove_oidc_provider_description',
+                { clientId: oidcProvider.clientId },
+              )}
+            </OsdsText>
+          </div>
+        )}
+      </slot>
+      <OsdsButton
+        slot="actions"
+        color={ODS_THEME_COLOR_INTENT.primary}
+        variant={ODS_BUTTON_VARIANT.ghost}
+        onClick={onClose}
+        data-testid="removeOIDCProvider-button_cancel"
+      >
+        {t(
+          'pci_projects_project_kubernetes_details_service_remove_oidc_provider_action_cancel',
+        )}
+      </OsdsButton>
+      <OsdsButton
+        slot="actions"
+        color={ODS_THEME_COLOR_INTENT.primary}
+        disabled={isPending || undefined}
+        data-testid="removeOIDCProvider-button_submit"
+        onClick={removeOidcProvider}
+      >
+        {t(
+          'pci_projects_project_kubernetes_details_service_remove_oidc_provider_action_remove',
+        )}
+      </OsdsButton>
+    </OsdsModal>
+  );
+}

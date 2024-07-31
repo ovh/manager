@@ -132,3 +132,34 @@ export const resetCluster = async (
   );
   return data;
 };
+
+export const addOidcProvider = async (
+  projectId: string,
+  kubeId: string,
+  params: TOidcProvider,
+) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`,
+    params,
+  );
+  return data;
+};
+
+export const updateOidcProvider = async (
+  projectId: string,
+  kubeId: string,
+  params: TOidcProvider,
+) => {
+  const { data } = await v6.put(
+    `/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`,
+    params,
+  );
+  return data;
+};
+
+export const removeOidcProvider = async (projectId: string, kubeId: string) => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`,
+  );
+  return data;
+};
