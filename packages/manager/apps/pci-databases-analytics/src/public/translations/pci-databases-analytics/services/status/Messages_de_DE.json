@@ -1,0 +1,12 @@
+{
+  "status-CREATING": "Wird erstellt",
+  "status-DELETING": "Löschen",
+  "status-LOCKED": "Gesperrt",
+  "status-LOCKED_PENDING": "Gesperrt – Ausstehend",
+  "status-LOCKED_UPDATING": "Gesperrt – Wird aktualisiert",
+  "status-PENDING": "Ausstehend",
+  "status-UPDATING": "Update",
+  "status-ERROR": "Fehler",
+  "status-ERROR_INCONSISTENT_SPEC": "Fehler",
+  "status-READY": "Verfügbar"
+}

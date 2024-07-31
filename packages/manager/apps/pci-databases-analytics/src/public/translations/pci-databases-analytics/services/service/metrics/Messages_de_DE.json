@@ -1,0 +1,19 @@
+{
+  "title": "Metriken",
+  "breadcrumb": "Metriken",
+  "description": "Nachstehend finden Sie die wichtigsten Metriken und Statistiken zur Überwachung und Verwaltung Ihrer Datenbankinstanz. Die Aufbewahrungszeit hängt von Ihrem Dienstangebot ab.",
+  "autoRefreshInputLabel": "Auto-Refresh",
+  "interval-lastHour": "1H",
+  "interval-lastDay": "1D",
+  "interval-lastWeek": "1W",
+  "interval-lastMonth": "1M",
+  "interval-lastYear": "1Y",
+  "metricName-cpu_usage_percent": "CPU-Auslastung (%)",
+  "metricName-disk_usage_percent": "Belegter Festplattenspeicher (%)",
+  "metricName-diskio_read": "Anzahl IOPS (Lesen)",
+  "metricName-diskio_writes": "Anzahl IOPS (Schreiben)",
+  "metricName-mem_usage_percent": "Verwendeter Speicher (%)",
+  "metricName-mem_usage": "Verwendeter Speicher (MB)",
+  "metricName-net_receive": "Netzwerkempfang (MB/s)",
+  "metricName-net_send": "Netzwerkübertragung (MB/s)"
+}

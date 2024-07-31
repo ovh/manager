@@ -1,0 +1,6 @@
+{
+  "inputNodeLabel": "Seleccione el número de nodos del clúster",
+  "inputStorageLabel": "Seleccione el almacenamiento adicional del clúster",
+  "inputStorageNoneValue": "Ninguno",
+  "storageFlavorDescription": "Su modelo de nodo {{flavor}} incluye {{includedStorage}} de almacenamiento al que es posible añadir hasta {{maxAdditionalStorage}} de almacenamiento adicional por intervalos de {{step}}."
+}

@@ -1,0 +1,6 @@
+{
+  "title": "Logs",
+  "breadcrumb": "Logs",
+  "description": "Con el fin de ayudarle a realizar el seguimiento y a administrar su servicio de base de datos, a continuación ofrecemos los últimos eventos (logs) casi en directo. Su período de retención depende del plan contratado.",
+  "autoRefreshInputLabel": "Auto-Refresh"
+}
