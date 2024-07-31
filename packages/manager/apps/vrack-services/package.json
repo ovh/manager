@@ -34,16 +34,18 @@
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
-    "@tanstack/react-query": "5.29.2",
-    "@tanstack/react-query-devtools": "5.29.2",
+    "@tanstack/react-query": "^5.51.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwindcss": "^3.3.3"
+    "react-i18next": "^11.18.1",
+    "react-router-dom": "^6.3.0",
+    "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1",
     "@ovh-ux/manager-vite-config": "^0.7.0",
     "@playwright/test": "^1.41.2",
+    "@tanstack/react-query-devtools": "^5.51.21",
     "@types/jest": "27.x",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.2.0",
@@ -52,15 +54,9 @@
     "msw": "2.1.7",
     "ts-jest": "27.x",
     "ts-loader": "^9.5.1",
-    "ts-node": "^10.9.1"
-  },
-  "peerDependencies": {
-    "react": "*",
-    "react-dom": "*",
-    "react-i18next": "*",
-    "react-router-dom": "*",
-    "vite": "*",
-    "vitest": "*"
+    "ts-node": "^10.9.1",
+    "vite": "^5.2.13",
+    "vitest": "^1.2.0"
   },
   "msw": {
     "workerDirectory": "src/public"
