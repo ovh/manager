@@ -1,18 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {
+  ActionMenu,
   DataGridClipboardCell,
   DataGridTextCell,
   Links,
 } from '@ovhcloud/manager-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { parseISO } from 'date-fns';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OKMS } from '@/types/okms.type';
 import KmsActionMenu from '../menu/KmsActionMenu.component';
 import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
 import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyTypeTranslations';
 import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatus.component';
+import useServiceKeyActionsList from '@/hooks/serviceKey/useServiceKeyActionsList';
+import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 
 export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
   return <DataGridClipboardCell text={props.id} />;
@@ -99,5 +103,22 @@ export const DatagridStatus = (props: OkmsAllServiceKeys) => {
 };
 
 export const DatagridServiceKeyActionMenu = (props: OkmsAllServiceKeys) => {
-  return <></>;
+  const { okmsId } = useParams();
+  const { data: serviceKey, isPending } = useOkmsServiceKeyById({
+    okmsId,
+    keyId: props.id,
+  });
+  const actionList = useServiceKeyActionsList(okmsId, serviceKey?.data, true);
+
+  if (isPending) {
+    return <></>;
+  }
+
+  return (
+    <ActionMenu
+      items={actionList}
+      isCompact
+      icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
+    />
+  );
 };

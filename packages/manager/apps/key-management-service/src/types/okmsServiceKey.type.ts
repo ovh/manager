@@ -23,6 +23,7 @@ export type OkmsServiceKeyBase = {
   name?: string;
   state: OkmsServiceKeyState;
   type: OkmsKeyTypes;
+  keys?: any[];
 };
 
 /*
@@ -87,19 +88,24 @@ export type OkmsServiceECKey = OkmsServiceKeyBase & {
   operations: [OkmsServiceKeyOperations.sign, OkmsServiceKeyOperations.verify];
 };
 
+export const OkmsServiceKeyDeactivationReasonTypes = [
+  'AFFILIATION_CHANGED',
+  'CA_COMPROMISE',
+  'CESSATION_OF_OPERATION',
+  'KEY_COMPROMISE',
+  'PRIVILEGE_WITHDRAWN',
+  'SUPERSEDED',
+  'UNSPECIFIED',
+] as const;
+
+export type OkmsServiceKeyDeactivationReason = typeof OkmsServiceKeyDeactivationReasonTypes[number];
+
 /*
 PUT SERVICE KEY
 */
 
 export type OkmsServiceKeyPutPayload = {
-  deactivationReason?:
-    | 'AFFILIATION_CHANGED'
-    | 'CA_COMPROMISE'
-    | 'CESSATION_OF_OPERATION'
-    | 'KEY_COMPROMISE'
-    | 'PRIVILEGE_WITHDRAWN'
-    | 'SUPERSEDED'
-    | 'UNSPECIFIED';
+  deactivationReason?: OkmsServiceKeyDeactivationReason;
   name?: string;
   state?: 'ACTIVE' | 'DEACTIVATED';
 };

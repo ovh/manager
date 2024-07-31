@@ -34,7 +34,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
     const activeTab = tabs.find(
       (tab) => `/${okmsId}/${tab.url}` === location.pathname,
     );
-
+    if (!activeTab) return;
     setActivePanel(activeTab?.url);
   }, [location]);
 
