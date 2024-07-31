@@ -148,6 +148,12 @@ export default [
                   import('@/pages/detail/nodepools/nodes/Delete.page'),
                 ),
               },
+              {
+                path: 'billing-type',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/detail/nodepools/nodes/Switch.page'),
+                ),
+              },
             ],
           },
           {
