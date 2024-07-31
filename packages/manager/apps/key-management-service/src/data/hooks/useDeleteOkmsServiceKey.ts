@@ -2,36 +2,35 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovhcloud/manager-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { OkmsServiceKeyPutPayload } from '@/types/okmsServiceKey.type';
 import {
+  deleteOkmsServiceKeyResource,
+  deleteOkmsServiceKeyResourceQueryKey,
   getOkmsServiceKeyResourceListQueryKey,
   getOkmsServiceKeyResourceQueryKey,
-  updateOkmsServiceKeyResource,
-  updateOkmsServiceKeyResourceQueryKey,
 } from '../api/okmsServiceKey';
 
-export type UpdateOkmsServiceKeyParams = {
+export type DeleteOkmsServiceKeyParams = {
   okmsId: string;
   keyId: string;
   onSuccess: () => void;
   onError: () => void;
 };
 
-export const useUpdateOkmsServiceKey = ({
+export const useDeleteOkmsServiceKey = ({
   okmsId,
   keyId,
   onSuccess,
   onError,
-}: UpdateOkmsServiceKeyParams) => {
+}: DeleteOkmsServiceKeyParams) => {
   const queryClient = useQueryClient();
-  const { addError } = useNotifications();
+  const { addError, addSuccess } = useNotifications();
 
   const { t } = useTranslation('key-management-service/serviceKeys');
 
-  const { mutate: updateKmsServiceKey, isPending } = useMutation({
-    mutationKey: updateOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
-    mutationFn: async (data: OkmsServiceKeyPutPayload) => {
-      return updateOkmsServiceKeyResource({ okmsId, keyId, data });
+  const { mutate: deleteKmsServiceKey, isPending } = useMutation({
+    mutationKey: deleteOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
+    mutationFn: async () => {
+      return deleteOkmsServiceKeyResource({ okmsId, keyId });
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -40,11 +39,12 @@ export const useUpdateOkmsServiceKey = ({
       await queryClient.invalidateQueries({
         queryKey: getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
       });
+      addSuccess(t('key_management_service_service-keys_delete_success'), true);
       onSuccess();
     },
     onError: (result: ApiError) => {
       addError(
-        t('key_management_service_service-keys_update_error', {
+        t('key_management_service_service-keys_delete_error', {
           error: result.message,
         }),
         true,
@@ -54,7 +54,7 @@ export const useUpdateOkmsServiceKey = ({
   });
 
   return {
-    updateKmsServiceKey,
+    deleteKmsServiceKey,
     isPending,
   };
 };
