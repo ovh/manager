@@ -10,17 +10,19 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($http, $translate, $window, Alerter, coreURLBuilder) {
+  constructor($http, $translate, $window, Alerter, coreURLBuilder, coreConfig) {
     this.$http = $http;
     this.$window = $window;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.coreURLBuilder = coreURLBuilder;
+    this.coreConfig = coreConfig;
 
     this.UPGRADE_MODE = UPGRADE_MODE;
   }
 
   $onInit() {
+    this.user = this.coreConfig.getUser();
     this.interventionData = {
       minDate: moment()
         .add(MIN_INTERVENTION_GAP, 'days')
@@ -148,7 +150,8 @@ export default class {
         },
       )
       .then(() => {
-        const supportTicketLink = SUPPORT_TICKET_ID_URL.replace('{ticketId}');
+        const supportTicketLink =
+          SUPPORT_TICKET_ID_URL.replace('{ticketId}') + this.user.ovhSubsidiary;
         this.goBack(
           `${this.$translate.instant(
             'dedicated_server_dashboard_upgrade_intervention_success_message',
