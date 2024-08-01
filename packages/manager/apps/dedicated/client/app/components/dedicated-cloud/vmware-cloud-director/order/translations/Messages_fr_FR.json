@@ -1,5 +1,6 @@
 {
   "dedicatedCloud_vmware_cloud_director_order_title": "Confirmation de migration vers l'offre VCD",
+  "dedicatedCloud_vmware_cloud_director_order_info": "La validation de la migration peut prendre quelques minutes pour être effective.",
   "dedicatedCloud_vmware_cloud_director_order_terms": "Voir les conditions particulières du service Managed VCD",
   "dedicatedCloud_vmware_cloud_director_order_host": "Host {{host}} : ",
   "dedicatedCloud_vmware_cloud_director_order_hosts_list": "Voici la liste des hosts du {{pcc}} :",

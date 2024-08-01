@@ -48,7 +48,7 @@
     >
         <oui-tile-description data-ng-if=":: $ctrl.vcdMigrationState.isDone">
             <a
-                data-ng-href="{{ :: $ctrl.guideLink}}"
+                data-ng-href="{{ :: $ctrl.guideLinks.MIGRATION}}"
                 target="_blank"
                 rel="nooponer"
             >
@@ -64,7 +64,7 @@
         </oui-tile-description>
         <oui-tile-description data-ng-if=":: !$ctrl.vcdMigrationState.isDone">
             <a
-                data-ng-href="{{ :: $ctrl.guideLink}}"
+                data-ng-href="{{ :: $ctrl.guideLinks.OFFER}}"
                 target="_blank"
                 rel="nooponer"
             >
@@ -79,7 +79,7 @@
             </a>
             <br />
             <a
-                data-ng-href="{{ :: $ctrl.guideLink}}"
+                data-ng-href="{{ :: $ctrl.guideLinks.TERMS}}"
                 target="_blank"
                 rel="nooponer"
             >

@@ -6,7 +6,7 @@ export default class {
   }
 
   $onInit() {
-    this.guideLink = this.DedicatedCloud.getVCDGuideLink();
+    this.guideLinks = this.DedicatedCloud.getVCDGuideLinks();
     this.checkMigration();
   }
 

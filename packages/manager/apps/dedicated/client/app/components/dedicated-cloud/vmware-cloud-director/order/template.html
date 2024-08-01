@@ -9,7 +9,13 @@
     data-loading="$ctrl.loading"
     data-type="info"
 >
+    <oui-message data-type="info"
+        ><span
+            data-translate="dedicatedCloud_vmware_cloud_director_order_info"
+        ></span>
+    </oui-message>
     <p
+        class="pt-3"
         data-translate="dedicatedCloud_vmware_cloud_director_order_hosts_list"
         data-translate-values="{'pcc': $ctrl.productId}"
     ></p>
@@ -23,7 +29,11 @@
         </li>
     </ul>
     <p>
-        <a data-ng-href="{{:: $ctrl.guideLink}}" target="_blank" rel="nooponer">
+        <a
+            data-ng-href="{{:: $ctrl.guideLinks.TERMS}}"
+            target="_blank"
+            rel="nooponer"
+        >
             <span
                 data-translate="dedicatedCloud_vmware_cloud_director_order_terms"
             ></span>
