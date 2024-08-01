@@ -54,12 +54,13 @@
 
     <!--Monitoring options-->
     <oui-tile-definition
+        class="overide-flex"
         data-ng-if="$ctrl.isMonitoringOptionsAvailable"
         data-term="{{ :: 'dedicated_server_dashboard_monitoring' | translate }}"
     >
-        <oui-tile-description>
+        <oui-tile-description class="text-wrap">
             <span
-                class="oui-badge"
+                class="oui-badge text-wrap"
                 data-ng-class="{
                     'oui-badge_success': $ctrl.server.monitored && !$ctrl.server.noIntervention,
                     'oui-badge_warning': !$ctrl.server.monitored || $ctrl.server.noIntervention
