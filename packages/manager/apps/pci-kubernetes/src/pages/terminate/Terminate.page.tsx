@@ -103,7 +103,7 @@ export default function TerminatePage() {
             inline
             size={ODS_SPINNER_SIZE.md}
             className="block text-center"
-            data-testid="updateVersion-spinner"
+            data-testid="terminate-spinner"
           />
         ) : (
           <div className="mt-6">
@@ -121,6 +121,7 @@ export default function TerminatePage() {
             </OsdsMessage>
             <OsdsFormField
               class="mt-6"
+              data-testid="terminate-formfield"
               error={
                 formState.hasError ? tCommon('common_field_error_required') : ''
               }

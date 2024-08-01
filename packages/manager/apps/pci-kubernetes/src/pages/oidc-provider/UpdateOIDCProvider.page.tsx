@@ -127,6 +127,7 @@ export default function UpdateOIDCProvider() {
             </OsdsText>
             <OsdsFormField
               class="mt-6"
+              data-testid="issuerUrl-formfield"
               error={
                 hasIssuerUrlError ? tCommon('common_field_error_required') : ''
               }
@@ -154,6 +155,7 @@ export default function UpdateOIDCProvider() {
                 type={ODS_INPUT_TYPE.text}
                 error={hasIssuerUrlError || undefined}
                 className={`mt-3 ${hasIssuerUrlError ? 'bg-red-100' : ''}`}
+                data-testid="issuerUrl-input"
                 onOdsInputBlur={() => {
                   setFormState((state) => ({
                     ...state,
@@ -171,6 +173,7 @@ export default function UpdateOIDCProvider() {
             </OsdsFormField>
             <OsdsFormField
               class="mt-10"
+              data-testid="clientId-formfield"
               error={
                 hasClientIdError ? tCommon('common_field_error_required') : ''
               }
@@ -197,6 +200,7 @@ export default function UpdateOIDCProvider() {
               <OsdsInput
                 type={ODS_INPUT_TYPE.text}
                 value={formState.clientId}
+                data-testid="clientId-input"
                 error={hasClientIdError || undefined}
                 className={`mt-3 ${hasClientIdError ? 'bg-red-100' : ''}`}
                 onOdsInputBlur={() => {
