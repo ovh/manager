@@ -123,20 +123,20 @@ export default function RenameClusterPage() {
               )}
             </OsdsText>
             <OsdsFormField
-              data-testid="renameCluster-input_name"
+              data-testid="renameCluster-formfield"
               error={`${
                 errors.pattern
                   ? tEditName(
                       'pci_projects_project_kubernetes_details_service_name_input_pattern_validation_error',
                     )
                   : ''
-              }  ${
+              } ${
                 errors.length
                   ? tCommon('common_field_error_maxlength', {
                       maxlength: NAME_INPUT_CONSTRAINTS.MAX_LENGTH,
                     })
                   : ''
-              } `}
+              }`}
               className="mt-6"
             >
               <div slot="label">
