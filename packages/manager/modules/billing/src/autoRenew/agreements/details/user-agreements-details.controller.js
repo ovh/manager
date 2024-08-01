@@ -17,8 +17,6 @@ export default /* @ngInject */ function UserAccountAgreementsDtailsController(
 ) {
   const CGV_AGREEMENT_ID = 1635;
 
-  this.SUPPORT_URL = SUPPORT_URL;
-
   this.$ngInit = () => {
     this.accepted = false;
     this.loading = true;
@@ -31,6 +29,7 @@ export default /* @ngInject */ function UserAccountAgreementsDtailsController(
     ])
       .then(([agreement, contract]) => {
         const user = coreConfig.getUser();
+        this.SUPPORT_URL = SUPPORT_URL + user.ovhSubsidiary;
         this.agreement = agreement;
         this.contract = contract;
         this.isIndividual = user.legalform === 'individual';

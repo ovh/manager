@@ -13,6 +13,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
   $q,
   $translate,
   $http,
+  coreConfig,
   OvhApiTelephony,
   OvhApiMe,
   TelephonyMediator,
@@ -23,8 +24,11 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
 
   const contactAttributes = ['contactAdmin', 'contactBilling', 'contactTech'];
 
+  self.user = coreConfig.getUser();
+
   self.hasAnyLimitedModifications = false;
-  self.newSupportTicketLink = SUPPORT_URLS.createTicket;
+  self.newSupportTicketLink =
+    SUPPORT_URLS.createTicket + self.user.ovhSubsidiary;
 
   function getGroupContacts() {
     const { billingAccount } = $stateParams;

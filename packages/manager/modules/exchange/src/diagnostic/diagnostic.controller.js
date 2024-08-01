@@ -12,6 +12,7 @@ export default class ExchangeTabDiagnosticsCtrl {
     $q,
     constants,
     coreURLBuilder,
+    coreConfig,
     diagnostic,
     WucUser,
     EXCHANGE_CONFIG,
@@ -25,6 +26,7 @@ export default class ExchangeTabDiagnosticsCtrl {
       $scope,
       $q,
       constants,
+      coreConfig,
       diagnostic,
       WucUser,
       EXCHANGE_CONFIG,
@@ -38,7 +40,8 @@ export default class ExchangeTabDiagnosticsCtrl {
     this.POLL_NAMESPACE = 'exchange.diagnostic.poll';
 
     this.exchange = wucExchange.value;
-    this.newTicketUrl = SUPPORT_URL;
+    this.user = coreConfig.getUser();
+    this.newTicketUrl = SUPPORT_URL + this.user.ovhSubsidiary;
 
     this.states = {
       REQUESTING_NEW_DIAGNOSTIC: 'REQUESTING_NEW_DIAGNOSTIC',

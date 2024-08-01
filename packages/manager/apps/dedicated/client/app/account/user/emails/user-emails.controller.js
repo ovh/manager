@@ -5,6 +5,7 @@ export default /* @ngInject */ function UserAccountEmailsController(
   $location,
   $scope,
   $translate,
+  coreConfig,
   AccountUserEmailsService,
   Alerter,
 ) {
@@ -17,6 +18,7 @@ export default /* @ngInject */ function UserAccountEmailsController(
       : 1;
 
   $scope.init = () => {
+    $scope.user = coreConfig.getUser();
     $scope.loaders = {
       emails: true,
     };
@@ -28,7 +30,7 @@ export default /* @ngInject */ function UserAccountEmailsController(
 
     $scope.getEmailIds();
 
-    $scope.SUPPORT_URL = SUPPORT_URLS.viewTickets;
+    $scope.SUPPORT_URL = SUPPORT_URLS.viewTickets + $scope.user.ovhSubsidiary;
   };
 
   $scope.getEmailIds = (refresh) => {
