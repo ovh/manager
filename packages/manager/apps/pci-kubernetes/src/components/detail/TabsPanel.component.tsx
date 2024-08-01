@@ -21,7 +21,7 @@ export default function TabsPanel({ tabs }: TabsProps) {
   const location = useLocation();
 
   useEffect(() => {
-    const activeTab = tabs.find((tab) => tab.to === location.pathname);
+    const activeTab = tabs.find((tab) => location.pathname.startsWith(tab.to));
     if (activeTab) {
       setActivePanel(activeTab.name);
     } else {
