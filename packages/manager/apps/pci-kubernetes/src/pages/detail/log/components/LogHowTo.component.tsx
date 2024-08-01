@@ -23,7 +23,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { DATA_PLATFORM_GUIDE } from '../constant';
-import { useLogs, useStreams } from '@/api/hooks/useDbaasLogs';
+import { useLogs, useAllStreamIds } from '@/api/hooks/useDbaasLogs';
 
 export function LogHowTo() {
   const { t } = useTranslation('logs');
@@ -31,7 +31,7 @@ export function LogHowTo() {
   const { navigation } = useContext(ShellContext).shell;
   const navigate = useNavigate();
   const { data: dbaasLogs } = useLogs();
-  const { data: streams } = useStreams();
+  const { data: streams } = useAllStreamIds();
   const guideLink =
     DATA_PLATFORM_GUIDE[ovhSubsidiary] || DATA_PLATFORM_GUIDE.DEFAULT;
   const hasAccount = dbaasLogs?.length > 0;
@@ -49,7 +49,7 @@ export function LogHowTo() {
         window.location.href = url;
       });
     } else {
-      navigate('../streams');
+      navigate('./streams');
     }
   };
 
