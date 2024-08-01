@@ -82,7 +82,7 @@ export default function UpgradePolicyPage() {
             inline
             size={ODS_SPINNER_SIZE.md}
             className="block text-center"
-            data-testid="resetKubeConfig-spinner"
+            data-testid="updatePolicy-spinner"
           />
         ) : (
           <OsdsRadioGroup
