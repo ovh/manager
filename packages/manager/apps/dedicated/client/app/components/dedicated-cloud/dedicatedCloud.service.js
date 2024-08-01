@@ -618,9 +618,6 @@ class DedicatedCloudService {
         data,
         meta: {
           totalCount: headers['x-pagination-elements'],
-          currentOffset: headers['x-pagination-number'],
-          pageCount: headers['x-pagination-total'],
-          pageSize: headers['x-pagination-size'],
         },
       }));
   }
