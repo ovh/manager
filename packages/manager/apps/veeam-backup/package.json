@@ -1,0 +1,58 @@
+{
+  "name": "@ovh-ux/manager-veeam-backup-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "veeam backup app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/veeam-backup"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "tsc && vite",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-veeam-backup-app' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-veeam-backup-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-veeam-backup-app' --include-dependencies -- npm run dev:watch --if-present",
+    "test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
+    "test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-config": "*",
+    "@ovh-ux/manager-core-api": "*",
+    "@ovh-ux/manager-core-utils": "*",
+    "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/manager-tailwind-config": "*",
+    "@ovh-ux/request-tagger": "*",
+    "@ovhcloud/manager-components": "*",
+    "@ovhcloud/ods-common-core": "17.2.2",
+    "@ovhcloud/ods-common-theming": "17.2.2",
+    "@ovhcloud/ods-components": "17.2.2",
+    "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
+    "@tanstack/react-query": "5.29.2",
+    "@tanstack/react-query-devtools": "5.29.2",
+    "axios": "^1.1.2",
+    "clsx": "^1.2.1",
+    "i18next": "^20.4.0",
+    "i18next-http-backend": "^2.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^11.18.1",
+    "react-router-dom": "^6.3.0",
+    "tailwindcss": "^3.3.3"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.3.1",
+    "@ovh-ux/manager-vite-config": "*",
+    "@playwright/test": "^1.41.2",
+    "typescript": "^4.3.2",
+    "vite": "^4.5.0"
+  },
+  "regions": [
+    "CA",
+    "EU",
+    "US"
+  ]
+}
