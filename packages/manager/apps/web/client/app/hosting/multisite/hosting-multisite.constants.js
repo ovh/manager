@@ -55,16 +55,9 @@ export const GIT_STATUS_WITH_TOOLTIP = {
 };
 
 export const DIAGNOSTIC_BADGE_STATE = {
-  A: {
-    good_configuration: 'success',
-    not_good_configuration: 'info',
-    unconfigured: 'error',
-  },
-  AAAA: {
-    good_configuration: 'success',
-    not_good_configuration: 'info',
-    unconfigured: 'sold-out',
-  },
+  good_configuration: 'success',
+  not_good_configuration: 'warning',
+  unconfigured: 'sold-out',
 };
 
 export const DIAGNOSTIC_STATUS = {
