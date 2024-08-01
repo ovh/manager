@@ -25,8 +25,20 @@ export const MANAGED_VCD_MIGRATION_STATE = {
 };
 
 export const VCD_GUIDE_LINKS = {
-  FR: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',
-  DEFAULT: 'https://www.ovhcloud.com/en/lp/vmware-vcd-evolution/',
+  FR: {
+    OFFER: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',
+    TERMS:
+      'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
+    MIGRATION:
+      'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
+  },
+  DEFAULT: {
+    OFFER: 'https://www.ovhcloud.com/en/lp/vmware-vcd-evolution/',
+    TERMS:
+      'https://help.ovhcloud.com/csm/en-gb-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    MIGRATION:
+      'https://help.ovhcloud.com/csm/en-gb-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+  },
 };
 
 export const VCD_SERVICE_PACK_PRICING_MODE = {

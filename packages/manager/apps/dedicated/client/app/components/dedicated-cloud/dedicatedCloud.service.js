@@ -1709,7 +1709,7 @@ class DedicatedCloudService {
     this.Poller.kill({ namespace: opts.namespace });
   }
 
-  getVCDGuideLink() {
+  getVCDGuideLinks() {
     const { ovhSubsidiary } = this.coreConfig.getUser();
     return VCD_GUIDE_LINKS[ovhSubsidiary] || VCD_GUIDE_LINKS.DEFAULT;
   }
