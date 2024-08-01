@@ -9,6 +9,8 @@ import { paginateResults } from '@/helpers';
 import { STATUS } from '@/constants';
 import {
   addOidcProvider,
+  createSubscription,
+  deleteSubscription,
   getAllKube,
   getClusterRestrictions,
   getKubernetesCluster,
@@ -489,3 +491,64 @@ export const useSubscribedLogs = (
     queryKey: getSubscribedLogsQueryKey(projectId, kubeId, kind),
     queryFn: () => getSubscribedLogs(projectId, kubeId, kind),
   });
+
+export interface CreateSubscriptionProps {
+  projectId: string;
+  kubeId: string;
+  streamId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}
+
+export const useCreateSubscription = ({
+  projectId,
+  kubeId,
+  streamId,
+  onError,
+  onSuccess,
+}: CreateSubscriptionProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => createSubscription(projectId, kubeId, streamId),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['dbaas-logs-subscriptions'],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    create: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+export interface RemoveSubscriptionProps {
+  projectId: string;
+  kubeId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}
+
+export const useRemoveSubscription = ({
+  projectId,
+  kubeId,
+  onError,
+  onSuccess,
+}: RemoveSubscriptionProps) => {
+  const mutation = useMutation({
+    mutationFn: async (subscriptionId: string) =>
+      deleteSubscription(projectId, kubeId, subscriptionId),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['dbaas-logs-subscriptions'],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    remove: (id: string) => mutation.mutate(id),
+    ...mutation,
+  };
+};
