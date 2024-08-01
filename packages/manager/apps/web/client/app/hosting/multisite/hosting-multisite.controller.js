@@ -148,7 +148,7 @@ angular
         { digStatus },
         recordType,
       ) {
-        return DIAGNOSTIC_BADGE_STATE[recordType][
+        return DIAGNOSTIC_BADGE_STATE[
           $scope.diagnosticStatus(digStatus[recordType]?.status)
         ];
       };
