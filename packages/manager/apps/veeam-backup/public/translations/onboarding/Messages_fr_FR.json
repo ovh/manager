@@ -1,0 +1,13 @@
+{
+  "title": "veeam-backup",
+  "description": "Découvrez des services de stockage managés qui s’appuient sur le système de fichiers OpenZFS. Bénéficiez en quelques clics d’espaces de stockage centralisés pour entreposer ou sauvegarder vos données et fichiers.",
+  "orderButtonLabel": "Commander un veeam-backup",
+  "moreInfoButtonLabel": "En savoir plus sur veeam-backup",
+  "guideCategory": "Tutoriel",
+  "guide1Title": "Premiers pas avec un veeam-backup",
+  "guide1Description": "Découvrez comment gérer un NAS-HA depuis l'espace-client OVHcloud",
+  "guide2Title": "Monter votre NAS via un partage NFS",
+  "guide2Description": "Découvrez comment monter un NAS via un partage NFS",
+  "guide3Title": "Monter votre NAS sur Windows Server via CIFS",
+  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS"
+}
