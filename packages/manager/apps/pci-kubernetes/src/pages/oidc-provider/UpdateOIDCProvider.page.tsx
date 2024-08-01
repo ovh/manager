@@ -24,6 +24,7 @@ import {
   useOidcProvider,
   useUpdateOidcProvider,
 } from '@/api/hooks/useKubernetes';
+import { TOidcProvider } from '@/api/data/kubernetes';
 
 export default function UpdateOIDCProvider() {
   const { t } = useTranslation('update-oidc-provider');
@@ -60,7 +61,7 @@ export default function UpdateOIDCProvider() {
     params: {
       issuerUrl: formState.issuerUrl,
       clientId: formState.clientId,
-    },
+    } as TOidcProvider,
     onError(error: ApiError) {
       addError(
         <Translation ns="update-oidc-provider">

@@ -384,7 +384,7 @@ export const useResetCluster = ({
 type AddOidcProviderProps = {
   projectId: string;
   kubeId: string;
-  params: Partial<TOidcProvider>;
+  params: TOidcProvider;
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
@@ -415,7 +415,7 @@ export const useAddOidcProvider = ({
 type UpdateOidcProviderProps = {
   projectId: string;
   kubeId: string;
-  params: Partial<TOidcProvider>;
+  params: TOidcProvider;
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };

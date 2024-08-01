@@ -21,6 +21,7 @@ import { useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovhcloud/manager-components';
 import { useAddOidcProvider } from '@/api/hooks/useKubernetes';
+import { TOidcProvider } from '@/api/data/kubernetes';
 
 export default function AddOIDCProvider() {
   const { t } = useTranslation('add-oidc-provider');
@@ -41,7 +42,7 @@ export default function AddOIDCProvider() {
     params: {
       issuerUrl: formState.issuerUrl,
       clientId: formState.clientId,
-    },
+    } as TOidcProvider,
     onError(error: ApiError) {
       addError(
         <Translation ns="add-oidc-provider">
