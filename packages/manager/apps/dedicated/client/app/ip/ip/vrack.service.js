@@ -1,12 +1,19 @@
 import { VRACK_SERVICE } from './ip-ip.constant';
 
-export default /* @ngInject */ function Vrack($http, iceberg) {
-  this.getIpInfo = (ipv6) => {
-    return $http.get(`/ip/${encodeURIComponent(ipv6)}`);
+export default class Vrack {
+  /* @ngInject */
+
+  constructor($http, iceberg) {
+    this.$http = $http;
+    this.iceberg = iceberg;
+  }
+
+  getIpInfo = (ipv6) => {
+    return this.$http.get(`/ip/${encodeURIComponent(ipv6)}`);
   };
 
-  this.getVrackService = () => {
-    return iceberg('/vrack')
+  getVrackService = () => {
+    return this.iceberg('/vrack')
       .query()
       .expand('CachedObjectList-Pages')
       .execute()
@@ -23,12 +30,12 @@ export default /* @ngInject */ function Vrack($http, iceberg) {
       );
   };
 
-  this.addIpv6 = (serviceName, ipv6) => {
-    return $http.post(`/vrack/${serviceName}/ipv6`, { block: ipv6 });
+  addIpv6 = (serviceName, ipv6) => {
+    return this.$http.post(`/vrack/${serviceName}/ipv6`, { block: ipv6 });
   };
 
-  this.deleteIpv6 = (serviceName, ipv6) => {
-    return $http.delete(
+  deleteIpv6 = (serviceName, ipv6) => {
+    return this.$http.delete(
       `/vrack/${serviceName}/ipv6/${encodeURIComponent(ipv6)}`,
     );
   };

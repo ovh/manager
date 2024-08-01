@@ -45,41 +45,44 @@ export default /* @ngInject */ (
     if ($scope.data.ipBlock.isAdditionalIpv6) {
       queue.push(
         Vrack.getIpInfo($scope.data.ipBlock.ipBlock).then(({ data }) => {
-          $scope.data.ipBlock = { ...$scope.data.ipBlock, ...data };
+          $scope.data.ipBlock = {
+            ...$scope.data.ipBlock,
+            ...data,
+            region: data.regions[0],
+          };
         }),
       );
 
       queue.push(
         Vrack.getVrackService().then((result) => {
-          $scope.ipDestinations = result;
-          $scope.ipDestinations.push({
-            service: $translate.instant('ip_servicetype__PARK'),
-            serviceType: '_PARK',
-            nexthop: [],
-          });
+          $scope.ipDestinations = [
+            ...result,
+            {
+              service: $translate.instant('ip_servicetype__PARK'),
+              serviceType: '_PARK',
+              nexthop: [],
+            },
+          ];
         }),
       );
     } else {
       queue.push(
         Ip.getIpMove($scope.data.ipBlock.ipBlock).then((result) => {
-          $scope.ipDestinations = result;
-          $scope.ipDestinations.push({
-            service: $translate.instant('ip_servicetype__PARK'),
-            serviceType: '_PARK',
-            nexthop: [],
-          });
+          $scope.ipDestinations = [
+            ...result,
+            {
+              service: $translate.instant('ip_servicetype__PARK'),
+              serviceType: '_PARK',
+              nexthop: [],
+            },
+          ];
         }),
       );
     }
 
-    return $q
-      .all(queue)
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        $scope.loading.init = false;
-      });
+    return $q.all(queue).finally(() => {
+      $scope.loading.init = false;
+    });
   }
 
   $scope.checkIfIpCanBeMovedTo = function checkIfIpCanBeMovedTo() {
