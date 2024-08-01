@@ -33,7 +33,10 @@ angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
     } else {
       $urlRouterProvider.rule(($injector, $location) => {
         const path = $location.path();
-        if (path.includes('/ticket') || path.includes('/support')) {
+        if (
+          path.includes('/ticket') ||
+          (path.includes('/support') && !path.includes('/level'))
+        ) {
           return '/configuration';
         }
         return undefined;
