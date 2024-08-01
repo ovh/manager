@@ -218,6 +218,7 @@
                             <td class="text-center">
                                 <span
                                     class="oui-badge"
+                                    data-ng-if="domain.displayName !== hosting.serviceName"
                                     data-ng-click="openDiagnosticModal(domain, HOSTING_TAB_DOMAINS.A_RECORD)"
                                     data-oui-tooltip="{{ getDiagnosticTooltip(domain, HOSTING_TAB_DOMAINS.A_RECORD) }}"
                                     data-oui-tooltip-placement="bottom"
@@ -227,6 +228,7 @@
                                 </span>
                                 <span
                                     class="oui-badge"
+                                    data-ng-if="domain.displayName !== hosting.serviceName"
                                     data-ng-click="openDiagnosticModal(domain, HOSTING_TAB_DOMAINS.AAAA_RECORD)"
                                     data-oui-tooltip="{{ getDiagnosticTooltip(domain, HOSTING_TAB_DOMAINS.AAAA_RECORD) }}"
                                     data-oui-tooltip-placement="bottom"
