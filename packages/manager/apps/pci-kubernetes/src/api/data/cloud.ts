@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-type CloudSchema = {
+export type TCloudSchema = {
   models: {
     [key: string]: {
       enum: string[];
@@ -8,7 +8,7 @@ type CloudSchema = {
   };
 };
 
-export const getCloudSchema = async (): Promise<CloudSchema> => {
+export const getCloudSchema = async (): Promise<TCloudSchema> => {
   const { data } = await v6.get(`cloud.json`);
 
   return data;
