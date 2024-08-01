@@ -65,7 +65,7 @@ export default function ResetClusterPage() {
 
   const [formState, setFormState] = useState({
     workerNodesPolicy: WORKER_NODE_POLICIES.DELETE,
-    selectedVersion: getFormatedKubeVersion(kubernetesCluster?.version),
+    selectedVersion: getFormatedKubeVersion(kubernetesCluster?.version || ''),
     privateNetworkId: kubernetesCluster?.privateNetworkId,
     gateway: {
       enabled: !!kubernetesCluster?.privateNetworkConfiguration
@@ -130,7 +130,7 @@ export default function ResetClusterPage() {
             inline
             size={ODS_SPINNER_SIZE.md}
             className="block text-center"
-            data-testid="renameCluster-spinner"
+            data-testid="resetCluster-spinner"
           />
         ) : (
           <div className="mt-6">
