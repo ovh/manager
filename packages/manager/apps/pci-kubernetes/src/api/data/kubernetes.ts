@@ -206,3 +206,56 @@ export const postLogURL = async (
   );
   return data;
 };
+
+export type TSubscriptionOperation = {
+  operationId: string;
+  serviceName: string;
+};
+
+export const pollOperation = async (
+  serviceName: string,
+  operationId: string,
+  intervalMs = 1000,
+) => {
+  const poll = async () => {
+    const { data: op } = await v6.get(
+      `/dbaas/logs/${serviceName}/operation/${operationId}`,
+    );
+    if (op.state === 'SUCCESS') {
+      return op;
+    }
+    if (op.state === 'ERROR') {
+      throw new Error(op);
+    }
+    await new Promise((resolve) => setTimeout(resolve, intervalMs));
+    return poll();
+  };
+  return poll();
+};
+
+export async function createSubscription(
+  projectId: string,
+  kubeId: string,
+  streamId: string,
+  kind = 'audit',
+) {
+  const { data: operation } = await v6.post<TSubscriptionOperation>(
+    `/cloud/project/${projectId}/kube/${kubeId}/log/subscription`,
+    {
+      kind,
+      streamId,
+    },
+  );
+  return pollOperation(operation.serviceName, operation.operationId);
+}
+
+export async function deleteSubscription(
+  projectId: string,
+  kubeId: string,
+  subscriptionId: string,
+) {
+  const { data: operation } = await v6.delete<TSubscriptionOperation>(
+    `/cloud/project/${projectId}/kube/${kubeId}/log/subscription/${subscriptionId}`,
+  );
+  return pollOperation(operation.serviceName, operation.operationId);
+}
