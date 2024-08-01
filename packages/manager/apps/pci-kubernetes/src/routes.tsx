@@ -173,11 +173,11 @@ export default [
             ...lazyRouteConfig(() => import('@/pages/detail/log/Logs.page')),
           },
           {
-            path: 'streams',
+            path: 'logs/streams',
             handle: {
               tracking: 'streams',
             },
-            element: 'TODO streams',
+            ...lazyRouteConfig(() => import('@/pages/detail/log/Streams.page')),
           },
         ],
       },

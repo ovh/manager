@@ -1,3 +1,4 @@
+import { useNotifications } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -30,6 +31,7 @@ export interface LogTilesProps {
 export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
   const { t } = useTranslation('logs');
   const navigate = useNavigate();
+  const { clearNotifications } = useNotifications();
   const { data: logs, isPending: isLogsPending } = useKubeLogs(
     projectId,
     kubeId,
@@ -53,7 +55,10 @@ export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.stroked}
-            onClick={() => navigate('../streams')}
+            onClick={() => {
+              clearNotifications();
+              navigate('./streams');
+            }}
           >
             <span slot="start">
               <OsdsIcon
