@@ -8,7 +8,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { useMe } from '@ovhcloud/manager-components';
+import { Notifications, useMe } from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { LOGS_INFO } from './constant';
@@ -24,6 +24,7 @@ export default function LogsPage() {
 
   return (
     <>
+      <Notifications />
       <OsdsText
         size={ODS_TEXT_SIZE._400}
         level={ODS_TEXT_LEVEL.body}
