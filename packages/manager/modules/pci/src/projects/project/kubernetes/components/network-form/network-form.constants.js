@@ -98,8 +98,14 @@ export const LOAD_BALANCER_DOC = {
     'https://help.ovhcloud.com/csm/es-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059278',
 };
 
+export const MODE = {
+  CREATE: 'create',
+  EDIT: 'edit',
+};
+
 export default {
   GATEWAY_IP_REGEX,
   SUBNET_DOC,
   LOAD_BALANCER_DOC,
+  MODE,
 };
