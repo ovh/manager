@@ -4,80 +4,62 @@ import { useServiceKeyOperationsTranslations } from './useServiceKeyOperationsTr
 
 describe('get service key operations translation ', () => {
   const useCases: {
-    operations: OkmsServiceKeyOperations[];
+    operation: OkmsServiceKeyOperations;
     translationKey: string;
   }[] = [
     {
-      operations: [
-        OkmsServiceKeyOperations.sign,
-        OkmsServiceKeyOperations.verify,
-      ],
+      operation: OkmsServiceKeyOperations.sign,
       translationKey:
-        'key_management_service_service-keys_dashboard_field_operations_sign_verify',
+        'key_management_service_service-keys_dashboard_field_operations_sign',
     },
     {
-      operations: [
-        OkmsServiceKeyOperations.verify,
-        OkmsServiceKeyOperations.sign,
-      ],
+      operation: OkmsServiceKeyOperations.verify,
       translationKey:
-        'key_management_service_service-keys_dashboard_field_operations_sign_verify',
+        'key_management_service_service-keys_dashboard_field_operations_verify',
     },
     {
-      operations: [
-        OkmsServiceKeyOperations.wrapKey,
-        OkmsServiceKeyOperations.unwrapKey,
-      ],
+      operation: OkmsServiceKeyOperations.encrypt,
       translationKey:
-        'key_management_service_service-keys_dashboard_field_operations_wrap_unwrap',
+        'key_management_service_service-keys_dashboard_field_operations_encrypt',
     },
     {
-      operations: [
-        OkmsServiceKeyOperations.unwrapKey,
-        OkmsServiceKeyOperations.wrapKey,
-      ],
+      operation: OkmsServiceKeyOperations.decrypt,
       translationKey:
-        'key_management_service_service-keys_dashboard_field_operations_wrap_unwrap',
+        'key_management_service_service-keys_dashboard_field_operations_decrypt',
     },
     {
-      operations: [
-        OkmsServiceKeyOperations.encrypt,
-        OkmsServiceKeyOperations.decrypt,
-      ],
+      operation: OkmsServiceKeyOperations.wrapKey,
       translationKey:
-        'key_management_service_service-keys_dashboard_field_operations_encrypt_decrypt',
+        'key_management_service_service-keys_dashboard_field_operations_wrapKey',
     },
     {
-      operations: [
-        OkmsServiceKeyOperations.decrypt,
-        OkmsServiceKeyOperations.encrypt,
-      ],
+      operation: OkmsServiceKeyOperations.unwrapKey,
       translationKey:
-        'key_management_service_service-keys_dashboard_field_operations_encrypt_decrypt',
+        'key_management_service_service-keys_dashboard_field_operations_unwrapKey',
     },
   ];
 
   test.each(useCases)(
-    'should return the right translation key for $operations',
-    ({ operations, translationKey }) => {
-      // given operations and translationKey
+    'should return the right translation keys for $operation',
+    ({ operation, translationKey }) => {
+      // given operation and translationKey
 
       // when
-      const result = useServiceKeyOperationsTranslations(operations);
+      const result = useServiceKeyOperationsTranslations([operation]);
 
       // then
-      expect(result).toBe(translationKey);
+      expect(result).toStrictEqual([translationKey]);
     },
   );
 
-  it('should return operations as string if unexpected values', () => {
+  it('should return operation as string if unexpected value', () => {
     // given
-    const operations = ['aaa', 'bbb'];
+    const operations = ['aaa', 'bbb', 'ccc', 'ddd'];
 
     // when
     const result = useServiceKeyOperationsTranslations(operations);
 
     // then
-    expect(result).toBe(operations.join(' / '));
+    expect(result).toStrictEqual(operations);
   });
 });

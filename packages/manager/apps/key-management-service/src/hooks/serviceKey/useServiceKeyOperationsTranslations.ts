@@ -6,25 +6,51 @@ export const useServiceKeyOperationsTranslations = (
 ) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
 
-  const { encrypt, sign, wrapKey } = OkmsServiceKeyOperations;
+  const {
+    encrypt,
+    decrypt,
+    sign,
+    verify,
+    wrapKey,
+    unwrapKey,
+  } = OkmsServiceKeyOperations;
 
-  if (operations.includes(sign)) {
-    return t(
-      'key_management_service_service-keys_dashboard_field_operations_sign_verify',
-    );
-  }
+  const translatedOperations = operations.map((operation) => {
+    switch (operation) {
+      case encrypt:
+        return t(
+          'key_management_service_service-keys_dashboard_field_operations_encrypt',
+        );
 
-  if (operations.includes(encrypt)) {
-    return t(
-      'key_management_service_service-keys_dashboard_field_operations_encrypt_decrypt',
-    );
-  }
+      case decrypt:
+        return t(
+          'key_management_service_service-keys_dashboard_field_operations_decrypt',
+        );
 
-  if (operations.includes(wrapKey)) {
-    return t(
-      'key_management_service_service-keys_dashboard_field_operations_wrap_unwrap',
-    );
-  }
+      case sign:
+        return t(
+          'key_management_service_service-keys_dashboard_field_operations_sign',
+        );
 
-  return operations.join(' / ');
+      case verify:
+        return t(
+          'key_management_service_service-keys_dashboard_field_operations_verify',
+        );
+
+      case wrapKey:
+        return t(
+          'key_management_service_service-keys_dashboard_field_operations_wrapKey',
+        );
+
+      case unwrapKey:
+        return t(
+          'key_management_service_service-keys_dashboard_field_operations_unwrapKey',
+        );
+
+      default:
+        return operation;
+    }
+  });
+
+  return translatedOperations;
 };
