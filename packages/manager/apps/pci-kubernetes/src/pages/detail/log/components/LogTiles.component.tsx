@@ -18,10 +18,11 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useKubeLogs } from '@/api/hooks/useLogs';
 import { LogHowTo } from './LogHowTo.component';
+import { LogTileUnsubscribeAction } from './LogTileUnsubscribeAction';
 
 export interface LogTilesProps {
   projectId: string;
@@ -31,12 +32,11 @@ export interface LogTilesProps {
 export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
   const { t } = useTranslation('logs');
   const navigate = useNavigate();
-  const { clearNotifications } = useNotifications();
+  const { addError, addSuccess, clearNotifications } = useNotifications();
   const { data: logs, isPending: isLogsPending } = useKubeLogs(
     projectId,
     kubeId,
   );
-
   if (isLogsPending) return undefined;
   return (
     <>
@@ -140,16 +140,32 @@ export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
                 />
               </span>
             </OsdsButton>
-            <OsdsButton
-              className="mt-4"
-              inline
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_BUTTON_SIZE.sm}
-              variant={ODS_BUTTON_VARIANT.ghost}
-              onClick={null /* @TODO unsubscribe stream */}
-            >
-              {t('list_button_unsubscribe')}
-            </OsdsButton>
+            <LogTileUnsubscribeAction
+              projectId={projectId}
+              kubeId={kubeId}
+              subscriptionId={log.subscriptionId}
+              onSuccess={() =>
+                addSuccess(
+                  <Translation ns="logs">
+                    {(_t) => _t('logs_list_unsubscription_success')}
+                  </Translation>,
+                  true,
+                )
+              }
+              onError={(err) =>
+                addError(
+                  <Translation ns="logs">
+                    {(_t) =>
+                      _t('error_message', {
+                        message:
+                          err?.response?.data?.message || err?.message || null,
+                      })
+                    }
+                  </Translation>,
+                  true,
+                )
+              }
+            />
           </div>
         </OsdsTile>
       ))}
