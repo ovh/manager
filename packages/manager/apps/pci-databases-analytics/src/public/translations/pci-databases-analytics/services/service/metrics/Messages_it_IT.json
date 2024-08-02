@@ -1,0 +1,19 @@
+{
+  "title": "Metriche",
+  "breadcrumb": "Metriche",
+  "description": "Per monitorare e gestire l'istanza database, consulta le principali metriche e statistiche disponibili qui sotto. Il loro periodo di conservazione dipende dal tuo piano di servizio.",
+  "autoRefreshInputLabel": "Auto-Refresh",
+  "interval-lastHour": "1H",
+  "interval-lastDay": "1D",
+  "interval-lastWeek": "1W",
+  "interval-lastMonth": "1 m",
+  "interval-lastYear": "1 a",
+  "metricName-cpu_usage_percent": "CPU utilizzata (%)",
+  "metricName-disk_usage_percent": "Spazio disco utilizzato (%)",
+  "metricName-diskio_read": "N° di IOPS (lettura)",
+  "metricName-diskio_writes": "N° di IOPS (scrittura)",
+  "metricName-mem_usage_percent": "Memoria utilizzata (%)",
+  "metricName-mem_usage": "Memoria utilizzata (MB)",
+  "metricName-net_receive": "Ricezione di rete (MB/s)",
+  "metricName-net_send": "Trasmissione di rete (MB/s)"
+}

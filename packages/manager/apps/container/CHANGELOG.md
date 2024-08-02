@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.64.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.63.0...@ovh-ux/manager-container-app@0.64.0) (2024-08-01)
+
+
+### Features
+
+* pci databases analytics app ([#10914](https://github.com/ovh/manager/issues/10914)) ([3d589ef](https://github.com/ovh/manager/commit/3d589efe6f60d3ea18d555a838038ed7ca5c9432))
+
+
+
+
+
 # [0.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.62.5...@ovh-ux/manager-container-app@0.63.0) (2024-07-23)
 
 
