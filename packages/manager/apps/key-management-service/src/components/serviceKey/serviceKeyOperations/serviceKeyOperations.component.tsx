@@ -8,11 +8,8 @@ type KeyStatusProps = {
   isText?: boolean;
 };
 
-export const ServiceKeyOperations = ({
-  operations,
-  isText = false,
-}: KeyStatusProps) => {
-  const value = useServiceKeyOperationsTranslations(operations);
+export const ServiceKeyOperations = ({ operations }: KeyStatusProps) => {
+  const translatedOperations = useServiceKeyOperationsTranslations(operations);
 
-  return <TileValue value={value} isText={isText} />;
+  return <TileValue value={translatedOperations.join(', ')} />;
 };
