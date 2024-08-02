@@ -137,7 +137,11 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
 
   useEffect(() => {
     if (selectedPlan === null && plans?.length) {
-      setSelectedPlan(plans?.filter((v) => v.status === 'AVAILABLE')[0]);
+      setSelectedPlan(
+        plans?.filter(
+          (plan) => plan.status === 'AVAILABLE' && plan.name === 'STANDARD',
+        )[0],
+      );
     }
 
     if (selectedVersion === null && versions?.length) {
@@ -247,7 +251,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         </div>
         <div className="max-w-3xl">
           <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-            {t('createRancherServiceLevelDescription')}
+            <Trans>{t('createRancherServiceLevelDescription')}</Trans>
           </OsdsText>
         </div>
         <div className="flex my-5">
@@ -258,14 +262,10 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
               isDisabled={plan.status !== 'AVAILABLE'}
               name={t(plan.name)}
               description={t(getRancherPlanDescription(plan.name))}
-              chipLabel={
-                plan.name === 'OVHCLOUD_EDITION' ? t('comingSoon') : ''
-              }
               onClick={() => setSelectedPlan(plan)}
             />
           ))}
         </div>
-
         <Block>
           <Subtitle>{t('createRancherVersion')}</Subtitle>
         </Block>
