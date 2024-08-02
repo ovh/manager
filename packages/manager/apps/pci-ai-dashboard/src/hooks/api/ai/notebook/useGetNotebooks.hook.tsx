@@ -1,18 +1,15 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 
 import { getNotebooks } from '@/data/api/ai/notebook.api';
 import * as ai from '@/types/cloud/project/ai';
+import { useQueryImmediateRefetch } from '../../useImmediateRefetch.hook';
 
 export function useGetNotebooks(
   projectId: string,
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'ai', 'notebook'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getNotebooks({ projectId }),
     ...options,

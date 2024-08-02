@@ -9,7 +9,7 @@ import './global.css';
 import queryClient from './query.client';
 import Router from '@/routes/Router';
 import Loading from './components/loading/Loading.component';
-import { useLoadingIndicatorContext } from './contexts/loadingIndicatorContext';
+import { useLoadingIndicatorContext } from './contexts/LoadingIndicator.context';
 import ProgressLoader from './components/loading/ProgressLoader.component';
 
 odsSetup();

@@ -13,13 +13,15 @@ import { getColumns } from './_components/DockerTableColumns.component';
 import AddDocker from './_components/AddDocker.component';
 import DeleteDocker from './_components/DeleteDocker.component';
 import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
+import { useUserActivityContext } from '@/contexts/UserActivity.context';
 
 const PrivateDocker = () => {
   const { t } = useTranslation('pci-ai-dashboard/docker');
   const { projectId } = useParams();
   const privateRegistriesPath = `#/pci/project/${projectId}/private-registry`;
+  const { isUserActive } = useUserActivityContext();
   const dockerQuery = useGetRegistries(projectId, {
-    refetchInterval: POLLING.DOCKER,
+    refetchInterval: isUserActive && POLLING.DOCKER,
   });
   const regionsQuery = useGetRegions(projectId);
   const addModale = useModale('add');

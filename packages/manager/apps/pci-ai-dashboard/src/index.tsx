@@ -8,7 +8,7 @@ import initI18n from './i18n';
 import App from './App';
 
 import '@/vite-hmr.ts';
-import { LoadingIndicatorProvider } from './contexts/loadingIndicatorContext';
+import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
 
 const init = async (
   appName: string,
