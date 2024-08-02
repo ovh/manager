@@ -14,7 +14,12 @@ export const features = [
   'pci-baremetal',
   'block-storage',
   'object-storage',
-  'databases',
+  'databases-operational',
+  'databases-streaming',
+  'databases-analysis',
+  'pci-databases-analytics-operational',
+  'pci-databases-analytics-streaming',
+  'pci-databases-analytics-analysis',
   'archive',
   'cold-archive',
   'snapshot',
@@ -230,23 +235,44 @@ export function getPciProjectMenu(
       title: 'Databases & Analytics',
       regions: ['EU', 'CA', 'US'],
       subItems: [
-
+        //Entry menu for PCI Databases for Angular
         {
-          id: 'databases',
+          id: 'databases-operational',
           title: 'Databases',
-          feature: 'databases',
+          feature: 'databases-operational',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/databases-analytics/databases`,
           ),
         },
+        //Entry menu for PCI Databases for React
+        {
+          id: 'pci-databases-analytics-operational',
+          title: 'Databases',
+          feature: 'pci-databases-analytics-operational',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/databases-analytics/operational/services`,
+          ),
+        },
+        //Entry menu for PCI Data Streaming for Angular
         {
           id: 'databases-streaming',
           title: 'Data Streaming',
-          feature: 'databases',
+          feature: 'databases-streaming',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/databases-analytics/data-streaming`,
+          ),
+        },
+        //Entry menu for PCI Data Streaming for React
+        {
+          id: 'pci-databases-analytics-streaming',
+          title: 'Data Streaming',
+          feature: 'pci-databases-analytics-streaming',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/databases-analytics/streaming/services`,
           ),
         },
         {
@@ -258,13 +284,24 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/data-processing`,
           ),
         },
+        //Entry menu for PCI Data Analysis for Angular
         {
           id: 'databases-analysis',
           title: 'Data Analysis',
-          feature: 'databases',
+          feature: 'databases-analysis',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/databases-analytics/data-analysis`,
+          ),
+        },
+        //Entry menu for PCI Data Analysis for React
+        {
+          id: 'pci-databases-analytics-analysis',
+          title: 'Data Analysis',
+          feature: 'pci-databases-analytics-analysis',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/databases-analytics/analysis/services`,
           ),
         },
         {

@@ -1,0 +1,19 @@
+{
+  "title": "Métricas",
+  "breadcrumb": "Métricas",
+  "description": "Para o ajudar a seguir e controlar a sua instância de base de dados, encontrará de seguida as principais métricas e estatísticas. A duração da sua retenção depende da oferta do serviço.",
+  "autoRefreshInputLabel": "Auto-Refresh",
+  "interval-lastHour": "1H",
+  "interval-lastDay": "1D",
+  "interval-lastWeek": "1W",
+  "interval-lastMonth": "1M",
+  "interval-lastYear": "1A",
+  "metricName-cpu_usage_percent": "CPU utilizado (%)",
+  "metricName-disk_usage_percent": "Espaço de disco utilizado",
+  "metricName-diskio_read": "Nº de IOPS (leitura)",
+  "metricName-diskio_writes": "Nº de IOPS (escrita)",
+  "metricName-mem_usage_percent": "Memória utilizada (%)",
+  "metricName-mem_usage": "Memória utilizada (MB)",
+  "metricName-net_receive": "Receção de rede (MB/s)",
+  "metricName-net_send": "Transmissão de rede (MB/s)"
+}
