@@ -13,6 +13,7 @@ export default {
     gateway: '=',
     dense: '<',
     frozen: '<',
+    mode: '<',
   },
   controller,
   template,

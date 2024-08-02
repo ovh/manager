@@ -389,4 +389,26 @@ export default class Kubernetes {
       .delete(`/cloud/project/${serviceName}/kube/${kubeId}/openIdConnect`)
       .then(({ data }) => data);
   }
+
+  editNetwork(projectId, kubeId, data) {
+    const promises = [];
+    const { loadBalancersSubnetId, privateNetworkConfiguration } = data;
+    if (privateNetworkConfiguration) {
+      promises.push(
+        this.$http.put(
+          `/cloud/project/${projectId}/kube/${kubeId}/privateNetworkConfiguration`,
+          privateNetworkConfiguration,
+        ),
+      );
+    }
+    if (angular.isDefined(loadBalancersSubnetId)) {
+      promises.push(
+        this.$http.put(
+          `/cloud/project/${projectId}/kube/${kubeId}/updateLoadBalancersSubnetId`,
+          { loadBalancersSubnetId },
+        ),
+      );
+    }
+    return this.$q.all(promises);
+  }
 }

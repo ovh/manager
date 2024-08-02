@@ -15,12 +15,22 @@
         data-ng-attr-label="{{ $ctrl.dense ? ('kubernetes_network_form_label'|translate) : null }}"
     >
         <oui-select
+            data-ng-if="$ctrl.isCreateMode"
             data-name="privateNetwork"
             data-model="$ctrl.privateNetwork"
             data-items="$ctrl.privateNetworks"
             data-match="name"
             data-on-change="$ctrl.onPrivateNetworkChanged()"
             data-searchable
+        >
+        </oui-select>
+        <oui-select
+            data-ng-if="$ctrl.isEditMode"
+            data-name="privateNetwork"
+            data-model="$ctrl.privateNetwork"
+            data-items="[$ctrl.privateNetwork]"
+            data-match="name"
+            data-disabled="true"
         >
         </oui-select>
     </oui-field>
@@ -62,10 +72,20 @@
             data-ng-attr-label="{{ $ctrl.dense ? ('kubernetes_network_form_subnet'|translate) : null }}"
         >
             <oui-select
+                data-ng-if="$ctrl.isCreateMode"
                 data-name="subnet"
                 data-model="$ctrl.subnet"
-                data-items="$ctrl.subnetsByRegion"
+                data-items="$ctrl.nodesSubnets"
                 data-match="displayedLabel"
+            >
+            </oui-select>
+            <oui-select
+                data-ng-if="$ctrl.isEditMode"
+                data-name="subnet"
+                data-model="$ctrl.subnet"
+                data-items="[$ctrl.subnet]"
+                data-match="displayedLabel"
+                data-disabled="true"
             >
             </oui-select>
         </oui-field>
@@ -181,6 +201,9 @@
             </oui-field>
         </div>
     </div>
+    <oui-message data-ng-if="$ctrl.shouldWarnRebuild" data-type="warning">
+        <span data-translate="kubernetes_network_form_rebuild"></span>
+    </oui-message>
 
     <!--Select load balancer subnet-->
     <div
@@ -220,7 +243,7 @@
                 <oui-select
                     data-name="loadBalancersSubnet"
                     data-model="$ctrl.loadBalancersSubnet"
-                    data-items="$ctrl.subnets"
+                    data-items="$ctrl.loadBalancersSubnets"
                     data-match="displayedLabel"
                 >
                 </oui-select>

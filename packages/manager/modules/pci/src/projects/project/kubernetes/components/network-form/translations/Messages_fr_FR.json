@@ -24,5 +24,6 @@
   "kubernetes_network_form_subnet_error_default": "Une erreur est survenue lors du chargement des sous-réseaux pour ce réseau privé : {{ error }}.",
   "kubernetes_network_form_load_balancers_subnet": "Choisissez un sous-réseau dédié pour vos Load Balancers",
   "kubernetes_network_form_load_balancers_subnet_description": "Il vous est possible de définir un sous-réseau spécifique pour vos Load Balancers. Cela est notamment nécessaire si le sous-réseau choisi pour votre cluster ne respecte pas les prérequis nécessaires à la création de Load Balancers managés OVHcloud.",
-  "kubernetes_network_form_load_balancers_subnet_toggler": "Paramètres avancés"
+  "kubernetes_network_form_load_balancers_subnet_toggler": "Paramètres avancés",
+  "kubernetes_network_form_rebuild": "Attention: changer la stratégie de routage sortant implique un redéploiement des noeuds de votre cluster en rolling update."
 }
