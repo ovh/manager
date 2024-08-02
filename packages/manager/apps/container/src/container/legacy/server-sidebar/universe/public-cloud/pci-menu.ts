@@ -199,7 +199,7 @@ export function getPciProjectMenu(
             'public-cloud',
             `#/pci/projects/${projectId}/rancher`,
           ),
-          badge: 'beta',
+          badge: 'new',
         },
         {
           id: 'kubernetes',
