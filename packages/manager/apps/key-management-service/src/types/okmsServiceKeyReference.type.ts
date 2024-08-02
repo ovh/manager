@@ -16,7 +16,7 @@ type OkmsServiceKeyReferenceCurve = {
   value: OkmsServiceKeyTypeECCurve;
 };
 
-type OkmsServiceKeyReferenceOperations = {
+export type OkmsServiceKeyReferenceOperations = {
   default: boolean;
   value: OkmsServiceKeyOperations[];
 };
