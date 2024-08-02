@@ -11,6 +11,7 @@ import CookiePolicy from '@/cookie-policy/CookiePolicy';
 import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
 import PaymentModal from '@/payment-modal/PaymentModal';
 import LiveChat from '@/components/LiveChat';
+import { IdentityDocumentsModal } from '@/identity-documents-modal/IdentityDocumentsModal';
 
 export default function Container(): JSX.Element {
   const {
@@ -88,9 +89,14 @@ export default function Container(): JSX.Element {
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
-      {isCookiePolicyApplied && 
+      {isCookiePolicyApplied &&
         <Suspense fallback="">
           <PaymentModal />
+        </Suspense>
+      }
+      {isCookiePolicyApplied &&
+        <Suspense fallback="">
+          <IdentityDocumentsModal />
         </Suspense>
       }
       <Suspense fallback="...">
