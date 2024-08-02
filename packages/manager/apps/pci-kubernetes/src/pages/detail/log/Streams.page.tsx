@@ -20,7 +20,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useContext, useEffect, useState } from 'react';
-import { Notifications } from '@ovhcloud/manager-components';
+import { Notifications, useNotifications } from '@ovhcloud/manager-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useLogs } from '@/api/hooks/useDbaasLogs';
 import { StreamsList } from './components/StreamsList.component';
@@ -31,6 +31,7 @@ export default function StreamsPage() {
   const { t: tCommon } = useTranslation('common');
   const { navigation } = useContext(ShellContext).shell;
   const backHref = useHref('../logs');
+  const { clearNotifications } = useNotifications();
   const [account, setAccount] = useState<TDbaasLog>();
   const { data: dbaasLogs, isPending } = useLogs();
 
@@ -58,7 +59,11 @@ export default function StreamsPage() {
     <>
       <Notifications />
       <div className="mb-6">
-        <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} href={backHref}>
+        <OsdsLink
+          color={ODS_THEME_COLOR_INTENT.primary}
+          href={backHref}
+          onClick={clearNotifications}
+        >
           <span slot="start">
             <OsdsIcon
               className="mr-4"
