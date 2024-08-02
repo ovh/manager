@@ -6,8 +6,8 @@ import {
   PageLayout,
 } from '@ovhcloud/manager-components';
 import { useNavigate, useParams } from 'react-router-dom';
-import onboardingImgSrc from '../../assets/onboarding-img.png';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.component';
+import onboardingImgSrc from '@/assets/onboarding-img.png';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import { getCreateRancherUrl } from '@/utils/route';
 import {
   useTrackingAction,

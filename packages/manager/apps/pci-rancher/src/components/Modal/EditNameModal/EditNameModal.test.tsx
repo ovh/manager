@@ -1,14 +1,9 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import listingTranslation from '../../../../public/translations/listing/Messages_fr_FR.json';
+import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import EditNameModal from './EditNameModal.component';
-import {
-  fireEvent,
-  render,
-  waitFor,
-  act,
-} from '../../../utils/test/test.provider';
-import { rancherMocked } from '../../../_mock_/rancher';
+import { fireEvent, render, waitFor, act } from '@/utils/test/test.provider';
+import { rancherMocked } from '@/_mock_/rancher';
 
 const onEditMocked = jest.fn();
 const onClose = jest.fn();

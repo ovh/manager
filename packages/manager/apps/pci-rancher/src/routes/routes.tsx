@@ -1,6 +1,6 @@
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import React from 'react';
-import NotFound from '../pages/notFound/NotFound.page';
+import NotFound from '@/pages/notFound/NotFound.page';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {

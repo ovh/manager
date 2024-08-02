@@ -5,7 +5,7 @@ import { PageLayout } from '@ovhcloud/manager-components';
 import { getRancherPlan, getReferenceRancherInfo } from '@/data/api/services';
 import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRancher.component';
 import useCreateRancher from '@/data/hooks/useCreateRancher/useCreateRancher';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.component';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import { getRanchersUrl } from '@/utils/route';
 import usePciProject from '@/hooks/usePciProject';
 import { PciProjectPlanCode, RancherService } from '@/types/api.type';

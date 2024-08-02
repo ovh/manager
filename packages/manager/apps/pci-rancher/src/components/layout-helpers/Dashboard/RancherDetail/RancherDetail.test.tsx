@@ -1,6 +1,6 @@
 import React from 'react';
-import dashboardTranslation from '../../../../../public/translations/dashboard/Messages_fr_FR.json';
-import updateTranslation from '../../../../../public/translations/updateSoftware/Messages_fr_FR.json';
+import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
+import updateTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
 import { versionsMocked } from '@/_mock_/version';
 import { rancherMocked } from '@/_mock_/rancher';
 import { ResourceStatus } from '@/types/api.type';

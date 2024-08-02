@@ -18,7 +18,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React, { FC } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { AccessDetail } from '../../../data/hooks/useGenerateAccessDetail/useGenerateAccessDetail';
+import { AccessDetail } from '@/data/hooks/useGenerateAccessDetail/useGenerateAccessDetail';
 import { RancherService } from '@/types/api.type';
 import Modal from '../Modal.component';
 import {

@@ -1,5 +1,5 @@
 import React from 'react';
-import updateSoftwareTranslation from '../../../public/translations/updateSoftware/Messages_fr_FR.json';
+import updateSoftwareTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
 import { render, waitFor } from '@/utils/test/test.provider';
 import { rancherMocked } from '@/_mock_/rancher';
 import { versionsMocked } from '@/_mock_/version';
