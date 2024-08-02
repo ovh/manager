@@ -16,7 +16,7 @@ export const DashboardHeader = () => {
       <NavLink to="https://www.ovhcloud.com/fr/public-cloud/prices/#ai-&-machine-learning">
         <div className="flex flex-row gap-1 items-center">
           {t('linkPrice')}
-          <ArrowRight className="size-4" />
+          <ArrowRight className="size-4 mt-1" />
         </div>
       </NavLink>
     </div>
@@ -30,11 +30,10 @@ DashboardHeader.Skeleton = function ServiceHeaderSkeleton() {
       data-testid="dashboard-header-skeleton"
       className="flex gap-2 items-center mt-4 mb-6"
     >
-      <Skeleton className="rounded-full h-14 w-14" />
       <div>
         <h2>{t('title')}</h2>
         <div className="flex gap-2">
-          <Skeleton className="h-10 w-10" />
+          <Skeleton className="h-15 w-full" />
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { Locale } from '@/hooks/useLocale.hook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedCurrentUsage } from '@/__tests__/helpers/mocks/currentUsage';
 import { mockedAuthorization } from '@/__tests__/helpers/mocks/authorization';
+import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
 
 describe('Home page', () => {
   beforeEach(() => {
@@ -22,6 +23,9 @@ describe('Home page', () => {
     }));
     vi.mock('@/data/api/ai/job.api', () => ({
       getJobs: vi.fn(() => []),
+    }));
+    vi.mock('@/data/api/ai/capabilities.api', () => ({
+      getRegions: vi.fn(() => [mockedCapabilitiesRegion]),
     }));
 
     vi.mock('@/data/api/usage/usage.api', () => ({
@@ -67,6 +71,14 @@ describe('Home page', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
+
+  it('renders and shows Home Page with Skeleton wguke loading', async () => {
+    render(<Home />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByTestId('home-page-skeleton')).toBeInTheDocument();
+    });
+  });
+
   it('renders and shows Home Page with Onboarding', async () => {
     render(<Home />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {

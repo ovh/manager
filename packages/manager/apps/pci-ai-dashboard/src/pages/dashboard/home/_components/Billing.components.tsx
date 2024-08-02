@@ -46,7 +46,7 @@ const Billing = () => {
           />
           <h3 className="py-4">
             {t('billingValueInfo', {
-              value: aiGlobalPrice.toFixed(2),
+              value: aiGlobalPrice.toFixed(2) || 0,
             })}
           </h3>
         </>

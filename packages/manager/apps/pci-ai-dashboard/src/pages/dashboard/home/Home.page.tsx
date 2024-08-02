@@ -21,6 +21,7 @@ import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Billing from './_components/Billing.components';
 import Onboarding from './_components/Onboarding.component';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function Home() {
   const { projectId } = useParams();
@@ -35,7 +36,23 @@ export default function Home() {
   const isOnbording: boolean =
     notebooks.length === 0 && jobs.length === 0 && apps.length === 0;
 
-  console.log(notebooks);
+  if (regionQuery.isLoading) {
+    return (
+      <>
+        <div
+          data-testid="home-page-skeleton"
+          className="flex justify-between mb-2 items-end"
+        >
+          <Skeleton className="h-30 w-full" />
+          <div className="flex gap-1">
+            <Skeleton className="h-15 w-1/2" />
+            <Skeleton className="h-10 w-1/2" />
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <div className="float-right pr-2 pt-2">

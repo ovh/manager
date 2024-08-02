@@ -80,7 +80,11 @@ export default function Layout() {
   return (
     <PageLayout>
       <RoutingSynchronisation />
-      <Auth />
+      <Auth
+        onSuccess={() => {
+          authorizationQuery.refetch();
+        }}
+      />
       <Toaster />
     </PageLayout>
   );
