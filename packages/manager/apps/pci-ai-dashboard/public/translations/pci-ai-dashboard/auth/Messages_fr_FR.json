@@ -1,3 +1,5 @@
 {
-  "authActivateProjectButton": "Activer votre projet"
+  "discoveryMode": "Vous êtes actuellement en mode « Découverte ». Pour finaliser la création de votre service, vous devez activer votre projet.",
+  "discoveryModeActivate": "Activez votre projet",
+  "authActivateProjectButton": "Activer votre projet AI"
 }

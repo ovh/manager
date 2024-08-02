@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Activity,
+  AlertCircle,
+  ArrowRight,
   BrainCircuit,
   CircleDollarSign,
   TerminalSquare,
@@ -22,6 +24,11 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Billing from './_components/Billing.components';
 import Onboarding from './_components/Onboarding.component';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
+import OvhLink from '@/components/links/OvhLink.component';
+import usePciProject from '@/hooks/api/project/useGetProjects.hook';
+import { PlanCode } from '@/configuration/project';
 
 export default function Home() {
   const { projectId } = useParams();
