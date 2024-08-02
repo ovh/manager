@@ -4,6 +4,7 @@ import 'angular-translate';
 import routing from './service.routing';
 
 import name from './edit-name';
+import editNetwork from './edit-network';
 import reset from './reset';
 import resetKubeconfig from './reset-kubeconfig';
 import terminate from './terminate';
@@ -22,6 +23,7 @@ angular
   .module(moduleName, [
     'pascalprecht.translate',
     name,
+    editNetwork,
     reset,
     resetKubeconfig,
     terminate,
