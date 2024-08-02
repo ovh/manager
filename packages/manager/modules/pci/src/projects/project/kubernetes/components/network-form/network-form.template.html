@@ -165,45 +165,65 @@
             </oui-radio-group>
         </oui-field>
 
-        <div class="mt-2" data-ng-if="$ctrl.gateway.enabled">
-            <p data-ng-if="!$ctrl.dense">
-                <span
-                    data-translate="kubernetes_network_form_gateway_private_description_p1"
-                ></span>
-                <a
-                    data-ui-sref="pci.projects.project.gateways({ projectId: $ctrl.projectId })"
-                    data-translate="kubernetes_network_form_gateway_private_description_link"
-                    target="_blank"
-                    rel="noopener"
-                ></a>
-                <span
-                    data-translate="kubernetes_network_form_gateway_private_description_p2"
-                ></span>
-            </p>
-            <oui-field
-                data-ng-attr-label="{{ $ctrl.dense ? ('kubernetes_network_form_gateway_vrack_field_ip_placeholder'|translate) : null }}"
-                data-error-messages="{
-                    pattern: ('kubernetes_network_form_gateway_vrack_field_ip_error_pattern' | translate)
-                }"
-                data-help-text="{{
-                    $ctrl.networkForm.gatewayIp.$valid
-                      ? ('kubernetes_network_form_gateway_private_description_help' | translate)
-                      : ''
-                }}"
+        <div class="mt-2 ml-4" data-ng-if="$ctrl.gateway.enabled">
+            <oui-radio-group
+                data-model="$ctrl.gatewayMode"
+                data-on-change="$ctrl.onGatewayModeChanged()"
             >
-                <input
-                    class="oui-input"
-                    id="gatewayIp"
-                    name="gatewayIp"
-                    type="text"
-                    placeholder="{{:: 'kubernetes_network_form_gateway_vrack_field_ip_placeholder' | translate}}"
-                    data-ng-model="$ctrl.gateway.ip"
-                    data-ng-pattern="$ctrl.GATEWAY_IP_REGEX"
-                />
-            </oui-field>
+                <oui-radio data-value="'auto'">
+                    <span
+                        data-translate="kubernetes_network_form_gateway_mode_auto"
+                    ></span>
+                </oui-radio>
+                <oui-radio data-value="'custom'">
+                    <span
+                        data-translate="kubernetes_network_form_gateway_mode_custom"
+                    ></span>
+                    <div
+                        class="font-weight-normal"
+                        data-ng-if="$ctrl.gatewayMode === 'custom'"
+                    >
+                        <p class="mt-2" data-ng-if="!$ctrl.dense">
+                            <span
+                                data-translate="kubernetes_network_form_gateway_private_description_p1"
+                            ></span>
+                            <a
+                                data-ui-sref="pci.projects.project.gateways({ projectId: $ctrl.projectId })"
+                                data-translate="kubernetes_network_form_gateway_private_description_link"
+                                target="_blank"
+                                rel="noopener"
+                            ></a>
+                            <span
+                                data-translate="kubernetes_network_form_gateway_private_description_p2"
+                            ></span>
+                        </p>
+                        <oui-field
+                            data-ng-attr-label="{{ $ctrl.dense ? ('kubernetes_network_form_gateway_vrack_field_ip_placeholder'|translate) : null }}"
+                            data-error-messages="{
+                                pattern: ('kubernetes_network_form_gateway_vrack_field_ip_error_pattern' | translate)
+                            }"
+                        >
+                            <input
+                                class="oui-input"
+                                id="gatewayIp"
+                                name="gatewayIp"
+                                type="text"
+                                placeholder="{{:: 'kubernetes_network_form_gateway_mode_custom_placeholder' | translate}}"
+                                data-ng-model="$ctrl.gateway.ip"
+                                data-ng-pattern="$ctrl.GATEWAY_IP_REGEX"
+                                required
+                            />
+                        </oui-field>
+                    </div>
+                </oui-radio>
+            </oui-radio-group>
         </div>
     </div>
-    <oui-message data-ng-if="$ctrl.shouldWarnRebuild" data-type="warning">
+    <oui-message
+        class="mt-3"
+        data-ng-if="$ctrl.shouldWarnRebuild"
+        data-type="warning"
+    >
         <span data-translate="kubernetes_network_form_rebuild"></span>
     </oui-message>
 
