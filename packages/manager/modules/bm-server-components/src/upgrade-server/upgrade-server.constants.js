@@ -9,7 +9,7 @@ export const UPGRADE_MODE = {
 };
 
 export const SUPPORT_TICKET_ID_URL =
-  'https://help.ovhcloud.com/csm?id=csm_ticket&table=sn_customerservice_case&number=CS{ticketId}&view=csp';
+  'https://help.ovhcloud.com/csm?id=csm_ticket&table=sn_customerservice_case&number=CS{ticketId}&view=csp&ovhSubsidiary=';
 
 export const DEFAULT_INTERVAL = 1;
 
