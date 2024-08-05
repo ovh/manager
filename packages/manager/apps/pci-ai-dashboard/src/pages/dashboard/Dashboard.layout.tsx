@@ -6,17 +6,19 @@ import { useGetJobs } from '@/hooks/api/ai/job/useGetJobs.hook';
 import { useGetApps } from '@/hooks/api/ai/app/useGetApps.hook';
 import { POLLING } from '@/configuration/polling';
 import { DashboardLayoutContext } from './Dashboard.context';
+import { useUserActivityContext } from '@/contexts/UserActivity.context';
 
 export default function DashboardLayout() {
   const { projectId } = useParams();
+  const { isUserActive } = useUserActivityContext();
   const notebooksQuery = useGetNotebooks(projectId, {
-    refetchInterval: POLLING.NOTEBOOKS,
+    refetchInterval: isUserActive && POLLING.NOTEBOOKS,
   });
   const jobsQuery = useGetJobs(projectId, {
-    refetchInterval: POLLING.JOBS,
+    refetchInterval: isUserActive && POLLING.JOBS,
   });
   const appsQuery = useGetApps(projectId, {
-    refetchInterval: POLLING.APPS,
+    refetchInterval: isUserActive && POLLING.APPS,
   });
 
   const notebooks = notebooksQuery.isSuccess && notebooksQuery.data;

@@ -5,7 +5,7 @@ import {
   MemoryRouter,
   useLocation,
 } from 'react-router-dom';
-import * as useLoadingIndicator from '@/contexts/loadingIndicatorContext';
+import * as useLoadingIndicator from '@/contexts/LoadingIndicator.context';
 
 /**
  * Displays the current location in order to test the syncing between the state of the hook and the url
