@@ -153,7 +153,7 @@
                     ></strong>
                 </oui-radio>
                 <p
-                    class="mt-2"
+                    class="mt-2 ml-4"
                     data-ng-if="!$ctrl.dense && !$ctrl.gateway.enabled"
                     data-translate="kubernetes_network_form_gateway_public_description"
                 ></p>
@@ -162,6 +162,23 @@
                         data-translate="kubernetes_network_form_gateway_private"
                     ></strong>
                 </oui-radio>
+                <p
+                    class="mt-2 ml-4"
+                    data-ng-if="!$ctrl.dense && $ctrl.gateway.enabled"
+                >
+                    <span
+                        data-translate="kubernetes_network_form_gateway_private_description_p1"
+                    ></span>
+                    <a
+                        data-ui-sref="pci.projects.project.gateways({ projectId: $ctrl.projectId })"
+                        data-translate="kubernetes_network_form_gateway_private_description_link"
+                        target="_blank"
+                        rel="noopener"
+                    ></a>
+                    <span
+                        data-translate="kubernetes_network_form_gateway_private_description_p2"
+                    ></span>
+                </p>
             </oui-radio-group>
         </oui-field>
 
@@ -183,20 +200,6 @@
                         class="font-weight-normal"
                         data-ng-if="$ctrl.gatewayMode === 'custom'"
                     >
-                        <p class="mt-2" data-ng-if="!$ctrl.dense">
-                            <span
-                                data-translate="kubernetes_network_form_gateway_private_description_p1"
-                            ></span>
-                            <a
-                                data-ui-sref="pci.projects.project.gateways({ projectId: $ctrl.projectId })"
-                                data-translate="kubernetes_network_form_gateway_private_description_link"
-                                target="_blank"
-                                rel="noopener"
-                            ></a>
-                            <span
-                                data-translate="kubernetes_network_form_gateway_private_description_p2"
-                            ></span>
-                        </p>
                         <oui-field
                             data-ng-attr-label="{{ $ctrl.dense ? ('kubernetes_network_form_gateway_vrack_field_ip_placeholder'|translate) : null }}"
                             data-error-messages="{
