@@ -21,6 +21,12 @@ export type TFlavor = {
   region: string;
   type: string;
   vcpus: number;
+  pricingsHourly: {
+    price: number;
+  };
+  pricingsMonthly?: {
+    price: number;
+  };
 };
 
 export const getFlavors = async (
