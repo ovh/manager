@@ -14,14 +14,20 @@ import {
 import { FlavorTile } from './FlavorTile.component';
 import './translations';
 
+export type KubeFlavor = ReturnType<
+  typeof useMergedKubeFlavors
+>['mergedFlavors'][0];
+
 interface FlavorSelectorProps {
   projectId: string;
   region: string;
+  onSelect?: (flavor: KubeFlavor) => void;
 }
 
 export function FlavorSelector({
   projectId,
   region,
+  onSelect,
 }: Readonly<FlavorSelectorProps>) {
   const { mergedFlavors, isPending } = useMergedKubeFlavors(projectId, region);
   const [selectedFlavor, setSelectedFlavor] = useState(null);
@@ -77,7 +83,10 @@ export function FlavorSelector({
                   }}
                   isNewFlavor={flavor.isNew}
                   isSelected={flavor === selectedFlavor}
-                  onClick={() => setSelectedFlavor(flavor)}
+                  onClick={() => {
+                    setSelectedFlavor(flavor);
+                    onSelect(flavor);
+                  }}
                 />
               </div>
             ))}
