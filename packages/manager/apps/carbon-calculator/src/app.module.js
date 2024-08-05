@@ -149,3 +149,5 @@ export default async (containerEl, shellClient) => {
 
   return moduleName;
 };
+
+// Test
