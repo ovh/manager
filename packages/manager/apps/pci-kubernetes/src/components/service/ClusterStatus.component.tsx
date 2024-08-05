@@ -58,7 +58,11 @@ export default function ClusterStatus({
       : '';
 
   return (
-    <OsdsChip {...chipAttribute} className="w-fit">
+    <OsdsChip
+      {...chipAttribute}
+      className="w-fit"
+      data-testid="clusterStatus-chip"
+    >
       {getStatusLabel(status) || status}
     </OsdsChip>
   );
