@@ -26,7 +26,9 @@
   "formAddTokenFieldLabelLabel": "Sélecteur de labels (optionnel)",
   "formAddTokenFieldLabelPlaceholder": "label=valeur",
   "formAddTokenFieldRoleLabel": "Rôle",
+  "formAddTokenFieldRoleInfo": "Choisissez un rôle d'Administrateur ou simplement d'Opérateur (utilisation simple)",
   "formAddTokenFieldRegionLabel": "Région",
+  "formAddTokenFieldRegionInfo": "Région pour laquelle le token sera actif",
   "formTokenErrorMinLength": "Veuillez entrer au minimum {{min}} caractères",
   "formTokenErrorMaxLength": "Veuillez entrer {{max}} caractères maximum",
   "formTokenLabelErrorPattern": "Le sélecteur via label doit avoir la forme suivante : label=valeur",
@@ -56,5 +58,5 @@
   "renewTokenButtonCancel": "Annuler",
   "renewTokenButtonConfirm": "Confirmer",
   "ai_training_operator": "AI Platform - Opérateur",
-  "ai_training_read": "AI Plaform - Lécture seule"
+  "ai_training_read": "AI Plaform - Lecture seule"
 }
