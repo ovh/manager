@@ -1,6 +1,7 @@
 export type AccountStatistics = {
   offer: string;
   configuredAccountsCount: number;
+  availableAccountsCount: number;
 };
 
 export type ErrorResponse = {
