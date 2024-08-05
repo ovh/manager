@@ -8,10 +8,6 @@ export type OrganizationType = {
     name: string;
     description: string;
     label: string;
-    storageConsumed: number;
-    updatedAt: string;
-    createdAt: string;
-    accountsStatistics: AccountStatistics[];
   };
   currentState: {
     name: string;

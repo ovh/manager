@@ -14,11 +14,8 @@ export const platformMock: ZimbraPlatformType[] = [
     id: '00000000-0000-0000-0000-000000000001',
     resourceStatus: 'READY',
     targetSpec: {
-      accountsStatistics: [],
       description: 'some description',
       name: 'Manager Team platform',
-      numberOfOrganizations: 0,
-      quota: 1,
     },
     iam: {
       id: 'ce6c1c21-565a-42c3-b1fd-53d9d09c7395',

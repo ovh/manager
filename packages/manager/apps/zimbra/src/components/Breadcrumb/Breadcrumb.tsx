@@ -35,7 +35,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     ...(organization && !isLoading
       ? [
           {
-            label: organization?.targetSpec.name,
+            label: organization?.currentState.name,
             onClick: () => navigate(overviewUrlValue),
           },
         ]
