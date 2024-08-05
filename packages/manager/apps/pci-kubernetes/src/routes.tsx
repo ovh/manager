@@ -134,6 +134,15 @@ export default [
             ],
           },
           {
+            path: 'nodepools/new',
+            handle: {
+              // tracking: 'nodepools',
+            },
+            ...lazyRouteConfig(() =>
+              import('@/pages/detail/nodepools/new/New.page'),
+            ),
+          },
+          {
             path: 'nodepools/:poolId/nodes',
             // handle: {
             //   tracking: 'nodepools',

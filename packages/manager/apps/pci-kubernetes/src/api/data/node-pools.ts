@@ -105,3 +105,20 @@ export const updateNodePoolSize = async (
     `/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`,
     param,
   );
+
+export type TCreateNodePoolParam = {
+  flavorName: string;
+  name: string;
+  antiAffinity: boolean;
+  monthlyBilled: boolean;
+  autoscale: boolean;
+  minNodes: number;
+  desiredNodes: number;
+  maxNodes: number;
+};
+
+export const createNodePool = (
+  projectId: string,
+  clusterId: string,
+  param: TCreateNodePoolParam,
+) => v6.post(`/cloud/project/${projectId}/kube/${clusterId}/nodepool`, param);
