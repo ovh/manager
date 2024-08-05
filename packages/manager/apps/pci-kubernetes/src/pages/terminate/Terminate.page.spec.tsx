@@ -8,10 +8,6 @@ import {
 } from '@ovhcloud/ods-components';
 import TerminatePage from './Terminate.page';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import {
-  useKubernetesCluster,
-  useTerminateCluster,
-} from '@/api/hooks/useKubernetes';
 import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
 
