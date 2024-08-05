@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Copy } from 'lucide-react';
+import { Copy, HelpCircle } from 'lucide-react';
 import { ModalController } from '@/hooks/useModale.hook';
 import { useToast } from '@/components/ui/use-toast';
 import {
@@ -38,6 +38,11 @@ import {
   useAddToken,
 } from '@/hooks/api/ai/token/useAddToken.hook';
 import { Badge } from '@/components/ui/badge';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 interface AddTokenModalProps {
   regions: ai.capabilities.Region[];
@@ -218,7 +223,17 @@ const AddToken = ({
                 name="role"
                 render={({ field }) => (
                   <FormItem className="flex flex-col gap-1 mt-2">
-                    <FormLabel>{t('formAddTokenFieldRoleLabel')}</FormLabel>
+                    <div className="flex items-center space-x-2">
+                      <FormLabel>{t('formAddTokenFieldRoleLabel')}</FormLabel>
+                      <Popover>
+                        <PopoverTrigger>
+                          <HelpCircle className="size-4" />
+                        </PopoverTrigger>
+                        <PopoverContent>
+                          <p>{t('formAddTokenFieldRoleInfo')}</p>
+                        </PopoverContent>
+                      </Popover>
+                    </div>
                     <FormControl>
                       <Select
                         value={field.value}
@@ -245,7 +260,17 @@ const AddToken = ({
                 name="region"
                 render={({ field }) => (
                   <FormItem className="flex flex-col gap-1 mt-2">
-                    <FormLabel>{t('formAddTokenFieldRegionLabel')}</FormLabel>
+                    <div className="flex items-center space-x-2">
+                      <FormLabel>{t('formAddTokenFieldRegionLabel')}</FormLabel>
+                      <Popover>
+                        <PopoverTrigger>
+                          <HelpCircle className="size-4" />
+                        </PopoverTrigger>
+                        <PopoverContent>
+                          <p>{t('formAddTokenFieldRegionInfo')}</p>
+                        </PopoverContent>
+                      </Popover>
+                    </div>
                     <FormControl>
                       <Select
                         value={field.value}

@@ -40,9 +40,12 @@
   "alertSharedDocker": "Nous stockons par défaut les images privées de vos jobs sur un Docker Registry géré par OVHcloud et partagé entre nos clients. Les images stockées sur celui-ci peuvent être supprimées à tout moment. Nous vous conseillons d’utiliser votre registre privé pour stocker vos propres images.",
   "sharedDockerParagraphe1": "Sélectionnez la région que vous souhaitez utiliser :",
   "sharedDockerParagraphe2": "Docker Registry",
+  "sharedDockerParagraphe2Info": "Le Docker Registre attaché au projet permet d'héberger les images privées nécessaires à l'exécution des jobs",
   "sharedDockerParagraphe3": "Projet Public Cloud",
   "sharedDockerParagraphe4": "Vous pouvez vous connecter au Docker Registry partagé via la commande suivante :",
-  "sharedDockerParagraphe5": " L'authentification sur la plateforme peut se faire via tous les utilisateurs configurés au sein du même projet Public Cloud.",
+  "sharedDockerParagraphe5": " L'authentification sur la plateforme peut se faire via tous les",
+  "sharedDockerParagraphe5bis": "utilsateurs configurés",
+  "sharedDockerParagraphe5ter": "au sein du même projet Public Cloud.",
   "sharedDockerParagraphe6": "Vous pouvez ensuite marquer vos images et les charger sur le registre.",
   "sharedDockerParagraphe7": "Votre image est maintenant utilisable dans un job ou une app.",
   "sharedDockerCopy": "Copié"

@@ -1,4 +1,4 @@
-import { AlertTriangleIcon, Copy } from 'lucide-react';
+import { AlertTriangleIcon, Copy, HelpCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
@@ -13,6 +13,12 @@ import {
 } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
 import * as ai from '@/types/cloud/project/ai';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import OvhLink from '@/components/links/OvhLink.component';
 
 interface SharedDockerProps {
   regions: ai.capabilities.Region[];
@@ -26,7 +32,7 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
     regions[0],
   );
   const toast = useToast();
-
+  const userPath = `#/pci/project/${projectId}/users`;
   const dockerLogin = `docker login ${selectedRegion.registryUrl}/${projectId}`;
   const dockerTag = `docker tag <image> ${selectedRegion.registryUrl}/${projectId}/<image>`;
   const dockerPush = `docker push ${selectedRegion.registryUrl}/${projectId}/<image>`;
@@ -67,7 +73,17 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
         </SelectContent>
       </Select>
       <div className="flex flex-col">
-        <h5>{t('sharedDockerParagraphe2')}</h5>
+        <div className="flex items-center space-x-2">
+          <h5>{t('sharedDockerParagraphe2')}</h5>
+          <Popover>
+            <PopoverTrigger>
+              <HelpCircle className="size-4" />
+            </PopoverTrigger>
+            <PopoverContent>
+              <p>{t('sharedDockerParagraphe2Info')}</p>
+            </PopoverContent>
+          </Popover>
+        </div>
         <p>{selectedRegion.registryUrl}</p>
       </div>
       <div className="flex flex-col">
@@ -89,7 +105,14 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
           <code>{dockerLogin}</code>
         </pre>
       </div>
-      <p>{t('sharedDockerParagraphe5')}</p>
+
+      <span>
+        {t('sharedDockerParagraphe5')}
+        <OvhLink className="mx-1" application="public-cloud" path={userPath}>
+          {t('sharedDockerParagraphe5bis')}
+        </OvhLink>
+        {t('sharedDockerParagraphe5ter')}
+      </span>
       <p>{t('sharedDockerParagraphe6')}</p>
       <div className="relative my-2 rounded bg-gray-100">
         <Button
