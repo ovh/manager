@@ -19,6 +19,7 @@ import { getColumns } from './_components/GitTableColumns.component';
 import AddGit from './_components/AddGit.component';
 import DeleteGit from './_components/DeleteGit.component';
 import { GuideSections } from '@/configuration/guide';
+import { useUserActivityContext } from '@/contexts/UserActivity.context';
 
 export function breadcrumb() {
   return (
@@ -34,8 +35,9 @@ const Git = () => {
   const { projectId } = useParams();
   const [regions, setRegions] = useState<ai.capabilities.Region[]>([]);
   const regionQuery = useGetRegions(projectId);
+  const { isUserActive } = useUserActivityContext();
   const datastoreQuery = useGetDatastoresWithRegions(projectId, regions, {
-    refetchInterval: POLLING.DATASTORE,
+    refetchInterval: isUserActive && POLLING.DATASTORE,
   });
   const addModale = useModale('add');
   const deleteModale = useModale('delete');

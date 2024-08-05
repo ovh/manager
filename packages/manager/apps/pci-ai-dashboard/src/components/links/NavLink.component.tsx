@@ -1,6 +1,6 @@
 import { NavLink as RouterNavLink, NavLinkProps } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { useLoadingIndicatorContext } from '@/contexts/loadingIndicatorContext';
+import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
 
 function NavLink({
   className,

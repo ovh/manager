@@ -1,6 +1,6 @@
 import { LinkProps, Link as RouterLink } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { useLoadingIndicatorContext } from '@/contexts/loadingIndicatorContext';
+import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
 
 function Link({
   className,

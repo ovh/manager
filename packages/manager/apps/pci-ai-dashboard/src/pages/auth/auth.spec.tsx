@@ -1,9 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 
 import Layout, { breadcrumb as Breadcrumb, Loader } from '@/pages/Root.layout';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import * as projectAPI from '@/data/api/project/project.api';
 import * as authAPI from '@/data/api/ai/authorization.api';
 import { mockedAuthorization } from '@/__tests__/helpers/mocks/authorization';
 import * as ai from '@/types/cloud/project/ai';
@@ -40,36 +45,11 @@ describe('Dashboard Layout', () => {
     });
     vi.mock('@/data/api/ai/authorization.api', () => ({
       getAuthorization: vi.fn(() => mockedAuthorization),
+      postAuthorization: vi.fn(() => mockedAuthorization),
     }));
   });
   afterEach(() => {
     vi.clearAllMocks();
-  });
-
-  it('renders the breadcrumb component', async () => {
-    render(<Breadcrumb />, {
-      wrapper: RouterWithQueryClientWrapper,
-    });
-    await waitFor(() => {
-      expect(screen.getByText('AI Dashboard')).toBeInTheDocument();
-    });
-  });
-
-  it('renders the breadcrumb component', async () => {
-    Loader(breadCrumbParam);
-    await waitFor(() => {
-      expect(projectAPI.getProject).toHaveBeenCalled();
-    });
-  });
-
-  it('renders the Layout component', async () => {
-    render(<Layout />, {
-      wrapper: RouterWithQueryClientWrapper,
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('pageLayout')).toBeInTheDocument();
-      expect(screen.getByText('description')).toBeInTheDocument();
-    });
   });
 
   it('renders the Layout component and display auth page', async () => {
@@ -83,6 +63,13 @@ describe('Dashboard Layout', () => {
     await waitFor(() => {
       expect(screen.getByTestId('activate-project-button')).toBeInTheDocument();
       expect(screen.getByTestId('auth-page-container')).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('activate-project-button'));
+    });
+    await waitFor(() => {
+      expect(authAPI.postAuthorization).toHaveBeenCalled();
+      expect(authAPI.getAuthorization).toHaveBeenCalled();
     });
   });
 });

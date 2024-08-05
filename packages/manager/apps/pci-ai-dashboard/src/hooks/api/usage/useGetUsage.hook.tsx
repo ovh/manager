@@ -1,17 +1,14 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { getCurrentUsage } from '@/data/api/usage/usage.api';
 import * as usage from '@/types/cloud/usage';
+import { useQueryImmediateRefetch } from '../useImmediateRefetch.hook';
 
 export function useGetCurrentUsage(
   projectId: string,
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'usage', 'current'];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getCurrentUsage({ projectId }),
     ...options,

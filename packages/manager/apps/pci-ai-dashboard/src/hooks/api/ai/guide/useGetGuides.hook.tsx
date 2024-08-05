@@ -1,10 +1,7 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { getGuides } from '@/data/api/ai/guide.api';
 import * as ai from '@/types/cloud/project/ai';
+import { useQueryImmediateRefetch } from '../../useImmediateRefetch.hook';
 
 export function useGetGuides(
   projectId: string,
@@ -13,7 +10,7 @@ export function useGetGuides(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [projectId, 'ai', 'guides', section];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () =>
       getGuides({

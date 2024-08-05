@@ -4,7 +4,7 @@ import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
 import { useEffect } from 'react';
 import queryClient from '@/query.client';
 
-import { useLoadingIndicatorContext } from '@/contexts/loadingIndicatorContext';
+import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
 import { getProject } from '@/data/api/project/project.api';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
@@ -13,6 +13,8 @@ import { Toaster } from '@/components/ui/toaster';
 import PageLayout from '@/components/page-layout/PageLayout.component';
 import { useGetAuthorization } from '@/hooks/api/ai/authorization/useGetAuthorization.hook';
 import Auth from './auth/auth.page';
+import { UserActivityProvider } from '@/contexts/UserActivity.context';
+import { USER_INACTIVITY_TIMEOUT } from '@/configuration/polling';
 
 export function breadcrumb() {
   return (
@@ -70,18 +72,26 @@ export default function Layout() {
   if (authorizationQuery.isSuccess && authorizationQuery.data.authorized) {
     return (
       <PageLayout>
-        <Breadcrumb />
-        <RoutingSynchronisation />
-        <Outlet />
-        <Toaster />
+        <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>
+          <Breadcrumb />
+          <RoutingSynchronisation />
+          <Outlet />
+          <Toaster />
+        </UserActivityProvider>
       </PageLayout>
     );
   }
   return (
     <PageLayout>
-      <RoutingSynchronisation />
-      <Auth />
-      <Toaster />
+      <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>
+        <RoutingSynchronisation />
+        <Auth
+          onSuccess={() => {
+            authorizationQuery.refetch();
+          }}
+        />
+        <Toaster />
+      </UserActivityProvider>
     </PageLayout>
   );
 }
