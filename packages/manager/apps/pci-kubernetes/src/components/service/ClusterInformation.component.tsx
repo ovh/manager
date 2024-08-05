@@ -54,7 +54,7 @@ export default function ClusterInformation({
         <TileLine
           title={tDetail('kube_list_id')}
           value={
-            <OsdsClipboard aria-label="clipboard" value={kubeDetail.id}>
+            <OsdsClipboard aria-label="clipboard" value={kubeDetail.id} data-testid="clusterInformation-clipboardKubeId">
               <span slot="success-message">
                 {tCommon('common_clipboard_copied')}
               </span>
@@ -143,7 +143,7 @@ export default function ClusterInformation({
         <TileLine
           title={t('kube_service_cluster_nodes_url')}
           value={
-            <OsdsClipboard aria-label="clipboard" value={kubeDetail.nodesUrl}>
+            <OsdsClipboard aria-label="clipboard" data-testid="clusterInformation-clipboardNodeUrls" value={kubeDetail.nodesUrl}>
               <span slot="success-message">
                 {tCommon('common_clipboard_copied')}
               </span>

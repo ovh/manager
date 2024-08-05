@@ -34,6 +34,7 @@ export default function ClusterVersionUpgradeBanner() {
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
           inline
+          data-testid="upgradeBanner-button"
           className="my-5"
           href={hrefUpdate}
         >

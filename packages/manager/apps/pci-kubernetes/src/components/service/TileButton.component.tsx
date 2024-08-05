@@ -16,11 +16,13 @@ type TileButtonProps = {
   title: string;
   href: string;
   isDisabled: boolean;
+  dataTestId?: string;
 };
 
 export default function TileButton({
   title,
   href,
+  dataTestId,
   isDisabled,
 }: Readonly<TileButtonProps>) {
   return (
@@ -30,7 +32,9 @@ export default function TileButton({
         size={ODS_BUTTON_SIZE.sm}
         variant={ODS_BUTTON_VARIANT.ghost}
         href={href}
+        data-testid={dataTestId}
         disabled={isDisabled || undefined}
+        inline
       >
         <span slot="start">{title}</span>
         <span slot="end">
