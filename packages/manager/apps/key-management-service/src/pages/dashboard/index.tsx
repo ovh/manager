@@ -46,7 +46,7 @@ export default function DashboardPage() {
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: displayName || okmsId,
+      label: displayName,
       navigateTo: `/${okmsId}`,
     },
     {
@@ -65,9 +65,7 @@ export default function DashboardPage() {
           size={ODS_THEME_TYPOGRAPHY_SIZE._600}
           color={ODS_THEME_COLOR_INTENT.primary}
         >
-          {tDashboard('key_management_service_dashboard_title', {
-            okmsId: displayName,
-          })}
+          {displayName}
         </OsdsText>
         <KmsGuidesHeader />
       </div>
