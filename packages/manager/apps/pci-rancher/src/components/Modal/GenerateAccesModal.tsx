@@ -63,7 +63,6 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
           </OsdsText>
         </div>
       )}
-
       {accessDetail && (
         <div>
           <OsdsClipboard
@@ -90,6 +89,13 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
               name={ODS_ICON_NAME.COPY}
               color={ODS_THEME_COLOR_INTENT.primary}
             />
+          </div>
+          <div className="my-4">
+            <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+              {t('generateAccessModalPasswordDescription', {
+                rancherName: rancher.currentState.name,
+              })}
+            </OsdsText>
           </div>
         </div>
       )}

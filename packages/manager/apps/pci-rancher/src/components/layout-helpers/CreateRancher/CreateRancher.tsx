@@ -234,7 +234,6 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
               e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
             ) => setRancherName(e.target.value as string)}
           />
-
           <OsdsText
             color={
               hasInputError
