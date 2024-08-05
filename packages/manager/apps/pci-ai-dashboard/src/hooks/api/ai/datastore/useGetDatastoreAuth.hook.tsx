@@ -1,11 +1,8 @@
-import {
-  QueryObserverOptions,
-  UseQueryResult,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 
 import * as ai from '@/types/cloud/project/ai';
 import { getDatastoreAuth } from '@/data/api/ai/datastore.api';
+import { useQueryImmediateRefetch } from '../../useImmediateRefetch.hook';
 
 export function useGetDatastoreAuth(
   projectId: string,
@@ -23,7 +20,7 @@ export function useGetDatastoreAuth(
     alias,
     'auth',
   ];
-  return useQuery({
+  return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getDatastoreAuth({ projectId, region, alias }),
     ...options,

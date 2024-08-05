@@ -14,6 +14,7 @@ import AddUser from './_components/AddUser.component';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/configuration/guide';
+import { useUserActivityContext } from '@/contexts/UserActivity.context';
 
 export function breadcrumb() {
   return (
@@ -28,8 +29,9 @@ const Users = () => {
   const { t } = useTranslation('pci-ai-dashboard/users');
   const { projectId } = useParams();
   const addModale = useModale('add');
+  const { isUserActive } = useUserActivityContext();
   const userQuery = useGetUsers(projectId, {
-    refetchInterval: POLLING.USERS,
+    refetchInterval: isUserActive && POLLING.USERS,
   });
   const queryClient = useQueryClient();
   const userPath = `#/pci/project/${projectId}/users`;

@@ -8,6 +8,7 @@ import * as notebookAPI from '@/data/api/ai/notebook.api';
 import { mockedApp } from '@/__tests__/helpers/mocks/app';
 import { mockedJob } from '@/__tests__/helpers/mocks/job';
 import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
+import { mockedPciDiscoveryProject } from '@/__tests__/helpers/mocks/project';
 
 describe('Dashboard Layout', () => {
   beforeEach(() => {
@@ -22,6 +23,10 @@ describe('Dashboard Layout', () => {
         }),
       };
     });
+
+    vi.mock('@/data/api/project/project.api', () => ({
+      getProject: vi.fn(() => mockedPciDiscoveryProject),
+    }));
 
     vi.mock('@/data/api/ai/app.api', () => ({
       getApps: vi.fn(),
@@ -62,6 +67,7 @@ describe('Dashboard Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
+      expect(screen.getByTestId('discovery-container')).toBeInTheDocument();
       expect(screen.getByTestId('header-title')).toBeInTheDocument();
       expect(screen.getByText('homeTab')).toBeInTheDocument();
     });
