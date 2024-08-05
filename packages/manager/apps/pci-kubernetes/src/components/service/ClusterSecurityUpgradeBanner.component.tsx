@@ -33,6 +33,7 @@ export default function ClusterSecurityUpgradeBanner() {
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
+          data-testid="upgradeBanner-button"
           href={hrefForceVersion}
           inline
         >
