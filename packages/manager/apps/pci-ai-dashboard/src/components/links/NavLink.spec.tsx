@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
 import { BrowserRouter as Router } from 'react-router-dom';
 import NavLink from '@/components/links/NavLink.component';
-import * as useLoadingIndicator from '@/contexts/loadingIndicatorContext';
+import * as useLoadingIndicator from '@/contexts/LoadingIndicator.context';
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   useNavigation: () => ({

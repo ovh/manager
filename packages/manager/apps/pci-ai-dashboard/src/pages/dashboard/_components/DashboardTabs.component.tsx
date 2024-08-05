@@ -11,11 +11,13 @@ import { useGetDatastoresWithRegions } from '@/hooks/api/ai/datastore/useGetData
 import * as ai from '@/types/cloud/project/ai';
 import * as role from '@/types/cloud/role';
 import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
+import { useUserActivityContext } from '@/contexts/UserActivity.context';
 
 const DashboardTabs = () => {
   const { projectId } = useParams();
   const { t } = useTranslation('pci-ai-dashboard');
   const [regions, setRegions] = useState<ai.capabilities.Region[]>([]);
+  const { isUserActive } = useUserActivityContext();
   const regionQuery = useGetRegions(projectId);
 
   useEffect(() => {
@@ -24,19 +26,19 @@ const DashboardTabs = () => {
   }, [regionQuery.isSuccess]);
 
   const { data: users } = useGetUsers(projectId, {
-    refetchInterval: POLLING.USERS,
+    refetchInterval: isUserActive && POLLING.USERS,
   });
 
   const { data: tokens } = useGetTokens(projectId, {
-    refetchInterval: POLLING.TOKEN,
+    refetchInterval: isUserActive && POLLING.TOKEN,
   });
 
   const { data: registries } = useGetRegistries(projectId, {
-    refetchInterval: POLLING.DOCKER,
+    refetchInterval: isUserActive && POLLING.DOCKER,
   });
 
   const { data: datastores } = useGetDatastoresWithRegions(projectId, regions, {
-    refetchInterval: POLLING.DATASTORE,
+    refetchInterval: isUserActive && POLLING.DATASTORE,
   });
 
   const tabs = [

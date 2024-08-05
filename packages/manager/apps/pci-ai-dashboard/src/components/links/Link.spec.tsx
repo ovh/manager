@@ -2,7 +2,7 @@ import { act, fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
 import { BrowserRouter as Router } from 'react-router-dom';
-import * as useLoadingIndicator from '@/contexts/loadingIndicatorContext';
+import * as useLoadingIndicator from '@/contexts/LoadingIndicator.context';
 import Link from './Link.component';
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({

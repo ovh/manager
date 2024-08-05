@@ -16,6 +16,7 @@ import DeleteToken from './_components/DeleteToken.component';
 import RenewToken from './_components/RenewToken.component';
 import { POLLING } from '@/configuration/polling';
 import { GuideSections } from '@/configuration/guide';
+import { useUserActivityContext } from '@/contexts/UserActivity.context';
 
 export function breadcrumb() {
   return (
@@ -32,8 +33,9 @@ const Tokens = () => {
   const addModale = useModale('add');
   const deleteModale = useModale('delete');
   const renewModale = useModale('renew');
+  const { isUserActive } = useUserActivityContext();
   const tokenQuery = useGetTokens(projectId, {
-    refetchInterval: POLLING.TOKEN,
+    refetchInterval: isUserActive && POLLING.TOKEN,
   });
   const regionsQuery = useGetRegions(projectId);
   const columns: ColumnDef<ai.token.Token>[] = getColumns({

@@ -12,7 +12,6 @@ const Billing = () => {
   const { projectId } = useParams();
   const [aiGlobalPrice, setAiGlobalPrice] = useState<number>(0);
   const currentUsageQuery = useGetCurrentUsage(projectId);
-
   useEffect(() => {
     if (!currentUsageQuery.data) return;
     setAiGlobalPrice(
@@ -20,16 +19,20 @@ const Billing = () => {
         currentUsageQuery.data?.resourcesUsage?.find(
           (res: billingView.TypedResources) =>
             res.type === 'ai-notebook-workspace',
-        ).totalPrice +
-        currentUsageQuery.data?.resourcesUsage?.find(
-          (res: billingView.TypedResources) => res.type === 'ai-training',
-        ).totalPrice +
-        currentUsageQuery.data?.resourcesUsage?.find(
-          (res: billingView.TypedResources) => res.type === 'ai-notebook',
-        ).totalPrice +
-        currentUsageQuery.data?.resourcesUsage?.find(
-          (res: billingView.TypedResources) => res.type === 'ai-app',
-        ).totalPrice,
+        ).totalPrice ||
+        0 +
+          currentUsageQuery.data?.resourcesUsage?.find(
+            (res: billingView.TypedResources) => res.type === 'ai-training',
+          ).totalPrice ||
+        0 +
+          currentUsageQuery.data?.resourcesUsage?.find(
+            (res: billingView.TypedResources) => res.type === 'ai-notebook',
+          ).totalPrice ||
+        0 +
+          currentUsageQuery.data?.resourcesUsage?.find(
+            (res: billingView.TypedResources) => res.type === 'ai-app',
+          ).totalPrice ||
+        0,
     );
   }, [currentUsageQuery.isSuccess]);
 
@@ -46,7 +49,7 @@ const Billing = () => {
           />
           <h3 className="py-4">
             {t('billingValueInfo', {
-              value: aiGlobalPrice.toFixed(2),
+              value: aiGlobalPrice.toFixed(2) || 0,
             })}
           </h3>
         </>
