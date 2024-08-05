@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.6.0...@ovh-ux/manager-exchange@4.7.0) (2024-08-05)
+
+
+### Features
+
+* send billing region on parameters for snow ([#12584](https://github.com/ovh/manager/issues/12584)) ([8261de8](https://github.com/ovh/manager/commit/8261de869c4d83540c7a5794487f97d4194956a2))
+
+
+
+
+
 # [4.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.5.1...@ovh-ux/manager-exchange@4.6.0) (2024-07-23)
 
 

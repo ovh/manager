@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.46.0...@ovh-ux/manager-dedicated@19.47.0) (2024-08-05)
+
+
+### Bug Fixes
+
+* **account:** support Level are not accesible anymore ([#12587](https://github.com/ovh/manager/issues/12587)) ([c378540](https://github.com/ovh/manager/commit/c378540a84fcd78f5973c4dda70973afa091a6a2))
+* **dedicated.hpc:** fix offset query on operation datagrid ([#12578](https://github.com/ovh/manager/issues/12578)) ([0f7f7c9](https://github.com/ovh/manager/commit/0f7f7c9f7ee8a448373ecf1443912be0fd6c3bec))
+
+
+### Features
+
+* send billing region on parameters for snow ([#12584](https://github.com/ovh/manager/issues/12584)) ([8261de8](https://github.com/ovh/manager/commit/8261de869c4d83540c7a5794487f97d4194956a2))
+
+
+
+
+
 # [19.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.45.1...@ovh-ux/manager-dedicated@19.46.0) (2024-07-23)
 
 

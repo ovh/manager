@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.28.0...@ovh-ux/manager-bm-server-components@1.29.0) (2024-08-05)
+
+
+### Features
+
+* **dedicated:** add a forgotten url param in service now url ([#12612](https://github.com/ovh/manager/issues/12612)) ([4f1e6db](https://github.com/ovh/manager/commit/4f1e6db608ca88dc363b6ff96e6400100b31f5d2))
+* send billing region on parameters for snow ([#12584](https://github.com/ovh/manager/issues/12584)) ([8261de8](https://github.com/ovh/manager/commit/8261de869c4d83540c7a5794487f97d4194956a2))
+
+
+
+
+
 # [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.27.0...@ovh-ux/manager-bm-server-components@1.28.0) (2024-07-23)
 
 

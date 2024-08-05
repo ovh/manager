@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.65.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.64.0...@ovh-ux/manager-container-app@0.65.0) (2024-08-05)
+
+
+### Features
+
+* send billing region on parameters for snow ([#12584](https://github.com/ovh/manager/issues/12584)) ([8261de8](https://github.com/ovh/manager/commit/8261de869c4d83540c7a5794487f97d4194956a2))
+
+
+
+
+
 # [0.64.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.63.0...@ovh-ux/manager-container-app@0.64.0) (2024-08-01)
 
 
