@@ -61,4 +61,10 @@ export const WORKER_NODE_POLICIES = {
   REINSTALL: 'reinstall',
 };
 
+export const TAGS_BLOB = {
+  ACTIVE: 'active',
+  IS_NEW: 'is_new',
+  COMING_SOON: 'coming_soon',
+};
+
 export const GATEWAY_IP_REGEX = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$/;
