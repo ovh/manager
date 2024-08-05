@@ -846,7 +846,7 @@
                 data-on-change="$ctrl.onAttachIPChange(modelValue)"
                 data-disabled="!$ctrl.isFloatingIpAvailable || !$ctrl.PciProjectsProjectInstanceService.additionalIpsIsAvailable($ctrl.flavor.type) || $ctrl.model.number > 1"
                 data-uib-tooltip="{{ $ctrl.model.number > 1 ? ('pci_projects_project_instances_add_attch_floating_ip_checkbox_label_tooltip' | translate) : '' }}"
-                data-tooltip-append-to-body="data-translate-values"
+                data-tooltip-append-to-body="true"
                 data-toggle="tooltip"
                 aria-hidden="true"
             >
