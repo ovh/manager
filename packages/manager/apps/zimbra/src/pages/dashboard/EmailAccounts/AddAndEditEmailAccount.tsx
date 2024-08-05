@@ -151,7 +151,7 @@ export default function AddAndEditAccount() {
           firstName,
           displayName,
           description,
-        } = editAccountDetail.targetSpec;
+        } = editAccountDetail.currentState;
         const [account, domain] = email.split('@');
         newForm.account.value = account;
         newForm.domain.value = domain;
@@ -200,8 +200,8 @@ export default function AddAndEditAccount() {
 
   const handleDomainChange = (selectedDomain: string) => {
     const organizationLabel = domainList.find(
-      ({ targetSpec }) => targetSpec.name === selectedDomain,
-    )?.targetSpec.organizationLabel;
+      ({ currentState }) => currentState.name === selectedDomain,
+    )?.currentState.organizationLabel;
     handleFormChange('domain', selectedDomain);
     setSelectedDomainOrganization(organizationLabel);
   };
@@ -327,7 +327,7 @@ export default function AddAndEditAccount() {
               {!editAccountDetail
                 ? t('zimbra_account_add_title')
                 : t('zimbra_account_edit_title', {
-                    account: editAccountDetail?.targetSpec?.email,
+                    account: editAccountDetail?.currentState?.email,
                   })}
             </Subtitle>
           </div>
@@ -401,7 +401,7 @@ export default function AddAndEditAccount() {
                   <span slot="placeholder">
                     {t('zimbra_account_add_select_domain_placeholder')}
                   </span>
-                  {domainList?.map(({ targetSpec: domain }) => (
+                  {domainList?.map(({ currentState: domain }) => (
                     <OsdsSelectOption key={domain.name} value={domain.name}>
                       {domain.name}
                     </OsdsSelectOption>
@@ -502,8 +502,8 @@ export default function AddAndEditAccount() {
               </OsdsFormField>
             </div>
 
-            <div className={`flex ${!editAccountDetail ? 'w-1/2' : 'w-full'}`}>
-              <OsdsFormField className="w-full pr-6">
+            <div className={'flex w-full md:w-1/2'}>
+              <OsdsFormField className="w-full md:pr-6">
                 <div slot="label">
                   <OsdsText
                     level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
@@ -530,36 +530,6 @@ export default function AddAndEditAccount() {
                   }}
                 ></OsdsInput>
               </OsdsFormField>
-
-              {editAccountDetail && (
-                <OsdsFormField className="w-full pl-6">
-                  <div slot="label">
-                    <OsdsText
-                      level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                      color={ODS_THEME_COLOR_INTENT.text}
-                      size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                    >
-                      {t('zimbra_account_add_input_initials_label')}
-                    </OsdsText>
-                  </div>
-                  <OsdsInput
-                    type={ODS_INPUT_TYPE.text}
-                    name="initials"
-                    placeholder={t(
-                      'zimbra_account_add_input_initials_placeholder',
-                    )}
-                    color={ODS_THEME_COLOR_INTENT.default}
-                    size={ODS_INPUT_SIZE.md}
-                    value={form.initials.value}
-                    onOdsInputBlur={({ target: { name, value } }) =>
-                      handleFormChange(name, value.toString())
-                    }
-                    onOdsValueChange={({ detail: { name, value } }) => {
-                      handleFormChange(name, value);
-                    }}
-                  ></OsdsInput>
-                </OsdsFormField>
-              )}
             </div>
 
             {editAccountDetail && (
