@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'DoubleAuthAlertCtrl',
   class DoubleAuthAlertCtrl {
+    /* @ngInject */
     constructor($scope, $location) {
       this.$scope = $scope;
       this.$location = $location;

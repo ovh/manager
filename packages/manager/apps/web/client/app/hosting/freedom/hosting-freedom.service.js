@@ -8,10 +8,7 @@
   angular.module('services').service(
     'HostingFreedom',
     class HostingFreedom {
-      /**
-       * Constructor
-       * @param OvhHttp
-       */
+      /* @ngInject */
       constructor(OvhHttp) {
         this.OvhHttp = OvhHttp;
       }

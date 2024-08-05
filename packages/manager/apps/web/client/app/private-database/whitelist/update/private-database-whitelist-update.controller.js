@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'PrivateDatabaseUpdateWhitelistCtrl',
   class PrivateDatabaseUpdateWhitelistCtrl {
+    /* @ngInject */
     constructor(
       Alerter,
       WhitelistService,

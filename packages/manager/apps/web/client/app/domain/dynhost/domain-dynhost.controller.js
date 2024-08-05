@@ -5,6 +5,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'DomainTabDynHostCtrl',
   class DomainTabDynHostCtrl {
+    /* @ngInject */
     constructor($scope, $q, $stateParams, $translate, Alerter, Domain) {
       this.$scope = $scope;
       this.$q = $q;

@@ -4,6 +4,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'HostingDatabaseChangePasswordCtrl',
   class HostingDatabaseChangePasswordCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,

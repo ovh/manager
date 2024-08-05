@@ -1,12 +1,7 @@
 angular.module('App').controller(
   'DomainsRenewCtrl',
   class DomainsRenewCtrl {
-    /**
-     * Constructor
-     * @param $scope
-     * @param $window
-     * @param constants
-     */
+    /* @ngInject */
     constructor($scope, $window, constants) {
       this.$scope = $scope;
       this.$window = $window;

@@ -10,14 +10,7 @@ import uniq from 'lodash/uniq';
 angular.module('App').controller(
   'DomainsToCsvCtrl',
   class DomainsToCsvCtrl {
-    /**
-     * Constructor
-     * @param $scope
-     * @param $rootScope
-     * @param $q
-     * @param Domain
-     * @param exportCsv
-     */
+    /* @ngInject */
     constructor($scope, $rootScope, $q, $translate, Domain, exportCsv) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;

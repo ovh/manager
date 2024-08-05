@@ -4,6 +4,7 @@ import includes from 'lodash/includes';
 angular.module('App').controller(
   'PrivateDatabaseConfigurationsCtrl',
   class PrivateDatabaseConfigurationsCtrl {
+    /* @ngInject */
     constructor(
       Alerter,
       PrivateDatabase,

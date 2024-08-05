@@ -4,6 +4,7 @@ import findIndex from 'lodash/findIndex';
 angular.module('App').controller(
   'PrivateDatabaseOomCtrl',
   class PrivateDatabaseOomCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $q,

@@ -22,6 +22,7 @@ let meSchemas;
 
 export default class OvhContactsService {
   // @see /src/ovh-contacts.provider.js for dependency injections
+  /* @ngInject */
   constructor($q, $translate, OvhApiMe, OvhApiNewAccount, target, iceberg) {
     this.$q = $q;
     this.$translate = $translate;

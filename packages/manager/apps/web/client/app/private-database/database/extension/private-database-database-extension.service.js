@@ -1,6 +1,7 @@
 angular.module('services').service(
   'PrivateDatabaseExtension',
   class PrivateDatabaseExtension {
+    /* @ngInject */
     constructor($http, $rootScope, Poll, PrivateDatabase) {
       this.$http = $http;
       this.$rootScope = $rootScope;

@@ -9,6 +9,7 @@ import { SSH_STATE, USER_STATE } from './hosting-ftp-constants';
 angular.module('App').controller(
   'HostingTabFTPCtrl',
   class HostingTabFTPCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $scope,

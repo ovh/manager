@@ -4,6 +4,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'HostingDatabaseCheckQuotaCtrl',
   class HostingDatabaseCheckQuotaCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, HostingDatabase) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

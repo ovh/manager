@@ -5,6 +5,7 @@ import map from 'lodash/map';
 angular.module('App').controller(
   'DomainZoneResetCtrl',
   class DomainZoneResetCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $q,

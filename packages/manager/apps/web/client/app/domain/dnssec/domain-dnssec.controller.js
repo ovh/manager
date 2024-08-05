@@ -10,6 +10,7 @@ import some from 'lodash/some';
 angular.module('controllers').controller(
   'DomainDnssecTabCtrl',
   class DomainDnssecTabCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $q,

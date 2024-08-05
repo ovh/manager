@@ -10,10 +10,7 @@ import split from 'lodash/split';
 angular.module('services').service(
   'DomainValidator',
   class DomainValidator {
-    /**
-     * Constructor
-     * @param WucValidator
-     */
+    /* @ngInject */
     constructor(WucValidator) {
       this.WucValidator = WucValidator;
 

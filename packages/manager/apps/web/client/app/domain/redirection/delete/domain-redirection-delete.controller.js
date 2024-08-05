@@ -4,6 +4,7 @@ import get from 'lodash/get';
 angular.module('controllers').controller(
   'controllers.Domain.Redirection.delete',
   class DomainRedirectionDeleteCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $rootScope,

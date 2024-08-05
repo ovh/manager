@@ -7,6 +7,7 @@ import {
 angular.module('App').controller(
   'HostingDatabaseCopyCtrl',
   class HostingDatabaseCopyCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $translate,

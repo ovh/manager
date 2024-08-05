@@ -3,6 +3,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'controllers.Domain.Glue',
   class DomainTabGlueCtrl {
+    /* @ngInject */
     constructor($scope, $translate, Alerter, Domain, DomainValidator) {
       this.$scope = $scope;
       this.$translate = $translate;

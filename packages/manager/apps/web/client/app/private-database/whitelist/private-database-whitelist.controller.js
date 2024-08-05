@@ -5,6 +5,7 @@ import { WEBHOSTING_NETWORK_STATUS } from './private-database-whitelist.constant
 angular.module('App').controller(
   'PrivateDatabaseWhitelistCtrl',
   class PrivateDatabaseWhitelistListCtrl {
+    /* @ngInject */
     constructor(
       Alerter,
       PrivateDatabase,
