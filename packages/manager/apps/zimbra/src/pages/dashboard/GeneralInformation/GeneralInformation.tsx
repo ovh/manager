@@ -92,9 +92,10 @@ function GeneralInformation() {
                 >
                   {accountsStatistics?.length > 0
                     ? accountsStatistics?.map((stats) => (
-                        <span
-                          key={stats.offer}
-                        >{`${stats.configuredAccountsCount} ${stats.offer}`}</span>
+                        <span key={stats.offer}>{`${
+                          stats.configuredAccountsCount
+                        } / ${stats.configuredAccountsCount +
+                          stats.availableAccountsCount} ${stats.offer}`}</span>
                       ))
                     : t(
                         'zimbra_dashboard_tile_serviceConsumption_noAccountOffer',

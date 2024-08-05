@@ -26,13 +26,6 @@ export type DomainType = {
   id: string;
   resourceStatus: keyof typeof ResourceStatus;
   targetSpec: {
-    cnameToCheck: string;
-    createdAt: string;
-    name: string;
     organizationId: string;
-    organizationLabel: string;
-    status: keyof typeof ResourceStatus;
-    updatedAt: string;
-    accountsStatistics: AccountStatistics[];
   };
 };

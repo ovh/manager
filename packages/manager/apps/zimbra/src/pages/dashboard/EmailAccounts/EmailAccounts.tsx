@@ -110,10 +110,10 @@ export default function EmailAccounts() {
       id: item.id,
       email: item.currentState.email,
       offer: item.currentState.offer,
-      organizationId: item.targetSpec.organizationId,
-      organizationLabel: item.targetSpec.organizationLabel,
-      used: item.targetSpec.quota.used,
-      available: item.targetSpec.quota.available,
+      organizationId: item.currentState.organizationId,
+      organizationLabel: item.currentState.organizationLabel,
+      used: item.currentState.quota.used,
+      available: item.currentState.quota.available,
     })) ?? [];
 
   const webmailUrl = guidesConstants.GUIDES_LIST.webmail.url;

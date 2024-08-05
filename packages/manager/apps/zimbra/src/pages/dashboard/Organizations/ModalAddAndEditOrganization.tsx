@@ -184,7 +184,7 @@ export default function ModalAddAndEditOrganization() {
 
   useEffect(() => {
     if (editOrganizationDetail && !isLoadingRequest) {
-      const { name, label } = editOrganizationDetail.targetSpec;
+      const { name, label } = editOrganizationDetail.currentState;
       const newForm: FormTypeInterface = form;
       newForm.name.value = name;
       newForm.label.value = label;

@@ -7,18 +7,6 @@ export const domainMock: DomainType[] = [
     checksum: 'string',
     targetSpec: {
       organizationId: '00000000-0000-0000-0000-000000000000',
-      name: 'NormalDomain',
-      status: 'READY',
-      createdAt: '2024-04-12T12:27:47.213Z',
-      updatedAt: '2024-04-12T12:27:47.213Z',
-      organizationLabel: 'ToyStory',
-      cnameToCheck: '',
-      accountsStatistics: [
-        {
-          offer: 'STARTER',
-          configuredAccountsCount: 0,
-        },
-      ],
     },
     currentState: {
       organizationId: '00000000-0000-0000-0000-000000000000',
@@ -32,6 +20,7 @@ export const domainMock: DomainType[] = [
         {
           offer: 'STARTER',
           configuredAccountsCount: 0,
+          availableAccountsCount: 4,
         },
       ],
     },
@@ -49,18 +38,6 @@ export const domainMock: DomainType[] = [
     checksum: 'string',
     targetSpec: {
       organizationId: '00000000-0000-0000-0000-000000000000',
-      name: 'AwesomeDomain',
-      status: 'READY',
-      createdAt: '2024-04-12T12:27:47.213Z',
-      updatedAt: '2024-04-12T12:27:47.213Z',
-      organizationLabel: 'Magret',
-      cnameToCheck: '',
-      accountsStatistics: [
-        {
-          offer: 'STARTER',
-          configuredAccountsCount: 0,
-        },
-      ],
     },
     currentState: {
       organizationId: '00000000-0000-0000-0000-000000000000',
@@ -74,6 +51,7 @@ export const domainMock: DomainType[] = [
         {
           offer: 'STARTER',
           configuredAccountsCount: 0,
+          availableAccountsCount: 4,
         },
       ],
     },
@@ -91,18 +69,6 @@ export const domainMock: DomainType[] = [
     checksum: 'string',
     targetSpec: {
       organizationId: '00000000-0000-0000-0000-000000000001',
-      name: 'BlablaDomain',
-      status: 'READY',
-      createdAt: '2024-04-12T12:27:47.213Z',
-      updatedAt: '2024-04-12T12:27:47.213Z',
-      organizationLabel: 'Canard',
-      cnameToCheck: '',
-      accountsStatistics: [
-        {
-          offer: 'STARTER',
-          configuredAccountsCount: 0,
-        },
-      ],
     },
     currentState: {
       organizationId: '00000000-0000-0000-0000-000000000001',
@@ -116,6 +82,7 @@ export const domainMock: DomainType[] = [
         {
           offer: 'STARTER',
           configuredAccountsCount: 0,
+          availableAccountsCount: 4,
         },
       ],
     },

@@ -87,7 +87,7 @@ describe('email account add and edit page', () => {
     expect(getByTestId('page-title')).toHaveTextContent(
       emailAccountAddAndEditTranslation.zimbra_account_edit_title.replace(
         '{{ account }}',
-        accountMock[0].targetSpec?.email,
+        accountMock[0].currentState?.email,
       ),
     );
   });

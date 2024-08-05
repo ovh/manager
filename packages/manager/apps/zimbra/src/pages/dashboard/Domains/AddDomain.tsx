@@ -143,7 +143,7 @@ export default function AddDomain() {
           </span>
           {data?.map((item) => (
             <OsdsSelectOption key={item.id} value={item.id}>
-              {item.targetSpec?.name}
+              {item.currentState?.name}
             </OsdsSelectOption>
           ))}
         </OsdsSelect>

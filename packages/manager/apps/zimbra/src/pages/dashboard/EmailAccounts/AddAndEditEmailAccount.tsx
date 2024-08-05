@@ -151,7 +151,7 @@ export default function AddAndEditAccount() {
           firstName,
           displayName,
           description,
-        } = editAccountDetail.targetSpec;
+        } = editAccountDetail.currentState;
         const [account, domain] = email.split('@');
         newForm.account.value = account;
         newForm.domain.value = domain;
@@ -200,8 +200,8 @@ export default function AddAndEditAccount() {
 
   const handleDomainChange = (selectedDomain: string) => {
     const organizationLabel = domainList.find(
-      ({ targetSpec }) => targetSpec.name === selectedDomain,
-    )?.targetSpec.organizationLabel;
+      ({ currentState }) => currentState.name === selectedDomain,
+    )?.currentState.organizationLabel;
     handleFormChange('domain', selectedDomain);
     setSelectedDomainOrganization(organizationLabel);
   };
@@ -327,7 +327,7 @@ export default function AddAndEditAccount() {
               {!editAccountDetail
                 ? t('zimbra_account_add_title')
                 : t('zimbra_account_edit_title', {
-                    account: editAccountDetail?.targetSpec?.email,
+                    account: editAccountDetail?.currentState?.email,
                   })}
             </Subtitle>
           </div>
@@ -401,7 +401,7 @@ export default function AddAndEditAccount() {
                   <span slot="placeholder">
                     {t('zimbra_account_add_select_domain_placeholder')}
                   </span>
-                  {domainList?.map(({ targetSpec: domain }) => (
+                  {domainList?.map(({ currentState: domain }) => (
                     <OsdsSelectOption key={domain.name} value={domain.name}>
                       {domain.name}
                     </OsdsSelectOption>

@@ -7,9 +7,6 @@ export type ZimbraPlatformType = {
   targetSpec: {
     name: string;
     description: string;
-    numberOfOrganizations: number;
-    accountsStatistics: AccountStatistics[];
-    quota: number;
   };
   currentState: {
     name: string;

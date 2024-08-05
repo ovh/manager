@@ -84,9 +84,9 @@ export default function Organizations() {
   const items: OrganizationItem[] =
     data?.map((item) => ({
       id: item.id,
-      name: item.targetSpec.name,
-      label: item.targetSpec.label,
-      account: item.targetSpec.accountsStatistics.reduce(
+      name: item.currentState.name,
+      label: item.currentState.label,
+      account: item.currentState.accountsStatistics.reduce(
         (acc, current) => acc + current.configuredAccountsCount,
         0,
       ),
