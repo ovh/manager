@@ -61,28 +61,16 @@ export type AccountType = {
       service: string;
       street: string;
     };
-    createdAt: string; // ISO 8601 date string
     description: string;
-    detailedStatus: {
-      details: string;
-      link: string;
-      status: string;
-    }[];
     displayName: string;
-    domainId: string;
     email: string;
     firstName: string;
     hideInGal: boolean;
-    lastConnectionAt: string;
     lastName: string;
-    organizationId: string;
-    organizationLabel: string;
-    offer: string;
     quota: {
       available: number;
       used: number;
     };
-    updatedAt: string;
   };
 };
 
@@ -109,4 +97,5 @@ export type AccountBodyParamsType = {
   lastName?: string;
   password?: string;
   responder?: string;
+  offer?: string;
 };

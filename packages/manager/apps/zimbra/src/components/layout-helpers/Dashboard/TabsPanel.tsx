@@ -52,7 +52,7 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
     <>
       {data && (
         <div className="flex items-center mb-4">
-          <Headers subtitle={data.targetSpec.name} />
+          <Headers subtitle={data.currentState.name} />
           <OsdsChip
             removable
             inline
@@ -61,7 +61,7 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
             onClick={() => navigate(location.pathname)}
             className="ml-4"
           >
-            {data.targetSpec.label}
+            {data.currentState.label}
           </OsdsChip>
         </div>
       )}

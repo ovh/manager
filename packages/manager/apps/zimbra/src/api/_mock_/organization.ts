@@ -7,6 +7,7 @@ export const organizationDetailMock: OrganizationType = {
       {
         configuredAccountsCount: 0,
         offer: 'BUSINESS',
+        availableAccountsCount: 4,
       },
     ],
     createdAt: '2024-06-21T14:52:43.601Z',
@@ -27,18 +28,9 @@ export const organizationDetailMock: OrganizationType = {
   id: '1903b491-4d10-4000-8b70-f474d1abe601',
   resourceStatus: 'CREATING',
   targetSpec: {
-    accountsStatistics: [
-      {
-        configuredAccountsCount: 0,
-        offer: 'BUSINESS',
-      },
-    ],
-    createdAt: '2024-06-21T14:52:43.601Z',
     description: 'description',
     label: 'label',
     name: 'name',
-    storageConsumed: 0,
-    updatedAt: '2024-06-21T14:52:43.601Z',
   },
 };
 
@@ -50,6 +42,7 @@ export const organizationListMock: OrganizationType[] = [
         {
           configuredAccountsCount: 0,
           offer: 'BUSINESS',
+          availableAccountsCount: 4,
         },
       ],
       createdAt: '2024-06-21T14:52:43.601Z',
@@ -70,18 +63,9 @@ export const organizationListMock: OrganizationType[] = [
     id: '1903b491-4d10-4000-8b70-f474d1abe601',
     resourceStatus: 'CREATING',
     targetSpec: {
-      accountsStatistics: [
-        {
-          configuredAccountsCount: 0,
-          offer: 'BUSINESS',
-        },
-      ],
-      createdAt: '2024-06-21T14:52:43.601Z',
       description: 'description',
       label: 'label',
       name: 'name',
-      storageConsumed: 0,
-      updatedAt: '2024-06-21T14:52:43.601Z',
     },
   },
   {
@@ -91,6 +75,7 @@ export const organizationListMock: OrganizationType[] = [
         {
           configuredAccountsCount: 3,
           offer: 'READY',
+          availableAccountsCount: 4,
         },
       ],
       createdAt: '2024-06-01T14:52:43.601Z',
@@ -104,18 +89,9 @@ export const organizationListMock: OrganizationType[] = [
     id: '1903b491-4d10-4000-8b70-f474d1abe602',
     resourceStatus: 'READY',
     targetSpec: {
-      accountsStatistics: [
-        {
-          configuredAccountsCount: 3,
-          offer: 'STARTER',
-        },
-      ],
-      createdAt: '2024-06-01T14:52:43.601Z',
       description: 'description2',
       label: 'label2',
       name: 'name2',
-      storageConsumed: 0,
-      updatedAt: '2024-06-02T14:52:43.601Z',
     },
   },
 ];
