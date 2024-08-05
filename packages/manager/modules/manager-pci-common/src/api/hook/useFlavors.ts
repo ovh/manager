@@ -95,7 +95,7 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
     isAvailabilityPending;
 
   const mergedFlavors = useMemo(() => {
-    if (!flavors || !kubeFlavors || !catalog) return [];
+    if (!flavors || !kubeFlavors || !catalog || !availability) return [];
     const kubeFlavorNames = new Set(
       kubeFlavors.map(({ name }) => name.replace('-flex', '')),
     );
@@ -141,7 +141,7 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
         if (aGroup === bGroup) return a.ram - b.ram;
         return bGroup.localeCompare(aGroup);
       });
-  }, [catalog, flavors, kubeFlavors]);
+  }, [availability, catalog, flavors, kubeFlavors]);
   return {
     mergedFlavors,
     isPending,
