@@ -22,9 +22,7 @@ export default class NutanixGeneralInfoCtrl {
     this.atInternet = atInternet;
     this.TRAVAUX_LINK =
       TRAVAUX_LINK[coreConfig.getRegion()] || TRAVAUX_LINK.DEFAULT;
-    this.NUTANIX_LINK =
-      GUIDE_PACKAGES_URL[coreConfig.getUser().ovhSubsidiary] ||
-      GUIDE_PACKAGES_URL.DEFAULT;
+    this.coreConfig = coreConfig;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.NutanixService = NutanixService;
     this.REPLICATION_FACTOR_PREFIX = REPLICATION_FACTOR_PREFIX;
@@ -38,6 +36,14 @@ export default class NutanixGeneralInfoCtrl {
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
     this.showRedeployWarningModal = false;
     this.TRACKING = TRACKING;
+
+    const { ovhSubsidiary } = this.coreConfig.getUser();
+    this.NUTANIX_LINK =
+      this.packType === this.NUTANIX_PERSONAL_LICENSE_EDITION
+        ? GUIDE_PACKAGES_URL.BYOL[ovhSubsidiary] ||
+          GUIDE_PACKAGES_URL.BYOL.DEFAULT
+        : GUIDE_PACKAGES_URL.DEFAULT[ovhSubsidiary] ||
+          GUIDE_PACKAGES_URL.DEFAULT.DEFAULT;
   }
 
   getNodeRacks() {
