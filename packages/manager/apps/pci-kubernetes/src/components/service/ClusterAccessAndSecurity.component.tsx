@@ -116,7 +116,7 @@ export default function ClusterAccessAndSecurity({
         <TileLine
           title={t('kube_service_cluster_api_url')}
           value={
-            <OsdsClipboard aria-label="clipboard" value={kubeDetail?.url}>
+            <OsdsClipboard aria-label="clipboard" value={kubeDetail?.url} data-testid="clusterAccessAndSecurity-kubeUrl">
               <span slot="success-message">
                 {tCommon('common_clipboard_copied')}
               </span>
@@ -133,6 +133,7 @@ export default function ClusterAccessAndSecurity({
               ) : (
                 <OsdsText
                   className="mb-4"
+                  data-testid="ClusterAccessAndSecurity-ClusterRestrictions"
                   size={ODS_TEXT_SIZE._400}
                   level={ODS_TEXT_LEVEL.body}
                   color={ODS_THEME_COLOR_INTENT.text}
@@ -194,6 +195,7 @@ export default function ClusterAccessAndSecurity({
           <OsdsButton
             className="hover:shadow-lg w-fit"
             color={ODS_THEME_COLOR_INTENT.primary}
+            data-testid="ClusterAccessAndSecurity-DownloadKubeConfig"
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.ghost}
             onClick={postKubeConfig}
@@ -206,7 +208,11 @@ export default function ClusterAccessAndSecurity({
             {CONFIG_FILENAME}
           </OsdsButton>
           {isKubeConfigPending && (
-            <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />
+            <OsdsSpinner
+              inline
+              size={ODS_SPINNER_SIZE.sm}
+              data-testid="clusterAccessAndSecurity-spinnerKubeConfig"
+            />
           )}
         </div>
 
@@ -221,6 +227,7 @@ export default function ClusterAccessAndSecurity({
                   <OsdsClipboard
                     aria-label="clipboard"
                     value={oidcProvider.issuerUrl}
+                    data-testid="ClusterAccessAndSecurity-ClipboardIssuerUrl"
                     className="block"
                   >
                     <span slot="success-message">
