@@ -79,10 +79,9 @@ export default function OnBoardingPage() {
     <RedirectionGuard
       isLoading={isClustersPending || isAvailableRegionsPending}
       route={`/pci/projects/${projectId}/kubernetes`}
-      condition={clusters?.length !== 0}
+      condition={clusters?.length > 0}
     >
-      {project && <OsdsBreadcrumb items={breadcrumbItems} />}
-
+      dssss{project && <OsdsBreadcrumb items={breadcrumbItems} />}dsqdsdqs
       <OnboardingLayout
         title={tOnBoarding('pci_projects_project_kubernetes_title')}
         description={
