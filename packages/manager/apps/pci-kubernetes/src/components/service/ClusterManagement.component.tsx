@@ -80,6 +80,7 @@ export default function ClusterManagement({
           title={t('kube_service_common_edit')}
           isDisabled={isProcessing(kubeDetail?.status)}
           href={hrefRenameCluster}
+          dataTestId="clusterManagement-edit"
         />
         <TileButton
           title={t('kube_service_reset')}
@@ -121,6 +122,7 @@ export default function ClusterManagement({
           title={t('kube_service_terminate')}
           isDisabled={isProcessing(kubeDetail?.status)}
           href={hrefTerminateCluster}
+          dataTestId="clusterManagement-terminate"
         />
       </div>
     </OsdsTile>
