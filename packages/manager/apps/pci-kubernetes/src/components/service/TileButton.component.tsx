@@ -30,8 +30,7 @@ export default function TileButton({
         size={ODS_BUTTON_SIZE.sm}
         variant={ODS_BUTTON_VARIANT.ghost}
         href={href}
-        {...(isDisabled ? { disabled: true } : {})}
-        inline
+        disabled={isDisabled || undefined}
       >
         <span slot="start">{title}</span>
         <span slot="end">
