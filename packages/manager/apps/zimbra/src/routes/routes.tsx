@@ -1,6 +1,5 @@
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
-import i18next from 'i18next';
 import NotFound from '@/pages/404';
 
 const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
@@ -18,7 +17,6 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
 export const Routes: any = [
   {
     path: '',
-    handle: { breadcrumb: (): string => 'Zimbra' },
     ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
@@ -28,32 +26,95 @@ export const Routes: any = [
           {
             path: '',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/GeneralInformation'),
+              import('@/pages/dashboard/GeneralInformation/GeneralInformation'),
             ),
-            handle: {
-              breadcrumb: (): null => null,
-            },
           },
           {
             path: 'organizations',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/Organizations')),
-            handle: {
-              breadcrumb: (): string => i18next.t('dashboard:organization'),
-            },
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/Organizations/Organizations'),
+            ),
+            children: [
+              {
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/Organizations/ModalAddAndEditOrganization'
+                  ),
+                ),
+              },
+              {
+                path: 'edit',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/Organizations/ModalAddAndEditOrganization'
+                  ),
+                ),
+              },
+              {
+                path: 'delete',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/Organizations/ModalDeleteOrganization'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'domains',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/Domains')),
-            handle: {
-              breadcrumb: (): string => i18next.t('dashboard:domain'),
-            },
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/Domains/Domains'),
+            ),
+            children: [
+              {
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/AddDomain'),
+                ),
+                handle: { isOverridePage: true },
+              },
+              {
+                path: 'delete',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/ModalDeleteDomain'),
+                ),
+              },
+            ],
           },
           {
             path: 'email_accounts',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/EmailAccounts')),
-            handle: {
-              breadcrumb: (): string => i18next.t('dashboard:email_accounts'),
-            },
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/EmailAccounts/EmailAccounts'),
+            ),
+            children: [
+              {
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+              {
+                path: 'edit',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+              {
+                path: 'delete',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/ModalDeleteEmailAccount'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },

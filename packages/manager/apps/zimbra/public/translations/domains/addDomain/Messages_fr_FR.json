@@ -1,0 +1,16 @@
+{
+  "zimbra_domains_add_domain_cta_back": "Retour vers les noms de domaine",
+  "zimbra_domains_add_domain_cta_confirm": "Confirmer",
+  "zimbra_domains_add_domain_cta_next": "Suivant",
+  "zimbra_domains_add_domain_title": "Nom de domaine",
+  "zimbra_domains_add_domain_title_select": "Ajouter un domaine",
+  "zimbra_domains_add_domain_select_title": "Sélectionner un domaine dans la liste",
+  "zimbra_domains_add_domain_select": "Sélectionner un nom de domaine",
+  "zimbra_domains_add_domain_input": "Saisissez votre nom de domaine",
+  "zimbra_domains_add_domain_input_title": "Saisir un nom de domaine non géré par notre compte OVHcloud",
+  "zimbra_domains_add_domain_organization": "Organisation",
+  "zimbra_domains_add_domain_organization_select": "Sélectionner une organisation",
+  "zimbra_domains_add_domain_configuration_title": "Configuration",
+  "zimbra_domains_add_domain_success_message": "Votre demande d'ajout a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
+  "zimbra_domains_add_domain_error_message": "Votre demande d'ajout n'a pas pu aboutir. {{ error }}"
+}
