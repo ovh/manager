@@ -1,5 +1,5 @@
 import isEmpty from 'lodash/isEmpty';
-import template from './GENERAL_INFORMATIONS.html';
+import template from './domain-general-informations.html';
 
 import './general-information.styles.scss';
 
