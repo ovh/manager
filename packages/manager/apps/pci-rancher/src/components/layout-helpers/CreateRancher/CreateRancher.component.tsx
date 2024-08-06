@@ -227,7 +227,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
                 ? ODS_THEME_COLOR_INTENT.error
                 : ODS_THEME_COLOR_INTENT.primary
             }
-            className="my-3 w-1/3"
+            className="my-3 sm:w-1/2 md:w-2/3 lg:w-1/3"
             value={rancherName}
             onOdsValueChange={(
               e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
