@@ -154,7 +154,7 @@
                 </oui-radio>
                 <p
                     class="mt-2 ml-4"
-                    data-ng-if="!$ctrl.dense && !$ctrl.gateway.enabled"
+                    data-ng-if="!$ctrl.gateway.enabled"
                     data-translate="kubernetes_network_form_gateway_public_description"
                 ></p>
                 <oui-radio data-value="true">
@@ -162,10 +162,7 @@
                         data-translate="kubernetes_network_form_gateway_private"
                     ></strong>
                 </oui-radio>
-                <p
-                    class="mt-2 ml-4"
-                    data-ng-if="!$ctrl.dense && $ctrl.gateway.enabled"
-                >
+                <p class="mt-2 ml-4" data-ng-if=" $ctrl.gateway.enabled">
                     <span
                         data-translate="kubernetes_network_form_gateway_private_description_p1"
                     ></span>
