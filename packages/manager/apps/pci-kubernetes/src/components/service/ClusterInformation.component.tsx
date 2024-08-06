@@ -25,6 +25,7 @@ export default function ClusterInformation({
   const { t } = useTranslation('service');
   const { t: tDetail } = useTranslation('listing');
   const { t: tKubernetes } = useTranslation('kubernetes');
+  const { t: tCommon } = useTranslation('common');
 
   const ip = kubeDetail?.privateNetworkConfiguration?.defaultVrackGateway;
   const publicNetwork =
@@ -52,7 +53,13 @@ export default function ClusterInformation({
 
         <TileLine
           title={tDetail('kube_list_id')}
-          value={<OsdsClipboard aria-label="clipboard" value={kubeDetail.id} />}
+          value={
+            <OsdsClipboard aria-label="clipboard" value={kubeDetail.id}>
+              <span slot="success-message">
+                {tCommon('common_clipboard_copied')}
+              </span>
+            </OsdsClipboard>
+          }
         />
 
         <TileLine
@@ -136,7 +143,11 @@ export default function ClusterInformation({
         <TileLine
           title={t('kube_service_cluster_nodes_url')}
           value={
-            <OsdsClipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
+            <OsdsClipboard aria-label="clipboard" value={kubeDetail.nodesUrl}>
+              <span slot="success-message">
+                {tCommon('common_clipboard_copied')}
+              </span>
+            </OsdsClipboard>
           }
         />
       </div>
