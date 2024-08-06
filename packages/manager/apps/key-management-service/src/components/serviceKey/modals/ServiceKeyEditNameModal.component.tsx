@@ -16,6 +16,7 @@ import {
   OsdsInputCustomEvent,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useNotifications } from '@ovhcloud/manager-components';
 import Modal from '@/components/Modal/Modal';
 
 import { useUpdateOkmsServiceKey } from '@/data/hooks/useUpdateOkmsServiceKey';
@@ -37,7 +38,7 @@ export const ServiceKeyEditNameModal = ({
 }: ServiceKeyEditNameModalProps) => {
   const [serviceKeyName, setServiceKeyName] = useState(name);
   const serviceKeyNameError = validateServiceKeyName(serviceKeyName);
-
+  const { addSuccess } = useNotifications();
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tCommon } = useTranslation('key-management-service/common');
 
@@ -48,7 +49,13 @@ export const ServiceKeyEditNameModal = ({
   const { updateKmsServiceKey, isPending } = useUpdateOkmsServiceKey({
     okmsId,
     keyId,
-    onSuccess: closeModal,
+    onSuccess: () => {
+      addSuccess(
+        t('key_management_service_service-keys_update_name_success'),
+        true,
+      );
+      closeModal();
+    },
     onError: closeModal,
   });
 
