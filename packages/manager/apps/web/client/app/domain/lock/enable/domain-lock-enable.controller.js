@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'DomainLockEnableCtrl',
   class DomainLockDisableCtrl {
+    /* @ngInject */
     constructor($scope, $rootScope, $translate, Alerter, Domain) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;

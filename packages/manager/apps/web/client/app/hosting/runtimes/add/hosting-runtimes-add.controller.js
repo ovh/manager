@@ -4,6 +4,7 @@ import includes from 'lodash/includes';
 angular.module('App').controller(
   'controllers.Hosting.Runtimes.create',
   class HostingRuntimesCreateCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,

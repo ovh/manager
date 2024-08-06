@@ -1,5 +1,6 @@
 (() => {
   class ServiceExpirationLabelComponentCtrl {
+    /* @ngInject */
     constructor($rootScope, $scope) {
       $scope.i18n = $rootScope.i18n;
     }

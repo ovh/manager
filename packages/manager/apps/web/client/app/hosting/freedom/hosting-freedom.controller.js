@@ -3,6 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 angular.module('App').controller(
   'HostingFreedomTabCtrl',
   class HostingFreedomTabCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $rootScope,

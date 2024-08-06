@@ -8,6 +8,7 @@ import { HOSTING_TRACKING } from '../../hosting.constants';
 angular.module('App').controller(
   'HostingUpgradeOfferCtrl',
   class HostingUpgradeOfferCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $rootScope,

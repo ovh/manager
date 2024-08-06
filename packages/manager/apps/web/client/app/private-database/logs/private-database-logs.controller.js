@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'PrivateDatabaseLogsCtrl',
   class PrivateDatabaseLogsCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, TailLogs, PrivateDatabaseLogsService) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

@@ -8,6 +8,7 @@ import remove from 'lodash/remove';
 angular.module('App').controller(
   'PrivateDatabaseUsersListCtrl',
   class PrivateDatabaseUsersListCtrl {
+    /* @ngInject */
     constructor(Alerter, PrivateDatabase, $scope, $stateParams, $translate) {
       this.alerter = Alerter;
       this.privateDatabaseService = PrivateDatabase;

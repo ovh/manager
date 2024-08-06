@@ -5,6 +5,7 @@ import { HOSTING_OFFER, GIT_STATUS } from '../hosting-multisite.constants';
 angular.module('App').controller(
   'HostingRemoveDomainCtrl',
   class HostingRemoveDomainCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,

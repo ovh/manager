@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'PrivateDatabaseStartCtrl',
   class PrivateDatabaseStartCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, PrivateDatabase) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

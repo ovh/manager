@@ -3,6 +3,7 @@ import isObject from 'lodash/isObject';
 angular.module('App').controller(
   'controllers.Hosting.Envvars.edit',
   class HostingEnvvarsEditCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, HostingEnvvars) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

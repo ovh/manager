@@ -7,6 +7,7 @@ import {
 angular.module('App').controller(
   'HostingFtpUserCreateCtrl',
   class HostingFtpUserCreateCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,

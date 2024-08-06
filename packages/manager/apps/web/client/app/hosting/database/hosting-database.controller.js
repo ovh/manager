@@ -12,6 +12,7 @@ import { DATABASES_TRACKING } from '../hosting.constants';
 angular.module('App').controller(
   'HostingTabDatabasesCtrl',
   class HostingTabDatabasesCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $scope,

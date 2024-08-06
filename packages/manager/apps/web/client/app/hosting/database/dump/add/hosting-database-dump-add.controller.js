@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingDatabaseDumpAddCtrl',
   class HostingDatabaseDumpCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, HostingDatabase, Alerter) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

@@ -1,6 +1,7 @@
 angular.module('services').service(
   'HostingLocalSeo',
   class HostingLocalSeo {
+    /* @ngInject */
     constructor($window, OvhHttp, WucUser) {
       this.$window = $window;
       this.OvhHttp = OvhHttp;

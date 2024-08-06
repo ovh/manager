@@ -1,12 +1,7 @@
 angular.module('services').service(
   'HostingStatistics',
   class HostingStatistics {
-    /**
-     * Constructor
-     * @param $http
-     * @param $q
-     * @param OvhHttp
-     */
+    /* @ngInject */
     constructor($http, $q, OvhHttp) {
       this.$http = $http;
       this.$q = $q;

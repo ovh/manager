@@ -3,6 +3,7 @@ import isArray from 'lodash/isArray';
 angular.module('App').controller(
   'HostingEnvvarsCtrl',
   class HostingEnvvarsCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,

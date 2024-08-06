@@ -3,6 +3,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'HostingDatabaseDumpDeleteCtrl',
   class HostingDatabaseDumpDeleteCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $filter,

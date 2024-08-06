@@ -4,6 +4,7 @@ import remove from 'lodash/remove';
 angular.module('App').controller(
   'PrivateDatabaseChangeVersionCtrl',
   class PrivateDatabaseChangeVersionCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, PrivateDatabase) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
