@@ -10,6 +10,7 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
+import { SidebarTooltipLink } from './tooltip/SidebarTooltipLink';
 
 type SidebarLinkProps = {
   count?: number | boolean;
@@ -45,7 +46,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       onClick={handleOnClick}
       id={id}
     >
-      <span> {t(isShortText ? node.shortTranslation : node.translation)}</span>
+      {isShortText ? <SidebarTooltipLink tooltip={t(node.translation)}  text={t(node.shortTranslation)}/> : <span>{t(node.translation)}</span>}
       <div className='flex align-items-center'>
         {!isShortText && (count as number) > 0 && (
           <OsdsIcon
