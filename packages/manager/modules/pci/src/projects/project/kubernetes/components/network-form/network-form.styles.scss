@@ -20,4 +20,13 @@
       margin-bottom: 1rem !important;
     }
   }
+
+  .oui-radio__label {
+    align-items: baseline;
+  }
+
+  .oui-radio__icon {
+    position: relative;
+    top: 0.2rem;
+  }
 }

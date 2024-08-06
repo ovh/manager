@@ -29,6 +29,7 @@ export default class NetworkFormController {
     this.mode = MODE.CREATE;
     this.isLoadBalancersSubnetShown = null;
     this.initialGateway = null;
+    this.gatewayMode = 'auto';
   }
 
   get hasPrivateNetwork() {
@@ -149,6 +150,9 @@ export default class NetworkFormController {
 
   $onInit() {
     this.initialGateway = angular.copy(this.gateway);
+    if (this.gateway.ip) {
+      this.gatewayMode = 'custom';
+    }
   }
 
   onPrivateNetworkChanged() {
@@ -194,6 +198,16 @@ export default class NetworkFormController {
   onGatewayChanged() {
     if (!this.gateway.enabled) {
       this.gateway.ip = '';
+      this.gatewayMode = 'auto';
+    }
+  }
+
+  onGatewayModeChanged() {
+    if (this.gatewayMode === 'auto') {
+      this.gateway.ip = '';
+    } else if (this.gatewayMode === 'custom') {
+      // Intentionally using undefined as the initial NgModelController's value
+      this.gateway.ip = this.initialGateway?.ip || undefined;
     }
   }
 
