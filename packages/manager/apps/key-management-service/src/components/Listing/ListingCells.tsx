@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import {
   DataGridClipboardCell,
   DataGridTextCell,
@@ -7,12 +7,12 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { parseISO } from 'date-fns';
 import { OKMS } from '@/types/okms.type';
 import KmsActionMenu from '../menu/KmsActionMenu.component';
 import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
 import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyTypeTranslations';
 import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatus.component';
+import { useFormattedDate } from '@/hooks/useFormattedDate';
 
 export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
   return <DataGridClipboardCell text={props.id} />;
@@ -70,28 +70,22 @@ export const DatagridCellType = (props: OkmsAllServiceKeys) => {
 };
 
 export const DatagridCreationDate = (props: OkmsAllServiceKeys) => {
-  const { environment } = useContext(ShellContext);
-  const [dateTimeFormat, setDateTimeFormat] = useState<Intl.DateTimeFormat>();
+  const date = new Date(Date.parse(props.createdAt));
 
-  useEffect(() => {
-    setDateTimeFormat(
-      new Intl.DateTimeFormat(environment.getUserLocale().replace('_', '-'), {
-        hour12: false,
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric',
-      }),
-    );
-  }, [environment]);
+  const formattedDate = useFormattedDate({
+    date,
+    options: {
+      hour12: false,
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    },
+  });
 
-  return (
-    <DataGridTextCell>
-      {dateTimeFormat?.format(parseISO(props.createdAt))}
-    </DataGridTextCell>
-  );
+  return <DataGridTextCell>{formattedDate}</DataGridTextCell>;
 };
 
 export const DatagridStatus = (props: OkmsAllServiceKeys) => {

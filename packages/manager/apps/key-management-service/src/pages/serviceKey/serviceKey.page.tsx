@@ -187,7 +187,15 @@ export default function Key() {
                   >
                     <TileValueDate
                       value={kmsKey.createdAt}
-                      options={{ dateStyle: 'long' }}
+                      options={{
+                        hour12: false,
+                        year: 'numeric',
+                        month: 'numeric',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric',
+                      }}
                     />
                   </TileItem>
                 </Tile>
