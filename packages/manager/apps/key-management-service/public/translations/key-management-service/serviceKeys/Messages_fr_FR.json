@@ -30,7 +30,7 @@
   "key_management_service_service-keys_dashboard_field_operations_encrypt_decrypt": "Chiffrer / Déchiffrer",
   "key_management_service_service-keys_dashboard_field_operations_wrap_unwrap": "Encapsulation / Décapsulation",
   "key_management_service_service-keys_update_name_title": "Renommer",
-  "key_management_service_service-keys_update_name_error_min_max": "Le nom doit comporter entre 1 et 32 caractères.",
+  "key_management_service_service-keys_update_name_error_min_max": "Le nombre de caractères autorisé est dépassé. (32 caractères maximum)",
   "key_management_service_service-keys_update_name_error_invalid_characters": "Votre saisie n'est pas valide.",
   "key_management_service_service-keys_update_name_success": "Le nom a été modifié avec succès.",
   "key_management_service_service-keys_update_name_error": "La modification n'a pas été prise en compte. {{error}}",

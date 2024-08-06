@@ -5,7 +5,8 @@ import React, { useRef } from 'react';
 const Modal: React.FC<React.PropsWithChildren & {
   onClose: () => void;
   color: ODS_THEME_COLOR_INTENT;
-}> = ({ color, onClose, children }) => {
+  headline?: string;
+}> = ({ color, onClose, headline, children }) => {
   const modal = useRef<HTMLOsdsModalElement>(null);
 
   const onOdsModalClose = () => {
@@ -18,6 +19,7 @@ const Modal: React.FC<React.PropsWithChildren & {
       dismissible
       onOdsModalClose={onOdsModalClose}
       ref={modal}
+      headline={headline}
     >
       {children}
     </OsdsModal>

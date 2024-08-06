@@ -6,7 +6,6 @@ import {
   OsdsFormField,
   OsdsInput,
   OsdsSpinner,
-  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_VARIANT,
@@ -54,16 +53,11 @@ export const ServiceKeyEditNameModal = ({
 
   const getErrorMessage = (error: ServiceKeyNameErrorsType) => {
     switch (error) {
-      case 'REQUIRED':
-        return t(
-          'key_management_service_service-keys_update_name_error_min_max',
-        );
-
       case 'INVALID_CHARACTERS':
         return t(
           'key_management_service_service-keys_update_name_error_invalid_characters',
         );
-
+      case 'REQUIRED':
       case 'TOO_MANY_CHARACTERS':
         return t(
           'key_management_service_service-keys_update_name_error_min_max',
@@ -75,18 +69,17 @@ export const ServiceKeyEditNameModal = ({
   };
 
   return (
-    <Modal onClose={closeModal} color={ODS_THEME_COLOR_INTENT.primary}>
+    <Modal
+      headline={t('key_management_service_service-keys_dashboard_field_name')}
+      onClose={closeModal}
+      color={ODS_THEME_COLOR_INTENT.primary}
+    >
       {isPending ? (
         <div className="flex justify-center">
           <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
         </div>
       ) : (
         <OsdsFormField error={getErrorMessage(serviceKeyNameError)}>
-          <span slot="label">
-            <OsdsText>
-              {t('key_management_service_service-keys_dashboard_field_name')}
-            </OsdsText>
-          </span>
           <OsdsInput
             aria-label="input-edit-service-key-name"
             error={!!serviceKeyNameError}
