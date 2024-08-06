@@ -54,6 +54,7 @@ export default function ClusterAccessAndSecurity({
   kubeDetail,
 }: Readonly<ClusterAccessAndSecurityProps>) {
   const { t } = useTranslation('service');
+  const { t: tCommon } = useTranslation('common');
 
   const { kubeId, projectId } = useParams();
   const { addError } = useNotifications();
@@ -112,15 +113,17 @@ export default function ClusterAccessAndSecurity({
         </OsdsText>
         <OsdsDivider separator />
 
-        {/* Kube API URL */}
         <TileLine
           title={t('kube_service_cluster_api_url')}
           value={
-            <OsdsClipboard aria-label="clipboard" value={kubeDetail?.url} />
+            <OsdsClipboard aria-label="clipboard" value={kubeDetail?.url}>
+              <span slot="success-message">
+                {tCommon('common_clipboard_copied')}
+              </span>
+            </OsdsClipboard>
           }
         />
 
-        {/* Limit access to APIServer */}
         <TileLine
           title={t('kube_service_restrictions')}
           value={
@@ -153,7 +156,6 @@ export default function ClusterAccessAndSecurity({
           }
         />
 
-        {/* kube config file */}
         <OsdsPopover>
           <span slot="popover-trigger">
             <OsdsText
@@ -210,7 +212,6 @@ export default function ClusterAccessAndSecurity({
 
         <OsdsDivider separator />
 
-        {/* OIDC */}
         <TileLine
           title={t('kube_service_access_security_oidc_title')}
           value={
@@ -221,7 +222,11 @@ export default function ClusterAccessAndSecurity({
                     aria-label="clipboard"
                     value={oidcProvider.issuerUrl}
                     className="block"
-                  />
+                  >
+                    <span slot="success-message">
+                      {tCommon('common_clipboard_copied')}
+                    </span>
+                  </OsdsClipboard>
                   <OsdsText
                     className="mb-4 block"
                     size={ODS_TEXT_SIZE._400}
@@ -242,43 +247,44 @@ export default function ClusterAccessAndSecurity({
                 </OsdsText>
               )}
 
-              <ActionMenu
-                aria-label={t(
-                  'kube_service_access_security_oidc_menu_action_sr_only',
-                )}
-                isCompact
-                items={[
-                  {
-                    id: 1,
-                    label: t(
-                      'kube_service_access_security_oidc_menu_action_add_provider',
-                    ),
-                    disabled: isOidcDefined,
-                    href: hrefAddOIDCProvider,
-                  },
-                  {
-                    id: 2,
-                    label: t(
-                      'kube_service_access_security_oidc_menu_action_set_provider',
-                    ),
-                    disabled: !isOidcDefined,
-                    href: hrefUpdateOIDCProvider,
-                  },
-                  {
-                    id: 3,
-                    label: t(
-                      'kube_service_access_security_oidc_menu_action_remove_provider',
-                    ),
-                    disabled: !isOidcDefined,
-                    href: hrefRemoveOIDCProvider,
-                  },
-                ]}
-              />
+              <div className="min-w-10">
+                <ActionMenu
+                  aria-label={t(
+                    'kube_service_access_security_oidc_menu_action_sr_only',
+                  )}
+                  isCompact
+                  items={[
+                    {
+                      id: 1,
+                      label: t(
+                        'kube_service_access_security_oidc_menu_action_add_provider',
+                      ),
+                      disabled: isOidcDefined,
+                      href: hrefAddOIDCProvider,
+                    },
+                    {
+                      id: 2,
+                      label: t(
+                        'kube_service_access_security_oidc_menu_action_set_provider',
+                      ),
+                      disabled: !isOidcDefined,
+                      href: hrefUpdateOIDCProvider,
+                    },
+                    {
+                      id: 3,
+                      label: t(
+                        'kube_service_access_security_oidc_menu_action_remove_provider',
+                      ),
+                      disabled: !isOidcDefined,
+                      href: hrefRemoveOIDCProvider,
+                    },
+                  ]}
+                />
+              </div>
             </div>
           }
         />
 
-        {/* upgrade policy */}
         <TileLine
           title={t('kube_service_upgrade_policy')}
           value={

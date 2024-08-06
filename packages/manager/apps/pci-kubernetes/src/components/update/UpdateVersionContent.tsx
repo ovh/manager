@@ -4,7 +4,7 @@ import {
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 type UpdateVersionContentProps = {
   forceVersion: boolean;
@@ -53,11 +53,7 @@ export default function UpdateVersionContent({
         size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         className="mt-6 block"
       >
-        <span
-          dangerouslySetInnerHTML={{
-            __html: t('kube_service_minor_version_update_message_3'),
-          }}
-        />
+        <Trans>{t('kube_service_minor_version_update_message_3')}</Trans>
       </OsdsText>
       <OsdsText
         color={ODS_TEXT_COLOR_INTENT.text}
