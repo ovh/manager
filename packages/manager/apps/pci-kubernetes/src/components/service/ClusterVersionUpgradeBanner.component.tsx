@@ -28,11 +28,7 @@ export default function ClusterVersionUpgradeBanner() {
           color={ODS_THEME_COLOR_INTENT.text}
           className="block"
         >
-          <span
-            dangerouslySetInnerHTML={{
-              __html: t('kube_service_cluster_version_not_supported_message'),
-            }}
-          ></span>
+          {t('kube_service_cluster_version_not_supported_message')}
         </OsdsText>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}

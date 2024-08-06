@@ -8,7 +8,7 @@ import {
   OsdsMessage,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 
 export default function ClusterSecurityUpgradeBanner() {
@@ -28,13 +28,8 @@ export default function ClusterSecurityUpgradeBanner() {
           color={ODS_THEME_COLOR_INTENT.text}
           className="block mb-5"
         >
-          <span
-            dangerouslySetInnerHTML={{
-              __html: t('kube_service_cluster_update_available'),
-            }}
-          ></span>
+          <Trans>{t('kube_service_cluster_update_available')}</Trans>
         </OsdsText>
-
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}

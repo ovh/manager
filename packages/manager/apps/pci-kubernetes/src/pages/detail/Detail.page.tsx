@@ -5,29 +5,31 @@ import {
   useProjectUrl,
 } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_CHIP_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsBreadcrumb,
-  OsdsChip,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
+import { OsdsBreadcrumb, OsdsChip } from '@ovhcloud/ods-components/react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useHref, useParams, useResolvedPath } from 'react-router-dom';
+import {
+  Outlet,
+  useHref,
+  useLocation,
+  useParams,
+  useResolvedPath,
+} from 'react-router-dom';
 import TabsPanel from '@/components/detail/TabsPanel.component';
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
 
 export default function DetailPage() {
   const { t } = useTranslation('listing');
   const { t: tDetail } = useTranslation('detail');
+  const [activePanelTranslation, setActivePanelTranslation] = useState(null);
 
   const { data: project } = useProject();
   const { projectId, kubeId } = useParams();
   const hrefProject = useProjectUrl('public-cloud');
   const hrefBack = useHref('..');
+  const hrefService = useHref('./service');
+  const location = useLocation();
 
   const tabs = [
     {
@@ -46,9 +48,9 @@ export default function DetailPage() {
       to: useResolvedPath('restrictions').pathname,
     },
     {
-      name: 'kube_logs',
+      name: 'kube_logs_tab_title',
       title: (
-        <>
+        <span>
           {tDetail('kube_logs_tab_title')}
           <OsdsChip
             className="ml-4"
@@ -56,21 +58,20 @@ export default function DetailPage() {
             size={ODS_CHIP_SIZE.sm}
             inline
           >
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_TEXT_SIZE._200}
-            >
-              {tDetail('kube_logs_tab_title_beta_status')}
-            </OsdsText>
+            {tDetail('kube_logs_tab_title_beta_status')}
           </OsdsChip>
-        </>
+        </span>
       ),
       to: useResolvedPath('logs').pathname,
     },
   ];
 
   const { data: kubeDetail } = useKubeDetail(projectId, kubeId);
+
+  useEffect(() => {
+    const activeTab = tabs.find((tab) => location.pathname.startsWith(tab.to));
+    setActivePanelTranslation(tDetail(activeTab?.name));
+  }, [location.pathname]);
 
   return (
     <>
@@ -87,7 +88,9 @@ export default function DetailPage() {
             },
             {
               label: kubeDetail?.name,
+              href: hrefService,
             },
+            { label: activePanelTranslation },
           ]}
         />
       )}

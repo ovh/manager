@@ -57,6 +57,7 @@ export default function ClusterManagement({
       .map((version) => parseFloat(version))
       .reduce((max, current) => (current > max ? current : max), 0);
   }, [cloudSchema]);
+
   return (
     <OsdsTile
       className="w-full h-full flex-col shadow-lg opacity-100"
