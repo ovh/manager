@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.32.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.32.2...@ovh-ux/manager-web@18.32.3) (2024-08-06)
+
+
+### Bug Fixes
+
+* add ng-inject ([#12633](https://github.com/ovh/manager/issues/12633)) ([4ef3118](https://github.com/ovh/manager/commit/4ef3118e4f1b845023e893353ae2a4955623a2d8))
+
+
+
+
+
 ## [18.32.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.32.1...@ovh-ux/manager-web@18.32.2) (2024-08-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
