@@ -3,7 +3,9 @@
         data-current-index="$ctrl.currentStep"
         data-on-finish="$ctrl.redirectToPaymentPage()"
     >
+        <!-- Select the service -->
         <oui-step-form
+            data-position="0"
             data-id="service"
             data-name="service_selection"
             data-header="{{:: ('ip_order_step1_question' | translate) + $ctrl.ADDITIONAL_IP}}"
@@ -11,7 +13,7 @@
             data-editable="!$ctrl.isLoading"
             data-navigation="$ctrl.model.selectedService"
             data-on-focus="$ctrl.onFlavorFocus()"
-            data-on-submit="$ctrl.manageLoadIpOffers()"
+            data-on-submit="$ctrl.onIpServiceSelection()"
         >
             <div data-ng-show="$ctrl.loading.services" class="text-center">
                 <oui-spinner></oui-spinner>
@@ -55,17 +57,48 @@
                 data-translate="ip_order_noservices"
             ></div>
         </oui-step-form>
+
+        <!-- Select the region for Parking IP-->
         <oui-step-form
+            data-position="1"
+            data-ng-if="$ctrl.isParkingIp"
+            data-id="region"
+            data-name="region_selection"
+            data-header="{{:: ('ip_agora_table_header_region' | translate)}}"
+            data-valid="$ctrl.model.selectedRegion"
+            data-editable="!$ctrl.isLoading"
+            data-navigation="$ctrl.model.selectedRegion"
+            data-on-focus="$ctrl.onFlavorFocus()"
+            data-on-submit="$ctrl.manageLoadIpOffers()"
+        >
+            <div data-ng-show="$ctrl.loading.region" class="text-center">
+                <oui-spinner></oui-spinner>
+            </div>
+            <div class="row" data-ng-show="$ctrl.catalogByLocation.length >= 1">
+                <oui-select-picker
+                    class="d-inline-block col-md-6 col-xl-3 my-3"
+                    data-name="region"
+                    data-ng-repeat="region in $ctrl.catalogByLocation track by region.regionName"
+                    data-label="{{ region.location }}"
+                    data-description="{{ region.regionName }}"
+                    data-variant="light"
+                    data-picture="{{ ::region.icon }}"
+                    data-model="$ctrl.model.selectedRegion"
+                    data-values="[region]"
+                >
+                </oui-select-picker>
+            </div>
+        </oui-step-form>
+
+        <!-- Choice your solution -->
+        <oui-step-form
+            data-position="{{$ctrl.isParkingIp ? 2: 1}}"
             data-id="offer"
             data-name="offer_selection"
             data-header="{{:: 'ip_agora_table_header_offer' | translate }}"
             data-navigation="$ctrl.model.params.selectedOffer"
-            data-on-cancel="$ctrl.resumeOrder()"
             data-editable="!$ctrl.isLoading"
-            data-valid="$ctrl.model.params.selectedCountry"
-            data-submit-text="{{:: 'ip_agora_table_submit_text' | translate }}"
-            data-cancel-text="{{:: 'ip_agora_table_cancel_text' | translate}}"
-            data-prevent-next
+            data-valid="$ctrl.model.params.selectedOffer"
         >
             <div data-ng-show="$ctrl.loading.ipOffers" class="text-center">
                 <oui-spinner></oui-spinner>
@@ -188,87 +221,109 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </oui-step-form>
 
-                <div
-                    data-ng-show="$ctrl.model.params.selectedOffer.countries.length > 0"
-                >
-                    <div class="row">
-                        <p
-                            data-translate="ip_agora_ip_localisation_description"
-                            data-translate-values="{ ipType: $ctrl.type }"
-                        ></p>
-                    </div>
-                    <div class="row" data-ng-show="!$ctrl.isParkingIp">
-                        <oui-select-picker
-                            class="d-inline-block col-md-6 col-xl-3 my-3"
-                            data-name="country"
-                            data-ng-repeat="country in $ctrl.model.params.selectedOffer.countries track by country.code"
-                            data-label="{{ country.description }}"
-                            data-variant="light"
-                            data-picture="{{ ::country.icon }}"
-                            data-model="$ctrl.model.params.selectedCountry"
-                            data-values="[country]"
-                        >
-                        </oui-select-picker>
-                    </div>
-                    <div
-                        class="row"
-                        data-ng-show="$ctrl.isParkingIp && $ctrl.catalogByLocation.length >= 1"
-                    >
-                        <oui-select-picker
-                            class="d-inline-block col-md-6 col-xl-3 my-3"
-                            data-name="country"
-                            data-ng-repeat="country in $ctrl.catalogByLocation track by country.regionId"
-                            data-label="{{ country.location }}"
-                            data-description="{{ country.regionId }}"
-                            data-variant="light"
-                            data-picture="{{ ::country.icon }}"
-                            data-model="$ctrl.model.params.selectedCountry"
-                            data-values="[country]"
-                        >
-                        </oui-select-picker>
-                    </div>
+        <!-- Select the IP geolocation -->
+        <oui-step-form
+            data-position="{{$ctrl.isParkingIp ? 3: 2}}"
+            data-id="country"
+            data-name="country_selection"
+            data-header="{{:: 'ip_agora_ipv4_localisation_title' | translate }}"
+            data-navigation="$ctrl.model.params.selectedCountry"
+            data-editable="!$ctrl.isLoading"
+            data-valid="$ctrl.model.params.selectedCountry"
+            data-submit-text="{{($ctrl.model.params.selectedOffer.isIpBlockOffer && !$ctrl.isPrivateCloudOffer ? 'ip_agora_table_next_text' : 'ip_agora_table_submit_text') | translate }}"
+        >
+            <div
+                data-ng-show="$ctrl.model.params.selectedOffer.countries.length > 0"
+            >
+                <div class="row">
+                    <p
+                        data-translate="ip_agora_ip_localisation_description"
+                        data-translate-values="{ ipType: $ctrl.type }"
+                    ></p>
                 </div>
-                <div
-                    class="row"
-                    data-ng-show="$ctrl.model.params.selectedOffer.isIpBlockOffer"
-                    data-ng-if="!$ctrl.isPrivateCloudOffer"
-                >
-                    <p>
-                        <strong
-                            data-translate="{{ 'ip_agora_table_header_organisation' | translate }}"
-                        ></strong>
-                    </p>
-                    <span
-                        data-translate="ipv4Block_organization_description1"
-                    ></span>
-                    <span
-                        data-translate="ipv4Block_organization_description3"
-                    ></span>
-                    <oui-message data-type="info">
-                        <span
-                            data-translate="ipv4Block_organization_info_banner"
-                        ></span>
-                    </oui-message>
+                <div class="row">
+                    <oui-field data-size="xl">
+                        <oui-select
+                            class="w-100"
+                            data-items="$ctrl.model.params.selectedOffer.countries"
+                            data-match="description"
+                            data-name="description"
+                            data-model="$ctrl.model.params.selectedCountry"
+                            disabled="$ctrl.model.params.selectedOffer.countries.length === 1"
+                        >
+                            <div class="row">
+                                <div
+                                    class="col-10"
+                                    data-ng-bind=":: $item.description"
+                                ></div>
+                                <div class="col-2">
+                                    <small
+                                        class="oui-flag {{ $item.icon}}"
+                                    ></small>
+                                </div>
+                            </div>
+                        </oui-select>
+                    </oui-field>
+                </div>
+            </div>
+        </oui-step-form>
 
-                    <select
-                        id="organisation"
-                        class="form-control mt-2"
-                        data-ng-model="$ctrl.model.params.selectedOrganisation"
-                        data-ng-options="organisation.organisationId for organisation in $ctrl.organisations | orderBy:'organisationId' track by organisation.organisationId"
+        <!-- Select the organisation -->
+        <oui-step-form
+            data-position="{{$ctrl.isParkingIp ? 4: 3}}"
+            data-ng-if="$ctrl.model.params.selectedOffer.isIpBlockOffer && !$ctrl.isPrivateCloudOffer"
+            data-id="organisation"
+            data-name="organisation_selection"
+            data-header="{{:: 'ip_agora_table_header_organisation' | translate }}"
+            data-navigation="$ctrl.model.params.selectedOrganisation"
+            data-on-cancel="$ctrl.resumeOrder()"
+            data-editable="!$ctrl.isLoading"
+            data-valid="$ctrl.model.params.selectedOrganisation"
+            data-submit-text="{{:: 'ip_agora_table_submit_text' | translate }}"
+            data-cancel-text="{{:: 'ip_agora_table_cancel_text' | translate}}"
+            data-prevent-next
+        >
+            <div
+                class="row"
+                data-ng-show="$ctrl.model.params.selectedOffer.isIpBlockOffer"
+            >
+                <p>
+                    <strong
+                        data-translate="{{ 'ip_agora_table_header_organisation' | translate }}"
+                    ></strong>
+                </p>
+                <span
+                    data-translate="ipv4Block_organization_description1"
+                ></span>
+                <span
+                    data-translate="ipv4Block_organization_description3"
+                ></span>
+                <oui-message data-type="info">
+                    <span
+                        data-translate="ipv4Block_organization_info_banner"
+                    ></span>
+                </oui-message>
+
+                <select
+                    id="organisation"
+                    class="form-control mt-2"
+                    data-ng-model="$ctrl.model.params.selectedOrganisation"
+                    data-ng-options="organisation.organisationId for organisation in $ctrl.organisations | orderBy:'organisationId' track by organisation.organisationId"
+                >
+                    <option
+                        data-ng-disabled="true"
+                        data-translate="global_select"
                     >
-                        <option
-                            data-ng-disabled="true"
-                            data-translate="global_select"
-                        >
-                        </option>
-                    </select>
-                    <a
-                        class="oui-link mb-4"
-                        data-ui-sref="app.ip.organisation"
-                        data-translate="ip_order_no_organisation_2"
-                    ></a>
-                </div>
+                    </option>
+                </select>
+                <a
+                    class="oui-link mb-4"
+                    data-ui-sref="app.ip.organisation"
+                    data-translate="ip_order_no_organisation_2"
+                ></a>
             </div>
         </oui-step-form>
     </oui-stepper>
