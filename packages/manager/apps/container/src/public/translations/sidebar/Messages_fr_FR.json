@@ -25,6 +25,8 @@
   "sidebar_telecom_operations": "Opérations",
   "sidebar_vps": "Serveurs Privés Virtuels",
   "sidebar_storage_backup": "Stockage et sauvegarde",
+  "sidebar_veeam_backup": "Managed Veeam for VCD",
+  "sidebar_all_veeam_backup": "Toutes les sauvegardes",
   "sidebar_dedicated_cloud": "Managed Bare Metal",
   "sidebar_licences": "Licences",
   "sidebar_hpc": "Hosted Private Cloud",

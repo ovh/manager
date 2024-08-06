@@ -12,6 +12,7 @@ import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import veeamBackupLogo from '@/assets/images/sidebar/veeam-backup-logo.png';
 
 const features = [
   'dedicated-cloud',
@@ -31,6 +32,7 @@ const features = [
   'dedicated-cloud:order',
   'cloud-disk-array',
   'dedicated-nasha',
+  'veeam-backup',
   'veeam-cloud-connect:order',
   'veeam-enterprise:order',
   'vrack:bare-metal-cloud',
@@ -235,6 +237,37 @@ export default function HostedPrivateCloudSidebar() {
           },
         ],
       });
+    }
+    if (feature['veeam-backup']) {
+      menu.push({
+        id: 'hpc-storage-backup',
+        label: t('sidebar_storage_backup'),
+        icon: <img alt="" src={veeamBackupLogo} />,
+        pathMatcher: new RegExp('^/veeam-backup'),
+        badge: 'new',
+        subItems: [
+          (feature['veeam-backup']) && {
+            id: 'hpc-veeam-backup',
+            label: t('sidebar_veeam_backup'),
+            icon: <img alt="" src={veeamBackupLogo} />,
+            pathMatcher: new RegExp('^/veeam-backup'),
+            async loader() {
+              const appId = 'veeam-backup';
+              const items = await loadServices('/vmwareCloudDirector/backup', null, appId);
+
+              return [
+                {
+                  id: 'veeam-backup-all',
+                  label: t('sidebar_all_veeam_backup'),
+                  href: navigation.getURL(appId, '#/'),
+                  ignoreSearch: true,
+                },
+                ...items
+              ];
+            },
+          },
+        ]
+      })
     }
     if (feature['key-management-service']) {
       menu.push({
