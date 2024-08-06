@@ -77,7 +77,7 @@ export const DATACENTER_TO_COUNTRY = {
   SBG: 'fr',
   LIM: 'de',
   WAW: 'pl',
-  ERI: 'gb',
+  ERI: 'uk',
   VIN: 'us',
   HIL: 'us',
   BHS: 'ca',
@@ -107,6 +107,20 @@ export const DATACENTER_TO_REGION = {
   HIL: 'us-west-hil',
 };
 
+export const IP_LOCATION_GROUPS_BASED_ON_DATACENTER = [
+  {
+    labels: ['APAC/CANADA', 'CANADA - ASIA'],
+    countries: ['au', 'ca', 'sg', 'in'],
+    datacenter: ['SYD', 'BHS', 'YYZ', 'YNM', 'SGP'],
+  },
+  {
+    labels: ['EUROPE'],
+    countries: ['de', 'fr', 'pl', 'uk'],
+    datacenter: ['RBX', 'GRA', 'LIM', 'CR2', 'PAR', 'SBG', 'WAW', 'ERI'],
+  },
+  { labels: ['USA'], countries: ['us'], datacenter: ['HIL', 'VIN'] },
+];
+
 export default {
   FETCH_PRICE_MAX_TRIES,
   IP_LOCATION_GROUPS,
@@ -119,4 +133,5 @@ export default {
   ALERT_ID,
   DATACENTER_TO_COUNTRY,
   DATACENTER_TO_REGION,
+  IP_LOCATION_GROUPS_BASED_ON_DATACENTER,
 };
