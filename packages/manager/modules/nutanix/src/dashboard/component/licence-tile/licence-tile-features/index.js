@@ -9,6 +9,6 @@ const moduleName = 'ovhManagerNutanixLicenceTileFeatures';
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
   .component('nutanixLicenceTileFeatures', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations ../translations */);
 
 export default moduleName;
