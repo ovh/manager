@@ -116,7 +116,11 @@ export default function ClusterAccessAndSecurity({
         <TileLine
           title={t('kube_service_cluster_api_url')}
           value={
-            <OsdsClipboard aria-label="clipboard" value={kubeDetail?.url} data-testid="clusterAccessAndSecurity-kubeUrl">
+            <OsdsClipboard
+              aria-label="clipboard"
+              value={kubeDetail?.url}
+              data-testid="clusterAccessAndSecurity-kubeUrl"
+            >
               <span slot="success-message">
                 {tCommon('common_clipboard_copied')}
               </span>

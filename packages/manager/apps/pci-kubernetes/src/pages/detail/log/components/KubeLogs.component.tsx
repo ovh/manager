@@ -13,7 +13,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useKubeTailLogs } from '@/api/hooks/useLogs';
-import { KUBERNETES_LOG_KINDS_KEYS } from '../constant';
+import { KUBERNETES_LOG_KINDS_KEYS } from '../constants';
 import { BlinkingCursor } from './BlinkingCursor.component';
 
 const highlightSearch = (text: string, search: string) => {
