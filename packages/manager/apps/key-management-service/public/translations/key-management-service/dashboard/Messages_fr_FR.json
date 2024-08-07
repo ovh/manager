@@ -46,5 +46,13 @@
   "key_management_service_dashboard_contact_type_administrator": "Administrateur",
   "key_management_service_dashboard_contact_type_technical": "Technique",
   "key_management_service_dashboard_contact_type_billing": "Facturation",
-  "key_management_service_dashboard_action_billing_terminate": "Résilier"
+  "key_management_service_dashboard_action_billing_terminate": "Résilier",
+  "service_status": "Etat du service",
+  "key_management_service_dashboard_field_label_state": "Statut",
+  "key_management_service_dashboard_dashboard_field_state_active": "Actif",
+  "key_management_service_dashboard_dashboard_field_state_deleted": "Supprimé",
+  "key_management_service_dashboard_dashboard_field_state_suspended": "Suspendu",
+  "key_management_service_dashboard_dashboard_field_state_toActivate": "A activer",
+  "key_management_service_dashboard_dashboard_field_state_toDelete": "A supprimer",
+  "key_management_service_dashboard_dashboard_field_state_toSuspend": "A suspendre"
 }
