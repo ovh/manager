@@ -24,8 +24,9 @@ export const ACCOUNT_INFORMATIONS = {
 };
 
 export const SUPPORT_URLS = {
-  createTicket: 'https://help.ovhcloud.com/csm?id=csm_get_help',
-  viewTickets: 'https://help.ovhcloud.com/csm?id=csm_cases_requests',
+  createTicket: 'https://help.ovhcloud.com/csm?id=csm_get_help&ovhSubsidiary=',
+  viewTickets:
+    'https://help.ovhcloud.com/csm?id=csm_cases_requests&ovhSubsidiary=',
 };
 
 export const GUIDES_LIST = {

@@ -17,7 +17,7 @@ export const TRACK = {
   SUCCESS: 'success',
 };
 export const SUPPORT_TICKET_ID_URL =
-  'https://help.ovhcloud.com/csm?id=csm_ticket&table=sn_customerservice_case&number=CS{ticketId}&view=csp';
+  'https://help.ovhcloud.com/csm?id=csm_ticket&table=sn_customerservice_case&number=CS{ticketId}&view=csp&ovhSubsidiary=';
 
 export default {
   ISSUE_CATEGORY,

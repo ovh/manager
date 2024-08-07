@@ -2,7 +2,7 @@ import { Environment, Region } from '@ovh-ux/manager-config';
 
 const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '-home?id=csm_index';
-const support = `${helpRoot}?id=csm_cases_requests`;
+const support = `${helpRoot}?id=csm_cases_requests&ovhSubsidiary=`;
 
 interface ContentURLS {
   help: {
@@ -69,7 +69,7 @@ export function useURL(environment: Environment): UseURL {
       const user = environment.getUser();
       const regionURL = urls[region];
       const url = regionURL[id];
-      return typeof url === 'string' ? url : url[user.ovhSubsidiary];
+      return typeof url === 'string' ? (id === 'support' ? url + user.ovhSubsidiary : url) : url[user.ovhSubsidiary];
     },
   };
 }

@@ -27,6 +27,7 @@ export default function AccountSidebar() {
     .getPlugin('environment')
     .getEnvironment();
   const region = environment.getRegion();
+  const subsidiary = environment.getUser()?.ovhSubsidiary;
   const isEnterprise = environment.getUser()?.enterprise;
 
   const getAccountSidebar = async (availability: Record<string, boolean> | null) => {
@@ -136,8 +137,7 @@ export default function AccountSidebar() {
       id: 'my-support-tickets',
       label: t('sidebar_assistance_tickets'),
       isExternal: isEUOrCA,
-
-      href: isEUOrCA ? constants[region].support.tickets : navigation.getURL('dedicated', '/ticket'),
+      href: isEUOrCA ? constants[region].support.tickets(subsidiary) : navigation.getURL('dedicated', '/ticket'),
       routeMatcher: new RegExp('^/(ticket|support)'),
     });
 

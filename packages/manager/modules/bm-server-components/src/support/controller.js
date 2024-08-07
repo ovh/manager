@@ -25,6 +25,7 @@ export default class DedicatedServerSupportTileController {
     this.numberOfTickets = 0;
     this.numberOfInterventions = 0;
     this.isSupportExternalWithLinks = this.coreConfig.isRegion(['EU', 'CA']);
+    this.user = this.coreConfig.getUser();
     this.viewTicketsUrl = this.getViewTicketsUrl();
     this.createNewTicketUrl = this.getCreateNewTicketUrl();
     this.loading = true;
@@ -58,7 +59,7 @@ export default class DedicatedServerSupportTileController {
 
   getViewTicketsUrl() {
     return this.isSupportExternalWithLinks
-      ? SUPPORT_URLS.viewTickets
+      ? SUPPORT_URLS.viewTickets + this.user.ovhSubsidiary
       : this.coreURLBuilder.buildURL('dedicated', '#/support/tickets', {
           filters: JSON.stringify({
             property: 'serviceName.value',
@@ -70,7 +71,7 @@ export default class DedicatedServerSupportTileController {
 
   getCreateNewTicketUrl() {
     return this.isSupportExternalWithLinks
-      ? SUPPORT_URLS.createTicket
+      ? SUPPORT_URLS.createTicket + this.user.ovhSubsidiary
       : this.coreURLBuilder.buildURL('dedicated', '#/ticket', {
           create: true,
         });
