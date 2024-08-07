@@ -8,12 +8,22 @@ import { RancherTask, RancherTaskType } from '@/types/api.type';
 const RancherTaskMessage = ({ tasks }: { tasks: RancherTask[] }) => {
   const { t } = useTranslation('listing');
   const tasksMessage = tasks
-    .filter((task) => task?.type === RancherTaskType.RANCHER_DELETE)
-    .map(({ id }) => ({
-      id,
-      type: ODS_MESSAGE_TYPE.info,
-      message: t('rancherStatusDeleting'),
-    }));
+    .filter(({ type }) =>
+      [RancherTaskType.RANCHER_DELETE, RancherTaskType.RANCHER_CREATE].includes(
+        type,
+      ),
+    )
+    .map(({ id, type }) => {
+      const message =
+        type === RancherTaskType.RANCHER_DELETE
+          ? t('rancherStatusDeleting')
+          : t('rancherStatusCreating');
+      return {
+        id,
+        type: ODS_MESSAGE_TYPE.info,
+        message,
+      };
+    });
 
   return (
     <div className="my-6">
