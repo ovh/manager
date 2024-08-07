@@ -34,7 +34,7 @@ import {
 } from '@ovhcloud/manager-components';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useClusterNodePools } from '@/api/hooks/node-pools';
-import { useDatagridColumns } from './useDatagridColumn';
+import { useDatagridColumns } from './useDatagridColumns';
 import { usePaginatedNodes } from '@/api/hooks/nodes';
 
 export default function NodesPage(): JSX.Element {

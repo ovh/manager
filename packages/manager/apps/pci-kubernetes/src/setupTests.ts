@@ -43,4 +43,30 @@ vi.mock('react-i18next', () => ({
       exists: () => true,
     },
   }),
+  Trans: ({ children }: { children: string }) => children,
 }));
+
+vi.mock('@ovh-ux/manager-react-shell-client', async () => {
+  const mod = await vi.importActual('@ovh-ux/manager-react-shell-client');
+  return {
+    ...mod,
+    useTracking: vi.fn(() => ({
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+    })),
+  };
+});
+
+vi.mock('@ovh-ux/manager-core-api', async () => {
+  const mod = await vi.importActual('@ovh-ux/manager-core-api');
+  return {
+    ...mod,
+    fetchIcebergV6: vi.fn(),
+    v6: {
+      get: vi.fn(),
+      post: vi.fn(),
+      put: vi.fn(),
+      delete: vi.fn(),
+    },
+  };
+});
