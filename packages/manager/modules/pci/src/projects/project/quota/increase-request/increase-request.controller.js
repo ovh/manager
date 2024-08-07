@@ -13,6 +13,7 @@ export default class PciProjectQuotaIncreaseController {
   constructor(
     $translate,
     coreURLBuilder,
+    coreConfig,
     pciProjectQuotaIncrease,
     OvhApiSupport,
     PciProjectQuota,
@@ -20,6 +21,7 @@ export default class PciProjectQuotaIncreaseController {
   ) {
     this.$translate = $translate;
     this.coreURLBuilder = coreURLBuilder;
+    this.coreConfig = coreConfig;
     this.pciProjectQuotaIncrease = pciProjectQuotaIncrease;
     this.OvhApiSupport = OvhApiSupport;
     this.PciProjectQuota = PciProjectQuota;
@@ -49,6 +51,7 @@ export default class PciProjectQuotaIncreaseController {
     this.QUOTA_INCREASE_MODES = QUOTA_INCREASE_MODES;
     this.projectDescription = this.PciProject.getProjectInfo().description;
     this.trackQuotaIncreasePopupDisplay();
+    this.user = this.coreConfig.getUser();
   }
 
   isQuotaIncreaseConfirmButtonDisabled() {
@@ -145,7 +148,9 @@ ${this.issueTypeDescription}
           this.$translate.instant(
             'pci_projects_project_quota_increase_success_message',
             {
-              ticketUrl: SUPPORT_TICKET_ID_URL.replace('{ticketId}', ticketId),
+              ticketUrl:
+                SUPPORT_TICKET_ID_URL.replace('{ticketId}', ticketId) +
+                this.user.ovhSubsidiary,
             },
           ),
         );

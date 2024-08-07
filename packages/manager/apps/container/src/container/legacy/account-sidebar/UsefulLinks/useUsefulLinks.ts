@@ -56,7 +56,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
       {
         id: 'tickets',
         external: isEUOrCA,
-        href: isEUOrCA ? constants[region].support.tickets : navigation.getURL('dedicated', '#/ticket'),
+        href: isEUOrCA ? constants[region].support.tickets(user.ovhSubsidiary) : navigation.getURL('dedicated', '#/ticket'),
         tracking: `${trackingPrefix}::go-to-tickets`,
         icon: getOdsIcon(ODS_ICON_NAME.ENVELOP_CONCEPT),
       },
@@ -65,7 +65,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
             {
               id: 'createTicket',
               external: true,
-              href: constants[region].support.createTicket,
+              href: constants[region].support.createTicket(user.ovhSubsidiary),
               tracking: `${trackingPrefix}::go-to-create-ticket`,
               icon: getOdsIcon(ODS_ICON_NAME.USER_SUPPORT_CONCEPT),
             },
