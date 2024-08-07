@@ -1,7 +1,6 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
 import {
   OdsInputValueChangeEventDetail,
   OsdsInput,
@@ -11,7 +10,6 @@ import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
 
-vi.mock('react-router-dom');
 vi.mock('@ovhcloud/manager-components', () => ({
   useNotifications: () => ({
     addError: vi.fn(),
@@ -27,10 +25,6 @@ type UseTerminateClusterReturnType = UseMutationResult<
 > & { terminateCluster: () => void };
 
 describe('TerminatePage', () => {
-  vi.mocked(useParams).mockReturnValue({
-    projectId: 'project-id',
-    kubeId: 'kube-id',
-  });
   it('renders loading spinner when data is pending', () => {
     vi.spyOn(useKubernetesModule, 'useKubernetesCluster').mockReturnValue({
       isPending: true,

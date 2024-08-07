@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { getAllPrivateNetworks, TNetwork } from '../data/network';
+import { getAllPrivateNetworks } from '../data/network';
 
 const getQueryKeyPrivateNetworks = (projectId: string) => [
   'project',
