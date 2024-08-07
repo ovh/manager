@@ -10,14 +10,6 @@ import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
 
-vi.mock('react-router-dom', () => ({
-  useParams: vi.fn().mockReturnValue({
-    projectId: 'project-id',
-    kubeId: 'kube-id',
-  }),
-  useNavigate: vi.fn(),
-}));
-
 type UseRenameClusterReturnType = UseMutationResult<
   never,
   Error,
@@ -43,7 +35,7 @@ describe('RenameClusterPage', () => {
   });
 
   it('displays error message when name input is invalid with wrong pattern and too long', () => {
-    const { getByTestId, getByText } = render(<RenameClusterPage />, {
+    const { getByTestId } = render(<RenameClusterPage />, {
       wrapper,
     });
     const renameInput = (getByTestId(

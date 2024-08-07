@@ -1,14 +1,11 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
 import UpgradePolicyPage from './UpgradePolicy.page';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { UPGRADE_POLICIES } from '@/constants';
 import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
-
-vi.mock('react-router-dom');
 
 type UseUpdateKubePolicyReturnType = UseMutationResult<
   never,
@@ -18,11 +15,6 @@ type UseUpdateKubePolicyReturnType = UseMutationResult<
 > & { updateKubePolicy: () => void };
 
 describe('UpgradePolicyPage', () => {
-  vi.mocked(useParams).mockReturnValue({
-    projectId: 'project-id',
-    kubeId: 'kube-id',
-  });
-
   it('renders loading spinner when data is pending', () => {
     vi.spyOn(useKubernetesModule, 'useKubernetesCluster').mockReturnValueOnce({
       isPending: true,
