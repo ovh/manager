@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 
 import useContainer from '@/core/container';
-import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 import { useShell } from '@/context';
 import {
   OsdsText,
@@ -21,13 +19,10 @@ function NavReshuffleSwitchBack(): JSX.Element {
   const { updateBetaChoice, betaVersion, useBeta } = useContainer();
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
-  const isSmallDevice = useMediaQuery({
-    query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
-  });
   const [confirm, setConfirm] = useState<boolean>(false);
   const onboarding = useOnboarding();
 
-  if (!betaVersion || isSmallDevice) {
+  if (!betaVersion) {
     return <></>;
   }
 
