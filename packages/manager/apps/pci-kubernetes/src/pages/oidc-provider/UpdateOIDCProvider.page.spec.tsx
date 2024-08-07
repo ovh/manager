@@ -17,14 +17,6 @@ type UpdateOIDCProviderPageReturnType = UseMutationResult<
   unknown
 > & { updateOidcProvider: () => void };
 
-vi.mock('react-router-dom', () => ({
-  useParams: vi.fn().mockReturnValue({
-    projectId: 'project-id',
-    kubeId: 'kube-id',
-  }),
-  useNavigate: vi.fn(),
-}));
-
 describe('UpdateOIDCProviderPage', () => {
   it('renders loading spinner when data is pending', () => {
     vi.spyOn(useKubernetesModule, 'useOidcProvider').mockReturnValue({
@@ -101,7 +93,7 @@ describe('UpdateOIDCProviderPage', () => {
       updateOidcProvider: vi.fn(),
       isPending: false,
     } as unknown) as UpdateOIDCProviderPageReturnType);
-    const { getByTestId, getByText } = render(<UpdateOIDCProvider />, {
+    const { getByTestId } = render(<UpdateOIDCProvider />, {
       wrapper,
     });
     const issuerUrlInput = (getByTestId(
