@@ -11,8 +11,9 @@ import 'moment';
 
 export default class CucCloudMessage {
   /* @ngInject */
-  constructor($transitions, $state) {
+  constructor($transitions, $state, $location) {
     this.$state = $state;
+    this.$location = $location;
     this.messages = {};
     this.subscribers = {};
 
@@ -65,20 +66,44 @@ export default class CucCloudMessage {
 
     if (messageHandler) {
       // Message age defines how many flush the message went through.
-      messageHandler.messages.push(
-        assignIn(
-          {
-            type,
-            origin: containerName || this.$state.current.name,
-            timestamp: moment().valueOf(),
-          },
-          messageHash,
-        ),
+      const message = assignIn(
+        {
+          type,
+          origin: containerName || this.$state.current.name,
+          timestamp: moment().valueOf(),
+        },
+        messageHash,
       );
+      messageHandler.messages.push(message);
       messageHandler.onMessage();
+
+      this.pushMessageToSearch(message);
     } else {
       // eslint-disable-next-line no-console
       console.log(`Unhandled message ${messageHash.text}`);
+    }
+  }
+
+  pushMessageToSearch(message) {
+    const queryProperty = `${message.type}Messages`;
+
+    const queryMessages = this.$location.search()[queryProperty] || [];
+
+    queryMessages.push(message.text || message.textHtml);
+
+    this.$location.search(queryProperty, queryMessages);
+  }
+
+  removeMessageFromSearch(message) {
+    const queryProperty = `${message.type}Messages`;
+
+    const queryMessages = this.$location.search()[queryProperty] || [];
+
+    const foundIndex = queryMessages.indexOf(message.text || message.textHtml);
+    if (foundIndex !== -1) {
+      queryMessages.splice(foundIndex, 1);
+
+      this.$location.search(queryProperty, queryMessages);
     }
   }
 
