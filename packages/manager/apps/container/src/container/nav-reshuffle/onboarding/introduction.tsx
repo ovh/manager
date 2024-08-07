@@ -75,11 +75,6 @@ export const OnboardingIntroduction = () => {
           generalPlacement: '[next]',
           format: '[0-4]',
         });
-        trackingPlugin.trackImpression({
-          ...commonTrackingOptions,
-          generalPlacement: '[hide]',
-          format: '[0-4]',
-        });
       });
     }
   }, [isPopoverVisible]);

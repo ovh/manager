@@ -38,6 +38,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   const { t } = useTranslation('sidebar');
   const shell = useShell();
   const navigationPlugin = shell.getPlugin('navigation');
+  const trackingPlugin = shell.getPlugin('tracking');
   const location = useLocation();
   const [containerURL, setContainerURL] = useState(parseContainerURL(location));
 
@@ -139,6 +140,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
           selectedProject={selectedPciProject}
           onProjectChange={(option: typeof selectedPciProject) => {
             if (selectedPciProject !== option) {
+              trackingPlugin.trackClick({ name: 'navbar_v3_entry_home::pci::specific_project_from_listing', type: 'navigation' });
               setSelectedPciProject(option);
               navigationPlugin.navigateTo(
                 'public-cloud',
