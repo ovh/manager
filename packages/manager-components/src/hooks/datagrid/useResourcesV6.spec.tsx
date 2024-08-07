@@ -28,7 +28,7 @@ const renderUseResourcesV6Hook = () => {
       useResourcesV6({
         columns,
         route: '/dedicated/nasha',
-        queryKey: ['/dedicated/nasha'],
+        queryKey: ['/dedicated/nasha']
       }),
     {
       wrapper,

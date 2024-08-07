@@ -11,12 +11,33 @@ import {
   dataType,
   ColumnDatagrid,
 } from '@ovhcloud/manager-components';
+import { info } from 'console';
 
 export default function IpsWithoutIceberg() {
   const [columns, setColumns] = useState<ColumnDatagrid[]>([]);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const columns2 = [
+    {
+      id: 'id',
+      header: 'id',
+      label: 'id',
+      accessorKey: 'id',
+      type: 'string',
+      cell: (props: any) => <DataGridTextCell>{props.id}</DataGridTextCell>,
+    },
+    {
+      id: 'vlanId',
+      header: 'vlanId',
+      label: 'vlanId',
+      accessorKey: 'vlanId',
+      type: 'number',
+      cell: (props: any) => {
+        console.info('props.vlanId : ', props.vlanId);
+        return <DataGridTextCell>{props.vlanId}</DataGridTextCell>;
+      },
+    },
+  ];
   const {
     data,
     flattenData,
@@ -31,7 +52,7 @@ export default function IpsWithoutIceberg() {
     isLoading,
     status,
   } = useResourcesV6({
-    columns,
+    columns: columns2,
     route: '/cloud/project/e42b4f068f444ea3832435304a316330/aggregated/network',
     queryKey: ['servicesListingIcebergVPS-withoyarn sut-iceberg'],
   });
@@ -42,45 +63,45 @@ export default function IpsWithoutIceberg() {
     navigate(`${path}${label}`);
   };
 
-  useEffect(() => {
-    if (status === 'success' && data?.data[0]?.length === 0) {
-      navigate('');
-    } else if (
-      status === 'success' &&
-      data?.data[0]?.length > 0 &&
-      columns.length === 0
-    ) {
-      const tmp = Object.keys(data.data[0][0])
-        .filter((element) => element !== 'iam')
-        .filter((element) => element !== 'rir')
-        .filter((element) => element !== 'country')
-        .filter((element) => element !== 'regions')
-        .filter((element) => element !== 'description')
-        .filter((element) => element !== 'routedTo')
-        .filter((element) => element !== 'bringYourOwnIp')
-        .filter((element) => element !== 'isAdditionalIp')
-        .filter((element) => element !== 'organisationId')
-        .filter((element) => element !== 'canBeTerminated')
-        .map((element) => {
-          const obj = {
-            id: element,
-            header: element,
-            label: element,
-            accessorKey: element,
-            type: dataType(data.data[0][0][element]),
-            cell: (props: any) => {
-              const label = props[element] as string;
-              if (typeof label === 'string' || typeof label === 'number') {
-                return <DataGridTextCell>{label}</DataGridTextCell>;
-              }
-              return <DataGridTextCell>{label}</DataGridTextCell>;
-            },
-          };
-          return obj;
-        });
-      setColumns(tmp);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (status === 'success' && data?.data[0]?.length === 0) {
+  //     navigate('');
+  //   } else if (
+  //     status === 'success' &&
+  //     data?.data[0]?.length > 0 &&
+  //     columns.length === 0
+  //   ) {
+  //     const tmp = Object.keys(data.data[0][0])
+  //       .filter((element) => element !== 'iam')
+  //       .filter((element) => element !== 'rir')
+  //       .filter((element) => element !== 'country')
+  //       .filter((element) => element !== 'regions')
+  //       .filter((element) => element !== 'description')
+  //       .filter((element) => element !== 'routedTo')
+  //       .filter((element) => element !== 'bringYourOwnIp')
+  //       .filter((element) => element !== 'isAdditionalIp')
+  //       .filter((element) => element !== 'organisationId')
+  //       .filter((element) => element !== 'canBeTerminated')
+  //       .map((element) => {
+  //         const obj = {
+  //           id: element,
+  //           header: element,
+  //           label: element,
+  //           accessorKey: element,
+  //           type: dataType(data.data[0][0][element]),
+  //           cell: (props: any) => {
+  //             const label = props[element] as string;
+  //             if (typeof label === 'string' || typeof label === 'number') {
+  //               return <DataGridTextCell>{label}</DataGridTextCell>;
+  //             }
+  //             return <DataGridTextCell>{label}</DataGridTextCell>;
+  //           },
+  //         };
+  //         return obj;
+  //       });
+  //     setColumns(tmp);
+  //   }
+  // }, [data]);
 
   return (
     <>
@@ -88,9 +109,9 @@ export default function IpsWithoutIceberg() {
         <h2>/IP</h2>
         <h3>V6 ENDPOINT WITHOUT ICEBERG</h3>
         <React.Suspense>
-          {columns && (
+          {columns2 && (
             <Datagrid
-              columns={columns}
+              columns={columns2}
               items={flattenData || []}
               totalItems={totalCount}
               sorting={sorting}
