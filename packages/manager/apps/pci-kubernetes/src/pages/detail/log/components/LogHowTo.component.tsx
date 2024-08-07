@@ -22,7 +22,7 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { DATA_PLATFORM_GUIDE } from '../constant';
+import { DATA_PLATFORM_GUIDE } from '../constants';
 import { useLogs, useAllStreamIds } from '@/api/hooks/useDbaasLogs';
 
 export function LogHowTo() {

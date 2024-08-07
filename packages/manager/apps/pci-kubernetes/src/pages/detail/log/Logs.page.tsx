@@ -11,7 +11,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { Notifications, useMe } from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { LOGS_INFO } from './constant';
+import { LOGS_INFO } from './constants';
 import { KubeLogs } from './components/KubeLogs.component';
 import { LogTiles } from './components/LogTiles.component';
 

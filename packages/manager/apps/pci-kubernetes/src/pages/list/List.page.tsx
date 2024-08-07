@@ -170,7 +170,11 @@ export default function ListPage() {
 
       {isPending ? (
         <div className="text-center">
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+          <OsdsSpinner
+            inline
+            size={ODS_SPINNER_SIZE.md}
+            data-testid="List-spinner"
+          />
         </div>
       ) : (
         <div>
