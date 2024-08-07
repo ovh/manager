@@ -387,9 +387,13 @@ export default class AgoraIpV4OrderController {
     return uniq(map(this.ipOffers, 'productRegion')).sort();
   }
 
-  onSelectedOfferChange(selectedOffer) {
-    this.maxSize = IP_AGORA[selectedOffer].maxQty;
-    this.minSize = IP_AGORA[selectedOffer].minQty;
+  onSelectedOfferChange() {
+    this.maxSize =
+      IP_AGORA[this.model.selectedService.type]?.maxQty ||
+      IP_AGORA.DEFAULT.maxQty;
+    this.minSize =
+      IP_AGORA[this.model.selectedService.type]?.minQty ||
+      IP_AGORA.DEFAULT.minQty;
     this.model.params.selectedQuantity = this.minSize;
     this.model.params.selectedOrganisation = null;
     this.model.params.selectedCountry = null;
