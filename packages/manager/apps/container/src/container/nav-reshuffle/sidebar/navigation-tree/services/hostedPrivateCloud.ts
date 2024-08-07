@@ -1,4 +1,6 @@
 import illustration from '@/assets/images/sidebar/hosted-private-cloud.png';
+import { NodeTag } from '../node';
+
 export default {
   id: 'hosted-private-cloud',
   translation: 'sidebar_hpc',
@@ -67,6 +69,17 @@ export default {
             hash: '#/veeam',
           },
           features: ['veeam-cloud-connect'],
+        },
+        {
+          id: 'veeam-backup',
+          translation: 'sidebar_veeam_backup',
+          serviceType: 'VEEAMBACKUP',
+          tag: NodeTag.NEW,
+          routing: {
+            application: 'veeam-backup',
+            hash: '#/',
+          },
+          features: ['veeam-backup'],
         },
       ],
     },
