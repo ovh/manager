@@ -218,12 +218,6 @@ export const OnboardingWalkMe = () => {
           format: `[${currentStepIndex + 1}-${steps.length}]`,
           generalPlacement: '[next]',
         });
-        trackingPlugin.trackImpression({
-          ...commonTrackingOptions,
-          variant: `[${currentStep.trackingVariant}]`,
-          format: `[${currentStepIndex + 1}-${steps.length}]`,
-          generalPlacement: '[hide]',
-        });
       });
       // add a timeout of the same time of the stepElement animation
       // before recalculating popper position
