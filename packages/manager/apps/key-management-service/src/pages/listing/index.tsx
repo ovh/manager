@@ -32,6 +32,7 @@ import {
   DatagridCellId,
   DatagridCellName,
   DatagridCellRegion,
+  DatagridCellStatus,
 } from '@/components/Listing/ListingCells';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
@@ -57,6 +58,11 @@ export default function Listing() {
       id: 'region',
       cell: DatagridCellRegion,
       label: t('key_management_service_listing_region_cell'),
+    },
+    {
+      id: 'status',
+      cell: DatagridCellStatus,
+      label: t('key_management_service_listing_status_cell'),
     },
     {
       id: 'action',
