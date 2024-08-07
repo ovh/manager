@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
 
@@ -20,6 +20,8 @@ import Notifications from '@/container/common/notifications-sidebar/Notification
 import { useShell } from '@/context';
 import { useHeader } from '@/context/header';
 import { useUniverses } from '@/hooks/useUniverses';
+import { useMediaQuery } from 'react-responsive';
+import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 
 type Props = {
   environment: Environment;
@@ -32,6 +34,9 @@ function Navbar({ environment }: Props): JSX.Element {
   const [userLocale, setUserLocale] = useState(
     shell.getPlugin('i18n').getLocale(),
   );
+  const isSmallDevice = useMediaQuery({
+    query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
+  });
 
   const [searchURL] = useState<string>();
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -61,9 +66,8 @@ function Navbar({ environment }: Props): JSX.Element {
   return (
     <>
       <div
-        className={`${modalStyle.popoverClickAway} ${
-          isDropdownOpen ? '' : modalStyle.hidden
-        }`}
+        className={`${modalStyle.popoverClickAway} ${isDropdownOpen ? '' : modalStyle.hidden
+          }`}
       ></div>
       <div
         className={`oui-navbar ${style.navbar}`}
@@ -88,9 +92,11 @@ function Navbar({ environment }: Props): JSX.Element {
               <Search targetURL={searchURL} />
             </div>
           )}
-          <div className="oui-navbar-list__item">
-            <NavReshuffleSwitchBack />
-          </div>
+          {!isSmallDevice &&
+            <div className="oui-navbar-list__item">
+              <NavReshuffleSwitchBack />
+            </div>
+          }
           <div className="oui-navbar-list__item">
             <LanguageMenu
               setUserLocale={setUserLocale}
@@ -107,6 +113,11 @@ function Navbar({ environment }: Props): JSX.Element {
           <Account user={environment.getUser()} />
         </div>
       </div>
+      {isSmallDevice &&
+        <div className={style['small-device-pnr-switch']}>
+          <NavReshuffleSwitchBack />
+        </div>
+      }
     </>
   );
 }
