@@ -7,6 +7,7 @@ const moduleName = 'ovhManagerNutanixLicenceTileLegacyFeatures';
 
 angular
   .module(moduleName, ['oui'])
-  .component('nutanixLicenceTileLegacyFeatures', component);
+  .component('nutanixLicenceTileLegacyFeatures', component)
+  .run(/* @ngTranslationsInject:json ../translations */);
 
 export default moduleName;
