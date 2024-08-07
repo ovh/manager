@@ -1,17 +1,11 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
 import ResetKubeConfigPage from './ResetKubeConfig.page';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import {
-  useKubernetesCluster,
-  useResetKubeConfig,
-} from '@/api/hooks/useKubernetes';
+
 import { TKube } from '@/types';
 import { wrapper } from '@/wrapperRenders';
-
-vi.mock('react-router-dom');
 
 type UseResetKubeConfigReturnType = UseMutationResult<
   never,
@@ -21,10 +15,6 @@ type UseResetKubeConfigReturnType = UseMutationResult<
 > & { resetKubeConfig: () => void };
 
 describe('ResetKubeConfigPage', () => {
-  vi.mocked(useParams).mockReturnValue({
-    projectId: 'project-id',
-    kubeId: 'kube-id',
-  });
   it('renders loading spinner when data is pending', () => {
     vi.spyOn(useKubernetesModule, 'useKubernetesCluster').mockReturnValue({
       isPending: true,

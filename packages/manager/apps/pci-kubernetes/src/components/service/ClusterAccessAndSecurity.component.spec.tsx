@@ -5,7 +5,6 @@ import ClusterAccessAndSecurity from '@/components/service/ClusterAccessAndSecur
 import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import { useOidcProvider } from '@/api/hooks/useKubernetes';
 import { TOidcProvider } from '@/api/data/kubernetes';
 
 describe('ClusterAccessAndSecurity', () => {
