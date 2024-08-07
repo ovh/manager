@@ -3,18 +3,8 @@ import { describe, it, vi } from 'vitest';
 import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import UpdateVersionPage from './UpdateVersion.page';
 import * as useKubernetesClusterModule from '@/api/hooks/useKubernetes';
-import { useUpdateKubeVersion } from '@/api/hooks/useKubernetes';
 import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
-
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => vi.fn(),
-  useSearchParams: () => [new URLSearchParams({})],
-  useParams: () => ({
-    projectId: 'project-id',
-    kubeId: 'kube-id',
-  }),
-}));
 
 vi.mock('@ovhcloud/manager-components', () => ({
   useNotifications: () => ({

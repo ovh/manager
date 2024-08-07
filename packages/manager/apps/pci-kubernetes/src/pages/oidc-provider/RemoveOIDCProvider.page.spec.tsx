@@ -6,14 +6,6 @@ import { wrapper } from '@/wrapperRenders';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { TOidcProvider } from '@/api/data/kubernetes';
 
-vi.mock('react-router-dom', () => ({
-  useParams: vi.fn().mockReturnValue({
-    projectId: 'project-id',
-    kubeId: 'kube-id',
-  }),
-  useNavigate: vi.fn(),
-}));
-
 type RemoveOIDCProviderPageReturnType = UseMutationResult<
   never,
   Error,

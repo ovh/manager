@@ -1,7 +1,6 @@
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { usePrivateNetworkSubnets } from '@/api/hooks/useSubnets';
 import { useAvailablePrivateNetworks } from '@/api/hooks/useNetwork';
@@ -30,7 +29,6 @@ export default function NetworkClusterStep({
   formState,
   setFormState,
 }: Readonly<NetworkClusterStepProps>) {
-  const { t } = useTranslation('network-add');
   const { projectId } = useParams();
 
   const {
