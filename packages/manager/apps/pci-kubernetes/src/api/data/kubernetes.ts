@@ -18,6 +18,34 @@ export const getAllKube = async (projectId: string): Promise<TKube[]> => {
   return data;
 };
 
+export interface KubeClusterCreationParams {
+  name: string;
+  region: string;
+  version: string;
+  nodepool: {
+    antiAffinity: boolean;
+    autoscale: boolean;
+    desiredNodes: number;
+    maxNodes?: number;
+    minNodes?: number;
+    flavorName: string;
+    monthlyBilled: boolean;
+  };
+  privateNetworkId: string;
+  privateNetworkConfiguration: {
+    defaultVrackGateway: string;
+    privateNetworkRoutingAsDefault?: boolean;
+  };
+}
+
+export const createKubernetesCluster = async (
+  projectId: string,
+  params: KubeClusterCreationParams,
+) => {
+  const { data } = await v6.post(`/cloud/project/${projectId}/kube`, params);
+  return data;
+};
+
 export const updateKubernetesCluster = async (
   projectId: string,
   kubeId: string,
