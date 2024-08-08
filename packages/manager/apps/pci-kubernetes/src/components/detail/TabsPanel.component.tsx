@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import {
   OsdsTabs,
@@ -6,11 +6,13 @@ import {
   OsdsTabBarItem,
 } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovhcloud/manager-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export type TabItemProps = {
   name: string;
   title: string | JSX.Element;
   to: string;
+  tracking: string;
 };
 
 export type TabsProps = {
@@ -21,6 +23,7 @@ export default function TabsPanel({ tabs }: TabsProps) {
   const [panel, setActivePanel] = useState('');
   const location = useLocation();
   const { clearNotifications } = useNotifications();
+  const { tracking } = useContext(ShellContext)?.shell || {};
 
   useEffect(() => {
     const activeTab = tabs.find((tab) => location.pathname.startsWith(tab.to));
@@ -40,6 +43,7 @@ export default function TabsPanel({ tabs }: TabsProps) {
           <NavLink
             key={`osds-tab-bar-item-${tab.name}`}
             to={tab.to}
+            onClick={() => tracking?.trackClick({ name: tab.tracking })}
             className="no-underline"
           >
             <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>

@@ -39,9 +39,11 @@ describe('UpdateVersionPage', () => {
     ).mockReturnValue({
       isPending: false,
     } as UseQueryResult<TKube>);
+
     const { getAllByText, queryByTestId } = render(<UpdateVersionPage />, {
       wrapper,
     });
+
     expect(queryByTestId('updateVersion-spinner')).not.toBeInTheDocument();
     expect(
       getAllByText(/kube_service_minor_version_update_message_/i),

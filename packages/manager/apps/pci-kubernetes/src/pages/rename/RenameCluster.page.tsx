@@ -21,14 +21,16 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovhcloud/manager-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   useKubernetesCluster,
   useRenameKubernetesCluster,
 } from '@/api/hooks/useKubernetes';
 import { NAME_INPUT_CONSTRAINTS } from '@/constants';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function RenameClusterPage() {
   const { t: tEditName } = useTranslation('edit-name');
@@ -46,6 +48,8 @@ export default function RenameClusterPage() {
   });
   const navigate = useNavigate();
   const onClose = () => navigate('..');
+  const { tracking } = useContext(ShellContext)?.shell || {};
+
   const {
     renameCluster,
     isPending: isPendingRename,
@@ -78,24 +82,33 @@ export default function RenameClusterPage() {
       onClose();
     },
   });
+
   useEffect(() => {
     setName(kubernetesCluster?.name || '');
   }, [kubernetesCluster]);
+
   useEffect(() => {
     setErrors({
       length: name.length > NAME_INPUT_CONSTRAINTS.MAX_LENGTH,
       pattern: RegExp(NAME_INPUT_CONSTRAINTS.PATTERN).test(name) === false,
     });
   }, [name]);
+
   const canRename =
     isPendingCluster ||
     isPendingRename ||
     name === '' ||
     errors.length ||
     errors.pattern;
+
   return (
     <OsdsModal
-      onOdsModalClose={onClose}
+      onOdsModalClose={() => {
+        tracking?.trackClick({
+          name: `${KUBE_TRACK_PREFIX}::details::service::name::cancel`,
+        });
+        onClose();
+      }}
       headline={tEditName(
         'pci_projects_project_kubernetes_details_service_name',
       )}
@@ -176,7 +189,12 @@ export default function RenameClusterPage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={() => onClose()}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::name::cancel`,
+          });
+          onClose();
+        }}
         data-testid="renameCluster-button_cancel"
       >
         {tEditName(
@@ -187,7 +205,12 @@ export default function RenameClusterPage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={canRename || undefined}
-        onClick={renameCluster}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::name::confirm`,
+          });
+          renameCluster();
+        }}
         data-testid="renameCluster-button_submit"
       >
         {tEditName('pci_projects_project_kubernetes_details_service_name_edit')}

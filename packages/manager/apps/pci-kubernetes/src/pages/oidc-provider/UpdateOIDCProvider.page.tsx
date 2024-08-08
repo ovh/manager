@@ -17,14 +17,16 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNotifications } from '@ovhcloud/manager-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   useOidcProvider,
   useUpdateOidcProvider,
 } from '@/api/hooks/useKubernetes';
 import { TOidcProvider } from '@/api/data/kubernetes';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function UpdateOIDCProvider() {
   const { t } = useTranslation('update-oidc-provider');
@@ -32,17 +34,22 @@ export default function UpdateOIDCProvider() {
   const { projectId, kubeId } = useParams();
   const navigate = useNavigate();
   const onClose = () => navigate('..');
+  const { tracking } = useContext(ShellContext)?.shell || {};
+
   const [formState, setFormState] = useState({
     issuerUrl: '',
     issuerUrlTouched: false,
     clientId: '',
     clientIdTouched: false,
   });
+
   const { addError, addSuccess } = useNotifications();
+
   const {
     data: oidcProvider,
     isPending: isPendingOidsProvider,
   } = useOidcProvider(projectId, kubeId);
+
   useEffect(() => {
     if (oidcProvider) {
       setFormState((state) => ({
@@ -52,6 +59,7 @@ export default function UpdateOIDCProvider() {
       }));
     }
   }, [oidcProvider]);
+
   const {
     updateOidcProvider,
     isPending: isPendingUpdateOidcProvider,
@@ -93,13 +101,20 @@ export default function UpdateOIDCProvider() {
       onClose();
     },
   });
+
   const canSubmit = formState.issuerUrl && formState.clientId;
   const hasClientIdError = formState.clientIdTouched && !formState.clientId;
   const hasIssuerUrlError = formState.issuerUrlTouched && !formState.issuerUrl;
   const isPending = isPendingOidsProvider || isPendingUpdateOidcProvider;
+
   return (
     <OsdsModal
-      onOdsModalClose={onClose}
+      onOdsModalClose={() => {
+        tracking?.trackClick({
+          name: `${KUBE_TRACK_PREFIX}::details::service::update-oidc-provider::cancel`,
+        });
+        onClose();
+      }}
       headline={t(
         'pci_projects_project_kubernetes_details_service_update_oidc_provider_title',
       )}
@@ -224,7 +239,12 @@ export default function UpdateOIDCProvider() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={onClose}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::update-oidc-provider::cancel`,
+          });
+          onClose();
+        }}
         data-testid="updateOIDCProvider-button_cancel"
       >
         {t(
@@ -233,7 +253,12 @@ export default function UpdateOIDCProvider() {
       </OsdsButton>
       <OsdsButton
         slot="actions"
-        onClick={updateOidcProvider}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::update-oidc-provider::confirm`,
+          });
+          updateOidcProvider();
+        }}
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={isPending || !canSubmit || undefined}
         data-testid="updateOIDCProvider-button_submit"
