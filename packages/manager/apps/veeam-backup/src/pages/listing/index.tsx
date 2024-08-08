@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useInfiniteQuery } from '@tanstack/react-query';
-
 import { OsdsButton, OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -12,20 +11,15 @@ import {
   DataGridTextCell,
   useDatagridSearchParams,
 } from '@ovhcloud/manager-components';
-
 import { getListingIcebergV2 } from '@/data/api/veeam-backup';
-
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-
-import appConfig from '@/veeam-backup.config';
+import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
 
 export default function Listing() {
   const { t } = useTranslation('listing');
-  const myConfig = appConfig;
-  const serviceKey = myConfig.listing?.datagrid?.serviceKey;
+  const serviceKey = 'id';
   const [columns, setColumns] = useState([]);
   const [flattenData, setFlattenData] = useState([]);
   const navigate = useNavigate();
