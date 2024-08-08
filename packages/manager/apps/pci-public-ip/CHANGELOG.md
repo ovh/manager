@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.2.4...@ovh-ux/manager-pci-public-ip-app@0.3.0) (2024-08-08)
+
+
+### Features
+
+* clean dependencies versions of react apps ([7969ba7](https://github.com/ovh/manager/commit/7969ba70f9e03033271a48a5bd0021484ea36263))
+* **manager-components:** onboarding redesign ([#12330](https://github.com/ovh/manager/issues/12330)) ([17ed1dc](https://github.com/ovh/manager/commit/17ed1dc4c1b407d3140a9ef485e0fcadc583c789))
+
+
+
+
+
 ## [0.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.2.3...@ovh-ux/manager-pci-public-ip-app@0.2.4) (2024-08-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app

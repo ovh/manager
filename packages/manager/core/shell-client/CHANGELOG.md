@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.6.1...@ovh-ux/manager-react-shell-client@0.7.0) (2024-08-08)
+
+
+### Bug Fixes
+
+* define version in react apps for request header ([#12406](https://github.com/ovh/manager/issues/12406)) ([137341c](https://github.com/ovh/manager/commit/137341c121df3077139fbce953b36989ad779f12))
+
+
+### Features
+
+* clean dependencies versions of react apps ([7969ba7](https://github.com/ovh/manager/commit/7969ba70f9e03033271a48a5bd0021484ea36263))
+
+
+
+
+
 ## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.6.0...@ovh-ux/manager-react-shell-client@0.6.1) (2024-06-25)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-shell-client

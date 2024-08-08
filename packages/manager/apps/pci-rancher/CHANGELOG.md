@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.11.1...@ovh-ux/manager-pci-rancher-app@1.12.0) (2024-08-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3179] ([8ab38b2](https://github.com/ovh/manager/commit/8ab38b23805fcd271b20d19453d46f1f32d26bb2))
+
+
+### Features
+
+* clean dependencies versions of react apps ([7969ba7](https://github.com/ovh/manager/commit/7969ba70f9e03033271a48a5bd0021484ea36263))
+* **manager-components:** onboarding redesign ([#12330](https://github.com/ovh/manager/issues/12330)) ([17ed1dc](https://github.com/ovh/manager/commit/17ed1dc4c1b407d3140a9ef485e0fcadc583c789))
+
+
+
+
+
 ## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.11.0...@ovh-ux/manager-pci-rancher-app@1.11.1) (2024-08-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
