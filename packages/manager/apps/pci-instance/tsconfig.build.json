@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "strict": false // to enable after `manager-components` has been cleaned up
+  }
+}
