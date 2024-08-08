@@ -149,24 +149,25 @@ export default function EditGatewayPage(): JSX.Element {
       </OsdsLink>
       {isGatewayLoading ? (
         <OsdsSpinner
-          inline={true}
+          inline
           size={ODS_SPINNER_SIZE.md}
-          className={'block mt-4 text-center'}
+          className="block mt-4 text-center"
         />
       ) : (
         <>
           {isGatewayUpdating && (
             <OsdsSpinner
-              inline={true}
+              inline
               size={ODS_SPINNER_SIZE.md}
-              className={'block mt-4 text-center'}
+              className="block mt-4 text-center"
+              data-testid="gatewayEdit-spinner"
             />
           )}
           <OsdsDivider></OsdsDivider>
           <StepComponent
             id="edit"
             order={1}
-            isOpen={true}
+            isOpen
             isChecked={isGatewayUpdating}
             isLocked={isGatewayUpdating}
             title={tEdit('pci_projects_project_public_gateway_edit_title')}
@@ -214,7 +215,7 @@ export default function EditGatewayPage(): JSX.Element {
                   'pci_projects_project_public_gateways_edit_public_gateway_field_placeholder',
                 )}
                 error={!state.name.length}
-                inline={true}
+                inline
                 onOdsValueChange={(event) => {
                   setState((prev) => ({
                     ...prev,

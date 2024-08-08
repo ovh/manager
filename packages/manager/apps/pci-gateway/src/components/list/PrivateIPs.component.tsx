@@ -19,7 +19,7 @@ export default function PrivateIPs({
     >
       <ul>
         {interfaces.map((item) => (
-          <li className={'w-fit'} key={item.ip}>
+          <li className="w-fit" key={item.ip}>
             {item.ip}
           </li>
         ))}

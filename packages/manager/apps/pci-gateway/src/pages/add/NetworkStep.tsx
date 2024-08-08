@@ -289,14 +289,14 @@ export const NetworkStep = (): JSX.Element => {
       <OsdsMessage
         type={ODS_MESSAGE_TYPE.warning}
         color={ODS_THEME_COLOR_INTENT.warning}
-        className={'my-6 flex-row'}
+        className="my-6 flex-row"
       >
         {tAdd(
           'pci_projects_project_public_gateways_add_no_private_network_warning',
         )}
       </OsdsMessage>
       <OsdsFormField
-        inline={true}
+        inline
         error={
           isInputTouched && !store.form.name
             ? tGlobal('common_field_error_required')
@@ -327,7 +327,7 @@ export const NetworkStep = (): JSX.Element => {
       </OsdsFormField>
       <br />
       <div className="sm:flex sm:flex-wrap-reverse sm:justify-start">
-        <OsdsFormField className={'pr-4 flex justify-between'} inline={true}>
+        <OsdsFormField className="pr-4 flex justify-between" inline>
           <OsdsText
             slot="label"
             color={ODS_THEME_COLOR_INTENT.text}
@@ -339,7 +339,7 @@ export const NetworkStep = (): JSX.Element => {
           </OsdsText>
           <OsdsSelect
             value={store.form.network.id}
-            inline={true}
+            inline
             onOdsValueChange={(event) => {
               store.updateForm.network(
                 event.detail.value as string,
@@ -353,7 +353,7 @@ export const NetworkStep = (): JSX.Element => {
               )}
             </span>
             {store.form.newNetwork.name && store.form.newNetwork.subnet && (
-              <OsdsSelectOption key={'new'} value={'new'}>
+              <OsdsSelectOption key="new" value="new">
                 {store.form.newNetwork.name}
               </OsdsSelectOption>
             )}
@@ -372,10 +372,10 @@ export const NetworkStep = (): JSX.Element => {
         </OsdsFormField>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
-          inline={true}
+          inline
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
-          className={'xs:mt-2 sm:mt-0 w-fit h-fit'}
+          className="xs:mt-2 sm:mt-0 w-fit h-fit"
           onClick={() => {
             setState({
               ...state,
@@ -393,12 +393,12 @@ export const NetworkStep = (): JSX.Element => {
       {!isCreating ? (
         <div className="h-20">
           {store.form.network?.id && isSubnetsLoading && (
-            <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
+            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
           )}
           {(!store.form.network?.id || !isSubnetsLoading) && (
             <OsdsButton
               size={ODS_BUTTON_SIZE.md}
-              inline={true}
+              inline
               variant={ODS_BUTTON_VARIANT.flat}
               color={ODS_THEME_COLOR_INTENT.primary}
               {...(isNextButtonDisabled ? { disabled: true } : {})}
@@ -410,7 +410,7 @@ export const NetworkStep = (): JSX.Element => {
         </div>
       ) : (
         <p>
-          <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
           <OsdsText
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             size={ODS_THEME_TYPOGRAPHY_SIZE._400}

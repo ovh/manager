@@ -17,7 +17,7 @@ export default function OnBoardingGuard({
   if (isPending) {
     return (
       <OsdsSpinner
-        inline={true}
+        inline
         size={ODS_SPINNER_SIZE.md}
         data-testid="onBoardingGuard-spinner"
       />

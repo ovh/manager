@@ -24,7 +24,7 @@ export const useDatagridColumn = (
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             size={ODS_THEME_TYPOGRAPHY_SIZE._500}
             color={ODS_THEME_COLOR_INTENT.text}
-            className={'block'}
+            className="block"
           >
             {props.name}
           </OsdsText>
@@ -32,7 +32,7 @@ export const useDatagridColumn = (
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             size={ODS_THEME_TYPOGRAPHY_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
-            className={'block'}
+            className="block"
           >
             {props.id}
           </OsdsText>
@@ -92,7 +92,7 @@ export const useDatagridColumn = (
           <Actions projectId={projectId} gateway={props} />
         </div>
       ),
-      label: t(''),
+      label: '',
     },
   ];
   return columns;

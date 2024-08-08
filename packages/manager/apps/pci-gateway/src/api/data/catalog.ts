@@ -19,7 +19,7 @@ export type TPricing = {
   mode: string;
 };
 
-type TPlan = {
+export type TPlan = {
   planCode: string;
   invoiceName: string;
   product: string;
@@ -28,7 +28,7 @@ type TPlan = {
   pricings: TPricing[];
 };
 
-type TCatalog = {
+export type TCatalog = {
   catalogId: string;
   locale: {
     currencyCode: string;
