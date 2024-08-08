@@ -5,6 +5,7 @@
   "ovhManagerPccDashboardComponentActivationStatus_cancelling": "En cours d'annulation",
   "ovhManagerPccDashboardComponentActivationStatus_disabled": "Désactivé",
   "ovhManagerPccDashboardComponentActivationStatus_enabled": "Activé",
+  "ovhManagerPccDashboardComponentActivationStatus_enabling": "En cours d'activation",
   "ovhManagerPccDashboardComponentActivationStatus_inError": "En erreur",
   "ovhManagerPccDashboardComponentActivationStatus_needsConfiguration": "En attente de configuration",
   "ovhManagerPccDashboardComponentActivationStatus_awaitingValidation": "En attente de validation",
