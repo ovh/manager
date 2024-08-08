@@ -111,6 +111,17 @@ export default class {
       : this.fetchLegacyConsumption(datastores);
   }
 
+  fetchLocations(datastores) {
+    return this.$q.all(
+      datastores.map((datastore) => {
+        return this.ovhManagerPccDatacenterDatastoreService
+          .getDatastoreLocation(this.productId, datastore.dc, datastore.id)
+          .then((location) => ({ ...datastore, location }))
+          .catch(() => datastore);
+      }),
+    );
+  }
+
   loadDatastores({ offset, pageSize }) {
     return this.DedicatedCloud.getDatastores(
       this.productId,
@@ -119,12 +130,15 @@ export default class {
       offset - 1,
     ).then((result) =>
       this.chooseConsumptionFetchingMethod(result.list.results).then(
-        (data) => ({
-          data,
-          meta: {
-            totalCount: result.count,
-          },
-        }),
+        (datastoresWithConsumption) =>
+          this.fetchLocations(datastoresWithConsumption).then(
+            (datastoresWithLocation) => ({
+              data: datastoresWithLocation,
+              meta: {
+                totalCount: result.count,
+              },
+            }),
+          ),
       ),
     );
   }

@@ -18,5 +18,8 @@
   "dedicatedCloud_tab_host_hourly_usage_1": "1 hour",
   "dedicatedCloud_tab_host_hourly_usage_other": "{} hours",
   "dedicatedCloud_tab_host_hourly_usage_na": "Coming soon",
-  "dedicatedCloud_tab_host_hourly_usage_update": "As of {{t0}}"
+  "dedicatedCloud_tab_host_hourly_usage_update": "As of {{t0}}",
+  "dedicatedCloud_tab_host_location_datacenter": "Datacenter",
+  "dedicatedCloud_tab_host_location_room": "Room",
+  "dedicatedCloud_tab_host_location_rack": "Rack"
 }

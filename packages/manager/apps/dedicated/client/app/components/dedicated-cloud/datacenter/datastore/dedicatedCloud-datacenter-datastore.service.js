@@ -1,7 +1,8 @@
 export default class {
   /* @ngInject */
-  constructor(OvhHttp) {
+  constructor(OvhHttp, $http) {
     this.OvhHttp = OvhHttp;
+    this.$http = $http;
   }
 
   fetchLegacyHourlyConsumption(serviceName, datacenterId, filerId) {
@@ -20,5 +21,18 @@ export default class {
         rootPath: 'apiv6',
       },
     );
+  }
+
+  getDatastoreLocation(serviceName, datacenterId, filerId) {
+    if (!datacenterId) {
+      return this.$http
+        .get(`/dedicatedCloud/${serviceName}/filer/${filerId}/location`)
+        .then(({ data }) => data);
+    }
+    return this.$http
+      .get(
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/filer/${filerId}/location`,
+      )
+      .then(({ data }) => data);
   }
 }
