@@ -91,6 +91,13 @@ export default /* @ngInject */ ($stateProvider) => {
         DedicatedCloud,
       ) => DedicatedCloud.getDescription($stateParams.productId),
 
+      managedVCDAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('hpc-vmware-managed-vcd')
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable('hpc-vmware-managed-vcd'),
+          ),
+
       dedicatedCloudServiceInfos: /* @ngInject */ (
         $stateParams,
         OvhApiDedicatedCloud,

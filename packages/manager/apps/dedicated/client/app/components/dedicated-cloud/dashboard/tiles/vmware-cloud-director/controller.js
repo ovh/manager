@@ -1,33 +1,24 @@
 export default class {
   /* @ngInject */
-  constructor($translate, DedicatedCloud, coreURLBuilder) {
+  constructor($translate, DedicatedCloud) {
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
-    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
-    this.isSubscribed = false;
     this.guideLink = this.DedicatedCloud.getVCDGuideLink();
-    this.messageLink = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/useraccount/emails',
-    );
-    this.checkSubscription();
+    this.checkMigration();
   }
 
-  checkSubscription() {
+  checkMigration() {
     this.loading = true;
-    return this.DedicatedCloud.hasSubscribedVCDOffer(this.productId)
-      .then((isSubscribed) => {
-        this.isSubscribed = isSubscribed;
-        this.subscriptionLabel = this.$translate.instant(
-          isSubscribed
-            ? 'dedicatedCloud_vmware_cloud_director_subscribed'
-            : 'dedicatedCloud_vmware_cloud_director_not_subscribed',
-          {
-            link: this.guideLink,
-          },
+    return this.DedicatedCloud.getManagedVCDMigrationState(this.productId)
+      .then((state) => {
+        this.vcdMigrationState = state;
+        this.migrationTitle = this.$translate.instant(
+          this.vcdMigrationState.isDone
+            ? 'dedicatedCloud_vmware_cloud_director_migration'
+            : 'dedicatedCloud_vmware_cloud_director_validate_migration',
         );
       })
       .finally(() => {
