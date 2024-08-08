@@ -113,6 +113,15 @@
                         ></span>
                     </oui-tile-description>
                 </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_overview_config_public_ip' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind=":: $ctrl.loadbalancer.floatingIp.ip"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
             </oui-tile>
         </div>
     </div>
