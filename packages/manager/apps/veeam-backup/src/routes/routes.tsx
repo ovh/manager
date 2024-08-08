@@ -16,7 +16,7 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   };
 };
 
-export const Routes: any = [
+export const routes: any[] = [
   {
     path: urls.root,
     ...lazyRouteConfig(() => import('@/pages/layout')),
@@ -63,9 +63,20 @@ export const Routes: any = [
         ],
       },
       {
+        id: 'order-veeam',
+        path: urls.orderVeeam,
+        ...lazyRouteConfig(() => import('@/pages/order-veeam/OrderVeeam.page')),
+        handle: {
+          tracking: {
+            pageName: 'order-veeam',
+            pageType: PageType.funnel,
+          },
+        },
+      },
+      {
         id: 'onboarding',
         path: urls.onboarding,
-        ...lazyRouteConfig(() => import('@/pages/onboarding')),
+        ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
         handle: {
           tracking: {
             pageName: 'onboarding',
