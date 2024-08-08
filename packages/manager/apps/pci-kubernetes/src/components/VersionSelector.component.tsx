@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 import {
   OsdsChip,
@@ -42,16 +42,12 @@ export function VersionSelector({
     }
   };
 
-  useEffect(() => {
-    selectVersion(lastVersion);
-  }, [lastVersion]);
-
   if (isPending) {
     return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
   }
 
   return (
-    <div className="grid gap-6 list-none p-6 m-0 grid-cols-1 md:grid-cols-3">
+    <div className="grid gap-6 list-none grid-cols-1 md:grid-cols-3">
       {versions?.map((version) => (
         <OsdsTile
           key={version}
