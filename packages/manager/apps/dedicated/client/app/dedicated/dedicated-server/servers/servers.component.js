@@ -18,6 +18,7 @@ export default {
     paginationTotalCount: '<',
     sort: '<',
     sortOrder: '<',
+    displayRbx1EolBanner: '<',
   },
   controller,
   template,

@@ -35,6 +35,14 @@ export default /* @ngInject */ ($stateProvider) => {
       orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
       orderEcoRangeUrl: /* @ngInject */ (User) =>
         User.getUrlOf('dedicatedEcoRangeOrder'),
+      featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability([
+          'dedicated-server:order',
+          'dedicated-server:ecoRangeOrderSectionDedicated',
+          'billing:autorenew2016Deployment',
+          'dedicated-server:banner-rbx1-eol',
+          'dedicated-server:banner-rbx1-imminent-eol',
+        ]),
       isOrderAvailable: /* @ngInject */ (featureAvailability) =>
         featureAvailability?.isFeatureAvailable('dedicated-server:order') ||
         false,
@@ -122,6 +130,16 @@ export default /* @ngInject */ ($stateProvider) => {
         featureAvailability?.isFeatureAvailable(
           'billing:autorenew2016Deployment',
         ) || false,
+      displayRbx1EolBanner: /* @ngInject */ (featureAvailability) => ({
+        rbx1Eol:
+          featureAvailability?.isFeatureAvailable(
+            'dedicated-server:banner-rbx1-eol',
+          ) || false,
+        rbx1ImminentEol:
+          featureAvailability?.isFeatureAvailable(
+            'dedicated-server:banner-rbx1-imminent-eol',
+          ) || false,
+      }),
     },
     redirectTo: (transition) =>
       transition

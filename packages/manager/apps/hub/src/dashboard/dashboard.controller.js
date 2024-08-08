@@ -32,6 +32,7 @@ export default class DashboardController {
     this.showKycBannerWaiting = false;
     this.displayRbx1EolBanner = {
       rbx1Eol: false,
+      rbx1ImminentEol: false,
     };
     this.$http
       .get(`/feature/identity-documents/availability`, {
@@ -86,6 +87,9 @@ export default class DashboardController {
         }
         this.displayRbx1EolBanner.rbx1Eol = data?.isFeatureAvailable(
           'hub:banner-rbx1-eol',
+        );
+        this.displayRbx1EolBanner.rbx1ImminentEol = data?.isFeatureAvailable(
+          'hub:banner-rbx1-imminent-eol',
         );
       });
 
