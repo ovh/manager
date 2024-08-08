@@ -1,4 +1,5 @@
 class DownloadService {
+  /* @ngInject */
   constructor($http) {
     this.$http = $http;
   }

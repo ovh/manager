@@ -8,6 +8,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'PrivateDatabaseImportCtrl',
   class PrivateDatabaseImportCtrl {
+    /* @ngInject */
     constructor(
       $rootScope,
       $scope,

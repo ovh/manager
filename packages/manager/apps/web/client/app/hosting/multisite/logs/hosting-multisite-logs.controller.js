@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'HostingTabDomainsMultisiteLogs',
   class HostingTabDomainsMultisiteLogs {
+    /* @ngInject */
     constructor(
       $http,
       $q,

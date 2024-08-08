@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'PrivateDatabaseChangeRamCtrl',
   class PrivateDatabaseChangeRamCtrl {
+    /* @ngInject */
     constructor(
       $rootScope,
       $scope,

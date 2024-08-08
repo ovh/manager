@@ -4,6 +4,7 @@ import { HOSTING_TASK_TABLE_ID } from './hosting-task.constants';
 angular.module('App').controller(
   'HostingTabTasksCtrl',
   class HostingTabTasksCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $scope,

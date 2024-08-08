@@ -1,6 +1,7 @@
 import StateManagement from './stepper.state-management';
 
 export default class {
+  /* @ngInject */
   constructor($state, $stateRegistry, stepCollection) {
     this.stateManagement = new StateManagement($state, $stateRegistry);
     this.stepCollection = stepCollection;

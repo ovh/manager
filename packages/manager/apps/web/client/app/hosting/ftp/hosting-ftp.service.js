@@ -4,13 +4,7 @@ import snakeCase from 'lodash/snakeCase';
 angular.module('services').service(
   'HostingUser',
   class HostingUser {
-    /**
-     * Constructor
-     * @param Hosting
-     * @param OvhHttp
-     * @param Poller
-     * @param $rootScope
-     */
+    /* @ngInject */
     constructor(Hosting, OvhHttp, Poller, $rootScope) {
       this.Hosting = Hosting;
       this.OvhHttp = OvhHttp;

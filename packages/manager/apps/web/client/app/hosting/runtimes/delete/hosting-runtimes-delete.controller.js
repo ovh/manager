@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'controllers.Hosting.Runtimes.delete',
   class HostingRuntimesDeleteCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,

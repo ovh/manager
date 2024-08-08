@@ -11,6 +11,7 @@ import { RECOMMENDED_VERSION } from './config.constants';
 angular.module('App').controller(
   'HostingEditOvhConfig',
   class HostingEditOvhConfig {
+    /* @ngInject */
     constructor(
       $scope,
       $q,

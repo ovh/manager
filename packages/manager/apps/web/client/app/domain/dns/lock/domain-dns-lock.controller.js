@@ -3,6 +3,7 @@ import set from 'lodash/set';
 angular.module('controllers').controller(
   'controllers.Domain.Dns.Lock',
   class DomainDnsLockCtrl {
+    /* @ngInject */
     constructor($scope, $rootScope, $stateParams, $translate, Alerter, Domain) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;

@@ -1,6 +1,7 @@
 angular.module('App').service(
   'HostingAutomatedEmails',
   class HostingAutomatedEmails {
+    /* @ngInject */
     constructor(constants, $q, OvhHttp, $http) {
       this.constants = constants;
       this.$q = $q;

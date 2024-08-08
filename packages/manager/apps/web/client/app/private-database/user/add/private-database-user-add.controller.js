@@ -3,6 +3,7 @@ import indexOf from 'lodash/indexOf';
 angular.module('App').controller(
   'PrivateDatabaseAddUserCtrl',
   class PrivateDatabaseAddUserCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, PrivateDatabase) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

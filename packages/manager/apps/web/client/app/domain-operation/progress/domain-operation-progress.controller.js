@@ -10,6 +10,7 @@ import { ALERTER_ID } from '../operation-table/operation-table.constants';
 angular.module('App').controller(
   'DomainOperationProgressCtrl',
   class DomainOperationProgressCtrl {
+    /* @ngInject */
     constructor($stateParams, $translate, Alerter, domainOperationService) {
       this.$stateParams = $stateParams;
       this.$translate = $translate;

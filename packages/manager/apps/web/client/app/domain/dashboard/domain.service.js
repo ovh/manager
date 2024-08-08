@@ -16,17 +16,7 @@ import without from 'lodash/without';
 angular.module('services').service(
   'Domain',
   class Domain {
-    /**
-     * Constructor
-     * @param $http
-     * @param $rootScope
-     * @param $q
-     * @param Domains
-     * @param DomainValidator
-     * @param OvhHttp
-     * @param Poll
-     * @param Poller
-     */
+    /* @ngInject */
     constructor(
       $http,
       $rootScope,

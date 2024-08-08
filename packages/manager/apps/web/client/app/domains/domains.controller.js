@@ -11,16 +11,7 @@ import punycode from 'punycode';
 angular.module('App').controller(
   'DomainsCtrl',
   class DomainsCtrl {
-    /**
-     * Constructor
-     * @param $scope
-     * @param $rootScope
-     * @param $timeout
-     * @param Domains
-     * @param Navigator
-     * @param Alerter
-     * @param WucUser
-     */
+    /* @ngInject */
     constructor(
       $scope,
       $state,

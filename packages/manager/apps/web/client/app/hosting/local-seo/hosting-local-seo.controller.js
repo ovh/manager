@@ -7,6 +7,7 @@ import map from 'lodash/map';
 angular.module('App').controller(
   'HostingTabLocalSeoCtrl',
   class HostingTabLocalSeoCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $scope,

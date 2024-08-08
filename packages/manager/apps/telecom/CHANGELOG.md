@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.0...@ovh-ux/manager-telecom@15.20.1) (2024-08-06)
+
+
+### Bug Fixes
+
+* add ng-inject ([#12633](https://github.com/ovh/manager/issues/12633)) ([4ef3118](https://github.com/ovh/manager/commit/4ef3118e4f1b845023e893353ae2a4955623a2d8))
+
+
+
+
+
 # [15.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.19.0...@ovh-ux/manager-telecom@15.20.0) (2024-08-05)
 
 

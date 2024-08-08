@@ -6,6 +6,7 @@ import { RENEW_URL, DOMAIN_SERVICE_STATUS } from './domain.constant';
 angular.module('App').controller(
   'DomainCtrl',
   class DomainCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $rootScope,

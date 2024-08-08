@@ -1,12 +1,7 @@
 angular.module('services').service(
   'DomainRedirection',
   class DomainRedirection {
-    /**
-     * @constructs DomainRedirection
-     * @param {Object} $stateParams
-     * @param {Object} Domain
-     * @param {Object} OvhHttp
-     */
+    /* @ngInject */
     constructor($stateParams, Domain, OvhHttp, $http) {
       this.productId = $stateParams.productId;
       this.OvhHttp = OvhHttp;

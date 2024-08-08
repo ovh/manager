@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'PrivateDatabaseBDDsCtrl',
   class PrivateDatabaseBDDsCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       goToArchives,

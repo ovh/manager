@@ -12,6 +12,7 @@ import startsWith from 'lodash/startsWith';
 angular.module('services').service(
   'BillingPaymentMethodService',
   class BillingPaymentMethod {
+    /* @ngInject */
     constructor(
       $q,
       $http,

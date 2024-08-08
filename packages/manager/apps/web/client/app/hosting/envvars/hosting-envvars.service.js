@@ -1,6 +1,7 @@
 angular.module('services').service(
   'HostingEnvvars',
   class HostingEnvvars {
+    /* @ngInject */
     constructor($http, $q, Hosting, iceberg) {
       this.$http = $http;
       this.$q = $q;

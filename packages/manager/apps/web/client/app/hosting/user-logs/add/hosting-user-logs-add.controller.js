@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingUserLogsCreateCtrl',
   class HostingUserLogsCreateCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,

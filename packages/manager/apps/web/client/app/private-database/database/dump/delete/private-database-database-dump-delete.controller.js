@@ -1,6 +1,7 @@
 angular.module('controllers').controller(
   'PrivateDatabaseBDDsDumpsDeleteCtrl',
   class PrivateDatabaseBDDsDumpsDeleteCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, PrivateDatabase) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

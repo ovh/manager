@@ -1,6 +1,7 @@
 import FeatureAvailabilityResult from './feature-availability-result.class';
 
 export default class FeatureFlipping {
+  /* @ngInject */
   constructor($q, $http, applicationName) {
     this.$q = $q;
     this.$http = $http;

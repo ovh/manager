@@ -20,6 +20,7 @@ import union from 'lodash/union';
   angular.module('services').service(
     'Hosting',
     class Hosting {
+      /* @ngInject */
       constructor(
         $q,
         $http,

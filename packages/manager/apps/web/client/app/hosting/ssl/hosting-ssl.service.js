@@ -5,6 +5,7 @@ import isString from 'lodash/isString';
 angular.module('services').service(
   'hostingSSLCertificate',
   class HostingSSLCertificate {
+    /* @ngInject */
     constructor(
       $rootScope,
       $http,

@@ -3,6 +3,7 @@ import defaults from 'lodash/defaults';
 angular.module('services').service(
   'WhitelistService',
   class WhitelistService {
+    /* @ngInject */
     constructor($http, PrivateDatabase, $q, $rootScope, $stateParams) {
       this.$http = $http;
       this.privateDatabaseService = PrivateDatabase;

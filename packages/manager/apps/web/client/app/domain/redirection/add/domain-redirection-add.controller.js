@@ -10,6 +10,7 @@ import startsWith from 'lodash/startsWith';
 angular.module('controllers').controller(
   'controllers.Domain.Redirection.add',
   class DomainRedirectionAddCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $rootScope,
