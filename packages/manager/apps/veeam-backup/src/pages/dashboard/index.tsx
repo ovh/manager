@@ -13,10 +13,8 @@ import {
   OsdsTabBar,
   OsdsTabBarItem,
 } from '@ovhcloud/ods-components/react';
-
 import { DashboardLayout } from '@ovhcloud/manager-components';
-
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 
 export type DashboardTabItemProps = {
   name: string;
