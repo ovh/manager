@@ -9,6 +9,7 @@ export default {
     goToSnapshots: '<',
     goToAcls: '<',
     goToDeleteVolume: '<',
+    goToEditVolumeSize: '<',
     loadVolumeDetail: '<',
     storage: '<',
     isCreateVolumeAvailable: '<',

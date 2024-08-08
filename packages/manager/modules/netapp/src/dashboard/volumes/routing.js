@@ -61,14 +61,32 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick('create-volume');
         return $state.go('netapp.dashboard.volumes.create');
       },
-      goToVolumeDetails: /* @ngInject */ ($state, serviceName, trackClick) => (
-        volume,
-      ) => {
+      goToVolumeDetails: /* @ngInject */ (
+        $state,
+        Alerter,
+        serviceName,
+        trackClick,
+      ) => (volume, message = false, type = 'success') => {
         trackClick('update-volume');
-        return $state.go('netapp.dashboard.volumes.dashboard', {
-          serviceName,
-          volumeId: volume.id,
-        });
+        const reload = message && type === 'success';
+        const promise = $state.go(
+          'netapp.dashboard.volumes.dashboard',
+          {
+            serviceName,
+            volumeId: volume.id,
+          },
+          {
+            reload,
+          },
+        );
+
+        if (message) {
+          promise.then(() => {
+            Alerter[type](message);
+          });
+        }
+
+        return promise;
       },
       goToCreateSnapshot: /* @ngInject */ ($state, serviceName, trackClick) => (
         volume,
@@ -93,6 +111,15 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => {
         trackClick('manage-acl');
         return $state.go('netapp.dashboard.volumes.dashboard.acl', {
+          serviceName,
+          volumeId: volume.id,
+        });
+      },
+      goToEditVolumeSize: /* @ngInject */ ($state, serviceName, trackClick) => (
+        volume,
+      ) => {
+        trackClick('edit-volume-size');
+        return $state.go('netapp.dashboard.volumes.edit-size', {
           serviceName,
           volumeId: volume.id,
         });
