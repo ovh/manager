@@ -23,14 +23,12 @@ export const PRODUCT_TYPES = {
 };
 
 export const IP_AGORA = {
-  IPv4Failover: {
-    typeName: 'IPv4Failover',
-    maxQty: 64,
+  VPS: {
+    maxQty: 16,
     minQty: 1,
   },
-  IPv4Block: {
-    typeName: 'IPv4Block',
-    maxQty: 1,
+  DEFAULT: {
+    maxQty: 64,
     minQty: 1,
   },
 };

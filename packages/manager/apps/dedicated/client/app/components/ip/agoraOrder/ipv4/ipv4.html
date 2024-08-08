@@ -78,7 +78,7 @@
                         data-placeholder="{{:: 'ipv4_select_placeholder' | translate }}"
                         data-model="$ctrl.model.params.selectedOffer"
                         data-values="$ctrl.failoverIpOffers"
-                        data-on-change="$ctrl.onSelectedOfferChange('IPv4Failover')"
+                        data-on-change="$ctrl.onSelectedOfferChange()"
                         data-variant="secondary"
                         data-required
                     >
@@ -109,7 +109,7 @@
                         data-placeholder="{{:: 'ipv4_select_placeholder' | translate }}"
                         data-model="$ctrl.model.params.selectedOffer"
                         data-values="$ctrl.blockIpOffers"
-                        data-on-change="$ctrl.onSelectedOfferChange('IPv4Block')"
+                        data-on-change="$ctrl.onSelectedOfferChange()"
                         data-variant="secondary"
                         data-required
                     >
