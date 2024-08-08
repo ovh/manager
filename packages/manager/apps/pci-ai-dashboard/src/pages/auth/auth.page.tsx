@@ -10,6 +10,7 @@ import {
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import OvhLink from '@/components/links/OvhLink.component';
 import usePciProject from '@/hooks/api/project/useGetProjects.hook';
+import { PlanCode } from '@/configuration/project';
 
 interface AuthProps {
   onSuccess?: () => void;
@@ -21,8 +22,8 @@ export default function Auth({ onSuccess }: AuthProps) {
   const { projectId } = useParams();
   const projectData = usePciProject();
 
-  const isProjectDiscoveryMode = true;
-  // projectData.data?.planCode === PlanCode.DISCOVERY;
+  const isProjectDiscoveryMode =
+    projectData.data?.planCode === PlanCode.DISCOVERY;
 
   const PostAuthorizationProps: PostMutateAuthorizationProps = {
     onError(err) {
