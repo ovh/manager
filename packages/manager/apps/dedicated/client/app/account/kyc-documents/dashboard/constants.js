@@ -69,6 +69,8 @@ export const PRIVACY_LINKS = {
   WE: 'https://www.ovhcloud.com/en-ie/terms-and-conditions/privacy-policy/',
 };
 
+export const SUPPORT_URL = 'https://help.ovhcloud.com/csm?id=csm_get_help';
+
 export default {
   DOCUMENT_TYPE,
   DOCUMENT_LIST,
@@ -76,4 +78,5 @@ export default {
   LEGAL_FORMS,
   MAXIMUM_DOCUMENTS,
   PRIVACY_LINKS,
+  SUPPORT_URL,
 };
