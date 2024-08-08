@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.10.0...@ovh-ux/manager-generator@0.11.0) (2024-08-08)
+
+
+### Features
+
+* clean dependencies versions of react apps ([7969ba7](https://github.com/ovh/manager/commit/7969ba70f9e03033271a48a5bd0021484ea36263))
+* **manager-components:** add listing component page ([4716cce](https://github.com/ovh/manager/commit/4716cceef8c5168e19361b6e68ae428bfcd9e312))
+* **manager-components:** onboarding redesign ([#12330](https://github.com/ovh/manager/issues/12330)) ([17ed1dc](https://github.com/ovh/manager/commit/17ed1dc4c1b407d3140a9ef485e0fcadc583c789))
+
+
+
+
+
 # [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.9.0...@ovh-ux/manager-generator@0.10.0) (2024-05-28)
 
 

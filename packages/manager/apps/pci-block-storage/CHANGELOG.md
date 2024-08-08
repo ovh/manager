@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.1.3...@ovh-ux/manager-pci-block-storage-app@0.2.0) (2024-08-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3172] ([6b9a2b2](https://github.com/ovh/manager/commit/6b9a2b26a72d6316d49f4a29edc93f557dc8b6d6))
+* **i18n:** add missing translations [CDS 3189] ([ba73a17](https://github.com/ovh/manager/commit/ba73a17c03a04db70aad532fab42b31c1367dd03))
+* **i18n:** add missing translations [CDS 3199] ([e992a06](https://github.com/ovh/manager/commit/e992a060d76739fe2a98b49772d4da5b77f15277))
+* **i18n:** add missing translations [CDS 3209] ([12e662d](https://github.com/ovh/manager/commit/12e662de397e753719573add17acbd94fcadb33f))
+
+
+### Features
+
+* clean dependencies versions of react apps ([7969ba7](https://github.com/ovh/manager/commit/7969ba70f9e03033271a48a5bd0021484ea36263))
+* **manager-components:** onboarding redesign ([#12330](https://github.com/ovh/manager/issues/12330)) ([17ed1dc](https://github.com/ovh/manager/commit/17ed1dc4c1b407d3140a9ef485e0fcadc583c789))
+
+
+
+
+
 ## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.1.2...@ovh-ux/manager-pci-block-storage-app@0.1.3) (2024-08-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
