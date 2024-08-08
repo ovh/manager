@@ -23,7 +23,7 @@
   "deleteServiceToastErrorTitle": "Errore durante l'eliminazione del tuo servizio",
   "deleteServiceToastSuccessTitle": "Servizio eliminato",
   "deleteServiceToastSuccessDescription": "Il servizio è stato eliminato",
-  "deleteServiceTitle": "Elimina il servizio",
+  "deleteServiceTitle": "Eliminare il servizio",
   "deleteServiceDescription": "Vuoi davvero eliminare il servizio {{name}}?",
   "deleteServiceButtonCancel": "Annullare",
   "deleteServiceButtonConfirm": "Eliminare",

@@ -44,7 +44,7 @@
   "addNodeCancelButton": "Abbrechen",
   "addNodeSubmitButton": "Bestätigen",
   "deleteNodeTitle": "Node löschen",
-  "deleteNodeDescription": "Sie verfügen derzeit über {{nbNodes}} Node(s). Sind Sie sicher, dass Sie einen Node löschen möchten? Dadurch wird Ihre Rechnung um <price/> pro {{unit}} reduziert.",
+  "deleteNodeDescription": "Sie verfügen derzeit über {{nbNodes}} Node(s). Sind Sie sicher, dass Sie einen Node löschen möchten? Sie reduzieren Ihre Rechnung um <price/> pro {{unit}}.",
   "deleteNodeDescriptionUnitHour": "Stunde",
   "deleteNodeDescriptionUnitMonth": "Monat",
   "deleteNodeToastSuccessTitle": "Erfolgreich",

@@ -4,7 +4,7 @@
   "description1": "Collezione di punti È possibile avere un massimo di {{max}} namespace sul servizio.",
   "description2": "Solo il namespace predefinito è non aggregato. Include l’insieme di tutti i punti man mano che arrivano.",
   "description3": "È possibile creare namespace aggregati per i quali viene salvato un solo punto per ogni intervallo configurato.",
-  "addButtonLabel": "Aggiungi un namespace",
+  "addButtonLabel": "Aggiungere un namespace",
   "tableHeadName": "Nome",
   "tableHeadType": "Tipo",
   "tableHeadRetentionTime": "Periodo di retention",
