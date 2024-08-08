@@ -1,77 +1,30 @@
-import { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-const docUrl = 'https://docs.ovh.com';
+const docUrl = 'https://help.ovhcloud.com/csm/';
 
-type GuideLinks = { [key in CountryCode]: string };
+type GuideLinks = { [key in CountryCode | 'DEFAULT']: string };
 
 const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
   guideLink1: {
-    DE: '/update-path',
-    ES: '/update-path',
-    IE: '/en/update-path',
-    IT: '/update-path',
-    PL: '/update-path',
-    PT: '/update-path',
-    FR: '/update-path',
-    GB: '/update-path',
-    CA: '/update-path',
-    QC: '/update-path',
-    WE: '/update-path',
-    WS: '/update-path',
-    US: '/update-path',
+    DEFAULT:
+      'fr-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063124',
+    FR: 'fr-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063124',
+    GB: 'en-ie-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063133',
   },
-  guideLink2: {
-    DE: '/guide-link-2-path',
-    ES: '/guide-link-2-path',
-    IE: '/en/guide-link-2-path',
-    IT: '/guide-link-2-path',
-    PL: '/guide-link-2-path',
-    PT: '/guide-link-2-path',
-    FR: '/guide-link-2-path',
-    GB: '/guide-link-2-path',
-    CA: '/update-path',
-    QC: '/update-path',
-    WE: '/update-path',
-    WS: '/update-path',
-    US: '/update-path',
-  },
-  guideLink3: {
-    DE: '/guide-link-3-path',
-    ES: '/guide-link-3-path',
-    IE: '/en/guide-link-3-path',
-    IT: '/guide-link-3-path',
-    PL: '/guide-link-3-path',
-    PT: '/guide-link-3-path',
-    FR: '/guide-link-3-path',
-    GB: '/guide-link-3-path',
-    CA: '/update-path',
-    QC: '/update-path',
-    WE: '/update-path',
-    WS: '/update-path',
-    US: '/update-path',
-  },
-  /*
-  addNewGuideLink : {
-    DEFAULT: '/guide-link-3-path',
-    DE: '/guide-link-3-path',
-    ES: '/guide-link-3-path',
-    ...
-  }
-  */
 };
 
 type GetGuideLinkProps = {
   name?: string;
-  subsidiary: CountryCode | string;
+  subsidiary: CountryCode;
 };
 
 function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
   const list: { [guideName: string]: string } = {};
   const keys = Object.entries(GUIDE_LIST);
   keys.forEach((key) => {
-    list[key[0]] = docUrl + GUIDE_LIST[key[0]][subsidiary as CountryCode];
+    list[key[0]] = docUrl + GUIDE_LIST[key[0]][subsidiary || 'DEFAULT'];
   });
   return list;
 }
@@ -80,21 +33,18 @@ interface GuideLinkProps {
   [guideName: string]: string;
 }
 
-function useGuideUtils() {
-  const { shell } = useContext(ShellContext);
-  const { environment } = shell;
-  const [list, setList] = useState({});
+export function useGuideUtils() {
+  const { environment } = React.useContext(ShellContext);
+  const { ovhSubsidiary } = environment.getUser();
+  const [guideList, setGuideList] = React.useState<GuideLinkProps>({});
 
-  useEffect(() => {
-    const getSubSidiary = async () => {
-      const env = await environment.getEnvironment();
-      const { ovhSubsidiary } = env.getUser();
-      const guideList = getGuideListLink({ subsidiary: ovhSubsidiary });
-      setList(guideList);
-    };
-    getSubSidiary();
-  }, []);
-  return list as GuideLinkProps;
+  React.useEffect(() => {
+    setGuideList(
+      getGuideListLink({ subsidiary: ovhSubsidiary as CountryCode }),
+    );
+  }, [ovhSubsidiary]);
+
+  return guideList;
 }
 
 export default useGuideUtils;

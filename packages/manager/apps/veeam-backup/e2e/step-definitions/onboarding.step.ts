@@ -23,7 +23,7 @@ Then('User gets redirected to Onboarding page', async function(
   await expect(this.page).toHaveURL(getUrl('onboarding'));
 });
 
-Then('User sees {int} guides', async function(
+Then('User sees {int} guide', async function(
   this: ICustomWorld<ConfigParams>,
   nbGuides: number,
 ) {

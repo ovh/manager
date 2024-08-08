@@ -4,7 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { odsSetup } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { Routes } from './routes/routes';
+import { routes } from './routes/routes';
 
 odsSetup();
 
@@ -16,9 +16,9 @@ const queryClient = new QueryClient({
   },
 });
 
-function App() {
+export default function App() {
   const { shell } = useContext(ShellContext);
-  const router = createHashRouter(Routes);
+  const router = createHashRouter(routes);
 
   useEffect(() => {
     shell.ux.hidePreloader();
@@ -31,5 +31,3 @@ function App() {
     </QueryClientProvider>
   );
 }
-
-export default App;
