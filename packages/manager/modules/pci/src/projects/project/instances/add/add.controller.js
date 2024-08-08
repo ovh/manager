@@ -716,6 +716,7 @@ export default class PciInstancesAddController {
   onInstanceSubmit() {
     this.isLocalPrivateModeLocalZone = false;
     this.isCreatingNewPrivateNetwork = null;
+    this.isAttachFloatingIP = false;
   }
 
   onModeFocus() {
@@ -1136,13 +1137,19 @@ export default class PciInstancesAddController {
       this.model.number,
       this.isPrivateMode(),
     )
-      .then(({ id: instanceId, ipAddresses: ips }) => {
+      .then((result) => {
         const message =
           this.model.number === 1
             ? this.$translate.instant(this.addInstanceSuccessMessage, {
                 instance: this.instance.name,
               })
             : this.$translate.instant(this.addInstancesSuccessMessage);
+
+        if (Array.isArray(result) && result.length > 1) {
+          return this.goBack(message, 'success');
+        }
+        const { id: instanceId, ipAddresses: ips } = result;
+
         if (!this.isPrivateMode()) {
           return this.goBack(message, 'success');
         }
