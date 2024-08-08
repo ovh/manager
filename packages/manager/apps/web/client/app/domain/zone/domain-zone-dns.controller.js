@@ -176,7 +176,7 @@ export default class DomainTabZoneDnsCtrl {
     return this.$q
       .allSettled([
         this.Domain.getTabZoneDns(domainName, 0, 0, null, 'NS'),
-        this.Domain.getTabDns(domainName),
+        this.Domain.getDnsList(domainName),
       ])
       .then(
         (results) => {

@@ -13,6 +13,8 @@ import map from 'lodash/map';
 import omit from 'lodash/omit';
 import without from 'lodash/without';
 
+const apiv2Prefix = '/engine/api/v2';
+
 angular.module('services').service(
   'Domain',
   class Domain {
@@ -21,6 +23,7 @@ angular.module('services').service(
       $http,
       $rootScope,
       $q,
+      Apiv2Service,
       Domains,
       DomainValidator,
       OvhApiDomain,
@@ -32,6 +35,7 @@ angular.module('services').service(
       this.$http = $http;
       this.$rootScope = $rootScope;
       this.$q = $q;
+      this.Apiv2Service = Apiv2Service;
       this.Domains = Domains;
       this.DomainValidator = DomainValidator;
       this.OvhApiDomain = OvhApiDomain;
@@ -101,10 +105,10 @@ angular.module('services').service(
     }
 
     /**
-     * Get content of summary tabs
+     * Retrieve the DNS list and information about the name servers
      * @param {string} serviceName
      */
-    getTabDns(serviceName, forceRefresh) {
+    getDnsList(serviceName, forceRefresh) {
       let headers = {
         'X-Pagination-Mode': 'CachedObjectList-Pages',
       };
@@ -119,6 +123,36 @@ angular.module('services').service(
       return this.$http.get(`/domain/${serviceName}/nameServer`, {
         headers,
       });
+    }
+
+    /**
+     * Retrieve the APIv2 domain resource
+     *
+     * @param {string} serviceName
+     *
+     * @returns {Promise}
+     */
+    async getResource(serviceName) {
+      return this.Apiv2Service.httpApiv2({
+        method: 'get',
+        url: `${apiv2Prefix}/domain/name/${serviceName}`,
+      }).then(({ data: resource }) => resource);
+    }
+
+    /**
+     * Update the APIv2 domain resource
+     *
+     * @param {string} serviceName
+     * @param {object} payload
+     *
+     * @returns {Promise}
+     */
+    async updateResource(serviceName, payload) {
+      return this.Apiv2Service.httpApiv2({
+        method: 'put',
+        url: `${apiv2Prefix}/domain/name/${serviceName}`,
+        data: payload,
+      }).then(({ data: resource }) => resource);
     }
 
     /**
