@@ -1,0 +1,14 @@
+{
+  "ipbl_change_offer_title": "Choisissez une nouvelle offre",
+  "iplb_change_offer_choose_offer_title": "Offre",
+  "iplb_change_offer_choose_offer_label": "IP Load Balancer ({{offer}})",
+  "iplb_change_offer_choose_offer_interval": "HT / mois",
+  "iplb_change_offer_contracts_step_title": "Contrats",
+  "iplb_change_offer_contracts_title": "Acceptation des conditions d'utilisation",
+  "iplb_change_offer_contracts_description": "Pour continuer la commande de votre nouvelle offre, merci de lire et d'accepter le(s) contrat(s) ci-dessous :",
+  "iplb_change_offer_contracts_checkbox": "J'ai pris connaissance et j'accepte les termes des contrats suivants :",
+  "iplb_change_offer_contracts_agreed": "Vous avez déjà accepté les termes et conditions précédemment définis.",
+  "iplb_change_offer_contracts_submit": "Commander",
+  "iplb_change_offer_contracts_error": "Une erreur est survenu lors de la création de votre commande: <br> {{message}}<br> request_id: {{requestId}}",
+  "iplb_change_offer_contracts_close_error": "Fermer"
+}

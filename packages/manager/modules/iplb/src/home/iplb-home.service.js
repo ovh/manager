@@ -6,6 +6,7 @@ export default class IpLoadBalancerHomeService {
   constructor(
     $injector,
     $q,
+    $http,
     IpLoadBalancerCipherService,
     OvhApiIpLoadBalancing,
     ovhManagerRegionService,
@@ -13,6 +14,7 @@ export default class IpLoadBalancerHomeService {
   ) {
     this.$injector = $injector;
     this.$q = $q;
+    this.$http = $http;
     this.IpLoadBalancerCipherService = IpLoadBalancerCipherService;
     this.OvhApiIpLoadBalancing = OvhApiIpLoadBalancing;
     this.ovhManagerRegionService = ovhManagerRegionService;
@@ -150,5 +152,14 @@ export default class IpLoadBalancerHomeService {
       .catch(
         this.CucServiceHelper.errorHandler('iplb_subscription_loading_error'),
       );
+  }
+
+  changeOffer(serviceName, planCode) {
+    return this.$http
+      .post(`/order/upgrade/ipLoadbalancing/${serviceName}/${planCode}`, {
+        autoPayWithPreferredPaymentMethod: false,
+        quantity: 1,
+      })
+      .then(({ data }) => data);
   }
 }
