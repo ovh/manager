@@ -15,21 +15,28 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   useOidcProvider,
   useRemoveOidcProvider,
 } from '@/api/hooks/useKubernetes';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function RemoveOIDCProvider() {
   const { t } = useTranslation('remove-oidc-provider');
   const { projectId, kubeId } = useParams();
   const navigate = useNavigate();
   const onClose = () => navigate('..');
+  const { tracking } = useContext(ShellContext)?.shell || {};
+
   const { addError, addSuccess } = useNotifications();
+
   const {
     data: oidcProvider,
     isPending: isPendingOidsProvider,
   } = useOidcProvider(projectId, kubeId);
+
   const {
     removeOidcProvider,
     isPending: isPendingRemoveOidcProvider,
@@ -66,13 +73,20 @@ export default function RemoveOIDCProvider() {
       onClose();
     },
   });
+
   const isPending = isPendingOidsProvider || isPendingRemoveOidcProvider;
+
   return (
     <OsdsModal
       headline={t(
         'pci_projects_project_kubernetes_details_service_remove_oidc_provider_title',
       )}
-      onOdsModalClose={onClose}
+      onOdsModalClose={() => {
+        tracking?.trackClick({
+          name: `${KUBE_TRACK_PREFIX}::details::service::remove-oidc-provider::cancel`,
+        });
+        onClose();
+      }}
     >
       <slot name="content">
         {isPending ? (
@@ -103,7 +117,12 @@ export default function RemoveOIDCProvider() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={onClose}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::remove-oidc-provider::cancel`,
+          });
+          onClose();
+        }}
         data-testid="removeOIDCProvider-button_cancel"
       >
         {t(
@@ -115,7 +134,12 @@ export default function RemoveOIDCProvider() {
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={isPending || undefined}
         data-testid="removeOIDCProvider-button_submit"
-        onClick={removeOidcProvider}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::remove-oidc-provider::confirm`,
+          });
+          removeOidcProvider();
+        }}
       >
         {t(
           'pci_projects_project_kubernetes_details_service_remove_oidc_provider_action_remove',

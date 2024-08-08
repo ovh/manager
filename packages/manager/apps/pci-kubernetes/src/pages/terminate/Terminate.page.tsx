@@ -23,12 +23,14 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   useKubernetesCluster,
   useTerminateCluster,
 } from '@/api/hooks/useKubernetes';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function TerminatePage() {
   const { projectId, kubeId } = useParams();
@@ -46,6 +48,9 @@ export default function TerminatePage() {
     hasError: false,
     isTouched: false,
   });
+
+  const { tracking } = useContext(ShellContext)?.shell || {};
+
   const {
     terminateCluster,
     isPending: isPendingTerminate,
@@ -93,7 +98,12 @@ export default function TerminatePage() {
   const isPending = isPendingCluster || isPendingTerminate;
   return (
     <OsdsModal
-      onOdsModalClose={onClose}
+      onOdsModalClose={() => {
+        tracking?.trackClick({
+          name: `${KUBE_TRACK_PREFIX}::details::service::terminate::cancel`,
+        });
+        onClose();
+      }}
       color={ODS_THEME_COLOR_INTENT.warning}
       headline={t('kube_service_terminate_title')}
     >
@@ -159,7 +169,12 @@ export default function TerminatePage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={onClose}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::terminate::cancel`,
+          });
+          onClose();
+        }}
         data-testid="terminate-button_cancel"
       >
         {t('kube_service_terminate_common_cancel')}
@@ -167,7 +182,12 @@ export default function TerminatePage() {
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={terminateCluster}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::terminate::confirm`,
+          });
+          terminateCluster();
+        }}
         disabled={
           isPending || formState.terminateInput !== 'TERMINATE' || undefined
         }
