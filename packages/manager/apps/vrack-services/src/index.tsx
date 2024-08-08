@@ -7,10 +7,10 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { setupMocks } from '../mock/setup';
 import { App } from './App';
-import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
+import { getTrackingContext } from './utils/tracking';
 import './global.css';
 import './vite-hmr';
-import { getTrackingContext } from './utils/tracking';
+import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 
 const init = async ({
   appName,
