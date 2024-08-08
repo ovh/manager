@@ -12,7 +12,7 @@ export default class VdcOrderController {
 
   $onInit() {
     this.hosts = [];
-    this.guideLink = this.DedicatedCloud.getVCDGuideLink();
+    this.guideLinks = this.DedicatedCloud.getVCDGuideLinks();
     return this.loadData();
   }
 

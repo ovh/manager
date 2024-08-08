@@ -7,9 +7,38 @@ export const UNAVAILABLE_PCC_CODE = [400, 404];
 
 export const VCD_PLAN_CODE = 'pcc-option-to-vcd-migration';
 
+export const MANAGED_PCC_MIGRATION_STATUS = {
+  ENABLING: 'enabling',
+  UNKNOWN: 'unknown',
+};
+
+export const MANAGED_VCD_MIGRATION_STATUS = {
+  TO_MIGRATE: 'TO_MIGRATE',
+  MIGRATED: 'MIGRATED',
+  NOT_ALLOWED: 'NOT_ALLOWED',
+};
+
+export const MANAGED_VCD_MIGRATION_STATE = {
+  0: MANAGED_VCD_MIGRATION_STATUS.NOT_ALLOWED,
+  1: MANAGED_VCD_MIGRATION_STATUS.TO_MIGRATE,
+  2: MANAGED_VCD_MIGRATION_STATUS.MIGRATED,
+};
+
 export const VCD_GUIDE_LINKS = {
-  FR: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',
-  DEFAULT: 'https://www.ovhcloud.com/en/lp/vmware-vcd-evolution/',
+  FR: {
+    OFFER: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',
+    TERMS:
+      'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
+    MIGRATION:
+      'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
+  },
+  DEFAULT: {
+    OFFER: 'https://www.ovhcloud.com/en/lp/vmware-vcd-evolution/',
+    TERMS:
+      'https://help.ovhcloud.com/csm/en-gb-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    MIGRATION:
+      'https://help.ovhcloud.com/csm/en-gb-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+  },
 };
 
 export const VCD_SERVICE_PACK_PRICING_MODE = {
@@ -23,4 +52,7 @@ export default {
   VCD_PLAN_CODE,
   VCD_GUIDE_LINKS,
   VCD_SERVICE_PACK_PRICING_MODE,
+  MANAGED_VCD_MIGRATION_STATUS,
+  MANAGED_VCD_MIGRATION_STATE,
+  MANAGED_PCC_MIGRATION_STATUS,
 };

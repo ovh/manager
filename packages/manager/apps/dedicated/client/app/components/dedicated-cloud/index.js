@@ -6,6 +6,7 @@ import drpService from './datacenter/drp/dedicatedCloud-datacenter-drp.service';
 import dedicatedCloudservice from './dedicatedCloud.service';
 import ServicePackService from './service-pack/service-pack.service';
 import OptionsService from './dashboard/tiles/options/options.service';
+import ManagedVcdMigrationBanner from './vmware-cloud-director/migration-banner';
 
 const moduleName = 'ovhManagerPcc';
 
@@ -19,6 +20,7 @@ angular
     ngOvhFeatureFlipping,
     OptionsService,
     ServicePackService,
+    ManagedVcdMigrationBanner,
   ])
   .component('ovhManagerPcc', component)
   .run(/* @ngTranslationsInject:json ./translations */);
