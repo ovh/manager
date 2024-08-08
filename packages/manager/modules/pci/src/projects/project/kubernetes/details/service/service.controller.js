@@ -15,6 +15,7 @@ export default class KubernetesServiceCtrl {
     $scope,
     $state,
     $translate,
+    $q,
     CucCloudMessage,
     CucControllerHelper,
     Kubernetes,
@@ -22,9 +23,12 @@ export default class KubernetesServiceCtrl {
     this.$scope = $scope;
     this.$state = $state;
     this.$translate = $translate;
+    this.$q = $q;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.Kubernetes = Kubernetes;
+    this.isFetchingNetworkDetails = false;
+    this.networkDetailsError = '';
   }
 
   $onInit() {
@@ -40,6 +44,9 @@ export default class KubernetesServiceCtrl {
       this.privateNetworks,
       this.cluster.privateNetworkId,
     );
+    if (this.cluster.nodesSubnetId || this.cluster.loadBalancersSubnetId) {
+      this.fetchNetworkDetails();
+    }
     return this.getRestrictions();
   }
 
@@ -116,5 +123,52 @@ export default class KubernetesServiceCtrl {
     } = this.cluster.privateNetworkConfiguration;
 
     return !privateNetworkRoutingAsDefault && defaultVrackGateway;
+  }
+
+  fetchNetworkDetails() {
+    const { projectId, cluster } = this;
+    const {
+      region,
+      privateNetworkId,
+      nodesSubnetId,
+      loadBalancersSubnetId,
+    } = cluster;
+    const promises = {};
+
+    this.isFetchingNetworkDetails = true;
+
+    if (nodesSubnetId) {
+      promises.nodesSubnet = this.Kubernetes.getPrivateNetworkSubnet(
+        projectId,
+        region,
+        privateNetworkId,
+        nodesSubnetId,
+      );
+    }
+
+    if (loadBalancersSubnetId) {
+      promises.loadBalancersSubnet =
+        loadBalancersSubnetId === nodesSubnetId
+          ? promises.nodesSubnet
+          : this.Kubernetes.getPrivateNetworkSubnet(
+              projectId,
+              region,
+              privateNetworkId,
+              loadBalancersSubnetId,
+            );
+    }
+
+    return this.$q
+      .all(promises)
+      .then((networkDetails) => {
+        this.networkDetails = networkDetails;
+      })
+      .catch((error) => {
+        this.networkDetailsError =
+          error.data?.message || error.message || 'N/A';
+      })
+      .finally(() => {
+        this.isFetchingNetworkDetails = false;
+      });
   }
 }

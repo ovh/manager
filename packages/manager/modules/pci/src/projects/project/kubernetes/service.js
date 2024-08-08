@@ -142,6 +142,8 @@ export default class Kubernetes {
     region,
     version,
     privateNetworkId,
+    nodesSubnetId,
+    loadBalancersSubnetId,
     gatewayConfig,
     nodepool,
   ) {
@@ -155,9 +157,11 @@ export default class Kubernetes {
       version,
       nodepool,
       ...(privateNetworkId && { privateNetworkId }),
+      ...(nodesSubnetId && { nodesSubnetId }),
+      ...(loadBalancersSubnetId && { loadBalancersSubnetId }),
       ...(gatewayConfig.enabled && {
         privateNetworkConfiguration: {
-          defaultVrackGateway: gatewayConfig.ip,
+          defaultVrackGateway: gatewayConfig.ip ?? '',
           privateNetworkRoutingAsDefault: gatewayConfig.enabled,
         },
       }),
@@ -289,6 +293,31 @@ export default class Kubernetes {
       );
   }
 
+  getPrivateNetworkSubnets(projectId, privateNetworkId, region) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/network/private/${privateNetworkId}/subnet`,
+      )
+      .then(({ data: subnets }) => {
+        return {
+          subnets,
+          subnetsByRegion: region
+            ? subnets.filter(({ ipPools }) =>
+                ipPools.some((ipPool) => ipPool.region === region),
+              )
+            : subnets,
+        };
+      });
+  }
+
+  getPrivateNetworkSubnet(serviceName, regionName, networkId, subnetId) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/region/${regionName}/network/${networkId}/subnet/${subnetId}`,
+      )
+      .then(({ data: subnet }) => subnet);
+  }
+
   getRegions(projectId, ovhSubsidiary) {
     const product = KUBE_PRODUCT_ID;
     return this.$http
@@ -359,5 +388,27 @@ export default class Kubernetes {
     return this.$http
       .delete(`/cloud/project/${serviceName}/kube/${kubeId}/openIdConnect`)
       .then(({ data }) => data);
+  }
+
+  editNetwork(projectId, kubeId, data) {
+    const promises = [];
+    const { loadBalancersSubnetId, privateNetworkConfiguration } = data;
+    if (privateNetworkConfiguration) {
+      promises.push(
+        this.$http.put(
+          `/cloud/project/${projectId}/kube/${kubeId}/privateNetworkConfiguration`,
+          privateNetworkConfiguration,
+        ),
+      );
+    }
+    if (angular.isDefined(loadBalancersSubnetId)) {
+      promises.push(
+        this.$http.put(
+          `/cloud/project/${projectId}/kube/${kubeId}/updateLoadBalancersSubnetId`,
+          { loadBalancersSubnetId },
+        ),
+      );
+    }
+    return this.$q.all(promises);
   }
 }
