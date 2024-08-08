@@ -18,7 +18,7 @@ export default function Onboarding() {
         category: t('managed_vcd_onboarding_guide1_category').toUpperCase(),
       },
       href: link?.guideLink1,
-      hrefLabel: null,
+      hrefLabel: t('managed_vcd_onboarding_guide1_link'),
     },
     {
       id: 2,
