@@ -71,5 +71,6 @@
   "server_configuration_tile_ipmi_description": "Manage IPMI (Intelligent Platform Management Interface)",
   "server_configuration_doing": "[In progress]",
   "server_common_confirm": "Confirm",
-  "server_common_cancel": "Cancel"
+  "server_common_cancel": "Cancel",
+  "server_configuration_kvm_disable": "IPMI/KVM not available for this server"
 }
