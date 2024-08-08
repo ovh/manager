@@ -98,7 +98,6 @@ import ovhManagerVps from '@ovh-ux/manager-vps';
 import ovhManagerVrack from '@ovh-ux/manager-vrack';
 import ovhManagerIplb from '@ovh-ux/manager-iplb';
 import ovhManagerCloudConnect from '@ovh-ux/manager-cloud-connect';
-import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerNutanix from '@ovh-ux/manager-nutanix';
 import { pollingService } from '@ovh-ux/manager-bm-server-components';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
@@ -198,8 +197,6 @@ export default async (containerEl, shellClient) => {
         ngOvhExportCsv,
         ngPaginationFront,
         ngQAllSettled,
-        'ovh-api-services',
-        ovhManagerAccountMigration,
         ovhManagerDbaasLogs,
         ovhManagerIplb,
         ovhManagerSupport,
