@@ -19,13 +19,15 @@ import {
 } from '@ovhcloud/ods-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovhcloud/manager-components';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { UPGRADE_POLICIES } from '@/constants';
 import {
   useKubernetesCluster,
   useUpdateKubePolicy,
 } from '@/api/hooks/useKubernetes';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function UpgradePolicyPage() {
   const { t } = useTranslation('service');
@@ -34,10 +36,13 @@ export default function UpgradePolicyPage() {
   const onClose = () => navigate('..');
   const [updatePolicy, setUpdatePolicy] = useState('');
   const { addError, addSuccess } = useNotifications();
+  const { tracking } = useContext(ShellContext)?.shell || {};
+
   const {
     data: kubernetesCluster,
     isPending: isPendingCluster,
   } = useKubernetesCluster(projectId, kubeId);
+
   const {
     updateKubePolicy,
     isPending: isPendingUpdatePolicy,
@@ -68,14 +73,25 @@ export default function UpgradePolicyPage() {
       onClose();
     },
   });
+
   useEffect(() => {
     if (kubernetesCluster) {
       setUpdatePolicy(kubernetesCluster.updatePolicy);
     }
   }, [kubernetesCluster]);
+
   const isPending = isPendingCluster || isPendingUpdatePolicy;
+
   return (
-    <OsdsModal headline={t('kube_service_upgrade_policy_model_title')}>
+    <OsdsModal
+      onOdsModalClose={() => {
+        tracking?.trackClick({
+          name: `${KUBE_TRACK_PREFIX}::details::service::upgradePolicy::cancel`,
+        });
+        onClose();
+      }}
+      headline={t('kube_service_upgrade_policy_model_title')}
+    >
       <slot name="content">
         {isPending ? (
           <OsdsSpinner
@@ -129,7 +145,12 @@ export default function UpgradePolicyPage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={() => onClose()}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::upgradePolicy::cancel`,
+          });
+          onClose();
+        }}
         data-testid="upgradePolicy-button_cancel"
       >
         {t('kube_service_common_cancel')}
@@ -138,7 +159,12 @@ export default function UpgradePolicyPage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={isPending || undefined}
-        onClick={updateKubePolicy}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::upgradePolicy::confirm`,
+          });
+          updateKubePolicy();
+        }}
         data-testid="upgradePolicy-button_submit"
       >
         {t('kube_service_common_confirm')}
