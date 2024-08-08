@@ -27,8 +27,9 @@ import {
   OsdsRadioGroupCustomEvent,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   useKubernetesCluster,
   useResetCluster,
@@ -38,6 +39,7 @@ import { useGetCloudSchema } from '@/api/hooks/useCloud';
 import { getFormatedKubeVersion } from '@/helpers';
 import { useAvailablePrivateNetworks } from '@/api/hooks/useNetwork';
 import GatewayManagement from '@/components/GatewayManagement.component';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function ResetClusterPage() {
   const { t: tReset } = useTranslation('reset');
@@ -48,14 +50,18 @@ export default function ResetClusterPage() {
   const urlProject = useProjectUrl('public-cloud');
   const [gatewayError, setGatewayError] = useState(false);
   const onClose = () => navigate('..');
+  const { tracking } = useContext(ShellContext)?.shell || {};
+
   const {
     data: kubernetesCluster,
     isPending: isPendingCluster,
   } = useKubernetesCluster(projectId, kubeId);
+
   const {
     data: cloudSchema,
     isPending: isPendingCloudSchema,
   } = useGetCloudSchema();
+
   const kubeVersions = cloudSchema.models['cloud.kube.VersionEnum'].enum;
 
   const {
@@ -75,6 +81,7 @@ export default function ResetClusterPage() {
         '',
     },
   });
+
   const { resetCluster, isPending: isPendingResetCluster } = useResetCluster({
     onError(error: ApiError) {
       addError(
@@ -118,11 +125,17 @@ export default function ResetClusterPage() {
     isPendingCloudSchema ||
     isPendingPrivateNetworks ||
     isPendingResetCluster;
+
   return (
     <OsdsModal
       headline={tReset('pci_projects_project_kubernetes_service_reset')}
       color={ODS_TEXT_COLOR_INTENT.warning}
-      onOdsModalClose={onClose}
+      onOdsModalClose={() => {
+        tracking?.trackClick({
+          name: `${KUBE_TRACK_PREFIX}::details::service::reset::cancel`,
+        });
+        onClose();
+      }}
     >
       <slot name="content">
         {isPending ? (
@@ -305,7 +318,12 @@ export default function ResetClusterPage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={onClose}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::reset::cancel`,
+          });
+          onClose();
+        }}
         data-testid="reset-button_cancel"
       >
         {tReset('pci_projects_project_kubernetes_service_reset_common_cancel')}
@@ -314,7 +332,12 @@ export default function ResetClusterPage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={isPending || gatewayError || undefined}
-        onClick={resetCluster}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::reset::confirm`,
+          });
+          resetCluster();
+        }}
         data-testid="reset-button_submit"
       >
         {tReset('pci_projects_project_kubernetes_service_reset_common_confirm')}
