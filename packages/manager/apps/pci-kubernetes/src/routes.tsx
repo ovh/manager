@@ -186,6 +186,11 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
         children: [],
       },
+      {
+        path: 'new',
+        ...lazyRouteConfig(() => import('@/pages/new/New.page')),
+        children: [],
+      },
     ],
   },
   {
