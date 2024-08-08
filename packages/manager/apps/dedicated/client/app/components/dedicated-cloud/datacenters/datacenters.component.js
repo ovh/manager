@@ -4,6 +4,7 @@ import template from './datacenters.html';
 export default {
   bindings: {
     addDatacenter: '<',
+    goToDeleteDatacenter: '<',
     dedicatedCloud: '<',
     goToDatacenter: '<',
     trackClick: '<',
