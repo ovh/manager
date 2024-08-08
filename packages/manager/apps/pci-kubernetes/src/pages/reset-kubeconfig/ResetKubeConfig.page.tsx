@@ -9,11 +9,14 @@ import { useNotifications } from '@ovhcloud/manager-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   useKubernetesCluster,
   useResetKubeConfig,
 } from '@/api/hooks/useKubernetes';
 import ResetKubeConfigContent from '@/components/reset-kubeconfig/ResetKubeConfigContent';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function ResetKubeConfigPage() {
   const { t: tResetKubeConfig } = useTranslation('reset-kubeconfig');
@@ -25,6 +28,8 @@ export default function ResetKubeConfigPage() {
   } = useKubernetesCluster(projectId, kubeId);
   const navigate = useNavigate();
   const onClose = () => navigate('..');
+  const { tracking } = useContext(ShellContext)?.shell || {};
+
   const {
     resetKubeConfig,
     isPending: isPendingResetKubeConfig,
@@ -62,10 +67,17 @@ export default function ResetKubeConfigPage() {
       onClose();
     },
   });
+
   const isPending = isPendingCluster || isPendingResetKubeConfig;
+
   return (
     <OsdsModal
-      onOdsModalClose={onClose}
+      onOdsModalClose={() => {
+        tracking?.trackClick({
+          name: `${KUBE_TRACK_PREFIX}::details::service::reset-kubeconfig::cancel`,
+        });
+        onClose();
+      }}
       headline={tResetKubeConfig(
         'pci_projects_project_kubernetes_service_reset_kubeconfig',
       )}
@@ -88,7 +100,12 @@ export default function ResetKubeConfigPage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={() => onClose()}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::reset-kubeconfig::cancel`,
+          });
+          onClose();
+        }}
         data-testid="resetKubeConfig-button_cancel"
       >
         {tResetKubeConfig(
@@ -99,7 +116,12 @@ export default function ResetKubeConfigPage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={isPending || undefined}
-        onClick={resetKubeConfig}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::reset-kubeconfig::confirm`,
+          });
+          resetKubeConfig();
+        }}
         data-testid="resetKubeConfig-button_submit"
       >
         {tResetKubeConfig(
