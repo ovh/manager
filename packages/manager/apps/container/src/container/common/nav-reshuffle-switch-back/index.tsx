@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 
@@ -13,7 +12,6 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_RADIO_BUTTON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import NavReshuffleSwitchBackModal from '@/container/common/nav-reshuffle-switch-back/Modal';
 import useOnboarding from '@/core/onboarding';
 
 function NavReshuffleSwitchBack(): JSX.Element {
@@ -24,7 +22,6 @@ function NavReshuffleSwitchBack(): JSX.Element {
   const isSmallDevice = useMediaQuery({
     query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
   });
-  const [confirm, setConfirm] = useState<boolean>(false);
   const onboarding = useOnboarding();
 
   if (!betaVersion || isSmallDevice) {
@@ -42,24 +39,13 @@ function NavReshuffleSwitchBack(): JSX.Element {
     if (value === 'beta') onboarding.forceOnboardingDisplayed(true);
   };
 
-  const switchBack = (openSurvey = false) => {
-    if (openSurvey) {
-      window.open(
-        'https://survey.ovh.com/index.php/813778',
-        '_blank',
-        'noopener',
-      );
-    }
-    toggleVersion('classic');
-  };
-
   return (
     <>
       <OsdsRadioGroup name="version" className="d-flex">
         <OsdsRadio
           name="version"
           value="classic"
-          onOdsCheckedChange={() => setConfirm(true)}
+          onOdsCheckedChange={() => toggleVersion('classic')}
           checked={!useBeta}
           className="mr-1"
         >
@@ -99,16 +85,6 @@ function NavReshuffleSwitchBack(): JSX.Element {
           </OsdsRadioButton>
         </OsdsRadio>
       </OsdsRadioGroup>
-      {confirm && (
-        <NavReshuffleSwitchBackModal
-          onCancel={() => {
-            setConfirm(false);
-          }}
-          onConfirm={(openSurvey = false) => {
-            switchBack(openSurvey);
-          }}
-        />
-      )}
     </>
   );
 }
