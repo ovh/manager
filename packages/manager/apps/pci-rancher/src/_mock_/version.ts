@@ -1,4 +1,4 @@
-import { RancherVersion } from '@/api/api.type';
+import { RancherVersion } from '@/types/api.type';
 import { rancherMocked } from './rancher';
 
 export const versionsMocked: RancherVersion[] = [

@@ -2,18 +2,13 @@ import i18n from 'i18next';
 import I18NextHttpBackend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
-export const ns = [
-  'pci-rancher/listing',
-  'pci-rancher/dashboard',
-  'pci-rancher/updateSoftware',
-  'pci-rancher/onboarding',
-];
+export const ns = ['listing', 'dashboard', 'updateSoftware', 'onboarding'];
 
-export default function initI18n(
+export default async function initI18n(
   locale = 'fr_FR',
   availablesLocales = ['fr_FR'],
 ) {
-  i18n
+  await i18n
     .use(initReactI18next)
     .use(I18NextHttpBackend)
     .use({
@@ -35,6 +30,7 @@ export default function initI18n(
           }.json`,
       },
       postProcess: 'normalize',
+      debug: true,
     });
 
   return i18n;

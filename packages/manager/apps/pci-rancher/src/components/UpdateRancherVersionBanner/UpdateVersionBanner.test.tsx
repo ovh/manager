@@ -1,10 +1,10 @@
 import React from 'react';
+import updateSoftwareTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
 import { render, waitFor } from '@/utils/test/test.provider';
 import { rancherMocked } from '@/_mock_/rancher';
 import { versionsMocked } from '@/_mock_/version';
-import { ResourceStatus } from '@/api/api.type';
-import UpdateVersionBanner from './UpdateVersionBanner';
-import updateSoftwareTranslation from '@/public/translations/pci-rancher/updateSoftware/Messages_fr_FR.json';
+import { ResourceStatus } from '@/types/api.type';
+import UpdateVersionBanner from './UpdateVersionBanner.component';
 
 const defaultProps = {
   rancher: rancherMocked,

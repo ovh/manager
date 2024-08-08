@@ -1,4 +1,4 @@
-import { RancherService, RancherVersion } from '@/api/api.type';
+import { RancherService, RancherVersion } from '@/types/api.type';
 
 export const isValidRancherName = (name: string) =>
   /^[a-z0-9][-_.A-Za-z0-9]{1,61}[a-z0-9]$/.test(name);

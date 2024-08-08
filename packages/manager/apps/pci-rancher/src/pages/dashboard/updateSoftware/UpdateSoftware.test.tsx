@@ -1,9 +1,9 @@
 import React from 'react';
+import updateTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
 import { fireEvent, render, waitFor } from '@/utils/test/test.provider';
 
 import { versionsMocked } from '@/_mock_/version';
 import { rancherMocked } from '@/_mock_/rancher';
-import updateTranslation from '@/public/translations/pci-rancher/updateSoftware/Messages_fr_FR.json';
 
 import UpdateSoftware, {
   UpdateSoftwareProps,

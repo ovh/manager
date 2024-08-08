@@ -13,6 +13,7 @@ module.exports = {
   moduleNameMapper: {
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
       '<rootDir>/src/_mock_/images.tsx',
+    '^@translation/(.*)$': '<rootDir>/public/translations/$1',
     '^@/(.*)$': '<rootDir>/src/$1',
     '/axios/': 'axios/dist/node/axios.cjs',
     uuid: require.resolve('uuid'),

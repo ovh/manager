@@ -17,10 +17,10 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React, { FC, useEffect, useState } from 'react';
 import { useHref, useParams } from 'react-router-dom';
-import { RancherService, RancherVersion } from '@/api/api.type';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-import LinkIcon from '@/components/LinkIcon/LinkIcon';
-import UpdateSoftwareModal from '@/components/Modal/UpdateSoftwareConfirmModal';
+import { RancherService, RancherVersion } from '@/types/api.type';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
+import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
+import UpdateSoftwareModal from '@/components/Modal/UpdateSoftwareConfirmModal/UpdateSoftwareConfirmModal.component';
 import { getLatestVersions } from '@/utils/rancher';
 import { getRancherByIdUrl } from '@/utils/route';
 
@@ -37,10 +37,7 @@ const VersionTable = ({
   setSelectedVersion,
   currentVersion,
 }: VersionTableProps) => {
-  const { t } = useTranslation([
-    'pci-rancher/updateSoftware',
-    'pci-rancher/dashboard',
-  ]);
+  const { t } = useTranslation(['updateSoftware', 'dashboard']);
   return (
     <OsdsTable className="my-6" size={ODS_TABLE_SIZE.sm}>
       <table>
@@ -120,7 +117,7 @@ const UpdateSoftware: FC<UpdateSoftwareProps> = ({
 }) => {
   const { projectId } = useParams();
 
-  const { t } = useTranslation('pci-rancher/updateSoftware');
+  const { t } = useTranslation('updateSoftware');
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const hrefRancherById = useHref(getRancherByIdUrl(projectId, rancher?.id));
   const [selectedVersion, setSelectedVersion] = useState('');

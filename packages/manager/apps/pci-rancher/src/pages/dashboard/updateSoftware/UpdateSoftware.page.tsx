@@ -1,12 +1,17 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import useEditRancher, { EditAction } from '@/hooks/useEditRancher';
-import { useRancher, useRancherVersionsCapabilities } from '@/hooks/useRancher';
+import useEditRancher, {
+  EditAction,
+} from '@/data/hooks/useEditRancher/useEditRancher';
+import {
+  useRancher,
+  useRancherVersionsCapabilities,
+} from '@/data/hooks/useRancher/useRancher';
 import { getRancherByIdUrl } from '@/utils/route';
 import UpdateSoftware from './UpdateSoftware.component';
 import { getVersion } from '@/utils/rancher';
-import useVersions from '@/hooks/useVersions';
-import Loading from '@/components/Loading/Loading';
+import useVersions from '@/data/hooks/useVersions/useVersions';
+import Loading from '@/components/Loading/Loading.component';
 
 const UpdateSoftwarePage = () => {
   const { data: rancher } = useRancher();
