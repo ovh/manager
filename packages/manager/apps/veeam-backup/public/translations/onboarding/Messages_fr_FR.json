@@ -1,13 +1,8 @@
 {
-  "title": "veeam-backup",
-  "description": "Découvrez des services de stockage managés qui s’appuient sur le système de fichiers OpenZFS. Bénéficiez en quelques clics d’espaces de stockage centralisés pour entreposer ou sauvegarder vos données et fichiers.",
-  "orderButtonLabel": "Commander un veeam-backup",
-  "moreInfoButtonLabel": "En savoir plus sur veeam-backup",
-  "guideCategory": "Tutoriel",
-  "guide1Title": "Premiers pas avec un veeam-backup",
-  "guide1Description": "Découvrez comment gérer un NAS-HA depuis l'espace-client OVHcloud",
-  "guide2Title": "Monter votre NAS via un partage NFS",
-  "guide2Description": "Découvrez comment monter un NAS via un partage NFS",
-  "guide3Title": "Monter votre NAS sur Windows Server via CIFS",
-  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS"
+  "description": "Pour garantir une meilleure continuité d'activité de vos applications, il est nécessaire d'effectuer des copies régulières de vos données pour pouvoir les restaurer en cas de besoin. Notre produit Managed Veeam for VMware Cloud Director vous permet de protéger vos machines virtuelles en fonction de vos politiques de sauvegarde sans vous soucier de l'infrastructure sous-jacente.",
+  "order_button_label": "Commencer",
+  "new_badge_label": "Nouveauté",
+  "guide_category": "Tutoriel",
+  "guide1_title": "Sauvegarde avec Veeam Data Platform",
+  "guide1_description": "Découvrez comment effectuer des sauvegardes et restaurations avec l'intégration Veeam Data Platform"
 }

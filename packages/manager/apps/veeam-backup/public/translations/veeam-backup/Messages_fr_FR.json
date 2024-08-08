@@ -1,6 +1,4 @@
 {
-  "title": "Bienvenue uapp",
-  "crumb": "veeam-backup",
-  "tabs_2": "Tabs 2",
-  "onboarding": "Onboarding"
+  "hpc-crumb": "Hosted Private Cloud",
+  "listing-crumb": "Managed Veeam for VCD"
 }
