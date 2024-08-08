@@ -84,15 +84,16 @@ export default function CreateKey() {
 
   const getErrorMessage = (error: ServiceKeyNameErrorsType) => {
     switch (error) {
+      case 'REQUIRED':
+        return t(
+          'key_management_service_service-keys_update_name_error_required',
+        );
       case 'INVALID_CHARACTERS':
         return t(
           'key_management_service_service-keys_update_name_error_invalid_characters',
         );
-      case 'REQUIRED':
       case 'TOO_MANY_CHARACTERS':
-        return t(
-          'key_management_service_service-keys_update_name_error_min_max',
-        );
+        return t('key_management_service_service-keys_update_name_error_max');
 
       default:
         return null;
