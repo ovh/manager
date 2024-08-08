@@ -10,6 +10,7 @@
             ></span>
         </oui-tile-description>
     </oui-tile-definition>
+    <!-- If there is no Engagement for the product, we display the billing status / actions within this section -->
     <oui-tile-definition
         term="{{:: 'manager_billing_subscription_next_due_date' | translate }}"
     >
@@ -17,10 +18,15 @@
             <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
             <div data-ng-if="!$ctrl.isLoading">
                 <p data-ng-bind="$ctrl.service.nextBillingDate"></p>
-                <billing-status service="$ctrl.serviceInfos"></billing-status>
+                <billing-status
+                    data-ng-if="!$ctrl.withEngagement"
+                    service="$ctrl.serviceInfos"
+                ></billing-status>
             </div>
         </oui-tile-description>
-        <oui-tile-actions data-ng-if="!$ctrl.isLoading">
+        <oui-tile-actions
+            data-ng-if="!$ctrl.isLoading && !$ctrl.withEngagement"
+        >
             <billing-services-actions
                 service="$ctrl.serviceInfos"
                 tracking-prefix="{{ $ctrl.trackingPrefix }}"
@@ -34,9 +40,10 @@
             </billing-services-actions>
         </oui-tile-actions>
     </oui-tile-definition>
+    <!-- If there is Engagement for the product, we display the billing status / actions within this section -->
     <oui-tile-definition
         term="{{:: 'manager_billing_subscription_engagement' | translate }}"
-        ng-if="$ctrl.withEngagement"
+        data-ng-if="$ctrl.withEngagement"
     >
         <oui-tile-description>
             <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
@@ -66,6 +73,7 @@
                     data-translate="manager_billing_subscription_engagement_status_commitement_pending"
                     data-translate-values="{ nextBillingDate: $ctrl.service.nextBillingDate }"
                 ></span>
+                <billing-status service="$ctrl.serviceInfos"></billing-status>
             </p>
             <a
                 data-ng-if="!$ctrl.isLoading && $ctrl.constructor.showCommit($ctrl.serviceInfos, $ctrl.service.isEngaged(), $ctrl.highlightEngagement)"
@@ -90,6 +98,19 @@
                 </p>
             </a>
         </oui-tile-description>
+        <oui-tile-actions data-ng-if="!$ctrl.isLoading">
+            <billing-services-actions
+                service="$ctrl.serviceInfos"
+                tracking-prefix="{{ $ctrl.trackingPrefix }}"
+                user="$ctrl.user"
+                get-commitment-link="$ctrl.goToCommit()"
+                get-cancel-commitment-link="$ctrl.goToCancelCommit()"
+                get-cancel-resiliation-link="$ctrl.goToCancelResiliation()"
+                get-resiliation-link="$ctrl.goToResiliation()"
+                billing-management-availability="$ctrl.featuresAvailability.isFeatureAvailable('billing:management')"
+            >
+            </billing-services-actions>
+        </oui-tile-actions>
     </oui-tile-definition>
     <oui-tile-definition
         ng-if="$ctrl.featuresAvailability.isFeatureAvailable('contact') && $ctrl.withContactManagement"
