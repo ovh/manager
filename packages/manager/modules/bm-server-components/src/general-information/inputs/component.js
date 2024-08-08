@@ -6,6 +6,7 @@ export default {
     installation: '=',
     optionForm: '<',
     inputRules: '<',
+    sshPubKey: '<',
   },
   controller,
   template,

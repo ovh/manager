@@ -18,6 +18,12 @@ export default class BmServerComponentsInputsController {
     Object.values(this.installation.inputs).forEach((inputItem) => {
       let input;
       switch (inputItem.type) {
+        case 'sshPubKey':
+          input =
+            inputItem.default === null || inputItem.default === ''
+              ? this.sshPubKey
+              : inputItem.default?.toString();
+          break;
         case 'keyValue':
           input = [];
           break;
