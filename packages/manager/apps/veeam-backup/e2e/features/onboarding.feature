@@ -4,4 +4,4 @@ Feature: Onboarding page
     Given User has 0 elements in the Listing page
     When User navigates to Listing page
     Then User gets redirected to Onboarding page
-    Then User sees 3 guides
+    Then User sees 1 guide
