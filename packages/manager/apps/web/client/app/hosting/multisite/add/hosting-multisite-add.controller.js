@@ -81,7 +81,6 @@ angular
           : null,
         domainWww: null,
         domainWwwNeeded: true,
-        ipv6Needed: true,
         mode: $scope.model.mode.OVH,
         path: '',
         pathFinal: null,
@@ -340,7 +339,6 @@ angular
             : null,
           $scope.selected.pathFinal,
           $scope.needWwwDomain(),
-          $scope.selected.ipv6Needed,
           $scope.selected.autoconfigure &&
             $scope.selected.mode === $scope.model.mode.OVH,
           $scope.selected.activeCDN,
