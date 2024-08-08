@@ -4,6 +4,10 @@ export const FRAUD_STATUS = {
   REQUIRED: 'required',
 };
 
+export const FEATURES = {
+  proceduresFraud: 'procedures:fraud',
+};
+
 const TRACK_IMPRESSION = {
   campaignId: 'kyc-fraud',
   creation: 'notification',
