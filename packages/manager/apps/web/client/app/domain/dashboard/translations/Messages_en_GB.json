@@ -214,7 +214,7 @@
   "domain_tab_ZONE_no_defaut_dns_used": "You currently use the following DNS servers: ",
   "domain_tab_ZONE_set_defaut_dns": "Please use the following DNS servers, so that your DNS zone is registered:",
   "domain_tab_ZONE_title": "Here you can see the configuration of various domain name records. ",
-  "domain_tab_ZONE_info": "You can also configure these records to connect your domain to your different services (the \"Add a record\" button).",
+  "domain_tab_ZONE_info": "You can also configure these records to connect your domain to your different services (the “Add an entry” button).",
   "domain_tab_ZONE_status_error": "Our systems detected errors while checking your zone. <strong>For this reason, your most recent modifications were not taken into account</strong>. To remedy this, please correct the following problems:",
   "domain_tab_ZONE_status_warning": "Your zone has been deployed successfully. However, the following anomalies have been detected:",
   "domain_tab_ZONE_empty_zone": "There are no records in your DNS zone.",

@@ -214,7 +214,7 @@
   "domain_tab_ZONE_no_defaut_dns_used": "Aktualnie korzystasz z następujących serwerów DNS:",
   "domain_tab_ZONE_set_defaut_dns": "Aby poniższa strefa DNS działała, zmień serwery DNS na:",
   "domain_tab_ZONE_title": "W tej części możesz sprawdzić konfigurację poszczególnych wpisów dla swojej domeny.",
-  "domain_tab_ZONE_info": "Możesz również skonfigurować te wpisy i połączyć je z różnymi usługami (przycisk « dodaj wpis »).",
+  "domain_tab_ZONE_info": "Możesz również skonfigurować te rekordy i połączyć je z różnymi usługami (przycisk „Dodaj rekord”).",
   "domain_tab_ZONE_status_error": "Nasz system wykrył błędy w trakcie sprawdzania strefy.  <strong>Twoje ostatnie zmiany nie zostały więc zarejestrowane</strong>.  Prosimy o poprawienie następujących błędów:",
   "domain_tab_ZONE_status_warning": "Strefa jest wdrażana.  Nasz system wykrył następujące problemy:",
   "domain_tab_ZONE_empty_zone": "Brak wpisów w strefie DNS.",
