@@ -11,11 +11,13 @@ import {
   addOidcProvider,
   createSubscription,
   deleteSubscription,
+  createKubernetesCluster,
   getAllKube,
   getClusterRestrictions,
   getKubernetesCluster,
   getOidcProvider,
   getSubscribedLogs,
+  KubeClusterCreationParams,
   postKubeConfig,
   removeOidcProvider,
   resetCluster,
@@ -555,6 +557,34 @@ export const useRemoveSubscription = ({
   });
   return {
     remove: (id: string) => mutation.mutate(id),
+    ...mutation,
+  };
+};
+
+export interface CreateClusterProps {
+  projectId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}
+
+export const useCreateKubernetesCluster = ({
+  projectId,
+  onError,
+  onSuccess,
+}: CreateClusterProps) => {
+  const mutation = useMutation({
+    mutationFn: async (params: KubeClusterCreationParams) =>
+      createKubernetesCluster(projectId, params),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getAllKubeQueryKey(projectId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    createCluster: mutation.mutate,
     ...mutation,
   };
 };
