@@ -38,6 +38,7 @@ export interface GenericTrackingData {
   complete_page_name?: string;
   page_theme?: string;
   pci_project_mode?: string;
+  user_is_partner?: boolean;
 }
 
 export interface PageTrackingData extends GenericTrackingData {
