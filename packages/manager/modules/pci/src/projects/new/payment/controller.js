@@ -4,7 +4,10 @@ import {
   ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM,
   ORDER_FOLLOW_UP_STATUS_ENUM,
   ORDER_FOLLOW_UP_STEP_ENUM,
+  MANAGER_TRACKING,
 } from '../../projects.constant';
+
+import mixCommanderProjectCreation from './mix-commander-project-creation';
 
 const getPaymentMethodTimeoutLimit = 30000;
 const ANTI_FRAUD = {
@@ -29,6 +32,7 @@ export default class PciProjectNewPaymentCtrl {
     PciProjectsService,
     ovhPaymentMethod,
     OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
+    $cookies,
   ) {
     this.$timeout = $timeout;
     this.$translate = $translate;
@@ -44,6 +48,7 @@ export default class PciProjectNewPaymentCtrl {
     this.PciProjectsService = PciProjectsService;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
+    this.$cookies = $cookies;
 
     // other attributes
     [
@@ -361,6 +366,25 @@ export default class PciProjectNewPaymentCtrl {
   }
 
   trackOnPaymentFormSubmit(tag) {
+    if (this.$cookies.get(MANAGER_TRACKING) === '1') {
+      const isNewClient = this.projects?.length === 0;
+
+      const user = this.coreConfig.getUser();
+      this.atInternet.addAdditionalParams(
+        'currency',
+        user?.currency?.code,
+        true,
+      );
+
+      mixCommanderProjectCreation({
+        orderAmoutTaxFree: this.summary.prices?.withoutTax?.value,
+        currencyCode: user?.currency?.code,
+        paymentMethod: this.defaultPaymentMethod?.label,
+        discountPrice: this.summary.prices?.withTax?.value,
+        isNewCustomer: isNewClient,
+      });
+    }
+
     this.sendTrack(tag);
     return this.onPaymentFormSubmit();
   }

@@ -30,5 +30,7 @@ export default {
     onProgressStepClick: '<',
     isDisplayableRupayCreditCardInfoBanner: '<',
     viewOptions: '<',
+    summary: '<',
+    projects: '<',
   },
 };

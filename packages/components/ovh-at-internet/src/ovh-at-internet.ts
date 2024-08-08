@@ -43,6 +43,11 @@ function isTrackingDebug() {
   return window.localStorage?.getItem('MANAGER_TRACKING_DEBUG');
 }
 
+interface WindowWithTC extends Window {
+  tC: any;
+}
+let window: WindowWithTC;
+
 export default class OvhAtInternet extends OvhAtInternetConfig {
   /**
    * Reference to ATInternet Tag object from their JS library.
@@ -89,6 +94,34 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       page_theme: params.page_theme,
     };
   }
+
+  addAdditionalParams = (
+    paramName: string,
+    value: string,
+    isMsrParam: boolean,
+  ): void => {
+    if (isMsrParam) {
+      window.tC.msr.paramName = value;
+    } else {
+      window.tC.msr.additional_params += `&${paramName}=${value}`;
+    }
+  };
+
+  removeAdditionalParams = (paramName: string, isMsrParam: boolean): void => {
+    if (isMsrParam) {
+      delete window?.tC?.msr.paramName;
+    } else {
+      const additionalParams = new URLSearchParams(
+        window.tC?.msr?.additional_params,
+      );
+      additionalParams.delete(paramName);
+      window.tC.msr.additional_params = additionalParams.toString();
+    }
+  };
+
+  addImageTag = (): void => {
+    document.head.appendChild(window.tC.msr.pixel);
+  };
 
   getImpressionTrackingData(data: LegacyTrackingData): ImpressionTrackingData {
     return {
