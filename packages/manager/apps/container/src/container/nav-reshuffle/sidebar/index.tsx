@@ -277,7 +277,7 @@ const Sidebar = (): JSX.Element => {
       )}
 
       <button className={style.sidebar_toggle_btn} onClick={toggleSidebar}>
-        {open && <span className="mr-2">Réduire</span>}
+        {open && <span className="mr-2">{t('sidebar_reduce')}</span>}
         <span
           className={`${style.sidebar_toggle_btn_first_icon} oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
           aria-hidden="true"
