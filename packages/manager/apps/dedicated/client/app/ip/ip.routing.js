@@ -56,7 +56,7 @@ export const listRouting = {
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip', {
     url:
-      '/ip?action&ip&serviceName&serviceType&page&pageSize&ipBlock&ipService',
+      '/ip?action&ip&serviceName&serviceType&page&pageSize&ipBlock&ipService&ipTypeFilter',
     template,
     controller,
     reloadOnSearch: false,
