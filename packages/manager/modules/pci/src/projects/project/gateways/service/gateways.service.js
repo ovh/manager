@@ -1,5 +1,3 @@
-import { GATEWAY_DEFAULT_REGION } from '../gateways.constants';
-
 export default class publicGatewaysServiceClass {
   /* @ngInject */
   constructor($http, Poller) {
@@ -28,7 +26,7 @@ export default class publicGatewaysServiceClass {
       );
   }
 
-  getGateways(serviceName, regionName = GATEWAY_DEFAULT_REGION) {
+  getGateways(serviceName, regionName = 'GRA9') {
     return this.$http
       .get(`/cloud/project/${serviceName}/region/${regionName}/gateway`)
       .then((gateways) =>
