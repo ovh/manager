@@ -8,6 +8,7 @@ import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import {
+  BaseLayout,
   Datagrid,
   DataGridTextCell,
   useDatagridSearchParams,
@@ -32,7 +33,6 @@ export default function Listing() {
   const location = useLocation();
   const {
     pagination,
-    setPagination,
     sorting,
     setSorting,
   } = useDatagridSearchParams();
@@ -102,39 +102,36 @@ export default function Listing() {
     return (<div><Loading/></div>)
   }
 
+  const header = {
+    title: t('title'),
+  };
+
   return (
-    <>
-      <div className="pt-5 pb-10">
-        <Breadcrumb />
-        <h2>a-iam</h2>
-        <div>{t('title')}</div>
-        <React.Suspense>
-          {columns && flattenData && (
-            <Datagrid
-              columns={columns}
-              items={flattenData || []}
-              totalItems={0}
-              pagination={pagination}
-              onPaginationChange={setPagination}
-              sorting={sorting}
-              onSortChange={setSorting}
-            />
-          )}
-        </React.Suspense>
-        <div className="grid justify-items-center my-5">
-          {hasNextPage && (
-            <div>
-              <OsdsButton
-                color={ODS_THEME_COLOR_INTENT.info}
-                variant={ODS_BUTTON_VARIANT.stroked}
-                onClick={fetchNextPage}
-              >
-                Load more
-              </OsdsButton>
-            </div>
-          )}
-        </div>
+    <BaseLayout breadcrumb={<Breadcrumb />} header={header}>
+      <React.Suspense>
+        {columns && flattenData && (
+          <Datagrid
+            columns={columns}
+            items={flattenData || []}
+            totalItems={0}
+            sorting={sorting}
+            onSortChange={setSorting}
+          />
+        )}
+      </React.Suspense>
+      <div className="grid justify-items-center my-5">
+        {hasNextPage && (
+          <div>
+            <OsdsButton
+              color={ODS_THEME_COLOR_INTENT.info}
+              variant={ODS_BUTTON_VARIANT.stroked}
+              onClick={fetchNextPage}
+            >
+              Load more
+            </OsdsButton>
+          </div>
+        )}
       </div>
-    </>
+    </BaseLayout>
   );
 }

@@ -42,18 +42,16 @@ export default function Onboarding() {
   return (
     <OnboardingLayout
       title={title}
-      img={{ src: onboardingImgSrc, width: 450, height: 250 }}
+      img={{ src: onboardingImgSrc }}
       description={description}
       orderButtonLabel={t('orderButtonLabel')}
       orderHref={t('orderButtonLink')}
       moreInfoButtonLabel={t('moreInfoButtonLabel')}
       moreInfoHref={t('moreInfoButtonLink')}
     >
-      <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
-        {tileList.map((tile) => (
-          <Card key={tile.id} href={tile.href} texts={tile.texts} />
-        ))}
-      </aside>
+      {tileList.map((tile) => (
+        <Card key={tile.id} href={tile.href} texts={tile.texts} />
+      ))}
     </OnboardingLayout>
   );
 }

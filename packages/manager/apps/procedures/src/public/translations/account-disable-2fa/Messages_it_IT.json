@@ -34,7 +34,7 @@
   "account-disable-2fa-session-modal-warning-ok-button": "OK",
   "account-disable-2fa-confirm-modal-yes": "Sì",
   "account-disable-2fa-confirm-modal-no": "No",
-  "account-disable-2fa-create-form-confirm-modal-send-document-title": "Invia i documenti",
+  "account-disable-2fa-create-form-confirm-modal-send-document-title": "Inviare i documenti",
   "account-disable-2fa-create-form-confirm-modal-send-document-description-insure": "Assicurati che tutti i documenti siano corretti e leggibili prima dell’invio. In caso di documenti non validi, questa procedura sarà annullata e sarà necessario ripeterla.",
   "account-disable-2fa-create-form-confirm-modal-send-document-description-confirm": "Confermi di aver aggiunto tutti i documenti richiesti?",
   "account-disable-2fa-create-form-success-modal-send-document-title": "Grazie, abbiamo ricevuto tutti i tuoi documenti !",

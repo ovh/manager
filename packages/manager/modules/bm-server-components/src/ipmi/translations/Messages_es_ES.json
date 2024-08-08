@@ -37,7 +37,6 @@
   "server_configuration_impi_sessions_success": "Las sesiones del módulo IPMI se han eliminado.",
   "server_configuration_impi_disable": "Las funcionalidades del módulo IPMI están desactivadas temporalmente debido a que se está realizando una tarea. Se reactivarán cuando haya finalizado la tarea.",
   "server_configuration_impi_monitoring_warning": "Recuerde desactivar el monitoring de sus servicios antes de instalar un sistema operativo desde IPMI.",
-  "server_configuration_impi_SOL_help": "Es necesario configurar la sesión SOL.",
   "server_configuration_impi_SOL_help_link": "Acceder a la guía de configuración",
   "server_configuration_ipmi_title": "IPMI",
   "server_configuration_kvm_title": "KVM",
@@ -62,10 +61,6 @@
   "server_configuration_tile_sol_heading": "Serial over LAN (SoL)",
   "server_configuration_tile_sol_description": "Acceso a la consola de serie de la máquina a través de una conexión segura",
   "server_configuration_ssh_sol_definition": "SSH SoL (autenticación con clave SSH)",
-  "server_configuration_ssh_select": "Seleccione una llave SSH",
-  "server_configuration_doing": "[en curso]",
-  "server_common_confirm": "Confirmar",
-  "server_common_cancel": "Cancelar",
   "server_configuration_ssh_sol_input_placeholder": "Introduzca una clave SSH pública. Ejemplo: {{t0}}",
   "server_configuration_ssh_sol_input_bad_pattern": "La clave pública SSH no es válida: solo se aceptan claves RSA, ECDSA y EdDSA en formato OpenSSH.",
   "server_configuration_ssh_sol_add_key": "Añadir la clave SSH",
@@ -73,5 +68,8 @@
   "server_configuration_ssh_sol_start": "Iniciar la sesión SoL por SSH",
   "server_configuration_ssh_sol_input_bad_required": "Introduzca una clave SSH pública en el campo de entrada.",
   "server_configuration_tile_ipmi_heading": "IPMI",
-  "server_configuration_tile_ipmi_description": "Gestionar la IPMI (Intelligent Platform Management Interface)"
+  "server_configuration_tile_ipmi_description": "Gestionar la IPMI (Intelligent Platform Management Interface)",
+  "server_configuration_doing": "[en curso]",
+  "server_common_confirm": "Confirmar",
+  "server_common_cancel": "Cancelar"
 }

@@ -12,7 +12,7 @@ const webShopConfig = (
   navigation: any,
   region: string,
   sub: string,
-  features: Record<string, string>,
+  features: Record<string, boolean>,
 ): Array<ShopItem> => [
   features['web:domains'] && ORDER_URLS[region].orderDomain
     ? {

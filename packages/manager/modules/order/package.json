@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/jsurl": "^0.1.2",
-    "typescript": "^4.3.2"
+    "typescript": "^5.1.6"
   },
   "peerDependencies": {
     "@tanstack/react-query": "5.x",

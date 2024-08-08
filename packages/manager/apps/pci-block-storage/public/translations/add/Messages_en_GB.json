@@ -1,6 +1,6 @@
 {
   "pci_projects_project_storages_blocks_add_title": "Create a volume ",
-  "pci_projects_project_storages_blocks_add_region_title": "Select a location",
+  "pci_projects_project_storages_blocks_add_region_title": "Select a region",
   "pci_projects_project_storages_blocks_add_type_title": "Volume type ",
   "pci_projects_project_storages_blocks_add_type_classic_label": "Standard",
   "pci_projects_project_storages_blocks_add_type_classic_description": "",
@@ -11,7 +11,7 @@
   "pci_projects_project_storages_blocks_add_size_help": "The maximum size depends on your available quota.",
   "pci_projects_project_storages_blocks_add_size_unit": "GB",
   "pci_projects_project_storages_blocks_add_name_title": "Volume name",
-  "pci_projects_project_storages_blocks_add_submit_title": "Validation",
+  "pci_projects_project_storages_blocks_add_submit_title": "Confirmation",
   "pci_projects_project_storages_blocks_add_submit_label": "Create the volume ",
   "pci_projects_project_storages_blocks_add_submit_cancel_label": "Cancel",
   "pci_projects_project_storages_blocks_add_submit_price_text": "Estimated amount: {{price}} ex. VAT/month",

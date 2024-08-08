@@ -1396,11 +1396,11 @@
   "hosting_tab_DOMAINS_table_git_state_deploying": "Em curso",
   "hosting_tab_DOMAINS_table_git_state_initialError": "Erro",
   "hosting_tab_DOMAINS_table_git_state_tooltip_lastDeploy": "Consultar as informações da última implementação",
-  "hosting_tab_DOMAINS_table_git_state_tooltip_limitedNumberPath": "A associação GIT só pode ser realizada num único diretório",
-  "hosting_tab_DOMAINS_table_popover_git_association": "Associar Git",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_limitedNumberPath": "A associação Git só pode ser realizada num único diretório",
+  "hosting_tab_DOMAINS_table_popover_git_association": "Associar o Git",
   "hosting_tab_DOMAINS_table_popover_git_configuration": "Configurar o Git",
   "hosting_tab_DOMAINS_table_popover_git_deployment": "Implementar o Git",
   "hosting_tab_DOMAINS_table_popover_git_viewLastDeployment": "Informações da última implementação",
-  "hosting_tab_DOMAINS_table_popover_git_delete": "Eliminar Git",
-  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Se pretender desassociar o seu domínio, deve eliminar primeiro a sua configuração Git para evitar eventuais problemas de seguimento das alterações e de gestão das implementações."
+  "hosting_tab_DOMAINS_table_popover_git_delete": "Eliminar o Git",
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Se pretende desassociar o seu nome de domínio, primeiro deve eliminar a sua configuração Git para evitar eventuais problemas de acompanhamento das alterações e de gestão das implementações."
 }

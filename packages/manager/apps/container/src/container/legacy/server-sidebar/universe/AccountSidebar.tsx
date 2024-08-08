@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
 import { Environment } from '@ovh-ux/manager-config';
@@ -10,6 +9,7 @@ import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import { features } from './DedicatedSidebar';
+import { useFeatureAvailability } from '@ovhcloud/manager-components';
 import constants from '../../account-sidebar/UsefulLinks/constants';
 
 const kycIndiaFeature = 'identity-documents';
@@ -30,7 +30,7 @@ export default function AccountSidebar() {
   const subsidiary = environment.getUser()?.ovhSubsidiary;
   const isEnterprise = environment.getUser()?.enterprise;
 
-  const getAccountSidebar = async (availability: Record<string, string> | null) => {
+  const getAccountSidebar = async (availability: Record<string, boolean> | null) => {
     const menu: SidebarMenuItem[] = [];
 
     if (!availability) {
@@ -137,7 +137,6 @@ export default function AccountSidebar() {
       id: 'my-support-tickets',
       label: t('sidebar_assistance_tickets'),
       isExternal: isEUOrCA,
-      
       href: isEUOrCA ? constants[region].support.tickets(subsidiary) : navigation.getURL('dedicated', '/ticket'),
       routeMatcher: new RegExp('^/(ticket|support)'),
     });
@@ -153,15 +152,7 @@ export default function AccountSidebar() {
     return menu;
   };
 
-  const getFeatures = (): Promise<Record<string, string>> =>
-    reketInstance.get(`/feature/${features.concat(kycFeatures).join(',')}/availability`, {
-      requestType: 'aapi',
-    });
-
-  const { data: availability } = useQuery({
-    queryKey: ['sidebar-dedicated-availability'],
-    queryFn: getFeatures,
-  });
+  const {data: availability} = useFeatureAvailability(features.concat(kycFeatures));
 
   const buildMenu = async () =>
     Promise.resolve({

@@ -17,7 +17,7 @@ export const defaultProps: OnboardingLayoutProps = {
   },
   moreInfoButtonLabel: 'Learn More',
   children: (
-    <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
+    <>
       <Card
         href={''}
         texts={{
@@ -42,7 +42,7 @@ export const defaultProps: OnboardingLayoutProps = {
           category: 'TELECOM',
         }}
       />
-    </aside>
+    </>
   ),
 };
 

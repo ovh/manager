@@ -175,7 +175,7 @@ export function findPathToNodeByApp(
 export const shouldHideElement = (
   node: Node,
   count: number | boolean,
-  betaVersion: number,
+  betaVersion: number | string,
 ) => {
   if (node.hideIfEmpty && !count) {
     return true;

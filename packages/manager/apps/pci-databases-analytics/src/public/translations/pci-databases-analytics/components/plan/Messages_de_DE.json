@@ -4,7 +4,7 @@
   "memorySpec": "{{memory}} RAM",
   "memorySpecRange": "{{ min }} bis {{ max }} RAM",
   "cpuSpec_one": "{{count}} vCore",
-  "cpuSpec_other": "{{count}} vCores",
+  "cpuSpec_other": "{{count}} vCores",
   "cpuSpecRange": "{{min}} bis {{max}} vCores",
   "nodeSpec_one": "{{count}} Node",
   "nodeSpec_other": "{{count}} Nodes",

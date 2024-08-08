@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
@@ -13,6 +11,7 @@ import  getIcon  from './GetIcon';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useFeatureAvailability } from '@ovhcloud/manager-components';
 
 const features = [
   'dedicated-cloud',
@@ -49,7 +48,6 @@ export default function HostedPrivateCloudSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
   const [shopItems, setShopItems] = useState<ShopItem[]>([]);
   const shell = useShell();
-  const reketInstance = useReket();
   const { loadServices } = useServiceLoader('dedicated');
   const { t, i18n } = useTranslation('sidebar');
   const navigation = shell.getPlugin('navigation');
@@ -57,7 +55,7 @@ export default function HostedPrivateCloudSidebar() {
   const { ovhSubsidiary, isTrusted } = environment.getUser();
   const region = environment.getRegion();
 
-  const getHPCMenu = (feature: Record<string, string>) => {
+  const getHPCMenu = (feature: Record<string, boolean>) => {
     const menu = [];
 
     if (feature['dedicated-cloud']) {
@@ -260,15 +258,7 @@ export default function HostedPrivateCloudSidebar() {
     return menu;
   };
 
-  const getFeatures = (): Promise<Record<string, string>> =>
-    reketInstance.get(`/feature/${features.join(',')}/availability`, {
-      requestType: 'aapi',
-    });
-
-  const { data: availability } = useQuery({
-    queryKey: ['sidebar-hpc-availability'],
-    queryFn: getFeatures,
-  });
+  const {data: availability} = useFeatureAvailability(features);
 
   useEffect(() => {
     if (availability) {

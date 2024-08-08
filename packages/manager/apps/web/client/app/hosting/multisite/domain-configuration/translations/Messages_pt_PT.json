@@ -17,5 +17,5 @@
   "hosting_multisite_domain_configuration_countriesIp_none": "Nenhuma",
   "hosting_multisite_domain_configuration_ssl": "SSL",
   "hosting_multisite_domain_configuration_ssl_help": "Ativar a opção SSL para beneficiar do acesso ao seu site em https",
-  "hosting_multisite_domain_configuration_git_warning": "Se pretender alterar a pasta raiz, deve eliminar primeiro a configuração Git do diretório para evitar problemas no controlo de alterações e na gestão de implementações."
+  "hosting_multisite_domain_configuration_git_warning": "Se pretende alterar a pasta raiz, primeiro deve eliminar a configuração Git do diretório para evitar eventuais problemas de acompanhamento das alterações e de gestão das implementações."
 }
