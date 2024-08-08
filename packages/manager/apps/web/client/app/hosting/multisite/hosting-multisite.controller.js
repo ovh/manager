@@ -85,6 +85,25 @@ angular
         value: period,
       }));
 
+      function isMainDomain(hosting, domain) {
+        return (
+          `${hosting.primaryLogin}.${hosting.cluster}.ovh.net` ===
+            domain.name ||
+          `${hosting.primaryLogin}.${hosting.cluster}.hosting.ovh.net` ===
+            domain.name
+        );
+      }
+
+      $scope.isUpdateDomainDisabled = function isUpdateDomainDisabled(
+        hosting,
+        domain,
+      ) {
+        return (
+          domain.status === HOSTING_STATUS.UPDATING ||
+          isMainDomain(hosting, domain)
+        );
+      };
+
       function sendTrackClick(hit) {
         atInternet.trackClick({
           name: hit,
