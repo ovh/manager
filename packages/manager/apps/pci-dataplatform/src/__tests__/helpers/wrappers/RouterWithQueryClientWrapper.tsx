@@ -141,6 +141,9 @@ export const RouterWithQueryClientWrapper = ({
         trackMVTest: vi.fn(),
         trackPage: vi.fn(),
         trackMixCommanderS3: vi.fn(),
+        addAdditionalParams: vi.fn(),
+        removeAdditionalParams: vi.fn(),
+        addImageTag: vi.fn(),
       },
       logger: {
         log: vi.fn(),
