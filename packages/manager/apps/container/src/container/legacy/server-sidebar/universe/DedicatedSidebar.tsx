@@ -151,19 +151,14 @@ export default function DedicatedSidebar() {
       });
     }
 
-    if (feature['dedicated-networks']) {
+    if (feature['dedicated-networks'] && feature['dedicated-cdn']) {
       menu.push({
-        id: 'dedicated-nasha-cdn',
-        label: t('sidebar_nasha_cdn'),
+        id: 'dedicated-cdn',
+        label: t('sidebar_cdn'),
         icon: getIcon('ovh-font ovh-font-network'),
-        routeMatcher: new RegExp(
-          '^(/configuration/cdn|/(paas/)?nasha)',
-        ),
+        routeMatcher: new RegExp('^(/configuration/cdn)'),
         async loader() {
-          const [cdn, nasha] = await Promise.all([
-            feature['dedicated-cdn'] ? loadServices('/cdn/dedicated') : [],
-            feature['dedicated-nasha'] ? loadServices('/dedicated/nasha') : [],
-          ]);
+          const cdn = await loadServices('/cdn/dedicated');
           return [
             ...cdn.map((cdnItem) => ({
               ...cdnItem,
@@ -177,15 +172,6 @@ export default function DedicatedSidebar() {
                   `/cdn/dedicated/${cdnItem.serviceName}/domains`,
                 );
               },
-            })),
-            ...nasha.map((nashaItem) => ({
-              ...nashaItem,
-              keywords: 'nasha nas-ha',
-              icon: getIcon('ovh-font ovh-font-cloudnas'),
-              href: navigation.getURL(
-                'dedicated',
-                `/nasha/${nashaItem.serviceName}`,
-              ),
             })),
           ];
         },
@@ -339,14 +325,14 @@ export default function DedicatedSidebar() {
       });
     }
 
-    if (feature.netapp) {
+    if (feature.netapp || feature['dedicated-nasha']) {
       menu.push({
         id: 'dedicated-storage',
         label: t('sidebar_storage_backup'),
         icon: getIcon('ovh-font ovh-font-cloudnas'),
-        routeMatcher: new RegExp('^/netapp'),
+        routeMatcher: new RegExp('^(/netapp|/(paas/)?nasha)'),
         subItems: [
-          {
+          feature.netapp && {
             id: 'dedicated-storage-netapp',
             label: t('sidebar_netapp'),
             icon: getIcon('oui-icon oui-icon-enterprise-file-storage_concept'),
@@ -356,6 +342,24 @@ export default function DedicatedSidebar() {
               return loadServices('/storage/netapp');
             },
           },
+          feature['dedicated-nasha'] && {
+            id: 'dedicated-nas-ha',
+            label: t('sidebar_nasha'),
+            icon: getIcon('ovh-font ovh-font-cloudnas'),
+            href: navigation.getURL('dedicated', '#/nasha'),
+            routeMatcher: new RegExp('^/(paas/)?nasha'),
+            async loader() {
+              const nasha = await loadServices('/dedicated/nasha');
+              return nasha.map((nashaItem) => ({
+                ...nashaItem,
+                keywords: 'nasha nas-ha',
+                href: navigation.getURL(
+                  'dedicated',
+                  `/nasha/${nashaItem.serviceName}`,
+                ),
+              }));
+            }
+          }
         ],
       });
     }
