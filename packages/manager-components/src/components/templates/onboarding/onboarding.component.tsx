@@ -108,7 +108,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
       {!hideHeadingSection && (
         <section className="flex flex-col items-center">
           {(img?.src || placeholderSrc) && (
-            <div className="flex justify-center pt-8 max-h-28">
+            <div className="flex justify-center pt-8 max-h-28 w-full">
               <img
                 className="max-h-[150px]"
                 src={img?.src ?? placeholderSrc}
