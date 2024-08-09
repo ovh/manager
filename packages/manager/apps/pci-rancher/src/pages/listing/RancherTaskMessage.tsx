@@ -8,9 +8,9 @@ import { RancherTask, RancherTaskType } from '@/api/api.type';
 const RancherTaskMessage = ({ tasks }: { tasks: RancherTask[] }) => {
   const { t } = useTranslation('pci-rancher/listing');
   const tasksMessage = tasks
-    .filter((task) =>
+    .filter(({ type }) =>
       [RancherTaskType.RANCHER_DELETE, RancherTaskType.RANCHER_CREATE].includes(
-        task?.type,
+        type,
       ),
     )
     .map(({ id, type }) => {
@@ -27,7 +27,7 @@ const RancherTaskMessage = ({ tasks }: { tasks: RancherTask[] }) => {
 
   return (
     <div className="my-6">
-      {tasksMessage?.map((task) => (
+      {tasksMessage.map((task) => (
         <OsdsMessage
           id={task.id}
           type={task.type}
