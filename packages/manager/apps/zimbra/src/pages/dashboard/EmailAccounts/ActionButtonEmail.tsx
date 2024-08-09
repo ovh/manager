@@ -15,7 +15,7 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
   const { t } = useTranslation('accounts');
   const { platformUrn } = usePlatform();
 
-  const hrefEditEmailAccount = useGenerateUrl('./edit', 'href', {
+  const hrefEditEmailAccount = useGenerateUrl('./settings', 'href', {
     editEmailAccountId: emailsItem.id,
   });
 
