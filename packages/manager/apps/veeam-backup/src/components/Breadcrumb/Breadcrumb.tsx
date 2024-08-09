@@ -7,8 +7,8 @@ import {
   OdsBreadcrumbAttributeItem,
 } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import appConfig from '../../veeam-backup.config';
 import { urls } from '@/routes/routes.constant';
+import appConfig from '@/veeam-backup.config';
 
 export type BreadcrumbItem = {
   label: string | undefined;
