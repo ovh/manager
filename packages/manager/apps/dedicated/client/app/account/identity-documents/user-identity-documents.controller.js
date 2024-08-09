@@ -36,6 +36,7 @@ export default class AccountUserIdentityDocumentsController {
     this.showUploadOption = true;
     this.displayError = false;
     this.isOpenModal = false;
+    this.isOpenInformationModal = false;
     this.dashboardRedirectURL = this.coreURLBuilder.buildURL('hub', '');
     this.user_type = USER_TYPE[this.currentUser]
       ? USER_TYPE[this.currentUser]
@@ -57,6 +58,7 @@ export default class AccountUserIdentityDocumentsController {
           this.loading = false;
           this.kycStatus.status = KYC_STATUS.OPEN;
           this.trackPage(TRACKING_TASK_TAG.uploadSuccess);
+          this.handleInformationModal(true);
         })
         .catch(() => {
           this.displayErrorBanner();
@@ -69,6 +71,10 @@ export default class AccountUserIdentityDocumentsController {
 
   handleUploadConfirmModal(open) {
     this.isOpenModal = open;
+  }
+
+  handleInformationModal(open) {
+    this.isOpenInformationModal = open;
   }
 
   getUploadDocumentsLinks(count) {
