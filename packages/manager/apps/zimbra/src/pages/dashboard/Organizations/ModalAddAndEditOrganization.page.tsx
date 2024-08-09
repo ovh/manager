@@ -34,21 +34,12 @@ import {
   putZimbraPlatformOrganization,
 } from '@/api/organization';
 import queryClient from '@/queryClient';
-
-type FieldType = {
-  value: string;
-  required: boolean;
-  touched: boolean;
-  hasError: boolean;
-};
-
-interface FormTypeInterface {
-  [key: string]: FieldType;
-}
-
-interface FormInputRegexInterface {
-  [key: string]: RegExp;
-}
+import {
+  checkValidityField,
+  checkValidityForm,
+  FormInputRegexInterface,
+  FormTypeInterface,
+} from '@/utils';
 
 export default function ModalAddAndEditOrganization() {
   const { t } = useTranslation('organizations/addAndEdit');
@@ -147,31 +138,16 @@ export default function ModalAddAndEditOrganization() {
     addOrEditOrganization({ name, label });
   };
 
-  const checkValidityField = (name: string, value: string) => {
-    return formInputRegex[name]
-      ? formInputRegex[name].test(value) ||
-          (!form[name].required && form[name].value === '')
-      : true;
-  };
-
-  const checkValidityForm = () => {
-    const touched = Object.values(form).find((field) => field.touched);
-    const error = Object.values(form).find(
-      (field) => field.hasError || (field.required && field.value === ''),
-    );
-    return touched && !error;
-  };
-
   const handleFormChange = (name: string, value: string) => {
     const newForm: FormTypeInterface = form;
     newForm[name] = {
       ...form[name],
       value,
       touched: true,
-      hasError: !checkValidityField(name, value),
+      hasError: !checkValidityField(name, value, formInputRegex, form),
     };
     setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm);
+    setIsFormValid(checkValidityForm(form));
   };
 
   useEffect(() => {

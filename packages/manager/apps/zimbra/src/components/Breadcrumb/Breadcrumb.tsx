@@ -55,7 +55,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     ...items,
   ].filter(Boolean);
 
-  return <OsdsBreadcrumb className="mb-4" items={breadcrumbItems} />;
+  return (
+    <OsdsBreadcrumb
+      data-testid="breadcrumb"
+      className="mb-4"
+      items={breadcrumbItems}
+    />
+  );
 };
 
 export default Breadcrumb;

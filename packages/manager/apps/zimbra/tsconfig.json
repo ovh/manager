@@ -28,9 +28,7 @@
     "node_modules",
     "dist",
     "types",
-    "src/pages/dashboard/Organizations/__test__",
-    "src/pages/dashboard/Domains/__test__",
-    "src/pages/dashboard/EmailAccounts/__test__",
-    "src/hook/__test__"
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx"
   ]
 }

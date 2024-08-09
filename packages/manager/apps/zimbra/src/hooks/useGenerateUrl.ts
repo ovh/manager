@@ -4,7 +4,7 @@ import { useOrganization } from '@/hooks';
 export const useGenerateUrl = (
   baseURL: string,
   type: 'path' | 'href' = 'path',
-  params?: Record<string, any>,
+  params?: Record<string, string | number>,
 ) => {
   const { data: organization } = useOrganization();
 

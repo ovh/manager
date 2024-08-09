@@ -39,7 +39,7 @@ export const Routes: any = [
                 path: 'add',
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/Organizations/ModalAddAndEditOrganization'
+                    '@/pages/dashboard/Organizations/ModalAddAndEditOrganization.page'
                   ),
                 ),
               },
@@ -47,7 +47,7 @@ export const Routes: any = [
                 path: 'edit',
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/Organizations/ModalAddAndEditOrganization'
+                    '@/pages/dashboard/Organizations/ModalAddAndEditOrganization.page'
                   ),
                 ),
               },
@@ -55,7 +55,7 @@ export const Routes: any = [
                 path: 'delete',
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/Organizations/ModalDeleteOrganization'
+                    '@/pages/dashboard/Organizations/ModalDeleteOrganization.component'
                   ),
                 ),
               },
@@ -70,14 +70,30 @@ export const Routes: any = [
               {
                 path: 'add',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/dashboard/Domains/AddDomain'),
+                  import('@/pages/dashboard/Domains/AddDomain.page'),
                 ),
                 handle: { isOverridePage: true },
               },
               {
+                path: 'edit',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/ModalEditDomain.component'),
+                ),
+              },
+              {
                 path: 'delete',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/dashboard/Domains/ModalDeleteDomain'),
+                  import(
+                    '@/pages/dashboard/Domains/ModalDeleteDomain.component'
+                  ),
+                ),
+              },
+              {
+                path: 'diagnostic',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/Domains/ModalDiagnosticDnsRecord.component'
+                  ),
                 ),
               },
             ],
@@ -92,7 +108,129 @@ export const Routes: any = [
                 path: 'add',
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount'
+                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount.page'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+              {
+                path: 'settings',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount.page'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+              {
+                path: 'alias',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount.page'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+                children: [
+                  {
+                    path: 'add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/EmailAccounts/ModalAddAlias.component'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/EmailAccounts/ModalDeleteAlias.component'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
+                path: 'redirections',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount.page'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+                children: [
+                  {
+                    path: 'add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'edit',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/Redirections/ModalDeleteRedirections.component'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
+                path: 'delete',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/ModalDeleteEmailAccount.component'
+                  ),
+                ),
+              },
+            ],
+          },
+          {
+            path: 'mailing_lists',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/MailingLists/MailingLists'),
+            ),
+            children: [
+              {
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/MailingLists/AddAndEditMailingList.page'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+              {
+                path: 'settings',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/MailingLists/AddAndEditMailingList.page'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+            ],
+          },
+          {
+            path: 'redirections',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/Redirections/Redirections'),
+            ),
+            children: [
+              {
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
                   ),
                 ),
                 handle: { isOverridePage: true },
@@ -101,7 +239,7 @@ export const Routes: any = [
                 path: 'edit',
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount'
+                    '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
                   ),
                 ),
                 handle: { isOverridePage: true },
@@ -110,14 +248,22 @@ export const Routes: any = [
                 path: 'delete',
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/EmailAccounts/ModalDeleteEmailAccount'
+                    '@/pages/dashboard/Redirections/ModalDeleteRedirections.component'
                   ),
                 ),
+                handle: { isOverridePage: true },
               },
             ],
           },
+          {
+            path: 'auto_replies',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/AutoReplies/AutoReplies'),
+            ),
+          },
         ],
       },
+
       {
         path: 'onboarding',
         ...lazyRouteConfig(() => import('@/pages/onboarding')),

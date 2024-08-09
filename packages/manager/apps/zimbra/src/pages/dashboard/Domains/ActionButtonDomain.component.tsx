@@ -16,10 +16,20 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
   const hrefDeleteDomain = useGenerateUrl('./delete', 'href', {
     deleteDomainId: domainItem.id,
   });
+  const hrefEditDomain = useGenerateUrl('./edit', 'href', {
+    editDomainId: domainItem.id,
+  });
   const { platformUrn } = usePlatform();
   const actionItems = [
     {
       id: 1,
+      href: hrefEditDomain,
+      label: t('zimbra_domains_tooltip_configure'),
+      urn: platformUrn,
+      iamActions: [IAM_ACTIONS.domain.edit],
+    },
+    {
+      id: 2,
       href: hrefDeleteDomain,
       label: t('zimbra_domains_tooltip_delete'),
       urn: platformUrn,

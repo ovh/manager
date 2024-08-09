@@ -1,0 +1,11 @@
+{
+  "zimbra_domain_edit_modal_title": "Configuration du domaine",
+  "zimbra_domain_edit_modal_content": "Êtes-vous sûr(e) de vouloir supprimer le domaine du serveur Zimbra ?",
+  "zimbra_domain_edit_modal_message_disabled": "Votre domaine est en cours d'utilisation. Vous ne pouvez pas supprimer ce domaine tant qu'il est dans ce cas.",
+  "zimbra_domain_edit_success_message": "La configuration de votre domaine a bien été prise en compte. Elle sera active d'ici quelques instants.",
+  "zimbra_domain_edit_error_message": "La configuration de votre domaine n'a pas pu aboutir. {{ error }}",
+  "zimbra_domain_edit_domain_label": "Domaine",
+  "zimbra_domain_edit_organization_label": "Organisation",
+  "zimbra_domain_edit_confirm": "Confirmer",
+  "zimbra_domain_edit_cancel": "Annuler"
+}

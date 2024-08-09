@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -10,30 +10,36 @@ import {
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useDomains, usePlatform } from '@/hooks';
+import { useMutation } from '@tanstack/react-query';
+import { useAccountList, useGenerateUrl, usePlatform } from '@/hooks';
 import {
-  deleteZimbraPlatformOrganization,
-  getZimbraPlatformOrganizationQueryKey,
-} from '@/api/organization';
+  deleteZimbraPlatformDomain,
+  getZimbraPlatformDomainsQueryKey,
+} from '@/api/domain';
 import Modal from '@/components/Modals/Modal';
 import queryClient from '@/queryClient';
 
-export default function ModalDeleteOrganization() {
-  const [searchParams] = useSearchParams();
-  const deleteOrganizationId = searchParams.get('deleteOrganizationId');
-  const { t } = useTranslation('organizations/delete');
-  const { platformId } = usePlatform();
-  const { addError, addSuccess } = useNotifications();
-  const [hasDomain, setHasDomain] = useState(false);
+export default function ModalDeleteDomain() {
+  const { t } = useTranslation('domains/delete');
   const navigate = useNavigate();
 
-  const onClose = () => navigate('..');
+  const [searchParams] = useSearchParams();
+  const deleteDomainId = searchParams.get('deleteDomainId');
 
-  const { mutate: deleteOrganization, isPending: isSending } = useMutation({
-    mutationFn: (organizationId: string) => {
-      return deleteZimbraPlatformOrganization(platformId, organizationId);
+  const { platformId } = usePlatform();
+  const { data: accounts, isLoading } = useAccountList({
+    domainId: deleteDomainId,
+  });
+
+  const { addError, addSuccess } = useNotifications();
+
+  const goBackUrl = useGenerateUrl('..', 'path');
+  const onClose = () => navigate(goBackUrl);
+
+  const { mutate: deleteDomain, isPending: isSending } = useMutation({
+    mutationFn: (domainId: string) => {
+      return deleteZimbraPlatformDomain(platformId, domainId);
     },
     onSuccess: () => {
       addSuccess(
@@ -43,12 +49,11 @@ export default function ModalDeleteOrganization() {
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           hue={ODS_THEME_COLOR_HUE._500}
         >
-          {t('zimbra_organization_delete_success_message')}
+          {t('zimbra_domain_delete_success_message')}
         </OsdsText>,
         true,
       );
     },
-
     onError: (error: ApiError) => {
       addError(
         <OsdsText
@@ -57,7 +62,7 @@ export default function ModalDeleteOrganization() {
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           hue={ODS_THEME_COLOR_HUE._500}
         >
-          {t('zimbra_organization_delete_error_message', {
+          {t('zimbra_domain_delete_error_message', {
             error: error?.response?.data?.message,
           })}
         </OsdsText>,
@@ -66,7 +71,7 @@ export default function ModalDeleteOrganization() {
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
+        queryKey: getZimbraPlatformDomainsQueryKey(platformId),
       });
 
       onClose();
@@ -74,30 +79,21 @@ export default function ModalDeleteOrganization() {
   });
 
   const handleDeleteClick = () => {
-    deleteOrganization(deleteOrganizationId);
+    deleteDomain(deleteDomainId as string);
   };
-
-  const { data, isLoading } = useDomains({
-    organizationId: deleteOrganizationId,
-  });
-
-  useEffect(() => {
-    setHasDomain(data?.length > 0);
-  }, [isLoading]);
 
   return (
     <Modal
-      title={t('zimbra_organization_delete_modal_title')}
+      title={t('zimbra_domain_delete_modal_title')}
       color={ODS_THEME_COLOR_INTENT.warning}
       onDismissible={onClose}
       dismissible={true}
       isLoading={isLoading}
       primaryButton={{
-        testid: 'delete-btn',
-        color: ODS_THEME_COLOR_INTENT.primary,
-        label: t('zimbra_organization_delete'),
+        label: t('zimbra_domain_delete'),
         action: handleDeleteClick,
-        disabled: hasDomain || isSending || isLoading,
+        disabled: accounts?.length > 0 || isSending || !deleteDomainId,
+        testid: 'delete-btn',
       }}
     >
       <>
@@ -107,10 +103,9 @@ export default function ModalDeleteOrganization() {
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           hue={ODS_THEME_COLOR_HUE._500}
         >
-          {t('zimbra_organization_delete_modal_content')}
+          {t('zimbra_domain_delete_modal_content')}
         </OsdsText>
-
-        {hasDomain && (
+        {accounts?.length > 0 && (
           <OsdsMessage
             color={ODS_THEME_COLOR_INTENT.error}
             icon={ODS_ICON_NAME.WARNING_CIRCLE}
@@ -124,7 +119,7 @@ export default function ModalDeleteOrganization() {
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
                 hue={ODS_THEME_COLOR_HUE._500}
               >
-                {t('zimbra_organization_delete_modal_message_disabled_part1')}
+                {t('zimbra_domain_delete_modal_message_disabled_part1')}
               </OsdsText>
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
@@ -132,7 +127,7 @@ export default function ModalDeleteOrganization() {
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                 hue={ODS_THEME_COLOR_HUE._500}
               >
-                {t('zimbra_organization_delete_modal_message_disabled_part2')}
+                {t('zimbra_domain_delete_modal_message_disabled_part2')}
               </OsdsText>
             </div>
           </OsdsMessage>
