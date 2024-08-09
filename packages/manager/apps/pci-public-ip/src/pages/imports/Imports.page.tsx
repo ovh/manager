@@ -22,10 +22,10 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 
+import { useProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { ImportsIP } from '@/interface';
 import { ImportIPAction } from '@/components/imports/ImportIPAction';
-import useProject from '@/api/hooks/useProject';
 import { useGetImportsIPs } from '@/api/hooks/useImportIP';
 
 export default function ImportsPage(): JSX.Element {
@@ -34,7 +34,7 @@ export default function ImportsPage(): JSX.Element {
 
   const navigation = useNavigation();
   const { projectId } = useParams();
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
 
   const hrefPublicIps = useHref('..');
 

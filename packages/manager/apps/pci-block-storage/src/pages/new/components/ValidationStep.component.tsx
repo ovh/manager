@@ -1,12 +1,10 @@
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  PciTrustedZoneBanner,
-  useNotifications,
-} from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { PciTrustedZoneBanner } from '@ovh-ux/manager-pci-common';
 import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
 import { TAddon } from '@/api/data/catalog';
 

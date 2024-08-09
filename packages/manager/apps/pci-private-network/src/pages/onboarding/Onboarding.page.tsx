@@ -9,6 +9,7 @@ import {
   OdsBreadcrumbAttributeItem,
 } from '@ovhcloud/ods-components';
 import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
+import { TProject } from '@ovh-ux/manager-pci-common';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -17,7 +18,6 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import { PublicCloudProject } from '@ovhcloud/manager-components/src/hooks/pci-project-provider/publicCloudProject.interface';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from './OnboardingGuard';
 
@@ -30,7 +30,7 @@ export default function OnBoardingPage() {
   const context = useContext(ShellContext);
   const { navigation } = context.shell;
   const { ovhSubsidiary } = context.environment.getUser();
-  const project = useRouteLoaderData('private-networks') as PublicCloudProject;
+  const project = useRouteLoaderData('private-networks') as TProject;
   const [urlProject, setUrlProject] = useState('');
 
   useEffect(() => {
