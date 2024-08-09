@@ -7,15 +7,17 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useNotifications } from '@ovhcloud/manager-components';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   useKubernetesCluster,
   useUpdateKubeVersion,
 } from '@/api/hooks/useKubernetes';
 import UpdateVersionContent from '@/components/update/UpdateVersionContent';
 import { UPDATE_STRATEGY } from '@/constants';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function UpdateVersionPage() {
   const { t } = useTranslation('update');
@@ -26,6 +28,8 @@ export default function UpdateVersionPage() {
   const [nextMinorVersion, setNextMinorVersion] = useState('');
   const [clusterMinorVersion, setClusterMinorVersion] = useState('');
   const [searchParams] = useSearchParams();
+
+  const { tracking } = useContext(ShellContext)?.shell || {};
 
   const forceVersion =
     searchParams.get('forceVersion') === 'true' ||
@@ -76,12 +80,20 @@ export default function UpdateVersionPage() {
       setClusterMinorVersion(`${majorVersion}.${minorVersion}`);
     }
   }, [kubernetesCluster]);
+
   const isPending = isPendingCluster || isPendingUpdateVersion;
+
+  const trackingCase = forceVersion ? 'updateVersion' : 'updateSecurity';
 
   return (
     <OsdsModal
       color={ODS_THEME_COLOR_INTENT.warning}
-      onOdsModalClose={onClose}
+      onOdsModalClose={() => {
+        tracking?.trackClick({
+          name: `${KUBE_TRACK_PREFIX}::${trackingCase}::cancel`,
+        });
+        onClose();
+      }}
       headline={
         forceVersion
           ? t('kube_service_update_title')
@@ -109,7 +121,12 @@ export default function UpdateVersionPage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={onClose}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::${trackingCase}::cancel`,
+          });
+          onClose();
+        }}
         data-testid="updateVersion-button_cancel"
       >
         {t('kube_service_update_common_cancel')}
@@ -118,7 +135,12 @@ export default function UpdateVersionPage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={isPending || undefined}
-        onClick={updateKubeVersion}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::${trackingCase}::confirm`,
+          });
+          updateKubeVersion();
+        }}
         data-testid="updateVersion-button_submit"
       >
         {t('kube_service_update_common_confirm')}

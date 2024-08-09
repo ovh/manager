@@ -17,11 +17,13 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovhcloud/manager-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useAddOidcProvider } from '@/api/hooks/useKubernetes';
 import { TOidcProvider } from '@/api/data/kubernetes';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function AddOIDCProvider() {
   const { t } = useTranslation('add-oidc-provider');
@@ -29,12 +31,15 @@ export default function AddOIDCProvider() {
   const { projectId, kubeId } = useParams();
   const navigate = useNavigate();
   const onClose = () => navigate('..');
+  const { tracking } = useContext(ShellContext)?.shell || {};
+
   const [formState, setFormState] = useState({
     issuerUrl: '',
     issuerUrlTouched: false,
     clientId: '',
     clientIdTouched: false,
   });
+
   const { addError, addSuccess } = useNotifications();
   const { addOidcProvider, isPending } = useAddOidcProvider({
     projectId,
@@ -74,12 +79,19 @@ export default function AddOIDCProvider() {
       onClose();
     },
   });
+
   const canSubmit = formState.issuerUrl && formState.clientId;
   const hasClientIdError = formState.clientIdTouched && !formState.clientId;
   const hasIssuerUrlError = formState.issuerUrlTouched && !formState.issuerUrl;
+
   return (
     <OsdsModal
-      onOdsModalClose={onClose}
+      onOdsModalClose={() => {
+        tracking?.trackClick({
+          name: `${KUBE_TRACK_PREFIX}::details::service::add-oidc-provider::cancel`,
+        });
+        onClose();
+      }}
       headline={t(
         'pci_projects_project_kubernetes_details_service_add_oidc_provider_title',
       )}
@@ -204,7 +216,12 @@ export default function AddOIDCProvider() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={onClose}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::add-oidc-provider::cancel`,
+          });
+          onClose();
+        }}
         data-testid="addOIDCProvider-button_cancel"
       >
         {t(
@@ -213,7 +230,12 @@ export default function AddOIDCProvider() {
       </OsdsButton>
       <OsdsButton
         slot="actions"
-        onClick={addOidcProvider}
+        onClick={() => {
+          tracking?.trackClick({
+            name: `${KUBE_TRACK_PREFIX}::details::service::add-oidc-provider::confirm`,
+          });
+          addOidcProvider();
+        }}
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={isPending || !canSubmit || undefined}
         data-testid="addOIDCProvider-button_submit"
