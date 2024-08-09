@@ -3,10 +3,11 @@ import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
 import { act } from 'react-dom/test-utils';
-import { fireEvent, render } from '@/utils/test.provider';
-import { accountMock, domainMock, platformMock } from '@/api/_mock_';
+import { fireEvent, render, screen } from '@/utils/test.provider';
+import { aliasMock, accountMock, domainMock, platformMock } from '@/api/_mock_';
 import AddAndEditEmailAccount from '../AddAndEditEmailAccount';
 import emailAccountAddAndEditTranslation from '@/public/translations/accounts/addAndEdit/Messages_fr_FR.json';
+import emailAccountAliasTranslation from '@/public/translations/accounts/alias/Messages_fr_FR.json';
 
 const { useSearchParamsMock } = vi.hoisted(() => ({
   useSearchParamsMock: vi.fn(() => [new URLSearchParams()]),
@@ -16,6 +17,13 @@ const { useQueryMock } = vi.hoisted(() => ({
   useQueryMock: vi.fn(() => ({
     data: null,
     isLoading: false,
+  })),
+}));
+
+const { useLocationMock } = vi.hoisted(() => ({
+  useLocationMock: vi.fn(() => ({
+    pathname: '/00000000-0000-0000-0000-000000000001/email_accounts/add',
+    search: '',
   })),
 }));
 
@@ -29,14 +37,23 @@ vi.mock('@/hooks', () => {
       data: domainMock,
       isLoading: false,
     })),
+    useOrganization: vi.fn(() => ({
+      data: null,
+      isLoading: false,
+    })),
   };
 });
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
-  MemoryRouter: vi.fn(() => <AddAndEditEmailAccount />),
-  useSearchParams: useSearchParamsMock,
-}));
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
+    useNavigate: vi.fn(),
+    useLocation: useLocationMock,
+    useResolvedPath: vi.fn(() => '/:serviceName/email_accounts'),
+    useSearchParams: useSearchParamsMock,
+  };
+});
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual: any = await importOriginal();
@@ -46,6 +63,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
       addError: () => vi.fn(),
       addSuccess: () => vi.fn(),
     })),
+    Datagrid: vi.fn().mockReturnValue(<div>Datagrid</div>),
   };
 });
 
@@ -70,6 +88,13 @@ describe('email account add and edit page', () => {
   });
 
   it('if there is editEmailAccountId params', () => {
+    useLocationMock.mockImplementation(
+      vi.fn(() => ({
+        pathname:
+          '/00000000-0000-0000-0000-000000000001/email_accounts/settings',
+        search: '',
+      })),
+    );
     useSearchParamsMock.mockImplementation(
       vi.fn(() => [
         new URLSearchParams({
@@ -90,6 +115,30 @@ describe('email account add and edit page', () => {
         accountMock[0].currentState?.email,
       ),
     );
+  });
+
+  it('test alias tabs page', () => {
+    useSearchParamsMock.mockImplementation(
+      vi.fn(() => [
+        new URLSearchParams({
+          editEmailAccountId: '19097ad4-2880-4000-8b03-9d110f0b8f80',
+        }),
+      ]),
+    );
+    useLocationMock.mockImplementation(
+      vi.fn(() => ({
+        pathname: '/00000000-0000-0000-0000-000000000001/email_accounts/alias',
+        search: '',
+      })),
+    );
+    useQueryMock.mockImplementation(
+      vi.fn(() => ({
+        data: aliasMock,
+        isLoading: false,
+      })),
+    );
+    render(<AddAndEditEmailAccount />);
+    screen.getByText(emailAccountAliasTranslation.zimbra_account_alias_title);
   });
 
   it('check validity form', () => {
