@@ -72,20 +72,29 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   // Also, i don't want to disable the option "noImplicitAny"
   // Because this is done under unique circumstances and should not impact the rest of the codebase
   const selectStyles = {
-    option: (provided: any) => ({
+    option: (provided: any, { isFocused }: { isFocused: boolean }) => ({
       ...provided,
-      backgroundColor: '#FFFFFF',
-      color: '#1A53CF',
-      ':hover': {
-        backgroundColor: '#C8F0FD',
-        color: '#4E568E',
-      },
+      backgroundColor: isFocused
+        ? 'var(--ods-color-primary-075)'
+        : 'var(--ods-color-default-000)',
+      color: isFocused
+        ? 'var(--ods-color-primary-700)'
+        : 'var(--ods-color-primary-800)',
       cursor: 'pointer',
+      ':active': {
+        ...provided[':active'],
+        backgroundColor: 'var(--ods-color-primary-100)',
+        color: 'var(--ods-color-primary-700',
+      },
     }),
-    control: (provided: any, state: any) => ({
+    control: (provided: any, { isFocused }: { isFocused: boolean }) => ({
       ...provided,
-      backgroundColor: state.isFocused ? '#98D7F9' : '#FFF',
-      color: state.isFocused ? '#1C55D0' : '#1A53CF',
+      backgroundColor: isFocused
+        ? 'var(--ods-color-primary-075)'
+        : 'var(--ods-color-default-000)',
+      color: isFocused
+        ? 'var(--ods-color-primary-700)'
+        : 'var(--ods-color-primary-800)',
     }),
   };
   const [options, setOptions] = useState([]);
@@ -113,10 +122,12 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
 
   useEffect(() => {
     setOptions([
-      ...(projects ? projects.map(({ project_id: projectId, description }) => ({
-        id: projectId,
-        label: description || projectId,
-      })) : []),
+      ...(projects
+        ? projects.map(({ project_id: projectId, description }) => ({
+            id: projectId,
+            label: description || projectId,
+          }))
+        : []),
       ...(createProjectOption ? [createProjectOption] : []),
       ...(seeAllProjectsOption ? [seeAllProjectsOption] : []),
     ]);

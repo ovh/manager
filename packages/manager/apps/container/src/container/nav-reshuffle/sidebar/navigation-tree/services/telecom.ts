@@ -1,6 +1,7 @@
 import illustration from '@/assets/images/sidebar/telecom.png';
 export default {
   id: 'telecom',
+  idAttr: 'telecom-link',
   translation: 'sidebar_telecom',
   shortTranslation: 'sidebar_telecom_short',
   illustration,
@@ -12,11 +13,13 @@ export default {
   children: [
     {
       id: 'internet',
+      idAttr: 'internet-link',
       translation: 'sidebar_internet',
       features: ['pack', 'overthebox'],
       children: [
         {
           id: 'packs',
+          idAttr: 'packs-link',
           translation: 'sidebar_packs_xdsl',
           serviceType: 'PACK_XDSL',
           routing: {
@@ -27,6 +30,7 @@ export default {
         },
         {
           id: 'otb',
+          idAttr: 'otb-link',
           translation: 'sidebar_otb',
           serviceType: 'OVERTHEBOX',
           routing: {
@@ -39,11 +43,13 @@ export default {
     },
     {
       id: 'telephony',
+      idAttr: 'telephony-link',
       translation: 'sidebar_telephony',
       features: ['telephony', 'sms', 'fax'],
       children: [
         {
           id: 'voipgroup',
+          idAttr: 'voipgroup-link',
           translation: 'sidebar_telephony_voip_groups',
           serviceType: 'TELEPHONY',
           routing: {
@@ -54,6 +60,7 @@ export default {
         },
         {
           id: 'sms',
+          idAttr: 'sms-link',
           translation: 'sidebar_telephony_sms',
           serviceType: 'SMS',
           routing: {
@@ -64,6 +71,7 @@ export default {
         },
         {
           id: 'fax',
+          idAttr: 'fax-link',
           translation: 'sidebar_telephony_fax',
           serviceType: 'FREEFAX',
           routing: {
@@ -76,6 +84,7 @@ export default {
     },
     {
       id: 'telecom-operations',
+      idAttr: 'telecom-operations-link',
       translation: 'sidebar_telecom_operations',
       routing: {
         application: 'telecom',

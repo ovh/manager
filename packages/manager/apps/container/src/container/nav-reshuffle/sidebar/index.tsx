@@ -89,6 +89,13 @@ const Sidebar = (): JSX.Element => {
     clearTimeout(timer);
   };
 
+  const onEnter = (node: Node) => {
+    const getFirstChild = (node: Node): Node =>
+      !node.children ? node : getFirstChild(node.children[0]);
+    const firstElement = window.document.getElementById(getFirstChild(node)?.idAttr);
+    if (firstElement) firstElement.focus();
+  };
+
   /** Initialize navigation tree */
   useEffect(() => {
     let abort = false;
@@ -221,9 +228,9 @@ const Sidebar = (): JSX.Element => {
         />
       </a>
 
-      <div className={style.sidebar_menu}>
+      <div className={style.sidebar_menu} role="menubar">
         {(servicesCount || betaVersion === 1) && (
-          <ul id="menu" onMouseOut={onSidebarLeave} onBlur={onSidebarLeave}>
+          <ul id="menu" onMouseOut={onSidebarLeave} onBlur={onSidebarLeave} role="menu">
             <li className="px-3 mb-3 mt-2">
               <h2 className={!open ? style.hidden : ''}>
                 {t(currentNavigationNode.translation)}
@@ -233,7 +240,12 @@ const Sidebar = (): JSX.Element => {
               <li
                 key={node.id}
                 id={node.id}
-                className={`${style.sidebar_menu_items} ${node.id === selectedNode?.id ? style.sidebar_menu_items_selected : ''}`}
+                className={`${style.sidebar_menu_items} ${
+                  node.id === selectedNode?.id
+                    ? style.sidebar_menu_items_selected
+                    : ''
+                }`}
+                role="menuitem"
               >
                 {!shouldHideElement(node, count, betaVersion) && (
                   <SidebarLink
@@ -242,11 +254,12 @@ const Sidebar = (): JSX.Element => {
                     handleNavigation={() => menuClickHandler(node)}
                     handleOnMouseOver={() => menuClickHandler(node)}
                     handleOnMouseLeave={() => setSelectedNode(null)}
+                    handleOnEnter={(node: Node) => onEnter(node)}
                     id={node.idAttr}
                     isShortText={!open}
                   />
                 )}
-                {node.separator && <hr />}
+                {node.separator && <hr role="separator" />}
               </li>
             ))}
           </ul>
@@ -260,6 +273,8 @@ const Sidebar = (): JSX.Element => {
               })
             }
             href={navigationPlugin.getURL('catalog', '/')}
+            role="link"
+            title={t('sidebar_service_add')}
           >
             <span
               className={`oui-icon oui-icon-cart ${style.sidebar_action_icon}`}
@@ -276,10 +291,12 @@ const Sidebar = (): JSX.Element => {
         </Suspense>
       )}
 
-      <button className={style.sidebar_toggle_btn} onClick={toggleSidebar}>
+      <button className={style.sidebar_toggle_btn} onClick={toggleSidebar} role="button">
         {open && <span className="mr-2">Réduire</span>}
         <span
-          className={`${style.sidebar_toggle_btn_first_icon} oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
+          className={`${
+            style.sidebar_toggle_btn_first_icon
+          } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
           aria-hidden="true"
         ></span>
         <span

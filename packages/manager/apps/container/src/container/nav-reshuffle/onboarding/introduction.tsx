@@ -17,6 +17,7 @@ export const OnboardingIntroduction = () => {
   const { t } = useTranslation('nav-reshuffle/onboarding');
 
   const ref = useRef();
+  const refConfirm = useRef(null);
 
   const productNavReshuffle = useProductNavReshuffle();
   const shell = useShell();
@@ -91,6 +92,12 @@ export const OnboardingIntroduction = () => {
     );
   }, [productNavReshuffle.onboardingOpenedState]);
 
+  useEffect(() => {
+    if (refConfirm.current) {
+      refConfirm.current.focus();
+    }
+  })
+
   return (
     <>
       {isPopoverVisible && (
@@ -117,6 +124,7 @@ export const OnboardingIntroduction = () => {
                 <button
                   className="oui-button oui-button_primary"
                   onClick={() => startOnboarding()}
+                  ref={refConfirm}
                 >
                   {t('onboarding_popover_follow_guide_button')}
                 </button>

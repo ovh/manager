@@ -54,7 +54,9 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
       href={url}
       target={node.isExternal ? '_blank' : '_top'}
       rel={node.isExternal ? 'noopener noreferrer' : ''}
+      title={t(isShortText ? node.shortTranslation : node.translation)}
       id={id}
+      role="link"
     >
       {t(isShortText ? node.shortTranslation : node.translation)}
       {node.isExternal && (
