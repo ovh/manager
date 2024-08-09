@@ -19,6 +19,8 @@
   "key_management_service_service-keys_dashboard_field_state_destroyed_compromised": "compromise & supprimée",
   "key_management_service_service-keys_dashboard_field_state_pre_active": "En cours d'activation",
   "key_management_service_service-keys_dashboard_field_created_at": "Création",
+  "key_management_service_service-keys_dashboard_field_origin": "Origine de la clé",
+  "key_management_service_service-keys_dashboard_field_origin_okms": "Générée par le KMS OVHcloud",
   "key_management_service_service-keys_dashboard_field_type": "Type de clé",
   "key_management_service_service-keys_dashboard_field_type_oct": "AES",
   "key_management_service_service-keys_dashboard_field_type_RSA": "RSA",
