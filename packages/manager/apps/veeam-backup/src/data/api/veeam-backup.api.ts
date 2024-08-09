@@ -1,4 +1,5 @@
 import { fetchIcebergV2, apiClient } from '@ovh-ux/manager-core-api';
+import { VeeamBackupWithIam } from '../vcd.type';
 
 export type GetvmwareCloudDirectorBackupListParams = {
   /** Pagination cursor */
@@ -12,7 +13,7 @@ export const getvmwareCloudDirectorBackupListQueryKey = [
 ];
 
 /**
- *  : List VMware Cloud Director Backup services
+ * List VMware Cloud Director Backup services
  */
 export const getvmwareCloudDirectorBackupList = async (
   params: GetvmwareCloudDirectorBackupListParams,
@@ -36,10 +37,6 @@ export const getvmwareCloudDirectorBackupBackupId = async (
 ): Promise<any> =>
   apiClient.v2.get(`/vmwareCloudDirector/backup/${params.backupId}`);
 
-/**
- *  Get listing with iceberg V2
- */
-
 export const getListingIcebergV2 = async ({
   pageSize,
   cursor,
@@ -47,11 +44,13 @@ export const getListingIcebergV2 = async ({
   pageSize: number;
   cursor?: string;
 }) => {
-  const { data, status, cursorNext } = await fetchIcebergV2({
-    route: `/vmwareCloudDirector/backup`,
-    pageSize,
-    cursor,
-  });
+  const { data, status, cursorNext } = await fetchIcebergV2<VeeamBackupWithIam>(
+    {
+      route: '/vmwareCloudDirector/backup',
+      pageSize,
+      cursor,
+    },
+  );
   if (status > 400) {
     throw new Error();
   }
