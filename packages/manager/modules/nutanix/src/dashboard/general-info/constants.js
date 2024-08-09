@@ -23,26 +23,6 @@ export const GUIDES_URL = {
   DEFAULT: 'https://www.ovhcloud.com/en-gb/hosted-private-cloud/nutanix/',
 };
 
-export const GUIDE_PACKAGES_URL = {
-  CA: `${GUIDES_URL.CA}packaged`,
-  QC: `${GUIDES_URL.QC}packaged`,
-  DE: `${GUIDES_URL.DE}packaged`,
-  ES: `${GUIDES_URL.ES}packaged`,
-  FR: `${GUIDES_URL.FR}packaged`,
-  GB: `${GUIDES_URL.GB}packaged`,
-  IE: `${GUIDES_URL.IE}packaged`,
-  IT: `${GUIDES_URL.IT}packaged`,
-  NL: `${GUIDES_URL.NL}packaged`,
-  PL: `${GUIDES_URL.PL}packaged`,
-  PT: `${GUIDES_URL.PT}packaged`,
-  MA: `${GUIDES_URL.MA}packaged`,
-  SN: `${GUIDES_URL.SN}packaged`,
-  TN: `${GUIDES_URL.TN}packaged`,
-  WS: `${GUIDES_URL.WS}packaged`,
-  US: `${GUIDES_URL.US}packaged`,
-  DEFAULT: `${GUIDES_URL.DEFAULT}packaged`,
-};
-
 export const PRIVATE_BANDWIDTH_SERVICE_PREFIX = 'cluster-vrack-bandwidth';
 
 export const REPLICATION_FACTOR_PREFIX = 'RF';
@@ -77,7 +57,6 @@ export default {
   GENERAL_INFO_TILE_TITLE,
   FEATURES,
   TRACKING,
-  GUIDE_PACKAGES_URL,
   GUIDES_URL,
   LEGACY_PACK_TYPES,
 };
