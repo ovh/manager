@@ -9,6 +9,7 @@ import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 
 import account from './account/account.module';
+import resiliate from './resiliate/resiliate.module';
 import aliases from '../aliases/aliases.module';
 import component from './home.component';
 import formatsports from './formatsports/formatsports.module';
@@ -26,6 +27,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     account,
+    resiliate,
     aliases,
     formatsports,
     ngOvhChart,

@@ -788,5 +788,12 @@
   "logs_streams_manage_subscriptions": "Gestire gli abbonamenti",
   "logs_streams_copy_stream_id": "Copiare l'identificativo del flusso",
   "logs_streams_copy_id_success": "L'identificativo del flusso è stato copiato negli appunti, utilizza CTRL+V per incollarne il contenuto.",
-  "logs_streams_copy_id_error": "Il browser utilizzato non consente la copia negli appunti. Ti consigliamo di aggiornarlo a una versione più recente. L'identificativo del flusso {{stream}} è {{stream_id}}"
+  "logs_streams_copy_id_error": "Il browser utilizzato non consente la copia negli appunti. Ti consigliamo di aggiornarlo a una versione più recente. L'identificativo del flusso {{stream}} è {{stream_id}}",
+  "logs_home_account_status": "Stato",
+  "logs_home_status_ENABLED": "Attivato",
+  "logs_home_status_DISABLED": "Disattivato",
+  "logs_home_status_INIT": "Installazione in corso...",
+  "logs_home_status_TO_CONFIG": "Da configurare",
+  "logs_home_resiliate": "Disattivare",
+  "logs_resiliate": "Disattivare"
 }

@@ -56,7 +56,9 @@ export const TerminateModal: React.FC<TerminateModalProps> = ({
               level={ODS_TEXT_LEVEL.body}
               className="block mb-3"
             >
-              {t('key_management_service_terminate_description')}
+              {t('key_management_service_terminate_description', {
+                terminateKeyword: terminateValue,
+              })}
             </OsdsText>
             <OsdsInput
               disabled={isLoading || undefined}

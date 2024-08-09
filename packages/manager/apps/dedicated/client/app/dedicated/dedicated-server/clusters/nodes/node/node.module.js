@@ -22,7 +22,6 @@ import ftpBackupStorage from '../ftp-backup';
 import tasks from '../tasks';
 import interventions from '../intervention';
 import ipmi from '../ipmi';
-import orderKvm from '../kvm/order';
 import netboot from '../netboot';
 import trafficOrder from './traffic/order';
 import trafficCancel from './traffic/cancel';
@@ -47,7 +46,6 @@ angular
     'ui.router',
     interventions,
     ipmi,
-    orderKvm,
     netboot,
     displayName,
     reboot,

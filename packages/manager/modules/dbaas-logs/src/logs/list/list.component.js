@@ -4,6 +4,7 @@ import template from './logs-list.html';
 export default {
   bindings: {
     orderLink: '<',
+    goToResiliate: '<',
   },
   controller,
   controllerAs: 'ctrl',

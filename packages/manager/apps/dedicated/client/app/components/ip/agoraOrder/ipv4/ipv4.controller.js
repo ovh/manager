@@ -39,6 +39,7 @@ export default class AgoraIpV4OrderController {
     User,
     atInternet,
     coreConfig,
+    ovhManagerRegionService,
   ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
@@ -57,12 +58,14 @@ export default class AgoraIpV4OrderController {
     this.BLOCK_ADDITIONAL_IP = BLOCK_ADDITIONAL_IP;
     this.ALERT_ID = ALERT_ID;
     this.region = coreConfig.getRegion();
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {
     this.model = {
       params: {},
       selectedService: null,
+      selectedServiceRegion: null,
     };
     this.loading = {};
     this.user = this.$state.params.user;
@@ -167,6 +170,41 @@ export default class AgoraIpV4OrderController {
       // This is a way to distinguish an ip block offer from a single ip address offer.
       isIpBlockOffer: maximumQuantity === 1,
     };
+  }
+
+  getServiceRegion() {
+    this.loadServiceRegion = true;
+    this.model.selectedServiceRegion = null;
+    let request = null;
+    const { serviceName } = this.model.selectedService;
+
+    switch (this.model.selectedService?.type) {
+      case PRODUCT_TYPES.dedicatedServer.typeName:
+        request = this.Ipv4AgoraOrder.getDedicatedServerRegion(serviceName);
+        break;
+      case PRODUCT_TYPES.vps.typeName:
+        request = this.Ipv4AgoraOrder.getVpsServerRegion(serviceName);
+        break;
+      case PRODUCT_TYPES.privateCloud.typeName:
+        request = this.Ipv4AgoraOrder.getDedicatedCloudServerRegion(
+          serviceName,
+        );
+        break;
+      default:
+        request = this.$q.when(null);
+        break;
+    }
+
+    request.then((region) => {
+      this.model.selectedServiceRegion =
+        this.model.selectedService?.type ===
+        PRODUCT_TYPES.dedicatedServer.typeName
+          ? this.$translate.instant(`ip_region_${region}`)
+          : this.ovhManagerRegionService.getTranslatedMicroRegionLocation(
+              region.toUpperCase(),
+            );
+      this.loadServiceRegion = false;
+    });
   }
 
   static getRegionsOffers(countries) {

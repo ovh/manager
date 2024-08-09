@@ -40,6 +40,7 @@
   "server_configuration_impi_SOL_help_link": "Accéder au guide de configuration",
   "server_configuration_ipmi_title": "IPMI",
   "server_configuration_kvm_title": "KVM",
+  "server_configuration_kvm_disable": "IPMI/KVM non disponible pour ce serveur",
   "server_configuration_kvm_explanation": "Les commutateurs KVM sur IP permettent aux utilisateurs de contrôler un serveur sur un réseau, où qu'ils soient et à tout moment, grâce à un accès IP à distance.",
   "server_configuration_kvm_price_per_month": "{{t0}} pour une durée d'un mois",
   "server_configuration_kvm_contract_validation_title": "Validation des contrats",

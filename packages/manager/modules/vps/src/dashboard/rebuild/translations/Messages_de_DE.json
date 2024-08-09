@@ -1,5 +1,7 @@
 {
   "vps_configuration_rebuild_cancel": "Abbrechen",
   "vps_configuration_rebuild_confirm": "Bestätigen",
-  "vps_configuration_rebuild_doNotSendPassword": "Ich möchte die Zugangsdaten zu meinem VPS nicht per E-Mail erhalten."
+  "vps_configuration_rebuild_doNotSendPassword": "Ich möchte die Zugangsdaten zu meinem VPS nicht per E-Mail erhalten.",
+  "vps_configuration_rebuild_warning_part_1": "Durch die Installation werden alle Datenträger des Servers formatiert.",
+  "vps_configuration_rebuild_warning_part_2": "<b>Tipp:</b> Um einen Rollback durchführen zu können, sollten Sie einen Snapshot erstellen, bevor Sie fortfahren. Weitere Informationen finden Sie im <a class=\"oui-link_icon\" href=\"{{ href }}\" target=\"_blank\">Guide<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>."
 }

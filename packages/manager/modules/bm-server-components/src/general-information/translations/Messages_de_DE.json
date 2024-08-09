@@ -52,5 +52,8 @@
   "server_configuration_installation_inputs_item_number_increase_tooltip": "Klicken Sie hier, um diesen Wert zu erhöhen.",
   "server_configuration_installation_inputs_item_number_decrease_tooltip": "Klicken Sie hier, um diesen Wert zu verringern.",
   "server_configuration_installation_inputs_item_keyValue_add_tooltip": "Klicken Sie hier, um ein Schlüssel-Wert-Paar hinzuzufügen.",
-  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Klicken Sie hier, um dieses Schlüssel-Wert-Paar zu löschen."
+  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Klicken Sie hier, um dieses Schlüssel-Wert-Paar zu löschen.",
+  "dedicated_server_dashboard_installation_progress_button": "Installationsfortschritt anzeigen",
+  "dedicated_server_dashboard_installation_ovh_button": "Mit einer OVHcloud Vorlage installieren",
+  "dedicated_server_dashboard_installation_gabarit_button": "Mit einer Ihrer Vorlagen installieren"
 }

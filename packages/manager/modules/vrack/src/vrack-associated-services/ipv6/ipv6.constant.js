@@ -29,6 +29,8 @@ export const IPV6_GUIDES_LINK = {
     'https://help.ovhcloud.com/csm/pl-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062837',
   PT:
     'https://help.ovhcloud.com/csm/pt-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062831',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/31163475160211-Configuring-an-IPv6-Block-in-a-vRack',
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062826',
 };

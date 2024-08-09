@@ -1517,4 +1517,12 @@ export default /* @ngInject */ function VpsService(
       .post(`/vps/${serviceName}/automatedBackup/reschedule`, { schedule })
       .then(({ data }) => data);
   };
+
+  this.isResellerResourceProductName = function isResellerResourceProductName(
+    serviceId,
+  ) {
+    return $http
+      .get(`/services/${serviceId}`)
+      .then(({ data }) => data?.resource?.product?.name.includes('-resell'));
+  };
 }

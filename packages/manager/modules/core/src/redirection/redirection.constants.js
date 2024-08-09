@@ -9,21 +9,18 @@ export default {
   EU: {
     guides: {
       home: {
-        CZ: `${guidesRoot}/cz/cs/`,
         DE: `${guidesRoot}/de/`,
         ES: `${guidesRoot}/es/`,
-        FI: `${guidesRoot}/fi/`,
         FR: `${guidesRoot}/fr/`,
         GB: `${guidesRoot}/gb/en/`,
         IE: `${guidesRoot}/ie/en/`,
         IT: `${guidesRoot}/it/`,
-        LT: `${guidesRoot}/lt/`,
-        MA: `${guidesRoot}/gb/en/`,
+        MA: `${guidesRoot}/fr/`,
         NL: `${guidesRoot}/nl/`,
         PL: `${guidesRoot}/pl/`,
         PT: `${guidesRoot}/pt/`,
-        SN: `${guidesRoot}/gb/en/`,
-        TN: `${guidesRoot}/gb/en/`,
+        SN: `${guidesRoot}/fr/`,
+        TN: `${guidesRoot}/fr/`,
       },
     },
     help: {

@@ -183,6 +183,11 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
 
       isVpsMaintenance: /* @ngInject */ (stein) => stein !== undefined,
+
+      isResellerResourceProductName: /* @ngInject */ (
+        serviceInfos,
+        VpsService,
+      ) => VpsService.isResellerResourceProductName(serviceInfos.serviceId),
     },
     trackPage: /* @ngInject */ (atInternet) => (hit) =>
       atInternet.trackPage({

@@ -1,8 +1,22 @@
 export default class VpsDashboardTileConfigurationCtrl {
   /* @ngInject */
-  constructor($translate, coreConfig) {
+  constructor(
+    $q,
+    $state,
+    $translate,
+    coreConfig,
+    VpsService,
+    VpsHelperService,
+  ) {
     this.nichandle = coreConfig.getUser().nichandle;
+    this.$q = $q;
+    this.$state = $state;
     this.$translate = $translate;
+    this.VpsService = VpsService;
+    this.VpsHelperService = VpsHelperService;
+    this.loaders = {
+      disk: false,
+    };
   }
 
   $onInit() {
@@ -45,5 +59,73 @@ export default class VpsDashboardTileConfigurationCtrl {
             },
           )
         : '';
+
+    this.isMigrationInProgress =
+      this.vpsMigrationTask && this.vpsMigrationTask.state !== 'todo';
+    if (!this.vps.isExpired) {
+      this.hasAdditionalDiskOption();
+    }
+  }
+
+  hasAdditionalDiskOption() {
+    if (
+      !this.tabSummary.additionalDisk ||
+      !this.tabSummary.additionalDisk.optionAvailable
+    ) {
+      this.hasAdditionalDisk = false;
+      return this.hasAdditionalDisk;
+    }
+    return this.loadAdditionalDisks();
+  }
+
+  loadAdditionalDisks() {
+    this.loaders.disk = true;
+    this.hasAdditionalDisk = true;
+    this.VpsService.getDisks(this.serviceName)
+      .then((data) => {
+        const promises = data.map((elem) =>
+          this.VpsService.getDiskInfo(this.serviceName, elem),
+        );
+        return this.$q.all(promises).then((diskInfos) => {
+          this.additionalDisks = this.VpsService.showOnlyAdditionalDisk(
+            diskInfos,
+          );
+          this.canOrderDisk = Object.keys(this.additionalDisks).length === 0;
+        });
+      })
+      .catch((error) => {
+        this.CucCloudMessage.error(
+          error || this.$translate.instant('vps_additional_disk_info_fail'),
+        );
+        return this.$q.reject(error);
+      })
+      .finally(() => {
+        this.loaders.disk = false;
+        this.initActions();
+      });
+  }
+
+  initActions() {
+    this.actions = {
+      orderAdditionalDiskOption: {
+        text: this.$translate.instant('vps_additional_disk_add_button'),
+        callback: () => this.$state.go('vps.detail.additional-disk.order'),
+        isAvailable: () =>
+          !this.loaders.disk &&
+          this.canOrderDisk &&
+          !this.isMigrationInProgress,
+      },
+      terminateAdditionalDiskOption: {
+        text: this.$translate.instant('vps_configuration_desactivate_option'),
+        isAvailable: () =>
+          !this.loaders.disk &&
+          !this.canOrderDisk &&
+          !this.isMigrationInProgress,
+      },
+    };
+  }
+
+  canTerminateAdditionalDisk() {
+    return this.VpsHelperService.canOptionBeterminated(this.serviceInfos);
   }
 }

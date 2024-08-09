@@ -54,6 +54,8 @@ export default /* @ngInject */ ($stateProvider) => {
         isAccountDisabled
           ? $q.when(null)
           : LogsAliasesService.getAliasIds(serviceName),
+      goToResiliate: /* @ngInject */ ($state, serviceName) => () =>
+        $state.go('dbaas-logs.detail.home.resiliate', { serviceName }),
       encryptionKeysIds: /* @ngInject */ (
         $q,
         isAccountDisabled,

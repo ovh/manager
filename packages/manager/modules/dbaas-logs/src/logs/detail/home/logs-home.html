@@ -1,3 +1,4 @@
+<div data-ovh-alert="logs-home-alert"></div>
 <section data-ng-if="ctrl.service.loading" class="logs-home">
     <div class="text-center">
         <oui-spinner data-size="l"></oui-spinner>
@@ -338,8 +339,28 @@
         <div class="col-xm-12 col-md-4">
             <oui-tile
                 class="oui-tile-h-100"
-                data-heading="{{::'logs_home_subscription'|translate}}"
+                data-heading="{{::'logs_home_subscription' |translate}}"
             >
+                <oui-tile-definition
+                    data-term="{{:: 'logs_home_account_status' |translate}}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="ctrl.STATUS_CLASS[ctrl.accountDetails.state]"
+                            data-translate="{{'logs_home_status_' + ctrl.accountDetails.state}}"
+                        ></span>
+                    </oui-tile-description>
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            disabled="ctrl.accountDetails.state === ctrl.LogsConstants.SERVICE_STATE_DISABLED"
+                            aria-label="{{:: 'logs_home_resiliate' |translate}}"
+                            data-on-click="ctrl.goToResiliate()"
+                            ><span data-translate="logs_home_resiliate"></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+
                 <oui-tile-definition
                     data-term="{{::'logs_home_account_name'|translate}}"
                 >

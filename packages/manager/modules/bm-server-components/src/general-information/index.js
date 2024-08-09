@@ -5,7 +5,6 @@ import 'angular-translate';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
-import choice from './installation/choice';
 import inputs from './inputs';
 import gabarit from './installation/gabarit';
 import ovh from './installation/ovh';
@@ -21,7 +20,6 @@ angular
     'oui',
     'pascalprecht.translate',
     ngOvhFeatureFlipping,
-    choice,
     inputs,
     gabarit,
     ovh,

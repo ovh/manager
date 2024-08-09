@@ -63,3 +63,19 @@ table {
 .table-striped > tbody > tr:nth-child(2n) > th {
   &:extend(.oui-background-p-050);
 }
+
+.server-installation {
+  .list-striped,
+  .list-striped .oui-collapsible__body {
+    padding: 0 !important;
+  }
+
+  .list-striped oui-radio {
+    margin-top: 0 !important;
+    padding: calc(1rem - 1px);
+  }
+
+  .list-striped oui-radio:nth-child(2n) {
+    &:extend(.oui-background-p-050);
+  }
+}

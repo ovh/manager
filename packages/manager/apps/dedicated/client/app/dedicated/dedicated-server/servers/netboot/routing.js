@@ -7,7 +7,11 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      goBack: /* @ngInject */ (goToServerDetails) => goToServerDetails,
+      goBack: /* @ngInject */ (goToServerDetails) => (
+        message,
+        type = 'DONE',
+        reload = true,
+      ) => goToServerDetails(message, type, reload),
       user: /* @ngInject */ (currentUser) => currentUser,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('server_configuration_netboot_title'),

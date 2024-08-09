@@ -17,6 +17,7 @@ export default class TerminateAgoraServiceController {
       this.$translate.instant(
         `autorenew_agora_terminate_service_success_${this.serviceType}`,
       ),
+      'success',
     );
   }
 
