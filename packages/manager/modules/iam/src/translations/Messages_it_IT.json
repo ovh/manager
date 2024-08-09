@@ -33,7 +33,7 @@
   "iam_resource_type_horizonView": "Horizon",
   "iam_resource_type_hostingOption": "Opzioni Hosting",
   "iam_resource_type_housing": "Housing",
-  "iam_resource_type_ip": "IP pubblici",
+  "iam_resource_type_ip": "IP: Indirizzo",
   "iam_resource_type_ipBlock": "Blocchi IP",
   "iam_resource_type_ipFailover": "IP Failover",
   "iam_resource_type_ipLoadBalancing": "Load Balancer",
@@ -92,5 +92,9 @@
   "iam_resource_type_xdsl": "Accesso Internet (ADSL, SDSL, VDSL, FTTH)",
   "iam_resource_type_xdslEmail": "Email XDSL",
   "iam_resource_type_xdslModem": "Modem XDSL",
-  "iam_resource_type_xdslSpare": "Modem XDSL Spare"
+  "iam_resource_type_xdslSpare": "Modem XDSL Spare",
+  "iam_resource_type_ipService": "IP: Servizio",
+  "iam_resource_type_okms": "Key Management System (KMS)",
+  "iam_resource_type_okms/kmip": "Key Management System (KMS)/KMIP",
+  "iam_resource_type_okms/serviceKey": "Key Management System (KMS) / Chiave"
 }
