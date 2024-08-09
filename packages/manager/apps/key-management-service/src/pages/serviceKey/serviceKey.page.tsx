@@ -192,6 +192,18 @@ export default function Key() {
                 <TileSeparator />
                 <TileItem
                   title={t(
+                    'key_management_service_service-keys_dashboard_field_origin',
+                  )}
+                >
+                  <TileValue
+                    value={t(
+                      'key_management_service_service-keys_dashboard_field_origin_okms',
+                    )}
+                  />
+                </TileItem>
+                <TileSeparator />
+                <TileItem
+                  title={t(
                     'key_management_service_service-keys_dashboard_field_type',
                   )}
                 >
