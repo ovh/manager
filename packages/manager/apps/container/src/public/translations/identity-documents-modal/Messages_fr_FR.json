@@ -1,0 +1,8 @@
+{
+    "identity_documents_modal_title": "Nous avons besoin de vérifier votre identité",
+    "identity_documents_modal_description": "Cette vérification est obligatoire avant de commander afin d'être en conformité avec la loi Indienne.",
+    "identity_documents_modal_button_start": "Démarrer",
+    "identity_documents_modal_button_later": "Passer à plus tard",
+    "identity_documents_modal_more_info": "Plus d'informations",
+    "identity_documents_modal_legal_information" : "Conformément aux lois applicables, OVHcloud est tenu de mener des KYC (« Know Your Customer ») auprès de l'ensemble de ses clients, telle que la réglementation locale :  Directions No. 20(3)/2022-CERT-In. __ <br>Il s'agit d'un processus par lequel OVHcloud recueille des justificatifs pour confirmer l'identité et l'adresse de ses clients. Le fait de ne pas fournir les documents requis pour le KYC empêchera OVHcloud de vous fournir vos services"
+  }
