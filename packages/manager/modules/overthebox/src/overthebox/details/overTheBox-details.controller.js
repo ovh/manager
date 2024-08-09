@@ -82,7 +82,13 @@ export default class OverTheBoxDetailsCtrl {
             this.autoUpgrade = otb.autoUpgrade;
             this.offerName = otb.prettyOfferName;
             this.offer = otb.offer;
-            this.bandwidth = this.displayBandwidth(otb.bandwidth, 1);
+            this.bandwidth = this.$filter('bandwidth')(
+              otb.bandwidth,
+              'B',
+              'bit',
+              false,
+              1,
+            );
             return otb;
           }),
         this.getDeviceHardware(),
@@ -96,27 +102,6 @@ export default class OverTheBoxDetailsCtrl {
       });
     this.getAvailableReleaseChannels();
     this.getAvailableAction();
-  }
-
-  displayBandwidth(bandwidth, precisionVal) {
-    const units = {
-      bit: [
-        'unit_bits_per_sec',
-        'unit_kilo_bits_per_sec',
-        'unit_mega_bits_per_sec',
-        'unit_giga_bits_per_sec',
-        'unit_tera_bits_per_sec',
-        'unit_peta_bits_per_sec',
-      ],
-    };
-    const number = Math.floor(Math.log(bandwidth) / Math.log(1000));
-    // eslint-disable-next-line no-restricted-properties
-    const value = (bandwidth / Math.pow(1000, Math.floor(number))).toFixed(
-      precisionVal,
-    );
-    return this.$translate.instant(units.bit[number], {
-      val: value,
-    });
   }
 
   /**
