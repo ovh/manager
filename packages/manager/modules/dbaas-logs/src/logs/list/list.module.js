@@ -10,6 +10,7 @@ import 'ovh-api-services';
 import component from './list.component';
 import listHeader from '../header/list/list.module';
 import logsDetail from '../detail/detail.module';
+import resiliate from './resiliate/resiliate.module';
 import routing from './list.routing';
 import service from './logs-list.service';
 
@@ -25,6 +26,7 @@ angular
     'ui.router',
     listHeader,
     logsDetail,
+    resiliate,
   ])
   .config(routing)
   .service('LogsListService', service)
