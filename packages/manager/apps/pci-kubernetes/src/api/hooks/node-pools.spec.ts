@@ -1,27 +1,14 @@
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import * as ApiNodePoolsModule from '@/api/data/node-pools';
-import {
-  deleteNodePool,
-  getClusterNodePools,
-  TClusterNodePool,
-  updateNodePoolSize,
-} from '@/api/data/node-pools';
+import { TClusterNodePool } from '@/api/data/node-pools';
 import {
   useClusterNodePools,
   useDeleteNodePool,
   useUpdateNodePoolSize,
 } from '@/api/hooks/node-pools';
 import { wrapper } from '@/wrapperRenders';
-
-vi.mock('@ovh-ux/manager-core-utils', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-core-utils');
-  return {
-    ...mod,
-    getDateFnsLocale: vi.fn(),
-  };
-});
 
 describe('useClusterNodePools', () => {
   // TODO fix this test

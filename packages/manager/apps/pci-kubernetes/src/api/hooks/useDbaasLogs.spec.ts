@@ -19,20 +19,6 @@ import {
 } from '@/api/hooks/useDbaasLogs';
 import { wrapper } from '@/wrapperRenders';
 
-vi.mock('@/api/data/dbaas-logs', async () => {
-  const mod = await vi.importActual('@/api/data/dbaas-logs');
-  return {
-    ...mod,
-    getLogs: vi.fn(),
-    getStream: vi.fn(),
-    getStreams: vi.fn(),
-    getStreamsIds: vi.fn(),
-    getStreamURL: vi.fn(),
-    getRetention: vi.fn(),
-    getSubscriptions: vi.fn(),
-  };
-});
-
 describe('useLogs', () => {
   it('fetches logs successfully', async () => {
     const mockData = ([

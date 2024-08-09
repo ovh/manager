@@ -5,14 +5,6 @@ import { TAvailableRegionsResponse } from '@/api/data/available-regions';
 import { useAvailableRegions } from '@/api/hooks/useAvailableRegions';
 import { wrapper } from '@/wrapperRenders';
 
-vi.mock('@/api/data/available-regions', async () => {
-  const mod = await vi.importActual('@/api/data/available-regions');
-  return {
-    ...mod,
-    getAvailableRegions: vi.fn(),
-  };
-});
-
 describe('useAvailableRegions', () => {
   it('fetches available regions successfully', async () => {
     const mockData = ({

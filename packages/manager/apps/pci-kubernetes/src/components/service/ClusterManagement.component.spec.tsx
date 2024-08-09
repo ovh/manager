@@ -5,7 +5,7 @@ import ClusterManagement from '@/components/service/ClusterManagement.component'
 import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
 import * as useCloudModule from '@/api/hooks/useCloud';
-import { CloudSchema } from '@/api/data/cloud';
+import { TCloudSchema } from '@/api/data/cloud';
 
 describe('ClusterManagement', () => {
   it('renders manage title with correct text', () => {
@@ -91,7 +91,7 @@ describe('ClusterManagement', () => {
           },
         },
       },
-    } as UseQueryResult<CloudSchema>);
+    } as UseQueryResult<TCloudSchema>);
     const { queryByText } = render(
       <ClusterManagement
         kubeDetail={

@@ -12,30 +12,6 @@ import {
 import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
 
-vi.mock('@/api/data/kubernetes', async () => {
-  const mod = await vi.importActual('@/api/data/kubernetes');
-  return {
-    ...mod,
-    getAllKube: vi.fn(),
-    getKubernetesCluster: vi.fn(),
-    updateKubernetesCluster: vi.fn(),
-    resetKubeConfig: vi.fn(),
-    updateKubePolicy: vi.fn(),
-    getClusterRestrictions: vi.fn(),
-    getOidcProvider: vi.fn(),
-    postKubeConfig: vi.fn(),
-    updateKubeVersion: vi.fn(),
-    terminateCluster: vi.fn(),
-    resetCluster: vi.fn(),
-    addOidcProvider: vi.fn(),
-    updateOidcProvider: vi.fn(),
-    removeOidcProvider: vi.fn(),
-    getSubscribedLogs: vi.fn(),
-    createSubscription: vi.fn(),
-    deleteSubscription: vi.fn(),
-  };
-});
-
 describe('useAllKube', () => {
   it('fetches all Kubernetes clusters successfully', async () => {
     const mockData = [{ id: 'kube1', name: 'Kube 1' }] as TKube[];
