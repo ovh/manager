@@ -6,6 +6,7 @@ export default {
     goToCreateVolume: '<',
     goToVolumeDetails: '<',
     goToCreateSnapshot: '<',
+    goToRestoreSnapshot: '<',
     goToSnapshots: '<',
     goToAcls: '<',
     goToDeleteVolume: '<',

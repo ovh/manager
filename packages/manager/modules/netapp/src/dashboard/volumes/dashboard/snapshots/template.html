@@ -16,6 +16,14 @@
                             data-translate="netapp_volumes_snapshots_actions_create"
                         ></span>
                     </oui-action-menu-item>
+                    <oui-action-menu-item
+                        aria-label="{{:: 'netapp_volumes_restore_snapshot' | translate }}"
+                        data-on-click="$ctrl.goToRestoreSnapshot($ctrl.volumeId)"
+                    >
+                        <span
+                            data-translate="netapp_volumes_restore_snapshot"
+                        ></span>
+                    </oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid-topbar>
             <oui-datagrid-column

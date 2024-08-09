@@ -1,4 +1,5 @@
 import Snapshot from './Snapshot.class';
+import { SNAPSHOT_TYPE } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard.volumes.dashboard.snapshots', {
@@ -74,7 +75,12 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((snapshots) =>
             snapshots.map((snapshot) => new Snapshot(snapshot)),
           ),
-
+      hasOnlySystemSnapshot: /* @ngInject */ (snapshots) =>
+        !snapshots.find(
+          (snapshot) =>
+            snapshot.type === SNAPSHOT_TYPE.AUTOMATIC ||
+            snapshot.type === SNAPSHOT_TYPE.MANUAL,
+        ),
       totalSnapshots: /* @ngInject */ ($http, $q, serviceName) =>
         $http
           .get(`/storage/netapp/${serviceName}/share`)
@@ -84,14 +90,18 @@ export default /* @ngInject */ ($stateProvider) => {
                 shares.map(({ id: shareId }) =>
                   $http
                     .get(
-                      `/storage/netapp/${serviceName}/share/${shareId}/snapshot`,
+                      `/storage/netapp/${serviceName}/share/${shareId}/snapshot?detail=true`,
                     )
-                    .then(({ data: snapshot }) => snapshot.length),
+                    .then(
+                      ({ data: snapshots }) =>
+                        snapshots.filter(
+                          (snapshot) => snapshot.type === SNAPSHOT_TYPE.MANUAL,
+                        ).length,
+                    ),
                 ),
               )
               .then((snapshots) => snapshots.reduce((a, b) => a + b, 0)),
           ),
-
       snapshotPolicies: /* @ngInject */ (getSnapshotPolicies) =>
         getSnapshotPolicies().catch(() => []),
       currentPolicy: /* @ngInject */ ($http, serviceName, volumeId) =>
