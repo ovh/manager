@@ -34,7 +34,8 @@
     <!-- <Resources> -->
     <div data-ng-transclude="resourcesHeaderSlot"></div>
     <div
-        class="iam-resource_select--resources_container d-flex flex-column flex-sm-row"
+        class="d-flex flex-column flex-sm-row"
+        data-ng-class="{'iam-resource_select--resources_container': $ctrl.hasResourcesSiblingSlot}"
     >
         <oui-field
             class="w-100"
