@@ -1,8 +1,8 @@
 angular.module('App').controller(
   'HostingDomainAttachOrOrderCtrl',
   class HostingDomainAttachOrOrderCtrl {
+    /* @ngInject */
     constructor($scope, $rootScope, $window, atInternet) {
-      /* @ngInject */
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$window = $window;
