@@ -15,13 +15,6 @@ import {
   getSubscriptions,
 } from '@/api/data/dbaas-logs';
 
-vi.mock('@ovh-ux/manager-core-api', () => ({
-  fetchIcebergV6: vi.fn(),
-  v6: {
-    get: vi.fn(),
-  },
-}));
-
 describe('dbaas-logs', () => {
   it('fetches logs successfully', async () => {
     const mockData = [{ serviceName: 'log1' }];

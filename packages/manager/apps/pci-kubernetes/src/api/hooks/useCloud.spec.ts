@@ -5,14 +5,6 @@ import { TCloudSchema } from '@/api/data/cloud';
 import { useGetCloudSchema } from '@/api/hooks/useCloud';
 import { wrapper } from '@/wrapperRenders';
 
-vi.mock('@/api/data/cloud', async () => {
-  const mod = await vi.importActual('@/api/data/cloud');
-  return {
-    ...mod,
-    getCloudSchema: vi.fn(),
-  };
-});
-
 describe('useGetCloudSchema', () => {
   it('fetches cloud schema successfully', async () => {
     const mockData = ({ schema: 'mockSchema' } as unknown) as TCloudSchema;
