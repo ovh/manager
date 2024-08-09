@@ -171,10 +171,31 @@ export const REGEX = {
   outwardCode: /^[a-zA-Z]\w{1,3}$/,
 };
 
+export const MARSEILLE_POST_CODE = [
+  '13000',
+  '13001',
+  '13002',
+  '13003',
+  '13004',
+  '13005',
+  '13006',
+  '13007',
+  '13008',
+  '13009',
+  '13010',
+  '13011',
+  '13012',
+  '13013',
+  '13014',
+  '13015',
+  '13016',
+];
+
 export default {
   DIRECTORY_INFO_STATUS,
   DIRECTORY_WAY_NUMBER_EXTRA_ENUM,
   LEGAL_FORM_ENUM,
   AVAILABLE_FIELDS,
   REGEX,
+  MARSEILLE_POST_CODE,
 };
