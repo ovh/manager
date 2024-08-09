@@ -458,10 +458,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $http
           .get(`/cloud/project/${projectId}/aggregated/floatingip`)
           .then(({ data }) => data.resources),
-      floatingIpsLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.additional-ips.floating-ips', {
-          projectId,
-        }),
+
+      floatingIpsLink: /* @ngInject */ (coreURLBuilder, projectId) =>
+        coreURLBuilder.buildURL(
+          'pci-public-ip',
+          `#/pci/projects/${projectId}/public-ips/floating-ips`,
+        ),
     },
   });
 };
