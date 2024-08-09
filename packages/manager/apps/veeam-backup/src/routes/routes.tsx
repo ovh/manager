@@ -24,7 +24,7 @@ export const routes: any[] = [
       {
         id: 'listing',
         path: urls.listing,
-        ...lazyRouteConfig(() => import('@/pages/listing')),
+        ...lazyRouteConfig(() => import('@/pages/listing/Listing.page')),
         handle: {
           tracking: {
             pageName: 'listing',
