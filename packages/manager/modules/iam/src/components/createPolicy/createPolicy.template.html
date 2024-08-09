@@ -136,33 +136,38 @@
                 <p
                     data-translate="iam_create_policy_form_resources_description"
                 ></p>
+                <p
+                    class="mb-0"
+                    data-translate="iam_create_policy_form_resources_action"
+                ></p>
             </iam-resource-select-resources-header>
-            <iam-resource-select-resources-sibling>
-                <!-- <ResourceGroups> -->
-                <oui-field
-                    data-ng-class="{ 'no-margin': !$ctrl.hasResourceGroups }"
-                    data-label="{{:: 'iam_create_policy_form_resource_groups_heading' | translate }}"
-                    data-error-messages="{
-                        required: ('iam_create_policy_form_resources_error_required' | translate),
-                    }"
-                >
-                    <oui-select
-                        data-disabled="!$ctrl.hasResourceGroups || $ctrl.policy.readOnly"
-                        data-load="{{:: $ctrl.URL_RESOURCE_GROUP }}"
-                        data-load-options="{ global: { serviceType: 'apiv2' } }"
-                        data-match="name"
-                        data-model="$ctrl.model.resourceGroups"
-                        data-multiple="true"
-                        data-name="resourceGroups"
-                        data-on-load="$ctrl.onResourceGroupsLoaded(response.data)"
-                        data-on-error="$ctrl.onError(error)"
-                    ></oui-select>
-                </oui-field>
-                <!-- </ResourceGroups> -->
-            </iam-resource-select-resources-sibling>
         </iam-resource-select>
         <!-- </Resource> -->
-
+        <!-- </ResourceGroups> -->
+        <p
+            class="mb-0"
+            data-translate="iam_create_policy_form_resource_groups_description"
+        ></p>
+        <oui-field
+            data-ng-class="{ 'no-margin': !$ctrl.hasResourceGroups }"
+            data-label="{{:: 'iam_create_policy_form_resource_groups_heading' | translate }}"
+            data-error-messages="{
+                        required: ('iam_create_policy_form_resources_error_required' | translate),
+                    }"
+        >
+            <oui-select
+                data-disabled="!$ctrl.hasResourceGroups || $ctrl.policy.readOnly"
+                data-load="{{:: $ctrl.URL_RESOURCE_GROUP }}"
+                data-load-options="{ global: { serviceType: 'apiv2' } }"
+                data-match="name"
+                data-model="$ctrl.model.resourceGroups"
+                data-multiple="true"
+                data-name="resourceGroups"
+                data-on-load="$ctrl.onResourceGroupsLoaded(response.data)"
+                data-on-error="$ctrl.onError(error)"
+            ></oui-select>
+        </oui-field>
+        <!-- </ResourceGroups> -->
         <!-- <Actions> -->
         <h3 data-translate="iam_create_policy_form_actions_heading"></h3>
         <p data-translate="iam_create_policy_form_actions_description"></p>
