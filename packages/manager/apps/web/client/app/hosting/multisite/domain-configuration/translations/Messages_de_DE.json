@@ -16,6 +16,6 @@
   "hosting_multisite_domain_configuration_countriesIp": "IP des Landes",
   "hosting_multisite_domain_configuration_countriesIp_none": "Keine",
   "hosting_multisite_domain_configuration_ssl": "SSL",
-  "hosting_multisite_domain_configuration_ssl_help": "SSL-Option aktivieren, um Zugriff auf Ihre Website per HTTPS zu erhalten",
+  "hosting_multisite_domain_configuration_ssl_help": "SSL-Option aktivieren, um HTTPS-Zugriff auf Ihre Website zu erhalten",
   "hosting_multisite_domain_configuration_git_warning": "Wenn Sie das Stammverzeichnis ändern möchten, müssen Sie zunächst die Git-Konfiguration aus dem Verzeichnis entfernen, um Probleme mit der Änderungsverfolgung und der Bereitstellungsverwaltung zu vermeiden."
 }
