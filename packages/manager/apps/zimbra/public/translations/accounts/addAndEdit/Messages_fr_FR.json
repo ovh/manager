@@ -2,6 +2,8 @@
   "zimbra_account_add_cta_back": "Retour vers mes comptes emails",
   "zimbra_account_add_title": "Créer un compte email",
   "zimbra_account_edit_title": "Modifier le compte {{ account }}",
+  "zimbra_account_edit_tabs_settings": "Paramètres du compte",
+  "zimbra_account_edit_tabs_alias": "Alias",
   "zimbra_account_add_input_email_label": "Compte email",
   "zimbra_account_add_input_email_placeholder": "Nom du compte",
   "zimbra_account_add_input_email_helper": "La partie locale de votre adresse mail (le texte précédant le « @ ») doit suivre les lignes directrices suivantes :",
