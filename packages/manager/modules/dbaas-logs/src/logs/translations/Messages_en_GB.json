@@ -788,5 +788,12 @@
   "logs_streams_manage_subscriptions": "Manage subscriptions",
   "logs_streams_copy_stream_id": "Copy feed ID",
   "logs_streams_copy_id_success": "The feed ID has been copied to your clipboard. Use CTRL+V to paste the content.",
-  "logs_streams_copy_id_error": "Your browser does not allow copying to clipboard. Please upgrade to the most recent version of your browser. The {{stream}} data stream ID is: {{stream_id}}"
+  "logs_streams_copy_id_error": "Your browser does not allow copying to clipboard. Please upgrade to the most recent version of your browser. The {{stream}} data stream ID is: {{stream_id}}",
+  "logs_home_account_status": "Status",
+  "logs_home_status_ENABLED": "Enabled",
+  "logs_home_status_DISABLED": "Disabled",
+  "logs_home_status_INIT": "Installing...",
+  "logs_home_status_TO_CONFIG": "To be configured",
+  "logs_home_resiliate": "Terminate",
+  "logs_resiliate": "Terminate"
 }

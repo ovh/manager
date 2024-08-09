@@ -2,7 +2,11 @@ export const SPECIAL_CONDITIONS_SUBSIDIARIES = ['US'];
 
 export const TERMINATION_FORM_NAME = 'termination';
 
-export const SERVICE_WITH_AGORA_TERMINATION = ['vrack-services', 'okms'];
+export const SERVICE_WITH_AGORA_TERMINATION = [
+  'vrack-services',
+  'okms',
+  'logs-account',
+];
 
 export default {
   SPECIAL_CONDITIONS_SUBSIDIARIES,
