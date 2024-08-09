@@ -17,7 +17,11 @@ describe('Listing Page', () => {
   it('Page should display correctly', async () => {
     const screen = await setupSpecTest({
       data: [
-        { id: '123', currentState: { name: 'Rancher1' } } as RancherService,
+        {
+          id: '123',
+          currentState: { name: 'Rancher1' },
+          currentTasks: [],
+        } as RancherService,
       ],
       refetchRanchers: jest.fn(),
     });
@@ -38,5 +42,60 @@ describe('Listing Page', () => {
 
       expect(title).toBeNull();
     });
+  });
+
+  it('Should not display banner message when there is no task', async () => {
+    const { queryByText } = await setupSpecTest();
+    const deletingMessage = queryByText(
+      listingTranslation.rancherStatusDeleting,
+    );
+    const creatingMessage = queryByText(
+      listingTranslation.rancherStatusCreating,
+    );
+
+    expect(deletingMessage).not.toBeInTheDocument();
+    expect(creatingMessage).not.toBeInTheDocument();
+  });
+
+  it('Should display banner deleting message when deleting is pending', async () => {
+    const { queryByText } = await setupSpecTest({
+      data: [
+        {
+          ...rancherMocked,
+          currentTasks: [{ id: '1', type: RancherTaskType.RANCHER_DELETE }],
+        },
+      ],
+      refetchRanchers: jest.fn(),
+    });
+    const deletingMessage = queryByText(
+      listingTranslation.rancherStatusDeleting,
+    );
+    const creatingMessage = queryByText(
+      listingTranslation.rancherStatusCreating,
+    );
+
+    expect(deletingMessage).toBeInTheDocument();
+    expect(creatingMessage).not.toBeInTheDocument();
+  });
+
+  it('Should display banner creating message when creating is pending', async () => {
+    const { queryByText } = await setupSpecTest({
+      data: [
+        {
+          ...rancherMocked,
+          currentTasks: [{ id: '1', type: RancherTaskType.RANCHER_CREATE }],
+        },
+      ],
+      refetchRanchers: jest.fn(),
+    });
+    const deletingMessage = queryByText(
+      listingTranslation.rancherStatusDeleting,
+    );
+    const creatingMessage = queryByText(
+      listingTranslation.rancherStatusCreating,
+    );
+
+    expect(deletingMessage).not.toBeInTheDocument();
+    expect(creatingMessage).toBeInTheDocument();
   });
 });
