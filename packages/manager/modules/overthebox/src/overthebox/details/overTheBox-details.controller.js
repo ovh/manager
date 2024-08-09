@@ -423,7 +423,10 @@ export default class OverTheBoxDetailsCtrl {
 
         if (result) {
           this.releaseChannel = this.$translate.instant(
-            `overTheBox_release_channel_${this.releaseChannel}`,
+            `overTheBox_release_channel_${this.releaseChannel.replace(
+              '.',
+              '_',
+            )}`,
           );
         }
       });
