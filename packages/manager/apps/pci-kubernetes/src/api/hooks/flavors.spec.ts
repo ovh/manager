@@ -4,14 +4,6 @@ import * as ApiFlavorModule from '@/api/data/flavors';
 import { useRegionFlavors } from '@/api/hooks/flavors';
 import { wrapper } from '@/wrapperRenders';
 
-vi.mock('@/api/data/flavors', async () => {
-  const mod = await vi.importActual('@/api/data/flavors');
-  return {
-    ...mod,
-    getRegionFlavors: vi.fn(),
-  };
-});
-
 describe('useRegionFlavors', () => {
   it('fetches region flavors successfully', async () => {
     const mockData = [
