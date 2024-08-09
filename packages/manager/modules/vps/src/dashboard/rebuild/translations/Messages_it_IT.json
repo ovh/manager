@@ -1,5 +1,7 @@
 {
   "vps_configuration_rebuild_cancel": "Annulla",
   "vps_configuration_rebuild_confirm": "Conferma",
-  "vps_configuration_rebuild_doNotSendPassword": "Non voglio ricevere via email i codici di autenticazione del mio VPS."
+  "vps_configuration_rebuild_doNotSendPassword": "Non voglio ricevere via email i codici di autenticazione del mio VPS.",
+  "vps_configuration_rebuild_warning_part_1": "L'installazione formatterà tutti i dischi del server.",
+  "vps_configuration_rebuild_warning_part_2": "<b>Suggerimento:</b> Per poter tornare a una versione precedente, consigliamo di effettuare uno Snapshot prima di continuare. Per maggiori informazioni, consulta <a class=\"oui-link_icon\" href=\"{{ href }}\" target=\"_blank\">la guida<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>."
 }
