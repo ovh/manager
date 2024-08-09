@@ -95,3 +95,5 @@ export const domainMock: DomainType[] = [
     ],
   },
 ];
+
+export const domainZone: string[] = ['test.fr', 'mydomain.fr', 'domain.fr'];
