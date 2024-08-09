@@ -7,7 +7,7 @@ import {
 } from '@ovhcloud/manager-components';
 import { useNavigate } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useGuideUtils } from '@/hooks/guide/useGuideUtils';
+import { useGuideUtils } from './useGuideUtils';
 import onboardingImgSrc from '@/assets/veeamxOVHcloud.svg';
 import { urls } from '@/routes/routes.constant';
 
