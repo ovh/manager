@@ -124,6 +124,14 @@ export default class CreatePolicyController {
   }
 
   /**
+   * Whether the user has selected at least one resource selection
+   * @returns {boolean}
+   */
+  get hasSelectedResourceSelection() {
+    return this.model.resources.selection?.length > 0;
+  }
+
+  /**
    * Whether the user has selected at least one resource type
    * @returns {boolean}
    */
@@ -287,6 +295,10 @@ export default class CreatePolicyController {
                     !deletedResources.find((resource) => id === resource.id),
                 ) || [],
             };
+
+            if (this.model.resources.selection.length === 0) {
+              this.resetResourceGroups();
+            }
           }
         }),
       )
@@ -303,6 +315,10 @@ export default class CreatePolicyController {
    */
   onGuideClick(guideKey) {
     this.trackClick(TAG.GUIDE(guideKey));
+  }
+
+  resetResourceGroups() {
+    this.model.resourceGroups = [];
   }
 
   /**
