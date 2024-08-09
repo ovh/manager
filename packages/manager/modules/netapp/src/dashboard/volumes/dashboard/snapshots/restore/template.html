@@ -31,7 +31,9 @@
 
         <!-- Confirmation -->
         <oui-message type="warning" class="mt-2 mb-1">
-            <span data-translate="netapp_volumes_snapshots_restore_confirm_description"></span>
+            <span
+                data-translate="netapp_volumes_snapshots_restore_confirm_description"
+                data-translate-values="{volume: '<b>' + $ctrl.volume.name + '</b>', date: '<b>' + $ctrl.snapshotToRevertTo.formattedCreationDate + '</b>'}"></span>
         </oui-message>
         <oui-field
                 label="{{:: 'netapp_volumes_snapshots_restore_confirm_volume_label' | translate }}"

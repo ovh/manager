@@ -3,8 +3,9 @@ import { SNAPSHOT_STATUS } from './constants';
 
 export default class NetAppVolumesDashboardSnapshotsRestoreController {
   /* @ngInject */
-  constructor($translate, NetAppRestoreVolumeService) {
+  constructor($translate, NetAppRestoreVolumeService, coreConfig) {
     this.$translate = $translate;
+    this.language = coreConfig.getUserLocale().replace('_', '-');
     this.NetAppRestoreVolumeService = NetAppRestoreVolumeService;
   }
 
@@ -16,6 +17,14 @@ export default class NetAppVolumesDashboardSnapshotsRestoreController {
         .reduce((current, mostRecent) =>
           current.createdAt > mostRecent.createdAt ? current : mostRecent,
         );
+
+      this.snapshotToRevertTo.formattedCreationDate = new Intl.DateTimeFormat(
+        this.language,
+        {
+          dateStyle: 'full',
+          timeStyle: 'long',
+        },
+      ).format(new Date(this.snapshotToRevertTo.createdAt));
     }
     this.isLoading = false;
   }
