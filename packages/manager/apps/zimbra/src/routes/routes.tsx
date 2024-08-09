@@ -98,7 +98,16 @@ export const Routes: any = [
                 handle: { isOverridePage: true },
               },
               {
-                path: 'edit',
+                path: 'settings',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+              {
+                path: 'alias',
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount'
