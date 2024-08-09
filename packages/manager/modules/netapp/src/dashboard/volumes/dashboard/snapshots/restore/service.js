@@ -1,4 +1,5 @@
-import { FETCH_INTERVAL, SNAPSHOT_STATUS, SNAPSHOT_TYPE } from "./constants";
+import { SNAPSHOT_TYPE } from '../constants';
+import { FETCH_INTERVAL, SNAPSHOT_STATUS } from './constants';
 
 export default class NetAppRestoreVolumeService {
   /* @ngInject */
@@ -13,24 +14,30 @@ export default class NetAppRestoreVolumeService {
     if (snapshot.type === SNAPSHOT_TYPE.MANUAL) {
       return this.revertVolume(serviceName, volumeId, snapshot.id);
     }
-    return this.holdSnapshot(serviceName, volumeId, snapshot.id)
-      .then(({data}) => {
-        return this.startSnapshotPolling(serviceName, volumeId, data.id)
-          .then((pollingData) => {
+    return this.holdSnapshot(serviceName, volumeId, snapshot.id).then(
+      ({ data }) => {
+        return this.startSnapshotPolling(serviceName, volumeId, data.id).then(
+          (pollingData) => {
             return this.revertVolume(serviceName, volumeId, pollingData.id);
-          });
-      })
-
+          },
+        );
+      },
+    );
   }
 
   holdSnapshot(serviceName, volumeId, snapshotId) {
-    return this.$http.post(`/storage/netapp/${serviceName}/share/${volumeId}/snapshot/${snapshotId}/hold`);
+    return this.$http.post(
+      `/storage/netapp/${serviceName}/share/${volumeId}/snapshot/${snapshotId}/hold`,
+    );
   }
 
   revertVolume(serviceName, volumeId, snapshotID) {
-    return this.$http.post(`/storage/netapp/${serviceName}/share/${volumeId}/revert`, {
-      snapshotID
-    });
+    return this.$http.post(
+      `/storage/netapp/${serviceName}/share/${volumeId}/revert`,
+      {
+        snapshotID,
+      },
+    );
   }
 
   // POLLING MANAGEMENT FUNCTIONS
@@ -51,16 +58,16 @@ export default class NetAppRestoreVolumeService {
         interval: FETCH_INTERVAL,
         retryMaxAttempts: 0,
         method: 'get',
-        successRule: (data) =>
-          data.status === SNAPSHOT_STATUS.AVAILABLE,
-        errorRule: (data) =>
-          data.status === SNAPSHOT_STATUS.MANAGE_ERROR
+        successRule: (data) => data.status === SNAPSHOT_STATUS.AVAILABLE,
+        errorRule: (data) => data.status === SNAPSHOT_STATUS.MANAGE_ERROR,
       },
     );
   }
 
   stopSnapshotPolling(serviceName, volumeId, snapshotId) {
-    this.Poller.kill({ namespace: `snapshot_${serviceName}_${volumeId}_${snapshotId}` });
+    this.Poller.kill({
+      namespace: `snapshot_${serviceName}_${volumeId}_${snapshotId}`,
+    });
   }
   // END POLLING MANAGEMENT FUNCTIONS
 }
