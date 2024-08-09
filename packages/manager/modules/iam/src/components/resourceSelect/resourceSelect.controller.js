@@ -171,6 +171,10 @@ export default class ResourceSelectController {
       this.onModelChanged();
       this.onChange({ change: { type: 'resources', value } });
     }
+
+    if (value.length === 0 && this.resetResourceGroups) {
+      this.resetResourceGroups();
+    }
   }
 
   /**

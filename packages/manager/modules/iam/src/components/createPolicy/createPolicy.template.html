@@ -114,6 +114,7 @@
             data-on-change="$ctrl.onResourceChanged(change)"
             data-on-error="$ctrl.onError(error)"
             data-on-resource-types-confirm-remove="$ctrl.onResourceTypesConfirmRemove(item, index)"
+            data-reset-resource-groups="$ctrl.resetResourceGroups()"
             data-read-only="$ctrl.policy.readOnly"
             data-resources-label="{{:: 'iam_create_policy_form_resources_heading' | translate }}"
             data-resources-name="resources"
@@ -147,7 +148,7 @@
                     }"
                 >
                     <oui-select
-                        data-disabled="!$ctrl.hasResourceGroups || $ctrl.policy.readOnly"
+                        data-disabled="!$ctrl.hasResourceGroups || !$ctrl.hasSelectedResourceSelection || $ctrl.policy.readOnly"
                         data-load="{{:: $ctrl.URL_RESOURCE_GROUP }}"
                         data-load-options="{ global: { serviceType: 'apiv2' } }"
                         data-match="name"
