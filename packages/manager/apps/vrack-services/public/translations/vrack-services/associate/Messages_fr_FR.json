@@ -1,0 +1,18 @@
+{
+  "modalVrackAssociationTitle": "Associer un vRack existant à vRack Services",
+  "modalVrackAssociationDescription": "Pour que vRack Services fonctionne, vous devez l'associer à l'un de vos vRack existants.",
+  "modalLoadingVrackList": "Récupération de la liste des vRack disponibles",
+  "modalVrackListInError": "Les vRack suivants ne peuvent être associés : {{list}}.",
+  "vrackServicesAssociateSuccess": "Votre vRack Services {{vs}} a bien été associé à votre vRack {{vrack}}.",
+  "modalAssociateVrackWaitMessage": "Merci de patienter pendant l'association de votre vRack Services au vRack sélectionné.",
+  "addVrackServicesToVrack": "Association en cours...",
+  "vrackSelectPlaceholder": "Sélectionner un vRack",
+  "modalConfirmVrackAssociationButtonLabel": "Associer mon vRack",
+  "modalAssociateCancelButton": "Annuler",
+  "modalVrackAssociationError": "L'erreur suivante est survenue : {{error}}.",
+  "modalAssociateAnotherVrackTitle": "Associer un autre vRack à vRack Services",
+  "modalAssociateAnotherVrackDescription": "Pour que vRack Services fonctionne, vous devez l'associer à l'un de vos vRacks existants.",
+  "modalAssociateAnotherVrackCurrentVrack": "vRack Actuel",
+  "modalAssociateAnotherVrackSelect": "Sélectionnez un autre vRack",
+  "modalAssociateAnotherVrackWaitMessage": "Merci de patienter pendant l'association de votre vRack Services à votre nouveau vRack."
+}

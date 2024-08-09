@@ -3,5 +3,9 @@
   "autorenew_agora_terminate_service_warning_OKMS_RESOURCE": "Confirme a rescisão do seu KMS",
   "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "O seu pedido de rescisão do KMS foi registado com êxito. Um e-mail com o procedimento foi-lhe enviado.",
   "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Ocorreu um erro aquando do pedido de rescisão do seu KMS: {{error}}",
-  "autorenew_agora_terminate_service_confirm_input": "Introduza \"TERMINATE\" no seguinte campo para confirmar"
+  "autorenew_agora_terminate_service_confirm_input": "Introduza \"TERMINATE\" no seguinte campo para confirmar",
+  "autorenew_agora_terminate_service_VRACK_SERVICES_RESOURCE": "Rescindir vRack Services",
+  "autorenew_agora_terminate_service_warning_VRACK_SERVICES_RESOURCE": "Confirme a rescisão de vRack Services",
+  "autorenew_agora_terminate_service_success_VRACK_SERVICES_RESOURCE": "O seu pedido de rescisão de vRack Services foi registado com êxito. Um e-mail com o procedimento foi-lhe enviado.",
+  "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "Ocorreu um erro aquando do pedido de rescisão de vRack Services. {{error}}"
 }

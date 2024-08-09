@@ -1,0 +1,11 @@
+{
+  "modalVrackCreationDescriptionLine1": "Aby vRack Services działały, przypisz je do jednego z istniejących vRacków. Aktualnie nie posiadasz kompatybilnej sieci vRack.",
+  "modalVrackCreationDescriptionLine2": "Możesz przypisać tylko 1 vRack Services na region dla danej sieci vRack.",
+  "modalVrackCreationError": "Wystąpił następujący błąd: {{error}}.",
+  "modalVrackCreationCancel": "Anuluj",
+  "modalCreateNewVrackButtonLabel": "Utwórz vRack",
+  "modalVrackCreationOrderWaitMessage": "Proszę czekać...",
+  "modalVrackCreationSubmitOrderButtonLabel": "Zamów vRack",
+  "vrackCreationSuccess": "Usługa vRack została zamówiona.",
+  "vrackOrderLinkLabel": "Moje zamówienie"
+}

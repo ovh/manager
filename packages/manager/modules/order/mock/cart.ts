@@ -125,7 +125,19 @@ export const getCartMocks = ({
   {
     url: '/order/cart/:id/checkout',
     method: 'post',
-    response: { orderId: 1 },
+    response: { orderId: 1, url: 'https://order.com' },
+    api: 'v6',
+  },
+  {
+    url: '/order/cart/:id/checkout',
+    response: {
+      contracts: [
+        { content: '', name: 'contract1', url: 'https://contract1.com' },
+        { content: '', name: 'contract2', url: 'https://contract2.com' },
+      ],
+      orderId: 1,
+      details: [],
+    },
     api: 'v6',
   },
   {

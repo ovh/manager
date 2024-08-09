@@ -3,5 +3,9 @@
   "autorenew_agora_terminate_service_warning_OKMS_RESOURCE": "Please confirm the cancelation of your KMS",
   "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "Your KMS cancelation request has been processed. You have been sent an email detailing the procedure to follow.",
   "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "An error has occurred requesting to terminate your KMS. {{error}}",
-  "autorenew_agora_terminate_service_confirm_input": "Enter \"TERMINATE\" in the field below to confirm"
+  "autorenew_agora_terminate_service_confirm_input": "Enter \"TERMINATE\" in the field below to confirm",
+  "autorenew_agora_terminate_service_VRACK_SERVICES_RESOURCE": "Cancel vRack Services",
+  "autorenew_agora_terminate_service_warning_VRACK_SERVICES_RESOURCE": "Please confirm the cancellation of vRack Services",
+  "autorenew_agora_terminate_service_success_VRACK_SERVICES_RESOURCE": "Your request to cancel vRack Services has been processed. You have been sent an email detailing the procedure to follow.",
+  "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "An error has occurred cancelling vRack Services. {{error}}"
 }

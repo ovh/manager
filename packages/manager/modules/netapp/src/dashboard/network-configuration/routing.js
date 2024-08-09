@@ -44,7 +44,7 @@ export default /* @ngInject */ ($stateProvider) => {
             if (
               vs.currentState.productStatus !== VRACK_SERVICES_STATUS.DISABLED
             ) {
-              const name = vs.currentState.displayName || vs.id;
+              const name = vs.iam.displayName || vs.id;
               vrackServicesArray.push({
                 ...vs,
                 display: {
