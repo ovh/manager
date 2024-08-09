@@ -56,7 +56,6 @@ export default class {
     this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
 
     this.loaders = {
-      disk: false,
       ip: false,
       polling: false,
     };
@@ -119,7 +118,6 @@ export default class {
     this.getRegionsGroup(this.vps.location.datacentre);
     if (!this.vps.isExpired) {
       this.loadIps();
-      this.hasAdditionalDiskOption();
     }
 
     if (!isArray(this.tabSummary) && this.tabSummary.code !== 400) {
@@ -170,45 +168,8 @@ export default class {
     });
   }
 
-  hasAdditionalDiskOption() {
-    if (
-      !this.tabSummary.additionalDisk ||
-      !this.tabSummary.additionalDisk.optionAvailable
-    ) {
-      this.hasAdditionalDisk = false;
-      return this.hasAdditionalDisk;
-    }
-    return this.loadAdditionalDisks();
-  }
-
   hasFeature(feature) {
     return this.features.includes(feature);
-  }
-
-  loadAdditionalDisks() {
-    this.loaders.disk = true;
-    this.hasAdditionalDisk = true;
-    this.VpsService.getDisks(this.serviceName)
-      .then((data) => {
-        const promises = map(data, (elem) =>
-          this.VpsService.getDiskInfo(this.serviceName, elem),
-        );
-        return this.$q.all(promises).then((diskInfos) => {
-          this.additionalDisks = this.VpsService.showOnlyAdditionalDisk(
-            diskInfos,
-          );
-          this.canOrderDisk = isEmpty(this.additionalDisks);
-        });
-      })
-      .catch((error) => {
-        this.CucCloudMessage.error(
-          error || this.$translate.instant('vps_additional_disk_info_fail'),
-        );
-        return this.$q.reject(error);
-      })
-      .finally(() => {
-        this.loaders.disk = false;
-      });
   }
 
   onBillingInformationError(error) {
@@ -323,6 +284,24 @@ export default class {
         text: this.$translate.instant('vps_configuration_desactivate_option'),
       },
     };
+
+    if (this.tabSummary.veeam.optionActivated) {
+      this.backupList();
+    }
+  }
+
+  backupList() {
+    this.VpsService.getTabVeeam(this.serviceName, 'available').then(
+      (backups) => {
+        this.lastBackup =
+          backups[0] &&
+          `${this.$translate.instant(
+            'vps_tab_SUMMARY_snapshot_creationdate',
+          )} ${moment(backups[0])
+            .utc()
+            .format('LLL')}`;
+      },
+    );
   }
 
   initOptionsActions() {
@@ -436,14 +415,6 @@ export default class {
           viewIpSla: {
             text: this.$translate.instant('vps_dashboard_monitoring_sla_ips'),
           },
-          orderAdditionalDiskOption: {
-            text: this.$translate.instant('vps_additional_disk_add_button'),
-            callback: () => this.$state.go('vps.detail.additional-disk.order'),
-            isAvailable: () =>
-              !this.loaders.disk &&
-              this.canOrderDisk &&
-              !this.isMigrationInProgress,
-          },
           orderWindows: {
             text: this.$translate.instant('vps_common_order'),
             callback: () =>
@@ -497,15 +468,6 @@ export default class {
             callback: () => this.$state.go('vps.detail.dashboard.terminate'),
             isAvailable: () => !this.engagement?.isPeriodic(),
           },
-          terminateAdditionalDiskOption: {
-            text: this.$translate.instant(
-              'vps_configuration_desactivate_option',
-            ),
-            isAvailable: () =>
-              !this.loaders.disk &&
-              !this.canOrderDisk &&
-              !this.isMigrationInProgress,
-          },
           terminateWindows: {
             text: this.$translate.instant(
               'vps_configuration_desactivate_option',
@@ -531,9 +493,5 @@ export default class {
 
   static getActionStateParamString(params) {
     return params ? `(${JSON.stringify(params)})` : '';
-  }
-
-  canTerminateAdditionalDisk() {
-    return this.VpsHelperService.canOptionBeterminated(this.serviceInfo);
   }
 }
