@@ -212,11 +212,6 @@ export const debounce = (
   };
 };
 
-export const isMobile = () => {
-  const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-  return regex.test(navigator.userAgent);
-};
-
 export const getLastElement = (root: Node) => {
   const getLast = (node: Node) : Node => {
     if (!node.children || node.children.length === 0) {
