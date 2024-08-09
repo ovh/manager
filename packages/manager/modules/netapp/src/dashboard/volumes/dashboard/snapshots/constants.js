@@ -1,5 +1,11 @@
 export const MAXIMUM_SNAPSHOT_ALLOWED = 50;
 
+export const SNAPSHOT_TYPE = {
+  AUTOMATIC: 'automatic',
+  MANUAL: 'manual',
+  SYSTEM: 'system',
+};
+
 export const STATUS = {
   ACTIVE: [
     'available',
@@ -14,5 +20,6 @@ export const STATUS = {
 
 export default {
   MAXIMUM_SNAPSHOT_ALLOWED,
+  SNAPSHOT_TYPE,
   STATUS,
 };
