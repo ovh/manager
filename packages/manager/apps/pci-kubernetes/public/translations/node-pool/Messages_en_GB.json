@@ -1,4 +1,7 @@
 {
+  "kubernetes_add_node_pool_description": "Configure an initial node pool when creating the cluster. A node pool is a group of worker nodes that all have the same configuration. You can then create, delete or resize multiple node pools.",
+  "kubernetes_add_node_pool_node_count": "Number of nodes in the pool",
+  "kubernetes_add_node_pool_node_type": "Node type",
   "kube_node_pool_name": "Pool name",
   "kube_node_pool_creation_date": "Creation date",
   "kube_node_pool_node_count": "Number of nodes",

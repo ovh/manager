@@ -5,6 +5,7 @@ import {
   FilterAdd,
   FilterList,
   Headers,
+  Notifications,
   PciGuidesHeader,
   useColumnFilters,
   useDataGrid,
@@ -79,6 +80,8 @@ export default function ListPage() {
           headerButton={<PciGuidesHeader category="kubernetes" />}
         />
       </div>
+
+      <Notifications />
 
       <div className="sm:flex items-center justify-between mt-4">
         <OsdsButton
