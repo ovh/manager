@@ -16,5 +16,6 @@ export default {
     vpsUpgradeTask: '<',
     isMigrating: '<',
     serviceInfos: '<',
+    isResellerResourceProductName: '<',
   },
 };
