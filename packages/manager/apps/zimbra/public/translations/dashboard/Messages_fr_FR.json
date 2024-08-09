@@ -6,6 +6,8 @@
   "zimbra_dashboard_email_accounts": "Comptes email",
   "zimbra_dashboard_email_accounts_add": "Créer un compte email",
   "zimbra_dashboard_email_accounts_edit": "Modifier le compte",
+  "zimbra_dashboard_email_accounts_settings": "Paramètres du compte",
+  "zimbra_dashboard_email_accounts_alias": "Alias",
   "zimbra_dashboard_email_accounts_delete": "Supprimer la boite mail",
   "zimbra_dashboard_error_service": "No services info",
   "zimbra_dashboard_general_informations": "Informations générales",
