@@ -3,5 +3,12 @@ export const ROUTES_URLS = {
   listing: '/',
   onboarding: '/onboarding',
   terminateOkms: '/terminate',
-  createKeyManagementService: '/create',
+  createKeyManagementService: 'create',
+  okmsId: ':okmsId',
+  keys: 'keys',
+  keyId: ':keyId',
+  serviceKeyEditName: 'edit-name',
+  certificates: 'certificates',
+  createKmsServiceKey: 'create',
+  serviceKeyDeactivate: 'deactivate',
 };

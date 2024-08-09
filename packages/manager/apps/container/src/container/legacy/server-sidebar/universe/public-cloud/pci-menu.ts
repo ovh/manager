@@ -49,7 +49,8 @@ export const features = [
   'public-cloud:project-settings',
   'ai-dashboard',
   'data-platform',
-  'ai-endpoints'
+  'ai-endpoints',
+  'key-management-service'
 ];
 
 export function getPciProjectMenu(
@@ -375,6 +376,20 @@ export function getPciProjectMenu(
             US: 'https://auth.cloud.ovh.us/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-us/protocols/openid/websso?origin=https://horizon.cloud.ovh.us/auth/websso/',
           }[region],
           external: true,
+        },
+      ],
+    },
+    {
+      id: 'identity-security',
+      title: 'Identity, Security & Operations',
+      badge: 'new',
+      subItems: [
+        {
+          id: 'key-management-service',
+          title: 'Key Management Service',
+          feature: 'key-management-service',
+          href: getURL('key-management-service', `/`),
+          badge: 'beta'
         },
       ],
     },

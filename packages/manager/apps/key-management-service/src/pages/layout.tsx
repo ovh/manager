@@ -6,7 +6,7 @@ export default function Layout() {
   useRouteSynchro();
 
   return (
-    <div className="m-10">
+    <div>
       <Outlet />
     </div>
   );

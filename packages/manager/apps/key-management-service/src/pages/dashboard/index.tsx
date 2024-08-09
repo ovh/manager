@@ -1,77 +1,71 @@
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
-import {
-  OsdsBreadcrumb,
-  OsdsDivider,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { Notifications, useNotifications } from '@ovhcloud/manager-components';
+import { Outlet, useParams } from 'react-router-dom';
+import { OsdsDivider, OsdsText } from '@ovhcloud/ods-components/react';
+import { Notifications } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
-import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
+import Dashboard, {
+  DashboardTabItemProps,
+} from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
-import { ROUTES_URLS } from '@/routes/routes.constants';
 import { useOKMSById } from '@/data/hooks/useOKMS';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import { ROUTES_URLS } from '@/routes/routes.constants';
+import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 
 export default function DashboardPage() {
   const { t: tDashboard } = useTranslation('key-management-service/dashboard');
-  const { t: tListing } = useTranslation('key-management-service/listing');
+  const { t: tServiceKeys } = useTranslation(
+    'key-management-service/serviceKeys',
+  );
   const { okmsId } = useParams();
-  const navigate = useNavigate();
-  const { clearNotifications } = useNotifications();
-
   const { data: okms } = useOKMSById(okmsId);
   const displayName = okms?.data?.iam?.displayName;
 
-  const tabsList = [
+  const tabsList: DashboardTabItemProps[] = [
     {
-      name: 'general_infos',
+      url: '',
       title: tDashboard('general_informations'),
-      to: useResolvedPath('').pathname,
     },
     {
-      name: 'encrypted_keys',
+      url: ROUTES_URLS.keys,
       title: tDashboard('encrypted_keys'),
-      disabled: true,
     },
     {
-      name: 'certificates',
+      url: ROUTES_URLS.certificates,
       title: tDashboard('access_certificates'),
       disabled: true,
     },
   ];
 
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      id: okmsId,
+      label: displayName,
+      navigateTo: `/${okmsId}`,
+    },
+    {
+      id: ROUTES_URLS.keys,
+      label: tServiceKeys('key_management_service_service_keys'),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
+    },
+  ];
+
   return (
-    <div>
-      <OsdsBreadcrumb
-        items={[
-          {
-            label: tListing('key_management_service_listing_title'),
-            onClick: () => {
-              clearNotifications();
-              navigate(ROUTES_URLS.listing);
-            },
-          },
-          {
-            href: `/${okmsId}`,
-            label: okmsId,
-          },
-        ].filter(Boolean)}
-      ></OsdsBreadcrumb>
+    <div className="m-10">
+      <Breadcrumb items={breadcrumbItems} />
       <div className={'flex items-center justify-between mt-2'}>
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
           size={ODS_THEME_TYPOGRAPHY_SIZE._600}
           color={ODS_THEME_COLOR_INTENT.primary}
         >
-          {tDashboard('key_management_service_dashboard_title', {
-            okmsId: displayName,
-          })}
+          {displayName}
         </OsdsText>
         <KmsGuidesHeader />
       </div>
@@ -79,6 +73,7 @@ export default function DashboardPage() {
       <Notifications />
       <Suspense fallback={<Loading />}>
         <Dashboard tabs={tabsList} />
+        <Outlet />
       </Suspense>
     </div>
   );

@@ -1,3 +1,5 @@
+// TODO: delete this file
+
 import React from 'react';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
@@ -13,5 +15,10 @@ export default function App({
 }>) {
   useTranslation('key-management-service');
 
-  return <>{children}</>;
+  return (
+    <div className="m-10">
+      <div>should be deleted, is not used anymore</div>
+      {children}
+    </div>
+  );
 }

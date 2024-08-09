@@ -35,7 +35,7 @@ export default function Onboarding() {
       ))}
       orderButtonLabel={t('orderButtonLabel')}
       onOrderButtonClick={() =>
-        navigate(ROUTES_URLS.createKeyManagementService)
+        navigate(`/${ROUTES_URLS.createKeyManagementService}`)
       }
       moreInfoButtonLabel={t('moreInfoButtonLabel')}
       moreInfoHref={guideLinks?.quickStart}

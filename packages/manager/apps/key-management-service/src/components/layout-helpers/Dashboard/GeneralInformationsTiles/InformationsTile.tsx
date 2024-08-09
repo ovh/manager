@@ -25,9 +25,9 @@ type InformationTileProps = {
   okmsData?: OKMS;
 };
 
-const Clipboard = ({ value }: { value: string }) => {
+// TODO: use manager-component clipboard
+export const Clipboard = ({ value }: { value: string }) => {
   const { t } = useTranslation('key-management-service/common');
-
   return (
     <OsdsClipboard className="mb-2" value={value}>
       <span slot="success-message">
