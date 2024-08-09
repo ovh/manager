@@ -21,17 +21,19 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OKMS } from '@/types/okms.type';
 import { useTerminateOKms } from '@/data/hooks/useTerminateOKms';
-import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 import { TerminateModal } from '@/components/Modal/terminate/TerminateModal.component';
+import { KMSServiceInfos } from '@/types/okmsService.type';
+import { OkmsServiceState } from '../okmsServiceState/OkmsServiceState.component';
 
 type BillingInformationsTileProps = {
   okmsData?: OKMS;
+  okmsService?: KMSServiceInfos;
 };
 
 const BillingInformationsTile = ({
   okmsData,
+  okmsService,
 }: BillingInformationsTileProps) => {
-  const { data: kmsService } = useKMSServiceInfos(okmsData);
   const { t } = useTranslation('key-management-service/dashboard');
   const { environment, shell } = useContext(ShellContext);
   const [dateTimeFormat, setDateTimeFormat] = useState<Intl.DateTimeFormat>();
@@ -113,14 +115,26 @@ const BillingInformationsTile = ({
                 level={ODS_TEXT_LEVEL.body}
                 color={ODS_THEME_COLOR_INTENT.default}
               >
-                {kmsService &&
+                {okmsService &&
                   dateTimeFormat?.format(
                     parseISO(
-                      kmsService?.data.billing.lifecycle.current.creationDate,
+                      okmsService?.billing.lifecycle.current.creationDate,
                     ),
                   )}
               </OsdsText>
             </div>
+            <OsdsDivider separator />
+
+            <OsdsText
+              size={ODS_TEXT_SIZE._200}
+              level={ODS_TEXT_LEVEL.heading}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              {t('key_management_service_dashboard_field_label_state')}
+            </OsdsText>
+            <span>
+              <OkmsServiceState state={okmsService?.resource.state} inline />
+            </span>
             <OsdsDivider separator />
             <OsdsText
               className="mb-4"
@@ -139,9 +153,9 @@ const BillingInformationsTile = ({
                 level={ODS_TEXT_LEVEL.body}
                 color={ODS_THEME_COLOR_INTENT.default}
               >
-                {kmsService &&
+                {okmsService &&
                   dateTimeFormat?.format(
-                    parseISO(kmsService?.data.billing.nextBillingDate),
+                    parseISO(okmsService?.billing.nextBillingDate),
                   )}
               </OsdsText>
               <div className="flex flex-row align-center gap-4">
@@ -163,8 +177,8 @@ const BillingInformationsTile = ({
                 {t('key_management_service_dashboard_field_label_engagement')}
               </OsdsText>
               <OsdsChip color={ODS_TEXT_COLOR_INTENT.error}>
-                {kmsService?.data.billing.engagement
-                  ? kmsService.data.billing.engagement
+                {okmsService?.billing.engagement
+                  ? okmsService.billing.engagement
                   : t(
                       'key_management_service_dashboard_field_label_engagement_none',
                     )}
@@ -179,7 +193,7 @@ const BillingInformationsTile = ({
             >
               {t('key_management_service_dashboard_field_label_contacts')}
             </OsdsText>
-            {kmsService?.data.customer.contacts.map((contact) => {
+            {okmsService?.customer.contacts.map((contact) => {
               return (
                 <OsdsText
                   key={contact.customerCode + contact.type}
