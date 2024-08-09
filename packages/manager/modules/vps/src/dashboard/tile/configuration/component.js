@@ -17,5 +17,13 @@ export default {
     isMigrating: '<',
     serviceInfos: '<',
     isResellerResourceProductName: '<',
+    tabSummary: '<',
+    vpsMigrationTask: '<',
+    vpsLinkedDisk: '<',
+    serviceName: '<',
+    upgradableDisks: '<',
+    isVpsNewRange: '<',
+    goToUpgradeAdditionalDisk: '<',
+    goToTerminateOption: '<',
   },
 };

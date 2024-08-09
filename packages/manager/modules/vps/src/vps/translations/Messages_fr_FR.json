@@ -289,7 +289,7 @@
   "vps_configuration_veeam_restore_success": "La demande de restauration du VPS a été bien prise en compte. Vous serez notifié par email lorsque la restauration sera terminée.",
   "vps_configuration_veeam_restore_fail": "Une erreur est survenue lors de la demande de restauration du backup sur votre VPS.",
   "vps_tab_BACKUP_STORAGE_dashboard_ftpbackup_unavailable": "Le Backup storage n'est pas disponible sur cette gamme.",
-  "vps_tab_summary": "Résumé des options",
+  "vps_tab_summary_backup": "Sauvegarde",
   "vps_tab_SUMMARY_ftpbackup": "Backup storage :",
   "vps_tab_SUMMARY_snapshot": "Snapshot :",
   "vps_tab_snapshot": "Snapshot",
