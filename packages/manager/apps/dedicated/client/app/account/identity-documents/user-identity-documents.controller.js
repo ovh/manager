@@ -36,7 +36,7 @@ export default class AccountUserIdentityDocumentsController {
     this.showUploadOption = true;
     this.displayError = false;
     this.isOpenModal = false;
-    this.isOpenInformationModal = true;
+    this.isOpenInformationModal = false;
     this.dashboardRedirectURL = this.coreURLBuilder.buildURL('hub', '');
     this.user_type = USER_TYPE[this.currentUser]
       ? USER_TYPE[this.currentUser]
