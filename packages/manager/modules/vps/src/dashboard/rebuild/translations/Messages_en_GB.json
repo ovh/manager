@@ -1,5 +1,7 @@
 {
   "vps_configuration_rebuild_cancel": "Cancel",
   "vps_configuration_rebuild_confirm": "Confirm",
-  "vps_configuration_rebuild_doNotSendPassword": "Please do not send my login credentials via email."
+  "vps_configuration_rebuild_doNotSendPassword": "I do not wish to receive my VPS authentication codes by email.",
+  "vps_configuration_rebuild_warning_part_1": "The installation will format all the disks on the server.",
+  "vps_configuration_rebuild_warning_part_2": "<b>Suggestion:</b> To go back, we recommend taking a snapshot before you continue. For more information, please refer to <a class=\"oui-link_icon\" href=\"{{ href }}\" target=\"_blank\">our guide<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>."
 }
