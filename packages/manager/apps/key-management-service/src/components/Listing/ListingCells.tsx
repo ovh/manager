@@ -7,7 +7,8 @@ import {
 } from '@ovhcloud/manager-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { OKMS } from '@/types/okms.type';
 import KmsActionMenu from '../menu/KmsActionMenu.component';
 import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
@@ -16,6 +17,8 @@ import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatu
 import useServiceKeyActionsList from '@/hooks/serviceKey/useServiceKeyActionsList';
 import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
+import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
+import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
 
 export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
   return <DataGridClipboardCell text={props.id} />;
@@ -42,6 +45,24 @@ export const DatagridCellRegion = (props: OKMS) => {
     <DataGridTextCell>
       {t(`key_management_service_listing_region_${props.region.toLowerCase()}`)}
     </DataGridTextCell>
+  );
+};
+
+export const DatagridCellStatus = (props: OKMS) => {
+  const { data: OkmsServiceInfos, isLoading, isError } = useKMSServiceInfos(
+    props,
+  );
+  if (isLoading) {
+    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />;
+  }
+  if (isError) {
+    return <></>;
+  }
+  return (
+    <OkmsServiceState
+      state={OkmsServiceInfos.data.resource.state}
+      inline={true}
+    ></OkmsServiceState>
   );
 };
 
