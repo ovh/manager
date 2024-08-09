@@ -788,5 +788,12 @@
   "logs_streams_manage_subscriptions": "Abonnements verwalten",
   "logs_streams_copy_stream_id": "Kennung des Streams kopieren",
   "logs_streams_copy_id_success": "Die Kennung des Streams wurde in die Zwischenablage kopiert. Verwenden Sie STRG+V, um den Inhalt einzufügen.",
-  "logs_streams_copy_id_error": "Ihr Browser ermöglicht nicht das Kopieren in die Zwischenablage. Bitte wechseln Sie zu einer neueren Version Ihres Browsers. Die Kennung des Streams {{stream}} lautet: {{stream_id}}"
+  "logs_streams_copy_id_error": "Ihr Browser ermöglicht nicht das Kopieren in die Zwischenablage. Bitte wechseln Sie zu einer neueren Version Ihres Browsers. Die Kennung des Streams {{stream}} lautet: {{stream_id}}",
+  "logs_home_account_status": "Status",
+  "logs_home_status_ENABLED": "Aktiviert",
+  "logs_home_status_DISABLED": "Deaktiviert",
+  "logs_home_status_INIT": "Wird installiert",
+  "logs_home_status_TO_CONFIG": "Zu konfigurieren",
+  "logs_home_resiliate": "Kündigen",
+  "logs_resiliate": "Kündigen"
 }

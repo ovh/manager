@@ -13,6 +13,7 @@ export default {
     indexIds: '<',
     aliasIds: '<',
     encryptionKeysIds: '<',
+    goToResiliate: '<',
   },
   controller,
   controllerAs: 'ctrl',
