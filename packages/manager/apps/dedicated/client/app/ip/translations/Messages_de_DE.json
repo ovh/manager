@@ -766,5 +766,6 @@
   "ip_byoip_aggregate_configuration": "Mit dieser Konfiguration wird der folgende übergeordnete Block erstellt:",
   "ip_byoip_aggregate_slicing_not_available_error_message": "Es ist keine Segmentierungs-/Aggregationskonfiguration verfügbar. Weitere Informationen finden Sie in unserer Anleitung: <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">hier</a>",
   "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Für diese IP-Adresse wurde eine andere Segmentierungs- oder Aggregationsaktion ausgeführt.",
-  "ip_table_manage_subnets": "IPv6-Subnetze im vRack verwalten"
+  "ip_table_manage_subnets": "IPv6-Subnetze im vRack verwalten",
+  "ip_table_header_region": "Region"
 }
