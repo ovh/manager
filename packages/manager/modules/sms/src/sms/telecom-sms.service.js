@@ -75,6 +75,14 @@ export default /* @ngInject */ ($http, $timeout, iceberg) => ({
       .then(({ data }) => data);
   },
 
+  getBlacklistedNumber(serviceName) {
+    return iceberg(`/sms/${serviceName}/blacklists`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data }) => data);
+  },
+
   getOutgoingSms(serviceName, icebergParams = {}, apiParams = {}) {
     const newIcebergParams = { ...icebergParams };
     let newApiParams = { ...apiParams };

@@ -1141,7 +1141,7 @@
   "hosting_tab_BOOST_disable_title": "Sie sind im Begriff, die Boost Option Ihres Hostings zu deaktivieren.",
   "hosting_tab_BOOST_disable_description": "Sie erhalten in Kürze eine Rechnung für den gesamten Aktivierungszeitraum (tägliche Abrechnung).",
   "hosting_tab_BOOST_disable_description_part_2": "Sie können die Boost Option jederzeit wieder aktivieren.",
-  "hosting_tab_BOOST_accept_cgv": "Ich habe die Bedingungen für diesen Dienst verstanden und nehme sie an. Die Option wird einige Minuten nach der Bestätigung deaktiviert.",
+  "hosting_tab_BOOST_accept_cgv": "Ich habe die Bedingungen für diesen Dienst verstanden und nehme sie an.",
   "hosting_tab_BOOST_disable_started": "Der Boost für Ihr Angebot wird deaktiviert...",
   "hosting_tab_BOOST_disable_success": "Der Boost für Ihr Angebot wurde deaktiviert.",
   "hosting_tab_BOOST_disable_error": "Bei der Deaktivierung des Boost ist ein Fehler aufgetreten:",

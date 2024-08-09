@@ -1,7 +1,6 @@
 import angular from 'angular';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
-import map from 'lodash/map';
 import controller from './remove/telecom-sms-options-blacklist-remove.controller';
 import template from './remove/telecom-sms-options-blacklist-remove.html';
 
@@ -15,6 +14,7 @@ export default class {
     $uibModal,
     $translate,
     OvhApiSms,
+    SmsService,
     TucToast,
     TucToastError,
   ) {
@@ -29,6 +29,7 @@ export default class {
         blacklists: OvhApiSms.Blacklists().v6(),
       },
     };
+    this.SmsService = SmsService;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
   }
@@ -52,9 +53,8 @@ export default class {
    * @return {Promise}
    */
   refresh() {
-    this.api.sms.blacklists.resetAllCache();
     this.blacklists.isLoading = true;
-    return this.fetchBlacklists()
+    return this.SmsService.getBlacklistedNumber(this.$stateParams.serviceName)
       .then((blacklists) => {
         this.blacklists.raw = angular.copy(blacklists);
         this.sortBlacklists();
@@ -65,29 +65,6 @@ export default class {
       .finally(() => {
         this.blacklists.isLoading = false;
       });
-  }
-
-  /**
-   * Fetch blacklists.
-   * @return {Promise}
-   */
-  fetchBlacklists() {
-    return this.api.sms.blacklists
-      .query({
-        serviceName: this.$stateParams.serviceName,
-      })
-      .$promise.then((blacklistsIds) =>
-        this.$q.all(
-          map(
-            blacklistsIds,
-            (number) =>
-              this.api.sms.blacklists.get({
-                serviceName: this.$stateParams.serviceName,
-                number,
-              }).$promise,
-          ),
-        ),
-      );
   }
 
   /**

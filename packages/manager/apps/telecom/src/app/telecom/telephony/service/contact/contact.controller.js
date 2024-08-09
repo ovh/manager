@@ -14,6 +14,7 @@ import {
   LEGAL_FORM_ENUM,
   AVAILABLE_FIELDS,
   REGEX,
+  MARSEILLE_POST_CODE,
 } from './contact.constants';
 
 export default class TelecomTelephonyServiceContactCtrl {
@@ -340,7 +341,9 @@ export default class TelecomTelephonyServiceContactCtrl {
   isUrbanDistrictRequired() {
     const p = this.directoryForm.postCode;
     return (
-      (startsWith(p, '75') || startsWith(p, '130') || startsWith(p, '6900')) &&
+      (startsWith(p, '75') ||
+        MARSEILLE_POST_CODE.includes(p) ||
+        startsWith(p, '6900')) &&
       this.directoryForm.country === 'fr'
     );
   }
