@@ -2,7 +2,6 @@ import { render } from '@testing-library/react';
 import { vi } from 'vitest';
 import ListPage from '@/pages/list/List.page';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import { useKubes } from '@/api/hooks/useKubernetes';
 import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
 
