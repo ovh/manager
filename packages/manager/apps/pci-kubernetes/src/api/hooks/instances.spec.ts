@@ -4,15 +4,6 @@ import * as ApiInstanceModule from '@/api/data/instance';
 import { useInstances, useSwitchToMonthlyBilling } from '@/api/hooks/instances';
 import { wrapper } from '@/wrapperRenders';
 
-vi.mock('@/api/data/instance', async () => {
-  const mod = await vi.importActual('@/api/data/instance');
-  return {
-    ...mod,
-    getInstances: vi.fn(),
-    switchToMonthlyBilling: vi.fn(),
-  };
-});
-
 describe('useInstances', () => {
   it('fetches instances successfully', async () => {
     const mockData = [{ id: 'instance1', name: 'Instance 1' }];
