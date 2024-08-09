@@ -8,6 +8,7 @@ export type ProductNavReshuffleContextType = {
   isNavigationSidebarOpened: boolean;
   currentNavigationNode: Node;
   navigationTree: Node;
+  isMobile: boolean;
   getFeedbackUrl: () => string;
   openOnboarding: () => void;
   startOnboarding: () => void;

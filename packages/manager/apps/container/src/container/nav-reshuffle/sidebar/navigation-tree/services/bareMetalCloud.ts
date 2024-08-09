@@ -1,6 +1,7 @@
 import illustration from '@/assets/images/sidebar/bare-metal-cloud.png';
 export default {
   id: 'baremetal-cloud',
+  idAttr: 'baremetal-cloud-link',
   translation: 'sidebar_bare_metal_cloud',
   shortTranslation: 'sidebar_bare_metal_cloud_short',
   illustration,
@@ -12,11 +13,13 @@ export default {
   children: [
     {
       id: 'bmc-dedicated-vps',
+      idAttr: 'bmc-dedicated-vps-link',
       translation: 'sidebar_dedicated_vps',
       features: ['dedicated-server', 'vps', 'managed-bare-metal', 'license'],
       children: [
         {
           id: 'dedicated-servers',
+          idAttr: 'dedicated-servers-link',
           translation: 'sidebar_dedicated',
           serviceType: 'DEDICATED_SERVER',
           routing: {
@@ -27,6 +30,7 @@ export default {
         },
         {
           id: 'dedicated-housing',
+          idAttr: 'dedicated-housing-link',
           translation: 'sidebar_dedicated_housing',
           serviceType: 'DEDICATED_HOUSING',
           routing: {
@@ -38,6 +42,7 @@ export default {
         },
         {
           id: 'vps',
+          idAttr: 'vps-link',
           translation: 'sidebar_vps',
           serviceType: 'VPS',
           routing: {
@@ -48,6 +53,7 @@ export default {
         },
         {
           id: 'managed-bare-metal',
+          idAttr: 'managed-bare-metal-link',
           translation: 'sidebar_dedicated_cloud',
           serviceType: 'DEDICATEDCLOUD',
           routing: {
@@ -58,6 +64,7 @@ export default {
         },
         {
           id: 'dedicated-licences',
+          idAttr: 'dedicated-licences-link',
           translation: 'sidebar_licences',
           serviceType: 'LICENSE',
           routing: {
@@ -70,6 +77,7 @@ export default {
     },
     {
       id: 'bmc-storage-backup',
+      idAttr: 'bmc-storage-backup-link',
       translation: 'sidebar_storage_backup',
       features: [
         'dedicated-nasha',
@@ -80,6 +88,7 @@ export default {
       children: [
         {
           id: 'nasha',
+          idAttr: 'nasha-link',
           translation: 'sidebar_nasha',
           serviceType: 'DEDICATED_NASHA',
           routing: {
@@ -90,6 +99,7 @@ export default {
         },
         {
           id: 'netapp',
+          idAttr: 'netapp-link',
           translation: 'sidebar_netapp',
           serviceType: 'STORAGE_NETAPP',
           routing: {
@@ -100,6 +110,7 @@ export default {
         },
         {
           id: 'cloud-disk-array',
+          idAttr: 'cloud-disk-array-link',
           translation: 'sidebar_cda',
           serviceType: 'DEDICATED_CEPH',
           routing: {
@@ -110,6 +121,7 @@ export default {
         },
         {
           id: 'veeam-cloud-connect',
+          idAttr: 'veeam-cloud-connect-link',
           translation: 'sidebar_veeamcc',
           serviceType: 'VEEAMCLOUDCONNECT',
           routing: {

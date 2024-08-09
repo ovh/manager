@@ -1,5 +1,6 @@
 export default {
   id: 'sunrise',
+  idAttr: 'sunrise-link',
   translation: 'sidebar_sunrise',
   shortTranslation: 'sidebar_sunrise_short',
   routing: {
@@ -10,6 +11,7 @@ export default {
   children: [
     {
       id: 'horizon-view',
+      idAttr: 'horizon-view-link',
       translation: 'sidebar_sunrise_infra',
       routing: {
         application: 'sunrise',
@@ -18,6 +20,7 @@ export default {
     },
     {
       id: 'telephony',
+      idAttr: 'telephony-link',
       translation: 'sidebar_sunrise_contact_center',
       routing: {
         application: 'sunrise',
@@ -26,6 +29,7 @@ export default {
     },
     {
       id: 'csp2',
+      idAttr: 'csp2-link',
       translation: 'sidebar_sunrise_office',
       routing: {
         application: 'sunrise',
@@ -34,6 +38,7 @@ export default {
     },
     {
       id: 'sslGateway',
+      idAttr: 'sslGateway-link',
       translation: 'sidebar_sunrise_ssl_gateway',
       routing: {
         application: 'sunrise',

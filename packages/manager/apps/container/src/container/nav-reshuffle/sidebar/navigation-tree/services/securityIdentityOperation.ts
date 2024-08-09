@@ -1,5 +1,6 @@
 export default {
   id: 'security-identity-operation',
+  idAttr: 'security-identity-operation-link',
   translation: 'sidebar_security_identity_operations',
   shortTranslation: 'sidebar_security_identity_operations_short',
   routing: {
@@ -10,6 +11,7 @@ export default {
   children: [
     {
       id: 'security-identity-operation-iam',
+      idAttr: 'security-identity-operation-iam-link',
       translation: 'sidebar_security_identity_operations_iam',
       routing: {
         application: 'iam',
@@ -18,6 +20,7 @@ export default {
     },
     {
       id: 'security-identity-operation-logs',
+      idAttr: 'security-identity-operation-logs-link',
       translation: 'sidebar_security_identity_operations_logs',
       serviceType: 'DBAAS_LOGS',
       routing: {

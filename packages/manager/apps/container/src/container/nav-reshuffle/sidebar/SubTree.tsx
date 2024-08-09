@@ -6,7 +6,7 @@ import ProjectSelector, {
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
-import { shouldHideElement } from '@/container/nav-reshuffle/sidebar/utils';
+import { findNodeById, shouldHideElement, getLastElement } from '@/container/nav-reshuffle/sidebar/utils';
 import { Location, useLocation } from 'react-router-dom';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTreeSection';
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
@@ -39,6 +39,8 @@ const SubTree = ({
   const [selectedPciProject, setSelectedPciProject] = useState<PciProject>(
     null,
   );
+  const [focusOnLast, setFocusOnLast] = useState<boolean>(false);
+  const lastElement = getLastElement(rootNode);
 
   const {
     data: pciProjects,
@@ -121,10 +123,27 @@ const SubTree = ({
         className={style.subtree_content}
         onMouseOver={() => handleOnMouseOver(rootNode)}
         onMouseLeave={handleBackNavigation}
+        onBlur={(e : any) => {
+          const id = e.relatedTarget?.id.replace('-link', '');
+          if (id === lastElement.id) {
+            setFocusOnLast(true);
+            return
+          }
+          if (focusOnLast) {
+            const node = findNodeById(rootNode, id);
+            if (node) {
+              setFocusOnLast(false);
+              return
+            }
+            handleBackNavigation();
+          }
+        }}
       >
         <button
           className={style.subtree_back_btn}
           onClick={handleBackNavigation}
+          title={t('sidebar_back_menu')}
+          role="button"
         >
           <span
             className={`oui-icon oui-icon-arrow-left mx-2`}
@@ -135,6 +154,7 @@ const SubTree = ({
         {rootNode.illustration && (
           <div
             aria-label={t(rootNode.translation)}
+            role="img"
             className={`d-block py-3 ${style.subtree_illustration}`}
           >
             <img
@@ -146,7 +166,7 @@ const SubTree = ({
         )}
 
         <div className={rootNode.illustration ? '' : 'pt-4'}>
-          <ul className={`${style.subtree_list} mx-3`}>
+          <ul className={`${style.subtree_list} mx-3`} role="menu" aria-label={t(rootNode.translation)}>
             <li className="mb-4">
               <h2>{t(rootNode.translation)}</h2>
             </li>
@@ -182,6 +202,8 @@ const SubTree = ({
                   <button
                     className={style.sidebar_pci_refresh}
                     onClick={() => refetchPciProjects()}
+                    role="button"
+                    title={t('sidebar_pci_load_error')}
                   >
                     <span>{t('sidebar_pci_load_error')}</span>
                     <span className="oui-icon oui-icon-refresh"></span>
@@ -196,6 +218,7 @@ const SubTree = ({
                         selectedPciProject.project_id,
                       )
                     }
+                    role="button"
                   >
                     <span className={style.sidebar_clipboard_text}>
                       {selectedPciProject.project_id}
@@ -214,6 +237,7 @@ const SubTree = ({
                   key={node.id}
                   id={node.id}
                   className={style.sidebar_pciEntry}
+                  role="menuitem"
                 >
                   {!shouldHideElement(node, 1, 2) && (
                     <SubTreeSection
@@ -221,7 +245,7 @@ const SubTree = ({
                       selectedPciProject={selectedPciProject?.project_id}
                     />
                   )}
-                  {node.separator && <hr />}
+                  {node.separator && <hr role="separator"/>}
                 </li>
               ))}
           </ul>

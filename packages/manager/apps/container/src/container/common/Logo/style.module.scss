@@ -1,0 +1,9 @@
+.logo {
+  &_cls_1, &_cls_2 {
+    fill: inhherit;
+  }
+
+  &_cls_1 {
+    fill-rule: evenodd;
+  }
+}

@@ -11,4 +11,14 @@
       width: max-content;
     }
   }
+
+  &Logo {
+    display: block;
+
+    svg {
+      display: flex;
+      height: 1.5rem;
+      fill: var(--ods-color-primary-700)
+    }
+  }
 }

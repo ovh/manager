@@ -10,6 +10,8 @@ import NotificationsSidebar from '@/container/common/notifications-sidebar';
 import Notifications from '@/container/common/notifications-sidebar/NotificationsButton';
 import ApplicationContext, { useShell } from '@/context';
 import { useHeader } from '@/context/header';
+import useProductNavReshuffle from '@/core/product-nav-reshuffle';
+import { Logo } from '@/container/common/Logo';
 
 import style from './style.module.scss';
 
@@ -30,6 +32,9 @@ function Header({
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setIsNotificationsSidebarVisible } = useHeader();
+  const navigationPlugin = shell.getPlugin('navigation');
+  const logoLink = navigationPlugin.getURL('hub', '#/');
+  const { isMobile } = useProductNavReshuffle();
 
   return (
     <ApplicationContext.Consumer>
@@ -45,7 +50,20 @@ function Header({
               isOpen={isSidebarExpanded}
               onClick={onHamburgerMenuClick}
             />
-            <div className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end ${style.navbarList}`}>
+            {isMobile && (
+              <a
+                role="img"
+                className={`block ${style.navbarLogo} ml-2`}
+                aria-label="OVHcloud"
+                target="_top"
+                href={logoLink}
+              >
+                <Logo />
+              </a>
+            )}
+            <div
+              className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end ${style.navbarList}`}
+            >
               <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <NavReshuffleSwitchBack />
               </div>

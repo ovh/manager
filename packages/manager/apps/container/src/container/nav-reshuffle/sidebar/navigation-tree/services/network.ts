@@ -1,6 +1,7 @@
 import illustration from '@/assets/images/sidebar/network.png';
 export default {
   id: 'network',
+  idAttr: 'network-link',
   translation: 'sidebar_network',
   shortTranslation: 'sidebar_network_short',
   illustration,
@@ -16,6 +17,7 @@ export default {
   children: [
     {
       id: 'vrack',
+      idAttr: 'vrack-link',
       translation: 'sidebar_vrack',
       serviceType: 'VRACK',
       routing: {
@@ -26,6 +28,7 @@ export default {
     },
     {
       id: 'ip',
+      idAttr: 'ip-link',
       translation: 'sidebar_ip',
       serviceType: 'IP_SERVICE',
       routing: {
@@ -36,6 +39,7 @@ export default {
     },
     {
       id: 'dedicated-network-security',
+      idAttr: 'dedicated-network-security-link',
       translation: 'sidebar_network_security',
       serviceType: 'NETWORK_SECURITY',
       routing: {
@@ -46,17 +50,19 @@ export default {
     },
     {
       id: 'ovhvrack-services',
+      idAttr: 'ovhvrack-services-link',
       translation: 'sidebar_vrack_services',
       serviceType: 'VRACKSERVICES',
       badge: 'beta',
       routing: {
         application: 'vrack-services',
-        hash: '#/'
+        hash: '#/',
       },
       features: ['vrack-services'],
     },
     {
       id: 'ovhcloud-connect',
+      idAttr: 'ovhcloud-connect-link',
       translation: 'sidebar_cloud_connect',
       serviceType: 'OVHCLOUDCONNECT',
       routing: {
@@ -67,6 +73,7 @@ export default {
     },
     {
       id: 'iplb',
+      idAttr: 'iplb-link',
       translation: 'sidebar_iplb',
       serviceType: 'IPLOADBALANCING',
       routing: {
@@ -77,6 +84,7 @@ export default {
     },
     {
       id: 'cdn',
+      idAttr: 'cdn-link',
       translation: 'sidebar_cdn',
       serviceType: 'CDN_DEDICATED',
       routing: {

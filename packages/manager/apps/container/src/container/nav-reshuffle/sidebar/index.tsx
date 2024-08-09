@@ -19,6 +19,8 @@ import {
   findPathToNode,
   initFeatureNames,
   shouldHideElement,
+  debounce,
+  IServicesCount,
 } from './utils';
 import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -50,6 +52,7 @@ const Sidebar = (): JSX.Element => {
     setCurrentNavigationNode,
     setNavigationTree,
     isNavigationSidebarOpened,
+    isMobile
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
   const [menuItems, setMenuItems] = useState<
@@ -87,6 +90,13 @@ const Sidebar = (): JSX.Element => {
 
   const onSidebarLeave = () => {
     clearTimeout(timer);
+  };
+
+  const onEnter = (node: Node) => {
+    const getFirstChild = (node: Node): Node =>
+      !node.children ? node : getFirstChild(node.children[0]);
+    const firstElement = window.document.getElementById(getFirstChild(node)?.idAttr);
+    if (firstElement) firstElement.focus();
   };
 
   /** Initialize navigation tree */
@@ -186,44 +196,59 @@ const Sidebar = (): JSX.Element => {
     }
   }, [isNavigationSidebarOpened]);
 
-  /**
-   * Initialize menu items based on currentNavigationNode
-   */
-  useEffect(() => {
-    const count: ServicesCount = {
-      total: servicesCount?.total,
-      serviceTypes: {
-        ...servicesCount?.serviceTypes,
-      } as Record<string, number>,
+
+  const computeNodeCount = (count: IServicesCount, node: Node): number | boolean => {
+    if (node.count === false) return node.count;
+    return countServices(count, node);
+  };
+
+  const processNode = (count: IServicesCount, node: Node): Node => {
+    return {
+      ...node,
+      count: computeNodeCount(count, node),
+      children: node.children?.map(childNode => processNode(count, childNode))
     };
-    setMenuItems(
-      currentNavigationNode.children?.map((node: Node) => ({
-        node,
-        count: node.count === false ? node.count : countServices(count, node),
-      })),
-    );
+  };
+
+  /**
+ * Initialize menu items based on currentNavigationNode
+ */
+  useEffect(() => {
+    const count = {
+      total: servicesCount?.total,
+      serviceTypes: { ...servicesCount?.serviceTypes },
+    };
+
+    const updatedMenuItems = currentNavigationNode.children?.map(node => ({
+      node: processNode(count, node),
+      count: computeNodeCount(count, node),
+    }));
+
+    setMenuItems(updatedMenuItems);
   }, [currentNavigationNode, servicesCount]);
 
   return (
     <div className={`${style.sidebar} ${!open && style.sidebar_short}`}>
-      <a
-        role="img"
-        className={`block ${style.sidebar_logo}`}
-        aria-label="OVHcloud"
-        target="_top"
-        href={logoLink}
-      >
-        <img
-          className={`${open ? 'mx-4' : 'mx-2'} my-3`}
-          src={open ? logo : shortLogo}
-          alt="OVHcloud"
-          aria-hidden="true"
-        />
-      </a>
+      {!isMobile && (
+        <a
+          role="img"
+          className={`block ${style.sidebar_logo}`}
+          aria-label="OVHcloud"
+          target="_top"
+          href={logoLink}
+        >
+          <img
+            className={`${open ? 'mx-4' : 'mx-2'} my-3`}
+            src={open ? logo : shortLogo}
+            alt="OVHcloud"
+            aria-hidden="true"
+          />
+        </a>
+      )}
 
-      <div className={style.sidebar_menu}>
+      <div className={style.sidebar_menu} role="menubar">
         {(servicesCount || betaVersion === 1) && (
-          <ul id="menu" onMouseOut={onSidebarLeave} onBlur={onSidebarLeave}>
+          <ul id="menu" onMouseOut={onSidebarLeave} onBlur={onSidebarLeave} role="menu">
             <li className="px-3 mb-3 mt-2">
               <h2 className={!open ? style.hidden : ''}>
                 {t(currentNavigationNode.translation)}
@@ -233,7 +258,12 @@ const Sidebar = (): JSX.Element => {
               <li
                 key={node.id}
                 id={node.id}
-                className={`${style.sidebar_menu_items} ${node.id === selectedNode?.id ? style.sidebar_menu_items_selected : ''}`}
+                className={`${style.sidebar_menu_items} ${
+                  node.id === selectedNode?.id
+                    ? style.sidebar_menu_items_selected
+                    : ''
+                }`}
+                role="menuitem"
               >
                 {!shouldHideElement(node, count, betaVersion) && (
                   <SidebarLink
@@ -242,11 +272,12 @@ const Sidebar = (): JSX.Element => {
                     handleNavigation={() => menuClickHandler(node)}
                     handleOnMouseOver={() => menuClickHandler(node)}
                     handleOnMouseLeave={() => setSelectedNode(null)}
+                    handleOnEnter={(node: Node) => onEnter(node)}
                     id={node.idAttr}
                     isShortText={!open}
                   />
                 )}
-                {node.separator && <hr />}
+                {node.separator && <hr role="separator" />}
               </li>
             ))}
           </ul>
@@ -260,6 +291,8 @@ const Sidebar = (): JSX.Element => {
               })
             }
             href={navigationPlugin.getURL('catalog', '/')}
+            role="link"
+            title={t('sidebar_service_add')}
           >
             <span
               className={`oui-icon oui-icon-cart ${style.sidebar_action_icon}`}
@@ -276,10 +309,12 @@ const Sidebar = (): JSX.Element => {
         </Suspense>
       )}
 
-      <button className={style.sidebar_toggle_btn} onClick={toggleSidebar}>
+      <button className={style.sidebar_toggle_btn} onClick={toggleSidebar} role="button">
         {open && <span className="mr-2">Réduire</span>}
         <span
-          className={`${style.sidebar_toggle_btn_first_icon} oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
+          className={`${
+            style.sidebar_toggle_btn_first_icon
+          } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
           aria-hidden="true"
         ></span>
         <span
