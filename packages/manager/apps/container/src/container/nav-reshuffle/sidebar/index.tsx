@@ -19,6 +19,8 @@ import {
   findPathToNode,
   initFeatureNames,
   shouldHideElement,
+  debounce,
+  IServicesCount,
 } from './utils';
 import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -193,22 +195,35 @@ const Sidebar = (): JSX.Element => {
     }
   }, [isNavigationSidebarOpened]);
 
-  /**
-   * Initialize menu items based on currentNavigationNode
-   */
-  useEffect(() => {
-    const count: ServicesCount = {
-      total: servicesCount?.total,
-      serviceTypes: {
-        ...servicesCount?.serviceTypes,
-      } as Record<string, number>,
+
+  const computeNodeCount = (count: IServicesCount, node: Node): number | boolean => {
+    if (node.count === false) return node.count;
+    return countServices(count, node);
+  };
+
+  const processNode = (count: IServicesCount, node: Node): Node => {
+    return {
+      ...node,
+      count: computeNodeCount(count, node),
+      children: node.children?.map(childNode => processNode(count, childNode))
     };
-    setMenuItems(
-      currentNavigationNode.children?.map((node: Node) => ({
-        node,
-        count: node.count === false ? node.count : countServices(count, node),
-      })),
-    );
+  };
+
+  /**
+ * Initialize menu items based on currentNavigationNode
+ */
+  useEffect(() => {
+    const count = {
+      total: servicesCount?.total,
+      serviceTypes: { ...servicesCount?.serviceTypes },
+    };
+
+    const updatedMenuItems = currentNavigationNode.children?.map(node => ({
+      node: processNode(count, node),
+      count: computeNodeCount(count, node),
+    }));
+
+    setMenuItems(updatedMenuItems);
   }, [currentNavigationNode, servicesCount]);
 
   return (
