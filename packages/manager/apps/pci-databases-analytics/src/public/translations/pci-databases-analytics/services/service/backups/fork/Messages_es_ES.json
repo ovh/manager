@@ -34,5 +34,6 @@
   "errorNetworkFieldMissingId": "Introduzca una red y una subred, o seleccione un tipo de red pública.",
   "errorSourceTypeFieldInvalid": "Este tipo de punto de restauración no está disponible para este servicio.",
   "errorSourcePITFieldInvalidDate": "La fecha seleccionada no es válida.",
-  "errorSourceBackupFieldEmpty": "Seleccione un backup"
+  "errorSourceBackupFieldEmpty": "Seleccione un backup",
+  "breadcrumb": "Fork"
 }
