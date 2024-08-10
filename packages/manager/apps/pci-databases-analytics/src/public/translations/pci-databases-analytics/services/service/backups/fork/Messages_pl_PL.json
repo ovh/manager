@@ -34,5 +34,6 @@
   "errorNetworkFieldMissingId": "Wprowadź sieć i podsieć lub wybierz typ sieci publicznej",
   "errorSourceTypeFieldInvalid": "Ten typ punktu przywracania nie jest dostępny dla tej usługi",
   "errorSourcePITFieldInvalidDate": "Wybrana data jest nieprawidłowa",
-  "errorSourceBackupFieldEmpty": "Wybierz backup"
+  "errorSourceBackupFieldEmpty": "Wybierz backup",
+  "breadcrumb": "Fork"
 }

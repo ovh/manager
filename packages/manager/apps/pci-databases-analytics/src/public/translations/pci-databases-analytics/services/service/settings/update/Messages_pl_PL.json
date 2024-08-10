@@ -44,7 +44,7 @@
   "addNodeCancelButton": "Anuluj",
   "addNodeSubmitButton": "Zatwierdź",
   "deleteNodeTitle": "Usuń węzeł",
-  "deleteNodeDescription": "Aktualnie dysponujesz {{nbNodes}} węzłem(ami). Czy na pewno chcesz usunąć jeden z nich? Zmniejszysz należność na fakturze o <price/>per {{unit}}.",
+  "deleteNodeDescription": "Aktualnie dysponujesz {{nbNodes}} węzłem(ami). Czy na pewno chcesz usunąć jeden z nich? Obniżysz fakturę o <price/> per {{unit}}.",
   "deleteNodeDescriptionUnitHour": "godzina",
   "deleteNodeDescriptionUnitMonth": "miesiąc",
   "deleteNodeToastSuccessTitle": "Operacja zakończona pomyślnie",

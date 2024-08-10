@@ -6,7 +6,7 @@
   "downgradeButton": "Elegir un plan de servicio inferior",
   "storageChartTitle": "Storage",
   "cpuChartTitle": "CPU",
-  "ramChartTitle": "Memory",
+  "ramChartTitle": "Memoria",
   "connectionDetailsTitle": "Información de conexión",
   "connectionDetailsTableHeaderHost": "Host",
   "connectionDetailsTableHeaderPort": "Puerto",
@@ -28,7 +28,7 @@
   "networkLink": "Red privada: vRack n.° {{vrack}}",
   "priceBillingTitle": "Soporte y facturación",
   "serviceIdLabel": "ID del servicio",
-  "serviceIdCopyToast": "Se ha copiado el ID del servicio.",
+  "serviceIdCopyToast": "Se ha copiado el ID del servicio",
   "billingLink": "Gestionar la facturación",
   "supportLink": "Contactar con el soporte"
 }
