@@ -77,6 +77,14 @@ export function Autoscaling({
     });
   }, [quantity, isAutoscale]);
 
+  useEffect(() => {
+    setQuantity({
+      desired: initialScaling ? initialScaling.desired : NODE_RANGE.MIN,
+      min: initialScaling ? initialScaling.min : 0,
+      max: initialScaling ? initialScaling.max : NODE_RANGE.MAX,
+    });
+  }, [isAutoscale]);
+
   return (
     <>
       <OsdsText
