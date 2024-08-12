@@ -25,11 +25,12 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useLogs } from '@/api/hooks/useDbaasLogs';
 import { StreamsList } from './components/StreamsList.component';
 import { TDbaasLog } from '@/api/data/dbaas-logs';
+import { LOG_LIST_TRACKING_HITS } from './constants';
 
 export default function StreamsPage() {
   const { t } = useTranslation('logs');
   const { t: tCommon } = useTranslation('common');
-  const { navigation } = useContext(ShellContext).shell;
+  const { navigation, tracking } = useContext(ShellContext).shell;
   const backHref = useHref('../logs');
   const { clearNotifications } = useNotifications();
   const [account, setAccount] = useState<TDbaasLog>();
@@ -62,7 +63,12 @@ export default function StreamsPage() {
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}
           href={backHref}
-          onClick={clearNotifications}
+          onClick={() => {
+            clearNotifications();
+            tracking.trackClick({
+              name: LOG_LIST_TRACKING_HITS.GO_BACK,
+            });
+          }}
         >
           <span slot="start">
             <OsdsIcon
@@ -97,7 +103,12 @@ export default function StreamsPage() {
         color={ODS_THEME_COLOR_INTENT.primary}
         size={ODS_BUTTON_SIZE.sm}
         variant={ODS_BUTTON_VARIANT.stroked}
-        onClick={gotoAddDataStream}
+        onClick={() => {
+          tracking.trackClick({
+            name: LOG_LIST_TRACKING_HITS.ADD_DATA_STREAM,
+          });
+          gotoAddDataStream();
+        }}
         inline
       >
         <span slot="start">
