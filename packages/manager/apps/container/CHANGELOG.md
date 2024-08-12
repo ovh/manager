@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.67.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.66.0...@ovh-ux/manager-container-app@0.67.0) (2024-08-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3183] ([#12520](https://github.com/ovh/manager/issues/12520)) ([eba2dfa](https://github.com/ovh/manager/commit/eba2dfaf6fd3194f81c7fb9d44c22d4390e3f881))
+
+
+### Features
+
+* **container:**  updated of the user login chip link ([#12156](https://github.com/ovh/manager/issues/12156)) ([e41254e](https://github.com/ovh/manager/commit/e41254ef1728d4f475a6d80c470048373fcccf8a))
+* **container:** bullet added on pnr lvl 2 ([#12108](https://github.com/ovh/manager/issues/12108)) ([6828c9f](https://github.com/ovh/manager/commit/6828c9f31da4bee967460eb7be28848e2b5f01a5))
+* **container:** cookie consent popin x do nothing ([#12403](https://github.com/ovh/manager/issues/12403)) ([ea9fe79](https://github.com/ovh/manager/commit/ea9fe79d02f38c085ea52f3c09d2feaf60fa9b3b))
+* **container:** improve accessibility pnr ([#12164](https://github.com/ovh/manager/issues/12164)) ([fcd4adb](https://github.com/ovh/manager/commit/fcd4adb30027d69414d61682a16ae46ce615ca27))
+* **container:** reduce left pannel text and ovhcloud logo ([#12580](https://github.com/ovh/manager/issues/12580)) ([4b9b065](https://github.com/ovh/manager/commit/4b9b0658302f5ef28c95c8e0da3ae38ddaf6d7de))
+* **container:** update translation key sidebar_service_add ([#12087](https://github.com/ovh/manager/issues/12087)) ([d68cc7f](https://github.com/ovh/manager/commit/d68cc7fcb829edf8d6c64314583961fb6624c23a))
+
+
+
+
+
 # [0.66.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.65.0...@ovh-ux/manager-container-app@0.66.0) (2024-08-08)
 
 
