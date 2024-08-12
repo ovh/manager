@@ -2,7 +2,7 @@
   "sidebar_pci_load_error": "Ocorreu um erro durante o carregamento da lista de projetos",
   "sidebar_home": "Hub de serviços",
   "sidebar_back": "Retroceder",
-  "sidebar_service_add": "Comprar um novo serviço",
+  "sidebar_service_add": "Adicionar um serviço",
   "sidebar_bare_metal_cloud": "Bare Metal Cloud",
   "sidebar_web_cloud": "Web Cloud",
   "sidebar_dedicated_vps": "Servidores dedicados e virtuais",

@@ -9,6 +9,8 @@ import useOnboarding, {
 } from '../onboarding';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import { BetaVersion } from '../container/context';
+import { MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
+import { useMediaQuery } from 'react-responsive';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -24,6 +26,9 @@ export const ProductNavReshuffleProvider = ({
   const [isLoading, setIsLoading] = useState(true);
   const { betaVersion } = useContainer();
   const shell = useShell();
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
+  });
 
   /**
    * @TODO: manage links for US version
@@ -134,6 +139,7 @@ export const ProductNavReshuffleProvider = ({
     setCurrentNavigationNode,
     navigationTree,
     setNavigationTree,
+    isMobile,
   };
 
   return (
