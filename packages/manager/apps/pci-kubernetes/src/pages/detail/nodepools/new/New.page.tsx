@@ -24,8 +24,7 @@ import {
 } from '@ovhcloud/manager-components';
 import { FlavorSelector } from '@ovh-ux/manager-pci-common';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useEffect, useState } from 'react';
 import { useNewPoolStore } from '@/pages/detail/nodepools/new/store';
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
@@ -35,11 +34,9 @@ import { useCatalog } from '@/api/hooks/catalog';
 import BillingStep, {
   TBillingStepProps,
 } from '@/components/create/BillingStep';
-import {
-  ANTI_AFFINITY_MAX_NODES,
-  NAME_INPUT_CONSTRAINTS,
-} from '@/pages/detail/nodepools/new/constants';
+import { ANTI_AFFINITY_MAX_NODES, NAME_INPUT_CONSTRAINTS } from '@/constants';
 import queryClient from '@/queryClient';
+import { useTrack } from '@/hooks/track';
 
 export default function NewPage(): JSX.Element {
   const { t: tCommon } = useTranslation('common');
@@ -47,7 +44,7 @@ export default function NewPage(): JSX.Element {
   const { t: tAdd } = useTranslation('add');
   const { t: tAddForm } = useTranslation('add-form');
 
-  const { tracking } = useContext(ShellContext).shell;
+  const { trackClick } = useTrack();
 
   const store = useNewPoolStore();
 
@@ -165,10 +162,7 @@ export default function NewPage(): JSX.Element {
   ]);
 
   const create = () => {
-    tracking.trackClick({
-      name: `details::nodepools::add::confirm`,
-      type: 'action',
-    });
+    trackClick(`details::nodepools::add::confirm`);
 
     setState((prev) => ({
       ...prev,
@@ -417,10 +411,7 @@ export default function NewPage(): JSX.Element {
               variant={ODS_BUTTON_VARIANT.ghost}
               className="ml-4"
               onClick={() => {
-                tracking.trackClick({
-                  name: `details::nodepools::add::cancel`,
-                  type: 'action',
-                });
+                trackClick(`details::nodepools::add::cancel`);
                 navigate('../nodepools');
               }}
             >
