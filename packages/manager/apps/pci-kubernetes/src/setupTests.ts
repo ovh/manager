@@ -3,7 +3,7 @@ import 'element-internals-polyfill';
 import { vi } from 'vitest';
 
 vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-pci-common');
+  const mod = await vi.importActual('react-router-dom');
   return {
     ...mod,
     useSearchParams: () => [new URLSearchParams({})],
@@ -32,6 +32,7 @@ vi.mock('@ovhcloud/manager-components', async () => {
   return {
     ...mod,
     useProjectUrl: vi.fn().mockReturnValue('mockProjectUrl'),
+    Notifications: vi.fn(),
   };
 });
 

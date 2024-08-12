@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -23,6 +25,7 @@ import { useNavigate } from 'react-router-dom';
 import { useKubeLogs } from '@/api/hooks/useLogs';
 import { LogHowTo } from './LogHowTo.component';
 import { LogTileUnsubscribeAction } from './LogTileUnsubscribeAction';
+import { LOG_TRACKING_HITS } from '../constants';
 
 export interface LogTilesProps {
   projectId: string;
@@ -31,6 +34,7 @@ export interface LogTilesProps {
 
 export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
   const { t } = useTranslation('logs');
+  const { tracking } = useContext(ShellContext).shell;
   const navigate = useNavigate();
   const { addError, addSuccess, clearNotifications } = useNotifications();
   const { data: logs, isPending: isLogsPending } = useKubeLogs(
@@ -125,6 +129,11 @@ export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
               size={ODS_BUTTON_SIZE.sm}
               variant={ODS_BUTTON_VARIANT.stroked}
               href={streamURL?.address}
+              onClick={() =>
+                tracking.trackClick({
+                  name: LOG_TRACKING_HITS.GRAYLOG_WATCH,
+                })
+              }
               target={OdsHTMLAnchorElementTarget._blank}
               disabled={streamURL?.address ? undefined : true}
             >

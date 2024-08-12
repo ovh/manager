@@ -1,7 +1,13 @@
+import { useContext } from 'react';
 import { useHref, useNavigate } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
+import {
+  PciDiscoveryBanner,
+  isDiscoveryProject,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
@@ -31,17 +37,20 @@ import { NodeSizeStep } from './steps/NodeSizeStep.component';
 import { ClusterNameStep } from './steps/ClusterNameStep.component';
 import { BillingStep } from './steps/BillingStep.component';
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
+import { PAGE_PREFIX } from '@/tracking.constants';
 
 export default function NewPage() {
   const { t } = useTranslation('add');
   const { t: tListing } = useTranslation('listing');
   const { t: tStepper } = useTranslation('stepper');
   const { data: project } = useProject();
+  const { tracking } = useContext(ShellContext).shell;
   const navigate = useNavigate();
   const hrefBack = useHref('..');
   const hrefProject = useProjectUrl('public-cloud');
   const stepper = useClusterCreationStepper();
   const { addError, addSuccess } = useNotifications();
+  const isDiscovery = isDiscoveryProject(project);
 
   const {
     createCluster,
@@ -140,11 +149,12 @@ export default function NewPage() {
         <StepComponent
           order={1}
           {...stepper.location.step}
+          isLocked={stepper.location.step.isLocked || isDiscovery}
           title={t('kubernetes_add_region_title')}
           edit={{
             action: stepper.location.edit,
             label: tStepper('common_stepper_modify_this_step'),
-            isDisabled: isCreationPending,
+            isDisabled: isDiscovery || isCreationPending,
           }}
         >
           <LocationStep
@@ -258,6 +268,9 @@ export default function NewPage() {
                   },
                   privateNetworkId: undefined, // @TODO
                   privateNetworkConfiguration: undefined, // @TODO
+                });
+                tracking.trackClick({
+                  name: `${PAGE_PREFIX}::kubernetes::add::confirm`,
                 });
               }}
             />

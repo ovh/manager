@@ -22,13 +22,14 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { DATA_PLATFORM_GUIDE } from '../constants';
+import { DATA_PLATFORM_GUIDE, LOG_TRACKING_HITS } from '../constants';
 import { useLogs, useAllStreamIds } from '@/api/hooks/useDbaasLogs';
 
 export function LogHowTo() {
   const { t } = useTranslation('logs');
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
   const { navigation } = useContext(ShellContext).shell;
+  const { tracking } = useContext(ShellContext).shell;
   const navigate = useNavigate();
   const { data: dbaasLogs } = useLogs();
   const { data: streams } = useAllStreamIds();
@@ -39,16 +40,25 @@ export function LogHowTo() {
 
   const onCreate = () => {
     if (!hasAccount) {
+      tracking.trackClick({
+        name: LOG_TRACKING_HITS.CREATE_ACCOUNT,
+      });
       navigation
         .getURL('dedicated', `#/dbaas/logs/order`, {})
         .then((url: string) => {
           window.location.href = url;
         });
     } else if (!hasStream) {
+      tracking.trackClick({
+        name: LOG_TRACKING_HITS.CREATE_DATA_STREAM,
+      });
       navigation.getURL('dedicated', `#/dbaas/logs`, {}).then((url: string) => {
         window.location.href = url;
       });
     } else {
+      tracking.trackClick({
+        name: LOG_TRACKING_HITS.TRANSFER,
+      });
       navigate('./streams');
     }
   };
