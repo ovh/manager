@@ -124,10 +124,12 @@ export default function AddDomain() {
     setIsSubmitting(true);
     postZimbraDomain(platformId, formData)
       .then((domain) => {
-        if (!domain.currentState.cnameToCheck) {
+        if (!domain.currentState.expectedDNSConfig.ownership.cname) {
           onClose();
         } else {
-          setCnameToCheck(domain.currentState.cnameToCheck);
+          setCnameToCheck(
+            domain.currentState.expectedDNSConfig.ownership.cname,
+          );
         }
         addSuccess(
           <OsdsText
