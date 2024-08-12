@@ -39,6 +39,7 @@ import {
   ANTI_AFFINITY_MAX_NODES,
   NAME_INPUT_CONSTRAINTS,
 } from '@/pages/detail/nodepools/new/constants';
+import queryClient from '@/queryClient';
 
 export default function NewPage(): JSX.Element {
   const { t: tCommon } = useTranslation('common');
@@ -199,6 +200,16 @@ export default function NewPage(): JSX.Element {
           </Translation>,
           true,
         );
+
+        queryClient.invalidateQueries({
+          queryKey: [
+            'project',
+            projectId,
+            'kubernetes',
+            clusterId,
+            'nodePools',
+          ],
+        });
         navigate('../nodepools');
       })
       .catch((e) => {
@@ -206,7 +217,6 @@ export default function NewPage(): JSX.Element {
           <Translation ns="add">
             {(_t) =>
               _t('kube_add_node_pool_error', {
-                // TODO read from request
                 message: e?.response?.data?.message || e?.message || null,
                 nodePoolName: store.name,
               })
