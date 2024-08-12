@@ -25,6 +25,7 @@ import {
   useCreateSubscription,
   useRemoveSubscription,
 } from '@/api/hooks/useKubernetes';
+import { LOG_LIST_TRACKING_HITS } from '../constants';
 
 export interface StreamSubscriptionsProps {
   serviceName: string;
@@ -37,6 +38,7 @@ export function StreamSubscriptions({
 }: Readonly<StreamSubscriptionsProps>) {
   const { t } = useTranslation('logs');
   const { projectId, kubeId } = useParams();
+  const { tracking } = useContext(ShellContext).shell;
   const { data, isPending } = useSubscriptions(serviceName, streamId);
   const subscriptions = data?.filter(({ kind }) => kind === 'audit');
   const { navigation } = useContext(ShellContext).shell;
@@ -113,6 +115,11 @@ export function StreamSubscriptions({
           className="mr-4"
           color={ODS_THEME_COLOR_INTENT.primary}
           href={subscriptionsURL}
+          onClick={() =>
+            tracking.trackClick({
+              name: LOG_LIST_TRACKING_HITS.LDP_DETAIL,
+            })
+          }
           target={OdsHTMLAnchorElementTarget._blank}
         >
           {subscriptions?.length}
@@ -133,9 +140,14 @@ export function StreamSubscriptions({
           color={ODS_THEME_COLOR_INTENT.primary}
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
-          onClick={() =>
-            !isRemovePending && remove(currentSubscription.subscriptionId)
-          }
+          onClick={() => {
+            if (!isRemovePending) {
+              remove(currentSubscription.subscriptionId);
+              tracking.trackClick({
+                name: LOG_LIST_TRACKING_HITS.UNSUBSCRIBE,
+              });
+            }
+          }}
           disabled={isRemovePending ? true : undefined}
           inline
         >
@@ -152,7 +164,14 @@ export function StreamSubscriptions({
           color={ODS_THEME_COLOR_INTENT.primary}
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
-          onClick={() => !isCreationPending && create()}
+          onClick={() => {
+            if (!isCreationPending) {
+              create();
+              tracking.trackClick({
+                name: LOG_LIST_TRACKING_HITS.SUBSCRIBE,
+              });
+            }
+          }}
           disabled={isCreationPending ? true : undefined}
           inline
         >
