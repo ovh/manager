@@ -16,6 +16,15 @@ export type DomainType = {
     status: keyof typeof ResourceStatus;
     updatedAt: string;
     accountsStatistics: AccountStatistics[];
+    expectedDNSConfig: {
+      mx: Array<{
+        priority: number;
+        target: string;
+      }>;
+      ownership: {
+        cname: string | null;
+      };
+    };
   };
   currentTasks: Array<{
     id: string;
