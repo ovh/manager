@@ -26,7 +26,16 @@ export default [
     id: '',
     path: ROUTE_PATHS.root,
     ...lazyRouteConfig(() => import('@/pages/Layout')),
-    children: [],
+    children: [
+      {
+        path: '',
+        handle: {
+          tracking: 'registries',
+        },
+        ...lazyRouteConfig(() => import('@/pages/list/List.page')),
+        children: [],
+      },
+    ],
   },
   {
     path: '*',
