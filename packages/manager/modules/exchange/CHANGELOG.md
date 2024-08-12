@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.7.1...@ovh-ux/manager-exchange@4.7.2) (2024-08-12)
+
+
+### Bug Fixes
+
+* **web.exchange:** active auto configure spf on echange and emailpro ([10723bd](https://github.com/ovh/manager/commit/10723bd0658dd34c6b97135ec0eb451c9af5db1b))
+
+
+
+
+
 ## [4.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.7.0...@ovh-ux/manager-exchange@4.7.1) (2024-08-08)
 
 

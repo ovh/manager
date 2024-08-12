@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.2...@ovh-ux/manager-telecom@15.20.3) (2024-08-12)
+
+
+### Bug Fixes
+
+* **pack.move:** check offer type before overwrite floor value ([5d4e9ff](https://github.com/ovh/manager/commit/5d4e9ffb5761ca37d15e9e8faf2cd06cc9a01ea6))
+* **telecom.telephony:** change rule for district field in directory ([#12488](https://github.com/ovh/manager/issues/12488)) ([369997e](https://github.com/ovh/manager/commit/369997e9cee02171df2f101fc557249e00ccf493))
+
+
+
+
+
 ## [15.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.1...@ovh-ux/manager-telecom@15.20.2) (2024-08-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
