@@ -23,6 +23,12 @@ export const domainMock: DomainType[] = [
           availableAccountsCount: 4,
         },
       ],
+      expectedDNSConfig: {
+        mx: [],
+        ownership: {
+          cname: null,
+        },
+      },
     },
     currentTasks: [
       {
@@ -54,6 +60,12 @@ export const domainMock: DomainType[] = [
           availableAccountsCount: 4,
         },
       ],
+      expectedDNSConfig: {
+        mx: [],
+        ownership: {
+          cname: null,
+        },
+      },
     },
     currentTasks: [
       {
@@ -85,6 +97,12 @@ export const domainMock: DomainType[] = [
           availableAccountsCount: 4,
         },
       ],
+      expectedDNSConfig: {
+        mx: [],
+        ownership: {
+          cname: 'mycname',
+        },
+      },
     },
     currentTasks: [
       {
