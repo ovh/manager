@@ -18,17 +18,17 @@ import {
 } from '@ovhcloud/ods-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useContext, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useNotifications } from '@ovhcloud/manager-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useDeleteNode, useNodes } from '@/api/hooks/nodes';
+import { useTrack } from '@/hooks/track';
 
 const CONFIRMATION_TEXT = 'DELETE';
 
 export default function DeletePage(): JSX.Element {
   const { projectId, kubeId: clusterId, poolId, nodeId } = useParams();
 
-  const { tracking } = useContext(ShellContext).shell;
+  const { trackClick } = useTrack();
 
   const [confirmationInputData, setConfirmationInputData] = useState<{
     hasError: boolean;
@@ -174,10 +174,7 @@ export default function DeletePage(): JSX.Element {
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={() => {
-          tracking.trackClick({
-            name: `details::nodepools::details::nodes::delete::cancel`,
-            type: 'action',
-          });
+          trackClick(`details::nodepools::details::nodes::delete::cancel`);
           goBack();
         }}
       >
@@ -187,10 +184,7 @@ export default function DeletePage(): JSX.Element {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
-          tracking.trackClick({
-            name: `details::nodepools::details::nodes::delete::confirm`,
-            type: 'action',
-          });
+          trackClick(`details::nodepools::details::nodes::delete::confirm`);
           remove();
         }}
         {...(isDeleting ? { disabled: true } : {})}
