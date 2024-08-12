@@ -80,23 +80,15 @@ export default class AccountUserIdentityDocumentsController {
         const { uploadLinks } = response;
         return this.$q.all(
           uploadLinks.map((uploadLink, index) =>
-            this.uploadDocumentsToS3usingLinks(uploadLink, this.files[index]),
+            this.$http.put(uploadLink.link, this.files[index], {
+              headers: { ...uploadLink.headers },
+            }),
           ),
         );
       })
       .then(() => {
         this.$http.post(`/me/procedure/identity/finalize`);
         this.showUploadOption = false;
-      })
-      .catch(() => {
-        this.displayErrorBanner();
-      });
-  }
-
-  uploadDocumentsToS3usingLinks(uploadLink, uploadedfile) {
-    return this.$http
-      .put(uploadLink.link, uploadedfile, {
-        headers: { ...uploadLink.headers },
       })
       .catch(() => {
         this.displayErrorBanner();
