@@ -1,5 +1,9 @@
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ActionMenu, ActionMenuItem } from '@ovhcloud/manager-components';
+import {
+  ActionMenu,
+  ActionMenuItem,
+  DeleteModal,
+} from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
@@ -19,8 +23,9 @@ import {
 import { parseISO } from 'date-fns';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDeleteService } from '@ovhcloud/manager-components/src/hooks/services';
 import { OKMS } from '@/types/okms.type';
-import { useTerminateOKms } from '@/data/hooks/useTerminateOKms';
+// import { useTerminateOKms } from '@/data/hooks/useTerminateOKms';
 import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 import { TerminateModal } from '@/components/Modal/terminate/TerminateModal.component';
 
@@ -42,10 +47,21 @@ const BillingInformationsTile = ({
     setShowTerminationModal(false);
   };
 
-  const { terminateKms, isPending } = useTerminateOKms({
-    okmsId: okmsData.id,
-    onSuccess: closeTerminateModal,
-    onError: closeTerminateModal,
+  // const { terminateKms, isPending } = useTerminateOKms({
+  //   okmsId: okmsData.id,
+  //   onSuccess: closeTerminateModal,
+  //   onError: closeTerminateModal,
+  // });
+
+  const { terminateService, isPending, error, isError } = useDeleteService({
+    onSuccess: () => {
+      console.info('useDeleteService onSuccess !');
+      closeTerminateModal();
+    },
+    onError: () => {
+      console.info('useDeleteService onError !');
+      closeTerminateModal();
+    },
   });
 
   const items: ActionMenuItem[] = [
@@ -68,7 +84,7 @@ const BillingInformationsTile = ({
           {},
         );
         setContactUrl(response as string);
-      } catch (error) {
+      } catch {
         setContactUrl('#');
       }
     };
@@ -214,11 +230,22 @@ const BillingInformationsTile = ({
         </div>
       </OsdsTile>
       {showTerminationModal && (
-        <TerminateModal
-          onConfirmTerminate={terminateKms}
-          closeModal={closeTerminateModal}
-          isLoading={isPending}
-        />
+        <>
+          <TerminateModal
+            onConfirmTerminate={() =>
+              terminateService({ resourceName: okmsData.iam.displayName })
+            }
+            closeModal={closeTerminateModal}
+            isLoading={isPending}
+          />
+          {/* <DeleteModal
+            headline={t('key_management_service_terminate_heading')}
+            description={t('key_management_service_terminate_description')}
+            deleteInputLabel=""
+            closeModal={closeTerminateModal}
+            onConfirmDelete={terminateKms}
+          /> */}
+        </>
       )}
     </>
   );
