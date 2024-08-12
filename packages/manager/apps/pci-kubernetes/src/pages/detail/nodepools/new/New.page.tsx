@@ -206,7 +206,6 @@ export default function NewPage(): JSX.Element {
           <Translation ns="add">
             {(_t) =>
               _t('kube_add_node_pool_error', {
-                // TODO read from request
                 message: e?.response?.data?.message || e?.message || null,
                 nodePoolName: store.name,
               })
