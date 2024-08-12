@@ -7,8 +7,9 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { useNotifications } from '@ovhcloud/manager-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   useClusterNodePools,
   useUpdateNodePoolSize,
@@ -31,6 +32,8 @@ export default function ScalePage(): JSX.Element {
 
   const { t: tScale } = useTranslation('scale');
   const { t: tListing } = useTranslation('listing');
+
+  const { tracking } = useContext(ShellContext).shell;
 
   const [state, setState] = useState<AutoscalingState>(null);
 
@@ -67,7 +70,10 @@ export default function ScalePage(): JSX.Element {
       goBack();
     },
     onSuccess: async () => {
-      // TODO: add tracking
+      tracking.trackClick({
+        name: `details::nodepools::scale::confirm`,
+        type: 'action',
+      });
       await queryClient.invalidateQueries({
         queryKey: ['project', projectId, 'kubernetes', clusterId, 'nodePools'],
       });
@@ -83,6 +89,10 @@ export default function ScalePage(): JSX.Element {
     <OsdsModal
       headline={tListing('kube_common_node_pool_autoscaling_title')}
       onOdsModalClose={() => {
+        tracking.trackClick({
+          name: `details::nodepools::scale::cancel`,
+          type: 'action',
+        });
         goBack();
       }}
       color={ODS_THEME_COLOR_INTENT.text}
@@ -128,7 +138,6 @@ export default function ScalePage(): JSX.Element {
             maxNodes: state.quantity.max,
             minNodes: state.quantity.min,
           });
-          // TODO add tracking
         }}
         {...(isDeleting ? { disabled: true } : {})}
       >
