@@ -151,6 +151,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
     get().open(id);
     get().uncheck(id);
     get().unlock(id);
+
     switch (id) {
       case StepsEnum.NAME:
         // Reset type

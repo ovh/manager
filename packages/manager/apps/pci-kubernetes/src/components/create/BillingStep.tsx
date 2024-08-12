@@ -19,7 +19,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovhcloud/manager-components';
-import { ANTI_AFFINITY_MAX_NODES } from '@/pages/detail/nodepools/new/constants';
+import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 
 const checkedClass =
   'cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';

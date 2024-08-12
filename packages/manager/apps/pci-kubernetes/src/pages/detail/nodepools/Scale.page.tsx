@@ -7,9 +7,8 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNotifications } from '@ovhcloud/manager-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   useClusterNodePools,
   useUpdateNodePoolSize,
@@ -19,6 +18,7 @@ import {
   Autoscaling,
   AutoscalingState,
 } from '@/components/Autoscaling.component';
+import { useTrack } from '@/hooks/track';
 
 export default function ScalePage(): JSX.Element {
   const { projectId, kubeId: clusterId } = useParams();
@@ -33,7 +33,7 @@ export default function ScalePage(): JSX.Element {
   const { t: tScale } = useTranslation('scale');
   const { t: tListing } = useTranslation('listing');
 
-  const { tracking } = useContext(ShellContext).shell;
+  const { trackClick } = useTrack();
 
   const [state, setState] = useState<AutoscalingState>(null);
 
@@ -70,10 +70,7 @@ export default function ScalePage(): JSX.Element {
       goBack();
     },
     onSuccess: async () => {
-      tracking.trackClick({
-        name: `details::nodepools::scale::confirm`,
-        type: 'action',
-      });
+      trackClick(`details::nodepools::scale::confirm`);
       await queryClient.invalidateQueries({
         queryKey: ['project', projectId, 'kubernetes', clusterId, 'nodePools'],
       });
@@ -89,10 +86,7 @@ export default function ScalePage(): JSX.Element {
     <OsdsModal
       headline={tListing('kube_common_node_pool_autoscaling_title')}
       onOdsModalClose={() => {
-        tracking.trackClick({
-          name: `details::nodepools::scale::cancel`,
-          type: 'action',
-        });
+        trackClick(`details::nodepools::scale::cancel`);
         goBack();
       }}
       color={ODS_THEME_COLOR_INTENT.text}
