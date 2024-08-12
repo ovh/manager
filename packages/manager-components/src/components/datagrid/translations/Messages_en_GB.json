@@ -3,5 +3,6 @@
   "common_pagination_results": "results",
   "common_pagination_no_results": "No result",
   "common_clipboard_success_label": "Copied!",
-  "common_clipboard_error_label": "Copy error."
+  "common_clipboard_error_label": "Copy error.",
+  "common_pagination_load_more": "Load more"
 }
