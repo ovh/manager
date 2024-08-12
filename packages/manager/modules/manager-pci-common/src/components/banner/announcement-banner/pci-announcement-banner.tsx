@@ -4,7 +4,7 @@ import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { ActionBanner } from '@ovhcloud/manager-components';
 import { useAnnouncementBanner } from './useAnnouncementBanner.hook';
 
-import './translations';
+import '../../../translations/announcement-banner';
 
 type PciAnnouncementBannerProps = {
   projectId?: string;
