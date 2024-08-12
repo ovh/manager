@@ -459,7 +459,7 @@ import union from 'lodash/union';
             return this.$http.get(`/services/${serviceId}`);
           })
           .then(({ data }) => {
-            const productName = data.resource.product.name;
+            const productName = data.resource.product?.name;
             return this.DETACHABLE_PRODUCT_NAMES.includes(productName);
           });
       }
