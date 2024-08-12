@@ -32,6 +32,10 @@ vi.mock('@ovhcloud/manager-components', async () => {
   return {
     ...mod,
     useProjectUrl: vi.fn().mockReturnValue('mockProjectUrl'),
+    useNotifications: vi.fn().mockReturnValue({
+      addError: vi.fn(),
+      addSuccess: vi.fn(),
+    }),
   };
 });
 
