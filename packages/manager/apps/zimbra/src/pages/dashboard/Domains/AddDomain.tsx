@@ -135,9 +135,7 @@ export default function AddDomain() {
         </OsdsText>,
         true,
       );
-      if (!domain.currentState.expectedDNSConfig.ownership.cname) {
-        onClose();
-      } else {
+      if (domain.currentState.expectedDNSConfig.ownership.cname) {
         setCnameToCheck(domain.currentState.expectedDNSConfig.ownership.cname);
       }
     },
