@@ -3,7 +3,7 @@ import 'element-internals-polyfill';
 import { vi } from 'vitest';
 
 vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-pci-common');
+  const mod = await vi.importActual('react-router-dom');
   return {
     ...mod,
     useSearchParams: () => [new URLSearchParams({})],
