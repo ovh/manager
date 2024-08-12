@@ -91,7 +91,7 @@ export default function ServicePage() {
             {t('kube_service_description_reset')}
           </OsdsText>
 
-          <div className="flex gap-10 my-5">
+          <div className="flex flex-row flex-wrap md:flex-nowrap gap-10 my-5">
             <ClusterManagement kubeDetail={kubeDetail} />
             <ClusterInformation kubeDetail={kubeDetail} />
             <ClusterAccessAndSecurity kubeDetail={kubeDetail} />
