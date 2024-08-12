@@ -1,9 +1,15 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@ovhcloud/manager-components';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { compareFunction, paginateResults } from '@/helpers';
-import { getAllRegistries, getRegistryPlan, TRegistry } from '../data/registry';
+import {
+  deleteRegistry,
+  getAllRegistries,
+  getRegistryPlan,
+  TRegistry,
+} from '../data/registry';
+import queryClient from '@/queryClient';
 
 export const getRegistryQueryPrefix = (projectId: string) => [
   'project',
@@ -71,4 +77,32 @@ export const useAllRegistries = (
     }),
     [allRegistries, isPending, error, pagination, filters, sorting],
   );
+};
+
+type DeleteRegistryProps = {
+  projectId: string;
+  registryId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+export const useDeleteRegistry = ({
+  projectId,
+  registryId,
+  onError,
+  onSuccess,
+}: DeleteRegistryProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => deleteRegistry(projectId, registryId),
+    onError,
+    onSuccess: async () => {
+      queryClient.invalidateQueries({
+        queryKey: getRegistryQueryPrefix(projectId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    deleteRegistry: () => mutation.mutate(),
+    ...mutation,
+  };
 };
