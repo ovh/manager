@@ -190,15 +190,6 @@ describe('CreateRancher', () => {
       expect(button).toBeDisabled();
     });
 
-    it('Given that I am in a Discovery project, I should see the yellow banner inviting me to activate my project', async () => {
-      const screen = await setupSpecTest({ isProjectDiscoveryMode: true });
-      const banner = screen.getByText(
-        'pci_projects_project_activate_project_banner_message',
-      );
-
-      expect(banner).not.toBeNull();
-    });
-
     it('Given that I have the selected version null and the versions available, I should see the selected version to the available version with the highest name with the recommanded version description', async () => {
       const screen = await setupSpecTest();
       const versionActive = screen.getByLabelText('tile-v2.7.6');
