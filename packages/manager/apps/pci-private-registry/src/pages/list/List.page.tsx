@@ -26,9 +26,9 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import queryClient from '@/queryClient';
 import {
   getRegistryQueryPrefix,
@@ -167,6 +167,9 @@ export default function ListPage() {
           />
         </div>
       )}
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </>
   );
 }

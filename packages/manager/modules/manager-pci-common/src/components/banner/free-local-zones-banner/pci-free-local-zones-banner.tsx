@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionBanner } from '@ovh-ux/manager-react-components';
 
-import './translations';
+import '../../../translations/free-local-zones-banner';
 
 export const URLs = {
   DEFAULT:

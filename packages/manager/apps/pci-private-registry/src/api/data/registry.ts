@@ -60,3 +60,10 @@ export const getRegistryPlan = async (
 
   return data;
 };
+
+export const deleteRegistry = async (projectId: string, registryId: string) => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/containerRegistry/${registryId}`,
+  );
+  return data;
+};

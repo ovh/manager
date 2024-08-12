@@ -1,6 +1,6 @@
 import { ActionMenu } from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useHref, useParams } from 'react-router-dom';
 import { TRegistry } from '@/api/data/registry';
 import { useGetRegistryPlan } from '@/api/hooks/useRegistry';
 import { PRIVATE_REGISTRY_STATUS } from '@/constants';
@@ -22,7 +22,7 @@ export default function ActionComponent({
   const hrefHarborAPI = '';
   const hrefRegenerateCredentials = '';
   const hrefRename = '';
-  const hrefDelete = '';
+  const hrefDelete = useHref(`./delete?registryId=${registry.id}`);
 
   const items = [
     {
