@@ -15,17 +15,17 @@ import {
 } from '@ovhcloud/ods-components';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useNotifications } from '@ovhcloud/manager-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNodes } from '@/api/hooks/nodes';
 import { useSwitchToMonthlyBilling } from '@/api/hooks/instances';
+import { useTrack } from '@/hooks/track';
 
 export default function SwitchPage(): JSX.Element {
   const { projectId, kubeId: clusterId, poolId } = useParams();
   const [searchParams] = useSearchParams();
 
-  const { tracking } = useContext(ShellContext).shell;
+  const { trackClick } = useTrack();
 
   const nodeId = searchParams.get('nodeId');
 
@@ -111,10 +111,9 @@ export default function SwitchPage(): JSX.Element {
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={() => {
-          tracking.trackClick({
-            name: `details::nodepools::details::nodes::billing-type::cancel`,
-            type: 'action',
-          });
+          trackClick(
+            `details::nodepools::details::nodes::billing-type::cancel`,
+          );
           goBack();
         }}
       >
@@ -124,10 +123,9 @@ export default function SwitchPage(): JSX.Element {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
-          tracking.trackClick({
-            name: `details::nodepools::details::nodes::billing-type::confirm`,
-            type: 'action',
-          });
+          trackClick(
+            `details::nodepools::details::nodes::billing-type::confirm`,
+          );
           switchToMonthlyBilling();
         }}
         {...(isSwitching ? { disabled: true } : {})}
