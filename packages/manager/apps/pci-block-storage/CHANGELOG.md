@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.2.0...@ovh-ux/manager-pci-block-storage-app@0.3.0) (2024-08-12)
+
+
+### Features
+
+* **pci.project:** remove mediation price change banner ([#12140](https://github.com/ovh/manager/issues/12140)) ([b592a40](https://github.com/ovh/manager/commit/b592a40a7d27d0332180ab68aba23043a1fe0805))
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.1.3...@ovh-ux/manager-pci-block-storage-app@0.2.0) (2024-08-08)
 
 
