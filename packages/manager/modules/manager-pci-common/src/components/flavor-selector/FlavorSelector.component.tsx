@@ -12,7 +12,8 @@ import {
   useMergedKubeFlavors,
 } from '../../api/hook/useFlavors';
 import { FlavorTile } from './FlavorTile.component';
-import './translations';
+
+import '../../translations/flavor-selector';
 
 export type KubeFlavor = ReturnType<
   typeof useMergedKubeFlavors

@@ -18,8 +18,9 @@ import {
   ODS_INPUT_TYPE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import './translations';
 import React, { useEffect, useState } from 'react';
+
+import '../../translations/quantity-selector';
 
 export interface QuantitySelectorProps {
   label?: string;
