@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.57.1...@ovh-ux/manager-pci@6.58.0) (2024-08-12)
+
+
+### Bug Fixes
+
+* **pci.instances:** correct discovery text ([#12646](https://github.com/ovh/manager/issues/12646)) ([3b94338](https://github.com/ovh/manager/commit/3b943387896d910fff6d9ea550a95cd66d49312b))
+
+
+### Features
+
+* **pci.project:** remove mediation price change banner ([#12140](https://github.com/ovh/manager/issues/12140)) ([b592a40](https://github.com/ovh/manager/commit/b592a40a7d27d0332180ab68aba23043a1fe0805))
+
+
+
+
+
 ## [6.57.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.57.0...@ovh-ux/manager-pci@6.57.1) (2024-08-08)
 
 

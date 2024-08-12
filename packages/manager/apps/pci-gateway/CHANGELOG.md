@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.3.0...@ovh-ux/manager-pci-gateway-app@0.4.0) (2024-08-12)
+
+
+### Features
+
+* **pci-gateway:** hide warning banner displayed ([#12029](https://github.com/ovh/manager/issues/12029)) ([1a7f079](https://github.com/ovh/manager/commit/1a7f079f0d2b9373542be6c60e1949661df2b011))
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.2.9...@ovh-ux/manager-pci-gateway-app@0.3.0) (2024-08-08)
 
 
