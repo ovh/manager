@@ -1,5 +1,5 @@
 <div data-ng-if="$ctrl.isOpenModal">
-    <div class="modal d-block document-upload-validation-modal">
+    <div class="modal d-block">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <oui-modal
@@ -15,6 +15,7 @@
                     <oui-collapsible
                         heading="{{:: 'user_account_identity_documents_sent_legal_title' | translate }}"
                         aria-label="Action"
+                        class="mt-3"
                     >
                         <span
                             data-translate="user_account_identity_documents_sent_legal_content"
