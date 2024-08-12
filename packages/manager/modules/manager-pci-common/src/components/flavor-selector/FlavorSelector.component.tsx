@@ -7,12 +7,10 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { TabsComponent } from '@ovhcloud/manager-components';
-import {
-  KUBE_FLAVOR_CATEGORIES,
-  useMergedKubeFlavors,
-} from '../../api/hook/useFlavors';
+import { KUBE_FLAVOR_CATEGORIES, useMergedKubeFlavors } from '../../api/hook';
 import { FlavorTile } from './FlavorTile.component';
-import './translations';
+
+import '../../translations/flavor-selector';
 
 export type KubeFlavor = ReturnType<
   typeof useMergedKubeFlavors

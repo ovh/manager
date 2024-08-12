@@ -33,7 +33,13 @@ export default [
           tracking: 'registries',
         },
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
-        children: [],
+        children: [
+          {
+            id: 'delete',
+            path: 'delete',
+            ...lazyRouteConfig(() => import('@/pages/delete/Delete.page')),
+          },
+        ],
       },
     ],
   },
