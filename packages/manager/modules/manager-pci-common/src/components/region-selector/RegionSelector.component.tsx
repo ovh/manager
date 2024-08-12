@@ -16,9 +16,9 @@ import { TLocalisation } from './useRegions';
 import { useRegionSelector } from './useRegionSelector';
 import { RegionTile } from './RegionTile';
 import { RegionList } from './RegionList.component';
+import '../../translations/region-selector';
 
 import './style.scss';
-import './translations';
 
 export interface RegionSelectorProps {
   projectId: string;

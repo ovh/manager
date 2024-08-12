@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import './translations';
+
+import '../../translations/bytes';
 
 const UNITS = {
   1000: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],

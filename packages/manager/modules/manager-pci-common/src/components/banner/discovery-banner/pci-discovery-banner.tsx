@@ -5,7 +5,7 @@ import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { ActionBanner } from '@ovh-ux/manager-react-components';
 import { TProject } from '../../../api/data';
 
-import './translations';
+import '../../../translations/discovery-banner';
 
 const DISCOVERY_PROJECT_PLAN_CODE = 'project.discovery';
 

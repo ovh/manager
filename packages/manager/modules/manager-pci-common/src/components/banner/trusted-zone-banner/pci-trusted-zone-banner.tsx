@@ -9,7 +9,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { useTrustedZoneBanner } from './useTrustedZoneBanner.hook';
 
-import './translations';
+import '../../../translations/trusted-zone-banner';
 
 export function PciTrustedZoneBanner() {
   const { t } = useTranslation('pci-trusted-zone-banner');
