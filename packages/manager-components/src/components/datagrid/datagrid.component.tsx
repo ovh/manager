@@ -210,12 +210,14 @@ export const Datagrid = <T,>({
               {table.getRowModel().rows.map((row) => (
                 <tr
                   key={row.id}
-                  className="text-center border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]"
+                  className="border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <td
                       key={cell.id}
-                      className={`${contentAlignLeft ? 'pl-4' : 'text-center'}`}
+                      className={
+                        contentAlignLeft ? 'text-left pl-4' : 'text-center'
+                      }
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
@@ -231,7 +233,12 @@ export const Datagrid = <T,>({
                     'border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]'
                   }
                 >
-                  <td className="text-center" colSpan={columns.length}>
+                  <td
+                    className={
+                      contentAlignLeft ? 'text-left pl-4' : 'text-center'
+                    }
+                    colSpan={columns.length}
+                  >
                     <DataGridTextCell>
                       {t('common_pagination_no_results')}
                     </DataGridTextCell>
