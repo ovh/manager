@@ -72,5 +72,6 @@
   "private_registry_guide_using_private_registry_with_kubernetes": "Utilización de Managed Private Registry con Managed Kubernetes",
   "private_registry_guide_using_the_helm_chart_museum": "Utilización de Helm ChartMuseum",
   "private_registry_common_cancel": "Cancelar",
-  "private_registry_region": "Región"
+  "private_registry_region": "Región",
+  "common_clipboard_copied": "Copiado"
 }

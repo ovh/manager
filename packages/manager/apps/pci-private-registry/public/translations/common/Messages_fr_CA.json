@@ -72,5 +72,6 @@
   "private_registry_guide_creating_and_using_a_private_image": "Création et utilisation d'images privées",
   "private_registry_guide_using_private_registry_with_kubernetes": "Utilisation d'OVHcloud Managed Private Registry avec OVHcloud Managed Kubernetes",
   "private_registry_guide_using_the_helm_chart_museum": "Utilisation du Helm chart museum",
-  "private_registry_common_cancel": "Annuler"
+  "private_registry_common_cancel": "Annuler",
+  "common_clipboard_copied": "Copié"
 }
