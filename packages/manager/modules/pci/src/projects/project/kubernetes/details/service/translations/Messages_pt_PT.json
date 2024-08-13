@@ -80,5 +80,5 @@
   "kube_service_cluster_network_subnet": "Sub-rede",
   "kube_service_cluster_network_lb_subnet": "Sub-rede Load Balancer",
   "kube_service_cluster_network_error": "Ocorreu um erro ao carregar as informações de rede: {{ error }}",
-  "kube_service_network_edit": "Modificar as definições da rede"
+  "kube_service_network_edit": "Modificar os parâmetros da rede"
 }
