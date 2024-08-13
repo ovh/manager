@@ -60,7 +60,7 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
           size={ODS_BUTTON_SIZE.md}
           href={orderHref}
           onClick={onOrderButtonClick}
-          disabled={(onOrderButtonClick && !orderHref) || undefined}
+          disabled={(!onOrderButtonClick && !orderHref) || undefined}
         >
           {orderButtonLabel}
         </OsdsButton>
