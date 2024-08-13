@@ -81,7 +81,7 @@ export default function OnBoardingPage() {
       route={`/pci/projects/${projectId}/kubernetes`}
       condition={clusters?.length > 0}
     >
-      dssss{project && <OsdsBreadcrumb items={breadcrumbItems} />}dsqdsdqs
+      {project && <OsdsBreadcrumb items={breadcrumbItems} />}
       <OnboardingLayout
         title={tOnBoarding('pci_projects_project_kubernetes_title')}
         description={
