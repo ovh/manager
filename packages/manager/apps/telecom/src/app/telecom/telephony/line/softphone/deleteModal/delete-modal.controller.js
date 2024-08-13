@@ -7,6 +7,7 @@ export default class DeleteModalController {
   }
 
   deleteDevice() {
+    this.deleting = true;
     const promise = this.deleteAllDevices
       ? this.softphoneService.deleteAllDevices(
           this.billingAccount,

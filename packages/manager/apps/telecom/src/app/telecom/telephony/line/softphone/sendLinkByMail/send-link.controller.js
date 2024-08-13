@@ -16,6 +16,7 @@ export default class SendLinkController {
   }
 
   sendMail() {
+    this.sending = true;
     this.softphoneService
       .sendProvisioningToken(
         this.$stateParams.billingAccount,

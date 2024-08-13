@@ -3,7 +3,7 @@
     data-heading="{{ ::'telephony_line_softphone_button_email_link' | translate }}"
     data-primary-action="$ctrl.sendMail()"
     data-primary-label="{{ :: 'telephony_line_softphone_confirm_button' | translate }}"
-    data-primary-disabled="!$ctrl.model.email || $ctrl.sendLinkByMail.$invalid"
+    data-primary-disabled="!$ctrl.model.email || $ctrl.sendLinkByMail.$invalid || $ctrl.sending"
 >
     <p data-translate="telephony_line_softphone_send_mail_description"></p>
     <div
