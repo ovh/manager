@@ -102,28 +102,28 @@ export default function Keys() {
           <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
         </div>
       )}
+      <OsdsButton
+        size={ODS_BUTTON_SIZE.sm}
+        inline
+        color={ODS_THEME_COLOR_INTENT.primary}
+        variant={ODS_BUTTON_VARIANT.stroked}
+        className={'xs:mt-2 sm:mt-0 md:mt-8 w-fit h-fit'}
+        onClick={() => {
+          navigate(ROUTES_URLS.createKmsServiceKey);
+        }}
+      >
+        <span slot="start">
+          <OsdsIcon
+            name={ODS_ICON_NAME.ADD}
+            size={ODS_ICON_SIZE.xs}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          ></OsdsIcon>
+        </span>
+
+        {t('key_management_service_service-keys_cta_create')}
+      </OsdsButton>
       {!isLoading && !error && (
         <div className={'mt-8'}>
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            inline
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.stroked}
-            className={'xs:mt-2 sm:mt-0 w-fit h-fit'}
-            onClick={() => {
-              navigate(ROUTES_URLS.createKmsServiceKey);
-            }}
-          >
-            <span slot="start">
-              <OsdsIcon
-                name={ODS_ICON_NAME.ADD}
-                size={ODS_ICON_SIZE.xs}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              ></OsdsIcon>
-            </span>
-
-            {t('key_management_service_service-keys_cta_create')}
-          </OsdsButton>
           <Datagrid
             columns={columns}
             items={okmsServiceKey || []}
