@@ -1,6 +1,6 @@
 {
   "kubernetes_network_form_gateway_label": "Outbound routing policy",
-  "kubernetes_network_form_gateway_description": "You can define a specific gateway to route traffic for your worker nodes (e.g. to retrieve Docker images from a registry).",
+  "kubernetes_network_form_gateway_description": "You can configure how your worker nodes route outgoing traffic (for example, to retrieve images from a repository).",
   "kubernetes_network_form_gateway_public": "Nodes public interface",
   "kubernetes_network_form_gateway_public_description": "Each node will use its own public interface",
   "kubernetes_network_form_gateway_private": "Nodes private interface",
@@ -24,5 +24,8 @@
   "kubernetes_network_form_subnet_error_default": "An error has occurred loading the subnets for this private network: {{ error }}.",
   "kubernetes_network_form_load_balancers_subnet": "Choose a dedicated subnet for your Load Balancers",
   "kubernetes_network_form_load_balancers_subnet_description": "You can define a specific subnet for your Load Balancers. This is particularly important if the subnet you have chosen for your cluster does not meet the requirements for creating OVHcloud Managed Load Balancers.",
-  "kubernetes_network_form_load_balancers_subnet_toggler": "Advanced settings"
+  "kubernetes_network_form_load_balancers_subnet_toggler": "Advanced settings",
+  "kubernetes_network_form_gateway_mode_auto": "Default gateway set according to your private network DHCP configuration (recommended)",
+  "kubernetes_network_form_gateway_mode_custom": "Default gateway statically overloaded",
+  "kubernetes_network_form_gateway_mode_custom_placeholder": "IP address of your default gateway"
 }

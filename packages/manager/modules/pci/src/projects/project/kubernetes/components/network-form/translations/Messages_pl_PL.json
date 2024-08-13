@@ -1,6 +1,6 @@
 {
   "kubernetes_network_form_gateway_label": "Strategia routingu wychodzącego",
-  "kubernetes_network_form_gateway_description": "Możesz określić bramkę (gateway), przez którą będzie kierowany ruch z Twoich węzłów roboczych (np. odzyskiwanie obrazów Docker z rejestru).",
+  "kubernetes_network_form_gateway_description": "Możesz skonfigurować sposób kierowania ruchu wychodzącego przez węzły robocze (np. aby pobrać obrazy z rejestru).",
   "kubernetes_network_form_gateway_public": "Publiczny interfejs węzłów",
   "kubernetes_network_form_gateway_public_description": "Każdy węzeł będzie korzystał z własnego interfejsu publicznego",
   "kubernetes_network_form_gateway_private": "Prywatny interfejs węzłów",
@@ -24,5 +24,8 @@
   "kubernetes_network_form_subnet_error_default": "Wystąpił błąd podczas ładowania podsieci dla tej sieci prywatnej: {{ error }}.",
   "kubernetes_network_form_load_balancers_subnet": "Wybierz dedykowaną podsieć dla Twoich Load Balancerów",
   "kubernetes_network_form_load_balancers_subnet_description": "Możesz zdefiniować podsieć specyficzną dla Twoich Load Balancerów. Jest to szczególnie konieczne, jeśli podsieć wybrana dla Twojego klastra nie spełnia wymagań niezbędnych do utworzenia zarządzanych Load Balancerów OVHcloud.",
-  "kubernetes_network_form_load_balancers_subnet_toggler": "Zaawansowane parametry"
+  "kubernetes_network_form_load_balancers_subnet_toggler": "Zaawansowane parametry",
+  "kubernetes_network_form_gateway_mode_auto": "Domyślna brama zdefiniowana zgodnie z konfiguracją DHCP Twojej prywatnej sieci (zalecane)",
+  "kubernetes_network_form_gateway_mode_custom": "Domyślna brama statycznie przeciążona",
+  "kubernetes_network_form_gateway_mode_custom_placeholder": "Adres IP domyślnej bramy"
 }
