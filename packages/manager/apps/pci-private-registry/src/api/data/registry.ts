@@ -65,6 +65,25 @@ export const deleteRegistry = async (projectId: string, registryId: string) => {
   const { data } = await v6.delete(
     `/cloud/project/${projectId}/containerRegistry/${registryId}`,
   );
+
+  return data;
+};
+
+export type TRegistryCredentials = {
+  email: string;
+  id: string;
+  password: string;
+  user: string;
+};
+
+export const postRegistryCredentials = async (
+  projectId: string,
+  registryId: string,
+): Promise<TRegistryCredentials> => {
+  const { data } = await v6.post(
+    `cloud/project/${projectId}/containerRegistry/${registryId}/users`,
+  );
+
   return data;
 };
 
