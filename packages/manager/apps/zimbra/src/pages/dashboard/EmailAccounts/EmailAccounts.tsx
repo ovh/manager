@@ -122,11 +122,11 @@ export default function EmailAccounts() {
 
   return (
     <>
-      <Outlet />
       <div className="py-6 mt-8">
-        <Notifications />
+        <Outlet />
         {!isOverriddedPage && (
           <>
+            <Notifications />
             <div className="mb-8">
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
