@@ -2,7 +2,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'telecom.telephony.billingAccount.line.dashboard.softphone.add',
     {
-      url: '/add',
+      url: '/add?deviceId',
       views: {
         modal: {
           component: 'softphoneAddDevice',
@@ -18,10 +18,10 @@ export default /* @ngInject */ ($stateProvider) => {
           import('angular-qr').then((module) =>
             $ocLazyLoad.inject(module.default || module),
           ),
-        goToSendLinkByMailModal: /* @ngInject */ ($state) => (deviceId) =>
+        goToSendLinkByMailModal: /* @ngInject */ ($state) => (id) =>
           $state.go(
             'telecom.telephony.billingAccount.line.dashboard.softphone.mail',
-            { deviceId },
+            { deviceId: id },
           ),
         goBack: /* @ngInject */ ($state) => (reload) =>
           $state.go('^', {}, { reload }),
