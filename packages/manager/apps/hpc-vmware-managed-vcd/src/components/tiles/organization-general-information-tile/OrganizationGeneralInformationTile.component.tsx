@@ -18,16 +18,20 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import TileSubtitle from '@/components/tiles/tile-subtitle/TileSubtitle.component';
 import RegionLabel from '@/components/region-label/RegionLabel.component';
+import { EditNameModal } from '@/components/modal/EditNameModal';
+import { EditDescriptionModal } from '@/components/modal/EditDescriptionModal';
 
 type TTileProps = {
   vcdOrganization: IVcdOrganization;
   datacenterCount?: number;
 };
+
+type TShowModal = 'name' | 'description' | false;
 
 // TODO remove when Clipboard is available in manager-components
 export function Clipboard({ value }: { value: string }) {
@@ -48,13 +52,41 @@ export default function OrganizationGenerationInformationTile({
   datacenterCount = 0,
 }: TTileProps) {
   const { t } = useTranslation('dashboard');
+  const [showModal, setShowModal] = useState<TShowModal>(false);
 
   return (
     <OsdsTile className="w-full h-full flex-col" inline rounded>
+      {showModal === 'name' && (
+        <EditNameModal
+          organizationName={vcdOrganization?.currentState?.fullName}
+          onCloseModal={() => setShowModal(false)}
+          onEdit={() => {}}
+        />
+      )}
+      {showModal === 'description' && (
+        <EditDescriptionModal
+          organizationDescription={vcdOrganization?.currentState?.fullName}
+          onCloseModal={() => setShowModal(false)}
+          onEdit={() => {}}
+        />
+      )}
       <div className="flex flex-col w-full">
         <CommonTitle>
           {t('managed_vcd_dashboard_general_information')}
         </CommonTitle>
+        <OsdsDivider separator />
+        <TileSubtitle>{t('managed_vcd_dashboard_name')}</TileSubtitle>
+        <div className="flex flex-row justify-between items-center">
+          <Description>{vcdOrganization?.currentState?.fullName}</Description>
+          <OsdsIcon
+            aria-label="edit"
+            className="mx-6 cursor-pointer"
+            onClick={() => setShowModal('name')}
+            name={ODS_ICON_NAME.PEN}
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          />
+        </div>
         <OsdsDivider separator />
         <div className="flex flex-col mb-3">
           <TileSubtitle>{t('managed_vcd_dashboard_description')}</TileSubtitle>
@@ -65,17 +97,12 @@ export default function OrganizationGenerationInformationTile({
             <OsdsIcon
               aria-label="edit"
               className="mx-6 cursor-pointer"
-              onClick={() => {}}
+              onClick={() => setShowModal('description')}
               name={ODS_ICON_NAME.PEN}
               size={ODS_ICON_SIZE.xxs}
               color={ODS_THEME_COLOR_INTENT.primary}
             />
           </div>
-          <OsdsDivider separator />
-          <TileSubtitle>
-            {t('managed_vcd_dashboard_commercial_name')}
-          </TileSubtitle>
-          <Description>{vcdOrganization?.currentState?.fullName}</Description>
           <OsdsDivider separator />
           <TileSubtitle>{t('managed_vcd_dashboard_localisation')}</TileSubtitle>
           <OsdsText
