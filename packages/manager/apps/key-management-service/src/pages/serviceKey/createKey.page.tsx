@@ -180,15 +180,14 @@ export default function CreateKey() {
   ];
 
   return (
-    <>
-      <BaseLayout
-        breadcrumb={<Breadcrumb items={breadcrumbItems} />}
-        header={{
-          title: t('key_management_service_service-keys_create_title'),
-          description: t('key_management_service_service-keys_create_subtitle'),
-          headerButton: <KmsGuidesHeader />,
-        }}
-      />
+    <BaseLayout
+      breadcrumb={<Breadcrumb items={breadcrumbItems} />}
+      header={{
+        title: t('key_management_service_service-keys_create_title'),
+        description: t('key_management_service_service-keys_create_subtitle'),
+        headerButton: <KmsGuidesHeader />,
+      }}
+    >
       <div className="w-full block">
         <div className="mb-6">
           <Notifications />
@@ -403,7 +402,12 @@ export default function CreateKey() {
                 inline
                 color={ODS_THEME_COLOR_INTENT.primary}
                 onClick={submitCreateKey}
-                disabled={!!serviceKeyNameError || isPending || undefined}
+                disabled={
+                  !!serviceKeyNameError ||
+                  keyOperations.length === 0 ||
+                  isPending ||
+                  undefined
+                }
               >
                 {t('key_management_service_service-keys_create_cta_submit')}
               </OsdsButton>
@@ -412,6 +416,6 @@ export default function CreateKey() {
         </div>
       </div>
       <Outlet />
-    </>
+    </BaseLayout>
   );
 }
