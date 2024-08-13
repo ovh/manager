@@ -1,6 +1,6 @@
 {
   "kubernetes_network_form_gateway_label": "Estratégia de roteamento de saída",
-  "kubernetes_network_form_gateway_description": "Pode especificar um gateway específico para rotear o tráfego dos seus nós de trabalho (por exemplo, recuperação de imagens Docker a partir de um registry).",
+  "kubernetes_network_form_gateway_description": "É possível configurar a forma como os nós de trabalho direcionam o tráfego de saída (por exemplo, para recuperar imagens a partir de um registry).",
   "kubernetes_network_form_gateway_public": "Interface pública dos nós",
   "kubernetes_network_form_gateway_public_description": "Cada nó utilizará a sua própria interface pública",
   "kubernetes_network_form_gateway_private": "Interface privada dos nós",
@@ -24,5 +24,8 @@
   "kubernetes_network_form_subnet_error_default": "Ocorreu um erro ao carregar as sub-redes para esta rede privada: {{ error }}",
   "kubernetes_network_form_load_balancers_subnet": "Escolha uma sub-rede dedicada para os seus Load Balancers",
   "kubernetes_network_form_load_balancers_subnet_description": "É possível definir uma sub-rede específica para os seus Load Balancers. Isto é especialmente necessário se a sub-rede escolhida para o seu cluster não respeitar os requisitos necessários à criação do Load Balancer gerido da OVHcloud.",
-  "kubernetes_network_form_load_balancers_subnet_toggler": "Configurações avançadas"
+  "kubernetes_network_form_load_balancers_subnet_toggler": "Configurações avançadas",
+  "kubernetes_network_form_gateway_mode_auto": "Gateway predefinido baseado na configuração DHCP da sua rede privada (recomendado)",
+  "kubernetes_network_form_gateway_mode_custom": "Gateway predefinido sobrecarregado de forma estática",
+  "kubernetes_network_form_gateway_mode_custom_placeholder": "Endereço IP do gateway predefinido"
 }

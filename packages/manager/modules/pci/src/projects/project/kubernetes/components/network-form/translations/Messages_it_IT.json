@@ -1,6 +1,6 @@
 {
   "kubernetes_network_form_gateway_label": "Strategia di routing in uscita",
-  "kubernetes_network_form_gateway_description": "È possibile indicare un gateway specifico per instradare il traffico dei nodi di lavoro (ad esempio, recupero di immagini Docker da un registry).",
+  "kubernetes_network_form_gateway_description": "È possibile configurare la modalità di routing del traffico in uscita dei nodi di lavoro (ad esempio, per recuperare le immagini da un registry).",
   "kubernetes_network_form_gateway_public": "Interfaccia pubblica dei nodi",
   "kubernetes_network_form_gateway_public_description": "Ogni nodo utilizzerà la propria interfaccia pubblica",
   "kubernetes_network_form_gateway_private": "Interfaccia privata dei nodi",
@@ -24,5 +24,8 @@
   "kubernetes_network_form_subnet_error_default": "Si è verificato un errore durante il caricamento delle sottoreti per la rete privata: {{ error }}.",
   "kubernetes_network_form_load_balancers_subnet": "Scegli una sottorete dedicata per i Load Balancer",
   "kubernetes_network_form_load_balancers_subnet_description": "Puoi definire una sottorete specifica per i tuoi Load Balancer. Questa operazione è necessaria soprattutto se la sottorete scelta per il cluster non rispetta i requisiti necessari alla creazione dei Load Balancer gestiti OVHcloud.",
-  "kubernetes_network_form_load_balancers_subnet_toggler": "Impostazioni avanzate"
+  "kubernetes_network_form_load_balancers_subnet_toggler": "Impostazioni avanzate",
+  "kubernetes_network_form_gateway_mode_auto": "Gateway predefinito definito definito in base alla configurazione DHCP della rete privata (scelta consigliata)",
+  "kubernetes_network_form_gateway_mode_custom": "Gateway predefinito statico sovraccarico",
+  "kubernetes_network_form_gateway_mode_custom_placeholder": "Indirizzo IP del gateway predefinito"
 }

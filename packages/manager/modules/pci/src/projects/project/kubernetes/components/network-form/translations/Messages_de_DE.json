@@ -1,6 +1,6 @@
 {
   "kubernetes_network_form_gateway_label": "Strategie für ausgehendes Routing",
-  "kubernetes_network_form_gateway_description": "Sie können ein spezifisches Gateway festlegen, um den Traffic Ihrer Worker-Nodes zu routen (zum Beispiel den Abruf von Docker-Images aus einer Registry).",
+  "kubernetes_network_form_gateway_description": "Sie können konfigurieren, wie Ihre Worker-Nodes den ausgehenden Datenverkehr weiterleiten (z. B. um Bilder aus einer Registry abzurufen).",
   "kubernetes_network_form_gateway_public": "Öffentliches Interface der Nodes",
   "kubernetes_network_form_gateway_public_description": "Jeder Node nutzt sein eigenes öffentliches Interface.",
   "kubernetes_network_form_gateway_private": "Privates Interface der Nodes",
@@ -24,5 +24,8 @@
   "kubernetes_network_form_subnet_error_default": "Beim Laden der Subnetze für dieses private Netzwerk ist ein Fehler aufgetreten: {{ error }}.",
   "kubernetes_network_form_load_balancers_subnet": "Wählen Sie ein dediziertes Subnetz für Ihre Loadbalancer aus.",
   "kubernetes_network_form_load_balancers_subnet_description": "Sie können ein spezielles Subnetz für Ihre Loadbalancer definieren. Dies ist insbesondere dann erforderlich, wenn das für Ihren Cluster gewählte Subnetz die für die Erstellung von verwalteten OVHcloud Loadbalancern erforderlichen Voraussetzungen nicht erfüllt.",
-  "kubernetes_network_form_load_balancers_subnet_toggler": "Erweiterte Einstellungen"
+  "kubernetes_network_form_load_balancers_subnet_toggler": "Erweiterte Einstellungen",
+  "kubernetes_network_form_gateway_mode_auto": "Standardgateway, das entsprechend der DHCP-Konfiguration Ihres privaten Netzwerks festgelegt wird (empfohlen)",
+  "kubernetes_network_form_gateway_mode_custom": "Standardgateway statisch überladen",
+  "kubernetes_network_form_gateway_mode_custom_placeholder": "IP-Adresse Ihres Standardgateways"
 }
