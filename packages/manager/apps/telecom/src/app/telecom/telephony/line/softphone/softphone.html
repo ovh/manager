@@ -95,21 +95,19 @@
             <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
             <oui-tile
                 data-ng-if="!$ctrl.isLoading"
-                data-ng-repeat="device in ::$ctrl.devices track by $index"
+                data-ng-repeat="device in $ctrl.devices track by $index"
                 class="m-2"
                 data-heading="{{ ::device.name }}"
             >
                 <button
-                    data-ng-if="!$ctrl.showEditFormSoftphoneName[deviceId]"
+                    data-ng-if="!$ctrl.showEditFormSoftphoneName[device.id]"
                     class="btn btn-icon btn-transparent pull-right mt-n5"
-                    data-ng-click="$ctrl.toggleEditSoftphoneName(device.deviceId)"
+                    data-ng-click="$ctrl.toggleEditSoftphoneName(device.id)"
                 >
                     <i class="oui-icon oui-icon-pen" aria-hidden="true"></i>
                 </button>
-                <div
-                    data-ng-if="$ctrl.showEditFormSoftphoneName[device.deviceId]"
-                >
-                    <form name="$ctrl.softphoneNameForm[device.deviceId]">
+                <div data-ng-if="$ctrl.showEditFormSoftphoneName[device.id]">
+                    <form name="$ctrl.softphoneNameForm[device.id]">
                         <oui-field
                             label="{{ 'telephony_line_softphone_edit_name_heading' | translate }}"
                         >
@@ -118,21 +116,21 @@
                                     class="oui-input-overlay oui-input-overlay_inline"
                                 >
                                     <input
-                                        id="edit_name_softphone_device_{{ device.deviceId }}"
+                                        id="edit_name_softphone_device_{{ device.id }}"
                                         class="oui-input"
-                                        name="editableSoftphoneNameInput{{ device.deviceId }}"
-                                        data-ng-model="$ctrl.model[device.deviceId].name"
+                                        name="editableSoftphoneNameInput{{ device.id }}"
+                                        data-ng-model="$ctrl.model[device.id].name"
                                         data-ng-pattern="/[a-zA-Z0-9]/"
                                         type="text"
                                     />
                                     <span
                                         class="oui-icon oui-icon-success mr-4"
                                         aria-hidden="true"
-                                        data-ng-click="$ctrl.saveSoftphoneName(device.deviceId)"
-                                        data-ng-disabled="!$ctrl.softphoneNameForm[device.deviceId].$valid && !$ctrl.softphoneNameForm[device.deviceId].$dirty"
+                                        data-ng-click="$ctrl.saveSoftphoneName(device.id)"
+                                        data-ng-disabled="!$ctrl.softphoneNameForm[device.id].$valid && !$ctrl.softphoneNameForm[device.id].$dirty"
                                     ></span>
                                     <span
-                                        data-ng-click="$ctrl.toggleEditSoftphoneName(device.deviceId)"
+                                        data-ng-click="$ctrl.toggleEditSoftphoneName(device.id)"
                                         class="oui-icon oui-icon-close text-secondary"
                                         aria-hidden="true"
                                     ></span>
@@ -162,7 +160,7 @@
                     <oui-tile-actions>
                         <oui-button
                             class="p-2"
-                            data-on-click="$ctrl.goToDeleteDevice(device.deviceId)"
+                            data-on-click="$ctrl.goToDeleteDevice(device.id)"
                             variant="link"
                         >
                             <span
@@ -173,7 +171,7 @@
                         </oui-button>
                         <oui-button
                             class="p-2"
-                            data-on-click="$ctrl.openAddDeviceModal(device.deviceId)"
+                            data-on-click="$ctrl.openAddDeviceModal(device.id)"
                             ><span
                                 data-translate="telephony_line_softphone_btn_rerecord"
                             >

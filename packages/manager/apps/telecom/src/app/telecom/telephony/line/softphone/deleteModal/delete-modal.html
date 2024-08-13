@@ -3,6 +3,7 @@
     data-on-dismiss="$ctrl.goBack()"
     data-primary-action="$ctrl.deleteDevice()"
     data-primary-label="{{:: 'telephony_line_softphone_btn_delete' | translate }}"
+    data-primary-disabled="$ctrl.deleting"
     data-heading="{{ $ctrl.deleteAllDevices ? 'telephony_line_softphone_delete_all_devices_modal_title' : 'telephony_line_softphone_delete_device_modal_title' | translate }}"
 >
     <p>
