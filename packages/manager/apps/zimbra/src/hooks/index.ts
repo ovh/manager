@@ -6,4 +6,5 @@ export * from './useOrganization';
 export * from './useOrganizationsList';
 export * from './useOverridePage';
 export * from './usePlatform';
+export * from './useAccount';
 export * from './types';
