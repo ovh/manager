@@ -9,6 +9,7 @@ import {
   getRegistryPlan,
   renameRegistry,
   TRegistry,
+  postRegistryCredentials,
 } from '../data/registry';
 import queryClient from '@/queryClient';
 
@@ -26,6 +27,11 @@ export const getRegistryPlanQueryKey = (
   projectId: string,
   registryId: string,
 ) => [...getRegistryQueryPrefix(projectId), registryId, 'plan'];
+
+export const getRegistryCredentialsQueryKey = (
+  projectId: string,
+  registryId: string,
+) => [...getRegistryQueryPrefix(projectId), registryId, 'users'];
 
 export const useGetAllRegistries = (projectId: string) =>
   useQuery({
@@ -86,6 +92,7 @@ type DeleteRegistryProps = {
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
+
 export const useDeleteRegistry = ({
   projectId,
   registryId,
@@ -114,6 +121,7 @@ type RenameRegistryProps = {
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
+
 export const useRenameRegistry = ({
   projectId,
   registryId,
@@ -136,3 +144,14 @@ export const useRenameRegistry = ({
     ...mutation,
   };
 };
+
+export const usePostRegistryCredentials = (
+  projectId: string,
+  registryId: string,
+  enabled: boolean,
+) =>
+  useQuery({
+    queryKey: getRegistryCredentialsQueryKey(projectId, registryId),
+    queryFn: () => postRegistryCredentials(projectId, registryId),
+    enabled,
+  });

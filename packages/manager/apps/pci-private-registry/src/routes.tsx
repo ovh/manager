@@ -35,6 +35,22 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
         children: [
           {
+            path: ':registryId/api-url',
+            handle: {
+              tracking: 'api-url',
+            },
+            ...lazyRouteConfig(() => import('@/pages/api-url/APIUrl.page')),
+          },
+          {
+            path: ':registryId/credentials',
+            handle: {
+              tracking: 'credentials',
+            },
+            ...lazyRouteConfig(() =>
+              import('@/pages/credentials/Credentials.page'),
+            ),
+          },
+          {
             id: 'delete',
             path: 'delete',
             ...lazyRouteConfig(() => import('@/pages/delete/Delete.page')),
