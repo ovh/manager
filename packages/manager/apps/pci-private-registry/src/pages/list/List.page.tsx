@@ -6,6 +6,7 @@ import {
   Headers,
   Notifications,
   PciGuidesHeader,
+  RedirectionGuard,
   useColumnFilters,
   useDataGrid,
   useNotifications,
@@ -63,7 +64,11 @@ export default function ListPage() {
   };
 
   return (
-    <>
+    <RedirectionGuard
+      isLoading={isPending}
+      condition={data.rows?.length === 0}
+      route={`/pci/projects/${projectId}/private-registry/onboarding`}
+    >
       {project && (
         <OsdsBreadcrumb
           items={[
@@ -170,6 +175,6 @@ export default function ListPage() {
       <Suspense>
         <Outlet />
       </Suspense>
-    </>
+    </RedirectionGuard>
   );
 }
