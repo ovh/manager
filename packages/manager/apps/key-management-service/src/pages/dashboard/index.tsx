@@ -1,13 +1,11 @@
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useParams } from 'react-router-dom';
-import { OsdsDivider, OsdsText } from '@ovhcloud/ods-components/react';
-import { Notifications } from '@ovhcloud/manager-components';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+  BaseLayout,
+  HeadersProps,
+  Notifications,
+} from '@ovhcloud/manager-components';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import Dashboard, {
   DashboardTabItemProps,
@@ -26,6 +24,7 @@ export default function DashboardPage() {
   const { okmsId } = useParams();
   const { data: okms } = useOKMSById(okmsId);
   const displayName = okms?.data?.iam?.displayName;
+  const navigate = useNavigate();
 
   const tabsList: DashboardTabItemProps[] = [
     {
@@ -56,25 +55,27 @@ export default function DashboardPage() {
     },
   ];
 
+  const headerProps: HeadersProps = {
+    title: displayName,
+    headerButton: <KmsGuidesHeader />,
+  };
+
   return (
-    <div className="m-10">
-      <Breadcrumb items={breadcrumbItems} />
-      <div className={'flex items-center justify-between mt-2'}>
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        >
-          {displayName}
-        </OsdsText>
-        <KmsGuidesHeader />
-      </div>
-      <OsdsDivider></OsdsDivider>
-      <Notifications />
+    <BaseLayout
+      header={headerProps}
+      backLinkLabel={tDashboard(
+        'key_management_service_dashboard_back-link-label',
+      )}
+      onClickReturn={() => {
+        navigate(ROUTES_URLS.root);
+      }}
+      breadcrumb={<Breadcrumb items={breadcrumbItems} />}
+      message={<Notifications />}
+      tabs={<Dashboard tabs={tabsList} />}
+    >
       <Suspense fallback={<Loading />}>
-        <Dashboard tabs={tabsList} />
-        <Outlet />
+        <Outlet></Outlet>
       </Suspense>
-    </div>
+    </BaseLayout>
   );
 }
