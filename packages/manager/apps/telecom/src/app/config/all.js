@@ -89,7 +89,6 @@ angular
     },
   })
   .constant('URLS', {
-    telephonyV4: 'https://www.ovh.com/managerv3/telephony2-main.pl',
     oldV6ServiceTransfert:
       'https://www.ovhtelecom.fr/espaceclient/index.html#/administration/changeOffer/',
     support: 'https://www.ovh.com/fr/support/',

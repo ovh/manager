@@ -10,7 +10,6 @@ import sumBy from 'lodash/sumBy';
 import union from 'lodash/union';
 
 import { TELEPHONY_ALIAS_CONSUMPTION } from './dashboard.constants';
-import { OBSOLETE_FEATURE_TYPES } from '../alias.constants';
 
 import confirmDeleteConfigurationTemplate from './confirmDeleteConfiguration/confirm-delete-configuration.html';
 import confirmDeleteConfigurationController from './confirmDeleteConfiguration/confirm-delete-configuration.controller';
@@ -277,7 +276,6 @@ export default class TelecomTelephonyAliasHomeController {
         backdrop: 'static',
         resolve: {
           number: this.alias,
-          isObsolete: () => this.isFeatureTypeObsolete(),
         },
       })
       .result.then(() => {
@@ -305,11 +303,9 @@ export default class TelecomTelephonyAliasHomeController {
   groupNumberByFeatureType() {
     switch (this.alias.featureType) {
       case 'contactCenterSolution':
-      case 'esayHunting':
-      case 'miniPabx':
+      case 'easyHunting':
         return 'easyHunting';
       case 'ddi':
-      case 'easyPabx':
       case 'redirect':
         return 'redirect';
       default:
@@ -338,9 +334,5 @@ export default class TelecomTelephonyAliasHomeController {
           type: 'action',
         }),
       );
-  }
-
-  isFeatureTypeObsolete() {
-    return OBSOLETE_FEATURE_TYPES.includes(this.alias.featureType);
   }
 }

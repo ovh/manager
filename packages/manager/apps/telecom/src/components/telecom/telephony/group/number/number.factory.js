@@ -149,10 +149,6 @@ export default /* @ngInject */ (
       case 'easyHunting':
       case 'contactCenterSolution':
         return 'easyHunting';
-      case 'easyPabx':
-        return 'easyPabx';
-      case 'miniPabx':
-        return 'miniPabx';
       default:
         return 'feature';
     }

@@ -63,7 +63,6 @@ import '@ovh-ux/ng-ovh-actions-menu';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import isString from 'lodash/isString';
-import set from 'lodash/set';
 import * as dateFnsLocales from 'date-fns/locale';
 import * as d3 from 'd3';
 
@@ -115,7 +114,6 @@ import uibDropdownUtils from '../components/uib-dropdown-helper';
 
 import errorPage from './error-page/error-page.module';
 import searchPage from './search/search.module';
-import navbar from '../components/navbar';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
@@ -216,7 +214,6 @@ export default async (containerEl, shellClient) => {
         popoverUtils,
         'smoothScroll',
         errorPage,
-        navbar,
         'tmh.dynamicLocale',
         uibDropdownUtils,
         'ui.bootstrap',
@@ -360,17 +357,6 @@ export default async (containerEl, shellClient) => {
         }
       });
     })
-
-    /*= =========  LOAD NAVBAR AND SIDEBAR  ========== */
-    .run(
-      /* @ngInject */ ($rootScope, $timeout, TelecomNavbar) => {
-        TelecomNavbar.getResponsiveLinks()
-          .then((links) => set($rootScope, 'navbar.sidebarLinks', links))
-          .finally(() => {
-            $timeout(() => $rootScope.$broadcast('sidebar:loaded'));
-          });
-      },
-    )
 
     .config(($logProvider) => {
       $logProvider.debugEnabled(false);
