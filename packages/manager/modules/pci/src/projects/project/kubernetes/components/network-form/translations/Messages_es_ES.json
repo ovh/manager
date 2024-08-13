@@ -27,5 +27,6 @@
   "kubernetes_network_form_load_balancers_subnet_toggler": "Configuración avanzada",
   "kubernetes_network_form_gateway_mode_auto": "Puerta de enlace predeterminada definida según la configuración DHCP de la red privada (recomendado)",
   "kubernetes_network_form_gateway_mode_custom": "Puerta de enlace predeterminada sobrecargada estáticamente",
-  "kubernetes_network_form_gateway_mode_custom_placeholder": "Dirección IP de la puerta de enlace predeterminada"
+  "kubernetes_network_form_gateway_mode_custom_placeholder": "Dirección IP de la puerta de enlace predeterminada",
+  "kubernetes_network_form_rebuild": "Atención: cambiar la estrategia de enrutamiento saliente implica redesplegar los nodos de su clúster mediante un procedimiento de «rolling update»."
 }

@@ -27,5 +27,6 @@
   "kubernetes_network_form_load_balancers_subnet_toggler": "Impostazioni avanzate",
   "kubernetes_network_form_gateway_mode_auto": "Gateway predefinito definito definito in base alla configurazione DHCP della rete privata (scelta consigliata)",
   "kubernetes_network_form_gateway_mode_custom": "Gateway predefinito statico sovraccarico",
-  "kubernetes_network_form_gateway_mode_custom_placeholder": "Indirizzo IP del gateway predefinito"
+  "kubernetes_network_form_gateway_mode_custom_placeholder": "Indirizzo IP del gateway predefinito",
+  "kubernetes_network_form_rebuild": "Attenzione: cambiare la strategia di routing in uscita implica un nuovo deploy dei nodi del tuo cluster in rolling update."
 }
