@@ -26,7 +26,7 @@ export default class SofpthoneService {
         this.$q.all(
           devices.map((device) =>
             this.$http.delete(
-              `/telephony/${billingAccount}/line/${serviceName}/devices/${device.deviceId}`,
+              `/telephony/${billingAccount}/line/${serviceName}/devices/${device.id}`,
             ),
           ),
         );
