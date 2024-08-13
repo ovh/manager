@@ -1,9 +1,0 @@
-{
-  "telephony_alias_configuration_mode_mini_pabx_queue_size": "Maximum number of callers on hold",
-  "telephony_alias_configuration_mode_mini_pabx_queue_size_info": "<strong>Maximum number of callers on hold</strong>: maximum number of callers waiting in the queue.",
-  "telephony_alias_configuration_mode_mini_pabx_on_hold_timer": "Maximum hold time",
-  "telephony_alias_configuration_mode_mini_pabx_on_hold_timer_info": "<strong>Maximum queue wait time</strong>: maximum time before caller exits the queue.",
-  "telephony_alias_configuration_mode_mini_pabx_loading_error": "An error occurred while loading the miniPABX options.",
-  "telephony_alias_configuration_mode_mini_pabx_save_success": "The miniPABX settings have been successfully changed.",
-  "telephony_alias_configuration_mode_mini_pabx_save_error": "Oops! An error occurred while changing your miniPABX settings."
-}

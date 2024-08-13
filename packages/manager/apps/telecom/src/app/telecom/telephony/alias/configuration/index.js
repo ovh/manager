@@ -9,16 +9,12 @@ import telephonyNumberComponent from '../../../../../components/telecom/telephon
 import serviceChoicePopoverComponent from '../../../../../components/telecom/telephony/service/choice-popover';
 
 import agents from './agents';
-import callsFilteringOldPabx from './callsFiltering/oldPabx';
 import feature from './feature';
-import mode from './mode';
 import ovhPabx from './ovhPabx';
 import queues from './queues';
 import recordsOvhPabx from './records/ovhPabx';
 import scheduler from './scheduler';
 import stats from './stats';
-import timeConditionOldPabx from './timeCondition/oldPabx';
-import tones from './tones';
 
 import routing from './configuration.routing';
 
@@ -34,16 +30,12 @@ angular
     telephonyNumberComponent,
     serviceChoicePopoverComponent,
     agents,
-    callsFilteringOldPabx,
     feature,
-    mode,
     ovhPabx,
     queues,
     recordsOvhPabx,
     scheduler,
     stats,
-    timeConditionOldPabx,
-    tones,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

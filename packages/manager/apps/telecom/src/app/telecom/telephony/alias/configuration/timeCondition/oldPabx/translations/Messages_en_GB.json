@@ -1,9 +1,0 @@
-{
-  "telephony_time_condition_old_pabx_params_timeout": "Time period before the switch to \"outside time condition\" if the redirection cannot be completed",
-  "telephony_time_condition_old_pabx_params_timeout_choice": "{{value}} seconds",
-  "telephony_line_calls_time_condition_bulk_all_success": "The time condition settings have been applied to the selected services.",
-  "telephony_line_calls_time_condition_bulk_some_success": "The time condition settings have been applied to {{ count }} of the selected services.",
-  "telephony_line_calls_time_condition_bulk_error": "The time condition settings could not be applied to the following services:",
-  "telephony_line_calls_time_condition_bulk_on_error": "Oops! An error occurred while applying the time condition settings.",
-  "telephony_time_condition_old_pabx": "Time slot configuration"
-}
