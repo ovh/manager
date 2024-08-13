@@ -7,6 +7,6 @@ export default {
   bindings: {
     goBack: '<',
     deviceId: '<',
-    goToSendLinkByMailModal: '<'
+    goToSendLinkByMailModal: '<',
   },
 };

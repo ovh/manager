@@ -18,7 +18,7 @@ export default class SoftphoneAddDeviceController {
         this.$stateParams.serviceName,
         this.model.name,
       )
-      .then(({ deviceId }) => {
+      .then(({ id: deviceId }) => {
         this.deviceId = deviceId;
       });
   }
@@ -39,8 +39,8 @@ export default class SoftphoneAddDeviceController {
         this.$stateParams.serviceName,
         this.deviceId,
       )
-      .then(({ provisioningURL }) => {
-        this.recordLink = provisioningURL;
+      .then(({ token }) => {
+        this.recordLink = token;
       });
   }
 
@@ -54,7 +54,6 @@ export default class SoftphoneAddDeviceController {
     } else {
       promise = this.enrollDevice();
     }
-
     promise.catch(() => {
       this.TucToast.error(
         this.$translate.instant('telephony_line_softphone_generate_link_error'),
