@@ -54,8 +54,6 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
   const [deleteInput, setDeleteInput] = React.useState('');
   const isDisabled = isLoading || deleteInput !== terminateValue || undefined;
 
-  console.log({ isDisabled, deleteInput });
-
   const close = React.useCallback(() => {
     setDeleteInput('');
     closeModal();

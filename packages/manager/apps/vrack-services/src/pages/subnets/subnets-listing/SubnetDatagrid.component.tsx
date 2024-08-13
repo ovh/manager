@@ -80,8 +80,8 @@ export const SubnetDatagrid: React.FC = () => {
 
   return (
     <Datagrid
-      wrapperStyle={{ display: 'flex' }}
-      tableStyle={{ minWidth: '700px' }}
+      // wrapperStyle={{ display: 'flex' }}
+      // tableStyle={{ minWidth: '700px' }}
       className="pb-[200px] -mx-6"
       columns={columns}
       items={sortSubnets(sorting, subnetList)}

@@ -87,8 +87,8 @@ export const EndpointDatagrid: React.FC = () => {
     </div>
   ) : (
     <Datagrid
-      wrapperStyle={{ display: 'flex' }}
-      tableStyle={{ minWidth: '700px' }}
+      // wrapperStyle={{ display: 'flex' }}
+      // tableStyle={{ minWidth: '700px' }}
       className="pb-[200px] -mx-6"
       columns={columns}
       items={endpointList}

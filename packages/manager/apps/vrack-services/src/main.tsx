@@ -28,7 +28,7 @@ const init = async ({
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: [appName, `${appName}/listing`],
+    ns: [appName, `${appName}/listing`, `${appName}/error`],
   });
 
   const rootElement = document.getElementById('ovh-app');
