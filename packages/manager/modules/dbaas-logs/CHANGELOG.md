@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.22.1...@ovh-ux/manager-dbaas-logs@1.23.0) (2024-08-13)
+
+
+### Features
+
+* **dedicated.ldp:** back button on subscriptions ([#12537](https://github.com/ovh/manager/issues/12537)) ([7c4ef5e](https://github.com/ovh/manager/commit/7c4ef5e8849884684686373f1a1a8a4b67778fd3))
+* **dedicated.ldp:** implement cancel button ([#12521](https://github.com/ovh/manager/issues/12521)) ([0be5932](https://github.com/ovh/manager/commit/0be5932e6d2810928a15cc6190fd3dee34cac51c))
+
+
+
+
+
 ## [1.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.22.0...@ovh-ux/manager-dbaas-logs@1.22.1) (2024-08-13)
 
 

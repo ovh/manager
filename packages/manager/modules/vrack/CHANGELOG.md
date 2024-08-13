@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.10.1...@ovh-ux/manager-vrack@1.11.0) (2024-08-13)
+
+
+### Features
+
+* **dedicated:** add a link user guide for US ([#12562](https://github.com/ovh/manager/issues/12562)) ([756191a](https://github.com/ovh/manager/commit/756191ac8cc5037c06b414414d4d60b0db9cc700))
+
+
+
+
+
 ## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.10.0...@ovh-ux/manager-vrack@1.10.1) (2024-07-23)
 
 

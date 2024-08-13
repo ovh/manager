@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.12.0...@ovh-ux/manager-iplb@1.13.0) (2024-08-13)
+
+
+### Features
+
+* **dedicated-iplb:** fix displayname word break ([#11917](https://github.com/ovh/manager/issues/11917)) ([61fc24e](https://github.com/ovh/manager/commit/61fc24eb21bdfb3ba3cab206b03010d676e14bac))
+* **dedicated:** modify content of iplb banner ([#12110](https://github.com/ovh/manager/issues/12110)) ([450f452](https://github.com/ovh/manager/commit/450f4524fd6fc0d64e14773add76323f5b79f0c1))
+
+
+
+
+
 # [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.11.0...@ovh-ux/manager-iplb@1.12.0) (2024-07-15)
 
 
