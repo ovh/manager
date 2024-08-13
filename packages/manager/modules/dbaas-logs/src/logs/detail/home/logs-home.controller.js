@@ -1,5 +1,6 @@
 import max from 'lodash/max';
 import { OFFER_TYPES } from '../detail.constants';
+import { STATUS_CLASS } from './home.constants';
 
 import formatSportsTemplate from './formatsports/logs-home-formatsports.html';
 import passwordTemplate from '../account/password/logs-account-password.html';
@@ -38,6 +39,7 @@ export default class LogsHomeCtrl {
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;
     this.canAccessToElasticsearch = false;
+    this.STATUS_CLASS = STATUS_CLASS;
   }
 
   $onInit() {

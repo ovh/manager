@@ -543,5 +543,6 @@
   "vps_configuration_download_snapshot_title_button": "Pobierz snapshot",
   "vps_dashboard_snapshot_download_modal_snapshot_error_download_not_ready": "Trwa tworzenie snapshota. Spróbuj ponownie później, kiedy ten proces zostanie zakończony.",
   "vps_dashboard_domain_link": "Dodaj domenę",
-  "vps_dashboard_domain_link_message": "Dodaj domenę do serwera VPS, aby łatwo udostępniać swój projekt innym"
+  "vps_dashboard_domain_link_message": "Dodaj domenę do serwera VPS, aby łatwo udostępniać swój projekt innym",
+  "vps_tab_summary_backup": "Kopia zapasowa"
 }
