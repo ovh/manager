@@ -15,8 +15,6 @@ import groupNumberOvhPabxDiaplplanFactory from './group/number/feature/ovhPabx/d
 import groupNumberOvhConferenceFactory from './group/number/feature/conference/conference.factory';
 import groupNumberOvhConferenceParticipanFactory from './group/number/feature/conference/partiticipant/participant.factory';
 import groupNumberOvhEasyHuntingFactory from './group/number/feature/easyHunting/easy-hunting.factory';
-import groupNumberEasyPabxFactory from './group/number/feature/easyPabx/easy-pabx.factory';
-import groupNumberMiniPabxFactory from './group/number/feature/miniPabx/mini-pabx.factory';
 import groupNumberOvhPabxDialplanExtensionFactory from './group/number/feature/ovhPabx/dialplan/extension/extension.factory';
 import groupNumberOvhPabxDialplanExtensionRuleFactory from './group/number/feature/ovhPabx/dialplan/extension/rule/rule.factory';
 import groupNumberOvhPabxMenuFactory from './group/number/feature/ovhPabx/menu/menu.factory';
@@ -60,8 +58,6 @@ angular
     groupNumberOvhConferenceParticipanFactory,
   )
   .factory('TelephonyGroupNumberEasyHunting', groupNumberOvhEasyHuntingFactory)
-  .factory('TelephonyGroupNumberEasyPabx', groupNumberEasyPabxFactory)
-  .factory('TelephonyGroupNumberMiniPabx', groupNumberMiniPabxFactory)
   .factory('TelephonyGroupNumberOvhPabx', groupNumberOvhPabxFactory)
   .factory(
     'TelephonyGroupNumberOvhPabxDialplan',
