@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
 import {
-  DashboardLayout,
+  BaseLayout,
   ErrorBanner,
   Notifications,
 } from '@ovhcloud/manager-components';
@@ -94,12 +94,19 @@ export default function Key() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <DashboardLayout
+      <BaseLayout
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
           title: kmsKey.name || kmsKey.id,
           headerButton: <KmsGuidesHeader />,
         }}
+        backLinkLabel={t(
+          'key_management_service_service-keys_dashboard_back-link-label',
+        )}
+        onClickReturn={() => {
+          navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
+        }}
+        message={<Notifications />}
         tabs={
           <OsdsTabs>
             <OsdsTabBar slot="top">
@@ -111,137 +118,131 @@ export default function Key() {
             </OsdsTabBar>
           </OsdsTabs>
         }
-        content={
-          <div className="w-full block">
-            <div className="mb-6">
-              <Notifications />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              <Tile
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <Tile
+            title={t(
+              'key_management_service_service-keys_dashboard_tile_general_informations',
+            )}
+          >
+            <TileSeparator />
+            <TileItem
+              title={t(
+                'key_management_service_service-keys_dashboard_field_name',
+              )}
+            >
+              <div className="flex justify-between items-center">
+                <TileValue value={kmsKey.name} />
+                <OsdsButton
+                  circle
+                  variant={ODS_BUTTON_VARIANT.stroked}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  onClick={() => navigate(ROUTES_URLS.serviceKeyEditName)}
+                >
+                  <OsdsIcon
+                    name={ODS_ICON_NAME.PEN}
+                    size={ODS_ICON_SIZE.xs}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                  />
+                </OsdsButton>
+              </div>
+            </TileItem>
+            <TileSeparator />
+            <TileItem
+              title={t(
+                'key_management_service_service-keys_dashboard_field_id',
+              )}
+            >
+              {/* TODO: use manager-component clipboard */}
+              <Clipboard value={kmsKey.id} />
+            </TileItem>
+            <TileSeparator />
+            <TileItem
+              title={t(
+                'key_management_service_service-keys_dashboard_field_state',
+              )}
+              titleStatus={<ServiceKeyStatus state={kmsKey.state} />}
+            >
+              <div className="flex flex-col max-w-fit justify-start">
+                <ServiceKeyStateActions okmsId={okmsId} okmsKey={kmsKey} />
+              </div>
+            </TileItem>
+            <TileSeparator />
+            <TileItem
+              title={t(
+                'key_management_service_service-keys_dashboard_field_created_at',
+              )}
+            >
+              <TileValueDate
+                value={kmsKey.createdAt}
+                options={{
+                  hour12: false,
+                  year: 'numeric',
+                  month: 'numeric',
+                  day: 'numeric',
+                  hour: 'numeric',
+                  minute: 'numeric',
+                  second: 'numeric',
+                }}
+              />
+            </TileItem>
+          </Tile>
+          <Tile
+            title={t(
+              'key_management_service_service-keys_dashboard_tile_crypto_properties',
+            )}
+          >
+            <TileSeparator />
+            <TileItem
+              title={t(
+                'key_management_service_service-keys_dashboard_field_origin',
+              )}
+            >
+              <TileValue
+                value={t(
+                  'key_management_service_service-keys_dashboard_field_origin_okms',
+                )}
+              />
+            </TileItem>
+            <TileSeparator />
+            <TileItem
+              title={t(
+                'key_management_service_service-keys_dashboard_field_type',
+              )}
+            >
+              <ServiceKeyType type={kmsKey.type} />
+            </TileItem>
+            <TileSeparator />
+            {kmsKey.size && (
+              <TileItem
                 title={t(
-                  'key_management_service_service-keys_dashboard_tile_general_informations',
+                  'key_management_service_service-keys_dashboard_field_size',
                 )}
               >
-                <TileSeparator />
-                <TileItem
-                  title={t(
-                    'key_management_service_service-keys_dashboard_field_name',
-                  )}
-                >
-                  <div className="flex justify-between items-center">
-                    <TileValue value={kmsKey.name} />
-                    <OsdsButton
-                      circle
-                      variant={ODS_BUTTON_VARIANT.stroked}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                      onClick={() => navigate(ROUTES_URLS.serviceKeyEditName)}
-                    >
-                      <OsdsIcon
-                        name={ODS_ICON_NAME.PEN}
-                        size={ODS_ICON_SIZE.xs}
-                        color={ODS_THEME_COLOR_INTENT.primary}
-                      />
-                    </OsdsButton>
-                  </div>
-                </TileItem>
-                <TileSeparator />
-                <TileItem
-                  title={t(
-                    'key_management_service_service-keys_dashboard_field_id',
-                  )}
-                >
-                  {/* TODO: use manager-component clipboard */}
-                  <Clipboard value={kmsKey.id} />
-                </TileItem>
-                <TileSeparator />
-                <TileItem
-                  title={t(
-                    'key_management_service_service-keys_dashboard_field_state',
-                  )}
-                  titleStatus={<ServiceKeyStatus state={kmsKey.state} />}
-                >
-                  <div className="flex flex-col max-w-fit justify-start">
-                    <ServiceKeyStateActions okmsId={okmsId} okmsKey={kmsKey} />
-                  </div>
-                </TileItem>
-                <TileSeparator />
-                <TileItem
-                  title={t(
-                    'key_management_service_service-keys_dashboard_field_created_at',
-                  )}
-                >
-                  <TileValueDate
-                    value={kmsKey.createdAt}
-                    options={{
-                      hour12: false,
-                      year: 'numeric',
-                      month: 'numeric',
-                      day: 'numeric',
-                      hour: 'numeric',
-                      minute: 'numeric',
-                      second: 'numeric',
-                    }}
-                  />
-                </TileItem>
-              </Tile>
-              <Tile
+                <TileValue value={kmsKey.size} />
+              </TileItem>
+            )}
+            {kmsKey.curve && (
+              <TileItem
                 title={t(
-                  'key_management_service_service-keys_dashboard_tile_crypto_properties',
+                  'key_management_service_service-keys_dashboard_field_curve',
                 )}
               >
-                <TileSeparator />
-                <TileItem
-                  title={t(
-                    'key_management_service_service-keys_dashboard_field_origin',
-                  )}
-                >
-                  <TileValue
-                    value={t(
-                      'key_management_service_service-keys_dashboard_field_origin_okms',
-                    )}
-                  />
-                </TileItem>
-                <TileSeparator />
-                <TileItem
-                  title={t(
-                    'key_management_service_service-keys_dashboard_field_type',
-                  )}
-                >
-                  <ServiceKeyType type={kmsKey.type} />
-                </TileItem>
-                <TileSeparator />
-                {kmsKey.size && (
-                  <TileItem
-                    title={t(
-                      'key_management_service_service-keys_dashboard_field_size',
-                    )}
-                  >
-                    <TileValue value={kmsKey.size} />
-                  </TileItem>
-                )}
-                {kmsKey.curve && (
-                  <TileItem
-                    title={t(
-                      'key_management_service_service-keys_dashboard_field_curve',
-                    )}
-                  >
-                    <TileValue value={kmsKey.curve} />
-                  </TileItem>
-                )}
-                <TileSeparator />
-                <TileItem
-                  title={t(
-                    'key_management_service_service-keys_dashboard_field_operations',
-                  )}
-                >
-                  <ServiceKeyOperations operations={kmsKey.operations} />
-                </TileItem>
-              </Tile>
-            </div>
-          </div>
-        }
-      />
-      <Outlet />
+                <TileValue value={kmsKey.curve} />
+              </TileItem>
+            )}
+            <TileSeparator />
+            <TileItem
+              title={t(
+                'key_management_service_service-keys_dashboard_field_operations',
+              )}
+            >
+              <ServiceKeyOperations operations={kmsKey.operations} />
+            </TileItem>
+          </Tile>
+        </div>
+        <Outlet />
+      </BaseLayout>
     </Suspense>
   );
 }

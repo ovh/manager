@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
+  BaseLayout,
   CommonTitle,
-  DashboardLayout,
   Description,
   Notifications,
   Subtitle,
@@ -181,248 +181,236 @@ export default function CreateKey() {
 
   return (
     <>
-      <DashboardLayout
+      <BaseLayout
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
           title: t('key_management_service_service-keys_create_title'),
           description: t('key_management_service_service-keys_create_subtitle'),
           headerButton: <KmsGuidesHeader />,
         }}
-        content={
-          <div className="w-full block">
-            <div className="mb-6">
-              <Notifications />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              <div className="flex flex-col gap-7 md:gap-9">
-                <div className="flex flex-col gap-6 md:gap-8">
-                  <Subtitle>
-                    {t(
-                      'key_management_service_service-keys_create_general_information_title',
+      />
+      <div className="w-full block">
+        <div className="mb-6">
+          <Notifications />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <div className="flex flex-col gap-7 md:gap-9">
+            <div className="flex flex-col gap-6 md:gap-8">
+              <Subtitle>
+                {t(
+                  'key_management_service_service-keys_create_general_information_title',
+                )}
+              </Subtitle>
+              <div className="flex flex-col gap-5 md:gap-6">
+                <CommonTitle>
+                  {t(
+                    'key_management_service_service-keys_create_general_information_field_name_title',
+                  )}
+                </CommonTitle>
+                <Description>
+                  {t(
+                    'key_management_service_service-keys_create_general_information_field_name_subtitle',
+                  )}
+                </Description>
+                <OsdsFormField error={getErrorMessage(serviceKeyNameError)}>
+                  <OsdsInput
+                    aria-label="input-service-key-name"
+                    type={ODS_INPUT_TYPE.text}
+                    error={!!serviceKeyNameError}
+                    required
+                    className="p-3"
+                    placeholder={t(
+                      'key_management_service_service-keys_create_general_information_field_name_placeholder',
                     )}
-                  </Subtitle>
-                  <div className="flex flex-col gap-5 md:gap-6">
-                    <CommonTitle>
-                      {t(
-                        'key_management_service_service-keys_create_general_information_field_name_title',
-                      )}
-                    </CommonTitle>
-                    <Description>
-                      {t(
-                        'key_management_service_service-keys_create_general_information_field_name_subtitle',
-                      )}
-                    </Description>
-                    <OsdsFormField error={getErrorMessage(serviceKeyNameError)}>
-                      <OsdsInput
-                        aria-label="input-service-key-name"
-                        type={ODS_INPUT_TYPE.text}
-                        error={!!serviceKeyNameError}
-                        required
-                        className="p-3"
-                        placeholder={t(
-                          'key_management_service_service-keys_create_general_information_field_name_placeholder',
-                        )}
-                        value={keyDisplayName}
-                        onOdsValueChange={(
-                          e: OsdsInputCustomEvent<
-                            OdsInputValueChangeEventDetail
-                          >,
-                        ) => {
-                          setKeyDisplayName(e.detail.value);
-                        }}
-                      />
-                    </OsdsFormField>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-6 md:gap-8">
-                  <Subtitle>
-                    {t(
-                      'key_management_service_service-keys_create_crypto_title',
-                    )}
-                  </Subtitle>
-                  <div className="flex flex-col gap-5 md:gap-6">
-                    <CommonTitle>
-                      {t(
-                        'key_management_service_service-keys_create_crypto_origin_title',
-                      )}
-                    </CommonTitle>
-                    <Description>
-                      {t(
-                        'key_management_service_service-keys_create_crypto_origin_subtitle',
-                      )}
-                    </Description>
-                  </div>
-                  <div className="flex flex-col gap-5 md:gap-6">
-                    <CommonTitle>
-                      {t(
-                        'key_management_service_service-keys_create_crypto_field_type_title',
-                      )}
-                    </CommonTitle>
-                    <Description>
-                      {t(
-                        'key_management_service_service-keys_create_crypto_field_type_subtitle',
-                      )}
-                    </Description>
-                    <OsdsRadioGroup
-                      value={keyType}
-                      className="flex flex-col gap-6"
-                    >
-                      {servicekeyReference?.data.map((reference) => {
-                        return (
-                          <OsdsRadio
-                            id={reference.type.toString()}
-                            value={reference.type.toString()}
-                            key={reference.type.toString()}
-                            checked={key?.type === reference.type}
-                          >
-                            <ServiceKeyTypeRadioButton
-                              type={reference.type}
-                              onClick={() => selectKeyType(reference)}
-                            />
-                          </OsdsRadio>
-                        );
-                      })}
-                    </OsdsRadioGroup>
-                  </div>
-                  <div className="flex flex-col gap-5 md:gap-6">
-                    {key?.type === OkmsKeyTypes.EC ? (
-                      <>
-                        <CommonTitle>
-                          {t(
-                            'key_management_service_service-keys_create_crypto_field_curve_title',
-                          )}
-                        </CommonTitle>
-                        <Description>
-                          {t(
-                            'key_management_service_service-keys_create_crypto_field_curve_subtitle',
-                          )}
-                        </Description>
-                      </>
-                    ) : (
-                      <>
-                        <CommonTitle>
-                          {t(
-                            'key_management_service_service-keys_create_crypto_field_size_title',
-                          )}
-                        </CommonTitle>
-                        <Description>
-                          {t(
-                            'key_management_service_service-keys_create_crypto_field_size_subtitle',
-                          )}
-                        </Description>
-                      </>
-                    )}
-
-                    <OsdsSelect
-                      value={keySize || keyCurve}
-                      onOdsValueChange={(event) => {
-                        selectSizeOrCurveValue(event);
-                      }}
-                    >
-                      {key?.sizes.map((size) => {
-                        return (
-                          <OsdsSelectOption key={size.value} value={size.value}>
-                            {t(
-                              'key_management_service_service-keys_create_crypto_field_size_unit',
-                              { size: size.value },
-                            )}{' '}
-                            {size.default &&
-                              t(
-                                'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
-                              )}
-                          </OsdsSelectOption>
-                        );
-                      })}
-                      {key?.curves.map((curve) => {
-                        return (
-                          <OsdsSelectOption
-                            key={curve.value}
-                            value={curve.value}
-                          >
-                            {`${curve.value} ${curve.default &&
-                              t(
-                                'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
-                              )}`}
-                          </OsdsSelectOption>
-                        );
-                      })}
-                    </OsdsSelect>
-                  </div>
-                  <div className="flex flex-col gap-5 md:gap-6">
-                    <CommonTitle>
-                      {t(
-                        'key_management_service_service-keys_create_crypto_field_usage_title',
-                      )}
-                    </CommonTitle>
-                    <Description>
-                      {t(
-                        'key_management_service_service-keys_create_crypto_field_usage_subtitle',
-                      )}
-                    </Description>
-                    {key?.operations.map((operation) => {
-                      return (
-                        <OsdsCheckbox
-                          key={operation.value[0]}
-                          checked={keyOperations?.includes(operation.value)}
-                          disabled={
-                            keyType === OkmsKeyTypes.EC ||
-                            keyType === OkmsKeyTypes.RSA
-                          }
-                          onOdsCheckedChange={(
-                            event: OsdsCheckboxCustomEvent<
-                              OdsCheckboxCheckedChangeEventDetail
-                            >,
-                          ) => {
-                            if (event.detail.checked) {
-                              setKeyOperations((prev) => [
-                                ...prev,
-                                operation.value,
-                              ]);
-                            } else {
-                              const operationIndex = keyOperations.indexOf(
-                                operation.value,
-                              );
-
-                              const newOperations = [...keyOperations];
-                              newOperations.splice(operationIndex, 1);
-
-                              setKeyOperations(newOperations);
-                            }
-                          }}
-                        >
-                          <ServiceKeyOperationCheckbox operation={operation} />
-                        </OsdsCheckbox>
-                      );
-                    })}
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <OsdsButton
-                    size={ODS_BUTTON_SIZE.md}
-                    inline
-                    variant={ODS_BUTTON_VARIANT.stroked}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    onClick={() => {
-                      navigate(`/${okmsId}${ROUTES_URLS.keys}`);
+                    value={keyDisplayName}
+                    onOdsValueChange={(
+                      e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
+                    ) => {
+                      setKeyDisplayName(e.detail.value);
                     }}
-                  >
-                    {t('key_management_service_service-keys_create_cta_cancel')}
-                  </OsdsButton>
-                  <OsdsButton
-                    size={ODS_BUTTON_SIZE.md}
-                    inline
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    onClick={submitCreateKey}
-                    disabled={!!serviceKeyNameError || isPending || undefined}
-                  >
-                    {t('key_management_service_service-keys_create_cta_submit')}
-                  </OsdsButton>
-                </div>
+                  />
+                </OsdsFormField>
               </div>
             </div>
+            <div className="flex flex-col gap-6 md:gap-8">
+              <Subtitle>
+                {t('key_management_service_service-keys_create_crypto_title')}
+              </Subtitle>
+              <div className="flex flex-col gap-5 md:gap-6">
+                <CommonTitle>
+                  {t(
+                    'key_management_service_service-keys_create_crypto_origin_title',
+                  )}
+                </CommonTitle>
+                <Description>
+                  {t(
+                    'key_management_service_service-keys_create_crypto_origin_subtitle',
+                  )}
+                </Description>
+              </div>
+              <div className="flex flex-col gap-5 md:gap-6">
+                <CommonTitle>
+                  {t(
+                    'key_management_service_service-keys_create_crypto_field_type_title',
+                  )}
+                </CommonTitle>
+                <Description>
+                  {t(
+                    'key_management_service_service-keys_create_crypto_field_type_subtitle',
+                  )}
+                </Description>
+                <OsdsRadioGroup value={keyType} className="flex flex-col gap-6">
+                  {servicekeyReference?.data.map((reference) => {
+                    return (
+                      <OsdsRadio
+                        id={reference.type.toString()}
+                        value={reference.type.toString()}
+                        key={reference.type.toString()}
+                        checked={key?.type === reference.type}
+                      >
+                        <ServiceKeyTypeRadioButton
+                          type={reference.type}
+                          onClick={() => selectKeyType(reference)}
+                        />
+                      </OsdsRadio>
+                    );
+                  })}
+                </OsdsRadioGroup>
+              </div>
+              <div className="flex flex-col gap-5 md:gap-6">
+                {key?.type === OkmsKeyTypes.EC ? (
+                  <>
+                    <CommonTitle>
+                      {t(
+                        'key_management_service_service-keys_create_crypto_field_curve_title',
+                      )}
+                    </CommonTitle>
+                    <Description>
+                      {t(
+                        'key_management_service_service-keys_create_crypto_field_curve_subtitle',
+                      )}
+                    </Description>
+                  </>
+                ) : (
+                  <>
+                    <CommonTitle>
+                      {t(
+                        'key_management_service_service-keys_create_crypto_field_size_title',
+                      )}
+                    </CommonTitle>
+                    <Description>
+                      {t(
+                        'key_management_service_service-keys_create_crypto_field_size_subtitle',
+                      )}
+                    </Description>
+                  </>
+                )}
+
+                <OsdsSelect
+                  value={keySize || keyCurve}
+                  onOdsValueChange={(event) => {
+                    selectSizeOrCurveValue(event);
+                  }}
+                >
+                  {key?.sizes.map((size) => {
+                    return (
+                      <OsdsSelectOption key={size.value} value={size.value}>
+                        {t(
+                          'key_management_service_service-keys_create_crypto_field_size_unit',
+                          { size: size.value },
+                        )}{' '}
+                        {size.default &&
+                          t(
+                            'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
+                          )}
+                      </OsdsSelectOption>
+                    );
+                  })}
+                  {key?.curves.map((curve) => {
+                    return (
+                      <OsdsSelectOption key={curve.value} value={curve.value}>
+                        {`${curve.value} ${curve.default &&
+                          t(
+                            'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
+                          )}`}
+                      </OsdsSelectOption>
+                    );
+                  })}
+                </OsdsSelect>
+              </div>
+              <div className="flex flex-col gap-5 md:gap-6">
+                <CommonTitle>
+                  {t(
+                    'key_management_service_service-keys_create_crypto_field_usage_title',
+                  )}
+                </CommonTitle>
+                <Description>
+                  {t(
+                    'key_management_service_service-keys_create_crypto_field_usage_subtitle',
+                  )}
+                </Description>
+                {key?.operations.map((operation) => {
+                  return (
+                    <OsdsCheckbox
+                      key={operation.value[0]}
+                      checked={keyOperations?.includes(operation.value)}
+                      disabled={
+                        keyType === OkmsKeyTypes.EC ||
+                        keyType === OkmsKeyTypes.RSA
+                      }
+                      onOdsCheckedChange={(
+                        event: OsdsCheckboxCustomEvent<
+                          OdsCheckboxCheckedChangeEventDetail
+                        >,
+                      ) => {
+                        if (event.detail.checked) {
+                          setKeyOperations((prev) => [
+                            ...prev,
+                            operation.value,
+                          ]);
+                        } else {
+                          const operationIndex = keyOperations.indexOf(
+                            operation.value,
+                          );
+
+                          const newOperations = [...keyOperations];
+                          newOperations.splice(operationIndex, 1);
+
+                          setKeyOperations(newOperations);
+                        }
+                      }}
+                    >
+                      <ServiceKeyOperationCheckbox operation={operation} />
+                    </OsdsCheckbox>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <OsdsButton
+                size={ODS_BUTTON_SIZE.md}
+                inline
+                variant={ODS_BUTTON_VARIANT.stroked}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                onClick={() => {
+                  navigate(`/${okmsId}${ROUTES_URLS.keys}`);
+                }}
+              >
+                {t('key_management_service_service-keys_create_cta_cancel')}
+              </OsdsButton>
+              <OsdsButton
+                size={ODS_BUTTON_SIZE.md}
+                inline
+                color={ODS_THEME_COLOR_INTENT.primary}
+                onClick={submitCreateKey}
+                disabled={!!serviceKeyNameError || isPending || undefined}
+              >
+                {t('key_management_service_service-keys_create_cta_submit')}
+              </OsdsButton>
+            </div>
           </div>
-        }
-      />
+        </div>
+      </div>
       <Outlet />
     </>
   );
