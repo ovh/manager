@@ -1,6 +1,7 @@
 import { ActionMenu } from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
 import { useHref, useParams } from 'react-router-dom';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { TRegistry } from '@/api/data/registry';
 import { useGetRegistryPlan } from '@/api/hooks/useRegistry';
 import { PRIVATE_REGISTRY_STATUS } from '@/constants';
@@ -18,10 +19,10 @@ export default function ActionComponent({
   const { data: registryPlan } = useGetRegistryPlan(projectId, registry?.id);
 
   const hrefUpgradePlan = '';
-  const hrefHarborUI = '';
-  const hrefHarborAPI = '';
-  const hrefRegenerateCredentials = '';
   const hrefRename = useHref(`./update?registryId=${registry.id}`);
+  const hrefHarborUI = registry?.url;
+  const hrefHarborAPI = useHref(`${registry?.id}/api-url`);
+  const hrefRegenerateCredentials = useHref(`${registry?.id}/credentials`);
   const hrefDelete = useHref(`./delete?registryId=${registry.id}`);
 
   const items = [
@@ -39,6 +40,7 @@ export default function ActionComponent({
       label: t('private_registry_harbor_ui'),
       href: hrefHarborUI,
       disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
+      target: OdsHTMLAnchorElementTarget._blank,
     },
     {
       id: 2,

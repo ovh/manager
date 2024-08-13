@@ -72,5 +72,6 @@
   "private_registry_guide_using_private_registry_with_kubernetes": "Utilizza il servizio Managed Private Registry di OVHcloud con OVHcloud Managed Kubernetes",
   "private_registry_guide_using_the_helm_chart_museum": "Utilizza Helm Chart Museum",
   "private_registry_common_cancel": "Annullare",
-  "private_registry_region": "Region"
+  "private_registry_region": "Region",
+  "common_clipboard_copied": "Copiato"
 }
