@@ -16,19 +16,19 @@ export default /* @ngInject */ ($stateProvider) => {
           $translate.instant(
             'telephony_line_phone_actions_line_details_softphone_breadcrumb',
           ),
-        openAddDeviceModal: /* @ngInject */ ($state) => (deviceId) =>
+        openAddDeviceModal: /* @ngInject */ ($state) => (id) =>
           $state.go(
             'telecom.telephony.billingAccount.line.dashboard.softphone.add',
-            { deviceId },
+            { deviceId: id },
           ),
         deleteAllDevices: /* @ngInject */ ($state) => () =>
           $state.go(
             'telecom.telephony.billingAccount.line.dashboard.softphone.delete-all',
           ),
-        goToDeleteDevice: /* @ngInject */ ($state) => (deviceId) =>
+        goToDeleteDevice: /* @ngInject */ ($state) => (id) =>
           $state.go(
             'telecom.telephony.billingAccount.line.dashboard.softphone.delete',
-            { deviceId },
+            { deviceId: id },
           ),
         billingAccount: /* @ngInject */ ($stateParams) =>
           $stateParams.billingAccount,
