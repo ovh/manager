@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.2.0...@ovh-ux/manager-log-to-customer@2.3.0) (2024-08-13)
+
+
+### Features
+
+* **pci:** log to customer error on success banner ([#12489](https://github.com/ovh/manager/issues/12489)) ([7317f04](https://github.com/ovh/manager/commit/7317f04ea1c536bfe32055ed54143ffb852ef61a))
+
+
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.1.1...@ovh-ux/manager-log-to-customer@2.2.0) (2024-07-15)
 
 

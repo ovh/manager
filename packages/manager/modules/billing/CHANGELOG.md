@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.42](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.41...@ovh-ux/manager-billing@0.20.0-alpha.42) (2024-08-13)
+
+
+### Features
+
+* **dedicated.ldp:** implement cancel button ([#12521](https://github.com/ovh/manager/issues/12521)) ([0be5932](https://github.com/ovh/manager/commit/0be5932e6d2810928a15cc6190fd3dee34cac51c))
+
+
+
+
+
 # [0.20.0-alpha.41](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.40...@ovh-ux/manager-billing@0.20.0-alpha.41) (2024-08-08)
 
 

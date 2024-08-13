@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.29.1...@ovh-ux/manager-bm-server-components@1.30.0) (2024-08-13)
+
+
+### Features
+
+* **dedicated:** fix bandwidth tile word break ([#12502](https://github.com/ovh/manager/issues/12502)) ([8e6fd52](https://github.com/ovh/manager/commit/8e6fd52557501b4eca6b41c57d5f117acea0cd70))
+* **dedicated:** normalize server state links ([#12369](https://github.com/ovh/manager/issues/12369)) ([bd27454](https://github.com/ovh/manager/commit/bd2745476173650d3098da7d04b6a8464eda3f25))
+* **dedicated:** os installation wizard improvements - bundle ([#11721](https://github.com/ovh/manager/issues/11721)) ([d78f654](https://github.com/ovh/manager/commit/d78f654778a1f774e44f98760ec854877e202131))
+* **dedicated:** reload boot details after the netboot ([#12582](https://github.com/ovh/manager/issues/12582)) ([681d029](https://github.com/ovh/manager/commit/681d02911ef4644a60975b3c20c9713e6a195b17))
+* **dedicated:** remove usb kvm order ([#12651](https://github.com/ovh/manager/issues/12651)) ([0741ed0](https://github.com/ovh/manager/commit/0741ed0917fe726db22bc9d1b69c0366e3f31ab8))
+
+
+
+
+
 ## [1.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.29.0...@ovh-ux/manager-bm-server-components@1.29.1) (2024-08-08)
 
 
