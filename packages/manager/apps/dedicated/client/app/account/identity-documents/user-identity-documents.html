@@ -163,3 +163,9 @@
     data-on-confirm="$ctrl.uploadIdentityDocuments()"
     data-on-cancel="$ctrl.handleUploadConfirmModal(false)"
 ></upload-identity-documents-confirm>
+<!-- Modal confirmation after uploading documents -->
+<document-upload-validation-modal
+    data-is-open-modal="$ctrl.isOpenInformationModal"
+    data-on-close="$ctrl.handleInformationModal(false)"
+>
+</document-upload-validation-modal>

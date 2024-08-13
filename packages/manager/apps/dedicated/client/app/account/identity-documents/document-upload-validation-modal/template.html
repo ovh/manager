@@ -1,0 +1,29 @@
+<div data-ng-if="$ctrl.isOpenModal">
+    <div class="modal d-block">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{:: 'user_account_identity_documents_sent_title' | translate }}"
+                    data-primary-action="$ctrl.onClose()"
+                    data-primary-label="{{:: 'user_account_identity_documents_sent_ok' | translate }}"
+                    data-on-dismiss="$ctrl.onClose()"
+                    data-type="info"
+                >
+                    <span
+                        data-translate="user_account_identity_documents_sent_informations"
+                    ></span>
+                    <oui-collapsible
+                        heading="{{:: 'user_account_identity_documents_sent_legal_title' | translate }}"
+                        aria-label="Action"
+                        class="mt-3"
+                    >
+                        <span
+                            data-translate="user_account_identity_documents_sent_legal_content"
+                        ></span>
+                    </oui-collapsible>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>
