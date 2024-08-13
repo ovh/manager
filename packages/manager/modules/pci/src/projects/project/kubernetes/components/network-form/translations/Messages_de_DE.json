@@ -27,5 +27,6 @@
   "kubernetes_network_form_load_balancers_subnet_toggler": "Erweiterte Einstellungen",
   "kubernetes_network_form_gateway_mode_auto": "Standardgateway, das entsprechend der DHCP-Konfiguration Ihres privaten Netzwerks festgelegt wird (empfohlen)",
   "kubernetes_network_form_gateway_mode_custom": "Standardgateway statisch überladen",
-  "kubernetes_network_form_gateway_mode_custom_placeholder": "IP-Adresse Ihres Standardgateways"
+  "kubernetes_network_form_gateway_mode_custom_placeholder": "IP-Adresse Ihres Standardgateways",
+  "kubernetes_network_form_rebuild": "Achtung: Um die Strategie für das ausgehende Routing zu ändern, müssen die Nodes Ihres Clusters in einem Rolling-Update neu bereitgestellt werden."
 }
