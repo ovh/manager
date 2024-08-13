@@ -10,14 +10,10 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
   $q,
   $translate,
   $timeout,
-  TelephonyGroupLinePhoneFunction,
   functionKey,
   TelephonyMediator,
-  OvhApiMe,
   OvhApiTelephonyFax,
-  OvhApiTelephonyMiniPabx,
   OvhApiTelephonyOvhPabx,
-  OvhApiTelephonyEasyPabx,
 ) {
   const self = this;
   self.initialFunctionKey = cloneDeep(functionKey);
@@ -344,11 +340,7 @@ function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
 
     return $q
       .all(
-        [
-          OvhApiTelephonyOvhPabx,
-          OvhApiTelephonyEasyPabx,
-          OvhApiTelephonyMiniPabx,
-        ].map((pabxResource) =>
+        [OvhApiTelephonyOvhPabx].map((pabxResource) =>
           pabxResource
             .v6()
             .query({ billingAccount })

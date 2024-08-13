@@ -1,7 +1,5 @@
 import get from 'lodash/get';
 
-import { OBSOLETE_FEATURE_TYPES } from './alias.constants';
-
 export default class TelecomTelephonyAliasCtrl {
   /* @ngInject */
   constructor(
@@ -116,9 +114,5 @@ export default class TelecomTelephonyAliasCtrl {
 
   isContactCenterSolutionExpert() {
     return get(this, 'alias.featureType') === 'contactCenterSolutionExpert';
-  }
-
-  isFeatureTypeObsolete() {
-    return OBSOLETE_FEATURE_TYPES.includes(this.alias.featureType);
   }
 }
