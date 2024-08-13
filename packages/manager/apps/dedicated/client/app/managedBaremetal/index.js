@@ -12,8 +12,8 @@ angular
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       $stateProvider.state('app.managedBaremetal', {
         url: '/managedBaremetal',
-        template: '<div ui-view></div>',
         redirectTo: 'app.managedBaremetal.index',
+        template: '<div ui-view></div>',
         resolve: {
           breadcrumb: /* @ngInject */ ($translate) =>
             $translate.instant('managed_baremetal_title'),

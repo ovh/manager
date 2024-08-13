@@ -1725,6 +1725,12 @@ class DedicatedCloudService {
       })
       .then(({ data }) => data?.length > 0);
   }
+
+  getLocation(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/location`)
+      .then(({ data }) => data);
+  }
 }
 
 angular.module(moduleName, []).service('DedicatedCloud', DedicatedCloudService);

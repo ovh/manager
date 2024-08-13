@@ -1,6 +1,7 @@
 <oui-tile
     class="h-100"
     data-heading="{{:: 'ovhManagerPccDashboardGeneralInformation_heading' | translate }}"
+    data-loading="$ctrl.isLoading"
 >
     <div class="oui-tile__item">
         <dl class="oui-tile__definition">
@@ -102,13 +103,18 @@
     </oui-tile-definition>
 
     <oui-tile-definition
-        data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_location_term' | translate }}"
+        data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_location_zone' | translate }}"
         data-description="{{:: $ctrl.bindings.location }}"
     ></oui-tile-definition>
 
     <oui-tile-definition
-        data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_accessPolicy_term' | translate }}"
-        data-description="{{:: $ctrl.bindings.accessPolicy }}"
+        data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_location_region_location' | translate }}"
+        data-description="{{:: $ctrl.locationInfo.regionLocation }}"
+    ></oui-tile-definition>
+
+    <oui-tile-definition
+        data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_location_region' | translate }}"
+        data-description="{{:: $ctrl.locationInfo.region }}"
     ></oui-tile-definition>
 
     <oui-tile-definition
