@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import {
+  OsdsButton,
   OsdsClipboard,
-  OsdsDivider,
   OsdsIcon,
   OsdsLink,
   OsdsText,
-  OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import {
+  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_LINK_REFERRER_POLICY,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -20,6 +18,10 @@ import { useTranslation } from 'react-i18next';
 import { OKMS } from '@/types/okms.type';
 import EditNameModal from '@/components/Modal/EditNameModal';
 import { useUpdateOkmsName } from '@/data/hooks/useUpdateOkmsName';
+import { Tile } from '@/components/dashboard/tile/tile.component';
+import { TileSeparator } from '@/components/dashboard/tile-separator/tileSeparator';
+import { TileValue } from '@/components/dashboard/tile-value/tileValue.component';
+import { TileItem } from '@/components/dashboard/tile-item/tileItem.component';
 
 type InformationTileProps = {
   okmsData?: OKMS;
@@ -50,7 +52,7 @@ const InformationsTile = ({ okmsData }: InformationTileProps) => {
   const { updateKmsName } = useUpdateOkmsName({});
 
   return (
-    <OsdsTile className="w-full h-full flex-col" inline rounded>
+    <Tile title={t('general_informations')}>
       {editModalDisplayed && (
         <EditNameModal
           okms={okmsData}
@@ -60,123 +62,68 @@ const InformationsTile = ({ okmsData }: InformationTileProps) => {
           }
         />
       )}
-      <div className="flex flex-col w-full">
-        <OsdsText
-          size={ODS_TEXT_SIZE._400}
-          level={ODS_TEXT_LEVEL.heading}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {t('general_informations')}
-        </OsdsText>
-        <OsdsDivider separator />
-        <div className="flex flex-col mb-3">
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
+      <TileSeparator />
+      <TileItem title={t('key_management_service_dashboard_field_label_name')}>
+        <div className="flex justify-between items-center">
+          <TileValue value={okmsData?.iam.displayName} />
+          <OsdsButton
+            circle
+            variant={ODS_BUTTON_VARIANT.stroked}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            onClick={() => setEditModalDisplayed(true)}
           >
-            {t('key_management_service_dashboard_field_label_name')}
-          </OsdsText>
-          <div className="flex flex-row justify-between items-center">
-            <OsdsText
-              className="mb-4"
-              size={ODS_TEXT_SIZE._400}
-              level={ODS_TEXT_LEVEL.body}
-              color={ODS_THEME_COLOR_INTENT.default}
-            >
-              {okmsData?.iam.displayName}
-            </OsdsText>
             <OsdsIcon
               aria-label="edit"
-              className="mx-6 cursor-pointer"
               onClick={() => setEditModalDisplayed(true)}
               name={ODS_ICON_NAME.PEN}
-              size={ODS_ICON_SIZE.xxs}
+              size={ODS_ICON_SIZE.xs}
               color={ODS_THEME_COLOR_INTENT.primary}
             />
-          </div>
-          <OsdsDivider separator />
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('key_management_service_dashboard_field_label_id')}
-          </OsdsText>
-          <Clipboard value={okmsData?.id} />
-          <OsdsDivider separator />
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('key_management_service_dashboard_field_label_urn')}
-          </OsdsText>
-          <Clipboard value={okmsData?.iam.urn} />
-          <OsdsDivider separator />
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('key_management_service_dashboard_field_label_region')}
-          </OsdsText>
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.default}
-          >
-            {t(
-              `key_management_service_dashboard_region_${okmsData?.region.toLowerCase()}`,
-            )}
-          </OsdsText>
-          <OsdsDivider separator />
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('key_management_service_dashboard_field_label_restApi')}
-          </OsdsText>
-          <Clipboard value={okmsData?.restEndpoint} />
-          <OsdsDivider separator />
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('key_management_service_dashboard_field_label_kmip')}
-          </OsdsText>
-          <Clipboard value={okmsData?.kmipEndpoint} />
-          <OsdsDivider separator />
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._200}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('key_management_service_dashboard_field_label_swagger')}
-          </OsdsText>
-          <OsdsLink
-            href={okmsData?.swaggerEndpoint}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            target={OdsHTMLAnchorElementTarget._blank}
-            referrerpolicy={
-              ODS_LINK_REFERRER_POLICY.strictOriginWhenCrossOrigin
-            }
-          >
-            {okmsData?.swaggerEndpoint}
-          </OsdsLink>
+          </OsdsButton>
         </div>
-      </div>
-    </OsdsTile>
+      </TileItem>
+      <TileSeparator />
+      <TileItem title={t('key_management_service_dashboard_field_label_id')}>
+        <Clipboard value={okmsData?.id} />
+      </TileItem>
+      <TileSeparator />
+      <TileItem title={t('key_management_service_dashboard_field_label_urn')}>
+        <Clipboard value={okmsData?.iam.urn} />
+      </TileItem>
+      <TileSeparator />
+      <TileItem
+        title={t('key_management_service_dashboard_field_label_region')}
+      >
+        <TileValue
+          value={t(
+            `key_management_service_dashboard_region_${okmsData?.region.toLowerCase()}`,
+          )}
+        />
+      </TileItem>
+      <TileSeparator />
+      <TileItem
+        title={t('key_management_service_dashboard_field_label_restApi')}
+      >
+        <Clipboard value={okmsData?.restEndpoint} />
+      </TileItem>
+      <TileSeparator />
+      <TileItem title={t('key_management_service_dashboard_field_label_kmip')}>
+        <Clipboard value={okmsData?.kmipEndpoint} />
+      </TileItem>
+      <TileSeparator />
+      <TileItem
+        title={t('key_management_service_dashboard_field_label_swagger')}
+      >
+        <OsdsLink
+          href={okmsData?.swaggerEndpoint}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          target={OdsHTMLAnchorElementTarget._blank}
+          referrerpolicy={ODS_LINK_REFERRER_POLICY.strictOriginWhenCrossOrigin}
+        >
+          {okmsData?.swaggerEndpoint}
+        </OsdsLink>
+      </TileItem>
+    </Tile>
   );
 };
 
