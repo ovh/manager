@@ -1,5 +1,5 @@
 import { v2 } from '@ovh-ux/manager-core-api';
-import { AliasType } from './type';
+import { AliasBodyParamsType, AliasType } from './type';
 import { getApiPath } from '../utils/apiPath';
 
 // GET
@@ -16,5 +16,17 @@ export const getZimbraPlatformAliasDetail = async (
   const { data } = await v2.get<AliasType>(
     `${getApiPath(platformId)}alias/${aliasId}`,
   );
+  return data;
+};
+
+// POST
+
+export const postZimbraPlatformAlias = async (
+  platformId: string,
+  params: AliasBodyParamsType,
+) => {
+  const { data } = await v2.post(`${getApiPath(platformId)}alias`, {
+    targetSpec: params,
+  });
   return data;
 };

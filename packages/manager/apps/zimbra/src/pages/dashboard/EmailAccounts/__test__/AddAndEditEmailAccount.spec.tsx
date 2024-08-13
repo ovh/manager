@@ -27,6 +27,13 @@ const { useLocationMock } = vi.hoisted(() => ({
   })),
 }));
 
+const { useAccountMock } = vi.hoisted(() => ({
+  useAccountMock: vi.fn(() => ({
+    data: null,
+    isLoading: false,
+  })),
+}));
+
 vi.mock('@/hooks', () => {
   return {
     usePlatform: vi.fn(() => ({
@@ -41,6 +48,7 @@ vi.mock('@/hooks', () => {
       data: null,
       isLoading: false,
     })),
+    useAccount: useAccountMock,
   };
 });
 
@@ -81,6 +89,12 @@ afterEach(() => {
 
 describe('email account add and edit page', () => {
   it('if there is not editEmailAccountId params', () => {
+    useAccountMock.mockImplementation(
+      vi.fn(() => ({
+        data: null,
+        isLoading: false,
+      })),
+    );
     const { getByTestId } = render(<AddAndEditEmailAccount />);
     expect(getByTestId('page-title')).toHaveTextContent(
       emailAccountAddAndEditTranslation.zimbra_account_add_title,
@@ -88,10 +102,16 @@ describe('email account add and edit page', () => {
   });
 
   it('if there is editEmailAccountId params', () => {
+    useAccountMock.mockImplementation(
+      vi.fn(() => ({
+        data: accountMock[0],
+        isLoading: false,
+      })),
+    );
     useLocationMock.mockImplementation(
       vi.fn(() => ({
         pathname:
-          '/00000000-0000-0000-0000-000000000001/email_accounts/settings',
+          '/00000000-0000-0000-0000-000000000001/email_accounts/settings?editEmailAccountId=19097ad4-2880-4000-8b03-9d110f0b8f80',
         search: '',
       })),
     );
@@ -101,12 +121,6 @@ describe('email account add and edit page', () => {
           editEmailAccountId: '19097ad4-2880-4000-8b03-9d110f0b8f80',
         }),
       ]),
-    );
-    useQueryMock.mockImplementation(
-      vi.fn(() => ({
-        data: accountMock[0],
-        isLoading: false,
-      })),
     );
     const { getByTestId } = render(<AddAndEditEmailAccount />);
     expect(getByTestId('page-title')).toHaveTextContent(
@@ -142,6 +156,20 @@ describe('email account add and edit page', () => {
   });
 
   it('check validity form', () => {
+    useLocationMock.mockImplementation(
+      vi.fn(() => ({
+        pathname:
+          '/00000000-0000-0000-0000-000000000001/email_accounts/settings?editEmailAccountId=19097ad4-2880-4000-8b03-9d110f0b8f80',
+        search: '',
+      })),
+    );
+    useSearchParamsMock.mockImplementation(
+      vi.fn(() => [
+        new URLSearchParams({
+          editEmailAccountId: '19097ad4-2880-4000-8b03-9d110f0b8f80',
+        }),
+      ]),
+    );
     const { getByTestId } = render(<AddAndEditEmailAccount />);
 
     const button = getByTestId('confirm-btn');

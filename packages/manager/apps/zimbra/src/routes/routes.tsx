@@ -114,6 +114,14 @@ export const Routes: any = [
                   ),
                 ),
                 handle: { isOverridePage: true },
+                children: [
+                  {
+                    path: 'add',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/dashboard/EmailAccounts/ModalAddAlias'),
+                    ),
+                  },
+                ],
               },
               {
                 path: 'delete',

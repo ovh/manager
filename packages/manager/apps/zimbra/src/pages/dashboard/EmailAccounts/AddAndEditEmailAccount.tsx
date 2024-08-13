@@ -7,12 +7,7 @@ import {
   useResolvedPath,
   useSearchParams,
 } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { useDomains, useGenerateUrl, usePlatform } from '@/hooks';
-import {
-  getZimbraPlatformAccountDetail,
-  getZimbraPlatformAccountDetailQueryKey,
-} from '@/api/account';
+import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
 import { TabItemProps, AccountTabsPanel } from './AccountTabsPanel';
 import { urls } from '@/routes/routes.constants';
@@ -38,15 +33,7 @@ export default function AddAndEditAccount() {
   const {
     data: editAccountDetail,
     isLoading: isLoadingEmailDetailRequest,
-  } = useQuery({
-    queryKey: getZimbraPlatformAccountDetailQueryKey(
-      platformId,
-      editEmailAccountId,
-    ),
-    queryFn: () =>
-      getZimbraPlatformAccountDetail(platformId, editEmailAccountId),
-    enabled: !!platformId && !!editEmailAccountId,
-  });
+  } = useAccount(editEmailAccountId);
 
   const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains(
     null,
@@ -68,7 +55,10 @@ export default function AddAndEditAccount() {
     urls.email_accounts_edit,
   ]);
 
-  const pathMatcherAliasTabs = computePathMatchers([urls.email_accounts_alias]);
+  const pathMatcherAliasTabs = computePathMatchers([
+    urls.email_accounts_alias,
+    urls.email_accounts_alias_add,
+  ]);
 
   useEffect(() => {
     if (!isLoadingEmailDetailRequest && !isLoadingDomainRequest && platformId) {

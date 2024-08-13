@@ -2,21 +2,31 @@ import React from 'react';
 import {
   Datagrid,
   DatagridColumn,
+  ManagerButton,
+  Notifications,
   Subtitle,
 } from '@ovhcloud/manager-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import {
   AliasType,
   getZimbraPlatformAlias,
   getZimbraPlatformAliasQueryKey,
 } from '@/api/alias';
-import { usePlatform } from '@/hooks';
+import { useGenerateUrl, usePlatform } from '@/hooks';
 import ActionButtonAlias from './ActionButtonAlias';
 import { BadgeStatus } from '@/components/BadgeStatus';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 export type AliasItem = {
   id: string;
@@ -26,7 +36,9 @@ export type AliasItem = {
 
 export default function EmailAccountsAlias() {
   const { t } = useTranslation('accounts/alias');
-  const { platformId } = usePlatform();
+  const [searchParams] = useSearchParams();
+  const editEmailAccountId = searchParams.get('editEmailAccountId');
+  const { platformId, platformUrn } = usePlatform();
   const { data } = useQuery({
     queryKey: getZimbraPlatformAliasQueryKey(platformId),
     queryFn: () => getZimbraPlatformAlias(platformId),
@@ -61,6 +73,8 @@ export default function EmailAccountsAlias() {
     },
   ];
 
+  const hrefAddAlias = useGenerateUrl('./add', 'href', { editEmailAccountId });
+
   const items: AliasItem[] =
     data?.map((item: AliasType) => ({
       id: item.id,
@@ -70,8 +84,33 @@ export default function EmailAccountsAlias() {
 
   return (
     <div className="py-6 mt-8">
+      <Outlet />
+      <Notifications />
       <div className="mb-8">
         <Subtitle>{t('zimbra_account_alias_title')}</Subtitle>
+      </div>
+      <div className="flex items-center justify-between">
+        {platformUrn && (
+          <ManagerButton
+            color={ODS_THEME_COLOR_INTENT.primary}
+            inline
+            size={ODS_BUTTON_SIZE.sm}
+            href={hrefAddAlias}
+            urn={platformUrn}
+            iamActions={[IAM_ACTIONS.alias.create]}
+            data-testid="add-alias-btn"
+          >
+            <span slot="start">
+              <OsdsIcon
+                name={ODS_ICON_NAME.PLUS}
+                size={ODS_ICON_SIZE.sm}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                contrasted
+              ></OsdsIcon>
+            </span>
+            <span slot="end">{t('zimbra_account_alias_cta')}</span>
+          </ManagerButton>
+        )}
       </div>
       <Datagrid
         columns={columns.map((column) => ({
