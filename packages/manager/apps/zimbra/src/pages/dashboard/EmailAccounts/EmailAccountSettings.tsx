@@ -33,6 +33,7 @@ import {
   putZimbraPlatformAccount,
 } from '@/api/account';
 import { DomainType } from '@/api/domain';
+import { formInputRegex } from './account.constants';
 
 export default function EmailAccountSettings({
   domainList = [],
@@ -67,15 +68,6 @@ export default function EmailAccountSettings({
   interface FormTypeInterface {
     [key: string]: FieldType;
   }
-
-  interface FormInputRegexInterface {
-    [key: string]: RegExp;
-  }
-
-  const formInputRegex: FormInputRegexInterface = {
-    account: /^(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*)(?:(?:[.|+])(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*))*$/,
-    password: /^(?=(.*\d))(?=.*[!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-zA-Z])(?=(.*)).{9,}$/,
-  };
 
   const [form, setForm] = useState<FormTypeInterface>({
     ...{

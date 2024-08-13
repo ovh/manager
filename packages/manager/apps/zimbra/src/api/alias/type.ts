@@ -23,3 +23,9 @@ export type AliasType = {
     organizationLabel: string;
   };
 };
+
+export type AliasBodyParamsType = {
+  organizationId?: string;
+  aliasTarget?: string;
+  alias?: string;
+};
