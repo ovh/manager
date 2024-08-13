@@ -2,7 +2,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'telecom.telephony.billingAccount.line.dashboard.softphone.mail',
     {
-      url: '/mail',
+      url: '/mail?deviceId',
       views: {
         modal: {
           component: 'softphoneSendLinkByMail',
