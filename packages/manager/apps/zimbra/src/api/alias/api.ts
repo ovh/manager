@@ -30,3 +30,13 @@ export const postZimbraPlatformAlias = async (
   });
   return data;
 };
+
+// DELETE
+
+export const deleteZimbraPlatformAlias = async (
+  platformId: string,
+  aliasId: string,
+) => {
+  const { data } = await v2.delete(`${getApiPath(platformId)}alias/${aliasId}`);
+  return data;
+};
