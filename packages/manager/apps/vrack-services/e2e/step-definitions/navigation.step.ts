@@ -1,7 +1,7 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers';
 import { setupNetwork, getUrl } from '../utils';
-import { ConfigParams } from '../../mock/handlers';
+import { ConfigParams } from '../../mocks/handlers';
 
 Given('User is on {word} page', function(
   this: ICustomWorld<ConfigParams>,

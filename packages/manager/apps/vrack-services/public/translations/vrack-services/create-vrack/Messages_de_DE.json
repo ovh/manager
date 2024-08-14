@@ -1,0 +1,11 @@
+{
+  "modalVrackCreationDescriptionLine1": "Damit vRack Services funktioniert, müssen Sie es mit einem Ihrer vorhandenen vRacks verbinden. Derzeit verfügen Sie noch nicht über ein in Frage kommendes vRack.",
+  "modalVrackCreationDescriptionLine2": "Sie können nur ein vRack Services pro Region mit einem bestimmten vRack verknüpfen.",
+  "modalVrackCreationError": "Der folgende Fehler ist aufgetreten: {{error}}.",
+  "modalVrackCreationCancel": "Abbrechen",
+  "modalCreateNewVrackButtonLabel": "vRack erstellen",
+  "modalVrackCreationOrderWaitMessage": "Bitte gedulden Sie sich einen Augenblick ...",
+  "modalVrackCreationSubmitOrderButtonLabel": "Mein vRack bestellen",
+  "vrackCreationSuccess": "vRack erfolgreich bestellt.",
+  "vrackOrderLinkLabel": "Meine Bestellung"
+}
