@@ -87,5 +87,7 @@
   "common_dual_list_target_placeholder": "Nessun elemento selezionato",
   "common_dual_list_target_move": "Elimina",
   "common_dual_list_target_move_all": "Elimina tutto",
-  "common_dual_list_target_search": "Cerca nel contenuto di destinazione"
+  "common_dual_list_target_search": "Cerca nel contenuto di destinazione",
+  "common_cancel": "Annulla",
+  "common_confirm": "Conferma"
 }

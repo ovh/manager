@@ -21,7 +21,7 @@ export default function ActionComponent({
   const hrefHarborUI = '';
   const hrefHarborAPI = '';
   const hrefRegenerateCredentials = '';
-  const hrefRename = '';
+  const hrefRename = useHref(`./update?registryId=${registry.id}`);
   const hrefDelete = useHref(`./delete?registryId=${registry.id}`);
 
   const items = [

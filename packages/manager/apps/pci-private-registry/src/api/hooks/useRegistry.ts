@@ -7,6 +7,7 @@ import {
   deleteRegistry,
   getAllRegistries,
   getRegistryPlan,
+  renameRegistry,
   TRegistry,
 } from '../data/registry';
 import queryClient from '@/queryClient';
@@ -103,6 +104,35 @@ export const useDeleteRegistry = ({
   });
   return {
     deleteRegistry: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type RenameRegistryProps = {
+  projectId: string;
+  registryId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+export const useRenameRegistry = ({
+  projectId,
+  registryId,
+  onError,
+  onSuccess,
+}: RenameRegistryProps) => {
+  const mutation = useMutation({
+    mutationFn: async (name: string) =>
+      renameRegistry(projectId, registryId, name),
+    onError,
+    onSuccess: async () => {
+      queryClient.invalidateQueries({
+        queryKey: getRegistryQueryPrefix(projectId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    renameRegistry: (name: string) => mutation.mutate(name),
     ...mutation,
   };
 };

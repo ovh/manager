@@ -76,7 +76,11 @@ export function DeletionModal({
 
   return (
     <OsdsModal
-      color={type === 'warning' ? ODS_THEME_COLOR_INTENT.warning : undefined}
+      color={
+        type === 'warning'
+          ? ODS_THEME_COLOR_INTENT.warning
+          : ODS_THEME_COLOR_INTENT.primary
+      }
       headline={title}
       onOdsModalClose={onClose}
     >
