@@ -52,7 +52,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
           handleOnEnter(node);
         }
       }}
-      onClick={!isMobile ? handleOnClick : null}
+      onClick={handleOnClick}
       id={id}
       role="button"
     >

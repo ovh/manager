@@ -29,6 +29,14 @@ $sidebar-font-size: 0.875rem;
     }
   }
 
+  &_logo {
+    display: flex;
+    
+    img {
+      height: 1.85rem;
+    }
+  }
+
   &_short {
     width: 4.5rem;
     min-width: unset;
@@ -44,13 +52,10 @@ $sidebar-font-size: 0.875rem;
     & .sidebar_toggle_btn {
       justify-content: center;
     }
-  }
 
-  &_logo {
-    display: block;
-    
-    img {
-      height: 1.85rem;
+    & .sidebar_logo {
+      display: flex;
+      justify-content: center;
     }
   }
 
@@ -78,6 +83,10 @@ $sidebar-font-size: 0.875rem;
 
   &_menu {
     flex: 1;
+
+    &_short {
+      padding-top: 1rem;
+    }
   }
 
   ul {

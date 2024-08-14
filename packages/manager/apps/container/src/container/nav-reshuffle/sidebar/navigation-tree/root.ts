@@ -11,7 +11,6 @@ import { assistanceTree } from './assistance';
 
 const root: Node = {
   id: 'home',
-  translation: 'sidebar_home',
   count: false,
   routing: {
     application: 'hub',
@@ -20,6 +19,7 @@ const root: Node = {
   children: [
     {
       id: 'sidebar',
+      translation: 'sidebar_home',
       count: false,
       children: [
         bareMetalCloud,

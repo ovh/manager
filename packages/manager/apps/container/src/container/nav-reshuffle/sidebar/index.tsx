@@ -50,7 +50,7 @@ const Sidebar = (): JSX.Element => {
     currentNavigationNode,
     setCurrentNavigationNode,
     closeNavigationSidebar,
-    isMobile
+    isMobile,
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
   const [menuItems, setMenuItems] = useState<
@@ -66,14 +66,15 @@ const Sidebar = (): JSX.Element => {
   const toggleSidebar = () => {
     setOpen((prevOpen) => {
       const nextOpen = !prevOpen;
-      const trackingName = nextOpen ? 'navbar_v3::open_navbar': 'navbar_v3::reduce_navbar' ;
+      const trackingName = nextOpen
+        ? 'navbar_v3::open_navbar'
+        : 'navbar_v3::reduce_navbar';
       trackingPlugin.trackClick({
         name: trackingName,
         type: 'action',
       });
       return nextOpen;
     });
-
   };
 
   const menuClickHandler = (node: Node) => {
@@ -87,7 +88,7 @@ const Sidebar = (): JSX.Element => {
     )
       .filter((item) => item.id)
       .map((element) => element.id);
-      
+
     history.forEach((entry: string) => {
       trackingIdComplement += `${entry.replace(/-/g, '_')}::`;
     });
@@ -101,7 +102,9 @@ const Sidebar = (): JSX.Element => {
   const onEnter = (node: Node) => {
     const getFirstChild = (node: Node): Node =>
       !node.children ? node : getFirstChild(node.children[0]);
-    const firstElement = window.document.getElementById(getFirstChild(node)?.idAttr);
+    const firstElement = window.document.getElementById(
+      getFirstChild(node)?.idAttr,
+    );
     if (firstElement) firstElement.focus();
   };
 
@@ -110,7 +113,7 @@ const Sidebar = (): JSX.Element => {
     const initializeNavigationTree = async () => {
       const features = initFeatureNames(navigationTree);
 
-        const results = await fetchFeatureAvailabilityData(features);
+      const results = await fetchFeatureAvailabilityData(features);
 
       const region = environmentPlugin.getEnvironment().getRegion();
       const [tree] = initTree([navigationTree], results, region);
@@ -196,7 +199,10 @@ const Sidebar = (): JSX.Element => {
     }
   }, [currentNavigationNode]);
 
-  const computeNodeCount = (count: IServicesCount, node: Node): number | boolean => {
+  const computeNodeCount = (
+    count: IServicesCount,
+    node: Node,
+  ): number | boolean => {
     if (node.count === false) return node.count;
     return countServices(count, node);
   };
@@ -205,20 +211,22 @@ const Sidebar = (): JSX.Element => {
     return {
       ...node,
       count: computeNodeCount(count, node),
-      children: node.children?.map(childNode => processNode(count, childNode))
+      children: node.children?.map((childNode) =>
+        processNode(count, childNode),
+      ),
     };
   };
 
   /**
- * Initialize menu items based on currentNavigationNode
- */
+   * Initialize menu items based on currentNavigationNode
+   */
   useEffect(() => {
     const count = {
       total: servicesCount?.total,
       serviceTypes: { ...servicesCount?.serviceTypes },
     };
 
-    const updatedMenuItems = currentNavigationNode.children?.map(node => ({
+    const updatedMenuItems = currentNavigationNode.children?.map((node) => ({
       node: processNode(count, node),
       count: computeNodeCount(count, node),
     }));
@@ -250,14 +258,17 @@ const Sidebar = (): JSX.Element => {
           />
         </a>
 
-        <div className={style.sidebar_menu} role="menubar">
+        <div
+          className={`${style.sidebar_menu} ${!open ? style.sidebar_menu_short : ''}`}
+          role="menubar"
+        >
           {servicesCount && currentNavigationNode && (
             <ul id="menu" role="menu">
-              <li className="px-3 mb-3 mt-2">
-                <h2 className={!open ? style.hidden : ''}>
-                  {t(currentNavigationNode.translation)}
-                </h2>
-              </li>
+              {open && (
+                <li className="px-3 mb-3 mt-2">
+                  <h2>{t(currentNavigationNode.translation)}</h2>
+                </li>
+              )}
               {menuItems
                 ?.filter((node) => !shouldHideElement(node, node.count))
                 .map(({ node, count }) => (
@@ -276,7 +287,7 @@ const Sidebar = (): JSX.Element => {
                       count={count}
                       handleOnClick={() => menuClickHandler(node)}
                       handleOnEnter={(node: Node) => onEnter(node)}
-                    id={node.idAttr}
+                      id={node.idAttr}
                       isShortText={!open}
                     />
                     {node.separator && <hr role="separator" />}
@@ -294,8 +305,8 @@ const Sidebar = (): JSX.Element => {
               }
               href={navigationPlugin.getURL('catalog', '/')}
               role="link"
-            title={t('sidebar_service_add')}
-          >
+              title={t('sidebar_service_add')}
+            >
               <span
                 className={`oui-icon oui-icon-cart ${style.sidebar_action_icon}`}
                 aria-hidden="true"
@@ -311,7 +322,11 @@ const Sidebar = (): JSX.Element => {
           </Suspense>
         )}
 
-        <button className={style.sidebar_toggle_btn} onClick={toggleSidebar} role="button">
+        <button
+          className={style.sidebar_toggle_btn}
+          onClick={toggleSidebar}
+          role="button"
+        >
           {open && <span className="mr-2">Réduire</span>}
           <span
             className={`${
