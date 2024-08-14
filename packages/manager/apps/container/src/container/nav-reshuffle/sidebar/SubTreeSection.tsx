@@ -44,7 +44,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
   return (
     <>
       {node.children ? (
-        <ul className={`mt-3 pb-2 ${style.subtree_section}`}>
+        <ul className={`mt-3 pb-2 ${style.subtree_section}`} role="group" aria-label={t(node.translation)}>
           <li>
             <h2 className={style.subtree_section_title}>
               {t(node.translation)}
@@ -52,18 +52,19 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
           </li>
 
           {node.children?.map((childNode) => (
-            <li key={childNode.id} id={childNode.id}>
+            <li key={childNode.id} id={childNode.id} role="menuitem">
               {!shouldHideElement(childNode, 1, 2) && (
                 <SidebarLink
                   linkParams={{
                     projectId: selectedPciProject,
                   }}
                   node={childNode}
+                  count={childNode.count}
                   handleNavigation={() => menuClickHandler(childNode)}
                   id={childNode.idAttr}
                 />
               )}
-              {childNode.separator && <hr />}
+              {childNode.separator && <hr role="separator"/>}
             </li>
           ))}
         </ul>
@@ -73,11 +74,12 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
             projectId: selectedPciProject,
           }}
           node={node}
+          count={node.count}
           handleNavigation={() => menuClickHandler(node)}
           id={node.idAttr}
         />
       )}
-      {node.separator && <hr />}
+      {node.separator && <hr role="separator" />}
     </>
   );
 };

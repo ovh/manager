@@ -31,6 +31,7 @@ export interface ImageDetails {
 export interface CardProps {
   href: string;
   isExternalHref?: boolean;
+  hrefLabel?: string;
   img?: ImageDetails;
   texts: {
     title: string;
@@ -46,6 +47,7 @@ export interface CardProps {
 export const Card: React.FC<CardProps> = ({
   href,
   isExternalHref,
+  hrefLabel,
   img,
   badges,
   texts,
@@ -106,11 +108,11 @@ export const Card: React.FC<CardProps> = ({
           </OsdsText>
 
           <OsdsText
-            className="block mb-5"
+            className="block mb-4"
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._500}
             color={ODS_THEME_COLOR_INTENT.primary}
-            hue={ODS_THEME_COLOR_HUE._900}
+            hue={ODS_THEME_COLOR_HUE._800}
           >
             {title}
           </OsdsText>
@@ -128,7 +130,7 @@ export const Card: React.FC<CardProps> = ({
 
           <Links
             tab-index="-1"
-            label={t('see_more_label')}
+            label={hrefLabel ?? t('see_more_label')}
             type={isExternalHref ? LinkType.external : LinkType.next}
           />
         </div>

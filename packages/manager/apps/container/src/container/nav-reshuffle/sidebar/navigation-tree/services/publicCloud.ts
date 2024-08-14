@@ -3,6 +3,7 @@ import illustration from '@/assets/images/sidebar/public-cloud.png';
 
 const pciNode: Node = {
   id: 'pci',
+  idAttr: 'pci-link',
   translation: 'sidebar_pci',
   shortTranslation: 'sidebar_pci_short',
   illustration,
@@ -11,12 +12,14 @@ const pciNode: Node = {
   children: [
     {
       id: 'pci-compute',
+      idAttr: 'pci-compute-link',
       translation: 'sidebar_pci_compute',
       features: ['instance'],
       forceVisibility: true,
       children: [
         {
           id: 'pci-instances',
+          idAttr: 'pci-instances-link',
           translation: 'sidebar_pci_instances',
           serviceType: 'CLOUD_PROJECT_INSTANCE',
           routing: {
@@ -30,6 +33,7 @@ const pciNode: Node = {
     },
     {
       id: 'pci-storage',
+      idAttr: 'pci-storage-link',
       translation: 'sidebar_pci_storage',
       features: [
         'block-storage',
@@ -44,6 +48,7 @@ const pciNode: Node = {
       children: [
         {
           id: 'pci-block-storage',
+          idAttr: 'pci-block-storage-link',
           translation: 'sidebar_pci_block_storage',
           serviceType: 'CLOUD_PROJECT_VOLUME',
           routing: {
@@ -55,6 +60,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-object-storage',
+          idAttr: 'pci-object-storage-link',
           translation: 'sidebar_pci_object_storage',
           serviceType: 'CLOUD_PROJECT_STORAGE_OBJECTS',
           routing: {
@@ -66,6 +72,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-cloud-archive',
+          idAttr: 'pci-cloud-archive-link',
           translation: 'sidebar_pci_cloud_archive',
           serviceType: 'CLOUD_PROJECT_STORAGE_ARCHIVES',
           routing: {
@@ -77,6 +84,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-cold-archive',
+          idAttr: 'pci-cold-archive-link',
           translation: 'sidebar_pci_cold_archive',
           serviceType: 'CLOUD_PROJECT_STORAGE_COLD_ARCHIVES',
           routing: {
@@ -89,6 +97,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-volume-snapshot',
+          idAttr: 'pci-volume-snapshot-link',
           translation: 'sidebar_pci_volume_snapshot',
           serviceType: 'CLOUD_PROJECT_VOLUME_SNAPSHOT',
           routing: {
@@ -100,6 +109,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-volume-backup',
+          idAttr: 'pci-volume-backup-link',
           translation: 'sidebar_pci_volume_backup',
           serviceType: 'CLOUD_PROJECT_VOLUME_BACKUP',
           routing: {
@@ -112,6 +122,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-instance-backup',
+          idAttr: 'pci-instance-backup-link',
           translation: 'sidebar_pci_instance_backup',
           serviceType: 'CLOUD_PROJECT_SNAPSHOT',
           routing: {
@@ -123,6 +134,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-workflow',
+          idAttr: 'pci-workflow-link',
           translation: 'sidebar_pci_workflow',
           serviceType: 'CLOUD_PROJECT_WORKFLOW_BACKUP',
           routing: {
@@ -136,6 +148,7 @@ const pciNode: Node = {
     },
     {
       id: 'pci-network',
+      idAttr: 'pci-network-link',
       translation: 'sidebar_pci_network',
       features: [
         'private-network',
@@ -147,6 +160,7 @@ const pciNode: Node = {
       children: [
         {
           id: 'pci-private-network',
+          idAttr: 'pci-private-network-link',
           translation: 'sidebar_pci_private_network',
           serviceType: 'CLOUD_PROJECT_PRIVATE_NETWORK',
           routing: {
@@ -158,6 +172,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-octavia-load-balancer',
+          idAttr: 'pci-octavia-load-balancer-link',
           translation: 'sidebar_pci_octavia_load_balancer',
           serviceType: 'CLOUD_PROJECT_OCTAVIA_LOAD_BALANCER',
           routing: {
@@ -170,6 +185,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-additional-ips',
+          idAttr: 'pci-additional-ips-link',
           translation: 'sidebar_pci_additional_ips',
           serviceType: 'CLOUD_PROJECT_ADDITIONAL_IP',
           routing: {
@@ -181,6 +197,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-public-gateways',
+          idAttr: 'pci-public-gateways-link',
           translation: 'sidebar_pci_public_gateways',
           serviceType: 'CLOUD_PROJECT_PUBLIC_GATEWAYS',
           routing: {
@@ -194,6 +211,7 @@ const pciNode: Node = {
     },
     {
       id: 'pci-containers',
+      idAttr: 'pci-containers-link',
       translation: 'sidebar_pci_containers',
       features: [
         'pci-rancher',
@@ -206,6 +224,7 @@ const pciNode: Node = {
       children: [
         {
           id: 'pci-rancher',
+          idAttr: 'pci-rancher-link',
           translation: 'sidebar_pci_rancher',
           serviceType: 'CLOUD_PROJECT_KUBE',
           routing: {
@@ -218,6 +237,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-kubernetes',
+          idAttr: 'pci-kubernetes-link',
           translation: 'sidebar_pci_kubernetes',
           serviceType: 'CLOUD_PROJECT_KUBE',
           routing: {
@@ -229,6 +249,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-private-registry',
+          idAttr: 'pci-private-registry-link',
           translation: 'sidebar_pci_private_registry',
           serviceType: 'CLOUD_PROJECT_CONTAINER_REGISTRY',
           routing: {
@@ -240,6 +261,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-kubernetes-load-balancer',
+          idAttr: 'pci-kubernetes-load-balancer-link',
           translation: 'sidebar_pci_kubernetes_load_balancer',
           serviceType: 'CLOUD_PROJECT_LOADBALANCER',
           routing: {
@@ -252,6 +274,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-kubernetes-load-balancer',
+          idAttr: 'pci-kubernetes-load-balancer-link',
           translation: 'sidebar_pci_load_balancer',
           serviceType: 'CLOUD_PROJECT_LOADBALANCER',
           routing: {
@@ -266,24 +289,41 @@ const pciNode: Node = {
     },
     {
       id: 'pci-analytics',
+      idAttr: 'pci-analytics-link',
       translation: 'sidebar_pci_analytics',
-      features: ['data-processing', 'logs-data-platform', 'databases'],
+      features: ['data-processing', 'logs-data-platform', 'databases-analysis', 'databases-operational', 'databases-streaming', 'pci-databases-analytics-analysis', 'pci-databases-analytics-operational', 'pci-databases-analytics-streaming'],
       forceVisibility: true,
       children: [
+        //Entry menu for PCI Databases for Angular
         {
-          id: 'pci-analytics-databases',
+          id: 'pci-databases-operational',
+          idAttr: 'pci-databases-operational',
           translation: 'sidebar_pci_analytics_databases',
           serviceType: 'CLOUD_PROJECT_DATABASE',
           routing: {
             application: 'public-cloud',
-            hash:
-              '#/pci/projects/{projectId}/storages/databases-analytics/databases',
+            hash: '#/pci/projects/{projectId}/storages/databases-analytics/databases',
           },
-          features: ['databases'],
+          features: ['databases-operational'],
           forceVisibility: true,
         },
+        //Entry menu for PCI Databases for React
         {
-          id: 'pci-analytics-data-streaming',
+          id: 'pci-databases-analytics-operational',
+          idAttr: 'pci-databases-analytics-operational',
+          translation: 'sidebar_pci_analytics_databases',
+          serviceType: 'CLOUD_PROJECT_DATABASE',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/databases-analytics/operational/services',
+          },
+          features: ['pci-databases-analytics-operational'],
+          forceVisibility: true,
+        },
+        //Entry menu for PCI Data Streaming for Angular
+        {
+          id: 'pci-databases-streaming',
+          idAttr: 'pci-databases-streaming',
           translation: 'sidebar_pci_analytics_data_streaming',
           serviceType: 'CLOUD_PROJECT_DATABASE',
           routing: {
@@ -291,11 +331,24 @@ const pciNode: Node = {
             hash:
               '#/pci/projects/{projectId}/storages/databases-analytics/data-streaming',
           },
-          features: ['databases'],
+          features: ['databases-streaming'],
+          forceVisibility: true,
+        },
+        //Entry menu for PCI Data Streaming for React
+        {
+          id: 'pci-databases-analytics-streaming',
+          translation: 'sidebar_pci_analytics_data_streaming',
+          serviceType: 'CLOUD_PROJECT_DATABASE',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/databases-analytics/streaming/services',
+          },
+          features: ['pci-databases-analytics-streaming'],
           forceVisibility: true,
         },
         {
           id: 'pci-data-processing',
+          idAttr: 'pci-data-processing-link',
           translation: 'sidebar_pci_data_processing',
           serviceType: 'CLOUD_PROJECT_DATAPROCESSING_JOBS',
           routing: {
@@ -305,8 +358,10 @@ const pciNode: Node = {
           features: ['data-processing'],
           forceVisibility: true,
         },
+        //Entry menu for PCI Data Analysis for Angular
         {
-          id: 'pci-analytics-data-analysis',
+          id: 'pci-databases-analysis',
+          idAttr: 'pci-databases-analysis',
           translation: 'sidebar_pci_analytics_data_analysis',
           serviceType: 'CLOUD_PROJECT_DATABASE',
           routing: {
@@ -314,11 +369,24 @@ const pciNode: Node = {
             hash:
               '#/pci/projects/{projectId}/storages/databases-analytics/data-analysis',
           },
-          features: ['databases'],
+          features: ['databases-analysis'],
+          forceVisibility: true,
+        },
+        //Entry menu for PCI Data Analysis for React
+        {
+          id: 'pci-databases-analytics-analysis',
+          translation: 'sidebar_pci_analytics_data_analysis',
+          serviceType: 'CLOUD_PROJECT_DATABASE',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/databases-analytics/analysis/services',
+          },
+          features: ['pci-databases-analytics-analysis'],
           forceVisibility: true,
         },
         {
           id: 'pci-analytics-data-platform',
+          idAttr: 'pci-analytics-data-platform-link',
           translation: 'sidebar_pci_analytics_data_platform',
           count: false,
           url: 'https://eu.dataplatform.ovh.net/',
@@ -328,6 +396,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-logs-data-platform',
+          idAttr: 'pci-logs-data-platform-link',
           translation: 'sidebar_pci_logs_data_platform',
           serviceType: 'DBAAS_LOGS',
           routing: {
@@ -341,12 +410,14 @@ const pciNode: Node = {
     },
     {
       id: 'pci-ai',
+      idAttr: 'pci-ai-link',
       translation: 'sidebar_pci_ai',
       features: ['notebooks', 'ai-apps', 'training'],
       forceVisibility: true,
       children: [
         {
           id: 'pci-ai-notebooks',
+          idAttr: 'pci-ai-notebooks-link',
           translation: 'sidebar_pci_ai_notebooks',
           serviceType: 'CLOUD_PROJECT_AI_NOTEBOOK',
           routing: {
@@ -358,6 +429,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-ai-training',
+          idAttr: 'pci-ai-training-link',
           translation: 'sidebar_pci_ai_training',
           serviceType: 'CLOUD_PROJECT_AI_JOB',
           routing: {
@@ -369,6 +441,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-ai-app',
+          idAttr: 'pci-ai-app-link',
           translation: 'sidebar_pci_ai_app',
           serviceType: 'CLOUD_PROJECT_AI_APP',
           routing: {
@@ -380,6 +453,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-ai-endpoints',
+          idAttr: 'pci-ai-endpoints-link',
           translation: 'sidebar_pci_ai_endpoints',
           count: false,
           url: 'https://endpoints.ai.cloud.ovh.net/',
@@ -391,18 +465,23 @@ const pciNode: Node = {
     },
     {
       id: 'pci-management-interface',
+      idAttr: 'pci-management-interface-link',
       translation: 'sidebar_pci_management',
       features: ['horizon'],
       count: false,
       children: [
         {
           id: 'pci-horizon',
+          idAttr: 'pci-horizon-link',
           translation: 'sidebar_pci_horizon',
           count: false,
           url: {
-            CA: 'https://auth.cloud.ovh.net/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-world/protocols/openid/websso?origin=https://horizon.cloud.ovh.net/auth/websso/',
-            EU: 'https://auth.cloud.ovh.net/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-emea/protocols/openid/websso?origin=https://horizon.cloud.ovh.net/auth/websso/',
-            US: 'https://auth.cloud.ovh.us/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-us/protocols/openid/websso?origin=https://horizon.cloud.ovh.us/auth/websso/',
+            CA:
+              'https://auth.cloud.ovh.net/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-world/protocols/openid/websso?origin=https://horizon.cloud.ovh.net/auth/websso/',
+            EU:
+              'https://auth.cloud.ovh.net/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-emea/protocols/openid/websso?origin=https://horizon.cloud.ovh.net/auth/websso/',
+            US:
+              'https://auth.cloud.ovh.us/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-us/protocols/openid/websso?origin=https://horizon.cloud.ovh.us/auth/websso/',
           },
           isExternal: true,
           features: ['horizon'],
@@ -411,6 +490,7 @@ const pciNode: Node = {
     },
     {
       id: 'pci-settings',
+      idAttr: 'pci-settings-link',
       translation: 'sidebar_pci_settings',
       count: false,
       features: [
@@ -425,6 +505,7 @@ const pciNode: Node = {
       children: [
         {
           id: 'pci-users-roles',
+          idAttr: 'pci-users-roles-link',
           translation: 'sidebar_pci_users_roles',
           routing: {
             application: 'public-cloud',
@@ -435,6 +516,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-quota-region',
+          idAttr: 'pci-quota-region-link',
           translation: 'sidebar_pci_quota_regions',
           routing: {
             application: 'public-cloud',
@@ -445,6 +527,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-ssh-keys',
+          idAttr: 'pci-ssh-keys-link',
           translation: 'sidebar_pci_ssh_keys',
           routing: {
             application: 'public-cloud',
@@ -455,6 +538,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-billing',
+          idAttr: 'pci-billing-link',
           translation: 'sidebar_pci_billing',
           routing: {
             application: 'public-cloud',
@@ -465,6 +549,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-credits-vouchers',
+          idAttr: 'pci-credits-vouchers-link',
           translation: 'sidebar_pci_credits_vouchers',
           serviceType: 'CLOUD_PROJECT_CREDIT',
           routing: {
@@ -476,6 +561,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-contacts-rights',
+          idAttr: 'pci-contacts-rights-link',
           translation: 'sidebar_pci_contacts_rights',
           routing: {
             application: 'public-cloud',
@@ -486,6 +572,7 @@ const pciNode: Node = {
         },
         {
           id: 'pci-project-settings',
+          idAttr: 'pci-project-settings-link',
           translation: 'sidebar_pci_project_settings',
           routing: {
             application: 'public-cloud',

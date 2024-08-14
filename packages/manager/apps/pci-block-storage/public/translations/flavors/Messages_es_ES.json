@@ -27,5 +27,5 @@
   "pci_project_flavors_zone_localzone_tooltip": "Las Local Zones (zonas locales) son un nuevo tipo de localización en la que OVHcloud ofrece determinados servicios de su catálogo de productos Public Cloud. OVHcloud tiene previsto ampliar progresivamente el número de Local Zones disponibles en todo el mundo en los próximos años.",
   "pci_project_flavors_zone_globalregions_tooltip": "Las regiones incluyen uno o varios datacenters gestionados por OVHcloud. Cada región ofrece una o varias Availability Zones (zonas de disponibilidad) con todo el catálogo de servicios de OVHcloud.",
   "pci_project_flavors_zone_tooltip_link": "Más información",
-  "pci_project_flavors_price_hourly_from": "Desde {{price}}/hora + IVA"
+  "pci_project_flavors_price_hourly_from": "Desde {{price}}/hora + IVA"
 }

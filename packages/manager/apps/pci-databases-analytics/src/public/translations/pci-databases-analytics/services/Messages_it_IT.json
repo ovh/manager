@@ -1,0 +1,17 @@
+{
+  "title": "Servizi",
+  "createNewService": "Crea un servizio",
+  "tableHeaderName": "Nome/ID",
+  "tableHeaderEngine": "Engine",
+  "tableHeaderPlan": "Offerta",
+  "tableHeaderFlavor": "Flavor",
+  "tableHeaderStorage": "Storage utile",
+  "tableHeaderLocation": "Localizzazione",
+  "tableHeaderNodes": "Nodi",
+  "tableHeaderCreationDate": "Data di creazione",
+  "tableHeaderStatus": "Stato",
+  "tableActionManage": "Dettagli",
+  "tableActionCopy": "Copiare ID",
+  "tableActionEditName": "Rinomina",
+  "tableActionDelete": "Eliminare"
+}

@@ -3,6 +3,7 @@ import has from 'lodash/has';
 angular.module('App').controller(
   'controllers.Hosting.Runtimes.edit',
   class HostingRuntimesEditCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,

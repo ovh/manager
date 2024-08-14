@@ -1141,7 +1141,7 @@
   "hosting_tab_BOOST_disable_title": "You’re about to disable the Boost option for your web hosting plan.",
   "hosting_tab_BOOST_disable_description": "A bill will be sent to you soon, covering the entire activation period with per day billing.",
   "hosting_tab_BOOST_disable_description_part_2": "You can re-enable the Boost option at any time.",
-  "hosting_tab_BOOST_accept_cgv": "I have understood and accept the terms and conditions of service. The option will be disabled a few minutes after confirmation.",
+  "hosting_tab_BOOST_accept_cgv": "I have understood and accept the terms and conditions of service.",
   "hosting_tab_BOOST_disable_started": "Deactivating your boost plan...",
   "hosting_tab_BOOST_disable_success": "Your boost plan has been deactivated.",
   "hosting_tab_BOOST_disable_error": "An error has occurred disabling your boost plan.",
@@ -1396,11 +1396,11 @@
   "hosting_tab_DOMAINS_table_git_state_deploying": "In progress",
   "hosting_tab_DOMAINS_table_git_state_initialError": "Error",
   "hosting_tab_DOMAINS_table_git_state_tooltip_lastDeploy": "View latest deployment information",
-  "hosting_tab_DOMAINS_table_git_state_tooltip_limitedNumberPath": "The GIT association can only be done on one directory",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_limitedNumberPath": "Connection to Git can only be done on one directory",
   "hosting_tab_DOMAINS_table_popover_git_association": "Link Git",
   "hosting_tab_DOMAINS_table_popover_git_configuration": "Configure Git",
   "hosting_tab_DOMAINS_table_popover_git_deployment": "Deploy Git",
   "hosting_tab_DOMAINS_table_popover_git_viewLastDeployment": "Latest deployment information",
   "hosting_tab_DOMAINS_table_popover_git_delete": "Delete Git",
-  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "If you would like to detach your domain name, you will need to delete your Git configuration beforehand in order to prevent any potential change tracking and deployment management issues."
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "To disconnect your domain name, you will need to first delete your Git configuration to avoid any potential problems with tracking changes and managing deployments."
 }

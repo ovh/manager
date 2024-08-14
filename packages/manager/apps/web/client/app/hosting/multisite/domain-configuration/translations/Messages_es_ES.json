@@ -16,6 +16,6 @@
   "hosting_multisite_domain_configuration_countriesIp": "IP del país",
   "hosting_multisite_domain_configuration_countriesIp_none": "Ninguno",
   "hosting_multisite_domain_configuration_ssl": "SSL",
-  "hosting_multisite_domain_configuration_ssl_help": "Activar la opción SSL para disfrutar del acceso a su sitio web en https",
-  "hosting_multisite_domain_configuration_git_warning": "Si desea cambiar la carpeta raíz, debe quitar primero la configuración de Git del directorio para evitar posibles problemas con el seguimiento de cambios y la administración de implementaciones."
+  "hosting_multisite_domain_configuration_ssl_help": "Active la opción SSL para disfrutar de acceso por HTTPS al sitio web.",
+  "hosting_multisite_domain_configuration_git_warning": "Si desea cambiar la carpeta raíz, debe eliminar primero la configuración Git del directorio para evitar posibles problemas con el seguimiento de cambios y la gestión de despliegues."
 }

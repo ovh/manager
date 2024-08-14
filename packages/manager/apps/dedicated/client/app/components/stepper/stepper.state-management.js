@@ -2,6 +2,7 @@ import forEach from 'lodash/forEach';
 import set from 'lodash/set';
 
 export default class {
+  /* @ngInject */
   constructor($state, $stateRegistry) {
     // Each step is a child of the stepper
     // This is the root state of the stepper itself,

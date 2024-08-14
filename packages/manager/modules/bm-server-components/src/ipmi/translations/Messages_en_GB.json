@@ -37,7 +37,6 @@
   "server_configuration_impi_sessions_success": "The IPMI module sessions have been deleted.",
   "server_configuration_impi_disable": "The IPMI module features have been temporarily disabled because a task is in progress. They will be re-enabled once the task has been completed.",
   "server_configuration_impi_monitoring_warning": "Remember to disable monitoring for your services before installing an operating system from the IPMI.",
-  "server_configuration_impi_SOL_help": "The SOL session requires configuration on your part.",
   "server_configuration_impi_SOL_help_link": "Access configuration guide",
   "server_configuration_ipmi_title": "IPMI",
   "server_configuration_kvm_title": "KVM",
@@ -62,10 +61,6 @@
   "server_configuration_tile_sol_heading": "Serial over LAN (SoL)",
   "server_configuration_tile_sol_description": "Access to your server's serial console via a secure connection",
   "server_configuration_ssh_sol_definition": "SSH SoL (authentication with SSH key)",
-  "server_configuration_ssh_select": "Select an SSH key",
-  "server_configuration_doing": "[In progress]",
-  "server_common_confirm": "Confirm",
-  "server_common_cancel": "Cancel",
   "server_configuration_ssh_sol_input_placeholder": "Insert a public SSH key. For example: {{t0}}",
   "server_configuration_ssh_sol_input_bad_pattern": "The SSH public key is invalid: only RSA, ECDSA and EdDSA keys in OpenSSH format are supported",
   "server_configuration_ssh_sol_add_key": "Add SSH key",
@@ -73,5 +68,9 @@
   "server_configuration_ssh_sol_start": "Launch SoL session via SSH",
   "server_configuration_ssh_sol_input_bad_required": "Please enter a public SSH key in the input field.",
   "server_configuration_tile_ipmi_heading": "IPMI",
-  "server_configuration_tile_ipmi_description": "Manage IPMI (Intelligent Platform Management Interface)"
+  "server_configuration_tile_ipmi_description": "Manage IPMI (Intelligent Platform Management Interface)",
+  "server_configuration_doing": "[In progress]",
+  "server_common_confirm": "Confirm",
+  "server_common_cancel": "Cancel",
+  "server_configuration_kvm_disable": "IPMI/KVM not available for this server"
 }

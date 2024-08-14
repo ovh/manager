@@ -84,6 +84,7 @@ export default /* @ngInject */ (
     $scope.model.configureDKIM = $scope.isOvhDomain;
     $scope.model.autoEnableDKIM =
       $scope.model.autoEnableDKIM && $scope.isOvhDomain;
+    $scope.model.configureSPF = $scope.isOvhDomain;
 
     delete $scope.model.displayName;
     delete $scope.model.domainType;

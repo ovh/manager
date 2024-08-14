@@ -7,6 +7,7 @@ angular
   .service(
     'BillingVantivInstance',
     class BillingVantivInstance {
+      /* @ngInject */
       constructor(BillingVantiv) {
         this.BillingVantiv = BillingVantiv;
       }

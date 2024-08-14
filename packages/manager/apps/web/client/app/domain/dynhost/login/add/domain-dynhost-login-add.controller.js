@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'DomainDynHostLoginAddCtrl',
   class DomainDynHostLoginAddCtrl {
+    /* @ngInject */
     constructor($scope, $translate, Alerter, Domain, WucValidator) {
       this.$scope = $scope;
       this.$translate = $translate;

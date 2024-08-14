@@ -5,6 +5,7 @@ import isString from 'lodash/isString';
 angular.module('App').controller(
   'configurationCtrl',
   class ConfigurationCtrl {
+    /* @ngInject */
     constructor($q, $scope, $translate, constants, coreConfig, OvhHttp) {
       this.$q = $q;
       this.$scope = $scope;

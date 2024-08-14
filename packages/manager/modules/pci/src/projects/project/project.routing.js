@@ -287,6 +287,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
       iamLink: /* @ngInject */ (coreURLBuilder) =>
         coreURLBuilder.buildURL('dedicated', '#/iam/policy'),
+
+      getUAppUrl: /* @ngInject */ ($injector) => (...args) => {
+        const ovhShell = $injector.get('ovhShell');
+        return ovhShell.navigation.getURL(...args).then((url) => url);
+      },
     },
   });
 };

@@ -15,6 +15,7 @@ import { STATUS_OVHCLOUD_URL } from '../../constants';
 angular.module('App').controller(
   'PrivateDatabaseMetricsCtrl',
   class PrivateDatabaseMetricsCtrl {
+    /* @ngInject */
     constructor($scope, $translate, Alerter, ChartFactory, PrivateDatabase) {
       this.$scope = $scope;
       this.$translate = $translate;

@@ -1,6 +1,7 @@
 import forEach from 'lodash/forEach';
 
 export default class {
+  /* @ngInject */
   constructor($state, $transitions) {
     this.$state = $state;
     this.$transitions = $transitions;

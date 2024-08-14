@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'PrivateDatabaseArchiveDumpCtrl',
   class PrivateDatabaseArchiveDumpCtrl {
+    /* @ngInject */
     constructor($scope, $q, $window, Alerter, PrivateDatabase) {
       this.$scope = $scope;
       this.$q = $q;

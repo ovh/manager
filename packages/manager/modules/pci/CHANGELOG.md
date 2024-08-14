@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.57.1...@ovh-ux/manager-pci@6.58.0) (2024-08-12)
+
+
+### Bug Fixes
+
+* **pci.instances:** correct discovery text ([#12646](https://github.com/ovh/manager/issues/12646)) ([3b94338](https://github.com/ovh/manager/commit/3b943387896d910fff6d9ea550a95cd66d49312b))
+
+
+### Features
+
+* **pci.project:** remove mediation price change banner ([#12140](https://github.com/ovh/manager/issues/12140)) ([b592a40](https://github.com/ovh/manager/commit/b592a40a7d27d0332180ab68aba23043a1fe0805))
+
+
+
+
+
+## [6.57.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.57.0...@ovh-ux/manager-pci@6.57.1) (2024-08-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3189] ([ba73a17](https://github.com/ovh/manager/commit/ba73a17c03a04db70aad532fab42b31c1367dd03))
+
+
+
+
+
+# [6.57.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.56.0...@ovh-ux/manager-pci@6.57.0) (2024-08-05)
+
+
+### Features
+
+* send billing region on parameters for snow ([#12584](https://github.com/ovh/manager/issues/12584)) ([8261de8](https://github.com/ovh/manager/commit/8261de869c4d83540c7a5794487f97d4194956a2))
+
+
+
+
+
+# [6.56.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.55.2...@ovh-ux/manager-pci@6.56.0) (2024-08-01)
+
+
+### Features
+
+* pci databases analytics app ([#10914](https://github.com/ovh/manager/issues/10914)) ([3d589ef](https://github.com/ovh/manager/commit/3d589efe6f60d3ea18d555a838038ed7ca5c9432))
+
+
+
+
+
 ## [6.55.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.55.1...@ovh-ux/manager-pci@6.55.2) (2024-07-26)
 
 

@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'HostingModuleDeleteCtrl',
   class HostingModuleDeleteCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, HostingModule) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

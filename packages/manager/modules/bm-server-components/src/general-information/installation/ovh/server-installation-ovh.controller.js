@@ -46,11 +46,6 @@ export default class ServerInstallationOvhCtrl {
     this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
     this.$scope.inputRules = INPUTS_RULES;
 
-    this.$scope.LICENSE_URL = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/configuration/license',
-    );
-
     this.$scope.units = {
       model: [
         {
@@ -1691,6 +1686,20 @@ export default class ServerInstallationOvhCtrl {
               )}`.replaceAll(/&#34;/g, '"');
   }
 
+  getDocumentationMessage(distribution) {
+    // decoding &#34; codes to '"' by using replace
+    let translateString =
+      'server_configuration_installation_ovh_step1_doc_tooltip_os';
+    if (distribution.project.usage && distribution.project.usage.url) {
+      translateString =
+        'server_configuration_installation_ovh_step1_doc_tooltip_app';
+    }
+    return `
+              ${this.$translate.instant(translateString, {
+                t0: distribution.description,
+              })}`.replaceAll(/&#34;/g, '"');
+  }
+
   // Return false if endOfInstall is undefined or 2999-12-31
   static showEndOfLifeMessage(endOfInstall, showWarning) {
     if (!endOfInstall) return false;
@@ -2435,10 +2444,6 @@ export default class ServerInstallationOvhCtrl {
       !this.$scope.informations.hardwareRaid.error.wrongLocation &&
       !this.$scope.informations.hardwareRaid.error.notAvailable
     );
-  }
-
-  hasVirtualDesktop() {
-    return !this.$scope.installation.selectDistribution?.id?.includes('hyperv');
   }
 
   hasLicencedOs() {

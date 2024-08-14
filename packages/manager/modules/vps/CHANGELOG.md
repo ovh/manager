@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.42.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.42.1...@ovh-ux/manager-vps@2.42.2) (2024-08-13)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** add warn message on reinstall vps modal ([#12271](https://github.com/ovh/manager/issues/12271)) ([6caf4e2](https://github.com/ovh/manager/commit/6caf4e24448f528b52958075e612b5af9f9a32a4))
+* **dedicated.vps:** dashboard improvements ([#12368](https://github.com/ovh/manager/issues/12368)) ([3860fee](https://github.com/ovh/manager/commit/3860fee658328d1bc3f43722811753e3ccae06bb))
+* **dedicated.vps:** disable reseller upgrade vps ([#12472](https://github.com/ovh/manager/issues/12472)) ([69ba815](https://github.com/ovh/manager/commit/69ba81580cb6d2934c9fb6e9aaa027309a6a1bb3))
+
+
+
+
+
 ## [2.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.42.0...@ovh-ux/manager-vps@2.42.1) (2024-07-15)
 
 

@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingUserLogsUpdatePasswordCtrl',
   class HostingUserLogsUpdatePasswordCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, Hosting) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

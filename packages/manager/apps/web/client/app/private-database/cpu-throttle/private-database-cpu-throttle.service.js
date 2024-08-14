@@ -1,6 +1,7 @@
 angular.module('services').service(
   'CpuThrottleService',
   class CpuThrottleService {
+    /* @ngInject */
     constructor($http) {
       this.$http = $http;
 

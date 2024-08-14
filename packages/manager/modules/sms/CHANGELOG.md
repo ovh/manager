@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.17.1...@ovh-ux/manager-sms@8.17.2) (2024-08-12)
+
+
+### Bug Fixes
+
+* **telecom.sms:** implement iceberg call for blacklisted receivers ([#12619](https://github.com/ovh/manager/issues/12619)) ([3e1808a](https://github.com/ovh/manager/commit/3e1808a2ddbe513df488a7011fc738c37cd16205))
+
+
+
+
+
 ## [8.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.17.0...@ovh-ux/manager-sms@8.17.1) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-sms

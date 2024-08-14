@@ -140,7 +140,7 @@ export const registerPCINewState = (
                     'pci_project_new_error_contact_support',
                   ),
                   submitLink: coreConfig.isRegion(['EU', 'CA'])
-                    ? SUPPORT_URL
+                    ? SUPPORT_URL + coreConfig.getUser().ovhSubsidiary
                     : '',
                   cancelLabel: $translate.instant(
                     'pci_project_new_error_cancel',

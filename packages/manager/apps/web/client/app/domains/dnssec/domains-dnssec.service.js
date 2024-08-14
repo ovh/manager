@@ -1,10 +1,7 @@
 angular.module('services').service(
   'DomainsDnsSec',
   class DomainsDnsSec {
-    /**
-     * Constructor
-     * @param OvhHttp
-     */
+    /* @ngInject */
     constructor(OvhHttp) {
       this.OvhHttp = OvhHttp;
     }

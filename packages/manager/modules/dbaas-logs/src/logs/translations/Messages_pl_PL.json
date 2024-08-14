@@ -788,5 +788,12 @@
   "logs_streams_manage_subscriptions": "Zarządzaj subskrypcjami",
   "logs_streams_copy_stream_id": "Skopiuj identyfikator strumienia",
   "logs_streams_copy_id_success": "Identyfikator strumienia został skopiowany do schowka. Użyj skrótu CTRL+V, aby wkleić skopiowaną zawartość.",
-  "logs_streams_copy_id_error": "Twoja przeglądarka nie umożliwia skopiowania zawartości do schowka. Zaktualizuj przeglądarkę do najnowszej wersji. Identyfikator strumienia {{stream}}: {{stream_id}}"
+  "logs_streams_copy_id_error": "Twoja przeglądarka nie umożliwia skopiowania zawartości do schowka. Zaktualizuj przeglądarkę do najnowszej wersji. Identyfikator strumienia {{stream}}: {{stream_id}}",
+  "logs_home_account_status": "Status",
+  "logs_home_status_ENABLED": "Włączone",
+  "logs_home_status_DISABLED": "Wyłączone",
+  "logs_home_status_INIT": "Trwa instalacja",
+  "logs_home_status_TO_CONFIG": "Do skonfigurowania",
+  "logs_home_resiliate": "Rezygnacja",
+  "logs_resiliate": "Rezygnacja"
 }

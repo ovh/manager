@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'hostingDeleteSslCtrl',
   class HostingDeleteSslCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,

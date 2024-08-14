@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.18.1...@ovh-ux/manager-overthebox@6.18.2) (2024-08-12)
+
+
+### Bug Fixes
+
+* **telecom.overthebox:** fix concat version for translation ([#12443](https://github.com/ovh/manager/issues/12443)) ([b46f9bc](https://github.com/ovh/manager/commit/b46f9bc740c50df46e1e316249ee27affdf607dc))
+* **telecom.overthebox:** use filter bandwidth for fix unit issue ([#12454](https://github.com/ovh/manager/issues/12454)) ([d529dbf](https://github.com/ovh/manager/commit/d529dbff0ba98e2cd2220195982097c0f9ca9bdb))
+
+
+
+
+
 ## [6.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.18.0...@ovh-ux/manager-overthebox@6.18.1) (2024-07-18)
 
 

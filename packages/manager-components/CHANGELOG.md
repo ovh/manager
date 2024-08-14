@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.24.0...@ovhcloud/manager-components@1.25.0) (2024-08-08)
+
+### Bug Fixes
+
+- define version in react apps for request header ([#12406](https://github.com/ovh/manager/issues/12406)) ([137341c](https://github.com/ovh/manager/commit/137341c121df3077139fbce953b36989ad779f12))
+- **i18n:** add missing translations [CDS 3189] ([ba73a17](https://github.com/ovh/manager/commit/ba73a17c03a04db70aad532fab42b31c1367dd03))
+- **i18n:** add missing translations [CDS 3199] ([e992a06](https://github.com/ovh/manager/commit/e992a060d76739fe2a98b49772d4da5b77f15277))
+- **i18n:** add missing translations [CDS 3209] ([12e662d](https://github.com/ovh/manager/commit/12e662de397e753719573add17acbd94fcadb33f))
+- **manager-components:** export clipboard component ([#12595](https://github.com/ovh/manager/issues/12595)) ([4e5b410](https://github.com/ovh/manager/commit/4e5b4101cb52f2d36678780517d0f754be814bd2))
+- **manager-components:** export enum types ([#12644](https://github.com/ovh/manager/issues/12644)) ([9f86ca2](https://github.com/ovh/manager/commit/9f86ca29039db7e1cfd4e8cd02a37fb95aad2418))
+- remove unused translations [CDS] ([1d3aa8a](https://github.com/ovh/manager/commit/1d3aa8ae9bb5653da32aad6fc2b66bb8d98aa295))
+
+### Features
+
+- clean dependencies versions of react apps ([7969ba7](https://github.com/ovh/manager/commit/7969ba70f9e03033271a48a5bd0021484ea36263))
+- **manager-components:** add introduction in storybook ([f910d83](https://github.com/ovh/manager/commit/f910d834891830d67f3eafa7525527dca2f38904))
+- **manager-components:** add listing component page ([4716cce](https://github.com/ovh/manager/commit/4716cceef8c5168e19361b6e68ae428bfcd9e312))
+- **manager-components:** onboarding redesign ([#12330](https://github.com/ovh/manager/issues/12330)) ([17ed1dc](https://github.com/ovh/manager/commit/17ed1dc4c1b407d3140a9ef485e0fcadc583c789))
+
+# [1.24.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.23.0...@ovhcloud/manager-components@1.24.0) (2024-08-01)
+
+### Features
+
+- pci databases analytics app ([#10914](https://github.com/ovh/manager/issues/10914)) ([3d589ef](https://github.com/ovh/manager/commit/3d589efe6f60d3ea18d555a838038ed7ca5c9432))
+
 # [1.23.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.22.1...@ovhcloud/manager-components@1.23.0) (2024-07-18)
 
 ### Bug Fixes

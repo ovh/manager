@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.12.8...@ovh-ux/manager-catalog-app@1.13.0) (2024-08-08)
+
+
+### Features
+
+* clean dependencies versions of react apps ([7969ba7](https://github.com/ovh/manager/commit/7969ba70f9e03033271a48a5bd0021484ea36263))
+
+
+
+
+
+## [1.12.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.12.7...@ovh-ux/manager-catalog-app@1.12.8) (2024-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
 ## [1.12.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.12.6...@ovh-ux/manager-catalog-app@1.12.7) (2024-07-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app

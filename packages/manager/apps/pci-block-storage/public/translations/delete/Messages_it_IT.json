@@ -1,7 +1,7 @@
 {
   "pci_projects_project_storages_blocks_block_delete_title": "Elimina un volume",
-  "pci_projects_project_storages_blocks_block_delete_submit_label": "Conferma",
-  "pci_projects_project_storages_blocks_block_delete_cancel_label": "Annulla",
+  "pci_projects_project_storages_blocks_block_delete_submit_label": "Confermare",
+  "pci_projects_project_storages_blocks_block_delete_cancel_label": "Annullare",
   "pci_projects_project_storages_blocks_block_delete_content": "Elimina definitivamente il volume {{ volume }}",
   "pci_projects_project_storages_blocks_block_delete_erase_message": "Tutti i dati presenti sul volume verranno persi.",
   "pci_projects_project_storages_blocks_block_delete_error_should_multiple": "Prima di poter eliminare questo volume, è necessario:",

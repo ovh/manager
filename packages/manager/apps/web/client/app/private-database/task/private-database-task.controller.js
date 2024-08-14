@@ -3,6 +3,7 @@ import { PRIVATE_DATABASE_TASK_TABLE_ID } from './private-database.constants';
 angular.module('App').controller(
   'PrivateDatabaseTasksCtrl',
   class PrivateDatabaseTasksCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,

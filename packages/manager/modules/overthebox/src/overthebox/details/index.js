@@ -2,6 +2,7 @@ import angular from 'angular';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import uiRouter from '@uirouter/angularjs';
 import angularTranslate from 'angular-translate';
+import bandwidth from '@ovh-ux/manager-filters';
 
 import ovhManagerOtbWarning from '../warning';
 
@@ -18,6 +19,7 @@ angular
     uiRouter,
     angularTranslate,
     ovhManagerOtbWarning,
+    bandwidth,
   ])
   .component('overTheBoxDetails', component)
   .constant('OVERTHEBOX_DETAILS', constant)

@@ -6,6 +6,7 @@ export default {
     title: '@',
   },
   controller: class TelecomSearchResultController {
+    /* @ngInject */
     constructor() {
       this.offset = 1;
     }

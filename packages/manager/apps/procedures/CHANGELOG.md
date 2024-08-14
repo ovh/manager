@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.1.0...@ovh-ux/manager-procedures-app@0.2.0) (2024-08-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3189] ([ba73a17](https://github.com/ovh/manager/commit/ba73a17c03a04db70aad532fab42b31c1367dd03))
+
+
+### Features
+
+* clean dependencies versions of react apps ([7969ba7](https://github.com/ovh/manager/commit/7969ba70f9e03033271a48a5bd0021484ea36263))
+
+
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.0.0...@ovh-ux/manager-procedures-app@0.1.0) (2024-07-25)
 
 

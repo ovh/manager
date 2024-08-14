@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.3...@ovh-ux/manager-telecom@15.20.4) (2024-08-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.2...@ovh-ux/manager-telecom@15.20.3) (2024-08-12)
+
+
+### Bug Fixes
+
+* **pack.move:** check offer type before overwrite floor value ([5d4e9ff](https://github.com/ovh/manager/commit/5d4e9ffb5761ca37d15e9e8faf2cd06cc9a01ea6))
+* **telecom.telephony:** change rule for district field in directory ([#12488](https://github.com/ovh/manager/issues/12488)) ([369997e](https://github.com/ovh/manager/commit/369997e9cee02171df2f101fc557249e00ccf493))
+
+
+
+
+
+## [15.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.1...@ovh-ux/manager-telecom@15.20.2) (2024-08-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.0...@ovh-ux/manager-telecom@15.20.1) (2024-08-06)
+
+
+### Bug Fixes
+
+* add ng-inject ([#12633](https://github.com/ovh/manager/issues/12633)) ([4ef3118](https://github.com/ovh/manager/commit/4ef3118e4f1b845023e893353ae2a4955623a2d8))
+
+
+
+
+
+# [15.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.19.0...@ovh-ux/manager-telecom@15.20.0) (2024-08-05)
+
+
+### Features
+
+* send billing region on parameters for snow ([#12584](https://github.com/ovh/manager/issues/12584)) ([8261de8](https://github.com/ovh/manager/commit/8261de869c4d83540c7a5794487f97d4194956a2))
+
+
+
+
+
 # [15.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.18.3...@ovh-ux/manager-telecom@15.19.0) (2024-07-23)
 
 

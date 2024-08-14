@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.6.1...@ovh-ux/shell@3.7.0) (2024-08-08)
+
+
+### Features
+
+* clean dependencies versions of react apps ([7969ba7](https://github.com/ovh/manager/commit/7969ba70f9e03033271a48a5bd0021484ea36263))
+
+
+
+
+
 ## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.6.0...@ovh-ux/shell@3.6.1) (2024-06-25)
 
 **Note:** Version bump only for package @ovh-ux/shell

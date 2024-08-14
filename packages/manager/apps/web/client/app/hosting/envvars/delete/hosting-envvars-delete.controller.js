@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'controllers.Hosting.Envvars.delete',
   class HostingEnvvarsDeleteCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, HostingEnvvars) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

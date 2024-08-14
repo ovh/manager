@@ -8,6 +8,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'HostingDatabaseImportCtrl',
   class HostingDatabaseImportCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $rootScope,

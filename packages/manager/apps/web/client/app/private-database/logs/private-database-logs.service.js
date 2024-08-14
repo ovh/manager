@@ -1,6 +1,7 @@
 angular.module('services').service(
   'PrivateDatabaseLogsService',
   class PrivateDatabaseLogsService {
+    /* @ngInject */
     constructor($http) {
       this.$http = $http;
 

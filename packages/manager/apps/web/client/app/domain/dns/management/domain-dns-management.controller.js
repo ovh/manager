@@ -3,6 +3,7 @@ import includes from 'lodash/includes';
 angular.module('App').controller(
   'DomainDnsManagementCtrl',
   class DomainDnsManagementCtrl {
+    /* @ngInject */
     constructor($scope, $state, Domain) {
       this.$scope = $scope;
       this.$state = $state;
