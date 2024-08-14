@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextEncoder, TextDecoder } from 'util';
 import { Blob, File } from 'buffer';
+
 import 'element-internals-polyfill';
 
 Object.assign(global, {

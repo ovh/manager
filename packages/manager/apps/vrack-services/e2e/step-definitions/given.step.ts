@@ -2,9 +2,9 @@ import { Given } from '@cucumber/cucumber';
 import { OrderStatus } from '@ovh-ux/manager-module-order';
 import { ICustomWorld } from '@playwright-helpers';
 import { getUrl } from '../utils';
-import { ConfigParams } from '../../mock/handlers';
-import { ProductStatus, ResourceStatus } from '@/api';
-import vrackServicesList from '../../mock/vrack-services/get-vrack-services.json';
+import { ConfigParams } from '../../mocks/handlers';
+import { ProductStatus, ResourceStatus } from '@/data';
+import vrackServicesList from '../../mocks/vrack-services/get-vrack-services.json';
 
 Given('User has {word} vRack Services', function(
   this: ICustomWorld<ConfigParams>,
@@ -13,14 +13,13 @@ Given('User has {word} vRack Services', function(
   this.handlersConfig.nbVs = Number(nbVsStr);
 });
 
-Given(
-  'User wants to create a vRack Services with name {string} and region {word}',
-  function(this: ICustomWorld<ConfigParams>, name: string, region: string) {
-    this.testContext.data.displayName = name;
-    this.testContext.data.selectedRegion = region;
-    this.testContext.initialUrl = getUrl('createVrackServices');
-  },
-);
+Given('User wants to create a vRack Services with region {word}', function(
+  this: ICustomWorld<ConfigParams>,
+  region: string,
+) {
+  this.testContext.data.selectedRegion = region;
+  this.testContext.initialUrl = getUrl('createVrackServices');
+});
 
 Given('User has a vRack Services order delivering', function(
   this: ICustomWorld<ConfigParams>,

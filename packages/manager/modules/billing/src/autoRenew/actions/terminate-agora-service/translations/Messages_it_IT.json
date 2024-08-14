@@ -7,5 +7,9 @@
   "autorenew_agora_terminate_service_DBAAS_LOGS": "Disattivare il mio LDP",
   "autorenew_agora_terminate_service_warning_DBAAS_LOGS": "Conferma la disattivazione del tuo LDP",
   "autorenew_agora_terminate_service_success_DBAAS_LOGS": "La tua richiesta di disattivazione del LDP è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
-  "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Si è verificato un errore durante la richiesta di disattivazione del tuo LDP: {{error}}"
+  "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Si è verificato un errore durante la richiesta di disattivazione del tuo LDP: {{error}}",
+  "autorenew_agora_terminate_service_VRACK_SERVICES_RESOURCE": "Disattivare vRack Services",
+  "autorenew_agora_terminate_service_warning_VRACK_SERVICES_RESOURCE": "Conferma la disattivazione di vRack Services",
+  "autorenew_agora_terminate_service_success_VRACK_SERVICES_RESOURCE": "La tua richiesta di disattivazione di vRack Services è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
+  "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "Si è verificato un errore durante la richiesta di disattivazione di vRack Services. {{error}}"
 }

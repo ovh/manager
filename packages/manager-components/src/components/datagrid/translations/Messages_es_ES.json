@@ -4,5 +4,6 @@
   "common_pagination_no_results": "No hay resultados.",
   "common_clipboard_success_label": "¡Copiado!",
   "common_clipboard_error_label": "Error de copia.",
-  "common_pagination_load_more": "Cargar más"
+  "common_pagination_load_more": "Cargar más",
+  "common_empty_text_cell": "Ninguno"
 }
