@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.15.2...@ovh-ux/manager-hub@3.16.0) (2024-08-14)
+
+
+### Features
+
+* vrack-service ga ([#11920](https://github.com/ovh/manager/issues/11920)) ([c394457](https://github.com/ovh/manager/commit/c39445748e9e71e170b9860dd8b860a1a2ccbf85))
+
+
+
+
+
 ## [3.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.15.1...@ovh-ux/manager-hub@3.15.2) (2024-08-12)
 
 

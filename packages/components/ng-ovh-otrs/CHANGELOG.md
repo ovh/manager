@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.4.1...@ovh-ux/ng-ovh-otrs@9.5.0) (2024-08-14)
+
+
+### Features
+
+* deactivated the transparency of the support popup ([#12566](https://github.com/ovh/manager/issues/12566)) ([d44ad02](https://github.com/ovh/manager/commit/d44ad02e07a16b8751c9552ae1a7a33bf8e188c8))
+
+
+
+
+
 ## [9.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.4.0...@ovh-ux/ng-ovh-otrs@9.4.1) (2024-06-25)
 
 
