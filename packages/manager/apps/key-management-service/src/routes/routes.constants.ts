@@ -8,7 +8,9 @@ export const ROUTES_URLS = {
   keys: 'keys',
   keyId: ':keyId',
   serviceKeyEditName: 'edit-name',
-  certificates: 'certificates',
+  credentials: 'credentials',
+  createCredential: 'create',
+  credentialId: ':credentialId',
   createKmsServiceKey: 'create',
   serviceKeyDeactivate: 'deactivate',
 };
