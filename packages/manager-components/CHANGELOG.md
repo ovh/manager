@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.25.0...@ovhcloud/manager-components@1.26.0) (2024-08-14)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 3228] ([6d91986](https://github.com/ovh/manager/commit/6d91986d764f1b2249561dd28a9f84c176d08350))
+- **manager-components:** fix content align left of datagrid component ([#12745](https://github.com/ovh/manager/issues/12745)) ([65a12a1](https://github.com/ovh/manager/commit/65a12a112cc7b33b244b4421c9443ad5f518ef25))
+
+### Features
+
+- **manager-components:** add load more button in datagrid ([bee8d1d](https://github.com/ovh/manager/commit/bee8d1db642a5c7a710dd9b1042c26b05286296d))
+- vrack-service ga ([#11920](https://github.com/ovh/manager/issues/11920)) ([c394457](https://github.com/ovh/manager/commit/c39445748e9e71e170b9860dd8b860a1a2ccbf85))
+
 # [1.25.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.24.0...@ovhcloud/manager-components@1.25.0) (2024-08-08)
 
 ### Bug Fixes

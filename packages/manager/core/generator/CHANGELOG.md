@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.11.0...@ovh-ux/manager-generator@0.12.0) (2024-08-14)
+
+
+### Features
+
+* **manager-components:** add load more button in datagrid ([bee8d1d](https://github.com/ovh/manager/commit/bee8d1db642a5c7a710dd9b1042c26b05286296d))
+
+
+
+
+
 # [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.10.0...@ovh-ux/manager-generator@0.11.0) (2024-08-08)
 
 
