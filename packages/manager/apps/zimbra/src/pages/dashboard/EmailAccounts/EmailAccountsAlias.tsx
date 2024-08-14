@@ -5,7 +5,7 @@ import {
   ManagerButton,
   Notifications,
   Subtitle,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,

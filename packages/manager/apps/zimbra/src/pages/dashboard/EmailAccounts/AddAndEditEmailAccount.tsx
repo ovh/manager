@@ -60,6 +60,7 @@ export default function AddAndEditAccount() {
   const pathMatcherAliasTabs = computePathMatchers([
     urls.email_accounts_alias,
     urls.email_accounts_alias_add,
+    urls.email_accounts_alias_delete,
   ]);
 
   useEffect(() => {

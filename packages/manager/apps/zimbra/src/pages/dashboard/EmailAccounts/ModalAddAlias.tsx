@@ -15,7 +15,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { ODS_INPUT_SIZE, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
