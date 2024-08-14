@@ -89,7 +89,7 @@ export default function Domains() {
   const items: DomainsItem[] =
     data?.map((item) => ({
       name: item.currentState.name,
-      id: item.currentState.organizationId,
+      id: item.id,
       organizationLabel: item.currentState.organizationLabel,
       account: item.currentState.accountsStatistics.reduce(
         (acc, current) => acc + current.configuredAccountsCount,
