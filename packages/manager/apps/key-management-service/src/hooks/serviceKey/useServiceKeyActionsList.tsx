@@ -83,7 +83,7 @@ const useServiceKeyActionsList = (
       label: t('key_management_service_service-keys_link_reactivate_key'),
       color: ODS_THEME_COLOR_INTENT.primary,
       disabled: updateIsPending,
-      onClick: () => updateKmsServiceKey({ state: 'ACTIVE' }),
+      onClick: () => updateKmsServiceKey({ state: OkmsServiceKeyState.active }),
     });
   }
   if (
