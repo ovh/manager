@@ -67,3 +67,17 @@ export const deleteRegistry = async (projectId: string, registryId: string) => {
   );
   return data;
 };
+
+export const renameRegistry = async (
+  projectId: string,
+  registryId: string,
+  name: string,
+) => {
+  const {
+    data,
+  } = await v6.put(
+    `/cloud/project/${projectId}/containerRegistry/${registryId}`,
+    { name },
+  );
+  return data;
+};
