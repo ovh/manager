@@ -1,42 +1,20 @@
 import { When } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers';
 import { expect } from '@playwright/test';
-import { vrackList } from '../../mock/vrack/vrack';
-import { setupNetwork, getUrl } from '../utils';
-import { ConfigParams } from '../../mock/handlers';
+import { vrackList } from '../../mocks/vrack/vrack';
 import {
-  associateVrackButtonLabel,
-  modalConfirmVrackAssociationButtonLabel,
-} from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
-import { orderButtonLabel } from '../../src/public/translations/vrack-services/onboarding/Messages_fr_FR.json';
+  setupNetwork,
+  getUrl,
+  clickMenuButton,
+  getDashboardEditButton,
+  labels,
+  managerComponentsLabels,
+} from '../utils';
+import { ConfigParams } from '../../mocks/handlers';
 import {
-  modalCancelButtonLabel,
-  modalConfirmVrackButtonLabel,
-  modalNoVrackButtonLabel,
-} from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
-import { displayNameInputName } from '../../src/pages/create/constants';
-import { vrackActionDissociate } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
-import {
-  modalConfirmButton,
-  modalCancelButton,
-  modalDeleteButton,
-} from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
-import {
-  subnetNamePlaceholder,
-  cidrPlaceholder,
-  serviceRangePlaceholder,
-  createSubnetButtonLabel,
-  vlanSelectVlanOptionLabel,
-  vlanNumberLabel,
-  modalDeleteInputLabel as subnetsDeleteInputLabel,
-} from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
-import {
-  createEndpointButtonLabel,
-  serviceNamePlaceholder,
-  subnetPlaceholder,
-  modalDeleteInputLabel as endpointsDeleteInputLabel,
-} from '../../src/public/translations/vrack-services/endpoints/Messages_fr_FR.json';
-import { terminateValue } from '../../src/components/DeleteModal/DeleteModal.constants';
+  defaultCidr,
+  defaultServiceRange,
+} from '../../src/pages/create-subnet/subnetCreate.constants';
 
 When('User clicks on the vRack Services configuration button', async function(
   this: ICustomWorld<ConfigParams>,
@@ -45,7 +23,9 @@ When('User clicks on the vRack Services configuration button', async function(
   await this.page.goto(this.testContext.initialUrl || getUrl('root'), {
     waitUntil: 'load',
   });
-  await this.page.locator('osds-button', { hasText: orderButtonLabel }).click();
+  await this.page
+    .locator('osds-button', { hasText: labels.orderButtonLabel })
+    .click();
 });
 
 When('User orders a vRack Services', async function(
@@ -66,9 +46,6 @@ When(
       waitUntil: 'load',
     });
     await this.page
-      ?.locator(`input[name="${displayNameInputName}"]`)
-      .fill(this.testContext.data.displayName.toString());
-    await this.page
       ?.locator(`osds-radio[id="${this.testContext.data.selectedRegion}"]`)
       .click();
     await this.page?.locator('button[type="submit"]').click();
@@ -80,40 +57,26 @@ When('User {word}', async function(
   acceptOrDenyOrCancel: 'accepts' | 'denies' | 'cancel',
 ) {
   const labelToButton = {
-    accepts: modalConfirmVrackButtonLabel,
-    denies: modalNoVrackButtonLabel,
-    cancel: modalCancelButtonLabel,
+    accepts: labels.modalConfirmVrackButtonLabel,
+    denies: labels.modalNoVrackButtonLabel,
+    cancel: labels.modalCancelButtonLabel,
   };
   const buttonLabel = labelToButton[acceptOrDenyOrCancel];
   const button = await this.page.locator('osds-button', {
     hasText: buttonLabel,
   });
   await button.click();
-});
 
-When('User edits the vRack Services name', async function(
-  this: ICustomWorld<ConfigParams>,
-) {
-  await setupNetwork(this);
-  await this.page.goto(this.testContext.initialUrl || getUrl('root'), {
-    waitUntil: 'load',
-  });
+  if (acceptOrDenyOrCancel !== 'cancel') {
+    const checkbox = await this.page.locator('osds-checkbox');
+    await checkbox.click();
 
-  const index = this.testContext.data.vsIndex || 0;
-
-  const editButton = await this.page
-    .locator('osds-button', {
-      has: this.page.locator('osds-icon[name="pen"]'),
-    })
-    .nth(index);
-
-  await expect(editButton).toBeVisible();
-
-  await editButton.click();
-
-  const input = await this.page.locator('input').nth(index);
-  await input.fill('test');
-  await input.press('Enter');
+    const confirmButton = await this.page.locator('osds-button', {
+      hasText: labels.modalSubmitOrderButtonLabel,
+    });
+    await expect(confirmButton).toBeEnabled();
+    await confirmButton.click();
+  }
 });
 
 When('User clicks on the link to associate a vRack', async function(
@@ -124,15 +87,11 @@ When('User clicks on the link to associate a vRack', async function(
     waitUntil: 'load',
   });
 
-  const associateButton = await this.page
-    .locator('osds-button', {
-      hasText: associateVrackButtonLabel,
-    })
-    .nth(0);
-
-  await expect(associateButton).toBeVisible();
-
-  await associateButton.click();
+  await clickMenuButton({
+    ctx: this,
+    label: labels.associateVrackButtonLabel,
+    menuIndex: this.testContext.data.vsIndex || 0,
+  });
 });
 
 When(
@@ -141,7 +100,9 @@ When(
     await this.page.locator('osds-select').click();
     await this.page.getByText(vrackList[0]).click();
 
-    await this.page.getByText(modalConfirmVrackAssociationButtonLabel).click();
+    await this.page
+      .getByText(labels.modalConfirmVrackAssociationButtonLabel)
+      .click();
   },
 );
 
@@ -168,7 +129,7 @@ When(
   'User click on dissociate in action menu of private network',
   async function(this: ICustomWorld<ConfigParams>) {
     await setupNetwork(this);
-    const button = await this.page.getByText(vrackActionDissociate, {
+    const button = await this.page.getByText(labels.vrackActionDissociate, {
       exact: true,
     });
 
@@ -178,15 +139,44 @@ When(
   },
 );
 
-When('User {word} modal', async function(
+When(
+  'User click on associate another in action menu of private network',
+  async function(this: ICustomWorld<ConfigParams>) {
+    await setupNetwork(this);
+    const button = await this.page.getByText(
+      labels.vrackActionAssociateToAnother,
+      {
+        exact: true,
+      },
+    );
+
+    await expect(button).toBeVisible();
+
+    await button.click();
+  },
+);
+
+When(
+  'User select the first vRack on the associate another vRack list and confirm',
+  async function(this: ICustomWorld<ConfigParams>) {
+    await setupNetwork(this);
+    await this.page.getByText(labels.vrackSelectPlaceholder).click();
+    await this.page.getByText(vrackList[1]).click();
+    await this.page
+      .getByText(labels.modalConfirmVrackAssociationButtonLabel)
+      .click();
+  },
+);
+
+When('User {word} dissociate modal', async function(
   this: ICustomWorld<ConfigParams>,
   acceptOrCancel: 'accept' | 'cancel',
 ) {
   await setupNetwork(this);
 
   const labelToButton = {
-    accept: modalConfirmButton,
-    cancel: modalCancelButton,
+    accept: labels.modalDissociateConfirmButton,
+    cancel: labels.modalDissociateCancelButton,
   };
   const buttonLabel = labelToButton[acceptOrCancel];
   const button = await this.page.getByText(buttonLabel, { exact: true });
@@ -206,22 +196,24 @@ When('User fills the subnet form and clicks the submit button', async function(
   });
 
   await this.page
-    .getByRole('textbox', { name: subnetNamePlaceholder })
+    .getByRole('textbox', { name: labels.subnetNamePlaceholder })
     .fill(this.testContext.data.name);
   await this.page
-    .getByRole('textbox', { name: cidrPlaceholder })
+    .getByRole('textbox', { name: defaultCidr })
     .fill(this.testContext.data.cidr);
   await this.page
-    .getByRole('textbox', { name: serviceRangePlaceholder })
+    .getByRole('textbox', { name: defaultServiceRange })
     .fill(this.testContext.data.serviceRange);
 
   if (this.testContext.data.vlan) {
     await this.page
-      .locator('osds-radio-button', { hasText: vlanSelectVlanOptionLabel })
+      .locator('osds-radio-button', {
+        hasText: labels.vlanSelectVlanOptionLabel,
+      })
       .click();
 
     const vlanInput = await this.page
-      .locator('osds-form-field', { hasText: vlanNumberLabel })
+      .locator('osds-form-field', { hasText: labels.vlanNumberLabel })
       .locator('input');
 
     await expect(vlanInput).toBeVisible();
@@ -230,7 +222,7 @@ When('User fills the subnet form and clicks the submit button', async function(
   }
 
   await this.page
-    .locator('osds-button', { hasText: createSubnetButtonLabel })
+    .locator('osds-button', { hasText: labels.createSubnetButtonLabel })
     .click();
 });
 
@@ -244,7 +236,7 @@ When(
     });
 
     const select = await this.page.locator('osds-select', {
-      hasText: serviceNamePlaceholder,
+      hasText: labels.serviceNamePlaceholder,
     });
 
     await expect(select).toBeVisible();
@@ -253,64 +245,121 @@ When(
     await this.page.getByText('My-mongodb').click();
 
     await this.page
-      .locator('osds-select', { hasText: subnetPlaceholder })
+      .locator('osds-select', { hasText: labels.subnetPlaceholder })
       .click();
     await this.page.getByText('My.Subnet').click();
 
     await this.page
-      .locator('osds-button', { hasText: createEndpointButtonLabel })
+      .locator('osds-button', {
+        hasText: labels.createEndpointButtonLabel,
+      })
       .click();
   },
 );
 
-When('User updates the display name of a subnet', async function(
+When('User updates the display name of a vRack Services', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  const editButton = await this.page
-    .locator('osds-button', {
-      has: this.page.locator('osds-icon[name="pen"]'),
-    })
-    .nth(0);
+  await clickMenuButton({
+    ctx: this,
+    label: labels['action-editDisplayName'],
+  });
 
-  await expect(editButton).toBeVisible();
+  const input = await this.page.locator('osds-form-field').locator('input');
 
-  await editButton.click();
+  await expect(input).toBeVisible();
 
-  const input = await this.page.locator('input').nth(0);
+  await input.clear();
+
   await input.fill('test');
-  await input.press('Enter');
+
+  await this.page
+    .getByText(managerComponentsLabels.updateModalConfirmButton)
+    .click();
 });
 
-When('User clicks on the trash icon', async function(
+When(
+  'User updates the display name of this vRack Services from the overview',
+  async function(this: ICustomWorld<ConfigParams>) {
+    const editButton = await getDashboardEditButton({ ctx: this });
+    await editButton.click();
+
+    const input = await this.page.locator('osds-form-field').locator('input');
+
+    await expect(input).toBeVisible();
+
+    await input.clear();
+
+    await input.fill('test');
+
+    await this.page
+      .getByText(managerComponentsLabels.updateModalConfirmButton, {
+        exact: true,
+      })
+      .click();
+  },
+);
+
+When('User updates the configuration of his first subnet', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  const deleteButton = await this.page
-    .locator('osds-button', {
-      has: this.page.locator('osds-icon[name="trash"]'),
-    })
-    .nth(0);
+  await clickMenuButton({
+    ctx: this,
+    label: labels['action-editSubnet'],
+  });
 
-  await expect(deleteButton).toBeVisible();
+  const input = await this.page.getByRole('textbox', {
+    name: labels.subnetNamePlaceholder,
+  });
 
-  await deleteButton.click();
+  await expect(input).toBeVisible();
+
+  await input.clear();
+
+  await input.fill('test');
+
+  await this.page
+    .getByText(labels.modalSubnetUpdateConfirmButton, { exact: true })
+    .click();
+});
+
+When('User opens {word} delete modal', async function(
+  this: ICustomWorld<ConfigParams>,
+  page: 'vrack-services' | 'subnets' | 'endpoints',
+) {
+  const labelByPage = {
+    'vrack-services': labels['action-deleteVrackServices'],
+    subnets: labels['action-deleteSubnet'],
+    endpoints: labels['action-deleteServiceEndpoint'],
+  };
+  await clickMenuButton({
+    ctx: this,
+    label: labelByPage[page],
+  });
 });
 
 When('User fills the {word} delete form', async function(
   this: ICustomWorld<ConfigParams>,
-  tab: 'subnets' | 'endpoints',
+  page: 'vrack-services' | 'subnets' | 'endpoints',
 ) {
-  const input = await this.page
-    .locator('osds-form-field', {
-      hasText:
-        tab === 'subnets' ? subnetsDeleteInputLabel : endpointsDeleteInputLabel,
-    })
-    .locator('input');
+  const headlineByPage = {
+    'vrack-services': labels.modalDeleteVrackServicesHeadline,
+    subnets: labels.modalDeleteSubnetHeadline,
+    endpoints: labels.modalDeleteEndpointHeadline,
+  };
+
+  await expect(
+    this.page.locator('osds-modal').getByText(headlineByPage[page]),
+  ).toBeVisible();
+
+  const input = await this.page.locator('osds-form-field').locator('input');
 
   await expect(input).toBeVisible();
 
-  await input.fill(terminateValue);
+  await input.fill('TERMINATE');
 
   await this.page
-    .locator('osds-button', { hasText: modalDeleteButton })
+    .locator('osds-modal')
+    .getByText(managerComponentsLabels.deleteModalDeleteButton, { exact: true })
     .click();
 });

@@ -7,5 +7,9 @@
   "autorenew_agora_terminate_service_DBAAS_LOGS": "Rezygnacja z LDP",
   "autorenew_agora_terminate_service_warning_DBAAS_LOGS": "Potwierdź rezygnację z LDP",
   "autorenew_agora_terminate_service_success_DBAAS_LOGS": "Rezygnacja z usługi LDP została zarejestrowana. Otrzymasz e-mail z opisem dalszej procedury.",
-  "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Wystąpił błąd podczas rezygnacji z LDP. {{error}}"
+  "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Wystąpił błąd podczas rezygnacji z LDP. {{error}}",
+  "autorenew_agora_terminate_service_VRACK_SERVICES_RESOURCE": "Rezygnacja z vRack Services",
+  "autorenew_agora_terminate_service_warning_VRACK_SERVICES_RESOURCE": "Potwierdź rezygnację z vRAck Services",
+  "autorenew_agora_terminate_service_success_VRACK_SERVICES_RESOURCE": "Rezygnacja z vRAck Services została zarejestrowana. Otrzymasz e-mail z opisem dalszej procedury.",
+  "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "Wystąpił błąd podczas rezygnacji z vRack Services. {{error}}"
 }

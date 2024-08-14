@@ -1,0 +1,5 @@
+{
+  "updateModalError": "Wystąpił następujący błąd: {{error}}.",
+  "updateModalCancelButton": "Anuluj",
+  "updateModalConfirmButton": "Zatwierdź"
+}

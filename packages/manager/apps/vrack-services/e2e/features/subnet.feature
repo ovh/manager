@@ -28,7 +28,7 @@ Feature: Subnet page
       | doesn't have | ERROR          | disabled    |
       | doesn't have | READY          | enabled     |
 
-  Scenario Outline: User wants to creates a new subnet for his vRack Services
+  Scenario Outline: User wants to create a new subnet for his vRack Services
     Given User has 20 vRack Services
     Given User has a vRack Services that "doesn't have" a subnet and a status READY
     Given User wants to create a subnet with name "<name>" and CIDR "<cidr>" and service range "<serviceRange>" and vlan "<vlan>"
@@ -53,25 +53,26 @@ Feature: Subnet page
     Given User has a vRack Services that "has" a subnet and a status READY
     Given The service to edit a subnet is <apiOk>
     When User navigates to subnets page
-    And User updates the display name of a subnet
+    And User updates the configuration of his first subnet
     Then User sees <anyErrorMessage> error message
+    Then User sees <anySuccessMessage> success message
 
     Examples:
-      | apiOk | anyErrorMessage |
-      | OK    | no              |
-      | KO    | an              |
+      | apiOk | anyErrorMessage | anySuccessMessage |
+      | OK    | no              | an                |
+      | KO    | an              | no                |
 
   Scenario Outline: User wants to delete an existing subnet
     Given User has 20 vRack Services
     Given User has a vRack Services that "has" a subnet and a status READY
     Given The service to delete a subnet is <apiOk>
     When User navigates to subnets page
-    And User clicks on the trash icon
-    Then User sees a modal to confirm subnet deletion
+    And User opens subnets delete modal
     When User fills the subnets delete form
     Then User sees <anyErrorMessage> error message
+    Then User sees <anySuccessMessage> success message
 
     Examples:
-      | apiOk | anyErrorMessage |
-      | OK    | no              |
-      | KO    | an              |
+      | apiOk | anyErrorMessage | anySuccessMessage |
+      | OK    | no              | an                |
+      | KO    | an              | no                |
