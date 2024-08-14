@@ -121,6 +121,14 @@ export const Routes: any = [
                       import('@/pages/dashboard/EmailAccounts/ModalAddAlias'),
                     ),
                   },
+                  {
+                    path: 'delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/EmailAccounts/ModalDeleteAlias'
+                      ),
+                    ),
+                  },
                 ],
               },
               {

@@ -15,6 +15,7 @@ import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.js
 import accountAddAndEditTranslation from '@/public/translations/accounts/addAndEdit/Messages_fr_FR.json';
 import accountAliasTranslation from '@/public/translations/accounts/alias/Messages_fr_FR.json';
 import accountAliasAddTranslation from '@/public/translations/accounts/alias/add/Messages_fr_FR.json';
+import accountAliasDeleteTranslation from '@/public/translations/accounts/alias/delete/Messages_fr_FR.json';
 import accountDeleteTranslation from '@/public/translations/accounts/delete/Messages_fr_FR.json';
 import queryClient from '@/queryClient';
 import '@testing-library/jest-dom';
@@ -36,6 +37,7 @@ i18n.use(initReactI18next).init({
       'accounts/addAndEdit': accountAddAndEditTranslation,
       'accounts/alias': accountAliasTranslation,
       'accounts/alias/add': accountAliasAddTranslation,
+      'accounts/alias/delete': accountAliasDeleteTranslation,
       'accounts/delete': accountDeleteTranslation,
     },
   },

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActionMenu } from '@ovhcloud/manager-components';
+import { ActionMenu } from '@ovh-ux/manager-react-components';
+import { useSearchParams } from 'react-router-dom';
 import { AliasItem } from './EmailAccountsAlias';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -14,9 +15,12 @@ const ActionButtonAlias: React.FC<ActionButtonAliasAccountProps> = ({
 }) => {
   const { t } = useTranslation('accounts/alias');
   const { platformUrn } = usePlatform();
+  const [searchParams] = useSearchParams();
+  const editEmailAccountId = searchParams.get('editEmailAccountId');
 
   const hrefDeleteAlias = useGenerateUrl('./delete', 'href', {
     deleteAliasId: aliasItem.id,
+    editEmailAccountId,
   });
   const actionItems = [
     {
