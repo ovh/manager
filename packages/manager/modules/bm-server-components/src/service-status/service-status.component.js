@@ -1,5 +1,6 @@
 import controller from './service-status.controller';
 import template from './service-status.html';
+import './service-status.scss';
 
 export default {
   bindings: {
