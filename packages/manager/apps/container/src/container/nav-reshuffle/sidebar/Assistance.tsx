@@ -84,7 +84,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
         </h2>
       </li>
       {nodeTree.children.map((node: Node) => (
-        <li className="flex px-3 align-items-center" role="menuitem" key={`assistance_${node.id}`}>
+        <li className={`flex px-3 align-items-center sidebar_menu_items`} role="menuitem" key={`assistance_${node.id}`}>
           <OsdsIcon
             name={node.icon as ODS_ICON_NAME}
             className="mr-2"

@@ -125,32 +125,6 @@ export const PublicCloudPanel: React.FC<ComponentProps<
     }
   }, [selectedPciProject, rootNode]);
 
-  /**
-   * Synchronize selected public cloud project with pci's project id in URL
-   */
-  useEffect(() => {
-    const { appHash } = containerURL;
-    if (appHash.startsWith('/pci/projects/new')) {
-      setSelectedPciProject(null);
-    } else {
-      if (!pciProjects?.length) return;
-
-      const pciProjectMatch = (appHash || '').match(
-        /^\/pci\/projects\/([^/?]+)/,
-      );
-      let project;
-      if (pciProjectMatch && pciProjectMatch.length >= 2) {
-        const [, pciProjectId] = pciProjectMatch;
-        project = pciProjects.find(
-          (p: { project_id: string }) => p.project_id === pciProjectId,
-        );
-      }
-      if (project) {
-        setSelectedPciProject(project);
-      }
-    }
-  }, [pciProjects, rootNode, containerURL]);
-
   return (
     <>
       <li className="px-3">
