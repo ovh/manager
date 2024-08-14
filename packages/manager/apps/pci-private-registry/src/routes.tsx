@@ -39,6 +39,11 @@ export default [
             path: 'delete',
             ...lazyRouteConfig(() => import('@/pages/delete/Delete.page')),
           },
+          {
+            id: 'update',
+            path: 'update',
+            ...lazyRouteConfig(() => import('@/pages/update/Update.page')),
+          },
         ],
       },
       {
