@@ -34,6 +34,7 @@ export default class ExchangeAccountHomeController {
     exchangeAccountTypes,
     exchangeAccountOutlook,
     exchangeSelectedService,
+    exchangeServiceInfrastructure,
     exchangeStates,
     messaging,
     navigation,
@@ -53,6 +54,7 @@ export default class ExchangeAccountHomeController {
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.exchangeAccountOutlook = exchangeAccountOutlook;
     this.exchangeSelectedService = exchangeSelectedService;
+    this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.exchangeStates = exchangeStates;
     this.messaging = messaging;
     this.navigation = navigation;
