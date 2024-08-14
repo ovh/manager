@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -12,7 +12,7 @@ export function DataGridTextCell({
   children,
   className,
 }: {
-  children: React.ReactNode;
+  children?: ReactNode;
   className?: string;
 }) {
   const { t } = useTranslation('datagrid');
