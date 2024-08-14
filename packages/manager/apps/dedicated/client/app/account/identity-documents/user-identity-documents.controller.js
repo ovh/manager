@@ -6,7 +6,6 @@ import {
   LEGAL_LINK2,
   LEGAL_LINK3,
   KYC_STATUS,
-  KYC_ALLOWED_FILE_EXTENSIONS,
 } from './user-identity-documents.constant';
 
 export default class AccountUserIdentityDocumentsController {
@@ -18,7 +17,6 @@ export default class AccountUserIdentityDocumentsController {
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.maximum_size = MAX_SIZE;
-    this.fileExtensionsValid = true;
     this.atInternet = atInternet;
     this.LEGAL_LINK1 = LEGAL_LINK1;
     this.LEGAL_LINK2 = LEGAL_LINK2;
@@ -32,6 +30,7 @@ export default class AccountUserIdentityDocumentsController {
   $onInit() {
     this.currentUser = this.coreConfig.getUser().legalform;
     this.files = [];
+    this.errors = {};
     this.loading = false;
     this.showUploadOption = true;
     this.displayError = false;
@@ -40,10 +39,6 @@ export default class AccountUserIdentityDocumentsController {
     this.user_type = USER_TYPE[this.currentUser]
       ? USER_TYPE[this.currentUser]
       : USER_TYPE.default;
-
-    this.$scope.$watchCollection('$ctrl.files', () => {
-      this.isFileExtensionsValid();
-    });
   }
 
   uploadIdentityDocuments() {
@@ -51,20 +46,15 @@ export default class AccountUserIdentityDocumentsController {
     this.loading = true;
     this.displayError = false;
     this.trackClick(TRACKING_TASK_TAG.upload);
-    if (!this.form.$invalid && this.isFileExtensionsValid()) {
-      this.getUploadDocumentsLinks(this.files.length)
-        .then(() => {
-          this.loading = false;
-          this.kycStatus.status = KYC_STATUS.OPEN;
-          this.trackPage(TRACKING_TASK_TAG.uploadSuccess);
-        })
-        .catch(() => {
-          this.displayErrorBanner();
-        });
-    } else {
-      this.files = null;
-      this.displayErrorBanner();
-    }
+    this.getUploadDocumentsLinks(this.files.length)
+      .then(() => {
+        this.loading = false;
+        this.kycStatus.status = KYC_STATUS.OPEN;
+        this.trackPage(TRACKING_TASK_TAG.uploadSuccess);
+      })
+      .catch(() => {
+        this.displayErrorBanner();
+      });
   }
 
   handleUploadConfirmModal(open) {
@@ -101,23 +91,6 @@ export default class AccountUserIdentityDocumentsController {
       .catch(() => {
         this.displayErrorBanner();
       });
-  }
-
-  isFileExtensionsValid() {
-    const badFileExtensionsList = [];
-    this.fileExtensionsValid = this.files.reduce(
-      (acc, { infos: { extension } }) => {
-        const formatedExtension = extension.toLowerCase();
-        const isExtensionIncluded = KYC_ALLOWED_FILE_EXTENSIONS.includes(
-          formatedExtension,
-        );
-        if (!isExtensionIncluded) badFileExtensionsList.push(formatedExtension);
-        return isExtensionIncluded && acc;
-      },
-      true,
-    );
-    this.badFileExtensionsFormatedList = badFileExtensionsList.join(', ');
-    return this.fileExtensionsValid;
   }
 
   displayErrorBanner() {

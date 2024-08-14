@@ -47,6 +47,7 @@
   "common_field_error_minlength": "Veuillez saisir un minimum de {{minlength}} caractères.",
   "common_field_error_maxlength": "Veuillez saisir un maximum de {{maxlength}} caractères.",
   "common_field_error_pattern": "Veuillez saisir un format valide.",
+  "common_field_error_type": "Format de fichier non pris en charge.",
   "common_navbar_notification_title": "Notifications",
   "common_navbar_notification_see_all": "Voir toutes les notifications",
   "common_navbar_notification_error_in_notification": "Oups, il y a un problème !",

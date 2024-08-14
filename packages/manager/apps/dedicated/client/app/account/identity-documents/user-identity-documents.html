@@ -55,21 +55,10 @@
 
 <!-- Document upload option -->
 <div class="mt-2" data-ng-if="!$ctrl.loading && $ctrl.showUploadOption">
-    <div data-ng-if="$ctrl.displayError && $ctrl.fileExtensionsValid">
+    <div data-ng-if="$ctrl.displayError">
         <oui-message data-type="error">
             <span
                 data-translate="user_account_identity_documents_submit_error_message_description"
-            ></span>
-        </oui-message>
-    </div>
-    <!-- error banner if the users uploads invalid files-->
-    <div data-ng-if="!$ctrl.fileExtensionsValid">
-        <oui-message class="my-1" data-type="error">
-            <span
-                data-translate="user_account_identity_documents_selection_file_format_invalid"
-                data-translate-values="{
-                  values: $ctrl.badFileExtensionsFormatedList
-                }"
             ></span>
         </oui-message>
     </div>
@@ -83,6 +72,7 @@
             data-model="$ctrl.files"
             data-accept="application/pdf,image/jpeg,image/png,image/jpg"
             data-multiple
+            data-required
             data-maxsize="$ctrl.maximum_size"
             data-name="files"
             data-disabled="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
@@ -90,7 +80,7 @@
 
         <oui-form-actions
             class="mt-5"
-            data-disabled="$ctrl.form.$invalid || !$ctrl.files || $ctrl.files.length === 0 || $ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN || !$ctrl.fileExtensionsValid"
+            data-disabled="$ctrl.form.$invalid || $ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN || $ctrl.errors.maxsize || $ctrl.errors.extension.length"
             data-on-submit="$ctrl.handleUploadConfirmModal(true)"
             data-submit-text="{{:: 'user_account_identity_documents_submit' | translate}}"
         ></oui-form-actions>

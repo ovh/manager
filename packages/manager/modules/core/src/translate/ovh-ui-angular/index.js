@@ -157,6 +157,7 @@ angular
               maxlength: '{{maxlength}}',
             }),
             pattern: $translate.instant('common_field_error_pattern'),
+            type: $translate.instant('common_field_error_type'),
           },
         });
 
