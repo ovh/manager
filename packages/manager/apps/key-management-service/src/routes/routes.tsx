@@ -101,11 +101,27 @@ export default [
               },
             ],
           },
+          {
+            path: ROUTES_URLS.credentials,
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/credentialList/credentialList.page'),
+            ),
+          },
         ],
       },
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.createKmsServiceKey}`,
         ...lazyRouteConfig(() => import('@/pages/serviceKey/createKey.page')),
+      },
+      {
+        path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.createCredential}`,
+        ...lazyRouteConfig(() =>
+          import('@/pages/credential/createCredential.page'),
+        ),
+      },
+      {
+        path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.credentialId}`,
+        ...lazyRouteConfig(() => import('@/pages/credential/credential.page')),
       },
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.keyId}`,
