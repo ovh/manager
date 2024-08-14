@@ -1,0 +1,13 @@
+{
+  "hosting_multisite_git_association_removal_ask_confirmation": "Möchten Sie den Inhalt des Verzeichnisses <b> {{ path }}</b> leeren?",
+  "hosting_multisite_git_association_removal_warning_title": "Löschung von Git",
+  "hosting_multisite_git_association_removal_warning": "Die Zuordnung zu Git wird gelöscht.",
+  "hosting_multisite_git_association_delete_success_message": "Ihre Löschung wurde registriert.",
+  "hosting_multisite_git_association_delete_error_message": "Es ist ein Fehler aufgetreten: {{error}}.",
+  "hosting_multisite_git_association_removal_warning_delete_dir": "Die Zuordnung zu Git und der Inhalt des Verzeichnisses werden gelöscht.",
+  "hosting_multisite_git_association_removal_confirmation_title": "Git-Zuordnung entfernen",
+  "hosting_multisite_git_association_confirm": "Bestätigen",
+  "hosting_multisite_git_association_removal_next": "Weiter",
+  "hosting_multisite_git_association_removal_description_part_1": "Sie sind im Begriff, die Git-Zuordnung zu löschen.",
+  "hosting_multisite_git_association_removal_description_part_2": "Der Löschvorgang wird auf alle Domains angewendet, die auf Ihr Verzeichnis verweisen."
+}

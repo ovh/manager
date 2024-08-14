@@ -4,6 +4,7 @@ import map from 'lodash/map';
 angular.module('controllers').controller(
   'controllers.Domain.Tasks',
   class DomainTasksCtrl {
+    /* @ngInject */
     constructor($scope, $q, $state, $stateParams, Domain) {
       this.$scope = $scope;
       this.$q = $q;

@@ -18,9 +18,48 @@ export const CDN_TYPE = {
   ADVANCED: 'cdn-advanced',
 };
 
+export const GIT_BADGES_STATUS = {
+  created: 'oui-badge_success',
+  creating: 'oui-badge_info',
+  deleting: 'oui-badge_error',
+  disabled: 'oui-badge_error',
+  error: 'oui-badge_warning',
+  deploying: 'oui-badge_info',
+  initialError: 'oui-badge_warning',
+};
+
+export const GIT_STATUS = {
+  created: 'created',
+  creating: 'creating',
+  deleting: 'deleting',
+  disabled: 'disabled',
+  error: 'error',
+  deploying: 'deploying',
+  initialError: 'initialError',
+};
+
+export const GIT_STATUS_WITH_TOOLTIP = {
+  unlimitedPath: {
+    [GIT_STATUS.created]: 'lastDeploy',
+    [GIT_STATUS.initialError]: 'lastDeploy',
+    [GIT_STATUS.error]: 'lastDeploy',
+    [GIT_STATUS.deleting]: 'lastDeploy',
+  },
+  limitedPath: {
+    [GIT_STATUS.created]: 'limitedNumberPath',
+    [GIT_STATUS.initialError]: 'lastDeploy',
+    [GIT_STATUS.error]: 'limitedNumberPath',
+    [GIT_STATUS.deploying]: 'limitedNumberPath',
+    [GIT_STATUS.deleting]: 'lastDeploy',
+  },
+};
+
 export default {
   HOSTING_OFFER,
   CDN_STATUS,
   CDN_VERSION,
   CDN_TYPE,
+  GIT_BADGES_STATUS,
+  GIT_STATUS,
+  GIT_STATUS_WITH_TOOLTIP,
 };

@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.11.7...@ovh-ux/manager-exchange-app@0.11.8) (2024-08-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.11.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.11.6...@ovh-ux/manager-exchange-app@0.11.7) (2024-08-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.11.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.11.5...@ovh-ux/manager-exchange-app@0.11.6) (2024-08-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.11.4...@ovh-ux/manager-exchange-app@0.11.5) (2024-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
 ## [0.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.11.3...@ovh-ux/manager-exchange-app@0.11.4) (2024-07-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-exchange-app

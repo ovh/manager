@@ -9,17 +9,23 @@
         <div
             data-wizard-step
             data-wizard-step-on-load="loadStep1"
-            data-wizard-step-valid="isPathValid() && ((selected.domain.ownLog === 'ACTIVE' && selected.ownLogDomain) || selected.domain.ownLog === 'NONE')"
+            data-wizard-step-valid="!isLoading && canModifyDomainWithGit() && isPathValid() && ((selected.domain.ownLog === 'ACTIVE' && selected.ownLogDomain) || selected.domain.ownLog === 'NONE')"
         >
             <p
                 data-translate="hosting_tab_DOMAINS_configuration_modify_step1_question"
             ></p>
 
-            <div class="text-center" data-ng-if="model.domains == null">
+            <div
+                class="text-center"
+                data-ng-if="model.domains == null || isLoading"
+            >
                 <oui-spinner></oui-spinner>
             </div>
 
-            <form class="form-horizontal" data-ng-if="model.domains != null">
+            <form
+                class="form-horizontal"
+                data-ng-if="model.domains != null && !isLoading"
+            >
                 <oui-field
                     label="{{:: 'hosting_tab_DOMAINS_configuration_modify_step1_domain_name' | translate }}"
                     size="l"
@@ -58,6 +64,7 @@
                     runtime="selected.runtime"
                     runtimes="model.runtimes"
                     ssl="selected.domain.ssl"
+                    can-modify-path-folder="canModifyDomainWithGit()"
                 >
                 </hosting-multisite-configuration>
             </form>

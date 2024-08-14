@@ -1,13 +1,7 @@
 angular.module('App').controller(
   'DomainsDnssecBatchCtrl',
   class DomainsDnssecBatchCtrl {
-    /**
-     * Constructor
-     * @param $scope
-     * @param DomainsDnsSec
-     * @param Alerter
-     * @param WucUser
-     */
+    /* @ngInject */
     constructor($scope, $translate, DomainsDnsSec, Alerter, WucUser) {
       this.$scope = $scope;
       this.DomainsDnsSec = DomainsDnsSec;

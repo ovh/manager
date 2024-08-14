@@ -1,0 +1,19 @@
+{
+  "title": "Metryki",
+  "breadcrumb": "Metryki",
+  "description": "Aby ułatwić Ci monitorowanie i zarządzanie instancją bazy danych, poniżej znajdziesz jej najważniejsze metryki i statystyki. Czas ich retencji zależy od Twojej oferty usługi.",
+  "autoRefreshInputLabel": "Auto-Refresh",
+  "interval-lastHour": "1H",
+  "interval-lastDay": "1D",
+  "interval-lastWeek": "1W",
+  "interval-lastMonth": "1M",
+  "interval-lastYear": "1Y",
+  "metricName-cpu_usage_percent": "Poziom wykorzystania procesora (%)",
+  "metricName-disk_usage_percent": "Poziom wykorzystania przestrzeni dyskowej (%)",
+  "metricName-diskio_read": "Liczba IOPS (odczyt)",
+  "metricName-diskio_writes": "Liczba IOPS (zapis)",
+  "metricName-mem_usage_percent": "Wykorzystana pamięć (%)",
+  "metricName-mem_usage": "Wykorzystana pamięć (MB)",
+  "metricName-net_receive": "Odbiór danych w sieci (MB/s)",
+  "metricName-net_send": "Transmisja danych w sieci (MB/s)"
+}

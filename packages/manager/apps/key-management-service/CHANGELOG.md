@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.4.0...@ovh-ux/manager-key-management-service-app@0.4.1) (2024-08-13)
+
+
+### Bug Fixes
+
+* **key-management-service:** delete and sync translations files ([#12503](https://github.com/ovh/manager/issues/12503)) ([3f45608](https://github.com/ovh/manager/commit/3f45608057fc1e2b2e063d2f2c691aa7becbcd54))
+
+
+
+
+
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.3.3...@ovh-ux/manager-key-management-service-app@0.4.0) (2024-08-08)
+
+
+### Features
+
+* clean dependencies versions of react apps ([7969ba7](https://github.com/ovh/manager/commit/7969ba70f9e03033271a48a5bd0021484ea36263))
+
+
+
+
+
+## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.3.2...@ovh-ux/manager-key-management-service-app@0.3.3) (2024-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
 ## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.3.1...@ovh-ux/manager-key-management-service-app@0.3.2) (2024-07-18)
 
 

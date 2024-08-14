@@ -4,14 +4,15 @@ const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '-home?id=csm_index';
 const createTicketSupportIndex = '?id=csm_get_help';
 const ticketsSupportIndex = '?id=csm_cases_requests';
+const supportSubsidiary = 'ovhSubsidiary=';
 
 interface UsefulLinks {
   help: {
     [key in string]: string;
   };
   support?: {
-    createTicket: string;
-    tickets: string;
+    createTicket: (sub: string) => string;
+    tickets: (sub: string) => string;
   };
   tasks: string;
 }
@@ -36,8 +37,8 @@ const consts: UsefulLinkConstants = {
       TN: `${helpRoot}/fr-tn${homeIndex}`,
     },
     support: { 
-      createTicket: `${helpRoot}${createTicketSupportIndex}`, 
-      tickets: `${helpRoot}${ticketsSupportIndex}` 
+      createTicket: (sub: string) => `${helpRoot}${createTicketSupportIndex}&${supportSubsidiary}${sub}`, 
+      tickets: (sub: string) => `${helpRoot}${ticketsSupportIndex}&${supportSubsidiary}${sub}` 
     },
     tasks: 'https://www.status-ovhcloud.com/',
   },
@@ -52,8 +53,8 @@ const consts: UsefulLinkConstants = {
       WS: `${helpRoot}/es${homeIndex}`,
     },
     support: { 
-      createTicket: `${helpRoot}${createTicketSupportIndex}`, 
-      tickets: `${helpRoot}${ticketsSupportIndex}` 
+      createTicket: (sub: string) => `${helpRoot}${createTicketSupportIndex}&${supportSubsidiary}${sub}`, 
+      tickets: (sub: string) => `${helpRoot}${ticketsSupportIndex}&${supportSubsidiary}${sub}` 
     },
     tasks: 'https://www.status-ovhcloud.com/',
   },

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-documentation",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "private": true,
   "description": "Manager documentation deployed with GitHub Pages",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "get-monorepo-packages": "^1.2.0",
-    "gh-pages": "^2.2.0",
+    "gh-pages": "^5.0.0",
     "lodash": "^4.17.15",
     "markdown-it": "^13.0.2",
     "vitepress": "^1.0.0-rc.20",

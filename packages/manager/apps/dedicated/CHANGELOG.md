@@ -3,6 +3,87 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.47.4...@ovh-ux/manager-dedicated@19.48.0) (2024-08-13)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** add missing import ([#12511](https://github.com/ovh/manager/issues/12511)) ([ff87614](https://github.com/ovh/manager/commit/ff87614fc7156aafad52f56af9aa96ddef048f2b))
+* **i18n:** add missing translations [CDS 3205] ([#12598](https://github.com/ovh/manager/issues/12598)) ([400c571](https://github.com/ovh/manager/commit/400c5715c154928484216dc94023ad2a0e201f4f))
+
+
+### Features
+
+* **dedicated.ip:** order - add campus in step 1 ([#12450](https://github.com/ovh/manager/issues/12450)) ([b615d5d](https://github.com/ovh/manager/commit/b615d5d62d83032e1a9e294abd854a1fa4a46057))
+* **dedicated:** os installation wizard improvements - bundle ([#11721](https://github.com/ovh/manager/issues/11721)) ([d78f654](https://github.com/ovh/manager/commit/d78f654778a1f774e44f98760ec854877e202131))
+* **dedicated:** reload boot details after the netboot ([#12582](https://github.com/ovh/manager/issues/12582)) ([681d029](https://github.com/ovh/manager/commit/681d02911ef4644a60975b3c20c9713e6a195b17))
+* **dedicated:** remove usb kvm order ([#12651](https://github.com/ovh/manager/issues/12651)) ([0741ed0](https://github.com/ovh/manager/commit/0741ed0917fe726db22bc9d1b69c0366e3f31ab8))
+
+
+### Reverts
+
+* Revert "feat(dedicated.ip): order - add campus in step 1 (#12450)" ([607e3f0](https://github.com/ovh/manager/commit/607e3f013822c8b7ab8d40ef8121cac1cc3cf639)), closes [#12450](https://github.com/ovh/manager/issues/12450)
+* Revert "fix(dedicated.ip): add missing import (#12511)" ([d049bbd](https://github.com/ovh/manager/commit/d049bbdbaddc68373ddf678020d5025c9f506c33)), closes [#12511](https://github.com/ovh/manager/issues/12511)
+
+
+
+
+
+## [19.47.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.47.3...@ovh-ux/manager-dedicated@19.47.4) (2024-08-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [19.47.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.47.2...@ovh-ux/manager-dedicated@19.47.3) (2024-08-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [19.47.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.47.1...@ovh-ux/manager-dedicated@19.47.2) (2024-08-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3213] ([bede122](https://github.com/ovh/manager/commit/bede1223b9f711ab5112d06de81a68b34415feb4))
+
+
+
+
+
+## [19.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.47.0...@ovh-ux/manager-dedicated@19.47.1) (2024-08-06)
+
+
+### Bug Fixes
+
+* add ng-inject ([#12633](https://github.com/ovh/manager/issues/12633)) ([4ef3118](https://github.com/ovh/manager/commit/4ef3118e4f1b845023e893353ae2a4955623a2d8))
+
+
+
+
+
+# [19.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.46.0...@ovh-ux/manager-dedicated@19.47.0) (2024-08-05)
+
+
+### Bug Fixes
+
+* **account:** support Level are not accesible anymore ([#12587](https://github.com/ovh/manager/issues/12587)) ([c378540](https://github.com/ovh/manager/commit/c378540a84fcd78f5973c4dda70973afa091a6a2))
+* **dedicated.hpc:** fix offset query on operation datagrid ([#12578](https://github.com/ovh/manager/issues/12578)) ([0f7f7c9](https://github.com/ovh/manager/commit/0f7f7c9f7ee8a448373ecf1443912be0fd6c3bec))
+
+
+### Features
+
+* send billing region on parameters for snow ([#12584](https://github.com/ovh/manager/issues/12584)) ([8261de8](https://github.com/ovh/manager/commit/8261de869c4d83540c7a5794487f97d4194956a2))
+
+
+
+
+
 # [19.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.45.1...@ovh-ux/manager-dedicated@19.46.0) (2024-07-23)
 
 

@@ -254,7 +254,7 @@
         </oui-header-tabs-dropdown>
     </oui-header-tabs>
 </div>
-
+<div data-ovh-alert="{{alerts.tabs}}"></div>
 <div
     data-ng-if="!loadingHostingInformations && hosting.isExpired || serviceError"
 >
@@ -280,7 +280,6 @@
     >
     </wuc-autorenew-invite>
 
-    <div data-ovh-alert="{{alerts.tabs}}"></div>
     <div data-ovh-alert="{{alerts.database}}"></div>
 
     <div

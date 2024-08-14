@@ -1,0 +1,16 @@
+{
+  "backupsSpec": "Manuelle und automatische Backups",
+  "privateNetworkSpec": "Private Netzwerke",
+  "memorySpec": "{{memory}} RAM",
+  "memorySpecRange": "{{ min }} bis {{ max }} RAM",
+  "cpuSpec_one": "{{count}} vCore",
+  "cpuSpec_other": "{{count}} vCores",
+  "cpuSpecRange": "{{min}} bis {{max}} vCores",
+  "nodeSpec_one": "{{count}} Node",
+  "nodeSpec_other": "{{count}} Nodes",
+  "nodeSpecRange": "{{min}} bis {{max}} Nodes",
+  "storageSpec": "{{storage}} Storage",
+  "storageSpecRange": "{{min}} bis {{max}} Storage",
+  "priceStartingFrom": "Ab",
+  "planTag-new": "Neu"
+}

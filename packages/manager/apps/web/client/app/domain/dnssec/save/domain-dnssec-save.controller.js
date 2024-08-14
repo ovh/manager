@@ -1,6 +1,7 @@
 angular.module('controllers').controller(
   'DomainDnsSecSaveCtrl',
   class DomainDnsSecSaveCtrl {
+    /* @ngInject */
     constructor($scope, $rootScope) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;

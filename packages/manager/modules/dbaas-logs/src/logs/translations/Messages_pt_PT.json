@@ -788,5 +788,12 @@
   "logs_streams_manage_subscriptions": "Gerir as subscrições",
   "logs_streams_copy_stream_id": "Copiar ID do fluxo",
   "logs_streams_copy_id_success": "O identificador do fluxo foi copiado para a sua área de transferência, utilize CTRL+V para colar o seu conteúdo.",
-  "logs_streams_copy_id_error": "O seu navegador não permite copiar para a área de transferência. Atualize para uma versão mais recente do navegador. O identificador do fluxo {{stream}} é: {{stream_id}}"
+  "logs_streams_copy_id_error": "O seu navegador não permite copiar para a área de transferência. Atualize para uma versão mais recente do navegador. O identificador do fluxo {{stream}} é: {{stream_id}}",
+  "logs_home_account_status": "Estado",
+  "logs_home_status_ENABLED": "Ativado",
+  "logs_home_status_DISABLED": "Desativado",
+  "logs_home_status_INIT": "A instalar...",
+  "logs_home_status_TO_CONFIG": "A configurar",
+  "logs_home_resiliate": "Rescindir",
+  "logs_resiliate": "Rescindir"
 }

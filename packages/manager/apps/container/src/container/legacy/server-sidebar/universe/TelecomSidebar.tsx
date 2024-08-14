@@ -12,6 +12,7 @@ import telecomShopConfig from '../order/shop-config/telecom';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import  getIcon  from './GetIcon';
+import { useFeatureAvailability } from '@ovhcloud/manager-components';
 
 
 
@@ -63,7 +64,7 @@ export default function TelecomSidebar() {
     queryFn: getBetaPreference,
   });
 
-  const getTelecomMenu = (feature: Record<string, string>) => {
+  const getTelecomMenu = (feature: Record<string, boolean>) => {
     const menu = [];
 
     if (feature.pack) {
@@ -260,15 +261,7 @@ export default function TelecomSidebar() {
     return menu;
   };
 
-  const getFeatures = (): Promise<Record<string, string>> =>
-    reketInstance.get(`/feature/${features.join(',')}/availability`, {
-      requestType: 'aapi',
-    });
-
-  const { data: availability } = useQuery({
-    queryKey: ['sidebar-telecom-availability'],
-    queryFn: getFeatures,
-  });
+  const {data: availability} = useFeatureAvailability(features);
 
   useEffect(() => {
     if (availability && !betaPreferenceLoading) {

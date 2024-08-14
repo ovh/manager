@@ -3,6 +3,83 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.32.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.32.5...@ovh-ux/manager-web@18.32.6) (2024-08-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [18.32.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.32.4...@ovh-ux/manager-web@18.32.5) (2024-08-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3207] ([#12603](https://github.com/ovh/manager/issues/12603)) ([0a4daef](https://github.com/ovh/manager/commit/0a4daef80365b1ac2a4fb18b00f9ac2f43e1814b))
+* **web.hosting:** fix change offer stuck when service has no product ([#12677](https://github.com/ovh/manager/issues/12677)) ([893a1e2](https://github.com/ovh/manager/commit/893a1e251c7cde05cbe621fb53b8379a5a4e1a55))
+* **web.hosting:** fix columns order for pending tasks datagrid ([#12336](https://github.com/ovh/manager/issues/12336)) ([9932b98](https://github.com/ovh/manager/commit/9932b982124960911d90e35d6aecf586f0520fef))
+* **web.hosting:** fix issue link add domain ([#12666](https://github.com/ovh/manager/issues/12666)) ([1e143b9](https://github.com/ovh/manager/commit/1e143b92fea632795acc67d8574c0e2e2f3b1835))
+* **web.hosting:** fix issue with log access on multisite ([#12664](https://github.com/ovh/manager/issues/12664)) ([5a67761](https://github.com/ovh/manager/commit/5a67761bf3d19598d804780fe84cad4a1f17e49a))
+* **web:** fix translations for cgu boost offer ([#12568](https://github.com/ovh/manager/issues/12568)) ([22698ff](https://github.com/ovh/manager/commit/22698ff942c4b10b34eb9d7607a3c8425096c006))
+
+
+
+
+
+## [18.32.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.32.3...@ovh-ux/manager-web@18.32.4) (2024-08-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3189] ([ba73a17](https://github.com/ovh/manager/commit/ba73a17c03a04db70aad532fab42b31c1367dd03))
+* **i18n:** add missing translations [CDS 3213] ([bede122](https://github.com/ovh/manager/commit/bede1223b9f711ab5112d06de81a68b34415feb4))
+
+
+
+
+
+## [18.32.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.32.2...@ovh-ux/manager-web@18.32.3) (2024-08-06)
+
+
+### Bug Fixes
+
+* add ng-inject ([#12633](https://github.com/ovh/manager/issues/12633)) ([4ef3118](https://github.com/ovh/manager/commit/4ef3118e4f1b845023e893353ae2a4955623a2d8))
+
+
+
+
+
+## [18.32.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.32.1...@ovh-ux/manager-web@18.32.2) (2024-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [18.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.32.0...@ovh-ux/manager-web@18.32.1) (2024-07-26)
+
+
+### Bug Fixes
+
+* **web.dns:** fix load controller for dns standalone ([#12496](https://github.com/ovh/manager/issues/12496)) ([d25f22e](https://github.com/ovh/manager/commit/d25f22ef1616cd64e54b09b79003326b02c39aa9))
+
+
+
+
+
+# [18.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.31.1...@ovh-ux/manager-web@18.32.0) (2024-07-25)
+
+
+### Features
+
+* **web.hosting:** git integration project ([#12215](https://github.com/ovh/manager/issues/12215)) ([492bcd9](https://github.com/ovh/manager/commit/492bcd948e295219c87d6190879df62beaf26d17))
+
+
+
+
+
 ## [18.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.31.0...@ovh-ux/manager-web@18.31.1) (2024-07-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

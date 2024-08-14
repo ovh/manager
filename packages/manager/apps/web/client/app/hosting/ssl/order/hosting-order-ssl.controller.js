@@ -4,6 +4,7 @@ import isObject from 'lodash/isObject';
 angular.module('App').controller(
   'hostingOrderSslCtrl',
   class HostingOrderSslCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $scope,

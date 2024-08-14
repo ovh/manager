@@ -21,6 +21,7 @@ import {
   FLAVORS_WITHOUT_SUSPEND,
   FLAVORS_WITHOUT_VNC,
   FLAVORS_WITHOUT_ADDITIONAL_IPS,
+  DEFAULT_IP,
 } from './instances.constants';
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getBaseApiRoute"] }] */
@@ -891,5 +892,99 @@ export default class PciProjectInstanceService {
     return !this.FLAVORS_WITHOUT_ADDITIONAL_IPS.find((value) =>
       value.test(flavorType),
     );
+  }
+
+  createPrivateNetwork(
+    projectId,
+    region,
+    privateNetworkName,
+    subnet,
+    vlanId = null,
+    gateway,
+  ) {
+    return this.$http
+      .post(`/cloud/project/${projectId}/region/${region}/network`, {
+        name: privateNetworkName,
+        subnet,
+        ...(gateway && { gateway }),
+        ...(typeof vlanId === 'number' && { vlanId }),
+      })
+      .then(({ data: { id } }) =>
+        this.checkPrivateNetworkCreationStatus(projectId, id),
+      )
+      .then(({ resourceId }) => {
+        this.Poller.kill({ namespace: 'private-network-creation' });
+        return this.getCreatedSubnet(projectId, region, resourceId);
+      });
+  }
+
+  checkPrivateNetworkCreationStatus(projectId, operationId) {
+    return this.Poller.poll(
+      `/cloud/project/${projectId}/operation/${operationId}`,
+      {},
+      {
+        method: 'get',
+        successRule: {
+          status: 'completed',
+        },
+        namespace: 'private-network-creation',
+      },
+    );
+  }
+
+  getCreatedSubnet(projectId, region, networkId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/region/${region}/network/${networkId}/subnet`,
+      )
+      .then(({ data }) => data);
+  }
+
+  associateGatewayToNetwork(projectId, region, gatewayId, subnetId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/region/${region}/gateway/${gatewayId}/interface`,
+        {
+          subnetId,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  static generateNetworkAddress(vlanId) {
+    return DEFAULT_IP.replace('{vlanId}', vlanId % 255);
+  }
+
+  getPrivateNetworksByRegion(serviceName, customerRegions = []) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/aggregated/network`)
+      .then(({ data }) => {
+        const privateNetworks = {};
+        const localZones = this.PciProject.getLocalZones(customerRegions);
+        data.resources.forEach((network) => {
+          if (
+            network.visibility === 'private' &&
+            !this.PciProject.checkIsLocalZone(localZones, network.region)
+          ) {
+            if (!privateNetworks[network.vlanId]) {
+              const { id, region, ...rest } = network;
+              privateNetworks[network.vlanId] = {
+                ...rest,
+                region,
+                subnets: [{ region, networkId: id }],
+              };
+            } else {
+              const { id, region } = network;
+              privateNetworks[network.vlanId].subnets.push({
+                region,
+                networkId: id,
+              });
+            }
+          }
+        });
+        return Object.values(privateNetworks).sort(
+          (a, b) => a.vlanId - b.vlanId,
+        );
+      });
   }
 }

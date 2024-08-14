@@ -7,6 +7,7 @@ import { ALERTER_ID } from '../operation-table/operation-table.constants';
 angular.module('App').controller(
   'DomainOperationUpdateCtrl',
   class DomainOperationUpdateCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $q,

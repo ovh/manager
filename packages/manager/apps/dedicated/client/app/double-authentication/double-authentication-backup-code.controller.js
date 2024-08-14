@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'DoubleAuthBackupCodeCtrl',
   class DoubleAuthBackupCodeCtrl {
+    /* @ngInject */
     constructor($scope, $q, OvhHttp) {
       this.$scope = $scope;
       this.$q = $q;

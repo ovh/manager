@@ -1,0 +1,13 @@
+{
+  "hosting_multisite_git_association_removal_ask_confirmation": "Czy chcesz wyczyścić zawartość katalogu <b>{{path}}</b>?",
+  "hosting_multisite_git_association_removal_warning_title": "Usuwanie Git",
+  "hosting_multisite_git_association_removal_warning": "Usuniemy powiązanie z Git.",
+  "hosting_multisite_git_association_delete_success_message": "Usunięcie zostało zrealizowane.",
+  "hosting_multisite_git_association_delete_error_message": "Wystąpił błąd: {{error}}",
+  "hosting_multisite_git_association_removal_warning_delete_dir": "Usuniemy powiązanie z Git i zawartością katalogu.",
+  "hosting_multisite_git_association_removal_confirmation_title": "Usuń powiązanie Git",
+  "hosting_multisite_git_association_confirm": "Zatwierdź",
+  "hosting_multisite_git_association_removal_next": "Dalej",
+  "hosting_multisite_git_association_removal_description_part_1": "Chcesz usunąć powiązanie Git.",
+  "hosting_multisite_git_association_removal_description_part_2": "Usunięcie będzie miało zastosowanie do wszystkich domen wskazujących na katalog."
+}

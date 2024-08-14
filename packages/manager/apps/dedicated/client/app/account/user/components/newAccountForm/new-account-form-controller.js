@@ -66,7 +66,8 @@ export default class NewAccountFormController {
     // Indian subsidiary flag
     this.isIndianSubsidiary = this.user.ovhSubsidiary === IN_SUBSIDIARY;
     this.determineIsEditionDisabledByKyc(this.kycStatus);
-    this.newSupportTicketUrl = SUPPORT_URLS.createTicket;
+    this.newSupportTicketUrl =
+      SUPPORT_URLS.createTicket + this.user.ovhSubsidiary;
 
     // backup of original model
     this.originalModel = angular.copy(this.model);

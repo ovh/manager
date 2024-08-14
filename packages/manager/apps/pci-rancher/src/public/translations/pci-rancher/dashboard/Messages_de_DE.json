@@ -27,7 +27,7 @@
   "createRancherDiscoveryMode": "Sie befinden sich derzeit im Discovery-Modus. <strong>Um die Erstellung der Ressource abzuschließen</strong>, müssen Sie das Projekt aktivieren.",
   "createRancherDiscoveryModeActive": "Ihr Projekt aktivieren",
   "createRancherTitle": "Managed Rancher Service",
-  "createRancherInfoMessage": "Nutzen Sie unseren Service während der Betaphase kostenlos. Bitte beachten Sie, dass Sie nach Beendigung der Betaphase stundenweise abgerechnet werden, abhängig von der Gesamtzahl der vCPUs der Worker Nodes (Worker Nodes) Ihrer Rancher „Downstream Clusters“. Dabei ist <strong>eine Mindestanzahl von 20 vCPUs zu berücksichtigen</strong>.",
+  "createRancherInfoMessage": "Nutzen Sie unseren Service während der Betaphase kostenlos. Beachten Sie, dass Ihre Nutzung nach Abschluss der Betaphase stündlich abgerechnet wird, je nach Gesamtzahl der vCPUs der Worker-Nodes Ihrer Rancher-Downstream-Cluster, wobei <strong>mindestens 20 vCPUs abgerechnet werden</strong>.",
   "createRancherName": "Name",
   "createRancherDescription": "Innerhalb dieses Dienstes können Sie mehrere „Downstream-Cluster“ verwalten.",
   "createRancherPlaceholder": "meine_ranchen",

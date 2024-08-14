@@ -5,12 +5,19 @@ import { TEXT_FOR_MODAL, ACTION_TYPE, RMA_NEW_TYPE } from './rma.constants';
 
 export default class TelecomTelephonyLineAssistRmaCtrl {
   /* @ngInject */
-  constructor($translate, lineAssistRmaService, TucToast, TucToastError) {
+  constructor(
+    $translate,
+    coreConfig,
+    lineAssistRmaService,
+    TucToast,
+    TucToastError,
+  ) {
     this.$translate = $translate;
     this.lineAssistRmaService = lineAssistRmaService;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
-    this.SUPPORT_URL = SUPPORT_URLS.viewTickets;
+    this.user = coreConfig.getUser();
+    this.SUPPORT_URL = SUPPORT_URLS.viewTickets + this.user.ovhSubsidiary;
   }
 
   $onInit() {

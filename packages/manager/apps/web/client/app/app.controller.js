@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'AppCtrl',
   class AppCtrl {
+    /* @ngInject */
     constructor($scope, $rootScope, $timeout, $translate, coreConfig, WucUser) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;

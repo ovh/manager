@@ -3,6 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 angular.module('App').controller(
   'PrivateDatabaseAddBddCtrl',
   class PrivateDatabaseAddBddCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $q,

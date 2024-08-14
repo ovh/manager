@@ -1,0 +1,7 @@
+{
+  "hosting_multisite_git_deployment_title": "GIT deployen",
+  "hosting_multisite_git_deployment_description": "Sie sind im Begriff, den Inhalt Ihres Remote-Repositorys manuell auf Ihrem Hosting bereitzustellen oder zu aktualisieren.",
+  "hosting_multisite_git_deployment_checkbox_label": "Bei einem Änderungskonflikt Remote-Änderungen im lokalen Repository erzwingen.",
+  "hosting_multisite_git_deployment_message_success": "Ihr Repository wird bereitgestellt.",
+  "hosting_multisite_git_deployment_message_error": "Konflikt bei der Git-Bereitstellung. Um den Konflikt zu lösen, erzwingen Sie die Remote-Änderungen in Ihrem lokalen Repository."
+}

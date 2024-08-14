@@ -108,7 +108,7 @@ export const defaultProps: DashboardLayoutProps = {
 };
 
 const meta: Meta<typeof DashboardLayout> = {
-  title: 'Templates/Dashboard',
+  title: 'Templates/Dashboard (deprecated)',
   component: DashboardLayout,
   argTypes: {},
   args: defaultProps,

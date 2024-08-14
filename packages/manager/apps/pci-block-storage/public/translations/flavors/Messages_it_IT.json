@@ -9,7 +9,7 @@
   "pci_project_flavors_disk_size": "Lo spazio disco è inferiore a quello disponibile sul modello corrente",
   "pci_project_flavors_spec_ram": "{{ram}} RAM",
   "pci_project_flavors_spec_core_details": "{{vcores}} core ({{frequency}} GHz)",
-  "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbit/s",
+  "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbps",
   "pci_project_flavors_spec_nvme": "{{capacity}} NVMe",
   "pci_project_flavors_spec_nvme_multiple": "{{count}} x {{capacity}} NVMe",
   "pci_project_flavors_price_hourly": "{{price}} + IVA/ora",

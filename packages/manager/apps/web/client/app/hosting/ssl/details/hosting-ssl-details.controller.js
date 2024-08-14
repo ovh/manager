@@ -6,6 +6,7 @@ import toPairs from 'lodash/toPairs';
 angular.module('App').controller(
   'hostingSSLDetailsController',
   class HostingSSLDetailsController {
+    /* @ngInject */
     constructor($scope, $translate, Alerter, constants, hostingSSLCertificate) {
       this.$scope = $scope;
       this.$translate = $translate;

@@ -6,6 +6,7 @@ import { OFFERS_UNELIGIBLE_FOR_MODULE } from '../hosting.constants';
 angular.module('App').controller(
   'HostingTabModulesController',
   class HostingTabModulesController {
+    /* @ngInject */
     constructor(
       $scope,
       $state,

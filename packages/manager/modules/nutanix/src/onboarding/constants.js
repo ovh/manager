@@ -22,6 +22,9 @@ export const GUIDES = [
       FR: 'https://docs.ovh.com/fr/nutanix/high-level-documentation/',
       WE: 'https://docs.ovh.com/us/en/nutanix/high-level-documentation/',
       WS: 'https://docs.ovh.com/us/en/nutanix/high-level-documentation/',
+      MA: 'https://docs.ovh.com/fr/nutanix/high-level-documentation/',
+      SN: 'https://docs.ovh.com/fr/nutanix/high-level-documentation/',
+      TN: 'https://docs.ovh.com/fr/nutanix/high-level-documentation/',
       US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/16038767836307-Overview-of-Nutanix-on-OVHcloud',
     },
@@ -52,6 +55,12 @@ export const GUIDES = [
       QC:
         'https://help.ovhcloud.com/csm/fr-ca-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044904',
       FR:
+        'https://help.ovhcloud.com/csm/fr-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044892',
+      MA:
+        'https://help.ovhcloud.com/csm/fr-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044892',
+      TN:
+        'https://help.ovhcloud.com/csm/fr-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044892',
+      SN:
         'https://help.ovhcloud.com/csm/fr-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044892',
       WE:
         'https://help.ovhcloud.com/csm/en-nutanix-available-services?id=kb_article_view&sysparm_article=KB0044891',

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@8.1.7...@ovh-ux/manager-freefax-app@8.1.8) (2024-08-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-freefax-app
+
+
+
+
+
+## [8.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@8.1.6...@ovh-ux/manager-freefax-app@8.1.7) (2024-08-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-freefax-app
+
+
+
+
+
+## [8.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@8.1.5...@ovh-ux/manager-freefax-app@8.1.6) (2024-08-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-freefax-app
+
+
+
+
+
 ## [8.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@8.1.4...@ovh-ux/manager-freefax-app@8.1.5) (2024-07-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-freefax-app

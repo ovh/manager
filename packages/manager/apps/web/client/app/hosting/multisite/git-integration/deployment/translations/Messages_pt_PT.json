@@ -1,0 +1,7 @@
+{
+  "hosting_multisite_git_deployment_title": "Implementar o Git",
+  "hosting_multisite_git_deployment_description": "Está prestes a implementar ou a atualizar manualmente o conteúdo do repositório remoto no seu alojamento.",
+  "hosting_multisite_git_deployment_checkbox_label": "Em caso de conflito de modificação, force as modificações remotas no seu repositório local.",
+  "hosting_multisite_git_deployment_message_success": "A implementação do repositório está em curso.",
+  "hosting_multisite_git_deployment_message_error": "Conflito durante a implementação do Git. Para resolver o conflito, force as alterações remotas no seu repositório local."
+}

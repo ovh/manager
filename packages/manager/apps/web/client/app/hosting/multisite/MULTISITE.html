@@ -121,6 +121,12 @@
                                 data-translate="hosting_tab_DOMAINS_table_header_home"
                             ></th>
                             <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_git"
+                                data-ng-if="allowedWebsites !== 0"
+                            ></th>
+                            <th
                                 scope="col"
                                 data-translate="hosting_tab_DOMAINS_table_header_runtime"
                                 data-ng-if="hosting.isCloudWeb"
@@ -206,6 +212,19 @@
                             </td>
                             <td data-ng-bind="domain.path"></td>
                             <td
+                                class="text-center"
+                                data-ng-if="allowedWebsites !== 0"
+                            >
+                                <span
+                                    class="oui-badge"
+                                    data-translate="{{ 'hosting_tab_DOMAINS_table_git_state_' + domain.vcsStatus }}"
+                                    data-oui-tooltip="{{ :: gitStatusTooltip(domain) }}"
+                                    data-oui-tooltip-placement="right"
+                                    data-ng-class="GIT_BADGES_STATUS[domain.vcsStatus]"
+                                >
+                                </span>
+                            </td>
+                            <td
                                 data-ng-if="hosting.isCloudWeb"
                                 data-ng-bind="domain.runtime.name"
                             ></td>
@@ -251,23 +270,128 @@
                                 >
                                 </span>
                             </td>
-                            <td class="text-center">
-                                <button
-                                    class="oui-action-button"
-                                    type="button"
-                                    data-linkedpopover="hosting/popover/multisite.html"
-                                    data-linkedpopover-placement="left"
-                                    data-linkedpopover-single="true"
-                                    data-linkedpopover-remote="true"
-                                    data-linkedpopover-title="{{ 'common_actions' | translate }}"
-                                    data-domain-index="{{$index}}"
-                                    data-ng-disabled="domain.status === HOSTING_STATUS.UPDATING"
-                                >
-                                    <span
-                                        class="oui-icon oui-icon-ellipsis"
-                                        aria-hidden="true"
-                                    ></span>
-                                </button>
+                            <td
+                                data-ng-controller="HostingTabDomainsMultisiteLogs as MultisiteLogsCtrl"
+                            >
+                                <!-- action menu, oui-dropdown because need button event -->
+                                <oui-dropdown placement="end" arrow>
+                                    <button
+                                        class="oui-action-button"
+                                        data-ng-click="MultisiteLogsCtrl.generateLogHref(domain)"
+                                        oui-dropdown-trigger
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-ellipsis"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                    <oui-dropdown-content>
+                                        <oui-dropdown-item
+                                            data-on-click="modifyDomain(domain)"
+                                            data-disabled="domain.status !== HOSTING_STATUS.CREATED || hasDoingGitAction(domain)"
+                                            data-ng-if="excludeAttachedDomains.indexOf(domain.displayName) === -1"
+                                            ><span
+                                                data-translate="hosting_tab_DOMAINS_table_popover_modify"
+                                            ></span
+                                        ></oui-dropdown-item>
+
+                                        <div data-ng-if="!!domain.ownLog">
+                                            <oui-dropdown-item
+                                                data-disabled="domain.logsLoading || !domain.logUrl"
+                                                data-href="{{domain.logUrl}}"
+                                                data-ng-click="MultisiteLogsCtrl.goToGeneratedLogHref(domain.logUrl)"
+                                                target="_blank"
+                                            >
+                                                <span
+                                                    data-translate="hosting_tab_DOMAINS_multisite_logs_link"
+                                                ></span>
+                                                <oui-spinner
+                                                    data-size="s"
+                                                    data-ng-if="domain.logsLoading"
+                                                >
+                                                </oui-spinner>
+                                            </oui-dropdown-item>
+                                        </div>
+
+                                        <oui-dropdown-item
+                                            data-on-click="detachDomain(domain)"
+                                            data-disabled="domain.status !== HOSTING_STATUS.CREATED || hasDoingGitAction(domain)"
+                                            data-ng-if="excludeAttachedDomains.indexOf(domain.displayName) === -1 && hosting.offer !== HOSTING_OFFER.FREE_100_M"
+                                            ><span
+                                                data-translate="hosting_tab_DOMAINS_table_popover_delete"
+                                            ></span
+                                        ></oui-dropdown-item>
+
+                                        <oui-dropdown-item
+                                            data-on-click="settingCdnDomain(domain)"
+                                            data-disabled="domain.status !== HOSTING_STATUS.CREATED"
+                                            data-ng-if="domain.cdn === CDN_STATUS.ACTIVE && cdnProperties.version === CDN_VERSION.CDN_HOSTING"
+                                            ><span
+                                                data-translate="hosting_tab_DOMAINS_table_popover_modify_cdn"
+                                            ></span
+                                        ></oui-dropdown-item>
+
+                                        <oui-dropdown-item
+                                            data-ng-if="hosting.isCloudWeb"
+                                            data-disabled="domain.status !== HOSTING_STATUS.CREATED"
+                                            data-on-click="restartDomain(domain)"
+                                            ><span
+                                                data-translate="hosting_tab_DOMAINS_table_popover_restart"
+                                            ></span
+                                        ></oui-dropdown-item>
+
+                                        <oui-dropdown-item
+                                            data-ng-if="domain.cdn === CDN_STATUS.ACTIVE"
+                                            data-disabled="domain.status !== HOSTING_STATUS.CREATED"
+                                            data-on-click="goToFlushCdn(domain)"
+                                            ><span
+                                                data-translate="hosting_tab_DOMAINS_table_popover_purge"
+                                            ></span
+                                        ></oui-dropdown-item>
+
+                                        <div data-ng-if="allowedWebsites !== 0">
+                                            <oui-dropdown-item
+                                                data-ng-if=":: canAssociateGit(domain)"
+                                                data-on-click="goToAssociateRepository(domain)"
+                                                ><span
+                                                    data-translate="hosting_tab_DOMAINS_table_popover_git_association"
+                                                ></span
+                                            ></oui-dropdown-item>
+
+                                            <oui-dropdown-item
+                                                data-ng-if=":: canConfigureGit(domain)"
+                                                data-on-click="goToConfigureGit(domain)"
+                                                ><span
+                                                    data-translate="hosting_tab_DOMAINS_table_popover_git_configuration"
+                                                ></span
+                                            ></oui-dropdown-item>
+
+                                            <oui-dropdown-item
+                                                data-ng-if=":: canDeployGit(domain)"
+                                                data-on-click="goToDeployWebSite(domain)"
+                                                ><span
+                                                    data-translate="hosting_tab_DOMAINS_table_popover_git_deployment"
+                                                ></span
+                                            ></oui-dropdown-item>
+
+                                            <oui-dropdown-item
+                                                data-ng-if=":: canViewLastDeploymentGit(domain)"
+                                                data-on-click="goToViewLastDeploy(domain)"
+                                                ><span
+                                                    data-translate="hosting_tab_DOMAINS_table_popover_git_viewLastDeployment"
+                                                ></span
+                                            ></oui-dropdown-item>
+
+                                            <oui-dropdown-item
+                                                data-ng-if=":: canDeleteGit(domain)"
+                                                data-on-click="goToRemoveRepository(domain)"
+                                                ><span
+                                                    data-translate="hosting_tab_DOMAINS_table_popover_git_delete"
+                                                ></span
+                                            ></oui-dropdown-item>
+                                        </div>
+                                    </oui-dropdown-content>
+                                </oui-dropdown>
                             </td>
                         </tr>
                     </tbody>

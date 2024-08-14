@@ -38,14 +38,12 @@ export const OnboardingWalkMe = () => {
     currentNavigationNode,
     navigationTree,
     setCurrentNavigationNode,
+    isMobile
   } = useProductNavReshuffle();
   const [currentUserNode, setCurrentUserNode] = useState<Node>({});
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(
-    window.innerWidth < MOBILE_WIDTH_RESOLUTION,
-  );
 
   useEffect(() => {
     setCurrentUserNode({ ...currentNavigationNode });
@@ -232,15 +230,14 @@ export const OnboardingWalkMe = () => {
         setIsPopoverVisible(true);
       }, interval);
     },
-    [currentStepIndex, isMobile],
+    [currentStepIndex],
   );
 
   const onWindowResize = useCallback(() => {
     setIsPopoverVisible(false);
-    setIsMobile(window.innerWidth < MOBILE_WIDTH_RESOLUTION);
     calculateTargetBound();
     updatePopper();
-  }, [currentStepIndex, isMobile]);
+  }, [currentStepIndex]);
 
   useEffect(() => {
     setIsPopoverVisible(false);
@@ -264,7 +261,7 @@ export const OnboardingWalkMe = () => {
     window.addEventListener('resize', resizeHandler, false);
 
     return () => window.removeEventListener('resize', resizeHandler);
-  }, [currentStepIndex, isMobile]);
+  }, [currentStepIndex]);
 
   return (
     <div className={style['onboarding-walkme']}>

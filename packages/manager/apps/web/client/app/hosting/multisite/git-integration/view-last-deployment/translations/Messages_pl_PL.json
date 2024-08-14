@@ -1,0 +1,4 @@
+{
+  "hosting_multisite_git_association_git_last_deployment_title": "Informacje o ostatnim wdrożeniu",
+  "hosting_multisite_git_association_git_last_deployment_logs_error": "Wystąpił błąd podczas pobierania logów: {{errorMessage}}"
+}

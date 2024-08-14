@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { Application } from '@ovh-ux/manager-config';
+import {fetchFeatureAvailabilityData} from '@ovhcloud/manager-components'
 import {
   getBetaAvailabilityFromLocalStorage,
   setBetaAvailabilityToLocalStorage,
@@ -26,7 +27,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const [askBeta, setAskBeta] = useState(false);
 
   // 1 for beta, otherwise null if not a beta tester
-  const [betaVersion, setBetaVersion] = useState<BetaVersion>(null);
+  const [betaVersion, setBetaVersion] = useState<BetaVersion | string>(null);
 
   // user choice about using or not the beta
   const [useBeta, setUseBeta] = useState(false);
@@ -45,16 +46,14 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       return null;
     };
 
-    return reketInstance
-      .get(`/feature/livechat,pnr/availability`, {
-        requestType: 'aapi',
-      })
-      .then((value: CurrentContextAvailability) => ({
+    return fetchFeatureAvailabilityData(['livechat', 'pnr'])
+      .then((value) => ({
         version: getBetaVersion(value),
         livechat: !!value.livechat,
       }))
       .catch(() => ({
         version: '',
+        livechat: undefined
       }));
   };
 

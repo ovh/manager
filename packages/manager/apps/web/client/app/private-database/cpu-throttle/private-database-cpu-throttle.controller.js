@@ -3,6 +3,7 @@ import clone from 'lodash/clone';
 angular.module('App').controller(
   'PrivateDatabaseCpuThrottleCtrl',
   class PrivateDatabaseCpuThrottleCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $q,

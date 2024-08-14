@@ -3,6 +3,7 @@ import isArray from 'lodash/isArray';
 angular.module('App').controller(
   'DomainAttachedDomainSelectCtrl',
   class DomainAttachedDomainSelectCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $rootScope,

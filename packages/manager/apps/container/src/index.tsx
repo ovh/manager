@@ -11,6 +11,7 @@ import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Environment } from '@ovh-ux/manager-config';
+import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 
 import Container from '@/container';
 import { ApplicationProvider } from '@/context';
@@ -27,6 +28,8 @@ import './global.scss';
 if (window.top !== window.self) {
   window.top.location.href = window.self.location.href;
 }
+
+__VERSION__ && defineApplicationVersion(__VERSION__);
 
 initSso();
 

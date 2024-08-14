@@ -7,6 +7,7 @@ import remove from 'lodash/remove';
 angular.module('App').controller(
   'PrivateDatabaseBDDsListCtrl',
   class PrivateDatabaseBDDsListCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $scope,

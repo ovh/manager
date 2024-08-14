@@ -1,10 +1,11 @@
 import get from 'lodash/get';
 import indexOf from 'lodash/indexOf';
-import { HOSTING_OFFER } from '../hosting-multisite.constants';
+import { HOSTING_OFFER, GIT_STATUS } from '../hosting-multisite.constants';
 
 angular.module('App').controller(
   'HostingRemoveDomainCtrl',
   class HostingRemoveDomainCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,
@@ -32,7 +33,7 @@ angular.module('App').controller(
       this.atInternet.trackPage({
         name: 'web::hosting::multisites::detach-domain',
       });
-
+      this.isLoading = true;
       this.domain = null;
       this.subDomain = null;
       this.autoConfigureAvailable = null;
@@ -98,6 +99,32 @@ angular.module('App').controller(
         '#/hosting/:serviceName/change-offer',
         { serviceName: this.$stateParams.productId },
       );
+
+      this.listDomainWithSamePath();
+    }
+
+    listDomainWithSamePath() {
+      this.HostingDomain.getAttachedDomains(this.$stateParams.productId, {
+        params: {
+          path: this.selected.domain.path,
+        },
+      })
+        .then((data) => {
+          this.domainsWithSamePath = data;
+          this.checkDomainWithSamePath();
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
+    }
+
+    checkDomainWithSamePath() {
+      this.hasDomainWithSamePath = this.domainsWithSamePath.some((domain) =>
+        this.selected.wwwNeeded
+          ? domain !== `www.${this.selected.domain.name}` &&
+            domain !== this.selected.domain.name
+          : domain !== this.selected.domain.name,
+      );
     }
 
     isHostingOvhStartOffer() {
@@ -108,6 +135,22 @@ angular.module('App').controller(
       return (
         this.model.domains &&
         indexOf(this.model.domains, `www.${this.selected.domain.name}`) !== -1
+      );
+    }
+
+    canDetachDomainWithGit() {
+      return (
+        this.hasDomainWithSamePath ||
+        this.selected.domain.vcsStatus === GIT_STATUS.disabled
+      );
+    }
+
+    isValid() {
+      return (
+        this.model.domains != null &&
+        !this.isHostingOvhStartOffer() &&
+        !this.isLoading &&
+        this.canDetachDomainWithGit()
       );
     }
 

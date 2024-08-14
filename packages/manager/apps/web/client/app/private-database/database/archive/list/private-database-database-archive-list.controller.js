@@ -4,6 +4,7 @@ import values from 'lodash/values';
 angular.module('App').controller(
   'PrivateDatabaseArchiveListCtrl',
   class PrivateDatabaseArchiveListCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $q, $window, Alerter, PrivateDatabase) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

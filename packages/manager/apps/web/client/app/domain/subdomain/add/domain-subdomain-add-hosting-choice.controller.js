@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'AddSubdomainHostingChoiceCtrl',
   class AddSubdomainHostingChoiceCtrl {
+    /* @ngInject */
     constructor($scope, Hosting) {
       this.$scope = $scope;
       this.Hosting = Hosting;

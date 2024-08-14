@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.7.1...@ovh-ux/manager-exchange@4.7.2) (2024-08-12)
+
+
+### Bug Fixes
+
+* **web.exchange:** active auto configure spf on echange and emailpro ([10723bd](https://github.com/ovh/manager/commit/10723bd0658dd34c6b97135ec0eb451c9af5db1b))
+
+
+
+
+
+## [4.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.7.0...@ovh-ux/manager-exchange@4.7.1) (2024-08-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3179] ([8ab38b2](https://github.com/ovh/manager/commit/8ab38b23805fcd271b20d19453d46f1f32d26bb2))
+
+
+
+
+
+# [4.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.6.0...@ovh-ux/manager-exchange@4.7.0) (2024-08-05)
+
+
+### Features
+
+* send billing region on parameters for snow ([#12584](https://github.com/ovh/manager/issues/12584)) ([8261de8](https://github.com/ovh/manager/commit/8261de869c4d83540c7a5794487f97d4194956a2))
+
+
+
+
+
 # [4.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.5.1...@ovh-ux/manager-exchange@4.6.0) (2024-07-23)
 
 

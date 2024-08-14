@@ -1,0 +1,7 @@
+{
+  "hosting_multisite_git_deployment_title": "Deploy GIT",
+  "hosting_multisite_git_deployment_description": "You are about to manually deploy or update the content of your remote repository on your hosting plan.",
+  "hosting_multisite_git_deployment_checkbox_label": "You can resolve any conflicts by overwriting local changes with remote changes in your repository.",
+  "hosting_multisite_git_deployment_message_success": "Deploying your repository.",
+  "hosting_multisite_git_deployment_message_error": "Conflict found while deploying Git. To resolve conflict, please apply remote changes on your local repository."
+}

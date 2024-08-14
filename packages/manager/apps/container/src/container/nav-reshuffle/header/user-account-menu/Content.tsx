@@ -9,6 +9,7 @@ import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { fetchFeatureAvailabilityData } from '@ovhcloud/manager-components';
 
 import { useReket } from '@ovh-ux/ovh-reket';
 import { UserLink } from './UserLink';
@@ -67,18 +68,13 @@ const UserAccountMenu = ({
 
   const getUrl = (key: string, hash: string) =>
     shell.getPlugin('navigation').getURL(key, hash);
-  const ssoLink = getUrl('dedicated', '#/useraccount/users');
+  const ssoLink = getUrl('iam', '#/dashboard/users');
   const supportLink = getUrl('dedicated', '#/useraccount/support/level');
 
   const getAllLinks = useMemo(
     () => async () => {
       let isIdentityDocumentsAvailable = false;
-      const featureAvailability = await reketInstance.get(
-        `/feature/identity-documents,procedures:fraud/availability`,
-        {
-          requestType: 'aapi',
-        },
-      );
+      const featureAvailability = await fetchFeatureAvailabilityData(['identity-documents', 'procedures:fraud']);
       if (featureAvailability['identity-documents']) {
         const { status } = await reketInstance.get(`/me/procedure/identity`);
         isIdentityDocumentsAvailable = ['required', 'open'].includes(status);

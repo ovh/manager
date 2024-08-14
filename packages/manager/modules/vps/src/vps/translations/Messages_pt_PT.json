@@ -543,5 +543,6 @@
   "vps_configuration_download_snapshot_title_button": "Fazer download do Snapshot",
   "vps_dashboard_snapshot_download_modal_snapshot_error_download_not_ready": "A criação da snapshot está em curso. Tente mais tarde, quando o processo estiver concluído.",
   "vps_dashboard_domain_link": "Adicionar um domínio",
-  "vps_dashboard_domain_link_message": "Adicione um domínio ao seu VPS para poder partilhar facilmente o seu projeto com o mundo inteiro"
+  "vps_dashboard_domain_link_message": "Adicione um domínio ao seu VPS para poder partilhar facilmente o seu projeto com o mundo inteiro",
+  "vps_tab_summary_backup": "Backup"
 }

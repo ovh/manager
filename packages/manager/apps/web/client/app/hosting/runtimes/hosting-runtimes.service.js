@@ -6,6 +6,7 @@ import uniq from 'lodash/uniq';
 angular.module('services').service(
   'HostingRuntimes',
   class HostingRuntimes {
+    /* @ngInject */
     constructor($q, OvhHttp, Hosting) {
       this.$q = $q;
 

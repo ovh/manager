@@ -16,5 +16,6 @@
   "hosting_multisite_domain_configuration_countriesIp": "IP del Paese",
   "hosting_multisite_domain_configuration_countriesIp_none": "Nessuno",
   "hosting_multisite_domain_configuration_ssl": "SSL",
-  "hosting_multisite_domain_configuration_ssl_help": "Attiva l'opzione SSL per poter accedere al tuo sito in https"
+  "hosting_multisite_domain_configuration_ssl_help": "Attiva l'opzione SSL per poter accedere al tuo sito in https",
+  "hosting_multisite_domain_configuration_git_warning": "Se vuoi modificare la cartella root, è necessario rimuovere prima la tua configurazione Git dalla directory per evitare eventuali problemi di controllo delle modifiche e gestione dei deploy."
 }

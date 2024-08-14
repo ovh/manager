@@ -8,6 +8,7 @@ import { PRIVATE_SQL_PLAN_CODE } from './hosting-database.constants';
 angular.module('services').service(
   'HostingDatabase',
   class HostingDatabase {
+    /* @ngInject */
     constructor(
       $http,
       $q,

@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.3.0...@ovh-ux/manager-pci-gateway-app@0.4.0) (2024-08-12)
+
+
+### Features
+
+* **pci-gateway:** hide warning banner displayed ([#12029](https://github.com/ovh/manager/issues/12029)) ([1a7f079](https://github.com/ovh/manager/commit/1a7f079f0d2b9373542be6c60e1949661df2b011))
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.2.9...@ovh-ux/manager-pci-gateway-app@0.3.0) (2024-08-08)
+
+
+### Features
+
+* clean dependencies versions of react apps ([7969ba7](https://github.com/ovh/manager/commit/7969ba70f9e03033271a48a5bd0021484ea36263))
+* **manager-components:** onboarding redesign ([#12330](https://github.com/ovh/manager/issues/12330)) ([17ed1dc](https://github.com/ovh/manager/commit/17ed1dc4c1b407d3140a9ef485e0fcadc583c789))
+
+
+
+
+
+## [0.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.2.8...@ovh-ux/manager-pci-gateway-app@0.2.9) (2024-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
 ## [0.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.2.7...@ovh-ux/manager-pci-gateway-app@0.2.8) (2024-07-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app

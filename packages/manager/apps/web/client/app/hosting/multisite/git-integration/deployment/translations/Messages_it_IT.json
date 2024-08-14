@@ -1,0 +1,7 @@
+{
+  "hosting_multisite_git_deployment_title": "Esegui il deploy di Git",
+  "hosting_multisite_git_deployment_description": "Stai per eseguire il deploy o aggiornare manualmente il contenuto del tuo repository remoto sul tuo hosting.",
+  "hosting_multisite_git_deployment_checkbox_label": "In caso di conflitto, forza le modifiche remote sul tuo repository locale.",
+  "hosting_multisite_git_deployment_message_success": "Deploy del repository in corso...",
+  "hosting_multisite_git_deployment_message_error": "Conflitto durante il deploy di Git. Per risolvere il conflitto, forza le modifiche remote sul repository locale."
+}

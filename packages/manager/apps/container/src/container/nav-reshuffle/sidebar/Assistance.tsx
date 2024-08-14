@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useReket } from '@ovh-ux/ovh-reket';
 import { useURL } from '@/container/common/urls-constants';
 import ApplicationContext from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -13,6 +12,7 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { fetchFeatureAvailabilityData } from '@ovhcloud/manager-components';
 
 const AssistanceSidebar: React.FC = (): JSX.Element => {
   const { t } = useTranslation('sidebar');
@@ -26,7 +26,6 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
     .getEnvironment();
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
-  const reketInstance = useReket();
 
   const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
   const [hasLiveChat, setHashLiveChat] = useState(false);
@@ -36,12 +35,7 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     const initFeatures = async () => {
-      const results: Record<string, boolean> = await reketInstance.get(
-        `/feature/${features.join(',')}/availability`,
-        {
-          requestType: 'aapi',
-        },
-      );
+      const results = await fetchFeatureAvailabilityData(features);
       setHashLiveChat(results['livechat']);
       setHasCarbonCalculator(results['carbon-calculator']);
     }
@@ -61,14 +55,14 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
   };
 
   return (
-    <ul className="mt-auto pb-3" id="useful-links">
+    <ul className="mt-auto pb-3" id="useful-links" role="menu">
       <li className="assistance_header px-3 mb-3">
         <h2 className="flex justify-between">
           <span>{t('sidebar_assistance_title')}</span>
         </h2>
       </li>
       {['EU'].includes(environment.getRegion()) && (
-        <li className="flex px-3 align-items-center">
+        <li className="flex px-3 align-items-center" role="menuitem">
           <OsdsIcon
             name={ODS_ICON_NAME.HOME}
             className="mr-2"
@@ -86,7 +80,7 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
           />
         </li>
       )}
-      <li className="flex px-3 align-items-center">
+      <li className="flex px-3 align-items-center" role="menuitem">
         <OsdsIcon
             name={ODS_ICON_NAME.HELP_CIRCLE}
             className="mr-2"
@@ -108,7 +102,7 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
           onClick={() => trackNode('assistance_help_center')}
         />
       </li>
-      <li className="flex px-3 align-items-center">
+      <li className="flex px-3 align-items-center" role="menuitem">
         <OsdsIcon
             name={ODS_ICON_NAME.WARNING}
             className="mr-2"
@@ -127,7 +121,7 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
         />
       </li>
       {hasLiveChat && (
-        <li className="flex px-3 align-items-center">
+        <li className="flex px-3 align-items-center" role="menuitem">
           <OsdsIcon
             name={ODS_ICON_NAME.CHAT}
             className="mr-2"
@@ -150,7 +144,7 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
         </li>
       )}
       {hasCarbonCalculator && (
-        <li className="flex px-3 align-items-center">
+        <li className="flex px-3 align-items-center" role="menuitem">
           <OsdsIcon
             name={ODS_ICON_NAME.LEAF_CONCEPT}
             className="mr-2"

@@ -5,6 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 angular.module('controllers').controller(
   'controllers.Domain.Redirection',
   class DomainRedirectionCtrl {
+    /* @ngInject */
     constructor($scope, $translate, Alerter, Domain) {
       this.$scope = $scope;
       this.$translate = $translate;

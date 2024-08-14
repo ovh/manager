@@ -12,6 +12,19 @@ import { ENGINES_TYPES } from './storages/databases/databases.constants';
 
 export const PCI_FEATURES = IMPORT_PCI_FEATURES;
 
+export const DEFAULT_CIDR = 16;
+
+export const DEFAULT_IP = '10.{vlanId}.0.0';
+
+export const DEFAULT_VLAN_ID = 1;
+
+export const NETWORK_ACTIVE_STATUS = 'ACTIVE';
+
+export const VLAN_ID = {
+  MIN: 0,
+  MAX: 4000,
+};
+
 export const PRODUCT_IMAGES = {
   instances: ASSET_INSTANCES,
   databases: ASSET_DATABASES,
@@ -74,6 +87,15 @@ export const ACTIONS = [
     name: 'ipfailover',
   },
 ];
+
+export const DATABASE_UAPP_CONFIG = {
+  universe: 'public-cloud',
+  url:
+    '#/pci/projects/{projectId}/databases-analytics/operational/services/new',
+  translation: 'pci_projects_project_create_cluster_database',
+  feature: PCI_FEATURES.PRODUCTS.DATABASES_ANALYTICS,
+  name: 'databases',
+};
 
 const PROJECT_PAGE_TRACKING_NAME = 'PublicCloud::pci::projects::project';
 
