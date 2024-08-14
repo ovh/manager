@@ -36,9 +36,8 @@ export default function DashboardPage() {
       title: tDashboard('encrypted_keys'),
     },
     {
-      url: ROUTES_URLS.certificates,
-      title: tDashboard('access_certificates'),
-      disabled: true,
+      url: ROUTES_URLS.credentials,
+      title: tDashboard('access_credentials'),
     },
   ];
 
