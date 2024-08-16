@@ -83,7 +83,6 @@ export default function Auth({ onSuccess }: AuthProps) {
         data-testid="auth-page-container"
         className="flex flex-col justify-center items-center h-screen gap-4"
       >
-        <img></img>
         <h1>{t('authTitle')}</h1>
         <p>{t('authDescription1')}</p>
         <p>{t('authDescription3')}</p>

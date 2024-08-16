@@ -7,18 +7,11 @@ import {
   waitFor,
 } from '@testing-library/react';
 
-import Layout, { breadcrumb as Breadcrumb, Loader } from '@/pages/Root.layout';
+import Layout from '@/pages/Root.layout';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as authAPI from '@/data/api/ai/authorization.api';
 import { mockedAuthorization } from '@/__tests__/helpers/mocks/authorization';
 import * as ai from '@/types/cloud/project/ai';
-
-const breadCrumbParam = {
-  params: {
-    projectId: 'projectId',
-  },
-  request: new Request('https://my-api.com/endpoint'),
-};
 
 describe('Dashboard Layout', () => {
   beforeEach(() => {

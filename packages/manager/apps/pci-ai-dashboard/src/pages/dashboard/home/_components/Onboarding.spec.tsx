@@ -6,7 +6,6 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedCurrentUsage } from '@/__tests__/helpers/mocks/currentUsage';
 import { mockedAuthorization } from '@/__tests__/helpers/mocks/authorization';
 import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
-import { mockedPciDiscoveryProject } from '@/__tests__/helpers/mocks/project';
 
 describe('Home page', () => {
   beforeEach(() => {

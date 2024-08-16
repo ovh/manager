@@ -10,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useToast } from '@/components/ui/use-toast';
 import * as ai from '@/types/cloud/project/ai';
 import CodeBlock from '@/components/code-block/CodeBlock.component';
 
