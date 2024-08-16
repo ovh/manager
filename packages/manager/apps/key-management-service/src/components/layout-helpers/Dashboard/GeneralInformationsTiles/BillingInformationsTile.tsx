@@ -19,8 +19,8 @@ import {
 import { parseISO } from 'date-fns';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDeleteService } from '@ovhcloud/manager-components/src/hooks/services';
 import { OKMS } from '@/types/okms.type';
-import { useTerminateOKms } from '@/data/hooks/useTerminateOKms';
 import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 import { TerminateModal } from '@/components/Modal/terminate/TerminateModal.component';
 
@@ -42,10 +42,9 @@ const BillingInformationsTile = ({
     setShowTerminationModal(false);
   };
 
-  const { terminateKms, isPending } = useTerminateOKms({
-    okmsId: okmsData.id,
-    onSuccess: closeTerminateModal,
-    onError: closeTerminateModal,
+  const { terminateService, isPending } = useDeleteService({
+    onSuccess: () => closeTerminateModal(),
+    onError: () => closeTerminateModal,
   });
 
   const items: ActionMenuItem[] = [
@@ -215,7 +214,10 @@ const BillingInformationsTile = ({
       </OsdsTile>
       {showTerminationModal && (
         <TerminateModal
-          onConfirmTerminate={terminateKms}
+          onConfirmTerminate={() => {
+            terminateService({ resourceName: okmsData.iam.displayName });
+            closeTerminateModal();
+          }}
           closeModal={closeTerminateModal}
           isLoading={isPending}
         />

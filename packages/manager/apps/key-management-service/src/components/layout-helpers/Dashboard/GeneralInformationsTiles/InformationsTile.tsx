@@ -17,9 +17,9 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
+import { UpdateNameModal } from '@ovhcloud/manager-components';
+import { useUpdateServiceDisplayName } from '@ovhcloud/manager-components/src/hooks/services';
 import { OKMS } from '@/types/okms.type';
-import EditNameModal from '@/components/Modal/EditNameModal';
-import { useUpdateOkmsName } from '@/data/hooks/useUpdateOkmsName';
 
 type InformationTileProps = {
   okmsData?: OKMS;
@@ -47,17 +47,24 @@ const Clipboard = ({ value }: { value: string }) => {
 const InformationsTile = ({ okmsData }: InformationTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
   const [editModalDisplayed, setEditModalDisplayed] = useState(false);
-  const { updateKmsName } = useUpdateOkmsName({});
+  const { updateDisplayName } = useUpdateServiceDisplayName({
+    onSuccess: () => setEditModalDisplayed(false),
+  });
 
   return (
     <OsdsTile className="w-full h-full flex-col" inline rounded>
       {editModalDisplayed && (
-        <EditNameModal
-          okms={okmsData}
-          toggleModal={setEditModalDisplayed}
-          onEditName={(okms: OKMS) =>
-            updateKmsName({ okms: okms.id, displayName: okms.iam.displayName })
-          }
+        <UpdateNameModal
+          headline={t('key_management_service_dashboard_modal_title')}
+          inputLabel=""
+          closeModal={() => setEditModalDisplayed(false)}
+          defaultValue={okmsData?.iam?.displayName}
+          updateDisplayName={(okms: string) => {
+            updateDisplayName({
+              resourceName: okmsData.id,
+              displayName: okms,
+            });
+          }}
         />
       )}
       <div className="flex flex-col w-full">
