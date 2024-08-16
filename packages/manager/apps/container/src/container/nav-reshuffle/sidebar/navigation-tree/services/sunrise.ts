@@ -1,10 +1,12 @@
 import { Node } from '../node';
+import illustration from '@/assets/images/sidebar/sunrise.png';
 
 const sunriseUniverse: Node = {
   id: 'sunrise',
   idAttr: 'sunrise-link',
   translation: 'sidebar_sunrise',
   shortTranslation: 'sidebar_sunrise_short',
+  illustration,
   routing: {
     application: 'sunrise',
   },
