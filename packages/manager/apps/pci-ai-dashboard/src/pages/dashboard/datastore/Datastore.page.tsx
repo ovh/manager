@@ -68,7 +68,7 @@ const Datastore = () => {
           <AlertCircle className="size-8" />
           <div>
             <p>{t('datastoreAlert')}</p>
-            <OvhLink application="public-cloud" path={userPath} /* userPath} */>
+            <OvhLink application="public-cloud" path={userPath}>
               {t('manageS3UserLinkLabel')}
             </OvhLink>
           </div>

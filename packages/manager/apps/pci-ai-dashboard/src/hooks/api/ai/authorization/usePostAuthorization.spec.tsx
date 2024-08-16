@@ -2,10 +2,6 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as authApi from '@/data/api/ai/authorization.api';
-import {
-  mockedDatastore,
-  mockedDatastoreInput,
-} from '@/__tests__/helpers/mocks/datastore';
 import { usePostAuthorization } from './usePostAuthorization.hook';
 import { mockedAuthorization } from '@/__tests__/helpers/mocks/authorization';
 

@@ -35,7 +35,6 @@ describe('CodeBlock component', () => {
     const toastMessage = 'Code copied!';
     const mockToast = { toast: vi.fn() };
     const mockWriteText = vi.fn();
-    const t = vi.fn().mockReturnValue('copied');
 
     // Mock useTranslation and useToast hooks
     (useToast as any).mockReturnValue(mockToast);
@@ -60,7 +59,6 @@ describe('CodeBlock component', () => {
     const code = 'console.log("Hello, World!");';
     const mockToast = { toast: vi.fn() };
     const mockWriteText = vi.fn();
-    const t = vi.fn().mockReturnValue('copied');
 
     // Mock useTranslation and useToast hooks
     (useToast as any).mockReturnValue(mockToast);

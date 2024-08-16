@@ -52,7 +52,6 @@ const AddGit = ({
 }: AddGitModalProps) => {
   const { projectId } = useParams();
   const { form } = useGitForm({ regions });
-  // const [credentialsType, setCredentialsType] = useState<string>('basicAuth');
   useEffect(() => {
     if (!controller.open) {
       form.reset();
