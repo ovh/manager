@@ -8,6 +8,8 @@ declare global {
     elqwebtrigger: any;
     surveyLanguage: string;
   }
+  const __REGION__: string;
+  const __VERSION__: string;
 }
 
 export {}
