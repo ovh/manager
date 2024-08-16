@@ -49,7 +49,11 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
   return (
     <>
       {node.children ? (
-        <ul className={`mt-3 pb-2 ${style.subtree_section}`} role="group" aria-label={t(node.translation)}>
+        <ul
+          className={`mt-3 pb-2 ${style.subtree_section}`}
+          role="group"
+          aria-label={t(node.translation)}
+        >
           <li className="px-3">
             <h2 className={style.subtree_section_title}>
               {t(node.translation)}
@@ -63,31 +67,32 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
                 key={childNode.id + index}
                 id={childNode.id}
                 role="menuitem"
-                className={`px-3 ${
+                className={`${
                   childNode.id === selectedNode?.id
                     ? style.subtree_submenu_items_selected
                     : style.subtree_submenu_items
                 }`}
               >
-                <SidebarLink
-                  linkParams={{
-                    projectId: selectedPciProject,
-                  }}
-                  node={childNode}
-                  count={childNode.count}
-                  handleOnClick={() => menuClickHandler(childNode)}
-                  id={childNode.idAttr}
-                />
-                {childNode.separator && <hr role="separator"/>}
+                  <SidebarLink
+                    linkParams={{
+                      projectId: selectedPciProject,
+                    }}
+                    node={childNode}
+                    count={childNode.count}
+                    handleOnClick={() => menuClickHandler(childNode)}
+                    id={childNode.idAttr}
+                    className="px-3"
+                  />
+                  {childNode.separator && <hr role="separator" />}
               </li>
             ))}
         </ul>
       ) : (
         <div
-          className={`px-3 ${
+          className={`${
             node.id === selectedNode?.id
-              ? style.sidebar_submenu_items_selected
-              : style.sidebar_submenu_items
+              ? style.subtree_submenu_items_selected
+              : style.subtree_submenu_items
           }`}
         >
           <SidebarLink
@@ -100,7 +105,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
           />
         </div>
       )}
-      {node.separator && <hr role="separator"/>}
+      {node.separator && <hr role="separator" />}
     </>
   );
 };

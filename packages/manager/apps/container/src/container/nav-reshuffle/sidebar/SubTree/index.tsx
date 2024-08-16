@@ -54,14 +54,21 @@ const SubTree = ({
       }}
     >
       {!isMobile && (
-        <div className="flex justify-end p-2">
+        <button
+          className={style.subtree_close}
+          onClick={() => handleCloseSideBar()}
+          onKeyUp={(e) => {
+            if (e.key === 'Enter') {
+              handleCloseSideBar();
+            }
+          }}
+        >
           <OsdsIcon
             name={ODS_ICON_NAME.CLOSE}
             size={ODS_ICON_SIZE.sm}
             className="cursor-pointer text-white bg-white"
-            onClick={() => handleCloseSideBar()}
           />
-        </div>
+        </button>
       )}
 
       <button

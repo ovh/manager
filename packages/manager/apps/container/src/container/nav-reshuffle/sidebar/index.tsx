@@ -318,7 +318,7 @@ const Sidebar = (): JSX.Element => {
 
         {open && assistanceTree && (
           <Suspense fallback="">
-            <Assistance nodeTree={assistanceTree} />
+            <Assistance nodeTree={assistanceTree} selectedNode={selectedNode}/>
           </Suspense>
         )}
 
