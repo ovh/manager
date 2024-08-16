@@ -1,4 +1,5 @@
 import illustration from '@/assets/images/sidebar/bare-metal-cloud.png';
+import BareMetalCloudIcon from './icons/BareMetalCloudIcon';
 import {Node} from '../node';
 
 const baremetalUniverse: Node = {
@@ -7,6 +8,7 @@ const baremetalUniverse: Node = {
   translation: 'sidebar_bare_metal_cloud',
   shortTranslation: 'sidebar_bare_metal_cloud_short',
   illustration,
+  iconNode: BareMetalCloudIcon,
   features: ['bare-metal-cloud'],
   routing: {
     application: 'dedicated',

@@ -1,5 +1,6 @@
 import illustration from '@/assets/images/sidebar/telecom.png';
 import { Node } from '../node';
+import TelecomIcon from './icons/TelecomIcon';
 
 const telecomUniverse: Node = {
   id: 'telecom',
@@ -7,6 +8,7 @@ const telecomUniverse: Node = {
   translation: 'sidebar_telecom',
   shortTranslation: 'sidebar_telecom_short',
   illustration,
+  iconNode: TelecomIcon,
   features: ['telecom'],
   routing: {
     application: 'telecom',

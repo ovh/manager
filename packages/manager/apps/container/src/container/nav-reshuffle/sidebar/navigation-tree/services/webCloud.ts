@@ -1,5 +1,6 @@
 import illustration from '@/assets/images/sidebar/web-cloud.png';
 import { Node } from "../node";
+import WebCloudIcon from './icons/WebCloudIcon';
 
 const webCloudUniverse : Node = {
   id: 'web-cloud',
@@ -7,6 +8,7 @@ const webCloudUniverse : Node = {
   translation: 'sidebar_web_cloud',
   shortTranslation: 'sidebar_web_cloud_short',
   illustration,
+  iconNode: WebCloudIcon,
   routing: {
     application: 'web',
     hash: '#/',

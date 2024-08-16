@@ -1,5 +1,9 @@
-import { ODS_ICON_NAME } from "@ovhcloud/ods-components";
 import { Node } from "./node";
+import StoreIcon from "./services/icons/StoreIcon";
+import HelpCenterIcon from "./services/icons/HelpCenterIcon";
+import NetworkStatusIcon from "./services/icons/NetworkStatusIcon";
+import LiveChatIcon from "./services/icons/LiveChatIcon";
+import LeafIcon from "./services/icons/LeafIcon";
 
 export const assistanceTree: Node = {
   id: 'assistance',
@@ -12,7 +16,7 @@ export const assistanceTree: Node = {
       count: false,
       isExternal: true,
       region: ['EU'],
-      icon: ODS_ICON_NAME.HOME,
+      iconNode: StoreIcon
     },
     {
       id: 'help',
@@ -20,7 +24,7 @@ export const assistanceTree: Node = {
       url: 'help',
       count: false,
       isExternal: true,
-      icon: ODS_ICON_NAME.HELP_CIRCLE,
+      iconNode: HelpCenterIcon
     },
     {
       id: 'assistance_status',
@@ -28,14 +32,14 @@ export const assistanceTree: Node = {
       url: 'status',
       count: false,
       isExternal: true,
-      icon: ODS_ICON_NAME.WARNING,
+      iconNode: NetworkStatusIcon
     },
     {
       id: 'livechat',
       features: ['livechat'],
       translation: 'sidebar_assistance_live_chat',
       count: false,
-      icon: ODS_ICON_NAME.CHAT,
+      iconNode: LiveChatIcon,
     },
     {
       id: 'carbon_calculator',
@@ -46,7 +50,7 @@ export const assistanceTree: Node = {
         application: 'carbon-calculator',
         hash: '#',
       },
-      icon: ODS_ICON_NAME.LEAF_CONCEPT,
+      iconNode: LeafIcon,
     }
   ]
 }

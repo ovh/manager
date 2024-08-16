@@ -1,5 +1,6 @@
 import { Node, NodeTag } from '../node';
 import illustration from '@/assets/images/sidebar/public-cloud.png';
+import PublicCloudIcon from './icons/PublicCloudIcon';
 
 const pciNode: Node = {
   id: 'pci',
@@ -8,6 +9,7 @@ const pciNode: Node = {
   shortTranslation: 'sidebar_pci_short',
   illustration,
   universe: 'pci',
+  iconNode: PublicCloudIcon,
   features: ['public-cloud'],
   forceVisibility: true,
   routing: {

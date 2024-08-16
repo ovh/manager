@@ -352,9 +352,9 @@ const Sidebar = (): JSX.Element => {
           </div>
         </div>
 
-        {open && assistanceTree && (
+        {assistanceTree && (
           <Suspense fallback="">
-            <Assistance nodeTree={assistanceTree} selectedNode={selectedNode} />
+            <Assistance nodeTree={assistanceTree} selectedNode={selectedNode} isShort={!open}/>
           </Suspense>
         )}
 
