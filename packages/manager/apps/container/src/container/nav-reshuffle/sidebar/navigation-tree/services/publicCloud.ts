@@ -7,6 +7,7 @@ const pciNode: Node = {
   translation: 'sidebar_pci',
   shortTranslation: 'sidebar_pci_short',
   illustration,
+  universe: 'pci',
   features: ['public-cloud'],
   forceVisibility: true,
   routing: {
@@ -16,6 +17,34 @@ const pciNode: Node = {
 };
 
 pciNode.children = [
+  {
+    id: 'pci',
+    idAttr: 'pci-link',
+    universe: pciNode.universe,
+    translation: 'sidebar_pci',
+    shortTranslation: 'sidebar_pci_short',
+    illustration,
+    hidden: true,
+    features: ['public-cloud'],
+    routing: {
+      application: 'public-cloud',
+      hash: '#/pci/projects/{projectId}',
+    },
+  },
+  {
+    id: 'pci',
+    idAttr: 'pci-link',
+    universe: pciNode.universe,
+    translation: 'sidebar_pci',
+    shortTranslation: 'sidebar_pci_short',
+    illustration,
+    hidden: true,
+    features: ['public-cloud'],
+    routing: {
+      application: 'public-cloud',
+      hash: '',
+    },
+  },
   {
     id: 'pci-compute',
     idAttr: 'pci-compute-link',

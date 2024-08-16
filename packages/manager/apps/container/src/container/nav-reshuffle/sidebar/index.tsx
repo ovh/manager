@@ -214,9 +214,9 @@ const Sidebar = (): JSX.Element => {
       }
     }
 
-    const {foundNode, universe} = findNodeByRouting(currentNavigationNode, pathname);
-    if (foundNode && universe) {
-      selectSubMenu(foundNode, universe);
+    const foundNode = findNodeByRouting(currentNavigationNode, pathname);
+    if (foundNode) {
+      selectSubMenu(foundNode.node, foundNode.universe);
     }
   }, [currentNavigationNode, location]);
 
