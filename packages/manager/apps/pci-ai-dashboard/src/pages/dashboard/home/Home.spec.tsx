@@ -1,11 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import Home from '@/pages/dashboard/home/Home.page';
 import { Locale } from '@/hooks/useLocale.hook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
@@ -13,7 +7,6 @@ import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
 import { mockedApp } from '@/__tests__/helpers/mocks/app';
 import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
 import { mockedJob } from '@/__tests__/helpers/mocks/job';
-import { useToast } from '@/components/ui/use-toast';
 import { mockedCurrentUsage } from '@/__tests__/helpers/mocks/currentUsage';
 
 describe('Home page', () => {
@@ -81,28 +74,6 @@ describe('Home page', () => {
     render(<Home />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('product-life-card')).toBeInTheDocument();
-    });
-  });
-
-  it('renders and shows CLI page and call toast on cli installation button', async () => {
-    Object.assign(window.navigator, {
-      clipboard: {
-        writeText: vi.fn().mockImplementation(() => Promise.resolve()),
-      },
-    });
-    render(<Home />, { wrapper: RouterWithQueryClientWrapper });
-    await waitFor(() => {
-      expect(screen.getByTestId('product-life-card')).toBeInTheDocument();
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('cli-curl-copy-button')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('cli-curl-copy-button'));
-    });
-    await waitFor(() => {
-      expect(window.navigator.clipboard.writeText).toHaveBeenCalled();
-      expect(useToast().toast).toHaveBeenCalled();
     });
   });
 });

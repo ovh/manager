@@ -1,9 +1,8 @@
-import { AlertTriangleIcon, Copy, HelpCircle } from 'lucide-react';
+import { AlertTriangleIcon, HelpCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { Alert } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
 import {
   Select,
   SelectContent,
@@ -11,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useToast } from '@/components/ui/use-toast';
 import * as ai from '@/types/cloud/project/ai';
 import {
   Popover,
@@ -19,6 +17,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import OvhLink from '@/components/links/OvhLink.component';
+import CodeBlock from '@/components/code-block/CodeBlock.component';
 
 interface SharedDockerProps {
   regions: ai.capabilities.Region[];
@@ -31,18 +30,11 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
   const [selectedRegion, setSelectedRegion] = useState<ai.capabilities.Region>(
     regions[0],
   );
-  const toast = useToast();
   const userPath = `#/pci/project/${projectId}/users`;
   const dockerLogin = `docker login ${selectedRegion.registryUrl}/${projectId}`;
   const dockerTag = `docker tag <image> ${selectedRegion.registryUrl}/${projectId}/<image>`;
   const dockerPush = `docker push ${selectedRegion.registryUrl}/${projectId}/<image>`;
 
-  const handleCopyPass = (valueToCopy: string) => {
-    navigator.clipboard.writeText(valueToCopy);
-    toast.toast({
-      title: t('sharedDockerCopy'),
-    });
-  };
   return (
     <>
       <h4 data-testid="shared-docker-title">{t('titleSharedDocker')}</h4>
@@ -91,21 +83,8 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
         <p>{projectId}</p>
       </div>
       <p>{t('sharedDockerParagraphe4')}</p>
-      <div className="relative my-2 rounded bg-gray-100">
-        <Button
-          data-testid="shared-docker-login-copy-button"
-          onClick={() => handleCopyPass(dockerLogin)}
-          className="absolute top-0 right-0 m-2 p-2 text-sm
-           bg-primary-500 text-white rounded hover:bg-primary-700 transition duration-300"
-        >
-          <Copy className="size-4" />
-          <span className="sr-only">copy</span>
-        </Button>
-        <pre className="p-4 bg-gray-100 rounded overflow-auto">
-          <code>{dockerLogin}</code>
-        </pre>
-      </div>
 
+      <CodeBlock code={dockerLogin} />
       <span>
         {t('sharedDockerParagraphe5')}
         <OvhLink className="mx-1" application="public-cloud" path={userPath}>
@@ -114,32 +93,8 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
         {t('sharedDockerParagraphe5ter')}
       </span>
       <p>{t('sharedDockerParagraphe6')}</p>
-      <div className="relative my-2 rounded bg-gray-100">
-        <Button
-          data-testid="shared-docker-tag-copy-button"
-          onClick={() => handleCopyPass(dockerTag)}
-          className="absolute top-0 right-0 m-2 p-2 text-sm bg-primary-500 text-white rounded hover:bg-primary-700 transition duration-300"
-        >
-          <Copy className="size-4" />
-          <span className="sr-only">copy</span>
-        </Button>
-        <pre className="p-4 bg-gray-100 rounded overflow-auto">
-          <code>{dockerTag}</code>
-        </pre>
-      </div>
-      <div className="relative my-2 rounded bg-gray-100">
-        <Button
-          data-testid="shared-docker-push-copy-button"
-          onClick={() => handleCopyPass(dockerPush)}
-          className="absolute top-0 right-0 m-2 p-2 text-sm bg-primary-500 text-white rounded hover:bg-primary-700 transition duration-300"
-        >
-          <Copy className="size-4" />
-          <span className="sr-only">copy</span>
-        </Button>
-        <pre className="p-4 bg-gray-100 rounded overflow-auto">
-          <code>{dockerPush}</code>
-        </pre>
-      </div>
+      <CodeBlock code={dockerTag} />
+      <CodeBlock code={dockerPush} />
       <p>{t('sharedDockerParagraphe7')}</p>
     </>
   );

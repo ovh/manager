@@ -1,16 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import SharedDocker from '@/pages/dashboard/docker/_components/sharedDocker/SharedDocker.component';
 import { Locale } from '@/hooks/useLocale.hook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
-import { useToast } from '@/components/ui/use-toast';
 
 describe('SharedDocker page', () => {
   beforeEach(() => {
@@ -62,72 +55,8 @@ describe('SharedDocker page', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     expect(screen.getByTestId('shared-docker-title')).toBeInTheDocument();
-    expect(
-      screen.getByTestId('shared-docker-login-copy-button'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByTestId('shared-docker-tag-copy-button'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByTestId('shared-docker-push-copy-button'),
-    ).toBeInTheDocument();
-  });
-
-  it('copy login button call useToast in the shareddockers page', async () => {
-    render(<SharedDocker regions={[mockedCapabilitiesRegion]} />, {
-      wrapper: RouterWithQueryClientWrapper,
-    });
-    Object.assign(window.navigator, {
-      clipboard: {
-        writeText: vi.fn().mockImplementation(() => Promise.resolve()),
-      },
-    });
-    const successCopy = {
-      title: 'sharedDockerCopy',
-    };
-    act(() => {
-      fireEvent.click(screen.getByTestId('shared-docker-login-copy-button'));
-    });
-    await waitFor(() => {
-      expect(useToast().toast).toHaveBeenCalledWith(successCopy);
-    });
-  });
-  it('copy tag button call useToast in the shareddockers page', async () => {
-    render(<SharedDocker regions={[mockedCapabilitiesRegion]} />, {
-      wrapper: RouterWithQueryClientWrapper,
-    });
-    Object.assign(window.navigator, {
-      clipboard: {
-        writeText: vi.fn().mockImplementation(() => Promise.resolve()),
-      },
-    });
-    const successCopy = {
-      title: 'sharedDockerCopy',
-    };
-    act(() => {
-      fireEvent.click(screen.getByTestId('shared-docker-tag-copy-button'));
-    });
-    await waitFor(() => {
-      expect(useToast().toast).toHaveBeenCalledWith(successCopy);
-    });
-  });
-  it('copy tag button call useToast in the shareddockers page', async () => {
-    render(<SharedDocker regions={[mockedCapabilitiesRegion]} />, {
-      wrapper: RouterWithQueryClientWrapper,
-    });
-    Object.assign(window.navigator, {
-      clipboard: {
-        writeText: vi.fn().mockImplementation(() => Promise.resolve()),
-      },
-    });
-    const successCopy = {
-      title: 'sharedDockerCopy',
-    };
-    act(() => {
-      fireEvent.click(screen.getByTestId('shared-docker-push-copy-button'));
-    });
-    await waitFor(() => {
-      expect(useToast().toast).toHaveBeenCalledWith(successCopy);
-    });
+    expect(screen.getByText(/^docker login/)).toBeInTheDocument();
+    expect(screen.getByText(/^docker tag/)).toBeInTheDocument();
+    expect(screen.getByText(/^docker push/)).toBeInTheDocument();
   });
 });

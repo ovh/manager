@@ -1,9 +1,8 @@
-import { AlertCircle, Copy } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Link from '@/components/links/Link.component';
 import { Alert } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
 import {
   Select,
   SelectContent,
@@ -13,6 +12,7 @@ import {
 } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
 import * as ai from '@/types/cloud/project/ai';
+import CodeBlock from '@/components/code-block/CodeBlock.component';
 
 interface CliProps {
   regions: ai.capabilities.Region[];
@@ -24,17 +24,9 @@ const Cli = ({ regions }: CliProps) => {
   const [selectedRegion, setSelectedRegion] = useState<ai.capabilities.Region>(
     regions[0],
   );
-  const toast = useToast();
-
   const curlUlr = `curl -s ${selectedRegion.cliInstallUrl}/install.sh | bash`;
   const userLink = './users';
   const tokenLink = './tokens';
-  const handleCopyPass = (valueToCopy: string) => {
-    navigator.clipboard.writeText(valueToCopy);
-    toast.toast({
-      title: t('cliCopy'),
-    });
-  };
   return (
     <div className="flex flex-col gap-2">
       <p>{t('cliParagraphe1')}</p>
@@ -57,20 +49,7 @@ const Cli = ({ regions }: CliProps) => {
           ))}
         </SelectContent>
       </Select>
-      <div className="relative my-2 rounded bg-black">
-        <Button
-          data-testid="cli-curl-copy-button"
-          onClick={() => handleCopyPass(curlUlr)}
-          className="absolute top-0 right-0 m-2 p-2 text-sm
-           bg-primary-500 text-white rounded hover:bg-primary-700 transition duration-300"
-        >
-          <Copy className="size-4" />
-          <span className="sr-only">copy</span>
-        </Button>
-        <pre className="p-4 bg-black rounded text-white overflow-auto">
-          <code>{curlUlr}</code>
-        </pre>
-      </div>
+      <CodeBlock code={curlUlr} />
       <Alert variant="info">
         <div className="flex flex-row gap-3 items-center">
           <AlertCircle className="size-6" />

@@ -1,5 +1,5 @@
 import { QueryObserverOptions, useQueries } from '@tanstack/react-query';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { getDatastores } from '@/data/api/ai/datastore.api';
 import * as ai from '@/types/cloud/project/ai';
 
@@ -46,6 +46,19 @@ export const useGetDatastoresWithRegions = (
       );
     })
     .filter((ds) => ds.owner === ai.DataStoreOwnerEnum.customer);
+
+  // refetch if pooling changes
+  const prevRefetchInterval = useRef(options?.refetchInterval);
+  useEffect(() => {
+    if (
+      options?.enabled !== false &&
+      options.refetchInterval !== undefined &&
+      options.refetchInterval !== prevRefetchInterval.current
+    ) {
+      refetchAll();
+    }
+    prevRefetchInterval.current = options.refetchInterval;
+  }, [options.refetchInterval, options.enabled, refetchAll]);
 
   return {
     data: dataStoresWithRegion,
