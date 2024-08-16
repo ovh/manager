@@ -35,8 +35,9 @@ baremetalUniverse.children = [
         features: ['dedicated-server'],
       },
       {
-        id: 'dedicated-cluster',
+        id: 'dedicated-servers',
         universe: baremetalUniverse.id,
+        idAttr: 'dedicated-servers-link',
         serviceType: 'DEDICATED_CLUSTER',
         hidden: true,
         routing: {

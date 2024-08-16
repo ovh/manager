@@ -18,7 +18,7 @@ import {
   findPathToNode,
   initFeatureNames,
   shouldHideElement,
-  findUniverse,
+  findNodeByRouting,
   splitPathIntoSegmentsWithoutRouteParams,
   IServicesCount,
 } from './utils';
@@ -62,6 +62,19 @@ const Sidebar = (): JSX.Element => {
   const [assistanceTree, setAssistanceTree] = useState<Node>(null);
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
+  const [savedNodeID, setSavedNodeID] = useState<string>(
+    window.localStorage.getItem(savedLocationKey),
+  );
+
+  const setSavedNode = (node: Node) => {
+    if (node) {
+      setSavedNodeID(node.id);
+      window.localStorage.setItem(savedLocationKey, node.id);
+    } else {
+      setSavedNodeID(null);
+      window.localStorage.removeItem(savedLocationKey);
+    }
+  };
 
   const toggleSidebar = () => {
     setOpen((prevOpen) => {
@@ -153,7 +166,7 @@ const Sidebar = (): JSX.Element => {
   const selectSubMenu = (node: Node, parent: Node) => {
     setSelectedNode(parent);
     setSelectedSubMenu(node);
-    window.localStorage.setItem(savedLocationKey, node.id);
+    setSavedNode(node);
     isMobile ? closeNavigationSidebar() : setOpen(false);
   };
 
@@ -163,41 +176,49 @@ const Sidebar = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (selectedNode) return;
-
     const pathname = location.pathname;
-    const savedNodeID = window.localStorage.getItem(savedLocationKey);
-    if (!savedNodeID) return;
-    const node = findNodeById(currentNavigationNode, savedNodeID);
-    if (!node || !node.universe) {
-      window.localStorage.removeItem(savedLocationKey);
-      return;
-    }
-
-    const parent = findNodeById(currentNavigationNode, node.universe);
-    if (parent) {
-      const nodePath = node.routing.hash
-        ? node.routing.hash.replace('#', node.routing.application)
-        : '/' + node.routing.application;
-
-      const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath);
-      const isMatching = parsedPath.reduce(
-        (acc: boolean, segment: string) => acc && pathname.includes(segment),
-        true,
-      );
-      if (isMatching) {
-        selectSubMenu(node, parent);
+    let savedNode: Node = null;
+    if (currentNavigationNode.id !== 'sidebar') return;
+    if (savedNodeID && !selectedSubMenu) {
+      savedNode = findNodeById(currentNavigationNode, savedNodeID);
+      if (!savedNode || !savedNode.universe) {
+        setSavedNode(null);
         return;
-      } else {
-        window.localStorage.removeItem(savedLocationKey);
       }
     }
 
-    const universe = findUniverse(currentNavigationNode, pathname);
-    if (universe) {
-      selectSubMenu(universe.node, universe.parent);
+    const currentNode: Node = selectedSubMenu || savedNode;
+    if (currentNode) {
+      const parent = findNodeById(currentNavigationNode, currentNode.universe);
+      if (parent) {
+        const currentNodePath = currentNode.routing.hash
+          ? currentNode.routing.hash.replace(
+              '#',
+              currentNode.routing.application,
+            )
+          : '/' + currentNode.routing.application;
+
+        const parsedPath = splitPathIntoSegmentsWithoutRouteParams(
+          currentNodePath,
+        );
+        const isMatching = parsedPath.reduce(
+          (acc: boolean, segment: string) => acc && pathname.includes(segment),
+          true,
+        );
+        if (isMatching) {
+          selectSubMenu(currentNode, parent);
+          return;
+        } else {
+          selectedNode ? setSelectedNode(null) : setSavedNode(null);
+        }
+      }
     }
-  }, [currentNavigationNode]);
+
+    const {foundNode, universe} = findNodeByRouting(currentNavigationNode, pathname);
+    if (foundNode && universe) {
+      selectSubMenu(foundNode, universe);
+    }
+  }, [currentNavigationNode, location]);
 
   const computeNodeCount = (
     count: IServicesCount,
@@ -259,7 +280,9 @@ const Sidebar = (): JSX.Element => {
         </a>
 
         <div
-          className={`${style.sidebar_menu} ${!open ? style.sidebar_menu_short : ''}`}
+          className={`${style.sidebar_menu} ${
+            !open ? style.sidebar_menu_short : ''
+          }`}
           role="menubar"
         >
           {servicesCount && currentNavigationNode && (
