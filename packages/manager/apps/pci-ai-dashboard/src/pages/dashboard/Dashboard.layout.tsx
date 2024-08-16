@@ -30,11 +30,7 @@ export default function DashboardLayout() {
     !jobsQuery.isSuccess &&
     !appsQuery.isSuccess
   ) {
-    return (
-      <>
-        <DashboardHeader.Skeleton />
-      </>
-    );
+    return <DashboardHeader.Skeleton />;
   }
   const dashboardTabs =
     notebooksQuery.isSuccess &&
