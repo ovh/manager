@@ -11,11 +11,11 @@ import {
   OsdsButton,
   OsdsFormField,
   OsdsInput,
+  OsdsModal,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Modal from './Modal';
 
 interface EditModalProps {
   organizationDescription: string;
@@ -43,7 +43,11 @@ export const EditDescriptionModal = ({
   };
 
   return (
-    <Modal color={ODS_THEME_COLOR_INTENT.info} onClose={onCloseModal}>
+    <OsdsModal
+      color={ODS_THEME_COLOR_INTENT.info}
+      onOdsModalClose={onCloseModal}
+      dismissible
+    >
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
@@ -96,6 +100,6 @@ export const EditDescriptionModal = ({
       >
         {t('managed_vcd_dashboard_edit_modal_cta_edit')}
       </OsdsButton>
-    </Modal>
+    </OsdsModal>
   );
 };

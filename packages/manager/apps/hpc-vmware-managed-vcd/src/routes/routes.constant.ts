@@ -3,6 +3,8 @@ export const urls = {
   onboarding: '/onboarding',
   listing: '/',
   dashboard: '/:id',
+  editName: '/:id/edit-name',
+  editDesc: '/:id/edit-desc',
   datacentres: '/:id/datacentres',
   datacentreDashboard: '/:id/datacentres/:vdcId',
   datacentreStorage: '/:id/datacentres/:vdcId/storage',
