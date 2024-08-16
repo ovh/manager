@@ -95,27 +95,32 @@ $sidebar-font-size: 0.875rem;
     list-style-type: none;
   }
 
-  &_menu_items button {
+  &_menu_items button, &_menu_items a {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
-  &_menu_items:hover, &_menu_items_selected {
-    background-color: $p-800;
+  &_menu_items {
+    a:hover, a:focus, button:hover, button:focus {
+      background-color: $p-800;
+    }
+  }
+  &_menu_items_selected {
+    a, button {
+      background-color: $p-800;
+    }
   }
 
-  &_submenu_items:hover {
-    background-color: darken($p-800, 5);
-    
-    a, button  {
+  &_submenu_items {
+    a:hover, a:focus, button:hover, button:focus {
+      background-color: darken($p-800, 5);
       text-decoration: none;
     }
   }
 
   &_submenu_items_selected {
-    background-color: darken($p-800, 5);
-
-    a:hover, button:hover  {
+    a, button {
+      background-color: darken($p-800, 5);
       text-decoration: none !important;
     }
   }

@@ -12,6 +12,9 @@
   z-index: 901;
   overflow-y: auto;
   &_content {
+    display: flex;
+    flex-flow: column;
+    justify-content: start;
     background: $p-800;
     height: auto;
     min-height: 100%;
@@ -24,7 +27,7 @@
   }
   &_illustration {
     width: 55%;
-    margin: auto;
+    margin: 0 auto;
     & > img {
       width: 100%;
     }
@@ -57,18 +60,34 @@
     }
   }
 
-  &_submenu_items:hover {
-    background-color: darken($p-800, 5);
-    
-    a, button  {
+  &_close {
+    display: flex;
+    width: fit-content;
+    justify-content: flex-end;
+    align-self: flex-end;
+    padding: 1rem;
+    margin: 0;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+  }
+
+  &_submenu_items, &_submenu_items_selected {
+    a, button {
+      padding: 0 1rem;
+    }
+  }
+
+  &_submenu_items {
+    a:hover, a:focus, button:hover, button:focus  {
+      background-color: darken($p-800, 5);
       text-decoration: none;
     }
   }
 
   &_submenu_items_selected {
-    background-color: darken($p-800, 5);
-
-    a:hover, button:hover  {
+    a, button  {
+      background-color: darken($p-800, 5);
       text-decoration: none !important;
     }
   }

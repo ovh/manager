@@ -5,11 +5,8 @@ import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
 import StaticLink from '@/container/nav-reshuffle/sidebar/StaticLink';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
-import useProductNavReshuffle from '@/core/product-nav-reshuffle/useProductNavReshuffle';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { SidebarTooltipLink } from './tooltip/SidebarTooltipLink';
 
 type SidebarLinkProps = {
@@ -32,7 +29,6 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   isShortText = false,
 }: SidebarLinkProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
-  const { isMobile } = useProductNavReshuffle();
 
   return !node.children && (node.url || node.routing) ? (
     <StaticLink
@@ -56,23 +52,43 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       id={id}
       role="button"
     >
-      {isShortText ? <SidebarTooltipLink tooltip={t(node.translation)}  text={t(node.shortTranslation)}/> : <span>{t(node.translation)}</span>}
-      <div className='flex align-items-center'>
-        {!isShortText && (count as number) > 0 && (
+      {isShortText && (
+        <SidebarTooltipLink
+          tooltip={t(node.translation)}
+          text={t(node.shortTranslation)}
+        />
+      )}
+        <span className="flex justify-start align-items-center">
+        {node.icon && (
           <OsdsIcon
-            name={ODS_ICON_NAME.SHAPE_DOT}
-            size={ODS_ICON_SIZE.xs}
-            className={style.sidebarLinkTag}
+            name={node.icon as ODS_ICON_NAME}
+            className="mr-2"
+            size={ODS_ICON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            contrasted
           />
         )}
+        {!isShortText && (
+          <span>{t(node.translation)}</span>
+        )}
+        </span>
+        <span className="flex justify-end align-items-center">
+
+        {!isShortText && (count as number) > 0 && (
+          <OsdsIcon
+          name={ODS_ICON_NAME.SHAPE_DOT}
+          size={ODS_ICON_SIZE.xs}
+          className={style.sidebarLinkTag}
+          />
+          )}
         {!isShortText && node.children ? (
           <span
-            className={`oui-icon oui-icon-chevron-right ${style.sidebar_arrow}`}
-            aria-hidden="true"
+          className={`oui-icon oui-icon-chevron-right ${style.sidebar_arrow}`}
+          aria-hidden="true"
           ></span>
-        ) : null}
+          ) : null}
         {!isShortText && <SidebarLinkTag node={node} />}
-      </div>
+          </span>
     </button>
   );
 };
