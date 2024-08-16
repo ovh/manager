@@ -1,3 +1,4 @@
+import illustration from '@/assets/images/sidebar/security-identity-operations.png';
 import { Node } from '../node';
 
 const sioUniverse : Node = {
@@ -5,6 +6,7 @@ const sioUniverse : Node = {
   idAttr: 'security-identity-operation-link',
   translation: 'sidebar_security_identity_operations',
   shortTranslation: 'sidebar_security_identity_operations_short',
+  illustration,
   routing: {
     application: 'iam',
   },
