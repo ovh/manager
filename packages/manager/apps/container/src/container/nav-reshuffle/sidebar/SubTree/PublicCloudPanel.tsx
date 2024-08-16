@@ -198,7 +198,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
                 handleOnSubMenuClick={handleOnSubMenuClick}
               />
             )}
-            {node.separator && <hr />}
+            {node.separator && <hr role="separator" />}
           </li>
         ))}
     </>

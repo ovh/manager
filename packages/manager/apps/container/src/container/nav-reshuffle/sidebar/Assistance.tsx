@@ -6,17 +6,17 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import SidebarLink from './SidebarLink';
 import useContainer from '@/core/container';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Node } from './navigation-tree/node';
+import style from './style.module.scss';
 
 interface AssistanceProps {
   nodeTree?: Node;
+  selectedNode : Node;
 }
 
 const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   nodeTree,
+  selectedNode
 }): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const { shell } = useContext(ApplicationContext);
@@ -84,14 +84,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
         </h2>
       </li>
       {nodeTree.children.map((node: Node) => (
-        <li className={`flex px-3 align-items-center sidebar_menu_items`} role="menuitem" key={`assistance_${node.id}`}>
-          <OsdsIcon
-            name={node.icon as ODS_ICON_NAME}
-            className="mr-2"
-            size={ODS_ICON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            contrasted
-          />
+        <li className={`flex align-items-center ${style.sidebar_menu_items} ${node.id === selectedNode?.id ? style.sidebar_menu_items_selected : '' }`} role="menuitem" key={`assistance_${node.id}`}>
           <SidebarLink
             handleOnClick={node.onClick}
             node={node}
