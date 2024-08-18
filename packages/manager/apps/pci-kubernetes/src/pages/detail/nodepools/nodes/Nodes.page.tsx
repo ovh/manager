@@ -5,7 +5,6 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
@@ -19,7 +18,6 @@ import {
   OsdsPopover,
   OsdsPopoverContent,
   OsdsSearchBar,
-  OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
@@ -37,6 +35,7 @@ import { useClusterNodePools } from '@/api/hooks/node-pools';
 import { useDatagridColumns } from './useDatagridColumns';
 import { usePaginatedNodes } from '@/api/hooks/nodes';
 import queryClient from '@/queryClient';
+import LoadingSkeleton from '@/components/LoadingSkeleton.component';
 
 export default function NodesPage(): JSX.Element {
   const { projectId, kubeId, poolId } = useParams();
@@ -195,11 +194,8 @@ export default function NodesPage(): JSX.Element {
       <div className="my-5">
         <FilterList filters={filters} onRemoveFilter={removeFilter} />
       </div>
-      {isNodesPending ? (
-        <div className="text-center">
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-        </div>
-      ) : (
+
+      <LoadingSkeleton when={!isNodesPending} spinner={{ centered: true }}>
         <div>
           <Datagrid
             columns={columns}
@@ -210,7 +206,7 @@ export default function NodesPage(): JSX.Element {
             className="overflow-x-visible"
           />
         </div>
-      )}
+      </LoadingSkeleton>
       <Outlet />
     </>
   );
