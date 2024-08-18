@@ -37,6 +37,7 @@ import { useClusterNodePools } from '@/api/hooks/node-pools';
 import { useDatagridColumns } from './useDatagridColumns';
 import { usePaginatedNodes } from '@/api/hooks/nodes';
 import queryClient from '@/queryClient';
+import LoadableComponent from '@/components/Loadable.component';
 
 export default function NodesPage(): JSX.Element {
   const { projectId, kubeId, poolId } = useParams();
@@ -195,11 +196,8 @@ export default function NodesPage(): JSX.Element {
       <div className="my-5">
         <FilterList filters={filters} onRemoveFilter={removeFilter} />
       </div>
-      {isNodesPending ? (
-        <div className="text-center">
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-        </div>
-      ) : (
+
+      <LoadableComponent when={!isNodesPending} spinner={{ centered: true }}>
         <div>
           <Datagrid
             columns={columns}
@@ -210,7 +208,7 @@ export default function NodesPage(): JSX.Element {
             className="overflow-x-visible"
           />
         </div>
-      )}
+      </LoadableComponent>
       <Outlet />
     </>
   );

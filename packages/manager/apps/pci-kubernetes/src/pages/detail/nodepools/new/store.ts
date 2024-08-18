@@ -9,7 +9,7 @@ type TStep = {
   isChecked: boolean;
 };
 
-type TFormStore = {
+export type TFormStore = {
   name: string;
   flavor: TFlavor;
   autoScaling: AutoscalingState;

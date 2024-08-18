@@ -23,6 +23,7 @@ import { useNotifications } from '@ovhcloud/manager-components';
 import { useClusterNodePools, useDeleteNodePool } from '@/api/hooks/node-pools';
 import queryClient from '@/queryClient';
 import { useTrack } from '@/hooks/track';
+import LoadableComponent from '@/components/Loadable.component';
 
 const CONFIRMATION_TEXT = 'DELETE';
 
@@ -99,7 +100,7 @@ export default function DeletePage(): JSX.Element {
       color={ODS_THEME_COLOR_INTENT.warning}
     >
       <slot name="content">
-        {!isPoolsPending && !isDeleting ? (
+        <LoadableComponent when={!isPoolsPending && !isDeleting}>
           <>
             <OsdsText
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -168,13 +169,7 @@ export default function DeletePage(): JSX.Element {
               />
             </OsdsFormField>
           </>
-        ) : (
-          <OsdsSpinner
-            inline
-            size={ODS_SPINNER_SIZE.md}
-            className="block text-center"
-          />
-        )}
+        </LoadableComponent>
       </slot>
       <OsdsButton
         slot="actions"
