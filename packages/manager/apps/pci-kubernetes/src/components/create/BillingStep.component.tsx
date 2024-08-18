@@ -43,7 +43,7 @@ export type TBillingStepProps = {
   warn: boolean;
 };
 
-export function BillingStep(props: TBillingStepProps): JSX.Element {
+export default function BillingStep(props: TBillingStepProps): JSX.Element {
   const { t } = useTranslation('billing-anti-affinity');
   const { t: tNodePool } = useTranslation('node-pool');
   const { t: tFlavourBilling } = useTranslation('flavor-billing');
@@ -57,6 +57,7 @@ export function BillingStep(props: TBillingStepProps): JSX.Element {
     <>
       <div>
         <OsdsCheckbox
+          data-testid="checkbox"
           name="kube_anti_affinity"
           checked={props.antiAffinity.isChecked}
           disabled={!props.antiAffinity.isEnabled}
@@ -82,7 +83,6 @@ export function BillingStep(props: TBillingStepProps): JSX.Element {
         </OsdsCheckbox>
 
         <OsdsText
-          className="mt-4"
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_TEXT_LEVEL.body}
           size={ODS_TEXT_SIZE._400}
@@ -94,7 +94,7 @@ export function BillingStep(props: TBillingStepProps): JSX.Element {
       </div>
       {props.monthlyBilling.isComingSoon ? (
         <OsdsMessage
-          className="mt-4"
+          data-testid="coming_soon_message"
           type={ODS_MESSAGE_TYPE.info}
           color={ODS_THEME_COLOR_INTENT.info}
         >
@@ -123,6 +123,7 @@ export function BillingStep(props: TBillingStepProps): JSX.Element {
         </OsdsMessage>
       ) : (
         <OsdsText
+          data-testid="billing_description"
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_TEXT_LEVEL.body}
           size={ODS_TEXT_SIZE._400}
@@ -133,14 +134,15 @@ export function BillingStep(props: TBillingStepProps): JSX.Element {
 
       <div className="flex gap-10 my-8">
         <OsdsTile
+          data-testid="hourly_tile"
           className={clsx(
             !props.monthlyBilling.isChecked ? checkedClass : uncheckedClass,
             'w-1/2',
           )}
-          // checked={!props.monthlyBilling.isChecked}
           onClick={() => {
             props.monthlyBilling.check(false);
           }}
+          disabled={false}
         >
           <div className="w-full">
             <OsdsText
@@ -163,7 +165,7 @@ export function BillingStep(props: TBillingStepProps): JSX.Element {
                   {tFlavourBilling(
                     'pci_project_flavors_billing_price_hourly_price_label',
                   )}
-                </strong>{' '}
+                </strong>
                 {getFormattedHourlyCatalogPrice(props.price)}
               </OsdsText>
             </>
@@ -171,6 +173,7 @@ export function BillingStep(props: TBillingStepProps): JSX.Element {
         </OsdsTile>
         {props.monthlyPrice !== undefined && (
           <OsdsTile
+            data-testid="monthly_tile"
             className={clsx(
               props.monthlyBilling.isChecked ? checkedClass : uncheckedClass,
               'w-1/2',
@@ -179,6 +182,7 @@ export function BillingStep(props: TBillingStepProps): JSX.Element {
             onClick={() => {
               props.monthlyBilling.check(true);
             }}
+            disabled={false}
           >
             <div className="w-full">
               <OsdsText
@@ -201,7 +205,7 @@ export function BillingStep(props: TBillingStepProps): JSX.Element {
                     {tFlavourBilling(
                       'pci_project_flavors_billing_price_monthly_instance_price_label',
                     )}
-                  </strong>{' '}
+                  </strong>
                   {getFormattedMonthlyCatalogPrice(props.monthlyPrice)}
                 </OsdsText>
               </>
@@ -212,6 +216,7 @@ export function BillingStep(props: TBillingStepProps): JSX.Element {
 
       {props.warn && (
         <OsdsMessage
+          data-testid="warn_message"
           type={ODS_MESSAGE_TYPE.warning}
           color={ODS_THEME_COLOR_INTENT.warning}
           className="my-6"
@@ -237,5 +242,3 @@ export function BillingStep(props: TBillingStepProps): JSX.Element {
     </>
   );
 }
-
-export default BillingStep;

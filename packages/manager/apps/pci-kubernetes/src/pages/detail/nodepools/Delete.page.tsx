@@ -3,7 +3,6 @@ import {
   OsdsFormField,
   OsdsInput,
   OsdsModal,
-  OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
@@ -13,7 +12,6 @@ import {
 import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
@@ -23,6 +21,7 @@ import { useNotifications } from '@ovhcloud/manager-components';
 import { useClusterNodePools, useDeleteNodePool } from '@/api/hooks/node-pools';
 import queryClient from '@/queryClient';
 import { useTrack } from '@/hooks/track';
+import LoadingSkeleton from '@/components/LoadingSkeleton.component';
 
 const CONFIRMATION_TEXT = 'DELETE';
 
@@ -99,7 +98,7 @@ export default function DeletePage(): JSX.Element {
       color={ODS_THEME_COLOR_INTENT.warning}
     >
       <slot name="content">
-        {!isPoolsPending && !isDeleting ? (
+        <LoadingSkeleton when={!isPoolsPending && !isDeleting}>
           <>
             <OsdsText
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -168,13 +167,7 @@ export default function DeletePage(): JSX.Element {
               />
             </OsdsFormField>
           </>
-        ) : (
-          <OsdsSpinner
-            inline
-            size={ODS_SPINNER_SIZE.md}
-            className="block text-center"
-          />
-        )}
+        </LoadingSkeleton>
       </slot>
       <OsdsButton
         slot="actions"

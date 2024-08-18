@@ -11,6 +11,7 @@ export function getDateFnsLocale(ovhLocale: string) {
   if (ovhLocale === 'fr_CA') {
     return 'frCA';
   }
-  const [locale] = ovhLocale?.split('_');
+
+  const [locale] = ovhLocale?.split('_') || [];
   return locale || 'enGB';
 }
