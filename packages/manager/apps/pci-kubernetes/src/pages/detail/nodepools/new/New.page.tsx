@@ -265,12 +265,13 @@ export default function NewPage(): JSX.Element {
         }}
       >
         <OsdsFormField
+          data-testid="name-field"
           className="mt-4"
           inline
           error={
             state.name.hasError
               ? tAdd('kube_add_node_pool_name_input_pattern_validation_error')
-              : undefined
+              : ''
           }
         >
           <OsdsText
@@ -286,6 +287,7 @@ export default function NewPage(): JSX.Element {
             {tAdd('kube_add_node_pool_name_label')}
           </OsdsText>
           <OsdsInput
+            data-testid="name-input"
             value={store.name}
             inline
             color={ODS_THEME_COLOR_INTENT.primary}
