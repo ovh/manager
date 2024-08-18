@@ -22,7 +22,7 @@ export const useDatagridColumns = () => {
         <DataGridTextCell>
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.primary}
-            href={useHref(`${pool.id}`)}
+            href={useHref(`${pool.id}/nodes`)}
             className="whitespace-nowrap"
           >
             {pool.name}

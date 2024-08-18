@@ -5,7 +5,7 @@ import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepState } from '../useStep';
 import { TClusterCreationForm } from '../useCusterCreationStepper';
-import { BillingStep } from '@/components/create/BillingStep.component';
+import BillingStep from '@/components/create/BillingStep.component';
 
 export interface BillingStepProps {
   form: TClusterCreationForm;

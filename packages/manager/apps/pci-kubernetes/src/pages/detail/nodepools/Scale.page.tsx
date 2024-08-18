@@ -60,7 +60,7 @@ export default function ScalePage(): JSX.Element {
     }
   }, [pool]);
 
-  const { updateSize, isPending: isDeleting } = useUpdateNodePoolSize({
+  const { updateSize, isPending: isScaling } = useUpdateNodePoolSize({
     onError(cause: Error & { response: { data: { message: string } } }): void {
       addError(
         tScale('kube_node_pool_autoscaling_scale_error', {
@@ -92,7 +92,7 @@ export default function ScalePage(): JSX.Element {
       color={ODS_THEME_COLOR_INTENT.text}
     >
       <slot name="content">
-        {!isPoolsPending && !isDeleting ? (
+        {!isPoolsPending && !isScaling ? (
           <Autoscaling
             initialScaling={{
               min: pool?.minNodes,
@@ -133,7 +133,7 @@ export default function ScalePage(): JSX.Element {
             minNodes: state.quantity.min,
           });
         }}
-        {...(isDeleting ? { disabled: true } : {})}
+        {...(isScaling ? { disabled: true } : {})}
       >
         {tListing('kube_common_save')}
       </OsdsButton>

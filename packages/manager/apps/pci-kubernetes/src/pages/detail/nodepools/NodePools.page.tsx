@@ -29,6 +29,7 @@ import { useTranslation } from 'react-i18next';
 import { usePaginatedClusterNodePools } from '@/api/hooks/node-pools';
 import { useDatagridColumns } from '@/pages/detail/nodepools/useDatagridColumn';
 import queryClient from '@/queryClient';
+import LoadingSkeleton from '@/components/LoadingSkeleton.component';
 
 export default function NodePoolsPage() {
   const { projectId, kubeId } = useParams();
@@ -76,6 +77,7 @@ export default function NodePoolsPage() {
             {tNodesPool('kube_node_pool_add')}
           </OsdsButton>
           <OsdsButton
+            data-testid="refresh-button"
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.stroked}
             color={ODS_THEME_COLOR_INTENT.primary}
@@ -174,11 +176,8 @@ export default function NodePoolsPage() {
       <div className="my-5">
         <FilterList filters={filters} onRemoveFilter={removeFilter} />
       </div>
-      {isPoolsPending ? (
-        <div className="text-center">
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-        </div>
-      ) : (
+
+      <LoadingSkeleton when={!isPoolsPending}>
         <div>
           <Datagrid
             columns={columns}
@@ -191,8 +190,7 @@ export default function NodePoolsPage() {
             className="overflow-x-visible"
           />
         </div>
-      )}
-
+      </LoadingSkeleton>
       <Outlet />
     </>
   );
