@@ -157,6 +157,7 @@ const Sidebar = (): JSX.Element => {
         ) {
           selectSubMenu(currentNode);
           setSelectedNode(universe);
+          return;
         } else {
           selectedNode ? setSelectedNode(null) : setSavedNode(null);
         }
