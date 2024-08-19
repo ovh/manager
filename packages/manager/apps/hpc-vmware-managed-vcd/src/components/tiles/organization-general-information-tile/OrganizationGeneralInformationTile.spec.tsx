@@ -1,11 +1,16 @@
 import { render } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import React from 'react';
 import OrganizationGeneralInformationTile from './OrganizationGeneralInformationTile.component';
+
+vi.mock('react-router-dom', () => ({
+  useHref: vi.fn(),
+}));
 
 describe('OrganizationGeneralInformationTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
