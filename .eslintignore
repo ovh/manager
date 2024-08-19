@@ -16,4 +16,4 @@ vue/src
 packages/manager/core/generator
 packages/components/ovh-at-internet/src/ovh-at-internet.ts
 packages/manager/apps/container
-packages/manager/apps/pci-databases-analytics/src/components/ui
+packages/manager/apps/**/src/components/ui
