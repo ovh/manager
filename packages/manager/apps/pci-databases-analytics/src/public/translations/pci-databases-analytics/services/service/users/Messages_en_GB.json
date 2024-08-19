@@ -5,7 +5,7 @@
   "tableHeadName": "Username",
   "tableHeadGroup": "Group",
   "tableHeadRoles": "Roles",
-  "tableHeadCreationDate": "Creation date",
+  "tableHeadCreationDate": "Created on",
   "tableHeadStatus": "Status",
   "tableActionsMenuEdit": "Edit",
   "tableActionsMenuResetPassword": "Reset password",
