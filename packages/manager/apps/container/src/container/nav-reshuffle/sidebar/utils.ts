@@ -276,7 +276,7 @@ export const findNodeByRouting = (root: Node, locationPath: string) => {
   for (let i = pathSegments.length; i > 0; i--) {
     const path = pathSegments.slice(0, i).join('/');
     const foundNode = exploreTree(root, path);
-    if (foundNode.value)
+    if (foundNode?.value)
       return {
         node: foundNode.value,
         universe: findNodeById(root, foundNode.value.universe),
