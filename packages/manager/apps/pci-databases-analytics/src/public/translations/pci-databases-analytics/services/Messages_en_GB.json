@@ -8,7 +8,7 @@
   "tableHeaderStorage": "Usable storage",
   "tableHeaderLocation": "Location",
   "tableHeaderNodes": "Nodes",
-  "tableHeaderCreationDate": "Creation date",
+  "tableHeaderCreationDate": "Created on",
   "tableHeaderStatus": "Status",
   "tableActionManage": "Details",
   "tableActionCopy": "Copy ID",
