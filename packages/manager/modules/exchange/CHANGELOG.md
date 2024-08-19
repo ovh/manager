@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.7.2...@ovh-ux/manager-exchange@4.8.0) (2024-08-19)
+
+
+### Features
+
+* **web:** remove export in pst format ([#11056](https://github.com/ovh/manager/issues/11056)) ([f6cabcf](https://github.com/ovh/manager/commit/f6cabcf7f9559902d4a28e4b49ba391a70d66e84))
+
+
+
+
+
 ## [4.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.7.1...@ovh-ux/manager-exchange@4.7.2) (2024-08-12)
 
 
