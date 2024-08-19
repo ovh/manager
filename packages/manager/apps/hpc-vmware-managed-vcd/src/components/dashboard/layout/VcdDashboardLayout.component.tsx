@@ -27,18 +27,23 @@ export default function VcdDashboardLayout({
   header,
 }: TDashboardLayoutProps) {
   const [panel, setActivePanel] = useState('');
-  const location = useLocation();
+  const { pathname: path } = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const activeTab = tabs.find((tab) => tab.to === location.pathname);
+    const findActiveTab = (tabList: DashboardTabItemProps[]) =>
+      tabList.find((tab) => tab.to === path);
+    const findActiveParentTab = (tabList: DashboardTabItemProps[]) =>
+      tabList.find((tab) => tab.to === path.slice(0, path.lastIndexOf('/')));
+
+    const activeTab = findActiveTab(tabs) || findActiveParentTab(tabs);
     if (activeTab) {
       setActivePanel(activeTab.name);
     } else {
       setActivePanel(tabs[0].name);
       navigate(`${tabs[0].to}`);
     }
-  }, [location.pathname]);
+  }, [path]);
 
   return (
     <div>
