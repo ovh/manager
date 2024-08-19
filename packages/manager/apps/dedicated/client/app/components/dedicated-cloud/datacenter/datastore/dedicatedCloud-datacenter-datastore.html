@@ -19,11 +19,6 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_profile' | translate"
-        data-property="profile"
-    >
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        data-title=":: 'dedicatedCloud_tab_datastores_type' | translate"
         data-property="fullProfile"
     >
     </oui-datagrid-column>
@@ -32,6 +27,17 @@
     >
         <span
             data-ng-bind="$row.size.value + ' ' + ('unit_size_' + $row.size.unit | translate)"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_active_node' | translate"
+    >
+        <span
+            data-ng-bind="'dedicatedCloud_tab_datastores_active_node_' + $row.activeNode | translate"
+        ></span>
+        <span
+            class="font-italic"
+            data-ng-bind="'('+$row[$row.activeNode].split('.')[0]+')'"
         ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -47,6 +53,21 @@
         <span
             data-ng-bind="'dedicatedCloud_tab_datastores_status_' + $row.status | translate"
         ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_location_datacenter' | translate"
+    >
+        <span data-ng-bind="$row.location.datacenter"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_location_room' | translate"
+    >
+        <span data-ng-bind="$row.location.room"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_location_rack' | translate"
+    >
+        <span data-ng-bind="$row.location.rack"></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_consumption' | translate"
