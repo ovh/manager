@@ -104,10 +104,15 @@ export type OkmsServiceKeyDeactivationReason = typeof OkmsServiceKeyDeactivation
 PUT SERVICE KEY
 */
 
+export type OkmsServiceKeyPutState =
+  | OkmsServiceKeyState.active
+  | OkmsServiceKeyState.compromised
+  | OkmsServiceKeyState.deactivated;
+
 export type OkmsServiceKeyPutPayload = {
   deactivationReason?: OkmsServiceKeyDeactivationReason;
   name?: string;
-  state?: 'ACTIVE' | 'DEACTIVATED';
+  state?: OkmsServiceKeyPutState;
 };
 
 /*
