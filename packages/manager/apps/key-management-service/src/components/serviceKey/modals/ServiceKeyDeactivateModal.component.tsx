@@ -22,6 +22,8 @@ import { useUpdateOkmsServiceKey } from '@/data/hooks/useUpdateOkmsServiceKey';
 import {
   OkmsServiceKeyDeactivationReason,
   OkmsServiceKeyDeactivationReasonTypes,
+  OkmsServiceKeyPutState,
+  OkmsServiceKeyState,
 } from '@/types/okmsServiceKey.type';
 
 type ServiceKeyEditNameModalProps = {
@@ -56,6 +58,42 @@ export const ServiceKeyDeactivateModal = ({
     },
     onError: closeModal,
   });
+
+  const onUpdateServiceKeyStatus = () => {
+    let newState: OkmsServiceKeyPutState;
+    switch (deactivationReason) {
+      case 'AFFILIATION_CHANGED':
+        newState = OkmsServiceKeyState.deactivated;
+        break;
+
+      case 'CA_COMPROMISE':
+        newState = OkmsServiceKeyState.compromised;
+        break;
+
+      case 'CESSATION_OF_OPERATION':
+        newState = OkmsServiceKeyState.deactivated;
+        break;
+
+      case 'KEY_COMPROMISE':
+        newState = OkmsServiceKeyState.compromised;
+        break;
+
+      case 'PRIVILEGE_WITHDRAWN':
+        newState = OkmsServiceKeyState.deactivated;
+        break;
+
+      case 'SUPERSEDED':
+        newState = OkmsServiceKeyState.deactivated;
+        break;
+
+      case 'UNSPECIFIED':
+        newState = OkmsServiceKeyState.deactivated;
+        break;
+      default:
+        break;
+    }
+    updateKmsServiceKey({ state: newState, deactivationReason });
+  };
 
   return (
     <Modal
@@ -110,9 +148,7 @@ export const ServiceKeyDeactivateModal = ({
         disabled={!deactivationReason || isPending || undefined}
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() =>
-          updateKmsServiceKey({ state: 'DEACTIVATED', deactivationReason })
-        }
+        onClick={onUpdateServiceKeyStatus}
         aria-label="edit-name-okms"
       >
         {t('key_management_service_service-keys_deactivation_button_confirm')}
