@@ -38,19 +38,18 @@
                         data-ng-bind="'ip_filter_service_type_all' | translate"
                     ></option>
                 </select>
-                <select
-                    class="form-control"
-                    id="serviceSelector"
-                    name="serviceSelector"
-                    data-ng-model="ipScope.selection.service"
-                    data-ng-change="ipScope.select({ service: ipScope.selection.service, serviceType: null })"
-                    data-ng-options="service as service.serviceName group by (('ip_filter_services_title_' + service.category) | translate) for service in ipScope.services track by service.serviceName"
+                <oui-select
+                    class="w-100"
+                    items="ipScope.services"
+                    match="displayName"
+                    model="ipScope.selection.service"
+                    name="service"
+                    placeholder="{{:: 'ip_filter_services__ALL' | translate}}"
+                    group-by="ipScope.getServiceTypeLabel"
+                    data-on-change="ipScope.select({ service: modelValue, serviceType: null })"
+                    searchable
                 >
-                    <option
-                        value=""
-                        data-ng-bind="'ip_filter_services__ALL' | translate"
-                    ></option>
-                </select>
+                </oui-select>
             </div>
         </ip-list-header>
     </ip-list>
