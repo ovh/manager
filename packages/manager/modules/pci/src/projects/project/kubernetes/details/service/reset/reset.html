@@ -1,11 +1,12 @@
 <form
     id="kubeClusterReset"
-    name="kubeClusterReset"
-    data-ng-submit="kubeClusterReset.$valid && $ctrl.reset()"
+    name="$ctrl.kubeClusterReset"
+    data-ng-submit="$ctrl.reset()"
     novalidate
 >
     <oui-modal
         data-primary-label="{{ ::'pci_projects_project_kubernetes_service_reset_common_confirm' | translate }}"
+        data-primary-disabled="!$ctrl.isNetworkValid()"
         data-secondary-action="$ctrl.onResetModalCancel()"
         data-secondary-label="{{ ::'pci_projects_project_kubernetes_service_reset_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
@@ -44,34 +45,15 @@
             >
             </oui-select>
         </oui-field>
-        <!-- private network -->
-        <oui-field
-            data-label="{{ :: 'kubernetes_add_private_network_label' | translate }}"
-        >
-            <oui-select
-                data-name="privateNetwork"
-                data-model="$ctrl.model.network.private"
-                data-items="$ctrl.availablePrivateNetworks"
-                data-match="name"
-                data-searchable
-            >
-            </oui-select>
-            <p>
-                <span
-                    data-translate="kubernetes_add_private_network_description"
-                ></span>
-                <a
-                    data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
-                    data-translate="kubernetes_add_private_network_add"
-                    target="_top"
-                ></a>
-            </p>
-        </oui-field>
-
-        <!--Chose OVHcloud or vRack gateway-->
-        <gateway-management-component
-            data-ng-if="$ctrl.model.network.private.id"
-            data-network="$ctrl.model.network"
-        ></gateway-management-component>
+        <kube-network-form
+            data-region="{ name: $ctrl.cluster.region }"
+            data-project-id="$ctrl.projectId"
+            data-private-networks="$ctrl.privateNetworks"
+            data-private-network="$ctrl.model.network.private"
+            data-subnet="$ctrl.model.network.subnet"
+            data-load-balancers-subnet="$ctrl.model.network.loadBalancersSubnet"
+            data-gateway="$ctrl.model.network.gateway"
+            data-dense="true"
+        />
     </oui-modal>
 </form>

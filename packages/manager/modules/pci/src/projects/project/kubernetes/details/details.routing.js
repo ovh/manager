@@ -68,6 +68,14 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+      goToEditNetwork: /* @ngInject */ ($state, kubeId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.kubernetes.details.service.edit-network',
+          {
+            kubeId,
+            projectId,
+          },
+        ),
       kubeId: /* @ngInject */ ($stateParams) => $stateParams.kubeId,
       nodePoolsLink: /* @ngInject */ ($state, kubeId, projectId) =>
         $state.href('pci.projects.project.kubernetes.details.nodepools', {
