@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.48.2...@ovh-ux/manager-dedicated@19.49.0) (2024-08-19)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** add missing import ([#12737](https://github.com/ovh/manager/issues/12737)) ([13fdf94](https://github.com/ovh/manager/commit/13fdf94b814b31870010a753b4e970a2ce948909))
+
+
+### Features
+
+* **dedicated-cloud:** adding active node in datastore page ([#12313](https://github.com/ovh/manager/issues/12313)) ([bd73b15](https://github.com/ovh/manager/commit/bd73b15774fa3b039b1841d6ef400accbfea220d))
+* **dedicated-cloud:** adding location in hosts and datastores pages ([#12257](https://github.com/ovh/manager/issues/12257)) ([36480b6](https://github.com/ovh/manager/commit/36480b60bc960fbecd7d9ec96f7a1a77ed249f49))
+
+
+
+
+
 ## [19.48.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.48.1...@ovh-ux/manager-dedicated@19.48.2) (2024-08-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

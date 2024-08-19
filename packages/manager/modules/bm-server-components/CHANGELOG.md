@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.30.0...@ovh-ux/manager-bm-server-components@1.31.0) (2024-08-19)
+
+
+### Features
+
+* **dedicated:** make the label responsive ([#12594](https://github.com/ovh/manager/issues/12594)) ([419e7a7](https://github.com/ovh/manager/commit/419e7a70f03508a671a89d7092d4c8179d1e6234))
+
+
+
+
+
 # [1.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.29.1...@ovh-ux/manager-bm-server-components@1.30.0) (2024-08-13)
 
 
