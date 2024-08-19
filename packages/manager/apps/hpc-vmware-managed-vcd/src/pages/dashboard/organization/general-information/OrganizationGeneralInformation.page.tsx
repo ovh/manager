@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import Errors from '@/components/error/Error.component';
 import Loading from '@/components/loading/Loading.component';
 import BillingTile from '@/components/tiles/billing-tile/BillingTile.component';
@@ -47,6 +47,7 @@ function GeneralInformation() {
       <div>
         <BillingTile id={id} />
       </div>
+      <Outlet />
     </div>
   );
 }
