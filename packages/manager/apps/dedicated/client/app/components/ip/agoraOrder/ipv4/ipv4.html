@@ -58,10 +58,11 @@
             ></div>
         </oui-step-form>
 
-        <!-- Select the region for Parking IP-->
+        <!-- Select the region for Parking IP / Vrack-->
+
         <oui-step-form
             data-position="1"
-            data-ng-if="$ctrl.isParkingIp"
+            data-ng-if="$ctrl.isParkingIpOrVrack"
             data-id="region"
             data-name="region_selection"
             data-header="{{:: ('ip_agora_table_header_region' | translate)}}"
@@ -92,7 +93,7 @@
 
         <!-- Choice your solution -->
         <oui-step-form
-            data-position="{{$ctrl.isParkingIp ? 2: 1}}"
+            data-position="{{$ctrl.isParkingIpOrVrack ? 2: 1}}"
             data-id="offer"
             data-name="offer_selection"
             data-header="{{:: 'ip_agora_table_header_offer' | translate }}"
@@ -226,7 +227,7 @@
 
         <!-- Select the IP geolocation -->
         <oui-step-form
-            data-position="{{$ctrl.isParkingIp ? 3: 2}}"
+            data-position="{{$ctrl.isParkingIpOrVrack ? 3: 2}}"
             data-id="country"
             data-name="country_selection"
             data-header="{{:: 'ip_agora_ipv4_localisation_title' | translate }}"
@@ -273,7 +274,7 @@
 
         <!-- Select the organisation -->
         <oui-step-form
-            data-position="{{$ctrl.isParkingIp ? 4: 3}}"
+            data-position="{{$ctrl.isParkingIpOrVrack ? 4: 3}}"
             data-ng-if="$ctrl.model.params.selectedOffer.isIpBlockOffer && !$ctrl.isPrivateCloudOffer"
             data-id="organisation"
             data-name="organisation_selection"
