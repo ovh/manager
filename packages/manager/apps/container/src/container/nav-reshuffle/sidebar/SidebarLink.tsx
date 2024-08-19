@@ -33,6 +33,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   return !node.children && (node.url || node.routing) ? (
     <StaticLink
       handleClick={handleOnClick}
+      handleOnEnter={handleOnEnter}
       count={count}
       node={node}
       linkParams={linkParams}
@@ -58,7 +59,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
           text={t(node.shortTranslation)}
         />
       )}
-        <span className="flex justify-start align-items-center">
+      <span className="flex justify-start align-items-center">
         {node.icon && (
           <OsdsIcon
             name={node.icon as ODS_ICON_NAME}
@@ -68,27 +69,24 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
             contrasted
           />
         )}
-        {!isShortText && (
-          <span>{t(node.translation)}</span>
-        )}
-        </span>
-        <span className="flex justify-end align-items-center">
-
+        {!isShortText && <span>{t(node.translation)}</span>}
+      </span>
+      <span className="flex justify-end align-items-center">
         {!isShortText && (count as number) > 0 && (
           <OsdsIcon
-          name={ODS_ICON_NAME.SHAPE_DOT}
-          size={ODS_ICON_SIZE.xs}
-          className={style.sidebarLinkTag}
+            name={ODS_ICON_NAME.SHAPE_DOT}
+            size={ODS_ICON_SIZE.xs}
+            className={style.sidebarLinkTag}
           />
-          )}
+        )}
         {!isShortText && node.children ? (
           <span
-          className={`oui-icon oui-icon-chevron-right ${style.sidebar_arrow}`}
-          aria-hidden="true"
+            className={`oui-icon oui-icon-chevron-right ${style.sidebar_arrow}`}
+            aria-hidden="true"
           ></span>
-          ) : null}
+        ) : null}
         {!isShortText && <SidebarLinkTag node={node} />}
-          </span>
+      </span>
     </button>
   );
 };

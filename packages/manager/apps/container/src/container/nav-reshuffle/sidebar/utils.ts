@@ -233,23 +233,38 @@ export const findNodeByRouting = (root: Node, locationPath: string) => {
     const nodePath = node.routing.hash
       ? node.routing.hash.replace('#', node.routing.application)
       : '/' + node.routing.application;
-
     const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath);
-    return parsedPath.reduce(
-      (acc: boolean, segment: string) => pathSegment.includes(segment) && acc,
-      true,
-    )
-      ? node
-      : null;
+    return {
+      value: parsedPath.reduce(
+        (acc: boolean, segment: string) => {
+          const match = pathSegment.includes(segment);
+          pathSegment = pathSegment.replace(segment, '');
+          return match && acc
+        },
+        true,
+      )
+        ? node
+        : null,
+      segments: parsedPath.length,
+    };
   };
 
-  const exploreTree = (node: Node, pathSegment: string): Node | null => {
+  const exploreTree = (
+    node: Node,
+    pathSegment: string,
+  ): { value: Node | null; segments: number } => {
+    let results = [];
     if (node.children) {
       for (let child of node.children) {
         const result = exploreTree(child, pathSegment);
-        if (result) return result;
+        if (result?.value) results.push(result)
       }
-      return null;
+      return results.length > 0
+        ? results.reduce(
+            (acc, result) => (acc.segments < result.segments ? result : acc),
+            results[0],
+          )
+        : null;
     }
 
     return isMatchingNode(node, pathSegment);
@@ -261,10 +276,11 @@ export const findNodeByRouting = (root: Node, locationPath: string) => {
   for (let i = pathSegments.length; i > 0; i--) {
     const path = pathSegments.slice(0, i).join('/');
     const foundNode = exploreTree(root, path);
-    if (foundNode) return {
-      node: foundNode,
-      universe: findNodeById(root, foundNode.universe),
-    };
+    if (foundNode.value)
+      return {
+        node: foundNode.value,
+        universe: findNodeById(root, foundNode.value.universe),
+      };
   }
   return null;
 };

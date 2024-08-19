@@ -14,6 +14,7 @@ interface StaticLinkProps {
   node?: Node;
   linkParams?: Record<string, string>;
   handleClick?(): void;
+  handleOnEnter?(node: Node): void;
   id?: string;
   isShortText?: boolean;
 }
@@ -23,6 +24,7 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
   node = {},
   linkParams = {},
   handleClick = () => {},
+  handleOnEnter = () => {},
   id = '',
   isShortText = false,
 }: StaticLinkProps): JSX.Element => {
@@ -54,6 +56,11 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
   return (
     <a
       onClick={handleClick}
+      onKeyUp={(e) => {
+        if (e.key === 'Enter') {
+          handleOnEnter(node);
+        }
+      }}
       href={url}
       target={node.isExternal ? '_blank' : '_top'}
       rel={node.isExternal ? 'noopener noreferrer' : ''}

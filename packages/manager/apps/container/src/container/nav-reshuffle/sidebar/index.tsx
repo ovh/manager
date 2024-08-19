@@ -133,9 +133,9 @@ const Sidebar = (): JSX.Element => {
     if (currentNode) {
       // We already stored a node, we want to know if it stills in coherence with the current path
       // If not, we reset the node to null to not keep wrong information.
-      const parent = findNodeById(currentNavigationNode, currentNode.universe);
+      const universe = findNodeById(currentNavigationNode, currentNode.universe);
       // A node need a valid universe, if we can't find it, we reset it.
-      if (parent) {
+      if (universe) {
         // We have to parse the path to try to match it with the stored node
         const parsedPath = splitPathIntoSegmentsWithoutRouteParams(
           currentNode.routing.hash
@@ -155,7 +155,8 @@ const Sidebar = (): JSX.Element => {
             true,
           )
         ) {
-          selectSubMenu(currentNode, parent);
+          selectSubMenu(currentNode);
+          setSelectedNode(universe);
         } else {
           selectedNode ? setSelectedNode(null) : setSavedNode(null);
         }
@@ -168,7 +169,8 @@ const Sidebar = (): JSX.Element => {
     // we search in the full navigation tree a node that could match the current path
     const foundNode = findNodeByRouting(currentNavigationNode, pathname);
     if (foundNode) {
-      selectSubMenu(foundNode.node, foundNode.universe);
+      selectSubMenu(foundNode.node);
+      setSelectedNode(foundNode.universe);
     }
   }, [currentNavigationNode, location]);
 
@@ -225,8 +227,7 @@ const Sidebar = (): JSX.Element => {
     });
   };
 
-  const selectSubMenu = (node: Node, parent: Node) => {
-    setSelectedNode(parent);
+  const selectSubMenu = (node: Node) => {
     setSelectedSubMenu(node);
     setSavedNode(node);
     isMobile ? closeNavigationSidebar() : setOpen(false);
@@ -381,9 +382,7 @@ const Sidebar = (): JSX.Element => {
           }}
           selectedNode={selectedSubMenu}
           handleCloseSideBar={closeSubMenu}
-          handleOnSubMenuClick={(childNode: Node) =>
-            selectSubMenu(childNode, selectedNode)
-          }
+          handleOnSubMenuClick={selectSubMenu}
           rootNode={selectedNode}
         ></SubTree>
       )}
