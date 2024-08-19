@@ -1,29 +1,24 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu, ActionMenuItem } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import {
-  OsdsChip,
-  OsdsDivider,
-  OsdsIcon,
-  OsdsLink,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
-import { parseISO } from 'date-fns';
+import { OsdsChip, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OKMS } from '@/types/okms.type';
 import { useTerminateOKms } from '@/data/hooks/useTerminateOKms';
 import { TerminateModal } from '@/components/Modal/terminate/TerminateModal.component';
 import { KMSServiceInfos } from '@/types/okmsService.type';
 import { OkmsServiceState } from '../okmsServiceState/OkmsServiceState.component';
+import { Tile } from '@/components/dashboard/tile/tile.component';
+import { TileItem } from '@/components/dashboard/tile-item/tileItem.component';
+import { TileValue } from '@/components/dashboard/tile-value/tileValue.component';
+import { TileSeparator } from '@/components/dashboard/tile-separator/tileSeparator';
+import { TileValueDate } from '@/components/dashboard/tile-value-date/tileValueDate.component';
 
 type BillingInformationsTileProps = {
   okmsData?: OKMS;
@@ -35,11 +30,11 @@ const BillingInformationsTile = ({
   okmsService,
 }: BillingInformationsTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
-  const { environment, shell } = useContext(ShellContext);
-  const [dateTimeFormat, setDateTimeFormat] = useState<Intl.DateTimeFormat>();
   const [contactUrl, setContactUrl] = useState('');
   const [showTerminationModal, setShowTerminationModal] = useState(false);
-
+  const {
+    shell: { navigation },
+  } = useContext(ShellContext);
   const closeTerminateModal = () => {
     setShowTerminationModal(false);
   };
@@ -49,6 +44,12 @@ const BillingInformationsTile = ({
     onSuccess: closeTerminateModal,
     onError: closeTerminateModal,
   });
+
+  const dateFormat: Intl.DateTimeFormatOptions = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  };
 
   const items: ActionMenuItem[] = [
     {
@@ -64,7 +65,7 @@ const BillingInformationsTile = ({
   useEffect(() => {
     const fetchUrl = async () => {
       try {
-        const response = await shell.navigation.getURL(
+        const response = await navigation.getURL(
           'dedicated',
           '#/contacts/services',
           {},
@@ -75,158 +76,94 @@ const BillingInformationsTile = ({
       }
     };
     fetchUrl();
-  }, [shell]);
-
-  useEffect(() => {
-    setDateTimeFormat(
-      new Intl.DateTimeFormat(environment.getUserLocale().replace('_', '-'), {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-      }),
-    );
-  }, [environment]);
+  }, [navigation]);
 
   return (
     <>
-      <OsdsTile className="w-full h-fit flex-col" inline rounded>
-        <div className="flex flex-col w-full">
-          <OsdsText
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('billing_informations')}
-          </OsdsText>
-          <OsdsDivider separator />
-          <div className="flex flex-col mb-3">
-            <OsdsText
-              className="mb-4"
-              size={ODS_TEXT_SIZE._200}
-              level={ODS_TEXT_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t('key_management_service_dashboard_field_label_creation_date')}
-            </OsdsText>
-            <div className="flex flex-row justify-between items-center">
-              <OsdsText
-                className="mb-4"
-                size={ODS_TEXT_SIZE._400}
-                level={ODS_TEXT_LEVEL.body}
-                color={ODS_THEME_COLOR_INTENT.default}
-              >
-                {okmsService &&
-                  dateTimeFormat?.format(
-                    parseISO(
-                      okmsService?.billing.lifecycle.current.creationDate,
-                    ),
-                  )}
-              </OsdsText>
-            </div>
-            <OsdsDivider separator />
+      <Tile title={t('billing_informations')}>
+        <TileSeparator />
+        <TileItem
+          title={t(
+            'key_management_service_dashboard_field_label_creation_date',
+          )}
+        >
+          <TileValueDate
+            value={okmsService?.billing.lifecycle.current.creationDate}
+            options={dateFormat}
+          />
+        </TileItem>
+        <TileSeparator />
+        <TileItem
+          title={t('key_management_service_dashboard_field_label_state')}
+        >
+          <span>
+            <OkmsServiceState state={okmsService?.resource.state} inline />
+          </span>
+        </TileItem>
+        <TileSeparator />
+        <TileItem
+          title={t(
+            'key_management_service_dashboard_field_label_next_billing_date',
+          )}
+        >
+          <div className="flex flex-row justify-between items-center">
+            <TileValueDate
+              value={okmsService?.billing.nextBillingDate}
+              options={dateFormat}
+            />
 
-            <OsdsText
-              size={ODS_TEXT_SIZE._200}
-              level={ODS_TEXT_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t('key_management_service_dashboard_field_label_state')}
-            </OsdsText>
-            <span>
-              <OkmsServiceState state={okmsService?.resource.state} inline />
-            </span>
-            <OsdsDivider separator />
-            <OsdsText
-              className="mb-4"
-              size={ODS_TEXT_SIZE._200}
-              level={ODS_TEXT_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t(
-                'key_management_service_dashboard_field_label_next_billing_date',
-              )}
-            </OsdsText>
-            <div className="flex flex-row justify-between items-center">
-              <OsdsText
-                className="mb-4"
-                size={ODS_TEXT_SIZE._400}
-                level={ODS_TEXT_LEVEL.body}
-                color={ODS_THEME_COLOR_INTENT.default}
-              >
-                {okmsService &&
-                  dateTimeFormat?.format(
-                    parseISO(okmsService?.billing.nextBillingDate),
-                  )}
-              </OsdsText>
-              <div className="flex flex-row align-center gap-4">
-                <ActionMenu
-                  items={items}
-                  isCompact
-                  icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
-                />
-              </div>
-            </div>
-            <OsdsDivider separator />
-            <div className="flex flex-row justify-between items-center">
-              <OsdsText
-                className="mb-4"
-                size={ODS_TEXT_SIZE._200}
-                level={ODS_TEXT_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t('key_management_service_dashboard_field_label_engagement')}
-              </OsdsText>
-              <OsdsChip color={ODS_TEXT_COLOR_INTENT.error}>
-                {okmsService?.billing.engagement
-                  ? okmsService.billing.engagement
-                  : t(
-                      'key_management_service_dashboard_field_label_engagement_none',
-                    )}
-              </OsdsChip>
-            </div>
-            <OsdsDivider separator />
-            <OsdsText
-              className="mb-4"
-              size={ODS_TEXT_SIZE._200}
-              level={ODS_TEXT_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t('key_management_service_dashboard_field_label_contacts')}
-            </OsdsText>
-            {okmsService?.customer.contacts.map((contact) => {
-              return (
-                <OsdsText
-                  key={contact.customerCode + contact.type}
-                  className="mb-4"
-                  size={ODS_TEXT_SIZE._400}
-                  level={ODS_TEXT_LEVEL.body}
-                  color={ODS_THEME_COLOR_INTENT.default}
-                >
-                  {`${contact.customerCode} ${t(
-                    `key_management_service_dashboard_contact_type_${contact.type}`,
-                  )}`}
-                </OsdsText>
-              );
-            })}
-            <div className="flex flex-row items-center">
-              <OsdsLink
-                href={contactUrl}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              >
-                {t(
-                  'key_management_service_dashboard_field_label_manage_contacts',
-                )}
-              </OsdsLink>
-              <OsdsIcon
-                className="pl-4"
-                name={ODS_ICON_NAME.ARROW_RIGHT}
-                size={ODS_ICON_SIZE.xs}
-                color={ODS_THEME_COLOR_INTENT.info}
-              ></OsdsIcon>
+            <div className="flex flex-row align-center gap-4">
+              <ActionMenu
+                items={items}
+                isCompact
+                icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
+              />
             </div>
           </div>
-        </div>
-      </OsdsTile>
+        </TileItem>
+        <TileSeparator />
+        <TileItem
+          title={t('key_management_service_dashboard_field_label_engagement')}
+        >
+          <span>
+            <OsdsChip color={ODS_TEXT_COLOR_INTENT.error} inline>
+              {okmsService?.billing.engagement
+                ? okmsService.billing.engagement
+                : t(
+                    'key_management_service_dashboard_field_label_engagement_none',
+                  )}
+            </OsdsChip>
+          </span>
+        </TileItem>
+        <TileSeparator />
+        <TileItem
+          title={t('key_management_service_dashboard_field_label_contacts')}
+        >
+          {okmsService?.customer.contacts.map((contact) => {
+            return (
+              <TileValue
+                key={contact.customerCode + contact.type}
+                value={`${contact.customerCode} ${t(
+                  `key_management_service_dashboard_contact_type_${contact.type}`,
+                )}`}
+              />
+            );
+          })}
+          <div className="flex flex-row items-center">
+            <OsdsLink href={contactUrl} color={ODS_THEME_COLOR_INTENT.primary}>
+              {t(
+                'key_management_service_dashboard_field_label_manage_contacts',
+              )}
+            </OsdsLink>
+            <OsdsIcon
+              className="pl-4"
+              name={ODS_ICON_NAME.ARROW_RIGHT}
+              size={ODS_ICON_SIZE.xs}
+              color={ODS_THEME_COLOR_INTENT.info}
+            ></OsdsIcon>
+          </div>
+        </TileItem>
+      </Tile>
       {showTerminationModal && (
         <TerminateModal
           onConfirmTerminate={terminateKms}
