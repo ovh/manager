@@ -4,11 +4,12 @@ import { FETCH_PRICE_MAX_TRIES, PRODUCT_TYPES } from './ipv4.constant';
 
 export default class Ipv4AgoraOrder {
   /* @ngInject */
-  constructor($q, $http, OvhHttp, IpAgoraOrder) {
+  constructor($q, $http, OvhHttp, IpAgoraOrder, iceberg) {
     this.$q = $q;
     this.$http = $http;
     this.OvhHttp = OvhHttp;
     this.IpAgoraOrder = IpAgoraOrder;
+    this.iceberg = iceberg;
     this.fetchPricesTries = 0;
   }
 
@@ -19,6 +20,24 @@ export default class Ipv4AgoraOrder {
         product,
       },
     });
+  }
+
+  getVracks() {
+    return this.iceberg('/vrack')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) =>
+        data.map((vrack) => {
+          const serviceName = vrack.iam.urn.split(':').pop();
+          const displayName = vrack.name || serviceName;
+          return {
+            displayName,
+            serviceName,
+            type: PRODUCT_TYPES.vrack.apiTypeName,
+          };
+        }),
+      );
   }
 
   getServices() {

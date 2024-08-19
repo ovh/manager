@@ -71,7 +71,7 @@ export default class AgoraIpV4OrderController {
 
   $onInit() {
     this.catalogByLocation = [];
-    this.isParkingIp = false;
+    this.isParkingIpOrVrack = false;
     this.parkingIpOffers = [];
     this.model = {
       params: {},
@@ -115,6 +115,7 @@ export default class AgoraIpV4OrderController {
       .all({
         user: this.User.getUser(),
         services: this.Ipv4AgoraOrder.getServices(),
+        vrack: this.Ipv4AgoraOrder.getVracks(), // toDo
       })
       .then((results) => {
         results.services.push({
@@ -123,6 +124,7 @@ export default class AgoraIpV4OrderController {
           type: 'parking',
         });
         this.user = results.user;
+        this.services = [...results.services, ...results.vrack];
         this.services = results.services.map((service) => ({
           ...service,
           translatedType: this.$translate.instant(
@@ -308,9 +310,10 @@ export default class AgoraIpV4OrderController {
   }
 
   onIpServiceSelection() {
-    this.isParkingIp =
-      this.model?.selectedService?.type === PRODUCT_TYPES.parking.typeName;
-    if (this.isParkingIp) {
+    this.isParkingIpOrVrack =
+      this.model?.selectedService?.type === PRODUCT_TYPES.parking.typeName ||
+      this.model?.selectedService?.type === PRODUCT_TYPES.vrack.typeName;
+    if (this.isParkingIpOrVrack) {
       this.loading.region = true;
       this.parkingIpOffers = this.ipCatalog.filter((plan) =>
         /^ip-v4|^ip-failover/.test(plan.planCode),
@@ -402,7 +405,7 @@ export default class AgoraIpV4OrderController {
       ipOffersPromise = this.loadPrivateCloudIpOffers(
         get(this.model, 'selectedService.serviceName'),
       );
-    } else if (this.isParkingIp) {
+    } else if (this.isParkingIpOrVrack) {
       // Country for Single IP selection in parking
       const country = [
         DATACENTER_TO_COUNTRY[this.model.selectedRegion.datacenter],
@@ -610,15 +613,25 @@ export default class AgoraIpV4OrderController {
         serviceName: get(this.model, 'selectedService.serviceName'),
         ...commonProductProps,
       });
-    } else if (this.isParkingIp) {
+    } else if (
+      this.model?.selectedService?.type === PRODUCT_TYPES.parking.typeName
+    ) {
       const { datacenter } = this.model.selectedRegion;
       productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
-        organisation: get(
-          this.model.params,
-          'selectedOrganisation.organisationId',
-        ),
+        organisation: this.model.params.selectedOrganisation.organisationId,
         ...commonProductProps,
         country: params.selectedCountry?.code,
+        datacenter,
+      });
+    } else if (
+      this.model?.selectedService?.type === PRODUCT_TYPES.vrack.typeName
+    ) {
+      const { datacenter } = this.model.selectedRegion;
+      productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
+        organisation: this.model.params.selectedOrganisation.organisationId,
+        ...commonProductProps,
+        country: DATACENTER_TO_COUNTRY[datacenter].toUpperCase(),
+        productRegionName: this.model.params.selectedOffer.productRegion,
         datacenter,
       });
     } else {
@@ -693,7 +706,8 @@ export default class AgoraIpV4OrderController {
         PRODUCT_TYPES.privateCloud.typeName ||
       this.model.selectedService?.type ===
         PRODUCT_TYPES.dedicatedServer.typeName ||
-      this.model.selectedService?.type === PRODUCT_TYPES.parking.typeName
+      this.model.selectedService?.type === PRODUCT_TYPES.parking.typeName ||
+      this.model.selectedService?.type === PRODUCT_TYPES.vrack.typeName
     );
   }
 
