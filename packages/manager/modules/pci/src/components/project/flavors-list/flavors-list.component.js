@@ -22,5 +22,6 @@ export default {
     reload: '<',
     loadEnd: '&',
     displayLoader: '<?',
+    onTabChange: '&?',
   },
 };

@@ -188,6 +188,14 @@ export default class PciInstancesAddController {
 
     this.isAddingPrivateNetwork = false;
     this.isAddingPrivateNetworkError = false;
+
+    this.oldStep = null;
+    this.continent = null;
+
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::instances::funnel::add_instance`,
+      'page',
+    );
   }
 
   get areLocalZonesFree() {
@@ -203,6 +211,10 @@ export default class PciInstancesAddController {
   updateLocation(location) {
     this.model.location = location;
     this.selectedMode = this.isLocalZone() ? this.modes[2] : this.modes[0];
+
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::funnel::tab::add_instance::select_localisation::${location}`,
+    );
     return null;
   }
 
@@ -305,11 +317,22 @@ export default class PciInstancesAddController {
 
   onFlavorFocus() {
     this.displaySelectedFlavor = false;
+
+    if (this.oldStep && this.oldStep >= 0) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::link::add_instance::edit_step_flavor_${this.flavor.name}`,
+      );
+    }
   }
 
   onFlavorChange() {
     this.displaySelectedFlavor = true;
     this.getFilteredRegions();
+
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::funnel::button::add_instance::select_flavor::add_${this.flavor.name}`,
+    );
+    this.oldStep = 0;
   }
 
   displayFlavorSelectionHeader() {
@@ -343,8 +366,17 @@ export default class PciInstancesAddController {
     return this.model.flavorGroup?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
   }
 
+  onFlavorTabChange(category) {
+    if (this.currentStep === 0) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::tab::add_instance::select_flavor::${category}`,
+      );
+    }
+  }
+
   onFlavorCategorySelect(flavor, category) {
     this.selectedCategory = category;
+
     if (flavor.legacy) {
       this.CucCloudMessage.warning(
         this.$translate.instant(
@@ -355,10 +387,21 @@ export default class PciInstancesAddController {
     } else {
       this.messages = [];
     }
+    this.flavor = flavor;
+
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::funnel::tile::add_instance::select_flavor::${flavor.name}`,
+    );
   }
 
   onRegionFocus() {
     this.displaySelectedRegion = false;
+
+    if (this.oldStep && this.oldStep > 0) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::link::add_instance::edit_step_localisation_${this.flavor.name}`,
+      );
+    }
   }
 
   addRegions() {
@@ -414,6 +457,10 @@ export default class PciInstancesAddController {
     ) {
       this.isLoading = true;
       this.isAddingNewRegion = true;
+
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::button::add_instance::select_localisation::activate_add_${this.model.datacenter.name}`,
+      );
       return this.addRegions().then(() => {
         return this.PciProjectsProjectInstanceService.getProjectQuota(
           this.projectId,
@@ -432,6 +479,10 @@ export default class PciInstancesAddController {
         });
       });
     }
+
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::funnel::button::add_instance::select_localisation::add_${this.model.datacenter.name}`,
+    );
 
     this.displaySelectedRegion = true;
     this.instance.region = this.model.datacenter.name;
@@ -487,6 +538,7 @@ export default class PciInstancesAddController {
         );
     }
     this.model.image = null;
+    this.oldStep = 1;
     return null;
   }
 
@@ -521,6 +573,12 @@ export default class PciInstancesAddController {
 
   onImageFocus() {
     this.displaySelectedImage = false;
+
+    if (this.oldStep > 1) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::link::add_instance::edit_step_image_${this.model.image.name}`,
+      );
+    }
   }
 
   onImageChange() {
@@ -541,6 +599,8 @@ export default class PciInstancesAddController {
     } else {
       this.instance.sshKeyId = get(this.model.sshKey, 'id');
     }
+
+    this.oldStep = 2;
   }
 
   isLinuxImageType() {
@@ -575,6 +635,11 @@ export default class PciInstancesAddController {
           'pci_projects_project_instances_add_localPrivateNetwork_placeholder',
         ),
       };
+    }
+    if (this.oldStep > 2) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::link::add_instance::edit_step_configure_instance`,
+      );
     }
     if (!isEmpty(this.model.datacenter)) {
       this.disableNetwork = this.isLocalZone();
@@ -696,6 +761,13 @@ export default class PciInstancesAddController {
 
   onCancel() {
     this.trackAddInstance(`add::create-private-network::cancel`);
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::funnel::button::add_instance::cancell::${
+        this.instance.monthlyBilling ? 'monthly' : 'hourly'
+      }_${this.model.datacenter.name}_${this.flavor.name}_${
+        this.selectedMode.name
+      }_${this.model.image.name}`,
+    );
     this.showAddPrivateNetworkModalForm = false;
   }
 
@@ -717,6 +789,10 @@ export default class PciInstancesAddController {
     this.isLocalPrivateModeLocalZone = false;
     this.isCreatingNewPrivateNetwork = null;
     this.isAttachFloatingIP = false;
+    this.oldStep = 3;
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::funnel::button::add_instance::configure_instance::add_${this.model.number}`,
+    );
   }
 
   onModeFocus() {
@@ -741,6 +817,17 @@ export default class PciInstancesAddController {
         this.isAttachFloatingIP = false;
       }
     });
+
+    if (this.oldStep === 3) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::tile::add_instance::configure_network::${this.selectedMode.name}`,
+      );
+    }
+    if (this.oldStep > 3) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::link::add_instance::edit_step_configure_network_${this.selectedMode.name}`,
+      );
+    }
   }
 
   loadNetworkDetails() {
@@ -799,6 +886,9 @@ export default class PciInstancesAddController {
   }
 
   onSelectedModeChange(mode) {
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::funnel::tile::add_instance::configure_network::${mode?.name}`,
+    );
     this.selectedMode = mode;
     this.selectedPrivateNetwork = {
       id: '',
@@ -935,7 +1025,14 @@ export default class PciInstancesAddController {
 
   onModeSubmit() {
     if (this.isLocalPrivateModeLocalZone && this.privateNetworkName) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::button::add_instance::configure_network::add_${this.selectedMode.name}`,
+      );
       this.onCreatePrivateNetworkClick();
+    } else {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::button::add_instance::configure_network::associate_${this.selectedMode.name}`,
+      );
     }
 
     this.addons = [];
@@ -968,6 +1065,8 @@ export default class PciInstancesAddController {
           });
       }
     }
+    this.oldStep = 4;
+
     return null;
   }
 
@@ -1050,10 +1149,25 @@ export default class PciInstancesAddController {
   }
 
   onCreateFormStepperSubmit() {
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::funnel::button::add_instance::add_billing::add_${
+        this.instance.monthlyBilling ? 'monthly' : 'hourly'
+      }`,
+    );
+
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::funnel::button::add_instance::confirm::instances_created_${
+        this.instance.monthlyBilling ? 'monthly' : 'hourly'
+      }_${this.model.datacenter.name}_${this.flavor.name}_${
+        this.selectedMode.name
+      }_${this.model.image.name}`,
+    );
+
     if (this.isPrivateMode()) {
       this.confirmPrivateInstanceCreation = true;
       return null;
     }
+    this.oldStep = 5;
     return this.create();
   }
 
@@ -1151,14 +1265,31 @@ export default class PciInstancesAddController {
         const { id: instanceId, ipAddresses: ips } = result;
 
         if (!this.isPrivateMode()) {
+          this.trackAddInstance(
+            `PublicCloud::compute::instances::instances::banner-info::add_instance_success::${message}`,
+            'page',
+          );
           return this.goBack(message, 'success');
         }
+
+        this.trackAddInstance(
+          `PublicCloud::compute::instances::instances::banner-info::add_instance_pending::${message}`,
+          'page',
+        );
         if (this.subnetGateways?.length === 0 && this.isAttachFloatingIP) {
           return this.createGateway(instanceId, ips, message);
         }
         return this.onCreateInstanceSuccess(instanceId, ips, message);
       })
       .catch((error) => {
+        this.trackAddInstance(
+          `PublicCloud::compute::instances::instances::banner-error::add_instance_error::${get(
+            error,
+            'data.message',
+            null,
+          )}`,
+          'page',
+        );
         this.createInstanceError(error);
       })
       .finally(() => {
@@ -1189,6 +1320,10 @@ export default class PciInstancesAddController {
         );
       }
     }
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::instances::banner-info::add_instance_success::{${message}`,
+      'page',
+    );
     return this.goBack(message, 'success');
   }
 
@@ -1413,10 +1548,90 @@ export default class PciInstancesAddController {
       });
   }
 
-  handleisCreatingNewPrivateNetworkChange() {
+  handleisCreatingNewPrivateNetworkChange(value) {
     if (this.isCreatingNewPrivateNetwork === false) {
       this.privateNetworkName = null;
     }
     this.selectedPrivateNetwork = this.defaultPrivateNetwork;
+
+    if (value === true) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::box::add_instance::create_local_private_network`,
+      );
+
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::box::add_instance::activate_dhcp_private_network`,
+      );
+    } else {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::box::add_instance::associate_existinge_private_network`,
+      );
+    }
+  }
+
+  onContinentChange(continent) {
+    if (this.currentStep === 1) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::tab::add_instance::select_localisation::${continent}`,
+      );
+    }
+  }
+
+  onNonAvailableRegionsCheck(value) {
+    if (value) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::box::add_instance::show_unvailable_localisations`,
+      );
+    }
+  }
+
+  onImageTabChange(type) {
+    if (this.currentStep === 2) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::tab::add_instance::select_image::${type}`,
+      );
+    }
+  }
+
+  onImageSelect(image) {
+    if (this.currentStep === 2) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::button::add_instance::select_image::add_${image.name}`,
+      );
+    }
+  }
+
+  onModelNumberChange(number) {
+    let action = 'more';
+    if (number < this.model.number) {
+      action = 'less';
+    }
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::funnel::quantity_more::add_instance::configure_instance::${action}`,
+    );
+  }
+
+  onEnableDhcpChange(enableDhcp) {
+    if (enableDhcp) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::box::add_instance::activate_dhcp_private_network`,
+      );
+    }
+  }
+
+  onBillingTypeChange(billing) {
+    if (billing) {
+      this.trackAddInstance(
+        `PublicCloud::compute::instances::funnel::tile::add_instance::select_billing::${billing}`,
+      );
+    }
+  }
+
+  onBillingFocus() {
+    this.trackAddInstance(
+      `PublicCloud::compute::instances::funnel::tile::add_instance::select_billing::${
+        this.instance.monthlyBilling ? 'monthly' : 'hourly'
+      }`,
+    );
   }
 }

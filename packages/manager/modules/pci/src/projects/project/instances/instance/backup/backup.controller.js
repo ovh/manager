@@ -32,23 +32,33 @@ export default class PciInstanceBackupController {
   createBackup() {
     this.isLoading = true;
     this.trackBackupCreate();
+
     return this.PciProjectsProjectInstanceService.createBackup(
       this.projectId,
       this.instance,
       this.backup,
     )
-      .then(() =>
-        this.goBack(
+      .then(() => {
+        this.atInternet.trackPage({
+          name: `PublicCloud::compute::instances::instances::banner-info::create_instances-backup_pending::${this.instance.flavor?.name}_${this.instance.region}`,
+          type: 'navigation',
+        });
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_instances_instance_backup_success_message',
             {
               backup: this.backup.name,
             },
           ),
-        ),
-      )
-      .catch((err) =>
-        this.goBack(
+        );
+      })
+
+      .catch((err) => {
+        this.atInternet.trackPage({
+          name: `PublicCloud::compute::instances::instances::banner-error:create_instances-backup_error::${this.instance.flavor?.name}_${this.instance.region}`,
+          type: 'navigation',
+        });
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_instances_instance_backup_error_backup',
             {
@@ -57,16 +67,21 @@ export default class PciInstanceBackupController {
             },
           ),
           'error',
-        ),
-      )
+        );
+      })
+
       .finally(() => {
+        this.atInternet.trackPage({
+          name: `PublicCloud::compute::instances::instances::banner-info::create_instances-backup_success::${this.instance.flavor?.name}_${this.instance.region}`,
+          type: 'navigation',
+        });
         this.isLoading = false;
       });
   }
 
   trackBackupCreate() {
     this.atInternet.trackClick({
-      name: 'PublicCloud::pci::projects::project::instances::backup::confirm',
+      name: `PublicCloud::compute::instances::pop-up::button::create_instances-backup::confirm::${this.instance.flavor?.name}_${this.instance.region}`,
       type: 'action',
     });
   }

@@ -108,19 +108,27 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.instances.add', {
           projectId,
         }),
-      trackingPrefix: /* @ngInject */ () =>
-        `PublicCloud::pci::projects::project::instances`,
+      trackingPrefix: /* @ngInject */ () => (isCompute) =>
+        isCompute
+          ? `PublicCloud::compute::instances::`
+          : `PublicCloud::pci::projects::project::instances`,
       trackGridAction: /* @ngInject */ (atInternet, trackingPrefix) => (
         label,
+        isComputeTrack,
       ) =>
         atInternet.trackClick({
-          name: `${trackingPrefix}::table-option-menu::${label}`,
+          name: `${trackingPrefix(isComputeTrack)}${
+            isComputeTrack ? label : `::table-option-menu::${label}`
+          }`,
           type: 'action',
         }),
       viewInstance: /* @ngInject */ ($state, projectId, trackGridAction) => (
         instance,
       ) => {
-        trackGridAction('details');
+        trackGridAction(
+          `datagrid::button::details_instances::${instance.flavor?.name}_${instance.region}`,
+          true,
+        );
         return $state.go('pci.projects.project.instances.instance', {
           projectId,
           instanceId: instance.id,
@@ -206,7 +214,10 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
         trackGridAction,
       ) => (instance) => {
-        trackGridAction('create-backup');
+        trackGridAction(
+          `datagrid::button::create_instances-backup::${instance.flavor?.name}_${instance.region}`,
+          true,
+        );
         return $state.go('pci.projects.project.instances.backup', {
           projectId,
           instanceId: instance.id,
@@ -333,7 +344,11 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
         trackGridAction,
       ) => (instance) => {
-        trackGridAction('create-automatic-backup');
+        trackGridAction(
+          `datagrid::button::create_automatic-instances-backup::${instance.flavor?.name}_${instance.region}`,
+          true,
+        );
+
         return $state.go('pci.projects.project.workflow.new', {
           projectId,
           selectedInstance: instance,
