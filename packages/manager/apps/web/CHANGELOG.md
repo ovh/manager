@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.32.6...@ovh-ux/manager-web@18.33.0) (2024-08-19)
+
+
+### Bug Fixes
+
+* **web:** access to database list grand user ([#12658](https://github.com/ovh/manager/issues/12658)) ([f24d172](https://github.com/ovh/manager/commit/f24d17294da52855919e3d2cc8c60b70a8711e27))
+
+
+### Features
+
+* **web:** delete the big back on label databases archives ([#12575](https://github.com/ovh/manager/issues/12575)) ([b532218](https://github.com/ovh/manager/commit/b5322188a0c26f1e571cc2ad23a7b8c075722456))
+
+
+
+
+
 ## [18.32.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.32.5...@ovh-ux/manager-web@18.32.6) (2024-08-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
