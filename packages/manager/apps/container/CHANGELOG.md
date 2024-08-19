@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.68.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.67.1...@ovh-ux/manager-container-app@0.68.0) (2024-08-19)
+
+
+### Features
+
+* **container:** move nas-ha under storage section on classic ([#12251](https://github.com/ovh/manager/issues/12251)) ([ae6a459](https://github.com/ovh/manager/commit/ae6a459ae5a02285811a7aedea14fe56d824aec9))
+* **container:** poc eloquant ([#12160](https://github.com/ovh/manager/issues/12160)) ([be1198e](https://github.com/ovh/manager/commit/be1198ec07b7cf8eb4d15e448ccd7f818ad2261b))
+* **container:** remove feedback modal ([#12396](https://github.com/ovh/manager/issues/12396)) ([9cec397](https://github.com/ovh/manager/commit/9cec397bdf4f2893077c485873f4f9ad0fdea08c))
+
+
+
+
+
 ## [0.67.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.67.0...@ovh-ux/manager-container-app@0.67.1) (2024-08-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
