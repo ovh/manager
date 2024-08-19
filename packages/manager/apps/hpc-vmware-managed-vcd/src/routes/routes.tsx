@@ -54,34 +54,38 @@ export const Routes: any = [
                 pageType: PageType.dashboard,
               },
             },
-          },
-          {
-            id: 'edit-name',
-            path: urls.editName,
-            ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/organization/edit/EditName.page'),
-            ),
-            handle: {
-              tracking: {
-                pageName: 'edit-name',
-                pageType: PageType.popup,
+            children: [
+              {
+                id: 'edit-name',
+                path: urls.editName,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/organization/general-information/edit/EditName.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'edit-name',
+                    pageType: PageType.popup,
+                  },
+                },
               },
-            },
-          },
-          {
-            id: 'edit-desc',
-            path: urls.editDesc,
-            ...lazyRouteConfig(() =>
-              import(
-                '@/pages/dashboard/organization/edit/EditDescription.page'
-              ),
-            ),
-            handle: {
-              tracking: {
-                pageName: 'edit-desc',
-                pageType: PageType.popup,
+              {
+                id: 'edit-desc',
+                path: urls.editDesc,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/organization/general-information/edit/EditDescription.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'edit-desc',
+                    pageType: PageType.popup,
+                  },
+                },
               },
-            },
+            ],
           },
           {
             id: 'datacentres',
