@@ -123,19 +123,23 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
 
       goToState: /* @ngInject */ ($state) => (targetedStatePromise) => {
-        targetedStatePromise.then((targetedState) => {
-          if (targetedState.isUApp) {
-            const url = new URL(targetedState.url);
-            Object.keys(targetedState.params).forEach((key) => {
-              url.searchParams.append(key, targetedState.params[key]);
-            });
-            const state = [targetedState.url, url.searchParams].join('?');
-            window.location = state;
-            return state;
-          }
-          const { state, params, options } = targetedState;
-          return $state.go(state, params, options);
-        });
+        if (targetedStatePromise instanceof Promise) {
+          targetedStatePromise.then((targetedState) => {
+            if (targetedState.isUApp) {
+              const url = new URL(targetedState.url);
+              Object.keys(targetedState.params).forEach((key) => {
+                url.searchParams.append(key, targetedState.params[key]);
+              });
+              const state = [targetedState.url, url.searchParams].join('?');
+              window.location = state;
+              return state;
+            }
+            const { state, params, options } = targetedState;
+            return $state.go(state, params, options);
+          });
+        }
+        const { state, params, options } = targetedStatePromise;
+        return $state.go(state, params, options);
       },
 
       goToProject: /* @ngInject */ ($state) => (project) =>
