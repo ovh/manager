@@ -1,65 +1,20 @@
 import { useEffect } from 'react';
 import { useShell } from '@/context';
+import { languages, regions } from './eloquant.constants';
 
 const EloquantSurvey = () => {
   const shell = useShell();
   const environment = shell.getPlugin('environment').getEnvironment();
-  const user = environment.getUser();
+  const locale = environment.getUserLocale();
   const region = environment.getRegion();
-  const languages = [
-    {
-      code: 'fr_FR',
-      short: 'fr',
-      long: 'french',
-    },
-    {
-      code: 'en_GB',
-      short: 'en',
-      long: 'english',
-    },
-    {
-      code: 'fr_CA',
-      short: 'fr',
-      long: 'french',
-    },
-    {
-      code: 'pl_PL',
-      short: 'pl',
-      long: 'polsky',
-    },
-    {
-      code: 'de_DE',
-      short: 'de',
-      long: 'DE',
-    },
-    {
-      code: 'es_ES',
-      short: 'es',
-      long: 'spanish',
-    },
-    {
-      code: 'it_IT',
-      short: 'it',
-      long: 'italian',
-    },
-    {
-      code: 'pt_PT',
-      short: 'pt',
-      long: 'portugues',
-    },
-  ];
-
-  const regions = {
-    EU: 'Europe',
-    CA: 'Asie',
-    US: 'USA'
-  };
-  const regionTerm = regions[region as 'EU'|'CA'|'US'];
+  const user = environment.getUser();
+  
+  const regionTerm = regions[region as keyof typeof regions];
 
   useEffect(() => {
-    const { short, long } = languages.filter(
-      (lang) => lang.code === user.language,
-    )[0];
+    const { short, long } = languages.find(
+      (lang) => lang.code === locale,
+    ) || {};
 
     window.surveyLanguage = short;
 
@@ -73,11 +28,11 @@ const EloquantSurvey = () => {
     script.defer = true;
     script.src = url;
 
-    script.onload = function() {
+    script.onload = function () {
       const elq = window.elqwebtrigger;
       // This condition is used to choose the correct publication according the language, and especially to display the popin's title in the correct language
       // The condition is defined in the first publication's step => Capture3
-      elq.set('condition.language', function() {
+      elq.set('condition.language', function () {
         return long;
       });
 
@@ -85,8 +40,12 @@ const EloquantSurvey = () => {
       // Do not forget to choose it during the publication's step "Parameters" => Capture1
       // If the website exposes a javascript variable which may be used to fill this data, the following line of code is not necessary.
       // Only fill the checkbox "variable javascript" and enter the name of the website variable.
-      elq.set('urlparameter.region', function() {
+      elq.set('urlparameter.region', function () {
         return regionTerm;
+      });
+
+      elq.set('urlparameter.nic_handle', function() {
+        return user.nichandle;
       });
     };
     doc.body.appendChild(script);
@@ -94,7 +53,7 @@ const EloquantSurvey = () => {
     return () => {
       doc.body.removeChild(script);
     };
-  }, []);
+  }, [locale]);
 
   return <></>;
 };
