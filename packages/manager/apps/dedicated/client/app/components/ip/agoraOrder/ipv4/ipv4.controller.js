@@ -119,8 +119,8 @@ export default class AgoraIpV4OrderController {
       .then((results) => {
         results.services.push({
           displayName: this.$translate.instant('ip_servicetype__PARK'),
-          serviceName: 'PARKING',
-          type: 'PARKING',
+          serviceName: 'parking',
+          type: 'parking',
         });
         this.user = results.user;
         this.services = results.services.map((service) => ({
@@ -311,13 +311,15 @@ export default class AgoraIpV4OrderController {
         .flat();
       const uniqueDatacenters = [...new Set(DATACENTERS)];
       this.catalogByLocation = uniqueDatacenters.map((datacenter) => {
+        const flag =
+          datacenter === 'ERI' ? 'gb' : DATACENTER_TO_COUNTRY[datacenter];
         return {
           datacenter,
           regionName: DATACENTER_TO_REGION[datacenter],
           location: this.$translate.instant(
             `ip_agora_ipv6_location_${DATACENTER_TO_REGION[datacenter]}`,
           ),
-          icon: `oui-flag oui-flag_${DATACENTER_TO_COUNTRY[datacenter]}`,
+          icon: `oui-flag oui-flag_${flag}`,
         };
       });
       this.loading.region = false;

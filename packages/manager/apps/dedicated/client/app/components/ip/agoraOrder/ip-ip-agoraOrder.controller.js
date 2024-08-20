@@ -31,7 +31,7 @@ export default class AgoraIpOrderCtrl {
   }
 
   getlowestPrice() {
-    const plans = this.ipCatalog.filter((plan) =>
+    const plans = this.ipCatalog?.filter((plan) =>
       Object.values(IP_FAILOVER_PLANCODE).includes(plan.planCode),
     );
     plans.forEach(
