@@ -1,6 +1,7 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
+  ODS_BUTTON_TEXT_ALIGN,
   ODS_BUTTON_VARIANT,
   ODS_DIVIDER_SIZE,
   ODS_ICON_NAME,
@@ -34,9 +35,9 @@ export default function TileButton({
         href={href}
         data-testid={dataTestId}
         disabled={isDisabled || undefined}
-        inline
+        textAlign={ODS_BUTTON_TEXT_ALIGN.start}
       >
-        <span slot="start">{title}</span>
+        {title}
         <span slot="end">
           <OsdsIcon
             name={ODS_ICON_NAME.CHEVRON_RIGHT}
