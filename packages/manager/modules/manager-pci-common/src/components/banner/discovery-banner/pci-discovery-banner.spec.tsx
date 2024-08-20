@@ -1,6 +1,5 @@
 import { describe, vi } from 'vitest';
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { fireEvent, screen, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import {
   isDiscoveryProject,
   PciDiscoveryBanner,
