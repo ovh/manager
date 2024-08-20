@@ -31,6 +31,11 @@
   "kube_service_cluster_region": "Région",
   "kube_service_cluster_api_url": "URL de l'API Kubernetes de votre cluster",
   "kube_service_cluster_nodes_url": "URL des nœuds Kubernetes de votre cluster",
+  "kube_service_cluster_network_tile_title": "Réseau",
+  "kube_service_cluster_network_attached_network": "Réseau attaché",
+  "kube_service_cluster_network_subnet": "Sous-réseau",
+  "kube_service_cluster_network_lb_subnet": "Sous-réseau Load Balancer",
+  "kube_service_cluster_network_error": "Une erreur est survenue lors du chargement des informations réseau : {{ error }}",
   "kube_service_billing": "Facturation",
   "kube_service_billing_plan": "Offre",
   "kube_service_billing_contact": "Nic Billing",
@@ -74,5 +79,6 @@
   "kube_service_cluster_network_attached": "Réseau attaché",
   "kube_service_cluster_network_ovh_gateway": "Passerelle Internet OVHcloud",
   "kube_service_cluster_network_vrack_default_gateway": "Passerelle par défaut du vRACK (DHCP)",
-  "kube_service_cluster_network_vrack_customer_gateway": "Passerelle : {{ vRackGatewayIp }}"
+  "kube_service_cluster_network_vrack_customer_gateway": "Passerelle : {{ vRackGatewayIp }}",
+  "kube_service_network_edit": "Modifier les paramètres du réseau"
 }
