@@ -18,6 +18,8 @@ const meta: Meta = {
     defaultValue: { control: 'text' },
     cancelButtonLabel: { control: 'text' },
     confirmButtonLabel: { control: 'text' },
+    pattern: { control: 'text' },
+    patternMessage: { control: 'text' },
   },
   args: {
     closeModal: () => console.log('close'),
@@ -31,6 +33,9 @@ const meta: Meta = {
     cancelButtonLabel: 'Cancel',
     confirmButtonLabel: 'Confirm',
     error: '',
+    pattern: '^[a-zA-Z0-9-_s]*$',
+    patternMessage:
+      "Le nom du service doit comporter entre 3 et 63 caractères , doit commencer et se terminer par des caractères alphanumériques minuscules (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants : '_', '.' et '-'.",
   },
 };
 
