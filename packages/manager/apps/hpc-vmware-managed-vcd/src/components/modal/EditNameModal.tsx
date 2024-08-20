@@ -2,8 +2,6 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
   OdsInputValueChangeEventDetail,
   OsdsInputCustomEvent,
 } from '@ovhcloud/ods-components';
@@ -47,17 +45,14 @@ export const EditNameModal = ({
       color={ODS_THEME_COLOR_INTENT.info}
       onOdsModalClose={onCloseModal}
       dismissible
+      headline={t('managed_vcd_dashboard_edit_name_modal_title')}
     >
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.heading}
-        size={ODS_TEXT_SIZE._400}
-      >
-        {t('managed_vcd_dashboard_edit_name_modal_title')}
-      </OsdsText>
-
       <OsdsFormField>
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mt-6">
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          className="mt-6"
+          slot="label"
+        >
           {t('managed_vcd_dashboard_edit_name_modal_label')}
         </OsdsText>
         <OsdsInput
