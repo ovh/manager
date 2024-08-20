@@ -61,7 +61,7 @@ export default function EditNetworkPage() {
     isPrivateRouting !== gatewayForm.isEnabled ||
     (gatewayForm.isEnabled && gatewayForm.ip !== gatewayIp);
 
-  const isIpValid = gatewayForm.mode === 'auto' || !!gatewayForm.ip;
+  const isIpValid = gatewayForm.mode === 'custom' ? !!gatewayForm.ip : true;
 
   const hasLoadBalancersChanges =
     kubeDetail?.loadBalancersSubnetId !== loadBalancerSubnet?.id;
