@@ -32,6 +32,7 @@ export function RegionList({
             )}
             checked={selectedRegion === region}
             onClick={() => onClick(region)}
+            data-testid={`region-${region.name}`}
           >
             {render(region, selectedRegion === region)}
           </OsdsTile>
