@@ -18,6 +18,8 @@ const meta: Meta = {
     defaultValue: { control: 'text' },
     cancelButtonLabel: { control: 'text' },
     confirmButtonLabel: { control: 'text' },
+    pattern: { control: 'text' },
+    patternMessage: { control: 'text' },
   },
   args: {
     closeModal: () => console.log('close'),
@@ -31,6 +33,8 @@ const meta: Meta = {
     cancelButtonLabel: 'Cancel',
     confirmButtonLabel: 'Confirm',
     error: '',
+    pattern: '^[a-zA-Z0-9-_s]*$',
+    patternMessage: 'put your pattern message here',
   },
 };
 

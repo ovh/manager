@@ -15,6 +15,8 @@ export const sharedProps: UpdateNameModalProps = {
   inputLabel: 'inputLabel',
   cancelButtonLabel: 'cancelButtonLabel',
   confirmButtonLabel: 'confirmButtonLabel',
+  pattern: '^[a-zA-Z0-9-_ s]*$',
+  patternMessage: 'regex epression to respect',
 };
 
 describe('Update Name Modal component', () => {
@@ -85,6 +87,42 @@ describe('Update Name Modal component', () => {
 
     await waitFor(() => {
       expect(sharedProps.updateDisplayName).toHaveBeenCalled();
+    });
+  });
+
+  it('render patternMessage when pattern is present and button validate is clickable', async () => {
+    render(<UpdateNameModal {...sharedProps} />);
+    const input = screen.getByLabelText('update-input');
+    const event = new CustomEvent('odsValueChange', {
+      detail: { value: 'Test' },
+    });
+    fireEvent(input, event);
+
+    await waitFor(() => {
+      const patternMessage = screen.getByText(sharedProps.patternMessage);
+      expect(patternMessage).toHaveAttribute('color', 'text');
+      expect(patternMessage).toBeVisible();
+
+      const validateButton = screen.getByText(sharedProps.confirmButtonLabel);
+      expect(validateButton).toHaveAttribute('tabindex', '0');
+      expect(validateButton).toBeVisible();
+    });
+  });
+
+  it('button validate is disabled when pattern is invalid ', async () => {
+    render(<UpdateNameModal {...sharedProps} />);
+    const input = screen.getByLabelText('update-input');
+    const event = new CustomEvent('odsValueChange', {
+      detail: { value: 'Test*******' },
+    });
+    fireEvent(input, event);
+    await waitFor(() => {
+      const validateButton = screen.getByText(sharedProps.confirmButtonLabel);
+      expect(validateButton).toHaveAttribute('disabled');
+      expect(validateButton).toBeVisible();
+      const patternMessage = screen.getByText(sharedProps.patternMessage);
+      expect(patternMessage).toHaveAttribute('color', 'error');
+      expect(patternMessage).toBeVisible();
     });
   });
 });
