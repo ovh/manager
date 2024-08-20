@@ -42,7 +42,7 @@ export const useAvailablePrivateNetworks = (
         ),
       }))
       .sort((a, b) => a.name.localeCompare(b.name));
-  }, [privateNetworks]);
+  }, [privateNetworks, regionName]);
 
   return {
     data: availablePrivateNetworks,

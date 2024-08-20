@@ -74,5 +74,13 @@
   "kube_service_installation_information": "<a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">This tutorial<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> will guide you through installing the Kubernetes Dashboard. The Kubernetes Dashboard is a web application that can be used to manage your clusters. It is maintained by the Kubernetes community.",
   "kube_service_cluster_network_ovh_gateway": "OVHcloud Internet Gateway",
   "kube_service_cluster_network_vrack_default_gateway": "vRack default gateway (DHCP)",
-  "kube_service_cluster_network_vrack_customer_gateway": "Gateway: {{vRackGatewayIp}}"
+  "kube_service_cluster_network_vrack_customer_gateway": "Gateway: {{vRackGatewayIp}}",
+  "kube_service_cluster_network_vrack_customer_gateway": "Gateway: {{vRackGatewayIp}}",
+  "kube_service_cluster_network_tile_title": "Network",
+  "kube_service_cluster_network_attached_network": "Attached network",
+  "kube_service_cluster_network_subnet": "Subnetwork",
+  "kube_service_cluster_network_lb_subnet": "Load Balancer subnet",
+  "kube_service_cluster_network_error": "An error has occurred loading the network information: {{ error }}",
+  "kube_service_network_edit": "Change network settings",
+  "kubernetes_add_private_network": "Configure a network"
 }

@@ -74,5 +74,13 @@
   "kube_service_installation_information": "<a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">Tutorial<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> ten pomoże Ci w uruchomieniu infrastruktury Kubernetes Dashboard. Kubernetes Dashboard to aplikacja internetowa, która umożliwia zarządzanie klastrami. Jest utrzymywana przez społeczność Kubernetesa.",
   "kube_service_cluster_network_ovh_gateway": "Brama Internetowa OVHcloud",
   "kube_service_cluster_network_vrack_default_gateway": "Domyślna brama vRack (DHCP)",
-  "kube_service_cluster_network_vrack_customer_gateway": "Brama: {{ vRackGatewayIp }}"
+  "kube_service_cluster_network_vrack_customer_gateway": "Brama: {{ vRackGatewayIp }}",
+  "kube_service_cluster_network_vrack_customer_gateway": "Brama: {{ vRackGatewayIp }}",
+  "kube_service_cluster_network_tile_title": "Sieć",
+  "kube_service_cluster_network_attached_network": "Przypisana sieć",
+  "kube_service_cluster_network_subnet": "Podsieć",
+  "kube_service_cluster_network_lb_subnet": "Podsieć Load Balancer",
+  "kube_service_cluster_network_error": "Wystąpił błąd podczas pobierania informacji o sieci: {{error}}",
+  "kube_service_network_edit": "Zmień ustawienia sieci",
+  "kubernetes_add_private_network": "Konfiguracja sieci"
 }

@@ -267,7 +267,12 @@ export default function NewPage() {
                     monthlyBilled: false, // @TODO
                   },
                   privateNetworkId: undefined, // @TODO
-                  privateNetworkConfiguration: undefined, // @TODO
+                  loadBalancersSubnetId: undefined, // @TODO
+                  nodesSubnetId: undefined, // @TODO
+                  privateNetworkConfiguration: {
+                    defaultVrackGateway: '', // @TODO
+                    privateNetworkRoutingAsDefault: false, // @TODO
+                  },
                 });
                 tracking.trackClick({
                   name: `${PAGE_PREFIX}::kubernetes::add::confirm`,

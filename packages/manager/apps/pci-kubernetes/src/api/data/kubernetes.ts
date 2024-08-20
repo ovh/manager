@@ -32,8 +32,10 @@ export interface KubeClusterCreationParams {
     monthlyBilled: boolean;
   };
   privateNetworkId: string;
+  nodesSubnetId?: string;
+  loadBalancersSubnetId?: string;
   privateNetworkConfiguration: {
-    defaultVrackGateway: string;
+    defaultVrackGateway?: string;
     privateNetworkRoutingAsDefault?: boolean;
   };
 }
@@ -286,4 +288,33 @@ export async function deleteSubscription(
     `/cloud/project/${projectId}/kube/${kubeId}/log/subscription/${subscriptionId}`,
   );
   return pollOperation(operation.serviceName, operation.operationId);
+}
+
+export async function editNetwork(
+  projectId: string,
+  kubeId: string,
+  privateNetworkConfiguration?: {
+    privateNetworkRoutingAsDefault: boolean;
+    defaultVrackGateway: string;
+  },
+  loadBalancersSubnetId?: string,
+) {
+  const todo = [];
+  if (privateNetworkConfiguration) {
+    todo.push(
+      v6.put(
+        `/cloud/project/${projectId}/kube/${kubeId}/privateNetworkConfiguration`,
+        privateNetworkConfiguration,
+      ),
+    );
+  }
+  if (loadBalancersSubnetId) {
+    todo.push(
+      v6.put(
+        `/cloud/project/${projectId}/kube/${kubeId}/updateLoadBalancersSubnetId`,
+        { loadBalancersSubnetId },
+      ),
+    );
+  }
+  return Promise.all(todo);
 }

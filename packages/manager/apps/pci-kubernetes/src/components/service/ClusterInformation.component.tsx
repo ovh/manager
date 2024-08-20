@@ -24,19 +24,11 @@ export default function ClusterInformation({
 }: Readonly<ClusterInformationProps>) {
   const { t } = useTranslation('service');
   const { t: tDetail } = useTranslation('listing');
-  const { t: tKubernetes } = useTranslation('kubernetes');
   const { t: tCommon } = useTranslation('common');
-
-  const ip = kubeDetail?.privateNetworkConfiguration?.defaultVrackGateway;
-  const publicNetwork =
-    !kubeDetail?.privateNetworkConfiguration ||
-    !kubeDetail?.privateNetworkConfiguration?.privateNetworkRoutingAsDefault;
-  const privateNetwork =
-    kubeDetail?.privateNetworkConfiguration?.privateNetworkRoutingAsDefault;
 
   return (
     <OsdsTile
-      className="w-full h-full flex-col shadow-lg opacity-100"
+      className="flex-col w-full shadow-lg"
       inline
       rounded
       variant={ODS_TILE_VARIANT.ghost}
@@ -95,37 +87,6 @@ export default function ClusterInformation({
               color={ODS_THEME_COLOR_INTENT.text}
             >
               {kubeDetail.version}
-            </OsdsText>
-          }
-        />
-
-        <TileLine
-          title={t('kube_service_cluster_network_attached')}
-          value={
-            <OsdsText
-              className="mb-4"
-              size={ODS_TEXT_SIZE._400}
-              level={ODS_TEXT_LEVEL.body}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              <span className="block">{kubeDetail.attachedTo}</span>
-
-              {publicNetwork && (
-                <span className="block">
-                  {tKubernetes('pci_kubernetes_network_data_public')}
-                </span>
-              )}
-              {privateNetwork && (
-                <>
-                  <span className="block">
-                    {tKubernetes('pci_kubernetes_network_data_private')}
-                  </span>
-                  <span>
-                    {tKubernetes('pci_kubernetes_network_data_ip')}:{' '}
-                    {ip || tKubernetes('pci_kubernetes_network_data_dhcp')}
-                  </span>
-                </>
-              )}
             </OsdsText>
           }
         />

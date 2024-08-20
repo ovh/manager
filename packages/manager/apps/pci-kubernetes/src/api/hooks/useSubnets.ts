@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import {
   getPrivateNetworkSubnets,
+  getRegionSubnets,
   TPrivateNetworkSubnet,
 } from '@/api/data/subnets';
 
@@ -45,3 +46,24 @@ export const usePrivateNetworkSubnets = (
     };
   }, [data, isLoading, error]);
 };
+
+export const useRegionSubnets = (
+  projectId: string,
+  regionName: string,
+  networkId: string,
+) =>
+  useQuery({
+    queryKey: [
+      'project',
+      projectId,
+      'region',
+      regionName,
+      'network',
+      networkId,
+      'subnet',
+    ],
+    queryFn: (): Promise<TPrivateNetworkSubnet[]> =>
+      getRegionSubnets(projectId, regionName, networkId),
+    enabled: !!projectId && !!regionName && !!networkId,
+    retry: false,
+  });

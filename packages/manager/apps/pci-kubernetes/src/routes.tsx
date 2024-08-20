@@ -61,6 +61,12 @@ export default [
                 ),
               },
               {
+                path: 'edit-network',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/edit-network/EditNetwork.page'),
+                ),
+              },
+              {
                 path: 'reset-kubeconfig',
                 ...lazyRouteConfig(() =>
                   import('@/pages/reset-kubeconfig/ResetKubeConfig.page'),
