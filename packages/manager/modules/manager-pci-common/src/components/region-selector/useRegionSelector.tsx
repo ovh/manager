@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { useProjectLocalisation, TLocalisation } from './useRegions';
+import { useMemo, useState } from 'react';
+import { TLocalisation, useProjectLocalisation } from './useRegions';
 
 interface RegionSelectorProps {
   projectId: string;
