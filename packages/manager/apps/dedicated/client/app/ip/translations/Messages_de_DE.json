@@ -767,5 +767,7 @@
   "ip_byoip_aggregate_slicing_not_available_error_message": "Es ist keine Segmentierungs-/Aggregationskonfiguration verfügbar. Weitere Informationen finden Sie in unserer Anleitung: <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">hier</a>",
   "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Für diese IP-Adresse wurde eine andere Segmentierungs- oder Aggregationsaktion ausgeführt.",
   "ip_table_manage_subnets": "IPv6-Subnetze im vRack verwalten",
-  "ip_table_header_region": "Region"
+  "ip_table_header_region": "Region",
+  "ip_byoip_delete_block_title": "Block löschen",
+  "ip_byoip_delete_block_description": "Dieser IP-Block ist Teil eines größeren BYOIP-Blocks. Wenn Sie Ihren BYOIP-Dienst kündigen möchten, öffnen Sie <a href='{{ link }}'>Meine Dienste</a> und wählen Sie die Option zum Kündigen aus."
 }
