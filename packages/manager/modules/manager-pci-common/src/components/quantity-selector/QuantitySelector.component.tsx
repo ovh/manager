@@ -70,6 +70,7 @@ export function QuantitySelector({
           color={ODS_THEME_COLOR_INTENT.primary}
           size={ODS_BUTTON_SIZE.sm}
           text-align="center"
+          data-testid="quantity-button-minus"
           disabled={min !== undefined && value - 1 < min ? true : undefined}
         >
           <OsdsIcon
@@ -81,6 +82,7 @@ export function QuantitySelector({
         <OsdsInput
           type={ODS_INPUT_TYPE.number}
           value={value}
+          data-testid="quantity-input"
           color={
             isValid
               ? ODS_THEME_COLOR_INTENT.primary
@@ -99,6 +101,7 @@ export function QuantitySelector({
           color={ODS_THEME_COLOR_INTENT.primary}
           size={ODS_BUTTON_SIZE.sm}
           text-align="center"
+          data-testid="quantity-button-plus"
           disabled={max !== undefined && value + 1 > max ? true : undefined}
         >
           <OsdsIcon

@@ -4,7 +4,7 @@ import {
   getMacroRegion,
   useTranslatedMicroRegions,
 } from '@ovhcloud/manager-components';
-import { TRegion, getProjectRegions } from '../../api/data/regions';
+import { getProjectRegions, TRegion } from '../../api/data/regions';
 
 export const useProjectRegions = (projectId: string) =>
   useQuery({
