@@ -5,6 +5,7 @@ import {
   initShellContext,
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import App from './App';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import './index.scss';
@@ -23,6 +24,16 @@ const trackingContext = {
 
 const init = async (appName: string) => {
   const context = await initShellContext(appName, trackingContext);
+
+  const isSidebarMenuVisible = await context.shell.ux.isMenuSidebarVisible();
+  if (!isTopLevelApplication()) {
+    context.shell.ux.startProgress();
+  }
+
+  context.shell.ux.setForceAccountSiderBarDisplayOnLargeScreen(true);
+  if (!isSidebarMenuVisible) {
+    context.shell.ux.showAccountSidebar();
+  }
 
   await initI18n({
     context,

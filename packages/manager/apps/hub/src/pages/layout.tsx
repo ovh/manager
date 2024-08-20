@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
-import { Outlet, useLocation, useMatches } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {
   useOvhTracking,
   useRouteSynchro,
@@ -10,14 +10,12 @@ import {
 export default function Layout() {
   const location = useLocation();
   const { shell } = useContext(ShellContext);
-  const matches = useMatches();
   const { trackCurrentPage } = useOvhTracking();
   useRouteSynchro();
 
   useEffect(() => {
-    const match = matches.slice(-1);
-    defineCurrentPage(`app.hub-${match[0]?.id}`);
-  }, [location]);
+    defineCurrentPage(`app.dashboard`);
+  }, []);
 
   useEffect(() => {
     trackCurrentPage();
@@ -27,5 +25,5 @@ export default function Layout() {
     shell.ux.hidePreloader();
   }, []);
 
-  return <Outlet />;
+  return <div>Layout</div>;
 }

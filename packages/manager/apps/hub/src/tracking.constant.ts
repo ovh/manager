@@ -15,6 +15,6 @@ export const LEVEL2 = {
     },
   },
 };
-export const UNIVERSE = 'Hub';
-export const SUB_UNIVERSE = 'Hub';
-export const APP_NAME = 'hub';
+export const UNIVERSE = 'hub';
+export const SUB_UNIVERSE = 'app';
+export const APP_NAME = '';
