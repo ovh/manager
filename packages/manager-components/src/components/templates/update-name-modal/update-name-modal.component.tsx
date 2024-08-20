@@ -34,6 +34,8 @@ export type UpdateNameModalProps = {
   error?: string;
   cancelButtonLabel?: string;
   confirmButtonLabel?: string;
+  pattern?: string;
+  patternMessage?: string;
 };
 
 export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
@@ -47,13 +49,23 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
   error,
   cancelButtonLabel,
   confirmButtonLabel,
+  pattern,
+  patternMessage,
 }) => {
   const { t } = useTranslation('update-name-modal');
   const [displayName, setDisplayName] = React.useState(defaultValue);
+  const [isPatternError, setIsPatternError] = React.useState(false);
 
   React.useEffect(() => {
     setDisplayName(defaultValue);
   }, [defaultValue]);
+
+  React.useEffect(() => {
+    const regex = new RegExp(pattern);
+    if (displayName) {
+      setIsPatternError(!displayName.match(regex));
+    }
+  }, [displayName, pattern]);
 
   return (
     <OsdsModal dismissible headline={headline} onOdsModalClose={closeModal}>
@@ -91,10 +103,27 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
           disabled={isLoading || undefined}
           type={ODS_INPUT_TYPE.text}
           value={displayName}
+          error={isPatternError || undefined}
           onOdsValueChange={(e: OdsInputValueChangeEvent) =>
             setDisplayName(e.detail.value)
           }
         />
+        {patternMessage && (
+          <div className="mt-5">
+            <OsdsText
+              className="block"
+              color={
+                isPatternError && pattern
+                  ? ODS_THEME_COLOR_INTENT.error
+                  : ODS_THEME_COLOR_INTENT.text
+              }
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_TEXT_SIZE._100}
+            >
+              {patternMessage}
+            </OsdsText>
+          </div>
+        )}
       </OsdsFormField>
       {isLoading && (
         <div className="flex justify-center">
@@ -112,7 +141,7 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
         {cancelButtonLabel || t('updateModalCancelButton')}
       </OsdsButton>
       <OsdsButton
-        disabled={isLoading || undefined}
+        disabled={isLoading || isPatternError || undefined}
         slot="actions"
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.flat}
