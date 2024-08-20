@@ -9,7 +9,8 @@ import React from 'react';
 import OrganizationGeneralInformationTile from './OrganizationGeneralInformationTile.component';
 
 vi.mock('react-router-dom', () => ({
-  useHref: vi.fn(),
+  useNavigate: () => ({ navigate: vi.fn() }),
+  useLocation: () => ({ pathname: '/stublocation' }),
 }));
 
 describe('OrganizationGeneralInformationTile component unit test suite', () => {
