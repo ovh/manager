@@ -15,13 +15,12 @@ import {
   OsdsClipboard,
   OsdsDivider,
   OsdsIcon,
-  OsdsLink,
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import TileSubtitle from '@/components/tiles/tile-subtitle/TileSubtitle.component';
 import RegionLabel from '@/components/region-label/RegionLabel.component';
@@ -50,8 +49,8 @@ export default function OrganizationGenerationInformationTile({
   datacenterCount = 0,
 }: TTileProps) {
   const { t } = useTranslation('dashboard');
-  const hrefEditName = useHref('./edit-name');
-  const hrefEditDesc = useHref('./edit-desc');
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   return (
     <OsdsTile className="w-full h-full flex-col" inline rounded>
@@ -61,35 +60,33 @@ export default function OrganizationGenerationInformationTile({
         </CommonTitle>
         <OsdsDivider separator />
         <TileSubtitle>{t('managed_vcd_dashboard_name')}</TileSubtitle>
-        <OsdsLink href={hrefEditName}>
+        <div className="flex flex-row justify-between items-center">
+          <Description>{vcdOrganization?.currentState?.fullName}</Description>
+          <OsdsIcon
+            aria-label="edit"
+            className="mx-6 cursor-pointer"
+            name={ODS_ICON_NAME.PEN}
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            onClick={() => navigate(`${pathname}/edit-name`)}
+          />
+        </div>
+        <OsdsDivider separator />
+        <div className="flex flex-col mb-3">
+          <TileSubtitle>{t('managed_vcd_dashboard_description')}</TileSubtitle>
           <div className="flex flex-row justify-between items-center">
-            <Description>{vcdOrganization?.currentState?.fullName}</Description>
+            <Description>
+              {vcdOrganization?.currentState?.description}
+            </Description>
             <OsdsIcon
               aria-label="edit"
               className="mx-6 cursor-pointer"
               name={ODS_ICON_NAME.PEN}
               size={ODS_ICON_SIZE.xxs}
               color={ODS_THEME_COLOR_INTENT.primary}
+              onClick={() => navigate(`${pathname}/edit-desc`)}
             />
           </div>
-        </OsdsLink>
-        <OsdsDivider separator />
-        <div className="flex flex-col mb-3">
-          <TileSubtitle>{t('managed_vcd_dashboard_description')}</TileSubtitle>
-          <OsdsLink href={hrefEditDesc}>
-            <div className="flex flex-row justify-between items-center">
-              <Description>
-                {vcdOrganization?.currentState?.description}
-              </Description>
-              <OsdsIcon
-                aria-label="edit"
-                className="mx-6 cursor-pointer"
-                name={ODS_ICON_NAME.PEN}
-                size={ODS_ICON_SIZE.xxs}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              />
-            </div>
-          </OsdsLink>
           <OsdsDivider separator />
           <TileSubtitle>{t('managed_vcd_dashboard_localisation')}</TileSubtitle>
           <OsdsText
