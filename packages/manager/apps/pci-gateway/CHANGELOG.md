@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.4.1...@ovh-ux/manager-pci-gateway-app@0.5.0) (2024-08-20)
+
+
+### Features
+
+* **pci:** prepare MKS for load-balancer([#12735](https://github.com/ovh/manager/issues/12735)) ([5a4a251](https://github.com/ovh/manager/commit/5a4a2510a6e1af687b5ecb59b08f9ae276987fee))
+
+
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.4.0...@ovh-ux/manager-pci-gateway-app@0.4.1) (2024-08-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
