@@ -21,8 +21,8 @@ export const PRODUCT_TYPES = {
     typeName: 'VPS',
   },
   parking: {
-    apiTypeName: 'PARKING',
-    typeName: 'PARKING',
+    apiTypeName: 'parking',
+    typeName: 'parking',
   },
 };
 
