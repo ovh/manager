@@ -60,8 +60,7 @@ export default function ClusterManagement({
 
   return (
     <OsdsTile
-      className="w-full h-full flex-col shadow-lg opacity-100"
-      inline
+      className="flex-col w-full shadow-lg"
       rounded
       variant={ODS_TILE_VARIANT.ghost}
     >

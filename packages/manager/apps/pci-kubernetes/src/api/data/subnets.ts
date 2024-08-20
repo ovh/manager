@@ -1,4 +1,4 @@
-import { v6 } from '@ovh-ux/manager-core-api';
+import { v6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 
 export type TPrivateNetworkSubnet = {
   id: string;
@@ -21,5 +21,16 @@ export const getPrivateNetworkSubnets = async (
   const { data } = await v6.get<TPrivateNetworkSubnet[]>(
     `/cloud/project/${projectId}/network/private/${privateNetworkId}/subnet`,
   );
+  return data;
+};
+
+export const getRegionSubnets = async (
+  projectId: string,
+  regionName: string,
+  networkId: string,
+): Promise<TPrivateNetworkSubnet[]> => {
+  const { data } = await fetchIcebergV6<TPrivateNetworkSubnet>({
+    route: `/cloud/project/${projectId}/region/${regionName}/network/${networkId}/subnet`,
+  });
   return data;
 };

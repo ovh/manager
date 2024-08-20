@@ -15,6 +15,7 @@ export type TKube = {
   controlPlaneIsUpToDate: boolean;
   privateNetworkId: string;
   nodesSubnetId: string;
+  loadBalancersSubnetId: string;
   createdAt: string;
   updatedAt: string;
   auditLogsSubscribed: boolean;

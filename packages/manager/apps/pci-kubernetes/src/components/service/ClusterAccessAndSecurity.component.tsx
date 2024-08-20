@@ -98,7 +98,7 @@ export default function ClusterAccessAndSecurity({
 
   return (
     <OsdsTile
-      className="w-full h-full flex-col shadow-lg opacity-100"
+      className="flex-col w-full shadow-lg"
       inline
       rounded
       variant={ODS_TILE_VARIANT.ghost}

@@ -21,7 +21,7 @@
   "kubernetes_add_billing_type_payment_method": "L’importo verrà addebitato sul metodo di pagamento predefinito.",
   "kubernetes_add_billing_anti_affinity_title": "Fatturazione e anti-affinità",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_title": "Prezzi mensili",
-  "kubernetes_add_billing_anti_affinity_coming_soon_message_description": "I prezzi mensili saranno disponibili a breve con l'arrivo dei Saving Plans."
+  "kubernetes_add_billing_anti_affinity_coming_soon_message_description": "I prezzi mensili saranno disponibili a breve con l'arrivo dei Saving Plans.",
   "kube_add_node_pool_config_title": "Configurazione generale",
   "kube_add_node_pool_name_label": "Nome del pool di nodi",
   "kube_add_node_pool_creating": "Creazione di un pool di nodi",
