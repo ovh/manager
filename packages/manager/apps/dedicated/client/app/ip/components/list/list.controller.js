@@ -22,6 +22,7 @@ import {
   PAGE_SIZE_MAX,
   FILTER_OPTIONS,
   TRACKING_OPTIONS,
+  POLLING_INTERVAL,
 } from './list.constant';
 
 export default class IpListController {
@@ -675,5 +676,53 @@ export default class IpListController {
     };
 
     refreshTable();
+
+    $scope.refreshIpList = (removedIps, createdIps) => {
+      createdIps.forEach((ip) => {
+        $scope.ipsList.push(ip);
+      });
+
+      $scope.refreshQueue(removedIps, createdIps);
+    };
+
+    $scope.refreshQueue = (removedIps, createdIps) => {
+      const task = [];
+      createdIps.forEach((ip) => {
+        if (!ip.done) {
+          task.push(
+            this.Ip.getIpDetails(ip.ipBlock)
+              .then((data) => {
+                const row = $scope.ipsList.findIndex(
+                  (item) => item.ipBlock === ip.ipBlock,
+                );
+                $scope.ipsList[row] = { ...data, ipBlock: data.ip };
+                // eslint-disable-next-line no-param-reassign
+                ip.done = true;
+              })
+              .catch((err) => {
+                if (err.message !== 'This service does not exist') {
+                  // eslint-disable-next-line no-param-reassign
+                  ip.done = true;
+                }
+              }),
+          );
+        }
+      });
+
+      return this.$q.all(task).then(() => {
+        if (createdIps.find((ip) => !ip.done)) {
+          this.$timeout(() => {
+            $scope.refreshQueue(removedIps, createdIps);
+          }, POLLING_INTERVAL);
+        } else {
+          removedIps.forEach((ip) => {
+            const row = $scope.ipsList.findIndex(
+              (item) => item.ipBlock === ip.ipBlock,
+            );
+            $scope.ipsList.splice(row, 1);
+          });
+        }
+      });
+    };
   }
 }

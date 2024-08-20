@@ -289,9 +289,22 @@
                     ></span>
                 </td>
             </tr>
-
+            <!-- It's an Pending IP -->
+            <tr data-ng-if="!ipBlock.refreshing && ipBlock.isTemporaryEntry">
+                <th scope="row"></th>
+                <!-- IP -->
+                <td colspan="9">
+                    <span data-ng-bind="ipBlock.ipBlock"></span>
+                    <span
+                        data-ng-bind="'still_pending' | translate"
+                        class="oui-badge oui-badge_info"
+                    ></span>
+                </td>
+            </tr>
             <!-- It's an IPBLOCK -->
-            <tr data-ng-if="!ipBlock.refreshing && !ipBlock.isUniq">
+            <tr
+                data-ng-if="!ipBlock.refreshing && !ipBlock.isUniq && !ipBlock.isTemporaryEntry"
+            >
                 <!-- + -->
                 <th scope="row">
                     <button
@@ -453,7 +466,7 @@
 
             <!-- Its an IP -->
             <tr
-                data-ng-if="!ipBlock.refreshing && !ipBlock.collapsed"
+                data-ng-if="!ipBlock.refreshing && !ipBlock.collapsed && !ipBlock.isTemporaryEntry"
                 data-ng-repeat="ip in ipBlock.ips track by ip.ip"
             >
                 <th scope="row"></th>
