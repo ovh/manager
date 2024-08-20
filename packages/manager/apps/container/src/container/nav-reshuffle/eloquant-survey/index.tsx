@@ -18,6 +18,11 @@ const EloquantSurvey = () => {
       long: 'english',
     },
     {
+      code: 'en_US',
+      short: 'en',
+      long: 'english',
+    },
+    {
       code: 'fr_CA',
       short: 'fr',
       long: 'french',
