@@ -16,6 +16,7 @@ import ClusterInformation from '@/components/service/ClusterInformation.componen
 import ClusterManagement from '@/components/service/ClusterManagement.component';
 import ClusterSecurityUpgradeBanner from '@/components/service/ClusterSecurityUpgradeBanner.component';
 import ClusterVersionUpgradeBanner from '@/components/service/ClusterVersionUpgradeBanner.component';
+import ClusterNetwork from '@/components/service/ClusterNetwork.component';
 import { KUBE_INSTALL_URL, KUBECTL_URL, STATUS } from '@/constants';
 
 export default function ServicePage() {
@@ -91,12 +92,22 @@ export default function ServicePage() {
             {t('kube_service_description_reset')}
           </OsdsText>
 
-          <div className="flex flex-row flex-wrap md:flex-nowrap gap-10 my-5">
-            <ClusterManagement kubeDetail={kubeDetail} />
-            <ClusterInformation kubeDetail={kubeDetail} />
-            <ClusterAccessAndSecurity kubeDetail={kubeDetail} />
-            <Outlet />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+            <div>
+              <ClusterManagement kubeDetail={kubeDetail} />
+            </div>
+            <div>
+              <ClusterInformation kubeDetail={kubeDetail} />
+            </div>
+            <div>
+              <ClusterAccessAndSecurity kubeDetail={kubeDetail} />
+            </div>
+            <div className="md:col-start-2">
+              <ClusterNetwork projectId={projectId} kubeDetail={kubeDetail} />
+            </div>
           </div>
+
+          <Outlet />
         </div>
       )}
     </>

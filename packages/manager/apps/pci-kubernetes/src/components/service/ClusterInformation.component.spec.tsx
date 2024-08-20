@@ -107,55 +107,6 @@ describe('ClusterInformation', () => {
     expect(getByText('1.18')).toBeInTheDocument();
   });
 
-  it('renders public network information correctly', () => {
-    const { getByText } = render(
-      <ClusterInformation
-        kubeDetail={
-          {
-            id: '1',
-            name: 'Cluster1',
-            status: 'READY',
-            version: '1.18',
-            attachedTo: 'Network1',
-            region: 'Region1',
-            nodesUrl: 'http://nodes.url',
-            privateNetworkConfiguration: null,
-          } as TKube
-        }
-      />,
-    );
-    expect(
-      getByText(/pci_kubernetes_network_data_public/i),
-    ).toBeInTheDocument();
-  });
-
-  it('renders private network information correctly', () => {
-    const { getByText } = render(
-      <ClusterInformation
-        kubeDetail={
-          {
-            id: '1',
-            name: 'Cluster1',
-            status: 'READY',
-            version: '1.18',
-            attachedTo: 'Network1',
-            region: 'Region1',
-            nodesUrl: 'http://nodes.url',
-            privateNetworkConfiguration: {
-              privateNetworkRoutingAsDefault: true,
-              defaultVrackGateway: '192.168.1.1',
-            },
-          } as TKube
-        }
-      />,
-    );
-    expect(
-      getByText(/pci_kubernetes_network_data_private/i),
-    ).toBeInTheDocument();
-    expect(getByText(/pci_kubernetes_network_data_ip/i)).toBeInTheDocument();
-    expect(getByText(/192.168.1.1/i)).toBeInTheDocument();
-  });
-
   it('renders cluster region correctly', () => {
     const { getByText } = render(
       <ClusterInformation
