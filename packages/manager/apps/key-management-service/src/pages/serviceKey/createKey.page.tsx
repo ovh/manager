@@ -125,14 +125,6 @@ export default function CreateKey() {
     });
   };
 
-  const selectSizeOrCurveValue = (e: any) => {
-    if (key.sizes.length > 0) {
-      setKeySize(e.detail.value);
-    } else {
-      setKeyCurve(e.detail.value);
-    }
-  };
-
   useEffect(() => {
     if (okms && !okmsIsLoading && !servicekeyReference) {
       refetchServiceKeyReference();
@@ -313,67 +305,83 @@ export default function CreateKey() {
                     })}
                   </OsdsRadioGroup>
                 </div>
-                <div className="flex flex-col gap-5 md:gap-6">
-                  {key?.type === OkmsKeyTypes.EC ? (
-                    <>
-                      <CommonTitle>
-                        {t(
-                          'key_management_service_service-keys_create_crypto_field_curve_title',
-                        )}
-                      </CommonTitle>
-                      <Description>
-                        {t(
-                          'key_management_service_service-keys_create_crypto_field_curve_subtitle',
-                        )}
-                      </Description>
-                    </>
-                  ) : (
-                    <>
-                      <CommonTitle>
-                        {t(
-                          'key_management_service_service-keys_create_crypto_field_size_title',
-                        )}
-                      </CommonTitle>
-                      <Description>
-                        {t(
-                          'key_management_service_service-keys_create_crypto_field_size_subtitle',
-                        )}
-                      </Description>
-                    </>
-                  )}
+                {key?.type === OkmsKeyTypes.EC && (
+                  <div className="flex flex-col gap-5 md:gap-6">
+                    <CommonTitle>
+                      {t(
+                        'key_management_service_service-keys_create_crypto_field_curve_title',
+                      )}
+                    </CommonTitle>
+                    <Description>
+                      {t(
+                        'key_management_service_service-keys_create_crypto_field_curve_subtitle',
+                      )}
+                    </Description>
+                    <OsdsSelect
+                      value={keyCurve}
+                      onOdsValueChange={(event) => {
+                        setKeyCurve(
+                          event.detail.value as OkmsServiceKeyTypeECCurve,
+                        );
+                      }}
+                    >
+                      {key?.curves.map((curve) => {
+                        return (
+                          <OsdsSelectOption
+                            key={curve.value}
+                            value={curve.value}
+                          >
+                            {curve.value}{' '}
+                            {curve.default &&
+                              t(
+                                'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
+                              )}
+                          </OsdsSelectOption>
+                        );
+                      })}
+                    </OsdsSelect>
+                  </div>
+                )}
+                {(key?.type === OkmsKeyTypes.oct ||
+                  key?.type === OkmsKeyTypes.RSA) && (
+                  <div className="flex flex-col gap-5 md:gap-6">
+                    <CommonTitle>
+                      {t(
+                        'key_management_service_service-keys_create_crypto_field_size_title',
+                      )}
+                    </CommonTitle>
+                    <Description>
+                      {t(
+                        'key_management_service_service-keys_create_crypto_field_size_subtitle',
+                      )}
+                    </Description>
 
-                  <OsdsSelect
-                    value={keySize || keyCurve}
-                    onOdsValueChange={(event) => {
-                      selectSizeOrCurveValue(event);
-                    }}
-                  >
-                    {key?.sizes.map((size) => {
-                      return (
-                        <OsdsSelectOption key={size.value} value={size.value}>
-                          {t(
-                            'key_management_service_service-keys_create_crypto_field_size_unit',
-                            { size: size.value },
-                          )}{' '}
-                          {size.default &&
-                            t(
-                              'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
-                            )}
-                        </OsdsSelectOption>
-                      );
-                    })}
-                    {key?.curves.map((curve) => {
-                      return (
-                        <OsdsSelectOption key={curve.value} value={curve.value}>
-                          {`${curve.value} ${curve.default &&
-                            t(
-                              'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
-                            )}`}
-                        </OsdsSelectOption>
-                      );
-                    })}
-                  </OsdsSelect>
-                </div>
+                    <OsdsSelect
+                      value={keySize}
+                      onOdsValueChange={(event) => {
+                        setKeySize(
+                          event.detail.value as OkmsServiceKeyTypeOctSize &
+                            OkmsServiceKeyTypeRSASize,
+                        );
+                      }}
+                    >
+                      {key?.sizes.map((size) => {
+                        return (
+                          <OsdsSelectOption key={size.value} value={size.value}>
+                            {t(
+                              'key_management_service_service-keys_create_crypto_field_size_unit',
+                              { size: size.value },
+                            )}{' '}
+                            {size.default &&
+                              t(
+                                'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
+                              )}
+                          </OsdsSelectOption>
+                        );
+                      })}
+                    </OsdsSelect>
+                  </div>
+                )}
                 <div className="flex flex-col gap-5 md:gap-6">
                   <CommonTitle>
                     {t(
@@ -429,7 +437,7 @@ export default function CreateKey() {
                   variant={ODS_BUTTON_VARIANT.stroked}
                   color={ODS_THEME_COLOR_INTENT.primary}
                   onClick={() => {
-                    navigate(`/${okmsId}${ROUTES_URLS.keys}`);
+                    navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
                   }}
                 >
                   {t('key_management_service_service-keys_create_cta_cancel')}
