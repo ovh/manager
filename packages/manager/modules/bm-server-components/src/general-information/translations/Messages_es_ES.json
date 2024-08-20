@@ -8,8 +8,9 @@
   "dedicated_server_dashboard_distribution": "Sistema operativo (SO)",
   "dedicated_server_dashboard_distribution_none": "No hay ningún sistema operativo instalado en su servidor.",
   "dedicated_server_dashboard_installation_no_public_network": "No es posible instalar o reinstalar un SO en el servidor, ya que la configuración de red seleccionada no tiene acceso a la red pública. Para desbloquear esta acción, modifique su configuración de red en la pestaña «Interfaces de red».",
-  "dedicated_server_dashboard_reinstallation_button": "Reinstalar",
-  "dedicated_server_dashboard_installation_button": "Instalar",
+  "dedicated_server_dashboard_installation_progress_button": "Ver el progreso de la instalación",
+  "dedicated_server_dashboard_installation_ovh_button": "Instalar desde una plantilla de OVHcloud",
+  "dedicated_server_dashboard_installation_gabarit_button": "Instalar desde una de sus plantillas",
   "dedicated_server_dashboard_boot": "Boot",
   "dedicated_server_dashboard_datacenter": "Datacenter",
   "dedicated_server_dashboard_netboot_unavailable": "Información no disponible",
@@ -52,8 +53,5 @@
   "server_configuration_installation_inputs_item_number_increase_tooltip": "Haga clic aquí para incrementar este valor",
   "server_configuration_installation_inputs_item_number_decrease_tooltip": "Haga clic aquí para reducir este valor",
   "server_configuration_installation_inputs_item_keyValue_add_tooltip": "Haga clic aquí para agregar un par clave-valor",
-  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Haga clic aquí para eliminar este par clave-valor",
-  "dedicated_server_dashboard_installation_progress_button": "Ver el progreso de la instalación",
-  "dedicated_server_dashboard_installation_ovh_button": "Instalar desde una plantilla de OVHcloud",
-  "dedicated_server_dashboard_installation_gabarit_button": "Instalar desde una de sus plantillas"
+  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Haga clic aquí para eliminar este par clave-valor"
 }
