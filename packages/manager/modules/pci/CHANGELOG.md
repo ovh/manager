@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.58.0...@ovh-ux/manager-pci@6.59.0) (2024-08-20)
+
+
+### Features
+
+* **pci:** prepare MKS for load-balancer([#12735](https://github.com/ovh/manager/issues/12735)) ([5a4a251](https://github.com/ovh/manager/commit/5a4a2510a6e1af687b5ecb59b08f9ae276987fee))
+
+
+
+
+
 # [6.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.57.1...@ovh-ux/manager-pci@6.58.0) (2024-08-12)
 
 
