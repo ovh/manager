@@ -33,7 +33,7 @@ import { createNodePool, TCreateNodePoolParam } from '@/api/data/node-pools';
 import { useCatalog } from '@/api/hooks/catalog';
 import BillingStep, {
   TBillingStepProps,
-} from '@/components/create/BillingStep';
+} from '@/components/create/BillingStep.component';
 import { ANTI_AFFINITY_MAX_NODES, NAME_INPUT_CONSTRAINTS } from '@/constants';
 import queryClient from '@/queryClient';
 import { useTrack } from '@/hooks/track';

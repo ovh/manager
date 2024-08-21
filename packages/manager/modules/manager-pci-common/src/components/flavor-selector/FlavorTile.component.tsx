@@ -1,5 +1,10 @@
 import React from 'react';
-import { OsdsChip, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+import {
+  OsdsChip,
+  OsdsLink,
+  OsdsText,
+  OsdsTile,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -12,7 +17,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
-import { useCatalogPrice } from '@ovhcloud/manager-components';
+import { useCatalogPrice, useProjectUrl } from '@ovhcloud/manager-components';
 import { useBytes } from '../../hooks';
 import { FlavorLocalzoneChip } from './FlavorLocalzoneChip';
 
@@ -43,6 +48,7 @@ export interface FlavorTileProps {
   };
   isNewFlavor: boolean;
   isSelected: boolean;
+  hasEnoughQuota?: boolean;
   onClick: () => void;
 }
 
@@ -60,16 +66,21 @@ export function FlavorTile({
   flavorPrice,
   isNewFlavor,
   isSelected,
+  hasEnoughQuota,
   onClick,
 }: Readonly<FlavorTileProps>) {
   const { t } = useTranslation('pci-flavors');
   const { formatBytes } = useBytes();
   const { getTextPrice, getFormattedHourlyCatalogPrice } = useCatalogPrice(4);
+  const projectHref = useProjectUrl('public-cloud');
   return (
     <OsdsTile
-      className={isSelected ? checkedClass : uncheckedClass}
+      className={clsx(
+        isSelected ? checkedClass : uncheckedClass,
+        !hasEnoughQuota && 'opacity-50',
+      )}
       checked={isSelected}
-      onClick={() => onClick?.()}
+      onClick={() => hasEnoughQuota && onClick?.()}
     >
       <div className="w-full">
         <div className="flex justify-between">
@@ -187,6 +198,31 @@ export function FlavorTile({
         >
           {getFormattedHourlyCatalogPrice(flavorPrice.hourly)}
         </OsdsText>
+        {!hasEnoughQuota && (
+          <>
+            <hr className={separatorClass} />
+            <OsdsText
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+              color={ODS_THEME_COLOR_INTENT.error}
+            >
+              {t('pci_project_flavors_quota_info')}
+            </OsdsText>
+            <OsdsLink
+              className="ml-3"
+              color={ODS_THEME_COLOR_INTENT.primary}
+              href={`${projectHref}/quota`}
+            >
+              <OsdsText
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+                color={ODS_THEME_COLOR_INTENT.primary}
+              >
+                {t('pci_project_flavors_quota_manage')}
+              </OsdsText>
+            </OsdsLink>
+          </>
+        )}
       </div>
     </OsdsTile>
   );
