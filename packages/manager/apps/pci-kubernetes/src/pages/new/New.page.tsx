@@ -35,7 +35,7 @@ import { NetworkStep } from './steps/NetworkStep.component';
 import { NodeTypeStep } from './steps/NodeTypeStep.component';
 import { NodeSizeStep } from './steps/NodeSizeStep.component';
 import { ClusterNameStep } from './steps/ClusterNameStep.component';
-import { BillingStep } from './steps/BillingStep.component';
+import { ClusterBillingStep } from './steps/ClusterBillingStep.component';
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { PAGE_PREFIX } from '@/tracking.constants';
 
@@ -237,7 +237,7 @@ export default function NewPage() {
             isDisabled: isCreationPending,
           }}
         >
-          <BillingStep
+          <ClusterBillingStep
             form={stepper.form}
             onSubmit={stepper.billing.submit}
             step={stepper.billing.step}
@@ -258,20 +258,25 @@ export default function NewPage() {
                   region: stepper.form.region?.name,
                   version: stepper.form.version,
                   nodepool: {
-                    antiAffinity: false, // @ TODO
+                    antiAffinity: stepper.form.antiAffinity,
                     autoscale: stepper.form.scaling?.isAutoscale,
                     desiredNodes: stepper.form.scaling?.quantity.desired,
                     minNodes: stepper.form.scaling?.quantity.min,
                     maxNodes: stepper.form.scaling?.quantity.max,
                     flavorName: stepper.form.flavor?.name,
-                    monthlyBilled: false, // @TODO
+                    monthlyBilled: stepper.form.isMonthlyBilled,
                   },
-                  privateNetworkId: undefined, // @TODO
-                  loadBalancersSubnetId: undefined, // @TODO
-                  nodesSubnetId: undefined, // @TODO
+                  privateNetworkId:
+                    stepper.form.network?.privateNetwork?.clusterRegion
+                      ?.openstackId || undefined,
+                  loadBalancersSubnetId:
+                    stepper.form.network?.loadBalancersSubnet?.id || undefined,
+                  nodesSubnetId: stepper.form.network?.subnet?.id || undefined,
                   privateNetworkConfiguration: {
-                    defaultVrackGateway: '', // @TODO
-                    privateNetworkRoutingAsDefault: false, // @TODO
+                    defaultVrackGateway:
+                      stepper.form.network?.gateway?.ip || '',
+                    privateNetworkRoutingAsDefault:
+                      stepper.form.network?.gateway?.isEnabled,
                   },
                 });
                 tracking.trackClick({
