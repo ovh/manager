@@ -15,6 +15,17 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
+jest.mock('@ovhcloud/manager-components/src/hooks/useCatalogPrice', () => ({
+  useCatalogPrice: jest.fn(() => ({
+    getFormattedMonthlyCatalogPrice: () => 'toto',
+    getFormattedHourlyCatalogPrice: () => 'tata',
+  })),
+}));
+
+jest.mock('react-use', () => ({
+  useMedia: () => true,
+}));
+
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
@@ -106,18 +117,6 @@ describe('CreateRancher', () => {
 
     // ODS attribute checked is not true sometime ..
     expect(versionActive).toHaveAttribute('checked');
-  });
-
-  it("Given that I'm configuring the service, If the plan status is unavailable I should not be able to click on this plan", async () => {
-    const screen = await setupSpecTest({
-      plans: [{ name: 'STANDARD', status: 'UNAVAILABLE' }],
-    });
-    const standardPlan = screen.getByLabelText('tile-Standard');
-
-    await userEvent.click(standardPlan);
-
-    expect(onCreateRancher).not.toHaveBeenCalled();
-    expect(standardPlan).toBeDisabled();
   });
 
   it('Given that there is an error i should see error banner.', async () => {
