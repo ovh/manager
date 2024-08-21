@@ -2,6 +2,7 @@ import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
 import {
   ShellContext,
   ShellContextType,
@@ -10,12 +11,9 @@ import Layout from '@/pages/layout';
 
 const shellContext = {
   environment: {
-    getUser: () => ({ ovhSubsidiary: 'spyOn_ovhSubsidiary' }),
+    getUser: vi.fn(),
   },
   shell: {
-    navigation: {
-      getURL: vi.fn(),
-    },
     ux: {
       hidePreloader: vi.fn(),
     },
@@ -40,7 +38,7 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const original = await importOriginal();
+  const original: typeof reactShellClientModule = await importOriginal();
   return {
     ...original,
     useOvhTracking: vi.fn(() => ({
