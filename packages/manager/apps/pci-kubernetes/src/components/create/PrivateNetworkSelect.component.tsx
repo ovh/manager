@@ -15,38 +15,27 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { TNetwork } from '@/api/data/network';
-import { TFormState } from './NetworkClusterStep.component';
 
 export type PrivateNetworkSelectProps = {
-  formState: TFormState;
-  setFormState: (formState) => void;
+  network: TNetwork;
+  onSelect: (network: TNetwork) => void;
   networks: TNetwork[];
 };
 
 export default function PrivateNetworkSelect({
-  formState,
-  setFormState,
+  network,
+  onSelect,
   networks,
 }: Readonly<PrivateNetworkSelectProps>) {
   const { t } = useTranslation('network-add');
 
   const defaultNetwork = {
-    id: null,
+    id: 'none',
     name: t('kubernetes_network_form_none'),
   } as TNetwork;
 
   const projectURL = useProjectUrl('public-cloud');
   const privateNetworkURL = `${projectURL}/private-networks`;
-
-  const onPrivateNetworkChanged = (event) => {
-    const networkId = `${event.detail.value}`;
-    setFormState((prev) => ({
-      ...prev,
-      privateNetwork: networks.find((network) => network.id === networkId),
-      loadBalancersSubnet: null,
-      subnet: null,
-    }));
-  };
 
   return (
     <section>
@@ -66,7 +55,7 @@ export default function PrivateNetworkSelect({
           color={ODS_THEME_COLOR_INTENT.text}
         >
           {t('kubernetes_network_form_description')}
-        </OsdsText>
+        </OsdsText>{' '}
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}
           href={privateNetworkURL}
@@ -81,17 +70,21 @@ export default function PrivateNetworkSelect({
         data-ng-attr-label={t('kubernetes_network_form_label')}
       >
         <OsdsSelect
+          className="mt-4"
           name="privateNetwork"
           size={ODS_SELECT_SIZE.md}
-          value={formState.privateNetwork?.id}
-          onOdsValueChange={onPrivateNetworkChanged}
+          value={network?.id || defaultNetwork.id}
+          onOdsValueChange={(ev) => {
+            const networkId = `${ev.detail.value}`;
+            onSelect(networks?.find((net) => net.id === networkId));
+          }}
         >
           <OsdsSelectOption value={defaultNetwork.id}>
             {defaultNetwork.name}
           </OsdsSelectOption>
-          {networks?.map((network) => (
-            <OsdsSelectOption value={network.id} key={network.id}>
-              {network.name}
+          {networks?.map((net) => (
+            <OsdsSelectOption value={net.id} key={net.id}>
+              {net.name}
             </OsdsSelectOption>
           ))}
         </OsdsSelect>

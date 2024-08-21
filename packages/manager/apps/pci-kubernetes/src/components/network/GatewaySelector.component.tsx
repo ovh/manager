@@ -37,13 +37,17 @@ export const GatewaySelector = ({
   className,
   onSelect,
 }: Readonly<GatewaySelectorProps>) => {
-  const [gateway, setGateway] = useState(initialValue);
+  const [gateway, setGateway] = useState(
+    initialValue || {
+      isEnabled: false,
+    },
+  );
   const { t: tAdd } = useTranslation('network-add');
   const projectURL = useProjectUrl('public-cloud');
   const gatewaysURL = `${projectURL}/gateways`;
 
   useEffect(() => {
-    onSelect({
+    onSelect?.({
       ...gateway,
       ip:
         gateway.mode === 'custom' && GATEWAY_IP_REGEX.test(gateway.ip)

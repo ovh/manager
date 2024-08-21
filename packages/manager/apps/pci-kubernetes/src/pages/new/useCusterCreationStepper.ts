@@ -2,15 +2,17 @@ import { useState } from 'react';
 import { KubeFlavor, TLocalisation } from '@ovh-ux/manager-pci-common';
 import { useStep } from './useStep';
 import { AutoscalingState } from '@/components/Autoscaling.component';
+import { TNetworkFormState } from './steps/NetworkClusterStep.component';
 
 export type TClusterCreationForm = {
   region: TLocalisation;
   version: string;
-  network: unknown;
+  network: TNetworkFormState;
   flavor: KubeFlavor;
   scaling: AutoscalingState;
   clusterName: string;
   isMonthlyBilled: boolean;
+  antiAffinity: boolean;
 };
 
 const stepReset = (step: ReturnType<typeof useStep>) => {
@@ -28,6 +30,7 @@ export function useClusterCreationStepper() {
     scaling: null,
     clusterName: '',
     isMonthlyBilled: false,
+    antiAffinity: false,
   });
 
   const locationStep = useStep({ isOpen: true });
@@ -93,7 +96,11 @@ export function useClusterCreationStepper() {
           stepReset,
         );
       },
-      submit: () => {
+      submit: (network: TClusterCreationForm['network']) => {
+        setForm((f) => ({
+          ...f,
+          network,
+        }));
         networkStep.check();
         networkStep.lock();
         nodeTypeStep.open();
@@ -137,7 +144,12 @@ export function useClusterCreationStepper() {
         billingStep.unlock();
         [clusterNameStep].forEach(stepReset);
       },
-      submit: () => {
+      submit: (antiAffinity: boolean, isMonthlyBilled: boolean) => {
+        setForm((f) => ({
+          ...f,
+          antiAffinity,
+          isMonthlyBilled,
+        }));
         billingStep.check();
         billingStep.lock();
         clusterNameStep.open();

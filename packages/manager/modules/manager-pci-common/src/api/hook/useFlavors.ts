@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { getFlavors, getKubeFlavors } from '../data';
+import { TFlavor, TQuota, getFlavors, getKubeFlavors } from '../data';
 import { useCatalog } from './useCatalog';
 import { useProductAvailability } from './useAvailability';
+import { useProjectQuota } from './useProject';
 
 export const FLAVOR_CATEGORIES = [
   {
@@ -73,6 +74,16 @@ export const useKubeFlavors = (projectId: string, region: string) =>
     enabled: !!projectId,
   });
 
+export const hasEnoughQuota = (flavor: TFlavor, quota: TQuota) => {
+  if (!quota?.instance) return true;
+  const { instance } = quota;
+  if (instance.usedInstances + 1 > (instance.maxInstances || 0)) return false;
+  if (instance.usedRAM + flavor.ram > (instance.maxRam || 0)) return false;
+  if (instance.usedCores + flavor.vcpus > (instance.maxCores || 0))
+    return false;
+  return true;
+};
+
 export const useMergedKubeFlavors = (projectId: string, region: string) => {
   const { data: flavors, isPending: isFlavorsPending } = useFlavors(
     projectId,
@@ -88,14 +99,21 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
     isPending: isAvailabilityPending,
   } = useProductAvailability(projectId);
 
+  const { data: quota, isPending: isQuotaPending } = useProjectQuota(
+    projectId,
+    { region },
+  );
+
   const isPending =
     isFlavorsPending ||
     isKubeFlavorsPending ||
     isCatalogPending ||
-    isAvailabilityPending;
+    isAvailabilityPending ||
+    isQuotaPending;
 
   const mergedFlavors = useMemo(() => {
-    if (!flavors || !kubeFlavors || !catalog || !availability) return [];
+    if (!flavors || !kubeFlavors || !catalog || !availability || !quota)
+      return [];
     const kubeFlavorNames = new Set(
       kubeFlavors.map(({ name }) => name.replace('-flex', '')),
     );
@@ -133,6 +151,7 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
           )?.category,
           isFlex: /flex$/.test(flavor.name),
           isLegacy: /eg|sp|hg|vps-ssd/.test(flavor.name),
+          hasEnoughQuota: hasEnoughQuota(flavor, quota[0]),
         };
       })
       .sort((a, b) => {
@@ -141,7 +160,7 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
         if (aGroup === bGroup) return a.ram - b.ram;
         return bGroup.localeCompare(aGroup);
       });
-  }, [availability, catalog, flavors, kubeFlavors]);
+  }, [availability, catalog, flavors, kubeFlavors, quota]);
   return {
     mergedFlavors,
     isPending,

@@ -18,12 +18,12 @@ type FlavorBillingProps = {
   prices: { monthly: number; hourly: number };
   addonsLength: number;
   onClick: (event) => void;
-  gateway:
+  gateway?:
     | {
         prices: { monthly: number; hourly: number };
       }
     | undefined;
-  floatingIp:
+  floatingIp?:
     | {
         prices: { monthly: number; hourly: number };
       }
@@ -90,7 +90,7 @@ export default function FlavorBilling({
                 >
                   <strong>
                     {t('pci_project_flavors_billing_price_hourly_price_label')}
-                  </strong>
+                  </strong>{' '}
                   {getFormattedHourlyCatalogPrice(prices.hourly)}
                 </OsdsText>
 
@@ -107,7 +107,7 @@ export default function FlavorBilling({
                           {t(
                             'pci_project_flavors_billing_price_monthly_gateway_price_label',
                           )}
-                        </strong>
+                        </strong>{' '}
                         {getFormattedHourlyCatalogPrice(
                           gateway?.prices?.hourly,
                         )}
@@ -125,7 +125,7 @@ export default function FlavorBilling({
                           {t(
                             'pci_project_flavors_billing_price_monthly_floatingip_price_label',
                           )}
-                        </strong>
+                        </strong>{' '}
                         {getFormattedHourlyCatalogPrice(
                           floatingIp?.prices?.hourly,
                         )}
@@ -142,7 +142,7 @@ export default function FlavorBilling({
                         {t(
                           'pci_projects_project_instances_add_total_price_label',
                         )}
-                      </strong>
+                      </strong>{' '}
                       {getFormattedHourlyCatalogPrice(getTotalPriceHourly)}
                     </OsdsText>
                   </>
@@ -181,7 +181,7 @@ export default function FlavorBilling({
                       {t(
                         'pci_project_flavors_billing_price_monthly_instance_price_label',
                       )}
-                    </strong>
+                    </strong>{' '}
                     {getFormattedMonthlyCatalogPrice(prices.monthly)}
                   </OsdsText>
 
@@ -198,7 +198,7 @@ export default function FlavorBilling({
                             {t(
                               'pci_project_flavors_billing_price_monthly_gateway_price_label',
                             )}
-                          </strong>
+                          </strong>{' '}
                           {getFormattedMonthlyCatalogPrice(
                             gateway?.prices?.monthly,
                           )}
@@ -216,7 +216,7 @@ export default function FlavorBilling({
                             {t(
                               'pci_project_flavors_billing_price_monthly_floatingip_price_label',
                             )}
-                          </strong>
+                          </strong>{' '}
                           {getFormattedMonthlyCatalogPrice(
                             floatingIp?.prices?.monthly,
                           )}
@@ -233,7 +233,7 @@ export default function FlavorBilling({
                           {t(
                             'pci_projects_project_instances_add_total_price_label',
                           )}
-                        </strong>
+                        </strong>{' '}
                         {getFormattedMonthlyCatalogPrice(getTotalPriceMonthly)}
                       </OsdsText>
                     </>

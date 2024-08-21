@@ -83,6 +83,7 @@ export function FlavorSelector({
                   }}
                   isNewFlavor={flavor.isNew}
                   isSelected={flavor === selectedFlavor}
+                  hasEnoughQuota={flavor.hasEnoughQuota}
                   onClick={() => {
                     setSelectedFlavor(flavor);
                     onSelect(flavor);
