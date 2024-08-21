@@ -114,18 +114,22 @@ const SubTree = ({
               handleOnSubMenuClick={handleOnSubMenuClick}
             />
           ) : (
-            rootNode.children?.map((node) => (
-              <li key={node.id} id={node.id} className={style.sidebar_pciEntry}>
-                {!shouldHideElement(node, 1) && (
+            rootNode.children
+              ?.filter((childNode) => !shouldHideElement(childNode, 1))
+              .map((node) => (
+                <li
+                  key={node.id}
+                  id={node.id}
+                  className={style.sidebar_pciEntry}
+                >
                   <SubTreeSection
                     node={node}
                     selectedNode={selectedNode}
                     handleOnSubMenuClick={handleOnSubMenuClick}
                   />
-                )}
-                {node.separator && <hr />}
-              </li>
-            ))
+                  {node.separator && <hr role="separator" />}
+                </li>
+              ))
           )}
         </ul>
       </div>

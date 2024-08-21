@@ -110,6 +110,14 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   }, [pciProjects, rootNode, containerURL]);
 
   useEffect(() => {
+    if (defaultPciProjectStatus === 'success') {
+      setSelectedPciProject(defaultPciProject);
+    } else if (defaultPciProjectStatus === 'error' && pciProjects?.length) {
+      setSelectedPciProject(pciProjects[0]);
+    }
+  }, [defaultPciProject, defaultPciProjectStatus, pciProjects]);
+
+  useEffect(() => {
     if (
       selectedPciProject &&
       rootNode.id === publicCloud.id &&
@@ -183,21 +191,19 @@ export const PublicCloudPanel: React.FC<ComponentProps<
         )}
       </li>
       {selectedPciProject !== null &&
-        rootNode.children?.map((node) => (
+        rootNode.children?.filter((childNode) => !shouldHideElement(childNode, 1)).map((node) => (
           <li
             key={node.id}
             id={node.id}
             className={style.sidebar_pciEntry}
             role="menuitem"
           >
-            {!shouldHideElement(node, 1) && (
               <SubTreeSection
                 node={node}
                 selectedNode={selectedNode}
                 selectedPciProject={selectedPciProject?.project_id}
                 handleOnSubMenuClick={handleOnSubMenuClick}
               />
-            )}
             {node.separator && <hr role="separator" />}
           </li>
         ))}

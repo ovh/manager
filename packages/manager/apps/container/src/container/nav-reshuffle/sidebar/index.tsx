@@ -18,7 +18,7 @@ import {
   findPathToNode,
   initFeatureNames,
   shouldHideElement,
-  findUniverse,
+  findNodeByRouting,
   splitPathIntoSegmentsWithoutRouteParams,
   IServicesCount,
 } from './utils';
@@ -53,15 +53,166 @@ const Sidebar = (): JSX.Element => {
     isMobile,
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
-  const [menuItems, setMenuItems] = useState<
-    Array<{ node: Node; count: number | boolean }>
-  >([]);
   const [selectedNode, setSelectedNode] = useState<Node>(null);
   const [selectedSubMenu, setSelectedSubMenu] = useState<Node>(null);
   const [open, setOpen] = useState<boolean>(true);
   const [assistanceTree, setAssistanceTree] = useState<Node>(null);
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
+  const [savedNodeID, setSavedNodeID] = useState<string>(
+    window.localStorage.getItem(savedLocationKey),
+  );
+
+  // Memoized calls
+
+  /** Initialize navigation tree */
+  const memoizedNavigationTree = useMemo(() => {
+    const initializeNavigationTree = async () => {
+      if (currentNavigationNode) return;
+      const features = initFeatureNames(navigationTree);
+
+      const results = await fetchFeatureAvailabilityData(features);
+
+      const region = environmentPlugin.getEnvironment().getRegion();
+      const [tree] = initTree([navigationTree], results, region);
+
+      const mxPlanNode = findNodeById(tree, 'mxplan');
+      if (mxPlanNode && region === 'CA') {
+        mxPlanNode.routing.hash = '#/email_mxplan';
+      }
+      setAssistanceTree(findNodeById(tree, 'assistance'));
+      setCurrentNavigationNode(findNodeById(tree, 'sidebar'));
+
+      return tree;
+    };
+    return initializeNavigationTree();
+  }, []);
+
+  const memoizedServiceCount = useMemo(() => {
+    const fetchServiceCount = async () => {
+      const result = await reketInstance.get('/services/count', {
+        requestType: 'aapi',
+      });
+      setServicesCount(result);
+      return result;
+    };
+    return fetchServiceCount();
+  }, []);
+
+  // useEffects
+
+  useEffect(() => {
+    const init = async () => {
+      await memoizedNavigationTree;
+    };
+    init();
+  }, [memoizedNavigationTree]);
+
+  useEffect(() => {
+    const init = async () => {
+      await memoizedServiceCount;
+    };
+    init();
+  }, [memoizedServiceCount]);
+
+  useEffect(() => {
+    if (!currentNavigationNode) return;
+
+    // We want to know if we already stored a node in the memory or in the local storage
+    const pathname = location.pathname;
+    let savedNode: Node = null;
+    if (savedNodeID && !selectedSubMenu) {
+      savedNode = findNodeById(currentNavigationNode, savedNodeID);
+      if (!savedNode || !savedNode.universe) {
+        setSavedNode(null);
+        return;
+      }
+    }
+    const currentNode: Node = selectedSubMenu || savedNode;
+
+    if (currentNode) {
+      // We already stored a node, we want to know if it stills in coherence with the current path
+      // If not, we reset the node to null to not keep wrong information.
+      const universe = findNodeById(currentNavigationNode, currentNode.universe);
+      // A node need a valid universe, if we can't find it, we reset it.
+      if (universe) {
+        // We have to parse the path to try to match it with the stored node
+        const parsedPath = splitPathIntoSegmentsWithoutRouteParams(
+          currentNode.routing.hash
+            ? currentNode.routing.hash.replace(
+                '#',
+                currentNode.routing.application,
+              )
+            : '/' + currentNode.routing.application,
+        );
+
+        // If we match the stored node with the path, it's coherent and we reselect the stored node.
+        // If not, we reset it
+        if (
+          parsedPath.reduce(
+            (acc: boolean, segment: string) =>
+              acc && pathname.includes(segment),
+            true,
+          )
+        ) {
+          selectSubMenu(currentNode);
+          setSelectedNode(universe);
+          return;
+        } else {
+          selectedNode ? setSelectedNode(null) : setSavedNode(null);
+        }
+      } else {
+        selectedNode ? setSelectedNode(null) : setSavedNode(null);
+      }
+    }
+
+    // If we didn't have a stored node or if we have reset it,
+    // we search in the full navigation tree a node that could match the current path
+    const foundNode = findNodeByRouting(currentNavigationNode, pathname);
+    if (foundNode) {
+      selectSubMenu(foundNode.node);
+      setSelectedNode(foundNode.universe);
+    }
+  }, [currentNavigationNode, location]);
+
+  /**
+   * Initialize menu items based on currentNavigationNode
+   */
+  useEffect(() => {
+    if (!currentNavigationNode || !servicesCount) return;
+    const count = {
+      total: servicesCount?.total,
+      serviceTypes: { ...servicesCount?.serviceTypes },
+    };
+    processNode(count, currentNavigationNode);
+  }, [currentNavigationNode, servicesCount]);
+
+  // Functions
+
+  const computeNodeCount = (
+    count: IServicesCount,
+    node: Node,
+  ): number | boolean => {
+    if (node.count === false) return node.count;
+    return countServices(count, node);
+  };
+
+  const processNode = (count: IServicesCount, node: Node) => {
+    node.count = computeNodeCount(count, node);
+    node.children?.map((childNode: Node) => processNode(count, childNode));
+  };
+
+  const setSavedNode = (node: Node) => {
+    if (node) {
+      setSavedNodeID(node.id);
+      window.localStorage.setItem(savedLocationKey, node.id);
+    } else {
+      setSavedNodeID(null);
+      window.localStorage.removeItem(savedLocationKey);
+    }
+  };
+
+  // Callbacks
 
   const toggleSidebar = () => {
     setOpen((prevOpen) => {
@@ -75,6 +226,17 @@ const Sidebar = (): JSX.Element => {
       });
       return nextOpen;
     });
+  };
+
+  const selectSubMenu = (node: Node) => {
+    setSelectedSubMenu(node);
+    setSavedNode(node);
+    isMobile ? closeNavigationSidebar() : setOpen(false);
+  };
+
+  const closeSubMenu = () => {
+    setSelectedNode(null);
+    setSelectedSubMenu(null);
   };
 
   const menuClickHandler = (node: Node) => {
@@ -108,132 +270,6 @@ const Sidebar = (): JSX.Element => {
     if (firstElement) firstElement.focus();
   };
 
-  /** Initialize navigation tree */
-  const memoizedNavigationTree = useMemo(() => {
-    const initializeNavigationTree = async () => {
-      const features = initFeatureNames(navigationTree);
-
-      const results = await fetchFeatureAvailabilityData(features);
-
-      const region = environmentPlugin.getEnvironment().getRegion();
-      const [tree] = initTree([navigationTree], results, region);
-
-      const mxPlanNode = findNodeById(tree, 'mxplan');
-      if (mxPlanNode && region === 'CA') {
-        mxPlanNode.routing.hash = '#/email_mxplan';
-      }
-
-      setAssistanceTree(findNodeById(tree, 'assistance'));
-      setCurrentNavigationNode(findNodeById(tree, 'sidebar'));
-
-      return tree;
-    };
-    return initializeNavigationTree();
-  }, [navigationTree]);
-
-  useEffect(() => {
-    const init = async () => {
-      await memoizedNavigationTree;
-    };
-    init();
-  }, [memoizedNavigationTree]);
-
-  const memoizedServiceCount = useMemo(() => {
-    return reketInstance.get('/services/count', {
-      requestType: 'aapi',
-    });
-  }, []);
-
-  useEffect(() => {
-    memoizedServiceCount.then((servicesCount: ServicesCount) => {
-      setServicesCount(servicesCount);
-    });
-  }, [memoizedServiceCount]);
-
-  const selectSubMenu = (node: Node, parent: Node) => {
-    setSelectedNode(parent);
-    setSelectedSubMenu(node);
-    window.localStorage.setItem(savedLocationKey, node.id);
-    isMobile ? closeNavigationSidebar() : setOpen(false);
-  };
-
-  const closeSubMenu = () => {
-    setSelectedNode(null);
-    setSelectedSubMenu(null);
-  };
-
-  useEffect(() => {
-    if (selectedNode) return;
-
-    const pathname = location.pathname;
-    const savedNodeID = window.localStorage.getItem(savedLocationKey);
-    if (!savedNodeID) return;
-    const node = findNodeById(currentNavigationNode, savedNodeID);
-    if (!node || !node.universe) {
-      window.localStorage.removeItem(savedLocationKey);
-      return;
-    }
-
-    const parent = findNodeById(currentNavigationNode, node.universe);
-    if (parent) {
-      const nodePath = node.routing.hash
-        ? node.routing.hash.replace('#', node.routing.application)
-        : '/' + node.routing.application;
-
-      const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath);
-      const isMatching = parsedPath.reduce(
-        (acc: boolean, segment: string) => acc && pathname.includes(segment),
-        true,
-      );
-      if (isMatching) {
-        selectSubMenu(node, parent);
-        return;
-      } else {
-        window.localStorage.removeItem(savedLocationKey);
-      }
-    }
-
-    const universe = findUniverse(currentNavigationNode, pathname);
-    if (universe) {
-      selectSubMenu(universe.node, universe.parent);
-    }
-  }, [currentNavigationNode]);
-
-  const computeNodeCount = (
-    count: IServicesCount,
-    node: Node,
-  ): number | boolean => {
-    if (node.count === false) return node.count;
-    return countServices(count, node);
-  };
-
-  const processNode = (count: IServicesCount, node: Node): Node => {
-    return {
-      ...node,
-      count: computeNodeCount(count, node),
-      children: node.children?.map((childNode) =>
-        processNode(count, childNode),
-      ),
-    };
-  };
-
-  /**
-   * Initialize menu items based on currentNavigationNode
-   */
-  useEffect(() => {
-    const count = {
-      total: servicesCount?.total,
-      serviceTypes: { ...servicesCount?.serviceTypes },
-    };
-
-    const updatedMenuItems = currentNavigationNode.children?.map((node) => ({
-      node: processNode(count, node),
-      count: computeNodeCount(count, node),
-    }));
-
-    setMenuItems(updatedMenuItems);
-  }, [currentNavigationNode, servicesCount]);
-
   return (
     <div
       className={`${style.sidebar} ${
@@ -259,42 +295,42 @@ const Sidebar = (): JSX.Element => {
         </a>
 
         <div
-          className={`${style.sidebar_menu} ${!open ? style.sidebar_menu_short : ''}`}
+          className={`${style.sidebar_menu} ${
+            !open ? style.sidebar_menu_short : ''
+          }`}
           role="menubar"
         >
-          {servicesCount && currentNavigationNode && (
-            <ul id="menu" role="menu">
-              {open && (
-                <li className="px-3 mb-3 mt-2">
-                  <h2>{t(currentNavigationNode.translation)}</h2>
+          <ul id="menu" role="menu">
+            {open && currentNavigationNode && (
+              <li className="px-3 mb-3 mt-2">
+                <h2>{t(currentNavigationNode.translation)}</h2>
+              </li>
+            )}
+            {currentNavigationNode?.children
+              ?.filter((node) => !shouldHideElement(node, node.count))
+              .map((node: Node) => (
+                <li
+                  key={node.id}
+                  id={node.id}
+                  className={`${style.sidebar_menu_items} ${
+                    node.id === selectedNode?.id
+                      ? style.sidebar_menu_items_selected
+                      : ''
+                  }`}
+                  role="menuitem"
+                >
+                  <SidebarLink
+                    node={node}
+                    count={node.count}
+                    handleOnClick={() => menuClickHandler(node)}
+                    handleOnEnter={(node: Node) => onEnter(node)}
+                    id={node.idAttr}
+                    isShortText={!open}
+                  />
+                  {node.separator && <hr role="separator" />}
                 </li>
-              )}
-              {menuItems
-                ?.filter((node) => !shouldHideElement(node, node.count))
-                .map(({ node, count }) => (
-                  <li
-                    key={node.id}
-                    id={node.id}
-                    className={`${style.sidebar_menu_items} ${
-                      node.id === selectedNode?.id
-                        ? style.sidebar_menu_items_selected
-                        : ''
-                    }`}
-                    role="menuitem"
-                  >
-                    <SidebarLink
-                      node={node}
-                      count={count}
-                      handleOnClick={() => menuClickHandler(node)}
-                      handleOnEnter={(node: Node) => onEnter(node)}
-                      id={node.idAttr}
-                      isShortText={!open}
-                    />
-                    {node.separator && <hr role="separator" />}
-                  </li>
-                ))}
-            </ul>
-          )}
+              ))}
+          </ul>
           <div className={`m-3 ${style.sidebar_action}`}>
             <a
               onClick={() =>
@@ -318,7 +354,7 @@ const Sidebar = (): JSX.Element => {
 
         {open && assistanceTree && (
           <Suspense fallback="">
-            <Assistance nodeTree={assistanceTree} selectedNode={selectedNode}/>
+            <Assistance nodeTree={assistanceTree} selectedNode={selectedNode} />
           </Suspense>
         )}
 
@@ -347,9 +383,7 @@ const Sidebar = (): JSX.Element => {
           }}
           selectedNode={selectedSubMenu}
           handleCloseSideBar={closeSubMenu}
-          handleOnSubMenuClick={(childNode: Node) =>
-            selectSubMenu(childNode, selectedNode)
-          }
+          handleOnSubMenuClick={selectSubMenu}
           rootNode={selectedNode}
         ></SubTree>
       )}
