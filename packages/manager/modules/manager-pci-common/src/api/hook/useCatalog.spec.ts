@@ -1,7 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { IMe, useMe } from '@ovhcloud/manager-components';
-import { QueryClient } from '@tanstack/react-query';
-import { vi, describe, it } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import { getCatalog, TCatalog } from '../data/catalog';
 import { useCatalog } from './useCatalog';
 import { wrapper } from '@/wrapperRenders';
