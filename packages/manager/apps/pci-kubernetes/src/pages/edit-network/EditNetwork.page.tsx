@@ -31,6 +31,7 @@ import { useKubeNetwork } from '@/components/network/useKubeNetwork';
 import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 import { editNetwork } from '@/api/data/kubernetes';
 import queryClient from '@/queryClient';
+import { getRegionSubsnetsQueryKey } from '@/api/hooks/useSubnets';
 
 export default function EditNetworkPage() {
   const { t } = useTranslation('edit-network');
@@ -82,15 +83,11 @@ export default function EditNetworkPage() {
     )
       .then(async () => {
         await queryClient.invalidateQueries({
-          queryKey: [
-            'project',
+          queryKey: getRegionSubsnetsQueryKey(
             projectId,
-            'region',
             kubeDetail.region,
-            'network',
             kubeDetail.privateNetworkId,
-            'subnet',
-          ],
+          ),
         });
         onClose();
         addSuccess(
@@ -143,8 +140,10 @@ export default function EditNetworkPage() {
               className="mt-6"
               title={tAdd('kubernetes_network_form_label')}
               projectId={projectId}
-              kubeId={kubeId}
+              networkId={kubeDetail?.privateNetworkId}
+              region={kubeDetail?.region}
               preselectedId={kubeSubnet?.id}
+              allowsEmpty
               disabled
             />
             <GatewaySelector
@@ -187,9 +186,11 @@ export default function EditNetworkPage() {
                 className="mt-6"
                 title={tAdd('kubernetes_network_form_load_balancers_subnet')}
                 projectId={projectId}
-                kubeId={kubeId}
+                networkId={kubeDetail?.privateNetworkId}
+                region={kubeDetail?.region}
                 preselectedId={kubeDetail.loadBalancersSubnetId}
                 onSelect={setLoadBalancerSubnet}
+                allowsEmpty
               />
             </OsdsAccordion>
           </>
