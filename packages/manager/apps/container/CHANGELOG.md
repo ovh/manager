@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.68.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.68.0...@ovh-ux/manager-container-app@0.68.1) (2024-08-21)
+
+
+### Bug Fixes
+
+* **container:** fix eloquant ([#12802](https://github.com/ovh/manager/issues/12802)) ([0fbf08b](https://github.com/ovh/manager/commit/0fbf08b2988f8e2d9f7eec511e8d444b589e7a85))
+
+
+
+
+
 # [0.68.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.67.1...@ovh-ux/manager-container-app@0.68.0) (2024-08-19)
 
 
