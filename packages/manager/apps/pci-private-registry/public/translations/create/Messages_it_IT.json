@@ -1,0 +1,7 @@
+{
+  "private_registry_create": "Crea un Registry privato",
+  "private_registry_create_region": "Seleziona una localizzazione",
+  "private_registry_create_name_cluster": "Nome del Private Registry",
+  "private_registry_create_choose_plan": "Scegli la tua offerta",
+  "private_registry_create_button": "Crea"
+}
