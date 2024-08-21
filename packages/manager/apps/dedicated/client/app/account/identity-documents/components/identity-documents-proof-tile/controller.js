@@ -1,6 +1,6 @@
 import { USER_TYPE, PROOF_TYPE } from '../../user-identity-documents.constant';
 
-export default class AccountUserIdentityDocumentsReauirementsController {
+export default class AccountUserIdentityDocumentsRequirementsController {
   /* @ngInject */
   constructor() {
     this.USER_TYPE = USER_TYPE;
