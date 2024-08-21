@@ -42,6 +42,13 @@ export default [
         ],
       },
       {
+        path: 'create',
+        handle: {
+          // tracking: 'registries',
+        },
+        ...lazyRouteConfig(() => import('@/pages/create/Create.page')),
+      },
+      {
         id: 'onboarding',
         path: 'onboarding',
         ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),

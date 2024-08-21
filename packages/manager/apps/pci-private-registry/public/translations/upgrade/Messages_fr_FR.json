@@ -1,0 +1,12 @@
+{
+  "private_registry_upgrade_plan": "Changer de plan",
+  "private_registry_upgrade_plan_description": "Vous pouvez à tout moment migrer d'un plan vers un plan plus important. La prise en compte des nouvelles limites est effective en quelques dizaines de secondes, sans perte de données ni changement de configuration nécessaire. Si vous créez, modifiez ou supprimez un service en cours de mois, vous serez facturé uniquement pour les heures effectives de votre plan. Le trafic est illimité et inclus, quelque soit sa destination.",
+  "private_registry_upgrade_plan_connections": "{{ total }} connexions simultanées*",
+  "private_registry_upgrade_plan_vulnerability": "Scan des vulnérabilités",
+  "private_registry_upgrade_plan_traffic": "100% SLA durable et trafic illimité",
+  "private_registry_upgrade_core_registry_99": "99,9% core & registry",
+  "private_registry_upgrade_core_registry_95": "99,95% core & registry",
+  "private_registry_upgrade_other_components": "99,9% sur les autres composants",
+  "private_registry_upgrade_plan_warning": "* La plupart des logiciels clients sont configurés pour utiliser 5 connexions http simultanées lors de l'accès à un Registry",
+  "private_registry_upgrade_plan_available_storage": "Stockage disponible : "
+}
