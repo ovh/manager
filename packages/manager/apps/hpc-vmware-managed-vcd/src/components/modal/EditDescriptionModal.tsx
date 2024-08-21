@@ -71,7 +71,7 @@ export const EditDescriptionModal = ({
         <OsdsText
           slot="helper"
           color={ODS_THEME_COLOR_INTENT.error}
-          className={`${isValidDesc ? 'invisible' : 'visible'}`}
+          className={isValidDesc ? 'invisible' : 'visible'}
         >
           {t('managed_vcd_dashboard_edit_desc_modal_helper_error')}
         </OsdsText>

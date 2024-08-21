@@ -71,7 +71,7 @@ export const EditNameModal = ({
         <OsdsText
           slot="helper"
           color={ODS_THEME_COLOR_INTENT.error}
-          className={`${isValidName ? 'invisible' : 'visible'}`}
+          className={isValidName ? 'invisible' : 'visible'}
         >
           {t('managed_vcd_dashboard_edit_name_modal_helper_error')}
         </OsdsText>
