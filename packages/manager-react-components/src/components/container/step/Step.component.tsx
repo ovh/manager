@@ -14,6 +14,7 @@ import {
 import { v4 as uuidV4 } from 'uuid';
 import {
   ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
@@ -38,6 +39,11 @@ export type TStepProps = {
     label: string | JSX.Element;
     isDisabled?: boolean;
   };
+  cancel?: {
+    action: (id: string) => void;
+    label: string | JSX.Element;
+    isDisabled?: boolean;
+  };
   children?: JSX.Element | JSX.Element[];
 };
 
@@ -52,6 +58,7 @@ export const StepComponent = ({
   children,
   next,
   edit,
+  cancel,
 }: TStepProps): JSX.Element => {
   return (
     <section className="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5 mb-5">
@@ -130,20 +137,37 @@ export const StepComponent = ({
                 {children}
               </Suspense>
             </div>
-            {next?.action && !isLocked && (
-              <div className="mt-6" data-testid="next">
-                <OsdsButton
-                  data-testid="next-cta"
-                  size={ODS_BUTTON_SIZE.md}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  onClick={() => {
-                    next.action(id);
-                  }}
-                  className="w-fit"
-                  {...(next.isDisabled ? { disabled: true } : {})}
-                >
-                  {next.label}
-                </OsdsButton>
+            {!isLocked && (next || cancel) && (
+              <div className="flex mt-6">
+                {next && (
+                  <OsdsButton
+                    data-testid="next-cta"
+                    size={ODS_BUTTON_SIZE.md}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    onClick={() => {
+                      next.action(id);
+                    }}
+                    className="w-fit"
+                    {...(next.isDisabled ? { disabled: true } : {})}
+                  >
+                    {next.label}
+                  </OsdsButton>
+                )}
+                {cancel && (
+                  <OsdsButton
+                    data-testid="cancel-cta"
+                    size={ODS_BUTTON_SIZE.md}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    variant={ODS_BUTTON_VARIANT.ghost}
+                    onClick={() => {
+                      cancel.action(id);
+                    }}
+                    className="w-fit"
+                    {...(cancel.isDisabled ? { disabled: true } : {})}
+                  >
+                    {cancel.label}
+                  </OsdsButton>
+                )}
               </div>
             )}
           </>

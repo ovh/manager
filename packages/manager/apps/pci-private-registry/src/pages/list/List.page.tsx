@@ -104,7 +104,7 @@ export default function ListPage() {
           className="xs:mb-0.5 sm:mb-0"
           onClick={() => {
             clearNotifications();
-            navigate('./new');
+            navigate('./create');
           }}
         >
           <OsdsIcon
