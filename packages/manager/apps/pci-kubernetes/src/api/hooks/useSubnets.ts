@@ -47,21 +47,27 @@ export const usePrivateNetworkSubnets = (
   }, [data, isLoading, error]);
 };
 
+export const getRegionSubsnetsQueryKey = (
+  projectId: string,
+  regionName: string,
+  networkId: string,
+) => [
+  'project',
+  projectId,
+  'region',
+  regionName,
+  'network',
+  networkId,
+  'subnet',
+];
+
 export const useRegionSubnets = (
   projectId: string,
   regionName: string,
   networkId: string,
 ) =>
   useQuery({
-    queryKey: [
-      'project',
-      projectId,
-      'region',
-      regionName,
-      'network',
-      networkId,
-      'subnet',
-    ],
+    queryKey: getRegionSubsnetsQueryKey(projectId, regionName, networkId),
     queryFn: (): Promise<TPrivateNetworkSubnet[]> =>
       getRegionSubnets(projectId, regionName, networkId),
     enabled: !!projectId && !!regionName && !!networkId,
