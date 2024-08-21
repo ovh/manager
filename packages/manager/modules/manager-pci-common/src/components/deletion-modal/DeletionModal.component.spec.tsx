@@ -187,7 +187,7 @@ describe('DeletionModal', () => {
   });
 
   it('displays error message when input is empty', async () => {
-    const { getByTestId, debug, container } = render(
+    const { getByTestId } = render(
       <DeletionModal
         type="default"
         title="Delete Item"
