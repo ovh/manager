@@ -1,8 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import { vi, describe, it } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import { useFlavors, useKubeFlavors, useMergedKubeFlavors } from './useFlavors';
-import * as useFlavorsModule from './useFlavors';
 import {
   getFlavors,
   getKubeFlavors,
@@ -12,9 +11,7 @@ import {
   TProductAvailability,
 } from '../data';
 import { useCatalog } from './useCatalog';
-import * as useCatalogModule from './useCatalog';
 import { useProductAvailability } from './useAvailability';
-import * as useAvailabilityModule from './useAvailability';
 import { wrapper } from '@/wrapperRenders';
 
 vi.mock('../data', () => ({
