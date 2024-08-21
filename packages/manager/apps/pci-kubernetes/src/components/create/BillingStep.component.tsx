@@ -43,7 +43,7 @@ export type TBillingStepProps = {
   warn: boolean;
 };
 
-export default function BillingStep(props: TBillingStepProps): JSX.Element {
+export function BillingStep(props: TBillingStepProps): JSX.Element {
   const { t } = useTranslation('billing-anti-affinity');
   const { t: tNodePool } = useTranslation('node-pool');
   const { t: tFlavourBilling } = useTranslation('flavor-billing');
@@ -82,6 +82,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
         </OsdsCheckbox>
 
         <OsdsText
+          className="mt-4"
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_TEXT_LEVEL.body}
           size={ODS_TEXT_SIZE._400}
@@ -93,6 +94,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
       </div>
       {props.monthlyBilling.isComingSoon ? (
         <OsdsMessage
+          className="mt-4"
           type={ODS_MESSAGE_TYPE.info}
           color={ODS_THEME_COLOR_INTENT.info}
         >
@@ -139,7 +141,6 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
           onClick={() => {
             props.monthlyBilling.check(false);
           }}
-          disabled={false}
         >
           <div className="w-full">
             <OsdsText
@@ -162,7 +163,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
                   {tFlavourBilling(
                     'pci_project_flavors_billing_price_hourly_price_label',
                   )}
-                </strong>
+                </strong>{' '}
                 {getFormattedHourlyCatalogPrice(props.price)}
               </OsdsText>
             </>
@@ -178,7 +179,6 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
             onClick={() => {
               props.monthlyBilling.check(true);
             }}
-            disabled={false}
           >
             <div className="w-full">
               <OsdsText
@@ -201,7 +201,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
                     {tFlavourBilling(
                       'pci_project_flavors_billing_price_monthly_instance_price_label',
                     )}
-                  </strong>
+                  </strong>{' '}
                   {getFormattedMonthlyCatalogPrice(props.monthlyPrice)}
                 </OsdsText>
               </>
@@ -237,3 +237,5 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
     </>
   );
 }
+
+export default BillingStep;
