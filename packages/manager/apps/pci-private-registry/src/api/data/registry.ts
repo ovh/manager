@@ -53,7 +53,7 @@ export const getAllRegistries = async (
 
 export const getRegistryPlan = async (
   projectId: string,
-  registryId,
+  registryId: string,
 ): Promise<TRegistryPlan> => {
   const { data } = await v6.get(
     `cloud/project/${projectId}/containerRegistry/${registryId}/plan`,
@@ -98,6 +98,21 @@ export const renameRegistry = async (
   } = await v6.put(
     `/cloud/project/${projectId}/containerRegistry/${registryId}`,
     { name },
+  );
+  return data;
+};
+
+export const createRegistry = async (
+  projectId: string,
+  payload: {
+    name: string;
+    planID: string;
+    region: string;
+  },
+): Promise<Omit<TRegistry, 'plan'>> => {
+  const { data } = await v6.post<Omit<TRegistry, 'plan'>>(
+    `/cloud/project/${projectId}/containerRegistry`,
+    payload,
   );
   return data;
 };
