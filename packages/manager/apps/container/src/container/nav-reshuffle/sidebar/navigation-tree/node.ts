@@ -1,3 +1,5 @@
+import { SvgIconProps } from "./services/icons/icons.type";
+
 export type NodeRouting = {
   application?: string;
   hash?: string;
@@ -20,6 +22,7 @@ export type Node = {
   translation?: string;
   shortTranslation?: string;
   illustration?: string;
+  iconNode?:  React.FunctionComponent<SvgIconProps>
   features?: string[];
   separator?: boolean;
   idAttr?: string;

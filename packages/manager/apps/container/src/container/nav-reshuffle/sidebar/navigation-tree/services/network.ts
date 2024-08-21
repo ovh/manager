@@ -1,5 +1,6 @@
 import illustration from '@/assets/images/sidebar/network.png';
 import { Node } from '../node';
+import NetworkIcon from './icons/NetworkIcon';
 
 const networkUniverse: Node = {
   id: 'network',
@@ -7,6 +8,7 @@ const networkUniverse: Node = {
   translation: 'sidebar_network',
   shortTranslation: 'sidebar_network_short',
   illustration,
+  iconNode: NetworkIcon,
   features: [
     'vrack:bare-metal-cloud',
     'ip',

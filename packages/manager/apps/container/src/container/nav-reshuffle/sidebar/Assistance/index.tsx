@@ -1,22 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useURL, ContentURLS } from '@/container/common/urls-constants';
 import ApplicationContext from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
-
-import SidebarLink from './SidebarLink';
 import useContainer from '@/core/container';
-import { Node } from './navigation-tree/node';
-import style from './style.module.scss';
+import { Node } from '../navigation-tree/node';
+import { AssistanceLinkItem } from './AssistanceLinkItem';
+import { ShortAssistanceLinkItem } from './ShortAssistanceLinkItem';
 
 interface AssistanceProps {
   nodeTree?: Node;
-  selectedNode : Node;
+  isShort: boolean;
+  selectedNode: Node;
 }
 
 const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   nodeTree,
-  selectedNode
+  selectedNode,
+  isShort
 }): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const { shell } = useContext(ApplicationContext);
@@ -55,9 +56,9 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
         case 'livechat':
           node.onClick = () => {
             shell.getPlugin('ux').openLiveChat();
-              setChatbotReduced(false);
-              trackNode('assistance_live_chat');
-              closeNavigationSidebar();
+            setChatbotReduced(false);
+            trackNode('assistance_live_chat');
+            closeNavigationSidebar();
           };
           break;
         case 'carbon_calculator':
@@ -78,19 +79,23 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
 
   return (
     <ul className="mt-auto pb-3" id="useful-links" role="menu">
-      <li className="assistance_header px-3 mb-3">
-        <h2 className="flex justify-between">
-          <span>{t('sidebar_assistance_title')}</span>
-        </h2>
-      </li>
-      {nodeTree.children.map((node: Node) => (
-        <li className={`flex align-items-center ${style.sidebar_menu_items} ${node.id === selectedNode?.id ? style.sidebar_menu_items_selected : '' }`} role="menuitem" key={`assistance_${node.id}`}>
-          <SidebarLink
-            handleOnClick={node.onClick}
-            node={node}
-          />
-        </li>
-      ))}
+      {!isShort &&
+        <li className="assistance_header px-3 mb-3">
+          <h2 className="flex justify-between">
+            <span>{t('sidebar_assistance_title')}</span>
+          </h2>
+        </li>}
+      {nodeTree.children.map((node: Node) => (isShort ?
+        <ShortAssistanceLinkItem
+          key={`assistance_${node.id}`}
+          node={node}
+          isSelected={node.id === selectedNode?.id}
+        /> :
+        <AssistanceLinkItem
+          key={`assistance_${node.id}`}
+          node={node}
+          isSelected={node.id === selectedNode?.id}
+        />))}
     </ul>
   );
 };

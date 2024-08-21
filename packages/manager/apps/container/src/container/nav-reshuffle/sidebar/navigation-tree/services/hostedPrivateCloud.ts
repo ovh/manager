@@ -1,5 +1,6 @@
 import illustration from '@/assets/images/sidebar/hosted-private-cloud.png';
 import { Node } from '../node';
+import HostedPrivateCloudIcon from './icons/HostedPrivateCloudIcon';
 
 const hostedPrivateCloudUniverse: Node = {
   id: 'hosted-private-cloud',
@@ -7,6 +8,7 @@ const hostedPrivateCloudUniverse: Node = {
   translation: 'sidebar_hpc',
   shortTranslation: 'sidebar_hpc_short',
   illustration,
+  iconNode: HostedPrivateCloudIcon,
   features: ['hosted-private-cloud'],
 };
 
