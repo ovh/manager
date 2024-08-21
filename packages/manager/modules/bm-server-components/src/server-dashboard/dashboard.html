@@ -30,6 +30,11 @@
         </span>
     </oui-message>
 
+    <ovh-manager-vmac-unavailable-banner
+        data-ng-if="$ctrl.isVmacBannerAvailable"
+        data-service-id="$ctrl.serviceInfos.serviceId"
+    ></ovh-manager-vmac-unavailable-banner>
+
     <!-- QUOTA -->
     <div
         class="mb-5"
