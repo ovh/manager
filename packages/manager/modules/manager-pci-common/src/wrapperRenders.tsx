@@ -3,7 +3,7 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import { vi, describe, it } from 'vitest';
+import { vi } from 'vitest';
 
 export const shellContext = {
   environment: {
