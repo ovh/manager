@@ -39,16 +39,19 @@ vi.mock('react-router-dom', () => ({
   }),
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => ({
-  ...(await importOriginal()),
-  useOvhTracking: vi.fn(() => ({
-    trackPage: vi.fn(),
-    trackClick: vi.fn(),
-    trackCurrentPage: vi.fn(),
-    usePageTracking: vi.fn(),
-  })),
-  useRouteSynchro: vi.fn(() => {}),
-}));
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: vi.fn(() => ({
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+      trackCurrentPage: vi.fn(),
+      usePageTracking: vi.fn(),
+    })),
+    useRouteSynchro: vi.fn(() => {}),
+  };
+});
 
 describe('Form.page', () => {
   it('should render select LegalForms correctly when the sub is FR and legalForms is other', async () => {
