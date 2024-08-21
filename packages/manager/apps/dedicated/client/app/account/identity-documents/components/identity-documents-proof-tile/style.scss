@@ -1,0 +1,22 @@
+.oui-box_kyc-digital-process {
+  &.oui-box_tagged {
+    position: relative;
+    .oui-box__tag {
+      display: flex;
+      position: absolute;
+      top: -14px;
+      height: 28px;
+      left: -1px;
+      background-color: #bef1ff;
+      padding: 0.5rem;
+      align-items: center;
+    }
+  }
+
+  .oui-icon {
+    width: 4rem;
+    height: 4rem;
+    line-height: 4rem;
+    font-size: 2rem;
+  }
+}

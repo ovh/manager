@@ -1,12 +1,13 @@
 import angular from 'angular';
 import component from './component';
+import './style.scss';
 
 const moduleName =
-  'ovhManagerDedicatedAccountUserUploadIdentityDocumentsRequirements';
+  'ovhManagerDedicatedAccountUserUploadIdentityDocumentsProofTile';
 
 angular
   .module(moduleName, ['pascalprecht.translate'])
-  .component('accountUploadIdentityDocumentsRequirements', component)
+  .component('accountUploadIdentityDocumentsProofTile', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

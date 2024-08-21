@@ -5,7 +5,7 @@ import component from './user-identitiy-documents.component';
 import routing from './user-identity-documents.routes';
 import uploadConfirmModule from './upload-identity-documents-confirm';
 import documentUploadValidationModalModule from './document-upload-validation-modal';
-import uploadDocumentsRequirements from './components/identity-documents-requirements';
+import uploadDocumentsProofTile from './components/identity-documents-proof-tile';
 
 const moduleName = 'DedicatedUserAccountIdentityDocuments';
 
@@ -14,8 +14,8 @@ angular
     ngAtInternet,
     ngOvhHttp,
     uploadConfirmModule,
-    uploadDocumentsRequirements,
     documentUploadValidationModalModule,
+    uploadDocumentsProofTile,
     'oui',
     'pascalprecht.translate',
     'ui.router',

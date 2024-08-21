@@ -1,0 +1,18 @@
+{
+  "user_account_identity_documents_proof_tile_easiest": "Le plus simple",
+  "user_account_identity_documents_proof_tile_heading_aadhaar_card": "Avez-vous une carte Aadhaar ?",
+  "user_account_identity_documents_proof_tile_text_particular_aadhaar_card": "Envoyez un seul document pour votre preuve d'identité et votre preuve d'adresse",
+  "user_account_identity_documents_proof_tile_heading_identity": "Preuve d'identité",
+  "user_account_identity_documents_proof_tile_heading_address": "Preuve d'adresse",
+  "user_account_identity_documents_proof_tile_heading_vat": "Preuve de TVA",
+  "user_account_identity_documents_proof_tile_heading_authority_declaration": "Attestation sur l'honneur",
+  "user_account_identity_documents_proof_tile_text_particular_identity": "Carte Aadhaar, carte d'identité, passeport, permis de conduire, carte d'électeur indienne.",
+  "user_account_identity_documents_proof_tile_text_particular_address": "Carte Aadhaar, certificat GST, facture (électricité, gaz, eau, internet ou téléphone), relevé bancaire.",
+  "user_account_identity_documents_proof_tile_text_non_individual_identity": "Carte Aadhaar, carte d'identité, passeport, permis de conduire, carte d'électeur indienne.",
+  "user_account_identity_documents_proof_tile_text_non_individual_address": "Certificat GST, facture (électricité, gaz, eau, internet ou téléphone), relevé bancaire.",
+  "user_account_identity_documents_proof_tile_text_non_individual_vat": "Certificat GST (taxe sur les produits et services)",
+  "user_account_identity_documents_proof_tile_text_non_individual_authority_declaration": "Document vous donnant l'autorisation d'agir au nom de la société.",
+  "user_account_identity_documents_proof_tile_extended_identity": "Document du représentant légal, du directeur des opérations ou de tout autre contact mentionné dans le certificat GST.",
+  "user_account_identity_documents_proof_tile_extended_authority_declaration": "Seulement si vous n'êtes pas le « représentant légal ».",
+  "user_account_identity_documents_proof_tile_button": "Ajouter"
+}
