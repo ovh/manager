@@ -5,12 +5,12 @@ import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepState } from '../useStep';
 import NetworkClusterStep, {
-  TFormState,
-} from '@/components/create/NetworkClusterStep.component';
+  TNetworkFormState,
+} from './NetworkClusterStep.component';
 
 export interface NetworkStepProps {
   region: string;
-  onSubmit: () => void;
+  onSubmit: (networkForm: TNetworkFormState) => void;
   step: StepState;
 }
 
@@ -20,18 +20,22 @@ export function NetworkStep({
   step,
 }: Readonly<NetworkStepProps>) {
   const { t: tStepper } = useTranslation('stepper');
-  const [state, setState] = useState<TFormState>({
-    regionName: region,
-  } as TFormState);
+  const [state, setState] = useState<TNetworkFormState>({});
+  const isGatewayValid =
+    !state.gateway?.isEnabled ||
+    state.gateway?.mode === 'auto' ||
+    state.gateway?.ip;
+  const isValid = !state.privateNetwork || isGatewayValid;
   return (
     <>
-      <NetworkClusterStep formState={state} setFormState={setState} />
+      <NetworkClusterStep region={region} onChange={setState} />
       {!step.isLocked && (
         <OsdsButton
-          className="mt-4 w-fit"
+          className="mt-8 w-fit"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={onSubmit}
+          onClick={() => onSubmit(state)}
+          disabled={!isValid || undefined}
         >
           {tStepper('common_stepper_next_button_label')}
         </OsdsButton>
