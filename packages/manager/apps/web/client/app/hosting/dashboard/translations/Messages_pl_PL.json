@@ -1402,5 +1402,12 @@
   "hosting_tab_DOMAINS_table_popover_git_deployment": "Przeprowadź wdrożenie Git",
   "hosting_tab_DOMAINS_table_popover_git_viewLastDeployment": "Informacje o ostatnim wdrożeniu",
   "hosting_tab_DOMAINS_table_popover_git_delete": "Usuń Git",
-  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Jeśli chcesz odłączyć domenę, musisz najpierw usunąć konfigurację Git, aby zapobiec problemom ze śledzeniem zmian i zarządzaniem wdrożeniami."
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Jeśli chcesz odłączyć domenę, musisz najpierw usunąć konfigurację Git, aby zapobiec problemom ze śledzeniem zmian i zarządzaniem wdrożeniami.",
+  "hosting_tab_DOMAINS_table_header_diagnostic": "Diagnostyka",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_good_configuration": "Twoja domena {{domainName}} wskazuje poprawnie na Twój hosting {{hosting}} z IP {{ip}}",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_not_good_configuration": "Twoja domena {{domainName}} nie wskazuje na hosting {{hosting}} z IP {{ip}}",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_unconfigured": "Twoja domena {{domainName}} nie wskazuje aktualnie na żaden adres IP",
+  "hosting_tab_DOMAINS_tooltip_success": "Twoja domena {{domainName}} wskazuje poprawnie na Twój hosting {{hosting}} z IP {{ip}}",
+  "hosting_tab_DOMAINS_tooltip_info": "Twoja domena {{domainName}} nie wskazuje na hosting {{hosting}} z IP {{ip}}",
+  "hosting_tab_DOMAINS_tooltip_error": "Twoja domena {{domainName}} nie wskazuje aktualnie na żaden adres IP"
 }

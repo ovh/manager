@@ -11,10 +11,14 @@ import union from 'lodash/union';
 import {
   CDN_STATUS,
   CDN_VERSION,
+  DIAGNOSTIC_BADGE_STATE,
+  DIAGNOSTIC_STATUS,
   HOSTING_OFFER,
   GIT_BADGES_STATUS,
   GIT_STATUS_WITH_TOOLTIP,
   GIT_STATUS,
+  HOSTING_TAB_DOMAINS,
+  RECORD_TYPE_TO_IP_TYPE,
 } from './hosting-multisite.constants';
 
 const CDN_STATISTICS_PERIOD = {
@@ -59,6 +63,7 @@ angular
       };
 
       $scope.domains = null;
+      $scope.HOSTING_TAB_DOMAINS = HOSTING_TAB_DOMAINS;
       $scope.sslLinked = [];
       $scope.HOSTING = HOSTING;
       $scope.HOSTING_STATUS = HOSTING_STATUS;
@@ -85,6 +90,14 @@ angular
         value: period,
       }));
 
+      HostingDomain.getZones()
+        .then((zones) => {
+          $scope.listZone = zones;
+        })
+        .catch(() => {
+          $scope.listZone = [];
+        });
+
       function sendTrackClick(hit) {
         atInternet.trackClick({
           name: hit,
@@ -98,6 +111,85 @@ angular
         $scope.allowedWebsites = allowedWebsites;
         $scope.existingWebsites = existingWebsites;
       });
+
+      $scope.wrapperZoneInfo = function wrapperZoneInfo(domainName) {
+        const rootDomain = domainName
+          .split('.')
+          .slice(-2)
+          .join('.');
+
+        return {
+          isOVHZone: $scope.listZone.includes(rootDomain),
+          zone: rootDomain,
+        };
+      };
+
+      $scope.wrapperDigStatus = function wrapperDigStatus({
+        records,
+        recommendedIps,
+      }) {
+        return Object.entries(records).reduce(
+          (acc, [key, { type }]) => ({
+            ...acc,
+            [type]: {
+              ip: key,
+              status: recommendedIps[
+                `recommended${RECORD_TYPE_TO_IP_TYPE[type]}`
+              ].includes(key),
+              recommendedIps:
+                recommendedIps[`recommended${RECORD_TYPE_TO_IP_TYPE[type]}`],
+            },
+          }),
+          {},
+        );
+      };
+
+      $scope.getDiagnosticBadge = function getDiagnosticBadge(
+        { digStatus },
+        recordType,
+      ) {
+        return DIAGNOSTIC_BADGE_STATE[
+          $scope.diagnosticStatus(digStatus[recordType]?.status)
+        ];
+      };
+
+      $scope.getDiagnosticTooltip = function getDiagnosticTooltip(
+        { digStatus },
+        recordType,
+      ) {
+        return $translate.instant(
+          `hosting_tab_DOMAINS_diagnostique_tooltip_${$scope.diagnosticStatus(
+            digStatus[recordType]?.status,
+          )}`,
+          {
+            domainName: digStatus.domain,
+            hosting: $scope.hosting.serviceName,
+            ip: digStatus[recordType]?.ip,
+          },
+        );
+      };
+
+      $scope.diagnosticStatus = (status) => {
+        if (typeof status === 'boolean') {
+          return status
+            ? DIAGNOSTIC_STATUS.GOOD_CONFIGURATION
+            : DIAGNOSTIC_STATUS.NOT_GOOD_CONFIGURATION;
+        }
+        return DIAGNOSTIC_STATUS.UNCONFIGURED;
+      };
+
+      $scope.openDiagnosticModal = function openDiagnosticModal(
+        { digStatus },
+        recordType,
+      ) {
+        return (
+          !digStatus[recordType]?.status &&
+          $scope.setAction('multisite/diagnostic/dialog', {
+            digStatus,
+            recordType,
+          })
+        );
+      };
 
       $scope.loadDomains = function loadDomains(count, offset) {
         $scope.loading.domains = true;
@@ -140,10 +232,38 @@ angular
             });
           })
           .then(() =>
-            hostingSSLCertificate.retrievingLinkedDomains(
-              $stateParams.productId,
+            $q.all(
+              $scope.domains.list.results.map((domain) =>
+                $q
+                  .all([
+                    HostingDomain.getDigStatus(
+                      $stateParams.productId,
+                      domain.name,
+                    ),
+                    $scope.wrapperZoneInfo(domain.name),
+                  ])
+                  .then(([digStatus, zoneInfo]) => ({
+                    ...$scope.wrapperDigStatus(digStatus),
+                    domain: domain.name,
+                    ...zoneInfo,
+                  })),
+              ),
             ),
           )
+          .then((digStatus) => {
+            $scope.domains.list.results = $scope.domains.list.results.map(
+              (domain) => ({
+                ...domain,
+                digStatus: digStatus.find(
+                  ({ domain: digDomain }) => domain.name === digDomain,
+                ),
+              }),
+            );
+
+            return hostingSSLCertificate.retrievingLinkedDomains(
+              $stateParams.productId,
+            );
+          })
           .then((sslLinked) => {
             const linkedSSLs = isArray(sslLinked) ? sslLinked : [sslLinked];
 
@@ -594,6 +714,10 @@ angular
 
       $scope.getChartJsInstance = function getChartJsInstance(configuration) {
         return new ChartFactory(configuration);
+      };
+
+      $scope.resetAction = function resetAction() {
+        $scope.services.navigation.resetAction();
       };
 
       $scope.getStatistics = function getStatistics(domain, period) {

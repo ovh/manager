@@ -10,5 +10,17 @@
   "hosting_multisite_statistics_loading_error": "Ocorreu um erro aquando da recuperação das estatísticas",
   "hosting_multisite_statistics_upgrade_info": "Atualize a sua opção CDN para consultar as estatísticas da sua CDN",
   "hosting_multisite": "Multisite",
-  "hosting_multisite_statistics_changing_datavis_tool": "A ferramenta de visualização das estatísticas da sua CDN evolui. Consulte agora os seus dados <b>na página OVHcloud Web Statistics</b> para poder seguir e controlar o tráfego dos seus websites"
+  "hosting_multisite_statistics_changing_datavis_tool": "A ferramenta de visualização das estatísticas da sua CDN evolui. Consulte agora os seus dados <b>na página OVHcloud Web Statistics</b> para poder seguir e controlar o tráfego dos seus websites",
+  "hosting_multisite_dialog_title": "Verificação dos servidores DNS",
+  "hosting_multisite_dialog_edit_record_description": "Altere o campo do tipo {{ recordType }} com o endereço IP {{ ip }} na zona DNS do domínio {{ domain }}.",
+  "hosting_multisite_dialog_edit_record_link": "Alterar o campo do tipo {{ recordType }}.",
+  "hosting_multisite_dialog_edit_record_other_nic": "A alteração deve ser efetuada pelo administrador da zona DNS: {{ nic }}.",
+  "hosting_multisite_dialog_add_record_description": "Adicione um campo de tipo {{ recordType }} com o endereço IP {{ ip }} na zona DNS do domínio {{ domain }}.",
+  "hosting_multisite_dialog_close": "Fechar",
+  "hosting_multisite_dialog_modify_a_record": "Altere o campo de tipo A com o endereço IP {{ip}} na zona DNS do domínio {{domain}} gerido nos servidores DNS {{dns}}",
+  "hosting_multisite_dialog_modify_a_record_same_nic": "Alterar o campo de tipo A",
+  "hosting_multisite_dialog_modify_a_record_external_nic": "Altere o campo de tipo A com o endereço IP {{ip}} na zona DNS do domínio {{domain}} gerido servidor DNS {{dns}} (a alteração deve ser efetuada pelo administrador da zona DNS: {{nic}})",
+  "hosting_multisite_dialog_modify_a_record_error": "Adicione um campo de tipo A e introduza o endereço IP {{ip}} na zona DNS do domínio {{domain}} gerido nos servidores DNS {{dns}}",
+  "hosting_multisite_dialog_modify_a_record_same_nic_error": "Alterar o campo de tipo A",
+  "hosting_multisite_dialog_modify_a_record_external_nic_error": "Altere o campo de tipo A com o endereço IP {{ip}} na zona DNS do domínio {{domain}} gerido servidor DNS {{dns}} (a alteração deve ser efetuada pelo administrador da zona DNS: {{nic}})"
 }

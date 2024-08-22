@@ -352,6 +352,16 @@ angular.module('services').service(
     }
 
     /**
+     * Get service infos
+     * @param {string} zone
+     */
+    getZoneServiceInfos(zone) {
+      return this.$http
+        .get(`/domain/zone/${zone}/serviceInfos`)
+        .then(({ data }) => data);
+    }
+
+    /**
      * Get zone linked
      * @param {string} url
      */
@@ -438,6 +448,19 @@ angular.module('services').service(
           rootPath: 'apiv6',
         },
       );
+    }
+
+    /**
+     * Get Dig Status
+     * @param {string} serviceName
+     * @param {string} attachedDomain
+     */
+    getDigStatus(serviceName, attachedDomain) {
+      return this.$http
+        .get(
+          `/hosting/web/${serviceName}/attachedDomain/${attachedDomain}/digStatus`,
+        )
+        .then(({ data }) => data);
     }
 
     /**

@@ -10,5 +10,17 @@
   "hosting_multisite_statistics_loading_error": "Wystąpił błąd podczas pobierania statystyk.",
   "hosting_multisite_statistics_upgrade_info": "Zaktualizuj opcję CDN, aby wyświetlać statystyki usługi CDN",
   "hosting_multisite": "MultiSite",
-  "hosting_multisite_statistics_changing_datavis_tool": "Modernizujemy narzędzie do przeglądania statystyk CDN. Teraz Twoje dane dostępne są na <b>stronie OVHcloud Web Statistics</b>. Możesz na niej śledzić ruch i zarządzać nim."
+  "hosting_multisite_statistics_changing_datavis_tool": "Modernizujemy narzędzie do przeglądania statystyk CDN. Teraz Twoje dane dostępne są na <b>stronie OVHcloud Web Statistics</b>. Możesz na niej śledzić ruch i zarządzać nim.",
+  "hosting_multisite_dialog_title": "Weryfikacja serwerów DNS",
+  "hosting_multisite_dialog_edit_record_description": "Zmień rekord typu {{recordType}} z adresem IP {{ip}} w strefie DNS domeny {{domain}}.",
+  "hosting_multisite_dialog_edit_record_link": "Zmień rekord typu {{recordType}}.",
+  "hosting_multisite_dialog_edit_record_other_nic": "Modyfikacja powinna zostać wykonana przez administratora strefy DNS: {{nic}}.",
+  "hosting_multisite_dialog_add_record_description": "Dodaj rekord typu {{recordType}} z adresem IP {{ip}} w strefie DNS domeny {{domain}}.",
+  "hosting_multisite_dialog_close": "Zamknij",
+  "hosting_multisite_dialog_modify_a_record": "Zmień pole A na adres IP {{ip}} w strefie DNS domeny {{domain}} zarządzanej na serwerach DNS {{dns}}",
+  "hosting_multisite_dialog_modify_a_record_same_nic": "Zmień pole typu A",
+  "hosting_multisite_dialog_modify_a_record_external_nic": "Zmień pole typu A na adres IP {{ip}} w strefie DNS domeny {{domain}} zarządzanej na serwerach DNS {{dns}} (zmiana musi zostać wykonana przez administratora strefy DNS: {{nic}})",
+  "hosting_multisite_dialog_modify_a_record_error": "Dodaj pole typu A, wprowadzając adres IP {{ip}} w strefie DNS domeny {{domain}} zarządzanej na serwerach DNS {{dns}}",
+  "hosting_multisite_dialog_modify_a_record_same_nic_error": "Zmień pole typu A",
+  "hosting_multisite_dialog_modify_a_record_external_nic_error": "Zmień pole typu A na adres IP {{ip}} w strefie DNS domeny {{domain}} zarządzanej na serwerach DNS {{dns}} (zmiana musi zostać wykonana przez administratora strefy DNS: {{nic}})"
 }

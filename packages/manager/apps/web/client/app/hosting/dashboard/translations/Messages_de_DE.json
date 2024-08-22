@@ -1402,5 +1402,12 @@
   "hosting_tab_DOMAINS_table_popover_git_deployment": "Git deployen",
   "hosting_tab_DOMAINS_table_popover_git_viewLastDeployment": "Informationen zur letzten Bereitstellung",
   "hosting_tab_DOMAINS_table_popover_git_delete": "Git löschen",
-  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Wenn Sie Ihre Domain trennen möchten, müssen Sie zunächst die Git-Konfiguration entfernen, um mögliche Probleme bei der Änderungsnachverfolgung und der Verwaltung von Bereitstellungen zu vermeiden."
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Wenn Sie Ihre Domain trennen möchten, müssen Sie zunächst die Git-Konfiguration entfernen, um mögliche Probleme bei der Änderungsnachverfolgung und der Verwaltung von Bereitstellungen zu vermeiden.",
+  "hosting_tab_DOMAINS_table_header_diagnostic": "Diagnose",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_good_configuration": "Ihre Domain {{ domainName }} ist korrekt mit Ihrem Hosting {{ hosting }} mit der IP {{ ip }} verknüpft.",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_not_good_configuration": "Ihre Domain {{ domainName }} ist nicht korrekt mit Ihrem Hosting {{ hosting }} mit der IP {{ ip }} verknüpft.",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_unconfigured": "Ihre Domain {{ domainName }} ist derzeit mit keiner IP-Adresse verknüpft.",
+  "hosting_tab_DOMAINS_tooltip_success": "Ihre Domain {{domainName}} ist korrekt mit Ihrem Hosting {{hosting}} mit der IP {{ip}} verknüpft.",
+  "hosting_tab_DOMAINS_tooltip_info": "Ihre Domain {{domainName}} ist nicht korrekt mit Ihrem Hosting {{hosting}} mit der IP {{ip}} verknüpft.",
+  "hosting_tab_DOMAINS_tooltip_error": "Ihre Domain {{domainName}} ist derzeit mit keiner IP-Adresse verknüpft."
 }
