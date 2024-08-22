@@ -1,0 +1,5 @@
+{
+  "headline": "Résilier mon service",
+  "delete_input_label": "Veuillez entrer le mot \"TERMINATE\" pour confirmer la résiliation de votre service.",
+  "terminate_veeam_backup_success": "Votre demande de résiliation pour {{name}} a bien été prise en compte, vous allez recevoir un mail pour valider celle-ci"
+}

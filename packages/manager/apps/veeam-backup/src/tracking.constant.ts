@@ -1,3 +1,5 @@
+import { appName } from './veeam-backup.config';
+
 export const LEVEL2 = {
   EU: {
     config: {
@@ -17,4 +19,9 @@ export const LEVEL2 = {
 };
 export const UNIVERSE = 'Manager';
 export const SUB_UNIVERSE = 'Manager';
-export const APP_NAME = 'veeam-backup';
+export const APP_NAME = appName;
+
+export enum PageName {
+  successDeleteVeeamBackup = 'delete_veeam-backup_success',
+  errorDeleteVeeamBackup = 'delete_veeam-backup_error',
+}
