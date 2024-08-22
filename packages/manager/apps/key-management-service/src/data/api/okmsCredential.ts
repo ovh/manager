@@ -1,19 +1,39 @@
+import { ColumnSort } from '@ovhcloud/manager-components';
+import apiClient from '@ovh-ux/manager-core-api';
+import { OkmsCredential } from '@/types/okmsCredential.type';
+import { sortCredentials } from '@/utils/credential/credentialDatagridSort';
+
 /**
  *  Get okms Credential list
  */
 
-import apiClient from '@ovh-ux/manager-core-api';
-import { OkmsCredential } from '@/types/okmsCredential.type';
-
-export const getOkmsCredentialList = async (
+export const getOkmsCredentials = async (
   okmsId: string,
 ): Promise<{ data: OkmsCredential[] }> => {
   return apiClient.v2.get(`okms/resource/${okmsId}/credential`);
 };
 
-export const getOkmsCredentialListQueryKey = (okmsId: string) => [
+export const getOkmsCredentialsQueryKey = (okmsId: string) => [
   `get/okms/resource/${okmsId}/credential`,
 ];
+
+export const sortOkmscredentials = (
+  credentials: OkmsCredential[],
+  sorting: ColumnSort,
+): OkmsCredential[] => {
+  const data = [...credentials];
+
+  if (sorting) {
+    const { id: sortKey, desc } = sorting;
+
+    data.sort(sortCredentials(sortKey as keyof OkmsCredential));
+    if (desc) {
+      data.reverse();
+    }
+  }
+
+  return data;
+};
 
 /**
  *  Get okms Credential
