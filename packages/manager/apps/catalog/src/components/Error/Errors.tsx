@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
-import { ErrorBanner, ErrorMessage } from '@ovhcloud/manager-components';
+import { ErrorBanner, ErrorMessage } from '@ovhcloud/manager-react-components';
 import { useSendErrorTracking } from '@/utils/trackingError';
 
 export interface ErrorObject {

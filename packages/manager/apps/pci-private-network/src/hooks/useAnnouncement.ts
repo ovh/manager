@@ -1,4 +1,4 @@
-import { useFeatureAvailability } from '@ovhcloud/manager-components';
+import { useFeatureAvailability } from '@ovhcloud/manager-react-components';
 import { pciAnnouncementBannerId } from '@/constants';
 
 export const useAnnouncementBanner = () => {

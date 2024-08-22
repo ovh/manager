@@ -1,5 +1,5 @@
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ActionMenu, ActionMenuItem } from '@ovhcloud/manager-components';
+import { ActionMenu, ActionMenuItem } from '@ovhcloud/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,

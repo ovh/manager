@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useMe } from '@ovhcloud/manager-components';
+import { useMe } from '@ovhcloud/manager-react-components';
 import { getProjectsAvailableVolumes } from '@/api/data/availableVolumes';
 
 export const getProjectsAvailableVolumesQuery = (

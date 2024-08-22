@@ -9,7 +9,7 @@ import {
   isDiscoveryProject,
   PciDiscoveryBanner,
   PciGuidesHeader,
-} from '@ovhcloud/manager-components';
+} from '@ovhcloud/manager-react-components';
 
 import {
   OsdsText,

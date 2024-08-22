@@ -29,6 +29,16 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    options: {
+      storySort: {
+        order: [
+          'Manager React Components',
+          ['Introduction', "What's new?", ['Changelog']],
+          '*',
+        ],
+      },
+      showPanel: true,
+    },
   },
 };
 

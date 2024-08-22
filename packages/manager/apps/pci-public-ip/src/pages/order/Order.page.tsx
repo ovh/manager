@@ -5,7 +5,7 @@ import {
   isDiscoveryProject,
   Notifications,
   PciDiscoveryBanner,
-} from '@ovhcloud/manager-components';
+} from '@ovhcloud/manager-react-components';
 import {
   OsdsBreadcrumb,
   OsdsIcon,

@@ -1,5 +1,8 @@
 import { v6, fetchIcebergV6, Filter } from '@ovh-ux/manager-core-api';
-import { ColumnSort, PaginationState } from '@ovhcloud/manager-components';
+import {
+  ColumnSort,
+  PaginationState,
+} from '@ovhcloud/manager-react-components';
 import { OPENRC_VERSION } from '@/download-openrc.constants';
 import { OpenStackTokenResponse, Role, User } from '@/interface';
 

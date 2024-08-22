@@ -4,7 +4,7 @@ import {
   Datagrid,
   DataGridTextCell,
   useDatagridSearchParams,
-} from '@ovhcloud/manager-components';
+} from '@ovhcloud/manager-react-components';
 import { Endpoint, OpenStackTokenResponse } from '@/interface';
 
 export function OpenStackTokenListing({

@@ -6,7 +6,10 @@ import {
   OsdsDivider,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { Notifications, useNotifications } from '@ovhcloud/manager-components';
+import {
+  Notifications,
+  useNotifications,
+} from '@ovhcloud/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,

@@ -1,4 +1,4 @@
-import { PaginationState } from '@ovhcloud/manager-components';
+import { PaginationState } from '@ovhcloud/manager-react-components';
 
 export interface Instance {
   id: string;

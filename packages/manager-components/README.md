@@ -14,7 +14,7 @@ Keep it as simple as possible
 ## Import component to another project
 
 The component is not builded so you can import directly the component named `Card` from the workspace like this :
-`import Card from '@ovhcloud/manager-components'`
+`import Card from '@ovhcloud/manager-react-components'`
 
 ## Main Scripts
 

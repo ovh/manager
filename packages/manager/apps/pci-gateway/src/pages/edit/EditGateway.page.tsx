@@ -3,7 +3,7 @@ import {
   TilesInputComponent,
   useNotifications,
   useProject,
-} from '@ovhcloud/manager-components';
+} from '@ovhcloud/manager-react-components';
 import {
   OsdsBreadcrumb,
   OsdsDivider,

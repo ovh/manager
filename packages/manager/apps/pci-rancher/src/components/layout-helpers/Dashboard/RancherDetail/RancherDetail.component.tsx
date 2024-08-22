@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-import { CommonTitle } from '@ovhcloud/manager-components';
+import { CommonTitle } from '@ovhcloud/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {

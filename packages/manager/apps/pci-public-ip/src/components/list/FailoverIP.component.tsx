@@ -9,7 +9,7 @@ import {
   PciAnnouncementBanner,
   useColumnFilters,
   useDatagridSearchParams,
-} from '@ovhcloud/manager-components';
+} from '@ovhcloud/manager-react-components';
 
 import {
   ODS_THEME_COLOR_INTENT,

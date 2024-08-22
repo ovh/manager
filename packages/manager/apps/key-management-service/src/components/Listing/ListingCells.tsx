@@ -3,7 +3,7 @@ import {
   DataGridClipboardCell,
   DataGridTextCell,
   useNotifications,
-} from '@ovhcloud/manager-components';
+} from '@ovhcloud/manager-react-components';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_COLOR_INTENT } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';

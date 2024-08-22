@@ -39,7 +39,7 @@ import {
   FilterList,
   FilterAdd,
   useDataGrid,
-} from '@ovhcloud/manager-components';
+} from '@ovhcloud/manager-react-components';
 import { useUsers } from '@/api/hooks/useUser';
 import useProject from '@/api/hooks/useProject';
 import { User } from '@/interface';

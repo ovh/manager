@@ -4,7 +4,7 @@ import {
   isDiscoveryProject,
   OnboardingLayout,
   PciDiscoveryBanner,
-} from '@ovhcloud/manager-components';
+} from '@ovhcloud/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -22,7 +22,7 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import { PublicCloudProject } from '@ovhcloud/manager-components/src/hooks/pci-project-provider/publicCloudProject.interface';
+import { PublicCloudProject } from '@ovhcloud/manager-react-components/src/hooks/pci-project-provider/publicCloudProject.interface';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from '@/pages/onboarding/OnBoardingGuard';

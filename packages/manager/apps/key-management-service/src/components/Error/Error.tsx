@@ -4,8 +4,8 @@ import { useShell } from '@ovh-ux/manager-react-shell-client';
 import {
   ErrorMessage,
   TRACKING_LABELS,
-} from '@ovhcloud/manager-components/src/components/';
-import { ErrorBanner } from '@ovhcloud/manager-components';
+} from '@ovhcloud/manager-react-components/src/components/';
+import { ErrorBanner } from '@ovhcloud/manager-react-components';
 
 interface ErrorObject {
   [key: string]: any;
