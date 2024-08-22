@@ -8,7 +8,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
-import appConfig from '@/veeam-backup.config';
+import { appName } from '@/veeam-backup.config';
 
 export type BreadcrumbItem = {
   label: string | undefined;
@@ -40,7 +40,7 @@ export function Breadcrumb() {
   const pathnames = location.pathname.split('/').filter(Boolean);
   const paths = pathnames.map((value) => ({
     label: t(value),
-    href: `/#/${appConfig.rootLabel}/${value}`,
+    href: `/#/${appName}/${value}`,
   }));
 
   return <OsdsBreadcrumb items={[...rootItems, ...paths]} />;

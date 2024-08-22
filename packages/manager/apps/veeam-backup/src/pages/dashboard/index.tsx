@@ -36,12 +36,12 @@ export default function DashboardPage() {
   const tabsList = [
     {
       name: 'general_informations',
-      title: 'Informations générales',
+      title: t('Informations générales'),
       to: useResolvedPath('').pathname,
     },
     {
       name: 'Tab 2',
-      title: 'Tab 2',
+      title: t('Tab 2'),
       to: useResolvedPath('Tab2').pathname,
     },
   ];
