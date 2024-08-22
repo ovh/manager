@@ -2,7 +2,7 @@ import {
   StepComponent,
   useCatalogPrice,
   useNotifications,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,

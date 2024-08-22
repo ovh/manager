@@ -1,5 +1,5 @@
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Card, OnboardingLayout } from '@ovhcloud/manager-components';
+import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -17,7 +17,7 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import { PublicCloudProject } from '@ovhcloud/manager-components/src/hooks/pci-project-provider/publicCloudProject.interface';
+import { PublicCloudProject } from '@ovh-ux/manager-react-components/src/hooks/pci-project-provider/publicCloudProject.interface';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from './OnboardingGuard';
 

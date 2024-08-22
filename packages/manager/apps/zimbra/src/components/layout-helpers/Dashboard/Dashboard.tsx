@@ -6,7 +6,7 @@ import {
   DashboardLayoutProps,
   GuideButton,
   GuideItem,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';

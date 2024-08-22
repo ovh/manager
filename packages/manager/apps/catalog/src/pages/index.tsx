@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
-import { Card } from '@ovhcloud/manager-components';
+import { Card } from '@ovh-ux/manager-react-components';
 import { OsdsText, OsdsDivider } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,

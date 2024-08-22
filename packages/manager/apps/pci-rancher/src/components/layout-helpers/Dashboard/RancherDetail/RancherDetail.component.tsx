@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-import { CommonTitle } from '@ovhcloud/manager-components';
+import { CommonTitle, TileBlock } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -29,7 +29,6 @@ import {
 } from '@/types/api.type';
 import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
 import StatusChip from '@/components/StatusChip/StatusChip.component';
-import { TileBlock } from '@/components/TileBlock/TileBlock.component';
 import UpdateVersionBanner from '@/components/UpdateRancherVersionBanner/UpdateVersionBanner.component';
 import { useTrackingAction } from '@/hooks/useTrackingPage/useTrackingPage';
 import { getLatestVersionAvailable } from '@/utils/rancher';

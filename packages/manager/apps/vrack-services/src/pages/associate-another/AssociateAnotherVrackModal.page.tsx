@@ -20,7 +20,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { handleClick } from '@ovhcloud/manager-components';
+import { handleClick } from '@ovh-ux/manager-react-components';
 import { useVrackList } from '@/data';
 import { AssociateAnotherVrack } from './AssociateAnotherVrack.component';
 import { CreateVrack } from '@/components/CreateVrack.component';

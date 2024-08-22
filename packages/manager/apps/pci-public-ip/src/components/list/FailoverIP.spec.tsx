@@ -1,4 +1,4 @@
-import * as managerComponentsModule from '@ovhcloud/manager-components';
+import * as managerComponentsModule from '@ovh-ux/manager-react-components';
 import {
   QueryClient,
   QueryClientProvider,
@@ -29,7 +29,7 @@ type TData = {
   totalRows: number;
 };
 
-vi.mock('@ovhcloud/manager-components', () => ({
+vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: vi.fn().mockReturnValue(null),
   Datagrid: vi.fn().mockReturnValue(<div>Datagrid</div>),
   FilterAdd: vi.fn().mockReturnValue(null),

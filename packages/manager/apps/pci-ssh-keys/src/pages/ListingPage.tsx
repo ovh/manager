@@ -38,7 +38,7 @@ import {
   isDiscoveryProject,
   PciDiscoveryBanner,
   PciGuidesHeader,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useSshKeys } from '@/hooks/useSsh';
 import { SshKey } from '@/interface';
 import Key from '@/components/ssh-keys/listing/Key';

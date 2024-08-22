@@ -11,7 +11,7 @@ import getIcon from './GetIcon';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useFeatureAvailability } from '@ovhcloud/manager-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 
 export const features = [
   'dedicated-server',

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useFeatureAvailability } from '@ovhcloud/manager-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useLegacyContainer } from '@/container/legacy/context';
 import { useShell } from '@/context';
 import useProjects from './useProjects';

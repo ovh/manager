@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useFeatureAvailability } from '@ovhcloud/manager-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import {
   getvrackServicesReferenceRegionList,
   getvrackServicesReferenceRegionListQueryKey,

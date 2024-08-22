@@ -8,7 +8,7 @@ import {
   TrackingClickParams,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { UpdateIamNameModal } from '@ovhcloud/manager-components';
+import { UpdateIamNameModal } from '@ovh-ux/manager-react-components';
 import { useServiceList } from '@/data';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import { PageLayout } from '@ovhcloud/manager-components';
+import { PageLayout } from '@ovh-ux/manager-react-components';
 import { getRancherPlan, getReferenceRancherInfo } from '@/data/api/services';
 import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRancher.component';
 import useCreateRancher from '@/data/hooks/useCreateRancher/useCreateRancher';

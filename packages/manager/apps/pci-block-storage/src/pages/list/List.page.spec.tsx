@@ -3,9 +3,9 @@ import { render, waitFor } from '@testing-library/react';
   PublicCloudProject,
   useProductMaintenance,
   useProject,
-} from '@ovhcloud/manager-components'; */
-import * as managerComponentsModule from '@ovhcloud/manager-components';
-import { Datagrid, PublicCloudProject } from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components'; */
+import * as managerComponentsModule from '@ovh-ux/manager-react-components';
+import { Datagrid, PublicCloudProject } from '@ovh-ux/manager-react-components';
 import { describe, it, vi } from 'vitest';
 import {
   QueryClient,
@@ -27,7 +27,7 @@ vi.mock('react-router-dom', () => ({
   Outlet: vi.fn().mockReturnValue(<div></div>),
 }));
 
-vi.mock('@ovhcloud/manager-components', () => ({
+vi.mock('@ovh-ux/manager-react-components', () => ({
   useProject: vi.fn(),
   useAnnouncementBanner: vi.fn(),
   useProductMaintenance: vi.fn(),

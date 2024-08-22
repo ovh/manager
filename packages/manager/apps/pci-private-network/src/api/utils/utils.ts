@@ -1,4 +1,4 @@
-import { PaginationState } from '@ovhcloud/manager-components';
+import { PaginationState } from '@ovh-ux/manager-react-components';
 import { TRegion } from '@/api/data/regions';
 
 export const getLocalZoneRegions = (customerRegions: TRegion[] = []) =>

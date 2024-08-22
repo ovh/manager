@@ -1,5 +1,5 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { getOkmsServicesResourceListQueryKey } from '../api/okms';

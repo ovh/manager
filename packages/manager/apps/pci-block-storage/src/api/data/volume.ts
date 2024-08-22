@@ -1,5 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { ColumnSort, PaginationState } from '@ovhcloud/manager-components';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { Instance } from '@/api/data/instance';
 
 export type TVolume = {

@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useLocation, useMatches, useRouteLoaderData } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import { PublicCloudProject } from '@ovhcloud/manager-components/src/hooks/pci-project-provider/publicCloudProject.interface';
+import { PublicCloudProject } from '@ovh-ux/manager-react-components/src/hooks/pci-project-provider/publicCloudProject.interface';
 import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';
 import { RouteHandle } from '@/routes';
 

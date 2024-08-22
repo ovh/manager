@@ -2,14 +2,14 @@ import { renderHook } from '@testing-library/react';
 import {
   UseFeatureAvailabilityResult,
   useFeatureAvailability,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { describe, it, vi } from 'vitest';
 import {
   PCI_ANNOUNCEMENT_BANNER_FEATURE,
   useAnnouncementBanner,
 } from './useAnnouncementBanner';
 
-vi.mock('@ovhcloud/manager-components', () => ({
+vi.mock('@ovh-ux/manager-react-components', () => ({
   useFeatureAvailability: vi.fn(),
 }));
 

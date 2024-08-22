@@ -9,7 +9,7 @@ import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { fetchFeatureAvailabilityData } from '@ovhcloud/manager-components';
+import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 
 import { useReket } from '@ovh-ux/ovh-reket';
 import { UserLink } from './UserLink';

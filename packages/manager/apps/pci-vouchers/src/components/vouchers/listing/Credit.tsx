@@ -1,4 +1,4 @@
-import { DataGridTextCell } from '@ovhcloud/manager-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { Credit } from '@/interface';
 
 export default function CreditCell({

@@ -17,7 +17,7 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Subtitle } from '@ovhcloud/manager-components';
+import { Subtitle } from '@ovh-ux/manager-react-components';
 
 type MfaEnrollmentProps = {
   forced?: boolean;

@@ -6,7 +6,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ActionMenu } from '@ovhcloud/manager-components';
+import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { isEditable, VrackServicesWithIAM } from '@/data';
 import { urls } from '@/routes/routes.constants';
