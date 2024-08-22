@@ -7,7 +7,7 @@ export type OkmsCredential = {
   name?: string;
   certificatePEM?: string;
   description?: string;
-  expiredAt: number;
+  expiredAt: string;
   fromCSR: boolean;
   identityURNs: string[];
   status: OkmsCredentialStatus;

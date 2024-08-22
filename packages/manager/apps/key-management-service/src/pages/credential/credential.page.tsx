@@ -55,8 +55,8 @@ const Credentials = () => {
       navigateTo: `/${okmsId}`,
     },
     {
-      id: ROUTES_URLS.keys,
-      label: t('key_management_service_service_keys'),
+      id: ROUTES_URLS.credentials,
+      label: t('key_management_service_credential'),
       navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}`,
     },
     {
