@@ -7,7 +7,7 @@ import { DeleteModal, DeleteModalProps } from './delete-modal.component';
 
 export type DeleteServiceModalProps = {
   resourceName: string;
-} & Omit<DeleteModalProps, 'isLoading' | 'error'> &
+} & Omit<DeleteModalProps, 'error'> &
   UseDeleteServiceParams;
 
 export const DeleteServiceModal: React.FC<DeleteServiceModalProps> = ({
@@ -16,6 +16,7 @@ export const DeleteServiceModal: React.FC<DeleteServiceModalProps> = ({
   onSuccess,
   onError,
   mutationKey,
+  isLoading,
   ...props
 }) => {
   const { terminateService, isPending, error, isError } = useDeleteService({
@@ -27,7 +28,7 @@ export const DeleteServiceModal: React.FC<DeleteServiceModalProps> = ({
   return (
     <DeleteModal
       {...props}
-      isLoading={isPending}
+      isLoading={isLoading || isPending}
       error={isError ? error?.response?.data?.message : null}
       onConfirmDelete={() => {
         onConfirmDelete?.();
