@@ -35,5 +35,6 @@
   "updateDisplayNameSuccess": "Zmiana nazwy dla {{vrackServices}} została zarejestrowana.",
   "listingTitle": "vRack Services",
   "listingDescription": "Produkt vRack Services umożliwia korzystanie z usług sieciowych w sieci vRack. Tworząc Service Endpoint, możesz udostępnić, za pomocą prywatnego adresu IP, usługę zarządzaną przez OVHcloud w ramach Twojej sieci vRack.",
-  "vrackServicesEmptyDataGridMessage": "vRack Services nie są jeszcze gotowe"
+  "vrackServicesEmptyDataGridMessage": "vRack Services nie są jeszcze gotowe",
+  "SUSPENDED": "Nieaktywna"
 }

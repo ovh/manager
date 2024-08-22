@@ -16,6 +16,6 @@
   "createPageTitle": "Ativar os vRack Services",
   "modalCreateOrderWaitMessage": "Por favor aguarde...",
   "modalSubmitOrderButtonLabel": "Encomendar",
-  "vrackServicesCreationSuccess": "A configuração foi corretamente tomada em conta.",
+  "vrackServicesCreationSuccess": "Da configuração foi registada.",
   "vrackServicesOrderLinkLabel": "A minha encomenda"
 }
