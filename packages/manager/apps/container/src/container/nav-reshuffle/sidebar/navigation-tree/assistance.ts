@@ -1,9 +1,5 @@
 import { Node } from "./node";
-import StoreIcon from "./services/icons/StoreIcon";
-import HelpCenterIcon from "./services/icons/HelpCenterIcon";
-import NetworkStatusIcon from "./services/icons/NetworkStatusIcon";
-import LiveChatIcon from "./services/icons/LiveChatIcon";
-import LeafIcon from "./services/icons/LeafIcon";
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 export const assistanceTree: Node = {
   id: 'assistance',
@@ -16,7 +12,7 @@ export const assistanceTree: Node = {
       count: false,
       isExternal: true,
       region: ['EU'],
-      iconNode: StoreIcon
+      svgIcon: OvhProductName.STORE
     },
     {
       id: 'help',
@@ -24,7 +20,7 @@ export const assistanceTree: Node = {
       url: 'help',
       count: false,
       isExternal: true,
-      iconNode: HelpCenterIcon
+      svgIcon: OvhProductName.HELPECENTER
     },
     {
       id: 'assistance_status',
@@ -32,14 +28,14 @@ export const assistanceTree: Node = {
       url: 'status',
       count: false,
       isExternal: true,
-      iconNode: NetworkStatusIcon
+      svgIcon: OvhProductName.NETWORKSTATUS
     },
     {
       id: 'livechat',
       features: ['livechat'],
       translation: 'sidebar_assistance_live_chat',
       count: false,
-      iconNode: LiveChatIcon,
+      svgIcon: OvhProductName.LIVECHAT
     },
     {
       id: 'carbon_calculator',
@@ -50,7 +46,7 @@ export const assistanceTree: Node = {
         application: 'carbon-calculator',
         hash: '#',
       },
-      iconNode: LeafIcon,
+      svgIcon: OvhProductName.LEAF
     }
   ]
 }

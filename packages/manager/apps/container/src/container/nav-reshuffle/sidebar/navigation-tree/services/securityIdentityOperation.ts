@@ -1,6 +1,6 @@
 import illustration from '@/assets/images/sidebar/security-identity-operations.png';
 import { Node } from '../node';
-import SecurityIdentityOperationIcon from './icons/SecurityIdentityOperationIcon';
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const sioUniverse : Node = {
   id: 'security-identity-operation',
@@ -8,7 +8,7 @@ const sioUniverse : Node = {
   translation: 'sidebar_security_identity_operations',
   shortTranslation: 'sidebar_security_identity_operations_short',
   illustration,
-  iconNode: SecurityIdentityOperationIcon,
+  svgIcon: OvhProductName.SECURITYIDENTITYOPERATION,
   routing: {
     application: 'iam',
   },

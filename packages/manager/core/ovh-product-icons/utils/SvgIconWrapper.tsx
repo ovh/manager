@@ -3,6 +3,7 @@ import {
   dedicatedIcons,
   webIcons,
   telecomIcons,
+  containerIcons,
 } from '@ovh-ux/ovh-product-icons/index';
 import OvhProductName from './OvhProductNameEnum';
 
@@ -23,6 +24,7 @@ const iconComponents: IconComponents = {
   ...dedicatedIcons,
   ...webIcons,
   ...telecomIcons,
+  ...containerIcons,
 };
 
 const DEFAULT_SIZE = 32;
