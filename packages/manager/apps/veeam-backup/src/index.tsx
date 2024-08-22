@@ -9,7 +9,6 @@ import App from './App';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import './index.scss';
 import './vite-hmr';
-
 import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
 
 const trackingContext = {
@@ -39,7 +38,7 @@ const init = async (appName: string) => {
     // nothing to do
   }
 
-  ReactDOM.createRoot(document.getElementById('root')!).render(
+  ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <ShellContext.Provider value={context}>
         <App />
@@ -48,4 +47,4 @@ const init = async (appName: string) => {
   );
 };
 
-init('veeam-backup');
+init(APP_NAME);
