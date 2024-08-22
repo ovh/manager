@@ -10,7 +10,7 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 import { useNavigate } from 'react-router-dom';
-import { Table } from '@ovhcloud/manager-components';
+import { Table } from '@ovh-ux/manager-react-components';
 import { OsdsText, OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components/';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';

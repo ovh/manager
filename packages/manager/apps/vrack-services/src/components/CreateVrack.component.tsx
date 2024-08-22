@@ -28,7 +28,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { handleClick } from '@ovhcloud/manager-components';
+import { handleClick } from '@ovh-ux/manager-react-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { getVrackListQueryKey } from '@/data';

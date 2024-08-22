@@ -1,4 +1,7 @@
-import { DatagridColumn, DataGridTextCell } from '@ovhcloud/manager-components';
+import {
+  DatagridColumn,
+  DataGridTextCell,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';

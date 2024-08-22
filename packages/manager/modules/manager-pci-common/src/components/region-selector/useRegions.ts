@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import {
   getMacroRegion,
   useTranslatedMicroRegions,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { TRegion, getProjectRegions } from '../../api/data/regions';
 
 export const useProjectRegions = (projectId: string) =>

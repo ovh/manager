@@ -12,7 +12,7 @@ import telecomShopConfig from '../order/shop-config/telecom';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import  getIcon  from './GetIcon';
-import { useFeatureAvailability } from '@ovhcloud/manager-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 
 
 

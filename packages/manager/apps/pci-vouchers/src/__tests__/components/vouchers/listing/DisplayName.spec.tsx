@@ -29,7 +29,7 @@ vi.mock('@/data/bill', () => {
   };
 });
 
-vi.mock('@ovhcloud/manager-components', async () => ({
+vi.mock('@ovh-ux/manager-react-components', async () => ({
   DataGridTextCell: ({ children }: { children: ReactNode }) => <>{children}</>,
 }));
 

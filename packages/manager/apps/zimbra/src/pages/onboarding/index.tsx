@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Card, OnboardingLayout } from '@ovhcloud/manager-components';
+import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import onboardingImgSrc from './onboarding-img.png';
 
 export default function Onboarding() {

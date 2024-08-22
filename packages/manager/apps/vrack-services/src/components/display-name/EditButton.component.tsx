@@ -10,7 +10,7 @@ import {
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { handleClick } from '@ovhcloud/manager-components';
+import { handleClick } from '@ovh-ux/manager-react-components';
 
 export type EditButtonProps = React.PropsWithChildren<{
   disabled?: boolean;

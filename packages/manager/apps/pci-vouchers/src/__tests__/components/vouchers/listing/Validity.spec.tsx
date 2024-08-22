@@ -31,7 +31,7 @@ vi.mock('date-fns', () => {
   };
 });
 
-vi.mock('@ovhcloud/manager-components', async () => ({
+vi.mock('@ovh-ux/manager-react-components', async () => ({
   DataGridTextCell: ({ children }: { children: ReactNode }) => <>{children}</>,
 }));
 

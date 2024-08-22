@@ -23,9 +23,9 @@ vi.mock('@/core/HidePreloader', () => ({
   default: () => <div>HidePeloader</div>,
 }));
 
-vi.mock('@ovhcloud/manager-components', async (importOriginal) => {
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const mod = await importOriginal<
-    typeof import('@ovhcloud/manager-components')
+    typeof import('@ovh-ux/manager-react-components')
   >();
 
   return {

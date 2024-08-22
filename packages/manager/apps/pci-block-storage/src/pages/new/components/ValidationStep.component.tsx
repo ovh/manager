@@ -4,7 +4,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   PciTrustedZoneBanner,
   useNotifications,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { PriceEstimate } from '@/pages/new/components/PriceEstimate';

@@ -1,6 +1,6 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Translation } from 'react-i18next';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useUser } from '@/api/hooks/useUser';
 import RemoveUserModal from './RemoveUserModal';
 

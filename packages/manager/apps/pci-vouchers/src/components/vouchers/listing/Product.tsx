@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { DataGridTextCell } from '@ovhcloud/manager-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 export default function Product({ product }: { product: string[] | null }) {
   const { t } = useTranslation('common');

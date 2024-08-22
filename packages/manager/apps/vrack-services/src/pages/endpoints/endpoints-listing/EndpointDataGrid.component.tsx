@@ -8,7 +8,7 @@ import {
   Datagrid,
   DatagridColumn,
   useDataGrid,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { ErrorPage } from '@/components/ErrorPage.component';
 import { useVrackService, useServiceList } from '@/data';
 import { EndpointItem, useEndpointsList } from './useEndpointList.hook';

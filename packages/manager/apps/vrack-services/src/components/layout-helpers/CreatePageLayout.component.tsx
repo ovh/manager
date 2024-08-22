@@ -23,7 +23,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { handleClick } from '@ovhcloud/manager-components';
+import { handleClick } from '@ovh-ux/manager-react-components';
 import { PageLayout } from '@/components/layout-helpers/PageLayout.component';
 import { LoadingText } from '../LoadingText.component';
 

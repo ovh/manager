@@ -1,4 +1,4 @@
-import { PaginationState } from '@ovhcloud/manager-components';
+import { PaginationState } from '@ovh-ux/manager-react-components';
 import { OsdsPagination } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { TAggregatedNetwork } from '@/api/data/network';

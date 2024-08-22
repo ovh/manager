@@ -6,7 +6,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
 import { PCI_LEVEL2 } from '@/tracking.constants';
 import { useMe } from '@/api/hooks/useMe';

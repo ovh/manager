@@ -4,7 +4,7 @@ import {
   OnboardingLayout,
   PciDiscoveryBanner,
   isDiscoveryProject,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { OdsBreadcrumbAttributeItem } from '@ovhcloud/ods-components';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';

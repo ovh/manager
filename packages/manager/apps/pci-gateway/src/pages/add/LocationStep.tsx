@@ -2,7 +2,7 @@ import {
   StepComponent,
   TilesInputComponent,
   useProjectUrl,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useContext, useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';

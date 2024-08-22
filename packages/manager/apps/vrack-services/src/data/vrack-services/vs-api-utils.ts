@@ -2,7 +2,7 @@ import React from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
-import { useTask } from '@ovhcloud/manager-components';
+import { useTask } from '@ovh-ux/manager-react-components';
 import {
   getVrackServicesResourceListQueryKey,
   getVrackServicesResource,

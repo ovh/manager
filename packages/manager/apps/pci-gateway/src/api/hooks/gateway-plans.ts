@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useMe } from '@ovhcloud/manager-components';
+import { useMe } from '@ovh-ux/manager-react-components';
 import { getAvailableGatewayPlans } from '@/api/data/gateway-plans';
 
 export const getAvailableGatewayPlansQuery = (

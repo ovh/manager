@@ -8,7 +8,7 @@ import {
   TrackingClickParams,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { UpdateIamNameModal } from '@ovhcloud/manager-components';
+import { UpdateIamNameModal } from '@ovh-ux/manager-react-components';
 import { useQueryClient } from '@tanstack/react-query';
 import { getVrackServicesResourceListQueryKey, useVrackService } from '@/data';
 import { PageName } from '@/utils/tracking';

@@ -29,7 +29,7 @@ import {
   OsdsText,
   OsdsMessage,
 } from '@ovhcloud/ods-components/react';
-import { handleClick } from '@ovhcloud/manager-components';
+import { handleClick } from '@ovh-ux/manager-react-components';
 import { LoadingText } from '@/components/LoadingText.component';
 import { OrderSubmitModalContent } from '@/components/OrderSubmitModalContent.component';
 import { createVrackServicesCart } from '@/utils/cart';

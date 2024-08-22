@@ -21,7 +21,7 @@ import {
   useNotifications,
   useProject,
   useProjectUrl,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
