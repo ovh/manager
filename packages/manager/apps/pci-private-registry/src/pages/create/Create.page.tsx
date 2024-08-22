@@ -6,7 +6,7 @@ import {
   useNotifications,
   useProjectUrl,
 } from '@ovhcloud/manager-components';
-import { useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import {
   OsdsBreadcrumb,
   OsdsButton,
@@ -34,10 +34,15 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useGetCapabilities } from '@/api/hooks/useCapabilities';
 import PlanComponent from '@/pages/create/Plan.component';
 import { TStepperState, StepEnum, TState } from '@/pages/create/types';
 import { createRegistry } from '@/api/data/registry';
+import {
+  PRIVATE_REGISTRY_CREATE_LOCATION_NEXT,
+  PRIVATE_REGISTRY_CREATE_PLAN,
+} from '@/pages/create/constants';
 
 export default function CreatePage(): JSX.Element {
   const { t: tCreate } = useTranslation('create');
@@ -47,21 +52,16 @@ export default function CreatePage(): JSX.Element {
 
   const { addError, addSuccess } = useNotifications();
 
+  const { tracking } = useContext(ShellContext)?.shell || {};
+
   const { projectId } = useParams();
   const { data: project } = useProject();
   const hrefProject = useProjectUrl('public-cloud');
   const backHref = useHref('..');
   const navigate = useNavigate();
 
-  const {
-    data: localisations,
-    isPending: isLocationsPending,
-  } = useProjectLocalisation(projectId);
-
-  const {
-    data: capabilities,
-    isPending: isCapabilitiesPending,
-  } = useGetCapabilities(projectId);
+  const { data: localisations } = useProjectLocalisation(projectId);
+  const { data: capabilities } = useGetCapabilities(projectId);
 
   const [state, setState] = useState<TState>({
     name: {
@@ -86,8 +86,6 @@ export default function CreatePage(): JSX.Element {
       }
     }
   }, [capabilities, state.region]);
-
-  const isRegionsPending = isLocationsPending || isCapabilitiesPending;
 
   const regions = useMemo(() => {
     if (Array.isArray(localisations?.regions)) {
@@ -176,7 +174,9 @@ export default function CreatePage(): JSX.Element {
   };
 
   const createPrivateRegistry = async () => {
-    // TODO add tracking
+    tracking?.trackClick({
+      name: `${PRIVATE_REGISTRY_CREATE_PLAN}${state.plan.name[0]}`,
+    });
     const payload = {
       name: state.name.value,
       region: state.region.name,
@@ -258,12 +258,19 @@ export default function CreatePage(): JSX.Element {
             act.lock(StepEnum.REGION);
 
             act.open(StepEnum.NAME);
+
+            tracking?.trackClick({
+              name: PRIVATE_REGISTRY_CREATE_LOCATION_NEXT,
+            });
           },
           label: tCommonField('common_stepper_next_button_label'),
           isDisabled: !state.region,
         }}
         cancel={{
           action: () => {
+            tracking?.trackClick({
+              name: 'PCI_PROJECTS_PRIVATEREGISTRY_CREATE_VERSION_NEXT',
+            });
             navigate('..');
           },
           label: tCommonField('common_stepper_cancel_button_label'),
@@ -284,13 +291,11 @@ export default function CreatePage(): JSX.Element {
           },
           label: tCommonField('common_stepper_modify_this_step'),
         }}
-        // TODO add cancel button with tracking
       >
         <TilesInputComponent
           items={regions}
           value={state.region}
           onInput={(region) => {
-            // TODO add tracking for going next(get plans)
             setState((prev) => ({ ...prev, region }));
           }}
           label={(region) => region.microLabel}
@@ -432,6 +437,9 @@ export default function CreatePage(): JSX.Element {
             color={ODS_THEME_COLOR_INTENT.primary}
             variant={ODS_BUTTON_VARIANT.ghost}
             onClick={() => {
+              tracking?.trackClick({
+                name: 'PRIVATEREGISTRY_CREATE_PLAN_CANCEL',
+              });
               navigate('..');
             }}
             className="w-fit"

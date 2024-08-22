@@ -1,5 +1,4 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { TCapability } from '@/api/data/capability';
 
 export type TCatalog = {
   addons: [
