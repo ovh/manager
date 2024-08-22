@@ -1402,5 +1402,12 @@
   "hosting_tab_DOMAINS_table_popover_git_deployment": "Deploy Git",
   "hosting_tab_DOMAINS_table_popover_git_viewLastDeployment": "Latest deployment information",
   "hosting_tab_DOMAINS_table_popover_git_delete": "Delete Git",
-  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "To disconnect your domain name, you will need to first delete your Git configuration to avoid any potential problems with tracking changes and managing deployments."
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "To disconnect your domain name, you will need to first delete your Git configuration to avoid any potential problems with tracking changes and managing deployments.",
+  "hosting_tab_DOMAINS_table_header_diagnostic": "Diagnostic",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_good_configuration": "Your {{domainName}} domain points correctly to your {{hosting}} hosting plan with the IP {{ip}}",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_not_good_configuration": "Your {{domainName}} domain does not point to your {{hosting}} hosting plan with the IP {{ip}}",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_unconfigured": "Your {{domainName}} domain does not currently point to an IP address",
+  "hosting_tab_DOMAINS_tooltip_success": "Your {{domainName}} domain points correctly to your {{hosting}} hosting plan with the IP {{ip}}",
+  "hosting_tab_DOMAINS_tooltip_info": "Your {{domainName}} domain does not point to your {{hosting}} hosting plan with the IP {{ip}}",
+  "hosting_tab_DOMAINS_tooltip_error": "Your {{domainName}} domain does not currently point to an IP address"
 }

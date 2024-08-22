@@ -10,5 +10,17 @@
   "hosting_multisite_statistics_period_year": "Año",
   "hosting_multisite_statistics_loading_error": "Se ha producido un error al cargar las estadísticas.",
   "hosting_multisite_statistics_upgrade_info": "Actualice la opción CDN para consultar las estadísticas de su CDN",
-  "hosting_multisite_statistics_changing_datavis_tool": "La herramienta de visualización de estadísticas de su CDN se actualiza. A partir de ahora puede consultar sus datos <b>en la página OVHcloud Web Statistics</b>, desde donde podrá monitorizar y controlar el tráfico en sus sitios web."
+  "hosting_multisite_statistics_changing_datavis_tool": "La herramienta de visualización de estadísticas de su CDN se actualiza. A partir de ahora puede consultar sus datos <b>en la página OVHcloud Web Statistics</b>, desde donde podrá monitorizar y controlar el tráfico en sus sitios web.",
+  "hosting_multisite_dialog_title": "Verificación de los servidores DNS",
+  "hosting_multisite_dialog_edit_record_description": "Modifique el registro de tipo {{ recordType }} con la dirección IP {{ ip }} en la zona DNS del dominio {{ domain }}.",
+  "hosting_multisite_dialog_edit_record_link": "Modificar el registro de tipo {{ recordType }}.",
+  "hosting_multisite_dialog_edit_record_other_nic": "El cambio debe realizarse por el administrador de la zona DNS: {{ nic }}.",
+  "hosting_multisite_dialog_add_record_description": "Agregue un registro de tipo {{ recordType }} con la dirección IP {{ ip }} en la zona DNS del dominio {{ domain }}.",
+  "hosting_multisite_dialog_close": "Cerrar",
+  "hosting_multisite_dialog_modify_a_record": "Modifique el registro de tipo A con la dirección IP {{ip}} en la zona DNS del dominio {{domain}} gestionado en los servidores DNS {{dns}}",
+  "hosting_multisite_dialog_modify_a_record_same_nic": "Modificar el registro de tipo A",
+  "hosting_multisite_dialog_modify_a_record_external_nic": "Modifique el registro de tipo A con la dirección IP {{ip}} en la zona DNS del dominio {{domain}} gestionado en los servidores DNS {{dns}} (el cambio debe realizarse por el administrador de la zona DNS: {{nic}})",
+  "hosting_multisite_dialog_modify_a_record_error": "Añada el registro de tipo A introduciendo la dirección IP {{ip}} en la zona DNS del dominio {{domain}} gestionado en los servidores DNS {{dns}}",
+  "hosting_multisite_dialog_modify_a_record_same_nic_error": "Modificar el registro de tipo A",
+  "hosting_multisite_dialog_modify_a_record_external_nic_error": "Modifique el registro de tipo A con la dirección IP {{ip}} en la zona DNS del dominio {{domain}} gestionado en los servidores DNS {{dns}} (el cambio debe realizarse por el administrador de la zona DNS: {{nic}})"
 }

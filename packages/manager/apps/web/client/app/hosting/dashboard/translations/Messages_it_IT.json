@@ -1402,5 +1402,12 @@
   "hosting_tab_DOMAINS_table_popover_git_deployment": "Eseguire il deploy Git",
   "hosting_tab_DOMAINS_table_popover_git_viewLastDeployment": "Informazioni dell'ultimo deploy",
   "hosting_tab_DOMAINS_table_popover_git_delete": "Eliminare Git",
-  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Se vuoi disassociare il dominio, è necessario eliminare prima la tua configurazione Git per prevenire eventuali problemi di controllo delle modifiche e gestione dei deploy."
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Se vuoi disassociare il dominio, è necessario eliminare prima la tua configurazione Git per prevenire eventuali problemi di controllo delle modifiche e gestione dei deploy.",
+  "hosting_tab_DOMAINS_table_header_diagnostic": "Diagnostica",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_good_configuration": "Il tuo dominio {{domainName}} punta correttamente verso l’hosting {{hosting}} con l’IP {{ip}}",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_not_good_configuration": "Il tuo dominio {{domainName}} non punta verso l’hosting {{hosting}} con l’IP {{ip}}",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_unconfigured": "Il tuo dominio {{domainName}} al momento non punta verso alcun indirizzo IP",
+  "hosting_tab_DOMAINS_tooltip_success": "Il tuo dominio {{domainName}} punta correttamente all’hosting {{hosting}} con l’IP {{ip}}",
+  "hosting_tab_DOMAINS_tooltip_info": "Il tuo dominio {{domainName}} non punta all’hosting {{hosting}} con l’IP {{ip}}",
+  "hosting_tab_DOMAINS_tooltip_error": "Il tuo dominio {{domainName}} al momento non punta ad alcun indirizzo IP"
 }

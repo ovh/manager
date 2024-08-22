@@ -1402,5 +1402,12 @@
   "hosting_tab_DOMAINS_table_popover_git_deployment": "Desplegar Git",
   "hosting_tab_DOMAINS_table_popover_git_viewLastDeployment": "Información del último despliegue",
   "hosting_tab_DOMAINS_table_popover_git_delete": "Eliminar Git",
-  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Si quiere desvincular su dominio, deberá eliminar previamente la configuración de Git para evitar posibles problemas de seguimiento de cambios y de gestión de los despliegues."
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Si quiere desvincular su dominio, deberá eliminar previamente la configuración de Git para evitar posibles problemas de seguimiento de cambios y de gestión de los despliegues.",
+  "hosting_tab_DOMAINS_table_header_diagnostic": "Diagnóstico",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_good_configuration": "Su dominio {{ domainName }} apunta correctamente a su alojamiento {{ hosting }} con la IP {{ ip }}",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_not_good_configuration": "Su dominio {{ domainName }} no apunta a su alojamiento {{ hosting }} con la IP {{ ip }}",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_unconfigured": "Su dominio {{ domainName }} no apunta actualmente a ninguna dirección IP",
+  "hosting_tab_DOMAINS_tooltip_success": "Su dominio {{domainName}} apunta correctamente a su alojamiento {{hosting}} con la IP {{ip}}",
+  "hosting_tab_DOMAINS_tooltip_info": "Su dominio {{domainName}} no apunta a su alojamiento {{hosting}} con la IP {{ip}}",
+  "hosting_tab_DOMAINS_tooltip_error": "Su dominio {{domainName}} no apunta actualmente a ninguna dirección IP"
 }
