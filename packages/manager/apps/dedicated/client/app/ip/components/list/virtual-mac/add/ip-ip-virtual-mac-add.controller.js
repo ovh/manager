@@ -1,5 +1,11 @@
 import get from 'lodash/get';
 
+import {
+  vmacFeatureAvailablity,
+  PROXMOX_LINKS,
+  WINDOWS_SERVER_LINKS,
+} from '../ip-ip-virtual-mac.constant';
+
 export default /* @ngInject */ (
   $http,
   $q,
@@ -11,7 +17,18 @@ export default /* @ngInject */ (
   IpVirtualMac,
   Alerter,
   atInternet,
+  ovhFeatureFlipping,
+  coreConfig,
 ) => {
+  let isVmacAvailable = false;
+  const { ovhSubsidiary } = coreConfig.getUser();
+
+  ovhFeatureFlipping
+    .checkFeatureAvailability(vmacFeatureAvailablity)
+    .then((feature) => {
+      isVmacAvailable = feature.isFeatureAvailable(vmacFeatureAvailablity);
+    });
+
   $scope.data = $scope.currentActionData; // service and sub
   atInternet.trackPage({
     name: $scope.data?.tracking,
@@ -62,13 +79,30 @@ export default /* @ngInject */ (
             }),
           );
         })
-        .catch((reason) => {
-          Alerter.error(`
-                ${$translate.instant('ip_virtualmac_add_new_failure', {
-                  t0: $scope.data.ip.ip,
-                })}
-              <br />
-              ${reason.message}`);
+        .catch(({ data, status }) => {
+          if (status === 403 && isVmacAvailable) {
+            Alerter.error(`
+            ${$translate.instant('ip_virtualmac_add_new_failure', {
+              t0: $scope.data.ip.ip,
+            })}
+          <br />
+          ${$translate.instant('ip_virtualmac_not_available_failure')} 
+          <br />
+          ${$translate.instant('ip_virtualmac_not_available_failure_details', {
+            proxmoxLink: `<a href="${PROXMOX_LINKS[ovhSubsidiary] ||
+              PROXMOX_LINKS.DEFAULT}">Proxmox VE</a>`,
+            windowsServerLink: `<a href="${WINDOWS_SERVER_LINKS[
+              ovhSubsidiary
+            ] || WINDOWS_SERVER_LINKS.DEFAULT}">Windows Server</a>`,
+          })}`);
+          } else {
+            Alerter.error(`
+            ${$translate.instant('ip_virtualmac_add_new_failure', {
+              t0: $scope.data.ip.ip,
+            })}
+          <br />
+          ${data.message}`);
+          }
         })
         .finally(() => {
           $scope.resetAction();
