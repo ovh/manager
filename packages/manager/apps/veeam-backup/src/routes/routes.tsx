@@ -31,6 +31,21 @@ export const routes: any[] = [
             pageType: PageType.listing,
           },
         },
+        children: [
+          {
+            id: 'delete-veeam',
+            path: urls.deleteVeeam,
+            ...lazyRouteConfig(() =>
+              import('@/pages/delete-veeam/DeleteVeeam.page'),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'delete_veeam-backup',
+                pageType: PageType.popup,
+              },
+            },
+          },
+        ],
       },
       {
         path: urls.dashboard,
