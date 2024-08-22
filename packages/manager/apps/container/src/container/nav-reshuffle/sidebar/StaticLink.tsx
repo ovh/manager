@@ -7,12 +7,14 @@ import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 interface StaticLinkProps {
   count?: number | boolean;
   node?: Node;
   linkParams?: Record<string, string>;
   handleClick?(): void;
+  handleOnEnter?(node: Node): void;
   id?: string;
   isShortText?: boolean;
 }
@@ -22,6 +24,7 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
   node = {},
   linkParams = {},
   handleClick = () => {},
+  handleOnEnter = () => {},
   id = '',
   isShortText = false,
 }: StaticLinkProps): JSX.Element => {
@@ -53,6 +56,11 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
   return (
     <a
       onClick={handleClick}
+      onKeyUp={(e) => {
+        if (e.key === 'Enter') {
+          handleOnEnter(node);
+        }
+      }}
       href={url}
       target={node.isExternal ? '_blank' : '_top'}
       rel={node.isExternal ? 'noopener noreferrer' : ''}
@@ -61,6 +69,15 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
       role="link"
       className='d-flex items-center'
     >
+      {node.icon && (
+      <OsdsIcon
+            name={node.icon as ODS_ICON_NAME}
+            className="mr-2"
+            size={ODS_ICON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            contrasted
+          />
+      )}
       {t(isShortText ? node.shortTranslation : node.translation)}
       {node.isExternal && (
         <span

@@ -1,19 +1,26 @@
 import illustration from '@/assets/images/sidebar/web-cloud.png';
-export default {
+import { Node } from "../node";
+import WebCloudIcon from './icons/WebCloudIcon';
+
+const webCloudUniverse : Node = {
   id: 'web-cloud',
   idAttr: 'web-cloud-link',
   translation: 'sidebar_web_cloud',
   shortTranslation: 'sidebar_web_cloud_short',
   illustration,
+  iconNode: WebCloudIcon,
   routing: {
     application: 'web',
     hash: '#/',
   },
-  features: ['web'],
-  children: [
+  features: ['web']
+};
+
+webCloudUniverse.children = [
     {
       id: 'domain-dns',
       idAttr: 'domain-dns-link',
+      universe: webCloudUniverse.id,
       translation: 'sidebar_domain_dns',
       features: ['web:domains', 'web:domains:zone'],
       count: false,
@@ -21,6 +28,7 @@ export default {
         {
           id: 'domains-operations',
           idAttr: 'domains-operations-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_domain_operations',
           routing: {
             application: 'web',
@@ -32,6 +40,7 @@ export default {
         {
           id: 'domains',
           idAttr: 'domains-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_domain',
           serviceType: 'DOMAIN',
           routing: {
@@ -43,6 +52,7 @@ export default {
         {
           id: 'dns',
           idAttr: 'dns-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_dns',
           serviceType: 'DOMAIN_ZONE',
           routing: {
@@ -56,12 +66,14 @@ export default {
     {
       id: 'web-hosting',
       idAttr: 'web-hosting-link',
+      universe: webCloudUniverse.id,
       translation: 'sidebar_web_hosting',
       features: ['hosting', 'private-database'],
       children: [
         {
           id: 'hosting',
           idAttr: 'hosting-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_hosting',
           serviceType: 'HOSTING_WEB',
           routing: {
@@ -73,6 +85,7 @@ export default {
         {
           id: 'web-databases',
           idAttr: 'web-databases-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_web_db',
           serviceType: 'HOSTING_PRIVATEDATABASE',
           routing: {
@@ -86,11 +99,13 @@ export default {
     {
       id: 'web-paas',
       idAttr: 'web-paas-link',
+      universe: webCloudUniverse.id,
       translation: 'sidebar_web_paas',
       children: [
         {
           id: 'platform-sh',
           idAttr: 'platform-sh-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_platform_sh',
           serviceType: 'WEBPAAS_SUBSCRIPTION',
           routing: {
@@ -105,13 +120,14 @@ export default {
     {
       id: 'emails',
       idAttr: 'emails-link',
-      label: 'Emails',
+      universe: webCloudUniverse.id,
       translation: 'sidebar_emails',
       features: ['email-pro', 'emails:mxplan'],
       children: [
         {
           id: 'email-pro',
           idAttr: 'email-pro-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_email_pro',
           serviceType: 'EMAIL_PRO',
           routing: {
@@ -123,6 +139,7 @@ export default {
         {
           id: 'mxplan',
           idAttr: 'mxplan-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_mxplan',
           serviceType: 'EMAIL_DOMAIN',
           routing: {
@@ -134,6 +151,7 @@ export default {
         {
           id: 'email-delegated',
           idAttr: 'email-delegated-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_email_delegated',
           serviceType: 'EMAIL_DELEGATED',
           routing: {
@@ -147,12 +165,14 @@ export default {
     {
       id: 'microsoft',
       idAttr: 'microsoft-link',
+      universe: webCloudUniverse.id,
       translation: 'sidebar_microsoft',
       features: ['office', 'exchange'],
       children: [
         {
           id: 'office',
           idAttr: 'office-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_license_office',
           serviceType: 'LICENSE_OFFICE',
           routing: {
@@ -164,6 +184,7 @@ export default {
         {
           id: 'exchange',
           idAttr: 'exchange-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_exchange',
           serviceType: 'EMAIL_EXCHANGE_SERVICE',
           routing: {
@@ -175,6 +196,7 @@ export default {
         {
           id: 'sharepoint',
           idAttr: 'sharepoint-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_sharepoint',
           serviceType: 'MSSERVICES_SHAREPOINT',
           routing: {
@@ -185,5 +207,6 @@ export default {
         },
       ],
     },
-  ],
-};
+  ];
+
+export default webCloudUniverse;

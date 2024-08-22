@@ -1,8 +1,6 @@
-import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 
 import useContainer from '@/core/container';
-import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 import { useShell } from '@/context';
 import {
   OsdsText,
@@ -19,19 +17,16 @@ function NavReshuffleSwitchBack(): JSX.Element {
   const { updateBetaChoice, betaVersion, useBeta } = useContainer();
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
-  const isSmallDevice = useMediaQuery({
-    query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
-  });
   const onboarding = useOnboarding();
 
-  if (!betaVersion || isSmallDevice) {
+  if (!betaVersion) {
     return <></>;
   }
 
   const toggleVersion = (value: 'classic' | 'beta') => {
     const versionName = value === 'beta' ? 'new' : 'old';
     trackingPlugin.trackClick({
-      name: `topnav::switch_version::go_to_${versionName}_version`,
+      name: `topnav::switch_version_V3::go_to_${versionName}_version`,
       type: 'navigation',
     });
     updateBetaChoice(value === 'beta');

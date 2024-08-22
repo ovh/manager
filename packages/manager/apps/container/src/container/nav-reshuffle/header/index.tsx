@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 
 import HamburgerMenu from './HamburgerMenu';
 import UserAccountMenu from './user-account-menu';
@@ -14,6 +14,8 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { Logo } from '@/container/common/Logo';
 
 import style from './style.module.scss';
+import { useMediaQuery } from 'react-responsive';
+import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 
 type Props = {
   isSidebarExpanded?: boolean;
@@ -32,6 +34,9 @@ function Header({
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setIsNotificationsSidebarVisible } = useHeader();
+  const isSmallDevice = useMediaQuery({
+    query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
+  });
   const navigationPlugin = shell.getPlugin('navigation');
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const { isMobile } = useProductNavReshuffle();
@@ -41,9 +46,8 @@ function Header({
       {({ environment }) => (
         <Suspense fallback="">
           <div
-            className={`${modalStyle.popoverClickAway} ${
-              isDropdownOpen ? '' : modalStyle.hidden
-            }`}
+            className={`${modalStyle.popoverClickAway} ${isDropdownOpen ? '' : modalStyle.hidden
+              }`}
           ></div>
           <div className={`oui-navbar ${style.navbar}`}>
             <HamburgerMenu
@@ -64,9 +68,11 @@ function Header({
             <div
               className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end ${style.navbarList}`}
             >
-              <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
-                <NavReshuffleSwitchBack />
-              </div>
+              {!isSmallDevice &&
+                <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
+                  <NavReshuffleSwitchBack />
+                </div>
+              }
               <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <LanguageMenu
                   setUserLocale={setUserLocale}
@@ -90,6 +96,11 @@ function Header({
               </div>
             </div>
           </div>
+          {isSmallDevice &&
+            <div className={style['small-device-pnr-switch']}>
+              <NavReshuffleSwitchBack />
+            </div>
+          }
           <NotificationsSidebar />
         </Suspense>
       )}
