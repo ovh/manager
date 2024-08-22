@@ -7,7 +7,7 @@ import {
   useDataGrid,
   DataGridTextCell,
   ColumnSort,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useVrackService, Subnet } from '@/data';
 import { SubnetsActionCell } from './SubnetsActionCell.component';
 

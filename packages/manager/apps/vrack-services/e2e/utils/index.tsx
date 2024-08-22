@@ -8,8 +8,8 @@ import onboardingLabels from '../../public/translations/vrack-services/onboardin
 import dashboardLabels from '../../public/translations/vrack-services/dashboard/Messages_fr_FR.json';
 import subnetsLabels from '../../public/translations/vrack-services/subnets/Messages_fr_FR.json';
 import endpointsLabels from '../../public/translations/vrack-services/endpoints/Messages_fr_FR.json';
-import updateNameModalLabels from '../../../../../manager-components/src/components/templates/update-name-modal/translations/Messages_fr_FR.json';
-import deleteModalLabels from '../../../../../manager-components/src/components/templates/delete-modal/translations/Messages_fr_FR.json';
+import updateNameModalLabels from '../../../../../manager-react-components/src/components/templates/update-name-modal/translations/Messages_fr_FR.json';
+import deleteModalLabels from '../../../../../manager-react-components/src/components/templates/delete-modal/translations/Messages_fr_FR.json';
 
 export * from './constants';
 export * from './network';

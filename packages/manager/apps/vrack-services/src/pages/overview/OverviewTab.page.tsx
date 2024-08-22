@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { Outlet } from 'react-router-dom';
 import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
-import { DashboardTile } from '@ovhcloud/manager-components';
+import { DashboardTile } from '@ovh-ux/manager-react-components';
 import { ErrorPage } from '@/components/ErrorPage.component';
 import { useVrackService } from '@/data';
 import { formatDateString } from '@/utils/date';

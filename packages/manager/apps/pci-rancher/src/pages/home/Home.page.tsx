@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { ErrorBanner, PageLayout } from '@ovhcloud/manager-components';
+import { ErrorBanner, PageLayout } from '@ovh-ux/manager-react-components';
 import React, { Suspense } from 'react';
 import Breadcrumb, {
   BreadcrumbHandleParams,

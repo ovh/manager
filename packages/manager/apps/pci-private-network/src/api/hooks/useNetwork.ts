@@ -1,5 +1,5 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { PaginationState } from '@ovhcloud/manager-components';
+import { PaginationState } from '@ovh-ux/manager-react-components';
 import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import {

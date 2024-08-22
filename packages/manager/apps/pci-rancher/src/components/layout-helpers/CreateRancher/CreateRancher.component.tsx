@@ -2,8 +2,7 @@ import {
   PciDiscoveryBanner,
   Subtitle,
   Title,
-  useCatalogPrice,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Trans, useTranslation } from 'react-i18next';
 import {

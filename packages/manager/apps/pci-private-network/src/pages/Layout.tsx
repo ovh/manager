@@ -1,5 +1,5 @@
 import { Outlet, useParams, useRouteError } from 'react-router-dom';
-import { ErrorBanner, useProject } from '@ovhcloud/manager-components';
+import { ErrorBanner, useProject } from '@ovh-ux/manager-react-components';
 import { Suspense, useContext } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';

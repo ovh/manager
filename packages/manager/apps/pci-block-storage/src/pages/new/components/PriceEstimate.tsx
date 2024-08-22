@@ -5,7 +5,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useCatalogPrice } from '@ovhcloud/manager-components';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { TAddon } from '@/api/data/catalog';
 
 export interface PriceEstimateProps {

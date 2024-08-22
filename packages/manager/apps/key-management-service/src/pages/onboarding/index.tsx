@@ -1,4 +1,4 @@
-import { OnboardingLayout } from '@ovhcloud/manager-components';
+import { OnboardingLayout } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import {
   ODS_TEXT_LEVEL,

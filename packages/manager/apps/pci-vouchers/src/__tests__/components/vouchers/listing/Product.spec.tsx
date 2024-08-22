@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { ReactNode } from 'react';
 import Product from '@/components/vouchers/listing/Product';
 
-vi.mock('@ovhcloud/manager-components', async () => ({
+vi.mock('@ovh-ux/manager-react-components', async () => ({
   DataGridTextCell: ({ children }: { children: ReactNode }) => <>{children}</>,
 }));
 

@@ -1,4 +1,7 @@
-import { StepComponent, useNotifications } from '@ovhcloud/manager-components';
+import {
+  StepComponent,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';

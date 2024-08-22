@@ -8,11 +8,11 @@ import {
 import {
   GetServicesMocksParams,
   getServicesMocks,
-} from '@ovhcloud/manager-components/src/hooks/services/mocks/services.mock';
+} from '@ovh-ux/manager-react-components/src/hooks/services/mocks/services.mock';
 import {
   getFeatureAvailabilityMocks,
   GetFeatureAvailabilityMocksParams,
-} from '@ovhcloud/manager-components/src/hooks/feature-availability/mocks/feature-availability.mock';
+} from '@ovh-ux/manager-react-components/src/hooks/feature-availability/mocks/feature-availability.mock';
 import {
   getVrackServicesMocks,
   GetVrackServicesMocksParams,
