@@ -18,12 +18,13 @@
   "managed_vcd_dashboard_password_renew": "Renouveler le mot de passe admin",
   "managed_vcd_dashboard_back_link": "Retour à la liste",
   "managed_vcd_dashboard_coming_soon": "Bientôt disponible",
+  "managed_vcd_dashboard_edit_modal_error": "Une erreur est survenue: {{error}}.",
   "managed_vcd_dashboard_edit_modal_cta_cancel": "Annuler",
   "managed_vcd_dashboard_edit_modal_cta_edit": "Modifier",
   "managed_vcd_dashboard_edit_name_modal_title": "Modifier le nom",
   "managed_vcd_dashboard_edit_name_modal_label": "Nom",
   "managed_vcd_dashboard_edit_name_modal_helper_error": "Le nombre de caractères autorisé est dépassé. (128 caractères maximum)",
-  "managed_vcd_dashboard_edit_desc_modal_title": "Modifier la description",
-  "managed_vcd_dashboard_edit_desc_modal_label": "Description",
-  "managed_vcd_dashboard_edit_desc_modal_helper_error": "Le nombre de caractères autorisé est dépassé. (256 caractères maximum)"
+  "managed_vcd_dashboard_edit_description_modal_title": "Modifier la description",
+  "managed_vcd_dashboard_edit_description_modal_label": "Description",
+  "managed_vcd_dashboard_edit_description_modal_helper_error": "Le nombre de caractères autorisé est dépassé. (256 caractères maximum)"
 }
