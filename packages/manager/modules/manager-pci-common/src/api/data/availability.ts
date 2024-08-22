@@ -22,9 +22,11 @@ export type TProductAvailability = {
 export const getProductAvailability = async (
   projectId: string,
   subsidiary: string,
+  product?: string,
 ): Promise<TProductAvailability> => {
+  const productQuery = product ? `&product=${product}` : '';
   const { data } = await v6.get<TProductAvailability>(
-    `/cloud/project/${projectId}/capabilities/productAvailability?ovhSubsidiary=${subsidiary}`,
+    `/cloud/project/${projectId}/capabilities/productAvailability?ovhSubsidiary=${subsidiary}${productQuery}`,
   );
   return data;
 };

@@ -15,7 +15,10 @@ export function KubeRegionSelector({
   projectId,
   onSelectRegion,
 }: Readonly<KubeRegionSelectorProps>) {
-  const { data: availability, isPending } = useProductAvailability(projectId);
+  const { data: availability, isPending } = useProductAvailability(
+    projectId,
+    'kubernetes',
+  );
   if (isPending) {
     return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
   }
