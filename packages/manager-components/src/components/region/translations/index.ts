@@ -2,7 +2,7 @@ import i18next from 'i18next';
 import fr_FR from './Messages_fr_FR.json';
 
 function addTranslations() {
-  i18next.addResources('fr_FR', 'regionLabel', fr_FR);
+  i18next.addResources('fr_FR', 'region', fr_FR);
 }
 
 if (i18next.isInitialized) {

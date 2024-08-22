@@ -1,12 +1,12 @@
 import { Story } from '@storybook/react';
-import RegionLabel from './region-label.component';
+import Region from './region.component';
 
-const managerRegionLabel = {
-  title: 'Components/Region Label',
-  component: RegionLabel,
+const managerRegion = {
+  title: 'Components/Region',
+  component: Region,
 };
 
-const Template: Story<any> = (args) => <RegionLabel {...args} />;
+const Template: Story<any> = (args) => <Region {...args} />;
 
 export const DemoRegion = Template.bind({});
 
@@ -23,4 +23,4 @@ DemoDatacenter.args = {
   micro: 2,
 };
 
-export default managerRegionLabel;
+export default managerRegion;

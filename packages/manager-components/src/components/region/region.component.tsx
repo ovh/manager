@@ -1,18 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import './translations';
 
-export interface RegionLabelProps {
+export interface RegionProps {
   mode: string;
   name: string;
-  micro: number;
+  micro?: number;
 }
 
-export function RegionLabel({
-  mode = 'region',
-  name,
-  micro,
-}: RegionLabelProps) {
-  const { t } = useTranslation('regionLabel');
+export function Region({ mode = 'region', name, micro }: RegionProps) {
+  const { t } = useTranslation('region');
   const key = name.replace(/-/g, '_')?.toLocaleLowerCase();
 
   return (
@@ -22,4 +18,4 @@ export function RegionLabel({
   );
 }
 
-export default RegionLabel;
+export default Region;
