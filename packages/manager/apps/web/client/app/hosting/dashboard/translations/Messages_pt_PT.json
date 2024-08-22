@@ -1402,5 +1402,12 @@
   "hosting_tab_DOMAINS_table_popover_git_deployment": "Implementar o Git",
   "hosting_tab_DOMAINS_table_popover_git_viewLastDeployment": "Informações da última implementação",
   "hosting_tab_DOMAINS_table_popover_git_delete": "Eliminar o Git",
-  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Se pretende desassociar o seu nome de domínio, primeiro deve eliminar a sua configuração Git para evitar eventuais problemas de acompanhamento das alterações e de gestão das implementações."
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Se pretende desassociar o seu nome de domínio, primeiro deve eliminar a sua configuração Git para evitar eventuais problemas de acompanhamento das alterações e de gestão das implementações.",
+  "hosting_tab_DOMAINS_table_header_diagnostic": "Diagnóstico",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_good_configuration": "O seu domínio {{ domainName }} aponta corretamente para o seu alojamento {{ hosting }} com o IP {{ ip }}",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_not_good_configuration": "O seu domínio {{ domainName }} não aponta para o seu alojamento {{ hosting }} com o IP {{ ip }}",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_unconfigured": "O seu domínio {{ domainName }} não aponta atualmente para nenhum endereço IP",
+  "hosting_tab_DOMAINS_tooltip_success": "O seu domínio {{domainName}} aponta corretamente para o seu alojamento {{hosting}} com o IP {{ip}}",
+  "hosting_tab_DOMAINS_tooltip_info": "O seu domínio {{domainName}} não aponta para o seu alojamento {{hosting}} com o IP {{ip}}",
+  "hosting_tab_DOMAINS_tooltip_error": "O seu domínio {{domainName}} não aponta atualmente para nenhum endereço IP"
 }
