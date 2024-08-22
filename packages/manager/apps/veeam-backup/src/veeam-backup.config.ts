@@ -1,3 +1,5 @@
-export default {
-  rootLabel: 'veeam-backup',
+export const appName = 'veeam-backup';
+
+export const iamActions = {
+  vmwareCloudDirectorBackupGet: 'vmwareCloudDirectorBackup:apiovh:get',
 };

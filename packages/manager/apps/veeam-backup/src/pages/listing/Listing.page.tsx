@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 import { OsdsButton, OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -27,6 +27,7 @@ import {
 import { StatusCell } from './StatusCell.component';
 import { CreatedAtCell } from './CreatedAtCell.component';
 import { sortVeeamBackups } from './sorting';
+import { iamActions } from '@/veeam-backup.config';
 
 export default function Listing() {
   const { t } = useTranslation('listing');
@@ -123,6 +124,8 @@ export default function Listing() {
               id: 0,
               label: t('delete_action'),
               color: ODS_THEME_COLOR_INTENT.error,
+              urn: backup.iam.urn,
+              iamActions: [iamActions.vmwareCloudDirectorBackupGet],
               onClick: () =>
                 navigate(urls.deleteVeeam.replace(':id', backup.id)),
             },
@@ -192,6 +195,7 @@ export default function Listing() {
           </div>
         )}
       </div>
+      <Outlet />
     </BaseLayout>
   );
 }

@@ -1,31 +1,23 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
   useOvhTracking,
   useRouteSynchro,
-  ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import { appName } from '@/veeam-backup.config';
 
 export default function Layout() {
   const location = useLocation();
-  const { shell } = useContext(ShellContext);
   const matches = useMatches();
   const { trackCurrentPage } = useOvhTracking();
   useRouteSynchro();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const match = matches.slice(-1);
-    defineCurrentPage(`app.veeam-backup-${match[0]?.id}`);
-  }, [location]);
-
-  useEffect(() => {
+    defineCurrentPage(`app.${appName}-${match[0]?.id}`);
     trackCurrentPage();
   }, [location]);
-
-  useEffect(() => {
-    shell.ux.hidePreloader();
-  }, []);
 
   return <Outlet />;
 }

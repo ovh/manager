@@ -1,4 +1,4 @@
 export * from './useOrganizations';
-export * from './useVeeamBackupList';
+export * from './useVeeamBackup';
 export * from './useOrganizations';
 export * from './useRegions';
