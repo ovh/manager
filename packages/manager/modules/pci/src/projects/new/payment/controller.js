@@ -367,10 +367,7 @@ export default class PciProjectNewPaymentCtrl {
 
   trackOnPaymentFormSubmit(tag) {
     if (this.$cookies.get(MANAGER_TRACKING) === '1') {
-      let isNewClient = true;
-      if (this.projects.length > 0) {
-        isNewClient = false;
-      }
+      const isNewClient = this.projects?.length === 0;
 
       const user = this.coreConfig.getUser();
       mixCommanderProjectCreation(
