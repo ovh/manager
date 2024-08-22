@@ -20,10 +20,11 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import TileSubtitle from '@/components/tiles/tile-subtitle/TileSubtitle.component';
 import RegionLabel from '@/components/region-label/RegionLabel.component';
+import { urlParts } from '@/routes/routes.constant';
 
 type TTileProps = {
   vcdOrganization: IVcdOrganization;
@@ -49,7 +50,6 @@ export default function OrganizationGenerationInformationTile({
   datacenterCount = 0,
 }: TTileProps) {
   const { t } = useTranslation('dashboard');
-  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   return (
@@ -68,7 +68,7 @@ export default function OrganizationGenerationInformationTile({
             name={ODS_ICON_NAME.PEN}
             size={ODS_ICON_SIZE.xxs}
             color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => navigate(`${pathname}/edit-name`)}
+            onClick={() => navigate(urlParts.editName)}
           />
         </div>
         <OsdsDivider separator />
@@ -84,7 +84,7 @@ export default function OrganizationGenerationInformationTile({
               name={ODS_ICON_NAME.PEN}
               size={ODS_ICON_SIZE.xxs}
               color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={() => navigate(`${pathname}/edit-desc`)}
+              onClick={() => navigate(urlParts.editDesc)}
             />
           </div>
           <OsdsDivider separator />
