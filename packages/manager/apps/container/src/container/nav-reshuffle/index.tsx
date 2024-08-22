@@ -109,7 +109,7 @@ function NavReshuffleContainer(): JSX.Element {
           </Preloader>
         </div>
         <Suspense fallback="">
-          {!productNavReshuffle.isLoading && <NavReshuffleOnboardingWidget />}
+          <NavReshuffleOnboardingWidget />
           <NavReshuffleFeedbackWidget />
         </Suspense>
         <Suspense fallback="">
