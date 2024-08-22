@@ -5,15 +5,21 @@ import { getProductAvailability } from '../data/availability';
 export const getProductAvailabilityQuery = (
   projectId: string,
   ovhSubsidiary: string,
+  product?: string,
 ) => ({
-  queryKey: ['product-availability', projectId, ovhSubsidiary],
-  queryFn: () => getProductAvailability(projectId, ovhSubsidiary),
+  queryKey: [
+    'product-availability',
+    projectId,
+    ovhSubsidiary,
+    product || 'all',
+  ],
+  queryFn: () => getProductAvailability(projectId, ovhSubsidiary, product),
 });
 
-export const useProductAvailability = (projectId: string) => {
+export const useProductAvailability = (projectId: string, product?: string) => {
   const { me } = useMe();
   return useQuery({
-    ...getProductAvailabilityQuery(projectId, me?.ovhSubsidiary),
+    ...getProductAvailabilityQuery(projectId, me?.ovhSubsidiary, product),
     enabled: !!me,
   });
 };
