@@ -56,21 +56,20 @@ export default /* @ngInject */ ($stateProvider) => {
           pciCreationNumProjects3: numProjects,
         });
 
+        let targetedStatePromise;
+
         if (redirectState) {
-          return goToState({ state: redirectState });
+          targetedStatePromise = Promise.resolve({ state: redirectState });
+        } else if (isRedirectRequired) {
+          targetedStatePromise = getTargetedState({ project_id: projectId });
+        } else {
+          targetedStatePromise = Promise.resolve({
+            state: 'pci.projects.project',
+            params: { projectId },
+          });
         }
 
-        // Used in redirection case to a specific page
-        if (isRedirectRequired) {
-          const targetState = getTargetedState({ project_id: projectId });
-
-          return goToState(targetState);
-        }
-
-        return goToState({
-          state: 'pci.projects.project',
-          params: { projectId },
-        });
+        return goToState(targetedStatePromise);
       },
 
       onProjectDeliveryFail: /* @ngInject */ (
