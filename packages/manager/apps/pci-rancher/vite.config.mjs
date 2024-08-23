@@ -5,6 +5,7 @@ const baseConfig = getBaseConfig({});
 
 export default defineConfig({
   ...baseConfig,
+  root: '',
   resolve: {
     ...baseConfig.resolve,
   },

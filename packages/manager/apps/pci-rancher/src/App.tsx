@@ -4,8 +4,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { odsSetup } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import '@ovhcloud/ods-theme-blue-jeans';
-import queryClient from './query.client';
-import Router from './Router';
+import queryClient from './queryClient';
+import Router from './routes/Router';
 
 odsSetup();
 
