@@ -4,7 +4,6 @@ import {
   ODS_CHIP_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
-  ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -27,26 +26,29 @@ export default function Welcome() {
       >
         {t('manager_hub_dashboard_welcome', { name: user.firstname })}
       </OsdsText>
-      <OsdsChip
-        color={ODS_THEME_COLOR_INTENT.success}
-        size={ODS_CHIP_SIZE.sm}
-        inline={true}
-        className="mt-2 align-text-bottom trusted-nic-label"
-      >
-        <OsdsIcon
-          name={ODS_ICON_NAME.SHIELD_CONCEPT}
-          size={ODS_ICON_SIZE.xs}
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="self-center"
-        />
-        <OsdsText
-          level={ODS_TEXT_LEVEL.heading}
-          size={ODS_TEXT_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
+      {user.isTrusted && (
+        <OsdsChip
+          color={ODS_THEME_COLOR_INTENT.success}
+          size={ODS_CHIP_SIZE.sm}
+          inline={true}
+          className="mt-2 align-text-bottom trusted-nic-label"
+          data-testid="snc_chip"
         >
-          {t('manager_hub_trusted_nic_badge_label')}
-        </OsdsText>
-      </OsdsChip>
+          <OsdsIcon
+            name={ODS_ICON_NAME.SHIELD_CONCEPT}
+            size={ODS_ICON_SIZE.xs}
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="self-center"
+          />
+          <OsdsText
+            level={ODS_TEXT_LEVEL.heading}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('manager_hub_trusted_nic_badge_label')}
+          </OsdsText>
+        </OsdsChip>
+      )}
     </>
   );
 }
