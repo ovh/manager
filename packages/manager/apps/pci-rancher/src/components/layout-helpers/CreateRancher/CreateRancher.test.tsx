@@ -1,16 +1,11 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
+import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import { rancherPlan, rancherVersion } from '@/_mock_/rancher-resource';
-import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
-import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
-import {
-  act,
-  fireEvent,
-  render,
-  waitFor,
-} from '../../../utils/test/test.provider';
-import CreateRancher, { CreateRancherProps } from './CreateRancher';
+import { act, fireEvent, waitFor, render } from '@/utils/test/test.provider';
+import CreateRancher, { CreateRancherProps } from './CreateRancher.component';
 import { getRanchersUrl } from '@/utils/route';
 
 const onCreateRancher = jest.fn();
@@ -55,11 +50,8 @@ const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
 describe('CreateRancher', () => {
   it("Given that I don't fill the name field, I shouldn't be able to create my Managed Rancher Service (CTA disabled)", async () => {
     const screen = await setupSpecTest();
-
     const button = screen.getByText(dashboardTranslation.createRancherCTA);
-
-    await userEvent.click(button);
-
+    userEvent.click(button);
     expect(onCreateRancher).not.toHaveBeenCalled();
   });
 
@@ -136,9 +128,11 @@ describe('CreateRancher', () => {
       const screen = await setupSpecTest({});
       const cancelButton = screen.getByText(dashboardTranslation.cancel);
 
-      await userEvent.click(cancelButton);
+      userEvent.click(cancelButton);
 
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(getRanchersUrl('1234'));
+      await waitFor(() => {
+        expect(mockedUsedNavigate).toHaveBeenCalledWith(getRanchersUrl('1234'));
+      });
     });
   });
 
