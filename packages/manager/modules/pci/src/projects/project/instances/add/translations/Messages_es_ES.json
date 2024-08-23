@@ -121,5 +121,6 @@
   "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description1_part1": "Red privada vRack",
   "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description1_part2": "Compatible con ",
   "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description2": "Para crear una red privada extensa entre varias regiones, seleccione una región compatible.",
-  "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description3": "Cambiar la localización"
+  "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description3": "Cambiar la localización",
+  "pci_projects_project_instances_add_attch_floating_ip_checkbox_label_tooltip": "Opción no disponible durante la configuración de varias instancias. Acceda a «Public IP» para asociar una Floating IP a sus instancias."
 }

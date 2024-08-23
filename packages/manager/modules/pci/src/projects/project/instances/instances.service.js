@@ -585,17 +585,6 @@ export default class PciProjectInstanceService {
           number,
         })
         .then(({ data }) => {
-          if (isPrivateMode) {
-            const url = `/cloud/project/${serviceName}/instance/${data.id}`;
-            return this.checkOperationStatus(
-              url,
-              saveInstanceNamespace,
-              status,
-            ).then((res) => {
-              this.Poller.kill({ namespace: saveInstanceNamespace });
-              return res;
-            });
-          }
           return data;
         });
     }
