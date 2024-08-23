@@ -24,10 +24,9 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useMedia } from 'react-use';
 
 import clsx from 'clsx';
-
-import { useMedia } from 'react-use';
 import {
   CreateRancherPayload,
   RancherPlan,
@@ -273,22 +272,23 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
               isDesktop ? 'grid-cols-3' : 'grid-cols-1',
             )}
           >
-            {plans?.map((plan) => (
-              <RancherPlanTile
-                key={plan.name}
-                name={t(plan.name)}
-                plan={plan}
-                selectedPlan={selectedPlan}
-                setSelectedPlan={setSelectedPlan}
-                planDescription={t(getRancherPlanDescription(plan.name))}
-                hourlyPrice={getFormattedHourlyCatalogPrice(
-                  pricing?.find((p) => p.name === plan.name)?.hourlyPrice,
-                )}
-                monthlyPrice={getFormattedMonthlyCatalogPrice(
-                  pricing?.find((p) => p.name === plan.name)?.monthlyPrice,
-                )}
-              />
-            ))}
+            {plans &&
+              plans?.map((plan) => (
+                <RancherPlanTile
+                  key={plan.name}
+                  name={t(plan.name)}
+                  plan={plan}
+                  selectedPlan={selectedPlan}
+                  setSelectedPlan={setSelectedPlan}
+                  planDescription={t(getRancherPlanDescription(plan.name))}
+                  hourlyPrice={getFormattedHourlyCatalogPrice(
+                    pricing?.find((p) => p.name === plan.name)?.hourlyPrice,
+                  )}
+                  monthlyPrice={getFormattedMonthlyCatalogPrice(
+                    pricing?.find((p) => p.name === plan.name)?.monthlyPrice,
+                  )}
+                />
+              ))}
           </ul>
         </div>
         <Block>

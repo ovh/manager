@@ -32,7 +32,7 @@ const setupSpecTest = async (props?: Partial<RancherPlanTileProps>) =>
       <RancherPlanTile
         plan={rancherPlan[1]}
         name="Test Plan"
-        selectedPlan={rancherPlan[1]} // Mock pour selectedPlan car c'est un objet
+        selectedPlan={rancherPlan[1]}
         setSelectedPlan={mockSetSelectedPlan}
         planDescription="Description"
         hourlyPrice="$10"

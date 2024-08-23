@@ -55,7 +55,6 @@ const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
             >
               <strong>{hourlyPrice}</strong>
             </OsdsText>
-
             <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="block">
               ~ {monthlyPrice}
             </OsdsText>

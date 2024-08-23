@@ -8,10 +8,18 @@ import {
 export const useRancherPrices = () => {
   const { data: catalog, isLoading, isError } = useCatalog();
 
+  if (!catalog || !catalog.addons.length) {
+    throw new Error('Catalog not available');
+  }
+
   const getRancherPrice = (planCode: string) => {
     const plan = catalog?.addons.find(
       (element) => element.planCode === planCode,
     );
+
+    if (!plan) {
+      throw new Error(`Plan ${planCode} not found`);
+    }
 
     const isConsumption = plan?.pricings?.[0]?.capacities.includes(
       'consumption',
@@ -28,7 +36,7 @@ export const useRancherPrices = () => {
       : { name: selectedPlan, hourlyPrice: 0, monthlyPrice: 0 };
   };
 
-  const plansPricing = [
+  const plansPricing: TRancherPricing[] = [
     getRancherPrice(RancherPlanCode.OVHCLOUD_EDITION),
     getRancherPrice(RancherPlanCode.STANDARD),
   ];

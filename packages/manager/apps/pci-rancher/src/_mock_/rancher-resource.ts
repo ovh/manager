@@ -1,4 +1,22 @@
-import { RancherPlan, RancherVersion } from '@/types/api.type';
+import {
+  RancherPlan,
+  RancherPlanName,
+  RancherVersion,
+  TRancherPricing,
+} from '@/api/api.type';
+
+export const rancherPlansPricing: TRancherPricing[] = [
+  {
+    name: RancherPlanName.OVHCLOUD_EDITION,
+    hourlyPrice: 0.00685,
+    monthlyPrice: 4.932,
+  },
+  {
+    name: RancherPlanName.STANDARD,
+    hourlyPrice: 0.0171,
+    monthlyPrice: 12.312,
+  },
+];
 
 export const rancherPlan: RancherPlan[] = [
   {

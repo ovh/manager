@@ -1,11 +1,20 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
-import listingTranslation from '@translation/listing/Messages_fr_FR.json';
-import { rancherPlan, rancherVersion } from '@/_mock_/rancher-resource';
-import { act, fireEvent, waitFor, render } from '@/utils/test/test.provider';
-import CreateRancher, { CreateRancherProps } from './CreateRancher.component';
+import {
+  rancherPlan,
+  rancherVersion,
+  rancherPlansPricing,
+} from '@/_mock_/rancher-resource';
+import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
+import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+} from '../../../utils/test/test.provider';
+import CreateRancher, { CreateRancherProps } from './CreateRancher';
 import { getRanchersUrl } from '@/utils/route';
 
 const onCreateRancher = jest.fn();
@@ -15,15 +24,30 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-jest.mock('@ovhcloud/manager-components/src/hooks/useCatalogPrice', () => ({
-  useCatalogPrice: jest.fn(() => ({
-    getFormattedMonthlyCatalogPrice: () => 'toto',
-    getFormattedHourlyCatalogPrice: () => 'tata',
-  })),
+jest.mock('react-use', () => ({
+  useMedia: jest.fn(),
 }));
 
-jest.mock('react-use', () => ({
-  useMedia: () => true,
+jest.mock('@ovhcloud/manager-components', () => ({
+  Subtitle: jest.fn(),
+  Title: jest.fn(),
+  PciDiscoveryBanner: jest.fn(
+    () => 'pci_projects_project_activate_project_banner_message',
+  ),
+  useCatalogPrice: jest.fn((type) => {
+    switch (type) {
+      case 5:
+        return {
+          getFormattedHourlyCatalogPrice: jest.fn((price) => price),
+        };
+      case 1:
+        return {
+          getFormattedMonthlyCatalogPrice: jest.fn((price) => price),
+        };
+      default:
+        return {};
+    }
+  }),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -53,6 +77,7 @@ const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
         hasRancherCreationError={false}
         isProjectDiscoveryMode={false}
         isCreateRancherLoading={false}
+        pricing={rancherPlansPricing}
         {...props}
       />,
     ),
@@ -124,6 +149,15 @@ describe('CreateRancher', () => {
     const errorCreateBanner = screen.getByTestId('errorBanner');
 
     expect(errorCreateBanner).not.toBeNull();
+  });
+
+  it('Given that there is prices I should see rancher pricing', async () => {
+    const screen = await setupSpecTest();
+    const rancherPricingHourly = screen.getAllByText('0.0171');
+    const rancherPricingMonthly = screen.getAllByText('~ 12.312');
+
+    expect(rancherPricingMonthly).not.toBeNull();
+    expect(rancherPricingHourly).not.toBeNull();
   });
 
   describe('Cancel Click', () => {
