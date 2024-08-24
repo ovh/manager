@@ -16,7 +16,7 @@
   "log_button_transfer_stream": "Suscribirse",
   "logs_info_link": "Más información",
   "logs_list_add_data_stream_button": "Añadir un flujo de datos",
-  "logs_list_subscription_success": "La suscripción se ha creado correctamente.",
+  "logs_list_subscription_success": "La suscripción se ha creado correctamente",
   "logs_list_unsubscription_success": "La suscripción se ha eliminado correctamente.",
   "list_column_account": "Cuenta LDP",
   "list_column_stream_name": "Flujos de datos",

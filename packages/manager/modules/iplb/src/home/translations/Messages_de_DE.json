@@ -20,7 +20,7 @@
   "iplb_home_tile_configuration_private_network": "Private Netzwerke",
   "iplb_home_tile_configuration_billing_evolution_message_info": "Die Preisgestaltung Ihres Load Balancers ändert sich und die Preise werden gesenkt.",
   "iplb_home_tile_configuration_billing_issues_message_warn_1": "Bei unserem OVHcloud Load Balancer Angebot kam es in den letzten Monaten zu technischen Störungen, die die Abrechnung beeinflusst haben. Bitte entschuldigen Sie diese Unannehmlichkeit.",
-  "iplb_home_tile_configuration_billing_issues_message_warn_2": "Wir weisen Sie daher darauf hin, dass der zusätzliche Traffic, der bis zum 1. September 2024 nicht in Rechnung gestellt wurde, nicht von Ihnen zurückgefordert wird. Ab dem 1. September 2024 wird die Abrechnung gemäß den Besonderen Vertragsbedingungen und den geltenden detaillierten Tarifen wieder aufgenommen",
+  "iplb_home_tile_configuration_billing_issues_message_warn_2": "Wir möchten Sie daher darüber informieren, dass wir den überschüssigen Traffic, der bis zum 01. September 2024 nicht in Rechnung gestellt wurde, nicht zurückfordern werden. Ab dem 01. September 2024 wird die Abrechnung gemäß den besonderen Vertragsbedingungen des Dienstes und den geltenden detaillierten Preisen wiederaufgenommen.",
   "iplb_home_tile_configuration_billing_more_information_label": "Mehr Informationen",
   "iplb_home_tile_configuration_billing_here_label": "hier,"
 }
