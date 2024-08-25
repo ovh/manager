@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import DatacentreGenerationInformationTile from '@/components/tiles/datacentre-general-information-tile/DatacentreGeneralInformationTile.component';
 import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
@@ -27,6 +27,7 @@ export default function DatacentresGeneralInformationPage() {
         vcdDatacentre={vcdDatacentre?.data}
         vcdOrganization={vcdOrganization?.data}
       />
+      <Outlet />
     </div>
   );
 }

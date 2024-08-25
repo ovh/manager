@@ -128,6 +128,23 @@ export const Routes: any = [
                 pageType: PageType.dashboard,
               },
             },
+            children: [
+              {
+                id: 'vdc-edit-desc',
+                path: urls.datacentreEditDesc,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/datacentre/general-informations/edit/EditVdcDescription.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'vdc-edit-desc',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+            ],
           },
           {
             id: 'vDcStorage',

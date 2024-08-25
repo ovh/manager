@@ -21,7 +21,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface EditModalProps {
-  organizationDetail: string;
+  detailValue: string;
   headline: string;
   inputLabel: string;
   errorHelper: string;
@@ -32,8 +32,8 @@ interface EditModalProps {
   hideError: () => void;
 }
 
-export const EditOrganizationDetailModal = ({
-  organizationDetail,
+export const EditDetailModal = ({
+  detailValue,
   headline,
   inputLabel,
   errorHelper,
@@ -44,9 +44,9 @@ export const EditOrganizationDetailModal = ({
   hideError,
 }: EditModalProps) => {
   const { t } = useTranslation('dashboard');
-  const [newDetail, setNewDetail] = useState<string>(organizationDetail || '');
+  const [newDetail, setNewDetail] = useState<string>(detailValue || '');
   const isValidDetail = validateDetail(newDetail);
-  const isButtonEnabled = isValidDetail && newDetail !== organizationDetail;
+  const isButtonEnabled = isValidDetail && newDetail !== detailValue;
 
   const handleSubmit = () => {
     if (isValidDetail) onEdit(newDetail);

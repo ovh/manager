@@ -18,6 +18,7 @@ export const urls = {
   editDesc: `/${urlParts.dashboard}/${urlParts.editDesc}`,
   datacentres: `/${urlParts.dashboard}/${urlParts.datacentres}`,
   datacentreDashboard: `/${urlParts.dashboard}/${urlParts.datacentres}/${urlParts.vdcId}`,
+  datacentreEditDesc: `/${urlParts.dashboard}/${urlParts.datacentres}/${urlParts.vdcId}/${urlParts.editDesc}`,
   datacentreStorage: `/${urlParts.dashboard}/${urlParts.datacentres}/${urlParts.vdcId}/${urlParts.datacentreStorage}`,
   datacentreCompute: `/${urlParts.dashboard}/${urlParts.datacentres}/${urlParts.vdcId}/${urlParts.datacentreCompute}`,
 };

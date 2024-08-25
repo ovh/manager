@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { useUpdateVcdOrganizationDetails } from '@/data/hooks/useUpdateVcdOrganization';
 import { IVcdOrganizationState } from '@/types/vcd-organization.interface';
-import { EditOrganizationDetailModal } from '@/components/modal/EditOrganizationDetailModal';
 import {
-  validateOrganizationDescription,
+  validateDescription,
   validateOrganizationName,
 } from '@/utils/formValidation';
+import { EditDetailModal } from './EditDetailModal';
 
 type OrganizationDetailName = 'name' | 'description';
 type TValidationFunctions = {
@@ -56,21 +56,21 @@ export const UpdateDetailModalHandler = ({
   const getValidationFunction = (key: OrganizationDetailName) => {
     const validationFunctions: TValidationFunctions = {
       name: validateOrganizationName,
-      description: validateOrganizationDescription,
+      description: validateDescription,
     };
     return validationFunctions[key];
   };
 
   return (
-    <EditOrganizationDetailModal
-      organizationDetail={getOrganizationDetailValue(detailName)}
+    <EditDetailModal
+      detailValue={getOrganizationDetailValue(detailName)}
       headline={t(`managed_vcd_dashboard_edit_${detailName}_modal_title`)}
       inputLabel={t(`managed_vcd_dashboard_edit_${detailName}_modal_label`)}
       errorHelper={t(
         `managed_vcd_dashboard_edit_${detailName}_modal_helper_error`,
       )}
       validateDetail={getValidationFunction(detailName)}
-      onEdit={(newValue) =>
+      onEdit={(newValue: string) =>
         updateDetails({
           id,
           details: {
