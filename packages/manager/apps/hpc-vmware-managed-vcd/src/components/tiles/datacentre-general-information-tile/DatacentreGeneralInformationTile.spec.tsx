@@ -1,12 +1,16 @@
 import { render } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import React from 'react';
 import DatacentreGeneralInformationTile from './DatacentreGeneralInformationTile.component';
+
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => ({ navigate: vi.fn() }),
+}));
 
 describe('DatacentreGeneralInformationTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
