@@ -18,11 +18,6 @@ export type UpdateVcdOrganizationDetailsParams = {
   details: IVcdOrganizationState;
 };
 
-export const updateVcdOrganizationDetailsQueryKey = (id: string) => [
-  `put/organization/details`,
-  id,
-];
-
 export const getVcdProjectListQueryKey = [
   'get/vmwareCloudDirector/organization',
 ];

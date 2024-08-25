@@ -13,10 +13,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Clipboard } from '@/components/tiles/organization-general-information-tile/OrganizationGeneralInformationTile.component';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 import TileSubtitle from '@/components/tiles/tile-subtitle/TileSubtitle.component';
 import IVcdOrganization from '@/types/vcd-organization.interface';
+import { urlParts } from '@/routes/routes.constant';
 
 type TTileProps = {
   vcdDatacentre: IVcdDatacentre;
@@ -29,6 +31,7 @@ export default function DatacentreGenerationInformationTile({
 }: TTileProps) {
   const { t } = useTranslation('dashboard');
   const { t: tVdc } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const navigate = useNavigate();
 
   return (
     <OsdsTile className="w-full h-full flex-col" inline rounded>
@@ -46,7 +49,7 @@ export default function DatacentreGenerationInformationTile({
             <OsdsIcon
               aria-label="edit"
               className="mx-6 cursor-pointer"
-              onClick={() => {}}
+              onClick={() => navigate(urlParts.editDesc)}
               name={ODS_ICON_NAME.PEN}
               size={ODS_ICON_SIZE.xxs}
               color={ODS_THEME_COLOR_INTENT.primary}
