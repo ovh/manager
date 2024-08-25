@@ -1,22 +1,26 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import {
-  getVcdProjectListQueryKey,
-  updateVcdOrganizationDetails,
-  UpdateVcdOrganizationDetailsParams,
-} from '../api/hpc-vmware-managed-vcd';
+  UpdateVdcDetailsParams,
+  updateVdcDetails,
+} from '../api/hpc-vmware-managed-vcd-datacentre';
 
-const updateVcdOrganizationDetailsQueryKey = (id: string) => [
-  `put/vmwareCloudDirector/organization/${id}`,
+const updateVdcDetailsQueryKey = ({
+  id,
+  vdcId,
+}: Pick<UpdateVdcDetailsParams, 'id' | 'vdcId'>) => [
+  `put/vmwareCloudDirector/organization/${id}/virtualDataCenter/${vdcId}`,
 ];
 
-export const useUpdateVcdOrganizationDetails = ({
+export const useUpdateVdcDetails = ({
   id,
+  vdcId,
   onSuccess,
   onError,
 }: {
   id: string;
+  vdcId: string;
   onSuccess?: () => void;
   onError?: (result: ApiError) => void;
 }) => {
@@ -24,12 +28,12 @@ export const useUpdateVcdOrganizationDetails = ({
   const queryClient = useQueryClient();
 
   const { mutateAsync: updateDetails, error } = useMutation({
-    mutationKey: updateVcdOrganizationDetailsQueryKey(id),
-    mutationFn: ({ details }: UpdateVcdOrganizationDetailsParams) =>
-      updateVcdOrganizationDetails({ id, details }),
+    mutationKey: updateVdcDetailsQueryKey({ id, vdcId }),
+    mutationFn: ({ details }: UpdateVdcDetailsParams) =>
+      updateVdcDetails({ id, vdcId, details }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: getVcdProjectListQueryKey,
+        queryKey: [],
       });
       onSuccess?.();
     },
@@ -42,7 +46,7 @@ export const useUpdateVcdOrganizationDetails = ({
   return {
     updateDetails,
     error,
-    isErrorVisible: isErrorVisible && error,
+    isErrorVisible,
     hideError: () => setIsErrorVisible(false),
   };
 };
