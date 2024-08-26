@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.3.2...@ovh-ux/ovh-product-icons@0.4.0) (2024-08-26)
+
+
+### Features
+
+* **container:** fix safari reduced sidbar icons ([#12830](https://github.com/ovh/manager/issues/12830)) ([ab9ea13](https://github.com/ovh/manager/commit/ab9ea13374d8aebf6a6ad09962d516df0520c4b3))
+
+
+
+
+
 ## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.3.1...@ovh-ux/ovh-product-icons@0.3.2) (2024-07-09)
 
 **Note:** Version bump only for package @ovh-ux/ovh-product-icons

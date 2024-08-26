@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.69.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.68.1...@ovh-ux/manager-container-app@0.69.0) (2024-08-26)
+
+
+### Features
+
+* **container:** added cross to close notification ([#12167](https://github.com/ovh/manager/issues/12167)) ([f4a4e37](https://github.com/ovh/manager/commit/f4a4e37cd72dfbbcc8ef7e8df09e368883c098cc))
+* **container:** fix safari reduced sidbar icons ([#12830](https://github.com/ovh/manager/issues/12830)) ([ab9ea13](https://github.com/ovh/manager/commit/ab9ea13374d8aebf6a6ad09962d516df0520c4b3))
+* **container:** left navigation improvement ([#12111](https://github.com/ovh/manager/issues/12111)) ([b315ac6](https://github.com/ovh/manager/commit/b315ac65f4afa1bace14483f5896dea9ea30aae9))
+
+
+
+
+
 ## [0.68.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.68.0...@ovh-ux/manager-container-app@0.68.1) (2024-08-21)
 
 
