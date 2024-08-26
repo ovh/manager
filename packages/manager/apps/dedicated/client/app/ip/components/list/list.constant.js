@@ -74,6 +74,8 @@ export const IP_COMPONENTS_LIST_TRACKING_HIT = {
 export const PAGE_SIZE_MIN = 10;
 export const PAGE_SIZE_MAX = 100;
 
+export const POLLING_INTERVAL = 10000;
+
 export default {
   BADGES,
   IP_TYPE,

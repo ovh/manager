@@ -768,5 +768,6 @@
   "ip_repricing_banner_list_item_2": "A partir du 1er décembre 2022, pour vos adresses existantes (commandées avant le 6 octobre 2022).",
   "ip_repricing_banner_link": "Plus d'informations",
   "ip_unused_banner_text": "Vous avez des adresses IP non utilisées. Les adresses IPv4 étant une ressource qui se raréfie, si vous n'en avez pas besoin, nous vous invitons à les relâcher.",
-  "ip_unused_banner_link": "Voir mes IP non utilisées."
+  "ip_unused_banner_link": "Voir mes IP non utilisées.",
+  "still_pending": "en cours de création"
 }
