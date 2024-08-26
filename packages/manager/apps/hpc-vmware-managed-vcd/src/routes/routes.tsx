@@ -71,8 +71,8 @@ export const Routes: any = [
                 },
               },
               {
-                id: 'edit-desc',
-                path: urls.editDesc,
+                id: 'edit-description',
+                path: urls.editDescription,
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/dashboard/organization/general-information/edit/EditDescription.page'
@@ -80,7 +80,7 @@ export const Routes: any = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'edit-desc',
+                    pageName: 'edit-description',
                     pageType: PageType.popup,
                   },
                 },
@@ -130,8 +130,8 @@ export const Routes: any = [
             },
             children: [
               {
-                id: 'vdc-edit-desc',
-                path: urls.datacentreEditDesc,
+                id: 'vdc-edit-description',
+                path: urls.datacentreEditDescription,
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/dashboard/datacentre/general-informations/edit/EditVdcDescription.page'
@@ -139,7 +139,7 @@ export const Routes: any = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'vdc-edit-desc',
+                    pageName: 'vdc-edit-description',
                     pageType: PageType.popup,
                   },
                 },
