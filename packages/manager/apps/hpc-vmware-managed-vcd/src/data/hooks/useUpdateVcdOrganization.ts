@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useState } from 'react';
 import {
   getVcdProjectListQueryKey,
   updateVcdOrganizationDetails,
@@ -20,10 +19,9 @@ export const useUpdateVcdOrganizationDetails = ({
   onSuccess?: () => void;
   onError?: (result: ApiError) => void;
 }) => {
-  const [isErrorVisible, setIsErrorVisible] = useState(false);
   const queryClient = useQueryClient();
 
-  const { mutateAsync: updateDetails, error } = useMutation({
+  const { mutateAsync: updateDetails, error, isError } = useMutation({
     mutationKey: updateVcdOrganizationDetailsQueryKey(id),
     mutationFn: ({ details }: UpdateVcdOrganizationDetailsParams) =>
       updateVcdOrganizationDetails({ id, details }),
@@ -33,16 +31,8 @@ export const useUpdateVcdOrganizationDetails = ({
       });
       onSuccess?.();
     },
-    onError: (result: ApiError) => {
-      setIsErrorVisible(true);
-      onError?.(result);
-    },
+    onError: (result: ApiError) => onError?.(result),
   });
 
-  return {
-    updateDetails,
-    error,
-    isErrorVisible: isErrorVisible && error,
-    hideError: () => setIsErrorVisible(false),
-  };
+  return { updateDetails, error, isError };
 };

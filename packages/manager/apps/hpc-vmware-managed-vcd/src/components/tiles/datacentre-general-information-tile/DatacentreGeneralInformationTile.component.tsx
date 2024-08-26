@@ -49,7 +49,7 @@ export default function DatacentreGenerationInformationTile({
             <OsdsIcon
               aria-label="edit"
               className="mx-6 cursor-pointer"
-              onClick={() => navigate(urlParts.editDesc)}
+              onClick={() => navigate(urlParts.editDescription)}
               name={ODS_ICON_NAME.PEN}
               size={ODS_ICON_SIZE.xxs}
               color={ODS_THEME_COLOR_INTENT.primary}

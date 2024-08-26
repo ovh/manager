@@ -6,7 +6,7 @@ import {
 } from '../api/hpc-vmware-managed-vcd-datacentre';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 
-const getVcdDatacentresQueryKey = (id: string) => [
+export const getVcdDatacentresQueryKey = (id: string) => [
   `get/vmwareCloudDirector/organization/${id}/virtualDataCenter`,
 ];
 
