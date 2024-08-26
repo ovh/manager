@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.50.0...@ovh-ux/manager-dedicated@19.51.0) (2024-08-26)
+
+
+### Features
+
+* **dedicated:** add ip version filter to url params ([0294d27](https://github.com/ovh/manager/commit/0294d27687d85d7d1720b3a773508edb01dcb6fe))
+* **dedicated:** remove delete action for BYOIP ([c14424a](https://github.com/ovh/manager/commit/c14424a75df3658a6178cb47202a330d179edc71))
+
+
+
+
+
 # [19.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.49.1...@ovh-ux/manager-dedicated@19.50.0) (2024-08-26)
 
 
