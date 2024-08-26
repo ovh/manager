@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.33.0...@ovh-ux/manager-web@18.34.0) (2024-08-26)
+
+
+### Bug Fixes
+
+* **web.database:** remove wrong call api ([9d52cb5](https://github.com/ovh/manager/commit/9d52cb5a0f80fdffc21646ad271d31016802f8b9))
+
+
+### Features
+
+* **web:** multisite dns diagnostic ([#11305](https://github.com/ovh/manager/issues/11305)) ([ba91ed1](https://github.com/ovh/manager/commit/ba91ed1b23319d43a2bb7aa87c3dee692a56df1a))
+
+
+
+
+
 # [18.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.32.6...@ovh-ux/manager-web@18.33.0) (2024-08-19)
 
 
