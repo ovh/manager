@@ -83,7 +83,7 @@ describe('Banner.component', () => {
           height: 117,
         },
       },
-      link: 'http://link-to-summit.com',
+      link: 'https://link-to-summit.com',
       tracker: 'summit::tracking',
     };
     const { getByTestId } = renderComponent();

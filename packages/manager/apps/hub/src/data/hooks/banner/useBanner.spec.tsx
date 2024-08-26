@@ -44,7 +44,7 @@ describe('useFetchHubBanner', () => {
           height: 117,
         },
       },
-      link: 'http://link-to-summit.com',
+      link: 'https://link-to-summit.com',
       tracker: 'summit::tracking',
     };
     vi.spyOn(BannerApi, 'getBanner').mockReturnValue(

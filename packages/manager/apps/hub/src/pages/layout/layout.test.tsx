@@ -116,30 +116,33 @@ describe('Layout.page', () => {
 
   it('should render correct components for customers with services or order', async () => {
     lastOrder.data = {
-      date: '2024-08-22T12:24:08+02:00',
-      expirationDate: '2024-09-05T23:29:59+02:00',
-      orderId: 214110656,
-      password: 'rCQ83v9imQ',
-      pdfUrl:
-        'https://www.ovh.com/cgi-bin/order/display-order.cgi?orderId=214110656&orderPassword=rCQ83v9imQ',
-      priceWithTax: {
-        currencyCode: 'points',
-        text: '0 PTS',
-        value: 0,
+      status: 'OK',
+      data: {
+        date: '2024-08-22T12:24:08+02:00',
+        expirationDate: '2024-09-05T23:29:59+02:00',
+        orderId: 99999999999,
+        password: 'fakepassword',
+        pdfUrl:
+          'https://www.fake-order-url.com?orderId=fakeId&orderPassword=fakePassword',
+        priceWithTax: {
+          currencyCode: 'points',
+          text: '0 PTS',
+          value: 0,
+        },
+        priceWithoutTax: {
+          currencyCode: 'points',
+          text: '0 PTS',
+          value: 0,
+        },
+        retractionDate: '2024-09-06T00:00:00+02:00',
+        tax: {
+          currencyCode: 'points',
+          text: '0 PTS',
+          value: 0,
+        },
+        url:
+          'https://www.fake-order-url.com?orderId=fakeId&orderPassword=fakePassword',
       },
-      priceWithoutTax: {
-        currencyCode: 'points',
-        text: '0 PTS',
-        value: 0,
-      },
-      retractionDate: '2024-09-06T00:00:00+02:00',
-      tax: {
-        currencyCode: 'points',
-        text: '0 PTS',
-        value: 0,
-      },
-      url:
-        'https://www.ovh.com/cgi-bin/order/display-order.cgi?orderId=214110656&orderPassword=rCQ83v9imQ',
     };
     const {
       getByText,

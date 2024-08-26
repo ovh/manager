@@ -38,10 +38,10 @@ describe('useFetchHubLastOrder', () => {
       data: {
         date: '2024-08-22T12:24:08+02:00',
         expirationDate: '2024-09-05T23:29:59+02:00',
-        orderId: 214110656,
-        password: 'rCQ83v9imQ',
+        orderId: 99999999999,
+        password: 'fakepassword',
         pdfUrl:
-          'https://www.ovh.com/cgi-bin/order/display-order.cgi?orderId=214110656&orderPassword=rCQ83v9imQ',
+          'https://www.fake-order-url.com?orderId=fakeId&orderPassword=fakePassword',
         priceWithTax: {
           currencyCode: 'points',
           text: '0 PTS',
@@ -59,7 +59,7 @@ describe('useFetchHubLastOrder', () => {
           value: 0,
         },
         url:
-          'https://www.ovh.com/cgi-bin/order/display-order.cgi?orderId=214110656&orderPassword=rCQ83v9imQ',
+          'https://www.fake-order-url.com?orderId=fakeId&orderPassword=fakePassword',
       },
     };
     vi.spyOn(LastOrderApi, 'getLastOrder').mockReturnValue(
