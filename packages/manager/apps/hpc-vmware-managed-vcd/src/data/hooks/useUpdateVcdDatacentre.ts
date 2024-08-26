@@ -1,10 +1,10 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
 import {
   UpdateVdcDetailsParams,
   updateVdcDetails,
 } from '../api/hpc-vmware-managed-vcd-datacentre';
+import { getVcdDatacentresQueryKey } from './useManagedVcdDatacentres';
 
 const updateVdcDetailsQueryKey = ({
   id,
@@ -24,29 +24,20 @@ export const useUpdateVdcDetails = ({
   onSuccess?: () => void;
   onError?: (result: ApiError) => void;
 }) => {
-  const [isErrorVisible, setIsErrorVisible] = useState(false);
   const queryClient = useQueryClient();
 
-  const { mutateAsync: updateDetails, error } = useMutation({
+  const { mutateAsync: updateDetails, error, isError } = useMutation({
     mutationKey: updateVdcDetailsQueryKey({ id, vdcId }),
     mutationFn: ({ details }: UpdateVdcDetailsParams) =>
       updateVdcDetails({ id, vdcId, details }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [],
+        queryKey: [getVcdDatacentresQueryKey(id)],
       });
       onSuccess?.();
     },
-    onError: (result: ApiError) => {
-      setIsErrorVisible(true);
-      onError?.(result);
-    },
+    onError: (result: ApiError) => onError?.(result),
   });
 
-  return {
-    updateDetails,
-    error,
-    isErrorVisible,
-    hideError: () => setIsErrorVisible(false),
-  };
+  return { updateDetails, error, isError };
 };

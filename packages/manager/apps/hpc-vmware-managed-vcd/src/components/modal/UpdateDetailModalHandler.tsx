@@ -28,12 +28,7 @@ export const UpdateDetailModalHandler = ({
   const closeModal = () => navigate('..');
   const { id } = useParams();
   const { data: vcdOrganization } = useManagedVcdOrganization(id);
-  const {
-    updateDetails,
-    isErrorVisible,
-    error,
-    hideError,
-  } = useUpdateVcdOrganizationDetails({
+  const { updateDetails, error, isError } = useUpdateVcdOrganizationDetails({
     id,
     onSuccess: closeModal,
   });
@@ -80,8 +75,7 @@ export const UpdateDetailModalHandler = ({
         })
       }
       onCloseModal={closeModal}
-      error={isErrorVisible ? error : null}
-      hideError={hideError}
+      error={isError ? error : null}
     />
   );
 };
