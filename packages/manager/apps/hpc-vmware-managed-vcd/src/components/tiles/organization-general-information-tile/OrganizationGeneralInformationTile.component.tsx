@@ -84,7 +84,7 @@ export default function OrganizationGenerationInformationTile({
               name={ODS_ICON_NAME.PEN}
               size={ODS_ICON_SIZE.xxs}
               color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={() => navigate(urlParts.editDesc)}
+              onClick={() => navigate(urlParts.editDescription)}
             />
           </div>
           <OsdsDivider separator />

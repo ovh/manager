@@ -13,12 +13,7 @@ export default function EditVdcDescription() {
   const closeModal = () => navigate('..');
   const { id, vdcId } = useParams();
   const { data: vcdDatacentre } = useManagedVcdDatacentre(id, vdcId);
-  const {
-    updateDetails,
-    isErrorVisible,
-    error,
-    hideError,
-  } = useUpdateVdcDetails({
+  const { updateDetails, error, isError } = useUpdateVdcDetails({
     id,
     vdcId,
     onSuccess: closeModal,
@@ -36,15 +31,14 @@ export default function EditVdcDescription() {
       )}
       validateDetail={validateDescription}
       onCloseModal={closeModal}
-      onEdit={(desc) =>
+      onEdit={(description) =>
         updateDetails({
           id,
           vdcId,
-          details: { ...currentVdcDetails, description: desc },
+          details: { ...currentVdcDetails, description },
         })
       }
-      error={isErrorVisible ? error : null}
-      hideError={hideError}
+      error={isError ? error : null}
     />
   );
 }

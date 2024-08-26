@@ -17,6 +17,7 @@ import {
   OsdsModal,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { AxiosResponse } from 'axios';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -27,9 +28,8 @@ interface EditModalProps {
   errorHelper: string;
   validateDetail: (detail: string) => boolean;
   onCloseModal: () => void;
-  onEdit: (detail: string) => void;
-  error: ApiError;
-  hideError: () => void;
+  onEdit: (detail: string) => Promise<AxiosResponse<unknown>>;
+  error: ApiError | null;
 }
 
 export const EditDetailModal = ({
@@ -41,15 +41,22 @@ export const EditDetailModal = ({
   onCloseModal,
   onEdit,
   error,
-  hideError,
 }: EditModalProps) => {
   const { t } = useTranslation('dashboard');
   const [newDetail, setNewDetail] = useState<string>(detailValue || '');
+  const [isErrorVisible, setIsErrorVisible] = useState(false);
   const isValidDetail = validateDetail(newDetail);
   const isButtonEnabled = isValidDetail && newDetail !== detailValue;
 
-  const handleSubmit = () => {
-    if (isValidDetail) onEdit(newDetail);
+  const handleSubmit = async () => {
+    if (isValidDetail) {
+      setIsErrorVisible(false);
+      try {
+        await onEdit(newDetail);
+      } catch (err) {
+        setIsErrorVisible(true);
+      }
+    }
   };
 
   return (
@@ -59,11 +66,11 @@ export const EditDetailModal = ({
       dismissible
       headline={headline}
     >
-      {!!error && (
+      {!!error && isErrorVisible && (
         <OsdsMessage
           type={ODS_MESSAGE_TYPE.error}
           removable
-          onOdsRemoveClick={hideError}
+          onOdsRemoveClick={() => setIsErrorVisible(false)}
         >
           <OsdsText
             level={ODS_TEXT_LEVEL.body}
