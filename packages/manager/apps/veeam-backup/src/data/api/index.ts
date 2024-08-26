@@ -1,1 +1,2 @@
-export * from './veeam-backup.api';
+export * from './veeam-backup';
+export * from './vcd-organization';
