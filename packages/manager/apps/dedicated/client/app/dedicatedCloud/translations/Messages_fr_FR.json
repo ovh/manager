@@ -1,4 +1,5 @@
 {
   "dedicated_clouds_title": "Private Cloud",
-  "dedicated_clouds_order": "Commander"
+  "dedicated_clouds_order": "Commander",
+  "test_content": "Test"
 }

@@ -16,6 +16,8 @@ import vcdOrder from './vmware-cloud-director/order';
 
 const moduleName = 'dedicatedCloudDashboardModule';
 
+console.log('Test Development');
+
 angular
   .module(moduleName, [
     associateIpBloc,

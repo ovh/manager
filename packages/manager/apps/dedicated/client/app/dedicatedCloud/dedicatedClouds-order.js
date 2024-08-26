@@ -44,6 +44,8 @@ export const DEDICATED_CLOUD_ORDER_URLS = {
   US: 'https://us.ovhcloud.com/hosted-private-cloud/vmware/prices/',
 };
 
+// Test Comment
+
 export function getDedicatedCloudOrderUrl(subsidiary) {
   return (
     DEDICATED_CLOUD_ORDER_URLS[subsidiary] || DEDICATED_CLOUD_ORDER_URLS.DEFAULT
