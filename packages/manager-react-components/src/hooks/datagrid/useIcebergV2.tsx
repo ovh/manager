@@ -21,7 +21,6 @@ export function useResourcesIcebergV2<T = unknown>({
   pageSize = defaultPageSize,
   queryKey,
   defaultSorting = undefined,
-  sort = (_, data) => data,
 }: IcebergFetchParamsV2 & IcebergV2Hook<T>) {
   const [flattenData, setFlattenData] = useState<T[]>([]);
   const [sorting, setSorting] = useState<ColumnSort>(defaultSorting);
@@ -44,10 +43,9 @@ export function useResourcesIcebergV2<T = unknown>({
   });
 
   useEffect(() => {
-    setFlattenData(() =>
-      sort(sorting, data?.pages.map((page) => page.data).flat() as T[]),
-    );
-  }, [data, sorting]);
+    const flatten = data?.pages.map((page) => page.data).flat() as T[];
+    setFlattenData(flatten);
+  }, [data]);
 
   return {
     data,

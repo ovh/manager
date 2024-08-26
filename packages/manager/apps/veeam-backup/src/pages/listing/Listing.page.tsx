@@ -1,39 +1,33 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, Outlet } from 'react-router-dom';
-import { OsdsButton, OsdsLink } from '@ovhcloud/ods-components/react';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   Datagrid,
-  DataGridTextCell,
   BaseLayout,
   DatagridColumn,
-  ActionMenu,
 } from '@ovhcloud/manager-components';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
 import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
+import { VeeamBackupWithIam, useVeeamBackupList } from '@/data';
 import {
-  VeeamBackupWithIam,
-  getVeeamBackupDisplayName,
-  useOrganizations,
-  useRegions,
-  useVeeamBackupList,
-  getVeeamBackupVCDOrganizationDisplayName,
-} from '@/data';
-import { StatusCell } from './StatusCell.component';
-import { CreatedAtCell } from './CreatedAtCell.component';
-import { sortVeeamBackups } from './sorting';
-import { iamActions } from '@/veeam-backup.config';
+  DisplayNameCell,
+  ActionCell,
+  OvhRefCell,
+  RegionCell,
+  CreatedAtCell,
+  StatusCell,
+  OrganizationCell,
+} from './DatagridCell.component';
 
 export default function Listing() {
   const { t } = useTranslation('listing');
   const navigate = useNavigate();
-  const regions = useRegions();
-  const organizations = useOrganizations();
   const {
     data,
     flattenData,
@@ -45,93 +39,50 @@ export default function Listing() {
     isLoading,
     error,
     status,
-  } = useVeeamBackupList({
-    pageSize: 10,
-    defaultSorting: { id: 'name', desc: false },
-    sort: sortVeeamBackups(organizations?.flattenData),
-  });
+  } = useVeeamBackupList({ pageSize: 10 });
 
   const columns: DatagridColumn<VeeamBackupWithIam>[] = [
     {
       id: 'name',
       label: t('name_cell'),
-      isSortable: true,
-      cell: (backup) => (
-        <DataGridTextCell>
-          <OsdsLink
-            color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => navigate(urls.dashboard.replace(':id', backup.id))}
-          >
-            {getVeeamBackupDisplayName(backup)}
-          </OsdsLink>
-        </DataGridTextCell>
-      ),
+      isSortable: false,
+      cell: DisplayNameCell,
     },
     {
       id: 'status',
       label: t('status_cell'),
-      isSortable: true,
-      cell: (backup) => <StatusCell {...backup} />,
+      isSortable: false,
+      cell: StatusCell,
     },
     {
       id: 'ovhref',
       label: t('ovhref_cell'),
-      isSortable: true,
-      cell: (backup) => <DataGridTextCell>{backup.id}</DataGridTextCell>,
+      isSortable: false,
+      cell: OvhRefCell,
     },
     {
       id: 'vcdorg',
       label: t('vcdorg_cell'),
-      isSortable: true,
-      cell: (backup) => (
-        <DataGridTextCell>
-          {getVeeamBackupVCDOrganizationDisplayName(
-            organizations?.flattenData,
-            backup,
-          )}
-        </DataGridTextCell>
-      ),
+      isSortable: false,
+      cell: OrganizationCell,
     },
     {
       id: 'region',
       label: t('region_cell'),
-      isSortable: true,
-      cell: (backup) => (
-        <DataGridTextCell>
-          {
-            regions?.flattenData?.find(
-              (r) => r.region === backup.currentState.region,
-            )?.location
-          }
-        </DataGridTextCell>
-      ),
+      isSortable: false,
+      cell: RegionCell,
     },
     {
       id: 'createdat',
       label: t('createdat_cell'),
-      isSortable: true,
-      cell: (backup) => <CreatedAtCell {...backup} />,
+      isSortable: false,
+      cell: CreatedAtCell,
     },
     {
       id: 'action',
       label: '',
       isSortable: false,
-      cell: (backup) => (
-        <ActionMenu
-          isCompact
-          items={[
-            {
-              id: 0,
-              label: t('delete_action'),
-              color: ODS_THEME_COLOR_INTENT.error,
-              urn: backup.iam.urn,
-              iamActions: [iamActions.vmwareCloudDirectorBackupGet],
-              onClick: () =>
-                navigate(urls.deleteVeeam.replace(':id', backup.id)),
-            },
-          ]}
-        />
-      ),
+      cell: ActionCell,
     },
   ];
 
