@@ -19,7 +19,7 @@ export default {
     goToSgxManage: '<',
     goToMonitoringUpdate: '<',
     isCommitmentAvailable: '<',
-    isVmacBannerAvailable: '<',
+    isVmacUnavailableBannerAvailable: '<',
     ola: '<',
     getOrderPrivateBandwidthLink: '<',
     getOrderPublicBandwidthLink: '<',

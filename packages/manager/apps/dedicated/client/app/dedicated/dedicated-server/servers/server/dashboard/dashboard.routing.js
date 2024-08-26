@@ -289,7 +289,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       changeOwnerAvailable: /* @ngInject */ (features) =>
         features.isFeatureAvailable('dedicated-server:changeOwner'),
-      isVmacBannerAvailable: /* @ngInject */ (features) =>
+      isVmacUnavailableBannerAvailable: /* @ngInject */ (features) =>
         features.isFeatureAvailable('dedicated-server:vmac-unavailable-banner'),
 
       isMonitoringOptionsAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
